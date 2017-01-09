@@ -1,4 +1,4 @@
-Before opening this issue _please_ check we haven't already fixed it! Check the [Dev Change Log](https://github.com/photonstorm/phaser/tree/master/v2-community/#change-log).
+Before opening this issue _please_ check we haven't already fixed it! Check the [Dev Change Log](https://github.com/photonstorm/phaser-ce/tree/master/#change-log).
 
 This Issue is about (delete as applicable)
 
