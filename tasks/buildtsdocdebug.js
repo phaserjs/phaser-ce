@@ -454,7 +454,7 @@ module.exports = function (grunt) {
 
     _grunt = grunt;
 
-    grunt.registerMultiTask('buildtsdoc', 'Generate a TypeScript def with comments', function () {
+    grunt.registerMultiTask('buildtsdocdebug', 'Generate a TypeScript def with comments', function () {
         var tsdg = new TypeScriptDocGenerator(this.data.tsDefFileName, this.data.jsdocJsonFileName);
         fs.writeFileSync(this.data.dest, tsdg.getTsDefCommentedFileContent(), 'utf8');
     });

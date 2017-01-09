@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.2 "2016-12-06" - Built: Tue Dec 06 2016 23:48:29
+* v2.7.3 "2017-01-09" - Built: Mon Jan 09 2017 13:26:30
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -483,7 +483,7 @@ PIXI.DisplayObject.prototype = {
 
         var bounds = this.getLocalBounds();
 
-        var renderTexture = new Phaser.RenderTexture(bounds.width | 0, bounds.height | 0, renderer, scaleMode, resolution);
+        var renderTexture = new Phaser.RenderTexture(this.game, bounds.width | 0, bounds.height | 0, renderer, scaleMode, resolution);
         
         PIXI.DisplayObject._tempMatrix.tx = -bounds.x;
         PIXI.DisplayObject._tempMatrix.ty = -bounds.y;
@@ -2235,15 +2235,21 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
     this.fragmentSrc = [
         '// PixiShader Fragment Shader.',
         'precision lowp float;',
+        'bool isnan( float val ) {  return ( val < 0.0 || 0.0 < val || val == 0.0 ) ? false : true; }',
         'varying vec2 vTextureCoord;',
         'varying vec4 vColor;',
         'varying float vTextureIndex;',
         'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
-        'const vec4 PINK = vec4(1.0, 0.0, 1.0, 1.0);',
-        'const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);',
+        // Blue color means that you are trying to bound
+        // a texture out of the limits of the hardware.
+        'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+        // If you get a red color means you are out of memory
+        // or in some way corrupted the vertex buffer.
+        'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
         'void main(void) {',
         dynamicIfs,
-        'else gl_FragColor = PINK;',
+        '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
+        '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',
         '}'
     ];
 
@@ -2690,15 +2696,21 @@ PIXI.PixiFastShader = function (gl) {
         this.fragmentSrc = [
             '// PixiFastShader Fragment Shader.',
             'precision lowp float;',
+            'bool isnan( float val ) {  return ( val < 0.0 || 0.0 < val || val == 0.0 ) ? false : true; }',
             'varying vec2 vTextureCoord;',
             'varying float vColor;',
             'varying float vTextureIndex;',
             'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
-            'const vec4 PINK = vec4(1.0, 0.0, 1.0, 1.0);',
-            'const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);',
+            // Blue color means that you are trying to bound
+            // a texture out of the limits of the hardware.
+            'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+            // If you get a red color means you are out of memory
+            // or in some way corrupted the vertex buffer.
+            'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
-            'else gl_FragColor = PINK;',        
+            '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
+            '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',       
             '}'
         ];
     } else {
@@ -2904,16 +2916,22 @@ PIXI.StripShader = function(gl)
         this.fragmentSrc = [
             '//StripShader Fragment Shader.',
             'precision mediump float;',
+            'bool isnan( float val ) {  return ( val < 0.0 || 0.0 < val || val == 0.0 ) ? false : true; }',
             'varying vec2 vTextureCoord;',
             'varying float vTextureIndex;',
          //   'varying float vColor;',
             'uniform float alpha;',
             'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
-            'const vec4 PINK = vec4(1.0, 0.0, 1.0, 1.0);',
-            'const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);',
+            // Blue color means that you are trying to bound
+            // a texture out of the limits of the hardware.
+            'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+            // If you get a red color means you are out of memory
+            // or in some way corrupted the vertex buffer.
+            'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
-            'else gl_FragColor = PINK;',
+            '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
+            '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',
             '}'
         ];    
     } else {
@@ -3570,11 +3588,20 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         console.warn('setTexturePriority error: Multi Texture support hasn\'t been enabled in the Phaser Game Config.');
         return;
     }
-
-    var maxTextures = this.maxTextures;
+    var clampPot = function (potSize) {
+        --potSize;
+        potSize |= potSize >> 1;
+        potSize |= potSize >> 2;
+        potSize |= potSize >> 4;
+        potSize |= potSize >> 8;
+        potSize |= potSize >> 16;
+        return ++potSize;
+    };
+    var gl = this.gl;
+    var maxTextures = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
+    var maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
     var imageCache = this.game.cache._cache.image;
     var imageName = null;
-    var gl = this.gl;
 
     //  Clear out all previously batched textures and reset their flags.
     //  If the array has been modified, then the developer will have to
@@ -3590,9 +3617,8 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         
         imageCache[imageName].base.textureIndex = 0;
     }
-
+    var maxTextureAvailableSpace = (maxTextureSize) - clampPot(Math.max(this.width, this.height));
     this.currentBatchedTextures.length = 0;
-
     // We start from 1 because framebuffer texture uses unit 0.
     for (var index = 0; index < textureNameCollection.length; ++index)
     {
@@ -3602,16 +3628,14 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         {
             continue;
         }
-
-        if (index + 1 < maxTextures)
-        {
-            imageCache[imageName].base.textureIndex = index + 1;
+        // Unit 0 is reserved for Pixi's framebuffer
+        var base = imageCache[imageName].base;
+        maxTextureAvailableSpace -= clampPot(Math.max(base.width, base.height));
+        if (maxTextureAvailableSpace <= 0) {
+            base.textureIndex = 0;
+        } else {
+            base.textureIndex = (1 + (index % (maxTextures - 1)));
         }
-        else
-        {
-            imageCache[imageName].base.textureIndex = maxTextures - 1;
-        }
-
         this.currentBatchedTextures.push(imageName);
     }
 
@@ -7504,7 +7528,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant
     * @type {string}
     */
-    VERSION: '2.7.2',
+    VERSION: '2.7.3',
 
     /**
     * An array of Phaser game instances.
@@ -10176,10 +10200,12 @@ Phaser.Line.intersects = function (a, b, asSegment, result) {
 *
 * An intersection is considered valid if:
 *
-* The line starts within, or ends within, the Rectangle.
-* The line segment intersects one of the 4 rectangle edges.
+* The line starts within or ends within the rectangle; or
+* The line segment intersects one of the 4 rectangle edges; and
+* The line has a non-zero length; and
+* The rectangle is not empty.
 *
-* The for the purposes of this function rectangles are considered 'solid'.
+* For the purposes of this function rectangles are considered 'solid'.
 *
 * @method Phaser.Line.intersectsRectangle
 * @param {Phaser.Line} line - The line to check for intersection with.
@@ -10188,8 +10214,8 @@ Phaser.Line.intersects = function (a, b, asSegment, result) {
 */
 Phaser.Line.intersectsRectangle = function (line, rect) {
 
-    //  Quick bail out of the Line and Rect bounds don't intersect
-    if (!Phaser.Rectangle.intersects(line, rect))
+    //  Quick bail out
+    if (line.length === 0 || rect.empty)
     {
         return false;
     }
@@ -11037,6 +11063,24 @@ Phaser.Point.prototype = {
             var m = this.getMagnitude();
             this.x /= m;
             this.y /= m;
+        }
+
+        return this;
+
+    },
+
+    /**
+    * Alters the Point object so it's magnitude is at most the max value.
+    *
+    * @method Phaser.Point#limit
+    * @param {number} max - The maximum magnitude for the Point.
+    * @return {Phaser.Point} This Point object.
+    */
+    limit: function (max) {
+
+        if (this.getMagnitudeSq() > max * max)
+        {
+            this.setMagnitude(max);
         }
 
         return this;
@@ -16979,7 +17023,7 @@ Phaser.Group = function (game, parent, name, addToStage, enableBody, physicsBody
     this.alive = true;
 
     /**
-    * If exists is true the group is updated, otherwise it is skipped.
+    * If exists is false the group will be excluded from collision checks and filters such as {@link forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link #visible} and will still call `update` on its children.
     * @property {boolean} exists
     * @default
     */
@@ -24055,6 +24099,9 @@ Phaser.DeviceButton.prototype = {
     * @param {number} value - Button value
     */
     padFloat: function (value) {
+
+        this.isDown = false;
+        this.isUp = false;
 
         this.value = value;
 
@@ -40343,6 +40390,7 @@ Phaser.AnimationParser = {
         if (frameMax === undefined) { frameMax = -1; }
         if (margin === undefined) { margin = 0; }
         if (spacing === undefined) { spacing = 0; }
+        if (skipFrames === undefined) { skipFrames = 0; }
 
         var img = key;
 
@@ -41197,11 +41245,11 @@ Phaser.Cache.prototype = {
 
         if (atlasType === 'json')
         {
-            obj.font = Phaser.LoaderParser.jsonBitmapFont(atlasData, obj.base, xSpacing, ySpacing);
+            obj.font = Phaser.LoaderParser.jsonBitmapFont(atlasData, obj.base, xSpacing, ySpacing, false, this.game.resolution);
         }
         else
         {
-            obj.font = Phaser.LoaderParser.xmlBitmapFont(atlasData, obj.base, xSpacing, ySpacing);
+            obj.font = Phaser.LoaderParser.xmlBitmapFont(atlasData, obj.base, xSpacing, ySpacing, false, this.game.resolution);
         }
 
         this._cache.bitmapFont[key] = obj;
@@ -41253,12 +41301,12 @@ Phaser.Cache.prototype = {
         if (dataType === 'json')
         {
             fontData = this.getJSON(dataKey);
-            obj.font = Phaser.LoaderParser.jsonBitmapFont(fontData, obj.base, xSpacing, ySpacing, frame);
+            obj.font = Phaser.LoaderParser.jsonBitmapFont(fontData, obj.base, xSpacing, ySpacing, frame, this.game.resolution);
         }
         else
         {
             fontData = this.getXML(dataKey);
-            obj.font = Phaser.LoaderParser.xmlBitmapFont(fontData, obj.base, xSpacing, ySpacing, frame);
+            obj.font = Phaser.LoaderParser.xmlBitmapFont(fontData, obj.base, xSpacing, ySpacing, frame, this.game.resolution);
         }
 
         this._cache.bitmapFont[key] = obj;
@@ -45986,9 +46034,10 @@ Phaser.LoaderParser = {
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
+    * @param {number} [resolution] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
-    xmlBitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame) {
+    xmlBitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution) {
 
         var data = {};
         var info = xml.getElementsByTagName('info')[0];
@@ -46013,9 +46062,9 @@ Phaser.LoaderParser = {
                 y: y + parseInt(letters[i].getAttribute('y'), 10),
                 width: parseInt(letters[i].getAttribute('width'), 10),
                 height: parseInt(letters[i].getAttribute('height'), 10),
-                xOffset: parseInt(letters[i].getAttribute('xoffset'), 10),
-                yOffset: parseInt(letters[i].getAttribute('yoffset'), 10),
-                xAdvance: parseInt(letters[i].getAttribute('xadvance'), 10) + xSpacing,
+                xOffset: parseInt(letters[i].getAttribute('xoffset'), 10) / resolution,
+                yOffset: parseInt(letters[i].getAttribute('yoffset'), 10) / resolution,
+                xAdvance: (parseInt(letters[i].getAttribute('xadvance'), 10) + xSpacing) / resolution,
                 kerning: {}
             };
         }
@@ -46026,7 +46075,7 @@ Phaser.LoaderParser = {
         {
             var first = parseInt(kernings[i].getAttribute('first'), 10);
             var second = parseInt(kernings[i].getAttribute('second'), 10);
-            var amount = parseInt(kernings[i].getAttribute('amount'), 10);
+            var amount = parseInt(kernings[i].getAttribute('amount'), 10) / resolution;
 
             data.chars[second].kerning[first] = amount;
         }
@@ -46044,9 +46093,10 @@ Phaser.LoaderParser = {
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
+    * @param {number} [resolution] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
-    jsonBitmapFont: function (json, baseTexture, xSpacing, ySpacing, frame) {
+    jsonBitmapFont: function (json, baseTexture, xSpacing, ySpacing, frame, resolution) {
 
         var data = {
             font: json.font.info._face,
@@ -46069,9 +46119,9 @@ Phaser.LoaderParser = {
                     y: y + parseInt(letter._y, 10),
                     width: parseInt(letter._width, 10),
                     height: parseInt(letter._height, 10),
-                    xOffset: parseInt(letter._xoffset, 10),
-                    yOffset: parseInt(letter._yoffset, 10),
-                    xAdvance: parseInt(letter._xadvance, 10) + xSpacing,
+                    xOffset: parseInt(letter._xoffset, 10) / resolution,
+                    yOffset: parseInt(letter._yoffset, 10) / resolution,
+                    xAdvance: (parseInt(letter._xadvance, 10) + xSpacing) / resolution,
                     kerning: {}
                 };
             }
@@ -46084,7 +46134,7 @@ Phaser.LoaderParser = {
 
                 function parseKerning(kerning) {
 
-                    data.chars[kerning._second].kerning[kerning._first] = parseInt(kerning._amount, 10);
+                    data.chars[kerning._second].kerning[kerning._first] = parseInt(kerning._amount, 10) / resolution;
 
                 }
 

@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.2 "2016-12-06" - Built: Mon Dec 12 2016 07:00:15
+* v2.7.3 "2017-01-09" - Built: Mon Jan 09 2017 13:26:16
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -14121,7 +14121,7 @@ PIXI.DisplayObject.prototype = {
 
         var bounds = this.getLocalBounds();
 
-        var renderTexture = new Phaser.RenderTexture(bounds.width | 0, bounds.height | 0, renderer, scaleMode, resolution);
+        var renderTexture = new Phaser.RenderTexture(this.game, bounds.width | 0, bounds.height | 0, renderer, scaleMode, resolution);
         
         PIXI.DisplayObject._tempMatrix.tx = -bounds.x;
         PIXI.DisplayObject._tempMatrix.ty = -bounds.y;
@@ -15873,15 +15873,21 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
     this.fragmentSrc = [
         '// PixiShader Fragment Shader.',
         'precision lowp float;',
+        'bool isnan( float val ) {  return ( val < 0.0 || 0.0 < val || val == 0.0 ) ? false : true; }',
         'varying vec2 vTextureCoord;',
         'varying vec4 vColor;',
         'varying float vTextureIndex;',
         'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
-        'const vec4 PINK = vec4(1.0, 0.0, 1.0, 1.0);',
-        'const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);',
+        // Blue color means that you are trying to bound
+        // a texture out of the limits of the hardware.
+        'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+        // If you get a red color means you are out of memory
+        // or in some way corrupted the vertex buffer.
+        'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
         'void main(void) {',
         dynamicIfs,
-        'else gl_FragColor = PINK;',
+        '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
+        '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',
         '}'
     ];
 
@@ -16328,15 +16334,21 @@ PIXI.PixiFastShader = function (gl) {
         this.fragmentSrc = [
             '// PixiFastShader Fragment Shader.',
             'precision lowp float;',
+            'bool isnan( float val ) {  return ( val < 0.0 || 0.0 < val || val == 0.0 ) ? false : true; }',
             'varying vec2 vTextureCoord;',
             'varying float vColor;',
             'varying float vTextureIndex;',
             'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
-            'const vec4 PINK = vec4(1.0, 0.0, 1.0, 1.0);',
-            'const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);',
+            // Blue color means that you are trying to bound
+            // a texture out of the limits of the hardware.
+            'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+            // If you get a red color means you are out of memory
+            // or in some way corrupted the vertex buffer.
+            'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
-            'else gl_FragColor = PINK;',        
+            '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
+            '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',       
             '}'
         ];
     } else {
@@ -16542,16 +16554,22 @@ PIXI.StripShader = function(gl)
         this.fragmentSrc = [
             '//StripShader Fragment Shader.',
             'precision mediump float;',
+            'bool isnan( float val ) {  return ( val < 0.0 || 0.0 < val || val == 0.0 ) ? false : true; }',
             'varying vec2 vTextureCoord;',
             'varying float vTextureIndex;',
          //   'varying float vColor;',
             'uniform float alpha;',
             'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
-            'const vec4 PINK = vec4(1.0, 0.0, 1.0, 1.0);',
-            'const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);',
+            // Blue color means that you are trying to bound
+            // a texture out of the limits of the hardware.
+            'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+            // If you get a red color means you are out of memory
+            // or in some way corrupted the vertex buffer.
+            'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
-            'else gl_FragColor = PINK;',
+            '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
+            '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',
             '}'
         ];    
     } else {
@@ -17208,11 +17226,20 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         console.warn('setTexturePriority error: Multi Texture support hasn\'t been enabled in the Phaser Game Config.');
         return;
     }
-
-    var maxTextures = this.maxTextures;
+    var clampPot = function (potSize) {
+        --potSize;
+        potSize |= potSize >> 1;
+        potSize |= potSize >> 2;
+        potSize |= potSize >> 4;
+        potSize |= potSize >> 8;
+        potSize |= potSize >> 16;
+        return ++potSize;
+    };
+    var gl = this.gl;
+    var maxTextures = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
+    var maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
     var imageCache = this.game.cache._cache.image;
     var imageName = null;
-    var gl = this.gl;
 
     //  Clear out all previously batched textures and reset their flags.
     //  If the array has been modified, then the developer will have to
@@ -17228,9 +17255,8 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         
         imageCache[imageName].base.textureIndex = 0;
     }
-
+    var maxTextureAvailableSpace = (maxTextureSize) - clampPot(Math.max(this.width, this.height));
     this.currentBatchedTextures.length = 0;
-
     // We start from 1 because framebuffer texture uses unit 0.
     for (var index = 0; index < textureNameCollection.length; ++index)
     {
@@ -17240,16 +17266,14 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         {
             continue;
         }
-
-        if (index + 1 < maxTextures)
-        {
-            imageCache[imageName].base.textureIndex = index + 1;
+        // Unit 0 is reserved for Pixi's framebuffer
+        var base = imageCache[imageName].base;
+        maxTextureAvailableSpace -= clampPot(Math.max(base.width, base.height));
+        if (maxTextureAvailableSpace <= 0) {
+            base.textureIndex = 0;
+        } else {
+            base.textureIndex = (1 + (index % (maxTextures - 1)));
         }
-        else
-        {
-            imageCache[imageName].base.textureIndex = maxTextures - 1;
-        }
-
         this.currentBatchedTextures.push(imageName);
     }
 
@@ -21142,7 +21166,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant
     * @type {string}
     */
-    VERSION: '2.7.2',
+    VERSION: '2.7.3',
 
     /**
     * An array of Phaser game instances.
@@ -23814,10 +23838,12 @@ Phaser.Line.intersects = function (a, b, asSegment, result) {
 *
 * An intersection is considered valid if:
 *
-* The line starts within, or ends within, the Rectangle.
-* The line segment intersects one of the 4 rectangle edges.
+* The line starts within or ends within the rectangle; or
+* The line segment intersects one of the 4 rectangle edges; and
+* The line has a non-zero length; and
+* The rectangle is not empty.
 *
-* The for the purposes of this function rectangles are considered 'solid'.
+* For the purposes of this function rectangles are considered 'solid'.
 *
 * @method Phaser.Line.intersectsRectangle
 * @param {Phaser.Line} line - The line to check for intersection with.
@@ -23826,8 +23852,8 @@ Phaser.Line.intersects = function (a, b, asSegment, result) {
 */
 Phaser.Line.intersectsRectangle = function (line, rect) {
 
-    //  Quick bail out of the Line and Rect bounds don't intersect
-    if (!Phaser.Rectangle.intersects(line, rect))
+    //  Quick bail out
+    if (line.length === 0 || rect.empty)
     {
         return false;
     }
@@ -24675,6 +24701,24 @@ Phaser.Point.prototype = {
             var m = this.getMagnitude();
             this.x /= m;
             this.y /= m;
+        }
+
+        return this;
+
+    },
+
+    /**
+    * Alters the Point object so it's magnitude is at most the max value.
+    *
+    * @method Phaser.Point#limit
+    * @param {number} max - The maximum magnitude for the Point.
+    * @return {Phaser.Point} This Point object.
+    */
+    limit: function (max) {
+
+        if (this.getMagnitudeSq() > max * max)
+        {
+            this.setMagnitude(max);
         }
 
         return this;
@@ -30617,7 +30661,7 @@ Phaser.Group = function (game, parent, name, addToStage, enableBody, physicsBody
     this.alive = true;
 
     /**
-    * If exists is true the group is updated, otherwise it is skipped.
+    * If exists is false the group will be excluded from collision checks and filters such as {@link forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link #visible} and will still call `update` on its children.
     * @property {boolean} exists
     * @default
     */
@@ -37694,6 +37738,9 @@ Phaser.DeviceButton.prototype = {
     */
     padFloat: function (value) {
 
+        this.isDown = false;
+        this.isUp = false;
+
         this.value = value;
 
         this.onFloat.dispatch(this, value);
@@ -42604,6 +42651,14 @@ Phaser.Key = function (game, keycode) {
     this.timeUp = -2500;
 
     /**
+    * If the key is up this value holds the duration of that key release and is constantly updated.
+    * If the key is down it holds the duration of the previous up session.
+    * @property {number} duration - The number of milliseconds this key has been up for.
+    * @default
+    */
+    this.durationUp = -2500;
+
+    /**
     * @property {number} repeats - If a key is held down this holds down the number of times the key has 'repeated'.
     * @default
     */
@@ -42670,6 +42725,10 @@ Phaser.Key.prototype = {
                 this.onHoldCallback.call(this.onHoldContext, this);
             }
         }
+        else
+        {
+            this.durationUp = this.game.time.time - this.timeUp;
+        }
 
     },
 
@@ -42700,6 +42759,7 @@ Phaser.Key.prototype = {
         this.isUp = false;
         this.timeDown = this.game.time.time;
         this.duration = 0;
+        this.durationUp = this.game.time.time - this.timeUp;
         this.repeats = 0;
 
         // _justDown will remain true until it is read via the justDown Getter
@@ -42732,6 +42792,7 @@ Phaser.Key.prototype = {
         this.isUp = true;
         this.timeUp = this.game.time.time;
         this.duration = this.game.time.time - this.timeDown;
+        this.durationUp = 0;
 
         // _justUp will remain true until it is read via the justUp Getter
         // this enables the game to poll for past presses, or reset it at the start of a new game state
@@ -42758,6 +42819,7 @@ Phaser.Key.prototype = {
         this.isUp = true;
         this.timeUp = this.game.time.time;
         this.duration = 0;
+        this.durationUp = -2500;
         this._enabled = true; // .enabled causes reset(false)
         this._justDown = false;
         this._justUp = false;
@@ -42801,6 +42863,32 @@ Phaser.Key.prototype = {
         if (duration === undefined) { duration = 50; }
 
         return (!this.isDown && ((this.game.time.time - this.timeUp) < duration));
+
+    },
+    
+    /**
+    * Returns `true` if the Key was just pressed down this update tick, or `false` if it either isn't down,
+    * or was pressed down on a previous update tick.
+    * 
+    * @method Phaser.Key#justPressed
+    * @return {boolean} True if the key was just pressed down this update tick.
+    */
+    justPressed: function () {
+
+        return (this.isDown && this.duration === 0);
+
+    },
+
+    /**
+    * Returns `true` if the Key was just released this update tick, or `false` if it either isn't up,
+    * or was released on a previous update tick.
+    * 
+    * @method Phaser.Key#justReleased
+    * @return {boolean} True if the key was just released this update tick.
+    */
+    justReleased: function () {
+
+        return (!this.isDown && this.durationUp === 0);
 
     }
 
@@ -43409,6 +43497,32 @@ Phaser.Keyboard.prototype = {
         if (this._keys[keycode])
         {
             return this._keys[keycode].upDuration(duration);
+        }
+        else
+        {
+            return null;
+        }
+
+    },
+
+    justPressed: function (keycode) {
+
+        if (this._keys[keycode])
+        {
+            return this._keys[keycode].justPressed();
+        }
+        else
+        {
+            return null;
+        }
+
+    },
+
+    justReleased: function (keycode) {
+
+        if (this._keys[keycode])
+        {
+            return this._keys[keycode].justReleased();
         }
         else
         {
@@ -49674,8 +49788,8 @@ Phaser.BitmapData.prototype = {
     * Sets the color of the given pixel to the specified red, green, blue and alpha values.
     *
     * @method Phaser.BitmapData#setPixel32
-    * @param {number} x - The x coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData.
-    * @param {number} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData.
+    * @param {integer} x - The x coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
+    * @param {integer} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
     * @param {number} red - The red color value, between 0 and 0xFF (255).
     * @param {number} green - The green color value, between 0 and 0xFF (255).
     * @param {number} blue - The blue color value, between 0 and 0xFF (255).
@@ -49713,8 +49827,8 @@ Phaser.BitmapData.prototype = {
     * Sets the color of the given pixel to the specified red, green and blue values.
     *
     * @method Phaser.BitmapData#setPixel
-    * @param {number} x - The x coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData.
-    * @param {number} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData.
+    * @param {integer} x - The x coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
+    * @param {integer} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
     * @param {number} red - The red color value, between 0 and 0xFF (255).
     * @param {number} green - The green color value, between 0 and 0xFF (255).
     * @param {number} blue - The blue color value, between 0 and 0xFF (255).
@@ -49733,8 +49847,8 @@ Phaser.BitmapData.prototype = {
     * otherwise this may return out of date color values, or worse - throw a run-time error as it tries to access an array element that doesn't exist.
     *
     * @method Phaser.BitmapData#getPixel
-    * @param {number} x - The x coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData.
-    * @param {number} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData.
+    * @param {integer} x - The x coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
+    * @param {integer} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
     * @param {object} [out] - An object into which 4 properties will be created: r, g, b and a. If not provided a new object will be created.
     * @return {object} An object with the red, green, blue and alpha values set in the r, g, b and a properties.
     */
@@ -49765,8 +49879,8 @@ Phaser.BitmapData.prototype = {
     * Note that on little-endian systems the format is 0xAABBGGRR and on big-endian the format is 0xRRGGBBAA.
     *
     * @method Phaser.BitmapData#getPixel32
-    * @param {number} x - The x coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData.
-    * @param {number} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData.
+    * @param {integer} x - The x coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
+    * @param {integer} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
     * @return {number} A native color value integer (format: 0xAARRGGBB)
     */
     getPixel32: function (x, y) {
@@ -49784,8 +49898,8 @@ Phaser.BitmapData.prototype = {
     * otherwise this may return out of date color values, or worse - throw a run-time error as it tries to access an array element that doesn't exist.
     *
     * @method Phaser.BitmapData#getPixelRGB
-    * @param {number} x - The x coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData.
-    * @param {number} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData.
+    * @param {integer} x - The x coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
+    * @param {integer} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
     * @param {object} [out] - An object into which 3 properties will be created: r, g and b. If not provided a new object will be created.
     * @param {boolean} [hsl=false] - Also convert the rgb values into hsl?
     * @param {boolean} [hsv=false] - Also convert the rgb values into hsv?
@@ -54393,7 +54507,9 @@ Phaser.Graphics.prototype.getLocalBounds = function () {
 * @param point {Point} the point to test
 * @return {boolean} the result of the test
 */
-Phaser.Graphics.prototype.containsPoint = function (point) {
+Phaser.Graphics.prototype.containsPoint = function (point, tempPoint) {
+
+    if (tempPoint === undefined) { tempPoint = new Phaser.Point(); }
 
     this.worldTransform.applyInverse(point, tempPoint);
 
@@ -56824,11 +56940,11 @@ Phaser.Text.prototype.getBounds = function (matrix) {
 */
 Phaser.Text.prototype.setCharacterLimit = function (characterLimit, suffix) {
 
-    this.characterLimitSuffix = suffix == undefined ? '' : suffix;
+    this.characterLimitSuffix = (suffix === undefined) ? '' : suffix;
     this.characterLimitSize = characterLimit;
 
     this.updateText();
-}
+};
 
 /**
 * The text to be displayed by this Text object.
@@ -70572,6 +70688,7 @@ Phaser.AnimationParser = {
         if (frameMax === undefined) { frameMax = -1; }
         if (margin === undefined) { margin = 0; }
         if (spacing === undefined) { spacing = 0; }
+        if (skipFrames === undefined) { skipFrames = 0; }
 
         var img = key;
 
@@ -76215,6 +76332,7 @@ Phaser.LoaderParser = {
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
+    * @param {number} [resolution] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
     xmlBitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution) {
@@ -76273,9 +76391,10 @@ Phaser.LoaderParser = {
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
+    * @param {number} [resolution] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
-    jsonBitmapFont: function (json, baseTexture, xSpacing, ySpacing, frame) {
+    jsonBitmapFont: function (json, baseTexture, xSpacing, ySpacing, frame, resolution) {
 
         var data = {
             font: json.font.info._face,
@@ -76888,13 +77007,13 @@ Phaser.Sound = function (game, key, volume, loop, connect) {
     this.totalDuration = 0;
 
     /**
-    * @property {number} startTime - The time the Sound starts at (typically 0 unless starting from a marker)
+    * @property {number} startTime - The time the sound starts at in ms (typically 0 unless starting from a marker).
     * @default
     */
     this.startTime = 0;
 
     /**
-    * @property {number} currentTime - The current time the sound is at.
+    * @property {number} currentTime - The current time of sound playback in ms.
     */
     this.currentTime = 0;
 
@@ -76909,12 +77028,12 @@ Phaser.Sound = function (game, key, volume, loop, connect) {
     this.durationMS = 0;
 
     /**
-    * @property {number} position - The position of the current sound marker.
+    * @property {number} position - The position of the current sound marker in ms.
     */
     this.position = 0;
 
     /**
-    * @property {number} stopTime - The time the sound stopped.
+    * @property {number} stopTime - The time the sound stopped in ms.
     */
     this.stopTime = 0;
 
@@ -76925,12 +77044,12 @@ Phaser.Sound = function (game, key, volume, loop, connect) {
     this.paused = false;
 
     /**
-    * @property {number} pausedPosition - The position the sound had reached when it was paused.
+    * @property {number} pausedPosition - The position the sound had reached when it was paused in ms.
     */
     this.pausedPosition = 0;
 
     /**
-    * @property {number} pausedTime - The game time at which the sound was paused.
+    * @property {number} pausedTime - The game time (ms) at which the sound was paused.
     */
     this.pausedTime = 0;
 
@@ -97941,7 +98060,7 @@ Phaser.TilemapLayer = function (game, tilemap, index, width, height) {
     * @default
     */
     this.renderSettings = {
-        enableScrollDelta: false,
+        enableScrollDelta: true,
         overdrawRatio: 0.20,
         copyCanvas: null
     };

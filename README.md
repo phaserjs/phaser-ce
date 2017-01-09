@@ -38,7 +38,7 @@ Grab the source and join in the fun!
 
 > 9th January 2017
 
-Phaser CE is the Community Edition of Phaser. In short, it's a version of Phaser that you, the community, have direct control over. We started it off with the 2.7 release, and now hand it over to you.
+Phaser CE is the Community Edition of [Phaser](https://github.com/photonstorm/phaser). In short, it's a version of Phaser that you, the community, have direct control over. We started it off with the 2.7 release, and now hand it over to you.
 
 Phaser 2 was a massive milestone for us, and we're still constantly amazed at all the cool things you've created, and continue to create with it. Thank you to everyone who has submitted an issue or pull request over the years, or helped the framework grow in any shape or capacity.
 
@@ -118,15 +118,15 @@ Using Browserify? Please [read this](#browserify).
 
 [jsDelivr](http://www.jsdelivr.com/#!phaser) is a "super-fast CDN for developers". Include the following in your html:
 
-`<script src="//cdn.jsdelivr.net/phaser-ce/2.7.0/phaser.js"></script>`
+`<script src="//cdn.jsdelivr.net/phaser-ce/2.7.3/phaser.js"></script>`
 
 or the minified version:
 
-`<script src="//cdn.jsdelivr.net/phaser-ce/2.7.0/phaser.min.js"></script>`
+`<script src="//cdn.jsdelivr.net/phaser-ce/2.7.3/phaser.min.js"></script>`
 
 [cdnjs.com](https://cdnjs.com/libraries/phaser-ce) also offers a free CDN service. They have all versions of Phaser and even the custom builds:
 
-`<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.7.0/phaser.js"></script>`
+`<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.7.3/phaser.js"></script>`
 
 ### Phaser Sandbox
 
@@ -314,7 +314,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ![Change Log](http://phaser.io/images/github/div-change-log.png "Change Log")
 <a name="change-log"></a>
 
-## Version 2.7.3 - In development
+## Version 2.7.3 - 9th January 2017
 
 * Replaced missing jshintrc file (#2912)
 * Added tempPoint argument / undefined block to Graphics.containsPoint
@@ -462,10 +462,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.0/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.0/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.0.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.0.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.3/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.3/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.3.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.3.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser

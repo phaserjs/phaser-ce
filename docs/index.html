@@ -1377,7 +1377,7 @@
 <blockquote>
 <p>9th January 2017</p>
 </blockquote>
-<p>Phaser CE is the Community Edition of Phaser. In short, it's a version of Phaser that you, the community, have direct control over. We started it off with the 2.7 release, and now hand it over to you.</p>
+<p>Phaser CE is the Community Edition of <a href="https://github.com/photonstorm/phaser">Phaser</a>. In short, it's a version of Phaser that you, the community, have direct control over. We started it off with the 2.7 release, and now hand it over to you.</p>
 <p>Phaser 2 was a massive milestone for us, and we're still constantly amazed at all the cool things you've created, and continue to create with it. Thank you to everyone who has submitted an issue or pull request over the years, or helped the framework grow in any shape or capacity.</p>
 <p>As of today all of our in-house resources are spent on building Phaser 3 and beyond. However we fully recognize that lots of you still use Phaser 2, and have a lot to contribute to its future. So this is what we've done:</p>
 <ul>
@@ -1414,8 +1414,8 @@
 <p>Phaser is <a href="https://github.com/photonstorm/phaser-ce">hosted on Github</a>. There are a number of ways to download it:</p>
 <ul>
 <li>Clone the git repository via <a href="https://github.com/photonstorm/phaser.git">https</a>, <a href="git@github.com:photonstorm/phaser.git">ssh</a> or with the Github <a href="github-windows://openRepo/https://github.com/photonstorm/phaser-ce">Windows</a> or <a href="github-mac://openRepo/https://github.com/photonstorm/phaser-ce">Mac</a> clients.</li>
-<li>Download as <a href="https://github.com/photonstorm/phaser-ce/archive/v2.7.0.zip">zip</a> or <a href="https://github.com/photonstorm/phaser-ce/archive/v2.7.0.tar.gz">tar.gz</a></li>
-<li>Download just the build files: <a href="https://github.com/photonstorm/phaser-ce/releases/download/v2.7.0/phaser.js">phaser.js</a> and <a href="https://github.com/photonstorm/phaser-ce/releases/download/v2.7.0/phaser.min.js">phaser.min.js</a></li>
+<li>Download as <a href="https://github.com/photonstorm/phaser-ce/archive/v2.7.3.zip">zip</a> or <a href="https://github.com/photonstorm/phaser-ce/archive/v2.7.3.tar.gz">tar.gz</a></li>
+<li>Download just the build files: <a href="https://github.com/photonstorm/phaser-ce/releases/download/v2.7.3/phaser.js">phaser.js</a> and <a href="https://github.com/photonstorm/phaser-ce/releases/download/v2.7.3/phaser.min.js">phaser.min.js</a></li>
 <li>Checkout with <a href="https://github.com/photonstorm/phaser">svn</a></li>
 </ul>
 <h3>Bower / npm</h3><p>Install via <a href="http://bower.io">bower</a></p>
@@ -1424,11 +1424,11 @@
 <p><code>npm install phaser-ce</code></p>
 <p>Using Browserify? Please <a href="#browserify">read this</a>.</p>
 <h3>CDN</h3><p><a href="http://www.jsdelivr.com/#!phaser">jsDelivr</a> is a &quot;super-fast CDN for developers&quot;. Include the following in your html:</p>
-<p><code>&lt;script src=&quot;//cdn.jsdelivr.net/phaser-ce/2.7.0/phaser.js&quot;&gt;&lt;/script&gt;</code></p>
+<p><code>&lt;script src=&quot;//cdn.jsdelivr.net/phaser-ce/2.7.3/phaser.js&quot;&gt;&lt;/script&gt;</code></p>
 <p>or the minified version:</p>
-<p><code>&lt;script src=&quot;//cdn.jsdelivr.net/phaser-ce/2.7.0/phaser.min.js&quot;&gt;&lt;/script&gt;</code></p>
+<p><code>&lt;script src=&quot;//cdn.jsdelivr.net/phaser-ce/2.7.3/phaser.min.js&quot;&gt;&lt;/script&gt;</code></p>
 <p><a href="https://cdnjs.com/libraries/phaser-ce">cdnjs.com</a> also offers a free CDN service. They have all versions of Phaser and even the custom builds:</p>
-<p><code>&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.7.0/phaser.js&quot;&gt;&lt;/script&gt;</code></p>
+<p><code>&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.7.3/phaser.js&quot;&gt;&lt;/script&gt;</code></p>
 <h3>Phaser Sandbox</h3><p>If you'd like to try coding in Phaser right now, with nothing more than your web browser, then head over to the <a href="http://phaser.io/sandbox">Phaser Sandbox</a>. You'll find Quick Start templates, and a user-friendly editor filled with handy code-completion features.</p>
 <h3>License</h3><p>Phaser is released under the <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
 <p><img src="http://phaser.io/images/github/div-getting-started.png" alt="Getting Started" title="Getting Started"><br><a name="getting-started"></a></p>
@@ -1510,7 +1510,7 @@ require('phaser');</code></pre><h3>Building from source</h3><p>Should you wish t
 <h3>JavaScript and TypeScript</h3><p>Phaser is developed in ES5 JavaScript. We've made no assumptions about how you like to code, and were careful not to impose a strict structure upon you. You won't find Phaser split into modules, requiring a build step, or making you use a class / inheritance OOP approach. That doesn't mean you can't do so, it just means we don't <em>force</em> you to. It's your choice.</p>
 <p>If you code with <a href="http://www.typescriptlang.org/">TypeScript</a> there are comprehensive definition files in the <code>typescript</code> folder. They are for TypeScript 1.4+.</p>
 <p><img src="http://phaser.io/images/github/div-change-log.png" alt="Change Log" title="Change Log"><br><a name="change-log"></a></p>
-<h2>Version 2.7.3 - In development</h2><ul>
+<h2>Version 2.7.3 - 9th January 2017</h2><ul>
 <li>Replaced missing jshintrc file (#2912)</li>
 <li>Added tempPoint argument / undefined block to Graphics.containsPoint</li>
 <li>Fixed Text.setCharacterLimit conditional check</li>
@@ -1648,7 +1648,7 @@ require('phaser');</code></pre><h3>Building from source</h3><p>Should you wish t
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Mon Jan 09 2017 13:00:14 GMT+0000 (GMT Standard Time) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Mon Jan 09 2017 13:26:56 GMT+0000 (GMT Standard Time) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>

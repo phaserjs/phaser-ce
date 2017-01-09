@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.2 "2016-12-06" - Built: Tue Dec 06 2016 23:48:33
+* v2.7.3 "2017-01-09" - Built: Mon Jan 09 2017 13:26:34
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -483,7 +483,7 @@ PIXI.DisplayObject.prototype = {
 
         var bounds = this.getLocalBounds();
 
-        var renderTexture = new Phaser.RenderTexture(bounds.width | 0, bounds.height | 0, renderer, scaleMode, resolution);
+        var renderTexture = new Phaser.RenderTexture(this.game, bounds.width | 0, bounds.height | 0, renderer, scaleMode, resolution);
         
         PIXI.DisplayObject._tempMatrix.tx = -bounds.x;
         PIXI.DisplayObject._tempMatrix.ty = -bounds.y;
@@ -2235,15 +2235,21 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
     this.fragmentSrc = [
         '// PixiShader Fragment Shader.',
         'precision lowp float;',
+        'bool isnan( float val ) {  return ( val < 0.0 || 0.0 < val || val == 0.0 ) ? false : true; }',
         'varying vec2 vTextureCoord;',
         'varying vec4 vColor;',
         'varying float vTextureIndex;',
         'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
-        'const vec4 PINK = vec4(1.0, 0.0, 1.0, 1.0);',
-        'const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);',
+        // Blue color means that you are trying to bound
+        // a texture out of the limits of the hardware.
+        'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+        // If you get a red color means you are out of memory
+        // or in some way corrupted the vertex buffer.
+        'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
         'void main(void) {',
         dynamicIfs,
-        'else gl_FragColor = PINK;',
+        '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
+        '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',
         '}'
     ];
 
@@ -2690,15 +2696,21 @@ PIXI.PixiFastShader = function (gl) {
         this.fragmentSrc = [
             '// PixiFastShader Fragment Shader.',
             'precision lowp float;',
+            'bool isnan( float val ) {  return ( val < 0.0 || 0.0 < val || val == 0.0 ) ? false : true; }',
             'varying vec2 vTextureCoord;',
             'varying float vColor;',
             'varying float vTextureIndex;',
             'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
-            'const vec4 PINK = vec4(1.0, 0.0, 1.0, 1.0);',
-            'const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);',
+            // Blue color means that you are trying to bound
+            // a texture out of the limits of the hardware.
+            'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+            // If you get a red color means you are out of memory
+            // or in some way corrupted the vertex buffer.
+            'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
-            'else gl_FragColor = PINK;',        
+            '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
+            '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',       
             '}'
         ];
     } else {
@@ -2904,16 +2916,22 @@ PIXI.StripShader = function(gl)
         this.fragmentSrc = [
             '//StripShader Fragment Shader.',
             'precision mediump float;',
+            'bool isnan( float val ) {  return ( val < 0.0 || 0.0 < val || val == 0.0 ) ? false : true; }',
             'varying vec2 vTextureCoord;',
             'varying float vTextureIndex;',
          //   'varying float vColor;',
             'uniform float alpha;',
             'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
-            'const vec4 PINK = vec4(1.0, 0.0, 1.0, 1.0);',
-            'const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);',
+            // Blue color means that you are trying to bound
+            // a texture out of the limits of the hardware.
+            'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+            // If you get a red color means you are out of memory
+            // or in some way corrupted the vertex buffer.
+            'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
-            'else gl_FragColor = PINK;',
+            '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
+            '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',
             '}'
         ];    
     } else {
@@ -3570,11 +3588,20 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         console.warn('setTexturePriority error: Multi Texture support hasn\'t been enabled in the Phaser Game Config.');
         return;
     }
-
-    var maxTextures = this.maxTextures;
+    var clampPot = function (potSize) {
+        --potSize;
+        potSize |= potSize >> 1;
+        potSize |= potSize >> 2;
+        potSize |= potSize >> 4;
+        potSize |= potSize >> 8;
+        potSize |= potSize >> 16;
+        return ++potSize;
+    };
+    var gl = this.gl;
+    var maxTextures = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
+    var maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
     var imageCache = this.game.cache._cache.image;
     var imageName = null;
-    var gl = this.gl;
 
     //  Clear out all previously batched textures and reset their flags.
     //  If the array has been modified, then the developer will have to
@@ -3590,9 +3617,8 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         
         imageCache[imageName].base.textureIndex = 0;
     }
-
+    var maxTextureAvailableSpace = (maxTextureSize) - clampPot(Math.max(this.width, this.height));
     this.currentBatchedTextures.length = 0;
-
     // We start from 1 because framebuffer texture uses unit 0.
     for (var index = 0; index < textureNameCollection.length; ++index)
     {
@@ -3602,16 +3628,14 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         {
             continue;
         }
-
-        if (index + 1 < maxTextures)
-        {
-            imageCache[imageName].base.textureIndex = index + 1;
+        // Unit 0 is reserved for Pixi's framebuffer
+        var base = imageCache[imageName].base;
+        maxTextureAvailableSpace -= clampPot(Math.max(base.width, base.height));
+        if (maxTextureAvailableSpace <= 0) {
+            base.textureIndex = 0;
+        } else {
+            base.textureIndex = (1 + (index % (maxTextures - 1)));
         }
-        else
-        {
-            imageCache[imageName].base.textureIndex = maxTextures - 1;
-        }
-
         this.currentBatchedTextures.push(imageName);
     }
 
