@@ -3665,7 +3665,7 @@ declare module Phaser {
             static VERSION: string;
             static COST_ORTHOGONAL: number;
             static COST_DIAGONAL: number;
-            static DISTANCE_MANHATTEN: string;
+            static DISTANCE_MANHATTAN: string;
             static DISTANCE_EUCLIDIAN: string;
 
             constructor(parent: PIXI.DisplayObject);
