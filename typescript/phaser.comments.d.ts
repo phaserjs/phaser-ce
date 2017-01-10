@@ -4,7 +4,7 @@
 // Type definitions for Phaser CE
 // Project: https://github.com/photonstorm/phaser-ce
 
-declare module "phaser" {
+declare module "phaser-ce" {
     export = Phaser;
 }
 
