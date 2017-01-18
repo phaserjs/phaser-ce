@@ -1098,6 +1098,20 @@ Phaser.Math = {
     },
 
     /**
+    * Returns the length of the hypotenuse connecting two segments of given lengths.
+    *
+    * @method Phaser.Math#hypot
+    * @param {number} a
+    * @param {number} b
+    * @return {number} The length of the hypotenuse connecting the given lengths.
+    */
+    hypot: function (a, b) {
+
+        return Math.sqrt(a * a + b * b);
+
+    },
+
+    /**
     * Returns the euclidian distance between the two given set of coordinates.
     *
     * @method Phaser.Math#distance
