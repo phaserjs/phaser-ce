@@ -1,5 +1,11 @@
 # Change Log
 
+## Version 2.7.4 - to be announced
+
+* Changed Loader.loadImageTag behavior to exclude firefox from loading cached images (#2534)
+* Added yarn lock file
+* Added travis-ci build script
+
 ## Version 2.7.3 - 9th January 2017
 
 * Replaced missing jshintrc file (#2912)

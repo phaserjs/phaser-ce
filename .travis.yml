@@ -1,0 +1,15 @@
+# https://travis-ci.org/photonstorm/
+
+git:
+  depth: 1
+
+language: node_js
+node_js:
+  - '6'
+
+env:
+  - TERM=dumb
+
+script:
+  - yarn run test
+  - yarn run grunt
