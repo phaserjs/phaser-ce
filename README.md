@@ -314,6 +314,12 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ![Change Log](http://phaser.io/images/github/div-change-log.png "Change Log")
 <a name="change-log"></a>
 
+## Version 2.7.4 - to be announced
+
+* Changed Loader.loadImageTag behavior to exclude firefox from loading cached images (#2534)
+* Added yarn lock file
+* Added travis-ci build script
+
 ## Version 2.7.3 - 9th January 2017
 
 * Replaced missing jshintrc file (#2912)
