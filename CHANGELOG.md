@@ -2,6 +2,7 @@
 
 ## Version 2.7.4 - to be announced
 
+* New method Phaser.Math.hypot() calculates the length of the hypotenuse spanning two given lengths
 * Changed Loader.loadImageTag behavior to exclude firefox from loading cached images (#2534)
 * Added yarn lock file
 * Added travis-ci build script
