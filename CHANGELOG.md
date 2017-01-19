@@ -2,6 +2,7 @@
 
 ## Version 2.7.4 - to be announced
 
+* Emitter.explode() now launches all particles if the `quantity` argument is omitted (#7). You should pass quantity `0` if you want to launch no particles.
 * Changed Loader.loadImageTag behavior to exclude firefox from loading cached images (#2534)
 * Added yarn lock file
 * Added travis-ci build script
