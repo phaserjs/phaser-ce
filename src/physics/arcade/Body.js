@@ -1161,8 +1161,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         this.rotation = this.sprite.angle;
         this.preRotation = this.rotation;
 
-        this._sx = this.sprite.scale.x;
-        this._sy = this.sprite.scale.y;
+        this.updateBounds();
 
         this.center.setTo(this.position.x + this.halfWidth, this.position.y + this.halfHeight);
 
