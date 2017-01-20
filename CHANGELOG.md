@@ -8,6 +8,7 @@
 * Changed Loader.loadImageTag behavior to exclude firefox from loading cached images (#2534)
 * Added yarn lock file
 * Added travis-ci build script
+* Added copyBitmapData function to Phaser.Bitmap.
 
 ## Version 2.7.3 - 9th January 2017
 
