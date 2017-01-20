@@ -2372,6 +2372,23 @@ Phaser.BitmapData.prototype = {
         this.op = 'luminosity';
         return this;
 
+    },
+    
+    /**
+    * Copy BitmapData from source to destination.
+    *
+    * @method Phaser.BitmapData#copyBitmapData
+    * @return {Phaser.BitmapData} This BitmapData object for method chaining.
+    */
+    copyBitmapData: function(source, dest, x, y) {
+        source.update();
+        for (var i = 0, destRowStart; i < source.height; i++) {
+            destRowStart = (y + i) * dest.width + x;
+            for (var j = 0; j < source.width; j++) {
+                dest.pixels[destRowStart + j] = source.pixels[i * source.width + j];
+            }
+        }
+        return dest;
     }
 
 };
