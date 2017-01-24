@@ -2375,20 +2375,28 @@ Phaser.BitmapData.prototype = {
     },
     
     /**
-    * Copy BitmapData from source to destination.
+    * Updates a portion of the BitmapData from a source Bitmap.
+    * This optimization is important if calling update() on a large Bitmap is causing performance issues.
+    * Make sure you use getPixel32() instead of getPixel().
+    * This does not work with floating point numbers for x and y.
     *
     * @method Phaser.BitmapData#copyBitmapData
+    * @param {Phaser.BitmapData} [source] - The BitmapData you wish to copy.
+    * @param {number} [x] - The x coordinate of the top-left of the area to copy.
+    * @param {number} [y] - The y coordinate of the top-left of the area to copy.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    copyBitmapData: function(source, dest, x, y) {
+    copyBitmapData: function(source, x, y) {
+
         source.update();
         for (var i = 0, destRowStart; i < source.height; i++) {
-            destRowStart = (y + i) * dest.width + x;
+            destRowStart = (y + i) * this.width + x;
             for (var j = 0; j < source.width; j++) {
-                dest.pixels[destRowStart + j] = source.pixels[i * source.width + j];
+                this.pixels[destRowStart + j] = source.pixels[i * source.width + j];
             }
         }
-        return dest;
+        return this;
+
     }
 
 };
