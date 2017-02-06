@@ -3,6 +3,7 @@
 ## Version 2.7.4 - to be announced
 
 * `overlapR`, `overlapX`, and `overlapY` are now reset to 0 when an Arcade Physics Body isn't colliding (#23)
+* Changed bower package name to `phaser-ce`.
 * Fixed Arcade.Body.reset() so it resizes the body if the sprite scale has changed (#10).
 * New method Phaser.Math.hypot() calculates the length of the hypotenuse spanning two given lengths
 * Emitter.explode() now launches all particles if the `quantity` argument is omitted (#7). You should pass quantity `0` if you want to launch no particles.
