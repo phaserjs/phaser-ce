@@ -582,6 +582,10 @@ Phaser.Physics.Arcade.Body.prototype = {
         this.blocked.left = false;
         this.blocked.right = false;
 
+        this.overlapR = 0;
+        this.overlapX = 0;
+        this.overlapY = 0;
+
         this.embedded = false;
 
         this.updateBounds();
