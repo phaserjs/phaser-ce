@@ -2,11 +2,13 @@
 
 ## Version 2.7.4 - to be announced
 
+* Fixed Arcade.Body.reset() so it resizes the body if the sprite scale has changed (#10).
 * New method Phaser.Math.hypot() calculates the length of the hypotenuse spanning two given lengths
 * Emitter.explode() now launches all particles if the `quantity` argument is omitted (#7). You should pass quantity `0` if you want to launch no particles.
 * Changed Loader.loadImageTag behavior to exclude firefox from loading cached images (#2534)
 * Added yarn lock file
 * Added travis-ci build script
+* Added copyBitmapData function to Phaser.Bitmap.
 
 ## Version 2.7.3 - 9th January 2017
 
