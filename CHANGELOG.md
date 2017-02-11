@@ -11,6 +11,7 @@
 * Added yarn lock file
 * Added travis-ci build script
 * Added copyBitmapData function to Phaser.Bitmap.
+* Added `layerOffsetX` and `layerOffsetY` properties to `Phaser.TilemapLayer`. This allows offsetting layer positions in a way that plays well with the camera and Arcade physics.
 
 ## Version 2.7.3 - 9th January 2017
 
