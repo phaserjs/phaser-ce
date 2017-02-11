@@ -223,10 +223,10 @@ Phaser.TilemapLayer = function (game, tilemap, index, width, height) {
 
     /**
      * The X axis position offset of the layer.
-     * @property {Number}
+     * @property {number}
      */
     this.layerOffsetX = 0;
-    
+
     /**
      * The Y axis position offset of the layer.
      * @type {number}
@@ -427,20 +427,26 @@ Phaser.TilemapLayer.prototype.resizeWorld = function () {
  * Get the X axis position offset of this layer.
  *
  * @method Phaser.TilemapLayer#getLayerOffsetY
+ * @public
  * @return {number}
  */
 Phaser.TilemapLayer.prototype.getLayerOffsetX = function () {
-	return this.layerOffsetX;
+
+    return this.layerOffsetX;
+
 };
 
 /**
  * Get the Y axis position offset of this layer.
  *
  * @method Phaser.TilemapLayer#getLayerOffsetY
+ * @public
  * @return {number}
  */
 Phaser.TilemapLayer.prototype.getLayerOffsetY = function () {
-	return this.layerOffsetY;
+
+    return this.layerOffsetY;
+
 };
 
 /**
