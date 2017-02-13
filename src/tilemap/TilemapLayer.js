@@ -432,7 +432,7 @@ Phaser.TilemapLayer.prototype.resizeWorld = function () {
  */
 Phaser.TilemapLayer.prototype.getLayerOffsetX = function () {
 
-    return this.layerOffsetX;
+    return this.layerOffsetX || ((!this.fixedToCamera) ? this.position.x : 0);
 
 };
 
@@ -445,7 +445,7 @@ Phaser.TilemapLayer.prototype.getLayerOffsetX = function () {
  */
 Phaser.TilemapLayer.prototype.getLayerOffsetY = function () {
 
-    return this.layerOffsetY;
+    return this.layerOffsetY || ((!this.fixedToCamera) ? this.position.y : 0);
 
 };
 

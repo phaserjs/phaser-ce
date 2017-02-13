@@ -622,6 +622,9 @@ Phaser.Tilemap.prototype = {
 
         var rootLayer = group.add(new Phaser.TilemapLayer(this.game, this, index, width, height));
 
+        rootLayer.layerOffsetX = this.layers[index].offsetX;
+        rootLayer.layerOffsetY = this.layers[index].offsetY;
+
         if (this.enableDebug)
         {
             console.groupEnd();

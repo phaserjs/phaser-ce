@@ -258,6 +258,8 @@ Phaser.TilemapParser = {
                 widthInPixels: curl.width * json.tilewidth,
                 heightInPixels: curl.height * json.tileheight,
                 alpha: curl.opacity,
+                offsetX: curl.offsetx,
+                offsetY: curl.offsety,
                 visible: curl.visible,
                 properties: {},
                 indexes: [],
