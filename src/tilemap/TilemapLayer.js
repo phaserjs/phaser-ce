@@ -225,13 +225,13 @@ Phaser.TilemapLayer = function (game, tilemap, index, width, height) {
      * The X axis position offset of the layer.
      * @property {number}
      */
-    this.layerOffsetX = 0;
+    this.layerOffsetX = this.layer.offsetX || 0;
 
     /**
      * The Y axis position offset of the layer.
      * @type {number}
      */
-    this.layerOffsetY = 0;
+    this.layerOffsetY = this.layer.offsetY || 0;
 
     /**
     * Used for caching the tiles / array of tiles.
