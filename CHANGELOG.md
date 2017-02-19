@@ -2,6 +2,8 @@
 
 ## Version 2.7.4 - to be announced
 
+* `overlapR`, `overlapX`, and `overlapY` are now reset to 0 when an Arcade Physics Body isn't colliding (#23)
+* Changed bower package name to `phaser-ce`.
 * Fixed Arcade.Body.reset() so it resizes the body if the sprite scale has changed (#10).
 * New method Phaser.Math.hypot() calculates the length of the hypotenuse spanning two given lengths
 * Emitter.explode() now launches all particles if the `quantity` argument is omitted (#7). You should pass quantity `0` if you want to launch no particles.
@@ -9,6 +11,7 @@
 * Added yarn lock file
 * Added travis-ci build script
 * Added copyBitmapData function to Phaser.Bitmap.
+* Added `layerOffsetX` and `layerOffsetY` properties to `Phaser.TilemapLayer`. This allows offsetting layer positions in a way that plays well with the camera and Arcade physics. Also, these properties are now read from the `offsetx` and `offsety` layer properties of Tiled maps.
 
 ## Version 2.7.3 - 9th January 2017
 
