@@ -4,7 +4,7 @@
 // Type definitions for Phaser CE
 // Project: https://github.com/photonstorm/phaser-ce
 
-declare module "phaser" {
+declare module "phaser-ce" {
     export = Phaser;
 }
 
@@ -3696,11 +3696,16 @@ declare module Phaser {
 
             }
 
+            interface AStarNodeArray {
+                x: number;
+                y: number;
+            }
+
             class AStarPath {
 
-                constructor(nodes?: {x: number, y: number}[], start?: Phaser.Plugin.AStar.AStarNode, goal?: Phaser.Plugin.AStar.AStarNode);
+                constructor(nodes?: AStarNodeArray[], start?: Phaser.Plugin.AStar.AStarNode, goal?: Phaser.Plugin.AStar.AStarNode);
 
-                nodes: {x: number, y: number}[];
+                nodes: AStarNodeArray[];
                 start: Phaser.Plugin.AStar.AStarNode;
                 goal: Phaser.Plugin.AStar.AStarNode;
                 visited: Phaser.Plugin.AStar.AStarNode[];
