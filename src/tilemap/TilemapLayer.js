@@ -223,7 +223,7 @@ Phaser.TilemapLayer = function (game, tilemap, index, width, height) {
 
     /**
      * The position offset of the layer's tiles.
-     * @property {number}
+     * @property {Phaser.Point}
      */
     this.tileOffset = new Phaser.Point(this.layer.offsetX || 0, this.layer.offsetY || 0);
 
