@@ -687,8 +687,7 @@ Phaser.Camera.prototype = {
                 this._shake.x = 0;
             }
         }
-
-        if (vw >= this.bounds.right * this.scale.x)
+        else if (vw >= this.bounds.right * this.scale.x)
         {
             this.atLimit.x = true;
             this.view.x = (this.bounds.right * this.scale.x) - this.width;
@@ -711,8 +710,7 @@ Phaser.Camera.prototype = {
                 this._shake.y = 0;
             }
         }
-
-        if (vh >= this.bounds.bottom * this.scale.y)
+        else if (vh >= this.bounds.bottom * this.scale.y)
         {
             this.atLimit.y = true;
             this.view.y = (this.bounds.bottom * this.scale.y) - this.height;
