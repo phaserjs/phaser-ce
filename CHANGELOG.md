@@ -13,7 +13,9 @@
 * Added copyBitmapData function to Phaser.Bitmap.
 * Added `layerOffsetX` and `layerOffsetY` properties to `Phaser.TilemapLayer`. This allows offsetting layer positions in a way that plays well with the camera and Arcade physics. Also, these properties are now read from the `offsetx` and `offsety` layer properties of Tiled maps.
 * Fixed Phaser.Plugin.AStar Typescript definitions to get `grunt tsdocs` to work again
+* Added Phaser.Physics.P2.Body.loadPolygon() functionality that allows the loaded polygon to have a different scale.
 * Fixed Phaser.Camera.checkBounds() so it doesn't flicker when its view is bigger than its bounds.
+
 
 ## Version 2.7.3 - 9th January 2017
 
