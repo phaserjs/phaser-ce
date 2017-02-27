@@ -34,7 +34,7 @@
 * game.state.add('MainMenu', BasicGame.MainMenu);
 * game.state.add('Game', BasicGame.Game);
 * game.state.start('Boot');
-* 
+*
 * ```
 * In the example above, 4 States are added to the State Manager, and Phaser is told to
 * start running the `Boot` state when it has finished initializing. There are example
@@ -155,7 +155,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     * Configuration object with the property `multiTexture` set to true. It has to be enabled before
     * Pixi boots, and cannot be changed after the game is running. Once enabled, take advantage of it
     * via the `game.renderer.setTexturePriority` method.
-    * 
+    *
     * @property {boolean} multiTexture
     * @default
     * @readOnly
@@ -280,7 +280,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     * @property {Phaser.Physics} physics - Reference to the physics manager.
     */
     this.physics = null;
-    
+
     /**
     * @property {Phaser.PluginManager} plugins - Reference to the plugin manager.
     */
@@ -808,7 +808,7 @@ Phaser.Game.prototype = {
         if (this.renderType !== Phaser.HEADLESS)
         {
             this.stage.smoothed = this.antialias;
-            
+
             Phaser.Canvas.addToDOM(this.canvas, this.parent, false);
             Phaser.Canvas.setTouchAction(this.canvas);
         }
@@ -986,7 +986,7 @@ Phaser.Game.prototype = {
         {
             // Scaling and device orientation changes are still reflected when paused.
             this.scale.pauseUpdate();
-            this.state.pauseUpdate();
+            this.state.pauseUpdate(timeStep);
             this.debug.preUpdate();
         }
 
@@ -1266,9 +1266,9 @@ Object.defineProperty(Phaser.Game.prototype, "paused", {
 });
 
 /**
- * 
+ *
  * "Deleted code is debugged code." - Jeff Sickel
  *
  * ヽ(〃＾▽＾〃)ﾉ
- * 
+ *
 */

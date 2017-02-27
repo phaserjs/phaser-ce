@@ -450,8 +450,10 @@ Phaser.Particles.Arcade.Emitter.prototype.revive = function () {
 * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
 */
 Phaser.Particles.Arcade.Emitter.prototype.explode = function (lifespan, quantity) {
-    
-    if (quantity === undefined) quantity = this.maxParticles;
+
+    if (quantity === undefined) {
+        quantity = this.maxParticles;
+    }
 
     this._flowTotal = 0;
 
