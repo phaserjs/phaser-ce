@@ -1432,6 +1432,7 @@ Phaser.Physics.P2.Body.prototype = {
     *     data as the 2nd argument.
     * @param {string|object} object - The key of the object within the Physics data file that you wish to load the shape data from, 
     *     or if key is null pass the actual physics data object itself as this parameter.
+    * @param {number} [scale=1] - Optionally resize the loaded polygon.
     * @return {boolean} True on success, else false.
     */
     loadPolygon: function (key, object, scale) {
