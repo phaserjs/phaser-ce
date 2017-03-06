@@ -532,7 +532,7 @@ PIXI.DisplayObject.prototype = {
             var textureUnit = 0;
             if (this.texture && this.texture.baseTexture && PIXI._enableMultiTextureToggle)
                 textureUnit = this.texture.baseTexture.textureIndex;
-            var renderTexture = new Phaser.RenderTexture(bounds.width, bounds.height, null, null, null, textureUnit);
+            var renderTexture = new Phaser.RenderTexture(this.game, bounds.width, bounds.height, undefined, undefined, undefined, undefined, textureUnit);
             this._cachedSprite = new PIXI.Sprite(renderTexture);
             this._cachedSprite.worldTransform = this.worldTransform;
         }
