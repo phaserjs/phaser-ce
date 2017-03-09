@@ -123,7 +123,7 @@ Phaser.Math = {
             return min;
         }
 
-        if (min < max)
+        if (min > max)
         {
             var temp = min;
             min = max;
@@ -153,7 +153,7 @@ Phaser.Math = {
             return min;
         }
 
-        if (min < max)
+        if (min > max)
         {
             var temp = min;
             min = max;
