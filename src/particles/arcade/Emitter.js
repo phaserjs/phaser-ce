@@ -348,16 +348,16 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function () {
 * @param {number} [quantity] - The number of particles to generate. If not given it will use the value of Emitter.maxParticles. If the value is greater than Emitter.maxParticles it will use Emitter.maxParticles as the quantity.
 * @param {boolean} [collide=false] - If you want the particles to be able to collide with other Arcade Physics bodies then set this to true.
 * @param {boolean} [collideWorldBounds=false] - A particle can be set to collide against the World bounds automatically and rebound back into the World if this is set to true. Otherwise it will leave the World.
-* @param {object} [particle_arguments=null] - Custom arguments to pass to your particle class
+* @param {object} [particleArguments=null] - Custom arguments to pass to your particle class
 * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
 */
-Phaser.Particles.Arcade.Emitter.prototype.makeParticles = function (keys, frames, quantity, collide, collideWorldBounds, particle_arguments) {
+Phaser.Particles.Arcade.Emitter.prototype.makeParticles = function (keys, frames, quantity, collide, collideWorldBounds, particleArguments) {
 
     if (frames === undefined) { frames = 0; }
     if (quantity === undefined) { quantity = this.maxParticles; }
     if (collide === undefined) { collide = false; }
     if (collideWorldBounds === undefined) { collideWorldBounds = false; }
-    if (particle_arguments === undefined) { particle_arguments = null; }
+    if (particleArguments === undefined) { particleArguments = null; }
 
     var particle;
     var i = 0;
@@ -382,7 +382,7 @@ Phaser.Particles.Arcade.Emitter.prototype.makeParticles = function (keys, frames
             rndFrame = this.game.rnd.pick(frames);
         }
 
-        particle = new this.particleClass(this.game, 0, 0, rndKey, rndFrame, particle_arguments);
+        particle = new this.particleClass(this.game, 0, 0, rndKey, rndFrame, particleArguments);
 
         this.game.physics.arcade.enable(particle, false);
 
