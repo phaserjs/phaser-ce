@@ -40,7 +40,7 @@ Phaser.AnimationManager = function (sprite) {
     this.currentAnim = null;
 
     /**
-    * @property {boolean} updateIfVisible - Should the animation data continue to update even if the Sprite.visible is set to false.
+    * @property {boolean} updateIfVisible - Update the animation data only while the the sprite is {@link Phaser.Sprite#visible}. Set to `false` to continue updating while the sprite is invisible.
     * @default
     */
     this.updateIfVisible = true;

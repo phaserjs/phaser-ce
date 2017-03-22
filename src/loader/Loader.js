@@ -2032,11 +2032,11 @@ Phaser.Loader.prototype = {
             this.onLoadStart.dispatch();
         }
 
+        this.reset();
+
         this.onLoadComplete.dispatch();
 
         this.game.state.loadComplete();
-
-        this.reset();
 
     },
 

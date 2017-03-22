@@ -1795,6 +1795,7 @@ declare module Phaser {
         forEachDead(callback: Function, callbackContext?: any, ...args: any[]): void;
         forEachExists(callback: Function, callbackContext?: any): void;
         filter(predicate: Function, checkExists?: boolean): ArraySet;
+        getAll(property: string, value: any, startIndex: number, endIndex: number): any;
         getAt(index: number): PIXI.DisplayObject | number;
         getBottom(): any;
         getByName(name: string): any;

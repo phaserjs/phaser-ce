@@ -39,8 +39,8 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
         }
 
         var mapData = tilemapLayer.getTiles(
-            sprite.body.position.x - sprite.body.tilePadding.x - tilemapLayer.getLayerOffsetX(),
-            sprite.body.position.y - sprite.body.tilePadding.y - tilemapLayer.getLayerOffsetY(),
+            sprite.body.position.x - sprite.body.tilePadding.x - tilemapLayer.getTileOffsetX(),
+            sprite.body.position.y - sprite.body.tilePadding.y - tilemapLayer.getTileOffsetY(),
             sprite.body.width + sprite.body.tilePadding.x,
             sprite.body.height + sprite.body.tilePadding.y,
             false, false);
@@ -129,8 +129,8 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
             return false;
         }
         
-        var tilemapLayerOffsetX = tilemapLayer.getLayerOffsetX();
-        var tilemapLayerOffsetY = tilemapLayer.getLayerOffsetY();
+        var tilemapLayerOffsetX = tilemapLayer.getTileOffsetX();
+        var tilemapLayerOffsetY = tilemapLayer.getTileOffsetY();
 
         //  We re-check for collision in case body was separated in a previous step
         if (!tile.intersects((body.position.x - tilemapLayerOffsetX), (body.position.y - tilemapLayerOffsetY), (body.right - tilemapLayerOffsetX), (body.bottom - tilemapLayerOffsetY)))
@@ -242,7 +242,7 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
     tileCheckX: function (body, tile, tilemapLayer) {
 
         var ox = 0;
-        var tilemapLayerOffsetX = tilemapLayer.getLayerOffsetX();
+        var tilemapLayerOffsetX = tilemapLayer.getTileOffsetX();
 
         if (body.deltaX() < 0 && !body.blocked.left && tile.collideRight && body.checkCollision.left)
         {
@@ -300,7 +300,7 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
     tileCheckY: function (body, tile, tilemapLayer) {
 
         var oy = 0;
-        var tilemapLayerOffsetY = tilemapLayer.getLayerOffsetY();
+        var tilemapLayerOffsetY = tilemapLayer.getTileOffsetY();
 
         if (body.deltaY() < 0 && !body.blocked.up && tile.collideDown && body.checkCollision.up)
         {

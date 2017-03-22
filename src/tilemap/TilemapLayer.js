@@ -222,16 +222,10 @@ Phaser.TilemapLayer = function (game, tilemap, index, width, height) {
     this._scrollY = 0;
 
     /**
-     * The X axis position offset of the layer.
-     * @property {number}
+     * The position offset of the layer's tiles.
+     * @property {Phaser.Point}
      */
-    this.layerOffsetX = this.layer.offsetX || 0;
-
-    /**
-     * The Y axis position offset of the layer.
-     * @type {number}
-     */
-    this.layerOffsetY = this.layer.offsetY || 0;
+    this.tileOffset = new Phaser.Point(this.layer.offsetX || 0, this.layer.offsetY || 0);
 
     /**
     * Used for caching the tiles / array of tiles.
@@ -307,8 +301,8 @@ Phaser.TilemapLayer.prototype.postUpdate = function () {
         this.position.y = (this.game.camera.view.y + this.cameraOffset.y) / this.game.camera.scale.y;
     }
 
-    this._scrollX = (this.game.camera.view.x - this.layerOffsetX) * this.scrollFactorX / this.scale.x;
-    this._scrollY = (this.game.camera.view.y - this.layerOffsetY) * this.scrollFactorY / this.scale.y;
+    this._scrollX = (this.game.camera.view.x - this.tileOffset.x) * this.scrollFactorX / this.scale.x;
+    this._scrollY = (this.game.camera.view.y - this.tileOffset.y) * this.scrollFactorY / this.scale.y;
 
 };
 
@@ -327,8 +321,8 @@ Phaser.TilemapLayer.prototype._renderCanvas = function (renderSession) {
         this.position.y = (this.game.camera.view.y + this.cameraOffset.y) / this.game.camera.scale.y;
     }
 
-    this._scrollX = (this.game.camera.view.x - this.layerOffsetX) * this.scrollFactorX / this.scale.x;
-    this._scrollY = (this.game.camera.view.y - this.layerOffsetY) * this.scrollFactorY / this.scale.y;
+    this._scrollX = (this.game.camera.view.x - this.tileOffset.x) * this.scrollFactorX / this.scale.x;
+    this._scrollY = (this.game.camera.view.y - this.tileOffset.y) * this.scrollFactorY / this.scale.y;
 
     this.render();
 
@@ -351,8 +345,8 @@ Phaser.TilemapLayer.prototype._renderWebGL = function (renderSession) {
         this.position.y = (this.game.camera.view.y + this.cameraOffset.y) / this.game.camera.scale.y;
     }
     
-    this._scrollX = (this.game.camera.view.x - this.layerOffsetX) * this.scrollFactorX / this.scale.x;
-    this._scrollY = (this.game.camera.view.y - this.layerOffsetY) * this.scrollFactorY / this.scale.y;
+    this._scrollX = (this.game.camera.view.x - this.tileOffset.x) * this.scrollFactorX / this.scale.x;
+    this._scrollY = (this.game.camera.view.y - this.tileOffset.y) * this.scrollFactorY / this.scale.y;
 
     this.render();
 
@@ -424,28 +418,28 @@ Phaser.TilemapLayer.prototype.resizeWorld = function () {
 };
 
 /**
- * Get the X axis position offset of this layer.
+ * Get the X axis position offset of this layer's tiles.
  *
- * @method Phaser.TilemapLayer#getLayerOffsetY
+ * @method Phaser.TilemapLayer#getLayerOffsetX
  * @public
  * @return {number}
  */
-Phaser.TilemapLayer.prototype.getLayerOffsetX = function () {
+Phaser.TilemapLayer.prototype.getTileOffsetX = function () {
 
-    return this.layerOffsetX || ((!this.fixedToCamera) ? this.position.x : 0);
+    return this.tileOffset.x || ((!this.fixedToCamera) ? this.position.x : 0);
 
 };
 
 /**
- * Get the Y axis position offset of this layer.
+ * Get the Y axis position offset of this layer's tiles.
  *
- * @method Phaser.TilemapLayer#getLayerOffsetY
+ * @method Phaser.TilemapLayer#getTileOffsetY
  * @public
  * @return {number}
  */
-Phaser.TilemapLayer.prototype.getLayerOffsetY = function () {
+Phaser.TilemapLayer.prototype.getTileOffsetY = function () {
 
-    return this.layerOffsetY || ((!this.fixedToCamera) ? this.position.y : 0);
+    return this.tileOffset.y || ((!this.fixedToCamera) ? this.position.y : 0);
 
 };
 
