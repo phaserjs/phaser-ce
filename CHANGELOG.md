@@ -15,6 +15,9 @@
 * Fixed Phaser.Plugin.AStar Typescript definitions to get `grunt tsdocs` to work again
 * Added Phaser.Physics.P2.Body.loadPolygon() functionality that allows the loaded polygon to have a different scale.
 * Fixed Phaser.Camera.checkBounds() so it doesn't flicker when its view is bigger than its bounds.
+* Fixed jshint issues
+* Added preUpdateLifeSpan for Image
+* Added missing parameter particleArguments at typescript definition file
 
 
 ## Version 2.7.3 - 9th January 2017
