@@ -1,25 +1,54 @@
 # Change Log
 
-## Version 2.7.4 - to be announced
+## Version 2.7.4 - 23rd March 2017
 
-* `overlapR`, `overlapX`, and `overlapY` are now reset to 0 when an Arcade Physics Body isn't colliding (#23)
-* Changed bower package name to `phaser-ce`.
-* Fixed Arcade.Body.reset() so it resizes the body if the sprite scale has changed (#10).
+### New Features
+
 * New method Phaser.Math.hypot() calculates the length of the hypotenuse spanning two given lengths
-* Emitter.explode() now launches all particles if the `quantity` argument is omitted (#7). You should pass quantity `0` if you want to launch no particles.
+* Added copyBitmapData function to Phaser.Bitmap
+* Added noPause logic to src/input/Pointer.js
+* Added timeStep parameter pass to state.pauseUpdate call at src/core/Game.js
+* Added `tileOffset` (`Phaser.Point`) property to `Phaser.TilemapLayer`. This allows offsetting layer positions in a way that plays well with the camera and Arcade physics. Also, the `offsetx` and `offsety` properties are now read from the layer properties of Tiled maps.
+
+### Updates
+
 * Changed Loader.loadImageTag behavior to exclude firefox from loading cached images (#2534)
 * Added yarn lock file
 * Added travis-ci build script
-* Added copyBitmapData function to Phaser.Bitmap.
-* Added `tileOffset` (`Phaser.Point`) property to `Phaser.TilemapLayer`. This allows offsetting layer positions in a way that plays well with the camera and Arcade physics. Also, the `offsetx` and `offsety` properties are now read from the layer properties of Tiled maps.
-* Fixed Phaser.Plugin.AStar Typescript definitions to get `grunt tsdocs` to work again
-* Added Phaser.Physics.P2.Body.loadPolygon() functionality that allows the loaded polygon to have a different scale.
+* Fixed Phaser.Plugin.AStar Typescript definitions and phaser-ce module name to get `grunt tsdocs` to work again (#33)
+* Fixed Phaser.Plugin.AStar.DISTANCE_MANHATTAN according to documentation
+* Changed bower package name to `phaser-ce`
+* Emitter.explode() now launches all particles if the `quantity` argument is omitted (#7). You should pass quantity `0` if you want to launch no particles.
+* `overlapR`, `overlapX`, and `overlapY` are now reset to 0 when an Arcade Physics Body isn't colliding (#23)
+* Extened Phaser.Physics.P2.Body.loadPolygon() method by scale parameter, that allows the loaded polygon to have a different scale
+* Fixed documentation of Phaser.Video#createVideoFromBlob
+* Clarify documentation of Phaser.AnimationManager#updateIfVisible
+* Update Phaser.Text#setStyle to not mutate the passed style
+* Extended Phaser.Particles.Arcade.Emitter#makeParticles by parameter to pass custom parameters to particle class
+* Fixed jshint issues (#46)
+* Added call of preUpdateLifeSpan for Phaser.Image#preUpdate (#46)
+* Added missing parameter particleArguments at typescript definition file (#46)
+* Updated changes at readme and changelog markdown (#69)
+
+### Bug Fixes
+
+* Fixed Arcade.Body.reset() so it resizes the body if the sprite scale has changed (#10).
 * Fixed Phaser.Camera.checkBounds() so it doesn't flicker when its view is bigger than its bounds.
+* Fixed Phaser.Math#between and Phaser.Math#random to work again
+* Reset loader state at Phaser.Loader before complete callbacks (#53)
+* Fixed rendering on devices that use older versions of javascript
+* Fixed crashes on very old devices
+* Phaser.Group#update Fixed group updating if a sprite has been destroyed
+* Phaser.Weapon#fire Fix local rotation tracking (#66)
+* Fixed memory leak on webaudio at Phaser.Sound
+
+### Pixi Updates
+
+* Fix wrong parameter by calling Phaser.RenderTexture in pixi _generateCachedSprite at DisplayObject
 * Fixed jshint issues
 * Added preUpdateLifeSpan for Image
 * Added missing parameter particleArguments at typescript definition file
 * Fixed duplicate touch events in Android Chrome >= 55 due to introduction of PointerEvents.
-
 
 ## Version 2.7.3 - 9th January 2017
 

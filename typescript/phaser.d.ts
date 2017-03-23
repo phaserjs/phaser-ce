@@ -360,6 +360,7 @@ declare module Phaser {
         text(text: string, x?: number, y?: number, font?: string, color?: string, shadow?: boolean): Phaser.BitmapData;
         textureLine(line: Phaser.Line, key: string, repeat?: string): Phaser.BitmapData;
         update(x?: number, y?: number, width?: number, height?: number): Phaser.BitmapData;
+        copyBitmapData(source: Phaser.BitmapData, x: number, y: number): Phaser.BitmapData;
 
     }
 
@@ -2619,6 +2620,7 @@ declare module Phaser {
         static shear(n: number): number;
         static sign(x: number): number;
         static sinCosGenerator(length: number, sinAmplitude?: number, cosAmplitude?: number, frequency?: number): { sin: number[]; cos: number[]; };
+        static hypot(a: number, b: number): number;
         static smootherstep(x: number, min: number, max: number): number;
         static smoothstep(x: number, min: number, max: number): number;
         static snapTo(input: number, gap: number, start?: number): number;
@@ -3467,7 +3469,7 @@ declare module Phaser {
                 destroy(): void;
                 getCollisionMask(): number;
                 getVelocityAtPoint(result: number[], relativePoint: number[]): number[];
-                loadPolygon(key: string, object: string): boolean;
+                loadPolygon(key: string, object: string, scale ?: number): boolean;
                 moveBackward(speed: number): void;
                 moveDown(speed: number): void;
                 moveForward(speed: number): void;
@@ -5165,6 +5167,8 @@ declare module Phaser {
         resetTilesetCache(): void;
         setScale(xScale?: number, yScale?: number): void;
         updateMax(): void;
+        getTileOffsetX(): number;
+        getTileOffsetY(): number;
 
     }
 
