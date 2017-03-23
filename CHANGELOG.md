@@ -18,6 +18,7 @@
 * Fixed jshint issues
 * Added preUpdateLifeSpan for Image
 * Added missing parameter particleArguments at typescript definition file
+* Fixed duplicate touch events in Android Chrome >= 55 due to introduction of PointerEvents.
 
 
 ## Version 2.7.3 - 9th January 2017
