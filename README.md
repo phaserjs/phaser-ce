@@ -361,6 +361,12 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### Pixi Updates
 
 * Fix wrong parameter by calling Phaser.RenderTexture in pixi _generateCachedSprite at DisplayObject
+* Fixed jshint issues
+* Added preUpdateLifeSpan for Image
+* Added missing parameter particleArguments at typescript definition file
+* Fixed duplicate touch events in Android Chrome >= 55 due to introduction of PointerEvents.
+
+
 
 For changes in previous releases please see the extensive [Version History](CHANGELOG.md).
 
