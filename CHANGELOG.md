@@ -1,6 +1,6 @@
 # Change Log
 
-## Version 2.7.4 - to be announced
+## Version 2.7.4 - 23rd March 2017
 
 ### New Features
 
@@ -45,7 +45,10 @@
 ### Pixi Updates
 
 * Fix wrong parameter by calling Phaser.RenderTexture in pixi _generateCachedSprite at DisplayObject
-
+* Fixed jshint issues
+* Added preUpdateLifeSpan for Image
+* Added missing parameter particleArguments at typescript definition file
+* Fixed duplicate touch events in Android Chrome >= 55 due to introduction of PointerEvents.
 
 ## Version 2.7.3 - 9th January 2017
 
