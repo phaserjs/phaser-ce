@@ -120,15 +120,11 @@ Using Browserify? Please [read this](#browserify).
 
 [jsDelivr](http://www.jsdelivr.com/#!phaser) is a "super-fast CDN for developers". Include the following in your html:
 
-`<script src="//cdn.jsdelivr.net/phaser-ce/2.7.3/phaser.js"></script>`
+`<script src="//cdn.jsdelivr.net/phaser-ce/2.7.5/phaser.js"></script>`
 
 or the minified version:
 
-`<script src="//cdn.jsdelivr.net/phaser-ce/2.7.3/phaser.min.js"></script>`
-
-[cdnjs.com](https://cdnjs.com/libraries/phaser-ce) also offers a free CDN service. They have all versions of Phaser and even the custom builds:
-
-`<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.7.3/phaser.js"></script>`
+`<script src="//cdn.jsdelivr.net/phaser-ce/2.7.5/phaser.min.js"></script>`
 
 ### Phaser Sandbox
 
@@ -315,6 +311,10 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ![Change Log](http://phaser.io/images/github/div-change-log.png "Change Log")
 <a name="change-log"></a>
+
+## Version 2.7.5 - 23rd March 2017
+
+* A hotfix to patch the error `this.preUpdateLifeSpan is not a function` in 2.7.4 (#72)
 
 ## Version 2.7.4 - 23rd March 2017
 
