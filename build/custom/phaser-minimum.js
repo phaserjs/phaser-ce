@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.3 "2017-01-09" - Built: Mon Jan 09 2017 13:26:30
+* v2.7.4 "2017-03-23" - Built: Thu Mar 23 2017 13:15:17
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -589,7 +589,7 @@ PIXI.DisplayObject.prototype = {
             var textureUnit = 0;
             if (this.texture && this.texture.baseTexture && PIXI._enableMultiTextureToggle)
                 textureUnit = this.texture.baseTexture.textureIndex;
-            var renderTexture = new Phaser.RenderTexture(bounds.width, bounds.height, null, null, null, textureUnit);
+            var renderTexture = new Phaser.RenderTexture(this.game, bounds.width, bounds.height, undefined, undefined, undefined, undefined, textureUnit);
             this._cachedSprite = new PIXI.Sprite(renderTexture);
             this._cachedSprite.worldTransform = this.worldTransform;
         }
@@ -2036,6 +2036,9 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     {
         var cx = this.texture.crop.x;
         var cy = this.texture.crop.y;
+        
+        cw = Math.floor(cw)
+        ch = Math.floor(ch)
 
         renderSession.context.drawImage(this.texture.baseTexture.source, cx, cy, cw, ch, dx, dy, cw / resolution, ch / resolution);
     }
@@ -7528,7 +7531,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant
     * @type {string}
     */
-    VERSION: '2.7.3',
+    VERSION: '2.7.4',
 
     /**
     * An array of Phaser game instances.
@@ -13806,8 +13809,7 @@ Phaser.Camera.prototype = {
                 this._shake.x = 0;
             }
         }
-
-        if (vw >= this.bounds.right * this.scale.x)
+        else if (vw >= this.bounds.right * this.scale.x)
         {
             this.atLimit.x = true;
             this.view.x = (this.bounds.right * this.scale.x) - this.width;
@@ -13830,8 +13832,7 @@ Phaser.Camera.prototype = {
                 this._shake.y = 0;
             }
         }
-
-        if (vh >= this.bounds.bottom * this.scale.y)
+        else if (vh >= this.bounds.bottom * this.scale.y)
         {
             this.atLimit.y = true;
             this.view.y = (this.bounds.bottom * this.scale.y) - this.height;
@@ -18578,6 +18579,9 @@ Phaser.Group.prototype.update = function () {
 
     while (i--)
     {
+        if (i >= this.children.length){
+            i = this.children.length - 1;
+        }
         this.children[i].update();
     }
 
@@ -20335,7 +20339,7 @@ Object.defineProperty(Phaser.World.prototype, "randomY", {
 * game.state.add('MainMenu', BasicGame.MainMenu);
 * game.state.add('Game', BasicGame.Game);
 * game.state.start('Boot');
-* 
+*
 * ```
 * In the example above, 4 States are added to the State Manager, and Phaser is told to
 * start running the `Boot` state when it has finished initializing. There are example
@@ -20456,7 +20460,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     * Configuration object with the property `multiTexture` set to true. It has to be enabled before
     * Pixi boots, and cannot be changed after the game is running. Once enabled, take advantage of it
     * via the `game.renderer.setTexturePriority` method.
-    * 
+    *
     * @property {boolean} multiTexture
     * @default
     * @readOnly
@@ -20581,7 +20585,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     * @property {Phaser.Physics} physics - Reference to the physics manager.
     */
     this.physics = null;
-    
+
     /**
     * @property {Phaser.PluginManager} plugins - Reference to the plugin manager.
     */
@@ -21109,7 +21113,7 @@ Phaser.Game.prototype = {
         if (this.renderType !== Phaser.HEADLESS)
         {
             this.stage.smoothed = this.antialias;
-            
+
             Phaser.Canvas.addToDOM(this.canvas, this.parent, false);
             Phaser.Canvas.setTouchAction(this.canvas);
         }
@@ -21287,7 +21291,7 @@ Phaser.Game.prototype = {
         {
             // Scaling and device orientation changes are still reflected when paused.
             this.scale.pauseUpdate();
-            this.state.pauseUpdate();
+            this.state.pauseUpdate(timeStep);
             this.debug.preUpdate();
         }
 
@@ -21567,11 +21571,11 @@ Object.defineProperty(Phaser.Game.prototype, "paused", {
 });
 
 /**
- * 
+ *
  * "Deleted code is debugged code." - Jeff Sickel
  *
  * ヽ(〃＾▽＾〃)ﾉ
- * 
+ *
 */
 
 /**
@@ -21998,7 +22002,12 @@ Phaser.Input.prototype = {
         this.hitContext = this.hitCanvas.getContext('2d');
 
         this.mouse.start();
-        this.touch.start();
+        if (!this.game.device.mspointer)
+        {
+            // Chrome >= 55 fires both PointerEvent and TouchEvent.
+            // Pick only one.
+            this.touch.start();
+        }
         this.mspointer.start();
         this.mousePointer.active = true;
 
@@ -24277,10 +24286,10 @@ Phaser.Pointer = function (game, id, pointerMode) {
 
     /**
     * If this Pointer is a Mouse or Pen / Stylus then you can access its left button directly through this property.
-    * 
+    *
     * The DeviceButton has its own properties such as `isDown`, `duration` and methods like `justReleased` for more fine-grained
     * button control.
-    * 
+    *
     * @property {Phaser.DeviceButton} leftButton
     * @default
     */
@@ -24288,12 +24297,12 @@ Phaser.Pointer = function (game, id, pointerMode) {
 
     /**
     * If this Pointer is a Mouse or Pen / Stylus then you can access its middle button directly through this property.
-    * 
+    *
     * The DeviceButton has its own properties such as `isDown`, `duration` and methods like `justReleased` for more fine-grained
     * button control.
     *
     * Please see the DeviceButton docs for details on browser button limitations.
-    * 
+    *
     * @property {Phaser.DeviceButton} middleButton
     * @default
     */
@@ -24301,12 +24310,12 @@ Phaser.Pointer = function (game, id, pointerMode) {
 
     /**
     * If this Pointer is a Mouse or Pen / Stylus then you can access its right button directly through this property.
-    * 
+    *
     * The DeviceButton has its own properties such as `isDown`, `duration` and methods like `justReleased` for more fine-grained
     * button control.
     *
     * Please see the DeviceButton docs for details on browser button limitations.
-    * 
+    *
     * @property {Phaser.DeviceButton} rightButton
     * @default
     */
@@ -24314,12 +24323,12 @@ Phaser.Pointer = function (game, id, pointerMode) {
 
     /**
     * If this Pointer is a Mouse or Pen / Stylus then you can access its X1 (back) button directly through this property.
-    * 
+    *
     * The DeviceButton has its own properties such as `isDown`, `duration` and methods like `justReleased` for more fine-grained
     * button control.
     *
     * Please see the DeviceButton docs for details on browser button limitations.
-    * 
+    *
     * @property {Phaser.DeviceButton} backButton
     * @default
     */
@@ -24327,12 +24336,12 @@ Phaser.Pointer = function (game, id, pointerMode) {
 
     /**
     * If this Pointer is a Mouse or Pen / Stylus then you can access its X2 (forward) button directly through this property.
-    * 
+    *
     * The DeviceButton has its own properties such as `isDown`, `duration` and methods like `justReleased` for more fine-grained
     * button control.
     *
     * Please see the DeviceButton docs for details on browser button limitations.
-    * 
+    *
     * @property {Phaser.DeviceButton} forwardButton
     * @default
     */
@@ -24340,12 +24349,12 @@ Phaser.Pointer = function (game, id, pointerMode) {
 
     /**
     * If this Pointer is a Pen / Stylus then you can access its eraser button directly through this property.
-    * 
+    *
     * The DeviceButton has its own properties such as `isDown`, `duration` and methods like `justReleased` for more fine-grained
     * button control.
     *
     * Please see the DeviceButton docs for details on browser button limitations.
-    * 
+    *
     * @property {Phaser.DeviceButton} eraserButton
     * @default
     */
@@ -24536,7 +24545,7 @@ Phaser.Pointer = function (game, id, pointerMode) {
     * @property {Phaser.Point} positionDown - A Phaser.Point object containing the x/y values of the pointer when it was last in a down state on the display.
     */
     this.positionDown = new Phaser.Point();
-    
+
     /**
     * @property {Phaser.Point} positionUp - A Phaser.Point object containing the x/y values of the pointer when it was last released.
     */
@@ -24621,7 +24630,7 @@ Phaser.Pointer.prototype = {
 
     /**
     * Resets the states of all the button booleans.
-    * 
+    *
     * @method Phaser.Pointer#resetButtons
     * @protected
     */
@@ -24644,7 +24653,7 @@ Phaser.Pointer.prototype = {
 
     /**
     * Called by updateButtons.
-    * 
+    *
     * @method Phaser.Pointer#processButtonsDown
     * @private
     * @param {integer} buttons - The DOM event.buttons property.
@@ -24663,7 +24672,7 @@ Phaser.Pointer.prototype = {
         {
             this.rightButton.start(event);
         }
-                
+
         if (Phaser.Pointer.MIDDLE_BUTTON & buttons)
         {
             this.middleButton.start(event);
@@ -24688,7 +24697,7 @@ Phaser.Pointer.prototype = {
 
     /**
     * Called by updateButtons.
-    * 
+    *
     * @method Phaser.Pointer#processButtonsUp
     * @private
     * @param {integer} buttons - The DOM event.buttons property.
@@ -24707,7 +24716,7 @@ Phaser.Pointer.prototype = {
         {
             this.rightButton.stop(event);
         }
-                
+
         if (button === Phaser.Mouse.MIDDLE_BUTTON)
         {
             this.middleButton.stop(event);
@@ -24733,7 +24742,7 @@ Phaser.Pointer.prototype = {
     /**
     * Called when the event.buttons property changes from zero.
     * Contains a button bitmask.
-    * 
+    *
     * @method Phaser.Pointer#updateButtons
     * @protected
     * @param {MouseEvent} event - The DOM event.
@@ -24914,7 +24923,7 @@ Phaser.Pointer.prototype = {
 
     /**
     * Called when the Pointer is moved.
-    * 
+    *
     * @method Phaser.Pointer#move
     * @param {MouseEvent|PointerEvent|TouchEvent} event - The event passed up from the input handler.
     * @param {boolean} [fromClick=false] - Was this called from the click event?
@@ -24979,12 +24988,6 @@ Phaser.Pointer.prototype = {
 
         this.withinGame = this.game.scale.bounds.contains(this.pageX, this.pageY);
 
-        //  If the game is paused we don't process any target objects or callbacks
-        if (this.game.paused)
-        {
-            return this;
-        }
-
         var i = input.moveCallbacks.length;
 
         while (i--)
@@ -24993,7 +24996,7 @@ Phaser.Pointer.prototype = {
         }
 
         //  Easy out if we're dragging something and it still exists
-        if (this.targetObject !== null && this.targetObject.isDragged === true)
+        if (this.targetObject !== null && (!this.game.paused || this.targetObject.noPause) && this.targetObject.isDragged === true)
         {
             if (this.targetObject.update(this) === false)
             {
@@ -25011,7 +25014,7 @@ Phaser.Pointer.prototype = {
 
     /**
     * Process all interactive objects to find out which ones were updated in the recent Pointer move.
-    * 
+    *
     * @method Phaser.Pointer#processInteractiveObjects
     * @protected
     * @param {boolean} [fromClick=false] - Was this called from the click event?
@@ -25036,7 +25039,7 @@ Phaser.Pointer.prototype = {
             //  Reset checked status
             currentNode.checked = false;
 
-            if (currentNode.validForInput(highestInputPriorityID, highestRenderOrderID, false))
+            if (currentNode.validForInput(highestInputPriorityID, highestRenderOrderID, false) && (!this.game.paused || currentNode.sprite.noPause))
             {
                 //  Flag it as checked so we don't re-scan it on the next phase
                 currentNode.checked = true;
@@ -25091,7 +25094,7 @@ Phaser.Pointer.prototype = {
 
     /**
     * This will change the `Pointer.targetObject` object to be the one provided.
-    * 
+    *
     * This allows you to have fine-grained control over which object the Pointer is targeting.
     *
     * Note that even if you set a new Target here, it is still able to be replaced by any other valid
@@ -25223,9 +25226,9 @@ Phaser.Pointer.prototype = {
         this.withinGame = this.game.scale.bounds.contains(event.pageX, event.pageY);
         this.pointerId = null;
         this.identifier = null;
-        
+
         this.positionUp.setTo(this.x, this.y);
-        
+
         if (this.isMouse === false)
         {
             input.currentPointers--;
@@ -25399,7 +25402,7 @@ Phaser.Pointer.prototype.constructor = Phaser.Pointer;
 * How long the Pointer has been depressed on the touchscreen or *any* of the mouse buttons have been held down.
 * If not currently down it returns -1.
 * If you need to test a specific mouse or pen button then access the buttons directly, i.e. `Pointer.rightButton.duration`.
-* 
+*
 * @name Phaser.Pointer#duration
 * @property {number} duration
 * @readonly
@@ -31939,7 +31942,7 @@ Phaser.Image.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.Image.prototype.preUpdate = function() {
 
-    if (!this.preUpdateInWorld())
+    if (!this.preUpdateInWorld() || !this.preUpdateLifeSpan())
     {
         return false;
     }
@@ -34978,7 +34981,7 @@ Phaser.Math = {
             return min;
         }
 
-        if (min < max)
+        if (min > max)
         {
             var temp = min;
             min = max;
@@ -35008,7 +35011,7 @@ Phaser.Math = {
             return min;
         }
 
-        if (min < max)
+        if (min > max)
         {
             var temp = min;
             min = max;
@@ -35949,6 +35952,20 @@ Phaser.Math = {
         }
 
         return { sin: sinTable, cos: cosTable, length: length };
+
+    },
+
+    /**
+    * Returns the length of the hypotenuse connecting two segments of given lengths.
+    *
+    * @method Phaser.Math#hypot
+    * @param {number} a
+    * @param {number} b
+    * @return {number} The length of the hypotenuse connecting the given lengths.
+    */
+    hypot: function (a, b) {
+
+        return Math.sqrt(a * a + b * b);
 
     },
 
@@ -38431,7 +38448,7 @@ Phaser.AnimationManager = function (sprite) {
     this.currentAnim = null;
 
     /**
-    * @property {boolean} updateIfVisible - Should the animation data continue to update even if the Sprite.visible is set to false.
+    * @property {boolean} updateIfVisible - Update the animation data only while the the sprite is {@link Phaser.Sprite#visible}. Set to `false` to continue updating while the sprite is invisible.
     * @default
     */
     this.updateIfVisible = true;
@@ -44830,11 +44847,11 @@ Phaser.Loader.prototype = {
             this.onLoadStart.dispatch();
         }
 
+        this.reset();
+
         this.onLoadComplete.dispatch();
 
         this.game.state.loadComplete();
-
-        this.reset();
 
     },
 
@@ -45143,7 +45160,9 @@ Phaser.Loader.prototype = {
         file.data.src = this.transformUrl(file.url, file);
 
         // Image is immediately-available/cached
-        if (file.data.complete && file.data.width && file.data.height)
+        // Special Firefox magic, exclude from cached reload
+        // More info here: https://github.com/photonstorm/phaser/issues/2534
+        if (!this.game.device.firefox && file.data.complete && file.data.width && file.data.height)
         {
             file.data.onload = null;
             file.data.onerror = null;
