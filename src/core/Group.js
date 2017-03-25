@@ -1648,7 +1648,9 @@ Phaser.Group.prototype.update = function () {
 
     while (i--)
     {
-        if (i >= this.children.length){i = this.children.length - 1}
+        if (i >= this.children.length){
+            i = this.children.length - 1;
+        }
         this.children[i].update();
     }
 
