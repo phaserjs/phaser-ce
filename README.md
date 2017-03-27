@@ -312,6 +312,12 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ![Change Log](http://phaser.io/images/github/div-change-log.png "Change Log")
 <a name="change-log"></a>
 
+## Version 2.7.6
+
+## Bug Fixes
+
+* Fixed Object.assign not existing on older devices
+
 ## Version 2.7.5 - 23rd March 2017
 
 * A hotfix to patch the error `this.preUpdateLifeSpan is not a function` in 2.7.4 (#72)
