@@ -314,9 +314,10 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ## Version 2.7.6
 
-## Bug Fixes
+### Bug Fixes
 
 * Fixed Object.assign not existing on older devices
+* Fixed typescript definitions for `TilemapLayer#getRayCastTiles`, `TilemapLayer#getTiles`, `TilemapLayer#getTileX`, `TilemapLayer#getTileXY` and `TilemapLayer#getTileY`
 
 ## Version 2.7.5 - 23rd March 2017
 
