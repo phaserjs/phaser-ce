@@ -1,5 +1,11 @@
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+
+* Previously, passing `renderer: Phaser.HEADLESS` to a new Game would set `game.renderType` to `Phaser.CANVAS` and set up the Canvas renderer, which was incorrect (#74). `Phaser.HEADLESS` now sets up a PIXI.CanvasRenderer and `<canvas>` (like before) but doesn't add the canvas to the document. It skips `render` hooks but not the `preRender` and `postRender` hooks (strange).
+
 ## Version 2.7.5 - 23rd March 2017
 
 * A hotfix to patch the error `this.preUpdateLifeSpan is not a function` in 2.7.4 (#72)
