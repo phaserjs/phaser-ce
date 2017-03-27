@@ -1669,6 +1669,8 @@ declare module Phaser {
         body: Phaser.Physics.Arcade.Body | Phaser.Physics.P2.Body | Phaser.Physics.Ninja.Body | any;
         bottom: number;
         cameraOffset: Phaser.Point;
+        centerX: number;
+		centerY: number;
         checkWorldBounds: boolean;
         components: any;
         data: any;
