@@ -49,7 +49,7 @@ As of today all of our in-house resources are spent on building Phaser 3 and bey
 * Phaser 2.6.2 is the last 'official' release, published on npm as `phaser`
 * Phaser 2.7.0 and all future versions have been given to the community to maintain, published on npm as `phaser-ce`
 
-**All Pull Requests made against this repo will be unconditionally approved**. 
+**All Pull Requests made against this repo will be unconditionally approved**.
 
 We'll give GitHub permissions to a select few individuals to help with this process if they request them. And when you, the community, request it, we will publish new versions to npm.
 
@@ -76,11 +76,11 @@ Developing Phaser takes a lot of time, effort, and money. There are monthly runn
 
 If you have found Phaser useful in your development life. Or have made income as a result of using it, and are in a position to support us financially, without causing any detriment to yourself, then please do. There are a number of ways:
 
-* A monthly contribution via [Patreon](https://www.patreon.com/photonstorm). 
+* A monthly contribution via [Patreon](https://www.patreon.com/photonstorm).
 * A [one-off donation](http://phaser.io/community/donate) via PayPal.
 * Purchase any of our [plugins or books](http://phaser.io/shop).
 * Companies can sponsor a release of Phaser, or an issue of our newsletter.
- 
+
 It all helps cover our running costs, and genuinely contributes towards future development.
 
 If you would like to sponsor Phaser then please [get in touch](mailto:support@phaser.io). We have sponsorship options available on our GitHub repo, web site, and newsletter. All of which receive tens of thousands of eyeballs per day.
@@ -312,11 +312,16 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ![Change Log](http://phaser.io/images/github/div-change-log.png "Change Log")
 <a name="change-log"></a>
 
-## Version 2.7.6
+## Version 2.7.6 - unreleased
 
-## Bug Fixes
+### New Features
 
-* Fixed Object.assign not existing on older devices
+### Updates
+
+### Bug Fixes
+
+* Fixed Object.assign not existing on older devices (#81)
+* Previously, passing `renderer: Phaser.HEADLESS` to a new Game would set `game.renderType` to `Phaser.CANVAS` and set up the Canvas renderer, which was incorrect (#74). `Phaser.HEADLESS` now sets up a PIXI.CanvasRenderer and `<canvas>` (like before) but doesn't add the canvas to the document. It skips `render` hooks but not the `preRender` and `postRender` hooks (strange).
 
 ## Version 2.7.5 - 23rd March 2017
 
