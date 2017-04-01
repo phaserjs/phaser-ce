@@ -85,7 +85,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.rotation = sprite.angle;
 
     /**
-    * @property {number} preRotation - The previous rotation of the physics body.
+    * @property {number} preRotation - The previous rotation of the physics body, in degrees.
     * @readonly
     */
     this.preRotation = sprite.angle;
@@ -139,12 +139,12 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.center = new Phaser.Point(sprite.x + this.halfWidth, sprite.y + this.halfHeight);
 
     /**
-    * @property {Phaser.Point} velocity - The velocity, or rate of change in speed of the Body. Measured in pixels per second.
+    * @property {Phaser.Point} velocity - The velocity, or rate of change the Body's position. Measured in pixels per second.
     */
     this.velocity = new Phaser.Point();
 
     /**
-    * @property {Phaser.Point} newVelocity - The new velocity. Calculated during the Body.preUpdate and applied to its position.
+    * @property {Phaser.Point} newVelocity - The distanced traveled during the last update, equal to `velocity * physicsElapsed`. Calculated during the Body.preUpdate and applied to its position.
     * @readonly
     */
     this.newVelocity = new Phaser.Point();
@@ -160,7 +160,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.acceleration = new Phaser.Point();
 
     /**
-    * @property {Phaser.Point} drag - The drag applied to the motion of the Body.
+    * @property {Phaser.Point} drag - The drag applied to the motion of the Body. Measured in pixels per second squared.
     */
     this.drag = new Phaser.Point();
 
@@ -171,7 +171,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.allowGravity = true;
 
     /**
-    * @property {Phaser.Point} gravity - A local gravity applied to this Body. If non-zero this over rides any world gravity, unless Body.allowGravity is set to false.
+    * @property {Phaser.Point} gravity - A local gravity applied to this Body. If non-zero this overrides any world gravity, unless Body.allowGravity is set to false.
     */
     this.gravity = new Phaser.Point();
 
@@ -202,19 +202,19 @@ Phaser.Physics.Arcade.Body = function (sprite) {
 
     /**
     * A Signal that is dispatched when this Body collides with another Body.
-    * 
+    *
     * You still need to call `game.physics.arcade.collide` in your `update` method in order
     * for this signal to be dispatched.
     *
     * Usually you'd pass a callback to the `collide` method, but this signal provides for
     * a different level of notification.
-    * 
+    *
     * Due to the potentially high volume of signals this could create it is disabled by default.
-    * 
+    *
     * To use this feature set this property to a Phaser.Signal: `sprite.body.onCollide = new Phaser.Signal()`
     * and it will be called when a collision happens, passing two arguments: the sprites which collided.
     * The first sprite in the argument is always the owner of this Body.
-    * 
+    *
     * If two Bodies with this Signal set collide, both will dispatch the Signal.
     * @property {Phaser.Signal} onCollide
     */
@@ -222,37 +222,37 @@ Phaser.Physics.Arcade.Body = function (sprite) {
 
     /**
     * A Signal that is dispatched when this Body overlaps with another Body.
-    * 
+    *
     * You still need to call `game.physics.arcade.overlap` in your `update` method in order
     * for this signal to be dispatched.
     *
     * Usually you'd pass a callback to the `overlap` method, but this signal provides for
     * a different level of notification.
-    * 
+    *
     * Due to the potentially high volume of signals this could create it is disabled by default.
-    * 
+    *
     * To use this feature set this property to a Phaser.Signal: `sprite.body.onOverlap = new Phaser.Signal()`
     * and it will be called when a collision happens, passing two arguments: the sprites which collided.
     * The first sprite in the argument is always the owner of this Body.
-    * 
+    *
     * If two Bodies with this Signal set collide, both will dispatch the Signal.
     * @property {Phaser.Signal} onOverlap
     */
     this.onOverlap = null;
 
     /**
-    * @property {Phaser.Point} maxVelocity - The maximum velocity in pixels per second sq. that the Body can reach.
+    * @property {Phaser.Point} maxVelocity - The maximum velocity (in pixels per second squared) that the Body can reach.
     * @default
     */
     this.maxVelocity = new Phaser.Point(10000, 10000);
 
     /**
-    * @property {Phaser.Point} friction - The amount of movement that will occur if another object 'rides' this one.
+    * @property {Phaser.Point} friction - If this Body is moving, and another Body is 'riding' this one, this is the amount of motion the riding Body receives on each axis.
     */
     this.friction = new Phaser.Point(1, 0);
 
     /**
-    * @property {number} angularVelocity - The angular velocity controls the rotation speed of the Body. It is measured in degrees per second.
+    * @property {number} angularVelocity - The angular velocity is the rate of change of the Body's rotation. It is measured in degrees per second.
     * @default
     */
     this.angularVelocity = 0;
@@ -282,19 +282,19 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.mass = 1;
 
     /**
-    * @property {number} angle - The angle of the Body's velocity in radians.
+    * @property {number} angle - The angle of the Body's **velocity** in radians.
     * @readonly
     */
     this.angle = 0;
 
     /**
-    * @property {number} speed - The speed of the Body as calculated by its velocity.
+    * @property {number} speed - The speed of the Body in pixels per second, equal to the magnitude of the velocity.
     * @readonly
     */
     this.speed = 0;
 
     /**
-    * @property {number} facing - A const reference to the direction the Body is traveling or facing.
+    * @property {number} facing - A const reference to the direction the Body is traveling or facing: Phaser.NONE, Phaser.LEFT, Phaser.RIGHT, Phaser.UP, or Phaser.DOWN. If the Body is moving on both axes, UP and DOWN take precedence.
     * @default
     */
     this.facing = Phaser.NONE;
@@ -365,20 +365,20 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     * For example checkCollision.up = false means it won't collide when the collision happened while moving up.
     * If you need to disable a Body entirely, use `body.enable = false`, this will also disable motion.
     * If you need to disable just collision and/or overlap checks, but retain motion, set `checkCollision.none = true`.
-    * @property {object} checkCollision - An object containing allowed collision.
+    * @property {object} checkCollision - An object containing allowed collision (none, up, down, left, right).
     */
     this.checkCollision = { none: false, any: true, up: true, down: true, left: true, right: true };
 
     /**
     * This object is populated with boolean values when the Body collides with another.
     * touching.up = true means the collision happened to the top of this Body for example.
-    * @property {object} touching - An object containing touching results.
+    * @property {object} touching - An object containing touching results (none, up, down, left, right).
     */
     this.touching = { none: true, up: false, down: false, left: false, right: false };
 
     /**
     * This object is populated with previous touching values from the bodies previous collision.
-    * @property {object} wasTouching - An object containing previous touching results.
+    * @property {object} wasTouching - An object containing previous touching results (none, up, down, left, right).
     */
     this.wasTouching = { none: true, up: false, down: false, left: false, right: false };
 
@@ -409,7 +409,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     /**
     * If true the Body will check itself against the Sprite.getBounds() dimensions and adjust its width and height accordingly.
     * If false it will compare its dimensions against the Sprite scale instead, and adjust its width height if the scale has changed.
-    * Typically you would need to enable syncBounds if your sprite is the child of a responsive display object such as a FlexLayer, 
+    * Typically you would need to enable syncBounds if your sprite is the child of a responsive display object such as a FlexLayer,
     * or in any situation where the Sprite scale doesn't change, but its parents scale is effecting the dimensions regardless.
     * @property {boolean} syncBounds
     * @default
@@ -882,14 +882,14 @@ Phaser.Physics.Arcade.Body.prototype = {
 
     /**
     * Note: This method is experimental, and may be changed or removed in a future release.
-    * 
+    *
     * This method moves the Body in the given direction, for the duration specified.
     * It works by setting the velocity on the Body, and an internal timer, and then
     * monitoring the duration each frame. When the duration is up the movement is
     * stopped and the `Body.onMoveComplete` signal is dispatched.
     *
     * Movement also stops if the Body collides or overlaps with any other Body.
-    * 
+    *
     * You can control if the velocity should be reset to zero on collision, by using
     * the property `Body.stopVelocityOnCollide`.
     *
@@ -898,12 +898,12 @@ Phaser.Physics.Arcade.Body.prototype = {
     * You can optionally set a speed in pixels per second. If not specified it
     * will use the current `Body.speed` value. If this is zero, the function will return false.
     *
-    * Please note that due to browser timings you should allow for a variance in 
+    * Please note that due to browser timings you should allow for a variance in
     * when the duration will actually expire. Depending on system it may be as much as
     * +- 50ms. Also this method doesn't take into consideration any other forces acting
     * on the Body, such as Gravity, drag or maxVelocity, all of which may impact the
     * movement.
-    * 
+    *
     * @method Phaser.Physics.Arcade.Body#moveFrom
     * @param  {integer} duration  - The duration of the movement, in ms.
     * @param  {integer} [speed] - The speed of the movement, in pixels per second. If not provided `Body.speed` is used.
@@ -956,27 +956,27 @@ Phaser.Physics.Arcade.Body.prototype = {
 
     /**
     * Note: This method is experimental, and may be changed or removed in a future release.
-    * 
+    *
     * This method moves the Body in the given direction, for the duration specified.
     * It works by setting the velocity on the Body, and an internal distance counter.
     * The distance is monitored each frame. When the distance equals the distance
-    * specified in this call, the movement is stopped, and the `Body.onMoveComplete` 
+    * specified in this call, the movement is stopped, and the `Body.onMoveComplete`
     * signal is dispatched.
     *
     * Movement also stops if the Body collides or overlaps with any other Body.
-    * 
+    *
     * You can control if the velocity should be reset to zero on collision, by using
     * the property `Body.stopVelocityOnCollide`.
     *
     * Stop the movement at any time by calling `Body.stopMovement`.
     *
-    * Please note that due to browser timings you should allow for a variance in 
+    * Please note that due to browser timings you should allow for a variance in
     * when the distance will actually expire.
-    * 
+    *
     * Note: This method doesn't take into consideration any other forces acting
     * on the Body, such as Gravity, drag or maxVelocity, all of which may impact the
     * movement.
-    * 
+    *
     * @method Phaser.Physics.Arcade.Body#moveTo
     * @param  {integer} duration - The duration of the movement, in ms.
     * @param  {integer} distance - The distance, in pixels, the Body will move.
@@ -1173,7 +1173,7 @@ Phaser.Physics.Arcade.Body.prototype = {
 
     /**
     * Returns the bounds of this physics body.
-    * 
+    *
     * Only used internally by the World collision methods.
     *
     * @method Phaser.Physics.Arcade.Body#getBounds
@@ -1226,7 +1226,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         return this.blocked.down;
 
     },
-    
+
     /**
     * Returns true if the top of this Body is in contact with either the world bounds or a tile.
     *
@@ -1313,7 +1313,7 @@ Phaser.Physics.Arcade.Body.prototype = {
 
     /**
     * Destroys this Body.
-    * 
+    *
     * First it calls Group.removeFromHash if the Game Object this Body belongs to is part of a Group.
     * Then it nulls the Game Objects body reference, and nulls this Body.sprite reference.
     *
