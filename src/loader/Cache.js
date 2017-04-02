@@ -2043,7 +2043,9 @@ Phaser.Cache.prototype = {
 
     /**
     * Clears the cache. Removes every local cache object reference.
-    * If an object in the cache has a `destroy` method it will also be called.
+    * If an object in the cache has a `destroy` method it will be called;
+    * otherwise, `destroy` will be called on any of the object's `base`, `data`,
+    * `frameData`, or `texture` properties.
     *
     * @method Phaser.Cache#destroy
     */
@@ -2072,12 +2074,10 @@ Phaser.Cache.prototype = {
 
     /**
     * @method Phaser.Cache#destroyItem
-    * @private
+    * @protected
     * @param {object} item
     */
     destroyItem: function (item) {
-
-        var keys = ['base', 'data', 'frameData', 'texture'];
 
         if (item.destroy)
         {
