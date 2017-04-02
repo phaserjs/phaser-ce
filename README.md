@@ -9,7 +9,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016.
 
 **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#phaserjs)<br />
-**Learn:** [API Docs](http://phaser.io/docs), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)<br />
+**Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)<br />
 **Code:** 700+ [Examples](http://phaser.io/examples) (source available in this [repo][examples])<br />
 **Read:** Weekly [Phaser World](#newsletter) Newsletter<br />
 **Chat:** [Slack](http://phaser.io/community/slack) and [Discord](http://phaser.io/community/discord)<br />
