@@ -318,6 +318,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Phaser now destroys BitmapData and RenderTexture objects when clearing the cache (#68). This should reduce memory use.
 * `game.add.weapon` now has a `bulletClass` argument. Without this it was difficult to set `bulletClass` before creating the bullet pool.
 
 ### Bug Fixes

@@ -245,7 +245,7 @@ Phaser.Cache.prototype = {
         {
             this.removeImage(key);
         }
-        
+
         var data = (extension in Phaser.LoaderParser) ? Phaser.LoaderParser[extension](arrayBuffer) : arrayBuffer;
 
         var texture = {
@@ -541,9 +541,9 @@ Phaser.Cache.prototype = {
 
     /**
     * Add a new Bitmap Font to the Cache, where the font texture is part of a Texture Atlas.
-    * 
+    *
     * The atlas must already exist in the cache, and be available based on the given `atlasKey`.
-    * 
+    *
     * The `atlasFrame` specifies the name of the frame within the atlas that the Bitmap Font is
     * stored in.
     *
@@ -2043,7 +2043,9 @@ Phaser.Cache.prototype = {
 
     /**
     * Clears the cache. Removes every local cache object reference.
-    * If an object in the cache has a `destroy` method it will also be called.
+    * If an object in the cache has a `destroy` method it will be called;
+    * otherwise, `destroy` will be called on any of the object's `base`, `data`,
+    * `frameData`, or `texture` properties.
     *
     * @method Phaser.Cache#destroy
     */
@@ -2057,10 +2059,7 @@ Phaser.Cache.prototype = {
             {
                 if (key !== '__default' && key !== '__missing')
                 {
-                    if (cache[key]['destroy'])
-                    {
-                        cache[key].destroy();
-                    }
+                    this.destroyItem(cache[key]);
 
                     delete cache[key];
                 }
@@ -2070,6 +2069,27 @@ Phaser.Cache.prototype = {
         this._urlMap = null;
         this._urlResolver = null;
         this._urlTemp = null;
+
+    },
+
+    /**
+    * @method Phaser.Cache#destroyItem
+    * @protected
+    * @param {object} item
+    */
+    destroyItem: function (item) {
+
+        if (item.destroy)
+        {
+            item.destroy();
+        }
+        else
+        {
+            if (item.base      && item.base.destroy)      item.base.destroy();
+            if (item.data      && item.data.destroy)      item.data.destroy();
+            if (item.frameData && item.frameData.destroy) item.frameData.destroy();
+            if (item.texture   && item.texture.destroy)   item.texture.destroy(true);
+        }
 
     }
 
