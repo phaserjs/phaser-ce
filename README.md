@@ -318,6 +318,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* `game.add.weapon` now has a `bulletClass` argument. Without this it was difficult to set `bulletClass` before creating the bullet pool.
+
 ### Bug Fixes
 
 * Fixed Object.assign not existing on older devices (#81)
