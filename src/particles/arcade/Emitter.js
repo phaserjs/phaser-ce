@@ -121,7 +121,7 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.gravity = new Phaser.Point(0, 100);
 
     /**
-    * @property {any} particleClass - For emitting your own particle class types. They must extend Phaser.Particle.
+    * @property {function} particleClass - For emitting your own particle class types. They must extend Phaser.Particle.
     * @default
     */
     this.particleClass = Phaser.Particle;
