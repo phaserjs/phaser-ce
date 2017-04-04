@@ -157,16 +157,16 @@ if (!window.console)
 
 /**
  * Fix for Object.assign not existing on older devices
+ * @see https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
  */
-if (typeof Object.assign != 'function') {
-  Object.assign = function(target, varArgs) { // .length of function is 2
+if (typeof Object.assign !== 'function') {
+  Object.assign = function(target) {
     'use strict';
     if (target == null) { // TypeError if undefined or null
       throw new TypeError('Cannot convert undefined or null to object');
     }
 
     var to = Object(target);
-
     for (var index = 1; index < arguments.length; index++) {
       var nextSource = arguments[index];
 
