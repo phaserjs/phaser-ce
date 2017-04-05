@@ -2085,10 +2085,25 @@ Phaser.Cache.prototype = {
         }
         else
         {
-            if (item.base      && item.base.destroy)      item.base.destroy();
-            if (item.data      && item.data.destroy)      item.data.destroy();
-            if (item.frameData && item.frameData.destroy) item.frameData.destroy();
-            if (item.texture   && item.texture.destroy)   item.texture.destroy(true);
+            if (item.base && item.base.destroy)
+            {
+                item.base.destroy();
+            }
+
+            if (item.data && item.data.destroy)
+            {
+                item.data.destroy();
+            }
+
+            if (item.frameData && item.frameData.destroy)
+            {
+                item.frameData.destroy();
+            }
+
+            if (item.texture && item.texture.destroy)
+            {
+                item.texture.destroy(true);
+            }
         }
 
     }
