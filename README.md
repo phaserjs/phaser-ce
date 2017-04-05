@@ -325,6 +325,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed audio skipping when restarting playback (#78)
 * Fixed bad rendering of multiple tinted BitmapText objects (#58)
 * Fixed Object.assign not existing on older devices (#81)
 * Previously, passing `renderer: Phaser.HEADLESS` to a new Game would set `game.renderType` to `Phaser.CANVAS` and set up the Canvas renderer, which was incorrect (#74). `Phaser.HEADLESS` now sets up a PIXI.CanvasRenderer and `<canvas>` (like before) but doesn't add the canvas to the document. It skips `render` hooks but not the `preRender` and `postRender` hooks (strange).
