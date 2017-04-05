@@ -157,28 +157,33 @@ if (!window.console)
 
 /**
  * Fix for Object.assign not existing on older devices
- * @see https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
  */
-if (typeof Object.assign !== 'function') {
-  Object.assign = function(target) {
-    'use strict';
-    if (target == null) { // TypeError if undefined or null
-      throw new TypeError('Cannot convert undefined or null to object');
-    }
 
-    var to = Object(target);
-    for (var index = 1; index < arguments.length; index++) {
-      var nextSource = arguments[index];
-
-      if (nextSource != null) { // Skip over if undefined or null
-        for (var nextKey in nextSource) {
-          // Avoid bugs when hasOwnProperty is shadowed
-          if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-            to[nextKey] = nextSource[nextKey];
-          }
+if (!Object.assign) {
+    /* jshint -W098 */
+    // We include `varArgs` (unused) to ensure Object.assign.length === 2
+    Object.assign = function(target, varArgs) {
+    /* jshint +W098 */
+        'use strict';
+        if (target == null) { // TypeError if undefined or null
+            throw new TypeError('Cannot convert undefined or null to object');
         }
-      }
-    }
-    return to;
-  };
+
+        var to = Object(target);
+        var hasOwn = Object.prototype.hasOwnProperty;
+
+        for (var index = 1; index < arguments.length; index++) {
+            var nextSource = arguments[index];
+
+            if (nextSource != null) { // Skip over if undefined or null
+                for (var nextKey in nextSource) {
+                    // Avoid bugs when hasOwnProperty is shadowed
+                    if (hasOwn.call(nextSource, nextKey)) {
+                        to[nextKey] = nextSource[nextKey];
+                    }
+                }
+            }
+        }
+        return to;
+    };
 }
