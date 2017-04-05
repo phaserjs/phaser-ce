@@ -318,6 +318,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* TypeScript definitions fixes and updates (#75, #101)
+* Docs typo fixes (#101)
 * Phaser now destroys BitmapData and RenderTexture objects when clearing the cache (#68). This should reduce memory use.
 * `game.add.weapon` now has a `bulletClass` argument. Without this it was difficult to set `bulletClass` before creating the bullet pool.
 
@@ -326,7 +328,6 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Fixed bad rendering of multiple tinted BitmapText objects (#58)
 * Fixed Object.assign not existing on older devices (#81)
 * Previously, passing `renderer: Phaser.HEADLESS` to a new Game would set `game.renderType` to `Phaser.CANVAS` and set up the Canvas renderer, which was incorrect (#74). `Phaser.HEADLESS` now sets up a PIXI.CanvasRenderer and `<canvas>` (like before) but doesn't add the canvas to the document. It skips `render` hooks but not the `preRender` and `postRender` hooks (strange).
-* Fixed typescript definitions for `TilemapLayer#getRayCastTiles`, `TilemapLayer#getTiles`, `TilemapLayer#getTileX`, `TilemapLayer#getTileXY` and `TilemapLayer#getTileY` (#75)
 
 ## Version 2.7.5 - 23rd March 2017
 
