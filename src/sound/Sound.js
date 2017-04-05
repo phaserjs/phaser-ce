@@ -176,10 +176,18 @@ Phaser.Sound = function (game, key, volume, loop, connect) {
     this._sound = null;
 
     /**
-    * @property {object} _markedToDelete - When audio stops if markedToDelete it's active, will disconnect the nodes and free the memory.
+    * @property {boolean} _markedToDelete - When audio stops, disconnect Web Audio nodes.
     * @private
     */
     this._markedToDelete = false;
+
+    /**
+    * @property {boolean} _removeFromSoundManager - When audio stops, remove it from the Sound Manager and destroy it.
+    * @private
+    */
+    this._removeFromSoundManager = false;
+
+
 
     if (this.usingWebAudio)
     {
@@ -405,18 +413,38 @@ Phaser.Sound.prototype = {
         this.currentTime = this.durationMS;
         this.stop();
 
-        if(this._markedToDelete){
-          if (this.externalNode)
-          {
-              this._sound.disconnect(this.externalNode);
-          }
-          else if (this.gainNode)
-          {
-              this._sound.disconnect(this.gainNode);
-          }
+        if (this._markedToDelete)
+        {
+            if (this.externalNode)
+            {
+                this._sound.disconnect(this.externalNode);
+            }
+            else if (this.gainNode)
+            {
+                this._sound.disconnect(this.gainNode);
+            }
+
+            if (this._removeFromSoundManager)
+            {
+                this.game.sound.remove(this);
+            }
+            else
+            {
+                this.markers = {};
+                this.context = null;
+                this._buffer = null;
+                this.externalNode = null;
+
+                this.onDecoded.dispose();
+                this.onPlay.dispose();
+                this.onPause.dispose();
+                this.onResume.dispose();
+                this.onLoop.dispose();
+                this.onStop.dispose();
+                this.onMute.dispose();
+                this.onMarkerComplete.dispose();
+            }
         }
-
-
     },
 
     /**
@@ -891,15 +919,23 @@ Phaser.Sound.prototype = {
                 else
                 {
                     try {
-                        this._markedToDelete = true;
                         this._sound.stop(0);
-
                     }
                     catch (e)
                     {
                         //  Thanks Android 4.4
                     }
                 }
+
+                if (this.externalNode)
+                {
+                    this._sound.disconnect(this.externalNode);
+                }
+                else if (this.gainNode)
+                {
+                    this._sound.disconnect(this.gainNode);
+                }
+
             }
             else if (this.usingAudioTag)
             {
@@ -1053,6 +1089,8 @@ Phaser.Sound.prototype = {
 
         if (remove === undefined) { remove = true; }
 
+        this._markedToDelete = true;
+        this._removeFromSoundManager = remove;
         this.stop();
 
         if (remove)
@@ -1075,7 +1113,6 @@ Phaser.Sound.prototype = {
             this.onMute.dispose();
             this.onMarkerComplete.dispose();
         }
-
     }
 
 };
