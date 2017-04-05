@@ -29,9 +29,9 @@ Phaser.Physics.Arcade = function (game) {
     this.bounds = new Phaser.Rectangle(0, 0, game.world.width, game.world.height);
 
     /**
-    * Set the checkCollision properties to control for which bounds collision is processed.
+    * Which edges of the World bounds Bodies can collide against when `collideWorldBounds` is `true`.
     * For example checkCollision.down = false means Bodies cannot collide with the World.bounds.bottom.
-    * @property {object} checkCollision - An object containing allowed collision flags.
+    * @property {object} checkCollision - An object containing allowed collision flags (up, down, left, right).
     */
     this.checkCollision = { up: true, down: true, left: true, right: true };
 
@@ -215,7 +215,7 @@ Phaser.Physics.Arcade.prototype = {
 
     /**
     * Creates an Arcade Physics body on the given game object.
-    * 
+    *
     * A game object can only have 1 physics body active at any one time, and it can't be changed until the body is nulled.
     *
     * When you add an Arcade Physics body to an object it will automatically add the object into its parent Groups hash array.
@@ -766,7 +766,7 @@ Phaser.Physics.Arcade.prototype = {
                         continue;
                     }
                 }
-                
+
                 this.collideSpriteVsSprite(sprite, object1, collideCallback, processCallback, callbackContext, overlapOnly);
             }
         }
@@ -890,7 +890,7 @@ Phaser.Physics.Arcade.prototype = {
                         break;
                     }
                 }
-                
+
                 this.collideSpriteVsSprite(object1, object2, collideCallback, processCallback, callbackContext, overlapOnly);
             }
         }
@@ -1660,7 +1660,7 @@ Phaser.Physics.Arcade.prototype = {
         }
 
         return output;
-        
+
     },
 
     /**
@@ -2097,7 +2097,7 @@ Phaser.Physics.Arcade.prototype = {
     },
 
     /**
-    * Find the angle in radians between a display object (like a Sprite) and a Pointer, 
+    * Find the angle in radians between a display object (like a Sprite) and a Pointer,
     * taking their x/y and center into account relative to the world.
     *
     * @method Phaser.Physics.Arcade#worldAngleToPointer
