@@ -3,24 +3,25 @@
         "allowUnknownTags": true
     },
     "source": {
-        "include": [ 
+        "include": [
             "./docs/pixi-jsdoc.js",
-            "./src/Phaser.js", 
-            "./src/animation/", 
-            "./src/core/", 
-            "./src/gameobjects/", 
-            "./src/geom/", 
-            "./src/input/", 
-            "./src/loader/", 
-            "./src/math/", 
-            "./src/net/", 
-            "./src/particles/", 
-            "./src/physics/", 
-            "./src/sound/", 
-            "./src/tilemap/", 
-            "./src/time/", 
+            "./src/Phaser.js",
+            "./src/animation/",
+            "./src/core/",
+            "./src/gameobjects/",
+            "./src/geom/",
+            "./src/input/",
+            "./src/loader/",
+            "./src/math/",
+            "./src/net/",
+            "./src/particles/",
+            "./src/physics/",
+            "./src/sound/",
+            "./src/tilemap/",
+            "./src/time/",
             "./src/tween/",
-			"./src/utils/"
+            "./src/utils/",
+            "./out/plugins/"
         ],
         "exclude": [
             "./src/physics/p2/p2.js"

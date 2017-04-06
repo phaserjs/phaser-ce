@@ -26,10 +26,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['build']);
 
-    grunt.registerTask('docs', ['clean:docs', 'pixidoc', 'jsdoc:html', 'replace:docs', 'clean:out']);
-    // grunt.registerTask('tsdocs', ['clean:out', 'pixidoc', 'gitclone:plugins', 'jsdoc:json', 'buildtsdoc:pixi', 'buildtsdoc:phaser', 'replace:phasertsdefheader']);
-    grunt.registerTask('tsdocs', ['clean:out', 'pixidoc', 'jsdoc:json', 'buildtsdoc:pixi', 'buildtsdoc:phaser', 'replace:phasertsdefheader']);
-    grunt.registerTask('tsdocsdebug', ['clean:out', 'pixidoc', 'jsdoc:json', 'buildtsdoc:pixi', 'buildtsdocdebug:phaser', 'replace:phasertsdefheader']);
+    grunt.registerTask('docs', ['clean:docs', 'pixidoc', 'gitclone:plugins', 'jsdoc:html', 'replace:docs', 'clean:out']);
+    grunt.registerTask('tsdocs', ['clean:out', 'pixidoc', 'gitclone:plugins', 'jsdoc:json', 'buildtsdoc:pixi', 'buildtsdoc:phaser', 'replace:phasertsdefheader']);
 
     grunt.registerTask('custom', 'Build a custom version of Phaser', function(arg) {
 
@@ -228,7 +226,7 @@ module.exports = function (grunt) {
                 //  3) PIXI
 
                 grunt.log.writeln("-> PIXI");
-                
+
                 if (!excludedKeys['intro'])
                 {
                     tasks.push('concat:pixiIntro');
@@ -237,7 +235,7 @@ module.exports = function (grunt) {
 
                 tasks.push('concat:pixiMain');
                 pixiFilelist.push('<%= modules_dir %>/pixi-main.js');
-                
+
                 /*
                 //  Optional Rope
                 if (!excludedKeys['rope'])
@@ -303,7 +301,7 @@ module.exports = function (grunt) {
                 //  3) PIXI
 
                 grunt.log.writeln("-> PIXI");
-                
+
                 if (!excludedKeys['intro'])
                 {
                     tasks.push('concat:pixiIntro');
@@ -312,7 +310,7 @@ module.exports = function (grunt) {
 
                 tasks.push('concat:pixiMain');
                 filelist.push('<%= modules_dir %>/pixi-main.js');
-                
+
                 /*
                 //  Optional Rope
                 if (!excludedKeys['rope'])
