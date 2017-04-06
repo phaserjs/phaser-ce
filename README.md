@@ -318,8 +318,9 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
-* TypeScript definitions fixes and updates (#75, #101)
+* TypeScript definitions fixes and updates (#75, #101, #107)
 * Docs typo fixes (#101)
+* Extended documentation generation to consider also phaser plugin repository (#107)
 * Phaser now destroys BitmapData and RenderTexture objects when clearing the cache (#68). This should reduce memory use.
 * `game.add.weapon` now has a `bulletClass` argument. Without this it was difficult to set `bulletClass` before creating the bullet pool.
 
