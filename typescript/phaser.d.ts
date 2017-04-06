@@ -1772,7 +1772,7 @@ declare module Phaser {
         z: number;
 
         add(child: any, silent?: boolean, index?: number): any;
-        addAll(property: string, amount: number, checkAlive?: boolean, checkVisible?: boolean): void;
+        addAll(property: string, amount: number, checkAlive: boolean, checkVisible: boolean): void;
         addAt(child: any, index: number, silent?: boolean): any;
         addMultiple(children: any[], silent?: boolean): any[];
         addToHash(child: PIXI.DisplayObject): boolean;
