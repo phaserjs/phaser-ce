@@ -325,6 +325,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed an issue when dragging a sprite whose parent is scaled or rotated (#108). Now the sprite follows the cursor correctly.
 * Fixed audio skipping when restarting playback (#78)
 * Fixed bad rendering of multiple tinted BitmapText objects (#58)
 * Fixed Object.assign not existing on older devices (#81)
