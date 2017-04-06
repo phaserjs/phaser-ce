@@ -9746,7 +9746,7 @@ declare module Phaser {
         * @param checkAlive If true the property will only be changed if the child is alive.
         * @param checkVisible If true the property will only be changed if the child is visible.
         */
-        addAll(property: string, amount: number, checkAlive: boolean, checkVisible: boolean): void;
+        addAll(property: string, amount: number, checkAlive?: boolean, checkVisible?: boolean): void;
 
         /**
         * Adds an existing object to this group.
