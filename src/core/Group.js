@@ -1390,8 +1390,8 @@ Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible
 * @method Phaser.Group#addAll
 * @param {string} property - The property to increment, for example 'body.velocity.x' or 'angle'.
 * @param {number} amount - The amount to increment the property by. If child.x = 10 then addAll('x', 40) would make child.x = 50.
-* @param {boolean} checkAlive - If true the property will only be changed if the child is alive.
-* @param {boolean} checkVisible - If true the property will only be changed if the child is visible.
+* @param {boolean} [checkAlive] - If true the property will only be changed if the child is alive.
+* @param {boolean} [checkVisible] - If true the property will only be changed if the child is visible.
 */
 Phaser.Group.prototype.addAll = function (property, amount, checkAlive, checkVisible) {
 
