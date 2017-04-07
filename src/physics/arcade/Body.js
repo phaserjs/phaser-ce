@@ -544,9 +544,19 @@ Phaser.Physics.Arcade.Body.prototype = {
         {
             this.halfWidth = Math.floor(this.width / 2);
             this.halfHeight = Math.floor(this.height / 2);
-            this.center.setTo(this.position.x + this.halfWidth, this.position.y + this.halfHeight);
+            this.updateCenter();
         }
 
+    },
+
+    /**
+    * Update the Body's center from its position.
+    *
+    * @method Phaser.Physics.Arcade.Body#updateCenter
+    * @protected
+    */
+    updateCenter: function () {
+        this.center.setTo(this.position.x + this.halfWidth, this.position.y + this.halfHeight);
     },
 
     /**
@@ -614,6 +624,7 @@ Phaser.Physics.Arcade.Body.prototype = {
 
             this.position.x += this.newVelocity.x;
             this.position.y += this.newVelocity.y;
+            this.updateCenter();
 
             if (this.position.x !== this.prev.x || this.position.y !== this.prev.y)
             {
@@ -784,7 +795,7 @@ Phaser.Physics.Arcade.Body.prototype = {
             this._reset = true;
         }
 
-        this.center.setTo(this.position.x + this.halfWidth, this.position.y + this.halfHeight);
+        this.updateCenter();
 
         if (this.allowRotation)
         {
@@ -1084,7 +1095,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         this.halfHeight = Math.floor(this.height / 2);
         this.offset.setTo(offsetX, offsetY);
 
-        this.center.setTo(this.position.x + this.halfWidth, this.position.y + this.halfHeight);
+        this.updateCenter();
 
         this.isCircle = false;
         this.radius = 0;
@@ -1128,7 +1139,7 @@ Phaser.Physics.Arcade.Body.prototype = {
 
             this.offset.setTo(offsetX, offsetY);
 
-            this.center.setTo(this.position.x + this.halfWidth, this.position.y + this.halfHeight);
+            this.updateCenter();
         }
         else
         {
@@ -1167,7 +1178,7 @@ Phaser.Physics.Arcade.Body.prototype = {
 
         this.updateBounds();
 
-        this.center.setTo(this.position.x + this.halfWidth, this.position.y + this.halfHeight);
+        this.updateCenter();
 
     },
 
