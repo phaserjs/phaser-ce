@@ -1551,7 +1551,7 @@ declare module Phaser {
         tilemap(key?: string, tileWidth?: number, tileHeight?: number, width?: number, height?: number): Phaser.Tilemap;
         tileSprite(x: number, y: number, width: number, height: number, key?: any, frame?: any, group?: Phaser.Group): Phaser.TileSprite;
         tween(obj: any): Phaser.Tween;
-        weapon(quantity?: number, key?: any, frame?: any, group?: Phaser.Group): Phaser.Weapon;
+        weapon(quantity?: number, key?: any, frame?: any, group?: Phaser.Group, bulletClass?: Phaser.Bullet): Phaser.Weapon;
         video(key?: string, url?: string): Phaser.Video;
 
     }
@@ -1670,6 +1670,8 @@ declare module Phaser {
         body: Phaser.Physics.Arcade.Body | Phaser.Physics.P2.Body | Phaser.Physics.Ninja.Body | any;
         bottom: number;
         cameraOffset: Phaser.Point;
+        centerX: number;
+		centerY: number;
         checkWorldBounds: boolean;
         components: any;
         data: any;
@@ -1771,7 +1773,7 @@ declare module Phaser {
         z: number;
 
         add(child: any, silent?: boolean, index?: number): any;
-        addAll(property: string, amount: number, checkAlive: boolean, checkVisible: boolean): void;
+        addAll(property: string, amount: number, checkAlive?: boolean, checkVisible?: boolean): void;
         addAt(child: any, index: number, silent?: boolean): any;
         addMultiple(children: any[], silent?: boolean): any[];
         addToHash(child: PIXI.DisplayObject): boolean;

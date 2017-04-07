@@ -222,7 +222,7 @@ Phaser.Weapon = function (game, parent) {
 
     /**
      * Private var that holds the public `bulletClass` property.
-     * @type {object}
+     * @type {function}
      * @private
      */
     this._bulletClass = Phaser.Bullet;
@@ -1273,11 +1273,13 @@ Phaser.Weapon.prototype.debug = function (x, y, debugBodies) {
 };
 
 /**
-* The Class of the bullets that are launched by this Weapon. Defaults `Phaser.Bullet`, but can be
+* The Class of the bullets that are launched by this Weapon. Defaults to {@link Phaser.Bullet}, but can be
 * overridden before calling `createBullets` and set to your own class type.
 *
+* It should be a constructor function accepting `(game, x, y, key, frame)`.
+*
 * @name Phaser.Weapon#bulletClass
-* @property {Object} bulletClass
+* @property {function} bulletClass
 */
 Object.defineProperty(Phaser.Weapon.prototype, "bulletClass", {
 
