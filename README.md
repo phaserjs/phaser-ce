@@ -329,6 +329,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Phaser.Keyboard#lastChar is now `null` if Phaser has recorded no key presses yet. It no longer throws an error (#132).
 * Previously, the `center` of a moving Arcade Physics Body was inaccurate during the game's update phase, and that made collision checks of circular Bodies less accurate (#122). This was fixed by updating `center` during preUpdate.
 * Fixed an issue when dragging a sprite whose parent is scaled or rotated (#108). Now the sprite follows the cursor correctly.
 * Fixed audio skipping when restarting playback (#78)
