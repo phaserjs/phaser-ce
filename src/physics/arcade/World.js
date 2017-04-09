@@ -1784,7 +1784,7 @@ Phaser.Physics.Arcade.prototype = {
         if (speed === undefined) { speed = 60; }
         point = point || new Phaser.Point();
 
-        return point.setTo((Math.cos(this.game.math.degToRad(angle)) * speed), (Math.sin(this.game.math.degToRad(angle)) * speed));
+        return point.setTo((Math.cos(Phaser.Math.degToRad(angle)) * speed), (Math.sin(Phaser.Math.degToRad(angle)) * speed));
 
     },
 

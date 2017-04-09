@@ -318,6 +318,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Phaser.Physics.Arcade#velocityFromAngle now uses Phaser.Math instead of `game.math`, so you can use it without a reference to a running game (#131).
 * Clarified Emitter#start documentation.
 * The game canvas's [cursor style](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) is now `pointer` when the cursor is over an object with `input.useHandCursor` enabled and empty at all other times. This should make it easier to set your own cursor style for the game (#110).
 * TypeScript definitions fixes and updates (#75, #101, #107)
