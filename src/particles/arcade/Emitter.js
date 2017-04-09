@@ -514,14 +514,27 @@ Phaser.Particles.Arcade.Emitter.prototype.flow = function (lifespan, frequency, 
 };
 
 /**
-* Call this function to start emitting particles.
+* Start emitting particles.
+*
+* {@link #explode} and {@link #flow} are simpler methods.
+*
+* There are two patterns, based on the `explode` argument:
+*
+* - `start(true, lifespan=0, null, quantity)`
+* - `start(false, lifespan=0, frequency=250, quantity=0)`
+*
+* When `explode` is true or `forceQuantity` is true, `start` emits `quantity` particles immediately. You should pass a nonzero `quantity`.
+*
+* When `explode` is false and `forceQuantity` is false, `start` emits 1 particle every interval of `frequency` ms. If `quantity` is not zero, the emitter turns itself off after `quantity` particles have been released. If `quantity` is zero, the emitter keeps emitting particles as long as they are available. To emit more than 1 particle per flow interval, use {@link #flow} instead.
+*
+* `forceQuantity` seems equivalent to `explode` and can probably be avoided.
 *
 * @method Phaser.Particles.Arcade.Emitter#start
 * @param {boolean} [explode=true] - Whether the particles should all burst out at once (true) or at the frequency given (false).
 * @param {number} [lifespan=0] - How long each particle lives once emitted in ms. 0 = forever.
-* @param {number} [frequency=250] - Ignored if `explode` is set to true. Frequency is how often to emit 1 particle. Value given in ms.
-* @param {number} [quantity=0] - How many particles to launch in total. If `explode` is false and `forceQuantity` is false, quantity = 0 will keep emitting particles until {@link #maxParticles} is reached. If `explode` is true or `forceQuantity` is true, quantity = 0 will launch no particles.
-* @param {number} [forceQuantity=false] - If `true` and creating a particle flow, the quantity emitted will be forced to the quantity given in this call. This can never exceed Emitter.maxParticles.
+* @param {number} [frequency=250] - Frequency is how often to emit 1 particle when `explode` is false. Value given in ms. Ignored if `explode` is set to true.
+* @param {number} [quantity=0] - How many particles to launch in total (not larger than {@link Phaser.Particles.Arcade.Emitter#maxParticles maxParticles}).
+* @param {number} [forceQuantity=false] - Equivalent to `explodes`.
 * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
 */
 Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, frequency, quantity, forceQuantity) {
