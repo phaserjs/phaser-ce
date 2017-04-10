@@ -535,17 +535,36 @@ Phaser.BitmapData.prototype = {
     *
     * @method Phaser.BitmapData#generateTexture
     * @param {string} key - The key which will be used to store the image in the Cache.
-    * @return {PIXI.Texture} The newly generated texture.
+    * @param {function} [callback] - A function to execute once the texture is generated. It will be passed the newly generated texture.
+    * @param {any} [callbackContext]
+    * @return {PIXI.Texture|null} The newly generated texture, or `null` if a callback was passed and the texture isn't available yet.
     */
-    generateTexture: function (key) {
+    generateTexture: function (key, callback, callbackContext) {
 
+        var cache = this.game.cache;
         var image = new Image();
 
         image.src = this.canvas.toDataURL("image/png");
 
-        var obj = this.game.cache.addImage(key, '', image);
+        if (!callback || image.complete)
+        {
+            var obj = cache.addImage(key, '', image);
 
-        return new PIXI.Texture(obj.base);
+            return new PIXI.Texture(obj.base);
+        }
+        else
+        {
+            image.onload = function () {
+                var obj = cache.addImage(key, '', image);
+                var texture = new PIXI.Texture(obj.base);
+
+                callback.call(callbackContext || null, texture);
+
+                image.onload = null;
+            };
+        }
+
+        return null;
 
     },
 
