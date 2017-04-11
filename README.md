@@ -316,8 +316,12 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* BitmapData#generateTexture now has a callback argument. Most browsers now load the generated image asynchronously, so without a callback you're not guaranteed a valid texture (#136).
+
 ### Updates
 
+* Phaser.Cache#addImage now emits a warning if you add an image that hasn't completed loading.
+* Phaser.Frame now emits a warning if a Frame is constructed with a zero width or height.
 * Phaser.Physics.Arcade#velocityFromAngle now uses Phaser.Math instead of `game.math`, so you can use it without a reference to a running game (#131).
 * Clarified Emitter#start documentation.
 * The game canvas's [cursor style](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) is now `pointer` when the cursor is over an object with `input.useHandCursor` enabled and empty at all other times. This should make it easier to set your own cursor style for the game (#110).
@@ -329,6 +333,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed an issue where display objects using the default texture could have an incorrect size (1 × 1) and appear blank (#138). The built-in DEFAULT and MISSING textures are now loaded asynchronously to ensure that they're valid.
+* Fixed an issue where `game.device.canUseMultiply` could hold a false negative on first (Firefox, Safari) or even subsequent (Chrome 57) page loads, disabling most blend modes when using the Canvas renderer (#130).
 * Phaser.Keyboard#lastChar is now `null` if Phaser has recorded no key presses yet. It no longer throws an error (#132).
 * Previously, the `center` of a moving Arcade Physics Body was inaccurate during the game's update phase, and that made collision checks of circular Bodies less accurate (#122). This was fixed by updating `center` during preUpdate.
 * Fixed an issue when dragging a sprite whose parent is scaled or rotated (#108). Now the sprite follows the cursor correctly.

@@ -301,6 +301,11 @@ Phaser.Cache.prototype = {
             this.removeImage(key);
         }
 
+        if (data.complete === false)
+        {
+            console.warn('Phaser.Cache: Image "' + key + '" hasn\'t been retrieved yet');
+        }
+
         var img = {
             key: key,
             url: url,
@@ -340,17 +345,22 @@ Phaser.Cache.prototype = {
     */
     addDefaultImage: function () {
 
+        var cache = this;
         var img = new Image();
 
         img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABVJREFUeF7NwIEAAAAAgKD9qdeocAMAoAABm3DkcAAAAABJRU5ErkJggg==";
 
-        var obj = this.addImage('__default', null, img);
+        img.onload = function () {
+            var obj = cache.addImage('__default', null, img);
 
-        //  Because we don't want to invalidate the sprite batch for an invisible texture
-        obj.base.skipRender = true;
+            //  Because we don't want to invalidate the sprite batch for an invisible texture
+            obj.base.skipRender = true;
 
-        //  Make it easily available within the rest of Phaser / Pixi
-        Phaser.Cache.DEFAULT = new PIXI.Texture(obj.base);
+            //  Make it easily available within the rest of Phaser / Pixi
+            Phaser.Cache.DEFAULT = new PIXI.Texture(obj.base);
+
+            img.onload = null;
+        };
 
     },
 
@@ -365,14 +375,19 @@ Phaser.Cache.prototype = {
     */
     addMissingImage: function () {
 
+        var cache = this;
         var img = new Image();
 
         img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ9JREFUeNq01ssOwyAMRFG46v//Mt1ESmgh+DFmE2GPOBARKb2NVjo+17PXLD8a1+pl5+A+wSgFygymWYHBb0FtsKhJDdZlncG2IzJ4ayoMDv20wTmSMzClEgbWYNTAkQ0Z+OJ+A/eWnAaR9+oxCF4Os0H8htsMUp+pwcgBBiMNnAwF8GqIgL2hAzaGFFgZauDPKABmowZ4GL369/0rwACp2yA/ttmvsQAAAABJRU5ErkJggg==";
 
-        var obj = this.addImage('__missing', null, img);
+        img.onload = function () {
+            var obj = cache.addImage('__missing', null, img);
 
-        //  Make it easily available within the rest of Phaser / Pixi
-        Phaser.Cache.MISSING = new PIXI.Texture(obj.base);
+            //  Make it easily available within the rest of Phaser / Pixi
+            Phaser.Cache.MISSING = new PIXI.Texture(obj.base);
+
+            img.onload = null;
+        };
 
     },
 
