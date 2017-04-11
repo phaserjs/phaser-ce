@@ -554,15 +554,7 @@ Phaser.BitmapData.prototype = {
         var cache = this.game.cache;
         var image = new Image();
 
-        image.src = this.canvas.toDataURL("image/png");
-
-        if (!callback || image.complete)
-        {
-            var obj = cache.addImage(key, '', image);
-
-            return new PIXI.Texture(obj.base);
-        }
-        else
+        if (callback)
         {
             image.onload = function () {
                 var obj = cache.addImage(key, '', image);
@@ -572,6 +564,15 @@ Phaser.BitmapData.prototype = {
 
                 image.onload = null;
             };
+        }
+
+        image.src = this.canvas.toDataURL("image/png");
+
+        if (!callback)
+        {
+            var obj = cache.addImage(key, '', image);
+
+            return new PIXI.Texture(obj.base);
         }
 
         return null;
