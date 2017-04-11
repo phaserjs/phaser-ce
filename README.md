@@ -331,6 +331,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed an issue where display objects using the default texture could have an incorrect size (1 × 1) and appear blank (#138). The built-in DEFAULT and MISSING textures are now loaded asynchronously to ensure that they're valid.
 * Fixed an issue where `game.device.canUseMultiply` could hold a false negative on first (Firefox, Safari) or even subsequent (Chrome 57) page loads, disabling most blend modes when using the Canvas renderer (#130).
 * Phaser.Keyboard#lastChar is now `null` if Phaser has recorded no key presses yet. It no longer throws an error (#132).
 * Previously, the `center` of a moving Arcade Physics Body was inaccurate during the game's update phase, and that made collision checks of circular Bodies less accurate (#122). This was fixed by updating `center` during preUpdate.
