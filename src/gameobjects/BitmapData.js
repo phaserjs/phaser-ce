@@ -533,10 +533,20 @@ Phaser.BitmapData.prototype = {
     *
     * `game.add.sprite(0, 0, 'ball');`
     *
+    * Most browsers now load the image data asynchronously, so you should use a callback:
+    *
+    * ```
+    * bitmapdata.generateTexture('ball', function (texture) {
+    *     game.add.sprite(0, 0, texture);
+    *     // or
+    *     game.add.sprite(0, 0, 'ball');
+    * });
+    * ```
+    *
     * @method Phaser.BitmapData#generateTexture
     * @param {string} key - The key which will be used to store the image in the Cache.
     * @param {function} [callback] - A function to execute once the texture is generated. It will be passed the newly generated texture.
-    * @param {any} [callbackContext]
+    * @param {any} [callbackContext] - The context in which to invoke the callback.
     * @return {PIXI.Texture|null} The newly generated texture, or `null` if a callback was passed and the texture isn't available yet.
     */
     generateTexture: function (key, callback, callbackContext) {
