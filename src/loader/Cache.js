@@ -301,6 +301,11 @@ Phaser.Cache.prototype = {
             this.removeImage(key);
         }
 
+        if (data.complete === false)
+        {
+            console.warn('Phaser.Cache: Image "' + key + '" hasn\'t been retrieved yet');
+        }
+
         var img = {
             key: key,
             url: url,
