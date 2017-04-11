@@ -316,6 +316,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* BitmapData#generateTexture now has a callback argument. Most browsers now load the generated image asynchronously, so without a callback you're not guaranteed a valid texture (#136).
+
 ### Updates
 
 * Phaser.Physics.Arcade#velocityFromAngle now uses Phaser.Math instead of `game.math`, so you can use it without a reference to a running game (#131).
