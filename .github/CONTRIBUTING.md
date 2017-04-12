@@ -4,7 +4,7 @@ It's important to us that you feel you can contribute towards the evolution of P
 
 Before contributing, please read the [code of conduct](https://github.com/photonstorm/phaser-ce/blob/master/CODE_OF_CONDUCT.md).
 
-##Reporting issues
+## Reporting issues
 
 [GitHub Issues][0] is the place to report bugs you may have found. When submitting a bug please do the following:
 
@@ -14,9 +14,9 @@ Before contributing, please read the [code of conduct](https://github.com/photon
 
 **3. Create an isolated and reproducible test case.** If you are reporting a bug, make sure you also have a minimal, runnable, code example that reproduces the problem you have.
 
-**4. Include a live example.** After narrowing your code down to only the problem areas, make use of [jsFiddle][1], [jsBin][2], or a link to your live site so that we can view a live example of the problem.
+**4. Include a live example.** After narrowing your code down to only the problem areas, make use of our [Phaser CE game template][5], [jsFiddle][1], [jsBin][2], or a link to your live site so that we can view a live example of the problem.
 
-**5. Share as much information as possible.** Include browser version affected, your OS, version of the library, steps to reproduce, etc. "X isn't working!!!1!" will probably just be closed.
+**5. Share as much information as possible.** Include browser version affected, your OS, version of the library, steps to reproduce, etc. "X isn't working!!!!!" will probably just be closed.
 
 ## Pixi and Phaser
 
@@ -32,8 +32,7 @@ To take advantage of our grunt build script and jshint config it will be easiest
 
 You can download node.js from [nodejs.org][3]. After it has been installed open a console and run `npm i -g grunt-cli` to install the global `grunt` executable.
 
-After that you can clone the repository and run `npm i` inside the cloned folder. This will install dependencies necessary for building the project. Once that is ready,
-make your changes and submit a Pull Request:
+After that you can clone the repository and run `npm i` inside the cloned folder. This will install dependencies necessary for building the project. Once that is ready, make your changes and submit a Pull Request:
 
 - **Send Pull Requests to the `master` branch.** We _used_ to insist PRs went to `dev` but have removed this policy since the release of Phaser CE.
 
@@ -71,3 +70,4 @@ Thanks to Chad for creating the original Pixi.js Contributing file which we adap
 [2]: http://jsbin.com/
 [3]: http://nodejs.org
 [4]: http://www.html5gamedevs.com/forum/14-phaser/
+[5]: http://codepen.io/pen?template=vyKJvw
