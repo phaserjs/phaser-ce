@@ -1626,9 +1626,19 @@ Phaser.Group.prototype.preUpdate = function () {
         return false;
     }
 
-    for (var i = 0; i < this.children.length; i++)
+    // This can't loop in reverse, we need the renderOrderID to be in sequence
+    var i = 0;
+
+    while (i < this.children.length)
     {
-        this.children[i].preUpdate();
+        var child = this.children[i];
+
+        child.preUpdate();
+
+        if (this === child.parent)
+        {
+            i++;
+        }
     }
 
     return true;
