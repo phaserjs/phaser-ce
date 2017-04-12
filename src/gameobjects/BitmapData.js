@@ -543,6 +543,8 @@ Phaser.BitmapData.prototype = {
     * });
     * ```
     *
+    * If this BitmapData is available during preload, you can use {@link Phaser.Loader#imageFromBitmapData} instead.
+    *
     * @method Phaser.BitmapData#generateTexture
     * @param {string} key - The key which will be used to store the image in the Cache.
     * @param {function} [callback] - A function to execute once the texture is generated. It will be passed the newly generated texture.
