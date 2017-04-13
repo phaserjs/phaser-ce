@@ -253,33 +253,37 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### New Features
 
 * New method Phaser.Loader#imageFromBitmapData lets you preload an image extracted from a BitmapData canvas.
-* BitmapData#generateTexture now has a callback argument. Most browsers now load the generated image asynchronously, so without a callback you're not guaranteed a valid texture (#136).
+* BitmapData#generateTexture now has an optional callback argument. Most browsers now load the generated image asynchronously, so without a callback you're not guaranteed a valid texture (#136).
+* Phaser.GameObjectFactory#weapon (used as `game.add.weapon`) now has a `bulletClass` argument. Without this it was difficult to set `bulletClass` before creating the bullet pool.
 
 ### Updates
 
 * Phaser.Cache#addImage now emits a warning if you add an image that hasn't completed loading.
 * Phaser.Frame now emits a warning if a Frame is constructed with a zero width or height.
 * Phaser.Physics.Arcade#velocityFromAngle now uses Phaser.Math instead of `game.math`, so you can use it without a reference to a running game (#131).
-* Clarified Emitter#start documentation.
+* Clarified Emitter#start documentation. It's really easier to use Emitter#explode or Emitter#flow.
 * The game canvas's [cursor style](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) is now `pointer` when the cursor is over an object with `input.useHandCursor` enabled and empty at all other times. This should make it easier to set your own cursor style for the game (#110).
 * TypeScript definitions fixes and updates (#75, #101, #107)
 * Docs typo fixes (#101)
-* Extended documentation generation to consider also phaser plugin repository (#107)
-* Phaser now destroys BitmapData and RenderTexture objects when clearing the cache (#68). This should reduce memory use.
-* `game.add.weapon` now has a `bulletClass` argument. Without this it was difficult to set `bulletClass` before creating the bullet pool.
+* Added [photonstorm/phaser-plugins](https://github.com/photonstorm/phaser-plugins) to the Phaser CE docs (#107)
+* BitmapData and RenderTexture objects are now destroyed when clearing the cache (#68). This should reduce memory use.
 
 ### Bug Fixes
 
 * Fixed an issue where a display object's preUpdate call would be skipped if a sibling was removed or destroyed, which could create small discrepancies in position, lifespan, or renderOrderID (#103).
 * Fixed an issue where display objects using the default texture could have an incorrect size (1 × 1) and appear blank (#138). The built-in DEFAULT and MISSING textures are now loaded asynchronously to ensure that they're valid.
 * Fixed an issue where `game.device.canUseMultiply` could hold a false negative on first (Firefox, Safari) or even subsequent (Chrome 57) page loads, disabling most blend modes when using the Canvas renderer (#130).
-* Phaser.Keyboard#lastChar is now `null` if Phaser has recorded no key presses yet. It no longer throws an error (#132).
+* Phaser.Keyboard#lastChar is now `null` if Phaser has recorded no key presses yet. Reading it before a key press no longer raises an error (#132).
 * Previously, the `center` of a moving Arcade Physics Body was inaccurate during the game's update phase, and that made collision checks of circular Bodies less accurate (#122). This was fixed by updating `center` during preUpdate.
 * Fixed an issue when dragging a sprite whose parent is scaled or rotated (#108). Now the sprite follows the cursor correctly.
 * Fixed audio skipping when restarting playback (#78)
 * Fixed bad rendering of multiple tinted BitmapText objects (#58)
 * Fixed Object.assign not existing on older devices (#81)
-* Previously, passing `renderer: Phaser.HEADLESS` to a new Game would set `game.renderType` to `Phaser.CANVAS` and set up the Canvas renderer, which was incorrect (#74). `Phaser.HEADLESS` now sets up a PIXI.CanvasRenderer and `<canvas>` (like before) but doesn't add the canvas to the document. It skips `render` hooks but not the `preRender` and `postRender` hooks (strange).
+* Previously, the HEADLESS renderer essentially became a CANVAS renderer after boot, which was incorrect (#74). Phaser.HEADLESS now sets up a PIXI.CanvasRenderer and a detached (invisible) canvas. It skips `render` hooks but not the `preRender` and `postRender` hooks (strange). `game.renderType` now contains either Phaser.CANVAS, Phaser.HEADLESS, or Phaser.WEBGL after boot.
+
+### Thanks
+
+@alexus85, @Arcanorum, @digitsensitive, @Dreaded-Gnu, @hdodov, @IVA-apps, @JTronLabs, @Lightning3105, @mikewesthad, @nalgorry, @photonstorm, @qarlosh, @samme, @trpzn, @vpmedia
 
 ## Version 2.7.5 - 23rd March 2017
 
@@ -290,50 +294,45 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### New Features
 
 * New method Phaser.Math.hypot() calculates the length of the hypotenuse spanning two given lengths
-* Added copyBitmapData function to Phaser.Bitmap
+* Added Phaser.BitmapData#copyBitmapData
 * Added noPause logic to src/input/Pointer.js
 * Added timeStep parameter pass to state.pauseUpdate call at src/core/Game.js
-* Added `tileOffset` (`Phaser.Point`) property to `Phaser.TilemapLayer`. This allows offsetting layer positions in a way that plays well with the camera and Arcade physics. Also, the `offsetx` and `offsety` properties are now read from the layer properties of Tiled maps.
+* Added `tileOffset` (Phaser.Point) property to `Phaser.TilemapLayer`. This allows offsetting layer positions in a way that plays well with the camera and Arcade physics. Also, the `offsetx` and `offsety` properties are now read from the layer properties of Tiled maps.
 
 ### Updates
 
-* Changed Loader.loadImageTag behavior to exclude firefox from loading cached images (#2534)
+* Changed Phaser.Loader#loadImageTag to exclude Firefox from loading cached images (phaser #2534)
 * Added yarn lock file
 * Added travis-ci build script
 * Fixed Phaser.Plugin.AStar Typescript definitions and phaser-ce module name to get `grunt tsdocs` to work again (#33)
-* Fixed Phaser.Plugin.AStar.DISTANCE_MANHATTAN according to documentation
+* Fixed Phaser.Plugin.AStar.DISTANCE_MANHATTAN Typescript definitions
 * Changed bower package name to `phaser-ce`
-* Emitter.explode() now launches all particles if the `quantity` argument is omitted (#7). You should pass quantity `0` if you want to launch no particles.
-* `overlapR`, `overlapX`, and `overlapY` are now reset to 0 when an Arcade Physics Body isn't colliding (#23)
-* Extened Phaser.Physics.P2.Body.loadPolygon() method by scale parameter, that allows the loaded polygon to have a different scale
+* Phaser.Particles.Arcade.Emitter#explode() now launches all particles if the `quantity` argument is omitted (#7). You should pass quantity `0` if you want to launch no particles.
+* `overlapR`, `overlapX`, and `overlapY` are now correctly reset to 0 when an Arcade Physics Body isn't colliding (#23)
+* Phaser.Physics.P2.Body.loadPolygon() now has a `scale` parameter that allows the loaded polygon to have a different scale
 * Fixed documentation of Phaser.Video#createVideoFromBlob
-* Clarify documentation of Phaser.AnimationManager#updateIfVisible
-* Update Phaser.Text#setStyle to not mutate the passed style
-* Extended Phaser.Particles.Arcade.Emitter#makeParticles by parameter to pass custom parameters to particle class
+* Clarified documentation of Phaser.AnimationManager#updateIfVisible
+* Updated Phaser.Text#setStyle to not mutate the passed style
+* Added `particleArguments` parameter to Phaser.Particles.Arcade.Emitter#makeParticles. It lets you pass custom parameters to a particle class
 * Fixed jshint issues (#46)
-* Added call of preUpdateLifeSpan for Phaser.Image#preUpdate (#46)
-* Added missing parameter particleArguments at typescript definition file (#46)
-* Updated changes at readme and changelog markdown (#69)
+* Updated README and CHANGELOG markdown (#69)
 
 ### Bug Fixes
 
-* Fixed Arcade.Body.reset() so it resizes the body if the sprite scale has changed (#10).
+* Image `lifespan` now works properly (#46).
+* Arcade.Body.reset() now resizes the body if the sprite scale has changed (#10).
 * Fixed Phaser.Camera.checkBounds() so it doesn't flicker when its view is bigger than its bounds.
 * Fixed Phaser.Math#between and Phaser.Math#random to work again
-* Reset loader state at Phaser.Loader before complete callbacks (#53)
+* Phaser.Loader is now reset just before it signals loading is complete (#53)
 * Fixed rendering on devices that use older versions of javascript
 * Fixed crashes on very old devices
-* Phaser.Group#update Fixed group updating if a sprite has been destroyed
-* Phaser.Weapon#fire Fix local rotation tracking (#66)
-* Fixed memory leak on webaudio at Phaser.Sound
+* Fixed an error when destroying a sprite during Phaser.Group#update
+* Fixed local rotation tracking in Phaser.Weapon#fire (#66)
+* Fixed WebAudio memory leak on in Phaser.Sound
 
 ### Pixi Updates
 
-* Fix wrong parameter by calling Phaser.RenderTexture in pixi _generateCachedSprite at DisplayObject
-* Fixed jshint issues
-* Added preUpdateLifeSpan for Image
-* Added missing parameter particleArguments at typescript definition file
-* Fixed duplicate touch events in Android Chrome >= 55 due to introduction of PointerEvents.
+* Fixed wrong parameter PIXI.DisplayObject.\_generateCachedSprite
 
 For changes in previous releases please see the extensive [Version History](CHANGELOG.md).
 
