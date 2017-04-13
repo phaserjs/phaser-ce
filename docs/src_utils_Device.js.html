@@ -533,7 +533,59 @@
 						</li>
 						
 						<li class="class-depth-2">
+							<a href="Phaser.Plugin.AStar.html">AStar</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
+						</li>
+						
+						<li class="class-depth-2">
 							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
 						</li>
 						
 						<li class="class-depth-1">
@@ -1063,7 +1115,8 @@
 						</li>
 						
 						<li class="class-depth-2">
-							<a href="global.html#Phaser.Path#numPointsreturn%257Bnumber%257DThetotalnumberofPathPointsinthisPath.">Phaser.Path#numPointsreturn {number} The total number of PathPoints in this Path.</a>
+							<a href="global.html#Phaser.Path#numPointsreturn%257Bnumber%257DThetotalnumberofPathPointsinthisPath.">Phaser.Path#numPoints
+return {number} The total number of PathPoints in this Path.</a>
 						</li>
 						
 						<li class="class-depth-0">
@@ -1128,6 +1181,10 @@
 						
 						<li class="class-depth-0">
 							<a href="global.html#scaleModes">scaleModes</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#set">set</a>
 						</li>
 						
 						<li class="class-depth-0">
@@ -1403,37 +1460,37 @@ Phaser.Device = function () {
     * @default
     */
     this.cocoonJS = false;
-    
+
     /**
     * @property {boolean} cocoonJSApp - Is this game running with CocoonJS.App?
     * @default
     */
     this.cocoonJSApp = false;
-    
+
     /**
     * @property {boolean} cordova - Is the game running under Apache Cordova?
     * @default
     */
     this.cordova = false;
-    
+
     /**
     * @property {boolean} node - Is the game running under Node.js?
     * @default
     */
     this.node = false;
-    
+
     /**
     * @property {boolean} nodeWebkit - Is the game running under Node-Webkit?
     * @default
     */
     this.nodeWebkit = false;
-    
+
     /**
     * @property {boolean} electron - Is the game running under GitHub Electron?
     * @default
     */
     this.electron = false;
-    
+
     /**
     * @property {boolean} ejecta - Is the game running under Ejecta?
     * @default
@@ -1504,7 +1561,10 @@ Phaser.Device = function () {
     this.canHandleAlpha = false;
 
     /**
-    * Whether or not the Canvas BlendModes are supported, consequently the ability to tint using the multiply method.
+    * Whether or not the {@link http://caniuse.com/#feat=canvas-blending Canvas Blend Modes} are supported, consequently the ability to tint using the multiply method.
+    *
+    * Expect `false` in Internet Explorer &lt;= 11.
+    *
     * @property {boolean} canUseMultiply
     * @default
     */
@@ -1924,7 +1984,7 @@ Phaser.Device.whenReady = function (callback, context, nonPrimer) {
         readyCheck._monitor = readyCheck.bind(this);
         readyCheck._queue = readyCheck._queue || [];
         readyCheck._queue.push([callback, context]);
-        
+
         var cordova = typeof window.cordova !== 'undefined';
         var cocoonJS = navigator['isCocoonJS'];
 
@@ -2107,28 +2167,8 @@ Phaser.Device._initialize = function () {
         }
 
         //  Checks whether the Canvas BlendModes are supported by the current browser for drawImage.
-
-        var pngHead = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABAQMAAADD8p2OAAAAA1BMVEX/';
-        var pngEnd = 'AAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
-
-        var magenta = new Image();
-        magenta.src = pngHead + 'AP804Oa6' + pngEnd;
-
-        var yellow = new Image();
-        yellow.src = pngHead + '/wCKxvRF' + pngEnd;
-
-        context.clearRect(0, 0, 6, 1);
-
         context.globalCompositeOperation = 'multiply';
-        context.drawImage(magenta, 0, 0);
-        context.drawImage(yellow, 2, 0);
-
-        if (context.getImageData(2, 0, 1, 1))
-        {
-            var data = context.getImageData(2, 0, 1, 1).data;
-
-            device.canUseMultiply = (data[0] === 255 &amp;&amp; data[1] === 0 &amp;&amp; data[2] === 0);
-        }
+        device.canUseMultiply = (context.globalCompositeOperation === 'multiply');
 
         Phaser.CanvasPool.removeByCanvas(canvas);
 
@@ -2360,29 +2400,29 @@ Phaser.Device._initialize = function () {
         {
             device.webApp = true;
         }
-        
+
         if (typeof window.cordova !== 'undefined')
         {
             device.cordova = true;
         }
-        
+
         if (typeof process !== 'undefined' &amp;&amp; typeof require !== 'undefined')
         {
             device.node = true;
         }
-        
+
         if (device.node &amp;&amp; typeof process.versions === 'object')
         {
             device.nodeWebkit = !!process.versions['node-webkit'];
-            
+
             device.electron = !!process.versions.electron;
         }
-        
+
         if (navigator['isCocoonJS'])
         {
             device.cocoonJS = true;
         }
-        
+
         if (device.cocoonJS)
         {
             try {
@@ -2779,7 +2819,7 @@ Phaser.Device.isConsoleOpen = function () {
 *
 * @example
 * var defaultRenderingMode = Phaser.Device.isAndroidStockBrowser() ? Phaser.CANVAS : Phaser.AUTO;
-* 
+*
 * @method isAndroidStockBrowser
 * @memberof Phaser.Device.prototype
 */
@@ -2810,7 +2850,7 @@ Phaser.Device.isAndroidStockBrowser = function () {
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Thu Mar 23 2017 14:18:05 GMT+0000 (GMT Standard Time) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Thu Apr 13 2017 12:05:06 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>

@@ -1504,10 +1504,24 @@ declare module Phaser {
         * 
         * `game.add.sprite(0, 0, 'ball');`
         * 
+        * Most browsers now load the image data asynchronously, so you should use a callback:
+        * 
+        * ```
+        * bitmapdata.generateTexture('ball', function (texture) {
+        *     game.add.sprite(0, 0, texture);
+        *     // or
+        *     game.add.sprite(0, 0, 'ball');
+        * });
+        * ```
+        * 
+        * If this BitmapData is available during preload, you can use {@link Phaser.Loader#imageFromBitmapData} instead.
+        * 
         * @param key The key which will be used to store the image in the Cache.
-        * @return The newly generated texture.
+        * @param callback A function to execute once the texture is generated. It will be passed the newly generated texture.
+        * @param callbackContext The context in which to invoke the callback.
+        * @return The newly generated texture, or `null` if a callback was passed and the texture isn't available yet.
         */
-        generateTexture(key: string): PIXI.Texture;
+        generateTexture(key: string, callback?: (texture: PIXI.Texture) => void, callbackContext?: any): PIXI.Texture;
 
         /**
         * Scans the BitmapData and calculates the bounds. This is a rectangle that defines the extent of all non-transparent pixels.
@@ -2969,6 +2983,8 @@ declare module Phaser {
         * Adds an Image file into the Cache. The file must have already been loaded, typically via Phaser.Loader, but can also have been loaded into the DOM.
         * If an image already exists in the cache with the same key then it is removed and destroyed, and the new image inserted in its place.
         * 
+        * If the image has not yet been fetched (successfully or not), a `console.warn` message will be displayed.
+        * 
         * @param key The key that this asset will be stored in the cache under. This should be unique within this cache.
         * @param url The URL the asset was loaded from. If the asset was not loaded externally set to `null`.
         * @param data Extra image data.
@@ -3252,7 +3268,9 @@ declare module Phaser {
 
         /**
         * Clears the cache. Removes every local cache object reference.
-        * If an object in the cache has a `destroy` method it will also be called.
+        * If an object in the cache has a `destroy` method it will be called;
+        * otherwise, `destroy` will be called on any of the object's `base`, `data`,
+        * `frameData`, or `texture` properties.
         */
         destroy(): void;
 
@@ -5359,7 +5377,9 @@ declare module Phaser {
         canHandleAlpha: boolean;
 
         /**
-        * Whether or not the Canvas BlendModes are supported, consequently the ability to tint using the multiply method.
+        * Whether or not the {@link http://caniuse.com/#feat=canvas-blending Canvas Blend Modes} are supported, consequently the ability to tint using the multiply method.
+        * 
+        * Expect `false` in Internet Explorer <= 11.
         */
         canUseMultiply: boolean;
 
@@ -7713,7 +7733,7 @@ declare module Phaser {
         renderer: PIXI.CanvasRenderer | PIXI.WebGLRenderer;
 
         /**
-        * The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS.
+        * The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType reflects the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. HEADLESS skips `render` hooks but not `preRender` or `postRender`; set {@link lockRender} to skip those as well.
         */
         renderType: number;
 
@@ -8565,9 +8585,10 @@ declare module Phaser {
         * @param key The image used as a texture by the bullets during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
         * @param frame If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used by the bullets. Use either an integer for a Frame ID or a string for a frame name.
         * @param group Optional Group to add the Weapon to. If not specified it will be added to the World group.
+        * @param bulletClass The Class of the bullets that are launched by this Weapon. See {@link Phaser.Weapon#bulletClass}
         * @return A Weapon instance.
         */
-        weapon(quantity?: number, key?: any, frame?: any, group?: Phaser.Group): Phaser.Weapon;
+        weapon(quantity?: number, key?: any, frame?: any, group?: Phaser.Group, bulletClass?: Phaser.Bullet): Phaser.Weapon;
 
         /**
         * Create a Video object.
@@ -8946,6 +8967,18 @@ declare module Phaser {
         * The values are relative to the top-left of the camera view and in addition to any parent of the Game Object on the display list.
         */
         cameraOffset: Phaser.Point;
+
+        /**
+        * The center x coordinate of the Game Object.
+        * This is the same as `(x - offsetX) + (width / 2)`.
+        */
+        centerX: number;
+
+  /**
+  * The center y coordinate of the Game Object.
+  * This is the same as `(y - offsetY) + (height / 2)`.
+  */
+		centerY: number;
 
         /**
         * If this is set to `true` the Game Object checks if it is within the World bounds each frame.
@@ -9472,8 +9505,7 @@ declare module Phaser {
         /**
         * The type of objects that will be created when using {@link Phaser.Group#create create} or {@link Phaser.Group#createMultiple createMultiple}.
         * 
-        * Any object may be used but it should extend either Sprite or Image and accept the same constructor arguments:
-        * when a new object is created it is passed the following parameters to its constructor: `(game, x, y, key, frame)`.
+        * It should extend either Sprite or Image and accept the same constructor arguments: `(game, x, y, key, frame)`.
         * Default: {@link Phaser.Sprite}
         */
         classType: any;
@@ -14073,6 +14105,16 @@ declare module Phaser {
         image(key: string, url?: string | any, overwrite?: boolean): Phaser.Loader;
 
         /**
+        * Generate an image from a BitmapData object and add it to the current load queue.
+        * 
+        * @param key Unique asset key for the generated image.
+        * @param bitmapData
+        * @param overwrite If an unloaded file with a matching key already exists in the queue, this entry will overwrite it.
+        * @return This Loader instance.
+        */
+        imageFromBitmapData(key: string, bitmapData: Phaser.BitmapData, overwrite?: boolean): Phaser.Loader;
+
+        /**
         * Adds an array of images to the current load queue.
         * 
         * It works by passing each element of the array to the Loader.image method.
@@ -16396,13 +16438,26 @@ declare module Phaser {
                 setYSpeed(min: number, max: number): Phaser.Particles.Arcade.Emitter;
 
                 /**
-                * Call this function to start emitting particles.
+                * Start emitting particles.
+                * 
+                * {@link Phaser.Particles.Arcade.Emitter#explode explode} and {@link Phaser.Particles.Arcade.Emitter#flow flow} are simpler methods.
+                * 
+                * There are two patterns, based on the `explode` argument:
+                * 
+                * - `start(true, lifespan=0, null, quantity)`
+                * - `start(false, lifespan=0, frequency=250, quantity=0)`
+                * 
+                * When `explode` is true or `forceQuantity` is true, `start` emits `quantity` particles immediately. You should pass a nonzero `quantity`.
+                * 
+                * When `explode` is false and `forceQuantity` is false, `start` emits 1 particle every interval of `frequency` ms. If `quantity` is not zero, the emitter turns itself off after `quantity` particles have been released. If `quantity` is zero, the emitter keeps emitting particles as long as they are available. To emit more than 1 particle per flow interval, use {@link Phaser.Particles.Arcade.Emitter#flow flow} instead.
+                * 
+                * `forceQuantity` seems equivalent to `explode` and can probably be avoided.
                 * 
                 * @param explode Whether the particles should all burst out at once (true) or at the frequency given (false). - Default: true
                 * @param lifespan How long each particle lives once emitted in ms. 0 = forever.
-                * @param frequency Ignored if `explode` is set to true. Frequency is how often to emit 1 particle. Value given in ms. - Default: 250
-                * @param quantity How many particles to launch in total. If `explode` is false and `forceQuantity` is false, quantity = 0 will keep emitting particles until {@link #maxParticles} is reached. If `explode` is true or `forceQuantity` is true, quantity = 0 will launch no particles.
-                * @param forceQuantity If `true` and creating a particle flow, the quantity emitted will be forced to the quantity given in this call. This can never exceed Emitter.maxParticles.
+                * @param frequency Frequency is how often to emit 1 particle when `explode` is false. Value given in ms. Ignored if `explode` is set to true. - Default: 250
+                * @param quantity How many particles to launch in total (not larger than {@link Phaser.Particles.Arcade.Emitter#maxParticles maxParticles}).
+                * @param forceQuantity Equivalent to `explodes`.
                 * @return This Emitter instance.
                 */
                 start(explode?: boolean, lifespan?: number, frequency?: number, quantity?: number, forceQuantity?: boolean): Phaser.Particles.Arcade.Emitter;
@@ -17035,8 +17090,8 @@ declare module Phaser {
             bounds: Phaser.Rectangle;
 
             /**
-            * Set the checkCollision properties to control for which bounds collision is processed.
-            * For example checkCollision.down = false means Bodies cannot collide with the World.bounds.bottom. An object containing allowed collision flags.
+            * Which edges of the World bounds Bodies can collide against when `collideWorldBounds` is `true`.
+            * For example checkCollision.down = false means Bodies cannot collide with the World.bounds.bottom. An object containing allowed collision flags (up, down, left, right).
             */
             checkCollision: { up?: boolean; down?: boolean; left?: boolean; right?: boolean; };
 
@@ -17526,7 +17581,7 @@ declare module Phaser {
                 allowRotation: boolean;
 
                 /**
-                * The angle of the Body's velocity in radians.
+                * The angle of the Body's **velocity** in radians.
                 */
                 angle: number;
 
@@ -17541,7 +17596,7 @@ declare module Phaser {
                 angularDrag: number;
 
                 /**
-                * The angular velocity controls the rotation speed of the Body. It is measured in degrees per second.
+                * The angular velocity is the rate of change of the Body's rotation. It is measured in degrees per second.
                 */
                 angularVelocity: number;
 
@@ -17570,7 +17625,7 @@ declare module Phaser {
                 * Set the checkCollision properties to control which directions collision is processed for this Body.
                 * For example checkCollision.up = false means it won't collide when the collision happened while moving up.
                 * If you need to disable a Body entirely, use `body.enable = false`, this will also disable motion.
-                * If you need to disable just collision and/or overlap checks, but retain motion, set `checkCollision.none = true`. An object containing allowed collision.
+                * If you need to disable just collision and/or overlap checks, but retain motion, set `checkCollision.none = true`. An object containing allowed collision (none, up, down, left, right).
                 */
                 checkCollision: FaceChoices;
 
@@ -17602,7 +17657,7 @@ declare module Phaser {
                 dirty: boolean;
 
                 /**
-                * The drag applied to the motion of the Body.
+                * The drag applied to the motion of the Body. Measured in pixels per second squared.
                 */
                 drag: Phaser.Point;
 
@@ -17618,12 +17673,12 @@ declare module Phaser {
                 enable: boolean;
 
                 /**
-                * A const reference to the direction the Body is traveling or facing.
+                * A const reference to the direction the Body is traveling or facing: Phaser.NONE, Phaser.LEFT, Phaser.RIGHT, Phaser.UP, or Phaser.DOWN. If the Body is moving on both axes, UP and DOWN take precedence.
                 */
                 facing: number;
 
                 /**
-                * The amount of movement that will occur if another object 'rides' this one.
+                * If this Body is moving, and another Body is 'riding' this one, this is the amount of motion the riding Body receives on each axis.
                 */
                 friction: Phaser.Point;
 
@@ -17633,7 +17688,7 @@ declare module Phaser {
                 game: Phaser.Game;
 
                 /**
-                * A local gravity applied to this Body. If non-zero this over rides any world gravity, unless Body.allowGravity is set to false.
+                * A local gravity applied to this Body. If non-zero this overrides any world gravity, unless Body.allowGravity is set to false.
                 */
                 gravity: Phaser.Point;
 
@@ -17681,7 +17736,7 @@ declare module Phaser {
                 maxAngular: number;
 
                 /**
-                * The maximum velocity in pixels per second sq. that the Body can reach.
+                * The maximum velocity (in pixels per second squared) that the Body can reach.
                 */
                 maxVelocity: Phaser.Point;
 
@@ -17704,7 +17759,7 @@ declare module Phaser {
                 movementCallbackContext: any;
 
                 /**
-                * The new velocity. Calculated during the Body.preUpdate and applied to its position.
+                * The distanced traveled during the last update, equal to `velocity * physicsElapsed`. Calculated during the Body.preUpdate and applied to its position.
                 */
                 newVelocity: Phaser.Point;
 
@@ -17784,7 +17839,7 @@ declare module Phaser {
                 position: Phaser.Point;
 
                 /**
-                * The previous rotation of the physics body.
+                * The previous rotation of the physics body, in degrees.
                 */
                 preRotation: number;
 
@@ -17827,7 +17882,7 @@ declare module Phaser {
                 sourceHeight: number;
 
                 /**
-                * The speed of the Body as calculated by its velocity.
+                * The speed of the Body in pixels per second, equal to the magnitude of the velocity.
                 */
                 speed: number;
 
@@ -17857,7 +17912,7 @@ declare module Phaser {
 
                 /**
                 * This object is populated with boolean values when the Body collides with another.
-                * touching.up = true means the collision happened to the top of this Body for example. An object containing touching results.
+                * touching.up = true means the collision happened to the top of this Body for example. An object containing touching results (none, up, down, left, right).
                 */
                 touching: FaceChoices;
 
@@ -17867,7 +17922,7 @@ declare module Phaser {
                 type: number;
 
                 /**
-                * This object is populated with previous touching values from the bodies previous collision. An object containing previous touching results.
+                * This object is populated with previous touching values from the bodies previous collision. An object containing previous touching results (none, up, down, left, right).
                 */
                 wasTouching: FaceChoices;
 
@@ -17884,7 +17939,7 @@ declare module Phaser {
                 worldBounce: Phaser.Point;
 
                 /**
-                * The velocity, or rate of change in speed of the Body. Measured in pixels per second.
+                * The velocity, or rate of change the Body's position. Measured in pixels per second.
                 */
                 velocity: Phaser.Point;
 
@@ -21151,6 +21206,11 @@ declare module Phaser {
             forceRender(): void;
         }
 
+
+        /**
+        * AStar is a phaser pathfinding plugin based on an A* kind of algorythm
+        * It works with the Phaser.Tilemap
+        */
         class AStar extends Phaser.Plugin {
 
             static VERSION: string;
@@ -21159,30 +21219,102 @@ declare module Phaser {
             static DISTANCE_MANHATTAN: string;
             static DISTANCE_EUCLIDIAN: string;
 
+
+            /**
+            * AStar is a phaser pathfinding plugin based on an A* kind of algorythm
+            * It works with the Phaser.Tilemap
+            * 
+            * @param parent The object that owns this plugin, usually Phaser.PluginManager.
+            */
             constructor(parent: PIXI.DisplayObject);
 
+
+            /**
+            * The parent of this plugin. If added to the PluginManager the parent will be set to that, otherwise it will be null.
+            */
             parent: PIXI.DisplayObject;
             version: string;
 
+
+            /**
+            * Find a path between to tiles coordinates
+            * 
+            * @param startPoint The start point x, y in tiles coordinates to search a path.
+            * @param goalPoint The goal point x, y in tiles coordinates that you trying to reach.
+            * @return The Phaser.Plugin.AStar.AStarPath that results
+            */
             findPath(startPoint: Phaser.Point, goalPoint: Phaser.Point): Phaser.Plugin.AStar.AStarPath;
             isWalkable(x: number, y: number): boolean;
+
+            /**
+            * Sets the Phaser.Tilemap used to searchPath into.
+            * 
+            * @param map the Phaser.Tilemap used to searchPath into. It must have a tileset with tile porperties to know if tiles are walkable or not.
+            * @param layerName The name of the layer that handle tiles.
+            * @param tilesetName The name of the tileset that have walkable properties.
+            * @return The Phaser.Plugin.AStar itself.
+            */
             setAStarMap(map: Phaser.Tilemap, layerName: string, tilesetName: string): Phaser.Plugin.AStar;
 
         }
 
         module AStar {
 
+
+            /**
+            * AStarNode is an object that stores AStar value. Each tile have an AStarNode in their properties
+            */
             class AStarNode {
 
+
+                /**
+                * AStarNode is an object that stores AStar value. Each tile have an AStarNode in their properties
+                * 
+                * @param x The x coordinate of the tile.
+                * @param y The y coordinate of the tile.
+                * @param isWalkable Is this tile is walkable?
+                */
                 constructor(x: number, y: number, isWalkable: boolean);
 
+
+                /**
+                * The x coordinate of the tile.
+                */
                 x: number;
+
+                /**
+                * The y coordinate of the tile.
+                */
                 y: number;
+
+                /**
+                * The total travel cost from the start point. Sum of COST_ORTHOGONAL and COST_DIAGONAL
+                */
                 g: number;
+
+                /**
+                * The remaing distance as the crow flies between this node and the goal.
+                */
                 h: number;
+
+                /**
+                * The weight. Sum of g + h.
+                */
                 f: number;
+
+                /**
+                * Where do we come from? It's an AStarNode reference needed to reconstruct a path backwards (from goal to start point)
+                */
                 parent: Phaser.Plugin.AStar.AStarNode;
+
+                /**
+                * The cost to travel to this node, COST_ORTHOGONAL or COST_DIAGONAL
+                */
                 travelCost: number;
+
+                /**
+                * Is this node is walkable?
+                */
                 walkable: boolean;
 
             }
@@ -21192,30 +21324,112 @@ declare module Phaser {
                 y: number;
             }
 
+
+            /**
+            * AStarPath is an object that stores a searchPath result.
+            */
             class AStarPath {
 
+
+                /**
+                * AStarPath is an object that stores a searchPath result.
+                * 
+                * @param nodes An array of nodes coordinates sorted backward from goal to start point.
+                * @param start The start AStarNode used for the searchPath.
+                * @param goal The goal AStarNode used for the searchPath.
+                */
                 constructor(nodes?: AStarNodeArray[], start?: Phaser.Plugin.AStar.AStarNode, goal?: Phaser.Plugin.AStar.AStarNode);
 
+
+                /**
+                * Array of AstarNodes x, y coordiantes that are the path solution from goal to start point.
+                */
                 nodes: AStarNodeArray[];
+
+                /**
+                * Reference to the start point used by findPath.
+                */
                 start: Phaser.Plugin.AStar.AStarNode;
+
+                /**
+                * Reference to the goal point used by findPath.
+                */
                 goal: Phaser.Plugin.AStar.AStarNode;
+
+                /**
+                * Array of AStarNodes that the findPath algorythm has visited. Used for debug only.
+                */
                 visited: Phaser.Plugin.AStar.AStarNode[];
 
             }
 
         }
 
+
+        /**
+        * A collection of methods useful for manipulating and comparing colors.
+        */
         class ColorHarmony extends Phaser.Plugin {
 
+
+            /**
+            * Returns an Analogous Color Harmony for the given color.
+            * <p>An Analogous harmony are hues adjacent to each other on the color wheel</p>
+            * <p>Values returned in 0xAARRGGBB format with Alpha set to 255.</p>
+            * 
+            * @param color The color to base the harmony on.
+            * @param threshold Control how adjacent the colors will be (default +- 30 degrees)
+            * @return Object containing 3 properties: color1 (the original color), color2 (the warmer analogous color) and color3 (the colder analogous color)
+            */
             getAnalogousHarmony(color: number, threshold?: number): any;
+
+            /**
+            * Returns a Complementary Color Harmony for the given color.
+            * <p>A complementary hue is one directly opposite the color given on the color wheel</p>
+            * <p>Value returned in 0xAARRGGBB format with Alpha set to 255.</p>
+            * 
+            * @param color The color to base the harmony on.
+            * @return 0xAARRGGBB format color value.
+            */
             getComplementHarmony(color: number): number;
+
+            /**
+            * Returns an Split Complement Color Harmony for the given color.
+            * <p>A Split Complement harmony are the two hues on either side of the color's Complement</p>
+            * <p>Values returned in 0xAARRGGBB format with Alpha set to 255.</p>
+            * 
+            * @param color The color to base the harmony on
+            * @param threshold Control how adjacent the colors will be to the Complement (default +- 30 degrees)
+            * @return An object containing 3 properties: color1 (the original color), color2 (the warmer analogous color) and color3 (the colder analogous color)
+            */
             getSplitComplementHarmony(color: number, threshold: number): any;
+
+            /**
+            * Returns a Triadic Color Harmony for the given color.
+            * <p>A Triadic harmony are 3 hues equidistant from each other on the color wheel</p>
+            * <p>Values returned in 0xAARRGGBB format with Alpha set to 255.</p>
+            * 
+            * @param color The color to base the harmony on.
+            * @return An Object containing 3 properties: color1 (the original color), color2 and color3 (the equidistant colors)
+            */
             getTriadicHarmony(color: number): any;
 
         }
 
+
+        /**
+        * Phaser - Display - CSS3Filters
+        * 
+        * Allows for easy addition and modification of CSS3 Filters on DOM objects (typically the Game.Stage.canvas).
+        */
         class CSS3Filters extends Phaser.Plugin {
 
+
+            /**
+            * Phaser - Display - CSS3Filters
+            * 
+            * Allows for easy addition and modification of CSS3 Filters on DOM objects (typically the Game.Stage.canvas).
+            */
             constructor(parent: PIXI.DisplayObject);
 
             blur: number;
@@ -21230,16 +21444,59 @@ declare module Phaser {
 
         }
 
+
+        /**
+        * Creates an object that is placed within a layer of a Phaser.Tilemap and can be moved around and rotated using the direction commands.
+        */
         class TilemapWalker extends Phaser.Plugin {
 
+
+            /**
+            * Creates an object that is placed within a layer of a Phaser.Tilemap and can be moved around and rotated using the direction commands.
+            * 
+            * @param game Game reference to the currently running game.
+            * @param map A reference to the Tilemap this TilemapWalker belongs to.
+            * @param layer The layer to operate on. If not given will default to this.currentLayer.
+            * @param x X position of the top left of the area to copy (given in tiles, not pixels)
+            * @param y Y position of the top left of the area to copy (given in tiles, not pixels)
+            */
             constructor(game: Phaser.Game, map: Phaser.Tilemap, layer?: any, x?: number, y?: number);
 
+
+            /**
+            * Does the TilemapWalker collide with the tiles in the map set for collision? If so it cannot move through them.
+            * Default: true
+            */
             collides: boolean;
+
+            /**
+            * A reference to the currently running Game.
+            */
             game: Phaser.Game;
+
+            /**
+            * An array containing a history of movements through the map.
+            */
             history: boolean;
+
+            /**
+            * The direction the location marker is facing. You can rotate it using the turn and face methods.
+            */
             facing: number;
+
+            /**
+            * A reference to the Tilemap this TilemapWalker belongs to.
+            */
             map: Phaser.Tilemap;
+
+            /**
+            * The current marker location. You can move the marker with the movement methods.
+            */
             location: Phaser.Point;
+
+            /**
+            * The current layer of the location marker.
+            */
             locationLayer: number;
 
             checkTile(x: number, y: number): boolean;
@@ -21265,17 +21522,42 @@ declare module Phaser {
 
         }
 
+
+        /**
+        * A Sample Plugin demonstrating how to hook into the Phaser plugin system.
+        */
         class SamplePlugin extends Phaser.Plugin {
 
+
+            /**
+            * A Sample Plugin demonstrating how to hook into the Phaser plugin system.
+            */
             constructor(game: Phaser.Game, parent: PIXI.DisplayObject);
 
+
+            /**
+            * Add a Sprite reference to this Plugin.
+            * All this plugin does is move the Sprite across the screen slowly.
+            */
             addSprite(sprite: Phaser.Sprite): void;
+
+            /**
+            * This is run when the plugins update during the core game loop.
+            */
             update(): void;
 
         }
 
+
+        /**
+        * A Virtual Joystick
+        */
         class VirtualJoystick extends Phaser.Plugin {
 
+
+            /**
+            * A Virtual Joystick
+            */
             constructor(game: Phaser.Game, parent: any);
 
             angle: number;
@@ -21299,6 +21581,16 @@ declare module Phaser {
             init(x: number, y: number, diameter?: number, limit?: number): void;
             move(pointer: Phaser.Pointer, x: number, y: number): void;
             render(): void;
+
+            /**
+            * Given the speed calculate the velocity and return it as a Point object, or set it to the given point object.
+            * One way to use this is: velocityFromAngle(angle, 200, sprite.velocity) which will set the values directly to the sprites velocity and not create a new Point object.
+            * 
+            * @param sprite The Sprite to set the velocity on. The Sprite must have a physics body already set. The value will be set into Sprite.body.velocity.
+            * @param minSpeed The minimum speed the Sprite will move if the joystick is at its default (non-moved) position.
+            * @param maxSpeed The maximum speed the Sprite will move if the joystick is at its full extent. - Default: 100
+            * @return The Sprite object.
+            */
             setVelocity(sprite: Phaser.Sprite, minSpeed?: number, maxSpeed?: number): Phaser.Sprite;
             startDrag(): void;
             stopDrag(nub: Phaser.Sprite, pointer: Phaser.Pointer): void;
@@ -21308,10 +21600,22 @@ declare module Phaser {
 
 
 
+
+        /**
+        * Provides access to the Webcam (if available)
+        */
         class Webcam extends Phaser.Plugin {
 
+
+            /**
+            * Provides access to the Webcam (if available)
+            */
             constructor(game: Phaser.Game, parent: PIXI.DisplayObject);
 
+
+            /**
+            * Is this Webcam plugin capturing a video stream or not?
+            */
             active: boolean;
             context: any;
             stream: any;
@@ -21325,41 +21629,168 @@ declare module Phaser {
             update(): void;
         }
 
+
+        /**
+        * Creates a new `Juicy` object.
+        */
         class Juicy extends Phaser.Plugin {
 
+
+            /**
+            * Creates a new `Juicy` object.
+            * 
+            * @param game Current game instance.
+            */
             constructor(game: Phaser.Game);
 
+
+            /**
+            * Creates a 'Juicy.ScreenFlash' object
+            * 
+            * @param color The color of the screen flash
+            */
             createScreenFlash(color?: string): Phaser.Plugin.Juicy.ScreenFlash;
+
+            /**
+            * Creates a 'Juicy.Trail' object
+            * 
+            * @param length The length of the trail
+            * @param color The color of the trail
+            */
             createTrail(length?: number, color?: number): Phaser.Plugin.Juicy.Trail;
+
+            /**
+            * Creates the over scale effect on the given object
+            * 
+            * @param object The object to over scale
+            * @param scale The scale amount to overscale by - Default: 1.5
+            * @param initialScale The initial scale of the object - Default: new Phaser.Point(1,1)
+            */
             overScale(object: Phaser.Sprite, scale?: number, initialScale?: Phaser.Point): void;
+
+            /**
+            * Creates the jelly effect on the given object
+            * 
+            * @param object The object to gelatinize
+            * @param strength The strength of the effect - Default: 0.2
+            * @param delay The delay of the snap-back tween. 50ms are automaticallly added to whatever the delay amount is.
+            * @param initialScale The initial scale of the object - Default: new Phaser.Point(1,1)
+            */
             jelly(object: Phaser.Sprite, strength?: number, delay?: number, initialScale?: Phaser.Point): void;
+
+            /**
+            * Creates the mouse stretch effect on the given object
+            * 
+            * @param object The object to mouse stretch
+            * @param strength The strength of the effect - Default: 0.5
+            * @param initialScale The initial scale of the object - Default: new Phaser.Point(1,1)
+            */
             mouseStretch(object: Phaser.Sprite, strength?: number, initialScale?: Phaser.Point): void;
+
+            /**
+            * Runs the core update function and causes screen shake and overscaling effects to occur if they are queued to do so.
+            */
             update(): void;
+
+            /**
+            * Begins the screen shake effect
+            * 
+            * @param duration The duration of the screen shake - Default: 20
+            * @param strength The strength of the screen shake - Default: 20
+            */
             shake(duration?: number, strength?: number): void;
         }
 
         module Juicy {
 
+
+            /**
+            * Creates a new `Juicy.Trail` object.
+            */
             class Trail {
 
+
+                /**
+                * Creates a new `Juicy.Trail` object.
+                * 
+                * @param game Current game instance.
+                * @param trailLength The length of the trail - Default: 100
+                * @param color The color of the trail - Default: 0xFFFFFF
+                */
                 constructor(game: Phaser.Game, trailLength?: number, color?: number);
 
+
+                /**
+                * The target sprite whose movement we want to create the trail from
+                */
                 target: Phaser.Sprite;
+
+                /**
+                * The number of segments to use to create the trail
+                */
                 trailLength: number;
+
+                /**
+                * The width of the trail
+                */
                 trailWidth: number;
+
+                /**
+                * Whether or not to taper the trail towards the end
+                */
                 trailScaling: boolean;
+
+                /**
+                * The color of the trail
+                */
                 trailColor: number;
 
+
+                /**
+                * Updates the Trail if a target is set
+                */
                 update(): void;
+
+                /**
+                * Adds a segment to the segments list and culls the list if it is too long
+                * 
+                * @param x The x position of the point
+                * @param y The y position of the point
+                */
                 addSegment(x: number, y: number): void;
+
+                /**
+                * Creates and draws the triangle trail from segments
+                * 
+                * @param offsetX The x position of the object
+                * @param offsetY The y position of the object
+                */
                 redrawSegments(offsetX: number, offsetY: number): void;
 
             }
 
+
+            /**
+            * Creates a new `Juicy.ScreenFlash` object.
+            */
             class ScreenFlash {
 
+
+                /**
+                * Creates a new `Juicy.ScreenFlash` object.
+                * 
+                * @param game Current game instance.
+                * @param color The color to flash the screen. - Default: 'white'
+                */
                 constructor(game: Phaser.Game, color?: string);
 
+
+                /**
+                * Flashes the screen
+                * 
+                * @param maxAlpha The maximum alpha to flash the screen to - Default: 1
+                * @param duration The duration of the flash in milliseconds - Default: 100
+                */
                 flash(maxAlpha?: number, duration?: number): void;
 
             }
@@ -29553,7 +29984,7 @@ declare module Phaser {
         * @param interestingFace If true, _only_ return tiles that have interesting faces.
         * @return An array of Phaser.Tiles.
         */
-        getRayCastTiles(layer: Phaser.TilemapLayer|Phaser.TilemapLayerGL, line: Phaser.Line, stepRate?: number, collides?: boolean, interestingFace?: boolean): Phaser.Tile[];
+        getRayCastTiles(line: Phaser.Line, stepRate?: number, collides?: boolean, interestingFace?: boolean): Phaser.Tile[];
 
         /**
         * Get all tiles that exist within the given area, defined by the top-left corner, width and height. Values given are in pixels, not tiles.
@@ -29566,7 +29997,7 @@ declare module Phaser {
         * @param interestingFace If true, _only_ return tiles that have interesting faces.
         * @return An array of Tiles.
         */
-        getTiles(layer: Phaser.TilemapLayer|Phaser.TilemapLayerGL, x: number, y: number, width: number, height: number, collides?: boolean, interestingFace?: boolean): Phaser.Tile[];
+        getTiles(x: number, y: number, width: number, height: number, collides?: boolean, interestingFace?: boolean): Phaser.Tile[];
 
         /**
         * Convert a pixel value to a tile coordinate.
@@ -29574,7 +30005,7 @@ declare module Phaser {
         * @param x X position of the point in target tile (in pixels).
         * @return The X map location of the tile.
         */
-        getTileX(layer: Phaser.TilemapLayer|Phaser.TilemapLayerGL, x: number): number;
+        getTileX(x: number): number;
 
         /**
         * Convert a pixel coordinate to a tile coordinate.
@@ -29584,7 +30015,7 @@ declare module Phaser {
         * @param point The Point/object to update.
         * @return A Point/object with its `x` and `y` properties set.
         */
-        getTileXY(layer: Phaser.TilemapLayer|Phaser.TilemapLayerGL, x: number, y: number, point: Phaser.Point): Phaser.Point;
+        getTileXY(x: number, y: number, point: Phaser.Point): Phaser.Point;
 
         /**
         * Convert a pixel value to a tile coordinate.
@@ -29592,7 +30023,7 @@ declare module Phaser {
         * @param y Y position of the point in target tile (in pixels).
         * @return The Y map location of the tile.
         */
-        getTileY(layer: Phaser.TilemapLayer|Phaser.TilemapLayerGL, y: number): number;
+        getTileY(y: number): number;
 
         /**
         * Automatically called by World.postUpdate. Handles cache updates.
@@ -32211,6 +32642,15 @@ declare module Phaser {
             */
             sprite: Phaser.Image;
 
+
+            /**
+            * Debug method to draw the last calculated path by AStar
+            * 
+            * @param astar- The AStar plugin that you want to debug.
+            * @param x X position on camera for debug display.
+            * @param y Y position on camera for debug display.
+            * @param color Color to stroke the path line.
+            */
             AStar(astar: Phaser.Plugin.AStar, x: number, y: number, showVisited: boolean): void;
 
             /**

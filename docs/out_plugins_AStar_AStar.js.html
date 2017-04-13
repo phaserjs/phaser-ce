@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Phaser Source: out/plugins/AStar/AStar.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<link type="text/css" rel="stylesheet" href="styles/default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+	
+</head>
+
+<body>
+
+<div class="container-fluid">
+	<div class="navbar navbar-fixed-top navbar-inverse">
+		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
+		<div class="navbar-inner">
+			<a class="brand" href="index.html">Phaser API</a>
+			<ul class="nav">
+
+				
+				<li class="dropdown">
+					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li class="class-depth-0">
+							<a href="Phaser.html">Phaser</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="PIXI.html">PIXI</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li class="class-depth-0">
+							<a href="EarCut.html">EarCut</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="Event.html">Event</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="EventTarget.html">EventTarget</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Animation.html">Animation</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.AnimationManager.html">AnimationManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.AnimationParser.html">AnimationParser</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.ArraySet.html">ArraySet</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.AudioSprite.html">AudioSprite</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.BitmapData.html">BitmapData</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.BitmapText.html">BitmapText</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Bullet.html">Bullet</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Button.html">Button</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Cache.html">Cache</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Camera.html">Camera</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Canvas.html">Canvas</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.CanvasPool.html">CanvasPool</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Circle.html">Circle</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Color.html">Color</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Angle.html">Angle</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Animation.html">Animation</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Bounds.html">Bounds</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Core.html">Core</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Crop.html">Crop</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Delta.html">Delta</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Destroy.html">Destroy</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Health.html">Health</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.InCamera.html">InCamera</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.InWorld.html">InWorld</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Overlap.html">Overlap</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Reset.html">Reset</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Create.html">Create</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Creature.html">Creature</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Device.html">Device</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.DeviceButton.html">DeviceButton</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.DOM.html">DOM</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Easing.html">Easing</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Back.html">Back</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Bounce.html">Bounce</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Circular.html">Circular</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Cubic.html">Cubic</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Elastic.html">Elastic</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Exponential.html">Exponential</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Linear.html">Linear</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Quartic.html">Quartic</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Quintic.html">Quintic</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Ellipse.html">Ellipse</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Events.html">Events</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Filter.html">Filter</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.FlexGrid.html">FlexGrid</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.FlexLayer.html">FlexLayer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Frame.html">Frame</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.FrameData.html">FrameData</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Game.html">Game</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Gamepad.html">Gamepad</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Graphics.html">Graphics</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Group.html">Group</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Hermite.html">Hermite</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Image.html">Image</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.ImageCollection.html">ImageCollection</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Input.html">Input</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.InputHandler.html">InputHandler</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Key.html">Key</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Keyboard.html">Keyboard</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.KeyCode.html">KeyCode</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Line.html">Line</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.LinkedList.html">LinkedList</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Loader.html">Loader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.LoaderParser.html">LoaderParser</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Math.html">Math</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Matrix.html">Matrix</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Mouse.html">Mouse</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.MSPointer.html">MSPointer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Net.html">Net</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Particle.html">Particle</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Particles.html">Particles</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Particles.Arcade.html">Arcade</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Path.html">Path</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.PathFollower.html">PathFollower</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.PathPoint.html">PathPoint</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Physics.html">Physics</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Physics.Arcade.html">Arcade</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Physics.Ninja.html">Ninja</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Physics.P2.html">P2</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.Body.html">Body</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.Material.html">Material</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Plugin.html">Plugin</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.AStar.html">AStar</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.PluginManager.html">PluginManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Point.html">Point</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Pointer.html">Pointer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.PointerMode.html">PointerMode</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Polygon.html">Polygon</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.QuadTree.html">QuadTree</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Rectangle.html">Rectangle</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.RenderTexture.html">RenderTexture</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.RetroFont.html">RetroFont</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Rope.html">Rope</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.ScaleManager.html">ScaleManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Signal.html">Signal</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.SignalBinding.html">SignalBinding</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.SinglePad.html">SinglePad</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Sound.html">Sound</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.SoundManager.html">SoundManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Sprite.html">Sprite</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Stage.html">Stage</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.State.html">State</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.StateManager.html">StateManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Text.html">Text</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Tile.html">Tile</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Tilemap.html">Tilemap</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TilemapParser.html">TilemapParser</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Tileset.html">Tileset</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TileSprite.html">TileSprite</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Time.html">Time</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Timer.html">Timer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TimerEvent.html">TimerEvent</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Touch.html">Touch</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Tween.html">Tween</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TweenData.html">TweenData</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TweenManager.html">TweenManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Utils.html">Utils</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Utils.Debug.html">Debug</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Video.html">Video</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Weapon.html">Weapon</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.World.html">World</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.BaseTexture.html">BaseTexture</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.DisplayObject.html">DisplayObject</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.FilterTexture.html">FilterTexture</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.PIXI.html">PIXI</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.PixiShader.html">PixiShader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.Sprite.html">Sprite</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.StripShader.html">StripShader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.Texture.html">Texture</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_DOWN">ANGLE_DOWN</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_LEFT">ANGLE_LEFT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_NORTH_EAST">ANGLE_NORTH_EAST</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_NORTH_WEST">ANGLE_NORTH_WEST</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_RIGHT">ANGLE_RIGHT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_SOUTH_EAST">ANGLE_SOUTH_EAST</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_SOUTH_WEST">ANGLE_SOUTH_WEST</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_UP">ANGLE_UP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#arc">arc</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#AUTO">AUTO</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#beginFill">beginFill</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#bezierCurveTo">bezierCurveTo</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BITMAPDATA">BITMAPDATA</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BITMAPTEXT">BITMAPTEXT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#blendModes">blendModes</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BOTTOM_CENTER">BOTTOM_CENTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BOTTOM_LEFT">BOTTOM_LEFT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BOTTOM_RIGHT">BOTTOM_RIGHT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BUTTON">BUTTON</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#CANVAS">CANVAS</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#CANVAS_FILTER">CANVAS_FILTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#CENTER">CENTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#CIRCLE">CIRCLE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#clear">clear</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#CREATURE">CREATURE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#destroyCachedSprite">destroyCachedSprite</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#displayList">displayList</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#DOWN">DOWN</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawCircle">drawCircle</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawEllipse">drawEllipse</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawPolygon">drawPolygon</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawRect">drawRect</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawRoundedRect">drawRoundedRect</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawShape">drawShape</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ELLIPSE">ELLIPSE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#emit">emit</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#EMITTER">EMITTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#endFill">endFill</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#GAMES">GAMES</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#generateTexture">generateTexture</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#getBounds">getBounds</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#getLocalBounds">getLocalBounds</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#GRAPHICS">GRAPHICS</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#GROUP">GROUP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#HEADLESS">HEADLESS</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#HORIZONTAL">HORIZONTAL</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#IMAGE">IMAGE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LANDSCAPE">LANDSCAPE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LEFT">LEFT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LEFT_BOTTOM">LEFT_BOTTOM</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LEFT_CENTER">LEFT_CENTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LEFT_TOP">LEFT_TOP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LINE">LINE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#lineStyle">lineStyle</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#lineTo">lineTo</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#listeners">listeners</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#MATRIX">MATRIX</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#mixin">mixin</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#moveTo">moveTo</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#NONE">NONE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#off">off</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#on">on</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#once">once</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#PENDING_ATLAS">PENDING_ATLAS</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="global.html#Phaser.Path#numPointsreturn%257Bnumber%257DThetotalnumberofPathPointsinthisPath.">Phaser.Path#numPoints
+return {number} The total number of PathPoints in this Path.</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#POINT">POINT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#POINTER">POINTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#POLYGON">POLYGON</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#PORTRAIT">PORTRAIT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#quadraticCurveTo">quadraticCurveTo</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RECTANGLE">RECTANGLE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#removeAllListeners">removeAllListeners</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RENDERTEXTURE">RENDERTEXTURE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RETROFONT">RETROFONT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RIGHT">RIGHT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RIGHT_BOTTOM">RIGHT_BOTTOM</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RIGHT_CENTER">RIGHT_CENTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RIGHT_TOP">RIGHT_TOP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ROPE">ROPE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ROUNDEDRECTANGLE">ROUNDEDRECTANGLE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#scaleModes">scaleModes</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#set">set</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#SPRITE">SPRITE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#SPRITEBATCH">SPRITEBATCH</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#stopImmediatePropagation">stopImmediatePropagation</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#stopPropagation">stopPropagation</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TEXT">TEXT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TILEMAP">TILEMAP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TILEMAPLAYER">TILEMAPLAYER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TILESPRITE">TILESPRITE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TOP_CENTER">TOP_CENTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TOP_LEFT">TOP_LEFT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TOP_RIGHT">TOP_RIGHT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#UP">UP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#updateLocalBounds">updateLocalBounds</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#VERSION">VERSION</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#VERTICAL">VERTICAL</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#VIDEO">VIDEO</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#WEBGL">WEBGL</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#WEBGL_FILTER">WEBGL_FILTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#WEBGL_MULTI">WEBGL_MULTI</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
+						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
+						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
+						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
+						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
+						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
+						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
+						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
+						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
+						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
+						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
+						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
+						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
+						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
+						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
+						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
+						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
+						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
+						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
+						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
+						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
+						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
+						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
+						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
+						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
+						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
+						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
+						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
+						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
+						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
+						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
+						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
+						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
+						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
+						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
+						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
+						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
+						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
+						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
+						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
+						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
+						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
+						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
+						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
+						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
+						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
+						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Community<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
+						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser">Phaser Github</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
+						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
+						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
+						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
+						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+
+	<div class="row-fluid">
+
+		
+			<div class="span12">
+				
+				<div id="main">
+					
+
+
+		<h1 class="page-title">Source: out/plugins/AStar/AStar.js</h1>
+    
+    <section>
+        <article>
+            <pre class="sunlight-highlight-javascript linenums">/**
+ * The MIT License (MIT)
+
+ * Copyright (c) 2014 Raphaël Roux
+
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ * 
+ *
+ */
+
+/**
+ * @author       Raphaël Roux
+ * @copyright    2014 Raphaël Roux
+ * @license      {@link http://opensource.org/licenses/MIT}
+ */
+
+/**
+* AStar is a phaser pathfinding plugin based on an A* kind of algorythm 
+* It works with the Phaser.Tilemap
+*
+* @class Phaser.Plugin.AStar
+* @constructor
+* @param {Any} parent - The object that owns this plugin, usually Phaser.PluginManager.
+*/
+Phaser.Plugin.AStar = function (parent)
+{
+
+    /**
+    * @property {Any} parent - The parent of this plugin. If added to the PluginManager the parent will be set to that, otherwise it will be null.
+    */
+    this.parent = parent;
+
+    /**
+    * @property {Phaser.Tilemap} _tilemap - A reference to the tilemap used to store astar nodes according to the Phaser.Tilemap structure.
+    */
+    this._tilemap;
+
+    /**
+    * @property {number} _layerIndex - The layer index of the tilemap that is used to store astar nodes.
+    */
+    this._layerIndex;
+
+    /**
+    * @property {number} _tilesetIndex - The tileset index of the tileset that handle tiles properties.
+    */
+    this._tilesetIndex;
+   
+    /**
+    * @property {array} _open - An array that references nodes to be considered by the search path algorythm.
+    */
+    this._open; 
+
+    /**
+    * @property {array} _closed - An array that references nodes not to consider anymore.
+    */
+    this._closed; 
+   
+    /**
+    * @property {array} _visited - Internal array of visited tiles, use for debug pupose.
+    */
+    this._visited; 
+
+    /**
+    * @property {boolean} _useDiagonal - Does the astar algorythm can use tile diagonal?
+    * @default true
+    */
+    this._useDiagonal = true;
+
+    /**
+    * @property {boolean} _findClosest - Does the findPath algorythm must calculate the closest result if destination is unreachable. If not findPath will return an empty array
+    * @default true
+    */
+    this._findClosest = true;
+
+    /**
+    * @property {string} _walkablePropName - Wich name have the walkable propertiy in your tileset.
+    * @default 'walkable'
+    */
+    this._walkablePropName = 'walkable';
+
+    /**
+    * @property {function} _distanceFunction - The function used to calculate distance.
+    */
+    this._distanceFunction = Phaser.Plugin.AStar.DISTANCE_EUCLIDIAN;
+
+    /**
+    * @property {Phaser.Plugin.AStar.AStarPath} _lastPath - The last path calculated by astar.
+    */
+    this._lastPath = null; 
+
+    /**
+    * @property {boolean} _debug - Boolean to debug mode, stores visited nodes, and have a cost. Disable in production.
+    * @default false
+    */
+    this._debug = true;
+};
+
+Phaser.Plugin.AStar.prototype = Object.create(Phaser.Plugin.prototype);
+Phaser.Plugin.AStar.prototype.constructor = Phaser.Plugin.AStar;
+
+
+Phaser.Plugin.AStar.VERSION = '0.0.101';
+Phaser.Plugin.AStar.COST_ORTHOGONAL = 1;
+Phaser.Plugin.AStar.COST_DIAGONAL = Phaser.Plugin.AStar.COST_ORTHOGONAL*Math.sqrt(2);
+Phaser.Plugin.AStar.DISTANCE_MANHATTAN = 'distManhattan';
+Phaser.Plugin.AStar.DISTANCE_EUCLIDIAN = 'distEuclidian';
+
+/**
+ * Sets the Phaser.Tilemap used to searchPath into.
+ * @method Phaser.Plugin.AStar#setAStarMap
+ * @public
+ * @param {Phaser.Tilemap} map - the Phaser.Tilemap used to searchPath into. It must have a tileset with tile porperties to know if tiles are walkable or not.
+ * @param {string} layerName - The name of the layer that handle tiles.
+ * @param {string} tilesetName - The name of the tileset that have walkable properties.
+ * @return {Phaser.Plugin.AStar} The Phaser.Plugin.AStar itself.
+ */
+Phaser.Plugin.AStar.prototype.setAStarMap = function(map, layerName, tilesetName)
+{
+    this._tilemap = map;
+    this._layerIndex = this._tilemap.getLayerIndex(layerName);;
+    this._tilesetIndex = this._tilemap.getTilesetIndex(tilesetName);
+
+    this.updateMap();
+
+    return this;
+};
+
+
+/**
+ * Sets the Phaser.Tilemap used to searchPath into.
+ * @method Phaser.Plugin.AStar-setAStarMap
+ * @private
+ * @return {void} The Phaser.Plugin.AStar itself.
+ */
+ Phaser.Plugin.AStar.prototype.updateMap = function()
+{
+    var tile;
+    var walkable;
+
+    //for each tile, add a default AStarNode with x, y and walkable properties according to the tilemap/tileset datas
+    for(var y=0; y &lt; this._tilemap.height; y++)
+    {
+        for(var x=0; x &lt; this._tilemap.width; x++)
+        {
+            tile = this._tilemap.layers[this._layerIndex].data[y][x];
+            walkable = this._tilemap.tilesets[this._tilesetIndex].tileProperties[tile.index - 1][this._walkablePropName] !== "false" ? true : false;
+            tile.properties.astarNode = new Phaser.Plugin.AStar.AStarNode(x, y, walkable);
+        }
+    }
+
+};
+
+
+/**
+ * Find a path between to tiles coordinates
+ * @method Phaser.Plugin.AStar#findPath
+ * @public
+ * @param {Phaser.Point} startPoint - The start point x, y in tiles coordinates to search a path.
+ * @param {Phaser.Point} goalPoint - The goal point x, y in tiles coordinates that you trying to reach.
+ * @return {Phaser.Plugin.AStar.AStarPath} The Phaser.Plugin.AStar.AStarPath that results
+ */
+Phaser.Plugin.AStar.prototype.findPath = function(startPoint, goalPoint)
+{
+    var path = new Phaser.Plugin.AStar.AStarPath();
+
+    var start = this._tilemap.layers[this._layerIndex].data[startPoint.y][startPoint.x].properties.astarNode; //:AStarNode;
+    var goal = this._tilemap.layers[this._layerIndex].data[goalPoint.y][goalPoint.x].properties.astarNode
+
+    path.start = start;
+    path.goal = goal;
+
+    this._open = [];
+    this._closed = [];
+    this._visited = [];
+   
+    this._open.push(start);
+    
+    start.g = 0;
+    start.h = this[this._distanceFunction](start, goal);
+    start.f = start.h;
+    start.parent = null;                    
+   
+    //Loop until there are no more nodes to search
+    while(this._open.length > 0) 
+    {
+        //Find lowest f in this._open
+        var f = Infinity;
+        var x;
+        for (var i=0; i&lt;this._open.length; i++) 
+        {
+            if (this._open[i].f &lt; f) 
+            {
+                x = this._open[i];
+                f = x.f;
+            }
+        }
+       
+        //Solution found, return solution
+        if (x == goal) 
+        {
+            path.nodes = this.reconstructPath(goal);
+            this._lastPath = path;
+            if(this._debug === true) path.visited = this._visited;
+            return path;
+        }    
+       
+        //Close current node
+        this._open.splice(this._open.indexOf(x), 1);
+        this._closed.push(x);
+       
+        //Then get its neighbors       
+        var n = this.neighbors(x);
+
+        for(var yIndex=0; yIndex &lt; n.length; yIndex++) 
+        {
+
+            var y = n[yIndex];
+               
+            if (-1 != this._closed.indexOf(y))
+                continue;
+           
+            var g = x.g + y.travelCost;
+            var better = false;
+           
+            //Add the node for being considered next loop.
+            if (-1 == this._open.indexOf(y)) 
+            {
+                    this._open.push(y);
+                    better = true;
+                    if(this._debug === true) this.visit(y);
+            } 
+            else if (g &lt; y.g) 
+            {
+                    better = true;
+            }
+
+            if (better) {
+                    y.parent = x;
+                    y.g = g;
+                    y.h = this[this._distanceFunction](y, goal);
+                    y.f = y.g + y.h;
+            }
+               
+        }
+           
+    }
+
+    //If no solution found, does A* try to return the closest result?
+    if(this._findClosest === true)
+    {
+        var min = Infinity;
+        var closestGoal, node, dist;
+        for(var i=0, ii=this._closed.length; i&lt;ii; i++) 
+        {
+            node = this._closed[i];
+
+            var dist = this[this._distanceFunction](goal, node);
+            if (dist &lt; min) 
+            {
+                min = dist;
+                closestGoal = node;
+            }
+        }
+
+        //Reconstruct a path a path from the closestGoal
+        path.nodes = this.reconstructPath(closestGoal);
+        if(this._debug === true) path.visited = this._visited;
+    }
+
+    this._lastPath = path;
+
+    return path;                              
+};
+
+
+/**
+ * Reconstruct the result path backwards from the goal point, crawling its parents. Internal method.
+ * @method Phaser.Plugin.AStar-reconstructPath
+ * @private
+ * @param {Phaser.Plugin.AStar.AStarNode} n - The astar node from wich you want to rebuild the path.
+ * @return {array} An array of Phaser.Plugin.AStar.AStarNode
+ */ 
+Phaser.Plugin.AStar.prototype.reconstructPath = function(n) 
+{
+    var solution = [];
+    var nn = n;
+    while(nn.parent) {
+            solution.push({x: nn.x, y: nn.y});
+            nn = nn.parent;
+    }
+    return solution;
+};
+
+ 
+/**
+ * Add a node into visited if it is not already in. Debug only.
+ * @method Phaser.Plugin.AStar-visit
+ * @private
+ * @param {Phaser.Plugin.AStar.AStarNode} node - The astar node you want to register as visited
+ * @return {void}
+ */ 
+Phaser.Plugin.AStar.prototype.visit = function(node)
+{
+    for(var i in this._visited)
+    {
+        if (this._visited[i] == node) return;
+    }
+
+    this._visited.push(node);
+};
+   
+
+/**
+ * Add a node into visited if it is not already in. Debug only.
+ * @method Phaser.Plugin.AStar-neighbors
+ * @private
+ * @param {Phaser.Plugin.AStar.AStarNode} n - The astar node you want to register as visited
+ * @return {void}
+ */
+Phaser.Plugin.AStar.prototype.neighbors = function(node)
+{
+    var x = node.x;
+    var y = node.y;
+    var n = null;
+    var neighbors = [];
+   
+    var map = this._tilemap.layers[this._layerIndex].data;
+
+    //West
+    if (x > 0) {
+           
+        n = map[y][x-1].properties.astarNode;
+        if (n.walkable) {
+            n.travelCost = Phaser.Plugin.AStar.COST_ORTHOGONAL;
+            neighbors.push(n);
+        }
+    }
+    //East
+    if (x &lt; this._tilemap.width-1) {
+        n = map[y][x+1].properties.astarNode;
+        if (n.walkable) {
+            n.travelCost = Phaser.Plugin.AStar.COST_ORTHOGONAL;
+            neighbors.push(n);
+        }
+    }
+    //North
+    if (y > 0) {
+        n = map[y-1][x].properties.astarNode;
+        if (n.walkable) {
+            n.travelCost = Phaser.Plugin.AStar.COST_ORTHOGONAL;
+            neighbors.push(n);
+        }
+    }
+    //South
+    if (y &lt; this._tilemap.height-1) {
+        n = map[y+1][x].properties.astarNode;
+        if (n.walkable) {
+            n.travelCost = Phaser.Plugin.AStar.COST_ORTHOGONAL;
+            neighbors.push(n);
+        }
+    }
+   
+    //If diagonals aren't used do not search for other neighbors and return orthogonal search result
+    if(this._useDiagonal === false)
+        return neighbors;
+   
+    //NorthWest
+    if (x > 0 &amp;&amp; y > 0) {
+        n = map[y-1][x-1].properties.astarNode;
+        if (n.walkable
+            &amp;&amp; map[y][x-1].properties.astarNode.walkable
+            &amp;&amp; map[y-1][x].properties.astarNode.walkable
+        ) {                                            
+            n.travelCost = Phaser.Plugin.AStar.COST_DIAGONAL;
+            neighbors.push(n);
+        }
+    }
+    //NorthEast
+    if (x &lt; this._tilemap.width-1 &amp;&amp; y > 0) {
+        n = map[y-1][x+1].properties.astarNode;
+        if (n.walkable
+            &amp;&amp; map[y][x+1].properties.astarNode.walkable
+            &amp;&amp; map[y-1][x].properties.astarNode.walkable
+        ) {
+            n.travelCost = Phaser.Plugin.AStar.COST_DIAGONAL;
+            neighbors.push(n);
+        }
+    }
+    //SouthWest
+    if (x > 0 &amp;&amp; y &lt; this._tilemap.height-1) {
+        n = map[y+1][x-1].properties.astarNode;
+        if (n.walkable
+            &amp;&amp; map[y][x-1].properties.astarNode.walkable
+            &amp;&amp; map[y+1][x].properties.astarNode.walkable
+        ) {
+            n.travelCost = Phaser.Plugin.AStar.COST_DIAGONAL;
+            neighbors.push(n);
+        }
+    }
+    //SouthEast
+    if (x &lt; this._tilemap.width-1 &amp;&amp; y &lt; this._tilemap.height-1) {
+        n = map[y+1][x+1].properties.astarNode;
+        if (n.walkable
+            &amp;&amp; map[y][x+1].properties.astarNode.walkable
+            &amp;&amp; map[y+1][x].properties.astarNode.walkable
+        ) {
+            n.travelCost = Phaser.Plugin.AStar.COST_DIAGONAL;
+            neighbors.push(n);
+        }
+    }
+   
+    return neighbors;
+};
+
+
+/**
+ * Calculate a distance between tow astar nodes coordinates according to the Manhattan method
+ * @method Phaser.Plugin.AStar-distManhattan
+ * @private
+ * @param {Phaser.Plugin.AStar.AStarNode} nodeA - The A node.
+ * @param {Phaser.Plugin.AStar.AStarNode} nodeB - The B node.
+ * @return {number} The distance between nodeA and nodeB
+ */
+Phaser.Plugin.AStar.prototype.distManhattan = function (nodeA, nodeB) 
+{
+    return Math.abs(nodeA.x - nodeB.x) + Math.abs(nodeA.y - nodeB.y);
+};
+
+/**
+ * Calculate a distance between tow astar nodes coordinates according to the Euclidian method. More accurate
+ * @method Phaser.Plugin.AStar-distEuclidian
+ * @private
+ * @param {Phaser.Plugin.AStar.AStarNode} nodeA - The A node.
+ * @param {Phaser.Plugin.AStar.AStarNode} nodeB - The B node.
+ * @return {number} The distance between nodeA and nodeB
+ */
+Phaser.Plugin.AStar.prototype.distEuclidian = function(nodeA, nodeB)
+{
+    return Math.sqrt(Math.pow((nodeA.x - nodeB.x), 2) + Math.pow((nodeA.y  -nodeB.y), 2));
+};
+
+
+/**
+ * Tells if a tile is walkable from its tilemap coordinates
+ * @method Phaser.Plugin.AStar-isWalkable
+ * @public
+ * @param {number} x - The x coordiante of the tile in tilemap's coordinate.
+ * @param {number} y - The y coordinate of the tile in tilemap's coordinate.
+ * @return {boolean} The distance between nodeA and nodeB
+ */
+Phaser.Plugin.AStar.prototype.isWalkable = function(x, y)
+{  
+    return this._tilemap.layers[this._layerIndex].data[y][x].properties.astarNode.walkable;
+};
+
+
+/**
+ * @properties {string} version - The version number of Phaser.Plugin.AStar read only
+ */
+Object.defineProperty(Phaser.Plugin.AStar.prototype, "version", {
+    
+    get: function () {
+        return Phaser.Plugin.AStar.VERSION;
+    }
+
+});
+
+        
+/**
+* AStarNode is an object that stores AStar value. Each tile have an AStarNode in their properties
+* @class Phaser.Plugin.AStar.AStarNode
+* @constructor
+* @param {number} x - The x coordinate of the tile.
+* @param {number} y - The y coordinate of the tile.
+* @param {boolean} isWalkable - Is this tile is walkable?
+*/
+Phaser.Plugin.AStar.AStarNode = function(x, y, isWalkable)
+{
+
+    /**
+    * @property {number} x - The x coordinate of the tile.
+    */
+    this.x = x;
+    
+    /**
+    * @property {number} y - The y coordinate of the tile.
+    */
+    this.y = y;
+
+    /**
+    * @property {number} g - The total travel cost from the start point. Sum of COST_ORTHOGONAL and COST_DIAGONAL
+    */
+    this.g = 0;
+
+    /**
+    * @property {number} h - The remaing distance as the crow flies between this node and the goal.
+    */
+    this.h = 0;
+
+    /**
+    * @property {number} f - The weight. Sum of g + h.
+    */
+    this.f = 0;
+
+    /**
+     * @property {Phaser.Plugin.AStar.AStarNode} parent - Where do we come from? It's an AStarNode reference needed to reconstruct a path backwards (from goal to start point)
+     */
+    this.parent; 
+
+    /**
+     * @property {boolean} walkable - Is this node is walkable?
+     */
+    this.walkable = isWalkable;
+
+    /**
+     * @property {number} travelCost - The cost to travel to this node, COST_ORTHOGONAL or COST_DIAGONAL 
+     */
+    this.travelCost;
+};
+
+
+/**
+* AStarPath is an object that stores a searchPath result.
+* @class Phaser.Plugin.AStar.AStarPath
+* @constructor
+* @param {array} nodes - An array of nodes coordinates sorted backward from goal to start point.
+* @param {Phaser.Plugin.AStarNode} start - The start AStarNode used for the searchPath.
+* @param {Phaser.Plugin.AStarNode} goal - The goal AStarNode used for the searchPath.
+*/
+Phaser.Plugin.AStar.AStarPath = function(nodes, start, goal)
+{
+    /**
+     * @property {array} nodes - Array of AstarNodes x, y coordiantes that are the path solution from goal to start point. 
+     */
+    this.nodes = nodes || [];
+
+    /**
+     * @property {Phaser.Plugin.Astar.AStarNode} start - Reference to the start point used by findPath. 
+     */
+    this.start = start || null;
+
+    /**
+     * @property {Phaser.Plugin.Astar.AStarNode} goal - Reference to the goal point used by findPath. 
+     */
+    this.goal = goal || null;
+
+    /**
+     * @property {array} visited - Array of AStarNodes that the findPath algorythm has visited. Used for debug only.
+     */
+    this.visited = [];
+};
+
+
+/**
+* Debug method to draw the last calculated path by AStar
+* @method Phaser.Utils.Debug.AStar
+* @param {Phaser.Plugin.AStar} astar- The AStar plugin that you want to debug.
+* @param {number} x - X position on camera for debug display.
+* @param {number} y - Y position on camera for debug display.
+* @param {string} color - Color to stroke the path line.
+* @return {void}
+*/
+Phaser.Utils.Debug.prototype.AStar = function(astar, x, y, color, showVisited)
+{
+    if (this.context == null)
+    {
+        return;
+    }
+    
+    var pathLength = 0;
+    if(astar._lastPath !== null)
+    {
+        pathLength = astar._lastPath.nodes.length;
+    }
+
+    color = color || 'rgb(255,255,255)';
+
+    game.debug.start(x, y, color);
+
+
+    if(pathLength > 0)
+    {
+        var node = astar._lastPath.nodes[0];
+        this.context.strokeStyle = color;
+        this.context.beginPath();
+        this.context.moveTo((node.x * astar._tilemap.tileWidth) + (astar._tilemap.tileWidth/2) - game.camera.view.x, (node.y * astar._tilemap.tileHeight) + (astar._tilemap.tileHeight/2) - game.camera.view.y);
+
+        for(var i=0; i&lt;pathLength; i++)
+        {
+            node = astar._lastPath.nodes[i];
+            this.context.lineTo((node.x * astar._tilemap.tileWidth) + (astar._tilemap.tileWidth/2) - game.camera.view.x, (node.y * astar._tilemap.tileHeight) + (astar._tilemap.tileHeight/2) - game.camera.view.y);
+        }
+
+        this.context.lineTo((astar._lastPath.start.x * astar._tilemap.tileWidth) + (astar._tilemap.tileWidth/2) - game.camera.view.x, (astar._lastPath.start.y * astar._tilemap.tileHeight) + (astar._tilemap.tileHeight/2) - game.camera.view.y);
+
+        this.context.stroke(); 
+
+        //Draw circles on visited nodes
+        if(showVisited !== false)
+        {
+            var visitedNode;
+            for(var j=0; j &lt; astar._lastPath.visited.length; j++)
+            {
+                visitedNode = astar._lastPath.visited[j];
+                this.context.beginPath();
+                this.context.arc((visitedNode.x * astar._tilemap.tileWidth) + (astar._tilemap.tileWidth/2) - game.camera.view.x, (visitedNode.y * astar._tilemap.tileHeight) + (astar._tilemap.tileHeight/2) - game.camera.view.y, 2, 0, Math.PI*2, true);
+                this.context.stroke(); 
+            }
+        }
+    }
+
+    this.line('Path length: ' + pathLength);
+    this.line('Distance func: ' + astar._distanceFunction);
+    this.line('Use diagonal: ' + astar._useDiagonal);
+    this.line('Find Closest: ' + astar._findClosest);
+
+    game.debug.stop();
+};
+
+
+
+
+</pre>
+        </article>
+    </section>
+
+
+
+
+
+				</div>
+
+				<div class="clearfix"></div>
+				<footer>
+					
+					
+		<span class="copyright">
+		Phaser Copyright © 2012-2016 Photon Storm Ltd.
+		</span>
+					<br />
+					
+		<span class="jsdoc-message">
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+		on Thu Apr 13 2017 12:05:07 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		</span>
+				</footer>
+			</div>
+
+			
+			<br clear="both">
+		</div>
+
+	</div>
+	<script src="scripts/sunlight.js"></script>
+	<script src="scripts/sunlight.javascript.js"></script>
+	<script src="scripts/sunlight-plugin.doclinks.js"></script>
+	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
+	<script src="scripts/sunlight-plugin.menu.js"></script>
+	<script src="scripts/jquery.min.js"></script>
+	<script src="scripts/jquery.scrollTo.js"></script>
+	<script src="scripts/jquery.localScroll.js"></script>
+	<script src="scripts/bootstrap-dropdown.js"></script>
+	<script src="scripts/toc.js"></script>
+
+	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
+
+	<script>
+		$( function () {
+			$( "#toc" ).toc( {
+				anchorName  : function(i, heading, prefix) {
+					return $(heading).attr("id") || ( prefix + i );
+				},
+				selectors   : "h1,h2,h3,h4",
+				showAndHide : false,
+				scrollTo    : 60
+			} );
+			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
+			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+
+		} );
+	</script>
+
+	
+
+</body>
+</html>

@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Phaser Source: out/plugins/TilemapWalker/TilemapWalker.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<link type="text/css" rel="stylesheet" href="styles/default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+	
+</head>
+
+<body>
+
+<div class="container-fluid">
+	<div class="navbar navbar-fixed-top navbar-inverse">
+		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
+		<div class="navbar-inner">
+			<a class="brand" href="index.html">Phaser API</a>
+			<ul class="nav">
+
+				
+				<li class="dropdown">
+					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li class="class-depth-0">
+							<a href="Phaser.html">Phaser</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="PIXI.html">PIXI</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li class="class-depth-0">
+							<a href="EarCut.html">EarCut</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="Event.html">Event</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="EventTarget.html">EventTarget</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Animation.html">Animation</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.AnimationManager.html">AnimationManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.AnimationParser.html">AnimationParser</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.ArraySet.html">ArraySet</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.AudioSprite.html">AudioSprite</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.BitmapData.html">BitmapData</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.BitmapText.html">BitmapText</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Bullet.html">Bullet</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Button.html">Button</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Cache.html">Cache</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Camera.html">Camera</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Canvas.html">Canvas</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.CanvasPool.html">CanvasPool</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Circle.html">Circle</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Color.html">Color</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Angle.html">Angle</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Animation.html">Animation</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Bounds.html">Bounds</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Core.html">Core</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Crop.html">Crop</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Delta.html">Delta</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Destroy.html">Destroy</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Health.html">Health</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.InCamera.html">InCamera</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.InWorld.html">InWorld</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Overlap.html">Overlap</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Reset.html">Reset</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Create.html">Create</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Creature.html">Creature</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Device.html">Device</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.DeviceButton.html">DeviceButton</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.DOM.html">DOM</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Easing.html">Easing</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Back.html">Back</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Bounce.html">Bounce</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Circular.html">Circular</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Cubic.html">Cubic</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Elastic.html">Elastic</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Exponential.html">Exponential</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Linear.html">Linear</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Quartic.html">Quartic</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Quintic.html">Quintic</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Ellipse.html">Ellipse</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Events.html">Events</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Filter.html">Filter</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.FlexGrid.html">FlexGrid</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.FlexLayer.html">FlexLayer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Frame.html">Frame</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.FrameData.html">FrameData</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Game.html">Game</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Gamepad.html">Gamepad</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Graphics.html">Graphics</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Group.html">Group</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Hermite.html">Hermite</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Image.html">Image</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.ImageCollection.html">ImageCollection</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Input.html">Input</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.InputHandler.html">InputHandler</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Key.html">Key</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Keyboard.html">Keyboard</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.KeyCode.html">KeyCode</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Line.html">Line</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.LinkedList.html">LinkedList</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Loader.html">Loader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.LoaderParser.html">LoaderParser</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Math.html">Math</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Matrix.html">Matrix</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Mouse.html">Mouse</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.MSPointer.html">MSPointer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Net.html">Net</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Particle.html">Particle</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Particles.html">Particles</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Particles.Arcade.html">Arcade</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Path.html">Path</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.PathFollower.html">PathFollower</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.PathPoint.html">PathPoint</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Physics.html">Physics</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Physics.Arcade.html">Arcade</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Physics.Ninja.html">Ninja</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Physics.P2.html">P2</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.Body.html">Body</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.Material.html">Material</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Plugin.html">Plugin</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.AStar.html">AStar</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.PluginManager.html">PluginManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Point.html">Point</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Pointer.html">Pointer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.PointerMode.html">PointerMode</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Polygon.html">Polygon</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.QuadTree.html">QuadTree</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Rectangle.html">Rectangle</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.RenderTexture.html">RenderTexture</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.RetroFont.html">RetroFont</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Rope.html">Rope</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.ScaleManager.html">ScaleManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Signal.html">Signal</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.SignalBinding.html">SignalBinding</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.SinglePad.html">SinglePad</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Sound.html">Sound</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.SoundManager.html">SoundManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Sprite.html">Sprite</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Stage.html">Stage</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.State.html">State</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.StateManager.html">StateManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Text.html">Text</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Tile.html">Tile</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Tilemap.html">Tilemap</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TilemapParser.html">TilemapParser</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Tileset.html">Tileset</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TileSprite.html">TileSprite</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Time.html">Time</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Timer.html">Timer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TimerEvent.html">TimerEvent</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Touch.html">Touch</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Tween.html">Tween</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TweenData.html">TweenData</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.TweenManager.html">TweenManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Utils.html">Utils</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Utils.Debug.html">Debug</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Video.html">Video</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.Weapon.html">Weapon</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="Phaser.World.html">World</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.BaseTexture.html">BaseTexture</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.DisplayObject.html">DisplayObject</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.FilterTexture.html">FilterTexture</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.PIXI.html">PIXI</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.PixiShader.html">PixiShader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.Sprite.html">Sprite</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.StripShader.html">StripShader</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.Texture.html">Texture</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
+						</li>
+						
+						<li class="class-depth-1">
+							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_DOWN">ANGLE_DOWN</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_LEFT">ANGLE_LEFT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_NORTH_EAST">ANGLE_NORTH_EAST</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_NORTH_WEST">ANGLE_NORTH_WEST</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_RIGHT">ANGLE_RIGHT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_SOUTH_EAST">ANGLE_SOUTH_EAST</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_SOUTH_WEST">ANGLE_SOUTH_WEST</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ANGLE_UP">ANGLE_UP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#arc">arc</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#AUTO">AUTO</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#beginFill">beginFill</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#bezierCurveTo">bezierCurveTo</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BITMAPDATA">BITMAPDATA</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BITMAPTEXT">BITMAPTEXT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#blendModes">blendModes</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BOTTOM_CENTER">BOTTOM_CENTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BOTTOM_LEFT">BOTTOM_LEFT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BOTTOM_RIGHT">BOTTOM_RIGHT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#BUTTON">BUTTON</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#CANVAS">CANVAS</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#CANVAS_FILTER">CANVAS_FILTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#CENTER">CENTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#CIRCLE">CIRCLE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#clear">clear</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#CREATURE">CREATURE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#destroyCachedSprite">destroyCachedSprite</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#displayList">displayList</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#DOWN">DOWN</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawCircle">drawCircle</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawEllipse">drawEllipse</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawPolygon">drawPolygon</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawRect">drawRect</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawRoundedRect">drawRoundedRect</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#drawShape">drawShape</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ELLIPSE">ELLIPSE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#emit">emit</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#EMITTER">EMITTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#endFill">endFill</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#GAMES">GAMES</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#generateTexture">generateTexture</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#getBounds">getBounds</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#getLocalBounds">getLocalBounds</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#GRAPHICS">GRAPHICS</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#GROUP">GROUP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#HEADLESS">HEADLESS</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#HORIZONTAL">HORIZONTAL</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#IMAGE">IMAGE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LANDSCAPE">LANDSCAPE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LEFT">LEFT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LEFT_BOTTOM">LEFT_BOTTOM</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LEFT_CENTER">LEFT_CENTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LEFT_TOP">LEFT_TOP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#LINE">LINE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#lineStyle">lineStyle</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#lineTo">lineTo</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#listeners">listeners</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#MATRIX">MATRIX</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#mixin">mixin</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#moveTo">moveTo</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#NONE">NONE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#off">off</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#on">on</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#once">once</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#PENDING_ATLAS">PENDING_ATLAS</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="global.html#Phaser.Path#numPointsreturn%257Bnumber%257DThetotalnumberofPathPointsinthisPath.">Phaser.Path#numPoints
+return {number} The total number of PathPoints in this Path.</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#POINT">POINT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#POINTER">POINTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#POLYGON">POLYGON</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#PORTRAIT">PORTRAIT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#quadraticCurveTo">quadraticCurveTo</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RECTANGLE">RECTANGLE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#removeAllListeners">removeAllListeners</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RENDERTEXTURE">RENDERTEXTURE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RETROFONT">RETROFONT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RIGHT">RIGHT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RIGHT_BOTTOM">RIGHT_BOTTOM</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RIGHT_CENTER">RIGHT_CENTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#RIGHT_TOP">RIGHT_TOP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ROPE">ROPE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#ROUNDEDRECTANGLE">ROUNDEDRECTANGLE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#scaleModes">scaleModes</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#set">set</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#SPRITE">SPRITE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#SPRITEBATCH">SPRITEBATCH</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#stopImmediatePropagation">stopImmediatePropagation</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#stopPropagation">stopPropagation</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TEXT">TEXT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TILEMAP">TILEMAP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TILEMAPLAYER">TILEMAPLAYER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TILESPRITE">TILESPRITE</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TOP_CENTER">TOP_CENTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TOP_LEFT">TOP_LEFT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#TOP_RIGHT">TOP_RIGHT</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#UP">UP</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#updateLocalBounds">updateLocalBounds</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#VERSION">VERSION</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#VERTICAL">VERTICAL</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#VIDEO">VIDEO</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#WEBGL">WEBGL</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#WEBGL_FILTER">WEBGL_FILTER</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#WEBGL_MULTI">WEBGL_MULTI</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
+						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
+						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
+						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
+						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
+						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
+						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
+						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
+						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
+						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
+						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
+						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
+						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
+						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
+						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
+						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
+						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
+						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
+						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
+						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
+						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
+						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
+						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
+						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
+						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
+						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
+						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
+						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
+						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
+						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
+						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
+						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
+						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
+						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
+						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
+						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
+						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
+						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
+						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
+						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
+						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
+						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
+						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
+						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
+						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
+						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
+						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
+						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Community<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
+						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser">Phaser Github</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
+						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
+						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
+						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
+						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
+						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+
+	<div class="row-fluid">
+
+		
+			<div class="span12">
+				
+				<div id="main">
+					
+
+
+		<h1 class="page-title">Source: out/plugins/TilemapWalker/TilemapWalker.js</h1>
+    
+    <section>
+        <article>
+            <pre class="sunlight-highlight-javascript linenums">/**
+* @author       Richard Davey &lt;rich@photonstorm.com>
+* @copyright    2014 Photon Storm Ltd.
+* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+*/
+
+/**
+* Creates an object that is placed within a layer of a Phaser.Tilemap and can be moved around and rotated using the direction commands.
+*
+* @class Phaser.Plugin.TilemapWalker
+* @constructor
+* @param {Phaser.Game} game - Game reference to the currently running game.
+* @param {Phaser.Tilemap} map - A reference to the Tilemap this TilemapWalker belongs to.
+* @param {number|string|Phaser.TilemapLayer} [layer] - The layer to operate on. If not given will default to this.currentLayer.
+* @param {number} x - X position of the top left of the area to copy (given in tiles, not pixels)
+* @param {number} y - Y position of the top left of the area to copy (given in tiles, not pixels)
+* @return {Phaser.Plugin.TilemapWalker}
+*/
+Phaser.Plugin.TilemapWalker = function (game, map, layer, x, y) {
+
+    /**
+    * @property {Phaser.Game} game - A reference to the currently running Game.
+    */
+    this.game = game;
+
+    /**
+    * @property {Phaser.Tilemap} map - A reference to the Tilemap this TilemapWalker belongs to.
+    */
+    this.map = map;
+
+    /**
+    * @property {number} locationLayer - The current layer of the location marker.
+    */
+    this.locationLayer = map.getLayer(layer);
+
+    /**
+    * @property {Phaser.Point} location - The current marker location. You can move the marker with the movement methods.
+    */
+    this.location = new Phaser.Point();
+
+    /**
+    * @property {number} facing - The direction the location marker is facing. You can rotate it using the turn and face methods.
+    * @default
+    */
+    this.facing = Phaser.Tilemap.NORTH;
+
+    /**
+    * @property {boolean} collides - Does the TilemapWalker collide with the tiles in the map set for collision? If so it cannot move through them.
+    * @default
+    */
+    this.collides = true;
+
+    /**
+    * @property {array} history - An array containing a history of movements through the map.
+    */
+    this.history = [];
+
+    //  TODO: History limit, History scan, record how many times walker has been on a tile before
+
+    if (typeof x !== 'undefined' &amp;&amp; typeof y !== 'undefined')
+    {
+        this.setLocation(x, y);
+    }
+
+    return this;
+
+};
+
+Phaser.Plugin.TilemapWalker.prototype = {
+
+    /**
+    * Sets the location marker to the given x/y coordinates within the map.
+    * Once set you can move the marker around via the movement and turn methods.
+    *
+    * @method Phaser.Tilemap#setLocation
+    * @param {number} x - X position of the top left of the area to copy (given in tiles, not pixels)
+    * @param {number} y - Y position of the top left of the area to copy (given in tiles, not pixels)
+    * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to operate on. If not given will default to this.currentLayer.
+    * @return {boolean} True if the location could be set, otherwise false.
+    */
+    setLocation: function (x, y, layer) {
+
+        if (this.checkTile(x, y))
+        {
+            this.location.set(x, y);
+            this.history.push( { x: x, y: y });
+
+            return true;
+        }
+
+        return false;
+
+    },
+
+    /**
+    * Checks if the given x/y coordinate has a tile into which we can move.
+    *
+    * @method Phaser.Tilemap#checkTile
+    * @param {number} x - X position of the top left of the area to copy (given in tiles, not pixels)
+    * @param {number} y - Y position of the top left of the area to copy (given in tiles, not pixels)
+    * @return {boolean} True if the location can be moved into, false if not.
+    */
+    checkTile: function (x, y) {
+
+        if (this.map.hasTile(x, y, this.locationLayer))
+        {
+            if (this.collides)
+            {
+                var tile = this.map.getTile(x, y, this.locationLayer);
+
+                if (tile &amp;&amp; tile.collides)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+
+    },
+
+    updateLocation: function (x, y) {
+
+        if (this.checkTile(this.location.x + x, this.location.y + y, this.locationLayer))
+        {
+            this.location.set(this.location.x + x, this.location.y + y);
+            this.history.push( { x: x, y: y });
+
+            return true;
+        }
+
+        return false;
+
+    },
+
+    moveForward: function () {
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.updateLocation(0, -1);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.updateLocation(1, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.updateLocation(0, 1);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.updateLocation(-1, 0);
+        }
+
+    },
+
+    moveBackward: function () {
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.updateLocation(0, 1);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.updateLocation(-1, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.updateLocation(0, -1);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.updateLocation(1, 0);
+        }
+
+    },
+
+    moveLeft: function () {
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.updateLocation(-1, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.updateLocation(0, -1);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.updateLocation(1, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.updateLocation(0, 1);
+        }
+
+    },
+
+    moveRight: function () {
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.updateLocation(1, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.updateLocation(0, 1);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.updateLocation(-1, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.updateLocation(0, -1);
+        }
+
+    },
+
+    turnLeft: function () {
+
+        this.facing--;
+
+        if (this.facing === -1)
+        {
+            this.facing = 3;
+        }
+
+    },
+
+    turnRight: function () {
+
+        this.facing++;
+
+        if (this.facing === 4)
+        {
+            this.facing = 0;
+        }
+
+    },
+
+    putTile: function (index) {
+
+        this.map.putTile(index, this.location.x, this.location.y, this.locationLayer);
+
+    },
+
+    getTileFromLocation: function (x, y) {
+
+        return this.map.getTile(this.location.x + x, this.location.y + y, this.locationLayer, true);
+
+    },
+
+    getTile: function () {
+
+        return this.map.getTile(this.location.x, this.location.y, this.locationLayer, true);
+
+    },
+
+    getTiles: function (width, height, center) {
+
+        var startX;
+        var startX;
+        var endX;
+        var endY;
+        var incX;
+        var incY;
+
+        var hw = Math.floor(width / 2);
+        var hh = Math.floor(height / 2);
+
+        //  For now we assume that center = bottom middle tile
+
+        if (center)
+        {
+            startX = this.location.x - hw;
+            endX = this.location.x + hw;
+            incX = 1;
+
+            startY = this.location.y - hh;
+            endY = this.location.y + hh;
+            incY = 1;
+        }
+        else
+        {
+            if (this.facing === Phaser.Tilemap.NORTH)
+            {
+                startX = this.location.x - hw;
+                endX = this.location.x + hw;
+                incX = 1;
+
+                //  bottom middle align
+                startY = this.location.y - (height - 1);
+                endY = this.location.y;
+                incY = 1;
+            }
+            else if (this.facing === Phaser.Tilemap.EAST)
+            {
+                startX = this.location.x;
+                endX = this.location.x + (width - 1);
+                incX = 1;
+
+                //  bottom middle align
+                startY = this.location.y - hh;
+                endY = this.location.y + hh;
+                incY = 1;
+            }
+            else if (this.facing === Phaser.Tilemap.SOUTH)
+            {
+                startX = this.location.x - hw;
+                endX = this.location.x + hw;
+                incX = 1;
+
+                //  bottom middle align
+                startY = this.location.y;
+                endY = this.location.y + (height - 1);
+                incY = 1;
+            }
+            else if (this.facing === Phaser.Tilemap.WEST)
+            {
+                startX = this.location.x - (width - 1);
+                endX = this.location.x;
+                incX = 1;
+
+                //  bottom middle align
+                startY = this.location.y - hh;
+                endY = this.location.y + hh;
+                incY = 1;
+            }
+        }
+
+        var output = [];
+        var row = [];
+
+        for (var y = startY; y &lt;= endY; y += incY)
+        {
+            row = [];
+
+            for (var x = startX; x &lt;= endX; x += incX)
+            {
+                var tile = this.map.getTile(x, y, this.locationLayer, true);
+
+                if (tile)
+                {
+                    row.push(tile.index);
+                }
+                else
+                {
+                    //  out of bounds, so block it off
+                    row.push(0);
+                }
+            }
+
+            output.push(row);
+        }
+
+        // console.log(printMatrix(output));
+
+        if (this.facing === Phaser.Tilemap.EAST)
+        {
+            output = rotateMatrix(output, 90);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            output = rotateMatrix(output, 180);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            output = rotateMatrix(output, -90);
+        }
+
+        // console.log('rotate');
+        // console.log(printMatrix(output));
+
+        return output;
+
+    },
+
+    getMiniMap: function (width, height) {
+
+        var startX;
+        var startX;
+        var endX;
+        var endY;
+        var diff = 0;
+
+        var hw = Math.floor(width / 2);
+        var hh = Math.floor(height / 2);
+
+        startX = this.location.x - hw;
+        endX = this.location.x + hw;
+
+        startY = this.location.y - hh;
+        endY = this.location.y + hh;
+
+        //  Bounds
+        if (startX &lt; 0)
+        {
+            endX += Math.abs(startX);
+            startX = 0;
+        }
+
+        if (endX > this.map.width)
+        {
+            diff = endX - this.map.width;
+            endX = this.map.width;
+            startX -= diff;
+        }
+
+        if (startY &lt; 0)
+        {
+            endY += Math.abs(startY);
+            startY = 0;
+        }
+
+        if (endY > this.map.height)
+        {
+            diff = endY - this.map.height;
+            endY = this.map.height;
+            startY -= diff;
+        }
+
+        var output = [];
+        var row = [];
+        var walkerPosition = { x: 0, y: 0 };
+
+        for (var y = startY; y &lt; endY; y++)
+        {
+            row = [];
+
+            for (var x = startX; x &lt; endX; x++)
+            {
+                //  Walker?
+                if (x === this.location.x &amp;&amp; y === this.location.y)
+                {
+                    walkerPosition.x = row.length;
+                    walkerPosition.y = output.length;
+                }
+
+                var tile = this.map.getTile(x, y, this.locationLayer, true);
+
+                if (tile)
+                {
+                    row.push(tile.index);
+                }
+                else
+                {
+                    //  out of bounds, so block it off
+                    row.push(0);
+                }
+            }
+
+            output.push(row);
+        }
+
+        // console.log(printMatrix(output));
+
+        return { walker: walkerPosition, tiles: output };
+
+    },
+
+    getTileAhead: function (distance) {
+
+        if (typeof distance === 'undefined') { distance = 1; }
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.getTileFromLocation(0, -distance);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.getTileFromLocation(distance, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.getTileFromLocation(0, distance);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.getTileFromLocation(-distance, 0);
+        }
+
+    },
+
+    getTileAheadLeft: function (distance) {
+
+        if (typeof distance === 'undefined') { distance = 1; }
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.getTileFromLocation(-distance, -distance);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.getTileFromLocation(distance, -distance);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.getTileFromLocation(distance, distance);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.getTileFromLocation(-distance, distance);
+        }
+
+    },
+
+    getTileAheadRight: function (distance) {
+
+        if (typeof distance === 'undefined') { distance = 1; }
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.getTileFromLocation(distance, -distance);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.getTileFromLocation(distance, distance);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.getTileFromLocation(-distance, distance);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.getTileFromLocation(-distance, -distance);
+        }
+
+    },
+
+    getTileBehind: function (distance) {
+
+        if (typeof distance === 'undefined') { distance = 1; }
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.getTileFromLocation(0, distance);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.getTileFromLocation(-distance, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.getTileFromLocation(0, -distance);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.getTileFromLocation(distance, 0);
+        }
+
+    },
+
+    getTileBehindLeft: function (distance) {
+
+        if (typeof distance === 'undefined') { distance = 1; }
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.getTileFromLocation(-distance, distance);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.getTileFromLocation(-distance, -distance);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.getTileFromLocation(distance, -distance);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.getTileFromLocation(distance, distance);
+        }
+
+    },
+
+    getTileBehindRight: function (distance) {
+
+        if (typeof distance === 'undefined') { distance = 1; }
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.getTileFromLocation(distance, distance);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.getTileFromLocation(-distance, distance);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.getTileFromLocation(-distance, -distance);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.getTileFromLocation(distance, -distance);
+        }
+
+    },
+
+    getTileLeft: function (distance) {
+
+        if (typeof distance === 'undefined') { distance = 1; }
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.getTileFromLocation(-distance, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.getTileFromLocation(0, -distance);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.getTileFromLocation(distance, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.getTileFromLocation(0, distance);
+        }
+
+    },
+
+    getTileRight: function (distance) {
+
+        if (typeof distance === 'undefined') { distance = 1; }
+
+        if (this.facing === Phaser.Tilemap.NORTH)
+        {
+            return this.getTileFromLocation(distance, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.EAST)
+        {
+            return this.getTileFromLocation(0, distance);
+        }
+        else if (this.facing === Phaser.Tilemap.SOUTH)
+        {
+            return this.getTileFromLocation(-distance, 0);
+        }
+        else if (this.facing === Phaser.Tilemap.WEST)
+        {
+            return this.getTileFromLocation(0, -distance);
+        }
+
+    }
+
+};
+
+//  Original from http://jsfiddle.net/MrPolywhirl/NH42z/ - tided up and de-globalised by Richard Davey
+var rotateMatrix = function (matrix, direction) {
+
+    direction = ((direction % 360) + 360) % 360;
+
+    var ret = matrix;
+
+    var transpose = function (m) {
+        var result = new Array(m[0].length);
+        for (var i = 0; i &lt; m[0].length; i++) {
+            result[i] = new Array(m.length - 1);
+            for (var j = m.length - 1; j > -1; j--) {
+                result[i][j] = m[j][i];
+            }
+        }
+        return result;
+    };
+
+    var reverseRows = function (m) {
+        return m.reverse();
+    };
+
+    var reverseCols = function (m) {
+        for (var i = 0; i &lt; m.length; i++) {
+            m[i].reverse();
+        }
+        return m;
+    };
+
+    var rotate90Left = function (m) {
+        m = transpose(m);
+        m = reverseRows(m);
+        return m;
+    };
+
+    var rotate90Right = function (m) {
+        m = reverseRows(m);
+        m = transpose(m);
+        return m;
+    };
+
+    var rotate180 = function (m) {
+        m = reverseCols(m);
+        m = reverseRows(m);
+        return m;
+    };
+
+    if (direction == 90 || direction == -270) {
+        return rotate90Left(ret);
+    } else if (direction == -90 || direction == 270) {
+        return rotate90Right(ret);
+    } else if (Math.abs(direction) == 180) {
+        return rotate180(ret);
+    }
+
+    return matrix;
+};
+
+var pad = function (val, amt, ch) {
+    ch = typeof ch !== 'undefined' ? ch : ' ';
+    var str = val
+    var max = Math.abs(amt);
+    while (str.length &lt; max) {
+        if (amt &lt; 0) {
+            str += ch;
+        } else {
+            str = ch + str;
+        }
+    }
+    return str;
+};
+
+var printMatrix = function (matrix) {
+    var str = '';
+    for (var r = 0; r &lt; matrix.length; r++) {
+        for (var c = 0; c &lt; matrix[r].length; c++) {
+            var cell = matrix[r][c].toString();
+            if (cell != 'undefined') {
+                str += pad(cell, 2);
+            } else {
+                str += '?';
+            }
+            if (c &lt; matrix[r].length - 1) {
+                str += ' |';
+            }
+        }
+        if (r &lt; matrix.length - 1) {
+            str += '\n';
+            for (var i = 0; i &lt; matrix[r].length; i++) {
+                str += '---'
+                if (i &lt; matrix[r].length - 1) {
+                    str += '+';
+                }
+            }
+            str += '\n';
+        }
+    }
+    return str;
+};
+
+</pre>
+        </article>
+    </section>
+
+
+
+
+
+				</div>
+
+				<div class="clearfix"></div>
+				<footer>
+					
+					
+		<span class="copyright">
+		Phaser Copyright © 2012-2016 Photon Storm Ltd.
+		</span>
+					<br />
+					
+		<span class="jsdoc-message">
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+		on Thu Apr 13 2017 12:05:07 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		</span>
+				</footer>
+			</div>
+
+			
+			<br clear="both">
+		</div>
+
+	</div>
+	<script src="scripts/sunlight.js"></script>
+	<script src="scripts/sunlight.javascript.js"></script>
+	<script src="scripts/sunlight-plugin.doclinks.js"></script>
+	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
+	<script src="scripts/sunlight-plugin.menu.js"></script>
+	<script src="scripts/jquery.min.js"></script>
+	<script src="scripts/jquery.scrollTo.js"></script>
+	<script src="scripts/jquery.localScroll.js"></script>
+	<script src="scripts/bootstrap-dropdown.js"></script>
+	<script src="scripts/toc.js"></script>
+
+	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
+
+	<script>
+		$( function () {
+			$( "#toc" ).toc( {
+				anchorName  : function(i, heading, prefix) {
+					return $(heading).attr("id") || ( prefix + i );
+				},
+				selectors   : "h1,h2,h3,h4",
+				showAndHide : false,
+				scrollTo    : 60
+			} );
+			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
+			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+
+		} );
+	</script>
+
+	
+
+</body>
+</html>
