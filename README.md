@@ -316,6 +316,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* New method Phaser.Loader#imageFromBitmapData lets you preload an image extracted from a BitmapData canvas.
 * BitmapData#generateTexture now has a callback argument. Most browsers now load the generated image asynchronously, so without a callback you're not guaranteed a valid texture (#136).
 
 ### Updates
