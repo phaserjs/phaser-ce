@@ -533,7 +533,59 @@
 						</li>
 						
 						<li class="class-depth-2">
+							<a href="Phaser.Plugin.AStar.html">AStar</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
+						</li>
+						
+						<li class="class-depth-3">
+							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
+						</li>
+						
+						<li class="class-depth-2">
 							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
+						</li>
+						
+						<li class="class-depth-2">
+							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
 						</li>
 						
 						<li class="class-depth-1">
@@ -1063,7 +1115,8 @@
 						</li>
 						
 						<li class="class-depth-2">
-							<a href="global.html#Phaser.Path#numPointsreturn%257Bnumber%257DThetotalnumberofPathPointsinthisPath.">Phaser.Path#numPointsreturn {number} The total number of PathPoints in this Path.</a>
+							<a href="global.html#Phaser.Path#numPointsreturn%257Bnumber%257DThetotalnumberofPathPointsinthisPath.">Phaser.Path#numPoints
+return {number} The total number of PathPoints in this Path.</a>
 						</li>
 						
 						<li class="class-depth-0">
@@ -1128,6 +1181,10 @@
 						
 						<li class="class-depth-0">
 							<a href="global.html#scaleModes">scaleModes</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#set">set</a>
 						</li>
 						
 						<li class="class-depth-0">
@@ -1364,9 +1421,9 @@ Phaser.Physics.Arcade = function (game) {
     this.bounds = new Phaser.Rectangle(0, 0, game.world.width, game.world.height);
 
     /**
-    * Set the checkCollision properties to control for which bounds collision is processed.
+    * Which edges of the World bounds Bodies can collide against when `collideWorldBounds` is `true`.
     * For example checkCollision.down = false means Bodies cannot collide with the World.bounds.bottom.
-    * @property {object} checkCollision - An object containing allowed collision flags.
+    * @property {object} checkCollision - An object containing allowed collision flags (up, down, left, right).
     */
     this.checkCollision = { up: true, down: true, left: true, right: true };
 
@@ -1550,7 +1607,7 @@ Phaser.Physics.Arcade.prototype = {
 
     /**
     * Creates an Arcade Physics body on the given game object.
-    * 
+    *
     * A game object can only have 1 physics body active at any one time, and it can't be changed until the body is nulled.
     *
     * When you add an Arcade Physics body to an object it will automatically add the object into its parent Groups hash array.
@@ -2101,7 +2158,7 @@ Phaser.Physics.Arcade.prototype = {
                         continue;
                     }
                 }
-                
+
                 this.collideSpriteVsSprite(sprite, object1, collideCallback, processCallback, callbackContext, overlapOnly);
             }
         }
@@ -2225,7 +2282,7 @@ Phaser.Physics.Arcade.prototype = {
                         break;
                     }
                 }
-                
+
                 this.collideSpriteVsSprite(object1, object2, collideCallback, processCallback, callbackContext, overlapOnly);
             }
         }
@@ -2995,7 +3052,7 @@ Phaser.Physics.Arcade.prototype = {
         }
 
         return output;
-        
+
     },
 
     /**
@@ -3119,7 +3176,7 @@ Phaser.Physics.Arcade.prototype = {
         if (speed === undefined) { speed = 60; }
         point = point || new Phaser.Point();
 
-        return point.setTo((Math.cos(this.game.math.degToRad(angle)) * speed), (Math.sin(this.game.math.degToRad(angle)) * speed));
+        return point.setTo((Math.cos(Phaser.Math.degToRad(angle)) * speed), (Math.sin(Phaser.Math.degToRad(angle)) * speed));
 
     },
 
@@ -3432,7 +3489,7 @@ Phaser.Physics.Arcade.prototype = {
     },
 
     /**
-    * Find the angle in radians between a display object (like a Sprite) and a Pointer, 
+    * Find the angle in radians between a display object (like a Sprite) and a Pointer,
     * taking their x/y and center into account relative to the world.
     *
     * @method Phaser.Physics.Arcade#worldAngleToPointer
@@ -3468,7 +3525,7 @@ Phaser.Physics.Arcade.prototype = {
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Thu Mar 23 2017 14:18:05 GMT+0000 (GMT Standard Time) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Thu Apr 13 2017 12:05:07 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>
