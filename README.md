@@ -116,11 +116,11 @@ Using Browserify? Please [read this](#browserify).
 
 [jsDelivr](http://www.jsdelivr.com/#!phaser) is a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.5/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.6/phaser.js"></script>
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.5/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.6/phaser.min.js"></script>
 
 ### Phaser Sandbox
 
@@ -248,7 +248,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 <a name="change-log"></a>
 # Change Log
 
-## Version 2.7.6 - unreleased
+## Version 2.7.6 - 13th April 2017
 
 ### New Features
 
@@ -285,55 +285,6 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 @alexus85, @Arcanorum, @digitsensitive, @Dreaded-Gnu, @hdodov, @IVA-apps, @JTronLabs, @Lightning3105, @mikewesthad, @nalgorry, @photonstorm, @qarlosh, @samme, @trpzn, @vpmedia
 
-## Version 2.7.5 - 23rd March 2017
-
-* A hotfix to patch the error `this.preUpdateLifeSpan is not a function` in 2.7.4 (#72)
-
-## Version 2.7.4 - 23rd March 2017
-
-### New Features
-
-* New method [Phaser.Math.hypot()](https://photonstorm.github.io/phaser-ce/Phaser.Math.html#hypot) calculates the length of the hypotenuse spanning two given lengths
-* Added [Phaser.BitmapData#copyBitmapData](https://photonstorm.github.io/phaser-ce/Phaser.BitmapData.html#copyBitmapData)
-* Added noPause logic to src/input/Pointer.js
-* Added timeStep parameter pass to state.pauseUpdate call at src/core/Game.js
-* Added [Phaser.TilemapLayer#tileOffset](https://photonstorm.github.io/phaser-ce/Phaser.TilemapLayer.html#tileOffset) (Phaser.Point). This allows offsetting layer positions in a way that plays well with the camera and Arcade physics. Also, the `offsetx` and `offsety` properties are now read from the layer properties of Tiled maps.
-
-### Updates
-
-* Changed [Phaser.Loader#loadImageTag](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#loadImageTag) to exclude Firefox from loading cached images (phaser #2534)
-* Added yarn lock file
-* Added travis-ci build script
-* Fixed Phaser.Plugin.AStar Typescript definitions and phaser-ce module name to get `grunt tsdocs` to work again (#33)
-* Fixed Phaser.Plugin.AStar.DISTANCE_MANHATTAN Typescript definitions
-* Changed bower package name to `phaser-ce`
-* [Phaser.Particles.Arcade.Emitter#explode()](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#explode) now launches all particles if the `quantity` argument is omitted (#7). You should pass quantity `0` if you want to launch no particles.
-* [overlapR](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#overlapR), [overlapX](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#overlapX), and [overlapY](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#overlapY) are now correctly reset to 0 when an Arcade Physics Body isn't colliding (#23)
-* [Phaser.Physics.P2.Body.loadPolygon()](https://photonstorm.github.io/phaser-ce/Phaser.Physics.P2.Body.html#loadPolygon) now has a `scale` parameter that allows the loaded polygon to have a different scale
-* Fixed documentation of [Phaser.Video#createVideoFromBlob](https://photonstorm.github.io/phaser-ce/Phaser.Video.html#createVideoFromBlob)
-* Clarified documentation of [Phaser.AnimationManager#updateIfVisible](https://photonstorm.github.io/phaser-ce/Phaser.AnimationManager.html#updateIfVisible)
-* Updated [Phaser.Text#setStyle](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#setStyle) to not mutate the passed style
-* Added `particleArguments` parameter to [Phaser.Particles.Arcade.Emitter#makeParticles](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#makeParticles). It lets you pass custom parameters to a particle class
-* Fixed jshint issues (#46)
-* Updated README and CHANGELOG markdown (#69)
-
-### Bug Fixes
-
-* [Phaser.Image#lifespan](https://photonstorm.github.io/phaser-ce/Phaser.Image.html#lifespan) now works properly (#46).
-* [Phaser.Physics.Arcade.Body.reset()](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#reset) now resizes the body if the sprite scale has changed (#10).
-* Fixed [Phaser.Camera.checkBounds()](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#checkBounds) so it doesn't flicker when its view is bigger than its bounds.
-* Fixed [Phaser.Math#between](https://photonstorm.github.io/phaser-ce/Phaser.Math.html#between) and [Phaser.Math#random](https://photonstorm.github.io/phaser-ce/Phaser.Math.html#random) to work again
-* [Phaser.Loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) is now reset just before it signals loading is complete (#53)
-* Fixed rendering on devices that use older versions of javascript
-* Fixed crashes on very old devices
-* Fixed an error when destroying a sprite during [Phaser.Group#update](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#update)
-* Fixed local rotation tracking in [Phaser.Weapon#fire](https://photonstorm.github.io/phaser-ce/Phaser.Weapon.html#fire) (#66)
-* Fixed WebAudio memory leak on in [Phaser.Sound](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html)
-
-### Pixi Updates
-
-* Fixed wrong parameter PIXI.DisplayObject#\_generateCachedSprite
-
 For changes in previous releases please see the extensive [Version History](CHANGELOG.md).
 
 <a name="contributing"></a>
@@ -365,10 +316,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.5/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.5/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.5.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.5.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.6/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.6/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.6.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.6.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
