@@ -32,6 +32,7 @@ Grab the source and join in the fun!
 - [Contributing](#contributing)
 
 <a name="whats-new"></a>
+
 ## What's New
 
 ### 23rd March 2017
@@ -68,6 +69,7 @@ Rich - [@photonstorm](https://twitter.com/photonstorm)
 ![boogie](http://www.phaser.io/images/spacedancer.gif)
 
 <a name="support"></a>
+
 ## Support Phaser
 
 Developing Phaser takes a lot of time, effort, and money. There are monthly running costs; such as the forum and site, which we maintain 100% ad-free. As well as countless hours of development time, community support, and assistance resolving issues. We do this out of our love for Phaser of course, but at the end of the day there are real tangible costs involved.
@@ -84,6 +86,7 @@ It all helps cover our running costs, and genuinely contributes towards future d
 If you would like to sponsor Phaser then please [get in touch](mailto:support@phaser.io). We have sponsorship options available on our GitHub repo, web site, and newsletter. All of which receive tens of thousands of eyeballs per day.
 
 <a name="newsletter"></a>
+
 ## Weekly Newsletter
 
 Every Friday we publish the [Phaser World](http://phaser.io/community/newsletter) newsletter. It's packed full of the latest Phaser games, tutorials, videos, meet-ups, talks, and more. It also contains our weekly Development Progress updates. If you want to know what we're working on, this is the newsletter to read!
@@ -91,6 +94,7 @@ Every Friday we publish the [Phaser World](http://phaser.io/community/newsletter
 Previous editions can found on our [Back Issues](http://phaser.io/community/backissues) page.
 
 <a name="download"></a>
+
 ## Download Phaser
 
 Phaser is [hosted on Github][phaser]. There are a number of ways to download it:
@@ -114,7 +118,7 @@ Using Browserify? Please [read this](#browserify).
 
 ### CDN
 
-[jsDelivr](http://www.jsdelivr.com/#!phaser) is a "super-fast CDN for developers". Include the following in your html:
+[Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
     <script src="//cdn.jsdelivr.net/phaser-ce/2.7.6/phaser.js"></script>
 
@@ -131,6 +135,7 @@ If you'd like to try coding in Phaser right now, with nothing more than your web
 Phaser is released under the [MIT License](http://opensource.org/licenses/MIT).
 
 <a name="getting-started"></a>
+
 ## Getting Started
 
 Our [Getting Started Guide](http://phaser.io/tutorials/getting-started) will get you up to speed quickly. From setting up a web server, to picking an IDE. After which read our [Making your first Game](http://phaser.io/tutorials/making-your-first-phaser-game) tutorial. Please work through this, no matter what your development experience, to learn how Phaser approaches things.
@@ -168,6 +173,7 @@ The [Game Mechanic Explorer](http://gamemechanicexplorer.com) is a great interac
 [MightyEditor](http://mightyfingers.com/) is a browser-based visual Phaser game editor. Create your maps with ease, position objects and share them in seconds. It also exports to native Phaser code. Excellent for quickly setting-up levels and scenes.
 
 <a name="building-phaser"></a>
+
 ## Building Phaser
 
 Phaser is provided ready compiled in the `build` folder of the repository. There are both plain and minified versions. The plain version is for use during development, and the minified version for production. You can also create your own builds.
@@ -181,14 +187,15 @@ As a result of this work the minimum build size of Phaser is now just 80KB minif
 See the [Creating a Custom Phaser Build](http://phaser.io/tutorials/creating-custom-phaser-builds) tutorial for details.
 
 <a name="browserify"></a>
-### Browserify / CJS
+
+### Browserify / CommonJS
 
 Phaser was never written to be modular. Everything exists under one single global namespace, and you cannot `require` selected parts of it into your builds. It expects 3 global vars to exist in order to work properly: `Phaser`, `PIXI` and `p2`. The following is one way of doing this:
 
-```
-window.PIXI = require('phaser/build/custom/pixi')
-window.p2 = require('phaser/build/custom/p2')
-window.Phaser = require('phaser/build/custom/phaser-split')
+```javascript
+window.PIXI   = require('phaser/build/custom/pixi');
+window.p2     = require('phaser/build/custom/p2');
+window.Phaser = require('phaser/build/custom/phaser-split');
 ```
 
 If you build a custom version of Phaser it will split the 3 core libs out into their own files, allowing you to require them as above.
@@ -197,9 +204,7 @@ We appreciate this is just a band-aid, and not a proper use of modules, but plea
 
 ### Webpack
 
-Starting from Phaser 2.4.5 we now include a custom build for Webpack.
-
-You need to add `p2` as a dependency.
+As with browserify, use the `pixi`, `p2`, and `phaser-split` modules in [build/custom](./build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
 
 See [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
 
@@ -222,6 +227,7 @@ Releases of new versions of Phaser CE are under the communities control. If you 
 4. Once jshint passes run `grunt release`, sit back, and wait. It will build all of the versions of Phaser required, update the doc files, TypeScript defs and lots more. When finished, commit all of the new files and make sure to include a clear message in your commit saying you want this release pushed to npm. Be sure to tag me when doing this, i.e. 'Phaser CE Version 2.X.X. Please publish to npm @photonstorm' - I'll see it, and then publish as soon as I can (often the same day).
 
 <a name="games"></a>
+
 ## Made With Phaser
 
 Thousands of [games](http://phaser.io/news/category/game) have been made in Phaser. From game jam entries, to titles by some of the largest entertainment brands in the world. You can find [hundreds more on our web site](http://phaser.io/games).
@@ -229,6 +235,7 @@ Thousands of [games](http://phaser.io/news/category/game) have been made in Phas
 We add [new games](http://phaser.io/news/category/game) to the Phaser site weekly, so be sure to send us yours when it's finished!
 
 <a name="requirements"></a>
+
 ## Requirements
 
 Phaser requires a web browser that supports the [canvas tag](http://caniuse.com/#feat=canvas). This includes Internet Explorer 9+, Firefox, Chrome, Safari and Opera on desktop. iOS Safari, Android Browser and Chrome for Android are supported on mobile.
@@ -246,6 +253,7 @@ Phaser is developed in ES5 JavaScript. We've made no assumptions about how you l
 If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehensive definition files in the `typescript` folder. They are for TypeScript 1.4+.
 
 <a name="change-log"></a>
+
 # Change Log
 
 ## Version 2.7.6 - 13th April 2017
@@ -288,6 +296,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 For changes in previous releases please see the extensive [Version History](CHANGELOG.md).
 
 <a name="contributing"></a>
+
 # Contributing
 
 The [Contributors Guide][contribute] contains full details on how to help with Phaser development. The main points are:
