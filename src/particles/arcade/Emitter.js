@@ -386,16 +386,7 @@ Phaser.Particles.Arcade.Emitter.prototype.makeParticles = function (keys, frames
 
         this.game.physics.arcade.enable(particle, false);
 
-        if (collide)
-        {
-            particle.body.checkCollision.any = true;
-            particle.body.checkCollision.none = false;
-        }
-        else
-        {
-            particle.body.checkCollision.none = true;
-        }
-
+        particle.body.checkCollision.none = !collide;
         particle.body.collideWorldBounds = collideWorldBounds;
         particle.body.skipQuadTree = true;
 
