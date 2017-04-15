@@ -1212,8 +1212,8 @@ Object.defineProperty(Phaser.Sound.prototype, "volume", {
 
     set: function (value) {
 
-        //  Causes an Index size error in Firefox if you don't clamp the value
-        if (this.game.device.firefox && this.usingAudioTag)
+        //  Causes an Index size error if you don't clamp the value
+        if (this.usingAudioTag)
         {
             value = this.game.math.clamp(value, 0, 1);
         }

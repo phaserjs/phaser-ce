@@ -266,6 +266,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed Phaser.Sound exception when using IE with AudioTag and high volume values (#157), from now on volume clamping happens in every AudioTag supported browser.
 * Fixed incorrect [worldScale](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#worldScale) calculation (#15)
 
 ## Version 2.7.6 - 13th April 2017
