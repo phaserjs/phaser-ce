@@ -2,11 +2,13 @@
 
 <img src="http://phaser.io/images/github/arcade-cab.png" align="right">
 
-Phaser is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development. Years after release, Phaser is still one of the [most starred](https://github.com/showcases/javascript-game-engines) game frameworks on GitHub.
+Phaser is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development. Years after release, Phaser is still one of the [most starred game frameworks](https://github.com/showcases/javascript-game-engines) on GitHub.
 
 Thousands of developers worldwide use Phaser. From indies and multi-national digital agencies, to schools and Universities. Each creating their own incredible [games](http://phaser.io/games/).
 
 Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
+
+The [current Phaser CE release is 2.7.6](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.6).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -45,8 +47,8 @@ Phaser 2 was a massive milestone for us, and we're still constantly amazed at al
 
 As of today all of our in-house resources are spent on building Phaser 3 and beyond. However we fully recognize that lots of you still use Phaser 2, and have a lot to contribute to its future. So this is what we've done:
 
-* Phaser 2.6.2 is the last 'official' release, published on npm as [phaser](https://www.npmjs.com/package/phaser)
-* Phaser 2.7.0 and all future versions have been given to the community to maintain, published on npm as [phaser-ce](https://www.npmjs.com/package/phaser-ce)
+* [Phaser 2.6.2](https://github.com/photonstorm/phaser/releases/tag/v2.6.2) is the last 'official' release, published on npm as [phaser](https://www.npmjs.com/package/phaser)
+* [Phaser 2.7.0 and all future versions](https://github.com/photonstorm/phaser-ce/releases) have been given to the community to maintain, published on npm as [phaser-ce](https://www.npmjs.com/package/phaser-ce)
 
 **All Pull Requests made against this repo will be unconditionally approved**.
 
@@ -106,13 +108,13 @@ Phaser is [hosted on Github][phaser]. There are a number of ways to download it:
 
 ### Bower / npm
 
-Install via [bower](http://bower.io)
+Install via [bower](http://bower.io):
 
-`bower install phaser`
+    bower install phaser
 
-Install via [npm](https://www.npmjs.com)
+Install via [npm](https://www.npmjs.com):
 
-`npm install phaser-ce`
+    npm install phaser-ce
 
 Using Browserify? Please [read this](#browserify).
 
