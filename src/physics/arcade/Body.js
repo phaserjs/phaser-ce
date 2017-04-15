@@ -367,7 +367,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     * If you need to disable just collision and/or overlap checks, but retain motion, set `checkCollision.none = true`.
     * @property {object} checkCollision - An object containing allowed collision (none, up, down, left, right).
     */
-    this.checkCollision = { none: false, any: true, up: true, down: true, left: true, right: true };
+    this.checkCollision = { none: false, up: true, down: true, left: true, right: true };
 
     /**
     * This object is populated with boolean values when the Body collides with another.
