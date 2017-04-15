@@ -128,9 +128,9 @@ or the minified version:
 
     <script src="//cdn.jsdelivr.net/phaser-ce/2.7.6/phaser.min.js"></script>
 
-### Phaser Sandbox
+### Web Templates
 
-If you'd like to try coding in Phaser right now, with nothing more than your web browser, then head over to the [Phaser Sandbox](http://phaser.io/sandbox). You'll find Quick Start templates, and a user-friendly editor filled with handy code-completion features.
+If you'd like to try coding in Phaser right now, with nothing more than your web browser, open up the [Phaser CE Game Template](http://codepen.io/pen?template=vyKJvw). There are [CoffeeScript](http://codepen.io/pen?template=OWxELE) and [ES6](http://codepen.io/pen?template=pRGPKG) variants too.
 
 ### License
 
