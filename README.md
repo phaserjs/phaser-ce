@@ -248,6 +248,10 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 <a name="change-log"></a>
 # Change Log
 
+## Version 2.7.7 - TBA
+
+* Fixed Phaser.Sound exception when using IE with AudioTag and high volume values (#157), from now on volume clamping happens in every AudioTag supported browser.
+
 ## Version 2.7.6 - 13th April 2017
 
 ### New Features
