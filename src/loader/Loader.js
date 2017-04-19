@@ -2315,6 +2315,10 @@ Phaser.Loader.prototype = {
                 {
                     this.loadImageTag(file);
                 }
+                else
+                {
+                    this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
+                }
                 break;
 
             case 'binary':
