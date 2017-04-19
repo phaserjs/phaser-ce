@@ -977,7 +977,6 @@ Phaser.Game.prototype = {
             this.sound.update();
             this.input.update();
             this.physics.update();
-            this.particles.update();
             this.plugins.update();
 
             this.stage.postUpdate();
