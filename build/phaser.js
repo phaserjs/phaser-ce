@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.6 "2017-04-13" - Built: Thu Apr 13 2017 12:04:23
+* v2.7.7 "2017-04-20" - Built: Wed Apr 19 2017 21:51:02
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -13702,7 +13702,7 @@ var PIXI = PIXI || {};
 /**
 * The base class for all objects that are rendered. Contains properties for position, scaling,
 * rotation, masks and cache handling.
-* 
+*
 * This is an abstract class and should not be used on its own, rather it should be extended.
 *
 * It is used internally by the likes of PIXI.Sprite.
@@ -13714,10 +13714,10 @@ PIXI.DisplayObject = function () {
 
     /**
     * The coordinates, in pixels, of this DisplayObject, relative to its parent container.
-    * 
+    *
     * The value of this property does not reflect any positioning happening further up the display list.
     * To obtain that value please see the `worldPosition` property.
-    * 
+    *
     * @property {PIXI.Point} position
     * @default
     */
@@ -13726,10 +13726,10 @@ PIXI.DisplayObject = function () {
     /**
     * The scale of this DisplayObject. A scale of 1:1 represents the DisplayObject
     * at its default size. A value of 0.5 would scale this DisplayObject by half, and so on.
-    * 
+    *
     * The value of this property does not reflect any scaling happening further up the display list.
     * To obtain that value please see the `worldScale` property.
-    * 
+    *
     * @property {PIXI.Point} scale
     * @default
     */
@@ -13746,10 +13746,10 @@ PIXI.DisplayObject = function () {
     /**
     * The rotation of this DisplayObject. The value is given, and expressed, in radians, and is based on
     * a right-handed orientation.
-    * 
+    *
     * The value of this property does not reflect any rotation happening further up the display list.
     * To obtain that value please see the `worldRotation` property.
-    * 
+    *
     * @property {number} rotation
     * @default
     */
@@ -13758,10 +13758,10 @@ PIXI.DisplayObject = function () {
     /**
     * The alpha value of this DisplayObject. A value of 1 is fully opaque. A value of 0 is transparent.
     * Please note that an object with an alpha value of 0 is skipped during the render pass.
-    * 
+    *
     * The value of this property does not reflect any alpha values set further up the display list.
     * To obtain that value please see the `worldAlpha` property.
-    * 
+    *
     * @property {number} alpha
     * @default
     */
@@ -13772,10 +13772,10 @@ PIXI.DisplayObject = function () {
     * A value of `true` makes it visible. Please note that an object with a visible value of
     * `false` is skipped during the render pass. Equally a DisplayObject with visible false will
     * not render any of its children.
-    * 
+    *
     * The value of this property does not reflect any visible values set further up the display list.
     * To obtain that value please see the `worldVisible` property.
-    * 
+    *
     * @property {boolean} visible
     * @default
     */
@@ -13793,7 +13793,7 @@ PIXI.DisplayObject = function () {
     /**
     * Should this DisplayObject be rendered by the renderer? An object with a renderable value of
     * `false` is skipped during the render pass.
-    * 
+    *
     * @property {boolean} renderable
     * @default
     */
@@ -13804,7 +13804,7 @@ PIXI.DisplayObject = function () {
     * All DisplayObjects must belong to a parent in order to be rendered.
     * The root parent is the Stage object. This property is set automatically when the
     * DisplayObject is added to, or removed from, a DisplayObjectContainer.
-    * 
+    *
     * @property {PIXI.DisplayObjectContainer} parent
     * @default
     * @readOnly
@@ -13813,15 +13813,15 @@ PIXI.DisplayObject = function () {
 
     /**
     * The multiplied alpha value of this DisplayObject. A value of 1 is fully opaque. A value of 0 is transparent.
-    * This value is the calculated total, based on the alpha values of all parents of this DisplayObjects 
+    * This value is the calculated total, based on the alpha values of all parents of this DisplayObjects
     * in the display list.
-    * 
+    *
     * To obtain, and set, the local alpha value, see the `alpha` property.
     *
-    * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until 
+    * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
     * that happens this property will contain values based on the previous frame. Be mindful of this if
     * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
-    * 
+    *
     * @property {number} worldAlpha
     * @readOnly
     */
@@ -13829,11 +13829,11 @@ PIXI.DisplayObject = function () {
 
     /**
     * The current transform of this DisplayObject.
-    * 
-    * This property contains the calculated total, based on the transforms of all parents of this 
+    *
+    * This property contains the calculated total, based on the transforms of all parents of this
     * DisplayObject in the display list.
     *
-    * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until 
+    * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
     * that happens this property will contain values based on the previous frame. Be mindful of this if
     * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
     *
@@ -13844,14 +13844,14 @@ PIXI.DisplayObject = function () {
 
     /**
     * The coordinates, in pixels, of this DisplayObject within the world.
-    * 
-    * This property contains the calculated total, based on the positions of all parents of this 
+    *
+    * This property contains the calculated total, based on the positions of all parents of this
     * DisplayObject in the display list.
     *
-    * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until 
+    * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
     * that happens this property will contain values based on the previous frame. Be mindful of this if
     * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
-    * 
+    *
     * @property {PIXI.Point} worldPosition
     * @readOnly
     */
@@ -13859,14 +13859,14 @@ PIXI.DisplayObject = function () {
 
     /**
     * The global scale of this DisplayObject.
-    * 
-    * This property contains the calculated total, based on the scales of all parents of this 
+    *
+    * This property contains the calculated total, based on the scales of all parents of this
     * DisplayObject in the display list.
     *
-    * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until 
+    * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
     * that happens this property will contain values based on the previous frame. Be mindful of this if
     * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
-    * 
+    *
     * @property {PIXI.Point} worldScale
     * @readOnly
     */
@@ -13874,14 +13874,14 @@ PIXI.DisplayObject = function () {
 
     /**
     * The rotation, in radians, of this DisplayObject.
-    * 
-    * This property contains the calculated total, based on the rotations of all parents of this 
+    *
+    * This property contains the calculated total, based on the rotations of all parents of this
     * DisplayObject in the display list.
     *
-    * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until 
+    * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
     * that happens this property will contain values based on the previous frame. Be mindful of this if
     * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
-    * 
+    *
     * @property {number} worldRotation
     * @readOnly
     */
@@ -13984,13 +13984,13 @@ PIXI.DisplayObject.prototype = {
     /*
     * Updates the transform matrix this DisplayObject uses for rendering.
     *
-    * If the object has no parent, and no parent parameter is provided, it will default to 
+    * If the object has no parent, and no parent parameter is provided, it will default to
     * Phaser.Game.World as the parent transform to use. If that is unavailable the transform fails to take place.
     *
     * The `parent` parameter has priority over the actual parent. Use it as a parent override.
     * Setting it does **not** change the actual parent of this DisplayObject.
     *
-    * Calling this method updates the `worldTransform`, `worldAlpha`, `worldPosition`, `worldScale` 
+    * Calling this method updates the `worldTransform`, `worldAlpha`, `worldPosition`, `worldScale`
     * and `worldRotation` properties.
     *
     * If a `transformCallback` has been specified, it is called at the end of this method, and is passed
@@ -14043,7 +14043,7 @@ PIXI.DisplayObject.prototype = {
             d  =  this._cr * this.scale.y;
             tx =  this.position.x;
             ty =  this.position.y;
-            
+
             // check for pivot.. not often used so geared towards that fact!
             if (this.pivot.x || this.pivot.y)
             {
@@ -14076,11 +14076,35 @@ PIXI.DisplayObject.prototype = {
             wt.ty = tx * pt.b + ty * pt.d + pt.ty;
         }
 
+        var determ = (a * d) - (b * c);
+        var TAU = Math.PI * 0.5;
+
+        if (a || b)
+        {
+            var r = Math.sqrt((a * a) + (b * b));
+
+            this.worldRotation = (b > 0) ? Math.acos(a / r) : -Math.acos(a / r);
+            this.worldScale.x = r;
+            this.worldScale.y = determ / r;
+        }
+        else if (c || d)
+        {
+            var s = Math.sqrt((c * c) + (d * d));
+
+            this.worldRotation = TAU - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
+            this.worldScale.x = determ / s;
+            this.worldScale.y = s;
+        }
+        else
+        {
+            this.worldScale.x = 0;
+            this.worldScale.y = 0;
+        }
+
         //  Set the World values
         this.worldAlpha = this.alpha * p.worldAlpha;
-        this.worldPosition.set(wt.tx, wt.ty);
-        this.worldScale.set(this.scale.x * Math.sqrt(wt.a * wt.a + wt.c * wt.c), this.scale.y * Math.sqrt(wt.b * wt.b + wt.d * wt.d));
-        this.worldRotation = Math.atan2(-wt.c, wt.d);
+        this.worldPosition.x = wt.tx;
+        this.worldPosition.y = wt.ty;
 
         // reset the bounds each time this is called!
         this._currentBounds = null;
@@ -14122,10 +14146,10 @@ PIXI.DisplayObject.prototype = {
         var bounds = this.getLocalBounds();
 
         var renderTexture = new Phaser.RenderTexture(this.game, bounds.width | 0, bounds.height | 0, renderer, scaleMode, resolution);
-        
+
         PIXI.DisplayObject._tempMatrix.tx = -bounds.x;
         PIXI.DisplayObject._tempMatrix.ty = -bounds.y;
-        
+
         renderTexture.render(this, PIXI.DisplayObject._tempMatrix);
 
         return renderTexture;
@@ -14372,7 +14396,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     * When applied it limits the visible area of this DisplayObject to the shape of the mask.
     * Under a Canvas renderer it uses shape clipping. Under a WebGL renderer it uses a Stencil Buffer.
     * To remove a mask, set this property to `null`.
-    * 
+    *
     * @name PIXI.DisplayObject#mask
     * @property {PIXI.Graphics} mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
     */
@@ -14406,12 +14430,12 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     * Sets the filters for this DisplayObject. This is a WebGL only feature, and is ignored by the Canvas
     * Renderer. A filter is a shader applied to this DisplayObject. You can modify the placement of the filter
     * using `DisplayObject.filterArea`.
-    * 
+    *
     * To remove filters, set this property to `null`.
     *
-    * Note: You cannot have a filter set, and a MULTIPLY Blend Mode active, at the same time. Setting a 
+    * Note: You cannot have a filter set, and a MULTIPLY Blend Mode active, at the same time. Setting a
     * filter will reset this DisplayObjects blend mode to NORMAL.
-    * 
+    *
     * @name PIXI.DisplayObject#filters
     * @property {Array} filters - An Array of Phaser.Filter objects, or objects that extend them.
     */
@@ -14458,15 +14482,15 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     /**
     * Sets if this DisplayObject should be cached as a bitmap.
     *
-    * When invoked it will take a snapshot of the DisplayObject, as it is at that moment, and store it 
+    * When invoked it will take a snapshot of the DisplayObject, as it is at that moment, and store it
     * in a RenderTexture. This is then used whenever this DisplayObject is rendered. It can provide a
     * performance benefit for complex, but static, DisplayObjects. I.e. those with lots of children.
     *
     * Cached Bitmaps do not track their parents. If you update a property of this DisplayObject, it will not
     * re-generate the cached bitmap automatically. To do that you need to call `DisplayObject.updateCache`.
-    * 
+    *
     * To remove a cached bitmap, set this property to `null`.
-    * 
+    *
     * @name PIXI.DisplayObject#cacheAsBitmap
     * @property {boolean} cacheAsBitmap - Cache this DisplayObject as a Bitmap. Set to `null` to remove an existing cached bitmap.
     */
@@ -21169,7 +21193,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant
     * @type {string}
     */
-    VERSION: '2.7.6',
+    VERSION: '2.7.7',
 
     /**
     * An array of Phaser game instances.
@@ -34971,7 +34995,6 @@ Phaser.Game.prototype = {
             this.sound.update();
             this.input.update();
             this.physics.update();
-            this.particles.update();
             this.plugins.update();
 
             this.stage.postUpdate();
@@ -75623,6 +75646,10 @@ Phaser.Loader.prototype = {
                 {
                     this.loadImageTag(file);
                 }
+                else
+                {
+                    this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
+                }
                 break;
 
             case 'binary':
@@ -76103,13 +76130,14 @@ Phaser.Loader.prototype = {
 
             case 'texture':
 
+                var extension = /\.([^.]+)$/.exec(file.url.split('?', 1)[0])[1].toLowerCase();
                 if (file.data !== null)
                 {
-                    this.cache.addCompressedTextureMetaData(file.key, file.url, file.url.split('.').pop().toLowerCase(), file.data);
+                    this.cache.addCompressedTextureMetaData(file.key, file.url, extension, file.data);
                 }
                 else
                 {
-                    this.cache.addCompressedTextureMetaData(file.key, file.url, file.url.split('.').pop().toLowerCase(), xhr.response);
+                    this.cache.addCompressedTextureMetaData(file.key, file.url, extension, xhr.response);
                 }
                 break;
 
@@ -76538,17 +76566,19 @@ Phaser.LoaderParser = {
 
     /**
     * Alias for xmlBitmapFont, for backwards compatibility.
-    * 
+    *
     * @method Phaser.LoaderParser.bitmapFont
     * @param {object} xml - XML data you want to parse.
     * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
+    * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
+    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
-    bitmapFont: function (xml, baseTexture, xSpacing, ySpacing) {
+    bitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution) {
 
-        return this.xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
+        return this.xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing, frame, resolution);
 
     },
 
@@ -76561,10 +76591,15 @@ Phaser.LoaderParser = {
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
-    * @param {number} [resolution] - Optional game resolution to apply to the kerning data.
+    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
     xmlBitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution) {
+
+        if (resolution == null)
+        {
+            resolution = 1;
+        }
 
         var data = {};
         var info = xml.getElementsByTagName('info')[0];
@@ -76620,10 +76655,15 @@ Phaser.LoaderParser = {
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
-    * @param {number} [resolution] - Optional game resolution to apply to the kerning data.
+    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
     jsonBitmapFont: function (json, baseTexture, xSpacing, ySpacing, frame, resolution) {
+
+        if (resolution == null)
+        {
+            resolution = 1;
+        }
 
         var data = {
             font: json.font.info._face,
@@ -76944,8 +76984,8 @@ Phaser.LoaderParser = {
             [
                 // ETC1
                 0x8D64,
-                // PVRTC 
-                0x8C00, 0x8C01, 0x8C02, 0x8C03, 
+                // PVRTC
+                0x8C00, 0x8C01, 0x8C02, 0x8C03,
                 // DXTC | S3TC
                 0x83F0, 0x83F1, 0x83F2, 0x83F3
             ].indexOf(glInternalFormat) >= 0) {
@@ -78386,8 +78426,8 @@ Object.defineProperty(Phaser.Sound.prototype, "volume", {
 
     set: function (value) {
 
-        //  Causes an Index size error in Firefox if you don't clamp the value
-        if (this.game.device.firefox && this.usingAudioTag)
+        //  Causes an Index size error if you don't clamp the value
+        if (this.usingAudioTag)
         {
             value = this.game.math.clamp(value, 0, 1);
         }
@@ -88757,7 +88797,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     * If you need to disable just collision and/or overlap checks, but retain motion, set `checkCollision.none = true`.
     * @property {object} checkCollision - An object containing allowed collision (none, up, down, left, right).
     */
-    this.checkCollision = { none: false, any: true, up: true, down: true, left: true, right: true };
+    this.checkCollision = { none: false, up: true, down: true, left: true, right: true };
 
     /**
     * This object is populated with boolean values when the Body collides with another.
@@ -100820,9 +100860,13 @@ Phaser.Particles.prototype = {
     },
 
     /**
-    * Called by the core game loop. Updates all Emitters who have their exists value set to true.
+    * Updates all Emitters who have their exists value set to true.
+    *
+    * Phaser no longer uses this method; Emitters receive updates via {@link Phaser.Stage#update} instead.
+    *
     * @method Phaser.Particles#update
     * @protected
+    * @deprecated
     */
     update: function () {
         for (var key in this.emitters)
@@ -101239,16 +101283,7 @@ Phaser.Particles.Arcade.Emitter.prototype.makeParticles = function (keys, frames
 
         this.game.physics.arcade.enable(particle, false);
 
-        if (collide)
-        {
-            particle.body.checkCollision.any = true;
-            particle.body.checkCollision.none = false;
-        }
-        else
-        {
-            particle.body.checkCollision.none = true;
-        }
-
+        particle.body.checkCollision.none = !collide;
         particle.body.collideWorldBounds = collideWorldBounds;
         particle.body.skipQuadTree = true;
 

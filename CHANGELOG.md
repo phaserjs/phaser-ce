@@ -2,7 +2,24 @@
 
 ## Unreleased
 
-See [README.md#change-log](README.md#change-log).
+See [README: Change Log](README.md#change-log).
+
+## Version 2.7.7 - 20th April 2017
+
+### Bug Fixes
+
+* Fixed failure to load compressed textures when using URLs with query strings (#166)
+* Fixed some TypeScript definitions (#168)
+* Fixed missing default values for `resolution` in Phaser.LoaderParser BitmapFont methods (#168).
+* Fixed particle [autoAlpha](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#autoAlpha) and [autoScale](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#autoScale) tweens running at double speed (#160).
+* Fixed loading of compressed textures (#17, #162)
+* Removed `any` key in [Phaser.Physics.Arcade.Body#checkCollision](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#checkCollision). It was never used, so setting it had no effect (#161). Use `!checkCollision.none` instead.
+* Fixed [Phaser.Sound](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html) exception when using IE with AudioTag and high volume values (#157). Now volume is clamped between 0 and 1 in every browser when using AudioTags.
+* Fixed incorrect [worldScale](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#worldScale) calculation (#15)
+
+### Thanks
+
+@fridrisnew, @goldfire, @hdodov, @Peter42, @photonstorm, @samme, @SBCGames, @vpmedia
 
 ## Version 2.7.6 - 13th April 2017
 
