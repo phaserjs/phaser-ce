@@ -266,6 +266,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed issue with missing `var` keywords leading to runtime exceptions in `src/pixi/renderers/webgl/WebGLRenderer.js`
+
 ## Version 2.7.7 - 20th April 2017
 
 ### Bug Fixes
