@@ -1511,12 +1511,12 @@ DisplayObject is added to, or removed from, a DisplayObjectContainer.
 */
 /**
 * @description The multiplied alpha value of this DisplayObject. A value of 1 is fully opaque. A value of 0 is transparent.
-This value is the calculated total, based on the alpha values of all parents of this DisplayObjects 
+This value is the calculated total, based on the alpha values of all parents of this DisplayObjects
 in the display list.
 
 To obtain, and set, the local alpha value, see the `alpha` property.
 
-Note: This property is only updated at the end of the `updateTransform` call, once per render. Until 
+Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
 that happens this property will contain values based on the previous frame. Be mindful of this if
 accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
 * @member PIXI.DisplayObject#worldAlpha
@@ -1528,10 +1528,10 @@ accessing this property outside of the normal game flow, i.e. from an asynchrono
 /**
 * @description The current transform of this DisplayObject.
 
-This property contains the calculated total, based on the transforms of all parents of this 
+This property contains the calculated total, based on the transforms of all parents of this
 DisplayObject in the display list.
 
-Note: This property is only updated at the end of the `updateTransform` call, once per render. Until 
+Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
 that happens this property will contain values based on the previous frame. Be mindful of this if
 accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
 * @member PIXI.DisplayObject#worldTransform
@@ -1543,10 +1543,10 @@ accessing this property outside of the normal game flow, i.e. from an asynchrono
 /**
 * @description The coordinates, in pixels, of this DisplayObject within the world.
 
-This property contains the calculated total, based on the positions of all parents of this 
+This property contains the calculated total, based on the positions of all parents of this
 DisplayObject in the display list.
 
-Note: This property is only updated at the end of the `updateTransform` call, once per render. Until 
+Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
 that happens this property will contain values based on the previous frame. Be mindful of this if
 accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
 * @member PIXI.DisplayObject#worldPosition
@@ -1558,10 +1558,10 @@ accessing this property outside of the normal game flow, i.e. from an asynchrono
 /**
 * @description The global scale of this DisplayObject.
 
-This property contains the calculated total, based on the scales of all parents of this 
+This property contains the calculated total, based on the scales of all parents of this
 DisplayObject in the display list.
 
-Note: This property is only updated at the end of the `updateTransform` call, once per render. Until 
+Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
 that happens this property will contain values based on the previous frame. Be mindful of this if
 accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
 * @member PIXI.DisplayObject#worldScale
@@ -1573,10 +1573,10 @@ accessing this property outside of the normal game flow, i.e. from an asynchrono
 /**
 * @description The rotation, in radians, of this DisplayObject.
 
-This property contains the calculated total, based on the rotations of all parents of this 
+This property contains the calculated total, based on the rotations of all parents of this
 DisplayObject in the display list.
 
-Note: This property is only updated at the end of the `updateTransform` call, once per render. Until 
+Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
 that happens this property will contain values based on the previous frame. Be mindful of this if
 accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
 * @member PIXI.DisplayObject#worldRotation
@@ -1656,7 +1656,7 @@ Also iteratively calls `destroy` on any children.
 * @description To be overridden by classes that require it.
 * @method PIXI.DisplayObject#PIXI.DisplayObject#preUpdate
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 403
+* @sourceline 427
 */
 /**
 * @description Generates a RenderTexture based on this DisplayObject, which can they be used to texture other Sprites.
@@ -1670,14 +1670,14 @@ and references to them, so they don't linger in memory.
 * @param {(PIXICanvasRenderer|PIXIWebGLRenderer)} renderer - - The renderer used to generate the texture.
 * @return {PhaserRenderTexture} - A RenderTexture containing an image of this DisplayObject at the time it was invoked.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 412
+* @sourceline 436
 */
 /**
 * @description If this DisplayObject has a cached Sprite, this method generates and updates it.
 * @method PIXI.DisplayObject#PIXI.DisplayObject#updateCache
 * @return {PIXIDisplayObject} - A reference to this DisplayObject.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 440
+* @sourceline 464
 */
 /**
 * @description Calculates the global position of this DisplayObject, based on the position given.
@@ -1685,7 +1685,7 @@ and references to them, so they don't linger in memory.
 * @param {PIXIPoint} position - - The global position to calculate from.
 * @return {PIXIPoint} - A point object representing the position of this DisplayObject based on the global position given.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 454
+* @sourceline 478
 */
 /**
 * @description Calculates the local position of this DisplayObject, relative to another point.
@@ -1694,7 +1694,7 @@ and references to them, so they don't linger in memory.
 * @param {PIXIDisplayObject} [from] - - An optional DisplayObject to calculate the global position from.
 * @return {PIXIPoint} - A point object representing the position of this DisplayObject based on the global position given.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 469
+* @sourceline 493
 */
 /**
 * @description Internal method.
@@ -1702,21 +1702,21 @@ and references to them, so they don't linger in memory.
 * @param {Object} renderSession - - The render session
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 490
+* @sourceline 514
 */
 /**
 * @description Internal method.
 * @method PIXI.DisplayObject#PIXI.DisplayObject#_generateCachedSprite
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 512
+* @sourceline 536
 */
 /**
 * @description Destroys a cached Sprite.
 * @method PIXI.DisplayObject#PIXI.DisplayObject#_destroyCachedSprite
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 562
+* @sourceline 586
 */
 /**
 * @description The horizontal position of the DisplayObject, in pixels, relative to its parent.
@@ -1724,7 +1724,7 @@ If you need the world position of the DisplayObject, use `DisplayObject.worldPos
 * @member PIXI.DisplayObject#x - The horizontal position of the DisplayObject, in pixels, relative to its parent.
 * @type {Number}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 588
+* @sourceline 612
 */
 /**
 * @description The vertical position of the DisplayObject, in pixels, relative to its parent.
@@ -1732,14 +1732,14 @@ If you need the world position of the DisplayObject, use `DisplayObject.worldPos
 * @member PIXI.DisplayObject#y - The vertical position of the DisplayObject, in pixels, relative to its parent.
 * @type {Number}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 610
+* @sourceline 634
 */
 /**
 * @description Indicates if this DisplayObject is visible, based on it, and all of its parents, `visible` property values.
 * @member PIXI.DisplayObject#worldVisible - Indicates if this DisplayObject is visible, based on it, and all of its parents, `visible` property values.
 * @type {Boolean}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 632
+* @sourceline 656
 */
 /**
 * @description Sets a mask for this DisplayObject. A mask is an instance of a Graphics object.
@@ -1749,7 +1749,7 @@ To remove a mask, set this property to `null`.
 * @member PIXI.DisplayObject#mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
 * @type {PIXIGraphics}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 675
+* @sourceline 699
 */
 /**
 * @description Sets the filters for this DisplayObject. This is a WebGL only feature, and is ignored by the Canvas
@@ -1758,17 +1758,17 @@ using `DisplayObject.filterArea`.
 
 To remove filters, set this property to `null`.
 
-Note: You cannot have a filter set, and a MULTIPLY Blend Mode active, at the same time. Setting a 
+Note: You cannot have a filter set, and a MULTIPLY Blend Mode active, at the same time. Setting a
 filter will reset this DisplayObjects blend mode to NORMAL.
 * @member PIXI.DisplayObject#filters - An Array of Phaser.Filter objects, or objects that extend them.
 * @type {Array}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 710
+* @sourceline 734
 */
 /**
 * @description Sets if this DisplayObject should be cached as a bitmap.
 
-When invoked it will take a snapshot of the DisplayObject, as it is at that moment, and store it 
+When invoked it will take a snapshot of the DisplayObject, as it is at that moment, and store it
 in a RenderTexture. This is then used whenever this DisplayObject is rendered. It can provide a
 performance benefit for complex, but static, DisplayObjects. I.e. those with lots of children.
 
@@ -1779,7 +1779,7 @@ To remove a cached bitmap, set this property to `null`.
 * @member PIXI.DisplayObject#cacheAsBitmap - Cache this DisplayObject as a Bitmap. Set to `null` to remove an existing cached bitmap.
 * @type {Boolean}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 763
+* @sourceline 787
 */
 /**
 * @fileoverview
@@ -4189,7 +4189,7 @@ Contains assorted static properties and enumerations.
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Thu Apr 13 2017 12:05:07 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Wed Apr 19 2017 21:51:46 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>
