@@ -215,8 +215,9 @@ Phaser.Loader = function (game) {
     *
     * Many current browsers limit 6 requests per domain; this is slightly conservative.
     *
+    * This should generally be left at the default, but can be set to a higher limit for specific use-cases. Just be careful when setting large values as different browsers could behave differently.
+    *
     * @property {integer} maxParallelDownloads
-    * @protected
     */
     this.maxParallelDownloads = 4;
 
@@ -1934,7 +1935,7 @@ Phaser.Loader.prototype = {
         // When true further non-pack file downloads are suppressed
         var syncblock = false;
 
-        var inflightLimit = this.enableParallel ? Phaser.Math.clamp(this.maxParallelDownloads, 1, 12) : 1;
+        var inflightLimit = this.enableParallel ? Math.max(1, this.maxParallelDownloads) : 1;
 
         for (var i = this._processingHead; i < this._fileList.length; i++)
         {
