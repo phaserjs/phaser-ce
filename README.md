@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.7.6](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.6).
+The [current Phaser CE release is 2.7.7](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.7).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -39,7 +39,7 @@ Grab the source and join in the fun!
 
 ### 23rd March 2017
 
-[Phaser CE](ttps://github.com/photonstorm/phaser-ce) is the Community Edition of [Phaser](https://github.com/photonstorm/phaser). In short, it's a version of Phaser that you, the community, have direct control over.
+[Phaser CE](https://github.com/photonstorm/phaser-ce) is the Community Edition of [Phaser](https://github.com/photonstorm/phaser). In short, it's a version of Phaser that you, the community, have direct control over.
 
 It was started with the 2.7.0 release and since then the community has worked to continue updating it, fixing bugs and adding new features.
 
@@ -122,11 +122,11 @@ Using Browserify? Please [read this](#browserify).
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.6/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.js"></script>
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.6/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.min.js"></script>
 
 ### Web Templates
 
@@ -258,7 +258,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
-## Version 2.7.7 - Unreleased
+## Version 2.7.8 - Unreleased
 
 ### New Features
 
@@ -267,51 +267,23 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### Bug Fixes
 
 * Fixed issue with missing `var` keywords leading to runtime exceptions in `src/pixi/renderers/webgl/WebGLRenderer.js`
-* Fixed failure to load compressed textures using URLs with query strings (#166)
-* TypeScript definitions fixes (#168)
+
+## Version 2.7.7 - 20th April 2017
+
+### Bug Fixes
+
+* Fixed failure to load compressed textures when using URLs with query strings (#166)
+* Fixed some TypeScript definitions (#168)
 * Fixed missing default values for `resolution` in Phaser.LoaderParser BitmapFont methods (#168).
 * Fixed particle [autoAlpha](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#autoAlpha) and [autoScale](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#autoScale) tweens running at double speed (#160).
 * Fixed loading of compressed textures (#17, #162)
 * Removed `any` key in [Phaser.Physics.Arcade.Body#checkCollision](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#checkCollision). It was never used, so setting it had no effect (#161). Use `!checkCollision.none` instead.
-* Fixed Phaser.Sound exception when using IE with AudioTag and high volume values (#157), from now on volume clamping happens in every AudioTag supported browser.
+* Fixed [Phaser.Sound](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html) exception when using IE with AudioTag and high volume values (#157). Now volume is clamped between 0 and 1 in every browser when using AudioTags.
 * Fixed incorrect [worldScale](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#worldScale) calculation (#15)
-
-## Version 2.7.6 - 13th April 2017
-
-### New Features
-
-* New method [Phaser.Loader#imageFromBitmapData](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#imageFromBitmapData) lets you preload an image extracted from a BitmapData canvas.
-* [BitmapData#generateTexture](https://photonstorm.github.io/phaser-ce/Phaser.BitmapData.html#generateTexture) now has an optional callback argument. Most browsers now load the generated image asynchronously, so without a callback you're not guaranteed a valid texture (#136).
-* [Phaser.GameObjectFactory#weapon](https://photonstorm.github.io/phaser-ce/Phaser.GameObjectFactory.html#weapon) (used as `game.add.weapon`) now has a `bulletClass` argument. Without this it was difficult to set `bulletClass` before creating the bullet pool.
-
-### Updates
-
-* [Phaser.Cache#addImage](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#addImage) now emits a warning if you add an image that hasn't completed loading.
-* [Phaser.Frame](https://photonstorm.github.io/phaser-ce/Phaser.Frame.html) now emits a warning if a Frame is constructed with a zero width or height.
-* [Phaser.Physics.Arcade#velocityFromAngle](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#velocityFromAngle) now uses [Phaser.Math](https://photonstorm.github.io/phaser-ce/Phaser.Math.html) instead of `game.math`, so you can use it without a reference to a running game (#131).
-* Clarified [Emitter#start](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#start) documentation. It's really easier to use [Emitter#explode](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#explode) or [Emitter#flow](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#flow).
-* The game canvas's [cursor style](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) is now `pointer` when the cursor is over an object with `input.useHandCursor` enabled and empty at all other times. This should make it easier to set your own cursor style for the game (#110).
-* TypeScript definitions fixes and updates (#75, #101, #107)
-* Docs typo fixes (#101)
-* Added [photonstorm/phaser-plugins](https://github.com/photonstorm/phaser-plugins) to the Phaser CE docs: see [Phaser.Plugin](https://photonstorm.github.io/phaser-ce/Phaser.Plugin.html) (#107)
-* BitmapData and RenderTexture objects are now destroyed when clearing the cache (#68). This should reduce memory use.
-
-### Bug Fixes
-
-* Fixed an issue where a display object's preUpdate call would be skipped if a sibling was removed or destroyed, which could create small discrepancies in position, lifespan, or renderOrderID (#103).
-* Fixed an issue where display objects using the default texture could have an incorrect size (1×1) and appear blank (#138). The built-in DEFAULT and MISSING textures are now loaded asynchronously to ensure that they're valid.
-* Fixed an issue where [game.device.canUseMultiply](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#canUseMultiply) could hold a false negative on first (Firefox, Safari) or even subsequent (Chrome 57) page loads, disabling most blend modes when using the Canvas renderer (#130).
-* [Phaser.Keyboard#lastChar](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#lastChar) is now `null` if Phaser has recorded no key presses yet. Reading it before a key press no longer raises an error (#132).
-* Previously, the `center` of a moving Arcade Physics Body was inaccurate during the game's update phase, and that made collision checks of circular Bodies less accurate (#122). This was fixed by updating `center` during preUpdate.
-* Fixed an issue when dragging a sprite whose parent is scaled or rotated (#108). Now the sprite follows the cursor correctly.
-* Fixed audio skipping when restarting playback (#78)
-* Fixed bad rendering of multiple tinted BitmapText objects (#58)
-* Fixed Object.assign not existing on older devices (#81)
-* Previously, the HEADLESS renderer essentially became a CANVAS renderer after boot, which was incorrect (#74). Phaser.HEADLESS now sets up a PIXI.CanvasRenderer and a detached (invisible) canvas. It skips `render` hooks but not the `preRender` and `postRender` hooks (strange). [game.renderType](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#renderType) now contains either Phaser.CANVAS, Phaser.HEADLESS, or Phaser.WEBGL after boot.
 
 ### Thanks
 
-@alexus85, @Arcanorum, @digitsensitive, @Dreaded-Gnu, @hdodov, @IVA-apps, @JTronLabs, @Lightning3105, @mikewesthad, @nalgorry, @photonstorm, @qarlosh, @samme, @trpzn, @vpmedia
+@fridrisnew, @goldfire, @hdodov, @Peter42, @photonstorm, @samme, @SBCGames, @vpmedia
 
 For changes in previous releases please see the extensive [Version History](CHANGELOG.md).
 
@@ -345,10 +317,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.6/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.6/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.6.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.6.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.7/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.7/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.7.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.7.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser

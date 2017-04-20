@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.6 "2017-04-13" - Built: Thu Apr 13 2017 12:04:44
+* v2.7.7 "2017-04-20" - Built: Wed Apr 19 2017 21:51:23
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -53,7 +53,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant
     * @type {string}
     */
-    VERSION: '2.7.6',
+    VERSION: '2.7.7',
 
     /**
     * An array of Phaser game instances.
@@ -13855,7 +13855,6 @@ Phaser.Game.prototype = {
             this.sound.update();
             this.input.update();
             this.physics.update();
-            this.particles.update();
             this.plugins.update();
 
             this.stage.postUpdate();
@@ -54507,6 +54506,10 @@ Phaser.Loader.prototype = {
                 {
                     this.loadImageTag(file);
                 }
+                else
+                {
+                    this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
+                }
                 break;
 
             case 'binary':
@@ -54987,13 +54990,14 @@ Phaser.Loader.prototype = {
 
             case 'texture':
 
+                var extension = /\.([^.]+)$/.exec(file.url.split('?', 1)[0])[1].toLowerCase();
                 if (file.data !== null)
                 {
-                    this.cache.addCompressedTextureMetaData(file.key, file.url, file.url.split('.').pop().toLowerCase(), file.data);
+                    this.cache.addCompressedTextureMetaData(file.key, file.url, extension, file.data);
                 }
                 else
                 {
-                    this.cache.addCompressedTextureMetaData(file.key, file.url, file.url.split('.').pop().toLowerCase(), xhr.response);
+                    this.cache.addCompressedTextureMetaData(file.key, file.url, extension, xhr.response);
                 }
                 break;
 
@@ -55422,17 +55426,19 @@ Phaser.LoaderParser = {
 
     /**
     * Alias for xmlBitmapFont, for backwards compatibility.
-    * 
+    *
     * @method Phaser.LoaderParser.bitmapFont
     * @param {object} xml - XML data you want to parse.
     * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
+    * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
+    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
-    bitmapFont: function (xml, baseTexture, xSpacing, ySpacing) {
+    bitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution) {
 
-        return this.xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
+        return this.xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing, frame, resolution);
 
     },
 
@@ -55445,10 +55451,15 @@ Phaser.LoaderParser = {
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
-    * @param {number} [resolution] - Optional game resolution to apply to the kerning data.
+    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
     xmlBitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution) {
+
+        if (resolution == null)
+        {
+            resolution = 1;
+        }
 
         var data = {};
         var info = xml.getElementsByTagName('info')[0];
@@ -55504,10 +55515,15 @@ Phaser.LoaderParser = {
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
-    * @param {number} [resolution] - Optional game resolution to apply to the kerning data.
+    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
     jsonBitmapFont: function (json, baseTexture, xSpacing, ySpacing, frame, resolution) {
+
+        if (resolution == null)
+        {
+            resolution = 1;
+        }
 
         var data = {
             font: json.font.info._face,
@@ -55828,8 +55844,8 @@ Phaser.LoaderParser = {
             [
                 // ETC1
                 0x8D64,
-                // PVRTC 
-                0x8C00, 0x8C01, 0x8C02, 0x8C03, 
+                // PVRTC
+                0x8C00, 0x8C01, 0x8C02, 0x8C03,
                 // DXTC | S3TC
                 0x83F0, 0x83F1, 0x83F2, 0x83F3
             ].indexOf(glInternalFormat) >= 0) {
@@ -57270,8 +57286,8 @@ Object.defineProperty(Phaser.Sound.prototype, "volume", {
 
     set: function (value) {
 
-        //  Causes an Index size error in Firefox if you don't clamp the value
-        if (this.game.device.firefox && this.usingAudioTag)
+        //  Causes an Index size error if you don't clamp the value
+        if (this.usingAudioTag)
         {
             value = this.game.math.clamp(value, 0, 1);
         }
@@ -67641,7 +67657,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     * If you need to disable just collision and/or overlap checks, but retain motion, set `checkCollision.none = true`.
     * @property {object} checkCollision - An object containing allowed collision (none, up, down, left, right).
     */
-    this.checkCollision = { none: false, any: true, up: true, down: true, left: true, right: true };
+    this.checkCollision = { none: false, up: true, down: true, left: true, right: true };
 
     /**
     * This object is populated with boolean values when the Body collides with another.
@@ -79704,9 +79720,13 @@ Phaser.Particles.prototype = {
     },
 
     /**
-    * Called by the core game loop. Updates all Emitters who have their exists value set to true.
+    * Updates all Emitters who have their exists value set to true.
+    *
+    * Phaser no longer uses this method; Emitters receive updates via {@link Phaser.Stage#update} instead.
+    *
     * @method Phaser.Particles#update
     * @protected
+    * @deprecated
     */
     update: function () {
         for (var key in this.emitters)
@@ -80123,16 +80143,7 @@ Phaser.Particles.Arcade.Emitter.prototype.makeParticles = function (keys, frames
 
         this.game.physics.arcade.enable(particle, false);
 
-        if (collide)
-        {
-            particle.body.checkCollision.any = true;
-            particle.body.checkCollision.none = false;
-        }
-        else
-        {
-            particle.body.checkCollision.none = true;
-        }
-
+        particle.body.checkCollision.none = !collide;
         particle.body.collideWorldBounds = collideWorldBounds;
         particle.body.skipQuadTree = true;
 
