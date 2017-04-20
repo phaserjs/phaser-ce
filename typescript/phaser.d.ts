@@ -2534,9 +2534,9 @@ declare module Phaser {
 
     class LoaderParser {
 
-        static bitmapFont(xml: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number): any;
-        static xmlBitmapFont(xml: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame): any;
-        static jsonBitmapFont(json: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame): any;
+        static bitmapFont(xml: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
+        static xmlBitmapFont(xml: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
+        static jsonBitmapFont(json: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
 
     }
 
@@ -5429,7 +5429,7 @@ declare module Phaser {
         touchStartCallback: Function;
         touchLockCallbacks: Function[];
 
-        addTouchLockCallback(callback: Function, context?: any, onEnd?: Function): void;
+        addTouchLockCallback(callback: Function, context?: any, onEnd?: boolean): void;
         removeTouchLockCallback(callback: Function, context?: any): boolean;
         consumeTouchMove(): void;
         onTouchCancel(event: any): void;
