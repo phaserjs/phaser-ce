@@ -266,6 +266,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed issue with missing `var` keywords leading to runtime exceptions in `src/pixi/renderers/webgl/WebGLRenderer.js`
 * Fixed failure to load compressed textures using URLs with query strings (#166)
 * TypeScript definitions fixes (#168)
 * Fixed missing default values for `resolution` in Phaser.LoaderParser BitmapFont methods (#168).
