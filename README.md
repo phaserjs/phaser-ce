@@ -39,7 +39,7 @@ Grab the source and join in the fun!
 
 ### 23rd March 2017
 
-[Phaser CE](ttps://github.com/photonstorm/phaser-ce) is the Community Edition of [Phaser](https://github.com/photonstorm/phaser). In short, it's a version of Phaser that you, the community, have direct control over.
+[Phaser CE](https://github.com/photonstorm/phaser-ce) is the Community Edition of [Phaser](https://github.com/photonstorm/phaser). In short, it's a version of Phaser that you, the community, have direct control over.
 
 It was started with the 2.7.0 release and since then the community has worked to continue updating it, fixing bugs and adding new features.
 
