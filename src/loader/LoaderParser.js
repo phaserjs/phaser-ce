@@ -13,17 +13,19 @@ Phaser.LoaderParser = {
 
     /**
     * Alias for xmlBitmapFont, for backwards compatibility.
-    * 
+    *
     * @method Phaser.LoaderParser.bitmapFont
     * @param {object} xml - XML data you want to parse.
     * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
+    * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
+    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
-    bitmapFont: function (xml, baseTexture, xSpacing, ySpacing) {
+    bitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution) {
 
-        return this.xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
+        return this.xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing, frame, resolution);
 
     },
 
@@ -36,10 +38,15 @@ Phaser.LoaderParser = {
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
-    * @param {number} [resolution] - Optional game resolution to apply to the kerning data.
+    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
     xmlBitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution) {
+
+        if (resolution == null)
+        {
+            resolution = 1;
+        }
 
         var data = {};
         var info = xml.getElementsByTagName('info')[0];
@@ -95,10 +102,15 @@ Phaser.LoaderParser = {
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
-    * @param {number} [resolution] - Optional game resolution to apply to the kerning data.
+    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
     jsonBitmapFont: function (json, baseTexture, xSpacing, ySpacing, frame, resolution) {
+
+        if (resolution == null)
+        {
+            resolution = 1;
+        }
 
         var data = {
             font: json.font.info._face,
@@ -419,8 +431,8 @@ Phaser.LoaderParser = {
             [
                 // ETC1
                 0x8D64,
-                // PVRTC 
-                0x8C00, 0x8C01, 0x8C02, 0x8C03, 
+                // PVRTC
+                0x8C00, 0x8C01, 0x8C02, 0x8C03,
                 // DXTC | S3TC
                 0x83F0, 0x83F1, 0x83F2, 0x83F3
             ].indexOf(glInternalFormat) >= 0) {
