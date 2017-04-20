@@ -258,6 +258,12 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
+## Version 2.7.8 - Unreleased
+
+### Updates
+
+* Allow setting maxParallelDownloads to higher values (#170)
+
 ## Version 2.7.7 - 20th April 2017
 
 ### Bug Fixes
