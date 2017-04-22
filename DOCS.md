@@ -1,10 +1,20 @@
 
-## API
+# Phaser CE (Community Edition)
+
+Phaser is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development.
+
+[Phaser CE](https://github.com/photonstorm/phaser-ce) is the Community Edition of [Phaser](https://github.com/photonstorm/phaser). It was started with the 2.7.0 release and since then the community has worked to continue updating it, fixing bugs and adding new features.
+
+The [current Phaser CE release is 2.7.7](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.7).
+
+<div class="alert alert-info">See [README](https://github.com/photonstorm/phaser-ce/blob/master/README.md) for a guide to getting started with Phaser CE.</div>
+
+# API
 
 **Via:** If a class has an entry in the _Via_ column it means you can quickly access it through a local reference: e.g., you can control the camera via `this.camera` from any state, or `game.camera` if game has been globally defined.
 
 | Class | Via | Description |
-| --- | --- | --- |
+| ----- | --- | ----------- |
 | [Game](./Phaser.Game.html) | `game` | Manages booting, creating subsystems and running the logic and render loop. |
 | [World](./Phaser.World.html) | `world` | The Game World in which all Game Objects live. |
 | [Camera](./Phaser.Camera.html) | `camera` | The Camera is your view into the Game World. |
@@ -44,7 +54,7 @@
 ### Signals
 
 | Class | Description |
-| --- | --- |
+| ----- | ----------- |
 | [Signal](./Phaser.Signal.html) | Signals are Phasers internal Event system. |
 | [SignalBinding](./Phaser.SignalBinding.html) | Manages which callbacks are bound to a Signal. |
 
@@ -66,8 +76,8 @@
 | [GameObjectFactory](./Phaser.GameObjectFactory.html) | `add` | A helper class that can create any of the Phaser Game Objects and adds them to the Game World. |
 | [GameObjectCreator](./Phaser.GameObjectCreator.html) | `make` | A helper class that can creates and returns any Phaser Game Object. |
 | [Group](./Phaser.Group.html) | `add.group` | Groups can contain multiple Game Objects and have the ability to search, sort, call, update and filter them. |
-| [InputHandler](./Phaser.InputHandler.html) | `_object_.input` | If a Game Object is enabled for input this class controls all input related events, including clicks and drag. |
-| [Events](./Phaser.Events.html) | `_object_.events` | All of the Game Object level events. |
+| [InputHandler](./Phaser.InputHandler.html) | `<object>.input` | If a Game Object is enabled for input this class controls all input related events, including clicks and drag. |
+| [Events](./Phaser.Events.html) | `<object>.events` | All of the Game Object level events. |
 | [Create](./Phaser.Create.html) | `create` | Dynamic Sprite and Texture generation methods. |
 
 <a name="display"></a>
@@ -109,7 +119,7 @@
 
 | Class | Via | Description |
 | --- | --- | --- |
-| [AnimationManager](./Phaser.AnimationManager.html) | `_sprite_.animations` | Adds, plays and updates animations on Sprite Game Objects. |
+| [AnimationManager](./Phaser.AnimationManager.html) | `sprite.animations` | Adds, plays and updates animations on Sprite Game Objects. |
 | [Animation](./Phaser.Animation.html) | - | The base Animation object that the Animation Manager creates. |
 | [AnimationParser](./Phaser.AnimationParser.html) | - | Used internally by the Phaser Loader to parse animation data from external files. |
 | [FrameData](./Phaser.FrameData.html) | - | A collection of Frame objects that comprise an animation. |
@@ -194,7 +204,7 @@
 | Class | Via | Description |
 | --- | --- | --- |
 | [Arcade](./Phaser.Physics.Arcade.html) | `physics.arcade` | The Arcade Physics handler. Contains collision, overlap and movement related methods. |
-| [Body](./Phaser.Physics.Arcade.Body.html) | `_sprite_.body` | An Arcade Physics Body. Contains velocity, acceleration, drag and other related properties. |
+| [Body](./Phaser.Physics.Arcade.Body.html) | `sprite.body` | An Arcade Physics Body. Contains velocity, acceleration, drag and other related properties. |
 | [Weapon](./Phaser.Weapon.html) | `game.add.weapon` | An Arcade Physics powered Weapon plugin, for easy bullet pool management. |
 
 <a name="ninjaphysics"></a>
@@ -238,7 +248,7 @@ Ninja Physics is not bundled in Phaser by default. Please see the README custom 
 | --- | --- | --- |
 | [Input](./Phaser.Input.html) | `input` | The Input Manager. Responsible for handling all Input sub-systems. Also looks after Input enabled Game Objects. |
 | [Pointer](./Phaser.Pointer.html) | `input.pointer` | Pointers encapsulate all mouse or touch related input, regardless of how it was generated. On multi-touch systems more than one Pointer can be active at any one time. In Input related events a reference to the corresponding Pointer is passed. |
-| [DeviceButton](./Phaser.DeviceButton.html) | `pointer.leftButton` | Represents a button on a mouse or pen / stylus. |
+| [DeviceButton](./Phaser.DeviceButton.html) | `pointer.leftButton`, … | Represents a button on a mouse or pen/stylus. |
 | [Keyboard](./Phaser.Keyboard.html) | `input.keyboard` | The Keyboard input handler. Listens for device related events. Can also create Key objects. |
 | [Key](./Phaser.Key.html) | - | A Key object is responsible for listening to a specific Key. Created by the Keyboard class. |
 | [KeyCode](./Phaser.KeyCode.html) | - | The KeyCode consts are used when creating new Key objects. |
