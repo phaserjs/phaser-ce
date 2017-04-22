@@ -64,7 +64,8 @@
         "private": false,
         "lenient": true,
         "destination": "./docs",
-        "template": "./resources/docstrap-master/template"
+        "template": "./resources/docstrap-master/template",
+        "readme": "./DOCS.md"
 
     }
 }
