@@ -1727,7 +1727,7 @@ https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/graphics/g
 * @param {WebGLContext} gl - the current WebGL drawing context
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 93
+* @sourceline 99
 */
 /**
 * @method PIXI.WebGLGraphics.switchMode
@@ -1735,7 +1735,7 @@ https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/graphics/g
 * @param {Number} type - 
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 218
+* @sourceline 224
 */
 /**
 * @description Builds a rectangle to draw
@@ -1744,7 +1744,7 @@ https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/graphics/g
 * @param {Object} webGLData - 
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 252
+* @sourceline 258
 */
 /**
 * @description Builds a rounded rectangle to draw
@@ -1753,7 +1753,7 @@ https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/graphics/g
 * @param {Object} webGLData - 
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 320
+* @sourceline 326
 */
 /**
 * @description Calculate the points for a quadratic bezier curve. (helper function..)
@@ -1768,7 +1768,7 @@ Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier
 * @return {Array<Number>} 
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 390
+* @sourceline 396
 */
 /**
 * @description Builds a circle to draw
@@ -1777,7 +1777,7 @@ Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier
 * @param {Object} webGLData - 
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 442
+* @sourceline 448
 */
 /**
 * @description Builds a line to draw
@@ -1786,7 +1786,7 @@ Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier
 * @param {Object} webGLData - 
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 525
+* @sourceline 531
 */
 /**
 * @description Builds a complex polygon to draw
@@ -1795,7 +1795,7 @@ Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier
 * @param {Object} webGLData - 
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 737
+* @sourceline 743
 */
 /**
 * @description Builds a polygon to draw
@@ -1804,23 +1804,23 @@ Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier
 * @param {Object} webGLData - 
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 799
+* @sourceline 805
 */
 /**
 * @class PIXI.WebGLGraphicsData
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 854
+* @sourceline 860
 */
 /**
 * @method PIXI.WebGLGraphicsData#reset
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 874
+* @sourceline 880
 */
 /**
 * @method PIXI.WebGLGraphicsData#upload
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLGraphics.js
-* @sourceline 883
+* @sourceline 889
 */
 /**
 * @fileoverview
