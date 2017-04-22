@@ -195,9 +195,9 @@ See the [Creating a Custom Phaser Build](http://phaser.io/tutorials/creating-cus
 Phaser was never written to be modular. Everything exists under one single global namespace, and you cannot `require` selected parts of it into your builds. It expects 3 global vars to exist in order to work properly: `Phaser`, `PIXI` and `p2`. The following is one way of doing this:
 
 ```javascript
-window.PIXI   = require('phaser/build/custom/pixi');
-window.p2     = require('phaser/build/custom/p2');
-window.Phaser = require('phaser/build/custom/phaser-split');
+window.PIXI   = require('phaser-ce/build/custom/pixi');
+window.p2     = require('phaser-ce/build/custom/p2');
+window.Phaser = require('phaser-ce/build/custom/phaser-split');
 ```
 
 If you build a custom version of Phaser it will split the 3 core libs out into their own files, allowing you to require them as above.
@@ -264,9 +264,11 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Allow setting maxParallelDownloads to higher values (#170)
+
 ### Bug Fixes
 
-* Allow setting maxParallelDownloads to higher values (#170)
+* Fixed some Typescript definitions (#167)
 * Fixed issue with missing `var` keywords leading to runtime exceptions in `src/pixi/renderers/webgl/WebGLRenderer.js`
 * Fixed runtime exception in `src/pixi/renderers/webgl/utils/WebGLGraphics.js` when `renderGraphics` was called with a `graphics` without webGL context (#178)
 
