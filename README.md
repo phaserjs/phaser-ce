@@ -264,10 +264,11 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Allow setting maxParallelDownloads to higher values (#170)
+
 ### Bug Fixes
 
 * Fixed some Typescript definitions (#167)
-* Allow setting maxParallelDownloads to higher values (#170)
 * Fixed issue with missing `var` keywords leading to runtime exceptions in `src/pixi/renderers/webgl/WebGLRenderer.js`
 * Fixed runtime exception in `src/pixi/renderers/webgl/utils/WebGLGraphics.js` when `renderGraphics` was called with a `graphics` without webGL context (#178)
 
