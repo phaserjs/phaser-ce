@@ -260,6 +260,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ## Version 2.7.8 - Unreleased
 
+* Fixed some more Typescript definitions (#167)
+
 ### New Features
 
 ### Updates
@@ -274,7 +276,6 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
-* Fixed some more Typescript definitions (#167)
 * Fixed failure to load compressed textures when using URLs with query strings (#166)
 * Fixed some TypeScript definitions (#168)
 * Fixed missing default values for `resolution` in Phaser.LoaderParser BitmapFont methods (#168).
