@@ -206,7 +206,7 @@ We appreciate this is just a band-aid, and not a proper use of modules, but plea
 
 ### Webpack
 
-As with browserify, use the `pixi`, `p2`, and `phaser-split` modules in [build/custom](./build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
+As with browserify, use the `pixi`, `p2`, and `phaser-split` modules in [build/custom](https://github.com/photonstorm/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
 
 See [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
 
@@ -268,6 +268,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 * Allow setting maxParallelDownloads to higher values (#170)
 * Fixed issue with missing `var` keywords leading to runtime exceptions in `src/pixi/renderers/webgl/WebGLRenderer.js`
+* Fixed runtime exception in `src/pixi/renderers/webgl/utils/WebGLGraphics.js` when `renderGraphics` was called with a `graphics` without webGL context (#178)
 
 ## Version 2.7.7 - 20th April 2017
 
@@ -287,7 +288,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 @fridrisnew, @goldfire, @hdodov, @Peter42, @photonstorm, @samme, @SBCGames, @vpmedia
 
-For changes in previous releases please see the extensive [Version History](CHANGELOG.md).
+For changes in previous releases please see the extensive [Version History](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
 <a name="contributing"></a>
 
@@ -299,7 +300,7 @@ The [Contributors Guide][contribute] contains full details on how to help with P
 
 - Before submitting a Pull Request run your code through [JSHint](http://www.jshint.com/) using our [config](https://github.com/photonstorm/phaser-ce/blob/master/.jshintrc).
 
-- Before contributing read the [code of conduct](CODE_OF_CONDUCT.md).
+- Before contributing read the [code of conduct](https://github.com/photonstorm/phaser-ce/blob/master/CODE_OF_CONDUCT.md).
 
 Written something cool in Phaser? Please tell us about it in the [forum][forum], or email support@phaser.io
 
@@ -324,7 +325,7 @@ All rights reserved.
 [get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.7.zip
 [get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.7.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
-[clone-ssh]: git@github.com:photonstorm/phaser.git
+[clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
 [clone-ghwin]: github-windows://openRepo/https://github.com/photonstorm/phaser-ce
 [clone-ghmac]: github-mac://openRepo/https://github.com/photonstorm/phaser-ce

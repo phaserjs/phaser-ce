@@ -44,6 +44,12 @@ PIXI.WebGLGraphics.renderGraphics = function(graphics, renderSession)//projectio
 
     var webGL = graphics._webGL[gl.id];
 
+    // if the graphics object does not exist in the webGL context skip rendering!
+    if(!webGL)
+    {
+        return;
+    }    
+
     // This  could be speeded up for sure!
 
     for (var i = 0; i < webGL.data.length; i++)

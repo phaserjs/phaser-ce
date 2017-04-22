@@ -1438,7 +1438,7 @@ return {number} The total number of PathPoints in this Path.</a>
 <li><a href="#contributing">Contributing</a></li>
 </ul>
 <p><a name="whats-new"></a></p>
-<h2>What's New</h2><h3>23rd March 2017</h3><p><a href="ttps://github.com/photonstorm/phaser-ce">Phaser CE</a> is the Community Edition of <a href="https://github.com/photonstorm/phaser">Phaser</a>. In short, it's a version of Phaser that you, the community, have direct control over.</p>
+<h2>What's New</h2><h3>23rd March 2017</h3><p><a href="https://github.com/photonstorm/phaser-ce">Phaser CE</a> is the Community Edition of <a href="https://github.com/photonstorm/phaser">Phaser</a>. In short, it's a version of Phaser that you, the community, have direct control over.</p>
 <p>It was started with the 2.7.0 release and since then the community has worked to continue updating it, fixing bugs and adding new features.</p>
 <p>Phaser 2 was a massive milestone for us, and we're still constantly amazed at all the cool things you created, and continue to create with it. Thank you to everyone who has submitted an issue or pull request over the years, or helped the framework grow in any shape or capacity.</p>
 <p>As of today all of our in-house resources are spent on building Phaser 3 and beyond. However we fully recognize that lots of you still use Phaser 2, and have a lot to contribute to its future. So this is what we've done:</p>
@@ -1473,7 +1473,7 @@ return {number} The total number of PathPoints in this Path.</a>
 <p><a name="download"></a></p>
 <h2>Download Phaser</h2><p>Phaser is <a href="https://github.com/photonstorm/phaser-ce">hosted on Github</a>. There are a number of ways to download it:</p>
 <ul>
-<li>Clone the git repository via <a href="https://github.com/photonstorm/phaser.git">https</a>, <a href="git@github.com:photonstorm/phaser.git">ssh</a> or with the Github <a href="github-windows://openRepo/https://github.com/photonstorm/phaser-ce">Windows</a> or <a href="github-mac://openRepo/https://github.com/photonstorm/phaser-ce">Mac</a> clients.</li>
+<li>Clone the git repository via <a href="https://github.com/photonstorm/phaser.git">https</a>, <a href="ssh://git@github.com:photonstorm/phaser.git">ssh</a> or with the Github <a href="github-windows://openRepo/https://github.com/photonstorm/phaser-ce">Windows</a> or <a href="github-mac://openRepo/https://github.com/photonstorm/phaser-ce">Mac</a> clients.</li>
 <li>Download as <a href="https://github.com/photonstorm/phaser-ce/archive/v2.7.7.zip">zip</a> or <a href="https://github.com/photonstorm/phaser-ce/archive/v2.7.7.tar.gz">tar.gz</a></li>
 <li>Download just the build files: <a href="https://github.com/photonstorm/phaser-ce/releases/download/v2.7.7/phaser.js">phaser.js</a> and <a href="https://github.com/photonstorm/phaser-ce/releases/download/v2.7.7/phaser.min.js">phaser.min.js</a></li>
 <li>Checkout with <a href="https://github.com/photonstorm/phaser">svn</a></li>
@@ -1509,7 +1509,7 @@ return {number} The total number of PathPoints in this Path.</a>
 window.p2     = require('phaser/build/custom/p2');
 window.Phaser = require('phaser/build/custom/phaser-split');</code></pre><p>If you build a custom version of Phaser it will split the 3 core libs out into their own files, allowing you to require them as above.</p>
 <p>We appreciate this is just a band-aid, and not a proper use of modules, but please understand it was never built to be used this way. You're trying to fit a square peg in a round browserify-shaped hole, so compromises have to be made. Please don't open GitHub issues about it as we've no intention of changing Phaser at this stage of its life. Full module based development is available in Phaser v3.</p>
-<h3>Webpack</h3><p>As with browserify, use the <code>pixi</code>, <code>p2</code>, and <code>phaser-split</code> modules in <a href="./build/custom">build/custom</a>. You can then use <a href="https://webpack.js.org/loaders/expose-loader/">expose-loader</a> to expose them as <code>PIXI</code>, <code>p2</code>, and <code>Phaser</code>.</p>
+<h3>Webpack</h3><p>As with browserify, use the <code>pixi</code>, <code>p2</code>, and <code>phaser-split</code> modules in <a href="https://github.com/photonstorm/phaser-ce/tree/master/build/custom">build/custom</a>. You can then use <a href="https://webpack.js.org/loaders/expose-loader/">expose-loader</a> to expose them as <code>PIXI</code>, <code>p2</code>, and <code>Phaser</code>.</p>
 <p>See <a href="https://github.com/lean/phaser-es6-webpack">lean/phaser-es6-webpack</a> for a sample configuration.</p>
 <h3>Building from source</h3><p>Should you wish to build Phaser from source you can take advantage of the provided <a href="http://gruntjs.com/">Grunt</a> scripts. Ensure you have the required packages by running <code>npm install</code> first.</p>
 <p>Run <code>grunt</code> to perform a default build to the <code>dist</code> folder.</p>
@@ -1534,7 +1534,12 @@ window.Phaser = require('phaser/build/custom/phaser-split');</code></pre><p>If y
 <h3>JavaScript and TypeScript</h3><p>Phaser is developed in ES5 JavaScript. We've made no assumptions about how you like to code, and were careful not to impose a strict structure upon you. You won't find Phaser split into modules, requiring a build step, or making you use a class / inheritance OOP approach. That doesn't mean you can't do so, it just means we don't <em>force</em> you to. It's your choice.</p>
 <p>If you code with <a href="http://www.typescriptlang.org/">TypeScript</a> there are comprehensive definition files in the <code>typescript</code> folder. They are for TypeScript 1.4+.</p>
 <p><a name="change-log"></a></p>
-<h1>Change Log</h1><h2>Version 2.7.7 - 20th April 2017</h2><h3>Bug Fixes</h3><ul>
+<h1>Change Log</h1><h2>Version 2.7.8 - Unreleased</h2><h3>New Features</h3><h3>Updates</h3><h3>Bug Fixes</h3><ul>
+<li>Allow setting maxParallelDownloads to higher values (#170)</li>
+<li>Fixed issue with missing <code>var</code> keywords leading to runtime exceptions in <code>src/pixi/renderers/webgl/WebGLRenderer.js</code></li>
+<li>Fixed runtime exception in <code>src/pixi/renderers/webgl/utils/WebGLGraphics.js</code> when <code>renderGraphics</code> was called with a <code>graphics</code> without webGL context (#178)</li>
+</ul>
+<h2>Version 2.7.7 - 20th April 2017</h2><h3>Bug Fixes</h3><ul>
 <li>Fixed failure to load compressed textures when using URLs with query strings (#166)</li>
 <li>Fixed some TypeScript definitions (#168)</li>
 <li>Fixed missing default values for <code>resolution</code> in Phaser.LoaderParser BitmapFont methods (#168).</li>
@@ -1545,7 +1550,7 @@ window.Phaser = require('phaser/build/custom/phaser-split');</code></pre><p>If y
 <li>Fixed incorrect <a href="https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#worldScale">worldScale</a> calculation (#15)</li>
 </ul>
 <h3>Thanks</h3><p>@fridrisnew, @goldfire, @hdodov, @Peter42, @photonstorm, @samme, @SBCGames, @vpmedia</p>
-<p>For changes in previous releases please see the extensive <a href="CHANGELOG.md">Version History</a>.</p>
+<p>For changes in previous releases please see the extensive <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">Version History</a>.</p>
 <p><a name="contributing"></a></p>
 <h1>Contributing</h1><p>The <a href="https://github.com/photonstorm/phaser-ce/blob/master/.github/CONTRIBUTING.md">Contributors Guide</a> contains full details on how to help with Phaser development. The main points are:</p>
 <ul>
@@ -1553,7 +1558,7 @@ window.Phaser = require('phaser/build/custom/phaser-split');</code></pre><p>If y
 </li>
 <li><p>Before submitting a Pull Request run your code through <a href="http://www.jshint.com/">JSHint</a> using our <a href="https://github.com/photonstorm/phaser-ce/blob/master/.jshintrc">config</a>.</p>
 </li>
-<li><p>Before contributing read the <a href="CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+<li><p>Before contributing read the <a href="https://github.com/photonstorm/phaser-ce/blob/master/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
 </li>
 </ul>
 <p>Written something cool in Phaser? Please tell us about it in the <a href="http://www.html5gamedevs.com/forum/14-phaser/">forum</a>, or email support@phaser.io</p>
@@ -1583,7 +1588,7 @@ window.Phaser = require('phaser/build/custom/phaser-split');</code></pre><p>If y
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Wed Apr 19 2017 21:51:47 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Fri Apr 21 2017 14:21:08 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>
