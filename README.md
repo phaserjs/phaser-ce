@@ -264,6 +264,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Clarified Phaser.Image's use of the Animation component (#185). Images can actually play animations just like Sprites.
 * [Phaser CE API](https://photonstorm.github.io/phaser-ce/) now shows a synopsis. You can still find the complete [README](https://github.com/photonstorm/phaser-ce/blob/master/README.md) on GitHub.
 * Allow setting maxParallelDownloads to higher values (#170)
 

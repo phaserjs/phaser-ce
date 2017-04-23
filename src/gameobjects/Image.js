@@ -5,7 +5,8 @@
 */
 
 /**
-* An Image is a light-weight object you can use to display anything that doesn't need physics or animation.
+* An Image is a light-weight object you can use to display anything that doesn't need health, physics, or complex position monitoring.
+*
 * It can still rotate, scale, crop and receive input events. This makes it perfect for logos, backgrounds, simple buttons and other non-Sprite graphics.
 *
 * @class Phaser.Image
