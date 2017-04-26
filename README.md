@@ -262,6 +262,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* You can now set [Group#updateOnlyExistingChildren](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#updateOnlyExistingChildren) to skip [update](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#update) calls on children with `exists = false` (#187).
+
 ### Updates
 
 * Clarified `gid` argument in [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects)

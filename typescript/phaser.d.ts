@@ -1769,6 +1769,7 @@ declare module Phaser {
         top: number;
         total: number;
         type: number;
+        updateOnlyExistingChildren: boolean;
         visible: boolean;
         z: number;
 
