@@ -260,6 +260,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ## Version 2.7.8 - Unreleased
 
+* Fixed some more Typescript definitions (#167)
+
 ### New Features
 
 * You can now set [Group#updateOnlyExistingChildren](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#updateOnlyExistingChildren) to skip [update](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#update) calls on children with `exists = false` (#187).
