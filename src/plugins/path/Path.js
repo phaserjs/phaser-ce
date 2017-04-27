@@ -807,7 +807,7 @@ Phaser.Path.prototype = {
             speed: 1,
             pointList: this._points.map(function(p) {
                 return p.toJSON();
-            }),
+            })
         };
 
     }
