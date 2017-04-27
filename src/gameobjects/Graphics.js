@@ -227,8 +227,7 @@ Phaser.Graphics.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 /**
 * Automatically called by World.preUpdate.
 *
-* @method
-* @memberof Phaser.Graphics
+* @method Phaser.Graphics#preUpdate
 */
 Phaser.Graphics.prototype.preUpdate = function () {
 
@@ -243,6 +242,7 @@ Phaser.Graphics.prototype.preUpdate = function () {
 
 /**
 * Automatically called by World
+*
 * @method Phaser.Graphics#postUpdate
 */
 Phaser.Graphics.prototype.postUpdate = function () {
@@ -1474,7 +1474,7 @@ Phaser.Graphics.prototype.destroyCachedSprite = function () {
 /**
  * Draws the given shape to this Graphics object. Can be any of Circle, Rectangle, Ellipse, Line or Polygon.
  *
- * @method drawShape
+ * @method Phaser.Graphics#drawShape
  * @param {Circle|Rectangle|Ellipse|Line|Polygon} shape The Shape object to draw.
  * @return {GraphicsData} The generated GraphicsData object.
  */
