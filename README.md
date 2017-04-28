@@ -278,6 +278,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Fixed some Typescript definitions (#167)
 * Fixed issue with missing `var` keywords leading to runtime exceptions in `src/pixi/renderers/webgl/WebGLRenderer.js`
 * Fixed runtime exception in `src/pixi/renderers/webgl/utils/WebGLGraphics.js` when `renderGraphics` was called with a `graphics` without webGL context (#178)
+* Fixed issue where text alignment could only be set with lower case, but was not enforced. Mixed and upper case now work as well
 
 ## Version 2.7.7 - 20th April 2017
 
