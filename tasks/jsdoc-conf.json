@@ -56,7 +56,7 @@
     },
     "markdown"  : {
         "parser"   : "gfm",
-        "hardwrap" : true
+        "hardwrap" : false
     },
     "opts": {
         "encoding": "utf8",
