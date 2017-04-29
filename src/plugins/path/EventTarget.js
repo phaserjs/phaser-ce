@@ -34,14 +34,14 @@ Phaser.EventTarget = {
     /**
      * Mixes in the properties of the EventTarget prototype onto another object
      *
-     * @method mixin
+     * @method Phaser.EventTarget.mixin
      * @param object {Object} The obj to mix into
      */
     mixin: function mixin(obj) {
         /**
          * Return a list of assigned event listeners.
          *
-         * @method listeners
+         * @method Phaser.EventTarget.listeners
          * @param eventName {String} The events that should be listed.
          * @return {Array} An array of listener functions
          */
@@ -54,7 +54,7 @@ Phaser.EventTarget = {
         /**
          * Emit an event to all registered event listeners.
          *
-         * @method emit
+         * @method Phaser.EventTarget.emit
          * @alias dispatchEvent
          * @param eventName {String} The name of the event.
          * @return {Boolean} Indication if we've emitted an event.
@@ -107,7 +107,7 @@ Phaser.EventTarget = {
         /**
          * Register a new EventListener for the given event.
          *
-         * @method on
+         * @method Phaser.EventTarget.on
          * @alias addEventListener
          * @param eventName {String} Name of the event.
          * @param callback {Functon} fn Callback function.
@@ -124,7 +124,7 @@ Phaser.EventTarget = {
         /**
          * Add an EventListener that's only called once.
          *
-         * @method once
+         * @method Phaser.EventTarget.once
          * @param eventName {String} Name of the event.
          * @param callback {Function} Callback function.
          */
@@ -143,7 +143,7 @@ Phaser.EventTarget = {
         /**
          * Remove event listeners.
          *
-         * @method off
+         * @method Phaser.EventTarget.off
          * @alias removeEventListener
          * @param eventName {String} The event we want to remove.
          * @param callback {Function} The listener that we need to find.
@@ -173,7 +173,7 @@ Phaser.EventTarget = {
         /**
          * Remove all listeners or only the listeners for the specified event.
          *
-         * @method removeAllListeners
+         * @method Phaser.EventTarget.removeAllListeners
          * @param eventName {String} The event you want to remove all listeners for.
          */
         obj.removeAllListeners = function removeAllListeners(eventName) {
@@ -268,7 +268,7 @@ Phaser.Event = function(target, name, data) {
 /**
  * Stops the propagation of events up the scene graph (prevents bubbling).
  *
- * @method stopPropagation
+ * @method Phaser.Event#stopPropagation
  */
 Phaser.Event.prototype.stopPropagation = function stopPropagation() {
     this.stopped = true;
@@ -277,7 +277,7 @@ Phaser.Event.prototype.stopPropagation = function stopPropagation() {
 /**
  * Stops the propagation of events to sibling listeners (no longer calls any listeners).
  *
- * @method stopImmediatePropagation
+ * @method Phaser.Event#stopImmediatePropagation
  */
 Phaser.Event.prototype.stopImmediatePropagation = function stopImmediatePropagation() {
     this.stoppedImmediate = true;
