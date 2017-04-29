@@ -300,15 +300,20 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.facing = Phaser.NONE;
 
     /**
-    * @property {boolean} immovable - An immovable Body will not receive any impacts from other bodies.
+    * @property {boolean} immovable - An immovable Body will not receive any impacts from other bodies. **Two** immovable Bodies can't separate or exchange momentum and will pass through each other.
     * @default
     */
     this.immovable = false;
 
     /**
+    * Whether the physics system should update the Body's position and rotation based on its velocity, acceleration, drag, and gravity.
+    *
     * If you have a Body that is being moved around the world via a tween or a Group motion, but its local x/y position never
     * actually changes, then you should set Body.moves = false. Otherwise it will most likely fly off the screen.
     * If you want the physics system to move the body around, then set moves to true.
+    *
+    * A Body with moves = false can still be moved slightly (but not accelerated) during collision separation unless you set {@link #immovable} as well.
+    *
     * @property {boolean} moves - Set to true to allow the Physics system to move this Body, otherwise false to move it manually.
     * @default
     */
