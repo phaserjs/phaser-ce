@@ -641,7 +641,7 @@ Set to null to remove a current shader.
 * @sourceline 93
 */
 /**
-* @description Controls if this Sprite is processed by the core Phaser game loops and Group loops.
+* @description Controls if this Sprite is processed by the core Phaser game loops and Group loops (except {@link Phaser.Group#update}).
 * @member PIXI.Sprite#exists
 * @type {Boolean}
 * @default true
@@ -2135,18 +2135,18 @@ Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier
 /**
 * @method PIXI.WebGLSpriteBatch#stop
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLSpriteBatch.js
-* @sourceline 714
+* @sourceline 717
 */
 /**
 * @method PIXI.WebGLSpriteBatch#start
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLSpriteBatch.js
-* @sourceline 722
+* @sourceline 725
 */
 /**
 * @description Destroys the SpriteBatch.
 * @method PIXI.WebGLSpriteBatch#destroy
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLSpriteBatch.js
-* @sourceline 729
+* @sourceline 732
 */
 /**
 * @fileoverview
