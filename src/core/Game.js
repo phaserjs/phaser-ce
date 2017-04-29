@@ -69,6 +69,21 @@
 * @param {boolean} [transparent=false] - Use a transparent canvas background or not.
 * @param {boolean} [antialias=true] - Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art.
 * @param {object} [physicsConfig=null] - A physics configuration object to pass to the Physics world on creation.
+*
+* @param {object} [config] - A single configuration object
+* @param {number|string} [config.antialias=true]
+* @param {number|string} [config.height=600]
+* @param {boolean} [config.enableDebug=true] - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
+* @param {boolean} [config.multiTexture=false] - Enable support for multiple bound Textures in WebGL. Same as `renderer: Phaser.WEBGL_MULTI`.
+* @param {string|HTMLElement} [config.parent='']
+* @param {object} [config.physicsConfig=null]
+* @param {boolean} [config.preserveDrawingBuffer=false] - Whether or not the contents of the stencil buffer is retained after rendering.
+* @param {number} [config.renderer=Phaser.AUTO]
+* @param {number} [config.resolution=1] - The resolution of your game, as a ratio of canvas pixels to game pixels.
+* @param {number} [config.seed] - Seed for {@link Phaser.RandomDataGenerator}.
+* @param {object} [config.state=null]
+* @param {boolean} [config.transparent=false]
+* @param {number|string} [config.width=800]
 */
 Phaser.Game = function (width, height, renderer, parent, state, transparent, antialias, physicsConfig) {
 
@@ -89,7 +104,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.physicsConfig = physicsConfig;
 
     /**
-    * @property {string|HTMLElement} parent - The Games DOM parent.
+    * @property {string|HTMLElement} parent - The Game's DOM parent (or name thereof), if any, as set when the game was created. The actual parent can be found in `game.canvas.parentNode`. Setting this has no effect after {@link Phaser.ScaleManager} is booted.
+    * @readonly
     * @default
     */
     this.parent = '';
@@ -117,7 +133,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.height = 600;
 
     /**
-    * The resolution of your game. This value is read only, but can be changed at start time it via a game configuration object.
+    * The resolution of your game, as a ratio of canvas pixels to game pixels. This value is read only, but can be changed at start time it via a game configuration object.
     *
     * @property {integer} resolution
     * @readonly
@@ -144,7 +160,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.transparent = false;
 
     /**
-    * @property {boolean} antialias - Anti-alias graphics. By default scaled images are smoothed in Canvas and WebGL, set anti-alias to false to disable this globally.
+    * @property {boolean} antialias - Anti-alias graphics (as set when the Game is created). By default scaled and rotated images are smoothed in Canvas and WebGL; set `antialias` to false to disable this globally. After the game boots, use `game.stage.smoothed` instead.
+    * @readonly
     * @default
     */
     this.antialias = true;
@@ -157,8 +174,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     * via the `game.renderer.setTexturePriority` method.
     *
     * @property {boolean} multiTexture
+    * @readonly
     * @default
-    * @readOnly
     */
     this.multiTexture = false;
 
@@ -436,7 +453,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.fpsProblemNotifier = new Phaser.Signal();
 
     /**
-    * @property {boolean} forceSingleUpdate - Should the game loop force a logic update, regardless of the delta timer? Set to true if you know you need this. You can toggle it on the fly.
+    * @property {boolean} forceSingleUpdate - Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.
     */
     this.forceSingleUpdate = true;
 
