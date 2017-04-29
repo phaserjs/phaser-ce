@@ -45,7 +45,7 @@
         "default"         : {
             "outputSourceFiles" : true
         },
-        "systemName"      : "Phaser",
+        "systemName"      : "Phaser CE",
         "footer"          : "",
         "copyright"       : "Phaser Copyright © 2012-2016 Photon Storm Ltd.",
         "navType"         : "vertical",
@@ -65,7 +65,7 @@
         "lenient": true,
         "destination": "./docs",
         "template": "./resources/docstrap-master/template",
-        "readme": "./DOCS.md"
-
+        "readme": "./DOCS.md",
+        "mainpagetitle": "API"
     }
 }
