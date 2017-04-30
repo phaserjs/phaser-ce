@@ -171,7 +171,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.allowGravity = true;
 
     /**
-    * @property {Phaser.Point} gravity - A local gravity applied to this Body. If non-zero this overrides any world gravity, unless Body.allowGravity is set to false.
+    * @property {Phaser.Point} gravity - This Body's local gravity, **added** to any world gravity, unless Body.allowGravity is set to false.
     */
     this.gravity = new Phaser.Point();
 
