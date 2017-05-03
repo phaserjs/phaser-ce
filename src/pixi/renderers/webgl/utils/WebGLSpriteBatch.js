@@ -155,11 +155,11 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl) {
     this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
     this.gl = gl;
     if (PIXI._enableMultiTextureToggle) {
-        var dynamicIfs = '\tif (vTextureIndex == 0.0) gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;\n'
+        var dynamicIfs = '\tif (vTextureIndex == 0.0) {gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n'
         for (var index = 1; index < this.MAX_TEXTURES; ++index) {
-            dynamicIfs += '\telse if (vTextureIndex == ' +
-                index + '.0) gl_FragColor = texture2D(uSamplerArray[' +
-                index + '], vTextureCoord) * vColor;\n'
+            dynamicIfs += '\tif (vTextureIndex == ' +
+                index + '.0) {gl_FragColor = texture2D(uSamplerArray[' +
+                index + '], vTextureCoord) * vColor;return;}\n'
         }
         this.defaultShader = new Phaser.Filter(
             this.game,
@@ -173,7 +173,7 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl) {
                 'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
                 'void main(void) {',
                     dynamicIfs,
-                    '\telse gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;',
+                    '\tgl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;',
                 '}'
             ]);
     }

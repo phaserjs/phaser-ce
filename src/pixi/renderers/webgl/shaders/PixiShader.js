@@ -75,12 +75,12 @@ PIXI.PixiShader.prototype.constructor = PIXI.PixiShader;
 PIXI.PixiShader.prototype.initMultitexShader = function () {
     var gl = this.gl;
     this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
-    var dynamicIfs = '\tif (vTextureIndex == 0.0) gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;\n'
+    var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n'
     for (var index = 1; index < this.MAX_TEXTURES; ++index)
     {
-        dynamicIfs += '\telse if (vTextureIndex == ' + 
-                    index + '.0) gl_FragColor = texture2D(uSamplerArray[' + 
-                    index + '], vTextureCoord) * vColor;\n'
+        dynamicIfs += '\tif (vTextureIndex == ' + 
+                    index + '.0) {gl_FragColor = texture2D(uSamplerArray[' + 
+                    index + '], vTextureCoord) * vColor;return;}\n'
     }
     this.fragmentSrc = [
         '// PixiShader Fragment Shader.',
@@ -98,8 +98,8 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
         'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
         'void main(void) {',
         dynamicIfs,
-        '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
-        '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',
+        '   if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) { gl_FragColor = BLUE;return;}',
+        '   if(isnan(vTextureIndex)) { gl_FragColor = RED;return;}',
         '}'
     ];
 

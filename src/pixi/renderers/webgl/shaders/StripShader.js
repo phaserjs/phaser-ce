@@ -32,12 +32,12 @@ PIXI.StripShader = function(gl)
     if (PIXI._enableMultiTextureToggle) {
         var gl = this.gl;
         this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
-        var dynamicIfs = '\tif (vTextureIndex == 0.0) gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord);\n'
+        var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord);return;}\n'
         for (var index = 1; index < this.MAX_TEXTURES; ++index)
         {
-            dynamicIfs += '\telse if (vTextureIndex == ' + 
-                        index + '.0) gl_FragColor = texture2D(uSamplerArray[' + 
-                        index + '], vTextureCoord) ;\n'
+            dynamicIfs += '\tif (vTextureIndex == ' + 
+                        index + '.0) { gl_FragColor = texture2D(uSamplerArray[' + 
+                        index + '], vTextureCoord) ;return;}\n'
         }
 
 
@@ -63,8 +63,8 @@ PIXI.StripShader = function(gl)
             'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
-            '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
-            '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',
+            '   if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) { gl_FragColor = BLUE;return;}',
+            '   if(isnan(vTextureIndex)) {gl_FragColor = RED;return;}',
             '}'
         ];    
     } else {
