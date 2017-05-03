@@ -850,8 +850,10 @@ Phaser.Tilemap.prototype = {
     },
 
     /**
-    * Sets collision the given tile or tiles. You can pass in either a single numeric index or an array of indexes: [ 2, 3, 15, 20].
+    * Sets collision on the given tile or tiles. You can pass in either a single numeric index or an array of indexes: [2, 3, 15, 20].
     * The `collides` parameter controls if collision will be enabled (true) or disabled (false).
+    *
+    * Collision-enabled tiles can be collided against Sprites using {@link Phaser.Physics.Arcade#collide}.
     *
     * @method Phaser.Tilemap#setCollision
     * @param {number|array} indexes - Either a single tile index, or an array of tile IDs to be checked for collision.
