@@ -268,17 +268,17 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 * Clarified `gid` argument in [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects)
 * Clarified Phaser.Image's use of the Animation component (#185). Images can actually play animations just like Sprites.
-* [Phaser CE API](https://photonstorm.github.io/phaser-ce/) now shows a synopsis. You can still find the complete [README](https://github.com/photonstorm/phaser-ce/blob/master/README.md) on GitHub.
-* Allow setting maxParallelDownloads to higher values (#170)
-* Added missing types to Typescript definitions
+* [Phaser CE API](https://photonstorm.github.io/phaser-ce/) now shows a synopsis like the Phaser 2.6 docs. You can still find the complete [README](https://github.com/photonstorm/phaser-ce/blob/master/README.md) on GitHub.
+* Removed the upper limit of 12 for [Phaser.Loader#maxParallelDownloads](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#maxParallelDownloads). The default is still 4. Most browser now limit parallel connections to 6 per domain. Older IE and Android browsers may suffer with more than 4 (#170).
+* [Phaser.Text#align](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#align) can now be set in any case or mix of cases (e.g., 'left', 'Left', 'LEFT').
 
 ### Bug Fixes
 
-* Fixed issue with WebGLFilter applied to a texture thats shared between multiple Sprites(#39,#153,#154)
-* Fixed some Typescript definitions (#167)
-* Fixed issue with missing `var` keywords leading to runtime exceptions in `src/pixi/renderers/webgl/WebGLRenderer.js`
-* Fixed runtime exception in `src/pixi/renderers/webgl/utils/WebGLGraphics.js` when `renderGraphics` was called with a `graphics` without webGL context (#178)
-* Fixed issue where text alignment could only be set with lower case, but was not enforced. Mixed and upper case now work as well
+* Fixed a 'memory exhausted' error in PIXI.PixiFastShader when compiling shaders with multiTexture enabled.
+* Fixed an issue where Sprites sharing the same texture were distorted or hidden when a WebGLFilter was applied (#39, #153, #154).
+* Fixed some Typescript definitions (#167).
+* Fixed a ReferenceError in [PIXI.WebGLRenderer](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html) when running Phaser in ES5 strict mode.
+* Fixed a TypeError in PIXI.WebGLGraphics when trying to render a Graphics object with a missing WebGL context (#178)
 
 ## Version 2.7.7 - 20th April 2017
 
