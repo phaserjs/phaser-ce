@@ -359,7 +359,7 @@ Phaser.Path.prototype = {
 
     /**
     * Get a PathPoint from this path. Automatically handles path looping.
-    * 
+    *
     * The values from the PathPoint are copied into the given PathPoint object, which must
     * be a reference to a pre-existing PathPoint, as it's not returned by this method.
     *
@@ -404,7 +404,7 @@ Phaser.Path.prototype = {
 
     /**
     * Get a reference to a PathPoint from this Path, handle path looping.
-    * 
+    *
     * NOTE: because this is a PathPoint reference, it does not take into account the coordinateSystem selected, it will be WORLD, or OFFSET unmodified
     *
     * @method Phaser.Path#getPathPointReference
@@ -428,7 +428,7 @@ Phaser.Path.prototype = {
 
     /**
     * Get the curve from the given point index to the next.
-    * 
+    *
     * If the curve has been created previously, use that definition again, otherwise calculate it now.
     *
     * @method Phaser.Path#getCurve
@@ -535,9 +535,9 @@ Phaser.Path.prototype = {
 
     /**
     * The total number of PathPoints in this Path.
-    * 
+    *
     * @method Phaser.Path#numPoints
-    * return {number} The total number of PathPoints in this Path.
+    * @return {number} The total number of PathPoints in this Path.
     */
     numPoints: function () {
 
@@ -552,7 +552,7 @@ Phaser.Path.prototype = {
     /**
     * Process the data associated with a point on this Path.
     * Used by Phaser.PathFollower objects as they pass each control point.
-    * 
+    *
     * @method Phaser.Path#processData
     * @param {Phaser.PathFollower} follower - The PathFollower that is processing the data.
     * @param {number} pathPointIndex - The index of the path point to process.
@@ -563,7 +563,7 @@ Phaser.Path.prototype = {
 
         if (this.getPathPoint(pathPointIndex, this._p1))
         {
-            //  If there is a branch that can be taken from this point, 
+            //  If there is a branch that can be taken from this point,
             //  trigger an event to decide whether to take it or stay on the current path.
             //  Branches are forwards facing so they are ignored when the follower is reversing.
             if (this._p1.branchPath && !reversing)
@@ -692,7 +692,7 @@ Phaser.Path.prototype = {
 
     /**
     * Draw the path on given canvas context. Used for debugging.
-    * 
+    *
     * @method Phaser.Path#debug
     * @param {CanvasContext2D} ctx - The canvas context to draw the path on.
     * @param {boolean} [active=false] - Whether or not to highlight the active segments of this Path or not.
@@ -785,14 +785,14 @@ Phaser.Path.prototype = {
 
             ctx.restore();
         }
-        
+
         return this;
 
     },
 
     /**
     * Serializes this Path into a JSON object and returns it.
-    * 
+    *
     * @methods Phaser.Path#toJSON
     * @return {Object} A JSON object representing this Path.
     */
@@ -807,7 +807,7 @@ Phaser.Path.prototype = {
             speed: 1,
             pointList: this._points.map(function(p) {
                 return p.toJSON();
-            }),
+            })
         };
 
     }

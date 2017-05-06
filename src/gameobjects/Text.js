@@ -316,9 +316,9 @@ Phaser.Text.prototype.setStyle = function (style, update) {
     newStyle.font = style.font || 'bold 20pt Arial';
     newStyle.backgroundColor = style.backgroundColor || null;
     newStyle.fill = style.fill || 'black';
-    newStyle.align = style.align || 'left';
-    newStyle.boundsAlignH = style.boundsAlignH || 'left';
-    newStyle.boundsAlignV = style.boundsAlignV || 'top';
+    newStyle.align = style.align.toLowerCase() || 'left';
+    newStyle.boundsAlignH = style.boundsAlignH.toLowerCase() || 'left';
+    newStyle.boundsAlignV = style.boundsAlignV.toLowerCase() || 'top';
     newStyle.stroke = style.stroke || 'black'; //provide a default, see: https://github.com/GoodBoyDigital/pixi.js/issues/136
     newStyle.strokeThickness = style.strokeThickness || 0;
     newStyle.wordWrap = style.wordWrap || false;
@@ -1922,6 +1922,7 @@ Object.defineProperty(Phaser.Text.prototype, 'align', {
 
     set: function(value) {
 
+        value = value.toLowerCase();
         if (value !== this.style.align)
         {
             this.style.align = value;
@@ -1996,6 +1997,7 @@ Object.defineProperty(Phaser.Text.prototype, 'boundsAlignH', {
 
     set: function(value) {
 
+        value = value.toLowerCase();
         if (value !== this.style.boundsAlignH)
         {
             this.style.boundsAlignH = value;
@@ -2019,6 +2021,7 @@ Object.defineProperty(Phaser.Text.prototype, 'boundsAlignV', {
 
     set: function(value) {
 
+        value = value.toLowerCase();
         if (value !== this.style.boundsAlignV)
         {
             this.style.boundsAlignV = value;
