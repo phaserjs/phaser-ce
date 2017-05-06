@@ -479,3 +479,20 @@ Object.defineProperty(Phaser.Creature.prototype, 'loop', {
     }
 
 });
+
+/**
+* @method Phaser.Creature#createAllAnimations
+* @memberof Phaser.Creature
+*/
+Phaser.Creature.prototype.createAllAnimations = function (mesh) {
+
+    if (!game.cache.checkJSONKey(mesh))
+    {
+        console.warn('Phaser.Creature: Invalid mesh key given. Not found in Phaser.Cache');
+        return;
+    }
+
+    var meshData = game.cache.getJSON(mesh);
+
+    this.manager.CreateAllAnimations(meshData);
+};

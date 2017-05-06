@@ -281,6 +281,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Fixed a TypeError in PIXI.WebGLGraphics when trying to render a Graphics object with a missing WebGL context (#178)
 * Fixed a ReferenceError in [PIXI.WebGLRenderer](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html) when running Phaser in ES5 strict mode.
 * Fixed some Typescript definitions (#167).
+* Added createAllAnimations for Creature meshes to force load all animations in a creature mesh (must be called before setAnimation())
 
 ### Thanks
 
