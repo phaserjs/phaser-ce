@@ -266,6 +266,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* [Phaser.ScaleManager#setUserScale](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#setUserScale) now has `queueUpdate` and `force` parameters. Set these to false if your [resize callback](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#setResizeCallback) is being called repeatedly (#197).
 * Removed the upper limit of 12 for [Phaser.Loader#maxParallelDownloads](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#maxParallelDownloads). The default value is still 4. Most browsers limit parallel connections to 6 per domain. Older IE and Android browsers may suffer with a value above 4 (#170).
 * Arcade Physics Bodies no longer receive angular motion updates while they have [allowRotation](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#allowRotation) disabled, as this was unnecessary.
 * [Phaser.Text#align](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#align) can now be set in any case or mix of cases (e.g., 'left', 'Left', 'LEFT').

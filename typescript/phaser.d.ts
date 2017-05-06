@@ -4757,7 +4757,7 @@ declare module Phaser {
         refresh(): void;
         setGameSize(width: number, height: number): void;
         setResizeCallback(callback: ResizeCallback, context: any): void;
-        setUserScale(hScale: number, vScale: number, hTrim?: number, vTrim?: number): void;
+        setUserScale(hScale: number, vScale: number, hTrim?: number, vTrim?: number, queueUpdate?: boolean, force?: boolean): void;
         setMinMax(minWidth: number, minHeight: number, maxWidth?: number, maxHeight?: number): void;
         setupScale(width: number, height: number): void;
         setupScale(width: string, height: string): void;

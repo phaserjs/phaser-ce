@@ -915,19 +915,28 @@ Phaser.ScaleManager.prototype = {
     *     canvas.width = (game.width * hScale) - hTrim
     *     canvas.height = (game.height * vScale) - vTrim
     *
-    * This method can be used in the {@link Phaser.ScaleManager#setResizeCallback resize callback}.
+    * This method can be used in the {@link Phaser.ScaleManager#setResizeCallback resize callback}. Set `queueUpdate` and `force` to false if the resize callback is being called repeatedly.
     *
     * @method Phaser.ScaleManager#setUserScale
     * @param {number} hScale - Horizontal scaling factor.
     * @param {numer} vScale - Vertical scaling factor.
     * @param {integer} [hTrim=0] - Horizontal trim, applied after scaling.
     * @param {integer} [vTrim=0] - Vertical trim, applied after scaling.
+    * @param {boolean} [queueUpdate=true] - Queue a size/bounds check at next preUpdate
+    * @param {boolean} [force=true] - Force a resize during the next preUpdate
     */
-    setUserScale: function (hScale, vScale, hTrim, vTrim) {
+    setUserScale: function (hScale, vScale, hTrim, vTrim, queueUpdate, force) {
 
         this._userScaleFactor.setTo(hScale, vScale);
         this._userScaleTrim.setTo(hTrim | 0, vTrim | 0);
-        this.queueUpdate(true);
+
+        if (queueUpdate === undefined) { queueUpdate = true; }
+        if (force === undefined) { force = true; }
+
+        if (queueUpdate)
+        {
+            this.queueUpdate(force);
+        }
 
     },
 
