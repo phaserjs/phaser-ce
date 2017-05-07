@@ -438,16 +438,9 @@ Phaser.Creature.prototype.play = function (loop) {
 */
 Phaser.Creature.prototype.setAnimationPlaySpeed = function (speed) {
 
-    if (loop === undefined) { loop = false; }
-    
     if (speed) {
       this.timeDelta = speed;
     }
-
-    this.loop = loop;
-
-    this.manager.SetIsPlaying(true);
-    this.manager.RunAtTime(0);
 
 };
 
