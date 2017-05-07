@@ -263,10 +263,14 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### New Features
 
 * You can now set [Group#updateOnlyExistingChildren](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#updateOnlyExistingChildren) to skip [update](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#update) calls on children with `exists = false` (#187).
+* [Phaser.ScaleManager#setUserScale](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#setUserScale) now has `queueUpdate` and `force` parameters. Set these to false if your [resize callback](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#setResizeCallback) is being called repeatedly (#197).
+* Added [Phaser.Creature#createAllAnimations](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#createAllAnimations) to force load all animations in a creature mesh. It must be called before [Phaser.Creature#setAnimation](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#setAnimation).
+* Added [Phaser.Creature#setAnimationPlaySpeed](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#setAnimationPlaySpeed).
+* Added [Phaser.Creature.html#height](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#height) and [Phaser.Creature#width](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#width). You can set these dimensions directly rather than by using `scale`.
+* Added [Phaser.Creature#setAnchorPointEnabled](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#setAnchorPointEnabled), [Phaser.Creature#anchorX](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#anchorX), and [Phaser.Creature#anchorY](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#anchorY) for setting a Creature's anchor point dynamically (still experimental).
 
 ### Updates
 
-* [Phaser.ScaleManager#setUserScale](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#setUserScale) now has `queueUpdate` and `force` parameters. Set these to false if your [resize callback](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#setResizeCallback) is being called repeatedly (#197).
 * Removed the upper limit of 12 for [Phaser.Loader#maxParallelDownloads](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#maxParallelDownloads). The default value is still 4. Most browsers limit parallel connections to 6 per domain. Older IE and Android browsers may suffer with a value above 4 (#170).
 * Arcade Physics Bodies no longer receive angular motion updates while they have [allowRotation](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#allowRotation) disabled, as this was unnecessary.
 * [Phaser.Text#align](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#align) can now be set in any case or mix of cases (e.g., 'left', 'Left', 'LEFT').
@@ -281,14 +285,12 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Fixed a TypeError in PIXI.WebGLGraphics when trying to render a Graphics object with a missing WebGL context (#178)
 * Fixed a ReferenceError in [PIXI.WebGLRenderer](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html) when running Phaser in ES5 strict mode.
 * Fixed some Typescript definitions (#167).
-* Added createAllAnimations for Creature meshes to force load all animations in a creature mesh (must be called before setAnimation())
-* cherry picked pixel scaling from creature runtimes so that height / width can be set on a creature object rather than using scale()
-* cherry picked anchor point code from creature runtimes so that the anchor point set in creature editor is set correctly in phaser when a creature mesh is loaded. (SetAnchorPoint() dynamically is still experimental)
-* changed get(0) to [0] in creature runtime as would cause a crash on Chrome.
+* Phaser now correctly sets a Creature's anchor point (as set in Creature editor) when a creature mesh is loaded.
+* Fixed CreatureManager#CreateAllAnimations crashing in Chrome.
 
 ### Thanks
 
-@aaronransley, @Cryt1c, @goldfire, @gre, @NickH-nz, @noseglid, @photonstorm, @samme, @tanquetav, @vantreeseba, @vpmedia, @Xan0C
+@aaronransley, @andrewjb123, @Cryt1c, @goldfire, @gre, @LandonSchropp, @NickH-nz, @noseglid, @photonstorm, @samme, @tanquetav, @vantreeseba, @vpmedia, @Xan0C
 
 ## Version 2.7.7 - 20th April 2017
 
