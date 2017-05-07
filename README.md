@@ -282,6 +282,9 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Fixed a ReferenceError in [PIXI.WebGLRenderer](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html) when running Phaser in ES5 strict mode.
 * Fixed some Typescript definitions (#167).
 * Added createAllAnimations for Creature meshes to force load all animations in a creature mesh (must be called before setAnimation())
+* cherry picked pixel scaling from creature runtimes so that height / width can be set on a creature object rather than using scale()
+* cherry picked anchor point code from creature runtimes so that the anchor point set in creature editor is set correctly in phaser when a creature mesh is loaded. (SetAnchorPoint() dynamically is still experimental)
+* changed get(0) to [0] in creature runtime as would cause a crash on Chrome.
 
 ### Thanks
 
