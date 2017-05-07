@@ -2218,7 +2218,11 @@ Creature.prototype.GetPixelScaling = function(desired_x, desired_y)
   return [scale_x, scale_y];
 };
 
-Creature.prototype.SetAnchorPoint = function(x, y, anim_clip_name_in = 'default') {
+Creature.prototype.SetAnchorPoint = function(x, y, anim_clip_name_in) {
+  if (!anim_clip_name_in) {
+    anim_clip_name_in = 'default';
+  }
+
   this.ComputeBoundaryMinMax();
 
   var mesh_size_x = this.boundary_max[0] - this.boundary_min[0];

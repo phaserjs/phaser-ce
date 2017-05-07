@@ -428,6 +428,29 @@ Phaser.Creature.prototype.play = function (loop) {
 
 };
 
+
+/**
+* Sets the animation playback speed
+*
+* @method Phaser.Creature#setAnimationPlaySpeed
+* @memberof Phaser.Creature
+* @param {number} speed - Sets the playback speed
+*/
+Phaser.Creature.prototype.setAnimationPlaySpeed = function (speed) {
+
+    if (loop === undefined) { loop = false; }
+    
+    if (speed) {
+      this.timeDelta = speed;
+    }
+
+    this.loop = loop;
+
+    this.manager.SetIsPlaying(true);
+    this.manager.RunAtTime(0);
+
+};
+
 /**
 * Stops the currently playing animation.
 *
