@@ -110,7 +110,7 @@ Phaser is [hosted on Github][phaser]. There are a number of ways to download it:
 
 Install via [bower](http://bower.io):
 
-    bower install phaser
+    bower install phaser-ce
 
 Install via [npm](https://www.npmjs.com):
 
@@ -257,6 +257,14 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 <a name="change-log"></a>
 
 # Change Log
+
+## Version 2.7.9 - Unreleased
+
+### New Features
+
+### Updates
+
+### Bug Fixes
 
 ## Version 2.7.8 - 8th May 2017
 
