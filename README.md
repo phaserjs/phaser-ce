@@ -258,7 +258,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
-## Version 2.7.8 - Unreleased
+## Version 2.7.8 - 7th May 2017
 
 ### New Features
 
@@ -292,23 +292,6 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### Thanks
 
 @aaronransley, @andrewjb123, @Cryt1c, @goldfire, @gre, @LandonSchropp, @NickH-nz, @noseglid, @photonstorm, @samme, @tanquetav, @vantreeseba, @vpmedia, @Xan0C
-
-## Version 2.7.7 - 20th April 2017
-
-### Bug Fixes
-
-* Fixed failure to load compressed textures when using URLs with query strings (#166)
-* Fixed some TypeScript definitions (#168)
-* Fixed missing default values for `resolution` in Phaser.LoaderParser BitmapFont methods (#168).
-* Fixed particle [autoAlpha](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#autoAlpha) and [autoScale](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#autoScale) tweens running at double speed (#160).
-* Fixed loading of compressed textures (#17, #162)
-* Removed `any` key in [Phaser.Physics.Arcade.Body#checkCollision](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#checkCollision). It was never used, so setting it had no effect (#161). Use `!checkCollision.none` instead.
-* Fixed [Phaser.Sound](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html) exception when using IE with AudioTag and high volume values (#157). Now volume is clamped between 0 and 1 in every browser when using AudioTags.
-* Fixed incorrect [worldScale](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#worldScale) calculation (#15)
-
-### Thanks
-
-@fridrisnew, @goldfire, @hdodov, @Peter42, @photonstorm, @samme, @SBCGames, @vpmedia
 
 For changes in previous releases please see the extensive [Version History](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
