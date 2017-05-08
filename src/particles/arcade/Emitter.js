@@ -115,12 +115,6 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.alphaData = null;
 
     /**
-    * @property {Phaser.Point} gravity - Sets the `body.gravity` of each particle sprite to this on launch.
-    * @default
-    */
-    this.gravity = new Phaser.Point(0, 100);
-
-    /**
     * @property {function} particleClass - For emitting your own particle class types. They must extend Phaser.Particle.
     * @default
     */
@@ -209,6 +203,12 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     * @default
     */
     this.particleSendToBack = false;
+
+    /**
+    * @property {Phaser.Point} _gravity - Internal gravity value.
+    * @private
+    */
+    this._gravity = new Phaser.Point(0, 100);
 
     /**
     * @property {Phaser.Point} _minParticleScale - Internal particle scale var.
@@ -900,6 +900,30 @@ Phaser.Particles.Arcade.Emitter.prototype.at = function (object) {
     return this;
 
 };
+
+/**
+ * @name Phaser.Particles.Arcade.Emitter#gravity
+ * @property {Phaser.Point} gravity - Sets the `body.gravity` of each particle sprite to this on launch.
+ */
+Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "gravity", {
+
+    get: function () {
+        return this._gravity;
+    },
+
+    set: function (value) {
+        if (typeof value === "number")
+        {
+            this._gravity.y = value;
+        }
+        else
+        {
+            this._gravity = value;
+        }
+    }
+
+});
+
 
 /**
 * @name Phaser.Particles.Arcade.Emitter#id

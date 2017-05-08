@@ -264,6 +264,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Emitter#gravity can now be set as a number (as in Phaser versions prior to 2.7.2) or a Point (#203). Reading the value will always give you a Point.
+
 ### Bug Fixes
 
 ## Version 2.7.8 - 8th May 2017
