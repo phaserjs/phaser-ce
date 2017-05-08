@@ -110,7 +110,7 @@ Phaser is [hosted on Github][phaser]. There are a number of ways to download it:
 
 Install via [bower](http://bower.io):
 
-    bower install phaser
+    bower install phaser-ce
 
 Install via [npm](https://www.npmjs.com):
 
