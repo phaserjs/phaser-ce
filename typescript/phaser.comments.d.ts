@@ -7466,6 +7466,20 @@ declare module Phaser {
         * @param transparent Use a transparent canvas background or not.
         * @param antialias Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art. - Default: true
         * @param physicsConfig A physics configuration object to pass to the Physics world on creation.
+        * @param config A single configuration object
+        * @param config.antialias  - Default: true
+        * @param config.height  - Default: 600
+        * @param config.enableDebug Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production. - Default: true
+        * @param config.multiTexture Enable support for multiple bound Textures in WebGL. Same as `renderer: Phaser.WEBGL_MULTI`.
+        * @param config.parent  - Default: ''
+        * @param config.physicsConfig
+        * @param config.preserveDrawingBuffer Whether or not the contents of the stencil buffer is retained after rendering.
+        * @param config.renderer  - Default: Phaser.AUTO
+        * @param config.resolution The resolution of your game, as a ratio of canvas pixels to game pixels. - Default: 1
+        * @param config.seed Seed for {@link Phaser.RandomDataGenerator}.
+        * @param config.state
+        * @param config.transparent
+        * @param config.width  - Default: 800
         */
         constructor(width?: number | string, height?: number | string, renderer?: number, parent?: any, state?: any, transparent?: boolean, antialias?: boolean, physicsConfig?: any);
 
@@ -7532,6 +7546,20 @@ declare module Phaser {
         * @param transparent Use a transparent canvas background or not.
         * @param antialias Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art. - Default: true
         * @param physicsConfig A physics configuration object to pass to the Physics world on creation.
+        * @param config A single configuration object
+        * @param config.antialias  - Default: true
+        * @param config.height  - Default: 600
+        * @param config.enableDebug Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production. - Default: true
+        * @param config.multiTexture Enable support for multiple bound Textures in WebGL. Same as `renderer: Phaser.WEBGL_MULTI`.
+        * @param config.parent  - Default: ''
+        * @param config.physicsConfig
+        * @param config.preserveDrawingBuffer Whether or not the contents of the stencil buffer is retained after rendering.
+        * @param config.renderer  - Default: Phaser.AUTO
+        * @param config.resolution The resolution of your game, as a ratio of canvas pixels to game pixels. - Default: 1
+        * @param config.seed Seed for {@link Phaser.RandomDataGenerator}.
+        * @param config.state
+        * @param config.transparent
+        * @param config.width  - Default: 800
         */
         constructor(config: IGameConfig);
 
@@ -7542,7 +7570,7 @@ declare module Phaser {
         add: Phaser.GameObjectFactory;
 
         /**
-        * Anti-alias graphics. By default scaled images are smoothed in Canvas and WebGL, set anti-alias to false to disable this globally.
+        * Anti-alias graphics (as set when the Game is created). By default scaled and rotated images are smoothed in Canvas and WebGL; set `antialias` to false to disable this globally. After the game boots, use `game.stage.smoothed` instead.
         * Default: true
         */
         antialias: boolean;
@@ -7596,7 +7624,7 @@ declare module Phaser {
         device: Phaser.Device;
 
         /**
-        * Should the game loop force a logic update, regardless of the delta timer? Set to true if you know you need this. You can toggle it on the fly.
+        * Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.
         */
         forceSingleUpdate: boolean;
 
@@ -7682,7 +7710,7 @@ declare module Phaser {
         onResume: Phaser.Signal;
 
         /**
-        * The Games DOM parent.
+        * The Game's DOM parent (or name thereof), if any, as set when the game was created. The actual parent can be found in `game.canvas.parentNode`. Setting this has no effect after {@link Phaser.ScaleManager} is booted.
         */
         parent: HTMLElement;
 
@@ -7738,7 +7766,7 @@ declare module Phaser {
         renderType: number;
 
         /**
-        * The resolution of your game. This value is read only, but can be changed at start time it via a game configuration object.
+        * The resolution of your game, as a ratio of canvas pixels to game pixels. This value is read only, but can be changed at start time it via a game configuration object.
         * Default: 1
         */
         resolution: number;
@@ -9321,7 +9349,22 @@ declare module Phaser {
         * @param destroyChildren Should every child of this object have its destroy method called? - Default: true
         */
         destroy(destroyChildren?: boolean): void;
+
+        /**
+        * Draws a single {Phaser.Polygon} triangle from a {Phaser.Point} array
+        * 
+        * @param points An array of Phaser.Points that make up the three vertices of this triangle
+        * @param cull Should we check if the triangle is back-facing
+        */
         drawTriangle(points: Phaser.Point[], cull?: boolean): void;
+
+        /**
+        * Draws {Phaser.Polygon} triangles
+        * 
+        * @param vertices An array of Phaser.Points or numbers that make up the vertices of the triangles
+        * @param {indices An array of numbers that describe what order to draw the vertices in - Default: null}
+        * @param cull Should we check if the triangle is back-facing
+        */
         drawTriangles(vertices: Phaser.Point[] | number[], indices?: number[], cull?: boolean): void;
 
         /**
@@ -9732,6 +9775,11 @@ declare module Phaser {
         * Internal Phaser Type value.
         */
         type: number;
+
+        /**
+        * Skip children with `exists = false` in {@link Phaser.Group#update update}.
+        */
+        updateOnlyExistingChildren: boolean;
 
         /**
         * The visible state of the group. Non-visible Groups and all of their children are not rendered.
@@ -10689,6 +10737,8 @@ declare module Phaser {
 
         /**
         * The core update - as called by World.
+        * 
+        * Children with `exists = false` are updated unless {@link Phaser.Group#updateOnlyExistingChildren updateOnlyExistingChildren} is true.
         */
         update(): void;
 
@@ -10712,14 +10762,16 @@ declare module Phaser {
 
 
     /**
-    * An Image is a light-weight object you can use to display anything that doesn't need physics or animation.
+    * An Image is a light-weight object you can use to display anything that doesn't need health, physics, or complex position monitoring.
+    * 
     * It can still rotate, scale, crop and receive input events. This makes it perfect for logos, backgrounds, simple buttons and other non-Sprite graphics.
     */
     class Image extends PIXI.Sprite {
 
 
         /**
-        * An Image is a light-weight object you can use to display anything that doesn't need physics or animation.
+        * An Image is a light-weight object you can use to display anything that doesn't need health, physics, or complex position monitoring.
+        * 
         * It can still rotate, scale, crop and receive input events. This makes it perfect for logos, backgrounds, simple buttons and other non-Sprite graphics.
         * 
         * @param game A reference to the currently running game.
@@ -10852,7 +10904,7 @@ declare module Phaser {
         events: Phaser.Events;
 
         /**
-        * Controls if this Sprite is processed by the core Phaser game loops and Group loops.
+        * Controls if this Sprite is processed by the core Phaser game loops and Group loops (except {@link Phaser.Group#update}).
         * Default: true
         */
         exists: boolean;
@@ -17243,14 +17295,29 @@ declare module Phaser {
             angleToXY(displayObject: any, x: number, y: number, world?: boolean): number;
 
             /**
-            * Checks for collision between two game objects. You can perform Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer or Group vs. Tilemap Layer collisions.
-            * Both the first and second parameter can be arrays of objects, of differing types.
-            * If two arrays are passed, the contents of the first parameter will be tested against all contents of the 2nd parameter.
-            * The objects are also automatically separated. If you don't require separation then use ArcadePhysics.overlap instead.
-            * An optional processCallback can be provided. If given this function will be called when two sprites are found to be colliding. It is called before any separation takes place,
-            * giving you the chance to perform additional checks. If the function returns true then the collision and separation is carried out. If it returns false it is skipped.
+            * Checks for collision between two game objects and separates them if colliding. If you don't require separation then use {@link Phaser.Physics.Arcade#overlap overlap} instead.
+            * 
+            * You can perform Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer or Group vs. Tilemap Layer collisions.
+            * Both the `object1` and `object2` can be arrays of objects, of differing types.
+            * 
+            * If two Groups or arrays are passed, the contents of one will be tested against all contents of the other.
+            * If one Group or array **only** is passed (as `object1`), contents of the Group or array will be collided against each other.
+            * 
+            * If either object is `null` the collision test will fail.
+            * 
+            * Bodies with `enable = false` and Sprites with `exists = false` are skipped (ignored).
+            * 
+            * An optional processCallback can be provided. If given this function will be called when two sprites are found to be colliding. It is called before any separation takes place, giving you the chance to perform additional checks. If the function returns true then the collision and separation is carried out. If it returns false it is skipped.
+            * 
             * The collideCallback is an optional function that is only called if two sprites collide. If a processCallback has been set then it needs to return true for collideCallback to be called.
-            * NOTE: This function is not recursive, and will not test against children of objects passed (i.e. Groups or Tilemaps within other Groups).
+            * 
+            * **This function is not recursive**, and will not test against children of objects passed (i.e. Groups or Tilemaps within other Groups).
+            * 
+            * ##### Tilemaps
+            * 
+            * Tiles marked via {@link Phaser.Tilemap#setCollision} (and similar methods) are "solid". If a Sprite collides with one of these tiles, the two are separated by moving the Sprite outside the tile's edges. Enable {@link Phaser.TilemapLayer#debug} to see the colliding edges of the Tilemap.
+            * 
+            * Tiles with a callback attached via {@link Phaser.Tilemap#setTileIndexCallback} or {@link Phaser.Tilemap#setTileLocationCallback} invoke the callback if a Sprite collides with them. If a tile has a callback attached via both methods, only the location callback is invoked. The colliding Sprite is separated from the tile only if the callback returns `true`.
             * 
             * @param object1 The first object or array of objects to check. Can be Phaser.Sprite, Phaser.Group, Phaser.Particles.Emitter, or Phaser.TilemapLayer.
             * @param object2 The second object or array of objects to check. Can be Phaser.Sprite, Phaser.Group, Phaser.Particles.Emitter or Phaser.TilemapLayer.
@@ -17438,11 +17505,22 @@ declare module Phaser {
 
             /**
             * Checks for overlaps between two game objects. The objects can be Sprites, Groups or Emitters.
+            * 
+            * Unlike {@link Phaser.Physics.Arcade#collide collide} the objects are NOT automatically separated or have any physics applied, they merely test for overlap results.
+            * 
             * You can perform Sprite vs. Sprite, Sprite vs. Group and Group vs. Group overlap checks.
-            * Unlike collide the objects are NOT automatically separated or have any physics applied, they merely test for overlap results.
             * Both the first and second parameter can be arrays of objects, of differing types.
             * If two arrays are passed, the contents of the first parameter will be tested against all contents of the 2nd parameter.
-            * NOTE: This function is not recursive, and will not test against children of objects passed (i.e. Groups within Groups).
+            * 
+            * **This function is not recursive**, and will not test against children of objects passed (i.e. Groups within Groups).
+            * 
+            * ##### Tilemaps
+            * 
+            * Any overlapping tiles, including blank/null tiles, will give a positive result. Tiles marked via {@link Phaser.Tilemap#setCollision} (and similar methods) have no special status, and callbacks added via {@link Phaser.Tilemap#setTileIndexCallback} or {@link Phaser.Tilemap#setTileLocationCallback} are not invoked. So calling this method without any callbacks isn't very useful.
+            * 
+            * If you're interested only in whether an object overlaps a certain tile or class of tiles, filter the tiles with `processCallback` and then use the result returned by this method. Blank/null tiles can be excluded by their {@link Phaser.Tile#index index} (-1).
+            * 
+            * If you want to take action on certain overlaps, examine the tiles in `collideCallback` and then handle as you like.
             * 
             * @param object1 The first object or array of objects to check. Can be Phaser.Sprite, Phaser.Group or Phaser.Particles.Emitter.
             * @param object2 The second object or array of objects to check. Can be Phaser.Sprite, Phaser.Group or Phaser.Particles.Emitter.
@@ -17694,7 +17772,7 @@ declare module Phaser {
                 game: Phaser.Game;
 
                 /**
-                * A local gravity applied to this Body. If non-zero this overrides any world gravity, unless Body.allowGravity is set to false.
+                * This Body's local gravity, **added** to any world gravity, unless Body.allowGravity is set to false.
                 */
                 gravity: Phaser.Point;
 
@@ -17714,7 +17792,7 @@ declare module Phaser {
                 height: number;
 
                 /**
-                * An immovable Body will not receive any impacts from other bodies.
+                * An immovable Body will not receive any impacts from other bodies. **Two** immovable Bodies can't separate or exchange momentum and will pass through each other.
                 */
                 immovable: boolean;
 
@@ -17747,9 +17825,13 @@ declare module Phaser {
                 maxVelocity: Phaser.Point;
 
                 /**
+                * Whether the physics system should update the Body's position and rotation based on its velocity, acceleration, drag, and gravity.
+                * 
                 * If you have a Body that is being moved around the world via a tween or a Group motion, but its local x/y position never
                 * actually changes, then you should set Body.moves = false. Otherwise it will most likely fly off the screen.
-                * If you want the physics system to move the body around, then set moves to true. Set to true to allow the Physics system to move this Body, otherwise false to move it manually.
+                * If you want the physics system to move the body around, then set moves to true.
+                * 
+                * A Body with moves = false can still be moved slightly (but not accelerated) during collision separation unless you set {@link Phaser.Physics.Arcade.Body#immovable immovable} as well. Set to true to allow the Physics system to move this Body, otherwise false to move it manually.
                 * Default: true
                 */
                 moves: boolean;
@@ -26125,7 +26207,7 @@ declare module Phaser {
         events: Phaser.Events;
 
         /**
-        * Controls if this Sprite is processed by the core Phaser game loops and Group loops.
+        * Controls if this Sprite is processed by the core Phaser game loops and Group loops (except {@link Phaser.Group#update}).
         * Default: true
         */
         exists: boolean;
@@ -26937,7 +27019,7 @@ declare module Phaser {
     * The Display canvas - or Game size, depending {@link Phaser.ScaleManager#scaleMode scaleMode} - is updated to best utilize the Parent size.
     * When in Fullscreen mode or with {@link Phaser.ScaleManager#parentIsWindow parentIsWindow} the Parent size is that of the visual viewport (see {@link Phaser.ScaleManager#getParentBounds getParentBounds}).
     * 
-    * Parent and Display canvas containment guidelines:
+    * #### Parent and Display canvas containment guidelines:
     * 
     * - Style the Parent element (of the game canvas) to control the Parent size and
     *   thus the Display canvas's size and layout.
@@ -26951,6 +27033,24 @@ declare module Phaser {
     * 
     * - The Display canvas layout CSS styles (i.e. margins, size) should not be altered/specified as
     *   they may be updated by the ScaleManager.
+    * 
+    * #### Example Uses
+    * 
+    * -  ##### Fixed game size; scale canvas proportionally to fill its container
+    * 
+    *    Use `scaleMode` SHOW_ALL.
+    * 
+    * -  ##### Fixed game size; stretch canvas to fill its container (uncommon)
+    * 
+    *    Use `scaleMode` EXACT_FIT.
+    * 
+    * -  ##### Fixed game size; scale canvas proportionally by some other criteria
+    * 
+    *    Use `scaleMode` USER_SCALE. Examine `parentBounds` in the {@link #setResizeCallback resize callback} and call {@link Phaser.ScaleManager#setUserScale setUserScale} if necessary.
+    * 
+    * -  ##### Fluid game/canvas size
+    * 
+    *    Use `scaleMode` RESIZE. Examine the game or canvas size from the {@link onSizeChange} signal and reposition game objects.
     */
     class ScaleManager {
 
@@ -27251,6 +27351,8 @@ declare module Phaser {
         * This signal is dispatched when the size of the Display canvas changes _or_ the size of the Game changes.
         * When invoked this is done _after_ the Canvas size/position have been updated.
         * 
+        * The callback is supplied with three arguments: the Scale Manager, canvas {@link Phaser.ScaleManager#width width}, and canvas {@link Phaser.ScaleManager#height height}. (Game dimensions can be found in `scale.game.width` and `scale.game.height`.)
+        * 
         * This signal is _only_ called when a change occurs and a reflow may be required.
         * For example, if the canvas does not change sizes because of CSS settings (such as min-width)
         * then this signal will _not_ be triggered.
@@ -27498,6 +27600,12 @@ declare module Phaser {
         /**
         * Sets the callback that will be invoked before sizing calculations.
         * 
+        * Typically this is triggered when the Scale Manager has detected a change to the canvas's boundaries:
+        * the browser window has been resized, the device has been rotated, or the parent container's size has changed.
+        * At this point the Scale Manager has not resized the game or canvas yet (and may not resize them at all
+        * after it makes its sizing calculations). You can read the size of the parent container from the
+        * `parentBounds` argument to the callback.
+        * 
         * This is the appropriate place to call {@link Phaser.ScaleManager#setUserScale setUserScale} if needing custom dynamic scaling.
         * 
         * The callback is supplied with two arguments `scale` and `parentBounds` where `scale` is the ScaleManager
@@ -27523,14 +27631,16 @@ declare module Phaser {
         *     canvas.width = (game.width * hScale) - hTrim
         *     canvas.height = (game.height * vScale) - vTrim
         * 
-        * This method can be used in the {@link Phaser.ScaleManager#setResizeCallback resize callback}.
+        * This method can be used in the {@link Phaser.ScaleManager#setResizeCallback resize callback}. Set `queueUpdate` and `force` to false if the resize callback is being called repeatedly.
         * 
         * @param hScale Horizontal scaling factor.
         * @param vScale Vertical scaling factor.
         * @param hTrim Horizontal trim, applied after scaling.
         * @param vTrim Vertical trim, applied after scaling.
+        * @param queueUpdate Queue a size/bounds check at next preUpdate - Default: true
+        * @param force Force a resize during the next preUpdate - Default: true
         */
-        setUserScale(hScale: number, vScale: number, hTrim?: number, vTrim?: number): void;
+        setUserScale(hScale: number, vScale: number, hTrim?: number, vTrim?: number, queueUpdate?: boolean, force?: boolean): void;
 
         /**
         * Set the min and max dimensions for the Display canvas.
@@ -28303,7 +28413,7 @@ declare module Phaser {
         events: Phaser.Events;
 
         /**
-        * Controls if this Sprite is processed by the core Phaser game loops and Group loops.
+        * Controls if this Sprite is processed by the core Phaser game loops and Group loops (except {@link Phaser.Group#update}).
         * Default: true
         */
         exists: boolean;
@@ -29402,13 +29512,19 @@ declare module Phaser {
         createBlankLayer(name: string, width: number, height: number, tileWidth: number, tileHeight: number, group?: Phaser.Group): Phaser.TilemapLayer;
 
         /**
-        * Creates a Sprite for every object matching the given gid in the map data. You can optionally specify the group that the Sprite will be created in. If none is
+        * Creates a Sprite for every {@link http://doc.mapeditor.org/reference/tmx-map-format/#object object} matching the `gid` argument. You can optionally specify the group that the Sprite will be created in. If none is
         * given it will be created in the World. All properties from the map data objectgroup are copied across to the Sprite, so you can use this as an easy way to
-        * configure Sprite properties from within the map editor. For example giving an object a property of alpha: 0.5 in the map editor will duplicate that when the
-        * Sprite is created. You could also give it a value like: body.velocity.x: 100 to set it moving automatically.
+        * configure Sprite properties from within the map editor. For example giving an object a property of `alpha: 0.5` in the map editor will duplicate that when the
+        * Sprite is created. You could also give it a value like: `body.velocity.x: 100` to set it moving automatically.
+        * 
+        * The `gid` argument is matched against:
+        * 
+        * 1. For a tile object, the tile identifier (`gid`); or
+        * 2. The object's unique ID (`id`); or
+        * 3. The object's `name` (a string)
         * 
         * @param name The name of the Object Group to create Sprites from.
-        * @param gid The layer array index value, or if a string is given the layer name within the map data.
+        * @param gid The object's tile reference (gid), unique ID (id) or name.
         * @param key The Game.cache key of the image that this Sprite will use.
         * @param frame If the Sprite image contains multiple frames you can specify which one to use here.
         * @param exists The default exists state of the Sprite. - Default: true
@@ -29702,8 +29818,10 @@ declare module Phaser {
         searchTileIndex(index: number, skip?: number, reverse?: boolean, layer?: any): Phaser.Tile;
 
         /**
-        * Sets collision the given tile or tiles. You can pass in either a single numeric index or an array of indexes: [ 2, 3, 15, 20].
+        * Sets collision on the given tile or tiles. You can pass in either a single numeric index or an array of indexes: [2, 3, 15, 20].
         * The `collides` parameter controls if collision will be enabled (true) or disabled (false).
+        * 
+        * Collision-enabled tiles can be collided against Sprites using {@link Phaser.Physics.Arcade#collide}.
         * 
         * @param indexes Either a single tile index, or an array of tile IDs to be checked for collision.
         * @param collides If true it will enable collision. If false it will clear collision. - Default: true
@@ -29767,8 +29885,10 @@ declare module Phaser {
         * If a callback is already set for the tile index it will be replaced. Set the callback to null to remove it.
         * If you want to set a callback for a tile at a specific location on the map then see setTileLocationCallback.
         * 
+        * Return `true` from the callback to continue separating the tile and colliding object, or `false` to cancel the collision for the current tile (see {@link Phaser.Physics.Arcade#separateTile}).
+        * 
         * @param indexes Either a single tile index, or an array of tile indexes to have a collision callback set for.
-        * @param callback The callback that will be invoked when the tile is collided with.
+        * @param callback The callback that will be invoked when the tile is collided with (via {@link Phaser.Physics.Arcade#collide}).
         * @param callbackContext The context under which the callback is called.
         * @param layer The layer to operate on. If not given will default to this.currentLayer.
         */
@@ -29779,11 +29899,13 @@ declare module Phaser {
         * If a callback is already set for the tile index it will be replaced. Set the callback to null to remove it.
         * If you want to set a callback for a tile at a specific location on the map then see setTileLocationCallback.
         * 
+        * Return `true` from the callback to continue separating the tile and colliding object, or `false` to cancel the collision for the current tile (see {@link Phaser.Physics.Arcade#separateTile}).
+        * 
         * @param x X position of the top left of the area to copy (given in tiles, not pixels)
         * @param y Y position of the top left of the area to copy (given in tiles, not pixels)
         * @param width The width of the area to copy (given in tiles, not pixels)
         * @param height The height of the area to copy (given in tiles, not pixels)
-        * @param callback The callback that will be invoked when the tile is collided with.
+        * @param callback The callback that will be invoked when the tile is collided with (via {@link Phaser.Physics.Arcade#collide}).
         * @param callbackContext The context under which the callback is called.
         * @param layer The layer to operate on. If not given will default to this.currentLayer.
         */
@@ -30485,7 +30607,7 @@ declare module Phaser {
         events: Phaser.Events;
 
         /**
-        * Controls if this Sprite is processed by the core Phaser game loops and Group loops.
+        * Controls if this Sprite is processed by the core Phaser game loops and Group loops (except {@link Phaser.Group#update}).
         * Default: true
         */
         exists: boolean;

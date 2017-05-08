@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.7 "2017-04-20" - Built: Wed Apr 19 2017 21:51:30
+* v2.7.8 "2017-05-08" - Built: Sun May 07 2017 19:46:01
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -50,469 +50,469 @@ var Phaser = Phaser || {    // jshint ignore:line
 
     /**
     * The Phaser version number.
-    * @constant
+    * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.7.7',
+    VERSION: '2.7.8',
 
     /**
     * An array of Phaser game instances.
-    * @constant
+    * @constant Phaser.GAMES
     * @type {array}
     */
     GAMES: [],
 
     /**
     * AUTO renderer - picks between WebGL or Canvas based on device.
-    * @constant
+    * @constant Phaser.AUTO
     * @type {integer}
     */
     AUTO: 0,
 
     /**
     * Canvas Renderer.
-    * @constant
+    * @constant Phaser.CANVAS
     * @type {integer}
     */
     CANVAS: 1,
 
     /**
     * WebGL Renderer.
-    * @constant
+    * @constant Phaser.WEBGL
     * @type {integer}
     */
     WEBGL: 2,
 
     /**
     * Headless renderer (not visual output)
-    * @constant
+    * @constant Phaser.HEADLESS
     * @type {integer}
     */
     HEADLESS: 3,
 
     /**
     * WebGL Renderer with MultiTexture support enabled.
-    * @constant
+    * @constant Phaser.WEBGL_MULTI
     * @type {integer}
     */
     WEBGL_MULTI: 4,
 
     /**
     * Direction constant.
-    * @constant
+    * @constant Phaser.NONE
     * @type {integer}
     */
     NONE: 0,
 
     /**
     * Direction constant.
-    * @constant
+    * @constant Phaser.LEFT
     * @type {integer}
     */
     LEFT: 1,
 
     /**
     * Direction constant.
-    * @constant
+    * @constant Phaser.RIGHT
     * @type {integer}
     */
     RIGHT: 2,
 
     /**
     * Direction constant.
-    * @constant
+    * @constant Phaser.UP
     * @type {integer}
     */
     UP: 3,
 
     /**
     * Direction constant.
-    * @constant
+    * @constant Phaser.DOWN
     * @type {integer}
     */
     DOWN: 4,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.SPRITE
     * @type {integer}
     */
     SPRITE: 0,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.BUTTON
     * @type {integer}
     */
     BUTTON: 1,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.IMAGE
     * @type {integer}
     */
     IMAGE: 2,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.GRAPHICS
     * @type {integer}
     */
     GRAPHICS: 3,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.TEXT
     * @type {integer}
     */
     TEXT: 4,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.TILESPRITE
     * @type {integer}
     */
     TILESPRITE: 5,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.BITMAPTEXT
     * @type {integer}
     */
     BITMAPTEXT: 6,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.GROUP
     * @type {integer}
     */
     GROUP: 7,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.RENDERTEXTURE
     * @type {integer}
     */
     RENDERTEXTURE: 8,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.TILEMAP
     * @type {integer}
     */
     TILEMAP: 9,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.TILEMAPLAYER
     * @type {integer}
     */
     TILEMAPLAYER: 10,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.EMITTER
     * @type {integer}
     */
     EMITTER: 11,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.POLYGON
     * @type {integer}
     */
     POLYGON: 12,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.BITMAPDATA
     * @type {integer}
     */
     BITMAPDATA: 13,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.CANVAS_FILTER
     * @type {integer}
     */
     CANVAS_FILTER: 14,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.WEBGL_FILTER
     * @type {integer}
     */
     WEBGL_FILTER: 15,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.ELLIPSE
     * @type {integer}
     */
     ELLIPSE: 16,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.SPRITEBATCH
     * @type {integer}
     */
     SPRITEBATCH: 17,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.RETROFONT
     * @type {integer}
     */
     RETROFONT: 18,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.POINTER
     * @type {integer}
     */
     POINTER: 19,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.ROPE
     * @type {integer}
     */
     ROPE: 20,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.CIRCLE
     * @type {integer}
     */
     CIRCLE: 21,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.RECTANGLE
     * @type {integer}
     */
     RECTANGLE: 22,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.LINE
     * @type {integer}
     */
     LINE: 23,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.MATRIX
     * @type {integer}
     */
     MATRIX: 24,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.POINT
     * @type {integer}
     */
     POINT: 25,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.ROUNDEDRECTANGLE
     * @type {integer}
     */
     ROUNDEDRECTANGLE: 26,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.CREATURE
     * @type {integer}
     */
     CREATURE: 27,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.VIDEO
     * @type {integer}
     */
     VIDEO: 28,
 
     /**
     * Game Object type.
-    * @constant
+    * @constant Phaser.PENDING_ATLAS
     * @type {integer}
     */
     PENDING_ATLAS: -1,
 
     /**
     * A horizontal orientation
-    * @constant
+    * @constant Phaser.HORIZONTAL
     * @type {integer}
     */
     HORIZONTAL: 0,
 
     /**
     * A vertical orientation
-    * @constant
+    * @constant Phaser.VERTICAL
     * @type {integer}
     */
     VERTICAL: 1,
 
     /**
     * A landscape orientation
-    * @constant
+    * @constant Phaser.LANDSCAPE
     * @type {integer}
     */
     LANDSCAPE: 0,
 
     /**
     * A portrait orientation
-    * @constant
+    * @constant Phaser.PORTRAIT
     * @type {integer}
     */
     PORTRAIT: 1,
 
     /**
     * The Angle (in degrees) a Game Object needs to be set to in order to face up.
-    * @constant
+    * @constant Phaser.ANGLE_UP
     * @type {integer}
     */
     ANGLE_UP: 270,
 
     /**
     * The Angle (in degrees) a Game Object needs to be set to in order to face down.
-    * @constant
+    * @constant Phaser.ANGLE_DOWN
     * @type {integer}
     */
     ANGLE_DOWN: 90,
 
     /**
     * The Angle (in degrees) a Game Object needs to be set to in order to face left.
-    * @constant
+    * @constant Phaser.ANGLE_LEFT
     * @type {integer}
     */
     ANGLE_LEFT: 180,
 
     /**
     * The Angle (in degrees) a Game Object needs to be set to in order to face right.
-    * @constant
+    * @constant Phaser.ANGLE_RIGHT
     * @type {integer}
     */
     ANGLE_RIGHT: 0,
 
     /**
     * The Angle (in degrees) a Game Object needs to be set to in order to face north east.
-    * @constant
+    * @constant Phaser.ANGLE_NORTH_EAST
     * @type {integer}
     */
     ANGLE_NORTH_EAST: 315,
 
     /**
     * The Angle (in degrees) a Game Object needs to be set to in order to face north west.
-    * @constant
+    * @constant Phaser.ANGLE_NORTH_WEST
     * @type {integer}
     */
     ANGLE_NORTH_WEST: 225,
 
     /**
     * The Angle (in degrees) a Game Object needs to be set to in order to face south east.
-    * @constant
+    * @constant Phaser.ANGLE_SOUTH_EAST
     * @type {integer}
     */
     ANGLE_SOUTH_EAST: 45,
 
     /**
     * The Angle (in degrees) a Game Object needs to be set to in order to face south west.
-    * @constant
+    * @constant Phaser.ANGLE_SOUTH_WEST
     * @type {integer}
     */
     ANGLE_SOUTH_WEST: 135,
 
     /**
     * A constant representing a top-left alignment or position.
-    * @constant
+    * @constant  Phaser.TOP_LEFT
     * @type {integer}
     */
     TOP_LEFT: 0,
 
     /**
     * A constant representing a top-center alignment or position.
-    * @constant
+    * @constant Phaser.TOP_CENTER
     * @type {integer}
     */
     TOP_CENTER: 1,
 
     /**
     * A constant representing a top-right alignment or position.
-    * @constant
+    * @constant Phaser.TOP_RIGHT
     * @type {integer}
     */
     TOP_RIGHT: 2,
 
     /**
     * A constant representing a left-top alignment or position.
-    * @constant
+    * @constant Phaser.Phaser.LEFT_TOP
     * @type {integer}
     */
     LEFT_TOP: 3,
 
     /**
     * A constant representing a left-center alignment or position.
-    * @constant
+    * @constant Phaser.LEFT_TOP
     * @type {integer}
     */
     LEFT_CENTER: 4,
 
     /**
     * A constant representing a left-bottom alignment or position.
-    * @constant
+    * @constant Phaser.LEFT_BOTTOM
     * @type {integer}
     */
     LEFT_BOTTOM: 5,
 
     /**
     * A constant representing a center alignment or position.
-    * @constant
+    * @constant Phaser.CENTER
     * @type {integer}
     */
     CENTER: 6,
 
     /**
     * A constant representing a right-top alignment or position.
-    * @constant
+    * @constant Phaser.RIGHT_TOP
     * @type {integer}
     */
     RIGHT_TOP: 7,
 
     /**
     * A constant representing a right-center alignment or position.
-    * @constant
+    * @constant Phaser.RIGHT_CENTER
     * @type {integer}
     */
     RIGHT_CENTER: 8,
 
     /**
     * A constant representing a right-bottom alignment or position.
-    * @constant
+    * @constant Phaser.RIGHT_BOTTOM
     * @type {integer}
     */
     RIGHT_BOTTOM: 9,
 
     /**
     * A constant representing a bottom-left alignment or position.
-    * @constant
+    * @constant Phaser.BOTTOM_LEFT
     * @type {integer}
     */
     BOTTOM_LEFT: 10,
 
     /**
     * A constant representing a bottom-center alignment or position.
-    * @constant
+    * @constant Phaser.BOTTOM_CENTER
     * @type {integer}
     */
     BOTTOM_CENTER: 11,
 
     /**
     * A constant representing a bottom-right alignment or position.
-    * @constant
+    * @constant Phaser.BOTTOM_RIGHT
     * @type {integer}
     */
     BOTTOM_RIGHT: 12,
@@ -522,7 +522,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     *
     * IMPORTANT: The WebGL renderer only supports the NORMAL, ADD, MULTIPLY and SCREEN blend modes.
     *
-    * @constant
+    * @constant {Object} Phaser.blendModes
     * @property {Number} blendModes.NORMAL
     * @property {Number} blendModes.ADD
     * @property {Number} blendModes.MULTIPLY
@@ -568,11 +568,10 @@ var Phaser = Phaser || {    // jshint ignore:line
     * The DEFAULT scale mode affects the default scaling mode of future operations.
     * It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.
     *
-    * @constant
-    * @property {Object} Phaser.scaleModes
-    * @property {Number} scaleModes.DEFAULT=LINEAR
-    * @property {Number} scaleModes.LINEAR Smooth scaling
-    * @property {Number} scaleModes.NEAREST Pixelating scaling
+    * @constant {Object} Phaser.scaleModes
+    * @property {Number} Phaser.scaleModes.DEFAULT=LINEAR
+    * @property {Number} Phaser.scaleModes.LINEAR Smooth scaling
+    * @property {Number} Phaser.scaleModes.NEAREST Pixelating scaling
     * @static
     */
     scaleModes: {
@@ -9643,6 +9642,14 @@ Phaser.Group = function (game, parent, name, addToStage, enableBody, physicsBody
     this.inputEnableChildren = false;
 
     /**
+    * Skip children with `exists = false` in {@link #update}.
+    *
+    * @property {boolean} updateOnlyExistingChildren
+    * @default
+    */
+    this.updateOnlyExistingChildren = false;
+
+    /**
     * This Signal is dispatched whenever a child of this Group emits an onInputDown signal as a result
     * of having been interacted with by a Pointer. You can bind functions to this Signal instead of to
     * every child Sprite.
@@ -11142,6 +11149,9 @@ Phaser.Group.prototype.preUpdate = function () {
 
 /**
 * The core update - as called by World.
+*
+* Children with `exists = false` are updated unless {@link #updateOnlyExistingChildren} is true.
+*
 * @method Phaser.Group#update
 * @protected
 */
@@ -11152,10 +11162,15 @@ Phaser.Group.prototype.update = function () {
 
     while (i--)
     {
-        if (i >= this.children.length){
-            i = this.children.length - 1;
+        var len = this.children.length;
+
+        if (i >= len) { i = len - 1; }
+
+        var child = this.children[i];
+
+        if (!this.updateOnlyExistingChildren || child.exists) {
+            child.update();
         }
-        this.children[i].update();
     }
 
 };
@@ -12947,6 +12962,21 @@ Object.defineProperty(Phaser.World.prototype, "randomY", {
 * @param {boolean} [transparent=false] - Use a transparent canvas background or not.
 * @param {boolean} [antialias=true] - Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art.
 * @param {object} [physicsConfig=null] - A physics configuration object to pass to the Physics world on creation.
+*
+* @param {object} [config] - A single configuration object
+* @param {number|string} [config.antialias=true]
+* @param {number|string} [config.height=600]
+* @param {boolean} [config.enableDebug=true] - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
+* @param {boolean} [config.multiTexture=false] - Enable support for multiple bound Textures in WebGL. Same as `renderer: Phaser.WEBGL_MULTI`.
+* @param {string|HTMLElement} [config.parent='']
+* @param {object} [config.physicsConfig=null]
+* @param {boolean} [config.preserveDrawingBuffer=false] - Whether or not the contents of the stencil buffer is retained after rendering.
+* @param {number} [config.renderer=Phaser.AUTO]
+* @param {number} [config.resolution=1] - The resolution of your game, as a ratio of canvas pixels to game pixels.
+* @param {number} [config.seed] - Seed for {@link Phaser.RandomDataGenerator}.
+* @param {object} [config.state=null]
+* @param {boolean} [config.transparent=false]
+* @param {number|string} [config.width=800]
 */
 Phaser.Game = function (width, height, renderer, parent, state, transparent, antialias, physicsConfig) {
 
@@ -12967,7 +12997,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.physicsConfig = physicsConfig;
 
     /**
-    * @property {string|HTMLElement} parent - The Games DOM parent.
+    * @property {string|HTMLElement} parent - The Game's DOM parent (or name thereof), if any, as set when the game was created. The actual parent can be found in `game.canvas.parentNode`. Setting this has no effect after {@link Phaser.ScaleManager} is booted.
+    * @readonly
     * @default
     */
     this.parent = '';
@@ -12995,7 +13026,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.height = 600;
 
     /**
-    * The resolution of your game. This value is read only, but can be changed at start time it via a game configuration object.
+    * The resolution of your game, as a ratio of canvas pixels to game pixels. This value is read only, but can be changed at start time it via a game configuration object.
     *
     * @property {integer} resolution
     * @readonly
@@ -13022,7 +13053,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.transparent = false;
 
     /**
-    * @property {boolean} antialias - Anti-alias graphics. By default scaled images are smoothed in Canvas and WebGL, set anti-alias to false to disable this globally.
+    * @property {boolean} antialias - Anti-alias graphics (as set when the Game is created). By default scaled and rotated images are smoothed in Canvas and WebGL; set `antialias` to false to disable this globally. After the game boots, use `game.stage.smoothed` instead.
+    * @readonly
     * @default
     */
     this.antialias = true;
@@ -13035,8 +13067,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     * via the `game.renderer.setTexturePriority` method.
     *
     * @property {boolean} multiTexture
+    * @readonly
     * @default
-    * @readOnly
     */
     this.multiTexture = false;
 
@@ -13314,7 +13346,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.fpsProblemNotifier = new Phaser.Signal();
 
     /**
-    * @property {boolean} forceSingleUpdate - Should the game loop force a logic update, regardless of the delta timer? Set to true if you know you need this. You can toggle it on the fly.
+    * @property {boolean} forceSingleUpdate - Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.
     */
     this.forceSingleUpdate = true;
 
@@ -26966,7 +26998,8 @@ Phaser.Sprite.prototype.preUpdate = function () {
 */
 
 /**
-* An Image is a light-weight object you can use to display anything that doesn't need physics or animation.
+* An Image is a light-weight object you can use to display anything that doesn't need health, physics, or complex position monitoring.
+*
 * It can still rotate, scale, crop and receive input events. This makes it perfect for logos, backgrounds, simple buttons and other non-Sprite graphics.
 *
 * @class Phaser.Image
@@ -31017,6 +31050,12 @@ PIXI.WebGLGraphics.renderGraphics = function(graphics, renderSession)//projectio
 
     var webGL = graphics._webGL[gl.id];
 
+    // if the graphics object does not exist in the webGL context skip rendering!
+    if(!webGL)
+    {
+        return;
+    }    
+
     // This  could be speeded up for sure!
 
     for (var i = 0; i < webGL.data.length; i++)
@@ -32312,13 +32351,13 @@ Phaser.GraphicsData.prototype.clone = function () {
 * graphics.drawCircle(50, 50, 100);
 * graphics.endFill();
 * ```
-* 
+*
 * This will draw a circle shape to the Graphics object, with a diameter of 100, located at x: 50, y: 50.
 *
 * When a Graphics object is rendered it will render differently based on if the game is running under Canvas or
 * WebGL. Under Canvas it will use the HTML Canvas context drawing operations to draw the path. Under WebGL the
 * graphics data is decomposed into polygons. Both of these are expensive processes, especially with complex shapes.
-* 
+*
 * If your Graphics object doesn't change much (or at all) once you've drawn your shape to it, then you will help
 * performance by calling `Graphics.generateTexture`. This will 'bake' the Graphics object into a Texture, and return it.
 * You can then use this Texture for Sprites or other display objects. If your Graphics object updates frequently then
@@ -32423,7 +32462,7 @@ Phaser.Graphics = function (game, x, y) {
      * @default PIXI.blendModes.NORMAL;
      */
     this.blendMode = PIXI.blendModes.NORMAL;
-    
+
     /**
      * Current path
      *
@@ -32432,7 +32471,7 @@ Phaser.Graphics = function (game, x, y) {
      * @private
      */
     this.currentPath = null;
-    
+
     /**
      * Array containing some WebGL-related properties used by the WebGL renderer.
      *
@@ -32462,7 +32501,7 @@ Phaser.Graphics = function (game, x, y) {
 
     /**
      * Used to detect if the graphics object has changed. If this is set to true then the graphics object will be recalculated.
-     * 
+     *
      * @property dirty
      * @type Boolean
      * @private
@@ -32472,7 +32511,7 @@ Phaser.Graphics = function (game, x, y) {
     /**
      * Used to detect if the bounds have been invalidated, by this Graphics being cleared or drawn to.
      * If this is set to true then the updateLocalBounds is called once in the postUpdate method.
-     * 
+     *
      * @property _boundsDirty
      * @type Boolean
      * @private
@@ -32481,7 +32520,7 @@ Phaser.Graphics = function (game, x, y) {
 
     /**
      * Used to detect if the webgl graphics object has changed. If this is set to true then the graphics object will be recalculated.
-     * 
+     *
      * @property webGLDirty
      * @type Boolean
      * @private
@@ -32490,7 +32529,7 @@ Phaser.Graphics = function (game, x, y) {
 
     /**
      * Used to detect if the cached sprite object needs to be updated.
-     * 
+     *
      * @property cachedSpriteDirty
      * @type Boolean
      * @private
@@ -32524,9 +32563,8 @@ Phaser.Graphics.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 
 /**
 * Automatically called by World.preUpdate.
-* 
-* @method
-* @memberof Phaser.Graphics
+*
+* @method Phaser.Graphics#preUpdate
 */
 Phaser.Graphics.prototype.preUpdate = function () {
 
@@ -32541,7 +32579,8 @@ Phaser.Graphics.prototype.preUpdate = function () {
 
 /**
 * Automatically called by World
-* @method Phaser.Graphics.prototype.postUpdate
+*
+* @method Phaser.Graphics#postUpdate
 */
 Phaser.Graphics.prototype.postUpdate = function () {
 
@@ -32564,7 +32603,7 @@ Phaser.Graphics.prototype.postUpdate = function () {
 /**
 * Destroy this Graphics instance.
 *
-* @method Phaser.Graphics.prototype.destroy
+* @method Phaser.Graphics#destroy
 * @param {boolean} [destroyChildren=true] - Should every child of this object have its destroy method called?
 */
 Phaser.Graphics.prototype.destroy = function (destroyChildren) {
@@ -32575,10 +32614,10 @@ Phaser.Graphics.prototype.destroy = function (destroyChildren) {
 
 };
 
-/*
+/**
 * Draws a single {Phaser.Polygon} triangle from a {Phaser.Point} array
 *
-* @method Phaser.Graphics.prototype.drawTriangle
+* @method Phaser.Graphics#drawTriangle
 * @param {Array<Phaser.Point>} points - An array of Phaser.Points that make up the three vertices of this triangle
 * @param {boolean} [cull=false] - Should we check if the triangle is back-facing
 */
@@ -32607,10 +32646,10 @@ Phaser.Graphics.prototype.drawTriangle = function (points, cull) {
 
 };
 
-/*
+/**
 * Draws {Phaser.Polygon} triangles
 *
-* @method Phaser.Graphics.prototype.drawTriangles
+* @method Phaser.Graphics#drawTriangles
 * @param {Array<Phaser.Point>|Array<number>} vertices - An array of Phaser.Points or numbers that make up the vertices of the triangles
 * @param {Array<number>} {indices=null} - An array of numbers that describe what order to draw the vertices in
 * @param {boolean} [cull=false] - Should we check if the triangle is back-facing
@@ -32686,7 +32725,7 @@ Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull) {
 /**
  * Specifies the line style used for subsequent calls to Graphics methods such as the lineTo() method or the drawCircle() method.
  *
- * @method lineStyle
+ * @method Phaser.Graphics#lineStyle
  * @param lineWidth {Number} width of the line to draw, will update the objects stored style
  * @param color {Number} color of the line to draw, will update the objects stored style
  * @param alpha {Number} alpha of the line to draw, will update the objects stored style
@@ -32721,7 +32760,7 @@ Phaser.Graphics.prototype.lineStyle = function (lineWidth, color, alpha) {
 /**
  * Moves the current drawing position to x, y.
  *
- * @method moveTo
+ * @method Phaser.Graphics#moveTo
  * @param x {Number} the X coordinate to move to
  * @param y {Number} the Y coordinate to move to
  * @return {Graphics}
@@ -32738,7 +32777,7 @@ Phaser.Graphics.prototype.moveTo = function (x, y) {
  * Draws a line using the current line style from the current drawing position to (x, y);
  * The current drawing position is then set to (x, y).
  *
- * @method lineTo
+ * @method Phaser.Graphics#lineTo
  * @param x {Number} the X coordinate to draw to
  * @param y {Number} the Y coordinate to draw to
  * @return {Graphics}
@@ -32762,7 +32801,7 @@ Phaser.Graphics.prototype.lineTo = function (x, y) {
  * Calculate the points for a quadratic bezier curve and then draws it.
  * Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier-curve-in-c
  *
- * @method quadraticCurveTo
+ * @method Phaser.Graphics#quadraticCurveTo
  * @param cpX {Number} Control point x
  * @param cpY {Number} Control point y
  * @param toX {Number} Destination point x
@@ -32817,7 +32856,7 @@ Phaser.Graphics.prototype.quadraticCurveTo = function (cpX, cpY, toX, toY) {
 /**
  * Calculate the points for a bezier curve and then draws it.
  *
- * @method bezierCurveTo
+ * @method Phaser.Graphics#bezierCurveTo
  * @param cpX {Number} Control point x
  * @param cpY {Number} Control point y
  * @param cpX2 {Number} Second Control point x
@@ -32862,11 +32901,11 @@ Phaser.Graphics.prototype.bezierCurveTo = function (cpX, cpY, cpX2, cpY2, toX, t
 
         t2 = j * j;
         t3 = t2 * j;
-        
+
         points.push( dt3 * fromX + 3 * dt2 * j * cpX + 3 * dt * t2 * cpX2 + t3 * toX,
                      dt3 * fromY + 3 * dt2 * j * cpY + 3 * dt * t2 * cpY2 + t3 * toY);
     }
-    
+
     this.dirty = true;
     this._boundsDirty = true;
 
@@ -32874,12 +32913,12 @@ Phaser.Graphics.prototype.bezierCurveTo = function (cpX, cpY, cpX2, cpY2, toX, t
 
 };
 
-/*
+/**
  * The arcTo() method creates an arc/curve between two tangents on the canvas.
- * 
+ *
  * "borrowed" from https://code.google.com/p/fxcanvas/ - thanks google!
  *
- * @method arcTo
+ * @method Phaser.Graphics#arcTo
  * @param x1 {Number} The x-coordinate of the beginning of the arc
  * @param y1 {Number} The y-coordinate of the beginning of the arc
  * @param x2 {Number} The x-coordinate of the end of the arc
@@ -32948,7 +32987,7 @@ Phaser.Graphics.prototype.arcTo = function (x1, y1, x2, y2, radius) {
 /**
  * The arc method creates an arc/curve (used to create circles, or parts of circles).
  *
- * @method arc
+ * @method Phaser.Graphics#arc
  * @param cx {Number} The x-coordinate of the center of the circle
  * @param cy {Number} The y-coordinate of the center of the circle
  * @param radius {Number} The radius of the circle
@@ -33007,7 +33046,7 @@ Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, 
 
     var cTheta = Math.cos(theta);
     var sTheta = Math.sin(theta);
-    
+
     var segMinus = segs - 1;
 
     var remainder = (segMinus % 1) / segMinus;
@@ -33015,7 +33054,7 @@ Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, 
     for (var i = 0; i <= segMinus; i++)
     {
         var real = i + remainder * i;
-    
+
         var angle = ((theta) + startAngle + (theta2 * real));
 
         var c = Math.cos(angle);
@@ -33036,7 +33075,7 @@ Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, 
  * Specifies a simple one-color fill that subsequent calls to other Graphics methods
  * (such as lineTo() or drawCircle()) use when drawing.
  *
- * @method beginFill
+ * @method Phaser.Graphics#beginFill
  * @param color {Number} the color of the fill
  * @param alpha {Number} the alpha of the fill
  * @return {Graphics}
@@ -33064,7 +33103,7 @@ Phaser.Graphics.prototype.beginFill = function (color, alpha) {
 /**
  * Applies a fill to the lines and shapes that were added since the last call to the beginFill() method.
  *
- * @method endFill
+ * @method Phaser.Graphics#endFill
  * @return {Graphics}
  */
 Phaser.Graphics.prototype.endFill = function () {
@@ -33078,7 +33117,7 @@ Phaser.Graphics.prototype.endFill = function () {
 };
 
 /**
- * @method drawRect
+ * @method Phaser.Graphics#drawRect
  *
  * @param x {Number} The X coord of the top-left of the rectangle
  * @param y {Number} The Y coord of the top-left of the rectangle
@@ -33095,7 +33134,7 @@ Phaser.Graphics.prototype.drawRect = function (x, y, width, height) {
 };
 
 /**
- * @method drawRoundedRect
+ * @method Phaser.Graphics#drawRoundedRect
  * @param x {Number} The X coord of the top-left of the rectangle
  * @param y {Number} The Y coord of the top-left of the rectangle
  * @param width {Number} The width of the rectangle
@@ -33113,7 +33152,7 @@ Phaser.Graphics.prototype.drawRoundedRect = function (x, y, width, height, radiu
 /**
  * Draws a circle.
  *
- * @method drawCircle
+ * @method Phaser.Graphics#drawCircle
  * @param x {Number} The X coordinate of the center of the circle
  * @param y {Number} The Y coordinate of the center of the circle
  * @param diameter {Number} The diameter of the circle
@@ -33130,7 +33169,7 @@ Phaser.Graphics.prototype.drawCircle = function (x, y, diameter) {
 /**
  * Draws an ellipse.
  *
- * @method drawEllipse
+ * @method Phaser.Graphics#drawEllipse
  * @param x {Number} The X coordinate of the center of the ellipse
  * @param y {Number} The Y coordinate of the center of the ellipse
  * @param width {Number} The half width of the ellipse
@@ -33148,7 +33187,7 @@ Phaser.Graphics.prototype.drawEllipse = function (x, y, width, height) {
 /**
  * Draws a polygon using the given path.
  *
- * @method drawPolygon
+ * @method Phaser.Graphics#drawPolygon
  * @param path {Array|Phaser.Polygon} The path data used to construct the polygon. Can either be an array of points or a Phaser.Polygon object.
  * @return {Graphics}
  */
@@ -33184,7 +33223,7 @@ Phaser.Graphics.prototype.drawPolygon = function (path) {
 /**
  * Clears the graphics that were drawn to this Graphics object, and resets fill and line style settings.
  *
- * @method clear
+ * @method Phaser.Graphics#clear
  * @return {Graphics}
  */
 Phaser.Graphics.prototype.clear = function () {
@@ -33207,7 +33246,7 @@ Phaser.Graphics.prototype.clear = function () {
  * Useful function that returns a texture of the graphics object that can then be used to create sprites
  * This can be quite useful if your geometry is complicated and needs to be reused multiple times.
  *
- * @method generateTexture
+ * @method Phaser.Graphics#generateTexture
  * @param [resolution=1] {Number} The resolution of the texture being generated
  * @param [scaleMode=0] {Number} Should be one of the PIXI.scaleMode consts
  * @param [padding=0] {Number} Add optional extra padding to the generated texture (default 0)
@@ -33223,9 +33262,9 @@ Phaser.Graphics.prototype.generateTexture = function (resolution, scaleMode, pad
 
     bounds.width += padding;
     bounds.height += padding;
-   
+
     var canvasBuffer = new PIXI.CanvasBuffer(bounds.width * resolution, bounds.height * resolution);
-    
+
     var texture = PIXI.Texture.fromCanvas(canvasBuffer.canvas, scaleMode);
 
     texture.baseTexture.resolution = resolution;
@@ -33243,8 +33282,8 @@ Phaser.Graphics.prototype.generateTexture = function (resolution, scaleMode, pad
 /**
 * Renders the object using the WebGL renderer
 *
-* @method _renderWebGL
-* @param renderSession {RenderSession} 
+* @method Phaser.Graphics#_renderWebGL
+* @param renderSession {RenderSession}
 * @private
 */
 Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
@@ -33260,7 +33299,7 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
         if (this.dirty || this.cachedSpriteDirty)
         {
             this._generateCachedSprite();
-   
+
             // we will also need to update the texture on the gpu too!
             this.updateCachedSpriteTexture();
 
@@ -33288,7 +33327,7 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
         {
             renderSession.filterManager.pushFilter(this._filterBlock);
         }
-      
+
         // check blend mode
         if (this.blendMode !== renderSession.spriteBatch.currentBlendMode)
         {
@@ -33296,16 +33335,16 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
             var blendModeWebGL = PIXI.blendModesWebGL[renderSession.spriteBatch.currentBlendMode];
             renderSession.spriteBatch.gl.blendFunc(blendModeWebGL[0], blendModeWebGL[1]);
         }
-        
+
         // check if the webgl graphic needs to be updated
         if (this.webGLDirty)
         {
             this.dirty = true;
             this.webGLDirty = false;
         }
-        
+
         PIXI.WebGLGraphics.renderGraphics(this, renderSession);
-        
+
         // only render if it has children!
         if (this.children.length)
         {
@@ -33329,7 +33368,7 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
         {
             renderSession.maskManager.popMask(this.mask, renderSession);
         }
-          
+
         renderSession.drawCount++;
 
         renderSession.spriteBatch.start();
@@ -33340,8 +33379,8 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
 /**
 * Renders the object using the Canvas renderer
 *
-* @method _renderCanvas
-* @param renderSession {RenderSession} 
+* @method Phaser.Graphics#_renderCanvas
+* @param renderSession {RenderSession}
 * @private
 */
 Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
@@ -33364,7 +33403,7 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
         if (this.dirty || this.cachedSpriteDirty)
         {
             this._generateCachedSprite();
-   
+
             // we will also need to update the texture
             this.updateCachedSpriteTexture();
 
@@ -33382,7 +33421,7 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
     {
         var context = renderSession.context;
         var transform = this.worldTransform;
-        
+
         if (this.blendMode !== renderSession.currentBlendMode)
         {
             renderSession.currentBlendMode = this.blendMode;
@@ -33424,7 +33463,7 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
 /**
  * Retrieves the bounds of the graphic shape as a rectangle object
  *
- * @method getBounds
+ * @method Phaser.Graphics#getBounds
  * @return {Rectangle} the rectangular bounding area
  */
 Phaser.Graphics.prototype.getBounds = function (matrix) {
@@ -33514,7 +33553,7 @@ Phaser.Graphics.prototype.getBounds = function (matrix) {
 /**
  * Retrieves the non-global local bounds of the graphic shape as a rectangle. The calculation takes all visible children into consideration.
  *
- * @method getLocalBounds
+ * @method Phaser.Graphics#getLocalBounds
  * @return {Rectangle} The rectangular bounding area
  */
 Phaser.Graphics.prototype.getLocalBounds = function () {
@@ -33581,7 +33620,7 @@ Phaser.Graphics.prototype.containsPoint = function (point, tempPoint) {
 /**
  * Update the bounds of the object
  *
- * @method updateLocalBounds
+ * @method Phaser.Graphics#updateLocalBounds
  */
 Phaser.Graphics.prototype.updateLocalBounds = function () {
 
@@ -33682,7 +33721,7 @@ Phaser.Graphics.prototype.updateLocalBounds = function () {
     }
 
     var padding = this.boundsPadding;
-    
+
     this._localBounds.x = minX - padding;
     this._localBounds.width = (maxX - minX) + padding * 2;
 
@@ -33694,7 +33733,7 @@ Phaser.Graphics.prototype.updateLocalBounds = function () {
 /**
  * Generates the cached sprite when the sprite has cacheAsBitmap = true
  *
- * @method _generateCachedSprite
+ * @method Phaser.Graphics#_generateCachedSprite
  * @private
  */
 Phaser.Graphics.prototype._generateCachedSprite = function () {
@@ -33705,7 +33744,7 @@ Phaser.Graphics.prototype._generateCachedSprite = function () {
     {
         var canvasBuffer = new PIXI.CanvasBuffer(bounds.width, bounds.height);
         var texture = PIXI.Texture.fromCanvas(canvasBuffer.canvas);
-        
+
         this._cachedSprite = new PIXI.Sprite(texture);
         this._cachedSprite.buffer = canvasBuffer;
 
@@ -33722,8 +33761,8 @@ Phaser.Graphics.prototype._generateCachedSprite = function () {
 
     // this._cachedSprite.buffer.context.save();
     this._cachedSprite.buffer.context.translate(-bounds.x, -bounds.y);
-    
-    // make sure we set the alpha of the graphics to 1 for the render.. 
+
+    // make sure we set the alpha of the graphics to 1 for the render..
     this.worldAlpha = 1;
 
     // now render the graphic..
@@ -33735,7 +33774,7 @@ Phaser.Graphics.prototype._generateCachedSprite = function () {
 /**
  * Updates texture size based on canvas size
  *
- * @method updateCachedSpriteTexture
+ * @method Phaser.Graphics#updateCachedSpriteTexture
  * @private
  */
 Phaser.Graphics.prototype.updateCachedSpriteTexture = function () {
@@ -33760,7 +33799,7 @@ Phaser.Graphics.prototype.updateCachedSpriteTexture = function () {
 /**
  * Destroys a previous cached sprite.
  *
- * @method destroyCachedSprite
+ * @method Phaser.Graphics#destroyCachedSprite
  */
 Phaser.Graphics.prototype.destroyCachedSprite = function () {
 
@@ -33772,7 +33811,7 @@ Phaser.Graphics.prototype.destroyCachedSprite = function () {
 /**
  * Draws the given shape to this Graphics object. Can be any of Circle, Rectangle, Ellipse, Line or Polygon.
  *
- * @method drawShape
+ * @method Phaser.Graphics#drawShape
  * @param {Circle|Rectangle|Ellipse|Line|Polygon} shape The Shape object to draw.
  * @return {GraphicsData} The generated GraphicsData object.
  */
@@ -33797,7 +33836,7 @@ Phaser.Graphics.prototype.drawShape = function (shape) {
     }
 
     var data = new Phaser.GraphicsData(this.lineWidth, this.lineColor, this.lineAlpha, this.fillColor, this.fillAlpha, this.filling, shape);
-    
+
     this.graphicsData.push(data);
 
     if (data.type === Phaser.POLYGON)
@@ -34614,9 +34653,9 @@ Phaser.Text.prototype.setStyle = function (style, update) {
     newStyle.font = style.font || 'bold 20pt Arial';
     newStyle.backgroundColor = style.backgroundColor || null;
     newStyle.fill = style.fill || 'black';
-    newStyle.align = style.align || 'left';
-    newStyle.boundsAlignH = style.boundsAlignH || 'left';
-    newStyle.boundsAlignV = style.boundsAlignV || 'top';
+    newStyle.align = style.align.toLowerCase() || 'left';
+    newStyle.boundsAlignH = style.boundsAlignH.toLowerCase() || 'left';
+    newStyle.boundsAlignV = style.boundsAlignV.toLowerCase() || 'top';
     newStyle.stroke = style.stroke || 'black'; //provide a default, see: https://github.com/GoodBoyDigital/pixi.js/issues/136
     newStyle.strokeThickness = style.strokeThickness || 0;
     newStyle.wordWrap = style.wordWrap || false;
@@ -36220,6 +36259,7 @@ Object.defineProperty(Phaser.Text.prototype, 'align', {
 
     set: function(value) {
 
+        value = value.toLowerCase();
         if (value !== this.style.align)
         {
             this.style.align = value;
@@ -36294,6 +36334,7 @@ Object.defineProperty(Phaser.Text.prototype, 'boundsAlignH', {
 
     set: function(value) {
 
+        value = value.toLowerCase();
         if (value !== this.style.boundsAlignH)
         {
             this.style.boundsAlignH = value;
@@ -36317,6 +36358,7 @@ Object.defineProperty(Phaser.Text.prototype, 'boundsAlignV', {
 
     set: function(value) {
 
+        value = value.toLowerCase();
         if (value !== this.style.boundsAlignV)
         {
             this.style.boundsAlignV = value;
@@ -52406,8 +52448,9 @@ Phaser.Loader = function (game) {
     *
     * Many current browsers limit 6 requests per domain; this is slightly conservative.
     *
+    * This should generally be left at the default, but can be set to a higher limit for specific use-cases. Just be careful when setting large values as different browsers could behave differently.
+    *
     * @property {integer} maxParallelDownloads
-    * @protected
     */
     this.maxParallelDownloads = 4;
 
@@ -54125,7 +54168,7 @@ Phaser.Loader.prototype = {
         // When true further non-pack file downloads are suppressed
         var syncblock = false;
 
-        var inflightLimit = this.enableParallel ? Phaser.Math.clamp(this.maxParallelDownloads, 1, 12) : 1;
+        var inflightLimit = this.enableParallel ? Math.max(1, this.maxParallelDownloads) : 1;
 
         for (var i = this._processingHead; i < this._fileList.length; i++)
         {
@@ -58182,12 +58225,12 @@ Object.defineProperty(Phaser.SoundManager.prototype, "volume", {
 *
 * The calculations of these are heavily influenced by the bounding Parent size which is the computed
 * dimensions of the Display canvas's Parent container/element - the _effective CSS rules of the
-* canvas's Parent element play an important role_ in the operation of the ScaleManager. 
+* canvas's Parent element play an important role_ in the operation of the ScaleManager.
 *
 * The Display canvas - or Game size, depending {@link #scaleMode} - is updated to best utilize the Parent size.
 * When in Fullscreen mode or with {@link #parentIsWindow} the Parent size is that of the visual viewport (see {@link Phaser.ScaleManager#getParentBounds getParentBounds}).
 *
-* Parent and Display canvas containment guidelines:
+* #### Parent and Display canvas containment guidelines:
 *
 * - Style the Parent element (of the game canvas) to control the Parent size and
 *   thus the Display canvas's size and layout.
@@ -58201,6 +58244,24 @@ Object.defineProperty(Phaser.SoundManager.prototype, "volume", {
 *
 * - The Display canvas layout CSS styles (i.e. margins, size) should not be altered/specified as
 *   they may be updated by the ScaleManager.
+*
+* #### Example Uses
+*
+* -  ##### Fixed game size; scale canvas proportionally to fill its container
+*
+*    Use `scaleMode` SHOW_ALL.
+*
+* -  ##### Fixed game size; stretch canvas to fill its container (uncommon)
+*
+*    Use `scaleMode` EXACT_FIT.
+*
+* -  ##### Fixed game size; scale canvas proportionally by some other criteria
+*
+*    Use `scaleMode` USER_SCALE. Examine `parentBounds` in the {@link #setResizeCallback resize callback} and call {@link #setUserScale} if necessary.
+*
+* -  ##### Fluid game/canvas size
+*
+*    Use `scaleMode` RESIZE. Examine the game or canvas size from the {@link onSizeChange} signal and reposition game objects.
 *
 * @description
 * Create a new ScaleManager object - this is done automatically by {@link Phaser.Game}
@@ -58309,7 +58370,7 @@ Phaser.ScaleManager = function (game, width, height) {
     this.forceLandscape = false;
 
     /**
-    * If true, the game should only run in a portrait 
+    * If true, the game should only run in a portrait
     * Change with {@link #forceOrientation}.
     * @property {boolean} forcePortrait
     * @readonly
@@ -58323,7 +58384,7 @@ Phaser.ScaleManager = function (game, width, height) {
     *
     * This value is not updated immediately.
     *
-    * @property {boolean} incorrectOrientation    
+    * @property {boolean} incorrectOrientation
     * @readonly
     * @protected
     */
@@ -58345,7 +58406,7 @@ Phaser.ScaleManager = function (game, width, height) {
 
     /**
     * This signal is dispatched when the orientation changes _or_ the validity of the current orientation changes.
-    * 
+    *
     * The signal is supplied with the following arguments:
     * - `scale` - the ScaleManager object
     * - `prevOrientation`, a string - The previous orientation as per {@link Phaser.ScaleManager#screenOrientation screenOrientation}.
@@ -58395,7 +58456,7 @@ Phaser.ScaleManager = function (game, width, height) {
     *
     * It's possible that ScaleManager.isFullScreen returns `true` even if Phaser wasn't the
     * one that made the browser go full-screen, so this flag lets you determine that.
-    * 
+    *
     * @property {boolean} hasPhaserSetFullScreen
     * @default
     */
@@ -58454,7 +58515,7 @@ Phaser.ScaleManager = function (game, width, height) {
     * if currently running in Fullscreen mode.
     *
     * @property {Phaser.Signal} onFullScreenChange
-    * @public    
+    * @public
     */
     this.onFullScreenChange = new Phaser.Signal();
 
@@ -58557,7 +58618,7 @@ Phaser.ScaleManager = function (game, width, height) {
     * A {@link #refresh} may need to be performed after making changes.
     *
     * @protected
-    * 
+    *
     * @property {boolean} [supportsFullScreen=(auto)] - True only if fullscreen support will be used. (Changing to fullscreen still might not work.)
     *
     * @property {boolean} [orientationFallback=(auto)] - See {@link Phaser.DOM.getScreenOrientation}.
@@ -58639,8 +58700,10 @@ Phaser.ScaleManager = function (game, width, height) {
     this.trackParentInterval = 2000;
 
     /**
-    * This signal is dispatched when the size of the Display canvas changes _or_ the size of the Game changes. 
+    * This signal is dispatched when the size of the Display canvas changes _or_ the size of the Game changes.
     * When invoked this is done _after_ the Canvas size/position have been updated.
+    *
+    * The callback is supplied with three arguments: the Scale Manager, canvas {@link #width}, and canvas {@link #height}. (Game dimensions can be found in `scale.game.width` and `scale.game.height`.)
     *
     * This signal is _only_ called when a change occurs and a reflow may be required.
     * For example, if the canvas does not change sizes because of CSS settings (such as min-width)
@@ -58651,7 +58714,6 @@ Phaser.ScaleManager = function (game, width, height) {
     * This is signaled from `preUpdate` (or `pauseUpdate`) _even when_ the game is paused.
     *
     * @property {Phaser.Signal} onSizeChange
-    * @todo Formalize the arguments, if any, supplied to this signal.
     */
     this.onSizeChange = new Phaser.Signal();
 
@@ -58721,7 +58783,7 @@ Phaser.ScaleManager = function (game, width, height) {
 
     /**
     * The minimum throttle allowed until it has slowed down sufficiently.
-    * @property {integer} _updateThrottleReset   
+    * @property {integer} _updateThrottleReset
     * @private
     */
     this._updateThrottleReset = 100;
@@ -58813,7 +58875,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * Start the ScaleManager.
-    * 
+    *
     * @method Phaser.ScaleManager#boot
     * @protected
     */
@@ -58822,7 +58884,7 @@ Phaser.ScaleManager.prototype = {
         // Configure device-dependent compatibility
 
         var compat = this.compatibility;
-        
+
         compat.supportsFullScreen = this.game.device.fullscreen && !this.game.device.cocoonJS;
 
         //  We can't do anything about the status bars in iPads, web apps or desktops
@@ -58916,7 +58978,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * Load configuration settings.
-    * 
+    *
     * @method Phaser.ScaleManager#parseConfig
     * @protected
     * @param {object} config - The game configuration object.
@@ -58951,7 +59013,7 @@ Phaser.ScaleManager.prototype = {
     * Calculates and sets the game dimensions based on the given width and height.
     *
     * This should _not_ be called when in fullscreen mode.
-    * 
+    *
     * @method Phaser.ScaleManager#setupScale
     * @protected
     * @param {number|string} width - The width of the game.
@@ -59037,7 +59099,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * Invoked when the game is resumed.
-    * 
+    *
     * @method Phaser.ScaleManager#_gameResumed
     * @private
     */
@@ -59065,7 +59127,7 @@ Phaser.ScaleManager.prototype = {
     setGameSize: function (width, height) {
 
         this._gameSize.setTo(0, 0, width, height);
-        
+
         if (this.currentScaleMode !== Phaser.ScaleManager.RESIZE)
         {
             this.updateDimensions(width, height, true);
@@ -59083,24 +59145,39 @@ Phaser.ScaleManager.prototype = {
     *     canvas.width = (game.width * hScale) - hTrim
     *     canvas.height = (game.height * vScale) - vTrim
     *
-    * This method can be used in the {@link Phaser.ScaleManager#setResizeCallback resize callback}.
+    * This method can be used in the {@link Phaser.ScaleManager#setResizeCallback resize callback}. Set `queueUpdate` and `force` to false if the resize callback is being called repeatedly.
     *
     * @method Phaser.ScaleManager#setUserScale
     * @param {number} hScale - Horizontal scaling factor.
     * @param {numer} vScale - Vertical scaling factor.
     * @param {integer} [hTrim=0] - Horizontal trim, applied after scaling.
     * @param {integer} [vTrim=0] - Vertical trim, applied after scaling.
+    * @param {boolean} [queueUpdate=true] - Queue a size/bounds check at next preUpdate
+    * @param {boolean} [force=true] - Force a resize during the next preUpdate
     */
-    setUserScale: function (hScale, vScale, hTrim, vTrim) {
+    setUserScale: function (hScale, vScale, hTrim, vTrim, queueUpdate, force) {
 
         this._userScaleFactor.setTo(hScale, vScale);
         this._userScaleTrim.setTo(hTrim | 0, vTrim | 0);
-        this.queueUpdate(true);
+
+        if (queueUpdate === undefined) { queueUpdate = true; }
+        if (force === undefined) { force = true; }
+
+        if (queueUpdate)
+        {
+            this.queueUpdate(force);
+        }
 
     },
 
     /**
     * Sets the callback that will be invoked before sizing calculations.
+    *
+    * Typically this is triggered when the Scale Manager has detected a change to the canvas's boundaries:
+    * the browser window has been resized, the device has been rotated, or the parent container's size has changed.
+    * At this point the Scale Manager has not resized the game or canvas yet (and may not resize them at all
+    * after it makes its sizing calculations). You can read the size of the parent container from the
+    * `parentBounds` argument to the callback.
     *
     * This is the appropriate place to call {@link #setUserScale} if needing custom dynamic scaling.
     *
@@ -59110,10 +59187,10 @@ Phaser.ScaleManager.prototype = {
     * This callback
     * - May be invoked even though the parent container or canvas sizes have not changed
     * - Unlike {@link #onSizeChange}, it runs _before_ the canvas is guaranteed to be updated
-    * - Will be invoked from `preUpdate`, _even when_ the game is paused    
+    * - Will be invoked from `preUpdate`, _even when_ the game is paused
     *
     * See {@link #onSizeChange} for a better way of reacting to layout updates.
-    * 
+    *
     * @method Phaser.ScaleManager#setResizeCallback
     * @public
     * @param {function} callback - The callback that will be called each time a window.resize event happens or if set, the parent container resizes.
@@ -59130,6 +59207,8 @@ Phaser.ScaleManager.prototype = {
     * Signals a resize - IF the canvas or Game size differs from the last signal.
     *
     * This also triggers updates on {@link #grid} (FlexGrid) and, if in a RESIZE mode, `game.state` (StateManager).
+    *
+    * It dispatches the {@link #onSizeChange} signal.
     *
     * @method Phaser.ScaleManager#signalSizeChange
     * @private
@@ -59164,7 +59243,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * Set the min and max dimensions for the Display canvas.
-    * 
+    *
     * _Note:_ The min/max dimensions are only applied in some cases
     * - When the device is not in an incorrect orientation; or
     * - The scale mode is EXACT_FIT when not in fullscreen
@@ -59196,7 +59275,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * The ScaleManager.preUpdate is called automatically by the core Game loop.
-    * 
+    *
     * @method Phaser.ScaleManager#preUpdate
     * @protected
     */
@@ -59259,7 +59338,7 @@ Phaser.ScaleManager.prototype = {
 
         // Updates at slowest.
         this._updateThrottle = this.trackParentInterval;
-        
+
     },
 
     /**
@@ -59299,7 +59378,7 @@ Phaser.ScaleManager.prototype = {
     /**
     * Update relevant scaling values based on the ScaleManager dimension and game dimensions,
     * which should already be set. This does not change {@link #sourceAspectRatio}.
-    * 
+    *
     * @method Phaser.ScaleManager#updateScalingAndBounds
     * @private
     */
@@ -59335,9 +59414,9 @@ Phaser.ScaleManager.prototype = {
     * This enables generation of incorrect orientation signals and affects resizing but does not otherwise rotate or lock the orientation.
     *
     * Orientation checks are performed via the Screen Orientation API, if available in browser. This means it will check your monitor
-    * orientation on desktop, or your device orientation on mobile, rather than comparing actual game dimensions. If you need to check the 
+    * orientation on desktop, or your device orientation on mobile, rather than comparing actual game dimensions. If you need to check the
     * viewport dimensions instead and bypass the Screen Orientation API then set: `ScaleManager.compatibility.orientationFallback = 'viewport'`
-    * 
+    *
     * @method Phaser.ScaleManager#forceOrientation
     * @public
     * @param {boolean} forceLandscape - true if the game should run in landscape mode only.
@@ -59356,7 +59435,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * Classify the orientation, per `getScreenOrientation`.
-    * 
+    *
     * @method Phaser.ScaleManager#classifyOrientation
     * @private
     * @param {string} orientation - The orientation string, e.g. 'portrait-primary'.
@@ -59381,7 +59460,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * Updates the current orientation and dispatches orientation change events.
-    * 
+    *
     * @method Phaser.ScaleManager#updateOrientationState
     * @private
     * @return {boolean} True if the orientation state changed which means a forced update is likely required.
@@ -59390,7 +59469,7 @@ Phaser.ScaleManager.prototype = {
 
         var previousOrientation = this.screenOrientation;
         var previouslyIncorrect = this.incorrectOrientation;
-        
+
         this.screenOrientation = this.dom.getScreenOrientation(this.compatibility.orientationFallback);
 
         this.incorrectOrientation = (this.forceLandscape && !this.isLandscape) ||
@@ -59422,7 +59501,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * window.orientationchange event handler.
-    * 
+    *
     * @method Phaser.ScaleManager#orientationChange
     * @private
     * @param {Event} event - The orientationchange event data.
@@ -59437,7 +59516,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * window.resize event handler.
-    * 
+    *
     * @method Phaser.ScaleManager#windowResize
     * @private
     * @param {Event} event - The resize event data.
@@ -59452,7 +59531,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * Scroll to the top - in some environments. See `compatibility.scrollTo`.
-    * 
+    *
     * @method Phaser.ScaleManager#scrollTop
     * @private
     */
@@ -59483,7 +59562,7 @@ Phaser.ScaleManager.prototype = {
     * - certain {@link #compatibility} properties are manually changed.
     *
     * The queued layout refresh is not immediate but will run promptly in an upcoming `preRender`.
-    * 
+    *
     * @method Phaser.ScaleManager#refresh
     * @public
     */
@@ -59518,7 +59597,7 @@ Phaser.ScaleManager.prototype = {
             // Set minimum height of content to new window height
             document.documentElement.style.minHeight = window.innerHeight + 'px';
         }
-        
+
         if (this.incorrectOrientation)
         {
             this.setMaximum();
@@ -59534,7 +59613,7 @@ Phaser.ScaleManager.prototype = {
                 if (!this.isFullScreen && this.boundingParent &&
                     this.compatibility.canExpandParent)
                 {
-                    // Try to expand parent out, but choosing maximizing dimensions.                    
+                    // Try to expand parent out, but choosing maximizing dimensions.
                     // Then select minimize dimensions which should then honor parent
                     // maximum bound applications.
                     this.setShowAll(true);
@@ -59680,14 +59759,14 @@ Phaser.ScaleManager.prototype = {
             margin.top = margin.bottom = 0;
 
             var canvasBounds = canvas.getBoundingClientRect();
-            
+
             if (this.height < parentBounds.height && !this.incorrectOrientation)
             {
                 var currentEdge = canvasBounds.top - parentBounds.y;
                 var targetEdge = (parentBounds.height / 2) - (this.height / 2);
 
                 targetEdge = Math.max(targetEdge, 0);
-                
+
                 var offset = targetEdge - currentEdge;
                 margin.top = Math.round(offset);
             }
@@ -59711,7 +59790,7 @@ Phaser.ScaleManager.prototype = {
     * Updates the Game state / size.
     *
     * The canvas margins may always be adjusted, even if alignment is not in effect.
-    * 
+    *
     * @method Phaser.ScaleManager#reflowGame
     * @private
     */
@@ -59728,7 +59807,7 @@ Phaser.ScaleManager.prototype = {
     * Updates the Display canvas size.
     *
     * The canvas margins may always be adjusted, even alignment is not in effect.
-    * 
+    *
     * @method Phaser.ScaleManager#reflowCanvas
     * @private
     */
@@ -59822,7 +59901,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * Updates the width/height to that of the window.
-    * 
+    *
     * @method Phaser.ScaleManager#setMaximum
     * @private
     */
@@ -59835,7 +59914,7 @@ Phaser.ScaleManager.prototype = {
 
     /**
     * Updates the width/height such that the game is scaled proportionally.
-    * 
+    *
     * @method Phaser.ScaleManager#setShowAll
     * @private
     * @param {boolean} expanding - If true then the maximizing dimension is chosen.
@@ -59968,7 +60047,7 @@ Phaser.ScaleManager.prototype = {
         }
 
         var fsTarget = this.fullScreenTarget;
-        
+
         if (!fsTarget)
         {
             this.cleanupCreatedTarget();
@@ -60287,7 +60366,7 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "boundingParent", {
 
 /**
 * The scaling method used by the ScaleManager when not in fullscreen.
-* 
+*
 * <dl>
 *   <dt>{@link Phaser.ScaleManager.NO_SCALE}</dt>
 *   <dd>
@@ -60530,8 +60609,8 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "isLandscape", {
 
 /**
 * Returns true if the game dimensions are portrait (height > width).
-* This is especially useful to check when using the RESIZE scale mode 
-* but wanting to maintain game orientation on desktop browsers, 
+* This is especially useful to check when using the RESIZE scale mode
+* but wanting to maintain game orientation on desktop browsers,
 * where typically the screen orientation will always be landscape regardless of the browser viewport.
 *
 * @name Phaser.ScaleManager#isGamePortrait
@@ -60548,8 +60627,8 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "isGamePortrait", {
 
 /**
 * Returns true if the game dimensions are landscape (width > height).
-* This is especially useful to check when using the RESIZE scale mode 
-* but wanting to maintain game orientation on desktop browsers, 
+* This is especially useful to check when using the RESIZE scale mode
+* but wanting to maintain game orientation on desktop browsers,
 * where typically the screen orientation will always be landscape regardless of the browser viewport.
 *
 * @name Phaser.ScaleManager#isGameLandscape
@@ -60577,7 +60656,7 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "isGameLandscape", {
 * your games `render` function. This is because they are drawn directly onto the game canvas
 * itself, so if you call any debug methods outside of `render` they are likely to be overwritten
 * by the game itself.
-* 
+*
 * If your game is running in WebGL then Debug will create a Sprite that is placed at the top of the Stage display list and bind a canvas texture
 * to it, which must be uploaded every frame. Be advised: this is very expensive, especially in browsers like Firefox. So please only enable Debug
 * in WebGL mode if you really need it (or your desktop can cope with it well) and disable it for production!
@@ -61381,12 +61460,12 @@ Phaser.Utils.Debug.prototype = {
     * @method Phaser.Utils.Debug#box2dWorld
     */
     box2dWorld: function () {
-    
+
         this.start();
-        
+
         this.context.translate(-this.game.camera.view.x, -this.game.camera.view.y, 0);
         this.game.physics.box2d.renderDebugDraw(this.context);
-        
+
         this.stop();
 
     },
@@ -61400,7 +61479,7 @@ Phaser.Utils.Debug.prototype = {
     * @param {string} [color='rgb(0,255,0)'] - color of the debug info to be rendered. (format is css color string).
     */
     box2dBody: function (body, color) {
-    
+
         this.start();
         Phaser.Physics.Box2D.renderBody(this.context, body, color);
         this.stop();
@@ -61409,12 +61488,12 @@ Phaser.Utils.Debug.prototype = {
 
     /**
     * Call this function from the Dev Tools console.
-    * 
+    *
     * It will scan the display list and output all of the Objects it finds, and their renderOrderIDs.
     *
     * **Note** Requires a browser that supports console.group and console.groupEnd (such as Chrome)
     *
-    * @method displayList
+    * @method Phaser.Utils.Debug#displayList
     * @param {Object} [displayObject] - The displayObject level display object to start from. Defaults to the World.
     */
     displayList: function (displayObject) {
@@ -61446,7 +61525,7 @@ Phaser.Utils.Debug.prototype = {
     * @method Phaser.Utils.Debug#destroy
     */
     destroy: function () {
-    
+
         Phaser.CanvasPool.remove(this);
 
     }
@@ -65420,9 +65499,12 @@ Phaser.Physics.Arcade.prototype = {
     */
     updateMotion: function (body) {
 
-        var velocityDelta = this.computeVelocity(0, body, body.angularVelocity, body.angularAcceleration, body.angularDrag, body.maxAngular) - body.angularVelocity;
-        body.angularVelocity += velocityDelta;
-        body.rotation += (body.angularVelocity * this.game.time.physicsElapsed);
+        if (body.allowRotation)
+        {
+            var velocityDelta = this.computeVelocity(0, body, body.angularVelocity, body.angularAcceleration, body.angularDrag, body.maxAngular) - body.angularVelocity;
+            body.angularVelocity += velocityDelta;
+            body.rotation += (body.angularVelocity * this.game.time.physicsElapsed);
+        }
 
         body.velocity.x = this.computeVelocity(1, body, body.velocity.x, body.acceleration.x, body.drag.x, body.maxVelocity.x);
         body.velocity.y = this.computeVelocity(2, body, body.velocity.y, body.acceleration.y, body.drag.y, body.maxVelocity.y);
@@ -65492,11 +65574,22 @@ Phaser.Physics.Arcade.prototype = {
 
     /**
     * Checks for overlaps between two game objects. The objects can be Sprites, Groups or Emitters.
+    *
+    * Unlike {@link #collide} the objects are NOT automatically separated or have any physics applied, they merely test for overlap results.
+    *
     * You can perform Sprite vs. Sprite, Sprite vs. Group and Group vs. Group overlap checks.
-    * Unlike collide the objects are NOT automatically separated or have any physics applied, they merely test for overlap results.
     * Both the first and second parameter can be arrays of objects, of differing types.
     * If two arrays are passed, the contents of the first parameter will be tested against all contents of the 2nd parameter.
-    * NOTE: This function is not recursive, and will not test against children of objects passed (i.e. Groups within Groups).
+    *
+    * **This function is not recursive**, and will not test against children of objects passed (i.e. Groups within Groups).
+    *
+    * ##### Tilemaps
+    *
+    * Any overlapping tiles, including blank/null tiles, will give a positive result. Tiles marked via {@link Phaser.Tilemap#setCollision} (and similar methods) have no special status, and callbacks added via {@link Phaser.Tilemap#setTileIndexCallback} or {@link Phaser.Tilemap#setTileLocationCallback} are not invoked. So calling this method without any callbacks isn't very useful.
+    *
+    * If you're interested only in whether an object overlaps a certain tile or class of tiles, filter the tiles with `processCallback` and then use the result returned by this method. Blank/null tiles can be excluded by their {@link Phaser.Tile#index index} (-1).
+    *
+    * If you want to take action on certain overlaps, examine the tiles in `collideCallback` and then handle as you like.
     *
     * @method Phaser.Physics.Arcade#overlap
     * @param {Phaser.Sprite|Phaser.Group|Phaser.Particles.Emitter|array} object1 - The first object or array of objects to check. Can be Phaser.Sprite, Phaser.Group or Phaser.Particles.Emitter.
@@ -65548,14 +65641,29 @@ Phaser.Physics.Arcade.prototype = {
     },
 
     /**
-    * Checks for collision between two game objects. You can perform Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer or Group vs. Tilemap Layer collisions.
-    * Both the first and second parameter can be arrays of objects, of differing types.
-    * If two arrays are passed, the contents of the first parameter will be tested against all contents of the 2nd parameter.
-    * The objects are also automatically separated. If you don't require separation then use ArcadePhysics.overlap instead.
-    * An optional processCallback can be provided. If given this function will be called when two sprites are found to be colliding. It is called before any separation takes place,
-    * giving you the chance to perform additional checks. If the function returns true then the collision and separation is carried out. If it returns false it is skipped.
+    * Checks for collision between two game objects and separates them if colliding. If you don't require separation then use {@link #overlap} instead.
+    *
+    * You can perform Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer or Group vs. Tilemap Layer collisions.
+    * Both the `object1` and `object2` can be arrays of objects, of differing types.
+    *
+    * If two Groups or arrays are passed, the contents of one will be tested against all contents of the other.
+    * If one Group or array **only** is passed (as `object1`), contents of the Group or array will be collided against each other.
+    *
+    * If either object is `null` the collision test will fail.
+    *
+    * Bodies with `enable = false` and Sprites with `exists = false` are skipped (ignored).
+    *
+    * An optional processCallback can be provided. If given this function will be called when two sprites are found to be colliding. It is called before any separation takes place, giving you the chance to perform additional checks. If the function returns true then the collision and separation is carried out. If it returns false it is skipped.
+    *
     * The collideCallback is an optional function that is only called if two sprites collide. If a processCallback has been set then it needs to return true for collideCallback to be called.
-    * NOTE: This function is not recursive, and will not test against children of objects passed (i.e. Groups or Tilemaps within other Groups).
+    *
+    * **This function is not recursive**, and will not test against children of objects passed (i.e. Groups or Tilemaps within other Groups).
+    *
+    * ##### Tilemaps
+    *
+    * Tiles marked via {@link Phaser.Tilemap#setCollision} (and similar methods) are "solid". If a Sprite collides with one of these tiles, the two are separated by moving the Sprite outside the tile's edges. Enable {@link Phaser.TilemapLayer#debug} to see the colliding edges of the Tilemap.
+    *
+    * Tiles with a callback attached via {@link Phaser.Tilemap#setTileIndexCallback} or {@link Phaser.Tilemap#setTileLocationCallback} invoke the callback if a Sprite collides with them. If a tile has a callback attached via both methods, only the location callback is invoked. The colliding Sprite is separated from the tile only if the callback returns `true`.
     *
     * @method Phaser.Physics.Arcade#collide
     * @param {Phaser.Sprite|Phaser.Group|Phaser.Particles.Emitter|Phaser.TilemapLayer|array} object1 - The first object or array of objects to check. Can be Phaser.Sprite, Phaser.Group, Phaser.Particles.Emitter, or Phaser.TilemapLayer.
@@ -67461,7 +67569,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.allowGravity = true;
 
     /**
-    * @property {Phaser.Point} gravity - A local gravity applied to this Body. If non-zero this overrides any world gravity, unless Body.allowGravity is set to false.
+    * @property {Phaser.Point} gravity - This Body's local gravity, **added** to any world gravity, unless Body.allowGravity is set to false.
     */
     this.gravity = new Phaser.Point();
 
@@ -67590,15 +67698,20 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.facing = Phaser.NONE;
 
     /**
-    * @property {boolean} immovable - An immovable Body will not receive any impacts from other bodies.
+    * @property {boolean} immovable - An immovable Body will not receive any impacts from other bodies. **Two** immovable Bodies can't separate or exchange momentum and will pass through each other.
     * @default
     */
     this.immovable = false;
 
     /**
+    * Whether the physics system should update the Body's position and rotation based on its velocity, acceleration, drag, and gravity.
+    *
     * If you have a Body that is being moved around the world via a tween or a Group motion, but its local x/y position never
     * actually changes, then you should set Body.moves = false. Otherwise it will most likely fly off the screen.
     * If you want the physics system to move the body around, then set moves to true.
+    *
+    * A Body with moves = false can still be moved slightly (but not accelerated) during collision separation unless you set {@link #immovable} as well.
+    *
     * @property {boolean} moves - Set to true to allow the Physics system to move this Body, otherwise false to move it manually.
     * @default
     */
@@ -75203,7 +75316,7 @@ Object.defineProperty(Phaser.Tile.prototype, "bottom", {
 * Creates a new Phaser.Tilemap object. The map can either be populated with data from a Tiled JSON file or from a CSV file.
 *
 * Tiled is a free software package specifically for creating tile maps, and is available from http://www.mapeditor.org
-* 
+*
 * To do this pass the Cache key as the first parameter. When using Tiled data you need only provide the key.
 * When using CSV data you must provide the key and the tileWidth and tileHeight parameters.
 * If creating a blank tilemap to be populated later, you can either specify no parameters at all and then use `Tilemap.create` or pass the map and tile dimensions here.
@@ -75298,7 +75411,7 @@ Phaser.Tilemap = function (game, key, tileWidth, tileHeight, width, height) {
     * @property {array} tilesets - An array of Tilesets.
     */
     this.tilesets = data.tilesets;
-    
+
     /**
     * @property {array} imagecollections - An array of Image Collections.
     */
@@ -75571,14 +75684,20 @@ Phaser.Tilemap.prototype = {
     },
 
     /**
-    * Creates a Sprite for every object matching the given gid in the map data. You can optionally specify the group that the Sprite will be created in. If none is
+    * Creates a Sprite for every {@link http://doc.mapeditor.org/reference/tmx-map-format/#object object} matching the `gid` argument. You can optionally specify the group that the Sprite will be created in. If none is
     * given it will be created in the World. All properties from the map data objectgroup are copied across to the Sprite, so you can use this as an easy way to
-    * configure Sprite properties from within the map editor. For example giving an object a property of alpha: 0.5 in the map editor will duplicate that when the
-    * Sprite is created. You could also give it a value like: body.velocity.x: 100 to set it moving automatically.
+    * configure Sprite properties from within the map editor. For example giving an object a property of `alpha: 0.5` in the map editor will duplicate that when the
+    * Sprite is created. You could also give it a value like: `body.velocity.x: 100` to set it moving automatically.
+    *
+    * The `gid` argument is matched against:
+    *
+    * 1. For a tile object, the tile identifier (`gid`); or
+    * 2. The object's unique ID (`id`); or
+    * 3. The object's `name` (a string)
     *
     * @method Phaser.Tilemap#createFromObjects
     * @param {string} name - The name of the Object Group to create Sprites from.
-    * @param {number} gid - The layer array index value, or if a string is given the layer name within the map data.
+    * @param {number|string} gid - The object's tile reference (gid), unique ID (id) or name.
     * @param {string} key - The Game.cache key of the image that this Sprite will use.
     * @param {number|string} [frame] - If the Sprite image contains multiple frames you can specify which one to use here.
     * @param {boolean} [exists=true] - The default exists state of the Sprite.
@@ -75662,7 +75781,7 @@ Phaser.Tilemap.prototype = {
     /**
     * Creates a Sprite for every object matching the given tile indexes in the map data.
     * You can specify the group that the Sprite will be created in. If none is given it will be created in the World.
-    * You can optional specify if the tile will be replaced with another after the Sprite is created. This is useful if you want to lay down special 
+    * You can optional specify if the tile will be replaced with another after the Sprite is created. This is useful if you want to lay down special
     * tiles in a level that are converted to Sprites, but want to replace the tile itself with a floor tile or similar once converted.
     *
     * @method Phaser.Tilemap#createFromTiles
@@ -75976,9 +76095,11 @@ Phaser.Tilemap.prototype = {
     * If a callback is already set for the tile index it will be replaced. Set the callback to null to remove it.
     * If you want to set a callback for a tile at a specific location on the map then see setTileLocationCallback.
     *
+    * Return `true` from the callback to continue separating the tile and colliding object, or `false` to cancel the collision for the current tile (see {@link Phaser.Physics.Arcade#separateTile}).
+    *
     * @method Phaser.Tilemap#setTileIndexCallback
     * @param {number|array} indexes - Either a single tile index, or an array of tile indexes to have a collision callback set for.
-    * @param {function} callback - The callback that will be invoked when the tile is collided with.
+    * @param {function} callback - The callback that will be invoked when the tile is collided with (via {@link Phaser.Physics.Arcade#collide}).
     * @param {object} callbackContext - The context under which the callback is called.
     * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to operate on. If not given will default to this.currentLayer.
     */
@@ -76007,12 +76128,14 @@ Phaser.Tilemap.prototype = {
     * If a callback is already set for the tile index it will be replaced. Set the callback to null to remove it.
     * If you want to set a callback for a tile at a specific location on the map then see setTileLocationCallback.
     *
+    * Return `true` from the callback to continue separating the tile and colliding object, or `false` to cancel the collision for the current tile (see {@link Phaser.Physics.Arcade#separateTile}).
+    *
     * @method Phaser.Tilemap#setTileLocationCallback
     * @param {number} x - X position of the top left of the area to copy (given in tiles, not pixels)
     * @param {number} y - Y position of the top left of the area to copy (given in tiles, not pixels)
     * @param {number} width - The width of the area to copy (given in tiles, not pixels)
     * @param {number} height - The height of the area to copy (given in tiles, not pixels)
-    * @param {function} callback - The callback that will be invoked when the tile is collided with.
+    * @param {function} callback - The callback that will be invoked when the tile is collided with (via {@link Phaser.Physics.Arcade#collide}).
     * @param {object} callbackContext - The context under which the callback is called.
     * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to operate on. If not given will default to this.currentLayer.
     */
@@ -76035,8 +76158,10 @@ Phaser.Tilemap.prototype = {
     },
 
     /**
-    * Sets collision the given tile or tiles. You can pass in either a single numeric index or an array of indexes: [ 2, 3, 15, 20].
+    * Sets collision on the given tile or tiles. You can pass in either a single numeric index or an array of indexes: [2, 3, 15, 20].
     * The `collides` parameter controls if collision will be enabled (true) or disabled (false).
+    *
+    * Collision-enabled tiles can be collided against Sprites using {@link Phaser.Physics.Arcade#collide}.
     *
     * @method Phaser.Tilemap#setCollision
     * @param {number|array} indexes - Either a single tile index, or an array of tile IDs to be checked for collision.
@@ -76048,7 +76173,7 @@ Phaser.Tilemap.prototype = {
 
         if (collides === undefined) { collides = true; }
         if (recalculate === undefined) { recalculate = true; }
-        
+
         layer = this.getLayer(layer);
 
         if (typeof indexes === 'number')
@@ -76088,7 +76213,7 @@ Phaser.Tilemap.prototype = {
 
         if (collides === undefined) { collides = true; }
         if (recalculate === undefined) { recalculate = true; }
-        
+
         layer = this.getLayer(layer);
 
         if (start > stop)
@@ -76123,7 +76248,7 @@ Phaser.Tilemap.prototype = {
 
         if (collides === undefined) { collides = true; }
         if (recalculate === undefined) { recalculate = true; }
-        
+
         layer = this.getLayer(layer);
 
         //  Collide everything, except the IDs given in the indexes array
@@ -76237,7 +76362,7 @@ Phaser.Tilemap.prototype = {
     },
 
     /**
-    * Turn off/on the recalculation of faces for tile or collision updates. 
+    * Turn off/on the recalculation of faces for tile or collision updates.
     * `setPreventRecalculate(true)` puts recalculation on hold while `setPreventRecalculate(false)` recalculates all the changed layers.
     *
     * @method Phaser.Tilemap#setPreventRecalculate
@@ -76279,7 +76404,7 @@ Phaser.Tilemap.prototype = {
             this.needToRecalculate[layer] = true;
             return;
         }
-        
+
         var above = null;
         var below = null;
         var left = null;
@@ -76760,7 +76885,7 @@ Phaser.Tilemap.prototype = {
         if (y === undefined) { y = 0; }
         if (width === undefined) { width = this.layers[layer].width; }
         if (height === undefined) { height = this.layers[layer].height; }
-        
+
         if (x < 0)
         {
             x = 0;
@@ -82751,6 +82876,22 @@ Phaser.Creature.prototype.play = function (loop) {
 
 };
 
+
+/**
+* Sets the animation playback speed
+*
+* @method Phaser.Creature#setAnimationPlaySpeed
+* @memberof Phaser.Creature
+* @param {number} speed - Sets the playback speed
+*/
+Phaser.Creature.prototype.setAnimationPlaySpeed = function (speed) {
+
+    if (speed) {
+      this.timeDelta = speed;
+    }
+
+};
+
 /**
 * Stops the currently playing animation.
 *
@@ -82803,6 +82944,135 @@ Object.defineProperty(Phaser.Creature.prototype, 'loop', {
 
 });
 
+/**
+ * @name Phaser.Creature#height
+ * @property {number} height - Sets the height of the animation
+ */
+Object.defineProperty(Phaser.Creature.prototype, 'height', {
+
+  get: function() {
+
+    return this.data.height;
+
+  },
+
+  set: function(value) {
+
+    var target = this.manager.target_creature;
+
+    var width = this.data.width ? this.data.width : 0;
+
+    var values = target.GetPixelScaling(width, value);
+    this.scale.set(values[0], values[1]);
+    this.data.height = value;
+
+  }
+
+});
+
+/**
+ * @name Phaser.Creature#width
+ * @property {number} width - Sets the width of the animation
+ */
+Object.defineProperty(Phaser.Creature.prototype, 'width', {
+
+  get: function() {
+
+    return this.data.width;
+
+  },
+
+  set: function(value) {
+
+    var target = this.manager.target_creature;
+
+    var height = this.data.height ? this.data.height : 0;
+
+    var values = target.GetPixelScaling(value, height);
+    this.scale.set(values[0], values[1]);
+    this.data.width = value;
+
+  }
+
+});
+
+/**
+ * @name Phaser.Creature#anchorX
+ * @property {number} anchorX - Sets the anchorX of the animation
+ */
+Object.defineProperty(Phaser.Creature.prototype, 'anchorX', {
+
+  get: function() {
+
+    return this.data.anchorX;
+
+  },
+
+  set: function(value) {
+
+    var target = this.manager.target_creature;
+
+    var anchorY = this.data.anchorY ? this.data.anchorY : 0;
+
+    target.SetAnchorPoint(value, anchorY, this.animation.name);
+    this.data.anchorX = value;
+
+  }
+
+});
+
+/**
+ * @name Phaser.Creature#anchorY
+ * @property {number} anchorY - Sets the anchorY of the animation
+ */
+Object.defineProperty(Phaser.Creature.prototype, 'anchorY', {
+
+  get: function() {
+
+    return this.data.anchorY;
+
+  },
+
+  set: function(value) {
+
+    var target = this.manager.target_creature;
+
+    var anchorX = this.data.anchorX ? this.data.anchorX : 0;
+
+    target.SetAnchorPoint(anchorX, value, this.animation.name);
+    this.data.anchorY = value;
+
+  }
+
+});
+
+/**
+* Sets whether anchor point transformations are active.
+*
+* @method Phaser.Creature#setAnchorPointEnabled
+* @memberof Phaser.Creature
+*/
+Phaser.Creature.prototype.setAnchorPointEnabled = function(value) {
+  var target = this.manager.target_creature;
+  target.SetAnchorPointEnabled(value);
+};
+
+/**
+* @method Phaser.Creature#createAllAnimations
+* @memberof Phaser.Creature
+*/
+Phaser.Creature.prototype.createAllAnimations = function (mesh) {
+
+    if (!game.cache.checkJSONKey(mesh))
+    {
+        console.warn('Phaser.Creature: Invalid mesh key given. Not found in Phaser.Cache');
+        return;
+    }
+
+    var meshData = game.cache.getJSON(mesh);
+
+    this.manager.CreateAllAnimations(meshData);
+};
 /**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2016 Photon Storm Ltd.
