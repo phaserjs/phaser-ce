@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.7.7](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.7).
+The [current Phaser CE release is 2.7.8](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.8).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -122,11 +122,11 @@ Using Browserify? Please [read this](#browserify).
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.8/phaser.js"></script>
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.8/phaser.min.js"></script>
 
 ### Web Templates
 
@@ -325,10 +325,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.7/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.7/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.7.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.7.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.8/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.8/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.8.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.8.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
