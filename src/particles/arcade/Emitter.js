@@ -686,7 +686,7 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     body.velocity.y = rnd.between(this.minParticleSpeed.y, this.maxParticleSpeed.y);
     body.angularVelocity = rnd.between(this.minRotation, this.maxRotation);
 
-    body.gravity = this.gravity;
+    body.gravity.copyFrom(this.gravity);
     body.angularDrag = this.angularDrag;
 
     particle.onEmit();
