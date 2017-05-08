@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.7.7](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.7).
+The [current Phaser CE release is 2.7.8](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.8).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -122,11 +122,11 @@ Using Browserify? Please [read this](#browserify).
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.8/phaser.js"></script>
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.8/phaser.min.js"></script>
 
 ### Web Templates
 
@@ -258,7 +258,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
-## Version 2.7.8 - Unreleased
+## Version 2.7.8 - 8th May 2017
 
 ### New Features
 
@@ -293,23 +293,6 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 @aaronransley, @andrewjb123, @Cryt1c, @goldfire, @gre, @LandonSchropp, @NickH-nz, @noseglid, @photonstorm, @samme, @tanquetav, @vantreeseba, @vpmedia, @Xan0C
 
-## Version 2.7.7 - 20th April 2017
-
-### Bug Fixes
-
-* Fixed failure to load compressed textures when using URLs with query strings (#166)
-* Fixed some TypeScript definitions (#168)
-* Fixed missing default values for `resolution` in Phaser.LoaderParser BitmapFont methods (#168).
-* Fixed particle [autoAlpha](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#autoAlpha) and [autoScale](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#autoScale) tweens running at double speed (#160).
-* Fixed loading of compressed textures (#17, #162)
-* Removed `any` key in [Phaser.Physics.Arcade.Body#checkCollision](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#checkCollision). It was never used, so setting it had no effect (#161). Use `!checkCollision.none` instead.
-* Fixed [Phaser.Sound](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html) exception when using IE with AudioTag and high volume values (#157). Now volume is clamped between 0 and 1 in every browser when using AudioTags.
-* Fixed incorrect [worldScale](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#worldScale) calculation (#15)
-
-### Thanks
-
-@fridrisnew, @goldfire, @hdodov, @Peter42, @photonstorm, @samme, @SBCGames, @vpmedia
-
 For changes in previous releases please see the extensive [Version History](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
 <a name="contributing"></a>
@@ -342,10 +325,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.7/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.7/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.7.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.7.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.8/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.8/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.8.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.8.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser

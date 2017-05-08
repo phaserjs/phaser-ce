@@ -6486,8 +6486,72 @@ function Creature(load_data)
     this.boundary_indices = [];
     this.boundary_min = vec2.create();
     this.boundary_max = vec2.create();
+    this.anchor_point_map = {};
+    this.anchor_points_active = false;
 
     this.LoadFromData(load_data);	
+};
+
+// experimental - must enable - disabled by default
+Creature.prototype.SetAnchorPointEnabled = function(value) {
+  this.anchor_points_active = value;
+};
+
+Creature.prototype.GetPixelScaling = function(desired_x, desired_y)
+{
+  // compute pixel scaling relative to mesh scaling
+  this.ComputeBoundaryMinMax();
+
+  var mesh_size_x = this.boundary_max[0] - this.boundary_min[0];
+  var mesh_size_y = this.boundary_max[1] - this.boundary_min[1];
+
+  var scale_x = 1.0 / mesh_size_x * desired_x;
+  var scale_y = 1.0 / mesh_size_y * desired_y;
+
+  return [scale_x, scale_y];
+};
+
+Creature.prototype.SetAnchorPoint = function(x, y, anim_clip_name_in) {
+  if (!anim_clip_name_in) {
+    anim_clip_name_in = 'default';
+  }
+
+  this.ComputeBoundaryMinMax();
+
+  var mesh_size_x = this.boundary_max[0] - this.boundary_min[0];
+  var mesh_size_y = this.boundary_max[1] - this.boundary_min[1];
+
+  var target_size_x = this.boundary_max[0];
+  var target_size_y = this.boundary_max[1];
+
+  if (x !== 0) {
+    target_size_x = this.boundary_max[0] - (mesh_size_x * (x));
+  }
+
+  if (y !== 0) {
+    target_size_y = this.boundary_max[1] - (mesh_size_y * (y));
+  }
+
+  var anchor_point_base = {
+    AnchorPoints: [
+      {
+        point: [target_size_x, target_size_y],
+        anim_clip_name: anim_clip_name_in
+      }
+    ]
+  };
+
+  this.anchor_point_map = this.FillAnchorPointMap(anchor_point_base);
+};
+
+Creature.prototype.GetAnchorPoint = function(anim_clip_name_in)
+{
+  if(anim_clip_name_in in this.anchor_point_map)
+  {
+    return this.anchor_point_map[anim_clip_name_in];
+  }
+
+  return vec2.fromValues(0, 0);
 };
 
 // Fills entire mesh with (r,g,b,a) colours
@@ -6652,7 +6716,44 @@ Creature.prototype.LoadFromData = function(load_data)
   }
 
   this.render_composition.resetToWorldRestPts();
+
+  // Load Anchor Points
+  if("anchor_points_items" in load_data)
+  {
+    var anchor_point_base = load_data["anchor_points_items"];
+    this.anchor_point_map = this.FillAnchorPointMap(anchor_point_base);
+  }
 };
+
+Creature.prototype.FillAnchorPointMap = function(json_obj)
+{
+  var anchor_data_node = json_obj["AnchorPoints"];
+
+  ret_map = {};
+  for (var i = 0; i < anchor_data_node.length; i++)
+  {
+    var cur_node = anchor_data_node[i];
+    var cur_pt = this.ReadVector2JSON(cur_node, "point");
+    var cur_name = cur_node["anim_clip_name"];
+
+    ret_map[cur_name] = cur_pt;
+  }
+
+  return ret_map;
+};
+
+
+Creature.prototype.ReadVector2JSON = function(data, key)
+{
+  var raw_array = this.getFloatArray(data[key]);
+  return vec2.fromValues(raw_array[0], raw_array[1]);
+};
+
+Creature.prototype.getFloatArray = function(raw_data)
+{
+  return raw_data;
+};
+
 
 // CreatureAnimation
 function CreatureAnimation(load_data, name_in)
@@ -6665,6 +6766,28 @@ function CreatureAnimation(load_data, name_in)
     this.fill_cache_pts = [];
 
     this.LoadFromData(name_in, load_data);	
+};
+
+CreatureManager.prototype.AlterBonesByAnchor = function(bones_map, animation_name_in)
+{
+  if(this.target_creature.anchor_points_active == false)
+  {
+    return;
+  }
+
+  var anchor_point = this.target_creature.GetAnchorPoint(animation_name_in);
+  for(var cur_bone_key in bones_map)
+  {
+    var cur_bone = bones_map[cur_bone_key];
+    var start_pt = cur_bone.getWorldStartPt();
+    var end_pt = cur_bone.getWorldEndPt();
+
+    start_pt = vec3.subtract(start_pt, start_pt, vec3.fromValues(anchor_point[0], anchor_point[1], 0));
+    end_pt = vec3.subtract(end_pt, end_pt, vec3.fromValues(anchor_point[0], anchor_point[1], 0));
+
+    cur_bone.setWorldStartPt(start_pt);
+    cur_bone.setWorldEndPt(end_pt);
+  }
 };
 
 CreatureAnimation.prototype.LoadFromData = function(name_in, load_data)
@@ -6783,7 +6906,7 @@ CreatureManager.prototype.CreateAllAnimations = function(load_data)
     this.CreateAnimation(load_data, cur_name);
   }
 
-  this.SetActiveAnimationName (all_animation_names.get(0));
+  this.SetActiveAnimationName (all_animation_names[0]);
 };
 
 // Add an animation
@@ -7162,6 +7285,8 @@ CreatureManager.prototype.PoseCreature = function(animation_name_in, target_pts)
 
   bone_cache_manager.retrieveValuesAtTime(this.getRunTime(),
       bones_map);
+
+  this.AlterBonesByAnchor(bones_map, animation_name_in);
       
   if(this.bones_override_callback != null)
   {
