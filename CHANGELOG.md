@@ -4,7 +4,7 @@
 
 See [README: Change Log](README.md#change-log).
 
-## Version 2.7.8 - 7th May 2017
+## Version 2.7.8 - 8th May 2017
 
 ### New Features
 
