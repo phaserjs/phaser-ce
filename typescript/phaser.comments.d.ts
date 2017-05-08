@@ -16218,7 +16218,7 @@ declare module Phaser {
                 /**
                 * Sets the `body.gravity` of each particle sprite to this on launch.
                 */
-                gravity: number;
+                gravity: Phaser.Point;
                 group: Phaser.Group;
 
                 /**
