@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.8 "2017-05-08" - Built: Sun May 07 2017 19:45:46
+* v2.7.9 "2017-05-09" - Built: Tue May 09 2017 12:04:43
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -7559,7 +7559,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.7.8',
+    VERSION: '2.7.9',
 
     /**
     * An array of Phaser game instances.
@@ -42159,9 +42159,9 @@ Phaser.Text.prototype.setStyle = function (style, update) {
     newStyle.font = style.font || 'bold 20pt Arial';
     newStyle.backgroundColor = style.backgroundColor || null;
     newStyle.fill = style.fill || 'black';
-    newStyle.align = style.align.toLowerCase() || 'left';
-    newStyle.boundsAlignH = style.boundsAlignH.toLowerCase() || 'left';
-    newStyle.boundsAlignV = style.boundsAlignV.toLowerCase() || 'top';
+    newStyle.align = (style.align || 'left').toLowerCase();
+    newStyle.boundsAlignH = (style.boundsAlignH || 'left').toLowerCase();
+    newStyle.boundsAlignV = (style.boundsAlignV || 'top').toLowerCase();
     newStyle.stroke = style.stroke || 'black'; //provide a default, see: https://github.com/GoodBoyDigital/pixi.js/issues/136
     newStyle.strokeThickness = style.strokeThickness || 0;
     newStyle.wordWrap = style.wordWrap || false;

@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.8 "2017-05-08" - Built: Sun May 07 2017 19:45:33
+* v2.7.9 "2017-05-09" - Built: Tue May 09 2017 12:04:30
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -21197,7 +21197,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.7.8',
+    VERSION: '2.7.9',
 
     /**
     * An array of Phaser game instances.
@@ -55797,9 +55797,9 @@ Phaser.Text.prototype.setStyle = function (style, update) {
     newStyle.font = style.font || 'bold 20pt Arial';
     newStyle.backgroundColor = style.backgroundColor || null;
     newStyle.fill = style.fill || 'black';
-    newStyle.align = style.align.toLowerCase() || 'left';
-    newStyle.boundsAlignH = style.boundsAlignH.toLowerCase() || 'left';
-    newStyle.boundsAlignV = style.boundsAlignV.toLowerCase() || 'top';
+    newStyle.align = (style.align || 'left').toLowerCase();
+    newStyle.boundsAlignH = (style.boundsAlignH || 'left').toLowerCase();
+    newStyle.boundsAlignV = (style.boundsAlignV || 'top').toLowerCase();
     newStyle.stroke = style.stroke || 'black'; //provide a default, see: https://github.com/GoodBoyDigital/pixi.js/issues/136
     newStyle.strokeThickness = style.strokeThickness || 0;
     newStyle.wordWrap = style.wordWrap || false;
@@ -101141,12 +101141,6 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.alphaData = null;
 
     /**
-    * @property {Phaser.Point} gravity - Sets the `body.gravity` of each particle sprite to this on launch.
-    * @default
-    */
-    this.gravity = new Phaser.Point(0, 100);
-
-    /**
     * @property {function} particleClass - For emitting your own particle class types. They must extend Phaser.Particle.
     * @default
     */
@@ -101235,6 +101229,12 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     * @default
     */
     this.particleSendToBack = false;
+
+    /**
+    * @property {Phaser.Point} _gravity - Internal gravity value.
+    * @private
+    */
+    this._gravity = new Phaser.Point(0, 100);
 
     /**
     * @property {Phaser.Point} _minParticleScale - Internal particle scale var.
@@ -101712,7 +101712,7 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     body.velocity.y = rnd.between(this.minParticleSpeed.y, this.maxParticleSpeed.y);
     body.angularVelocity = rnd.between(this.minRotation, this.maxRotation);
 
-    body.gravity = this.gravity;
+    body.gravity.copyFrom(this.gravity);
     body.angularDrag = this.angularDrag;
 
     particle.onEmit();
@@ -101926,6 +101926,30 @@ Phaser.Particles.Arcade.Emitter.prototype.at = function (object) {
     return this;
 
 };
+
+/**
+ * @name Phaser.Particles.Arcade.Emitter#gravity
+ * @property {Phaser.Point} gravity - Sets the `body.gravity` of each particle sprite to this on launch.
+ */
+Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "gravity", {
+
+    get: function () {
+        return this._gravity;
+    },
+
+    set: function (value) {
+        if (typeof value === "number")
+        {
+            this._gravity.y = value;
+        }
+        else
+        {
+            this._gravity = value;
+        }
+    }
+
+});
+
 
 /**
 * @name Phaser.Particles.Arcade.Emitter#id

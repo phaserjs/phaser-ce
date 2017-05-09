@@ -4,6 +4,16 @@
 
 See [README: Change Log](README.md#change-log).
 
+## Version 2.7.9 - 9th May 2017
+
+### Updates
+
+* Emitter#gravity can now be set as a number (as in Phaser versions prior to 2.7.2) or a Point (#203). Reading the value will always give you a Point.
+
+### Bug Fixes
+
+* Fixed a crash when a Text object's alignment was not set (#208).
+
 ## Version 2.7.8 - 8th May 2017
 
 ### New Features
