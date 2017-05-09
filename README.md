@@ -268,6 +268,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed a crash when a Text object's alignment was not set (#208).
+
 ## Version 2.7.8 - 8th May 2017
 
 ### New Features
