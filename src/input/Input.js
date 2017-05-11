@@ -949,6 +949,21 @@ Phaser.Input.prototype = {
         {
             return (displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y));
         }
+        else if (displayObject instanceof Phaser.Creature) {
+          var width = displayObject.width;
+          var height = displayObject.height;
+          var x1 = displayObject.x - (width * displayObject.anchorX);
+
+          if (this.game.camera.x + pointer.x >= x1 && this.game.camera.x + pointer.x < x1 + width)
+          {
+            var y1 = displayObject.y - (height * displayObject.anchorY);
+
+            if (this.game.camera.y + pointer.y >= y1 && this.game.camera.y + pointer.y < y1 + height)
+            {
+              return true;
+            }
+          }
+        }
         else if (displayObject instanceof Phaser.TileSprite)
         {
             var width = displayObject.width;
