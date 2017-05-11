@@ -18,7 +18,7 @@
 * The Display canvas - or Game size, depending {@link #scaleMode} - is updated to best utilize the Parent size.
 * When in Fullscreen mode or with {@link #parentIsWindow} the Parent size is that of the visual viewport (see {@link Phaser.ScaleManager#getParentBounds getParentBounds}).
 *
-* Parent and Display canvas containment guidelines:
+* #### Parent and Display canvas containment guidelines:
 *
 * - Style the Parent element (of the game canvas) to control the Parent size and
 *   thus the Display canvas's size and layout.
@@ -32,6 +32,24 @@
 *
 * - The Display canvas layout CSS styles (i.e. margins, size) should not be altered/specified as
 *   they may be updated by the ScaleManager.
+*
+* #### Example Uses
+*
+* -  ##### Fixed game size; scale canvas proportionally to fill its container
+*
+*    Use `scaleMode` SHOW_ALL.
+*
+* -  ##### Fixed game size; stretch canvas to fill its container (uncommon)
+*
+*    Use `scaleMode` EXACT_FIT.
+*
+* -  ##### Fixed game size; scale canvas proportionally by some other criteria
+*
+*    Use `scaleMode` USER_SCALE. Examine `parentBounds` in the {@link #setResizeCallback resize callback} and call {@link #setUserScale} if necessary.
+*
+* -  ##### Fluid game/canvas size
+*
+*    Use `scaleMode` RESIZE. Examine the game or canvas size from the {@link onSizeChange} signal and reposition game objects.
 *
 * @description
 * Create a new ScaleManager object - this is done automatically by {@link Phaser.Game}
@@ -473,7 +491,7 @@ Phaser.ScaleManager = function (game, width, height) {
     * This signal is dispatched when the size of the Display canvas changes _or_ the size of the Game changes.
     * When invoked this is done _after_ the Canvas size/position have been updated.
     *
-    * The callback is supplied with three arguments: the Scale Manager, game {@link #width}, and game {@link #height}.
+    * The callback is supplied with three arguments: the Scale Manager, canvas {@link #width}, and canvas {@link #height}. (Game dimensions can be found in `scale.game.width` and `scale.game.height`.)
     *
     * This signal is _only_ called when a change occurs and a reflow may be required.
     * For example, if the canvas does not change sizes because of CSS settings (such as min-width)
@@ -943,6 +961,12 @@ Phaser.ScaleManager.prototype = {
     /**
     * Sets the callback that will be invoked before sizing calculations.
     *
+    * Typically this is triggered when the Scale Manager has detected a change to the canvas's boundaries:
+    * the browser window has been resized, the device has been rotated, or the parent container's size has changed.
+    * At this point the Scale Manager has not resized the game or canvas yet (and may not resize them at all
+    * after it makes its sizing calculations). You can read the size of the parent container from the
+    * `parentBounds` argument to the callback.
+    *
     * This is the appropriate place to call {@link #setUserScale} if needing custom dynamic scaling.
     *
     * The callback is supplied with two arguments `scale` and `parentBounds` where `scale` is the ScaleManager
@@ -971,6 +995,8 @@ Phaser.ScaleManager.prototype = {
     * Signals a resize - IF the canvas or Game size differs from the last signal.
     *
     * This also triggers updates on {@link #grid} (FlexGrid) and, if in a RESIZE mode, `game.state` (StateManager).
+    *
+    * It dispatches the {@link #onSizeChange} signal.
     *
     * @method Phaser.ScaleManager#signalSizeChange
     * @private

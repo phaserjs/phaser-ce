@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.7.7](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.7).
+The [current Phaser CE release is 2.7.9](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.9).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -110,7 +110,7 @@ Phaser is [hosted on Github][phaser]. There are a number of ways to download it:
 
 Install via [bower](http://bower.io):
 
-    bower install phaser
+    bower install phaser-ce
 
 Install via [npm](https://www.npmjs.com):
 
@@ -122,11 +122,11 @@ Using Browserify? Please [read this](#browserify).
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.9/phaser.js"></script>
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.9/phaser.min.js"></script>
 
 ### Web Templates
 
@@ -258,51 +258,15 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
-## Version 2.7.8 - Unreleased
-
-### New Features
-
-* You can now set [Group#updateOnlyExistingChildren](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#updateOnlyExistingChildren) to skip [update](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#update) calls on children with `exists = false` (#187).
+## Version 2.7.9 - 9th May 2017
 
 ### Updates
 
-* [Phaser.ScaleManager#setUserScale](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#setUserScale) now has `queueUpdate` and `force` parameters. Set these to false if your [resize callback](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#setResizeCallback) is being called repeatedly (#197).
-* Removed the upper limit of 12 for [Phaser.Loader#maxParallelDownloads](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#maxParallelDownloads). The default value is still 4. Most browsers limit parallel connections to 6 per domain. Older IE and Android browsers may suffer with a value above 4 (#170).
-* Arcade Physics Bodies no longer receive angular motion updates while they have [allowRotation](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#allowRotation) disabled, as this was unnecessary.
-* [Phaser.Text#align](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#align) can now be set in any case or mix of cases (e.g., 'left', 'Left', 'LEFT').
-* [Phaser CE API](https://photonstorm.github.io/phaser-ce/) now shows a synopsis like the Phaser 2.6 docs. You can still find the complete [README](https://github.com/photonstorm/phaser-ce/blob/master/README.md) on GitHub.
-* Clarified `gid` argument in [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects). It can represent an object's `gid`, `id`, or `name`.
-* Clarified [Phaser.Image](https://photonstorm.github.io/phaser-ce/Phaser.Image.html)'s use of the Animation component (#185). Images can be animated the same way Sprites can.
+* Emitter#gravity can now be set as a number (as in Phaser versions prior to 2.7.2) or a Point (#203). Reading the value will always give you a Point.
 
 ### Bug Fixes
 
-* Fixed an issue where Sprites sharing the same texture were distorted or hidden when a WebGLFilter was applied (#39, #153, #154).
-* Fixed a 'memory exhausted' error in PIXI.PixiFastShader when compiling shaders with multiTexture enabled.
-* Fixed a TypeError in PIXI.WebGLGraphics when trying to render a Graphics object with a missing WebGL context (#178)
-* Fixed a ReferenceError in [PIXI.WebGLRenderer](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html) when running Phaser in ES5 strict mode.
-* Fixed some Typescript definitions (#167).
-* Added createAllAnimations for Creature meshes to force load all animations in a creature mesh (must be called before setAnimation())
-
-### Thanks
-
-@aaronransley, @Cryt1c, @goldfire, @gre, @NickH-nz, @noseglid, @photonstorm, @samme, @tanquetav, @vantreeseba, @vpmedia, @Xan0C
-
-## Version 2.7.7 - 20th April 2017
-
-### Bug Fixes
-
-* Fixed failure to load compressed textures when using URLs with query strings (#166)
-* Fixed some TypeScript definitions (#168)
-* Fixed missing default values for `resolution` in Phaser.LoaderParser BitmapFont methods (#168).
-* Fixed particle [autoAlpha](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#autoAlpha) and [autoScale](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#autoScale) tweens running at double speed (#160).
-* Fixed loading of compressed textures (#17, #162)
-* Removed `any` key in [Phaser.Physics.Arcade.Body#checkCollision](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#checkCollision). It was never used, so setting it had no effect (#161). Use `!checkCollision.none` instead.
-* Fixed [Phaser.Sound](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html) exception when using IE with AudioTag and high volume values (#157). Now volume is clamped between 0 and 1 in every browser when using AudioTags.
-* Fixed incorrect [worldScale](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#worldScale) calculation (#15)
-
-### Thanks
-
-@fridrisnew, @goldfire, @hdodov, @Peter42, @photonstorm, @samme, @SBCGames, @vpmedia
+* Fixed a crash when a Text object's alignment was not set (#208).
 
 For changes in previous releases please see the extensive [Version History](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
@@ -336,10 +300,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.7/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.7/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.7.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.7.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.9/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.9/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.9.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.9.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
