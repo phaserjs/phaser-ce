@@ -2180,7 +2180,7 @@ CreatureModuleUtils.FillUVSwapCache = function(json_obj, key, start_time, end_ti
 };
 
 // Creature
-function Creature(load_data)
+function Creature(load_data, loadAnchors)
 {
 	this.total_num_pts = 0;
     this.total_num_indices = 0;
@@ -2196,7 +2196,7 @@ function Creature(load_data)
     this.anchor_point_map = {};
     this.anchor_points_active = false;
 
-    this.LoadFromData(load_data);	
+    this.LoadFromData(load_data, loadAnchors);	
 };
 
 // experimental - must enable - disabled by default
@@ -2368,7 +2368,7 @@ Creature.prototype.ComputeBoundaryMinMax = function()
 
 
 // Load data
-Creature.prototype.LoadFromData = function(load_data)
+Creature.prototype.LoadFromData = function(load_data, loadAnchors)
 {
   // Load points and topology
   var json_mesh = load_data["mesh"];
@@ -2424,11 +2424,13 @@ Creature.prototype.LoadFromData = function(load_data)
 
   this.render_composition.resetToWorldRestPts();
 
-  // Load Anchor Points
-  if("anchor_points_items" in load_data)
-  {
-    var anchor_point_base = load_data["anchor_points_items"];
-    this.anchor_point_map = this.FillAnchorPointMap(anchor_point_base);
+  if (loadAnchors) {
+    // Load Anchor Points
+    if("anchor_points_items" in load_data)
+    {
+      var anchor_point_base = load_data["anchor_points_items"];
+      this.anchor_point_map = this.FillAnchorPointMap(anchor_point_base);
+    }
   }
 };
 

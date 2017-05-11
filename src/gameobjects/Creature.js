@@ -31,6 +31,7 @@
 * @extends Phaser.Component.FixedToCamera
 * @extends Phaser.Component.LifeSpan
 * @extends Phaser.Component.Reset
+* @extends Phaser.Component.InputEnabled
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {number} x - The x coordinate of the Game Object. The coordinate is relative to any parent container this Game Object may be in.
@@ -39,7 +40,7 @@
 * @param {string} mesh - The mesh data for the Creature Object. It should be a string which is a reference to the Cache JSON entry.
 * @param {string} [animation='default'] - The animation within the mesh data  to play.
 */
-Phaser.Creature = function (game, x, y, key, mesh, animation) {
+Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
 
     if (animation === undefined) { animation = 'default'; }
 
@@ -61,7 +62,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation) {
     * @property {Creature} _creature - The Creature instance.
     * @private
     */
-    this._creature = new Creature(meshData);
+    this._creature = new Creature(meshData, loadAnchors);
 
     /**
     * @property {CreatureAnimation} animation - The CreatureAnimation instance.
@@ -160,7 +161,8 @@ Phaser.Component.Core.install.call(Phaser.Creature.prototype, [
     'Destroy',
     'FixedToCamera',
     'LifeSpan',
-    'Reset'
+    'Reset',
+    'InputEnabled'
 ]);
 
 Phaser.Creature.prototype.preUpdateInWorld = Phaser.Component.InWorld.preUpdate;
@@ -406,7 +408,23 @@ Phaser.Creature.prototype.updateRenderData = function (verts, uvs) {
 */
 Phaser.Creature.prototype.setAnimation = function (key) {
 
+    this.data.animation = key;
     this.manager.SetActiveAnimationName(key, true);
+
+};
+
+/**
+ * Sets the animation playback speed
+ *
+ * @method Phaser.Creature#setAnimationPlaySpeed
+ * @memberof Phaser.Creature
+ * @param {number} speed - Sets the playback speed
+ */
+Phaser.Creature.prototype.setAnimationPlaySpeed = function (speed) {
+
+  if (speed) {
+    this.timeDelta = speed;
+  }
 
 };
 
@@ -425,22 +443,6 @@ Phaser.Creature.prototype.play = function (loop) {
 
     this.manager.SetIsPlaying(true);
     this.manager.RunAtTime(0);
-
-};
-
-
-/**
-* Sets the animation playback speed
-*
-* @method Phaser.Creature#setAnimationPlaySpeed
-* @memberof Phaser.Creature
-* @param {number} speed - Sets the playback speed
-*/
-Phaser.Creature.prototype.setAnimationPlaySpeed = function (speed) {
-
-    if (speed) {
-      this.timeDelta = speed;
-    }
 
 };
 
@@ -566,7 +568,7 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorX', {
 
     var anchorY = this.data.anchorY ? this.data.anchorY : 0;
 
-    target.SetAnchorPoint(value, anchorY, this.animation.name);
+    target.SetAnchorPoint(value, anchorY, this.data.animation);
     this.data.anchorX = value;
 
   }
@@ -591,7 +593,7 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorY', {
 
     var anchorX = this.data.anchorX ? this.data.anchorX : 0;
 
-    target.SetAnchorPoint(anchorX, value, this.animation.name);
+    target.SetAnchorPoint(anchorX, value, this.data.animation);
     this.data.anchorY = value;
 
   }
