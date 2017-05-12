@@ -1,0 +1,8 @@
+dist/
+docs/
+resources/
+
+.*
+*.md
+bower.json
+phaser-ce-*.tgz
