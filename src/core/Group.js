@@ -2446,7 +2446,14 @@ Phaser.Group.prototype.getAll = function (property, value, startIndex, endIndex)
     {
         var child = this.children[i];
 
-        if (property && child[property] === value)
+        if (property)
+        {
+            if (child[property] === value)
+            {
+                output.push(child);
+            }
+        }
+        else
         {
             output.push(child);
         }
