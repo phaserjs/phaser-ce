@@ -2422,18 +2422,18 @@ Phaser.Group.prototype.getRandomExists = function (startIndex, endIndex) {
 *
 * You can optionally specify a matching criteria using the `property` and `value` arguments.
 *
-* For example: `getAll('exists', true)` would return only children that have their exists property set.
+* For example: `getAll('exists', true)` would return only children that have an `exists` property equal to `true`.
 *
 * Optionally you can specify a start and end index. For example if this Group had 100 children,
-* and you set `startIndex` to 0 and `endIndex` to 50, it would return a random child from only
-* the first 50 children in the Group.
+* and you set `startIndex` to 0 and `endIndex` to 50, it would return the first 50 children in the Group.
+* If `property` and `value` are also specified, only children within the given index range are searched.
 *
 * @method Phaser.Group#getAll
 * @param {string} [property] - An optional property to test against the value argument.
 * @param {any} [value] - If property is set then Child.property must strictly equal this value to be included in the results.
 * @param {integer} [startIndex=0] - The first child index to start the search from.
 * @param {integer} [endIndex] - The last child index to search up until.
-* @return {any} A random existing child of this Group.
+* @return {array} - An array containing all, some, or none of the Children of this Group.
 */
 Phaser.Group.prototype.getAll = function (property, value, startIndex, endIndex) {
 
