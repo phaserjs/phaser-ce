@@ -266,6 +266,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Group#getAll was not returning all children objects when property was not specified.
+
 ## Version 2.7.9 - 9th May 2017
 
 ### Updates
