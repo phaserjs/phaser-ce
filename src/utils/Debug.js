@@ -66,6 +66,12 @@ Phaser.Utils.Debug = function (game) {
     this.lineHeight = 16;
 
     /**
+    * @property {number} lineWidth - The width of the stroke on lines and shapes. A positive number.
+    * @default
+    */
+    this.lineWidth = 1;
+
+    /**
     * @property {boolean} renderShadow - Should the text be rendered with a slight shadow? Makes it easier to read on different types of background.
     * @default
     */
@@ -610,6 +616,7 @@ Phaser.Utils.Debug.prototype = {
             }
             else
             {
+                this.context.lineWidth = this.lineWidth;
                 this.context.strokeRect(object.x - this.game.camera.x, object.y - this.game.camera.y, object.width, object.height);
             }
         }
@@ -634,7 +641,7 @@ Phaser.Utils.Debug.prototype = {
         }
         else if (object instanceof Phaser.Line || forceType === 4)
         {
-            this.context.lineWidth = 1;
+            this.context.lineWidth = this.lineWidth;
             this.context.beginPath();
             this.context.moveTo((object.start.x + 0.5) - this.game.camera.x, (object.start.y + 0.5) - this.game.camera.y);
             this.context.lineTo((object.end.x + 0.5) - this.game.camera.x, (object.end.y + 0.5) - this.game.camera.y);

@@ -260,7 +260,9 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ## Version 2.7.10 - Unreleased
 
-### New features
+### New Features
+
+* You can now set Phaser.Utils.Debug#lineWidth, the width of the stroke on drawn lines and unfilled shapes.
 
 ### Updates
 
