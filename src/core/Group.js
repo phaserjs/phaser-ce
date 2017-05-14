@@ -1226,10 +1226,10 @@ Phaser.Group.prototype.setProperty = function (child, key, value, operation, for
 *
 * @method Phaser.Group#checkProperty
 * @param {any} child - The child to check the property value on.
-* @param {array} key - An array of strings that make up the property that will be set.
+* @param {string} key - The property, as a string, to be checked. For example: 'body.velocity.x'
 * @param {any} value - The value that will be checked.
 * @param {boolean} [force=false] - If `force` is true then the property will be checked on the child regardless if it already exists or not. If true and the property doesn't exist, false will be returned.
-* @return {boolean} True if the property was was equal to value, false if not.
+* @return {boolean} True if the property was equal to value, false if not.
 */
 Phaser.Group.prototype.checkProperty = function (child, key, value, force) {
 
@@ -1358,12 +1358,12 @@ Phaser.Group.prototype.setAllChildren = function (key, value, checkAlive, checkV
 };
 
 /**
-* Quickly check that the same property across all children of this group is equal to the given value.
+* Check that the same property across all children of this group is equal to the given value.
 *
 * This call doesn't descend down children, so if you have a Group inside of this group, the property will be checked on the group but not its children.
 *
 * @method Phaser.Group#checkAll
-* @param {string} key - The property, as a string, to be set. For example: 'body.velocity.x'
+* @param {string} key - The property, as a string, to be checked. For example: 'body.velocity.x'
 * @param {any} value - The value that will be checked.
 * @param {boolean} [checkAlive=false] - If set then only children with alive=true will be checked. This includes any Groups that are children.
 * @param {boolean} [checkVisible=false] - If set then only children with visible=true will be checked. This includes any Groups that are children.
