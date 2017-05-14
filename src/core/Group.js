@@ -1382,9 +1382,11 @@ Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible
 
     for (var i = 0; i < this.children.length; i++)
     {
-        if ((!checkAlive || (checkAlive && this.children[i].alive)) && (!checkVisible || (checkVisible && this.children[i].visible)))
+        var child = this.children[i];
+
+        if ((!checkAlive || (checkAlive && child.alive)) && (!checkVisible || (checkVisible && child.visible)))
         {
-            if (!this.checkProperty(this.children[i], key, value, force))
+            if (!this.checkProperty(child, key, value, force))
             {
                 return false;
             }
