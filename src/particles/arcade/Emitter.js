@@ -651,6 +651,10 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     {
         particle.scale.set(rnd.realInRange(this._minParticleScale.x, this._maxParticleScale.x), rnd.realInRange(this._minParticleScale.y, this._maxParticleScale.y));
     }
+    else
+    {
+        particle.scale.set(this._minParticleScale.x, this._minParticleScale.y)
+    }
 
     if (frame === undefined)
     {

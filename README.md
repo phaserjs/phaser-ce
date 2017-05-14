@@ -278,6 +278,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Emitter#emitParticle apply scale values even when they are identicals.
 * Fixed a crash when a Text object's alignment was not set (#208).
 
 For changes in previous releases please see the extensive [Version History](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
