@@ -266,9 +266,13 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* `/docs` and `/resources` were removed from the NPM package, which is now much smaller.
+
 ### Bug Fixes
 
+* Corrected Group#checkAll and Group#checkProperty argument types (#216).
 * Group#getAll was not returning all children objects when property was not specified.
+* Emitter#emitParticle apply scale values even when they are identical.
 
 ## Version 2.7.9 - 9th May 2017
 
@@ -278,7 +282,6 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
-* Emitter#emitParticle apply scale values even when they are identicals.
 * Fixed a crash when a Text object's alignment was not set (#208).
 
 For changes in previous releases please see the extensive [Version History](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
