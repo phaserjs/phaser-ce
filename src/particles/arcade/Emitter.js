@@ -653,7 +653,7 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     }
     else
     {
-        particle.scale.set(this._minParticleScale.x, this._minParticleScale.y)
+        particle.scale.set(this._minParticleScale.x, this._minParticleScale.y);
     }
 
     if (frame === undefined)
