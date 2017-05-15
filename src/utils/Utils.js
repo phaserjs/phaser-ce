@@ -25,35 +25,36 @@ Phaser.Utils = {
     },
 
     /**
-     * Gets an objects property by string.
+     * Gets an object's property by string.
      *
      * @method Phaser.Utils.getProperty
      * @param {object} obj - The object to traverse.
      * @param {string} prop - The property whose value will be returned.
-     * @return {*} the value of the property or null or undefined if property isn't found {@link https://github.com/photonstorm/phaser-ce/issues/218}.
+     * @return {any} - The value of the property or `undefined` if the property isn't found.
      */
     getProperty: function(obj, prop) {
 
         var parts = prop.split('.'),
-            last = parts.pop(),
-            l = parts.length,
-            i = 1,
-            current = parts[0];
+            len = parts.length,
+            i = 0,
+            val = obj;
 
-        while (i < l && (obj = obj[current]))
+        while (i < len)
         {
-            current = parts[i];
-            i++;
+            var key = parts[i];
+
+            if (val != null)
+            {
+                val = val[key];
+                i++;
+            }
+            else
+            {
+                return undefined;
+            }
         }
 
-        if (obj)
-        {
-            return obj[last];
-        }
-        else
-        {
-            return null;
-        }
+        return val;
 
     },
 
