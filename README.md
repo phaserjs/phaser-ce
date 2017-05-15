@@ -267,7 +267,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### Updates
 
 * Group#checkProperty now returns false if the `child` argument is not a child of the Group. Use Phaser.Utils.checkProperty instead to check a property value on any object.
-* `/docs` and `/resources` were removed from the NPM package, which is now much smaller.
+* `/docs` and `/resources` were removed from Phaser CE's Bower and NPM packages, which are now much smaller.
 
 ### Bug Fixes
 
