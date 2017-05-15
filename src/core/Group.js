@@ -1228,7 +1228,7 @@ Phaser.Group.prototype.setProperty = function (child, key, value, operation, for
 * @param {any} child - The child to check the property value on.
 * @param {string} key - The property, as a string, to be checked. For example: 'body.velocity.x'
 * @param {any} value - The value that will be checked.
-* @param {boolean} [force=false] - If `force` is true then the property will be checked on the child regardless if it already exists or not. If true and the property doesn't exist, false will be returned.
+* @param {boolean} [force=false] - Also return false if the property is missing or undefined (regardless of the `value` argument).
 * @return {boolean} True if `child` is a child of this Group and the property was equal to value, false if not.
 */
 Phaser.Group.prototype.checkProperty = function (child, key, value, force) {
@@ -1240,13 +1240,9 @@ Phaser.Group.prototype.checkProperty = function (child, key, value, force) {
         return false;
     }
 
-    //  We can't force a property in and the child doesn't have it, so abort.
-    if (!Phaser.Utils.getProperty(child, key) && force)
-    {
-        return false;
-    }
+    var result = Phaser.Utils.getProperty(child, key);
 
-    if (Phaser.Utils.getProperty(child, key) !== value)
+    if (((result === undefined) && force) || (result !== value))
     {
         return false;
     }
@@ -1372,7 +1368,7 @@ Phaser.Group.prototype.setAllChildren = function (key, value, checkAlive, checkV
 * @param {any} value - The value that will be checked.
 * @param {boolean} [checkAlive=false] - If set then only children with alive=true will be checked. This includes any Groups that are children.
 * @param {boolean} [checkVisible=false] - If set then only children with visible=true will be checked. This includes any Groups that are children.
-* @param {boolean} [force=false] - If `force` is true then the property will be checked on the child regardless if it already exists or not. If true and the property doesn't exist, false will be returned.
+* @param {boolean} [force=false] - Also return false if the property is missing or undefined (regardless of the `value` argument).
 */
 Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible, force) {
 
