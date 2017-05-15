@@ -271,6 +271,9 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed Group#checkAll and Group#checkProperty returning a false negative when `force` was used (#219).
+* Utils.getProperty now returns undefined for missing properties. It had claimed to return null, but could return either null or undefined depending on chain length (#218).
+* Fixed Group#checkAll, Group#checkProperty, and Utils.getProperty failing to retrieve nested properties (#220).
 * Corrected Group#checkAll and Group#checkProperty argument types (#216).
 * Group#getAll was not returning all children objects when property was not specified.
 * Emitter#emitParticle apply scale values even when they are identical.
