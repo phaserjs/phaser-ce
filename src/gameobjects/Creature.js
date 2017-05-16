@@ -273,6 +273,15 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
     */
     this.colors = new Float32Array([1, 1, 1, 1]);
 
+
+    this.updateRenderData(target.global_pts, target.global_uvs);
+
+    this.manager.AddAnimation(this.animation);
+    this.manager.SetActiveAnimationName(animation, false);
+
+    Phaser.Component.Core.init.call(this, game, x, y);
+
+    
     /**
     * @property {number} tint - colour change
     * @default
@@ -284,13 +293,6 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
     * @default
     */
     this.data.alpha = 1.0;
-
-    this.updateRenderData(target.global_pts, target.global_uvs);
-
-    this.manager.AddAnimation(this.animation);
-    this.manager.SetActiveAnimationName(animation, false);
-
-    Phaser.Component.Core.init.call(this, game, x, y);
 
 };
 
