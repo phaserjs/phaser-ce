@@ -1759,7 +1759,7 @@ declare module PIXI {
         blendMode: blendModes;
 
         /**
-        * Controls if this Sprite is processed by the core Phaser game loops and Group loops.
+        * Controls if this Sprite is processed by the core Phaser game loops and Group loops (except {@link Phaser.Group#update}).
         * Default: true
         */
         exists: boolean;

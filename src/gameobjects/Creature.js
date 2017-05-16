@@ -31,6 +31,7 @@
 * @extends Phaser.Component.FixedToCamera
 * @extends Phaser.Component.LifeSpan
 * @extends Phaser.Component.Reset
+* @extends Phaser.Component.InputEnabled
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {number} x - The x coordinate of the Game Object. The coordinate is relative to any parent container this Game Object may be in.
@@ -39,7 +40,7 @@
 * @param {string} mesh - The mesh data for the Creature Object. It should be a string which is a reference to the Cache JSON entry.
 * @param {string} [animation='default'] - The animation within the mesh data  to play.
 */
-Phaser.Creature = function (game, x, y, key, mesh, animation) {
+Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
 
     if (animation === undefined) { animation = 'default'; }
 
@@ -61,7 +62,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation) {
     * @property {Creature} _creature - The Creature instance.
     * @private
     */
-    this._creature = new Creature(meshData);
+    this._creature = new Creature(meshData, loadAnchors);
 
     /**
     * @property {CreatureAnimation} animation - The CreatureAnimation instance.
@@ -160,7 +161,8 @@ Phaser.Component.Core.install.call(Phaser.Creature.prototype, [
     'Destroy',
     'FixedToCamera',
     'LifeSpan',
-    'Reset'
+    'Reset',
+    'InputEnabled'
 ]);
 
 Phaser.Creature.prototype.preUpdateInWorld = Phaser.Component.InWorld.preUpdate;
@@ -406,7 +408,23 @@ Phaser.Creature.prototype.updateRenderData = function (verts, uvs) {
 */
 Phaser.Creature.prototype.setAnimation = function (key) {
 
+    this.data.animation = key;
     this.manager.SetActiveAnimationName(key, true);
+
+};
+
+/**
+ * Sets the animation playback speed
+ *
+ * @method Phaser.Creature#setAnimationPlaySpeed
+ * @memberof Phaser.Creature
+ * @param {number} speed - Sets the playback speed
+ */
+Phaser.Creature.prototype.setAnimationPlaySpeed = function (speed) {
+
+  if (speed) {
+    this.timeDelta = speed;
+  }
 
 };
 
@@ -479,6 +497,119 @@ Object.defineProperty(Phaser.Creature.prototype, 'loop', {
     }
 
 });
+
+/**
+ * @name Phaser.Creature#height
+ * @property {number} height - Sets the height of the animation
+ */
+Object.defineProperty(Phaser.Creature.prototype, 'height', {
+
+  get: function() {
+
+    return this.data.height;
+
+  },
+
+  set: function(value) {
+
+    var target = this.manager.target_creature;
+
+    var width = this.data.width ? this.data.width : 0;
+
+    var values = target.GetPixelScaling(width, value);
+    this.scale.set(values[0], values[1]);
+    this.data.height = value;
+
+  }
+
+});
+
+/**
+ * @name Phaser.Creature#width
+ * @property {number} width - Sets the width of the animation
+ */
+Object.defineProperty(Phaser.Creature.prototype, 'width', {
+
+  get: function() {
+
+    return this.data.width;
+
+  },
+
+  set: function(value) {
+
+    var target = this.manager.target_creature;
+
+    var height = this.data.height ? this.data.height : 0;
+
+    var values = target.GetPixelScaling(value, height);
+    this.scale.set(values[0], values[1]);
+    this.data.width = value;
+
+  }
+
+});
+
+/**
+ * @name Phaser.Creature#anchorX
+ * @property {number} anchorX - Sets the anchorX of the animation
+ */
+Object.defineProperty(Phaser.Creature.prototype, 'anchorX', {
+
+  get: function() {
+
+    return this.data.anchorX;
+
+  },
+
+  set: function(value) {
+
+    var target = this.manager.target_creature;
+
+    var anchorY = this.data.anchorY ? this.data.anchorY : 0;
+
+    target.SetAnchorPoint(value, anchorY, this.data.animation);
+    this.data.anchorX = value;
+
+  }
+
+});
+
+/**
+ * @name Phaser.Creature#anchorY
+ * @property {number} anchorY - Sets the anchorY of the animation
+ */
+Object.defineProperty(Phaser.Creature.prototype, 'anchorY', {
+
+  get: function() {
+
+    return this.data.anchorY;
+
+  },
+
+  set: function(value) {
+
+    var target = this.manager.target_creature;
+
+    var anchorX = this.data.anchorX ? this.data.anchorX : 0;
+
+    target.SetAnchorPoint(anchorX, value, this.data.animation);
+    this.data.anchorY = value;
+
+  }
+
+});
+
+/**
+* Sets whether anchor point transformations are active.
+*
+* @method Phaser.Creature#setAnchorPointEnabled
+* @memberof Phaser.Creature
+*/
+Phaser.Creature.prototype.setAnchorPointEnabled = function(value) {
+  var target = this.manager.target_creature;
+  target.SetAnchorPointEnabled(value);
+};
 
 /**
 * @method Phaser.Creature#createAllAnimations
