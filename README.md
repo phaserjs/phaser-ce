@@ -122,11 +122,11 @@ Using Browserify? Please [read this](#browserify).
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.9/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.js"></script>
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.9/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.min.js"></script>
 
 ### Web Templates
 
