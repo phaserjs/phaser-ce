@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.7.9](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.9).
+The [current Phaser CE release is 2.7.10](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.10).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -122,11 +122,11 @@ Using Browserify? Please [read this](#browserify).
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.10/phaser.js"></script>
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.10/phaser.min.js"></script>
 
 ### Web Templates
 
@@ -258,7 +258,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
-## Version 2.7.10 - Unreleased
+## Version 2.7.10 - 17th May 2017
 
 ### New Features
 
