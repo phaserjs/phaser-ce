@@ -258,7 +258,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
-## Version 2.7.10 - Unreleased
+## Version 2.7.10 - 17th May 2017
 
 ### New Features
 
