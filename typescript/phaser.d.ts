@@ -1785,8 +1785,8 @@ declare module Phaser {
         callAll(method: string, context: any, ...parameters: any[]): void;
         callAllExists(callback: string, existsValue: boolean, ...parameters: any[]): void;
         callbackFromArray(child: any, callback: Function, length: number): void;
-        checkAll(key: string[], value: any, checkAlive?: boolean, checkVisible?: boolean, force?: boolean): boolean;
-        checkProperty(child: any, key: string[], value: any, force?: boolean): boolean;
+        checkAll(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean, force?: boolean): boolean;
+        checkProperty(child: any, key: string, value: any, force?: boolean): boolean;
         countDead(): number;
         countLiving(): number;
         create(x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, exists?: boolean, index?: number): any;
@@ -1799,7 +1799,7 @@ declare module Phaser {
         forEachDead(callback: Function, callbackContext?: any, ...args: any[]): void;
         forEachExists(callback: Function, callbackContext?: any): void;
         filter(predicate: Function, checkExists?: boolean): ArraySet;
-        getAll(property: string, value: any, startIndex: number, endIndex: number): any;
+        getAll(property?: string, value?: any, startIndex?: number, endIndex?: number): any[];
         getAt(index: number): PIXI.DisplayObject | number;
         getBottom(): any;
         getByName(name: string): any;
@@ -2788,7 +2788,7 @@ declare module Phaser {
                 emitY: number;
                 exists: boolean;
                 frequency: number;
-                gravity: number;
+                gravity: Phaser.Point;
                 group: Phaser.Group;
                 height: number;
                 left: number;

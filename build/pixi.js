@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.7 "2017-04-20" - Built: Wed Apr 19 2017 21:51:30
+* v2.7.9 "2017-05-09" - Built: Tue May 09 2017 12:05:00
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -1621,7 +1621,7 @@ PIXI.Sprite = function (texture) {
     this.shader = null;
 
     /**
-    * Controls if this Sprite is processed by the core Phaser game loops and Group loops.
+    * Controls if this Sprite is processed by the core Phaser game loops and Group loops (except {@link Phaser.Group#update}).
     *
     * @property exists
     * @type Boolean
@@ -2252,12 +2252,12 @@ PIXI.PixiShader.prototype.constructor = PIXI.PixiShader;
 PIXI.PixiShader.prototype.initMultitexShader = function () {
     var gl = this.gl;
     this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
-    var dynamicIfs = '\tif (vTextureIndex == 0.0) gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;\n'
+    var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n'
     for (var index = 1; index < this.MAX_TEXTURES; ++index)
     {
-        dynamicIfs += '\telse if (vTextureIndex == ' + 
-                    index + '.0) gl_FragColor = texture2D(uSamplerArray[' + 
-                    index + '], vTextureCoord) * vColor;\n'
+        dynamicIfs += '\tif (vTextureIndex == ' + 
+                    index + '.0) {gl_FragColor = texture2D(uSamplerArray[' + 
+                    index + '], vTextureCoord) * vColor;return;}\n'
     }
     this.fragmentSrc = [
         '// PixiShader Fragment Shader.',
@@ -2275,8 +2275,8 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
         'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
         'void main(void) {',
         dynamicIfs,
-        '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
-        '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',
+        '   if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) { gl_FragColor = BLUE;return;}',
+        '   if(isnan(vTextureIndex)) { gl_FragColor = RED;return;}',
         '}'
     ];
 
@@ -2707,12 +2707,12 @@ PIXI.PixiFastShader = function (gl) {
     if (PIXI._enableMultiTextureToggle) {
         var gl = this.gl;
         this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
-        var dynamicIfs = '\tif (vTextureIndex == 0.0) gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;\n'
+        var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n'
         for (var index = 1; index < this.MAX_TEXTURES; ++index)
         {
-            dynamicIfs += '\telse if (vTextureIndex == ' + 
-                        index + '.0) gl_FragColor = texture2D(uSamplerArray[' + 
-                        index + '], vTextureCoord) * vColor;\n'
+            dynamicIfs += '\tif (vTextureIndex == ' + 
+                        index + '.0) { gl_FragColor = texture2D(uSamplerArray[' + 
+                        index + '], vTextureCoord) * vColor;return;}\n'
         }
 
         /**
@@ -2736,8 +2736,8 @@ PIXI.PixiFastShader = function (gl) {
             'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
-            '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
-            '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',       
+            '   if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) { gl_FragColor = BLUE;return;}',
+            '   if(isnan(vTextureIndex)) {gl_FragColor = RED;return;}',       
             '}'
         ];
     } else {
@@ -2926,12 +2926,12 @@ PIXI.StripShader = function(gl)
     if (PIXI._enableMultiTextureToggle) {
         var gl = this.gl;
         this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
-        var dynamicIfs = '\tif (vTextureIndex == 0.0) gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord);\n'
+        var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord);return;}\n'
         for (var index = 1; index < this.MAX_TEXTURES; ++index)
         {
-            dynamicIfs += '\telse if (vTextureIndex == ' + 
-                        index + '.0) gl_FragColor = texture2D(uSamplerArray[' + 
-                        index + '], vTextureCoord) ;\n'
+            dynamicIfs += '\tif (vTextureIndex == ' + 
+                        index + '.0) { gl_FragColor = texture2D(uSamplerArray[' + 
+                        index + '], vTextureCoord) ;return;}\n'
         }
 
 
@@ -2957,8 +2957,8 @@ PIXI.StripShader = function(gl)
             'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
-            '   else if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) gl_FragColor = BLUE;',
-            '   else if(isnan(vTextureIndex)) gl_FragColor = RED;',
+            '   if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) { gl_FragColor = BLUE;return;}',
+            '   if(isnan(vTextureIndex)) {gl_FragColor = RED;return;}',
             '}'
         ];    
     } else {
@@ -3576,9 +3576,9 @@ PIXI.WebGLRenderer.prototype.initContext = function()
     // Load WebGL extension
     this.extensions.compression = {};
 
-    etc1 = gl.getExtension('WEBGL_compressed_texture_etc1') || gl.getExtension('WEBKIT_WEBGL_compressed_texture_etc1');
-    pvrtc = gl.getExtension('WEBGL_compressed_texture_pvrtc') || gl.getExtension('WEBKIT_WEBGL_compressed_texture_pvrtc');
-    s3tc = gl.getExtension('WEBGL_compressed_texture_s3tc') || gl.getExtension('WEBKIT_WEBGL_compressed_texture_s3tc');
+    var etc1 = gl.getExtension('WEBGL_compressed_texture_etc1') || gl.getExtension('WEBKIT_WEBGL_compressed_texture_etc1');
+    var pvrtc = gl.getExtension('WEBGL_compressed_texture_pvrtc') || gl.getExtension('WEBKIT_WEBGL_compressed_texture_pvrtc');
+    var s3tc = gl.getExtension('WEBGL_compressed_texture_s3tc') || gl.getExtension('WEBKIT_WEBGL_compressed_texture_s3tc');
 
     if (etc1) this.extensions.compression.ETC1 = etc1;
     if (pvrtc) this.extensions.compression.PVRTC = pvrtc;
@@ -3601,9 +3601,9 @@ PIXI.WebGLRenderer.prototype.initContext = function()
 *
 * To change the textures being batched, call this method with a new array of image keys. The old ones
 * will all be purged out and no-longer batched, and the new ones enabled.
-* 
+*
 * Note: Throws a warning if you haven't enabled Multiple Texture batching support in the Phaser Game config.
-* 
+*
 * @method setTexturePriority
 * @param textureNameCollection {Array} An Array of Texture Cache keys to use for multi-texture batching.
 * @return {Array} An array containing the texture keys that were enabled for batching.
@@ -3641,7 +3641,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         {
             continue;
         }
-        
+
         imageCache[imageName].base.textureIndex = 0;
     }
     var maxTextureAvailableSpace = (maxTextureSize) - clampPot(Math.max(this.width, this.height));
@@ -3792,12 +3792,12 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture) {
     gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
 
     gl.compressedTexImage2D(
-        gl.TEXTURE_2D, 
-        0, 
-        textureMetaData.glExtensionFormat, 
-        textureMetaData.width, 
-        textureMetaData.height, 
-        0, 
+        gl.TEXTURE_2D,
+        0,
+        textureMetaData.glExtensionFormat,
+        textureMetaData.width,
+        textureMetaData.height,
+        0,
         textureMetaData.textureData
     );
 
@@ -3967,6 +3967,7 @@ PIXI.enableMultiTexture = function() {
 
 PIXI.WebGLRenderer.glContextId = 0;
 PIXI.WebGLRenderer.textureArray = [];
+
 /**
  * @author Mat Groves http://matgroves.com/ @Doormat23
  */
@@ -4569,11 +4570,11 @@ PIXI.WebGLShaderManager.prototype.destroy = function()
 
 /**
  * @author Mat Groves
- * 
+ *
  * Big thanks to the very clever Matt DesLauriers <mattdesl> https://github.com/mattdesl/
  * for creating the original pixi version!
  * Also a thanks to https://github.com/bchevalier for tweaking the tint and alpha so that they now share 4 bytes on the vertex buffer
- * 
+ *
  * Heavily inspired by LibGDX's WebGLSpriteBatch:
  * https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/graphics/g2d/WebGLSpriteBatch.java
  */
@@ -4724,11 +4725,11 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl) {
     this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
     this.gl = gl;
     if (PIXI._enableMultiTextureToggle) {
-        var dynamicIfs = '\tif (vTextureIndex == 0.0) gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;\n'
+        var dynamicIfs = '\tif (vTextureIndex == 0.0) {gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n'
         for (var index = 1; index < this.MAX_TEXTURES; ++index) {
-            dynamicIfs += '\telse if (vTextureIndex == ' +
-                index + '.0) gl_FragColor = texture2D(uSamplerArray[' +
-                index + '], vTextureCoord) * vColor;\n'
+            dynamicIfs += '\tif (vTextureIndex == ' +
+                index + '.0) {gl_FragColor = texture2D(uSamplerArray[' +
+                index + '], vTextureCoord) * vColor;return;}\n'
         }
         this.defaultShader = new Phaser.Filter(
             this.game,
@@ -4742,7 +4743,7 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl) {
                 'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
                 'void main(void) {',
                     dynamicIfs,
-                    '\telse gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;',
+                    '\tgl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;',
                 '}'
             ]);
     }
@@ -4892,7 +4893,7 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix) {
         // Offset before rotating
         tx = wt.c * ch + tx;
         ty = wt.d * ch + ty;
-        
+
         // Rotate matrix by 90 degrees
         // We use precalculated values for sine and cosine of rad(90)
         a = a0 * 6.123233995736766e-17 + -c0;
@@ -4907,7 +4908,7 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix) {
         w0 = h0;
         w1 = h1;
         h0 = _w0;
-        h1 = _w1;   
+        h1 = _w1;
     }
 
     var colors = this.colors;
@@ -4978,7 +4979,7 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix) {
 
 /**
  * Renders a TilingSprite using the spriteBatch.
- * 
+ *
  * @method renderTilingSprite
  * @param sprite {TilingSprite} the sprite to render
  */
@@ -5153,7 +5154,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function () {
         gl.vertexAttribPointer(shader.aTextureIndex, 1, gl.FLOAT, false, stride, 20);
     }
 
-    // upload the verts to the buffer  
+    // upload the verts to the buffer
     if (this.currentBatchSize > (this.size * 0.5)) {
         gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices);
     } else {
@@ -5274,7 +5275,10 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
             //  If updateTexture returns false then we cannot render it, so bail out now
             return;
         }
+    }else {
+        gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
     }
+
     gl.drawElements(gl.TRIANGLES, size * 6, gl.UNSIGNED_SHORT, startIndex * 6 * 2);
     // increment the draw count
     this.renderSession.drawCount++;
@@ -5297,7 +5301,7 @@ PIXI.WebGLSpriteBatch.prototype.start = function () {
 
 /**
  * Destroys the SpriteBatch.
- * 
+ *
  * @method destroy
  */
 PIXI.WebGLSpriteBatch.prototype.destroy = function () {

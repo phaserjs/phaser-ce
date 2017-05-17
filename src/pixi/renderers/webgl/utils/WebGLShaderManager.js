@@ -67,6 +67,10 @@ PIXI.WebGLShaderManager.prototype.setContext = function(gl)
     // the next one is used for rendering triangle strips
     this.stripShader = new PIXI.StripShader(gl);
 
+
+    // the next one is used for rendering creature meshes
+    this.creatureShader = new PIXI.CreatureShader(gl);
+
     this.setShader(this.defaultShader);
 };
 
@@ -153,6 +157,10 @@ PIXI.WebGLShaderManager.prototype.destroy = function()
     this.fastShader.destroy();
 
     this.stripShader.destroy();
+
+    if (this.creatureShader) {
+      this.creatureShader.destroy();
+    }
 
     this.gl = null;
 };

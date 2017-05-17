@@ -1,0 +1,11 @@
+dist/
+docs/
+resources/
+.git*
+.jshintrc
+.npmignore
+.travis.yml
+.editorconfig
+*.md
+bower.json
+phaser-ce-*.tgz
