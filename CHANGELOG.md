@@ -16,6 +16,7 @@ See [README: Change Log](README.md#change-log).
 
 * [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty) now returns false if the `child` argument is not a child of the Group. Use [Phaser.Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#.getProperty) instead to read a property value on any object.
 * `/docs` and `/resources` were removed from Phaser CE's Bower and [NPM](https://www.npmjs.com/package/phaser-ce) packages, which are now much smaller.
+* Removed some duplicate files from `/build`.
 
 ### Bug Fixes
 
