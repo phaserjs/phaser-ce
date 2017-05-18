@@ -19,6 +19,7 @@ See [README: Change Log](README.md#change-log).
 
 ### Bug Fixes
 
+* Fixed a TypeError in pointer-over checks when Phaser.Creature is missing
 * Fixed [Group#checkAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAll) and [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty) returning a false negative when `force` was used (#219).
 * [Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#.getProperty) now returns undefined for missing properties. It had claimed to return null, but could return either null or undefined depending on chain length (#218).
 * Fixed [Group#checkAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAll), [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty), and [Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#.getProperty) failing to retrieve nested properties (#220).
