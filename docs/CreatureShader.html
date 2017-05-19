@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: Easing · Phaser CE</title>
+	<title>Class: CreatureShader · Phaser CE</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -1011,14 +1011,12 @@
 					
 
 
-	<!--<h1 class="page-title">Class: Easing</h1>-->
+	<!--<h1 class="page-title">Class: CreatureShader</h1>-->
 <section>
 
 <header>
     <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
-    
-    Easing
+    CreatureShader
     </h2>
     
 </header>
@@ -1031,7 +1029,7 @@
         
 <dt>
     <h4 class="name "
-        id="Easing"><span class="type-signature"></span>new Easing<span class="signature">()</span><span class="type-signature"></span></h4>
+        id="CreatureShader"><span class="type-signature"></span>new CreatureShader<span class="signature">(gl)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -1039,15 +1037,60 @@
     
 
     
-    <div class="description">
-        <p>A collection of easing methods defining ease-in and ease-out curves.</p>
-    </div>
-    
 
     
     
     
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>gl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">WebGLContext</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the current WebGL drawing context</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
     
 
     
@@ -1074,7 +1117,7 @@
 
     
     <dt class="tag-source">Source -
-    <a href="src_tween_Easing.js.html">tween/Easing.js</a>, <a href="src_tween_Easing.js.html#sunlight-1-line-14">line 14</a>
+    <a href="src_gameobjects_Creature.js.html">gameobjects/Creature.js</a>, <a href="src_gameobjects_Creature.js.html#sunlight-1-line-14">line 14</a>
     </dt>
     
 
@@ -1107,103 +1150,233 @@
     
 
     
-        <h3 class="subsection-title">Classes</h3>
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
 
         <dl>
             
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Back.html">Back</a>
-                </dt>
-                <dd>
-                    
-                </dd>
+<dt>
+    <h4 class="name "
+        id="fragmentSrc"><span class="type-signature"></span>fragmentSrc<span class="type-signature"> :Array</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    <div class="description">
+        <p>The fragment shader.</p>
+    </div>
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    <a href="src_gameobjects_Creature.js.html">gameobjects/Creature.js</a>, <a href="src_gameobjects_Creature.js.html#sunlight-1-line-41">line 41</a>
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+</dd>
+
+        
             
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Bounce.html">Bounce</a>
-                </dt>
-                <dd>
-                    
-                </dd>
+<dt>
+    <h4 class="name "
+        id="gl"><span class="type-signature"></span>gl<span class="type-signature"> :WebGLContext</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    <a href="src_gameobjects_Creature.js.html">gameobjects/Creature.js</a>, <a href="src_gameobjects_Creature.js.html#sunlight-1-line-27">line 27</a>
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+</dd>
+
+        
             
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Circular.html">Circular</a>
-                </dt>
-                <dd>
-                    
-                </dd>
+<dt>
+    <h4 class="name "
+        id="program"><span class="type-signature"></span>program<span class="type-signature"> :Any</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    <div class="description">
+        <p>The WebGL program.</p>
+    </div>
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    <a href="src_gameobjects_Creature.js.html">gameobjects/Creature.js</a>, <a href="src_gameobjects_Creature.js.html#sunlight-1-line-34">line 34</a>
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+</dd>
+
+        
             
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Cubic.html">Cubic</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Elastic.html">Elastic</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Exponential.html">Exponential</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Linear.html">Linear</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Quartic.html">Quartic</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Quintic.html">Quintic</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-2">
-                    <a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
+<dt>
+    <h4 class="name "
+        id="vertexSrc"><span class="type-signature"></span>vertexSrc<span class="type-signature"> :Array</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    <div class="description">
+        <p>The vertex shader.</p>
+    </div>
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    <a href="src_gameobjects_Creature.js.html">gameobjects/Creature.js</a>, <a href="src_gameobjects_Creature.js.html#sunlight-1-line-60">line 60</a>
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+</dd>
+
         </dl>
-    
-
-    
-
     
 
     
@@ -1231,7 +1404,7 @@
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Fri May 19 2017 15:17:48 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Fri May 19 2017 15:17:46 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>

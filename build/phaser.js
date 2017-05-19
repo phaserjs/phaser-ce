@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.9 "2017-05-09" - Built: Tue May 09 2017 12:04:30
+* v2.7.10 "2017-05-19" - Built: Fri May 19 2017 15:17:02
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -18093,14 +18093,14 @@ PIXI.WebGLShaderManager.prototype.constructor = PIXI.WebGLShaderManager;
 
 /**
 * Initialises the context and the properties.
-* 
-* @method setContext 
+*
+* @method setContext
 * @param gl {WebGLContext} the current WebGL drawing context
 */
 PIXI.WebGLShaderManager.prototype.setContext = function(gl)
 {
     this.gl = gl;
-    
+
     // the next one is used for rendering primitives
     this.primitiveShader = new PIXI.PrimitiveShader(gl);
 
@@ -18116,14 +18116,17 @@ PIXI.WebGLShaderManager.prototype.setContext = function(gl)
     // the next one is used for rendering triangle strips
     this.stripShader = new PIXI.StripShader(gl);
 
+    // the next one is used for rendering creature meshes
+    this.creatureShader = PIXI.CreatureShader ? new PIXI.CreatureShader(gl) : null;
+
     this.setShader(this.defaultShader);
 };
 
 /**
 * Takes the attributes given in parameters.
-* 
+*
 * @method setAttribs
-* @param attribs {Array} attribs 
+* @param attribs {Array} attribs
 */
 PIXI.WebGLShaderManager.prototype.setAttribs = function(attribs)
 {
@@ -18164,14 +18167,14 @@ PIXI.WebGLShaderManager.prototype.setAttribs = function(attribs)
 
 /**
 * Sets the current shader.
-* 
+*
 * @method setShader
 * @param shader {Any}
 */
 PIXI.WebGLShaderManager.prototype.setShader = function(shader)
 {
     if(this._currentId === shader._UID)return false;
-    
+
     this._currentId = shader._UID;
 
     this.currentShader = shader;
@@ -18184,7 +18187,7 @@ PIXI.WebGLShaderManager.prototype.setShader = function(shader)
 
 /**
 * Destroys this object.
-* 
+*
 * @method destroy
 */
 PIXI.WebGLShaderManager.prototype.destroy = function()
@@ -18202,6 +18205,10 @@ PIXI.WebGLShaderManager.prototype.destroy = function()
     this.fastShader.destroy();
 
     this.stripShader.destroy();
+
+    if (this.creatureShader) {
+      this.creatureShader.destroy();
+    }
 
     this.gl = null;
 };
@@ -21197,7 +21204,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.7.9',
+    VERSION: '2.7.10',
 
     /**
     * An array of Phaser game instances.
@@ -21948,35 +21955,36 @@ Phaser.Utils = {
     },
 
     /**
-     * Gets an objects property by string.
+     * Gets an object's property by string.
      *
      * @method Phaser.Utils.getProperty
      * @param {object} obj - The object to traverse.
      * @param {string} prop - The property whose value will be returned.
-     * @return {*} the value of the property or null if property isn't found .
+     * @return {any} - The value of the property or `undefined` if the property isn't found.
      */
     getProperty: function(obj, prop) {
 
         var parts = prop.split('.'),
-            last = parts.pop(),
-            l = parts.length,
-            i = 1,
-            current = parts[0];
+            len = parts.length,
+            i = 0,
+            val = obj;
 
-        while (i < l && (obj = obj[current]))
+        while (i < len)
         {
-            current = parts[i];
-            i++;
+            var key = parts[i];
+
+            if (val != null)
+            {
+                val = val[key];
+                i++;
+            }
+            else
+            {
+                return undefined;
+            }
         }
 
-        if (obj)
-        {
-            return obj[last];
-        }
-        else
-        {
-            return null;
-        }
+        return val;
 
     },
 
@@ -22090,13 +22098,13 @@ Phaser.Utils = {
     * This would return: `bob---` as it has padded it out to 6 characters, using the `-` on the right.
     *
     * You can also use it to pad numbers (they are always returned as strings):
-    * 
+    *
     * `pad(512, 6, '0', 1)`
     *
     * Would return: `000512` with the string padded to the left.
     *
     * If you don't specify a direction it'll pad to both sides:
-    * 
+    *
     * `pad('c64', 7, '*')`
     *
     * Would return: `**c64**`
@@ -22180,7 +22188,7 @@ Phaser.Utils = {
 
     /**
     * This is a slightly modified version of http://api.jquery.com/jQuery.extend/
-    * 
+    *
     * @method Phaser.Utils.extend
     * @param {boolean} deep - Perform a deep copy?
     * @param {object} target - The target object to copy to.
@@ -22271,7 +22279,7 @@ Phaser.Utils = {
     * @param {boolean} [replace=false] - If the target object already has a matching function should it be overwritten or not?
     */
     mixinPrototype: function (target, mixin, replace) {
-    
+
         if (replace === undefined) { replace = false; }
 
         var mixinKeys = Object.keys(mixin);
@@ -31864,22 +31872,23 @@ Phaser.Group.prototype.setProperty = function (child, key, value, operation, for
 *
 * @method Phaser.Group#checkProperty
 * @param {any} child - The child to check the property value on.
-* @param {array} key - An array of strings that make up the property that will be set.
+* @param {string} key - The property, as a string, to be checked. For example: 'body.velocity.x'
 * @param {any} value - The value that will be checked.
-* @param {boolean} [force=false] - If `force` is true then the property will be checked on the child regardless if it already exists or not. If true and the property doesn't exist, false will be returned.
-* @return {boolean} True if the property was was equal to value, false if not.
+* @param {boolean} [force=false] - Also return false if the property is missing or undefined (regardless of the `value` argument).
+* @return {boolean} True if `child` is a child of this Group and the property was equal to value, false if not.
 */
 Phaser.Group.prototype.checkProperty = function (child, key, value, force) {
 
     if (force === undefined) { force = false; }
 
-    //  We can't force a property in and the child doesn't have it, so abort.
-    if (!Phaser.Utils.getProperty(child, key) && force)
+    if (this !== child.parent)
     {
         return false;
     }
 
-    if (Phaser.Utils.getProperty(child, key) !== value)
+    var result = Phaser.Utils.getProperty(child, key);
+
+    if (((result === undefined) && force) || (result !== value))
     {
         return false;
     }
@@ -31996,16 +32005,16 @@ Phaser.Group.prototype.setAllChildren = function (key, value, checkAlive, checkV
 };
 
 /**
-* Quickly check that the same property across all children of this group is equal to the given value.
+* Check that the same property across all children of this group is equal to the given value.
 *
 * This call doesn't descend down children, so if you have a Group inside of this group, the property will be checked on the group but not its children.
 *
 * @method Phaser.Group#checkAll
-* @param {string} key - The property, as a string, to be set. For example: 'body.velocity.x'
+* @param {string} key - The property, as a string, to be checked. For example: 'body.velocity.x'
 * @param {any} value - The value that will be checked.
 * @param {boolean} [checkAlive=false] - If set then only children with alive=true will be checked. This includes any Groups that are children.
 * @param {boolean} [checkVisible=false] - If set then only children with visible=true will be checked. This includes any Groups that are children.
-* @param {boolean} [force=false] - If `force` is true then the property will be checked on the child regardless if it already exists or not. If true and the property doesn't exist, false will be returned.
+* @param {boolean} [force=false] - Also return false if the property is missing or undefined (regardless of the `value` argument).
 */
 Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible, force) {
 
@@ -32015,9 +32024,11 @@ Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible
 
     for (var i = 0; i < this.children.length; i++)
     {
-        if ((!checkAlive || (checkAlive && this.children[i].alive)) && (!checkVisible || (checkVisible && this.children[i].visible)))
+        var child = this.children[i];
+
+        if ((!checkAlive || (checkAlive && child.alive)) && (!checkVisible || (checkVisible && child.visible)))
         {
-            if (!this.checkProperty(this.children[i], key, value, force))
+            if (!this.checkProperty(child, key, value, force))
             {
                 return false;
             }
@@ -33060,18 +33071,18 @@ Phaser.Group.prototype.getRandomExists = function (startIndex, endIndex) {
 *
 * You can optionally specify a matching criteria using the `property` and `value` arguments.
 *
-* For example: `getAll('exists', true)` would return only children that have their exists property set.
+* For example: `getAll('exists', true)` would return only children that have an `exists` property equal to `true`.
 *
 * Optionally you can specify a start and end index. For example if this Group had 100 children,
-* and you set `startIndex` to 0 and `endIndex` to 50, it would return a random child from only
-* the first 50 children in the Group.
+* and you set `startIndex` to 0 and `endIndex` to 50, it would return the first 50 children in the Group.
+* If `property` and `value` are also specified, only children within the given index range are searched.
 *
 * @method Phaser.Group#getAll
 * @param {string} [property] - An optional property to test against the value argument.
 * @param {any} [value] - If property is set then Child.property must strictly equal this value to be included in the results.
 * @param {integer} [startIndex=0] - The first child index to start the search from.
 * @param {integer} [endIndex] - The last child index to search up until.
-* @return {any} A random existing child of this Group.
+* @return {array} - An array containing all, some, or none of the Children of this Group.
 */
 Phaser.Group.prototype.getAll = function (property, value, startIndex, endIndex) {
 
@@ -33084,7 +33095,14 @@ Phaser.Group.prototype.getAll = function (property, value, startIndex, endIndex)
     {
         var child = this.children[i];
 
-        if (property && child[property] === value)
+        if (property)
+        {
+            if (child[property] === value)
+            {
+                output.push(child);
+            }
+        }
+        else
         {
             output.push(child);
         }
@@ -36277,6 +36295,21 @@ Phaser.Input.prototype = {
         if (displayObject.hitArea && displayObject.hitArea.contains)
         {
             return (displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y));
+        }
+        else if (Phaser.Creature && displayObject instanceof Phaser.Creature) {
+          var width = displayObject.width;
+          var height = displayObject.height;
+          var x1 = displayObject.x - (width * displayObject.anchorX);
+
+          if (this.game.camera.x + pointer.x >= x1 && this.game.camera.x + pointer.x < x1 + width)
+          {
+            var y1 = displayObject.y - (height * displayObject.anchorY);
+
+            if (this.game.camera.y + pointer.y >= y1 && this.game.camera.y + pointer.y < y1 + height)
+            {
+              return true;
+            }
+          }
         }
         else if (displayObject instanceof Phaser.TileSprite)
         {
@@ -81817,7 +81850,7 @@ Phaser.Utils.Debug = function (game) {
     this.game = game;
 
     /**
-    * @property {Phaser.Image} sprite - If debugging in WebGL mode we need this.
+    * @property {Phaser.Image} sprite - If debugging in WebGL mode, this is the Image displaying the debug {@link #bmd BitmapData}.
     */
     this.sprite = null;
 
@@ -81838,22 +81871,31 @@ Phaser.Utils.Debug = function (game) {
 
     /**
     * @property {string} font - The font that the debug information is rendered in.
-    * @default '14px Courier'
+    * @default
     */
     this.font = '14px Courier';
 
     /**
     * @property {number} columnWidth - The spacing between columns.
+    * @default
     */
     this.columnWidth = 100;
 
     /**
     * @property {number} lineHeight - The line height between the debug text.
+    * @default
     */
     this.lineHeight = 16;
 
     /**
+    * @property {number} lineWidth - The width of the stroke on lines and shapes. A positive number.
+    * @default
+    */
+    this.lineWidth = 1;
+
+    /**
     * @property {boolean} renderShadow - Should the text be rendered with a slight shadow? Makes it easier to read on different types of background.
+    * @default
     */
     this.renderShadow = true;
 
@@ -81877,6 +81919,7 @@ Phaser.Utils.Debug = function (game) {
 
     /**
     * @property {boolean} dirty - Does the canvas need re-rendering?
+    * @default
     */
     this.dirty = false;
 
@@ -82395,6 +82438,7 @@ Phaser.Utils.Debug.prototype = {
             }
             else
             {
+                this.context.lineWidth = this.lineWidth;
                 this.context.strokeRect(object.x - this.game.camera.x, object.y - this.game.camera.y, object.width, object.height);
             }
         }
@@ -82419,7 +82463,7 @@ Phaser.Utils.Debug.prototype = {
         }
         else if (object instanceof Phaser.Line || forceType === 4)
         {
-            this.context.lineWidth = 1;
+            this.context.lineWidth = this.lineWidth;
             this.context.beginPath();
             this.context.moveTo((object.start.x + 0.5) - this.game.camera.x, (object.start.y + 0.5) - this.game.camera.y);
             this.context.lineTo((object.end.x + 0.5) - this.game.camera.x, (object.end.y + 0.5) - this.game.camera.y);
@@ -101676,6 +101720,10 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     else if ((this._minParticleScale.x !== this._maxParticleScale.x) || (this._minParticleScale.y !== this._maxParticleScale.y))
     {
         particle.scale.set(rnd.realInRange(this._minParticleScale.x, this._maxParticleScale.x), rnd.realInRange(this._minParticleScale.y, this._maxParticleScale.y));
+    }
+    else
+    {
+        particle.scale.set(this._minParticleScale.x, this._minParticleScale.y);
     }
 
     if (frame === undefined)

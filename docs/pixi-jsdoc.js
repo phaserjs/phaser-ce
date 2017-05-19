@@ -1911,20 +1911,20 @@ Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier
 * @method PIXI.WebGLShaderManager#setAttribs
 * @param {Array} attribs - attribs
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLShaderManager.js
-* @sourceline 73
+* @sourceline 76
 */
 /**
 * @description Sets the current shader.
 * @method PIXI.WebGLShaderManager#setShader
 * @param {} shader - 
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLShaderManager.js
-* @sourceline 116
+* @sourceline 119
 */
 /**
 * @description Destroys this object.
 * @method PIXI.WebGLShaderManager#destroy
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLShaderManager.js
-* @sourceline 136
+* @sourceline 139
 */
 /**
 * @fileoverview
