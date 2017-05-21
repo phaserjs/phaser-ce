@@ -262,6 +262,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Phaser.Point.isPoint identifies objects that can be safely used in Point operations.
 * Phaser.Group#checkAny tests if at least one child matches a given property value.
 
 ### Updates
