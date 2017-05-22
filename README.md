@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.7.9](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.9).
+The [current Phaser CE release is 2.7.10](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.10).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -122,11 +122,11 @@ Using Browserify? Please [read this](#browserify).
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.7.10/build/phaser.js"></script>
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.7.10"></script>
 
 ### Web Templates
 
@@ -258,37 +258,33 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
-## Version 2.7.10 - Unreleased
+## Version 2.7.10 - 19th May 2017
 
 ### New Features
 
-* You can now set Phaser.Utils.Debug#lineWidth, the width of the stroke on drawn lines and unfilled shapes.
+* Added [Creature alpha](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#alpha) (`creature.alpha = 0.5` for 50% opacity)
+* Added [Creature tinting](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#tint) (`creature.tint = 0xFF0000` for red tint)
+* You can now set [Phaser.Utils.Debug#lineWidth](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#lineWidth), the width of the stroke of shapes drawn by [Debug#body](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#body) and [Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom).
 
 ### Updates
 
-* Group#checkProperty now returns false if the `child` argument is not a child of the Group. Use Phaser.Utils.checkProperty instead to check a property value on any object.
-* `/docs` and `/resources` were removed from Phaser CE's Bower and NPM packages, which are now much smaller.
-* added creature tinting (creature.tint = 0xFF0000 for red tint)
-* added creature alpha (creature.alpha = 0.5 for 50% opacity)
+* [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty) now returns false if the `child` argument is not a child of the Group. Use [Phaser.Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#.getProperty) instead to read a property value on any object.
+* Removed `/docs` and `/resources` from Phaser CE's Bower and [NPM](https://www.npmjs.com/package/phaser-ce) packages, which are now much smaller.
+* Removed some duplicate files from `/build`.
 
 ### Bug Fixes
 
-* Fixed Group#checkAll and Group#checkProperty returning a false negative when `force` was used (#219).
-* Utils.getProperty now returns undefined for missing properties. It had claimed to return null, but could return either null or undefined depending on chain length (#218).
-* Fixed Group#checkAll, Group#checkProperty, and Utils.getProperty failing to retrieve nested properties (#220).
-* Corrected Group#checkAll and Group#checkProperty argument types (#216).
-* Group#getAll was not returning all children objects when property was not specified.
-* Emitter#emitParticle apply scale values even when they are identical.
+* Fixed a TypeError in pointer-over checks when Phaser.Creature is missing
+* Fixed [Group#checkAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAll) and [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty) returning a false negative when `force` was used (#219).
+* [Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#.getProperty) now returns undefined for missing properties. It had claimed to return null, but could return either null or undefined depending on chain length (#218).
+* Fixed [Group#checkAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAll), [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty), and [Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#.getProperty) failing to retrieve nested properties (#220).
+* Corrected [Group#checkAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAll) and [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty) argument types (#216).
+* [Group#getAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#getAll) now correctly returns all children when the `property` and `value` arguments are omitted.
+* Fixed [Emitter#emitParticle](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#emitParticle) failing to apply certain particle scale values.
 
-## Version 2.7.9 - 9th May 2017
+### Thanks
 
-### Updates
-
-* Emitter#gravity can now be set as a number (as in Phaser versions prior to 2.7.2) or a Point (#203). Reading the value will always give you a Point.
-
-### Bug Fixes
-
-* Fixed a crash when a Text object's alignment was not set (#208).
+@andrewjb123, @EmilSV, @entozoon, @greut, @jbpuryear, @mikkoh85, @MrBaummann, @photonstorm, @rblopes, @rmkubik, @samme
 
 For changes in previous releases please see the extensive [Version History](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
