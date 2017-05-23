@@ -57,6 +57,30 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.area = new Phaser.Rectangle(x, y, 1, 1);
 
     /**
+     * @property {?number} minAngle - The minimum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link maxAngle}), {@link minSpeed} and {@link maxSpeed} are used and {@link minParticleSpeed} and {@link maxParticleSpeed} are ignored.
+     * @default
+     */
+    this.minAngle = null;
+
+    /**
+     * @property {?number} maxAngle - The maximum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link minAngle}), {@link minSpeed} and {@link maxSpeed} are used and {@link minParticleSpeed} and {@link maxParticleSpeed} are ignored.
+     * @default
+     */
+    this.maxAngle = null;
+
+    /**
+     * @property {number} minSpeed - The minimum initial speed of particles released within {@link minAngle} and {@link maxAngle}.
+     * @default
+     */
+    this.minSpeed = 0;
+
+    /**
+     * @property {number} maxSpeed - The maximum initial speed of particles released within {@link minAngle} and {@link maxAngle}.
+     * @default
+     */
+    this.maxSpeed = 100;
+
+    /**
     * @property {Phaser.Point} minParticleSpeed - The minimum possible velocity of a particle.
     * @default
     */
@@ -686,10 +710,21 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     body.bounce.copyFrom(this.bounce);
     body.drag.copyFrom(this.particleDrag);
 
-    body.velocity.x = rnd.between(this.minParticleSpeed.x, this.maxParticleSpeed.x);
-    body.velocity.y = rnd.between(this.minParticleSpeed.y, this.maxParticleSpeed.y);
-    body.angularVelocity = rnd.between(this.minRotation, this.maxRotation);
+    if (this.minAngle != null && this.maxAngle != null)
+    {
+        this.game.physics.arcade.velocityFromAngle(
+            (this.minAngle === this.maxAngle) ? this.minAngle : rnd.between(this.minAngle, this.maxAngle),
+            (this.minSpeed === this.maxSpeed) ? this.minSpeed : rnd.between(this.minSpeed, this.maxSpeed),
+            body.velocity
+            );
+    }
+    else
+    {
+        body.velocity.x = rnd.between(this.minParticleSpeed.x, this.maxParticleSpeed.x);
+        body.velocity.y = rnd.between(this.minParticleSpeed.y, this.maxParticleSpeed.y);
+    }
 
+    body.angularVelocity = rnd.between(this.minRotation, this.maxRotation);
     body.gravity.copyFrom(this.gravity);
     body.angularDrag = this.angularDrag;
 
@@ -875,6 +910,32 @@ Phaser.Particles.Arcade.Emitter.prototype.setScale = function (minX, maxX, minY,
         this.scaleData.reverse();
         this.autoScale = true;
     }
+
+    return this;
+
+};
+
+/**
+ * Sets a radial pattern for emitting particles.
+ *
+ * This is a shorthand for setting {@link minAngle}, {@link maxAngle}, {@link minSpeed}, and {@link maxSpeed}.
+ *
+ * To remove the radial pattern, use `setAngle(null, null)`.
+ *
+ * @method Phaser.Particle.Emitter.prototype.setAngle
+ * @param {?number} minAngle - The minimum angle of initial particle velocities, in degrees.
+ * @param {?number} maxAngle - The maximum angle of initial particle velocities, in degrees.
+ * @param {number} [minSpeed] - The minimum initial particle speed.
+ * @param {number} [maxSpeed] - The maximum initial particle speed.
+ * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
+ */
+Phaser.Particles.Arcade.Emitter.prototype.setAngle = function (minAngle, maxAngle, minSpeed, maxSpeed) {
+
+    this.minAngle = minAngle;
+    this.maxAngle = maxAngle;
+
+    if (minSpeed != null) { this.minSpeed = minSpeed; }
+    if (maxSpeed != null) { this.maxSpeed = maxSpeed; }
 
     return this;
 

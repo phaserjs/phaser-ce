@@ -264,6 +264,7 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 
 ### New Features
 
+* You can now emit particles in a radial pattern with Emitter#setAngle().
 * Phaser.Group#killAll kills all existing children.
 * Phaser.Group#reviveAll revives all non-existing children.
 * Phaser.Group#resetAll calls resetChild on all children (changing position, texture, and frame, if specified).

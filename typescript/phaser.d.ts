@@ -2798,13 +2798,17 @@ declare module Phaser {
                 height: number;
                 left: number;
                 lifespan: number;
+                maxAngle: number;
                 maxParticles: number;
                 maxParticleScale: number;
                 maxParticleSpeed: Phaser.Point;
                 maxRotation: number;
+                maxSpeed: number;
+                minAngle: number;
                 minParticleScale: number;
                 minParticleSpeed: Phaser.Point;
                 minRotation: number;
+                minSpeed: number;
                 name: string;
                 on: boolean;
                 particleAnchor: Phaser.Point;
@@ -2830,6 +2834,7 @@ declare module Phaser {
                 makeParticles(keys: any, frames?: any, quantity?: number, collide?: boolean, collideWorldBounds?: boolean, particleArguments?: any): Phaser.Particles.Arcade.Emitter;
                 reset(x: number, y: number, health?: number): Phaser.Particles;
                 setAlpha(min?: number, max?: number, rate?: number, ease?: (k: number) => number, yoyo?: boolean): Phaser.Particles.Arcade.Emitter;
+                setAngle(minAngle: number, maxAngle: number, minSpeed?: number, maxSpeed?: number);
                 setRotation(min?: number, max?: number): Phaser.Particles.Arcade.Emitter;
                 setScale(minX?: number, maxX?: number, minY?: number, maxY?: number, rate?: number, ease?: (k: number) => number, yoyo?: boolean): Phaser.Particles.Arcade.Emitter;
                 setSize(width: number, height: number): Phaser.Particles.Arcade.Emitter;
