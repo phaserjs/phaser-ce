@@ -1028,10 +1028,7 @@ Phaser.Physics.Arcade.prototype = {
                 bottom: bodyRect.bottom
             };
 
-            var circle = {
-                x: bodyCircle.x + bodyCircle.radius,
-                y: bodyCircle.y + bodyCircle.radius
-            };
+            var circle = bodyCircle.center;
 
             if (circle.y < rect.y || circle.y > rect.bottom)
             {
@@ -1121,7 +1118,7 @@ Phaser.Physics.Arcade.prototype = {
             if (body2.isCircle)
             {
                 //  Circle vs. Circle
-                return Phaser.Math.distance(body1.center.x, body1.center.y, body2.center.x, body2.center.y) <= (body1.radius + body2.radius);
+                return Phaser.Math.distance(body1.center.x, body1.center.y, body2.center.x, body2.center.y) <= (body1.halfWidth + body2.halfWidth);
             }
             else
             {
@@ -1181,7 +1178,7 @@ Phaser.Physics.Arcade.prototype = {
         var dx = (circle.center.x - x) * (circle.center.x - x);
         var dy = (circle.center.y - y) * (circle.center.y - y);
 
-        return (dx + dy) <= (circle.radius * circle.radius);
+        return (dx + dy) <= (circle.halfWidth * circle.halfWidth);
 
     },
 
@@ -1218,9 +1215,9 @@ Phaser.Physics.Arcade.prototype = {
             };
 
             var circle = {
-                x: (body1.isCircle) ? (body1.position.x + body1.radius) : (body2.position.x + body2.radius),
-                y: (body1.isCircle) ? (body1.position.y + body1.radius) : (body2.position.y + body2.radius),
-                radius: (body1.isCircle) ? body1.radius : body2.radius
+                x: (body1.isCircle) ? body1.center.x : body2.center.x,
+                y: (body1.isCircle) ? body1.center.y : body2.center.y,
+                radius: (body1.isCircle) ? body1.halfWidth : body2.halfWidth
             };
 
             if (circle.y < rect.y)
@@ -1250,7 +1247,7 @@ Phaser.Physics.Arcade.prototype = {
         }
         else
         {
-            overlap = (body1.radius + body2.radius) - Phaser.Math.distance(body1.center.x, body1.center.y, body2.center.x, body2.center.y);
+            overlap = (body1.halfWidth + body2.halfWidth) - Phaser.Math.distance(body1.center.x, body1.center.y, body2.center.x, body2.center.y);
         }
 
         //  Can't separate two immovable bodies, or a body with its own custom separation logic
