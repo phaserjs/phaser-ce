@@ -594,7 +594,7 @@ Phaser.Tilemap.prototype = {
 
         if (index === null || index > this.layers.length)
         {
-            console.warn('Tilemap.createLayer: Invalid layer ID given: ' + index);
+            console.warn('Tilemap.createLayer: Invalid layer ID given: "' + layer + '"');
             return;
         }
 

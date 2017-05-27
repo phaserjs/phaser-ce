@@ -392,8 +392,9 @@ Phaser.Physics.Arcade.prototype = {
     * You can perform Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer or Group vs. Tilemap Layer collisions.
     * Both the `object1` and `object2` can be arrays of objects, of differing types.
     *
-    * If two Groups or arrays are passed, the contents of one will be tested against all contents of the other.
-    * If one Group or array **only** is passed (as `object1`), contents of the Group or array will be collided against each other.
+    * If two Groups or arrays are passed, each member of one will be tested against each member of the other.
+    *
+    * If one Group **only** is passed (as `object1`), each member of the Group will be collided against the other members.
     *
     * If either object is `null` the collision test will fail.
     *
@@ -404,6 +405,19 @@ Phaser.Physics.Arcade.prototype = {
     * The collideCallback is an optional function that is only called if two sprites collide. If a processCallback has been set then it needs to return true for collideCallback to be called.
     *
     * **This function is not recursive**, and will not test against children of objects passed (i.e. Groups or Tilemaps within other Groups).
+    *
+    * ##### Examples
+    *
+    *     collide(group);
+    *     collide(group, undefined); // equivalent
+    *
+    *     collide(sprite1, sprite2);
+    *
+    *     collide(sprite, group);
+    *
+    *     collide(group1, group2);
+    *
+    *     collide([sprite1, sprite2], [sprite3, sprite4]); // 1v3, 1v4, 2v3, 2v4
     *
     * ##### Tilemaps
     *

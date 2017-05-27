@@ -653,6 +653,7 @@ Phaser.Timer.prototype = {
 
         this.onComplete.removeAll();
         this.running = false;
+        this.expired = true;
         this.events = [];
         this._len = 0;
         this._i = 0;
