@@ -258,6 +258,10 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
+### Bug Fixes
+
+* Fixed keeping track of global volume for Audio Tag Sounds (fadeTo didnt respect global volume set by SoundManager) 
+
 ## Version 2.7.10 - 19th May 2017
 
 ### New Features
