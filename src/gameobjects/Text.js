@@ -320,7 +320,7 @@ Phaser.Text.prototype.setStyle = function (style, update) {
     newStyle.boundsAlignH = (style.boundsAlignH || 'left').toLowerCase();
     newStyle.boundsAlignV = (style.boundsAlignV || 'top').toLowerCase();
     newStyle.stroke = style.stroke || 'black'; //provide a default, see: https://github.com/GoodBoyDigital/pixi.js/issues/136
-    newStyle.strokeThickness = style.strokeThickness || 0;
+    newStyle.strokeThickness = Number(style.strokeThickness) || 0;
     newStyle.wordWrap = style.wordWrap || false;
     newStyle.wordWrapWidth = style.wordWrapWidth || 100;
     newStyle.maxLines = style.maxLines || 0;
@@ -2068,7 +2068,7 @@ Object.defineProperty(Phaser.Text.prototype, 'strokeThickness', {
 
         if (value !== this.style.strokeThickness)
         {
-            this.style.strokeThickness = value;
+            this.style.strokeThickness = Number(value);
             this.dirty = true;
         }
 
