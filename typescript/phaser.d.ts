@@ -1786,6 +1786,7 @@ declare module Phaser {
         callAllExists(callback: string, existsValue: boolean, ...parameters: any[]): void;
         callbackFromArray(child: any, callback: Function, length: number): void;
         checkAll(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean, force?: boolean): boolean;
+        checkAny(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean): boolean;
         checkProperty(child: any, key: string, value: any, force?: boolean): boolean;
         countDead(): number;
         countLiving(): number;

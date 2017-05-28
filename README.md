@@ -262,11 +262,13 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Phaser.Group#checkAny tests if at least one child matches a given property value.
+
 ### Updates
 
 ### Bug Fixes
 
-* Fixed keeping track of global volume for Audio Tag Sounds (fadeTo didnt respect global volume set by SoundManager) 
+* Fixed keeping track of global volume for Audio Tag Sounds (fadeTo didnt respect global volume set by SoundManager)
 
 ## Version 2.7.10 - 19th May 2017
 
