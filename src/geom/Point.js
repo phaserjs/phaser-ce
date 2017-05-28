@@ -9,7 +9,7 @@
 * The following code creates a point at (0,0):
 * `var myPoint = new Phaser.Point();`
 * You can also use them as 2D Vectors and you'll find different vector related methods in this class.
-* 
+*
 * @class Phaser.Point
 * @constructor
 * @param {number} [x=0] - The horizontal position of this Point.
@@ -406,7 +406,7 @@ Phaser.Point.prototype = {
 
     /**
     * The dot product of this and another Point object.
-    * 
+    *
     * @method Phaser.Point#dot
     * @param {Phaser.Point} a - The Point object to get the dot product combined with this Point.
     * @return {number} The result.
@@ -419,7 +419,7 @@ Phaser.Point.prototype = {
 
     /**
     * The cross product of this and another Point object.
-    * 
+    *
     * @method Phaser.Point#cross
     * @param {Phaser.Point} a - The Point object to get the cross product combined with this Point.
     * @return {number} The result.
@@ -432,7 +432,7 @@ Phaser.Point.prototype = {
 
     /**
     * Make this Point perpendicular (90 degrees rotation)
-    * 
+    *
     * @method Phaser.Point#perp
     * @return {Phaser.Point} This Point object.
     */
@@ -444,7 +444,7 @@ Phaser.Point.prototype = {
 
     /**
     * Make this Point perpendicular (-90 degrees rotation)
-    * 
+    *
     * @method Phaser.Point#rperp
     * @return {Phaser.Point} This Point object.
     */
@@ -633,7 +633,7 @@ Phaser.Point.negative = function (a, out) {
 
 /**
 * Adds two 2D Points together and multiplies the result by the given scalar.
-* 
+*
 * @method Phaser.Point.multiplyAdd
 * @param {Phaser.Point} a - The first Point object.
 * @param {Phaser.Point} b - The second Point object.
@@ -651,7 +651,7 @@ Phaser.Point.multiplyAdd = function (a, b, s, out) {
 
 /**
 * Interpolates the two given Points, based on the `f` value (between 0 and 1) and returns a new Point.
-* 
+*
 * @method Phaser.Point.interpolate
 * @param {Phaser.Point} a - The first Point object.
 * @param {Phaser.Point} b - The second Point object.
@@ -717,7 +717,7 @@ Phaser.Point.distance = function (a, b, round) {
 
 /**
 * Project two Points onto another Point.
-* 
+*
 * @method Phaser.Point.project
 * @param {Phaser.Point} a - The first Point object.
 * @param {Phaser.Point} b - The second Point object.
@@ -741,7 +741,7 @@ Phaser.Point.project = function (a, b, out) {
 
 /**
 * Project two Points onto a Point of unit length.
-* 
+*
 * @method Phaser.Point.projectUnit
 * @param {Phaser.Point} a - The first Point object.
 * @param {Phaser.Point} b - The second Point object.
@@ -807,7 +807,7 @@ Phaser.Point.normalize = function (a, out) {
 * the angle specified. If the angle between the point and coordinates was 45 deg and the angle argument
 * is 45 deg then the resulting angle will be 90 deg, as the angle argument is added to the current angle.
 *
-* The distance allows you to specify a distance constraint for the rotation between the point and the 
+* The distance allows you to specify a distance constraint for the rotation between the point and the
 * coordinates. If none is given the distance between the two is calculated and used.
 *
 * @method Phaser.Point.rotate
@@ -917,6 +917,19 @@ Phaser.Point.parse = function(obj, xProp, yProp) {
     }
 
     return point;
+
+};
+
+/**
+ * Tests a Point or Point-like object.
+ *
+ * @method Phaser.Point.isPoint
+ * @static
+ * @return {boolean} - True if the object has numeric x and y properties.
+ */
+Phaser.Point.isPoint = function(obj) {
+
+    return (obj != null) && (typeof obj.x === 'number') && (typeof obj.y === 'number');
 
 };
 
