@@ -3004,6 +3004,7 @@ declare module Phaser {
                 constructor(sprite: Phaser.Sprite);
 
                 acceleration: Phaser.Point;
+                allowDrag: boolean;
                 allowGravity: boolean;
                 allowRotation: boolean;
                 angle: number;
