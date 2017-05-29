@@ -2718,6 +2718,25 @@ Phaser.Group.prototype.removeBetween = function (startIndex, endIndex, destroy, 
 };
 
 /**
+ * Places each child at a random position within the given Rectangle (or the {@link Phaser.World#bounds World bounds}).
+ *
+ * @method Phaser.Group.prototype#scatter
+ * @param {Phaser.Rectangle} [rect=this.game.world.bounds] - A Rectangle. If omitted {@link Phaser.World#bounds} is used.
+ * @param {boolean} [checkExists=false] - Place only children with exists=true.
+ */
+Phaser.Group.prototype.scatter = function (rect, checkExists) {
+
+    if (rect == null) { rect = this.game.world.bounds; }
+
+    this.forEach(function (child) {
+
+        child.position.set(rect.randomX, rect.randomY);
+
+    }, null, checkExists);
+
+};
+
+/**
 * Destroys this group.
 *
 * Removes all children, then removes this group from its parent and nulls references.

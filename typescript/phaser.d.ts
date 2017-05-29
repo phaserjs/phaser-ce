@@ -1833,6 +1833,7 @@ declare module Phaser {
         resetCursor(index?: number): any;
         reverse(): void;
         reviveAll(): void;
+        scatter(rect?: Phaser.Rectangle, checkExists?: boolean);
         sendToBack(child: any): any;
         set(child: any, key: string[], value: any, operation?: number, force?: boolean): boolean;
         setAll(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean, operation?: number, force?: boolean): void;
