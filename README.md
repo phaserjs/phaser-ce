@@ -274,6 +274,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed incorrect Phaser.Text dimensions when assigning a numeric string to strokeThickness (#239).
 * Fixed keeping track of global volume for Audio Tag Sounds (fadeTo didnt respect global volume set by SoundManager)
 
 ## Version 2.7.10 - 19th May 2017
