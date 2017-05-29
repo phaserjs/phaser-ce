@@ -262,6 +262,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Phaser.Group#scatter places each child at a random position within a Rectangle or the World bounds.
 * Arcade.Body#allowDrag lets you toggle drag (resistance) on or off. This makes it easier to apply drag only under certain conditions, such as when a character is touching the ground.
 * Phaser.Point.isPoint identifies objects that can be safely used in Point operations.
 * Phaser.Group#checkAny tests if at least one child matches a given property value.
