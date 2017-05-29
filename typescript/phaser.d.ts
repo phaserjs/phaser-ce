@@ -1786,6 +1786,7 @@ declare module Phaser {
         callAllExists(callback: string, existsValue: boolean, ...parameters: any[]): void;
         callbackFromArray(child: any, callback: Function, length: number): void;
         checkAll(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean, force?: boolean): boolean;
+        checkAny(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean): boolean;
         checkProperty(child: any, key: string, value: any, force?: boolean): boolean;
         countDead(): number;
         countLiving(): number;
@@ -3003,6 +3004,7 @@ declare module Phaser {
                 constructor(sprite: Phaser.Sprite);
 
                 acceleration: Phaser.Point;
+                allowDrag: boolean;
                 allowGravity: boolean;
                 allowRotation: boolean;
                 angle: number;
@@ -3933,6 +3935,7 @@ declare module Phaser {
         static normalize(a: Phaser.Point, out?: Phaser.Point): Phaser.Point;
         static rotate(a: Phaser.Point, x: number, y: number, angle: number, asDegrees?: boolean, distance?: number): Phaser.Point;
         static centroid(points: Phaser.Point[], out?: Phaser.Point): Phaser.Point;
+        static isPoint(obj: object): boolean;
 
         add(x: number, y: number): Phaser.Point;
         angle(a: Phaser.Point, asDegrees?: boolean): number;

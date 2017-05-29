@@ -262,9 +262,15 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Arcade.Body#allowDrag lets you toggle drag (resistance) on or off. This makes it easier to apply drag only under certain conditions, such as when a character is touching the ground.
+* Phaser.Point.isPoint identifies objects that can be safely used in Point operations.
+* Phaser.Group#checkAny tests if at least one child matches a given property value.
+
 ### Updates
 
 ### Bug Fixes
+
+* Fixed keeping track of global volume for Audio Tag Sounds (fadeTo didnt respect global volume set by SoundManager)
 
 ## Version 2.7.10 - 19th May 2017
 

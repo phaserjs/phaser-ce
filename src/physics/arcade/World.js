@@ -287,7 +287,7 @@ Phaser.Physics.Arcade.prototype = {
         {
             velocity += acceleration * this.game.time.physicsElapsed;
         }
-        else if (drag)
+        else if (drag && body.allowDrag)
         {
             drag *= this.game.time.physicsElapsed;
 
