@@ -258,7 +258,9 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
-## Unreleased
+## Version 2.8.0 - Unreleased
+
+We've bumped the minor version (2.8) for changes in how circular Arcade Physics bodies behave with scaled sprites. We consider this a bug fix (#235), but since the prior behavior wasn't documented and existing code might be relying on it, we wanted to give you a heads-up.
 
 ### New Features
 
@@ -271,6 +273,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Phaser.Group#checkAny tests if at least one child matches a given property value.
 
 ### Updates
+
+* Arcade.Body#radius now represents a length relative to the sprite's texture dimensions. The effective radius of the body now scales automatically when the sprite scale changes, as with rectangular bodies, and the body is now sized correctly when the sprite's scale is different from (1, 1) (#235).
 
 ### Bug Fixes
 
