@@ -262,6 +262,10 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Phaser.Group#killAll kills all existing children.
+* Phaser.Group#reviveAll revives all non-existing children.
+* Phaser.Group#resetAll calls resetChild on all children (changing position, texture, and frame, if specified).
+* Phaser.Group#scatter places each child at a random position within a Rectangle or the World bounds.
 * Arcade.Body#allowDrag lets you toggle drag (resistance) on or off. This makes it easier to apply drag only under certain conditions, such as when a character is touching the ground.
 * Phaser.Point.isPoint identifies objects that can be safely used in Point operations.
 * Phaser.Group#checkAny tests if at least one child matches a given property value.
@@ -270,6 +274,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed incorrect Phaser.Text dimensions when assigning a numeric string to strokeThickness (#239).
 * Fixed keeping track of global volume for Audio Tag Sounds (fadeTo didnt respect global volume set by SoundManager)
 
 ## Version 2.7.10 - 19th May 2017

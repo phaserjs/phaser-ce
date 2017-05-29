@@ -1495,6 +1495,44 @@ Phaser.Group.prototype.divideAll = function (property, amount, checkAlive, check
 };
 
 /**
+ * Kills all children having exists=true.
+ *
+ * @method Phaser.Group#killAll
+ */
+Phaser.Group.prototype.killAll = function () {
+
+    this.callAllExists('kill', true);
+
+};
+
+/**
+ * Revives all children having exists=false.
+ *
+ * @method Phaser.Group#reviveAll
+ */
+Phaser.Group.prototype.reviveAll = function () {
+
+    this.callAllExists('revive', false);
+
+};
+
+/**
+* Calls {@link #resetChild} on each child (or each existing child).
+*
+* @method Phaser.Group#resetAll
+* @param {number} [x] - The x coordinate to reset each child to. The value is in relation to the group.x point.
+* @param {number} [y] - The y coordinate to reset each child to. The value is in relation to the group.y point.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image or texture used by the Sprite during rendering.
+* @param {string|number} [frame] - The frame of a sprite sheet or texture atlas.
+* @param {boolean} [checkExists=false] - Reset only existing children.
+*/
+Phaser.Group.prototype.resetAll = function (x, y, key, frame, checkExists) {
+
+    this.forEach(this.resetChild, this, checkExists, x, y, key, frame);
+
+};
+
+/**
 * Calls a function, specified by name, on all children in the group who exist (or do not exist).
 *
 * After the existsValue parameter you can add as many parameters as you like, which will all be passed to the child callback.
@@ -2676,6 +2714,25 @@ Phaser.Group.prototype.removeBetween = function (startIndex, endIndex, destroy, 
     }
 
     this.updateZ();
+
+};
+
+/**
+ * Places each child at a random position within the given Rectangle (or the {@link Phaser.World#bounds World bounds}).
+ *
+ * @method Phaser.Group.prototype#scatter
+ * @param {Phaser.Rectangle} [rect=this.game.world.bounds] - A Rectangle. If omitted {@link Phaser.World#bounds} is used.
+ * @param {boolean} [checkExists=false] - Place only children with exists=true.
+ */
+Phaser.Group.prototype.scatter = function (rect, checkExists) {
+
+    if (rect == null) { rect = this.game.world.bounds; }
+
+    this.forEach(function (child) {
+
+        child.position.set(rect.randomX, rect.randomY);
+
+    }, null, checkExists);
 
 };
 
