@@ -2798,6 +2798,7 @@ declare module Phaser {
                 height: number;
                 left: number;
                 lifespan: number;
+                lifespanOutput: number;
                 maxAngle: number;
                 maxParticles: number;
                 maxParticleScale: number;
@@ -2811,6 +2812,7 @@ declare module Phaser {
                 minSpeed: number;
                 name: string;
                 on: boolean;
+                output: number;
                 particleAnchor: Phaser.Point;
                 particleBringToTop: boolean;
                 particleSendToBack: boolean;
@@ -2818,6 +2820,7 @@ declare module Phaser {
                 particleDrag: Phaser.Point;
                 physicsType: number;
                 position: Phaser.Point;
+                remainder: number;
                 right: number;
                 scaleData: any[];
                 top: number;

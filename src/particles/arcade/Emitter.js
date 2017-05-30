@@ -1115,3 +1115,42 @@ Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "bottom", {
     }
 
 });
+
+/**
+ * @name Phaser.Particles.Arcade.Emitter#output
+ * @property {number} output - The number of particles released per second, after calling {@link flow}.
+ * @readonly
+ */
+Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "output", {
+
+    get: function () {
+        return 1000 * this._flowQuantity / this.frequency;
+    }
+
+});
+
+/**
+ * @name Phaser.Particles.Arcade.Emitter#lifespanOutput
+ * @property {number} lifespanOutput - The number of particles released during one particle's {@link lifespan}, after calling {@link flow}.
+ * @readonly
+ */
+Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "lifespanOutput", {
+
+    get: function () {
+        return (this.lifespan === 0 ? Infinity : this.lifespan) * this._flowQuantity / this.frequency;
+    }
+
+});
+
+/**
+ * @name Phaser.Particles.Arcade.Emitter#remainder
+ * @property {number} remainder - The expected number of unreleased particles after a flow interval of {@link lifespan}, after calling {@link flow}.
+ * @readonly
+ */
+Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "remainder", {
+
+    get: function () {
+        return this.maxParticles - this.lifespanOutput;
+    }
+
+});
