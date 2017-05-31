@@ -277,6 +277,7 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 ### Updates
 
 * Arcade.Body#radius now represents a length relative to the sprite's texture dimensions. The effective radius of the body now scales automatically when the sprite scale changes, as with rectangular bodies, and the body is now sized correctly when the sprite's scale is different from (1, 1) (#235).
+* Create#grid and Create#texture now accept callbacks (#241, #136) and can return a BitmapData object when passed `generateTexture=false`.
 
 ### Bug Fixes
 
