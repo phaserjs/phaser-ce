@@ -46,9 +46,9 @@ Phaser.Physics.Arcade.Body = function (sprite) {
 
     /**
     * The radius of the circular collision shape this Body is using if Body.setCircle has been enabled, relative to the Sprite's _texture_.
-    * If you wish to change the radius then call `setCircle` again with the new value.
-    * If you wish to stop the Body using a circle then call `setCircle` with a radius of zero (or undefined).
-    * The actual radius of the Body (at any Sprite scale) is equal to {@link halfWidth}.
+    * If you wish to change the radius then call {@link #setCircle} again with the new value.
+    * If you wish to stop the Body using a circle then call {@link #setCircle} with a radius of zero (or undefined).
+    * The actual radius of the Body (at any Sprite scale) is equal to {@link #halfWidth} and the diameter is equal to {@link #width}.
     * @property {number} radius
     * @default
     * @readOnly

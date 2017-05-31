@@ -1369,6 +1369,7 @@ Phaser.Group.prototype.setAllChildren = function (key, value, checkAlive, checkV
 * @param {boolean} [checkAlive=false] - If set then only children with alive=true will be checked. This includes any Groups that are children.
 * @param {boolean} [checkVisible=false] - If set then only children with visible=true will be checked. This includes any Groups that are children.
 * @param {boolean} [force=false] - Also return false if the property is missing or undefined (regardless of the `value` argument).
+* @return {boolean} - True if all eligible children have the given property value (but see `force`); otherwise false.
 */
 Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible, force) {
 
@@ -1403,6 +1404,7 @@ Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible
 * @param {any} value - The value that will be checked.
 * @param {boolean} [checkAlive=false] - If set then only children with alive=true will be checked. This includes any Groups that are children.
 * @param {boolean} [checkVisible=false] - If set then only children with visible=true will be checked. This includes any Groups that are children.
+* @return {boolean} - True if at least one eligible child has the given property value; otherwise false.
 */
 Phaser.Group.prototype.checkAny = function (key, value, checkAlive, checkVisible) {
 
@@ -2720,7 +2722,7 @@ Phaser.Group.prototype.removeBetween = function (startIndex, endIndex, destroy, 
 /**
  * Places each child at a random position within the given Rectangle (or the {@link Phaser.World#bounds World bounds}).
  *
- * @method Phaser.Group.prototype#scatter
+ * @method Phaser.Group#scatter
  * @param {Phaser.Rectangle} [rect=this.game.world.bounds] - A Rectangle. If omitted {@link Phaser.World#bounds} is used.
  * @param {boolean} [checkExists=false] - Place only children with exists=true.
  */
