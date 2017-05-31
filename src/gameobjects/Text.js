@@ -1689,6 +1689,26 @@ Phaser.Text.prototype.setCharacterLimit = function (characterLimit, suffix) {
 };
 
 /**
+* This adds the functionality of Object.assign for older devices where it is not supported.
+* The function copies all the properties from one or multiple sources to a target object
+*/
+if (Object.assign == undefined){
+	Object.assign = function(target) {
+	    for (var i = 1; i < arguments.length; i++) {
+	        var source = arguments[i];
+	        for (var key in source) {
+	            if (source.hasOwnProperty(key)) {
+	                target[key] = source[key];
+	            }
+	        }
+	    }
+	    return target;
+	}
+}
+
+
+
+/**
 * The text to be displayed by this Text object.
 * Use a \n to insert a carriage return and split the text.
 * The text will be rendered with any style currently set.
