@@ -1043,7 +1043,7 @@
         <p>The Phaser.Create class is a collection of smaller helper methods that allow you to generate game content
 quickly and easily, without the need for any external files. You can create textures for sprites and in
 coming releases we'll add dynamic sound effect generation support as well (like sfxr).</p>
-<p>Access this via <code>Game.create</code> (<code>this.game.create</code> from within a State object)</p>
+<p>Access this via <code>Game.create</code> (<code>this.game.create</code> from within a State object).</p>
     </div>
     
 
@@ -1783,7 +1783,396 @@ coming releases we'll add dynamic sound effect generation support as well (like 
             
 <dt>
     <h4 class="name "
-        id="grid"><span class="type-signature"></span>grid<span class="signature">(key, width, height, cellWidth, cellHeight, color)</span><span class="type-signature"> &rarr; {<a href="PIXI.Texture.html">PIXI.Texture</a>}</span></h4>
+        id="copy"><span class="type-signature"></span>copy<span class="signature">(<span class="optional">dest</span>, <span class="optional">x</span>, <span class="optional">y</span>, <span class="optional">width</span>, <span class="optional">height</span>, <span class="optional">blendMode</span>, <span class="optional">roundPx</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.BitmapData.html">Phaser.BitmapData</a>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    <div class="description">
+        <p>Copies the contents of Create's canvas to the given BitmapData object, or a new BitmapData object.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+		<th>Argument</th>
+		
+
+		
+		<th>Default</th>
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>dest</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The BitmapData receiving the copied image.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>The x coordinate to translate to before drawing.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>The y coordinate to translate to before drawing.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The new width of the Sprite being copied.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The new height of the Sprite being copied.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>blendMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last"><p>The composite blend mode that will be used when drawing. The default is no blend mode at all. This is a Canvas globalCompositeOperation value such as 'lighter' or 'xor'.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>roundPx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Should the x and y values be rounded to integers before drawing? This prevents anti-aliasing in some instances.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+
+    
+    <h5>Returns:</h5>
+    <div class="returns">
+        
+            
+    
+        <div class="returns-type">
+        
+<span class="param-type"><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></span>
+
+ -
+        </div>
+    
+    <div class="returns-desc param-desc">
+        <ul>
+<li>The <code>dest</code> argument (if passed), or a new BitmapData object</li>
+</ul>
+    </div>
+
+
+        
+    </div>
+    
+    
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    <a href="src_core_Create.js.html">core/Create.js</a>, <a href="src_core_Create.js.html#sunlight-1-line-227">line 227</a>
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+       
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name "
+        id="grid"><span class="type-signature"></span>grid<span class="signature">(key, width, height, cellWidth, cellHeight, color, <span class="optional">generateTexture</span>, <span class="optional">callback</span>, <span class="optional">callbackContext</span>)</span><span class="type-signature"> &rarr; {<a href="PIXI.Texture.html">PIXI.Texture</a>|<a href="Phaser.BitmapData.html">Phaser.BitmapData</a>}</span></h4>
     
     
 </dt>
@@ -1814,7 +2203,11 @@ coming releases we'll add dynamic sound effect generation support as well (like 
 		<th>Type</th>
 
 		
+		<th>Argument</th>
+		
 
+		
+		<th>Default</th>
 		
 
 		<th class="last">Description</th>
@@ -1839,7 +2232,19 @@ coming releases we'll add dynamic sound effect generation support as well (like 
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>The key used to store this texture in the Phaser Cache.</p></td>
@@ -1862,7 +2267,19 @@ coming releases we'll add dynamic sound effect generation support as well (like 
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>The width of the grid in pixels.</p></td>
@@ -1885,7 +2302,19 @@ coming releases we'll add dynamic sound effect generation support as well (like 
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>The height of the grid in pixels.</p></td>
@@ -1908,7 +2337,19 @@ coming releases we'll add dynamic sound effect generation support as well (like 
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>The width of the grid cells in pixels.</p></td>
@@ -1931,7 +2372,19 @@ coming releases we'll add dynamic sound effect generation support as well (like 
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>The height of the grid cells in pixels.</p></td>
@@ -1954,10 +2407,135 @@ coming releases we'll add dynamic sound effect generation support as well (like 
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>The color to draw the grid lines in. Should be a Canvas supported color string like <code>#ff5500</code> or <code>rgba(200,50,3,0.5)</code>.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>generateTexture</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>When false, a new BitmapData object is returned instead.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>A function to execute once the texture is generated. It will be passed the newly generated texture.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>callbackContext</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The context in which to invoke the callback.</p></td>
         </tr>
 
 	
@@ -1975,12 +2553,15 @@ coming releases we'll add dynamic sound effect generation support as well (like 
         <div class="returns-type">
         
 <span class="param-type"><a href="PIXI.Texture.html">PIXI.Texture</a></span>
+|
+
+<span class="param-type"><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></span>
 
  -
         </div>
     
     <div class="returns-desc param-desc">
-        <p>The newly generated texture.</p>
+        <p>The newly generated texture, or a new BitmapData object if <code>generateTexture</code> is false, or <code>null</code> if a callback was passed and the texture isn't available yet.</p>
     </div>
 
 
@@ -2010,7 +2591,7 @@ coming releases we'll add dynamic sound effect generation support as well (like 
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Create.js.html">core/Create.js</a>, <a href="src_core_Create.js.html#sunlight-1-line-162">line 162</a>
+    <a href="src_core_Create.js.html">core/Create.js</a>, <a href="src_core_Create.js.html#sunlight-1-line-168">line 168</a>
     </dt>
     
 
@@ -2037,7 +2618,7 @@ coming releases we'll add dynamic sound effect generation support as well (like 
             
 <dt>
     <h4 class="name "
-        id="texture"><span class="type-signature"></span>texture<span class="signature">(key, data, <span class="optional">pixelWidth</span>, <span class="optional">pixelHeight</span>, <span class="optional">palette</span>)</span><span class="type-signature"> &rarr; {<a href="PIXI.Texture.html">PIXI.Texture</a>}</span></h4>
+        id="texture"><span class="type-signature"></span>texture<span class="signature">(key, data, <span class="optional">pixelWidth</span>, <span class="optional">pixelHeight</span>, <span class="optional">palette</span>, <span class="optional">generateTexture</span>, <span class="optional">callback</span>, <span class="optional">callbackContext</span>)</span><span class="type-signature"> &rarr; {<a href="PIXI.Texture.html">PIXI.Texture</a>|<a href="Phaser.BitmapData.html">Phaser.BitmapData</a>}</span></h4>
     
     
 </dt>
@@ -2282,6 +2863,119 @@ for sprites the same way you use any other texture: <code>game.add.sprite(0, 0, 
         </tr>
 
 	
+
+        <tr>
+            
+                <td class="name"><code>generateTexture</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>When false, a new BitmapData object is returned instead.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>A function to execute once the texture is generated. It will be passed the newly generated texture.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>callbackContext</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The context in which to invoke the callback.</p></td>
+        </tr>
+
+	
 	</tbody>
 </table>
 
@@ -2296,12 +2990,15 @@ for sprites the same way you use any other texture: <code>game.add.sprite(0, 0, 
         <div class="returns-type">
         
 <span class="param-type"><a href="PIXI.Texture.html">PIXI.Texture</a></span>
+|
+
+<span class="param-type"><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></span>
 
  -
         </div>
     
     <div class="returns-desc param-desc">
-        <p>The newly generated texture.</p>
+        <p>The newly generated texture, or a new BitmapData object if <code>generateTexture</code> is false, or <code>null</code> if a callback was passed and the texture isn't available yet.</p>
     </div>
 
 
@@ -2380,7 +3077,7 @@ for sprites the same way you use any other texture: <code>game.add.sprite(0, 0, 
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Fri May 19 2017 15:17:48 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Tue May 30 2017 21:46:49 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>
