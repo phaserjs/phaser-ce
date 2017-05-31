@@ -57,25 +57,25 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.area = new Phaser.Rectangle(x, y, 1, 1);
 
     /**
-     * @property {?number} minAngle - The minimum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link maxAngle}), {@link minSpeed} and {@link maxSpeed} are used and {@link minParticleSpeed} and {@link maxParticleSpeed} are ignored.
+     * @property {?number} minAngle - The minimum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link #maxAngle}), {@link #minSpeed} and {@link #maxSpeed} are used and {@link #minParticleSpeed} and {@link #maxParticleSpeed} are ignored.
      * @default
      */
     this.minAngle = null;
 
     /**
-     * @property {?number} maxAngle - The maximum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link minAngle}), {@link minSpeed} and {@link maxSpeed} are used and {@link minParticleSpeed} and {@link maxParticleSpeed} are ignored.
+     * @property {?number} maxAngle - The maximum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link #minAngle}), {@link #minSpeed} and {@link #maxSpeed} are used and {@link #minParticleSpeed} and {@link #maxParticleSpeed} are ignored.
      * @default
      */
     this.maxAngle = null;
 
     /**
-     * @property {number} minSpeed - The minimum initial speed of particles released within {@link minAngle} and {@link maxAngle}.
+     * @property {number} minSpeed - The minimum initial speed of particles released within {@link #minAngle} and {@link #maxAngle}.
      * @default
      */
     this.minSpeed = 0;
 
     /**
-     * @property {number} maxSpeed - The maximum initial speed of particles released within {@link minAngle} and {@link maxAngle}.
+     * @property {number} maxSpeed - The maximum initial speed of particles released within {@link #minAngle} and {@link #maxAngle}.
      * @default
      */
     this.maxSpeed = 100;
@@ -918,11 +918,11 @@ Phaser.Particles.Arcade.Emitter.prototype.setScale = function (minX, maxX, minY,
 /**
  * Sets a radial pattern for emitting particles.
  *
- * This is a shorthand for setting {@link minAngle}, {@link maxAngle}, {@link minSpeed}, and {@link maxSpeed}.
+ * This is a shorthand for setting {@link #minAngle}, {@link #maxAngle}, {@link #minSpeed}, and {@link #maxSpeed}.
  *
  * To remove the radial pattern, use `setAngle(null, null)`.
  *
- * @method Phaser.Particle.Emitter.prototype.setAngle
+ * @method Phaser.Particles.Arcade.Emitter#setAngle
  * @param {?number} minAngle - The minimum angle of initial particle velocities, in degrees.
  * @param {?number} maxAngle - The maximum angle of initial particle velocities, in degrees.
  * @param {number} [minSpeed] - The minimum initial particle speed.
@@ -1118,7 +1118,7 @@ Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "bottom", {
 
 /**
  * @name Phaser.Particles.Arcade.Emitter#output
- * @property {number} output - The number of particles released per second, after calling {@link flow}.
+ * @property {number} output - The number of particles released per second, after calling {@link #flow}.
  * @readonly
  */
 Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "output", {
@@ -1131,7 +1131,7 @@ Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "output", {
 
 /**
  * @name Phaser.Particles.Arcade.Emitter#lifespanOutput
- * @property {number} lifespanOutput - The number of particles released during one particle's {@link lifespan}, after calling {@link flow}.
+ * @property {number} lifespanOutput - The number of particles released during one particle's {@link #lifespan}, after calling {@link #flow}.
  * @readonly
  */
 Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "lifespanOutput", {
@@ -1144,7 +1144,7 @@ Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "lifespanOutput
 
 /**
  * @name Phaser.Particles.Arcade.Emitter#remainder
- * @property {number} remainder - The expected number of unreleased particles after a flow interval of {@link lifespan}, after calling {@link flow}.
+ * @property {number} remainder - The expected number of unreleased particles after a flow interval of {@link #lifespan}, after calling {@link #flow}.
  * @readonly
  */
 Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "remainder", {

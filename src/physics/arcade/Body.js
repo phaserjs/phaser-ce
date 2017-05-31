@@ -161,13 +161,13 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.acceleration = new Phaser.Point();
 
     /**
-     * @property {boolean} allowDrag - Apply this Body's {@link drag}.
+     * @property {boolean} allowDrag - Allow this Body to be influenced by {@link #drag}?
      * @default
      */
      this.allowDrag = true;
 
     /**
-    * @property {Phaser.Point} drag - The drag applied to the motion of the Body (when {@link allowDrag} is enabled). Measured in pixels per second squared.
+    * @property {Phaser.Point} drag - The drag applied to the motion of the Body (when {@link #allowDrag} is enabled). Measured in pixels per second squared.
     */
     this.drag = new Phaser.Point();
 

@@ -2708,7 +2708,7 @@ Emitter.emitX and Emitter.emitY control the emission location relative to the x/
 
     
     <div class="description">
-        <p>If exists is false the group will be excluded from collision checks and filters such as forEachExists. The group will not call <code>preUpdate</code> and <code>postUpdate</code> on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be <a href="Phaser.Group.html#visible">visible</a> and will still call <code>update</code> on its children.</p>
+        <p>If exists is false the group will be excluded from collision checks and filters such as <a href="Phaser.Group.html#forEachExists">forEachExists</a>. The group will not call <code>preUpdate</code> and <code>postUpdate</code> on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be <a href="Phaser.Group.html#visible">visible</a> and will still call <code>update</code> on its children.</p>
     </div>
     
     
@@ -3766,7 +3766,7 @@ on any children <em>added</em> to, or <em>created by</em>, this Group.</p>
 
     
     <div class="description">
-        <p>The number of particles released during one particle's lifespan, after calling flow.</p>
+        <p>The number of particles released during one particle's <a href="Phaser.Particles.Arcade.Emitter.html#lifespan">lifespan</a>, after calling <a href="Phaser.Particles.Arcade.Emitter.html#flow">flow</a>.</p>
     </div>
     
     
@@ -3886,7 +3886,7 @@ To remove a mask, set this property to <code>null</code>.</p>
 
     
     <div class="description">
-        <p>The maximum angle of initial particle velocities, in degrees. When set to a non-null value (with minAngle), minSpeed and maxSpeed are used and minParticleSpeed and maxParticleSpeed are ignored.</p>
+        <p>The maximum angle of initial particle velocities, in degrees. When set to a non-null value (with <a href="Phaser.Particles.Arcade.Emitter.html#minAngle">minAngle</a>), <a href="Phaser.Particles.Arcade.Emitter.html#minSpeed">minSpeed</a> and <a href="Phaser.Particles.Arcade.Emitter.html#maxSpeed">maxSpeed</a> are used and <a href="Phaser.Particles.Arcade.Emitter.html#minParticleSpeed">minParticleSpeed</a> and <a href="Phaser.Particles.Arcade.Emitter.html#maxParticleSpeed">maxParticleSpeed</a> are ignored.</p>
     </div>
     
     
@@ -4231,7 +4231,7 @@ To remove a mask, set this property to <code>null</code>.</p>
 
     
     <div class="description">
-        <p>The maximum initial speed of particles released within minAngle and maxAngle.</p>
+        <p>The maximum initial speed of particles released within <a href="Phaser.Particles.Arcade.Emitter.html#minAngle">minAngle</a> and <a href="Phaser.Particles.Arcade.Emitter.html#maxAngle">maxAngle</a>.</p>
     </div>
     
     
@@ -4290,7 +4290,7 @@ To remove a mask, set this property to <code>null</code>.</p>
 
     
     <div class="description">
-        <p>The minimum angle of initial particle velocities, in degrees. When set to a non-null value (with maxAngle), minSpeed and maxSpeed are used and minParticleSpeed and maxParticleSpeed are ignored.</p>
+        <p>The minimum angle of initial particle velocities, in degrees. When set to a non-null value (with <a href="Phaser.Particles.Arcade.Emitter.html#maxAngle">maxAngle</a>), <a href="Phaser.Particles.Arcade.Emitter.html#minSpeed">minSpeed</a> and <a href="Phaser.Particles.Arcade.Emitter.html#maxSpeed">maxSpeed</a> are used and <a href="Phaser.Particles.Arcade.Emitter.html#minParticleSpeed">minParticleSpeed</a> and <a href="Phaser.Particles.Arcade.Emitter.html#maxParticleSpeed">maxParticleSpeed</a> are ignored.</p>
     </div>
     
     
@@ -4576,7 +4576,7 @@ To remove a mask, set this property to <code>null</code>.</p>
 
     
     <div class="description">
-        <p>The minimum initial speed of particles released within minAngle and maxAngle.</p>
+        <p>The minimum initial speed of particles released within <a href="Phaser.Particles.Arcade.Emitter.html#minAngle">minAngle</a> and <a href="Phaser.Particles.Arcade.Emitter.html#maxAngle">maxAngle</a>.</p>
     </div>
     
     
@@ -5066,7 +5066,7 @@ is still over the Sprite or not.</p>
 
     
     <div class="description">
-        <p>The number of particles released per second, after calling flow.</p>
+        <p>The number of particles released per second, after calling <a href="Phaser.Particles.Arcade.Emitter.html#flow">flow</a>.</p>
     </div>
     
     
@@ -5842,7 +5842,7 @@ To obtain that value please see the <code>worldPosition</code> property.</p>
 
     
     <div class="description">
-        <p>The expected number of unreleased particles after a flow interval of lifespan, after calling flow.</p>
+        <p>The expected number of unreleased particles after a flow interval of <a href="Phaser.Particles.Arcade.Emitter.html#lifespan">lifespan</a>, after calling <a href="Phaser.Particles.Arcade.Emitter.html#flow">flow</a>.</p>
     </div>
     
     
@@ -24470,6 +24470,258 @@ If rate is zero, which is the default, the particle won't change alpha - instead
             
 <dt>
     <h4 class="name "
+        id="setAngle"><span class="type-signature"></span>setAngle<span class="signature">(minAngle, maxAngle, <span class="optional">minSpeed</span>, <span class="optional">maxSpeed</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    <div class="description">
+        <p>Sets a radial pattern for emitting particles.</p>
+<p>This is a shorthand for setting <a href="Phaser.Particles.Arcade.Emitter.html#minAngle">minAngle</a>, <a href="Phaser.Particles.Arcade.Emitter.html#maxAngle">maxAngle</a>, <a href="Phaser.Particles.Arcade.Emitter.html#minSpeed">minSpeed</a>, and <a href="Phaser.Particles.Arcade.Emitter.html#maxSpeed">maxSpeed</a>.</p>
+<p>To remove the radial pattern, use <code>setAngle(null, null)</code>.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+		<th>Argument</th>
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>minAngle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The minimum angle of initial particle velocities, in degrees.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>maxAngle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The maximum angle of initial particle velocities, in degrees.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>minSpeed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The minimum initial particle speed.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>maxSpeed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The maximum initial particle speed.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+
+    
+    <h5>Returns:</h5>
+    <div class="returns">
+        
+            
+    
+        <div class="returns-type">
+        
+<span class="param-type"><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></span>
+
+ -
+        </div>
+    
+    <div class="returns-desc param-desc">
+        <p>This Emitter instance.</p>
+    </div>
+
+
+        
+    </div>
+    
+    
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    <a href="src_particles_arcade_Emitter.js.html">particles/arcade/Emitter.js</a>, <a href="src_particles_arcade_Emitter.js.html#sunlight-1-line-918">line 918</a>
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+       
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name "
         id="setChildIndex"><span class="type-signature"></span>setChildIndex<span class="signature">(child, index)</span><span class="type-signature"></span></h4>
     
     
@@ -27429,7 +27681,7 @@ alphabetical sorting, mixing strings and numbers, and Unicode sorting. See MDN f
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Tue May 30 2017 21:46:51 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Wed May 31 2017 09:33:31 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>
