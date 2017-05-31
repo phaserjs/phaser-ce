@@ -264,25 +264,30 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 
 ### New Features
 
-* You can now emit particles in a radial pattern with Emitter#setAngle().
-* Emitter#output, Emitter#lifespanOutput, and Emitter#remainder describe particle flow rate.
-* Phaser.Group#killAll kills all existing children. (Also useful for particle emitters.)
-* Phaser.Group#reviveAll revives all non-existing children.
-* Phaser.Group#resetAll calls resetChild on all children (changing position, texture, and frame, if specified).
-* Phaser.Group#scatter places each child at a random position within a Rectangle or the World bounds.
-* Arcade.Body#allowDrag lets you toggle drag (resistance) on or off. This makes it easier to apply drag only under certain conditions, such as when a character is touching the ground.
-* Phaser.Point.isPoint identifies objects that can be safely used in Point operations.
-* Phaser.Group#checkAny tests if at least one child matches a given property value.
+* You can emit particles in a radial pattern with [Emitter#setAngle](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#setAngle).
+* [Emitter#output](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#output), [Emitter#lifespanOutput](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#lifespanOutput), and [Emitter#remainder](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#remainder) describe particle flow rate.
+* You can toggle drag (resistance) on or off with [Arcade.Body#allowDrag](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#allowDrag). You might apply drag only when a character is touching the ground, for example.
+* [Group#checkAny](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAny) tests if at least one child matches a given property value.
+* [Group#killAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#killAll) kills all existing children. (Also useful for shutting off particle emitters.)
+* [Group#reviveAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#reviveAll) revives all non-existing children.
+* [Group#resetAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#resetAll) calls resetChild on all children (changing position, texture, and frame, if specified).
+* [Group#scatter](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#scatter) places each child at a random position within a Rectangle or the World bounds.
+* [Point.isPoint](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#isPoint) identifies objects that can be safely used in Point operations.
 
 ### Updates
 
-* Arcade.Body#radius now represents a length relative to the sprite's texture dimensions. The effective radius of the body now scales automatically when the sprite scale changes, as with rectangular bodies, and the body is now sized correctly when the sprite's scale is different from (1, 1) (#235).
-* Create#grid and Create#texture now accept callbacks (#241, #136) and can return a BitmapData object when passed `generateTexture=false`.
+* [Arcade.Body#radius](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#radius) represents a length relative to the sprite's texture dimensions. The effective radius of the body scales automatically when the sprite scale changes, as with rectangular bodies, and the body is sized correctly when the sprite's scale is different from (1, 1) (#235).
+* [Create#grid](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#grid) and [Create#texture](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#texture) accept callbacks (#241, #136) and can return a BitmapData object when passed `generateTexture=false`.
 
 ### Bug Fixes
 
-* Fixed incorrect Phaser.Text dimensions when assigning a numeric string to strokeThickness (#239).
-* Fixed keeping track of global volume for Audio Tag Sounds (fadeTo didnt respect global volume set by SoundManager)
+* Fixed incorrect Phaser.Text dimensions when assigning a numeric string to [strokeThickness](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#strokeThickness) (#239). (You should still use a number instead, though.)
+* Fixed Sounds ignoring changes to global volume when using audio tags.
+* Fixed looping timers not getting removed completely when destroyed.
+
+### Thanks
+
+@ColaColin, @GameDevFox, @goldfire, @netgfx, @photonstorm, @rblopes, @samme, @shunsei, @Xesenix
 
 ## Version 2.7.10 - 19th May 2017
 
