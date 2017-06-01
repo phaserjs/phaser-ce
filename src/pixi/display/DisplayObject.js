@@ -368,6 +368,8 @@ PIXI.DisplayObject.prototype = {
         {
             // lets do the fast version as we know there is no rotation..
             a  = this.scale.x;
+            b  = 0;
+            c  = 0;
             d  = this.scale.y;
 
             tx = this.position.x - this.pivot.x * a;
@@ -382,7 +384,7 @@ PIXI.DisplayObject.prototype = {
         }
 
         var determ = (a * d) - (b * c);
-        var TAU = Math.PI * 0.5;
+        var HALF_PI = Math.PI * 0.5;
 
         if (a || b)
         {
@@ -396,7 +398,7 @@ PIXI.DisplayObject.prototype = {
         {
             var s = Math.sqrt((c * c) + (d * d));
 
-            this.worldRotation = TAU - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
+            this.worldRotation = HALF_PI - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
             this.worldScale.x = determ / s;
             this.worldScale.y = s;
         }
