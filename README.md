@@ -264,6 +264,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Documented an undocumented feature of Phaser.Signal: returning `false` from a callback stops Signal propagation, just as Signal#halt does (#243).
+
 ### Bug Fixes
 
 ## Version 2.8.0 - 30th May 2017
