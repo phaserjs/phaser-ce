@@ -258,6 +258,14 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
+## Unreleased
+
+### New Features
+
+### Updates
+
+### Bug Fixes
+
 ## Version 2.8.0 - 30th May 2017
 
 We've bumped the minor version (2.8) for changes in how circular Arcade Physics bodies behave with scaled sprites. We consider this a bug fix (#235), but since the prior behavior wasn't documented and existing code might be relying on it, we wanted to give you a heads-up.
