@@ -270,6 +270,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 * Fixed typo for typescript definition of `IGameConfig.multiTexture` property.
 * Fixed `NaN` value for some objects' `worldRotation` and `worldScale` properties. `worldTransform` was still correct.
+* Fixed camera shake failing to be set to 0 when camera is reset.
 
 ## Version 2.8.0 - 30th May 2017
 
