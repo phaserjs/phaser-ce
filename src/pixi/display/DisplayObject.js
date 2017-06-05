@@ -368,6 +368,8 @@ PIXI.DisplayObject.prototype = {
         {
             // lets do the fast version as we know there is no rotation..
             a  = this.scale.x;
+            b  = 0;
+            c  = 0;
             d  = this.scale.y;
 
             tx = this.position.x - this.pivot.x * a;
@@ -382,7 +384,7 @@ PIXI.DisplayObject.prototype = {
         }
 
         var determ = (a * d) - (b * c);
-        var TAU = Math.PI * 0.5;
+        var HALF_PI = Math.PI * 0.5;
 
         if (a || b)
         {
@@ -396,7 +398,7 @@ PIXI.DisplayObject.prototype = {
         {
             var s = Math.sqrt((c * c) + (d * d));
 
-            this.worldRotation = TAU - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
+            this.worldRotation = HALF_PI - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
             this.worldScale.x = determ / s;
             this.worldScale.y = s;
         }
@@ -555,7 +557,9 @@ PIXI.DisplayObject.prototype = {
         {
             var textureUnit = 0;
             if (this.texture && this.texture.baseTexture && PIXI._enableMultiTextureToggle)
+            {
                 textureUnit = this.texture.baseTexture.textureIndex;
+            }
             var renderTexture = new Phaser.RenderTexture(this.game, bounds.width, bounds.height, undefined, undefined, undefined, undefined, textureUnit);
             this._cachedSprite = new PIXI.Sprite(renderTexture);
             this._cachedSprite.worldTransform = this.worldTransform;

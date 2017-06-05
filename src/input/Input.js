@@ -949,7 +949,7 @@ Phaser.Input.prototype = {
         {
             return (displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y));
         }
-        else if (displayObject instanceof Phaser.Creature) {
+        else if (Phaser.Creature && displayObject instanceof Phaser.Creature) {
           var width = Math.abs(displayObject.width);
           var height = Math.abs(displayObject.height);
           var x1 = displayObject.x - (width * displayObject.anchorX);

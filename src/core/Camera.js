@@ -773,6 +773,8 @@ Phaser.Camera.prototype = {
         this.view.y = 0;
 
         this._shake.duration = 0;
+        this._shake.x = 0;
+        this._shake.y = 0;
 
         this.resetFX();
 

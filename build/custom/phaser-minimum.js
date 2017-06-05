@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.7.9 "2017-05-09" - Built: Tue May 09 2017 12:04:48
+* v2.8.0 "2017-05-30" - Built: Tue May 30 2017 21:46:19
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -4455,14 +4455,14 @@ PIXI.WebGLShaderManager.prototype.constructor = PIXI.WebGLShaderManager;
 
 /**
 * Initialises the context and the properties.
-* 
-* @method setContext 
+*
+* @method setContext
 * @param gl {WebGLContext} the current WebGL drawing context
 */
 PIXI.WebGLShaderManager.prototype.setContext = function(gl)
 {
     this.gl = gl;
-    
+
     // the next one is used for rendering primitives
     this.primitiveShader = new PIXI.PrimitiveShader(gl);
 
@@ -4478,14 +4478,17 @@ PIXI.WebGLShaderManager.prototype.setContext = function(gl)
     // the next one is used for rendering triangle strips
     this.stripShader = new PIXI.StripShader(gl);
 
+    // the next one is used for rendering creature meshes
+    this.creatureShader = PIXI.CreatureShader ? new PIXI.CreatureShader(gl) : null;
+
     this.setShader(this.defaultShader);
 };
 
 /**
 * Takes the attributes given in parameters.
-* 
+*
 * @method setAttribs
-* @param attribs {Array} attribs 
+* @param attribs {Array} attribs
 */
 PIXI.WebGLShaderManager.prototype.setAttribs = function(attribs)
 {
@@ -4526,14 +4529,14 @@ PIXI.WebGLShaderManager.prototype.setAttribs = function(attribs)
 
 /**
 * Sets the current shader.
-* 
+*
 * @method setShader
 * @param shader {Any}
 */
 PIXI.WebGLShaderManager.prototype.setShader = function(shader)
 {
     if(this._currentId === shader._UID)return false;
-    
+
     this._currentId = shader._UID;
 
     this.currentShader = shader;
@@ -4546,7 +4549,7 @@ PIXI.WebGLShaderManager.prototype.setShader = function(shader)
 
 /**
 * Destroys this object.
-* 
+*
 * @method destroy
 */
 PIXI.WebGLShaderManager.prototype.destroy = function()
@@ -4564,6 +4567,10 @@ PIXI.WebGLShaderManager.prototype.destroy = function()
     this.fastShader.destroy();
 
     this.stripShader.destroy();
+
+    if (this.creatureShader) {
+      this.creatureShader.destroy();
+    }
 
     this.gl = null;
 };
@@ -7559,7 +7566,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.7.9',
+    VERSION: '2.8.0',
 
     /**
     * An array of Phaser game instances.
@@ -8310,35 +8317,36 @@ Phaser.Utils = {
     },
 
     /**
-     * Gets an objects property by string.
+     * Gets an object's property by string.
      *
      * @method Phaser.Utils.getProperty
      * @param {object} obj - The object to traverse.
      * @param {string} prop - The property whose value will be returned.
-     * @return {*} the value of the property or null if property isn't found .
+     * @return {any} - The value of the property or `undefined` if the property isn't found.
      */
     getProperty: function(obj, prop) {
 
         var parts = prop.split('.'),
-            last = parts.pop(),
-            l = parts.length,
-            i = 1,
-            current = parts[0];
+            len = parts.length,
+            i = 0,
+            val = obj;
 
-        while (i < l && (obj = obj[current]))
+        while (i < len)
         {
-            current = parts[i];
-            i++;
+            var key = parts[i];
+
+            if (val != null)
+            {
+                val = val[key];
+                i++;
+            }
+            else
+            {
+                return undefined;
+            }
         }
 
-        if (obj)
-        {
-            return obj[last];
-        }
-        else
-        {
-            return null;
-        }
+        return val;
 
     },
 
@@ -8452,13 +8460,13 @@ Phaser.Utils = {
     * This would return: `bob---` as it has padded it out to 6 characters, using the `-` on the right.
     *
     * You can also use it to pad numbers (they are always returned as strings):
-    * 
+    *
     * `pad(512, 6, '0', 1)`
     *
     * Would return: `000512` with the string padded to the left.
     *
     * If you don't specify a direction it'll pad to both sides:
-    * 
+    *
     * `pad('c64', 7, '*')`
     *
     * Would return: `**c64**`
@@ -8542,7 +8550,7 @@ Phaser.Utils = {
 
     /**
     * This is a slightly modified version of http://api.jquery.com/jQuery.extend/
-    * 
+    *
     * @method Phaser.Utils.extend
     * @param {boolean} deep - Perform a deep copy?
     * @param {object} target - The target object to copy to.
@@ -8633,7 +8641,7 @@ Phaser.Utils = {
     * @param {boolean} [replace=false] - If the target object already has a matching function should it be overwritten or not?
     */
     mixinPrototype: function (target, mixin, replace) {
-    
+
         if (replace === undefined) { replace = false; }
 
         var mixinKeys = Object.keys(mixin);
@@ -10767,7 +10775,7 @@ PIXI.identityMatrix = Phaser.identityMatrix;
 * The following code creates a point at (0,0):
 * `var myPoint = new Phaser.Point();`
 * You can also use them as 2D Vectors and you'll find different vector related methods in this class.
-* 
+*
 * @class Phaser.Point
 * @constructor
 * @param {number} [x=0] - The horizontal position of this Point.
@@ -11164,7 +11172,7 @@ Phaser.Point.prototype = {
 
     /**
     * The dot product of this and another Point object.
-    * 
+    *
     * @method Phaser.Point#dot
     * @param {Phaser.Point} a - The Point object to get the dot product combined with this Point.
     * @return {number} The result.
@@ -11177,7 +11185,7 @@ Phaser.Point.prototype = {
 
     /**
     * The cross product of this and another Point object.
-    * 
+    *
     * @method Phaser.Point#cross
     * @param {Phaser.Point} a - The Point object to get the cross product combined with this Point.
     * @return {number} The result.
@@ -11190,7 +11198,7 @@ Phaser.Point.prototype = {
 
     /**
     * Make this Point perpendicular (90 degrees rotation)
-    * 
+    *
     * @method Phaser.Point#perp
     * @return {Phaser.Point} This Point object.
     */
@@ -11202,7 +11210,7 @@ Phaser.Point.prototype = {
 
     /**
     * Make this Point perpendicular (-90 degrees rotation)
-    * 
+    *
     * @method Phaser.Point#rperp
     * @return {Phaser.Point} This Point object.
     */
@@ -11391,7 +11399,7 @@ Phaser.Point.negative = function (a, out) {
 
 /**
 * Adds two 2D Points together and multiplies the result by the given scalar.
-* 
+*
 * @method Phaser.Point.multiplyAdd
 * @param {Phaser.Point} a - The first Point object.
 * @param {Phaser.Point} b - The second Point object.
@@ -11409,7 +11417,7 @@ Phaser.Point.multiplyAdd = function (a, b, s, out) {
 
 /**
 * Interpolates the two given Points, based on the `f` value (between 0 and 1) and returns a new Point.
-* 
+*
 * @method Phaser.Point.interpolate
 * @param {Phaser.Point} a - The first Point object.
 * @param {Phaser.Point} b - The second Point object.
@@ -11475,7 +11483,7 @@ Phaser.Point.distance = function (a, b, round) {
 
 /**
 * Project two Points onto another Point.
-* 
+*
 * @method Phaser.Point.project
 * @param {Phaser.Point} a - The first Point object.
 * @param {Phaser.Point} b - The second Point object.
@@ -11499,7 +11507,7 @@ Phaser.Point.project = function (a, b, out) {
 
 /**
 * Project two Points onto a Point of unit length.
-* 
+*
 * @method Phaser.Point.projectUnit
 * @param {Phaser.Point} a - The first Point object.
 * @param {Phaser.Point} b - The second Point object.
@@ -11565,7 +11573,7 @@ Phaser.Point.normalize = function (a, out) {
 * the angle specified. If the angle between the point and coordinates was 45 deg and the angle argument
 * is 45 deg then the resulting angle will be 90 deg, as the angle argument is added to the current angle.
 *
-* The distance allows you to specify a distance constraint for the rotation between the point and the 
+* The distance allows you to specify a distance constraint for the rotation between the point and the
 * coordinates. If none is given the distance between the two is calculated and used.
 *
 * @method Phaser.Point.rotate
@@ -11675,6 +11683,19 @@ Phaser.Point.parse = function(obj, xProp, yProp) {
     }
 
     return point;
+
+};
+
+/**
+ * Tests a Point or Point-like object.
+ *
+ * @method Phaser.Point.isPoint
+ * @static
+ * @return {boolean} - True if the object has numeric x and y properties.
+ */
+Phaser.Point.isPoint = function(obj) {
+
+    return (obj != null) && (typeof obj.x === 'number') && (typeof obj.y === 'number');
 
 };
 
@@ -18226,22 +18247,23 @@ Phaser.Group.prototype.setProperty = function (child, key, value, operation, for
 *
 * @method Phaser.Group#checkProperty
 * @param {any} child - The child to check the property value on.
-* @param {array} key - An array of strings that make up the property that will be set.
+* @param {string} key - The property, as a string, to be checked. For example: 'body.velocity.x'
 * @param {any} value - The value that will be checked.
-* @param {boolean} [force=false] - If `force` is true then the property will be checked on the child regardless if it already exists or not. If true and the property doesn't exist, false will be returned.
-* @return {boolean} True if the property was was equal to value, false if not.
+* @param {boolean} [force=false] - Also return false if the property is missing or undefined (regardless of the `value` argument).
+* @return {boolean} True if `child` is a child of this Group and the property was equal to value, false if not.
 */
 Phaser.Group.prototype.checkProperty = function (child, key, value, force) {
 
     if (force === undefined) { force = false; }
 
-    //  We can't force a property in and the child doesn't have it, so abort.
-    if (!Phaser.Utils.getProperty(child, key) && force)
+    if (this !== child.parent)
     {
         return false;
     }
 
-    if (Phaser.Utils.getProperty(child, key) !== value)
+    var result = Phaser.Utils.getProperty(child, key);
+
+    if (((result === undefined) && force) || (result !== value))
     {
         return false;
     }
@@ -18358,16 +18380,16 @@ Phaser.Group.prototype.setAllChildren = function (key, value, checkAlive, checkV
 };
 
 /**
-* Quickly check that the same property across all children of this group is equal to the given value.
+* Test that the same property across all children of this group is equal to the given value.
 *
 * This call doesn't descend down children, so if you have a Group inside of this group, the property will be checked on the group but not its children.
 *
 * @method Phaser.Group#checkAll
-* @param {string} key - The property, as a string, to be set. For example: 'body.velocity.x'
+* @param {string} key - The property, as a string, to be checked. For example: 'body.velocity.x'
 * @param {any} value - The value that will be checked.
 * @param {boolean} [checkAlive=false] - If set then only children with alive=true will be checked. This includes any Groups that are children.
 * @param {boolean} [checkVisible=false] - If set then only children with visible=true will be checked. This includes any Groups that are children.
-* @param {boolean} [force=false] - If `force` is true then the property will be checked on the child regardless if it already exists or not. If true and the property doesn't exist, false will be returned.
+* @param {boolean} [force=false] - Also return false if the property is missing or undefined (regardless of the `value` argument).
 */
 Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible, force) {
 
@@ -18377,9 +18399,11 @@ Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible
 
     for (var i = 0; i < this.children.length; i++)
     {
-        if ((!checkAlive || (checkAlive && this.children[i].alive)) && (!checkVisible || (checkVisible && this.children[i].visible)))
+        var child = this.children[i];
+
+        if ((!checkAlive || (checkAlive && child.alive)) && (!checkVisible || (checkVisible && child.visible)))
         {
-            if (!this.checkProperty(this.children[i], key, value, force))
+            if (!this.checkProperty(child, key, value, force))
             {
                 return false;
             }
@@ -18387,6 +18411,39 @@ Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible
     }
 
     return true;
+
+};
+
+/**
+* Test that at least one child of this group has the given property value.
+*
+* This call doesn't descend down children, so if you have a Group inside of this group, the property will be checked on the group but not its children.
+*
+* @method Phaser.Group#checkAny
+* @param {string} key - The property, as a string, to be checked. For example: 'body.velocity.x'
+* @param {any} value - The value that will be checked.
+* @param {boolean} [checkAlive=false] - If set then only children with alive=true will be checked. This includes any Groups that are children.
+* @param {boolean} [checkVisible=false] - If set then only children with visible=true will be checked. This includes any Groups that are children.
+*/
+Phaser.Group.prototype.checkAny = function (key, value, checkAlive, checkVisible) {
+
+    if (checkAlive === undefined) { checkAlive = false; }
+    if (checkVisible === undefined) { checkVisible = false; }
+
+    for (var i = 0; i < this.children.length; i++)
+    {
+        var child = this.children[i];
+
+        if ((!checkAlive || (checkAlive && child.alive)) && (!checkVisible || (checkVisible && child.visible)))
+        {
+            if (this.checkProperty(child, key, value))
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
 
 };
 
@@ -18455,6 +18512,44 @@ Phaser.Group.prototype.multiplyAll = function (property, amount, checkAlive, che
 Phaser.Group.prototype.divideAll = function (property, amount, checkAlive, checkVisible) {
 
     this.setAll(property, amount, checkAlive, checkVisible, 4);
+
+};
+
+/**
+ * Kills all children having exists=true.
+ *
+ * @method Phaser.Group#killAll
+ */
+Phaser.Group.prototype.killAll = function () {
+
+    this.callAllExists('kill', true);
+
+};
+
+/**
+ * Revives all children having exists=false.
+ *
+ * @method Phaser.Group#reviveAll
+ */
+Phaser.Group.prototype.reviveAll = function () {
+
+    this.callAllExists('revive', false);
+
+};
+
+/**
+* Calls {@link #resetChild} on each child (or each existing child).
+*
+* @method Phaser.Group#resetAll
+* @param {number} [x] - The x coordinate to reset each child to. The value is in relation to the group.x point.
+* @param {number} [y] - The y coordinate to reset each child to. The value is in relation to the group.y point.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image or texture used by the Sprite during rendering.
+* @param {string|number} [frame] - The frame of a sprite sheet or texture atlas.
+* @param {boolean} [checkExists=false] - Reset only existing children.
+*/
+Phaser.Group.prototype.resetAll = function (x, y, key, frame, checkExists) {
+
+    this.forEach(this.resetChild, this, checkExists, x, y, key, frame);
 
 };
 
@@ -19422,18 +19517,18 @@ Phaser.Group.prototype.getRandomExists = function (startIndex, endIndex) {
 *
 * You can optionally specify a matching criteria using the `property` and `value` arguments.
 *
-* For example: `getAll('exists', true)` would return only children that have their exists property set.
+* For example: `getAll('exists', true)` would return only children that have an `exists` property equal to `true`.
 *
 * Optionally you can specify a start and end index. For example if this Group had 100 children,
-* and you set `startIndex` to 0 and `endIndex` to 50, it would return a random child from only
-* the first 50 children in the Group.
+* and you set `startIndex` to 0 and `endIndex` to 50, it would return the first 50 children in the Group.
+* If `property` and `value` are also specified, only children within the given index range are searched.
 *
 * @method Phaser.Group#getAll
 * @param {string} [property] - An optional property to test against the value argument.
 * @param {any} [value] - If property is set then Child.property must strictly equal this value to be included in the results.
 * @param {integer} [startIndex=0] - The first child index to start the search from.
 * @param {integer} [endIndex] - The last child index to search up until.
-* @return {any} A random existing child of this Group.
+* @return {array} - An array containing all, some, or none of the Children of this Group.
 */
 Phaser.Group.prototype.getAll = function (property, value, startIndex, endIndex) {
 
@@ -19446,7 +19541,14 @@ Phaser.Group.prototype.getAll = function (property, value, startIndex, endIndex)
     {
         var child = this.children[i];
 
-        if (property && child[property] === value)
+        if (property)
+        {
+            if (child[property] === value)
+            {
+                output.push(child);
+            }
+        }
+        else
         {
             output.push(child);
         }
@@ -19633,6 +19735,25 @@ Phaser.Group.prototype.removeBetween = function (startIndex, endIndex, destroy, 
     }
 
     this.updateZ();
+
+};
+
+/**
+ * Places each child at a random position within the given Rectangle (or the {@link Phaser.World#bounds World bounds}).
+ *
+ * @method Phaser.Group.prototype#scatter
+ * @param {Phaser.Rectangle} [rect=this.game.world.bounds] - A Rectangle. If omitted {@link Phaser.World#bounds} is used.
+ * @param {boolean} [checkExists=false] - Place only children with exists=true.
+ */
+Phaser.Group.prototype.scatter = function (rect, checkExists) {
+
+    if (rect == null) { rect = this.game.world.bounds; }
+
+    this.forEach(function (child) {
+
+        child.position.set(rect.randomX, rect.randomY);
+
+    }, null, checkExists);
 
 };
 
@@ -22639,6 +22760,21 @@ Phaser.Input.prototype = {
         if (displayObject.hitArea && displayObject.hitArea.contains)
         {
             return (displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y));
+        }
+        else if (Phaser.Creature && displayObject instanceof Phaser.Creature) {
+          var width = displayObject.width;
+          var height = displayObject.height;
+          var x1 = displayObject.x - (width * displayObject.anchorX);
+
+          if (this.game.camera.x + pointer.x >= x1 && this.game.camera.x + pointer.x < x1 + width)
+          {
+            var y1 = displayObject.y - (height * displayObject.anchorY);
+
+            if (this.game.camera.y + pointer.y >= y1 && this.game.camera.y + pointer.y < y1 + height)
+            {
+              return true;
+            }
+          }
         }
         else if (displayObject instanceof Phaser.TileSprite)
         {
@@ -38359,6 +38495,7 @@ Phaser.Timer.prototype = {
 
         this.onComplete.removeAll();
         this.running = false;
+        this.expired = true;
         this.events = [];
         this._len = 0;
         this._i = 0;
@@ -50522,8 +50659,8 @@ Phaser.LinkedList.prototype.constructor = Phaser.LinkedList;
 * quickly and easily, without the need for any external files. You can create textures for sprites and in
 * coming releases we'll add dynamic sound effect generation support as well (like sfxr).
 *
-* Access this via `Game.create` (`this.game.create` from within a State object)
-* 
+* Access this via `Game.create` (`this.game.create` from within a State object).
+*
 * @class Phaser.Create
 * @constructor
 * @param {Phaser.Game} game - Game reference to the currently running game.
@@ -50629,13 +50766,17 @@ Phaser.Create.prototype = {
      * @param {integer} [pixelWidth=8] - The width of each pixel.
      * @param {integer} [pixelHeight=8] - The height of each pixel.
      * @param {integer} [palette=0] - The palette to use when rendering the texture. One of the Phaser.Create.PALETTE consts.
-     * @return {PIXI.Texture} The newly generated texture.
+     * @param {boolean} [generateTexture=true] - When false, a new BitmapData object is returned instead.
+     * @param {function} [callback] - A function to execute once the texture is generated. It will be passed the newly generated texture.
+     * @param {any} [callbackContext] - The context in which to invoke the callback.
+     * @return {?PIXI.Texture|Phaser.BitmapData} The newly generated texture, or a new BitmapData object if `generateTexture` is false, or `null` if a callback was passed and the texture isn't available yet.
      */
-    texture: function (key, data, pixelWidth, pixelHeight, palette) {
+    texture: function (key, data, pixelWidth, pixelHeight, palette, generateTexture, callback, callbackContext) {
 
         if (pixelWidth === undefined) { pixelWidth = 8; }
         if (pixelHeight === undefined) { pixelHeight = pixelWidth; }
         if (palette === undefined) { palette = 0; }
+        if (generateTexture === undefined) { generateTexture = true; }
 
         var w = data[0].length * pixelWidth;
         var h = data.length * pixelHeight;
@@ -50668,7 +50809,9 @@ Phaser.Create.prototype = {
             }
         }
 
-        return this.bmd.generateTexture(key);
+        return generateTexture ?
+            this.bmd.generateTexture(key, callback, callbackContext) :
+            this.copy();
 
     },
 
@@ -50682,9 +50825,14 @@ Phaser.Create.prototype = {
      * @param {integer} cellWidth - The width of the grid cells in pixels.
      * @param {integer} cellHeight - The height of the grid cells in pixels.
      * @param {string} color - The color to draw the grid lines in. Should be a Canvas supported color string like `#ff5500` or `rgba(200,50,3,0.5)`.
-     * @return {PIXI.Texture} The newly generated texture.
+     * @param {boolean} [generateTexture=true] - When false, a new BitmapData object is returned instead.
+     * @param {function} [callback] - A function to execute once the texture is generated. It will be passed the newly generated texture.
+     * @param {any} [callbackContext] - The context in which to invoke the callback.
+     * @return {?PIXI.Texture|Phaser.BitmapData} The newly generated texture, or a new BitmapData object if `generateTexture` is false, or `null` if a callback was passed and the texture isn't available yet.
      */
-    grid: function (key, width, height, cellWidth, cellHeight, color) {
+    grid: function (key, width, height, cellWidth, cellHeight, color, generateTexture, callback, callbackContext) {
+
+        if (generateTexture === undefined) { generateTexture = true; }
 
         //  No bmd? Let's make one
         if (this.bmd === null)
@@ -50708,7 +50856,31 @@ Phaser.Create.prototype = {
             this.ctx.fillRect(x, 0, 1, height);
         }
 
-        return this.bmd.generateTexture(key);
+        return generateTexture ?
+            this.bmd.generateTexture(key, callback, callbackContext) :
+            this.copy();
+
+    },
+
+    /**
+     * Copies the contents of {@link bmd Create's canvas} to the given BitmapData object, or a new BitmapData object.
+     *
+     * @param {Phaser.BitmapData} [dest] - The BitmapData receiving the copied image.
+     * @param {number} [x=0] - The x coordinate to translate to before drawing.
+     * @param {number} [y=0] - The y coordinate to translate to before drawing.
+     * @param {number} [width] - The new width of the Sprite being copied.
+     * @param {number} [height] - The new height of the Sprite being copied.
+     * @param {string} [blendMode=null] - The composite blend mode that will be used when drawing. The default is no blend mode at all. This is a Canvas globalCompositeOperation value such as 'lighter' or 'xor'.
+     * @param {boolean} [roundPx=false] - Should the x and y values be rounded to integers before drawing? This prevents anti-aliasing in some instances.
+     * @return {Phaser.BitmapData} - The `dest` argument (if passed), or a new BitmapData object
+     */
+    copy: function (dest, x, y, width, height, blendMode, roundPx) {
+
+        if (dest == null) { dest = this.game.make.bitmapData(); }
+
+        dest.resize(this.bmd.width, this.bmd.height);
+
+        return dest.draw(this.bmd, x, y, width, height, blendMode, roundPx);
 
     }
 

@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.7.9](https://github.com/photonstorm/phaser-ce/releases/tag/v2.7.9).
+The [current Phaser CE release is 2.8.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.0).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -122,11 +122,11 @@ Using Browserify? Please [read this](#browserify).
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.0/build/phaser.js"></script>
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/phaser-ce/2.7.7/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.0"></script>
 
 ### Web Templates
 
@@ -258,37 +258,50 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
-## Version 2.7.10 - Unreleased
+## Unreleased
 
 ### New Features
 
-* You can now set Phaser.Utils.Debug#lineWidth, the width of the stroke on drawn lines and unfilled shapes.
-
 ### Updates
 
-* Group#checkProperty now returns false if the `child` argument is not a child of the Group. Use Phaser.Utils.checkProperty instead to check a property value on any object.
-* `/docs` and `/resources` were removed from Phaser CE's Bower and NPM packages, which are now much smaller.
-* added creature tinting (creature.tint = 0xFF0000 for red tint)
-* added creature alpha (creature.alpha = 0.5 for 50% opacity)
+* Documented an undocumented feature of Phaser.Signal: returning `false` from a callback stops Signal propagation, just as Signal#halt does (#243).
 
 ### Bug Fixes
 
-* Fixed Group#checkAll and Group#checkProperty returning a false negative when `force` was used (#219).
-* Utils.getProperty now returns undefined for missing properties. It had claimed to return null, but could return either null or undefined depending on chain length (#218).
-* Fixed Group#checkAll, Group#checkProperty, and Utils.getProperty failing to retrieve nested properties (#220).
-* Corrected Group#checkAll and Group#checkProperty argument types (#216).
-* Group#getAll was not returning all children objects when property was not specified.
-* Emitter#emitParticle apply scale values even when they are identical.
+* Fixed typo for typescript definition of `IGameConfig.multiTexture` property.
+* Fixed `NaN` value for some objects' `worldRotation` and `worldScale` properties. `worldTransform` was still correct.
+* Fixed camera shake failing to be set to 0 when camera is reset.
 
-## Version 2.7.9 - 9th May 2017
+## Version 2.8.0 - 30th May 2017
+
+We've bumped the minor version (2.8) for changes in how circular Arcade Physics bodies behave with scaled sprites. We consider this a bug fix (#235), but since the prior behavior wasn't documented and existing code might be relying on it, we wanted to give you a heads-up.
+
+### New Features
+
+* You can emit particles in a radial pattern with [Emitter#setAngle](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#setAngle).
+* [Emitter#output](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#output), [Emitter#lifespanOutput](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#lifespanOutput), and [Emitter#remainder](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#remainder) describe particle flow rate.
+* You can toggle drag (resistance) on or off with [Arcade.Body#allowDrag](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#allowDrag). You might apply drag only when a character is touching the ground, for example.
+* [Group#checkAny](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAny) tests if at least one child matches a given property value.
+* [Group#killAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#killAll) kills all existing children. (Also useful for shutting off particle emitters.)
+* [Group#reviveAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#reviveAll) revives all non-existing children.
+* [Group#resetAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#resetAll) calls resetChild on all children (changing position, texture, and frame, if specified).
+* [Group#scatter](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#scatter) places each child at a random position within a Rectangle or the World bounds.
+* [Point.isPoint](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#isPoint) identifies objects that can be safely used in Point operations.
 
 ### Updates
 
-* Emitter#gravity can now be set as a number (as in Phaser versions prior to 2.7.2) or a Point (#203). Reading the value will always give you a Point.
+* [Arcade.Body#radius](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#radius) represents a length relative to the sprite's texture dimensions. The effective radius of the body scales automatically when the sprite scale changes, as with rectangular bodies, and the body is sized correctly when the sprite's scale is different from (1, 1) (#235).
+* [Create#grid](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#grid) and [Create#texture](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#texture) accept callbacks (#241, #136) and can return a BitmapData object when passed `generateTexture=false`.
 
 ### Bug Fixes
 
-* Fixed a crash when a Text object's alignment was not set (#208).
+* Fixed incorrect Phaser.Text dimensions when assigning a numeric string to [strokeThickness](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#strokeThickness) (#239). (You should still use a number instead, though.)
+* Fixed Sounds ignoring changes to global volume when using audio tags.
+* Fixed looping timers not getting removed completely when destroyed.
+
+### Thanks
+
+@ColaColin, @GameDevFox, @goldfire, @netgfx, @photonstorm, @rblopes, @samme, @shunsei, @Xesenix
 
 For changes in previous releases please see the extensive [Version History](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
@@ -322,10 +335,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.9/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.7.9/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.7.9.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.7.9.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.0/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.0/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.8.0.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.8.0.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
