@@ -950,8 +950,8 @@ Phaser.Input.prototype = {
             return (displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y));
         }
         else if (displayObject instanceof Phaser.Creature) {
-          var width = displayObject.width;
-          var height = displayObject.height;
+          var width = Math.abs(displayObject.width);
+          var height = Math.abs(displayObject.height);
           var x1 = displayObject.x - (width * displayObject.anchorX);
 
           if (this.game.camera.x + pointer.x >= x1 && this.game.camera.x + pointer.x < x1 + width)
