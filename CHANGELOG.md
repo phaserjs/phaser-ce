@@ -72,6 +72,7 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 ### Bug Fixes
 
 * Fixed a crash when a Text object's alignment was not set (#208).
+* Fixed a bug in creature hitboxes for pointer input - if creature reversed (negative number) it would calculate incorrect area for hit box.
 
 ## Version 2.7.8 - 8th May 2017
 
