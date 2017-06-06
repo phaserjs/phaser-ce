@@ -848,10 +848,7 @@ Phaser.Device._initialize = function () {
             device.touch = true;
         }
 
-        if (window.PointerEvent || window.MSPointerEvent || window.navigator.msPointerEnabled || window.navigator.pointerEnabled)
-        {
-            device.mspointer = true;
-        }
+        device.mspointer = !window.PointerEvent && window.MSPointerEvent;
 
         if (!device.cocoonJS)
         {
