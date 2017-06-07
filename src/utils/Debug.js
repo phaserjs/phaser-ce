@@ -101,6 +101,13 @@ Phaser.Utils.Debug = function (game) {
     */
     this.dirty = false;
 
+    /**
+     * @property {boolean} isDisabled - If `enableDebug: false` is passed to {@link Phaser.Game} or if Phaser is built without the Debug class, this will be true.
+     * @default
+     * @readonly
+     */
+    this.isDisabled = false;
+
 };
 
 Phaser.Utils.Debug.prototype = {
