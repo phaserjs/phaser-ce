@@ -262,6 +262,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Arcade.Body#stop halts all motion.
+
 ### Updates
 
 * Documented an undocumented feature of Phaser.Signal: returning `false` from a callback stops Signal propagation, just as Signal#halt does (#243).

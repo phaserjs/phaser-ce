@@ -1131,12 +1131,7 @@ Phaser.Physics.Arcade.Body.prototype = {
     */
     reset: function (x, y) {
 
-        this.velocity.set(0);
-        this.acceleration.set(0);
-
-        this.speed = 0;
-        this.angularVelocity = 0;
-        this.angularAcceleration = 0;
+        this.stop();
 
         this.position.x = (x - (this.sprite.anchor.x * this.sprite.width)) + this.sprite.scale.x * this.offset.x;
         this.position.x -= this.sprite.scale.x < 0 ? this.width : 0;
@@ -1153,6 +1148,21 @@ Phaser.Physics.Arcade.Body.prototype = {
         this.updateBounds();
 
         this.updateCenter();
+
+    },
+
+    /**
+     * Sets acceleration, velocity, and {@link #speed} to 0.
+     *
+     * @method Phaser.Physics.Arcade.Body#stop
+     */
+    stop: function () {
+
+        this.velocity.set(0);
+        this.acceleration.set(0);
+        this.speed = 0;
+        this.angularVelocity = 0;
+        this.angularAcceleration = 0;
 
     },
 
