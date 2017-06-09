@@ -1,4 +1,4 @@
-// Type definitions for PIXI with Phaser Deviations. 
+// Type definitions for PIXI with Phaser Deviations.
 
 declare module PIXI {
 
@@ -1000,6 +1000,8 @@ declare module PIXI {
         shader: IPixiShader;
         texture: Texture;
         tint: number;
+
+        static defaultAnchor: object;
 
         setTexture(texture: Texture, destroyBase?: boolean): void;
 

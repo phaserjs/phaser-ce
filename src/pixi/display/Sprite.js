@@ -23,7 +23,7 @@ PIXI.Sprite = function (texture) {
      * @property anchor
      * @type Point
      */
-    this.anchor = new PIXI.Point();
+    this.anchor = new PIXI.Point(PIXI.Sprite.defaultAnchor.x, PIXI.Sprite.defaultAnchor.y);
 
     /**
      * The texture that the sprite is using
@@ -117,6 +117,15 @@ PIXI.Sprite = function (texture) {
     this.renderable = true;
 
 };
+
+/**
+ * @property {object} PIXI.Sprite.defaultAnchor - A Point-like object.
+ * @property {number} PIXI.Sprite.defaultAnchor.x
+ * @default 0
+ * @property {number} PIXI.Sprite.defaultAnchor.y
+ * @default 0
+ */
+PIXI.Sprite.defaultAnchor = {x: 0, y: 0};
 
 // constructor
 PIXI.Sprite.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
