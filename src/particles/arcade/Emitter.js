@@ -229,6 +229,20 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.particleSendToBack = false;
 
     /**
+     * @property {object} count
+     * @property {number} count.emitted - How many particles were emitted during the last update.
+     * @property {number} count.failed - How many particles could not be emitted during the last update (because no particles were available).
+     * @property {number} count.totalEmitted - How many particles have been emitted.
+     * @property {number} count.totalFailed - How many particles could not be emitted when they were due (because no particles were available).
+     */
+    this.count = {
+        emitted: 0,
+        failed: 0,
+        totalEmitted: 0,
+        totalFailed: 0
+    };
+
+    /**
     * @property {Phaser.Point} _gravity - Internal gravity value.
     * @private
     */
@@ -299,6 +313,9 @@ Phaser.Particles.Arcade.Emitter.prototype.constructor = Phaser.Particles.Arcade.
 * @method Phaser.Particles.Arcade.Emitter#update
 */
 Phaser.Particles.Arcade.Emitter.prototype.update = function () {
+
+    this.count.emitted = 0;
+    this.count.failed = 0;
 
     if (this.on && this.game.time.time >= this._timer)
     {
@@ -614,8 +631,14 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
 
     if (particle === null)
     {
+        this.count.failed++;
+        this.count.totalFailed++;
+
         return false;
     }
+
+    this.count.emitted++;
+    this.count.totalEmitted++;
 
     var rnd = this.game.rnd;
 

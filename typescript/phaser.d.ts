@@ -2790,6 +2790,7 @@ declare module Phaser {
                 angularDrag: number;
                 bottom: number;
                 bounce: Phaser.Point;
+                count: object;
                 emitX: number;
                 emitY: number;
                 exists: boolean;

@@ -262,6 +262,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Emitter#count records emitter performance: `count.emitted`, `count.failed`, `count.totalEmitted`, `count.totalFailed`.
 * Arcade.Body#stop halts all motion.
 
 ### Updates
