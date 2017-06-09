@@ -275,7 +275,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
-* Fixed typo for typescript definition of `IGameConfig.multiTexture` property.
+* Added some missing TypeScript return values (#255).
+* Fixed typo for TypeScript definition of `IGameConfig.multiTexture` property.
 * Fixed `NaN` value for some objects' `worldRotation` and `worldScale` properties. `worldTransform` was still correct.
 * Fixed camera shake failing to be set to 0 when camera is reset.
 * Fixed Phaser.Input#hitTest when texture resolution ≠ 1
