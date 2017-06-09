@@ -384,7 +384,6 @@ PIXI.DisplayObject.prototype = {
         }
 
         var determ = (a * d) - (b * c);
-        var HALF_PI = Math.PI * 0.5;
 
         if (a || b)
         {
@@ -398,7 +397,7 @@ PIXI.DisplayObject.prototype = {
         {
             var s = Math.sqrt((c * c) + (d * d));
 
-            this.worldRotation = HALF_PI - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
+            this.worldRotation = Phaser.Math.HALF_PI - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
             this.worldScale.x = determ / s;
             this.worldScale.y = s;
         }

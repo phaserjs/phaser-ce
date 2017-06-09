@@ -2606,6 +2606,7 @@ declare module Phaser {
         static fuzzyLessThan(a: number, b: number, epsilon?: number): boolean;
         static getShortestAngle(angle1: number, angle2: number): number;
         static getNextPowerOfTwo(value: number): number;
+        static HALF_PI: number;
         static isEven(n: number): boolean;
         static isOdd(n: number): boolean;
         static isPowerOfTwo(width: number, height: number): boolean;
