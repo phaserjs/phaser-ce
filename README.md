@@ -128,6 +128,8 @@ or the minified version:
 
     <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.0"></script>
 
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.8.0/build/custom/) are included too.
+
 ### Web Templates
 
 If you'd like to try coding in Phaser right now, with nothing more than your web browser, open up the [Phaser CE Game Template](http://codepen.io/pen?template=vyKJvw). There are [CoffeeScript](http://codepen.io/pen?template=OWxELE) and [ES6](http://codepen.io/pen?template=pRGPKG) variants too.
