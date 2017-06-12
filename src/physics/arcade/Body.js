@@ -61,7 +61,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.offset = new Phaser.Point();
 
     /**
-    * @property {Phaser.Point} position - The position of the physics body.
+    * @property {Phaser.Point} position - The position of the physics body, equivalent to ({@link #left}, {@link #top}).
     * @readonly
     */
     this.position = new Phaser.Point(sprite.x, sprite.y);
