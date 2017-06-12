@@ -2739,6 +2739,20 @@ Phaser.Group.prototype.scatter = function (rect, checkExists) {
 };
 
 /**
+ * Orders this Group's children randomly.
+ *
+ * This can be more efficient than calling {@link #getRandom} repeatedly.
+ *
+ * @method Phaser.Group#shuffle
+ */
+Phaser.Group.prototype.shuffle = function () {
+
+    Phaser.ArrayUtils.shuffle(this.children);
+    this.updateZ();
+
+},
+
+/**
 * Destroys this group.
 *
 * Removes all children, then removes this group from its parent and nulls references.

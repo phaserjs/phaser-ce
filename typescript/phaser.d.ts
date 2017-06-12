@@ -1840,6 +1840,7 @@ declare module Phaser {
         setAll(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean, operation?: number, force?: boolean): void;
         setAllChildren(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean, operation?: number, force?: boolean): void;
         setProperty(child: any, key: string[], value: any, operation?: number, force?: boolean): boolean;
+        shuffle(): void;
         sort(key?: string, order?: number): void;
         subAll(property: string, amount: number, checkAlive: boolean, checkVisible: boolean): void;
         swap(child1: any, child2: any): boolean;
