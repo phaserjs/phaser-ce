@@ -3981,6 +3981,7 @@ declare module Phaser {
         set(x: number, y?: number): Phaser.Point;
         setMagnitude(magnitude: number): Phaser.Point;
         setTo(x: number, y?: number): Phaser.Point;
+        setToPolar(azimuth: number, radius?: number): Phaser.Point;
         subtract(x: number, y: number): Phaser.Point;
         toString(): string;
 

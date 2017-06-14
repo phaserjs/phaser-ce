@@ -104,6 +104,22 @@ Phaser.Point.prototype = {
     },
 
     /**
+     * Sets the `x` and `y` values of this Point object from a given polar coordinate.
+     *
+     * @method Phaser.Point#setToPolar
+     * @param {number} azimuth - The angular coordinate, in radians.
+     * @param {number} [radius=1] - The radial coordinate (length).
+     * @return {Phaser.Point} This Point object. Useful for chaining method calls.
+     */
+    setToPolar: function(azimuth, radius) {
+
+      if (radius == null) { radius = 1; }
+
+      return this.setTo(Math.cos(azimuth) * radius, Math.sin(azimuth) * radius);
+
+    },
+
+    /**
     * Adds the given x and y values to this Point.
     *
     * @method Phaser.Point#add
