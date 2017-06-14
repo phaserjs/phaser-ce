@@ -264,17 +264,17 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
-* Arcade.Body#blocked.none
-* Group#shuffle
-* PIXI.Sprite.defaultAnchor
-* Phaser.Math.HALF_PI
-* Emitter#count records emitter performance: `count.emitted`, `count.failed`, `count.totalEmitted`, `count.totalFailed`.
+* Arcade.Body#blocked.none describes whether a Body is blocked on any edge.
+* Group#shuffle orders children randomly.
+* PIXI.Sprite.defaultAnchor can be modified to create Sprites with initial anchor values different from (0, 0).
+* Phaser.Math.HALF_PI is π / 2.
+* Emitter#count records some diagnostic quantities: `count.emitted`, `count.failed`, `count.totalEmitted`, `count.totalFailed`.
 * Arcade.Body#stop halts all motion.
 
 ### Updates
 
-* Added backwards-compatible PIXI.canUseNewCanvasBlendModes to support [Particle Storm Plugin](https://phaser.io/shop/plugins/particlestorm) (photonstorm/phaser#2909).
-* Phaser.Utils.Debug#isDisabled is `true` when Phaser is built without the Debug class; `true` when a new game is created with `enableDebug: false`; and `false` otherwise.
+* Added PIXI.canUseNewCanvasBlendModes to support [Particle Storm Plugin](https://phaser.io/shop/plugins/particlestorm) (photonstorm/phaser#2909). It's equivalent to Phaser.Device.canUseMultiply.
+* Phaser.Utils.Debug#isDisabled is now defined in two additional cases: `true` when a new game is created with `enableDebug: false`; and `false` otherwise. As before, it is `true` when Phaser is built without the Debug class.
 * Documented an undocumented feature of Phaser.Signal: returning `false` from a callback stops Signal propagation, just as Signal#halt does (#243).
 
 ### Bug Fixes
@@ -284,7 +284,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Fixed typo for TypeScript definition of `IGameConfig.multiTexture` property.
 * Fixed `NaN` value for some objects' `worldRotation` and `worldScale` properties. `worldTransform` was still correct.
 * Fixed camera shake failing to be set to 0 when camera is reset.
-* Fixed Phaser.Input#hitTest when texture resolution ≠ 1
+* Fixed Phaser.Input#hitTest when texture resolution ≠ 1.
 
 ## Version 2.8.0 - 30th May 2017
 
