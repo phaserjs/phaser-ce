@@ -264,6 +264,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Point#setToPolar
 * Arcade.Body#blocked.none describes whether a Body is blocked on any edge.
 * Group#shuffle orders children randomly.
 * PIXI.Sprite.defaultAnchor can be modified to create Sprites with initial anchor values different from (0, 0).
