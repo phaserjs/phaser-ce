@@ -939,7 +939,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         }
         else
         {
-            this.velocity.set(Math.cos(angle) * speed, Math.sin(angle) * speed);
+            this.velocity.setToPolar(angle, speed);
         }
 
         this.isMoving = true;
@@ -1026,7 +1026,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         }
         else
         {
-            this.velocity.set(Math.cos(angle) * speed, Math.sin(angle) * speed);
+            this.velocity.setToPolar(angle, speed);
         }
 
         this.isMoving = true;
