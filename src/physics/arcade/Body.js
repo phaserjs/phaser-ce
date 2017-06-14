@@ -397,9 +397,9 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     /**
     * This object is populated with boolean values when the Body collides with the World bounds or a Tile.
     * For example if blocked.up is true then the Body cannot move up.
-    * @property {object} blocked - An object containing on which faces this Body is blocked from moving, if any.
+    * @property {object} blocked - An object containing on which faces this Body is blocked from moving, if any (none, up, down, left, right).
     */
-    this.blocked = { up: false, down: false, left: false, right: false };
+    this.blocked = { none: true, up: false, down: false, left: false, right: false };
 
     /**
     * If this is an especially small or fast moving object then it can sometimes skip over tilemap collisions if it moves through a tile in a step.
@@ -601,6 +601,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         this.touching.left = false;
         this.touching.right = false;
 
+        this.blocked.none = true;
         this.blocked.up = false;
         this.blocked.down = false;
         this.blocked.left = false;
@@ -844,12 +845,14 @@ Phaser.Physics.Arcade.Body.prototype = {
             pos.x = bounds.x;
             this.velocity.x *= bx;
             this.blocked.left = true;
+            this.blocked.none = false;
         }
         else if (this.right > bounds.right && check.right)
         {
             pos.x = bounds.right - this.width;
             this.velocity.x *= bx;
             this.blocked.right = true;
+            this.blocked.none = false;
         }
 
         if (pos.y < bounds.y && check.up)
@@ -857,15 +860,17 @@ Phaser.Physics.Arcade.Body.prototype = {
             pos.y = bounds.y;
             this.velocity.y *= by;
             this.blocked.up = true;
+            this.blocked.none = false;
         }
         else if (this.bottom > bounds.bottom && check.down)
         {
             pos.y = bounds.bottom - this.height;
             this.velocity.y *= by;
             this.blocked.down = true;
+            this.blocked.none = false;
         }
 
-        return (this.blocked.up || this.blocked.down || this.blocked.left || this.blocked.right);
+        return !this.blocked.none;
 
     },
 

@@ -264,6 +264,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Arcade.Body#blocked.none
 * Group#shuffle
 * PIXI.Sprite.defaultAnchor
 * Phaser.Math.HALF_PI
