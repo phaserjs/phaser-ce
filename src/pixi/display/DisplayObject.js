@@ -371,7 +371,6 @@ PIXI.DisplayObject.prototype = {
             b  = 0;
             c  = 0;
             d  = this.scale.y;
-
             tx = this.position.x - this.pivot.x * a;
             ty = this.position.y - this.pivot.y * d;
 
@@ -382,6 +381,11 @@ PIXI.DisplayObject.prototype = {
             wt.tx = tx * pt.a + ty * pt.c + pt.tx;
             wt.ty = tx * pt.b + ty * pt.d + pt.ty;
         }
+
+        a = wt.a;
+        b = wt.b;
+        c = wt.c;
+        d = wt.d;
 
         var determ = (a * d) - (b * c);
 

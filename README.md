@@ -279,6 +279,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed incorrect `worldRotation` for some objects (#259).
 * Added some missing TypeScript return values (#255).
 * Fixed typo for TypeScript definition of `IGameConfig.multiTexture` property.
 * Fixed `NaN` value for some objects' `worldRotation` and `worldScale` properties. `worldTransform` was still correct.
