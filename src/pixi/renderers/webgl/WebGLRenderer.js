@@ -340,6 +340,8 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         maxTextureAvailableSpace -= clampPot(Math.max(base.width, base.height));
         if (maxTextureAvailableSpace <= 0) {
             base.textureIndex = 0;
+            console.warn('setTexturePriority: Image "%s" was given textureIndex=0 because there is no available texture space (%s).',
+                imageName, maxTextureAvailableSpace);
         } else {
             base.textureIndex = (1 + (j % (maxTextures - 1)));
         }
