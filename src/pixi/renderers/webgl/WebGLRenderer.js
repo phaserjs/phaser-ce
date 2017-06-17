@@ -258,9 +258,9 @@ PIXI.WebGLRenderer.prototype.initContext = function()
     var pvrtc = gl.getExtension('WEBGL_compressed_texture_pvrtc') || gl.getExtension('WEBKIT_WEBGL_compressed_texture_pvrtc');
     var s3tc = gl.getExtension('WEBGL_compressed_texture_s3tc') || gl.getExtension('WEBKIT_WEBGL_compressed_texture_s3tc');
 
-    if (etc1) this.extensions.compression.ETC1 = etc1;
-    if (pvrtc) this.extensions.compression.PVRTC = pvrtc;
-    if (s3tc) this.extensions.compression.S3TC = s3tc;
+    if (etc1) { this.extensions.compression.ETC1 = etc1; }
+    if (pvrtc) { this.extensions.compression.PVRTC = pvrtc; }
+    if (s3tc) { this.extensions.compression.S3TC = s3tc; }
 };
 
 /**
