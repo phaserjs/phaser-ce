@@ -319,7 +319,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
 
         if (!(imageName in imageCache))
         {
-            console.warn('setTexturePriority: There is no image "' + imageName + '" in the image cache.');
+            console.warn('setTexturePriority: There is no image "%s" in the image cache.', imageName);
             continue;
         }
 
@@ -334,7 +334,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
 
         if (!(imageName in imageCache))
         {
-            console.warn('setTexturePriority: There is no image "' + imageName + '" in the image cache.');
+            console.warn('setTexturePriority: There is no image "%s" in the image cache.', imageName);
             continue;
         }
         // Unit 0 is reserved for Pixi's framebuffer
