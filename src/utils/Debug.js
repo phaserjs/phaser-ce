@@ -925,6 +925,8 @@ Phaser.Utils.Debug.prototype = {
             this.line('drawCount: ' + s.drawCount);
             this.line('flushCount: ' + s.flushCount);
             this.line('maxTextures: ' + r.maxTextures);
+            this.line('maxTextureSize: ' + r.maxTextureSize);
+            this.line('maxTextureAvailableSpace: ' + s.maxTextureAvailableSpace);
             this.line('currentBatchedTextures: '+ r.currentBatchedTextures.length);
         }
         else
