@@ -313,10 +313,11 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
     //  deal with that in their own way.
     for (var i = 0; i < this.currentBatchedTextures.length; i++)
     {
-        imageName = textureNameCollection[index];
+        imageName = this.currentBatchedTextures[i];
 
         if (!(imageName in imageCache))
         {
+            console.warn('setTexturePriority: There is no image "' + imageName + '" in the image cache.');
             continue;
         }
 
@@ -325,12 +326,13 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
     var maxTextureAvailableSpace = (maxTextureSize) - clampPot(Math.max(this.width, this.height));
     this.currentBatchedTextures.length = 0;
     // We start from 1 because framebuffer texture uses unit 0.
-    for (var index = 0; index < textureNameCollection.length; ++index)
+    for (var j = 0; j < textureNameCollection.length; ++j)
     {
-        imageName = textureNameCollection[index];
+        imageName = textureNameCollection[j];
 
         if (!(imageName in imageCache))
         {
+            console.warn('setTexturePriority: There is no image "' + imageName + '" in the image cache.');
             continue;
         }
         // Unit 0 is reserved for Pixi's framebuffer
@@ -339,7 +341,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         if (maxTextureAvailableSpace <= 0) {
             base.textureIndex = 0;
         } else {
-            base.textureIndex = (1 + (index % (maxTextures - 1)));
+            base.textureIndex = (1 + (j % (maxTextures - 1)));
         }
         this.currentBatchedTextures.push(imageName);
     }

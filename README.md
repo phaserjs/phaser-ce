@@ -281,6 +281,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed WebGLRenderer#setTexturePriority not clearing the current batch.
 * Fixed incorrect `worldRotation` for some objects (#259).
 * Added some missing TypeScript return values (#255).
 * Fixed typo for TypeScript definition of `IGameConfig.multiTexture` property.
