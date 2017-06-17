@@ -5626,6 +5626,7 @@ declare module Phaser {
             pointer(pointer: Phaser.Pointer, hideIfUp?: boolean, downColor?: string, upColor?: string, color?: string): void;
             quadTree(quadtree: Phaser.QuadTree, color?: string): void;
             rectangle(object: Phaser.Rectangle, color?: string, filled?: boolean): void;
+            renderer(x?: number, y?: number, color?: string): void;
             reset(): void;
             ropeSegments(rope: Phaser.Rope, color?: number, filled?: boolean): void;
             soundInfo(sound: Phaser.Sound, x: number, y: number, color?: string): void;

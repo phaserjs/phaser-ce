@@ -900,6 +900,46 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
+     * Prints a description of the {@link Phaser.Game#renderer renderer} and render session.
+     *
+     * @method Phaser.Utils.Debug#renderer
+     * @param {number} [x=0] - The X value the debug info will start from.
+     * @param {number} [y=0] - The Y value the debug info will start from.
+     * @param {string} [color='rgb(255,255,255)'] - The color the debug text will drawn in.
+     */
+    renderer: function (x, y, color) {
+
+        var r = this.game.renderer;
+        var s = r.renderSession;
+
+        this.start(x, y, color);
+
+        this.line((r.gl ? 'WebGL' : 'Canvas') + ' Renderer (' + r.width + ' x ' + r.height + ')');
+        this.line('autoResize: ' + r.autoResize);
+        this.line('clearBeforeRender: ' + r.clearBeforeRender);
+        this.line('resolution: ' + r.resolution);
+        this.line('transparent: ' + r.transparent);
+
+        if (r.gl)
+        {
+            this.line('drawCount: ' + s.drawCount);
+            this.line('flushCount: ' + s.flushCount);
+            this.line('maxTextures: ' + r.maxTextures);
+            this.line('maxTextureSize: ' + r.maxTextureSize);
+            this.line('maxTextureAvailableSpace: ' + s.maxTextureAvailableSpace);
+            this.line('currentBatchedTextures: '+ r.currentBatchedTextures.length);
+        }
+        else
+        {
+            this.line('roundPx: ' + s.roundPixels);
+            this.line('scaleMode: ' + (s.scaleMode === 0 ? 'LINEAR' : (s.scaleMode === 1 ? 'NEAREST' : s.scaleMode)));
+        }
+
+        this.stop();
+
+    },
+
+    /**
     * Destroy this object.
     *
     * @method Phaser.Utils.Debug#destroy
