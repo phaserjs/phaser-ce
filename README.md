@@ -314,6 +314,7 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 * Fixed incorrect Phaser.Text dimensions when assigning a numeric string to [strokeThickness](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#strokeThickness) (#239). (You should still use a number instead, though.)
 * Fixed Sounds ignoring changes to global volume when using audio tags.
 * Fixed looping timers not getting removed completely when destroyed.
+* Tilemap.createFromObjects() no longer ignores width and height of object tiles
 
 ### Thanks
 
