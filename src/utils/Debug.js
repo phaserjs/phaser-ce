@@ -670,10 +670,10 @@ Phaser.Utils.Debug.prototype = {
     /**
     * Renders a Rectangle.
     *
-    * @method Phaser.Utils.Debug#geom
-    * @param {Phaser.Rectangle|object} object - The geometry object to render.
+    * @method Phaser.Utils.Debug#rectangle
+    * @param {Phaser.Rectangle|object} object - The rectangle to render.
     * @param {string} [color] - Color of the debug info to be rendered (format is css color string).
-    * @param {boolean} [filled=true] - Render the objected as a filled (default, true) or a stroked (false)
+    * @param {boolean} [filled=true] - Render the rectangle as filled (default, true) or a stroked (false)
     */
     rectangle: function (object, color, filled) {
 
