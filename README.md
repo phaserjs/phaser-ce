@@ -276,6 +276,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* ScaleManager#forceOrientation warns if you try to force both orientations.
 * WebGLRenderer#setTexturePriority warns if maxTextureAvailableSpace is exhausted.
 * Debug#cameraInfo now displays the follow target (`target`), `roundPx`, `atLimit`, and `deadzone`.
 * Added PIXI.canUseNewCanvasBlendModes to support [Particle Storm Plugin](https://phaser.io/shop/plugins/particlestorm) (photonstorm/phaser#2909). It's equivalent to Phaser.Device.canUseMultiply.

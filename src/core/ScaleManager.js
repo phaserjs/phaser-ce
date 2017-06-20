@@ -1218,6 +1218,12 @@ Phaser.ScaleManager.prototype = {
 
         if (forcePortrait === undefined) { forcePortrait = false; }
 
+        if (forceLandscape === true && forcePortrait === true)
+        {
+            console.warn('Phaser.ScaleManager: forceLandscape and forcePortrait cannot both be true.');
+            return;
+        }
+
         this.forceLandscape = forceLandscape;
         this.forcePortrait = forcePortrait;
 
