@@ -264,34 +264,39 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
-* Debug#camera shows the camera follow target and deadzone.
-* Debug#renderer prints a description of the renderer and render session. In WebGL mode, this includes draw counts, texture limit, and texture batch size.
-* Point#setToPolar
-* Arcade.Body#blocked.none describes whether a Body is blocked on any edge.
-* Group#shuffle orders children randomly.
-* PIXI.Sprite.defaultAnchor can be modified to create Sprites with initial anchor values different from (0, 0).
+* [Debug#camera](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html) shows the camera [follow target](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#target) and [deadzone](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#deadzone).
+* [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html) prints some useful properties of the [game renderer](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#renderer). In WebGL mode, this includes draw counts, texture space limit, and texture batch size.
+* [Point#setToPolar](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#setToPolar) places a Point from polar coordinates (angle and distance). You can use it to set velocity or acceleration (as `velocity.setToPolar(angle, speed)`), as many of the Arcade Physics helpers now do.
+* [Arcade.Body#blocked.none](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#blocked) describes whether a Body is blocked on any edge. `blocked` and [touching](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#touching) now have identical keys.
+* [Arcade.Body#stop](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#stop) halts all motion.
+* [Emitter#count](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#count) records some diagnostic quantities: `count.emitted`, `count.failed`, `count.totalEmitted`, `count.totalFailed`.
+* [Group#shuffle](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#shuffle) orders children randomly.
+* PIXI.Sprite.defaultAnchor holds the initial anchor values for new Sprites (default: [x=0, y=0]).
 * Phaser.Math.HALF_PI is π / 2.
-* Emitter#count records some diagnostic quantities: `count.emitted`, `count.failed`, `count.totalEmitted`, `count.totalFailed`.
-* Arcade.Body#stop halts all motion.
 
 ### Updates
 
-* ScaleManager#forceOrientation warns if you try to force both orientations.
-* WebGLRenderer#setTexturePriority warns if maxTextureAvailableSpace is exhausted.
-* Debug#cameraInfo now displays the follow target (`target`), `roundPx`, `atLimit`, and `deadzone`.
-* Added PIXI.canUseNewCanvasBlendModes to support [Particle Storm Plugin](https://phaser.io/shop/plugins/particlestorm) (photonstorm/phaser#2909). It's equivalent to Phaser.Device.canUseMultiply.
-* Phaser.Utils.Debug#isDisabled is now defined in two additional cases: `true` when a new game is created with `enableDebug: false`; and `false` otherwise. As before, it is `true` when Phaser is built without the Debug class.
-* Documented an undocumented feature of Phaser.Signal: returning `false` from a callback stops Signal propagation, just as Signal#halt does (#243).
+* Added PIXI.canUseNewCanvasBlendModes to support [Particle Storm Plugin](https://phaser.io/shop/plugins/particlestorm) (photonstorm/phaser#2909). It's equivalent to [Phaser.Device.canUseMultiply](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#canUseMultiply).
+* [Debug#cameraInfo](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#cameraInfo) now displays the follow target (`target`), `roundPx`, `atLimit`, and `deadzone`.
+* [Debug#isDisabled](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#isDisabled) is now defined in two additional cases: `true` when a new game is created with `enableDebug: false`; and `false` otherwise. As before, it is `true` when Phaser is built without the Debug class.
+* [ScaleManager#forceOrientation](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#forceOrientation) warns if you try to force both orientations.
+* [WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority) warns if `maxTextureAvailableSpace` is exhausted.
+* Documented an undocumented feature of [Phaser.Signal](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html): returning `false` from a callback stops Signal propagation, just as Signal#halt does (#243).
 
 ### Bug Fixes
 
-* Fixed WebGLRenderer#setTexturePriority not clearing the current batch.
+* Fixed [WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority) not clearing the current batch.
 * Fixed incorrect `worldRotation` for some objects (#259).
+* Fixed `NaN` value for some objects' `worldRotation` and `worldScale` properties. `worldTransform` was still correct.
+* Fixed [Phaser.Input#hitTest](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#hitTest) when texture resolution ≠ 1.
+* Fixed an incorrect area in [Phaser.Input#hitTest](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#hitTest) when a Creature is reversed on either axis.
+* Fixed camera shake failing to be reset to 0 when camera is reset.
 * Added some missing TypeScript return values (#255).
 * Fixed typo for TypeScript definition of `IGameConfig.multiTexture` property.
-* Fixed `NaN` value for some objects' `worldRotation` and `worldScale` properties. `worldTransform` was still correct.
-* Fixed camera shake failing to be set to 0 when camera is reset.
-* Fixed Phaser.Input#hitTest when texture resolution ≠ 1.
+
+### Thanks
+
+@andrewjb123, @dhashvir, @Formic, @jbpuryear, @noidexe, @pavle-goloskokovic, @photonstorm, @rgk, @samme, stupot
 
 ## Version 2.8.0 - 30th May 2017
 
