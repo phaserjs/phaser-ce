@@ -5614,6 +5614,7 @@ declare module Phaser {
             bodyInfo(sprite: Phaser.Sprite, x: number, y: Number, color?: string): void;
             box2dBody(body: Phaser.Sprite, color?: string): void;
             box2dWorld(): void;
+            camera(camera: Phaser.Camera, color?: string, filled?: boolean): void;
             cameraInfo(camera: Phaser.Camera, x: number, y: number, color?: string): void;
             destroy(): void;
             geom(object: any, color?: string, fiiled?: boolean, forceType?: number): void;

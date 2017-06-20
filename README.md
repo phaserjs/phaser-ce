@@ -264,6 +264,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Debug#camera shows the camera follow target and deadzone.
 * Debug#renderer prints a description of the renderer and render session. In WebGL mode, this includes draw counts, texture limit, and texture batch size.
 * Point#setToPolar
 * Arcade.Body#blocked.none describes whether a Body is blocked on any edge.
