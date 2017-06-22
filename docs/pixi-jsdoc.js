@@ -264,7 +264,7 @@ Also iteratively calls `destroy` on any children.
 * @description To be overridden by classes that require it.
 * @method PIXI.DisplayObject#PIXI.DisplayObject#preUpdate
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 427
+* @sourceline 432
 */
 /**
 * @description Generates a RenderTexture based on this DisplayObject, which can they be used to texture other Sprites.
@@ -278,14 +278,14 @@ and references to them, so they don't linger in memory.
 * @param {(PIXICanvasRenderer|PIXIWebGLRenderer)} renderer - - The renderer used to generate the texture.
 * @return {PhaserRenderTexture} - A RenderTexture containing an image of this DisplayObject at the time it was invoked.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 436
+* @sourceline 441
 */
 /**
 * @description If this DisplayObject has a cached Sprite, this method generates and updates it.
 * @method PIXI.DisplayObject#PIXI.DisplayObject#updateCache
 * @return {PIXIDisplayObject} - A reference to this DisplayObject.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 464
+* @sourceline 469
 */
 /**
 * @description Calculates the global position of this DisplayObject, based on the position given.
@@ -293,7 +293,7 @@ and references to them, so they don't linger in memory.
 * @param {PIXIPoint} position - - The global position to calculate from.
 * @return {PIXIPoint} - A point object representing the position of this DisplayObject based on the global position given.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 478
+* @sourceline 483
 */
 /**
 * @description Calculates the local position of this DisplayObject, relative to another point.
@@ -302,7 +302,7 @@ and references to them, so they don't linger in memory.
 * @param {PIXIDisplayObject} [from] - - An optional DisplayObject to calculate the global position from.
 * @return {PIXIPoint} - A point object representing the position of this DisplayObject based on the global position given.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 493
+* @sourceline 498
 */
 /**
 * @description Internal method.
@@ -310,21 +310,21 @@ and references to them, so they don't linger in memory.
 * @param {Object} renderSession - - The render session
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 514
+* @sourceline 519
 */
 /**
 * @description Internal method.
 * @method PIXI.DisplayObject#PIXI.DisplayObject#_generateCachedSprite
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 536
+* @sourceline 541
 */
 /**
 * @description Destroys a cached Sprite.
 * @method PIXI.DisplayObject#PIXI.DisplayObject#_destroyCachedSprite
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 586
+* @sourceline 593
 */
 /**
 * @description The horizontal position of the DisplayObject, in pixels, relative to its parent.
@@ -332,7 +332,7 @@ If you need the world position of the DisplayObject, use `DisplayObject.worldPos
 * @member PIXI.DisplayObject#x - The horizontal position of the DisplayObject, in pixels, relative to its parent.
 * @type {Number}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 612
+* @sourceline 619
 */
 /**
 * @description The vertical position of the DisplayObject, in pixels, relative to its parent.
@@ -340,14 +340,14 @@ If you need the world position of the DisplayObject, use `DisplayObject.worldPos
 * @member PIXI.DisplayObject#y - The vertical position of the DisplayObject, in pixels, relative to its parent.
 * @type {Number}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 634
+* @sourceline 641
 */
 /**
 * @description Indicates if this DisplayObject is visible, based on it, and all of its parents, `visible` property values.
 * @member PIXI.DisplayObject#worldVisible - Indicates if this DisplayObject is visible, based on it, and all of its parents, `visible` property values.
 * @type {Boolean}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 656
+* @sourceline 663
 */
 /**
 * @description Sets a mask for this DisplayObject. A mask is an instance of a Graphics object.
@@ -357,7 +357,7 @@ To remove a mask, set this property to `null`.
 * @member PIXI.DisplayObject#mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
 * @type {PIXIGraphics}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 699
+* @sourceline 706
 */
 /**
 * @description Sets the filters for this DisplayObject. This is a WebGL only feature, and is ignored by the Canvas
@@ -371,7 +371,7 @@ filter will reset this DisplayObjects blend mode to NORMAL.
 * @member PIXI.DisplayObject#filters - An Array of Phaser.Filter objects, or objects that extend them.
 * @type {Array}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 734
+* @sourceline 741
 */
 /**
 * @description Sets if this DisplayObject should be cached as a bitmap.
@@ -387,7 +387,7 @@ To remove a cached bitmap, set this property to `null`.
 * @member PIXI.DisplayObject#cacheAsBitmap - Cache this DisplayObject as a Bitmap. Set to `null` to remove an existing cached bitmap.
 * @type {Boolean}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
-* @sourceline 787
+* @sourceline 794
 */
 /**
 * @fileoverview
@@ -649,18 +649,25 @@ Set to null to remove a current shader.
 * @sourceline 103
 */
 /**
+* @member PIXI.Sprite#PIXI.Sprite.defaultAnchor - A Point-like object.
+* @type {Object}
+* @default 0
+* @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
+* @sourceline 121
+*/
+/**
 * @description The width of the sprite, setting this will actually modify the scale to achieve the value set
 * @member PIXI.Sprite#width
 * @type {Number}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 125
+* @sourceline 134
 */
 /**
 * @description The height of the sprite, setting this will actually modify the scale to achieve the value set
 * @member PIXI.Sprite#height
 * @type {Number}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 144
+* @sourceline 153
 */
 /**
 * @description Sets the texture of the sprite. Be warned that this doesn't remove or destroy the previous
@@ -669,7 +676,7 @@ texture this Sprite was using.
 * @param {PIXI.Texture} texture - The PIXI texture that is displayed by the sprite
 * @param {Boolean} [destroy=false] - Call Texture.destroy on the current texture before replacing it with the new one?
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 163
+* @sourceline 172
 */
 /**
 * @description When the texture is updated, this event will fire to update the scale and frame
@@ -677,7 +684,7 @@ texture this Sprite was using.
 * @param {} event - 
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 185
+* @sourceline 194
 */
 /**
 * @description Returns the bounds of the Sprite as a rectangle.
@@ -693,14 +700,14 @@ on the root most object in this Sprites display list first.
 * @param {Matrix} matrix - the transformation matrix of the sprite
 * @return {Rectangle} the framing rectangle
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 199
+* @sourceline 208
 */
 /**
 * @description Retrieves the non-global local bounds of the Sprite as a rectangle. The calculation takes all visible children into consideration.
 * @method PIXI.Sprite#getLocalBounds
 * @return {Rectangle} The rectangular bounding area
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 315
+* @sourceline 324
 */
 /**
 * @description Renders the object using the WebGL renderer
@@ -709,7 +716,7 @@ on the root most object in this Sprites display list first.
 * @param {Matrix} [matrix] - - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 345
+* @sourceline 354
 */
 /**
 * @description Renders the object using the Canvas renderer
@@ -718,7 +725,7 @@ on the root most object in this Sprites display list first.
 * @param {Matrix} [matrix] - - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 415
+* @sourceline 424
 */
 /**
 * @fileoverview
@@ -1612,12 +1619,12 @@ https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/graphics/g
 /**
 * @method PIXI.WebGLFastSpriteBatch#stop
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLFastSpriteBatch.js
-* @sourceline 403
+* @sourceline 405
 */
 /**
 * @method PIXI.WebGLFastSpriteBatch#start
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLFastSpriteBatch.js
-* @sourceline 411
+* @sourceline 413
 */
 /**
 * @fileoverview
@@ -2130,23 +2137,23 @@ Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier
 * @param {Number} size - 
 * @param {Number} startIndex - 
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLSpriteBatch.js
-* @sourceline 689
+* @sourceline 690
 */
 /**
 * @method PIXI.WebGLSpriteBatch#stop
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLSpriteBatch.js
-* @sourceline 717
+* @sourceline 718
 */
 /**
 * @method PIXI.WebGLSpriteBatch#start
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLSpriteBatch.js
-* @sourceline 725
+* @sourceline 726
 */
 /**
 * @description Destroys the SpriteBatch.
 * @method PIXI.WebGLSpriteBatch#destroy
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/utils/WebGLSpriteBatch.js
-* @sourceline 732
+* @sourceline 733
 */
 /**
 * @fileoverview
@@ -2364,7 +2371,7 @@ Disable this by setting this to false. For example: if your game has a canvas fi
 /**
 * @method PIXI.WebGLRenderer#initContext
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/WebGLRenderer.js
-* @sourceline 213
+* @sourceline 215
 */
 /**
 * @description If Multi Texture support has been enabled, then calling this method will enable batching on the given
@@ -2388,14 +2395,14 @@ Note: Throws a warning if you haven't enabled Multiple Texture batching support 
 * @param {Array} textureNameCollection - An Array of Texture Cache keys to use for multi-texture batching.
 * @return {Array} An array containing the texture keys that were enabled for batching.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/WebGLRenderer.js
-* @sourceline 265
+* @sourceline 268
 */
 /**
 * @description Renders the stage to its webGL view
 * @method PIXI.WebGLRenderer#render
 * @param {Stage} stage - the Stage element to be rendered
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/WebGLRenderer.js
-* @sourceline 350
+* @sourceline 359
 */
 /**
 * @description Renders a Display Object.
@@ -2404,7 +2411,7 @@ Note: Throws a warning if you haven't enabled Multiple Texture batching support 
 * @param {Point} projection - The projection
 * @param {Array} buffer - a standard WebGL buffer
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/WebGLRenderer.js
-* @sourceline 385
+* @sourceline 394
 */
 /**
 * @description Resizes the webGL view to the specified width and height.
@@ -2412,7 +2419,7 @@ Note: Throws a warning if you haven't enabled Multiple Texture batching support 
 * @param {Number} width - the new width of the webGL view
 * @param {Number} height - the new height of the webGL view
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/WebGLRenderer.js
-* @sourceline 422
+* @sourceline 432
 */
 /**
 * @description Updates and creates a WebGL compressed texture for the renderers context.
@@ -2420,7 +2427,7 @@ Note: Throws a warning if you haven't enabled Multiple Texture batching support 
 * @param {PIXI.Texture} texture - the texture to update
 * @return {Boolean} True if the texture was successfully bound, otherwise false.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/WebGLRenderer.js
-* @sourceline 448
+* @sourceline 458
 */
 /**
 * @description Updates and Creates a WebGL texture for the renderers context.
@@ -2428,19 +2435,19 @@ Note: Throws a warning if you haven't enabled Multiple Texture batching support 
 * @param {PIXI.Texture} texture - the texture to update
 * @return {Boolean} True if the texture was successfully bound, otherwise false.
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/WebGLRenderer.js
-* @sourceline 507
+* @sourceline 517
 */
 /**
 * @description Removes everything from the renderer (event listeners, spritebatch, etc...)
 * @method PIXI.WebGLRenderer#destroy
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/WebGLRenderer.js
-* @sourceline 568
+* @sourceline 578
 */
 /**
 * @description Maps Pixi blend modes to WebGL blend modes.
 * @method PIXI.WebGLRenderer#mapBlendModes
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/renderers/webgl/WebGLRenderer.js
-* @sourceline 600
+* @sourceline 610
 */
 /**
 * @fileoverview
