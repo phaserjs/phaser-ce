@@ -266,6 +266,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Tilemap.createFromObjects() no longer ignores width and height of object tiles.
+
 ### Bug Fixes
 
 ## Version 2.8.1 - 20th June 2017
