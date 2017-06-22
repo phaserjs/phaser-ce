@@ -2750,7 +2750,7 @@ Phaser.Group.prototype.shuffle = function () {
     Phaser.ArrayUtils.shuffle(this.children);
     this.updateZ();
 
-},
+};
 
 /**
 * Destroys this group.

@@ -1,4 +1,4 @@
-// Type definitions for PIXI with Phaser Deviations. 
+// Type definitions for PIXI with Phaser Deviations.
 
 declare module PIXI {
 
@@ -1781,6 +1781,8 @@ declare module PIXI {
         * Default: 0xFFFFFF
         */
         tint: number;
+
+        static defaultAnchor: object;
 
 
         /**

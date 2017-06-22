@@ -813,6 +813,8 @@ Phaser.Game.prototype = {
             if (this.multiTexture || this.renderType === Phaser.WEBGL_MULTI)
             {
                 PIXI.enableMultiTexture();
+
+                this.multiTexture = true;
             }
 
             this.renderType = Phaser.WEBGL;

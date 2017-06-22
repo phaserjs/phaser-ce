@@ -3981,7 +3981,7 @@ declare module Phaser {
         set(x: number, y?: number): Phaser.Point;
         setMagnitude(magnitude: number): Phaser.Point;
         setTo(x: number, y?: number): Phaser.Point;
-        setToPolar(azimuth: number, radius?: number): Phaser.Point;
+        setToPolar(azimuth: number, radius?: number, asDegrees?: boolean): Phaser.Point;
         subtract(x: number, y: number): Phaser.Point;
         toString(): string;
 
@@ -5614,6 +5614,7 @@ declare module Phaser {
             bodyInfo(sprite: Phaser.Sprite, x: number, y: Number, color?: string): void;
             box2dBody(body: Phaser.Sprite, color?: string): void;
             box2dWorld(): void;
+            camera(camera: Phaser.Camera, color?: string, filled?: boolean): void;
             cameraInfo(camera: Phaser.Camera, x: number, y: number, color?: string): void;
             destroy(): void;
             geom(object: any, color?: string, fiiled?: boolean, forceType?: number): void;
@@ -5626,6 +5627,7 @@ declare module Phaser {
             pointer(pointer: Phaser.Pointer, hideIfUp?: boolean, downColor?: string, upColor?: string, color?: string): void;
             quadTree(quadtree: Phaser.QuadTree, color?: string): void;
             rectangle(object: Phaser.Rectangle, color?: string, filled?: boolean): void;
+            renderer(x?: number, y?: number, color?: string): void;
             reset(): void;
             ropeSegments(rope: Phaser.Rope, color?: number, filled?: boolean): void;
             soundInfo(sound: Phaser.Sound, x: number, y: number, color?: string): void;

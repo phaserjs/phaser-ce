@@ -108,6 +108,18 @@ Phaser.Utils.Debug = function (game) {
      */
     this.isDisabled = false;
 
+    /**
+     * @property {Phaser.Line} _line - A reusable rendering line.
+     * @private
+     */
+    this._line = null;
+
+    /**
+     * @property {Phaser.Rectangle} _rect - A reusable rendering rectangle.
+     * @private
+     */
+    this._rect = null;
+
 };
 
 Phaser.Utils.Debug.prototype = {
@@ -135,6 +147,9 @@ Phaser.Utils.Debug.prototype = {
             this.canvas = Phaser.CanvasPool.create(this, this.game.width, this.game.height);
             this.context = this.canvas.getContext('2d');
         }
+
+        this._line = new Phaser.Line();
+        this._rect = new Phaser.Rectangle();
 
     },
 
@@ -296,6 +311,35 @@ Phaser.Utils.Debug.prototype = {
         }
 
         this.stop();
+
+    },
+
+    /**
+    * Marks the follow {@link #target} and {@link #deadzone}.
+    *
+    * @method Phaser.Utils.Debug#camera
+    * @param {Phaser.Camera} camera - The Phaser.Camera to show the debug information for.
+    * @param {string} [color] - Color of the debug shapes to be rendered (format is css color string).
+    * @param {boolean} [filled=true] - Render the shapes filled (default, true) or stroked (false).
+    */
+    camera: function (camera, color, filled) {
+
+        var deadzone = camera.deadzone;
+        var target = camera.target;
+        var view = camera.view;
+
+        if (deadzone)
+        {
+            this._rect.setTo(view.x + deadzone.x, view.y + deadzone.y, deadzone.width, deadzone.height);
+            this.rectangle(this._rect, color, filled);
+        }
+
+        if (target)
+        {
+            this._line.setTo(view.centerX, view.centerY, target.x, target.y);
+            this.geom(this._line, color, filled);
+            this.geom(target, color, false, 3);
+        }
 
     },
 
@@ -670,10 +714,10 @@ Phaser.Utils.Debug.prototype = {
     /**
     * Renders a Rectangle.
     *
-    * @method Phaser.Utils.Debug#geom
-    * @param {Phaser.Rectangle|object} object - The geometry object to render.
+    * @method Phaser.Utils.Debug#rectangle
+    * @param {Phaser.Rectangle|object} object - The rectangle to render.
     * @param {string} [color] - Color of the debug info to be rendered (format is css color string).
-    * @param {boolean} [filled=true] - Render the objected as a filled (default, true) or a stroked (false)
+    * @param {boolean} [filled=true] - Render the rectangle as filled (default, true) or a stroked (false)
     */
     rectangle: function (object, color, filled) {
 
@@ -896,6 +940,46 @@ Phaser.Utils.Debug.prototype = {
                 this.game.debug.displayList(displayObject.children[i]);
             }
         }
+
+    },
+
+    /**
+     * Prints a description of the {@link Phaser.Game#renderer renderer} and render session.
+     *
+     * @method Phaser.Utils.Debug#renderer
+     * @param {number} [x=0] - The X value the debug info will start from.
+     * @param {number} [y=0] - The Y value the debug info will start from.
+     * @param {string} [color='rgb(255,255,255)'] - The color the debug text will drawn in.
+     */
+    renderer: function (x, y, color) {
+
+        var r = this.game.renderer;
+        var s = r.renderSession;
+
+        this.start(x, y, color);
+
+        this.line((r.gl ? 'WebGL' : 'Canvas') + ' Renderer (' + r.width + ' x ' + r.height + ')');
+        this.line('autoResize: ' + r.autoResize);
+        this.line('clearBeforeRender: ' + r.clearBeforeRender);
+        this.line('resolution: ' + r.resolution);
+        this.line('transparent: ' + r.transparent);
+
+        if (r.gl)
+        {
+            this.line('drawCount: ' + s.drawCount);
+            this.line('flushCount: ' + s.flushCount);
+            this.line('maxTextures: ' + r.maxTextures);
+            this.line('maxTextureSize: ' + r.maxTextureSize);
+            this.line('maxTextureAvailableSpace: ' + s.maxTextureAvailableSpace);
+            this.line('currentBatchedTextures: '+ r.currentBatchedTextures.length);
+        }
+        else
+        {
+            this.line('roundPx: ' + s.roundPixels);
+            this.line('scaleMode: ' + (s.scaleMode === 0 ? 'LINEAR' : (s.scaleMode === 1 ? 'NEAREST' : s.scaleMode)));
+        }
+
+        this.stop();
 
     },
 

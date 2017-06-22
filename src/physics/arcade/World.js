@@ -1821,7 +1821,7 @@ Phaser.Physics.Arcade.prototype = {
         if (speed === undefined) { speed = 60; }
         point = point || new Phaser.Point();
 
-        return point.setToPolar(Phaser.Math.degToRad(angle), speed);
+        return point.setToPolar(angle, speed, true);
 
     },
 

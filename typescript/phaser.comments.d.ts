@@ -3828,9 +3828,25 @@ declare module Phaser {
         */
         constructor(game: Phaser.Game, id: number, x: number, y: number, width: number, height: number);
 
+
+        /**
+        * A follow style that uses no deadzone.
+        */
         static FOLLOW_LOCKON: number;
+
+        /**
+        * A follow style that uses a tall, narrow deadzone (0.33 x 0.125) with a center slightly above the view center.
+        */
         static FOLLOW_PLATFORMER: number;
+
+        /**
+        * A follow style that uses a square deadzone (0.25 of the larger view edge).
+        */
         static FOLLOW_TOPDOWN: number;
+
+        /**
+        * A follow style that uses a small square deadzone (0.125 of the larger view edge).
+        */
         static FOLLOW_TOPDOWN_TIGHT: number;
         static SHAKE_BOTH: number;
         static SHAKE_HORIZONTAL: number;
@@ -4049,7 +4065,7 @@ declare module Phaser {
         * This can be disabled by setting `game.renderer.renderSession.roundPixels = true` to force full pixel rendering.
         * 
         * @param target The object you want the camera to track. Set to null to not follow anything.
-        * @param style Leverage one of the existing "deadzone" presets. If you use a custom deadzone, ignore this parameter and manually specify the deadzone after calling follow().
+        * @param style Leverage one of the existing {@link deadzone} presets. If you use a custom deadzone, ignore this parameter and manually specify the deadzone after calling follow().
         * @param lerpX A value between 0 and 1. This value specifies the amount of linear interpolation to use when horizontally tracking the target. The closer the value to 1, the faster the camera will track. - Default: 1
         * @param lerpY A value between 0 and 1. This value specifies the amount of linear interpolation to use when vertically tracking the target. The closer the value to 1, the faster the camera will track. - Default: 1
         */
@@ -7360,47 +7376,12 @@ declare module Phaser {
         seed?: string;
         state?: Phaser.State;
         forceSetTimeOut?: boolean;
-        multiTextue?: boolean;
+        multiTexture?: boolean;
 
     }
 
 
     /**
-    * The Phaser.Game object is the main controller for the entire Phaser game. It is responsible
-    * for handling the boot process, parsing the configuration values, creating the renderer,
-    * and setting-up all of the Phaser systems, such as physics, sound and input.
-    * Once that is complete it will start the default State, and then begin the main game loop.
-    * 
-    * You can access lots of the Phaser systems via the properties on the `game` object. For
-    * example `game.renderer` is the Renderer, `game.sound` is the Sound Manager, and so on.
-    * 
-    * Anywhere you can access the `game` property, you can access all of these core systems.
-    * For example a Sprite has a `game` property, allowing you to talk to the various parts
-    * of Phaser directly, without having to look after your own references.
-    * 
-    * In it's most simplest form, a Phaser game can be created by providing the arguments
-    * to the constructor:
-    * 
-    * ```
-    * var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
-    * ```
-    * 
-    * In the example above it is passing in a State object directly. You can also use the State
-    * Manager to do this:
-    * 
-    * ```
-    * var game = new Phaser.Game(800, 600, Phaser.AUTO);
-    * game.state.add('Boot', BasicGame.Boot);
-    * game.state.add('Preloader', BasicGame.Preloader);
-    * game.state.add('MainMenu', BasicGame.MainMenu);
-    * game.state.add('Game', BasicGame.Game);
-    * game.state.start('Boot');
-    * 
-    * ```
-    * In the example above, 4 States are added to the State Manager, and Phaser is told to
-    * start running the `Boot` state when it has finished initializing. There are example
-    * project templates you can use in the Phaser GitHub repo, inside the `resources` folder.
-    * 
     * Instead of specifying arguments you can also pass a single object instead:
     * 
     * ```
@@ -7424,41 +7405,6 @@ declare module Phaser {
 
 
         /**
-        * The Phaser.Game object is the main controller for the entire Phaser game. It is responsible
-        * for handling the boot process, parsing the configuration values, creating the renderer,
-        * and setting-up all of the Phaser systems, such as physics, sound and input.
-        * Once that is complete it will start the default State, and then begin the main game loop.
-        * 
-        * You can access lots of the Phaser systems via the properties on the `game` object. For
-        * example `game.renderer` is the Renderer, `game.sound` is the Sound Manager, and so on.
-        * 
-        * Anywhere you can access the `game` property, you can access all of these core systems.
-        * For example a Sprite has a `game` property, allowing you to talk to the various parts
-        * of Phaser directly, without having to look after your own references.
-        * 
-        * In it's most simplest form, a Phaser game can be created by providing the arguments
-        * to the constructor:
-        * 
-        * ```
-        * var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
-        * ```
-        * 
-        * In the example above it is passing in a State object directly. You can also use the State
-        * Manager to do this:
-        * 
-        * ```
-        * var game = new Phaser.Game(800, 600, Phaser.AUTO);
-        * game.state.add('Boot', BasicGame.Boot);
-        * game.state.add('Preloader', BasicGame.Preloader);
-        * game.state.add('MainMenu', BasicGame.MainMenu);
-        * game.state.add('Game', BasicGame.Game);
-        * game.state.start('Boot');
-        * 
-        * ```
-        * In the example above, 4 States are added to the State Manager, and Phaser is told to
-        * start running the `Boot` state when it has finished initializing. There are example
-        * project templates you can use in the Phaser GitHub repo, inside the `resources` folder.
-        * 
         * Instead of specifying arguments you can also pass a single object instead:
         * 
         * ```
@@ -7478,24 +7424,19 @@ declare module Phaser {
         * var game = new Phaser.Game(config);
         * ```
         * 
-        * @param width The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given. - Default: 800
-        * @param height The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given. - Default: 600
-        * @param renderer Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all). - Default: Phaser.AUTO
-        * @param parent The DOM element into which this games canvas will be injected. Either a DOM ID (string) or the element itself. - Default: ''
-        * @param state The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.
-        * @param transparent Use a transparent canvas background or not.
-        * @param antialias Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art. - Default: true
-        * @param physicsConfig A physics configuration object to pass to the Physics world on creation.
         * @param config A single configuration object
         * @param config.antialias  - Default: true
         * @param config.height  - Default: 600
         * @param config.enableDebug Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production. - Default: true
+        * @param config.fullScreenScaleMode The scaling method used by the ScaleManager when in fullscreen.
+        * @param config.fullScreenTarget The DOM element on which the Fullscreen API enter request will be invoked.
         * @param config.multiTexture Enable support for multiple bound Textures in WebGL. Same as `renderer: Phaser.WEBGL_MULTI`.
         * @param config.parent  - Default: ''
         * @param config.physicsConfig
         * @param config.preserveDrawingBuffer Whether or not the contents of the stencil buffer is retained after rendering.
         * @param config.renderer  - Default: Phaser.AUTO
         * @param config.resolution The resolution of your game, as a ratio of canvas pixels to game pixels. - Default: 1
+        * @param config.scaleMode The scaling method used by the ScaleManager when not in fullscreen.
         * @param config.seed Seed for {@link Phaser.RandomDataGenerator}.
         * @param config.state
         * @param config.transparent
@@ -7504,41 +7445,6 @@ declare module Phaser {
         constructor(width?: number | string, height?: number | string, renderer?: number, parent?: any, state?: any, transparent?: boolean, antialias?: boolean, physicsConfig?: any);
 
         /**
-        * The Phaser.Game object is the main controller for the entire Phaser game. It is responsible
-        * for handling the boot process, parsing the configuration values, creating the renderer,
-        * and setting-up all of the Phaser systems, such as physics, sound and input.
-        * Once that is complete it will start the default State, and then begin the main game loop.
-        * 
-        * You can access lots of the Phaser systems via the properties on the `game` object. For
-        * example `game.renderer` is the Renderer, `game.sound` is the Sound Manager, and so on.
-        * 
-        * Anywhere you can access the `game` property, you can access all of these core systems.
-        * For example a Sprite has a `game` property, allowing you to talk to the various parts
-        * of Phaser directly, without having to look after your own references.
-        * 
-        * In it's most simplest form, a Phaser game can be created by providing the arguments
-        * to the constructor:
-        * 
-        * ```
-        * var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
-        * ```
-        * 
-        * In the example above it is passing in a State object directly. You can also use the State
-        * Manager to do this:
-        * 
-        * ```
-        * var game = new Phaser.Game(800, 600, Phaser.AUTO);
-        * game.state.add('Boot', BasicGame.Boot);
-        * game.state.add('Preloader', BasicGame.Preloader);
-        * game.state.add('MainMenu', BasicGame.MainMenu);
-        * game.state.add('Game', BasicGame.Game);
-        * game.state.start('Boot');
-        * 
-        * ```
-        * In the example above, 4 States are added to the State Manager, and Phaser is told to
-        * start running the `Boot` state when it has finished initializing. There are example
-        * project templates you can use in the Phaser GitHub repo, inside the `resources` folder.
-        * 
         * Instead of specifying arguments you can also pass a single object instead:
         * 
         * ```
@@ -7558,24 +7464,19 @@ declare module Phaser {
         * var game = new Phaser.Game(config);
         * ```
         * 
-        * @param width The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given. - Default: 800
-        * @param height The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given. - Default: 600
-        * @param renderer Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all). - Default: Phaser.AUTO
-        * @param parent The DOM element into which this games canvas will be injected. Either a DOM ID (string) or the element itself. - Default: ''
-        * @param state The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.
-        * @param transparent Use a transparent canvas background or not.
-        * @param antialias Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art. - Default: true
-        * @param physicsConfig A physics configuration object to pass to the Physics world on creation.
         * @param config A single configuration object
         * @param config.antialias  - Default: true
         * @param config.height  - Default: 600
         * @param config.enableDebug Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production. - Default: true
+        * @param config.fullScreenScaleMode The scaling method used by the ScaleManager when in fullscreen.
+        * @param config.fullScreenTarget The DOM element on which the Fullscreen API enter request will be invoked.
         * @param config.multiTexture Enable support for multiple bound Textures in WebGL. Same as `renderer: Phaser.WEBGL_MULTI`.
         * @param config.parent  - Default: ''
         * @param config.physicsConfig
         * @param config.preserveDrawingBuffer Whether or not the contents of the stencil buffer is retained after rendering.
         * @param config.renderer  - Default: Phaser.AUTO
         * @param config.resolution The resolution of your game, as a ratio of canvas pixels to game pixels. - Default: 1
+        * @param config.scaleMode The scaling method used by the ScaleManager when not in fullscreen.
         * @param config.seed Seed for {@link Phaser.RandomDataGenerator}.
         * @param config.state
         * @param config.transparent
@@ -9602,7 +9503,7 @@ declare module Phaser {
         enableBodyDebug: boolean;
 
         /**
-        * If exists is false the group will be excluded from collision checks and filters such as {@link forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link Phaser.Group#visible visible} and will still call `update` on its children.
+        * If exists is false the group will be excluded from collision checks and filters such as {@link Phaser.Group#forEachExists forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link Phaser.Group#visible visible} and will still call `update` on its children.
         * Default: true
         */
         exists: boolean;
@@ -10075,6 +9976,7 @@ declare module Phaser {
         * @param checkAlive If set then only children with alive=true will be checked. This includes any Groups that are children.
         * @param checkVisible If set then only children with visible=true will be checked. This includes any Groups that are children.
         * @param force Also return false if the property is missing or undefined (regardless of the `value` argument).
+        * @return - True if all eligible children have the given property value (but see `force`); otherwise false.
         */
         checkAll(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean, force?: boolean): boolean;
 
@@ -10087,6 +9989,7 @@ declare module Phaser {
         * @param value The value that will be checked.
         * @param checkAlive If set then only children with alive=true will be checked. This includes any Groups that are children.
         * @param checkVisible If set then only children with visible=true will be checked. This includes any Groups that are children.
+        * @return - True if at least one eligible child has the given property value; otherwise false.
         */
         checkAny(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean): boolean;
 
@@ -10634,7 +10537,7 @@ declare module Phaser {
         * @param frame The frame of a sprite sheet or texture atlas.
         * @param checkExists Reset only existing children.
         */
-        resetAll(x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, checkExists?: boolean);
+        resetAll(x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, checkExists?: boolean): void;
 
         /**
         * Takes a child and if the `x` and `y` arguments are given it calls `child.reset(x, y)` on it.
@@ -10680,7 +10583,7 @@ declare module Phaser {
         * @param rect A Rectangle. If omitted {@link Phaser.World#bounds} is used. - Default: this.game.world.bounds
         * @param checkExists Place only children with exists=true.
         */
-        scatter(rect?: Phaser.Rectangle, checkExists?: boolean);
+        scatter(rect?: Phaser.Rectangle, checkExists?: boolean): void;
 
         /**
         * Sends the given child to the bottom of this group so it renders below all other children.
@@ -10758,6 +10661,13 @@ declare module Phaser {
         * @return True if the property was set, false if not.
         */
         setProperty(child: any, key: string[], value: any, operation?: number, force?: boolean): boolean;
+
+        /**
+        * Orders this Group's children randomly.
+        * 
+        * This can be more efficient than calling {@link Phaser.Group#getRandom getRandom} repeatedly.
+        */
+        shuffle(): void;
 
         /**
         * Sort the children in the group according to a particular key and ordering.
@@ -15308,6 +15218,12 @@ declare module Phaser {
         static getNextPowerOfTwo(value: number): number;
 
         /**
+        * Half PI.
+        * Default: ~1.570
+        */
+        static HALF_PI: number;
+
+        /**
         * Returns true if the number given is even.
         * 
         * @param n The number to check.
@@ -16249,6 +16165,7 @@ declare module Phaser {
                 * How much each particle should bounce on each axis. 1 = full bounce, 0 = no bounce.
                 */
                 bounce: Phaser.Point;
+                count: object;
 
                 /**
                 * The point the particles are emitted from.
@@ -16265,7 +16182,7 @@ declare module Phaser {
                 emitY: number;
 
                 /**
-                * If exists is false the group will be excluded from collision checks and filters such as {@link forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link Phaser.Group#visible visible} and will still call `update` on its children.
+                * If exists is false the group will be excluded from collision checks and filters such as {@link Phaser.Group#forEachExists forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link Phaser.Group#visible visible} and will still call `update` on its children.
                 * Default: true
                 */
                 exists: boolean;
@@ -16299,12 +16216,12 @@ declare module Phaser {
                 lifespan: number;
 
                 /**
-                * The number of particles released during one particle's {@link lifespan}, after calling {@link flow}.
+                * The number of particles released during one particle's {@link Phaser.Particles.Arcade.Emitter#lifespan lifespan}, after calling {@link Phaser.Particles.Arcade.Emitter#flow flow}.
                 */
                 lifespanOutput: number;
 
                 /**
-                * The maximum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link minAngle}), {@link minSpeed} and {@link maxSpeed} are used and {@link minParticleSpeed} and {@link maxParticleSpeed} are ignored.
+                * The maximum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link Phaser.Particles.Arcade.Emitter#minAngle minAngle}), {@link Phaser.Particles.Arcade.Emitter#minSpeed minSpeed} and {@link Phaser.Particles.Arcade.Emitter#maxSpeed maxSpeed} are used and {@link Phaser.Particles.Arcade.Emitter#minParticleSpeed minParticleSpeed} and {@link Phaser.Particles.Arcade.Emitter#maxParticleSpeed maxParticleSpeed} are ignored.
                 */
                 maxAngle: number;
 
@@ -16331,13 +16248,13 @@ declare module Phaser {
                 maxRotation: number;
 
                 /**
-                * The maximum initial speed of particles released within {@link minAngle} and {@link maxAngle}.
+                * The maximum initial speed of particles released within {@link Phaser.Particles.Arcade.Emitter#minAngle minAngle} and {@link Phaser.Particles.Arcade.Emitter#maxAngle maxAngle}.
                 * Default: 100
                 */
                 maxSpeed: number;
 
                 /**
-                * The minimum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link maxAngle}), {@link minSpeed} and {@link maxSpeed} are used and {@link minParticleSpeed} and {@link maxParticleSpeed} are ignored.
+                * The minimum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link Phaser.Particles.Arcade.Emitter#maxAngle maxAngle}), {@link Phaser.Particles.Arcade.Emitter#minSpeed minSpeed} and {@link Phaser.Particles.Arcade.Emitter#maxSpeed maxSpeed} are used and {@link Phaser.Particles.Arcade.Emitter#minParticleSpeed minParticleSpeed} and {@link Phaser.Particles.Arcade.Emitter#maxParticleSpeed maxParticleSpeed} are ignored.
                 */
                 minAngle: number;
 
@@ -16358,7 +16275,7 @@ declare module Phaser {
                 minRotation: number;
 
                 /**
-                * The minimum initial speed of particles released within {@link minAngle} and {@link maxAngle}.
+                * The minimum initial speed of particles released within {@link Phaser.Particles.Arcade.Emitter#minAngle minAngle} and {@link Phaser.Particles.Arcade.Emitter#maxAngle maxAngle}.
                 */
                 minSpeed: number;
 
@@ -16373,7 +16290,7 @@ declare module Phaser {
                 on: boolean;
 
                 /**
-                * The number of particles released per second, after calling {@link flow}.
+                * The number of particles released per second, after calling {@link Phaser.Particles.Arcade.Emitter#flow flow}.
                 */
                 output: number;
 
@@ -16416,7 +16333,7 @@ declare module Phaser {
                 position: Phaser.Point;
 
                 /**
-                * The expected number of unreleased particles after a flow interval of {@link lifespan}, after calling {@link flow}.
+                * The expected number of unreleased particles after a flow interval of {@link Phaser.Particles.Arcade.Emitter#lifespan lifespan}, after calling {@link Phaser.Particles.Arcade.Emitter#flow flow}.
                 */
                 remainder: number;
 
@@ -16539,7 +16456,21 @@ declare module Phaser {
                 * @return This Emitter instance.
                 */
                 setAlpha(min?: number, max?: number, rate?: number, ease?: (k: number) => number, yoyo?: boolean): Phaser.Particles.Arcade.Emitter;
-                setAngle(minAngle: number, maxAngle: number, minSpeed?: number, maxSpeed?: number);
+
+                /**
+                * Sets a radial pattern for emitting particles.
+                * 
+                * This is a shorthand for setting {@link Phaser.Particles.Arcade.Emitter#minAngle minAngle}, {@link Phaser.Particles.Arcade.Emitter#maxAngle maxAngle}, {@link Phaser.Particles.Arcade.Emitter#minSpeed minSpeed}, and {@link Phaser.Particles.Arcade.Emitter#maxSpeed maxSpeed}.
+                * 
+                * To remove the radial pattern, use `setAngle(null, null)`.
+                * 
+                * @param minAngle The minimum angle of initial particle velocities, in degrees.
+                * @param maxAngle The maximum angle of initial particle velocities, in degrees.
+                * @param minSpeed The minimum initial particle speed.
+                * @param maxSpeed The maximum initial particle speed.
+                * @return This Emitter instance.
+                */
+                setAngle(minAngle: number, maxAngle: number, minSpeed?: number, maxSpeed?: number): Phaser.Particles.Arcade.Emitter;
 
                 /**
                 * A more compact way of setting the angular velocity constraints of the particles.
@@ -17765,7 +17696,7 @@ declare module Phaser {
                 acceleration: Phaser.Point;
 
                 /**
-                * Apply this Body's {@link drag}.
+                * Allow this Body to be influenced by {@link Phaser.Physics.Arcade.Body#drag drag}?
                 * Default: true
                 */
                 allowDrag: boolean;
@@ -17804,7 +17735,7 @@ declare module Phaser {
 
                 /**
                 * This object is populated with boolean values when the Body collides with the World bounds or a Tile.
-                * For example if blocked.up is true then the Body cannot move up. An object containing on which faces this Body is blocked from moving, if any.
+                * For example if blocked.up is true then the Body cannot move up. An object containing on which faces this Body is blocked from moving, if any (none, up, down, left, right).
                 */
                 blocked: FaceChoices;
 
@@ -17859,7 +17790,7 @@ declare module Phaser {
                 dirty: boolean;
 
                 /**
-                * The drag applied to the motion of the Body (when {@link allowDrag} is enabled). Measured in pixels per second squared.
+                * The drag applied to the motion of the Body (when {@link Phaser.Physics.Arcade.Body#allowDrag allowDrag} is enabled). Measured in pixels per second squared.
                 */
                 drag: Phaser.Point;
 
@@ -18040,7 +17971,7 @@ declare module Phaser {
                 phase: number;
 
                 /**
-                * The position of the physics body.
+                * The position of the physics body, equivalent to ({@link Phaser.Physics.Arcade.Body#left left}, {@link Phaser.Physics.Arcade.Body#top top}).
                 */
                 position: Phaser.Point;
 
@@ -18056,9 +17987,9 @@ declare module Phaser {
 
                 /**
                 * The radius of the circular collision shape this Body is using if Body.setCircle has been enabled, relative to the Sprite's _texture_.
-                * If you wish to change the radius then call `setCircle` again with the new value.
-                * If you wish to stop the Body using a circle then call `setCircle` with a radius of zero (or undefined).
-                * The actual radius of the Body (at any Sprite scale) is equal to {@link halfWidth}.
+                * If you wish to change the radius then call {@link Phaser.Physics.Arcade.Body#setCircle setCircle} again with the new value.
+                * If you wish to stop the Body using a circle then call {@link Phaser.Physics.Arcade.Body#setCircle setCircle} with a radius of zero (or undefined).
+                * The actual radius of the Body (at any Sprite scale) is equal to {@link Phaser.Physics.Arcade.Body#halfWidth halfWidth} and the diameter is equal to {@link Phaser.Physics.Arcade.Body#width width}.
                 */
                 radius: number;
 
@@ -18393,7 +18324,6 @@ declare module Phaser {
             class FaceChoices {
 
                 none: boolean;
-                any: boolean;
                 up: boolean;
                 down: boolean;
                 left: boolean;
@@ -22534,6 +22464,16 @@ declare module Phaser {
         setTo(x: number, y?: number): Phaser.Point;
 
         /**
+        * Sets the `x` and `y` values of this Point object from a given polar coordinate.
+        * 
+        * @param azimuth The angular coordinate, in radians (unless `asDegrees`).
+        * @param radius The radial coordinate (length). - Default: 1
+        * @param asDegrees True if `azimuth` is in degrees.
+        * @return This Point object. Useful for chaining method calls.
+        */
+        setToPolar(azimuth: number, radius?: number, asDegrees?: boolean): Phaser.Point;
+
+        /**
         * Subtracts the given x and y values from this Point.
         * 
         * @param x The value to subtract from Point.x.
@@ -25094,6 +25034,10 @@ declare module Phaser {
     * Now every time the InputManager dispatches the `onDown` signal (or event), your function
     * will be called.
     * 
+    * Multiple callbacks can be bound to the same signal.
+    * They're ordered first by their `priority` arguments and then by the order in which they were added.
+    * If a callback calls {@link Phaser.Signal#halt halt} or returns `false`, any remaining callbacks are skipped.
+    * 
     * Very often a Signal will send arguments to your function.
     * This is specific to the Signal itself.
     * If you're unsure then check the documentation, or failing that simply do:
@@ -25160,6 +25104,8 @@ declare module Phaser {
         * 
         * Where the first parameter is the one that Key.onDown dispatches internally and 'lazer',
         * and the value 100 were the custom arguments given in the call to 'add'.
+        * 
+        * If the callback calls {@link Phaser.Signal#halt halt} or returns `false`, any remaining callbacks bound to this Signal are skipped.
         * 
         * @param listener The function to call when this Signal is dispatched.
         * @param listenerContext The context under which the listener will be executed (i.e. the object that should represent the `this` variable).
@@ -27175,7 +27121,11 @@ declare module Phaser {
     * 
     * -  ##### Fluid game/canvas size
     * 
-    *    Use `scaleMode` RESIZE. Examine the game or canvas size from the {@link onSizeChange} signal and reposition game objects.
+    *    Use `scaleMode` RESIZE. Examine the game or canvas size from the {@link Phaser.ScaleManager#onSizeChange onSizeChange} signal and reposition game objects if necessary.
+    * 
+    * -  ##### Preferred orientation
+    * 
+    *    Call {@link Phaser.ScaleManager#forceOrientation forceOrientation} with the preferred orientation and use any of the {@link Phaser.ScaleManager#onOrientationChange onOrientationChange}, {@link Phaser.ScaleManager#enterIncorrectOrientation enterIncorrectOrientation}, or {@link Phaser.ScaleManager#leaveIncorrectOrientation leaveIncorrectOrientation} signals.
     */
     class ScaleManager {
 
@@ -32952,6 +32902,15 @@ declare module Phaser {
             box2dWorld(): void;
 
             /**
+            * Marks the follow {@link Phaser.Utils.Debug#target target} and {@link Phaser.Utils.Debug#deadzone deadzone}.
+            * 
+            * @param camera The Phaser.Camera to show the debug information for.
+            * @param color Color of the debug shapes to be rendered (format is css color string).
+            * @param filled Render the shapes filled (default, true) or stroked (false). - Default: true
+            */
+            camera(camera: Phaser.Camera, color?: string, filled?: boolean): void;
+
+            /**
             * Render camera information including dimensions and location.
             * 
             * @param camera The Phaser.Camera to show the debug information for.
@@ -33043,7 +33002,24 @@ declare module Phaser {
             * @param color The color of the lines in the quadtree.
             */
             quadTree(quadtree: Phaser.QuadTree, color?: string): void;
+
+            /**
+            * Renders a Rectangle.
+            * 
+            * @param object The rectangle to render.
+            * @param color Color of the debug info to be rendered (format is css color string).
+            * @param filled Render the rectangle as filled (default, true) or a stroked (false) - Default: true
+            */
             rectangle(object: Phaser.Rectangle, color?: string, filled?: boolean): void;
+
+            /**
+            * Prints a description of the {@link Phaser.Game#renderer renderer} and render session.
+            * 
+            * @param x The X value the debug info will start from.
+            * @param y The Y value the debug info will start from.
+            * @param color The color the debug text will drawn in. - Default: 'rgb(255,255,255)'
+            */
+            renderer(x?: number, y?: number, color?: string): void;
 
             /**
             * Clears the Debug canvas.
