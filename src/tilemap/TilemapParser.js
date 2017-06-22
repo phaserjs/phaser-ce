@@ -179,7 +179,7 @@ Phaser.TilemapParser = {
 
     /**
     * Parses a Tiled JSON file into valid map data.
-    * @method Phaser.TilemapParser.parseJSON
+    * @method Phaser.TilemapParser.parseTiledJSON
     * @param {object} json - The JSON map data.
     * @return {object} Generated and parsed map data.
     */
