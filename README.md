@@ -211,6 +211,7 @@ We appreciate this is just a band-aid, and not a proper use of modules, but plea
 As with browserify, use the `pixi`, `p2`, and `phaser-split` modules in [build/custom](https://github.com/photonstorm/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
 
 See [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
+Or check [this gist](https://gist.github.com/georgesboris/48e40307243248f2c8890e6f8ae00613) for the simplest setup.
 
 ### Building from source
 
