@@ -158,7 +158,7 @@ Phaser.Time = function (game) {
     this.slowMotion = 1.0;
 
     /**
-    * If true then advanced profiling, including the fps rate, fps min/max, suggestedFps and msMin/msMax are updated.
+    * If true then advanced profiling, including the fps rate, fps min/max, suggestedFps and msMin/msMax are updated. This isn't expensive, but displaying it with {@link Phaser.Utils.Debug#text} can be, especially in WebGL mode.
     * @property {boolean} advancedTiming
     * @default
     */
@@ -597,7 +597,7 @@ Phaser.Time.prototype = {
 * The desired frame rate of the game.
 *
 * This is used is used to calculate the physic / logic multiplier and how to apply catch-up logic updates.
-* 
+*
 * @name Phaser.Time#desiredFps
 * @property {integer} desiredFps - The desired frame rate of the game. Defaults to 60.
 */
@@ -613,7 +613,7 @@ Object.defineProperty(Phaser.Time.prototype, "desiredFps", {
 
         this._desiredFps = value;
 
-        //  Set the physics elapsed time... this will always be 1 / this.desiredFps 
+        //  Set the physics elapsed time... this will always be 1 / this.desiredFps
         //  because we're using fixed time steps in game.update
         this.physicsElapsed = 1 / value;
 
