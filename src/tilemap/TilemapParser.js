@@ -443,7 +443,7 @@ Phaser.TilemapParser = {
 
             if (set.source)
             {
-                console.warn('Phaser.TilemapParser - Phaser can\'t load external tilesets. Use the Embed Tileset button and then export the map again.');
+                console.warn('Phaser.TilemapParser - Phaser can\'t load external tilesets (%s). Use the Embed Tileset button and then export the map again.', set.source);
             }
             else if (set.image)
             {
