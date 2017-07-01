@@ -272,6 +272,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* The debug canvas is returned to the canvas pool when the game is destroyed (#269).
+
 ## Version 2.8.1 - 20th June 2017
 
 ### New Features
