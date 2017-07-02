@@ -971,7 +971,12 @@ Phaser.Utils.Debug.prototype = {
             this.line('maxTextures: ' + r.maxTextures);
             this.line('maxTextureSize: ' + r.maxTextureSize);
             this.line('maxTextureAvailableSpace: ' + s.maxTextureAvailableSpace);
-            this.line('currentBatchedTextures: '+ r.currentBatchedTextures.length);
+            this.line('currentBatchedTextures: ('+ r.currentBatchedTextures.length + ')');
+
+            for (var i = 0; i < r.currentBatchedTextures.length; i++)
+            {
+                this.line('  ' + r.currentBatchedTextures[i]);
+            }
         }
         else
         {

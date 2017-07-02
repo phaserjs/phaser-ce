@@ -267,6 +267,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Debug#renderer lists `currentBatchedTextures` (added by WebGLRenderer#setTexturePriority).
 * Phaser.TilemapParser.parseTiledJSON warns if a tilemap contains an external tileset (which Phaser can't read).
 * Tilemap.createFromObjects() no longer ignores width and height of object tiles.
 
