@@ -53,11 +53,28 @@ Phaser.Component.Core.install = function (components) {
 */
 Phaser.Component.Core.init = function (game, x, y, key, frame) {
 
+    if (!(game instanceof Phaser.Game))
+    {
+        throw new Error('The value passed as the `game` argument (' + game + ') is not an instance of Phaser.Game.');
+    }
+
     this.game = game;
 
     this.key = key;
 
     this.data = {};
+
+    if (typeof x !== 'number')
+    {
+        console.warn('The `x` argument value (%s) should be a number.', x);
+        x = 0; // This would be done implicitly in position.set().
+    }
+
+    if (typeof y !== 'number')
+    {
+        console.warn('The `y` argument value (%s) should be a number.', y);
+        y = 0; // This would be done implicitly in position.set().
+    }
 
     this.position.set(x, y);
     this.world = new Phaser.Point(x, y);
