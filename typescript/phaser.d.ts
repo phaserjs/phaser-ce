@@ -2548,7 +2548,7 @@ declare module Phaser {
 
     }
 
-    class Matrix extends PIXI.Matrix {
+    class Matrix {
 
         a: number;
         b: number;
@@ -4209,7 +4209,7 @@ declare module Phaser {
 
     }
 
-    class RenderTexture extends PIXI.RenderTexture {
+    class RenderTexture extends PIXI.Texture {
 
         constructor(game: Phaser.Game, width?: number, height?: number, key?: string, scaleMode?: number, resolution?: number);
 

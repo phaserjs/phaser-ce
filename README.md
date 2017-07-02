@@ -274,6 +274,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed definitions of Phaser.Matrix and Phaser.RenderTexture (#174, #270).
 * The debug canvas is returned to the canvas pool when the game is destroyed (#269).
 
 ## Version 2.8.1 - 20th June 2017
