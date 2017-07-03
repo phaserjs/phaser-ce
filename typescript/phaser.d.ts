@@ -1971,7 +1971,7 @@ declare module Phaser {
         minPriorityID: number;
         mouse: Phaser.Mouse;
         mousePointer: Phaser.Pointer;
-        moveCallbacks: (pointer: Phaser.Pointer, x: number, y: number) => void[];
+        moveCallbacks: { callback: (pointer: Phaser.Pointer, x: number, y: number, fromClick: boolean) => void, context?: any }[];
         mspointer: Phaser.MSPointer;
         multiInputOverride: number;
         onDown: Phaser.Signal;
@@ -2008,10 +2008,10 @@ declare module Phaser {
         y: number;
 
         addPointer(): Phaser.Pointer;
-        addMoveCallback(callback: Function, context: any): number;
+        addMoveCallback(callback: (pointer: Phaser.Pointer, x: number, y: number, fromClick: boolean) => void, context?: any): void;
         boot(): void;
         countActivePointers(limit?: number): number;
-        deleteMoveCallback(callback: Function, context?: any): void;
+        deleteMoveCallback(callback: (pointer: Phaser.Pointer, x: number, y: number, fromClick: boolean) => void, context?: any): void;
         destroy(): void;
         getLocalPosition(displayObject: any, pointer: Phaser.Pointer): Phaser.Point;
         getPointer(isActive?: boolean): Phaser.Pointer;

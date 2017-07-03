@@ -11620,7 +11620,7 @@ declare module Phaser {
         * An array of callbacks that will be fired every time the activePointer receives a move event from the DOM.
         * To add a callback to this array please use `Input.addMoveCallback`.
         */
-        moveCallbacks: (pointer: Phaser.Pointer, x: number, y: number) => void[];
+        moveCallbacks: { callback: (pointer: Phaser.Pointer, x: number, y: number, fromClick: boolean) => void, context?: any }[];
 
         /**
         * The MSPointer Input manager.
@@ -11830,7 +11830,7 @@ declare module Phaser {
         * @param callback The callback that will be called each time the activePointer receives a DOM move event.
         * @param context The context in which the callback will be called.
         */
-        addMoveCallback(callback: Function, context: any): number;
+        addMoveCallback(callback: (pointer: Phaser.Pointer, x: number, y: number, fromClick: boolean) => void, context?: any): void;
 
         /**
         * Starts the Input Manager running.
@@ -11844,7 +11844,7 @@ declare module Phaser {
         * @param callback The callback to be removed.
         * @param context The context in which the callback exists.
         */
-        deleteMoveCallback(callback: Function, context?: any): void;
+        deleteMoveCallback(callback: (pointer: Phaser.Pointer, x: number, y: number, fromClick: boolean) => void, context?: any): void;
 
         /**
         * Stops all of the Input Managers from running.
