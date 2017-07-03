@@ -269,8 +269,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 * Phaser.Component.Core.init checks types of the `game`, `x`, and `y` arguments, since these mistakes can be hard to track down (outside of TypeScript).
 * Debug#renderer lists `currentBatchedTextures` (added by WebGLRenderer#setTexturePriority).
-* Phaser.TilemapParser.parseTiledJSON warns if a tilemap contains an external tileset (which Phaser can't read).
-* Tilemap.createFromObjects() no longer ignores width and height of object tiles.
+* Phaser.TilemapParser.parseTiledJSON warns if a tilemap contains an external tileset, which Phaser doesn't read (#273).
+* Tilemap#createFromObjects() assigns the width and height of [Object Tiles](http://doc.mapeditor.org/manual/objects/#insert-tile) to the newly created Sprite (previously these were ignored).
 
 ### Bug Fixes
 
