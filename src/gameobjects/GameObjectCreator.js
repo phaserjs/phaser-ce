@@ -39,7 +39,7 @@ Phaser.GameObjectCreator.prototype = {
     * @method Phaser.GameObjectCreator#image
     * @param {number} x - X position of the image.
     * @param {number} y - Y position of the image.
-    * @param {string|Phaser.RenderTexture|PIXI.Texture} key - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+    * @param {string|Phaser.RenderTexture|Phaser.Texture} key - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or Phaser.Texture.
     * @param {string|number} [frame] - If the sprite uses an image from a texture atlas or sprite sheet you can pass the frame here. Either a number for a frame ID or a string for a frame name.
     * @returns {Phaser.Image} the newly created sprite object.
     */
@@ -55,7 +55,7 @@ Phaser.GameObjectCreator.prototype = {
     * @method Phaser.GameObjectCreator#sprite
     * @param {number} x - X position of the new sprite.
     * @param {number} y - Y position of the new sprite.
-    * @param {string|Phaser.RenderTexture|PIXI.Texture} key - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+    * @param {string|Phaser.RenderTexture|Phaser.Texture} key - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or Phaser.Texture.
     * @param {string|number} [frame] - If the sprite uses an image from a texture atlas or sprite sheet you can pass the frame here. Either a number for a frame ID or a string for a frame name.
     * @returns {Phaser.Sprite} the newly created sprite object.
     */
@@ -168,7 +168,7 @@ Phaser.GameObjectCreator.prototype = {
     * @param {number} y - The y coordinate (in world space) to position the TileSprite at.
     * @param {number} width - The width of the TileSprite.
     * @param {number} height - The height of the TileSprite.
-    * @param {string|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
+    * @param {string|Phaser.BitmapData|Phaser.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a Phaser.Texture or BitmapData.
     * @param {string|number} frame - If this TileSprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
     * @return {Phaser.TileSprite} The newly created tileSprite object.
     */
@@ -186,7 +186,7 @@ Phaser.GameObjectCreator.prototype = {
     * @param {number} y - The y coordinate (in world space) to position the Rope at.
     * @param {number} width - The width of the Rope.
     * @param {number} height - The height of the Rope.
-    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or Phaser.Texture.
     * @param {string|number} frame - If this Rope is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
     * @return {Phaser.Rope} The newly created rope object.
     */

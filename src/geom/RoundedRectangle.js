@@ -6,7 +6,7 @@
 */
 
 /**
-* The Rounded Rectangle object is an area defined by its position and has nice rounded corners, 
+* The Rounded Rectangle object is an area defined by its position and has nice rounded corners,
 * as indicated by its top-left corner point (x, y) and by its width and its height.
 *
 * @class Phaser.RoundedRectangle
@@ -62,7 +62,7 @@ Phaser.RoundedRectangle.prototype = {
     /**
     * Returns a new RoundedRectangle object with the same values for the x, y, width, height and
     * radius properties as this RoundedRectangle object.
-    * 
+    *
     * @method Phaser.RoundedRectangle#clone
     * @return {Phaser.RoundedRectangle}
     */
@@ -74,7 +74,7 @@ Phaser.RoundedRectangle.prototype = {
 
     /**
     * Determines whether the specified coordinates are contained within the region defined by this Rounded Rectangle object.
-    * 
+    *
     * @method Phaser.RoundedRectangle#contains
     * @param {number} x - The x coordinate of the point to test.
     * @param {number} y - The y coordinate of the point to test.
@@ -106,6 +106,3 @@ Phaser.RoundedRectangle.prototype = {
 };
 
 Phaser.RoundedRectangle.prototype.constructor = Phaser.RoundedRectangle;
-
-//  Because PIXI uses its own type, we'll replace it with ours to avoid duplicating code or confusion.
-PIXI.RoundedRectangle = Phaser.RoundedRectangle;

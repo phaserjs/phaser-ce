@@ -8,11 +8,11 @@
  * @class CanvasMaskManager
  * @constructor
  */
-PIXI.CanvasMaskManager = function()
+Phaser.CanvasMaskManager = function()
 {
 };
 
-PIXI.CanvasMaskManager.prototype.constructor = PIXI.CanvasMaskManager;
+Phaser.CanvasMaskManager.prototype.constructor = Phaser.CanvasMaskManager;
 
 /**
  * This method adds it to the current stack of masks.
@@ -21,7 +21,7 @@ PIXI.CanvasMaskManager.prototype.constructor = PIXI.CanvasMaskManager;
  * @param maskData {Object} the maskData that will be pushed
  * @param renderSession {Object} The renderSession whose context will be used for this mask manager.
  */
-PIXI.CanvasMaskManager.prototype.pushMask = function(maskData, renderSession) {
+Phaser.CanvasMaskManager.prototype.pushMask = function(maskData, renderSession) {
 
 	var context = renderSession.context;
 
@@ -39,7 +39,7 @@ PIXI.CanvasMaskManager.prototype.pushMask = function(maskData, renderSession) {
                          transform.tx * resolution,
                          transform.ty * resolution);
 
-    PIXI.CanvasGraphics.renderGraphicsMask(maskData, context);
+    Phaser.CanvasGraphics.renderGraphicsMask(maskData, context);
 
     context.clip();
 
@@ -52,7 +52,7 @@ PIXI.CanvasMaskManager.prototype.pushMask = function(maskData, renderSession) {
  * @method popMask
  * @param renderSession {Object} The renderSession whose context will be used for this mask manager.
  */
-PIXI.CanvasMaskManager.prototype.popMask = function(renderSession)
+Phaser.CanvasMaskManager.prototype.popMask = function(renderSession)
 {
     renderSession.context.restore();
 };

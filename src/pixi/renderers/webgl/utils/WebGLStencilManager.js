@@ -7,7 +7,7 @@
 * @constructor
 * @private
 */
-PIXI.WebGLStencilManager = function()
+Phaser.WebGLStencilManager = function()
 {
     this.stencilStack = [];
     this.reverse = true;
@@ -20,7 +20,7 @@ PIXI.WebGLStencilManager = function()
 * @method setContext 
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.WebGLStencilManager.prototype.setContext = function(gl)
+Phaser.WebGLStencilManager.prototype.setContext = function(gl)
 {
     this.gl = gl;
 };
@@ -33,7 +33,7 @@ PIXI.WebGLStencilManager.prototype.setContext = function(gl)
 * @param webGLData {Array}
 * @param renderSession {Object}
 */
-PIXI.WebGLStencilManager.prototype.pushStencil = function(graphics, webGLData, renderSession)
+Phaser.WebGLStencilManager.prototype.pushStencil = function(graphics, webGLData, renderSession)
 {
     var gl = this.gl;
     this.bindGraphics(graphics, webGLData, renderSession);
@@ -125,7 +125,7 @@ PIXI.WebGLStencilManager.prototype.pushStencil = function(graphics, webGLData, r
  * @param webGLData {Array}
  * @param renderSession {Object}
  */
-PIXI.WebGLStencilManager.prototype.bindGraphics = function(graphics, webGLData, renderSession)
+Phaser.WebGLStencilManager.prototype.bindGraphics = function(graphics, webGLData, renderSession)
 {
     //if(this._currentGraphics === graphics)return;
     this._currentGraphics = graphics;
@@ -196,7 +196,7 @@ PIXI.WebGLStencilManager.prototype.bindGraphics = function(graphics, webGLData, 
  * @param webGLData {Array}
  * @param renderSession {Object}
  */
-PIXI.WebGLStencilManager.prototype.popStencil = function(graphics, webGLData, renderSession)
+Phaser.WebGLStencilManager.prototype.popStencil = function(graphics, webGLData, renderSession)
 {
 	var gl = this.gl;
     this.stencilStack.pop();
@@ -290,7 +290,7 @@ PIXI.WebGLStencilManager.prototype.popStencil = function(graphics, webGLData, re
 * 
 * @method destroy
 */
-PIXI.WebGLStencilManager.prototype.destroy = function()
+Phaser.WebGLStencilManager.prototype.destroy = function()
 {
     this.stencilStack = null;
     this.gl = null;

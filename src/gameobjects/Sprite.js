@@ -1,4 +1,4 @@
-/**
+Phaser.DisplaySprite.call/**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2016 Photon Storm Ltd.
 * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
@@ -13,7 +13,7 @@
 *
 * @class Phaser.Sprite
 * @constructor
-* @extends PIXI.Sprite
+* @extends Phaser.Sprite
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.Animation
@@ -38,7 +38,7 @@
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {number} x - The x coordinate (in world space) to position the Sprite at.
 * @param {number} y - The y coordinate (in world space) to position the Sprite at.
-* @param {string|Phaser.RenderTexture|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Texture} key - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or Phaser.Texture.
 * @param {string|number} frame - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 */
 Phaser.Sprite = function (game, x, y, key, frame) {
@@ -60,13 +60,13 @@ Phaser.Sprite = function (game, x, y, key, frame) {
     */
     this.physicsType = Phaser.SPRITE;
 
-    PIXI.Sprite.call(this, Phaser.Cache.DEFAULT);
+    Phaser.DisplaySprite.call(this, Phaser.Cache.DEFAULT);
 
     Phaser.Component.Core.init.call(this, game, x, y, key, frame);
 
 };
 
-Phaser.Sprite.prototype = Object.create(PIXI.Sprite.prototype);
+Phaser.Sprite.prototype = Object.create(Phaser.Sprite.prototype);
 Phaser.Sprite.prototype.constructor = Phaser.Sprite;
 
 Phaser.Component.Core.install.call(Phaser.Sprite.prototype, [

@@ -73,7 +73,7 @@ Phaser.Component.LifeSpan.prototype = {
     *
     * @method
     * @param {number} [health=100] - The health to give the Game Object. Only set if the GameObject has the Health component.
-    * @return {PIXI.DisplayObject} This instance.
+    * @return {Phaser.DisplayObject} This instance.
     */
     revive: function (health) {
 
@@ -108,7 +108,7 @@ Phaser.Component.LifeSpan.prototype = {
     * If you don't need this Game Object any more you should call `destroy` instead.
     *
     * @method
-    * @return {PIXI.DisplayObject} This instance.
+    * @return {Phaser.DisplayObject} This instance.
     */
     kill: function () {
 

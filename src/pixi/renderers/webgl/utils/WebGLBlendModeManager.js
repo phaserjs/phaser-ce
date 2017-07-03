@@ -7,7 +7,7 @@
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.WebGLBlendModeManager = function()
+Phaser.WebGLBlendModeManager = function()
 {
     /**
      * @property currentBlendMode
@@ -16,7 +16,7 @@ PIXI.WebGLBlendModeManager = function()
     this.currentBlendMode = 99999;
 };
 
-PIXI.WebGLBlendModeManager.prototype.constructor = PIXI.WebGLBlendModeManager;
+Phaser.WebGLBlendModeManager.prototype.constructor = Phaser.WebGLBlendModeManager;
 
 /**
  * Sets the WebGL Context.
@@ -24,7 +24,7 @@ PIXI.WebGLBlendModeManager.prototype.constructor = PIXI.WebGLBlendModeManager;
  * @method setContext
  * @param gl {WebGLContext} the current WebGL drawing context
  */
-PIXI.WebGLBlendModeManager.prototype.setContext = function(gl)
+Phaser.WebGLBlendModeManager.prototype.setContext = function(gl)
 {
     this.gl = gl;
 };
@@ -33,15 +33,15 @@ PIXI.WebGLBlendModeManager.prototype.setContext = function(gl)
 * Sets-up the given blendMode from WebGL's point of view.
 * 
 * @method setBlendMode 
-* @param blendMode {Number} the blendMode, should be a Pixi const, such as PIXI.BlendModes.ADD
+* @param blendMode {Number} the blendMode, should be a Pixi const, such as Phaser.BlendModes.ADD
 */
-PIXI.WebGLBlendModeManager.prototype.setBlendMode = function(blendMode)
+Phaser.WebGLBlendModeManager.prototype.setBlendMode = function(blendMode)
 {
     if(this.currentBlendMode === blendMode)return false;
 
     this.currentBlendMode = blendMode;
     
-    var blendModeWebGL = PIXI.blendModesWebGL[this.currentBlendMode];
+    var blendModeWebGL = Phaser.blendModesWebGL[this.currentBlendMode];
 
     if (blendModeWebGL)
     {
@@ -56,7 +56,7 @@ PIXI.WebGLBlendModeManager.prototype.setBlendMode = function(blendMode)
 * 
 * @method destroy
 */
-PIXI.WebGLBlendModeManager.prototype.destroy = function()
+Phaser.WebGLBlendModeManager.prototype.destroy = function()
 {
     this.gl = null;
 };

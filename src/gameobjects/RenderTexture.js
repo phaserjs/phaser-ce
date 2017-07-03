@@ -10,7 +10,7 @@
 * 
 * @class Phaser.RenderTexture
 * @constructor
-* @extends PIXI.Texture
+* @extends Phaser.Texture
 * @param {Phaser.Game} game - Current game instance.
 * @param {number} [width=100] - The width of the render texture.
 * @param {number} [height=100] - The height of the render texture.
@@ -25,7 +25,7 @@ Phaser.RenderTexture = function (game, width, height, key, scaleMode, resolution
     if (key === undefined) { key = ''; }
     if (scaleMode === undefined) { scaleMode = Phaser.scaleModes.DEFAULT; }
     if (resolution === undefined) { resolution = 1; }
-    if (renderer === undefined) { renderer = PIXI.defaultRenderer; }
+    if (renderer === undefined) { renderer = Phaser.defaultRenderer; }
     if (textureUnit === undefined) { textureUnit = 0; }
 
     /**
@@ -63,7 +63,7 @@ Phaser.RenderTexture = function (game, width, height, key, scaleMode, resolution
      * @property baseTexture
      * @type BaseTexture
      */
-    this.baseTexture = new PIXI.BaseTexture();
+    this.baseTexture = new Phaser.BaseTexture();
     this.baseTexture.width = this.width * this.resolution;
     this.baseTexture.height = this.height * this.resolution;
     this.baseTexture._glTextures = [];
@@ -73,7 +73,7 @@ Phaser.RenderTexture = function (game, width, height, key, scaleMode, resolution
 
     this.baseTexture.hasLoaded = true;
 
-    PIXI.Texture.call(this, this.baseTexture, this.frame.clone());
+    Phaser.Texture.call(this, this.baseTexture, this.frame.clone());
 
     /**
      * The renderer this RenderTexture uses. A RenderTexture can only belong to one renderer at the moment if its webGL.
@@ -89,14 +89,14 @@ Phaser.RenderTexture = function (game, width, height, key, scaleMode, resolution
         this.baseTexture.textureIndex = textureUnit;
         this.baseTexture._dirty[gl.id] = false;
 
-        this.textureBuffer = new PIXI.FilterTexture(gl, this.width, this.height, this.baseTexture.scaleMode, textureUnit);
+        this.textureBuffer = new Phaser.FilterTexture(gl, this.width, this.height, this.baseTexture.scaleMode, textureUnit);
         this.baseTexture._glTextures[gl.id] = this.textureBuffer.texture;
 
         this.projection = new Phaser.Point(this.width * 0.5, -this.height * 0.5);
     }
     else
     {
-        this.textureBuffer = new PIXI.CanvasBuffer(this.width * this.resolution, this.height * this.resolution);
+        this.textureBuffer = new Phaser.CanvasBuffer(this.width * this.resolution, this.height * this.resolution);
         this.baseTexture.source = this.textureBuffer.canvas;
     }
 
@@ -112,7 +112,7 @@ Phaser.RenderTexture = function (game, width, height, key, scaleMode, resolution
 
 };
 
-Phaser.RenderTexture.prototype = Object.create(PIXI.Texture.prototype);
+Phaser.RenderTexture.prototype = Object.create(Phaser.Texture.prototype);
 Phaser.RenderTexture.prototype.constructor = Phaser.RenderTexture;
 
 /**
@@ -428,7 +428,7 @@ Phaser.RenderTexture.prototype.getCanvas = function () {
         gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, webGLPixels);
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
-        var tempCanvas = new PIXI.CanvasBuffer(width, height);
+        var tempCanvas = new Phaser.CanvasBuffer(width, height);
         var canvasData = tempCanvas.context.getImageData(0, 0, width, height);
         canvasData.data.set(webGLPixels);
 

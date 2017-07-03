@@ -8,7 +8,7 @@
  * @class CanvasTinter
  * @static
  */
-PIXI.CanvasTinter = function() {};
+Phaser.CanvasTinter = function() {};
 
 /**
  * Basically this method just needs a sprite and a color and tints the sprite with the given color.
@@ -19,11 +19,11 @@ PIXI.CanvasTinter = function() {};
  * @param color {Number} the color to use to tint the sprite with
  * @return {HTMLCanvasElement} The tinted canvas
  */
-PIXI.CanvasTinter.getTintedTexture = function(sprite, color)
+Phaser.CanvasTinter.getTintedTexture = function(sprite, color)
 {
     var canvas = sprite.tintedTexture || Phaser.CanvasPool.create(this);
     
-    PIXI.CanvasTinter.tintMethod(sprite.texture, color, canvas);
+    Phaser.CanvasTinter.tintMethod(sprite.texture, color, canvas);
 
     return canvas;
 };
@@ -37,7 +37,7 @@ PIXI.CanvasTinter.getTintedTexture = function(sprite, color)
  * @param color {Number} the color to use to tint the sprite with
  * @param canvas {HTMLCanvasElement} the current canvas
  */
-PIXI.CanvasTinter.tintWithMultiply = function(texture, color, canvas)
+Phaser.CanvasTinter.tintWithMultiply = function(texture, color, canvas)
 {
     var context = canvas.getContext("2d");
 
@@ -79,7 +79,7 @@ PIXI.CanvasTinter.tintWithMultiply = function(texture, color, canvas)
  * @param color {Number} the color to use to tint the sprite with
  * @param canvas {HTMLCanvasElement} the current canvas
  */ 
-PIXI.CanvasTinter.tintWithPerPixel = function(texture, color, canvas)
+Phaser.CanvasTinter.tintWithPerPixel = function(texture, color, canvas)
 {
     var context = canvas.getContext("2d");
 
@@ -116,7 +116,7 @@ PIXI.CanvasTinter.tintWithPerPixel = function(texture, color, canvas)
         pixels[i + 1] *= g;
         pixels[i + 2] *= b;
 
-        if (!PIXI.CanvasTinter.canHandleAlpha)
+        if (!Phaser.CanvasTinter.canHandleAlpha)
         {
             var alpha = pixels[i + 3];
 

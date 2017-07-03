@@ -8,10 +8,10 @@
  * @class BaseTexture
  * @constructor
  * @param source {String|Canvas} the source object (image or canvas)
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}Phaser.scaleModes{{/crossLink}} for possible values
  * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
  */
-PIXI.BaseTexture = function(source, scaleMode, resolution)
+Phaser.BaseTexture = function(source, scaleMode, resolution)
 {
     /**
      * The Resolution of the texture. 
@@ -44,9 +44,9 @@ PIXI.BaseTexture = function(source, scaleMode, resolution)
      * 
      * @property scaleMode
      * @type {Number}
-     * @default PIXI.scaleModes.LINEAR
+     * @default Phaser.scaleModes.LINEAR
      */
-    this.scaleMode = scaleMode || PIXI.scaleModes.DEFAULT;
+    this.scaleMode = scaleMode || Phaser.scaleModes.DEFAULT;
 
     /**
      * [read-only] Set to true once the base texture has loaded
@@ -139,7 +139,7 @@ PIXI.BaseTexture = function(source, scaleMode, resolution)
 
 };
 
-PIXI.BaseTexture.prototype.constructor = PIXI.BaseTexture;
+Phaser.BaseTexture.prototype.constructor = Phaser.BaseTexture;
 
 /**
  * Forces this BaseTexture to be set as loaded, with the given width and height.
@@ -150,7 +150,7 @@ PIXI.BaseTexture.prototype.constructor = PIXI.BaseTexture;
  * @param {number} width - The new width to force the BaseTexture to be.
  * @param {number} height - The new height to force the BaseTexture to be.
  */
-PIXI.BaseTexture.prototype.forceLoaded = function(width, height)
+Phaser.BaseTexture.prototype.forceLoaded = function(width, height)
 {
     this.hasLoaded = true;
     this.width = width;
@@ -163,7 +163,7 @@ PIXI.BaseTexture.prototype.forceLoaded = function(width, height)
  *
  * @method destroy
  */
-PIXI.BaseTexture.prototype.destroy = function()
+Phaser.BaseTexture.prototype.destroy = function()
 {
     if (this.source)
     {
@@ -180,11 +180,11 @@ PIXI.BaseTexture.prototype.destroy = function()
  *
  * @method updateSourceImage
  * @param newSrc {String} the path of the image
- * @deprecated This method is deprecated. Please use Phaser.Sprite.loadTexture instead.
+ * @deprecated This method is deprecated. Please use Phaser.DisplaySprite.loadTexture instead.
  */
-PIXI.BaseTexture.prototype.updateSourceImage = function(newSrc)
+Phaser.BaseTexture.prototype.updateSourceImage = function(newSrc)
 {
-    console.warn("PIXI.BaseTexture.updateSourceImage is deprecated. Use Phaser.Sprite.loadTexture instead.");
+    console.warn("Phaser.BaseTexture.updateSourceImage is deprecated. Use Phaser.DisplaySprite.loadTexture instead.");
 };
 
 /**
@@ -192,7 +192,7 @@ PIXI.BaseTexture.prototype.updateSourceImage = function(newSrc)
  *
  * @method dirty
  */
-PIXI.BaseTexture.prototype.dirty = function()
+Phaser.BaseTexture.prototype.dirty = function()
 {
     for (var i = 0; i < this._glTextures.length; i++)
     {
@@ -206,7 +206,7 @@ PIXI.BaseTexture.prototype.dirty = function()
  *
  * @method unloadFromGPU
  */
-PIXI.BaseTexture.prototype.unloadFromGPU = function()
+Phaser.BaseTexture.prototype.unloadFromGPU = function()
 {
     this.dirty();
 
@@ -214,7 +214,7 @@ PIXI.BaseTexture.prototype.unloadFromGPU = function()
     for (var i = this._glTextures.length - 1; i >= 0; i--)
     {
         var glTexture = this._glTextures[i];
-        var gl = PIXI.glContexts[i];
+        var gl = Phaser.glContexts[i];
 
         if(gl && glTexture)
         {
@@ -234,11 +234,11 @@ PIXI.BaseTexture.prototype.unloadFromGPU = function()
  * @static
  * @method fromCanvas
  * @param canvas {Canvas} The canvas element source of the texture
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}Phaser.scaleModes{{/crossLink}} for possible values
  * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
  * @return {BaseTexture}
  */
-PIXI.BaseTexture.fromCanvas = function(canvas, scaleMode, resolution)
+Phaser.BaseTexture.fromCanvas = function(canvas, scaleMode, resolution)
 {
     if (canvas.width === 0)
     {
@@ -252,5 +252,5 @@ PIXI.BaseTexture.fromCanvas = function(canvas, scaleMode, resolution)
 
     resolution = resolution || 1;
 
-    return new PIXI.BaseTexture(canvas, scaleMode, resolution);
+    return new Phaser.BaseTexture(canvas, scaleMode, resolution);
 };

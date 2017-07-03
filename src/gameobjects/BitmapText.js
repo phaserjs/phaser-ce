@@ -31,7 +31,7 @@
 *
 * @class Phaser.BitmapText
 * @constructor
-* @extends PIXI.DisplayObjectContainer
+* @extends Phaser.DisplayObjectContainer
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.AutoCull
@@ -60,7 +60,7 @@ Phaser.BitmapText = function (game, x, y, font, text, size, align) {
     size = size || 32;
     align = align || 'left';
 
-    PIXI.DisplayObjectContainer.call(this);
+    Phaser.DisplayObjectContainer.call(this);
 
     /**
     * @property {number} type - The const type of this object.
@@ -156,7 +156,7 @@ Phaser.BitmapText = function (game, x, y, font, text, size, align) {
 
 };
 
-Phaser.BitmapText.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Phaser.BitmapText.prototype = Object.create(Phaser.DisplayObjectContainer.prototype);
 Phaser.BitmapText.prototype.constructor = Phaser.BitmapText;
 
 Phaser.Component.Core.install.call(Phaser.BitmapText.prototype, [
@@ -444,7 +444,7 @@ Phaser.BitmapText.prototype.updateText = function () {
             else
             {
                 //  We need a new sprite as the pool is empty or exhausted
-                g = new PIXI.Sprite(charData.texture);
+                g = new Phaser.DisplaySprite(charData.texture);
                 g.name = line.text[c];
                 this._glyphs.push(g);
             }
@@ -529,7 +529,7 @@ Phaser.BitmapText.prototype.updateTransform = function () {
         this._prevAnchor.copyFrom(this.anchor);
     }
 
-    PIXI.DisplayObjectContainer.prototype.updateTransform.call(this);
+    Phaser.DisplayObjectContainer.prototype.updateTransform.call(this);
 
 };
 

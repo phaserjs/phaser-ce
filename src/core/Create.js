@@ -88,7 +88,7 @@ Phaser.Create.PALETTE_JAPANESE_MACHINE = 4;
 Phaser.Create.prototype = {
 
     /**
-     * Generates a new PIXI.Texture from the given data, which can be applied to a Sprite.
+     * Generates a new Phaser.Texture from the given data, which can be applied to a Sprite.
      *
      * This allows you to create game graphics quickly and easily, with no external files but that use actual proper images
      * rather than Phaser.Graphics objects, which are expensive to render and limited in scope.
@@ -119,7 +119,7 @@ Phaser.Create.prototype = {
      * @param {boolean} [generateTexture=true] - When false, a new BitmapData object is returned instead.
      * @param {function} [callback] - A function to execute once the texture is generated. It will be passed the newly generated texture.
      * @param {any} [callbackContext] - The context in which to invoke the callback.
-     * @return {?PIXI.Texture|Phaser.BitmapData} The newly generated texture, or a new BitmapData object if `generateTexture` is false, or `null` if a callback was passed and the texture isn't available yet.
+     * @return {?Phaser.Texture|Phaser.BitmapData} The newly generated texture, or a new BitmapData object if `generateTexture` is false, or `null` if a callback was passed and the texture isn't available yet.
      */
     texture: function (key, data, pixelWidth, pixelHeight, palette, generateTexture, callback, callbackContext) {
 
@@ -178,7 +178,7 @@ Phaser.Create.prototype = {
      * @param {boolean} [generateTexture=true] - When false, a new BitmapData object is returned instead.
      * @param {function} [callback] - A function to execute once the texture is generated. It will be passed the newly generated texture.
      * @param {any} [callbackContext] - The context in which to invoke the callback.
-     * @return {?PIXI.Texture|Phaser.BitmapData} The newly generated texture, or a new BitmapData object if `generateTexture` is false, or `null` if a callback was passed and the texture isn't available yet.
+     * @return {?Phaser.Texture|Phaser.BitmapData} The newly generated texture, or a new BitmapData object if `generateTexture` is false, or `null` if a callback was passed and the texture isn't available yet.
      */
     grid: function (key, width, height, cellWidth, cellHeight, color, generateTexture, callback, callbackContext) {
 

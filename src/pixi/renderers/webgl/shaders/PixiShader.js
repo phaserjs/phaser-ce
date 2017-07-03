@@ -8,7 +8,7 @@
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.PixiShader = function(gl)
+Phaser.PixiShader = function(gl)
 {
     /**
      * @property _UID
@@ -70,9 +70,9 @@ PIXI.PixiShader = function(gl)
     this.init();
 };
 
-PIXI.PixiShader.prototype.constructor = PIXI.PixiShader;
+Phaser.PixiShader.prototype.constructor = Phaser.PixiShader;
 
-PIXI.PixiShader.prototype.initMultitexShader = function () {
+Phaser.PixiShader.prototype.initMultitexShader = function () {
     var gl = this.gl;
     this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
     var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n'
@@ -103,7 +103,7 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
         '}'
     ];
 
-    var program = PIXI.compileProgram(gl, this.vertexSrc || PIXI.PixiShader.defaultVertexSrc, this.fragmentSrc);
+    var program = Phaser.compileProgram(gl, this.vertexSrc || Phaser.PixiShader.defaultVertexSrc, this.fragmentSrc);
 
     gl.useProgram(program);
 
@@ -161,7 +161,7 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
     this.program = program;
 };
 
-PIXI.PixiShader.prototype.initDefaultShader = function () {
+Phaser.PixiShader.prototype.initDefaultShader = function () {
 
     if (this.fragmentSrc === null) {
         this.fragmentSrc = [
@@ -178,7 +178,7 @@ PIXI.PixiShader.prototype.initDefaultShader = function () {
 
     var gl = this.gl;
 
-    var program = PIXI.compileProgram(gl, this.vertexSrc || PIXI.PixiShader.defaultVertexSrc, this.fragmentSrc);
+    var program = Phaser.compileProgram(gl, this.vertexSrc || Phaser.PixiShader.defaultVertexSrc, this.fragmentSrc);
 
     gl.useProgram(program);
 
@@ -226,9 +226,9 @@ PIXI.PixiShader.prototype.initDefaultShader = function () {
 *
 * @method init
 */
-PIXI.PixiShader.prototype.init = function(usingFilter)
+Phaser.PixiShader.prototype.init = function(usingFilter)
 {
-    if (PIXI._enableMultiTextureToggle && !usingFilter) {
+    if (Phaser._enableMultiTextureToggle && !usingFilter) {
         this.initMultitexShader();
     } else {
         this.initDefaultShader();
@@ -243,7 +243,7 @@ PIXI.PixiShader.prototype.init = function(usingFilter)
 *
 * @method initUniforms
 */
-PIXI.PixiShader.prototype.initUniforms = function()
+Phaser.PixiShader.prototype.initUniforms = function()
 {
     this.textureCount = 1;
     var gl = this.gl;
@@ -314,7 +314,7 @@ PIXI.PixiShader.prototype.initUniforms = function()
 *
 * @method initSampler2D
 */
-PIXI.PixiShader.prototype.initSampler2D = function(uniform)
+Phaser.PixiShader.prototype.initSampler2D = function(uniform)
 {
     if (!uniform.value || !uniform.value.baseTexture || !uniform.value.baseTexture.hasLoaded)
     {
@@ -390,7 +390,7 @@ PIXI.PixiShader.prototype.initSampler2D = function(uniform)
 *
 * @method syncUniforms
 */
-PIXI.PixiShader.prototype.syncUniforms = function()
+Phaser.PixiShader.prototype.syncUniforms = function()
 {
     this.textureCount = 1;
     var uniform;
@@ -431,7 +431,7 @@ PIXI.PixiShader.prototype.syncUniforms = function()
 
                 if(uniform.value.baseTexture._dirty[gl.id])
                 {
-                    PIXI.instances[gl.id].updateTexture(uniform.value.baseTexture);
+                    Phaser.instances[gl.id].updateTexture(uniform.value.baseTexture);
                 }
                 else
                 {
@@ -439,7 +439,7 @@ PIXI.PixiShader.prototype.syncUniforms = function()
                     gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id]);
                 }
 
-                //  gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id] || PIXI.createWebGLTexture( uniform.value.baseTexture, gl));
+                //  gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id] || Phaser.createWebGLTexture( uniform.value.baseTexture, gl));
                 gl.uniform1i(uniform.uniformLocation, this.textureCount);
                 this.textureCount++;
             }
@@ -457,7 +457,7 @@ PIXI.PixiShader.prototype.syncUniforms = function()
 *
 * @method destroy
 */
-PIXI.PixiShader.prototype.destroy = function()
+Phaser.PixiShader.prototype.destroy = function()
 {
     this.gl.deleteProgram( this.program );
     this.uniforms = null;
@@ -472,7 +472,7 @@ PIXI.PixiShader.prototype.destroy = function()
 * @property defaultVertexSrc
 * @type String
 */
-PIXI.PixiShader.defaultVertexSrc = [
+Phaser.PixiShader.defaultVertexSrc = [
     '// PixiShader Vertex Shader',
     '// With multi-texture rendering',
     'attribute vec2 aVertexPosition;',

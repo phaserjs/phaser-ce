@@ -4,16 +4,16 @@
 
 /**
  * TextureSilentFail is a boolean that defaults to `false`. 
- * If `true` then `PIXI.Texture.setFrame` will no longer throw an error if the texture dimensions are incorrect. 
+ * If `true` then `Phaser.Texture.setFrame` will no longer throw an error if the texture dimensions are incorrect. 
  * Instead `Texture.valid` will be set to `false` (#1556)
  *
  * @type {boolean}
  */
-PIXI.TextureSilentFail = false;
+Phaser.TextureSilentFail = false;
 
 /**
  * A texture stores the information that represents an image or part of an image. It cannot be added
- * to the display list directly. Instead use it as the texture for a PIXI.Sprite. If no frame is provided then the whole image is used.
+ * to the display list directly. Instead use it as the texture for a Phaser.DisplaySprite. If no frame is provided then the whole image is used.
  *
  * @class Texture
  * @constructor
@@ -22,7 +22,7 @@ PIXI.TextureSilentFail = false;
  * @param [crop] {Rectangle} The area of original texture 
  * @param [trim] {Rectangle} Trimmed texture rectangle
  */
-PIXI.Texture = function(baseTexture, frame, crop, trim)
+Phaser.Texture = function(baseTexture, frame, crop, trim)
 {
     /**
      * Does this Texture have any frame data assigned to it?
@@ -35,10 +35,10 @@ PIXI.Texture = function(baseTexture, frame, crop, trim)
     if (!frame)
     {
         this.noFrame = true;
-        frame = new PIXI.Rectangle(0,0,1,1);
+        frame = new Phaser.Rectangle(0,0,1,1);
     }
 
-    if (baseTexture instanceof PIXI.Texture)
+    if (baseTexture instanceof Phaser.Texture)
     {
         baseTexture = baseTexture.baseTexture;
     }
@@ -131,7 +131,7 @@ PIXI.Texture = function(baseTexture, frame, crop, trim)
      * @property crop
      * @type Rectangle
      */
-    this.crop = crop || new PIXI.Rectangle(0, 0, 1, 1);
+    this.crop = crop || new Phaser.Rectangle(0, 0, 1, 1);
 
     /**
      * A flag that controls if this frame is rotated or not.
@@ -145,13 +145,13 @@ PIXI.Texture = function(baseTexture, frame, crop, trim)
 
     if (baseTexture.hasLoaded)
     {
-        if (this.noFrame) frame = new PIXI.Rectangle(0, 0, baseTexture.width, baseTexture.height);
+        if (this.noFrame) frame = new Phaser.Rectangle(0, 0, baseTexture.width, baseTexture.height);
         this.setFrame(frame);
     }
 
 };
 
-PIXI.Texture.prototype.constructor = PIXI.Texture;
+Phaser.Texture.prototype.constructor = Phaser.Texture;
 
 /**
  * Called when the base texture is loaded
@@ -159,13 +159,13 @@ PIXI.Texture.prototype.constructor = PIXI.Texture;
  * @method onBaseTextureLoaded
  * @private
  */
-PIXI.Texture.prototype.onBaseTextureLoaded = function()
+Phaser.Texture.prototype.onBaseTextureLoaded = function()
 {
     var baseTexture = this.baseTexture;
 
     if (this.noFrame)
     {
-        this.frame = new PIXI.Rectangle(0, 0, baseTexture.width, baseTexture.height);
+        this.frame = new Phaser.Rectangle(0, 0, baseTexture.width, baseTexture.height);
     }
 
     this.setFrame(this.frame);
@@ -177,7 +177,7 @@ PIXI.Texture.prototype.onBaseTextureLoaded = function()
  * @method destroy
  * @param destroyBase {Boolean} Whether to destroy the base texture as well
  */
-PIXI.Texture.prototype.destroy = function(destroyBase)
+Phaser.Texture.prototype.destroy = function(destroyBase)
 {
     if (destroyBase) this.baseTexture.destroy();
 
@@ -190,7 +190,7 @@ PIXI.Texture.prototype.destroy = function(destroyBase)
  * @method setFrame
  * @param frame {Rectangle} The frame of the texture to set it to
  */
-PIXI.Texture.prototype.setFrame = function(frame)
+Phaser.Texture.prototype.setFrame = function(frame)
 {
     this.noFrame = false;
 
@@ -205,7 +205,7 @@ PIXI.Texture.prototype.setFrame = function(frame)
 
     if (!this.trim && (frame.x + frame.width > this.baseTexture.width || frame.y + frame.height > this.baseTexture.height))
     {
-        if (!PIXI.TextureSilentFail)
+        if (!Phaser.TextureSilentFail)
         {
             throw new Error('Texture Error: frame does not fit inside the base Texture dimensions ' + this);
         }
@@ -234,9 +234,9 @@ PIXI.Texture.prototype.setFrame = function(frame)
  * @method _updateUvs
  * @private
  */
-PIXI.Texture.prototype._updateUvs = function()
+Phaser.Texture.prototype._updateUvs = function()
 {
-    if(!this._uvs)this._uvs = new PIXI.TextureUvs();
+    if(!this._uvs)this._uvs = new Phaser.TextureUvs();
 
     var frame = this.crop;
     var tw = this.baseTexture.width;
@@ -261,9 +261,9 @@ PIXI.Texture.prototype._updateUvs = function()
  * @method _updateUvsInverted
  * @private
  */
-PIXI.Texture.prototype._updateUvsInverted = function () {
+Phaser.Texture.prototype._updateUvsInverted = function () {
 
-    if (!this._uvs) { this._uvs = new PIXI.TextureUvs(); }
+    if (!this._uvs) { this._uvs = new Phaser.TextureUvs(); }
 
     var frame = this.crop;
     var tw = this.baseTexture.width;
@@ -289,17 +289,17 @@ PIXI.Texture.prototype._updateUvsInverted = function () {
  * @static
  * @method fromCanvas
  * @param canvas {Canvas} The canvas element source of the texture
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}Phaser.scaleModes{{/crossLink}} for possible values
  * @return {Texture}
  */
-PIXI.Texture.fromCanvas = function(canvas, scaleMode)
+Phaser.Texture.fromCanvas = function(canvas, scaleMode)
 {
-    var baseTexture = PIXI.BaseTexture.fromCanvas(canvas, scaleMode);
+    var baseTexture = Phaser.BaseTexture.fromCanvas(canvas, scaleMode);
 
-    return new PIXI.Texture(baseTexture);
+    return new Phaser.Texture(baseTexture);
 };
 
-PIXI.TextureUvs = function()
+Phaser.TextureUvs = function()
 {
     this.x0 = 0;
     this.y0 = 0;

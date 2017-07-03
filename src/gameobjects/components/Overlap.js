@@ -23,7 +23,7 @@ Phaser.Component.Overlap.prototype = {
     * It should be fine for low-volume testing where physics isn't required.
     *
     * @method
-    * @param {Phaser.Sprite|Phaser.Image|Phaser.TileSprite|Phaser.Button|PIXI.DisplayObject} displayObject - The display object to check against.
+    * @param {Phaser.Sprite|Phaser.Image|Phaser.TileSprite|Phaser.Button|Phaser.DisplayObject} displayObject - The display object to check against.
     * @return {boolean} True if the bounds of this Game Object intersects at any point with the bounds of the given display object.
     */
     overlap: function (displayObject) {

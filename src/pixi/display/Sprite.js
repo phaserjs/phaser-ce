@@ -3,16 +3,16 @@
  */
 
 /**
- * The Sprite object is the base for all textured objects that are rendered to the screen
+ * The DisplaySprite object is the base for all textured objects that are rendered to the screen
  *
- * @class Sprite
+ * @class DisplaySprite
  * @extends DisplayObjectContainer
  * @constructor
  * @param texture {Texture} The texture for this sprite
  */
-PIXI.Sprite = function (texture) {
+Phaser.DisplaySprite = function (texture) {
 
-    PIXI.DisplayObjectContainer.call(this);
+    Phaser.DisplayObjectContainer.call(this);
 
     /**
      * The anchor sets the origin point of the texture.
@@ -23,7 +23,7 @@ PIXI.Sprite = function (texture) {
      * @property anchor
      * @type Point
      */
-    this.anchor = new PIXI.Point(PIXI.Sprite.defaultAnchor.x, PIXI.Sprite.defaultAnchor.y);
+    this.anchor = new Phaser.Point(Phaser.DisplaySprite.defaultAnchor.x, Phaser.DisplaySprite.defaultAnchor.y);
 
     /**
      * The texture that the sprite is using
@@ -31,7 +31,7 @@ PIXI.Sprite = function (texture) {
      * @property texture
      * @type Texture
      */
-    this.texture = texture || PIXI.Texture.emptyTexture;
+    this.texture = texture || Phaser.Texture.emptyTexture;
 
     /**
      * The width of the sprite (this is initially set by the texture)
@@ -80,15 +80,15 @@ PIXI.Sprite = function (texture) {
     this.tintedTexture = null;
 
     /**
-     * The blend mode to be applied to the sprite. Set to PIXI.blendModes.NORMAL to remove any blend mode.
+     * The blend mode to be applied to the sprite. Set to Phaser.blendModes.NORMAL to remove any blend mode.
      *
      * Warning: You cannot have a blend mode and a filter active on the same Sprite. Doing so will render the sprite invisible.
      *
      * @property blendMode
      * @type Number
-     * @default PIXI.blendModes.NORMAL;
+     * @default Phaser.blendModes.NORMAL;
      */
-    this.blendMode = PIXI.blendModes.NORMAL;
+    this.blendMode = Phaser.blendModes.NORMAL;
 
     /**
      * The shader that will be used to render this Sprite.
@@ -119,17 +119,17 @@ PIXI.Sprite = function (texture) {
 };
 
 /**
- * @property {object} PIXI.Sprite.defaultAnchor - A Point-like object.
- * @property {number} PIXI.Sprite.defaultAnchor.x
+ * @property {object} Phaser.DisplaySprite.defaultAnchor - A Point-like object.
+ * @property {number} Phaser.DisplaySprite.defaultAnchor.x
  * @default 0
- * @property {number} PIXI.Sprite.defaultAnchor.y
+ * @property {number} Phaser.DisplaySprite.defaultAnchor.y
  * @default 0
  */
-PIXI.Sprite.defaultAnchor = {x: 0, y: 0};
+Phaser.DisplaySprite.defaultAnchor = {x: 0, y: 0};
 
 // constructor
-PIXI.Sprite.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
-PIXI.Sprite.prototype.constructor = PIXI.Sprite;
+Phaser.DisplaySprite.prototype = Object.create(Phaser.DisplayObjectContainer.prototype);
+Phaser.DisplaySprite.prototype.constructor = Phaser.DisplaySprite;
 
 /**
  * The width of the sprite, setting this will actually modify the scale to achieve the value set
@@ -137,7 +137,7 @@ PIXI.Sprite.prototype.constructor = PIXI.Sprite;
  * @property width
  * @type Number
  */
-Object.defineProperty(PIXI.Sprite.prototype, 'width', {
+Object.defineProperty(Phaser.DisplaySprite.prototype, 'width', {
 
     get: function() {
         return this.scale.x * this.texture.frame.width;
@@ -156,7 +156,7 @@ Object.defineProperty(PIXI.Sprite.prototype, 'width', {
  * @property height
  * @type Number
  */
-Object.defineProperty(PIXI.Sprite.prototype, 'height', {
+Object.defineProperty(Phaser.DisplaySprite.prototype, 'height', {
 
     get: function() {
         return  this.scale.y * this.texture.frame.height;
@@ -177,7 +177,7 @@ Object.defineProperty(PIXI.Sprite.prototype, 'height', {
  * @param texture {Texture} The PIXI texture that is displayed by the sprite
  * @param [destroy=false] {boolean} Call Texture.destroy on the current texture before replacing it with the new one?
  */
-PIXI.Sprite.prototype.setTexture = function(texture, destroyBase)
+Phaser.DisplaySprite.prototype.setTexture = function(texture, destroyBase)
 {
     if (destroyBase !== undefined)
     {
@@ -198,7 +198,7 @@ PIXI.Sprite.prototype.setTexture = function(texture, destroyBase)
  * @param event
  * @private
  */
-PIXI.Sprite.prototype.onTextureUpdate = function()
+Phaser.DisplaySprite.prototype.onTextureUpdate = function()
 {
     // so if _width is 0 then width was not set..
     if (this._width) this.scale.x = this._width / this.texture.frame.width;
@@ -220,7 +220,7 @@ PIXI.Sprite.prototype.onTextureUpdate = function()
 * @param matrix {Matrix} the transformation matrix of the sprite
 * @return {Rectangle} the framing rectangle
 */
-PIXI.Sprite.prototype.getBounds = function(matrix)
+Phaser.DisplaySprite.prototype.getBounds = function(matrix)
 {
     var width = this.texture.frame.width;
     var height = this.texture.frame.height;
@@ -254,7 +254,7 @@ PIXI.Sprite.prototype.getBounds = function(matrix)
             a *= -1;
             var temp = w0;
             w0 = -w1;
-            w1 = -temp; 
+            w1 = -temp;
         }
 
         if (d < 0)
@@ -262,11 +262,11 @@ PIXI.Sprite.prototype.getBounds = function(matrix)
             d *= -1;
             var temp = h0;
             h0 = -h1;
-            h1 = -temp; 
+            h1 = -temp;
         }
 
         // this means there is no rotation going on right? RIGHT?
-        // if thats the case then we can avoid checking the bound values! yay         
+        // if thats the case then we can avoid checking the bound values! yay
         minX = a * w1 + tx;
         maxX = a * w0 + tx;
         minY = d * h1 + ty;
@@ -327,11 +327,11 @@ PIXI.Sprite.prototype.getBounds = function(matrix)
  * @method getLocalBounds
  * @return {Rectangle} The rectangular bounding area
  */
-PIXI.Sprite.prototype.getLocalBounds = function () {
+Phaser.DisplaySprite.prototype.getLocalBounds = function () {
 
     var matrixCache = this.worldTransform;
 
-    this.worldTransform = PIXI.identityMatrix;
+    this.worldTransform = Phaser.identityMatrix;
 
     for (var i = 0; i < this.children.length; i++)
     {
@@ -359,7 +359,7 @@ PIXI.Sprite.prototype.getLocalBounds = function () {
 * @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
 * @private
 */
-PIXI.Sprite.prototype._renderWebGL = function(renderSession, matrix)
+Phaser.DisplaySprite.prototype._renderWebGL = function(renderSession, matrix)
 {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (!this.visible || this.alpha <= 0 || !this.renderable) return;
@@ -429,7 +429,7 @@ PIXI.Sprite.prototype._renderWebGL = function(renderSession, matrix)
 * @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
 * @private
 */
-PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
+Phaser.DisplaySprite.prototype._renderCanvas = function(renderSession, matrix)
 {
     // If the sprite is not visible or the alpha is 0 then no need to render this element
     if (!this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width <= 0 || this.texture.crop.height <= 0)
@@ -448,7 +448,7 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     if (this.blendMode !== renderSession.currentBlendMode)
     {
         renderSession.currentBlendMode = this.blendMode;
-        renderSession.context.globalCompositeOperation = PIXI.blendModesCanvas[renderSession.currentBlendMode];
+        renderSession.context.globalCompositeOperation = Phaser.blendModesCanvas[renderSession.currentBlendMode];
     }
 
     if (this._mask)
@@ -481,7 +481,7 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     if (renderSession.smoothProperty && renderSession.scaleMode !== this.texture.baseTexture.scaleMode)
     {
         renderSession.scaleMode = this.texture.baseTexture.scaleMode;
-        renderSession.context[renderSession.smoothProperty] = (renderSession.scaleMode === PIXI.scaleModes.LINEAR);
+        renderSession.context[renderSession.smoothProperty] = (renderSession.scaleMode === Phaser.scaleModes.LINEAR);
     }
 
     //  If the texture is trimmed we offset by the trim x/y, otherwise we use the frame dimensions
@@ -501,11 +501,11 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
         var c = wt.c;
         var d = wt.d;
         var e = cw;
-        
+
         // Offset before rotating
         tx = wt.c * ch + tx;
         ty = wt.d * ch + ty;
-        
+
         // Rotate matrix by 90 degrees
         // We use precalculated values for sine and cosine of rad(90)
         wt.a = a * 6.123233995736766e-17 + -c;
@@ -537,7 +537,7 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     {
         if (this.texture.requiresReTint || this.cachedTint !== this.tint)
         {
-            this.tintedTexture = PIXI.CanvasTinter.getTintedTexture(this, this.tint);
+            this.tintedTexture = Phaser.CanvasTinter.getTintedTexture(this, this.tint);
 
             this.cachedTint = this.tint;
             this.texture.requiresReTint = false;
@@ -549,7 +549,7 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     {
         var cx = this.texture.crop.x;
         var cy = this.texture.crop.y;
-        
+
         cw = Math.floor(cw)
         ch = Math.floor(ch)
 

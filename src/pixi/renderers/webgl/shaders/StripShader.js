@@ -7,7 +7,7 @@
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.StripShader = function(gl)
+Phaser.StripShader = function(gl)
 {
     /**
      * @property _UID
@@ -29,7 +29,7 @@ PIXI.StripShader = function(gl)
      */
     this.program = null;
 
-    if (PIXI._enableMultiTextureToggle) {
+    if (Phaser._enableMultiTextureToggle) {
         var gl = this.gl;
         this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
         var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord);return;}\n'
@@ -119,26 +119,26 @@ PIXI.StripShader = function(gl)
     this.init();
 };
 
-PIXI.StripShader.prototype.constructor = PIXI.StripShader;
+Phaser.StripShader.prototype.constructor = Phaser.StripShader;
 
 /**
 * Initialises the shader.
 * 
 * @method init
 */
-PIXI.StripShader.prototype.init = function()
+Phaser.StripShader.prototype.init = function()
 {
     var gl = this.gl;
-    var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    var program = Phaser.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
     gl.useProgram(program);
 
     // get and store the uniforms for the shader
-    this.uSampler = PIXI._enableMultiTextureToggle ?
+    this.uSampler = Phaser._enableMultiTextureToggle ?
                          gl.getUniformLocation(program, 'uSamplerArray[0]') : 
                          gl.getUniformLocation(program, 'uSampler');
 
 
-    if (PIXI._enableMultiTextureToggle) {
+    if (Phaser._enableMultiTextureToggle) {
         var indices = [];
         // HACK: we bind an empty texture to avoid WebGL warning spam.
         var tempTexture = gl.createTexture();
@@ -177,7 +177,7 @@ PIXI.StripShader.prototype.init = function()
 * 
 * @method destroy
 */
-PIXI.StripShader.prototype.destroy = function()
+Phaser.StripShader.prototype.destroy = function()
 {
     this.gl.deleteProgram( this.program );
     this.uniforms = null;

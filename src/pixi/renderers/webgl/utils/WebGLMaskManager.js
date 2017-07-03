@@ -7,11 +7,11 @@
 * @constructor
 * @private
 */
-PIXI.WebGLMaskManager = function()
+Phaser.WebGLMaskManager = function()
 {
 };
 
-PIXI.WebGLMaskManager.prototype.constructor = PIXI.WebGLMaskManager;
+Phaser.WebGLMaskManager.prototype.constructor = Phaser.WebGLMaskManager;
 
 /**
 * Sets the drawing context to the one given in parameter.
@@ -19,7 +19,7 @@ PIXI.WebGLMaskManager.prototype.constructor = PIXI.WebGLMaskManager;
 * @method setContext 
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.WebGLMaskManager.prototype.setContext = function(gl)
+Phaser.WebGLMaskManager.prototype.setContext = function(gl)
 {
     this.gl = gl;
 };
@@ -31,13 +31,13 @@ PIXI.WebGLMaskManager.prototype.setContext = function(gl)
 * @param maskData {Array}
 * @param renderSession {Object}
 */
-PIXI.WebGLMaskManager.prototype.pushMask = function(maskData, renderSession)
+Phaser.WebGLMaskManager.prototype.pushMask = function(maskData, renderSession)
 {
     var gl = renderSession.gl;
 
     if (maskData.dirty)
     {
-        PIXI.WebGLGraphics.updateGraphics(maskData, gl);
+        Phaser.WebGLGraphics.updateGraphics(maskData, gl);
     }
 
     if (maskData._webGL[gl.id] === undefined || maskData._webGL[gl.id].data === undefined || maskData._webGL[gl.id].data.length === 0)
@@ -55,7 +55,7 @@ PIXI.WebGLMaskManager.prototype.pushMask = function(maskData, renderSession)
 * @param maskData {Array}
 * @param renderSession {Object} an object containing all the useful parameters
 */
-PIXI.WebGLMaskManager.prototype.popMask = function(maskData, renderSession)
+Phaser.WebGLMaskManager.prototype.popMask = function(maskData, renderSession)
 {
     var gl = this.gl;
 
@@ -73,7 +73,7 @@ PIXI.WebGLMaskManager.prototype.popMask = function(maskData, renderSession)
 * 
 * @method destroy
 */
-PIXI.WebGLMaskManager.prototype.destroy = function()
+Phaser.WebGLMaskManager.prototype.destroy = function()
 {
     this.gl = null;
 };

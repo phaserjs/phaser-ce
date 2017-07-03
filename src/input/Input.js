@@ -980,7 +980,7 @@ Phaser.Input.prototype = {
                 }
             }
         }
-        else if (displayObject instanceof PIXI.Sprite)
+        else if (displayObject instanceof Phaser.Sprite)
         {
             var width = displayObject.texture.frame.width / displayObject.texture.baseTexture.resolution;
             var height = displayObject.texture.frame.height / displayObject.texture.baseTexture.resolution;

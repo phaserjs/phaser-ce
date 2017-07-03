@@ -9,19 +9,19 @@
  * @class CanvasGraphics
  * @static
  */
-PIXI.CanvasGraphics = function()
+Phaser.CanvasGraphics = function()
 {
 };
 
 /*
- * Renders a PIXI.Graphics object to a canvas.
+ * Renders a Phaser.Graphics object to a canvas.
  *
  * @method renderGraphics
  * @static
  * @param graphics {Graphics} the actual graphics object to render
  * @param context {CanvasRenderingContext2D} the 2d drawing method of the canvas
  */
-PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
+Phaser.CanvasGraphics.renderGraphics = function(graphics, context)
 {
     var worldAlpha = graphics.worldAlpha;
 
@@ -208,7 +208,7 @@ PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
  * @param graphics {Graphics} the graphics which will be used as a mask
  * @param context {CanvasRenderingContext2D} the context 2d method of the canvas
  */
-PIXI.CanvasGraphics.renderGraphicsMask = function(graphics, context)
+Phaser.CanvasGraphics.renderGraphicsMask = function(graphics, context)
 {
     var len = graphics.graphicsData.length;
 
@@ -306,7 +306,7 @@ PIXI.CanvasGraphics.renderGraphicsMask = function(graphics, context)
     }
 };
 
-PIXI.CanvasGraphics.updateGraphicsTint = function(graphics)
+Phaser.CanvasGraphics.updateGraphicsTint = function(graphics)
 {
     if (graphics.tint === 0xFFFFFF)
     {

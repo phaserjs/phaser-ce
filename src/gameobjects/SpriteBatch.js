@@ -67,7 +67,7 @@ Phaser.SpriteBatch.prototype._renderWebGL = function (renderSession) {
 
     if (!this.ready)
     {
-        this.fastSpriteBatch = new PIXI.WebGLFastSpriteBatch(renderSession.gl);
+        this.fastSpriteBatch = new Phaser.WebGLFastSpriteBatch(renderSession.gl);
 
         this.ready = true;
     }

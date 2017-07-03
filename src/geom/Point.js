@@ -950,6 +950,3 @@ Phaser.Point.isPoint = function(obj) {
     return (obj != null) && (typeof obj.x === 'number') && (typeof obj.y === 'number');
 
 };
-
-//   Because PIXI uses its own Point, we'll replace it with ours to avoid duplicating code or confusion.
-PIXI.Point = Phaser.Point;

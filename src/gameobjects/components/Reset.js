@@ -25,7 +25,7 @@ Phaser.Component.Reset = function () {};
 * @param {number} x - The x coordinate (in world space) to position the Game Object at.
 * @param {number} y - The y coordinate (in world space) to position the Game Object at.
 * @param {number} [health=1] - The health to give the Game Object if it has the Health component.
-* @return {PIXI.DisplayObject} This instance.
+* @return {Phaser.DisplayObject} This instance.
 */
 Phaser.Component.Reset.prototype.reset = function (x, y, health) {
 

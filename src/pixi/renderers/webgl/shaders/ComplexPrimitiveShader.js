@@ -7,7 +7,7 @@
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.ComplexPrimitiveShader = function(gl)
+Phaser.ComplexPrimitiveShader = function(gl)
 {
     /**
      * @property _UID
@@ -74,18 +74,18 @@ PIXI.ComplexPrimitiveShader = function(gl)
     this.init();
 };
 
-PIXI.ComplexPrimitiveShader.prototype.constructor = PIXI.ComplexPrimitiveShader;
+Phaser.ComplexPrimitiveShader.prototype.constructor = Phaser.ComplexPrimitiveShader;
 
 /**
 * Initialises the shader.
 * 
 * @method init
 */
-PIXI.ComplexPrimitiveShader.prototype.init = function()
+Phaser.ComplexPrimitiveShader.prototype.init = function()
 {
     var gl = this.gl;
 
-    var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    var program = Phaser.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
     gl.useProgram(program);
 
     // get and store the uniforms for the shader
@@ -112,7 +112,7 @@ PIXI.ComplexPrimitiveShader.prototype.init = function()
 * 
 * @method destroy
 */
-PIXI.ComplexPrimitiveShader.prototype.destroy = function()
+Phaser.ComplexPrimitiveShader.prototype.destroy = function()
 {
     this.gl.deleteProgram( this.program );
     this.uniforms = null;

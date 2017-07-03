@@ -12,7 +12,7 @@
 * @class WebGLFastSpriteBatch
 * @constructor
 */
-PIXI.WebGLFastSpriteBatch = function(gl)
+Phaser.WebGLFastSpriteBatch = function(gl)
 {
 
     /**
@@ -126,7 +126,7 @@ PIXI.WebGLFastSpriteBatch = function(gl)
     this.setContext(gl);
 };
 
-PIXI.WebGLFastSpriteBatch.prototype.constructor = PIXI.WebGLFastSpriteBatch;
+Phaser.WebGLFastSpriteBatch.prototype.constructor = Phaser.WebGLFastSpriteBatch;
 
 /**
  * Sets the WebGL Context.
@@ -134,7 +134,7 @@ PIXI.WebGLFastSpriteBatch.prototype.constructor = PIXI.WebGLFastSpriteBatch;
  * @method setContext
  * @param gl {WebGLContext} the current WebGL drawing context
  */
-PIXI.WebGLFastSpriteBatch.prototype.setContext = function(gl)
+Phaser.WebGLFastSpriteBatch.prototype.setContext = function(gl)
 {
     this.gl = gl;
 
@@ -157,7 +157,7 @@ PIXI.WebGLFastSpriteBatch.prototype.setContext = function(gl)
  * @param spriteBatch {WebGLSpriteBatch}
  * @param renderSession {Object}
  */
-PIXI.WebGLFastSpriteBatch.prototype.begin = function(spriteBatch, renderSession)
+Phaser.WebGLFastSpriteBatch.prototype.begin = function(spriteBatch, renderSession)
 {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.fastShader;
@@ -170,7 +170,7 @@ PIXI.WebGLFastSpriteBatch.prototype.begin = function(spriteBatch, renderSession)
 /**
  * @method end
  */
-PIXI.WebGLFastSpriteBatch.prototype.end = function()
+Phaser.WebGLFastSpriteBatch.prototype.end = function()
 {
     this.flush();
 };
@@ -179,7 +179,7 @@ PIXI.WebGLFastSpriteBatch.prototype.end = function()
  * @method render
  * @param spriteBatch {WebGLSpriteBatch}
  */
-PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
+Phaser.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
 {
     var children = spriteBatch.children;
     var sprite = children[0];
@@ -210,19 +210,19 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
  * @method renderSprite
  * @param sprite {Sprite}
  */
-PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function(sprite)
+Phaser.WebGLFastSpriteBatch.prototype.renderSprite = function(sprite)
 {
     var texture = sprite.texture;
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
     
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture &&
+    if (Phaser.WebGLRenderer.textureArray[textureIndex] != baseTexture &&
         baseTexture._glTextures[gl.id] && !sprite.texture.baseTexture.skipRender) {
         this.flush();
         gl.activeTexture(gl.TEXTURE0 + textureIndex);
         gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+        Phaser.WebGLRenderer.textureArray[textureIndex] = baseTexture;
         if(!sprite.texture._uvs)return;
 
     }
@@ -360,7 +360,7 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function(sprite)
 /**
  * @method flush
  */
-PIXI.WebGLFastSpriteBatch.prototype.flush = function()
+Phaser.WebGLFastSpriteBatch.prototype.flush = function()
 {
     // If the batch is length 0 then return as there is nothing to draw
     if (this.currentBatchSize===0)return;
@@ -405,7 +405,7 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function()
 /**
  * @method stop
  */
-PIXI.WebGLFastSpriteBatch.prototype.stop = function()
+Phaser.WebGLFastSpriteBatch.prototype.stop = function()
 {
     this.flush();
 };
@@ -413,7 +413,7 @@ PIXI.WebGLFastSpriteBatch.prototype.stop = function()
 /**
  * @method start
  */
-PIXI.WebGLFastSpriteBatch.prototype.start = function()
+Phaser.WebGLFastSpriteBatch.prototype.start = function()
 {
     var gl = this.gl;
 

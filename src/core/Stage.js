@@ -9,7 +9,7 @@
 * It also handles browser visibility handling and the pausing due to loss of focus.
 *
 * @class Phaser.Stage
-* @extends PIXI.DisplayObjectContainer
+* @extends Phaser.DisplayObjectContainer
 * @constructor
 * @param {Phaser.Game} game - Game reference to the currently running game.
  */
@@ -20,7 +20,7 @@ Phaser.Stage = function (game) {
     */
     this.game = game;
 
-    PIXI.DisplayObjectContainer.call(this);
+    Phaser.DisplayObjectContainer.call(this);
 
     /**
     * @property {string} name - The name of this object.
@@ -46,11 +46,11 @@ Phaser.Stage = function (game) {
     this.exists = true;
 
     /**
-    * @property {PIXI.Matrix} worldTransform - Current transform of the object based on world (parent) factors
+    * @property {Phaser.Matrix} worldTransform - Current transform of the object based on world (parent) factors
     * @private
     * @readOnly
     */
-    this.worldTransform = new PIXI.Matrix();
+    this.worldTransform = new Phaser.Matrix();
 
     /**
     * @property {Phaser.Stage} stage - The stage reference (the Stage is its own stage)
@@ -95,7 +95,7 @@ Phaser.Stage = function (game) {
 
 };
 
-Phaser.Stage.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Phaser.Stage.prototype = Object.create(Phaser.DisplayObjectContainer.prototype);
 Phaser.Stage.prototype.constructor = Phaser.Stage;
 
 /**
@@ -402,7 +402,7 @@ Object.defineProperty(Phaser.Stage.prototype, "smoothed", {
 
     get: function () {
 
-        return PIXI.scaleModes.DEFAULT === PIXI.scaleModes.LINEAR;
+        return Phaser.scaleModes.DEFAULT === Phaser.scaleModes.LINEAR;
 
     },
 
@@ -410,11 +410,11 @@ Object.defineProperty(Phaser.Stage.prototype, "smoothed", {
 
         if (value)
         {
-            PIXI.scaleModes.DEFAULT = PIXI.scaleModes.LINEAR;
+            Phaser.scaleModes.DEFAULT = Phaser.scaleModes.LINEAR;
         }
         else
         {
-            PIXI.scaleModes.DEFAULT = PIXI.scaleModes.NEAREST;
+            Phaser.scaleModes.DEFAULT = Phaser.scaleModes.NEAREST;
         }
     }
 

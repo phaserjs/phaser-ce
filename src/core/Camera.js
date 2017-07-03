@@ -82,7 +82,7 @@ Phaser.Camera = function (game, id, x, y, width, height) {
     this.target = null;
 
     /**
-    * @property {PIXI.DisplayObject} displayObject - The display object to which all game objects are added. Set by World.boot.
+    * @property {Phaser.DisplayObject} displayObject - The display object to which all game objects are added. Set by World.boot.
     */
     this.displayObject = null;
 

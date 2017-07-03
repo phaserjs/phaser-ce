@@ -10,16 +10,16 @@
  * @constructor
  * @param game {Phaser.Game} A reference to the Phaser Game instance
  */
-PIXI.CanvasRenderer = function (game) {
+Phaser.CanvasRenderer = function (game) {
 
     /**
     * @property {Phaser.Game} game - A reference to the Phaser Game instance.
     */
     this.game = game;
 
-    if (!PIXI.defaultRenderer)
+    if (!Phaser.defaultRenderer)
     {
-        PIXI.defaultRenderer = this;
+        Phaser.defaultRenderer = this;
     }
 
     /**
@@ -116,11 +116,11 @@ PIXI.CanvasRenderer = function (game) {
     this.count = 0;
 
     /**
-     * Instance of a PIXI.CanvasMaskManager, handles masking when using the canvas renderer
+     * Instance of a Phaser.CanvasMaskManager, handles masking when using the canvas renderer
      * @property CanvasMaskManager
      * @type CanvasMaskManager
      */
-    this.maskManager = new PIXI.CanvasMaskManager();
+    this.maskManager = new Phaser.CanvasMaskManager();
 
     /**
      * The render session is just a bunch of parameter used for rendering
@@ -147,15 +147,15 @@ PIXI.CanvasRenderer = function (game) {
 };
 
 // constructor
-PIXI.CanvasRenderer.prototype.constructor = PIXI.CanvasRenderer;
+Phaser.CanvasRenderer.prototype.constructor = Phaser.CanvasRenderer;
 
 /**
  * Renders the DisplayObjectContainer, usually the Phaser.Stage, to this canvas view.
  *
  * @method render
- * @param root {Phaser.Stage|PIXI.DisplayObjectContainer} The root element to be rendered.
+ * @param root {Phaser.Stage|Phaser.DisplayObjectContainer} The root element to be rendered.
  */
-PIXI.CanvasRenderer.prototype.render = function (root) {
+Phaser.CanvasRenderer.prototype.render = function (root) {
 
     this.context.setTransform(1, 0, 0, 1, 0, 0);
 
@@ -190,7 +190,7 @@ PIXI.CanvasRenderer.prototype.render = function (root) {
 
 };
 
-PIXI.CanvasRenderer.prototype.setTexturePriority = function (textureNameCollection) {
+Phaser.CanvasRenderer.prototype.setTexturePriority = function (textureNameCollection) {
 
     //  Does nothing on Canvas, but here to allow you to simply set
     //  `game.renderer.setTexturePriority()` without having to worry about
@@ -204,7 +204,7 @@ PIXI.CanvasRenderer.prototype.setTexturePriority = function (textureNameCollecti
  * @method destroy
  * @param [removeView=true] {boolean} Removes the Canvas element from the DOM.
  */
-PIXI.CanvasRenderer.prototype.destroy = function (removeView) {
+Phaser.CanvasRenderer.prototype.destroy = function (removeView) {
 
     if (removeView === undefined) { removeView = true; }
 
@@ -227,7 +227,7 @@ PIXI.CanvasRenderer.prototype.destroy = function (removeView) {
  * @param width {Number} the new width of the canvas view
  * @param height {Number} the new height of the canvas view
  */
-PIXI.CanvasRenderer.prototype.resize = function (width, height) {
+Phaser.CanvasRenderer.prototype.resize = function (width, height) {
 
     this.width = width * this.resolution;
     this.height = height * this.resolution;
@@ -243,7 +243,7 @@ PIXI.CanvasRenderer.prototype.resize = function (width, height) {
 
     if (this.renderSession.smoothProperty)
     {
-        this.context[this.renderSession.smoothProperty] = (this.renderSession.scaleMode === PIXI.scaleModes.LINEAR);
+        this.context[this.renderSession.smoothProperty] = (this.renderSession.scaleMode === Phaser.scaleModes.LINEAR);
     }
 
 };
@@ -257,7 +257,7 @@ PIXI.CanvasRenderer.prototype.resize = function (width, height) {
  * @param [matrix] {Matrix} Optional matrix to apply to the display object before rendering.
  * @private
  */
-PIXI.CanvasRenderer.prototype.renderDisplayObject = function (displayObject, context, matrix) {
+Phaser.CanvasRenderer.prototype.renderDisplayObject = function (displayObject, context, matrix) {
 
     this.renderSession.context = context || this.context;
     this.renderSession.resolution = this.resolution;
@@ -271,12 +271,12 @@ PIXI.CanvasRenderer.prototype.renderDisplayObject = function (displayObject, con
  * @method mapBlendModes
  * @private
  */
-PIXI.CanvasRenderer.prototype.mapBlendModes = function () {
+Phaser.CanvasRenderer.prototype.mapBlendModes = function () {
 
-    if (!PIXI.blendModesCanvas)
+    if (!Phaser.blendModesCanvas)
     {
         var b = [];
-        var modes = PIXI.blendModes;
+        var modes = Phaser.blendModes;
         var useNew = this.game.device.canUseMultiply;
 
         b[modes.NORMAL] = 'source-over';
@@ -297,7 +297,7 @@ PIXI.CanvasRenderer.prototype.mapBlendModes = function () {
         b[modes.COLOR] = (useNew) ? 'color' : 'source-over';
         b[modes.LUMINOSITY] = (useNew) ? 'luminosity' : 'source-over';
 
-        PIXI.blendModesCanvas = b;
+        Phaser.blendModesCanvas = b;
     }
 
 };

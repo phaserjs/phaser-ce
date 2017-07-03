@@ -31,7 +31,7 @@
 *
 * @class Phaser.Graphics
 * @constructor
-* @extends PIXI.DisplayObjectContainer
+* @extends Phaser.DisplayObjectContainer
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.AutoCull
@@ -70,7 +70,7 @@ Phaser.Graphics = function (game, x, y) {
     */
     this.anchor = new Phaser.Point();
 
-    PIXI.DisplayObjectContainer.call(this);
+    Phaser.DisplayObjectContainer.call(this);
 
     this.renderable = true;
 
@@ -118,13 +118,13 @@ Phaser.Graphics = function (game, x, y) {
     this.tint = 0xFFFFFF;
 
     /**
-     * The blend mode to be applied to the graphic shape. Apply a value of PIXI.blendModes.NORMAL to reset the blend mode.
+     * The blend mode to be applied to the graphic shape. Apply a value of Phaser.blendModes.NORMAL to reset the blend mode.
      *
      * @property blendMode
      * @type Number
-     * @default PIXI.blendModes.NORMAL;
+     * @default Phaser.blendModes.NORMAL;
      */
-    this.blendMode = PIXI.blendModes.NORMAL;
+    this.blendMode = Phaser.blendModes.NORMAL;
 
     /**
      * Current path
@@ -203,7 +203,7 @@ Phaser.Graphics = function (game, x, y) {
 
 };
 
-Phaser.Graphics.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Phaser.Graphics.prototype = Object.create(Phaser.DisplayObjectContainer.prototype);
 Phaser.Graphics.prototype.constructor = Phaser.Graphics;
 
 Phaser.Component.Core.install.call(Phaser.Graphics.prototype, [
@@ -911,14 +911,14 @@ Phaser.Graphics.prototype.clear = function () {
  *
  * @method Phaser.Graphics#generateTexture
  * @param [resolution=1] {Number} The resolution of the texture being generated
- * @param [scaleMode=0] {Number} Should be one of the PIXI.scaleMode consts
+ * @param [scaleMode=0] {Number} Should be one of the Phaser.scaleMode consts
  * @param [padding=0] {Number} Add optional extra padding to the generated texture (default 0)
  * @return {Texture} a texture of the graphics object
  */
 Phaser.Graphics.prototype.generateTexture = function (resolution, scaleMode, padding) {
 
     if (resolution === undefined) { resolution = 1; }
-    if (scaleMode === undefined) { scaleMode = PIXI.scaleModes.DEFAULT; }
+    if (scaleMode === undefined) { scaleMode = Phaser.scaleModes.DEFAULT; }
     if (padding === undefined) { padding = 0; }
 
     var bounds = this.getBounds();
@@ -926,9 +926,9 @@ Phaser.Graphics.prototype.generateTexture = function (resolution, scaleMode, pad
     bounds.width += padding;
     bounds.height += padding;
 
-    var canvasBuffer = new PIXI.CanvasBuffer(bounds.width * resolution, bounds.height * resolution);
+    var canvasBuffer = new Phaser.CanvasBuffer(bounds.width * resolution, bounds.height * resolution);
 
-    var texture = PIXI.Texture.fromCanvas(canvasBuffer.canvas, scaleMode);
+    var texture = Phaser.Texture.fromCanvas(canvasBuffer.canvas, scaleMode);
 
     texture.baseTexture.resolution = resolution;
 
@@ -936,7 +936,7 @@ Phaser.Graphics.prototype.generateTexture = function (resolution, scaleMode, pad
 
     canvasBuffer.context.translate(-bounds.x, -bounds.y);
 
-    PIXI.CanvasGraphics.renderGraphics(this, canvasBuffer.context);
+    Phaser.CanvasGraphics.renderGraphics(this, canvasBuffer.context);
 
     return texture;
 
@@ -972,7 +972,7 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
 
         this._cachedSprite.worldAlpha = this.worldAlpha;
 
-        PIXI.Sprite.prototype._renderWebGL.call(this._cachedSprite, renderSession);
+        Phaser.Sprite.prototype._renderWebGL.call(this._cachedSprite, renderSession);
 
         return;
     }
@@ -995,7 +995,7 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
         if (this.blendMode !== renderSession.spriteBatch.currentBlendMode)
         {
             renderSession.spriteBatch.currentBlendMode = this.blendMode;
-            var blendModeWebGL = PIXI.blendModesWebGL[renderSession.spriteBatch.currentBlendMode];
+            var blendModeWebGL = Phaser.blendModesWebGL[renderSession.spriteBatch.currentBlendMode];
             renderSession.spriteBatch.gl.blendFunc(blendModeWebGL[0], blendModeWebGL[1]);
         }
 
@@ -1006,7 +1006,7 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
             this.webGLDirty = false;
         }
 
-        PIXI.WebGLGraphics.renderGraphics(this, renderSession);
+        Phaser.WebGLGraphics.renderGraphics(this, renderSession);
 
         // only render if it has children!
         if (this.children.length)
@@ -1076,7 +1076,7 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
 
         this._cachedSprite.alpha = this.alpha;
 
-        PIXI.Sprite.prototype._renderCanvas.call(this._cachedSprite, renderSession);
+        Phaser.Sprite.prototype._renderCanvas.call(this._cachedSprite, renderSession);
 
         return;
     }
@@ -1088,7 +1088,7 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
         if (this.blendMode !== renderSession.currentBlendMode)
         {
             renderSession.currentBlendMode = this.blendMode;
-            context.globalCompositeOperation = PIXI.blendModesCanvas[renderSession.currentBlendMode];
+            context.globalCompositeOperation = Phaser.blendModesCanvas[renderSession.currentBlendMode];
         }
 
         if (this._mask)
@@ -1107,7 +1107,7 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
                              tx,
                              ty);
 
-        PIXI.CanvasGraphics.renderGraphics(this, context);
+        Phaser.CanvasGraphics.renderGraphics(this, context);
 
          // simple render children!
         for (var i = 0; i < this.children.length; i++)
@@ -1405,10 +1405,10 @@ Phaser.Graphics.prototype._generateCachedSprite = function () {
 
     if (!this._cachedSprite)
     {
-        var canvasBuffer = new PIXI.CanvasBuffer(bounds.width, bounds.height);
-        var texture = PIXI.Texture.fromCanvas(canvasBuffer.canvas);
+        var canvasBuffer = new Phaser.CanvasBuffer(bounds.width, bounds.height);
+        var texture = Phaser.Texture.fromCanvas(canvasBuffer.canvas);
 
-        this._cachedSprite = new PIXI.Sprite(texture);
+        this._cachedSprite = new Phaser.Sprite(texture);
         this._cachedSprite.buffer = canvasBuffer;
 
         this._cachedSprite.worldTransform = this.worldTransform;
@@ -1429,7 +1429,7 @@ Phaser.Graphics.prototype._generateCachedSprite = function () {
     this.worldAlpha = 1;
 
     // now render the graphic..
-    PIXI.CanvasGraphics.renderGraphics(this, this._cachedSprite.buffer.context);
+    Phaser.CanvasGraphics.renderGraphics(this, this._cachedSprite.buffer.context);
     this._cachedSprite.alpha = this.alpha;
 
 };

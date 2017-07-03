@@ -211,14 +211,14 @@ Phaser.Cache.RENDER_TEXTURE = 15;
 /**
 * The default image used for a texture when no other is specified.
 * @constant
-* @type {PIXI.Texture}
+* @type {Phaser.Texture}
 */
 Phaser.Cache.DEFAULT = null;
 
 /**
 * The default image used for a texture when the source image is missing.
 * @constant
-* @type {PIXI.Texture}
+* @type {Phaser.Texture}
 */
 Phaser.Cache.MISSING = null;
 
@@ -252,7 +252,7 @@ Phaser.Cache.prototype = {
             key: key,
             url: url,
             data: data,
-            base: new PIXI.BaseTexture(data, null, this.game.resolution),
+            base: new Phaser.BaseTexture(data, null, this.game.resolution),
             frame: new Phaser.Frame(0, 0, 0, data.width, data.height, key),
             frameData: new Phaser.FrameData(),
             fileFormat: extension
@@ -312,7 +312,7 @@ Phaser.Cache.prototype = {
             key: key,
             url: url,
             data: data,
-            base: new PIXI.BaseTexture(data, null, this.game.resolution),
+            base: new Phaser.BaseTexture(data, null, this.game.resolution),
             frame: new Phaser.Frame(0, 0, 0, data.width, data.height, key),
             frameData: new Phaser.FrameData()
         };
@@ -325,11 +325,11 @@ Phaser.Cache.prototype = {
 
         if (key === '__default')
         {
-            Phaser.Cache.DEFAULT = new PIXI.Texture(img.base);
+            Phaser.Cache.DEFAULT = new Phaser.Texture(img.base);
         }
         else if (key === '__missing')
         {
-            Phaser.Cache.MISSING = new PIXI.Texture(img.base);
+            Phaser.Cache.MISSING = new Phaser.Texture(img.base);
         }
 
         return img;
@@ -357,7 +357,7 @@ Phaser.Cache.prototype = {
             obj.base.skipRender = true;
 
             //  Make it easily available within the rest of Phaser / Pixi
-            Phaser.Cache.DEFAULT = new PIXI.Texture(obj.base);
+            Phaser.Cache.DEFAULT = new Phaser.Texture(obj.base);
 
             img.onload = null;
         };
@@ -384,7 +384,7 @@ Phaser.Cache.prototype = {
             var obj = cache.addImage('__missing', null, img);
 
             //  Make it easily available within the rest of Phaser / Pixi
-            Phaser.Cache.MISSING = new PIXI.Texture(obj.base);
+            Phaser.Cache.MISSING = new Phaser.Texture(obj.base);
 
             img.onload = null;
         };
@@ -535,7 +535,7 @@ Phaser.Cache.prototype = {
             url: url,
             data: data,
             font: null,
-            base: new PIXI.BaseTexture(data, null, this.game.resolution)
+            base: new Phaser.BaseTexture(data, null, this.game.resolution)
         };
 
         if (xSpacing === undefined) { xSpacing = 0; }
@@ -717,7 +717,7 @@ Phaser.Cache.prototype = {
             frameHeight: frameHeight,
             margin: margin,
             spacing: spacing,
-            base: new PIXI.BaseTexture(data, null, this.game.resolution),
+            base: new Phaser.BaseTexture(data, null, this.game.resolution),
             frameData: Phaser.AnimationParser.spriteSheet(this.game, data, frameWidth, frameHeight, frameMax, margin, spacing, skipFrames)
         };
 
@@ -743,7 +743,7 @@ Phaser.Cache.prototype = {
             key: key,
             url: url,
             data: data,
-            base: new PIXI.BaseTexture(data, null, this.game.resolution)
+            base: new Phaser.BaseTexture(data, null, this.game.resolution)
         };
 
         if (format === Phaser.Loader.TEXTURE_ATLAS_XML_STARLING)
@@ -1538,12 +1538,12 @@ Phaser.Cache.prototype = {
     ////////////////////////////
 
     /**
-    * Gets a PIXI.BaseTexture by key from the given Cache.
+    * Gets a Phaser.BaseTexture by key from the given Cache.
     *
     * @method Phaser.Cache#getBaseTexture
     * @param {string} key - Asset key of the image for which you want the BaseTexture for.
     * @param {integer} [cache=Phaser.Cache.IMAGE] - The cache to search for the item in.
-    * @return {PIXI.BaseTexture} The BaseTexture object.
+    * @return {Phaser.BaseTexture} The BaseTexture object.
     */
     getBaseTexture: function (key, cache) {
 

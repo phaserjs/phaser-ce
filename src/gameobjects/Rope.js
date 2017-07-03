@@ -15,7 +15,7 @@
 *
 * @class Phaser.Rope
 * @constructor
-* @extends PIXI.DisplayObjectContainer
+* @extends Phaser.DisplayObjectContainer
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.Animation
@@ -37,7 +37,7 @@
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {number} x - The x coordinate (in world space) to position the Rope at.
 * @param {number} y - The y coordinate (in world space) to position the Rope at.
-* @param {string|Phaser.RenderTexture|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the Rope during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Texture} key - This is the image or texture used by the Rope during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or Phaser.Texture.
 * @param {string|number} frame - If this Rope is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 * @param {Array} points - An array of {Phaser.Point}.
 */
@@ -60,7 +60,7 @@ Phaser.Rope = function (game, x, y, key, frame, points) {
 
     this.points = points;
 
-    PIXI.DisplayObjectContainer.call(this);
+    Phaser.DisplayObjectContainer.call(this);
 
     this.texture = Phaser.Cache.DEFAULT;
 
@@ -111,7 +111,7 @@ Phaser.Rope = function (game, x, y, key, frame, points) {
 
 };
 
-Phaser.Rope.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Phaser.Rope.prototype = Object.create(Phaser.DisplayObjectContainer.prototype);
 Phaser.Rope.prototype.constructor = Phaser.Rope;
 
 Phaser.Component.Core.install.call(Phaser.Rope.prototype, [
@@ -334,7 +334,7 @@ Phaser.Rope.prototype.updateTransform = function () {
         lastPoint = point;
     }
 
-    PIXI.DisplayObjectContainer.prototype.updateTransform.call(this);
+    Phaser.DisplayObjectContainer.prototype.updateTransform.call(this);
 
 };
 
@@ -754,7 +754,7 @@ Phaser.Rope.prototype.getBounds = function (matrix) {
 
     if (minX === -Infinity || maxY === Infinity)
     {
-        return PIXI.EmptyRectangle;
+        return Phaser.EmptyRectangle;
     }
 
     var bounds = this._bounds;

@@ -7,8 +7,8 @@ function _CreateEmptyTexture(gl, width, height, scaleMode) {
     gl.bindTexture(gl.TEXTURE_2D, texture);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, scaleMode === PIXI.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, scaleMode === PIXI.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, scaleMode === Phaser.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, scaleMode === Phaser.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
     return texture;
 }
@@ -49,9 +49,9 @@ function _CreateFramebuffer(gl, width, height, scaleMode, textureUnit) {
 * @param gl {WebGLContext} the current WebGL drawing context
 * @param width {Number} the horizontal range of the filter
 * @param height {Number} the vertical range of the filter
-* @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+* @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}Phaser.scaleModes{{/crossLink}} for possible values
 */
-PIXI.FilterTexture = function(gl, width, height, scaleMode, textureUnit)
+Phaser.FilterTexture = function(gl, width, height, scaleMode, textureUnit)
 {
     textureUnit = typeof textureUnit === 'number' ? textureUnit : 0;
     /**
@@ -65,7 +65,7 @@ PIXI.FilterTexture = function(gl, width, height, scaleMode, textureUnit)
      * @property frameBuffer
      * @type Any
      */
-     this.frameBuffer = _CreateFramebuffer(gl, width, height, scaleMode || PIXI.scaleModes.DEFAULT, textureUnit);
+     this.frameBuffer = _CreateFramebuffer(gl, width, height, scaleMode || Phaser.scaleModes.DEFAULT, textureUnit);
     /**
      * @property texture
      * @type Any
@@ -76,14 +76,14 @@ PIXI.FilterTexture = function(gl, width, height, scaleMode, textureUnit)
      this.renderBuffer = this.frameBuffer.renderBuffer;
 };
 
-PIXI.FilterTexture.prototype.constructor = PIXI.FilterTexture;
+Phaser.FilterTexture.prototype.constructor = Phaser.FilterTexture;
 
 /**
 * Clears the filter texture.
 * 
 * @method clear
 */
-PIXI.FilterTexture.prototype.clear = function()
+Phaser.FilterTexture.prototype.clear = function()
 {
     var gl = this.gl;
     
@@ -98,7 +98,7 @@ PIXI.FilterTexture.prototype.clear = function()
  * @param width {Number} the new width of the texture
  * @param height {Number} the new height of the texture
  */
-PIXI.FilterTexture.prototype.resize = function(width, height)
+Phaser.FilterTexture.prototype.resize = function(width, height)
 {
     if(this.width === width && this.height === height) return;
 
@@ -118,7 +118,7 @@ PIXI.FilterTexture.prototype.resize = function(width, height)
 * 
 * @method destroy
 */
-PIXI.FilterTexture.prototype.destroy = function()
+Phaser.FilterTexture.prototype.destroy = function()
 {
     var gl = this.gl;
     gl.deleteFramebuffer( this.frameBuffer );

@@ -7,12 +7,12 @@
 /**
 * A TileSprite is a Sprite that has a repeating texture. The texture can be scrolled and scaled independently of the TileSprite itself.
 * Textures will automatically wrap and are designed so that you can create game backdrops using seamless textures as a source.
-* 
+*
 * TileSprites have no input handler or physics bodies by default, both need enabling in the same way as for normal Sprites.
 *
 * You shouldn't ever create a TileSprite any larger than your actual screen size. If you want to create a large repeating background
 * that scrolls across the whole map of your game, then you create a TileSprite that fits the screen size and then use the `tilePosition`
-* property to scroll the texture as the player moves. If you create a TileSprite that is thousands of pixels in size then it will 
+* property to scroll the texture as the player moves. If you create a TileSprite that is thousands of pixels in size then it will
 * consume huge amounts of memory and cause performance issues. Remember: use `tilePosition` to scroll your texture and `tileScale` to
 * adjust the scale of the texture - don't resize the sprite itself or make it larger than it needs.
 *
@@ -22,14 +22,14 @@
 * a power of two in size (i.e. 4, 8, 16, 32, 64, 128, 256, 512, etc pixels width by height). If the texture isn't a power of two
 * it will be rendered to a blank canvas that is the correct size, which means you may have 'blank' areas appearing to the right and
 * bottom of your frame. To avoid this ensure your textures are perfect powers of two.
-* 
+*
 * TileSprites support animations in the same way that Sprites do. You add and play animations using the AnimationManager. However
 * if your game is running under WebGL please note that each frame of the animation must be a power of two in size, or it will receive
 * additional padding to enforce it to be so.
 *
 * @class Phaser.TileSprite
 * @constructor
-* @extends PIXI.Sprite
+* @extends Phaser.Sprite
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.Animation
@@ -53,7 +53,7 @@
 * @param {number} [y=0] - The y coordinate (in world space) to position the TileSprite at.
 * @param {number} [width=256] - The width of the TileSprite.
 * @param {number} [height=256] - The height of the TileSprite.
-* @param {string|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
+* @param {string|Phaser.BitmapData|Phaser.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a Phaser.Texture or BitmapData.
 * @param {string|number} frame - If this TileSprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 */
 Phaser.TileSprite = function (game, x, y, width, height, key, frame) {
@@ -67,7 +67,7 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame) {
 
     var def = game.cache.getImage('__default', true);
 
-    PIXI.Sprite.call(this, new PIXI.Texture(def.base), width, height);
+    Phaser.DisplaySprite.call(this, new Phaser.Texture(def.base), width, height);
 
     /**
     * @property {number} type - The const type of this object.
@@ -96,7 +96,7 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame) {
     * @property {Phaser.Point} tileScaleOffset - The scale offset applied to the image being tiled.
     */
     this.tileScaleOffset = new Phaser.Point(1, 1);
-    
+
     /**
     * @property {Phaser.Point} tilePosition - The offset position of the image being tiled.
     */
@@ -113,14 +113,14 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame) {
     /**
     * The CanvasBuffer object that the tiled texture is drawn to.
     *
-    * @property {PIXI.CanvasBuffer} canvasBuffer
+    * @property {Phaser.CanvasBuffer} canvasBuffer
     */
     this.canvasBuffer = null;
 
     /**
     * An internal Texture object that holds the tiling texture that was generated from TilingSprite.texture.
     *
-    * @property {PIXI.Texture} tilingTexture
+    * @property {Phaser.Texture} tilingTexture
     */
     this.tilingTexture = null;
 
@@ -149,7 +149,7 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame) {
 
 };
 
-Phaser.TileSprite.prototype = Object.create(PIXI.Sprite.prototype);
+Phaser.TileSprite.prototype = Object.create(Phaser.Sprite.prototype);
 Phaser.TileSprite.prototype.constructor = Phaser.TileSprite;
 
 Phaser.Component.Core.install.call(Phaser.TileSprite.prototype, [
@@ -252,7 +252,7 @@ Phaser.TileSprite.prototype.destroy = function (destroyChildren) {
 
     Phaser.Component.Destroy.prototype.destroy.call(this, destroyChildren);
 
-    PIXI.Sprite.prototype.destroy.call(this);
+    Phaser.Sprite.prototype.destroy.call(this);
 
     if (this.canvasBuffer)
     {
@@ -300,7 +300,7 @@ Phaser.TileSprite.prototype.reset = function (x, y) {
 *
 * @method Phaser.TileSprite#setTexture
 * @memberof Phaser.TileSprite
-* @param {PIXI.Texture} texture - The texture to apply to this TileSprite.
+* @param {Phaser.Texture} texture - The texture to apply to this TileSprite.
 * @return {Phaser.TileSprite} This instance.
 */
 Phaser.TileSprite.prototype.setTexture = function (texture) {
@@ -362,7 +362,7 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession) {
             return;
         }
     }
-    
+
     renderSession.spriteBatch.renderTilingSprite(this);
 
     for (var i = 0; i < this.children.length; i++)
@@ -393,7 +393,7 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession) {
     {
         renderSession.spriteBatch.start();
     }
-    
+
 };
 
 /**
@@ -410,7 +410,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession) {
     {
         return;
     }
-    
+
     var context = renderSession.context;
 
     if (this._mask)
@@ -419,7 +419,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession) {
     }
 
     context.globalAlpha = this.worldAlpha;
-    
+
     var wt = this.worldTransform;
     var resolution = renderSession.resolution;
     var tx = (wt.tx * resolution) + renderSession.shakeX;
@@ -430,7 +430,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession) {
     if (this.refreshTexture)
     {
         this.generateTilingTexture(false, renderSession);
-    
+
         if (this.tilingTexture)
         {
             this.tilePattern = context.createPattern(this.tilingTexture.baseTexture.source, 'repeat');
@@ -447,7 +447,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession) {
     if (this.blendMode !== renderSession.currentBlendMode)
     {
         renderSession.currentBlendMode = this.blendMode;
-        context.globalCompositeOperation = PIXI.blendModesCanvas[renderSession.currentBlendMode];
+        context.globalCompositeOperation = Phaser.blendModesCanvas[renderSession.currentBlendMode];
     }
 
     var tilePosition = this.tilePosition;
@@ -497,7 +497,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession) {
     if (sessionBlendMode !== this.blendMode)
     {
         renderSession.currentBlendMode = sessionBlendMode;
-        context.globalCompositeOperation = PIXI.blendModesCanvas[sessionBlendMode];
+        context.globalCompositeOperation = Phaser.blendModesCanvas[sessionBlendMode];
     }
 
 };
@@ -559,8 +559,8 @@ Phaser.TileSprite.prototype.generateTilingTexture = function (forcePowerOfTwo) {
     }
     else
     {
-        this.canvasBuffer = new PIXI.CanvasBuffer(targetWidth, targetHeight);
-        this.tilingTexture = PIXI.Texture.fromCanvas(this.canvasBuffer.canvas);
+        this.canvasBuffer = new Phaser.CanvasBuffer(targetWidth, targetHeight);
+        this.tilingTexture = Phaser.Texture.fromCanvas(this.canvasBuffer.canvas);
         this.tilingTexture.isTiling = true;
         this.tilingTexture.needsUpdate = true;
     }
@@ -628,7 +628,7 @@ Phaser.TileSprite.prototype.getBounds = function () {
     var d = worldTransform.d;
     var tx = worldTransform.tx;
     var ty = worldTransform.ty;
-    
+
     var x1 = (a * w1) + (c * h1) + tx;
     var y1 = (d * h1) + (b * w1) + ty;
 

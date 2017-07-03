@@ -44,7 +44,7 @@ Phaser.Component.LoadTexture.prototype = {
     * Note: You cannot use a RenderTexture as a texture for a TileSprite.
     *
     * @method
-    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} key - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|Phaser.Texture} key - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or Phaser.Texture.
     * @param {string|number} [frame] - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
     * @param {boolean} [stopAnimation=true] - If an animation is already playing on this Sprite you can choose to stop it or let it carry on playing.
     */
@@ -107,9 +107,9 @@ Phaser.Component.LoadTexture.prototype = {
         {
             // this.customRender = true;
 
-            this.setTexture(PIXI.Texture.fromCanvas(key.canvas));
+            this.setTexture(Phaser.Texture.fromCanvas(key.canvas));
         }
-        else if (key instanceof PIXI.Texture)
+        else if (key instanceof Phaser.Texture)
         {
             this.setTexture(key);
         }
@@ -118,7 +118,7 @@ Phaser.Component.LoadTexture.prototype = {
             var img = cache.getImage(key, true);
 
             this.key = img.key;
-            this.setTexture(new PIXI.Texture(img.base));
+            this.setTexture(new Phaser.Texture(img.base));
 
             if (key === '__default')
             {

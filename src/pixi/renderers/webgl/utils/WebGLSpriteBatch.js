@@ -15,7 +15,7 @@
  * @private
  * @constructor
  */
-PIXI.WebGLSpriteBatch = function (game) {
+Phaser.WebGLSpriteBatch = function (game) {
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running game.
@@ -151,10 +151,10 @@ PIXI.WebGLSpriteBatch = function (game) {
  * @method setContext
  * @param gl {WebGLContext} the current WebGL drawing context
  */
-PIXI.WebGLSpriteBatch.prototype.setContext = function (gl) {
+Phaser.WebGLSpriteBatch.prototype.setContext = function (gl) {
     this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
     this.gl = gl;
-    if (PIXI._enableMultiTextureToggle) {
+    if (Phaser._enableMultiTextureToggle) {
         var dynamicIfs = '\tif (vTextureIndex == 0.0) {gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n'
         for (var index = 1; index < this.MAX_TEXTURES; ++index) {
             dynamicIfs += '\tif (vTextureIndex == ' +
@@ -210,7 +210,7 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl) {
 
     this.currentBlendMode = 99999;
 
-    var shader = new PIXI.PixiShader(gl);
+    var shader = new Phaser.PixiShader(gl);
 
     shader.fragmentSrc = this.defaultShader.fragmentSrc;
     shader.uniforms = {};
@@ -223,7 +223,7 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl) {
  * @method begin
  * @param renderSession {Object} The RenderSession object
  */
-PIXI.WebGLSpriteBatch.prototype.begin = function (renderSession) {
+Phaser.WebGLSpriteBatch.prototype.begin = function (renderSession) {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.defaultShader;
 
@@ -233,7 +233,7 @@ PIXI.WebGLSpriteBatch.prototype.begin = function (renderSession) {
 /**
  * @method end
  */
-PIXI.WebGLSpriteBatch.prototype.end = function () {
+Phaser.WebGLSpriteBatch.prototype.end = function () {
     this.flush();
 };
 
@@ -242,15 +242,15 @@ PIXI.WebGLSpriteBatch.prototype.end = function () {
  * @param sprite {Sprite} the sprite to render when using this spritebatch
  * @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
  */
-PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix) {
+Phaser.WebGLSpriteBatch.prototype.render = function (sprite, matrix) {
     var texture = sprite.texture;
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
-    if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) {
+    if (Phaser.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) {
         this.flush();
         gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
         gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
+        Phaser.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
     }
 
     //  They provided an alternative rendering matrix, so use it
@@ -413,16 +413,16 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix) {
  * @method renderTilingSprite
  * @param sprite {TilingSprite} the sprite to render
  */
-PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite) {
+Phaser.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite) {
     var texture = sprite.tilingTexture;
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) {
+    if (Phaser.WebGLRenderer.textureArray[textureIndex] != baseTexture) {
         this.flush();
         gl.activeTexture(gl.TEXTURE0 + textureIndex);
         gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+        Phaser.WebGLRenderer.textureArray[textureIndex] = baseTexture;
     }
 
     // check texture..
@@ -433,7 +433,7 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite) {
 
     // set the textures uvs temporarily
     if (!sprite._uvs) {
-        sprite._uvs = new PIXI.TextureUvs();
+        sprite._uvs = new Phaser.TextureUvs();
     }
 
     var uvs = sprite._uvs;
@@ -552,7 +552,7 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite) {
  *
  * @method flush
  */
-PIXI.WebGLSpriteBatch.prototype.flush = function () {
+Phaser.WebGLSpriteBatch.prototype.flush = function () {
     // If the batch is length 0 then return as there is nothing to draw
     if (this.currentBatchSize === 0) {
         return;
@@ -648,7 +648,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function () {
                 shader = currentShader.shaders[gl.id];
 
                 if (!shader) {
-                    shader = new PIXI.PixiShader(gl);
+                    shader = new Phaser.PixiShader(gl);
 
                     shader.fragmentSrc = currentShader.fragmentSrc;
                     shader.uniforms = currentShader.uniforms;
@@ -693,7 +693,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function () {
  * @param size {Number}
  * @param startIndex {Number}
  */
-PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startIndex) {
+Phaser.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startIndex) {
     if (size === 0) {
         return;
     }
@@ -718,7 +718,7 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
 /**
  * @method stop
  */
-PIXI.WebGLSpriteBatch.prototype.stop = function () {
+Phaser.WebGLSpriteBatch.prototype.stop = function () {
     this.flush();
     this.dirty = true;
 };
@@ -726,7 +726,7 @@ PIXI.WebGLSpriteBatch.prototype.stop = function () {
 /**
  * @method start
  */
-PIXI.WebGLSpriteBatch.prototype.start = function () {
+Phaser.WebGLSpriteBatch.prototype.start = function () {
     this.dirty = true;
 };
 
@@ -735,7 +735,7 @@ PIXI.WebGLSpriteBatch.prototype.start = function () {
  *
  * @method destroy
  */
-PIXI.WebGLSpriteBatch.prototype.destroy = function () {
+Phaser.WebGLSpriteBatch.prototype.destroy = function () {
     this.vertices = null;
     this.indices = null;
 

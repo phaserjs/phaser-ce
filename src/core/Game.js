@@ -201,7 +201,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.clearBeforeRender = true;
 
     /**
-    * @property {PIXI.CanvasRenderer|PIXI.WebGLRenderer} renderer - The Pixi Renderer.
+    * @property {Phaser.CanvasRenderer|Phaser.WebGLRenderer} renderer - The Pixi Renderer.
     * @protected
     */
     this.renderer = null;
@@ -627,7 +627,7 @@ Phaser.Game.prototype = {
 
         this.isBooted = true;
 
-        PIXI.game = this;
+        Phaser.game = this;
 
         this.math = Phaser.Math;
 
@@ -793,7 +793,7 @@ Phaser.Game.prototype = {
         {
             if (this.device.canvas)
             {
-                this.renderer = new PIXI.CanvasRenderer(this);
+                this.renderer = new Phaser.CanvasRenderer(this);
 
                 this.context = this.renderer.context;
 
@@ -812,14 +812,14 @@ Phaser.Game.prototype = {
 
             if (this.multiTexture || this.renderType === Phaser.WEBGL_MULTI)
             {
-                PIXI.enableMultiTexture();
+                Phaser.enableMultiTexture();
 
                 this.multiTexture = true;
             }
 
             this.renderType = Phaser.WEBGL;
 
-            this.renderer = new PIXI.WebGLRenderer(this);
+            this.renderer = new Phaser.WebGLRenderer(this);
 
             this.context = null;
 
@@ -1137,7 +1137,7 @@ Phaser.Game.prototype = {
 
         Phaser.Canvas.removeFromDOM(this.canvas);
 
-        PIXI.defaultRenderer = null;
+        Phaser.defaultRenderer = null;
 
         Phaser.GAMES[this.id] = null;
 

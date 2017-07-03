@@ -19,7 +19,7 @@ Phaser.Component.BringToTop = function () {};
 * because the World is the root Group from which all Game Objects descend.
 *
 * @method
-* @return {PIXI.DisplayObject} This instance.
+* @return {Phaser.DisplayObject} This instance.
 */
 Phaser.Component.BringToTop.prototype.bringToTop = function() {
 
@@ -40,7 +40,7 @@ Phaser.Component.BringToTop.prototype.bringToTop = function() {
 * because the World is the root Group from which all Game Objects descend.
 *
 * @method
-* @return {PIXI.DisplayObject} This instance.
+* @return {Phaser.DisplayObject} This instance.
 */
 Phaser.Component.BringToTop.prototype.sendToBack = function() {
 
@@ -61,7 +61,7 @@ Phaser.Component.BringToTop.prototype.sendToBack = function() {
 * because the World is the root Group from which all Game Objects descend.
 *
 * @method
-* @return {PIXI.DisplayObject} This instance.
+* @return {Phaser.DisplayObject} This instance.
 */
 Phaser.Component.BringToTop.prototype.moveUp = function () {
 
@@ -82,7 +82,7 @@ Phaser.Component.BringToTop.prototype.moveUp = function () {
 * because the World is the root Group from which all Game Objects descend.
 *
 * @method
-* @return {PIXI.DisplayObject} This instance.
+* @return {Phaser.DisplayObject} This instance.
 */
 Phaser.Component.BringToTop.prototype.moveDown = function () {
 

@@ -10,7 +10,7 @@
 * It can still rotate, scale, crop and receive input events. This makes it perfect for logos, backgrounds, simple buttons and other non-Sprite graphics.
 *
 * @class Phaser.Image
-* @extends PIXI.Sprite
+* @extends Phaser.Sprite
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.Animation
@@ -31,7 +31,7 @@
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {number} [x=0] - The x coordinate of the Image. The coordinate is relative to any parent container this Image may be in.
 * @param {number} [y=0] - The y coordinate of the Image. The coordinate is relative to any parent container this Image may be in.
-* @param {string|Phaser.RenderTexture|Phaser.BitmapData|PIXI.Texture} [key] - The texture used by the Image during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture, BitmapData or PIXI.Texture.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Texture} [key] - The texture used by the Image during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture, BitmapData or Phaser.Texture.
 * @param {string|number} [frame] - If this Image is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 */
 Phaser.Image = function (game, x, y, key, frame) {
@@ -47,13 +47,13 @@ Phaser.Image = function (game, x, y, key, frame) {
     */
     this.type = Phaser.IMAGE;
 
-    PIXI.Sprite.call(this, Phaser.Cache.DEFAULT);
+    Phaser.DisplaySprite.call(this, Phaser.Cache.DEFAULT);
 
     Phaser.Component.Core.init.call(this, game, x, y, key, frame);
 
 };
 
-Phaser.Image.prototype = Object.create(PIXI.Sprite.prototype);
+Phaser.Image.prototype = Object.create(Phaser.Sprite.prototype);
 Phaser.Image.prototype.constructor = Phaser.Image;
 
 Phaser.Component.Core.install.call(Phaser.Image.prototype, [

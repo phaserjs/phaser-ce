@@ -5,31 +5,19 @@
 * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
 */
 
-//  Pixi expects these globals to exist
-
-if (PIXI.blendModes === undefined)
+if (Phaser.Texture.emptyTexture === undefined)
 {
-    PIXI.blendModes = Phaser.blendModes;
+    Phaser.Texture.emptyTexture = new Phaser.Texture(new Phaser.BaseTexture());
 }
 
-if (PIXI.scaleModes === undefined)
+if (Phaser.DisplayObject._tempMatrix === undefined)
 {
-    PIXI.scaleModes = Phaser.scaleModes;
+    Phaser.DisplayObject._tempMatrix = new Phaser.Matrix();
 }
 
-if (PIXI.Texture.emptyTexture === undefined)
-{
-    PIXI.Texture.emptyTexture = new PIXI.Texture(new PIXI.BaseTexture());
-}
+Phaser.TextureSilentFail = true;
 
-if (PIXI.DisplayObject._tempMatrix === undefined)
-{
-    PIXI.DisplayObject._tempMatrix = new PIXI.Matrix();
-}
-
-PIXI.TextureSilentFail = true;
-
-// Required by Particle Storm
-PIXI.canUseNewCanvasBlendModes = function () {
+// Required by Particle Storm (as PIXI.canUseNewCanvasBlendModes!)
+Phaser.canUseNewCanvasBlendModes = function () {
     return Phaser.Device.canUseMultiply;
 };

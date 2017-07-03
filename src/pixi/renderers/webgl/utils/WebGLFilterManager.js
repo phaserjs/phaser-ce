@@ -6,7 +6,7 @@
 * @class WebGLFilterManager
 * @constructor
 */
-PIXI.WebGLFilterManager = function()
+Phaser.WebGLFilterManager = function()
 {
     /**
      * @property filterStack
@@ -27,7 +27,7 @@ PIXI.WebGLFilterManager = function()
     this.offsetY = 0;
 };
 
-PIXI.WebGLFilterManager.prototype.constructor = PIXI.WebGLFilterManager;
+Phaser.WebGLFilterManager.prototype.constructor = Phaser.WebGLFilterManager;
 
 /**
 * Initialises the context and the properties.
@@ -35,7 +35,7 @@ PIXI.WebGLFilterManager.prototype.constructor = PIXI.WebGLFilterManager;
 * @method setContext 
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.WebGLFilterManager.prototype.setContext = function(gl)
+Phaser.WebGLFilterManager.prototype.setContext = function(gl)
 {
     this.gl = gl;
     this.texturePool = [];
@@ -48,7 +48,7 @@ PIXI.WebGLFilterManager.prototype.setContext = function(gl)
 * @param renderSession {RenderSession} 
 * @param buffer {ArrayBuffer} 
 */
-PIXI.WebGLFilterManager.prototype.begin = function(renderSession, buffer)
+Phaser.WebGLFilterManager.prototype.begin = function(renderSession, buffer)
 {
     this.renderSession = renderSession;
     this.defaultShader = renderSession.shaderManager.defaultShader;
@@ -65,7 +65,7 @@ PIXI.WebGLFilterManager.prototype.begin = function(renderSession, buffer)
 * @method pushFilter
 * @param filterBlock {Object} the filter that will be pushed to the current filter stack
 */
-PIXI.WebGLFilterManager.prototype.pushFilter = function(filterBlock)
+Phaser.WebGLFilterManager.prototype.pushFilter = function(filterBlock)
 {
     var gl = this.gl;
 
@@ -76,7 +76,7 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function(filterBlock)
     
     // >>> modify by nextht
     filterBlock._previous_stencil_mgr = this.renderSession.stencilManager;
-    this.renderSession.stencilManager = new PIXI.WebGLStencilManager();
+    this.renderSession.stencilManager = new Phaser.WebGLStencilManager();
     this.renderSession.stencilManager.setContext(gl);
     gl.disable(gl.STENCIL_TEST);
     // <<<  modify by nextht 
@@ -93,7 +93,7 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function(filterBlock)
     var texture = this.texturePool.pop();
     if(!texture)
     {
-        texture = new PIXI.FilterTexture(this.gl, this.width * this.renderSession.resolution, this.height * this.renderSession.resolution);
+        texture = new Phaser.FilterTexture(this.gl, this.width * this.renderSession.resolution, this.height * this.renderSession.resolution);
     }
     else
     {
@@ -147,7 +147,7 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function(filterBlock)
 * 
 * @method popFilter
 */
-PIXI.WebGLFilterManager.prototype.popFilter = function()
+Phaser.WebGLFilterManager.prototype.popFilter = function()
 {
     var gl = this.gl;
     var filterBlock = this.filterStack.pop();
@@ -187,7 +187,7 @@ PIXI.WebGLFilterManager.prototype.popFilter = function()
 
         var inputTexture = texture;
         var outputTexture = this.texturePool.pop();
-        if(!outputTexture)outputTexture = new PIXI.FilterTexture(this.gl, this.width * this.renderSession.resolution, this.height * this.renderSession.resolution);
+        if(!outputTexture)outputTexture = new Phaser.FilterTexture(this.gl, this.width * this.renderSession.resolution, this.height * this.renderSession.resolution);
         outputTexture.resize(this.width * this.renderSession.resolution, this.height * this.renderSession.resolution);
 
         // need to clear this FBO as it may have some left over elements from a previous filter.
@@ -342,7 +342,7 @@ PIXI.WebGLFilterManager.prototype.popFilter = function()
 * @param width {Number} the horizontal range of the filter
 * @param height {Number} the vertical range of the filter
 */
-PIXI.WebGLFilterManager.prototype.applyFilterPass = function(filter, filterArea, width, height)
+Phaser.WebGLFilterManager.prototype.applyFilterPass = function(filter, filterArea, width, height)
 {
     // use program
     var gl = this.gl;
@@ -350,7 +350,7 @@ PIXI.WebGLFilterManager.prototype.applyFilterPass = function(filter, filterArea,
 
     if(!shader)
     {
-        shader = new PIXI.PixiShader(gl);
+        shader = new Phaser.PixiShader(gl);
 
         shader.fragmentSrc = filter.fragmentSrc;
         shader.uniforms = filter.uniforms;
@@ -399,7 +399,7 @@ PIXI.WebGLFilterManager.prototype.applyFilterPass = function(filter, filterArea,
 * 
 * @method initShaderBuffers
 */
-PIXI.WebGLFilterManager.prototype.initShaderBuffers = function()
+Phaser.WebGLFilterManager.prototype.initShaderBuffers = function()
 {
     var gl = this.gl;
 
@@ -447,7 +447,7 @@ PIXI.WebGLFilterManager.prototype.initShaderBuffers = function()
 * 
 * @method destroy
 */
-PIXI.WebGLFilterManager.prototype.destroy = function()
+Phaser.WebGLFilterManager.prototype.destroy = function()
 {
     var gl = this.gl;
 

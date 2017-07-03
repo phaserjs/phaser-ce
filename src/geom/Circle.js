@@ -7,7 +7,7 @@
 /**
 * Creates a new Circle object with the center coordinate specified by the x and y parameters and the diameter specified by the diameter parameter.
 * If you call this function without parameters, a circle with x, y, diameter and radius properties set to 0 is created.
-* 
+*
 * @class Phaser.Circle
 * @constructor
 * @param {number} [x=0] - The x coordinate of the center of the circle.
@@ -59,7 +59,7 @@ Phaser.Circle.prototype = {
 
     /**
     * The circumference of the circle.
-    * 
+    *
     * @method Phaser.Circle#circumference
     * @return {number} The circumference of the circle.
     */
@@ -71,7 +71,7 @@ Phaser.Circle.prototype = {
 
     /**
     * Returns a uniformly distributed random point from anywhere within this Circle.
-    * 
+    *
     * @method Phaser.Circle#random
     * @param {Phaser.Point|object} [out] - A Phaser.Point, or any object with public x/y properties, that the values will be set in.
     *     If no object is provided a new Phaser.Point object will be created. In high performance areas avoid this by re-using an existing object.
@@ -96,7 +96,7 @@ Phaser.Circle.prototype = {
 
     /**
     * Returns the framing rectangle of the circle as a Phaser.Rectangle object.
-    * 
+    *
     * @method Phaser.Circle#getBounds
     * @return {Phaser.Rectangle} The bounds of the Circle.
     */
@@ -257,7 +257,7 @@ Phaser.Circle.prototype.constructor = Phaser.Circle;
 
 /**
 * The largest distance between any two points on the circle. The same as the radius * 2.
-* 
+*
 * @name Phaser.Circle#diameter
 * @property {number} diameter - Gets or sets the diameter of the circle.
 */
@@ -572,6 +572,3 @@ Phaser.Circle.intersectsRectangle = function (c, r) {
     return xCornerDistSq + yCornerDistSq <= maxCornerDistSq;
 
 };
-
-//   Because PIXI uses its own Circle, we'll replace it with ours to avoid duplicating code or confusion.
-PIXI.Circle = Phaser.Circle;

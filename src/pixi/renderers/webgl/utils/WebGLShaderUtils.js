@@ -7,7 +7,7 @@
 * @static
 * @private
 */
-PIXI.initDefaultShaders = function()
+Phaser.initDefaultShaders = function()
 {
 };
 
@@ -18,9 +18,9 @@ PIXI.initDefaultShaders = function()
 * @param shaderSrc {Array}
 * @return {Any}
 */
-PIXI.CompileVertexShader = function(gl, shaderSrc)
+Phaser.CompileVertexShader = function(gl, shaderSrc)
 {
-    return PIXI._CompileShader(gl, shaderSrc, gl.VERTEX_SHADER);
+    return Phaser._CompileShader(gl, shaderSrc, gl.VERTEX_SHADER);
 };
 
 /**
@@ -30,9 +30,9 @@ PIXI.CompileVertexShader = function(gl, shaderSrc)
 * @param shaderSrc {Array}
 * @return {Any}
 */
-PIXI.CompileFragmentShader = function(gl, shaderSrc)
+Phaser.CompileFragmentShader = function(gl, shaderSrc)
 {
-    return PIXI._CompileShader(gl, shaderSrc, gl.FRAGMENT_SHADER);
+    return Phaser._CompileShader(gl, shaderSrc, gl.FRAGMENT_SHADER);
 };
 
 /**
@@ -44,7 +44,7 @@ PIXI.CompileFragmentShader = function(gl, shaderSrc)
 * @param shaderType {Number}
 * @return {Any}
 */
-PIXI._CompileShader = function(gl, shaderSrc, shaderType)
+Phaser._CompileShader = function(gl, shaderSrc, shaderType)
 {
     var src = shaderSrc;
 
@@ -74,10 +74,10 @@ PIXI._CompileShader = function(gl, shaderSrc, shaderType)
 * @param fragmentSrc {Array}
 * @return {Any}
 */
-PIXI.compileProgram = function(gl, vertexSrc, fragmentSrc)
+Phaser.compileProgram = function(gl, vertexSrc, fragmentSrc)
 {
-    var fragmentShader = PIXI.CompileFragmentShader(gl, fragmentSrc);
-    var vertexShader = PIXI.CompileVertexShader(gl, vertexSrc);
+    var fragmentShader = Phaser.CompileFragmentShader(gl, fragmentSrc);
+    var vertexShader = Phaser.CompileVertexShader(gl, vertexSrc);
 
     var shaderProgram = gl.createProgram();
 
