@@ -980,7 +980,7 @@ Phaser.Utils.Debug.prototype = {
         }
         else
         {
-            this.line('roundPx: ' + s.roundPixels);
+            this.line('roundPixels: ' + s.roundPixels);
             this.line('scaleMode: ' + (s.scaleMode === 0 ? 'LINEAR' : (s.scaleMode === 1 ? 'NEAREST' : s.scaleMode)));
         }
 
