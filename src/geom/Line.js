@@ -724,6 +724,66 @@ Phaser.Line.intersectsRectangle = function (line, rect) {
 };
 
 /**
+ * @method Phaser.Line.intersectionWithRectangle
+ * @param {Phaser.Line} line - The line to check for intersection with.
+ * @param {Phaser.Rectangle} rect - The rectangle, or rectangle-like object, to check for intersection with.
+ * @param {Phaser.Point} [result] - A Point object to store the result in.
+ * @param {Phaser.Line[]} [edges] - An array containing exactly four lines, recycled during calculations.
+ * @param {Phaser.Point} [edgeIntersection] - A point, recycled during calculations.
+ * @return {?Phaser.Point} - The closest Point of intersection, or null if there is no intersection.
+ */
+Phaser.Line.intersectionWithRectangle = function (line, rect, result, edges, edgeIntersection) {
+
+    if (!result)
+    {
+        result = new Phaser.Point();
+    }
+
+    if (!edges)
+    {
+        edges = [new Phaser.Line(), new Phaser.Line(), new Phaser.Line(), new Phaser.Line()];
+    }
+
+    if (!edgeIntersection)
+    {
+        edgeIntersection = new Phaser.Point();
+    }
+
+    var bx1 = rect.x;
+    var by1 = rect.y;
+    var bx2 = rect.right;
+    var by2 = rect.bottom;
+    var closestDistance = Infinity;
+
+    edges[0].setTo(bx1, by1, bx2, by1);
+    edges[1].setTo(bx1, by2, bx2, by2);
+    edges[2].setTo(bx1, by1, bx1, by2);
+    edges[3].setTo(bx2, by1, bx2, by2);
+
+    for (var edge, i = 0; (edge = edges[i]); i++)
+    {
+        if (line.intersects(edge, true, edgeIntersection))
+        {
+            var distance = line.start.distance(edgeIntersection);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                result.copyFrom(edgeIntersection);
+            }
+        }
+    }
+
+    if (distance != null)
+    {
+        return result;
+    }
+
+    return null;
+
+};
+
+/**
 * Returns the reflected angle between two lines.
 * This is the outgoing angle based on the angle of Line 1 and the normalAngle of Line 2.
 *
