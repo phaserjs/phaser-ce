@@ -437,6 +437,41 @@ Phaser.Rectangle.prototype = {
     },
 
     /**
+     * @method Phaser.Rectangle#sides
+     * @param  {Phaser.Line} [top]
+     * @param  {Phaser.Line} [right]
+     * @param  {Phaser.Line} [bottom]
+     * @param  {Phaser.Line} [left]
+     * @return {?Phaser.Line[]} - An array containing four lines (if no arguments were given), or null.
+     */
+    sides: function (top, right, bottom, left) {
+
+        if (!arguments.length) {
+            top = new Phaser.Line();
+            right = new Phaser.Line();
+            bottom = new Phaser.Line();
+            left = new Phaser.Line();
+        }
+
+        var x1 = this.x;
+        var y1 = this.y;
+        var x2 = this.right;
+        var y2 = this.bottom;
+
+        top.setTo(x1, y1, x2, y1);
+        right.setTo(x2, y1, x2, y2);
+        bottom.setTo(x1, y2, x2, y2);
+        left.setTo(x1, y1, x1, y2);
+
+        if (!arguments.length) {
+            return [top, right, bottom, left];
+        }
+
+        return null;
+
+    },
+
+    /**
     * Returns a string representation of this object.
     * @method Phaser.Rectangle#toString
     * @return {string} A string representation of the instance.
