@@ -12,7 +12,7 @@ The [current Phaser CE release is 2.8.1](https://github.com/photonstorm/phaser-c
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
-- **Code:** 700+ [Examples](http://phaser.io/examples) (source available in this [repo][examples])
+- **Code:** 700+ [Examples](http://phaser.io/examples) ([source][examples]), new [Phaser CE examples](https://codepen.io/collection/AMbZgY/)
 - **Read:** Weekly [Phaser World](#newsletter) Newsletter
 - **Chat:** [Slack](http://phaser.io/community/slack) and [Discord](http://phaser.io/community/discord)
 - **Extend:** With [Phaser Plugins](http://phaser.io/shop/plugins)
