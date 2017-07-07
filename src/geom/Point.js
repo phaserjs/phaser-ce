@@ -70,6 +70,8 @@ Phaser.Point.prototype = {
     * If you omit the `y` value then the `x` value will be applied to both, for example:
     * `Point.setTo(2)` is the same as `Point.setTo(2, 2)`
     *
+    * Identical to {@link #set}.
+    *
     * @method Phaser.Point#setTo
     * @param {number} x - The horizontal value of this point.
     * @param {number} [y] - The vertical value of this point. If not given the x value will be used in its place.
@@ -77,10 +79,7 @@ Phaser.Point.prototype = {
     */
     setTo: function (x, y) {
 
-        this.x = x || 0;
-        this.y = y || ( (y !== 0) ? this.x : 0 );
-
-        return this;
+        return Phaser.Point.set(this, x, y);
 
     },
 
@@ -89,6 +88,8 @@ Phaser.Point.prototype = {
     * If you omit the `y` value then the `x` value will be applied to both, for example:
     * `Point.set(2)` is the same as `Point.set(2, 2)`
     *
+    * Identical to {@link #setTo}.
+    *
     * @method Phaser.Point#set
     * @param {number} x - The horizontal value of this point.
     * @param {number} [y] - The vertical value of this point. If not given the x value will be used in its place.
@@ -96,10 +97,7 @@ Phaser.Point.prototype = {
     */
     set: function (x, y) {
 
-        this.x = x || 0;
-        this.y = y || ( (y !== 0) ? this.x : 0 );
-
-        return this;
+        return Phaser.Point.set(this, x, y);
 
     },
 
@@ -948,6 +946,25 @@ Phaser.Point.parse = function(obj, xProp, yProp) {
 Phaser.Point.isPoint = function(obj) {
 
     return (obj != null) && (typeof obj.x === 'number') && (typeof obj.y === 'number');
+
+};
+
+/**
+* Sets the `x` and `y` values of an object and returns the object.
+*
+* @method Phaser.Point#set
+* @static
+* @param {object} obj - An object with numeric x and y properties.
+* @param {number} x - The x value.
+* @param {number} [y] - The y value. If not given the x value will be used in its place.
+* @return {object} The object. Useful for chaining method calls.
+*/
+Phaser.Point.set = function(obj, x, y) {
+
+    obj.x = x || 0;
+    obj.y = y || ( (y !== 0) ? obj.x : 0 );
+
+    return obj;
 
 };
 

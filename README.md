@@ -265,6 +265,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### New Features
 
+* Point.set
+
 ### Updates
 
 * Phaser.Component.Core.init checks types of the `game`, `x`, and `y` arguments, since these mistakes can be hard to track down (outside of TypeScript).
