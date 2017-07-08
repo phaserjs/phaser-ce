@@ -1432,8 +1432,9 @@ Object.defineProperty(Phaser.Physics.Arcade.Body.prototype, "y", {
 * @param {Phaser.Physics.Arcade.Body} body - The Body to render the info of.
 * @param {string} [color='rgba(0,255,0,0.4)'] - color of the debug info to be rendered. (format is css color string).
 * @param {boolean} [filled=true] - Render the objected as a filled (default, true) or a stroked (false)
+* @param {number} [lineWidth=1] - The width of the stroke when unfilled.
 */
-Phaser.Physics.Arcade.Body.render = function (context, body, color, filled) {
+Phaser.Physics.Arcade.Body.render = function (context, body, color, filled, lineWidth) {
 
     if (filled === undefined) { filled = true; }
 
@@ -1441,6 +1442,7 @@ Phaser.Physics.Arcade.Body.render = function (context, body, color, filled) {
 
     context.fillStyle = color;
     context.strokeStyle = color;
+    context.lineWidth = lineWidth || 1;
 
     if (body.isCircle)
     {

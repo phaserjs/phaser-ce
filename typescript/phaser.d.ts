@@ -3103,7 +3103,7 @@ declare module Phaser {
                 onWall(): boolean;
                 preUpdate(): void;
                 postUpdate(): void;
-                render(context: any, body: Phaser.Physics.Arcade.Body, color?: string, filled?: boolean): void;
+                render(context: any, body: Phaser.Physics.Arcade.Body, color?: string, filled?: boolean, lineWidth?: number): void;
                 renderBodyInfo(debug: Phaser.Utils.Debug, body: Phaser.Physics.Arcade.Body): void;
                 reset(x: number, y: number): void;
                 setCircle(radius: number, offsetX?: number, offsetY?: number): void;

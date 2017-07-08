@@ -665,6 +665,7 @@ Phaser.Utils.Debug.prototype = {
 
         this.context.fillStyle = color;
         this.context.strokeStyle = color;
+        this.context.lineWidth = this.lineWidth;
 
         if (object instanceof Phaser.Rectangle || forceType === 1)
         {
@@ -674,7 +675,6 @@ Phaser.Utils.Debug.prototype = {
             }
             else
             {
-                this.context.lineWidth = this.lineWidth;
                 this.context.strokeRect(object.x - this.game.camera.x, object.y - this.game.camera.y, object.width, object.height);
             }
         }
@@ -699,7 +699,6 @@ Phaser.Utils.Debug.prototype = {
         }
         else if (object instanceof Phaser.Line || forceType === 4)
         {
-            this.context.lineWidth = this.lineWidth;
             this.context.beginPath();
             this.context.moveTo((object.start.x + 0.5) - this.game.camera.x, (object.start.y + 0.5) - this.game.camera.y);
             this.context.lineTo((object.end.x + 0.5) - this.game.camera.x, (object.end.y + 0.5) - this.game.camera.y);
@@ -734,6 +733,7 @@ Phaser.Utils.Debug.prototype = {
         }
         else
         {
+            this.context.lineWidth = this.lineWidth;
             this.context.strokeStyle = color;
             this.context.strokeRect(object.x - this.game.camera.x, object.y - this.game.camera.y, object.width, object.height);
         }
@@ -831,7 +831,7 @@ Phaser.Utils.Debug.prototype = {
 
             if (sprite.body.type === Phaser.Physics.ARCADE)
             {
-                Phaser.Physics.Arcade.Body.render(this.context, sprite.body, color, filled);
+                Phaser.Physics.Arcade.Body.render(this.context, sprite.body, color, filled, this.lineWidth);
             }
             else if (sprite.body.type === Phaser.Physics.NINJA)
             {

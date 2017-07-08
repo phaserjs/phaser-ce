@@ -276,6 +276,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Arcade.Body#render, Debug#geom (circles, ellipses), Debug#rectangle, and Debug#spriteBounds use Debug#lineWidth.
 * Fixed CanvasRenderer#renderSession.roundPixels misspelled as `roundPx` in Debug#renderer. (`roundPx` is a Camera property.)
 * Fixed definitions of Phaser.Matrix and Phaser.RenderTexture (#174, #270).
 * The debug canvas is returned to the canvas pool when the game is destroyed (#269).
