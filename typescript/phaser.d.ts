@@ -1660,7 +1660,7 @@ declare module Phaser {
 
     }
 
-    class Graphics extends PIXI.Graphics {
+    class Graphics extends PIXI.DisplayObjectContainer {
 
         constructor(game: Phaser.Game, x?: number, y?: number);
 
