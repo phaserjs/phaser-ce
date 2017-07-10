@@ -245,9 +245,9 @@ PIXI.DisplayObject = function () {
 
 };
 
-PIXI.DisplayObject.prototype.constructor = PIXI.DisplayObject;
-
 PIXI.DisplayObject.prototype = {
+
+    constructor: PIXI.DisplayObject,
 
     /**
     * Destroy this DisplayObject.
