@@ -286,6 +286,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Fixed [CanvasRenderer#renderSession.roundPixels](https://photonstorm.github.io/phaser-ce/PIXI.CanvasRenderer.html#renderSession) misspelled as `roundPx` in [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer). ([roundPx](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#roundPx) is a Camera property.)
 * Fixed some TypeScript definitions (#174, #270, #274, #277).
 * The debug canvas is returned to the canvas pool when the game is destroyed (#269).
+* Fixed P2 Physics body not rotating shape after setting the P2 shape using addShape() [P2.body#addShape](https://photonstorm.github.io/phaser-ce/Phaser.Physics.P2.Body.html#addShape) (#258)
 
 ### Thanks
 
