@@ -994,7 +994,7 @@ Phaser.Physics.P2.Body.prototype = {
     * Will automatically update the mass properties and bounding radius.
     * If this Body had a previously set Collision Group you will need to re-apply it to the new Shape this creates.
     *
-    * @method Phaser.Physics.P2.Body#
+    * @method Phaser.Physics.P2.Body#addShape
     
     * @param {p2.Shape} shape - The shape to add to the body.
     * @param {number} [offsetX=0] - Local horizontal offset of the shape relative to the body center of mass.
