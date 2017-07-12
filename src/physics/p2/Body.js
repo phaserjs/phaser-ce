@@ -1009,7 +1009,7 @@ Phaser.Physics.P2.Body.prototype = {
         if (rotation === undefined) { rotation = 0; }
 
         this.data.addShape(shape, [this.world.pxmi(offsetX), this.world.pxmi(offsetY)], rotation);
-        this.shapeChanged();
+        this.shapeChanged(rotation);
 
         return shape;
 
