@@ -1009,7 +1009,6 @@ Phaser.Physics.P2.Body.prototype = {
         if (rotation === undefined) { rotation = 0; }
 
         this.data.addShape(shape, [this.world.pxmi(offsetX), this.world.pxmi(offsetY)], rotation);
-        this.data.angle=rotation;
         this.shapeChanged();
 
         return shape;
@@ -1296,12 +1295,14 @@ Phaser.Physics.P2.Body.prototype = {
     },
 
     /**
-    * Updates the debug draw if any body shapes change.
+    * Updates the debug draw if any body shapes change. Always update the angle data prior to debug drawing the shape.
     *
     * @method Phaser.Physics.P2.Body#shapeChanged
+    * @param {number} [rotation=0] - Local rotation of the shape relative to the body center of mass, specified in radians.
     */
-    shapeChanged: function() {
-
+    shapeChanged: function(rotation) {
+            
+            this.data.angle=rotation;
         if (this.debugBody)
         {
             this.debugBody.draw();
@@ -1435,9 +1436,10 @@ Phaser.Physics.P2.Body.prototype = {
     * @param {string|object} object - The key of the object within the Physics data file that you wish to load the shape data from, 
     *     or if key is null pass the actual physics data object itself as this parameter.
     * @param {number} [scale=1] - Optionally resize the loaded polygon.
+    * @param {number} [rotation=0] - Local rotation of the shape relative to the body center of mass, specified in radians.
     * @return {boolean} True on success, else false.
     */
-    loadPolygon: function (key, object, scale) {
+    loadPolygon: function (key, object, scale,rotation) {
 
         if (key === null)
         {
@@ -1490,7 +1492,7 @@ Phaser.Physics.P2.Body.prototype = {
         }
 
         this.data.aabbNeedsUpdate = true;
-        this.shapeChanged();
+        this.shapeChanged(rotation);
 
         return true;
 
