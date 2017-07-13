@@ -884,6 +884,11 @@ Phaser.Game.prototype = {
 
         this.time.update(time);
 
+        if (this.cache._pendingCount > 0)
+        {
+            return;
+        }
+
         if (this._kickstart)
         {
             this.updateLogic(this.time.desiredFpsMult);
