@@ -214,7 +214,7 @@ Phaser.Filter.prototype = {
             height = this.height;
         }
 
-        var image = this.game.add.image(x, y, '__default');
+        var image = this.game.add.image(x, y, Phaser.Cache.DEFAULT);
 
         image.width = width;
         image.height = height;
