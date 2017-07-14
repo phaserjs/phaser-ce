@@ -565,9 +565,11 @@ Note that this property isn't recursive: only immediate children are influenced,
 */
 /**
 * @description The anchor sets the origin point of the texture.
-The default is 0,0 this means the texture's origin is the top left
-Setting than anchor to 0.5,0.5 means the textures origin is centered
-Setting the anchor to 1,1 would mean the textures origin points will be the bottom right corner
+The default (0, 0) is the top left.
+(0.5, 0.5) is the center.
+(1, 1) is the bottom right.
+
+You can modify the default values in PIXI.Sprite.defaultAnchor.
 * @member PIXI.Sprite#anchor
 * @type {Point}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
@@ -578,7 +580,7 @@ Setting the anchor to 1,1 would mean the textures origin points will be the bott
 * @member PIXI.Sprite#texture
 * @type {PIXI.Texture}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 28
+* @sourceline 30
 */
 /**
 * @description The width of the sprite (this is initially set by the texture)
@@ -586,7 +588,7 @@ Setting the anchor to 1,1 would mean the textures origin points will be the bott
 * @type {Number}
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 36
+* @sourceline 38
 */
 /**
 * @description The height of the sprite (this is initially set by the texture)
@@ -594,7 +596,7 @@ Setting the anchor to 1,1 would mean the textures origin points will be the bott
 * @type {Number}
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 45
+* @sourceline 47
 */
 /**
 * @description The tint applied to the sprite. This is a hex value. A value of 0xFFFFFF will remove any tint effect.
@@ -602,7 +604,7 @@ Setting the anchor to 1,1 would mean the textures origin points will be the bott
 * @type {Number}
 * @default 0xFFFFFF
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 54
+* @sourceline 56
 */
 /**
 * @description The tint applied to the sprite. This is a hex value. A value of 0xFFFFFF will remove any tint effect.
@@ -611,7 +613,7 @@ Setting the anchor to 1,1 would mean the textures origin points will be the bott
 * @default -1
 * @access private
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 63
+* @sourceline 65
 */
 /**
 * @description A canvas that contains the tinted version of the Sprite (in Canvas mode, WebGL doesn't populate this)
@@ -619,7 +621,7 @@ Setting the anchor to 1,1 would mean the textures origin points will be the bott
 * @type {Canvas}
 * @default null
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 73
+* @sourceline 75
 */
 /**
 * @description The blend mode to be applied to the sprite. Set to PIXI.blendModes.NORMAL to remove any blend mode.
@@ -629,7 +631,7 @@ Warning: You cannot have a blend mode and a filter active on the same Sprite. Do
 * @type {Number}
 * @default PIXI.blendModes.NORMAL;
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 82
+* @sourceline 84
 */
 /**
 * @description The shader that will be used to render this Sprite.
@@ -638,7 +640,7 @@ Set to null to remove a current shader.
 * @type {PhaserFilter}
 * @default null
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 93
+* @sourceline 95
 */
 /**
 * @description Controls if this Sprite is processed by the core Phaser game loops and Group loops (except {@link Phaser.Group#update}).
@@ -646,14 +648,14 @@ Set to null to remove a current shader.
 * @type {Boolean}
 * @default true
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 103
+* @sourceline 105
 */
 /**
 * @member PIXI.Sprite#PIXI.Sprite.defaultAnchor - A Point-like object.
-* @type {Object}
-* @default 0
+* @type {{x: number, y: number}}
+* @default 
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/Sprite.js
-* @sourceline 121
+* @sourceline 123
 */
 /**
 * @description The width of the sprite, setting this will actually modify the scale to achieve the value set

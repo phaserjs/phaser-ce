@@ -1971,7 +1971,7 @@ declare module Phaser {
         minPriorityID: number;
         mouse: Phaser.Mouse;
         mousePointer: Phaser.Pointer;
-        moveCallbacks: { callback: (pointer: Phaser.Pointer, x: number, y: number, fromClick: boolean) => void, context?: any }[];
+        moveCallbacks: (pointer: Phaser.Pointer, x: number, y: number) => void[];
         mspointer: Phaser.MSPointer;
         multiInputOverride: number;
         onDown: Phaser.Signal;
@@ -2008,10 +2008,10 @@ declare module Phaser {
         y: number;
 
         addPointer(): Phaser.Pointer;
-        addMoveCallback(callback: (pointer: Phaser.Pointer, x: number, y: number, fromClick: boolean) => void, context?: any): void;
+        addMoveCallback(callback: Function, context: any): number;
         boot(): void;
         countActivePointers(limit?: number): number;
-        deleteMoveCallback(callback: (pointer: Phaser.Pointer, x: number, y: number, fromClick: boolean) => void, context?: any): void;
+        deleteMoveCallback(callback: Function, context?: any): void;
         destroy(): void;
         getLocalPosition(displayObject: any, pointer: Phaser.Pointer): Phaser.Point;
         getPointer(isActive?: boolean): Phaser.Pointer;
@@ -4351,7 +4351,7 @@ declare module Phaser {
         z: number;
 
         bringToTop(): Phaser.Rope;
-        checkTransform(wt: PIXI.Matrix): void;
+        checkTransform(wt: Phaser.Matrix): void;
         crop(rect: Phaser.Rectangle, copy?: boolean): void;
         destroy(destroyChildren?: boolean): void;
         kill(): Phaser.Rope;
@@ -4636,7 +4636,7 @@ declare module Phaser {
         alignTo(container: Phaser.Rectangle | Phaser.Sprite | Phaser.Image | Phaser.Text | Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.TileSprite, position?: number, offsetX?: number, offsetY?: number): any;
         bringToTop(): Phaser.Sprite;
         crop(rect: Phaser.Rectangle, copy: boolean): void;
-        checkTransform(wt: PIXI.Matrix): void;
+        checkTransform(wt: Phaser.Matrix): void;
         damage(amount: number): Phaser.Sprite;
         destroy(destroyChildren?: boolean): void;
         drawPolygon(): void;

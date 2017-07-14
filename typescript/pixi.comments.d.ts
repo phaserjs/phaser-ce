@@ -1744,9 +1744,11 @@ declare module PIXI {
 
         /**
         * The anchor sets the origin point of the texture.
-        * The default is 0,0 this means the texture's origin is the top left
-        * Setting than anchor to 0.5,0.5 means the textures origin is centered
-        * Setting the anchor to 1,1 would mean the textures origin points will be the bottom right corner
+        * The default (0, 0) is the top left.
+        * (0.5, 0.5) is the center.
+        * (1, 1) is the bottom right.
+        * 
+        * You can modify the default values in PIXI.Sprite.defaultAnchor.
         */
         anchor: Point;
 

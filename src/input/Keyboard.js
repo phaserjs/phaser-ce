@@ -218,7 +218,7 @@ Phaser.Keyboard.prototype = {
     },
 
     /**
-    * Starts the Keyboard event listeners running (keydown and keyup). They are attached to the window.
+    * Starts the Keyboard event listeners running (keydown, keyup and keypress). They are attached to the window.
     * This is called automatically by Phaser.Input and should not normally be invoked directly.
     *
     * @method Phaser.Keyboard#start
