@@ -710,7 +710,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     * To remove a mask, set this property to `null`.
     *
     * @name PIXI.DisplayObject#mask
-    * @property {PIXI.Graphics} mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
+    * @property {Phaser.Graphics} mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
     */
     'mask': {
 

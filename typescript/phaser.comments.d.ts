@@ -8846,6 +8846,18 @@ declare module Phaser {
 
 
         /**
+        * A useful flag to control if the Game Object is alive or dead.
+        * 
+        * This is set automatically by the Health components `damage` method should the object run out of health.
+        * Or you can toggle it via your game code.
+        * 
+        * This property is mostly just provided to be used by your game - it doesn't effect rendering or logic updates.
+        * However you can use `Group.getFirstAlive` in conjunction with this property for fast object pooling and recycling.
+        * Default: true
+        */
+        alive: boolean;
+
+        /**
         * The angle property is the rotation of the Game Object in *degrees* from its original orientation.
         * 
         * Values from 0 to 180 represent clockwise rotation; values from 0 to -180 represent counterclockwise rotation.
@@ -8857,18 +8869,6 @@ declare module Phaser {
         * Working in radians is slightly faster as it doesn't have to perform any calculations.
         */
         angle: number;
-
-        /**
-        * A useful flag to control if the Game Object is alive or dead.
-        * 
-        * This is set automatically by the Health components `damage` method should the object run out of health.
-        * Or you can toggle it via your game code.
-        * 
-        * This property is mostly just provided to be used by your game - it doesn't effect rendering or logic updates.
-        * However you can use `Group.getFirstAlive` in conjunction with this property for fast object pooling and recycling.
-        * Default: true
-        */
-        alive: boolean;
 
         /**
         * If the Game Object is enabled for animation (such as a Phaser.Sprite) this is a reference to its AnimationManager instance.
@@ -8885,6 +8885,12 @@ declare module Phaser {
         * or you have tested performance and find it acceptable.
         */
         autoCull: boolean;
+
+        /**
+        * The blend mode to be applied to the graphic shape. Apply a value of PIXI.blendModes.NORMAL to reset the blend mode.
+        * Default: PIXI.blendModes.NORMAL;
+        */
+        blendMode: number;
 
         /**
         * `body` is the Game Objects physics body. Once a Game Object is enabled for physics you access all associated
@@ -8911,6 +8917,11 @@ declare module Phaser {
         bottom: number;
 
         /**
+        * The bounds' padding used for bounds calculation.
+        */
+        boundsPadding: number;
+
+        /**
         * The x/y coordinate offset applied to the top-left of the camera that this Game Object will be drawn at if `fixedToCamera` is true.
         * 
         * The values are relative to the top-left of the camera view and in addition to any parent of the Game Object on the display list.
@@ -8923,11 +8934,11 @@ declare module Phaser {
         */
         centerX: number;
 
-  /**
-  * The center y coordinate of the Game Object.
-  * This is the same as `(y - offsetY) + (height / 2)`.
-  */
-		centerY: number;
+        /**
+        * The center y coordinate of the Game Object.
+        * This is the same as `(y - offsetY) + (height / 2)`.
+        */
+        centerY: number;
 
         /**
         * If this is set to `true` the Game Object checks if it is within the World bounds each frame.
@@ -8971,6 +8982,12 @@ declare module Phaser {
         destroyPhase: boolean;
 
         /**
+        * All Phaser Game Objects have an Events class which contains all of the events that are dispatched when certain things happen to this
+        * Game Object, or any of its components.
+        */
+        events: Phaser.Events;
+
+        /**
         * Controls if this Game Object is processed by the core game loop.
         * If this Game Object has a physics body it also controls if its physics body is updated or not.
         * When `exists` is set to `false` it will remove its physics body from the physics world if it has one.
@@ -8982,10 +8999,9 @@ declare module Phaser {
         exists: boolean;
 
         /**
-        * All Phaser Game Objects have an Events class which contains all of the events that are dispatched when certain things happen to this
-        * Game Object, or any of its components.
+        * The alpha value used when filling the Graphics object.
         */
-        events: Phaser.Events;
+        fillAlpha: number;
 
         /**
         * A Game Object that is "fixed" to the camera is rendered at a given x/y offsets from the top left of the camera. The offsets
@@ -9004,15 +9020,6 @@ declare module Phaser {
         fixedToCamera: boolean;
 
         /**
-        * The key of the image or texture used by this Game Object during rendering.
-        * If it is a string it's the string used to retrieve the texture from the Phaser Image Cache.
-        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
-        * If a Game Object is created without a key it is automatically assigned the key `__default` which is a 32x32 transparent PNG stored within the Cache.
-        * If a Game Object is given a key which doesn't exist in the Image Cache it is re-assigned the key `__missing` which is a 32x32 PNG of a green box with a line through it.
-        */
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
-
-        /**
         * A Game Object is considered `fresh` if it has just been created or reset and is yet to receive a renderer transform update.
         * This property is mostly used internally by the physics systems, but is exposed for the use of plugins.
         */
@@ -9027,6 +9034,17 @@ declare module Phaser {
         * The height of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
         */
         height: number;
+
+        /**
+        * Checks if the Game Objects bounds intersect with the Game Camera bounds.
+        * Returns `true` if they do, otherwise `false` if fully outside of the Cameras bounds.
+        */
+        inCamera: boolean;
+
+        /**
+        * Checks if the Game Objects bounds are within, or intersect at any point with the Game World bounds.
+        */
+        inWorld: boolean;
 
         /**
         * The Input Handler for this Game Object.
@@ -9054,27 +9072,24 @@ declare module Phaser {
         inputEnabled: boolean;
 
         /**
-        * Checks if the Game Objects bounds intersect with the Game Camera bounds.
-        * Returns `true` if they do, otherwise `false` if fully outside of the Cameras bounds.
+        * Whether this shape is being used as a mask.
         */
-        inCamera: boolean;
+        isMask: boolean;
 
         /**
-        * Checks if the Game Objects bounds are within, or intersect at any point with the Game World bounds.
+        * The key of the image or texture used by this Game Object during rendering.
+        * If it is a string it's the string used to retrieve the texture from the Phaser Image Cache.
+        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * If a Game Object is created without a key it is automatically assigned the key `__default` which is a 32x32 transparent PNG stored within the Cache.
+        * If a Game Object is given a key which doesn't exist in the Image Cache it is re-assigned the key `__missing` which is a 32x32 PNG of a green box with a line through it.
         */
-        inWorld: boolean;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
 
         /**
         * The left coordinate of the Game Object.
         * This is the same as `x - offsetX`.
         */
         left: number;
-
-        /**
-        * A user defined name given to this Game Object.
-        * This value isn't ever used internally by Phaser, it is meant as a game level property.
-        */
-        name: string;
 
         /**
         * The lifespan allows you to give a Game Object a lifespan in milliseconds.
@@ -9087,6 +9102,23 @@ declare module Phaser {
         * Very handy for particles, bullets, collectibles, or any other short-lived entity.
         */
         lifespan: number;
+
+        /**
+        * The color of any lines drawn.
+        * Default: 0
+        */
+        lineColor: number;
+
+        /**
+        * The width (thickness) of any lines drawn.
+        */
+        lineWidth: number;
+
+        /**
+        * A user defined name given to this Game Object.
+        * This value isn't ever used internally by Phaser, it is meant as a game level property.
+        */
+        name: string;
 
         /**
         * The amount the Game Object is visually offset from its x coordinate.
@@ -9152,6 +9184,12 @@ declare module Phaser {
         right: number;
 
         /**
+        * The tint applied to the graphic shape. This is a hex value. Apply a value of 0xFFFFFF to reset the tint.
+        * Default: 0xFFFFFF
+        */
+        tint: number;
+
+        /**
         * The y coordinate of the Game Object.
         * This is the same as `y - offsetY`.
         */
@@ -9163,6 +9201,11 @@ declare module Phaser {
         type: number;
 
         /**
+        * The width of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
+        */
+        width: number;
+
+        /**
         * The world coordinates of this Game Object in pixels.
         * Depending on where in the display list this Game Object is placed this value can differ from `position`,
         * which contains the x/y coordinates relative to the Game Objects parent.
@@ -9170,9 +9213,17 @@ declare module Phaser {
         world: Phaser.Point;
 
         /**
-        * The width of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
+        * The multiplied alpha value of this DisplayObject. A value of 1 is fully opaque. A value of 0 is transparent.
+        * This value is the calculated total, based on the alpha values of all parents of this DisplayObjects
+        * in the display list.
+        * 
+        * To obtain, and set, the local alpha value, see the `alpha` property.
+        * 
+        * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
+        * that happens this property will contain values based on the previous frame. Be mindful of this if
+        * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
         */
-        width: number;
+        worldAlpha: number;
 
         /**
         * The z depth of this Game Object within its parent Group.
@@ -9265,11 +9316,147 @@ declare module Phaser {
         alignTo(container: Phaser.Rectangle | Phaser.Sprite | Phaser.Image | Phaser.Text | Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.TileSprite, position?: number, offsetX?: number, offsetY?: number): any;
 
         /**
+        * The arc method creates an arc/curve (used to create circles, or parts of circles).
+        * 
+        * @param cx The x-coordinate of the center of the circle
+        * @param cy The y-coordinate of the center of the circle
+        * @param radius The radius of the circle
+        * @param startAngle The starting angle, in radians (0 is at the 3 o'clock position of the arc's circle)
+        * @param endAngle The ending angle, in radians
+        * @param anticlockwise Optional. Specifies whether the drawing should be counterclockwise or clockwise. False is default, and indicates clockwise, while true indicates counter-clockwise.
+        * @param segments Optional. The number of segments to use when calculating the arc. The default is 40. If you need more fidelity use a higher number.
+        */
+        arc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number, anticlockwise: boolean): Phaser.Graphics;
+
+        /**
+        * The arcTo() method creates an arc/curve between two tangents on the canvas.
+        * 
+        * "borrowed" from https://code.google.com/p/fxcanvas/ - thanks google!
+        * 
+        * @param x1 The x-coordinate of the beginning of the arc
+        * @param y1 The y-coordinate of the beginning of the arc
+        * @param x2 The x-coordinate of the end of the arc
+        * @param y2 The y-coordinate of the end of the arc
+        * @param radius The radius of the arc
+        */
+        arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): Phaser.Graphics;
+
+        /**
+        * Specifies a simple one-color fill that subsequent calls to other Graphics methods
+        * (such as lineTo() or drawCircle()) use when drawing.
+        * 
+        * @param color the color of the fill
+        * @param alpha the alpha of the fill
+        */
+        beginFill(color?: number, alpha?: number): Phaser.Graphics;
+
+        /**
+        * Calculate the points for a bezier curve and then draws it.
+        * 
+        * @param cpX Control point x
+        * @param cpY Control point y
+        * @param cpX2 Second Control point x
+        * @param cpY2 Second Control point y
+        * @param toX Destination point x
+        * @param toY Destination point y
+        */
+        bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number): Phaser.Graphics;
+
+        /**
+        * Clears the graphics that were drawn to this Graphics object, and resets fill and line style settings.
+        */
+        clear(): Phaser.Graphics;
+
+        /**
         * Destroy this Graphics instance.
         * 
         * @param destroyChildren Should every child of this object have its destroy method called? - Default: true
         */
         destroy(destroyChildren?: boolean): void;
+
+        /**
+        * Destroys a previous cached sprite.
+        */
+        destroyCachedSprite(): void;
+
+        /**
+        * Draws a circle.
+        * 
+        * @param x The X coordinate of the center of the circle
+        * @param y The Y coordinate of the center of the circle
+        * @param diameter The diameter of the circle
+        */
+        drawCircle(x: number, y: number, diameter: number): Phaser.Graphics;
+
+        /**
+        * Draws an ellipse.
+        * 
+        * @param x The X coordinate of the center of the ellipse
+        * @param y The Y coordinate of the center of the ellipse
+        * @param width The half width of the ellipse
+        * @param height The half height of the ellipse
+        */
+        drawEllipse(x: number, y: number, width: number, height: number): Phaser.Graphics;
+
+        /**
+        * Draws a polygon using the given path.
+        * 
+        * @param path The path data used to construct the polygon. Can either be an array of points or a Phaser.Polygon object.
+        */
+        drawPolygon(...path: any[]): Phaser.Graphics;
+
+        /**
+        * 
+        * 
+        * @param x The X coord of the top-left of the rectangle
+        * @param y The Y coord of the top-left of the rectangle
+        * @param width The width of the rectangle
+        * @param height The height of the rectangle
+        */
+        drawRect(x: number, y: number, width: number, height: number): Phaser.Graphics;
+
+        /**
+        * 
+        * 
+        * @param x The X coord of the top-left of the rectangle
+        * @param y The Y coord of the top-left of the rectangle
+        * @param width The width of the rectangle
+        * @param height The height of the rectangle
+        * @param radius Radius of the rectangle corners. In WebGL this must be a value between 0 and 9.
+        */
+        drawRoundedRect(x: number, y: number, width: number, height: number, radius: number): Phaser.Graphics;
+
+        /**
+        * Draws the given shape to this Graphics object. Can be any of Circle, Rectangle, Ellipse, Line or Polygon.
+        * 
+        * @param shape The Shape object to draw.
+        * @return The generated GraphicsData object.
+        */
+        drawShape(shape: Circle): Phaser.GraphicsData;
+
+        /**
+        * Draws the given shape to this Graphics object. Can be any of Circle, Rectangle, Ellipse, Line or Polygon.
+        * 
+        * @param shape The Shape object to draw.
+        * @return The generated GraphicsData object.
+        */
+        drawShape(shape: Ellipse): Phaser.GraphicsData;
+
+        /**
+        * Draws the given shape to this Graphics object. Can be any of Circle, Rectangle, Ellipse, Line or Polygon.
+        * 
+        * @param shape The Shape object to draw.
+        * @return The generated GraphicsData object.
+        */
+        drawShape(shape: Polygon): Phaser.GraphicsData;
+
+        /**
+        * Draws the given shape to this Graphics object. Can be any of Circle, Rectangle, Ellipse, Line or Polygon.
+        * 
+        * @param shape The Shape object to draw.
+        * @return The generated GraphicsData object.
+        */
+        drawShape(shape: Rectangle): Phaser.GraphicsData;
 
         /**
         * Draws a single {Phaser.Polygon} triangle from a {Phaser.Point} array
@@ -9289,6 +9476,22 @@ declare module Phaser {
         drawTriangles(vertices: Phaser.Point[] | number[], indices?: number[], cull?: boolean): void;
 
         /**
+        * Applies a fill to the lines and shapes that were added since the last call to the beginFill() method.
+        */
+        endFill(): Phaser.Graphics;
+
+        /**
+        * Useful function that returns a texture of the graphics object that can then be used to create sprites
+        * This can be quite useful if your geometry is complicated and needs to be reused multiple times.
+        * 
+        * @param resolution The resolution of the texture being generated - Default: 1
+        * @param scaleMode Should be one of the PIXI.scaleMode consts
+        * @param padding Add optional extra padding to the generated texture (default 0)
+        * @return a texture of the graphics object
+        */
+        generateTexture(resolution?: number, scaleMode?: number, padding?: number): Phaser.RenderTexture;
+
+        /**
         * Kills a Game Object. A killed Game Object has its `alive`, `exists` and `visible` properties all set to false.
         * 
         * It will dispatch the `onKilled` event. You can listen to `events.onKilled` for the signal.
@@ -9302,6 +9505,32 @@ declare module Phaser {
         kill(): Phaser.Graphics;
 
         /**
+        * Specifies the line style used for subsequent calls to Graphics methods such as the lineTo() method or the drawCircle() method.
+        * 
+        * @param lineWidth width of the line to draw, will update the objects stored style
+        * @param color color of the line to draw, will update the objects stored style
+        * @param alpha alpha of the line to draw, will update the objects stored style
+        */
+        lineStyle(lineWidth?: number, color?: number, alpha?: number): Phaser.Graphics;
+
+        /**
+        * Draws a line using the current line style from the current drawing position to (x, y);
+        * The current drawing position is then set to (x, y).
+        * 
+        * @param x the X coordinate to draw to
+        * @param y the Y coordinate to draw to
+        */
+        lineTo(x: number, y: number): Phaser.Graphics;
+
+        /**
+        * Moves the current drawing position to x, y.
+        * 
+        * @param x the X coordinate to move to
+        * @param y the Y coordinate to move to
+        */
+        moveTo(x: number, y: number): Phaser.Graphics;
+
+        /**
         * Automatically called by World
         */
         postUpdate(): void;
@@ -9310,6 +9539,17 @@ declare module Phaser {
         * Automatically called by World.preUpdate.
         */
         preUpdate(): void;
+
+        /**
+        * Calculate the points for a quadratic bezier curve and then draws it.
+        * Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier-curve-in-c
+        * 
+        * @param cpX Control point x
+        * @param cpY Control point y
+        * @param toX Destination point x
+        * @param toY Destination point y
+        */
+        quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number): Phaser.Graphics;
 
         /**
         * Resets the Game Object.
@@ -9346,6 +9586,21 @@ declare module Phaser {
         * Remember if this Game Object has any children you should call update on those too.
         */
         update(): void;
+
+    }
+
+    class GraphicsData {
+
+        constructor(lineWidth?: number, lineColor?: number, lineAlpha?: number, fillColor?: number, fillAlpha?: number, fill?: boolean, shape?: any);
+
+        lineWidth: number;
+        lineColor: number;
+        lineAlpha: number;
+        fillColor: number;
+        fillAlpha: number;
+        fill: boolean;
+        shape: any;
+        type: number;
 
     }
 
@@ -24669,7 +24924,7 @@ declare module Phaser {
         * 
         * @param wt The updated worldTransform matrix.
         */
-        checkTransform(wt: PIXI.Matrix): void;
+        checkTransform(wt: Phaser.Matrix): void;
 
         /**
         * Crop allows you to crop the texture being used to display this Game Object.
@@ -26620,7 +26875,7 @@ declare module Phaser {
         * 
         * @param wt The updated worldTransform matrix.
         */
-        checkTransform(wt: PIXI.Matrix): void;
+        checkTransform(wt: Phaser.Matrix): void;
         damage(amount: number): Phaser.Sprite;
 
         /**

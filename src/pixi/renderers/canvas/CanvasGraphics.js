@@ -14,7 +14,7 @@ PIXI.CanvasGraphics = function()
 };
 
 /*
- * Renders a PIXI.Graphics object to a canvas.
+ * Renders a {@link Phaser.Graphics} object to a canvas.
  *
  * @method renderGraphics
  * @static

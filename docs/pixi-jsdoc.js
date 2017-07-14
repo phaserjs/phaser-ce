@@ -143,7 +143,7 @@ Note: This property is only updated at the end of the `updateTransform` call, on
 that happens this property will contain values based on the previous frame. Be mindful of this if
 accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
 * @member PIXI.DisplayObject#worldTransform
-* @type {PIXIMatrix}
+* @type {PhaserMatrix}
 * @readonly 
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
 * @sourceline 135
@@ -355,7 +355,7 @@ When applied it limits the visible area of this DisplayObject to the shape of th
 Under a Canvas renderer it uses shape clipping. Under a WebGL renderer it uses a Stencil Buffer.
 To remove a mask, set this property to `null`.
 * @member PIXI.DisplayObject#mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
-* @type {PIXIGraphics}
+* @type {PhaserGraphics}
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObject.js
 * @sourceline 706
 */
@@ -499,7 +499,7 @@ Note that this property isn't recursive: only immediate children are influenced,
 /**
 * @description Retrieves the global bounds of the displayObjectContainer as a rectangle. The bounds calculation takes all visible children into consideration.
 * @method PIXI.DisplayObjectContainer#getBounds
-* @param {(PIXIDisplayObject|PIXIMatrix)} [targetCoordinateSpace] - Returns a rectangle that defines the area of the display object relative to the coordinate system of the targetCoordinateSpace object.
+* @param {(PIXIDisplayObject|PhaserMatrix)} [targetCoordinateSpace] - Returns a rectangle that defines the area of the display object relative to the coordinate system of the targetCoordinateSpace object.
 * @return {Rectangle} The rectangular bounding area
 * @sourcefile /Users/sam/Misc/Source/phaser-ce/src/pixi/display/DisplayObjectContainer.js
 * @sourceline 280

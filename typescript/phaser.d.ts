@@ -1664,34 +1664,40 @@ declare module Phaser {
 
         constructor(game: Phaser.Game, x?: number, y?: number);
 
-        angle: number;
         alive: boolean;
+        angle: number;
         animations: Phaser.AnimationManager;
         autoCull: boolean;
+        blendMode: number;
         body: Phaser.Physics.Arcade.Body | Phaser.Physics.P2.Body | Phaser.Physics.Ninja.Body | any;
         bottom: number;
+        boundsPadding: number;
         cameraOffset: Phaser.Point;
         centerX: number;
-		centerY: number;
+        centerY: number;
         checkWorldBounds: boolean;
         components: any;
         data: any;
         debug: boolean;
         destroyPhase: boolean;
-        exists: boolean;
         events: Phaser.Events;
+        exists: boolean;
+        fillAlpha: number;
         fixedToCamera: boolean;
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
         fresh: boolean;
         game: Phaser.Game;
         height: number;
-        input: Phaser.InputHandler;
-        inputEnabled: boolean;
         inCamera: boolean;
         inWorld: boolean;
+        input: Phaser.InputHandler;
+        inputEnabled: boolean;
+        isMask: boolean;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
         left: number;
-        name: string;
         lifespan: number;
+        lineColor: number;
+        lineWidth: number;
+        name: string;
         offsetX: number;
         offsetY: number;
         outOfBoundsKill: boolean;
@@ -1702,23 +1708,61 @@ declare module Phaser {
         previousRotation: number;
         renderOrderID: number;
         right: number;
+        tint: number;
         top: number;
         type: number;
-        world: Phaser.Point;
         width: number;
+        world: Phaser.Point;
+        worldAlpha: number;
         z: number;
 
         alignIn(container: Phaser.Rectangle | Phaser.Sprite | Phaser.Image | Phaser.Text | Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.TileSprite, position?: number, offsetX?: number, offsetY?: number): any;
         alignTo(container: Phaser.Rectangle | Phaser.Sprite | Phaser.Image | Phaser.Text | Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.TileSprite, position?: number, offsetX?: number, offsetY?: number): any;
+        arc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number, anticlockwise: boolean): Phaser.Graphics;
+        arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): Phaser.Graphics;
+        beginFill(color?: number, alpha?: number): Phaser.Graphics;
+        bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number): Phaser.Graphics;
+        clear(): Phaser.Graphics;
         destroy(destroyChildren?: boolean): void;
+        destroyCachedSprite(): void;
+        drawCircle(x: number, y: number, diameter: number): Phaser.Graphics;
+        drawEllipse(x: number, y: number, width: number, height: number): Phaser.Graphics;
+        drawPolygon(...path: any[]): Phaser.Graphics;
+        drawRect(x: number, y: number, width: number, height: number): Phaser.Graphics;
+        drawRoundedRect(x: number, y: number, width: number, height: number, radius: number): Phaser.Graphics;
+        drawShape(shape: Circle): Phaser.GraphicsData;
+        drawShape(shape: Ellipse): Phaser.GraphicsData;
+        drawShape(shape: Polygon): Phaser.GraphicsData;
+        drawShape(shape: Rectangle): Phaser.GraphicsData;
         drawTriangle(points: Phaser.Point[], cull?: boolean): void;
         drawTriangles(vertices: Phaser.Point[] | number[], indices?: number[], cull?: boolean): void;
+        endFill(): Phaser.Graphics;
+        generateTexture(resolution?: number, scaleMode?: number, padding?: number): Phaser.RenderTexture;
         kill(): Phaser.Graphics;
+        lineStyle(lineWidth?: number, color?: number, alpha?: number): Phaser.Graphics;
+        lineTo(x: number, y: number): Phaser.Graphics;
+        moveTo(x: number, y: number): Phaser.Graphics;
         postUpdate(): void;
         preUpdate(): void;
+        quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number): Phaser.Graphics;
         reset(x: number, y: number, health?: number): Phaser.Graphics;
         revive(health?: number): Phaser.Graphics;
         update(): void;
+
+    }
+
+    class GraphicsData {
+
+        constructor(lineWidth?: number, lineColor?: number, lineAlpha?: number, fillColor?: number, fillAlpha?: number, fill?: boolean, shape?: any);
+
+        lineWidth: number;
+        lineColor: number;
+        lineAlpha: number;
+        fillColor: number;
+        fillAlpha: number;
+        fill: boolean;
+        shape: any;
+        type: number;
 
     }
 
