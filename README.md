@@ -260,6 +260,24 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
+## Unreleased
+
+### New Features
+
+### Updates
+
+* Added ionic project template and a small guide to readme (#96)
+
+### Bug Fixes
+
+### PIXI updates
+
+* Removed PIXI.Matrix and PIXI.identityMatrix completely from code
+
+### Thanks
+
+@Dreaded-Gnu
+
 ## Version 2.8.2 - 14th July 2017
 
 ### New Features
