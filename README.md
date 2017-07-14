@@ -212,6 +212,35 @@ As with browserify, use the `pixi`, `p2`, and `phaser-split` modules in [build/c
 
 See [our webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) or [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
 
+### Ionic
+
+For using phaser-ce with ionic, have a look at the ionic example within project templates. To get phaser-ce working with ionic in general, you've to extend "only" the webpack config used by ionic. To get this done are a few steps are necessary.
+
+- Install dependencies webpack-merge and expose-loader
+
+  ```bash
+  npm install webpack-merge expose-loader --save-dev
+  ```
+
+- Create a new webpack config setting up expose loader and merging it with the ionic webpack script. Have a look at the config within [project template](github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example/webpack.config.js)
+
+- Add own webpack config at package.json, so that ionic will use it
+
+  ```javascript
+    "config": {
+      "ionic_webpack": "./webpack.config.js"
+    }
+  ```
+
+- Import pixi, p2 and phaser within your project
+
+  ```javascript
+  // import pixi, p2 and phaser ce
+  import "pixi";
+  import "p2";
+  import * as Phaser from "phaser-ce";
+  ```
+
 ### Building from source
 
 Should you wish to build Phaser from source you can take advantage of the provided [Grunt](http://gruntjs.com/) scripts. Ensure you have the required packages by running `npm install` first.
