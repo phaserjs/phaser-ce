@@ -1042,6 +1042,69 @@
     <div class="description">
         <p>This is a base State class which can be extended if you are creating your own game.
 It provides quick access to common functions such as the camera, cache, input, match, sound and more.</p>
+<h4>Callbacks</h4><table>
+<thead>
+<tr>
+<th>start</th>
+<th>preload</th>
+<th>loaded</th>
+<th>paused</th>
+<th>stop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>init</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>preload</td>
+<td>create</td>
+<td>paused</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>loadUpdate*</td>
+<td>update*</td>
+<td>pauseUpdate*</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>preRender*</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>loadRender*</td>
+<td>render*</td>
+<td>pauseRender*</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>resumed</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>shutdown</td>
+</tr>
+</tbody>
+</table>
+<p>Update and render calls (*) are repeated.</p>
     </div>
     
 
@@ -1075,7 +1138,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-14">line 14</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-28">line 28</a>
     </dt>
     
 
@@ -1155,7 +1218,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-29">line 29</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-43">line 43</a>
     </dt>
     
 
@@ -1211,7 +1274,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-44">line 44</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-58">line 58</a>
     </dt>
     
 
@@ -1267,7 +1330,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-39">line 39</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-53">line 53</a>
     </dt>
     
 
@@ -1323,7 +1386,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-19">line 19</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-33">line 33</a>
     </dt>
     
 
@@ -1379,7 +1442,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-49">line 49</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-63">line 63</a>
     </dt>
     
 
@@ -1435,7 +1498,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-24">line 24</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-38">line 38</a>
     </dt>
     
 
@@ -1491,7 +1554,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-54">line 54</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-68">line 68</a>
     </dt>
     
 
@@ -1547,7 +1610,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-34">line 34</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-48">line 48</a>
     </dt>
     
 
@@ -1603,7 +1666,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-59">line 59</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-73">line 73</a>
     </dt>
     
 
@@ -1659,7 +1722,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-99">line 99</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-113">line 113</a>
     </dt>
     
 
@@ -1715,7 +1778,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-104">line 104</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-118">line 118</a>
     </dt>
     
 
@@ -1771,7 +1834,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-109">line 109</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-123">line 123</a>
     </dt>
     
 
@@ -1827,7 +1890,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-69">line 69</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-83">line 83</a>
     </dt>
     
 
@@ -1883,7 +1946,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-64">line 64</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-78">line 78</a>
     </dt>
     
 
@@ -1939,7 +2002,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-74">line 74</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-88">line 88</a>
     </dt>
     
 
@@ -2043,7 +2106,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-79">line 79</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-93">line 93</a>
     </dt>
     
 
@@ -2099,7 +2162,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-84">line 84</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-98">line 98</a>
     </dt>
     
 
@@ -2155,7 +2218,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-89">line 89</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-103">line 103</a>
     </dt>
     
 
@@ -2211,7 +2274,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-94">line 94</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-108">line 108</a>
     </dt>
     
 
@@ -2280,7 +2343,7 @@ If you don't have a preload method then create is the first method called in you
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-152">line 152</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-166">line 166</a>
     </dt>
     
 
@@ -2352,7 +2415,7 @@ or objects before the preloading starts.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-115">line 115</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-129">line 129</a>
     </dt>
     
 
@@ -2423,7 +2486,7 @@ The difference between loadRender and render is that any objects you render in t
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-143">line 143</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-157">line 157</a>
     </dt>
     
 
@@ -2493,7 +2556,7 @@ The difference between loadRender and render is that any objects you render in t
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-135">line 135</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-149">line 149</a>
     </dt>
     
 
@@ -2563,7 +2626,7 @@ The difference between loadRender and render is that any objects you render in t
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-197">line 197</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-211">line 211</a>
     </dt>
     
 
@@ -2633,7 +2696,7 @@ The difference between loadRender and render is that any objects you render in t
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-213">line 213</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-227">line 227</a>
     </dt>
     
 
@@ -2705,7 +2768,7 @@ they won't yet be available.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-125">line 125</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-139">line 139</a>
     </dt>
     
 
@@ -2775,7 +2838,7 @@ they won't yet be available.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-171">line 171</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-185">line 185</a>
     </dt>
     
 
@@ -2847,7 +2910,7 @@ final post-processing style effects here. Note that this happens before plugins 
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-179">line 179</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-193">line 193</a>
     </dt>
     
 
@@ -2917,7 +2980,7 @@ final post-processing style effects here. Note that this happens before plugins 
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-189">line 189</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-203">line 203</a>
     </dt>
     
 
@@ -2987,7 +3050,7 @@ final post-processing style effects here. Note that this happens before plugins 
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-205">line 205</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-219">line 219</a>
     </dt>
     
 
@@ -3057,7 +3120,7 @@ final post-processing style effects here. Note that this happens before plugins 
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-221">line 221</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-235">line 235</a>
     </dt>
     
 
@@ -3129,7 +3192,7 @@ It is called BEFORE Stage, Tweens, Sounds, Input, Physics, Particles and Plugins
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-161">line 161</a>
+    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-175">line 175</a>
     </dt>
     
 
@@ -3177,8 +3240,8 @@ It is called BEFORE Stage, Tweens, Sounds, Input, Physics, Particles and Plugins
 					<br />
 					
 		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Tue Jun 20 2017 19:07:47 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.2</a>
+		on Thu Jul 13 2017 18:15:15 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>
