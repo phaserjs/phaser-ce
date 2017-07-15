@@ -183,24 +183,32 @@ Phaser.Camera = function (game, id, x, y, width, height) {
 };
 
 /**
+* A follow style that uses no deadzone.
+*
 * @constant
 * @type {number}
 */
 Phaser.Camera.FOLLOW_LOCKON = 0;
 
 /**
+* A follow style that uses a tall, narrow deadzone (0.33 x 0.125) with a center slightly above the view center.
+*
 * @constant
 * @type {number}
 */
 Phaser.Camera.FOLLOW_PLATFORMER = 1;
 
 /**
+* A follow style that uses a square deadzone (0.25 of the larger view edge).
+*
 * @constant
 * @type {number}
 */
 Phaser.Camera.FOLLOW_TOPDOWN = 2;
 
 /**
+* A follow style that uses a small square deadzone (0.125 of the larger view edge).
+*
 * @constant
 * @type {number}
 */
@@ -277,7 +285,7 @@ Phaser.Camera.prototype = {
     *
     * @method Phaser.Camera#follow
     * @param {Phaser.Sprite|Phaser.Image|Phaser.Text} target - The object you want the camera to track. Set to null to not follow anything.
-    * @param {number} [style] - Leverage one of the existing "deadzone" presets. If you use a custom deadzone, ignore this parameter and manually specify the deadzone after calling follow().
+    * @param {number} [style] - Leverage one of the existing {@link deadzone} presets. If you use a custom deadzone, ignore this parameter and manually specify the deadzone after calling follow().
     * @param {float} [lerpX=1] - A value between 0 and 1. This value specifies the amount of linear interpolation to use when horizontally tracking the target. The closer the value to 1, the faster the camera will track.
     * @param {float} [lerpY=1] - A value between 0 and 1. This value specifies the amount of linear interpolation to use when vertically tracking the target. The closer the value to 1, the faster the camera will track.
     */
@@ -773,6 +781,8 @@ Phaser.Camera.prototype = {
         this.view.y = 0;
 
         this._shake.duration = 0;
+        this._shake.x = 0;
+        this._shake.y = 0;
 
         this.resetFX();
 

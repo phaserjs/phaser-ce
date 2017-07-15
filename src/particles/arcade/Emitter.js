@@ -57,6 +57,30 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.area = new Phaser.Rectangle(x, y, 1, 1);
 
     /**
+     * @property {?number} minAngle - The minimum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link #maxAngle}), {@link #minSpeed} and {@link #maxSpeed} are used and {@link #minParticleSpeed} and {@link #maxParticleSpeed} are ignored.
+     * @default
+     */
+    this.minAngle = null;
+
+    /**
+     * @property {?number} maxAngle - The maximum angle of initial particle velocities, in degrees. When set to a non-null value (with {@link #minAngle}), {@link #minSpeed} and {@link #maxSpeed} are used and {@link #minParticleSpeed} and {@link #maxParticleSpeed} are ignored.
+     * @default
+     */
+    this.maxAngle = null;
+
+    /**
+     * @property {number} minSpeed - The minimum initial speed of particles released within {@link #minAngle} and {@link #maxAngle}.
+     * @default
+     */
+    this.minSpeed = 0;
+
+    /**
+     * @property {number} maxSpeed - The maximum initial speed of particles released within {@link #minAngle} and {@link #maxAngle}.
+     * @default
+     */
+    this.maxSpeed = 100;
+
+    /**
     * @property {Phaser.Point} minParticleSpeed - The minimum possible velocity of a particle.
     * @default
     */
@@ -205,6 +229,20 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.particleSendToBack = false;
 
     /**
+     * @property {object} count
+     * @property {number} count.emitted - How many particles were emitted during the last update.
+     * @property {number} count.failed - How many particles could not be emitted during the last update (because no particles were available).
+     * @property {number} count.totalEmitted - How many particles have been emitted.
+     * @property {number} count.totalFailed - How many particles could not be emitted when they were due (because no particles were available).
+     */
+    this.count = {
+        emitted: 0,
+        failed: 0,
+        totalEmitted: 0,
+        totalFailed: 0
+    };
+
+    /**
     * @property {Phaser.Point} _gravity - Internal gravity value.
     * @private
     */
@@ -275,6 +313,9 @@ Phaser.Particles.Arcade.Emitter.prototype.constructor = Phaser.Particles.Arcade.
 * @method Phaser.Particles.Arcade.Emitter#update
 */
 Phaser.Particles.Arcade.Emitter.prototype.update = function () {
+
+    this.count.emitted = 0;
+    this.count.failed = 0;
 
     if (this.on && this.game.time.time >= this._timer)
     {
@@ -590,8 +631,14 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
 
     if (particle === null)
     {
+        this.count.failed++;
+        this.count.totalFailed++;
+
         return false;
     }
+
+    this.count.emitted++;
+    this.count.totalEmitted++;
 
     var rnd = this.game.rnd;
 
@@ -686,10 +733,21 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     body.bounce.copyFrom(this.bounce);
     body.drag.copyFrom(this.particleDrag);
 
-    body.velocity.x = rnd.between(this.minParticleSpeed.x, this.maxParticleSpeed.x);
-    body.velocity.y = rnd.between(this.minParticleSpeed.y, this.maxParticleSpeed.y);
-    body.angularVelocity = rnd.between(this.minRotation, this.maxRotation);
+    if (this.minAngle != null && this.maxAngle != null)
+    {
+        this.game.physics.arcade.velocityFromAngle(
+            (this.minAngle === this.maxAngle) ? this.minAngle : rnd.between(this.minAngle, this.maxAngle),
+            (this.minSpeed === this.maxSpeed) ? this.minSpeed : rnd.between(this.minSpeed, this.maxSpeed),
+            body.velocity
+            );
+    }
+    else
+    {
+        body.velocity.x = rnd.between(this.minParticleSpeed.x, this.maxParticleSpeed.x);
+        body.velocity.y = rnd.between(this.minParticleSpeed.y, this.maxParticleSpeed.y);
+    }
 
+    body.angularVelocity = rnd.between(this.minRotation, this.maxRotation);
     body.gravity.copyFrom(this.gravity);
     body.angularDrag = this.angularDrag;
 
@@ -881,6 +939,32 @@ Phaser.Particles.Arcade.Emitter.prototype.setScale = function (minX, maxX, minY,
 };
 
 /**
+ * Sets a radial pattern for emitting particles.
+ *
+ * This is a shorthand for setting {@link #minAngle}, {@link #maxAngle}, {@link #minSpeed}, and {@link #maxSpeed}.
+ *
+ * To remove the radial pattern, use `setAngle(null, null)`.
+ *
+ * @method Phaser.Particles.Arcade.Emitter#setAngle
+ * @param {?number} minAngle - The minimum angle of initial particle velocities, in degrees.
+ * @param {?number} maxAngle - The maximum angle of initial particle velocities, in degrees.
+ * @param {number} [minSpeed] - The minimum initial particle speed.
+ * @param {number} [maxSpeed] - The maximum initial particle speed.
+ * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
+ */
+Phaser.Particles.Arcade.Emitter.prototype.setAngle = function (minAngle, maxAngle, minSpeed, maxSpeed) {
+
+    this.minAngle = minAngle;
+    this.maxAngle = maxAngle;
+
+    if (minSpeed != null) { this.minSpeed = minSpeed; }
+    if (maxSpeed != null) { this.maxSpeed = maxSpeed; }
+
+    return this;
+
+};
+
+/**
 * Change the emitters center to match the center of any object with a `center` property, such as a Sprite.
 * If the object doesn't have a center property it will be set to object.x + object.width / 2
 *
@@ -1051,6 +1135,45 @@ Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "bottom", {
 
     get: function () {
         return Math.floor(this.y + (this.area.height / 2));
+    }
+
+});
+
+/**
+ * @name Phaser.Particles.Arcade.Emitter#output
+ * @property {number} output - The number of particles released per second, after calling {@link #flow}.
+ * @readonly
+ */
+Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "output", {
+
+    get: function () {
+        return 1000 * this._flowQuantity / this.frequency;
+    }
+
+});
+
+/**
+ * @name Phaser.Particles.Arcade.Emitter#lifespanOutput
+ * @property {number} lifespanOutput - The number of particles released during one particle's {@link #lifespan}, after calling {@link #flow}.
+ * @readonly
+ */
+Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "lifespanOutput", {
+
+    get: function () {
+        return (this.lifespan === 0 ? Infinity : this.lifespan) * this._flowQuantity / this.frequency;
+    }
+
+});
+
+/**
+ * @name Phaser.Particles.Arcade.Emitter#remainder
+ * @property {number} remainder - The expected number of unreleased particles after a flow interval of {@link #lifespan}, after calling {@link #flow}.
+ * @readonly
+ */
+Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "remainder", {
+
+    get: function () {
+        return this.maxParticles - this.lifespanOutput;
     }
 
 });

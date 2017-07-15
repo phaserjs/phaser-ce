@@ -4,6 +4,134 @@
 
 See [README: Change Log](README.md#change-log).
 
+## Version 2.8.2 - 14th July 2017
+
+### New Features
+
+* Phaser.Point.set is a static counterpart to [Phaser.Point#set](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#set). It can be used on any point-like object, e.g.,
+
+  ```javascript
+  Phaser.Point.set(PIXI.Sprite.defaultAnchor, 0.5); //-> {x: 0.5, y: 0.5}
+  ```
+
+### Updates
+
+* Added TypeScript `types` to package.json (#276).
+* New [webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) (#95).
+* [Phaser.Component.Core.init](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html) checks types of the `game`, `x`, and `y` arguments, since these mistakes can be hard to track down (outside of TypeScript). The cost is likely trivial, but you can skip these by setting [Phaser.Component.Core.skipTypeChecks](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#skipTypeChecks) to true.
+* [Phaser.Utils.Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer) lists [currentBatchedTextures](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#currentBatchedTextures) (added by [PIXI.WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority)).
+* [Phaser.TilemapParser.parseTiledJSON](https://photonstorm.github.io/phaser-ce/Phaser.TilemapParser.html#parseTiledJSON) warns if a tilemap contains an external tileset, which Phaser doesn't read (#273).
+* [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects) assigns the width and height of [Object Tiles](http://doc.mapeditor.org/manual/objects/#insert-tile) to the newly created Sprite (previously these were ignored).
+
+### Bug Fixes
+
+* Added missing [PIXI.DisplayObject#constructor](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html) (#278).
+* [Arcade.Body#render](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#render), [Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom) (circles, ellipses), [Debug#rectangle](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#rectangle), and [Debug#spriteBounds](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#setBounds) use [Debug#lineWidth](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#lineWidth).
+* Fixed [PIXI.CanvasRenderer#renderSession.roundPixels](https://photonstorm.github.io/phaser-ce/PIXI.CanvasRenderer.html#renderSession) misspelled as `roundPx` in [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer). ([roundPx](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#roundPx) is a Camera property.)
+* Fixed some TypeScript definitions (#174, #270, #274, #277).
+* The debug canvas is returned to the canvas pool when the game is destroyed (#269).
+
+### Thanks
+
+@bulgakovk, @cmd-johnson, @dolanmiu, @georgesboris, @johnbuttcoingalt, @mindcity, @photonstorm, @samme
+
+## Version 2.8.1 - 20th June 2017
+
+### New Features
+
+* [Debug#camera](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#camera) shows the camera [follow target](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#target) and [deadzone](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#deadzone).
+* [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer) prints some useful properties of the [game renderer](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#renderer). In WebGL mode, this includes draw counts, texture space limit, and texture batch size.
+* [Point#setToPolar](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#setToPolar) places a Point from polar coordinates (angle and distance). You can use it to set velocity or acceleration (as `velocity.setToPolar(angle, speed)`), as many of the Arcade Physics helpers now do.
+* [Arcade.Body#blocked.none](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#blocked) describes whether a Body is blocked on any edge. `blocked` and [touching](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#touching) now have identical keys.
+* [Arcade.Body#stop](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#stop) halts all motion.
+* [Emitter#count](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#count) records some diagnostic quantities: `count.emitted`, `count.failed`, `count.totalEmitted`, `count.totalFailed`.
+* [Group#shuffle](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#shuffle) orders children randomly.
+* [PIXI.Sprite.defaultAnchor](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#defaultAnchor) holds the initial anchor values for new Sprites (default: [x=0, y=0]).
+* Phaser.Math.HALF_PI is π / 2.
+
+### Updates
+
+* Added PIXI.canUseNewCanvasBlendModes to support [Particle Storm Plugin](https://phaser.io/shop/plugins/particlestorm) (photonstorm/phaser#2909). It's equivalent to [Phaser.Device.canUseMultiply](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#canUseMultiply).
+* [Debug#cameraInfo](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#cameraInfo) now displays the follow target (`target`), `roundPx`, `atLimit`, and `deadzone`.
+* [Debug#isDisabled](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#isDisabled) is now defined in two additional cases: `true` when a new game is created with `enableDebug: false`; and `false` otherwise. As before, it is `true` when Phaser is built without the Debug class.
+* [ScaleManager#forceOrientation](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#forceOrientation) warns if you try to force both orientations.
+* [WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority) warns if `maxTextureAvailableSpace` is exhausted.
+* Documented an undocumented feature of [Phaser.Signal](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html): returning `false` from a callback stops Signal propagation, just as [Signal#halt](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html#halt) does (#243).
+
+### Bug Fixes
+
+* Fixed [WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority) not clearing the current batch.
+* Fixed incorrect `worldRotation` for some objects (#259).
+* Fixed `NaN` value for some objects' `worldRotation` and `worldScale` properties. `worldTransform` was still correct.
+* Fixed [Phaser.Input#hitTest](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#hitTest) when texture resolution ≠ 1.
+* Fixed an incorrect area in [Phaser.Input#hitTest](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#hitTest) when a Creature is reversed on either axis.
+* Fixed camera shake failing to be reset to 0 when camera is reset.
+* Added some missing TypeScript return values (#255).
+* Fixed typo for TypeScript definition of `IGameConfig.multiTexture` property.
+
+### Thanks
+
+@andrewjb123, @dhashvir, @Formic, @jbpuryear, @noidexe, @pavle-goloskokovic, @photonstorm, @rgk, @samme, stupot
+
+## Version 2.8.0 - 30th May 2017
+
+We've bumped the minor version (2.8) for changes in how circular Arcade Physics bodies behave with scaled sprites. We consider this a bug fix (#235), but since the prior behavior wasn't documented and existing code might be relying on it, we wanted to give you a heads-up.
+
+### New Features
+
+* You can emit particles in a radial pattern with [Emitter#setAngle](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#setAngle).
+* [Emitter#output](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#output), [Emitter#lifespanOutput](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#lifespanOutput), and [Emitter#remainder](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#remainder) describe particle flow rate.
+* You can toggle drag (resistance) on or off with [Arcade.Body#allowDrag](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#allowDrag). You might apply drag only when a character is touching the ground, for example.
+* [Group#checkAny](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAny) tests if at least one child matches a given property value.
+* [Group#killAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#killAll) kills all existing children. (Also useful for shutting off particle emitters.)
+* [Group#reviveAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#reviveAll) revives all non-existing children.
+* [Group#resetAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#resetAll) calls resetChild on all children (changing position, texture, and frame, if specified).
+* [Group#scatter](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#scatter) places each child at a random position within a Rectangle or the World bounds.
+* [Point.isPoint](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#isPoint) identifies objects that can be safely used in Point operations.
+
+### Updates
+
+* [Arcade.Body#radius](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#radius) represents a length relative to the sprite's texture dimensions. The effective radius of the body scales automatically when the sprite scale changes, as with rectangular bodies, and the body is sized correctly when the sprite's scale is different from (1, 1) (#235).
+* [Create#grid](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#grid) and [Create#texture](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#texture) accept callbacks (#241, #136) and can return a BitmapData object when passed `generateTexture=false`.
+
+### Bug Fixes
+
+* Fixed incorrect Phaser.Text dimensions when assigning a numeric string to [strokeThickness](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#strokeThickness) (#239). (You should still use a number instead, though.)
+* Fixed Sounds ignoring changes to global volume when using audio tags.
+* Fixed looping timers not getting removed completely when destroyed.
+
+### Thanks
+
+@ColaColin, @GameDevFox, @goldfire, @netgfx, @photonstorm, @rblopes, @samme, @shunsei, @Xesenix
+
+## Version 2.7.10 - 19th May 2017
+
+### New Features
+
+* Added [Creature alpha](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#alpha) (`creature.alpha = 0.5` for 50% opacity)
+* Added [Creature tinting](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html#tint) (`creature.tint = 0xFF0000` for red tint)
+* You can now set [Phaser.Utils.Debug#lineWidth](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#lineWidth), the width of the stroke of shapes drawn by [Debug#body](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#body) and [Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom).
+
+### Updates
+
+* [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty) now returns false if the `child` argument is not a child of the Group. Use [Phaser.Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#.getProperty) instead to read a property value on any object.
+* Removed `/docs` and `/resources` from Phaser CE's Bower and [NPM](https://www.npmjs.com/package/phaser-ce) packages, which are now much smaller.
+* Removed some duplicate files from `/build`.
+
+### Bug Fixes
+
+* Fixed a TypeError in pointer-over checks when Phaser.Creature is missing
+* Fixed [Group#checkAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAll) and [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty) returning a false negative when `force` was used (#219).
+* [Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#.getProperty) now returns undefined for missing properties. It had claimed to return null, but could return either null or undefined depending on chain length (#218).
+* Fixed [Group#checkAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAll), [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty), and [Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#.getProperty) failing to retrieve nested properties (#220).
+* Corrected [Group#checkAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkAll) and [Group#checkProperty](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#checkProperty) argument types (#216).
+* [Group#getAll](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#getAll) now correctly returns all children when the `property` and `value` arguments are omitted.
+* Fixed [Emitter#emitParticle](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#emitParticle) failing to apply certain particle scale values.
+
+### Thanks
+
+@andrewjb123, @EmilSV, @entozoon, @greut, @jbpuryear, @mikkoh85, @MrBaummann, @photonstorm, @rblopes, @rmkubik, @samme
+
 ## Version 2.7.9 - 9th May 2017
 
 ### Updates
@@ -13,6 +141,7 @@ See [README: Change Log](README.md#change-log).
 ### Bug Fixes
 
 * Fixed a crash when a Text object's alignment was not set (#208).
+* Fixed a bug in creature hitboxes for pointer input - if creature reversed (negative number) it would calculate incorrect area for hit box.
 
 ## Version 2.7.8 - 8th May 2017
 

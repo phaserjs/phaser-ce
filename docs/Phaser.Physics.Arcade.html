@@ -67,6 +67,10 @@
 					<ul class="dropdown-menu ">
 						
 						<li class="class-depth-0">
+							<a href="CreatureShader.html">CreatureShader</a>
+						</li>
+						
+						<li class="class-depth-0">
 							<a href="EarCut.html">EarCut</a>
 						</li>
 						
@@ -871,6 +875,14 @@
 						class="caret"></b></a>
 
 					<ul class="dropdown-menu ">
+						
+						<li class="class-depth-0">
+							<a href="global.html#destroy">destroy</a>
+						</li>
+						
+						<li class="class-depth-0">
+							<a href="global.html#init">init</a>
+						</li>
 						
 						<li class="class-depth-0">
 							<a href="global.html#set">set</a>
@@ -2423,7 +2435,7 @@ Note: The display object doesn't stop moving once it reaches the destination coo
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1858">line 1858</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1866">line 1866</a>
     </dt>
     
 
@@ -2735,7 +2747,7 @@ Note: The display object doesn't stop moving once it reaches the destination coo
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1887">line 1887</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1895">line 1895</a>
     </dt>
     
 
@@ -3080,7 +3092,7 @@ Note: The display object doesn't stop moving once it reaches the destination coo
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1917">line 1917</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1925">line 1925</a>
     </dt>
     
 
@@ -3317,7 +3329,7 @@ One way to use this is: accelerationFromRotation(rotation, 200, sprite.accelerat
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1839">line 1839</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1847">line 1847</a>
     </dt>
     
 
@@ -3549,7 +3561,7 @@ or parent Game Object.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2025">line 2025</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2033">line 2033</a>
     </dt>
     
 
@@ -3711,7 +3723,7 @@ or parent Game Object.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2053">line 2053</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2061">line 2061</a>
     </dt>
     
 
@@ -3945,7 +3957,7 @@ or parent Game Object.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2099">line 2099</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2107">line 2107</a>
     </dt>
     
 
@@ -4212,7 +4224,7 @@ or parent Game Object.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2070">line 2070</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2078">line 2078</a>
     </dt>
     
 
@@ -4374,7 +4386,7 @@ or parent Game Object.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1154">line 1154</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1165">line 1165</a>
     </dt>
     
 
@@ -4413,14 +4425,23 @@ or parent Game Object.</p>
         <p>Checks for collision between two game objects and separates them if colliding. If you don't require separation then use <a href="Phaser.Physics.Arcade.html#overlap">overlap</a> instead.</p>
 <p>You can perform Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer or Group vs. Tilemap Layer collisions.
 Both the <code>object1</code> and <code>object2</code> can be arrays of objects, of differing types.</p>
-<p>If two Groups or arrays are passed, the contents of one will be tested against all contents of the other.
-If one Group or array <strong>only</strong> is passed (as <code>object1</code>), contents of the Group or array will be collided against each other.</p>
+<p>If two Groups or arrays are passed, each member of one will be tested against each member of the other.</p>
+<p>If one Group <strong>only</strong> is passed (as <code>object1</code>), each member of the Group will be collided against the other members.</p>
 <p>If either object is <code>null</code> the collision test will fail.</p>
 <p>Bodies with <code>enable = false</code> and Sprites with <code>exists = false</code> are skipped (ignored).</p>
 <p>An optional processCallback can be provided. If given this function will be called when two sprites are found to be colliding. It is called before any separation takes place, giving you the chance to perform additional checks. If the function returns true then the collision and separation is carried out. If it returns false it is skipped.</p>
 <p>The collideCallback is an optional function that is only called if two sprites collide. If a processCallback has been set then it needs to return true for collideCallback to be called.</p>
 <p><strong>This function is not recursive</strong>, and will not test against children of objects passed (i.e. Groups or Tilemaps within other Groups).</p>
-<h5>Tilemaps</h5><p>Tiles marked via <a href="Phaser.Tilemap.html#setCollision">Phaser.Tilemap#setCollision</a> (and similar methods) are &quot;solid&quot;. If a Sprite collides with one of these tiles, the two are separated by moving the Sprite outside the tile's edges. Enable <a href="Phaser.TilemapLayer.html#debug">Phaser.TilemapLayer#debug</a> to see the colliding edges of the Tilemap.</p>
+<h5>Examples</h5><pre class="prettyprint source"><code>collide(group);
+collide(group, undefined); // equivalent
+
+collide(sprite1, sprite2);
+
+collide(sprite, group);
+
+collide(group1, group2);
+
+collide([sprite1, sprite2], [sprite3, sprite4]); // 1v3, 1v4, 2v3, 2v4</code></pre><h5>Tilemaps</h5><p>Tiles marked via <a href="Phaser.Tilemap.html#setCollision">Phaser.Tilemap#setCollision</a> (and similar methods) are &quot;solid&quot;. If a Sprite collides with one of these tiles, the two are separated by moving the Sprite outside the tile's edges. Enable <a href="Phaser.TilemapLayer.html#debug">Phaser.TilemapLayer#debug</a> to see the colliding edges of the Tilemap.</p>
 <p>Tiles with a callback attached via <a href="Phaser.Tilemap.html#setTileIndexCallback">Phaser.Tilemap#setTileIndexCallback</a> or <a href="Phaser.Tilemap.html#setTileLocationCallback">Phaser.Tilemap#setTileLocationCallback</a> invoke the callback if a Sprite collides with them. If a tile has a callback attached via both methods, only the location callback is invoked. The colliding Sprite is separated from the tile only if the callback returns <code>true</code>.</p>
     </div>
     
@@ -5281,7 +5302,7 @@ or parent Game Object.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1947">line 1947</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1955">line 1955</a>
     </dt>
     
 
@@ -5517,7 +5538,7 @@ or parent Game Object.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1998">line 1998</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2006">line 2006</a>
     </dt>
     
 
@@ -5786,7 +5807,7 @@ or parent Game Object.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1971">line 1971</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1979">line 1979</a>
     </dt>
     
 
@@ -6400,7 +6421,7 @@ Note that the children are not checked for depth order, but simply if they overl
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1651">line 1651</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1662">line 1662</a>
     </dt>
     
 
@@ -6648,7 +6669,7 @@ Note that the children are not checked for depth order, but simply if they overl
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1628">line 1628</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1639">line 1639</a>
     </dt>
     
 
@@ -6834,7 +6855,7 @@ Note that the children are not checked for depth order, but simply if they overl
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1360">line 1360</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1371">line 1371</a>
     </dt>
     
 
@@ -7020,7 +7041,7 @@ Note that the children are not checked for depth order, but simply if they overl
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1424">line 1424</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1435">line 1435</a>
     </dt>
     
 
@@ -7182,7 +7203,7 @@ Note that the children are not checked for depth order, but simply if they overl
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1090">line 1090</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1101">line 1101</a>
     </dt>
     
 
@@ -7455,7 +7476,7 @@ Note: Doesn't take into account acceleration, maxVelocity or drag (if you've set
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1695">line 1695</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1706">line 1706</a>
     </dt>
     
 
@@ -7729,7 +7750,7 @@ Note: The display object doesn't stop moving once it reaches the destination coo
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1730">line 1730</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1740">line 1740</a>
     </dt>
     
 
@@ -8037,7 +8058,7 @@ Note: Doesn't take into account acceleration, maxVelocity or drag (if you've set
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1765">line 1765</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1774">line 1774</a>
     </dt>
     
 
@@ -8791,7 +8812,7 @@ If two arrays are passed, the contents of the first parameter will be tested aga
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-547">line 547</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-561">line 561</a>
     </dt>
     
 
@@ -8954,7 +8975,7 @@ If two arrays are passed, the contents of the first parameter will be tested aga
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-526">line 526</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-540">line 540</a>
     </dt>
     
 
@@ -9117,7 +9138,7 @@ If two arrays are passed, the contents of the first parameter will be tested aga
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-463">line 463</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-477">line 477</a>
     </dt>
     
 
@@ -9280,7 +9301,7 @@ If two arrays are passed, the contents of the first parameter will be tested aga
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-484">line 484</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-498">line 498</a>
     </dt>
     
 
@@ -9443,7 +9464,7 @@ If two arrays are passed, the contents of the first parameter will be tested aga
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-505">line 505</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-519">line 519</a>
     </dt>
     
 
@@ -9799,7 +9820,7 @@ One way to use this is: velocityFromAngle(angle, 200, sprite.velocity) which wil
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1801">line 1801</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1809">line 1809</a>
     </dt>
     
 
@@ -10036,7 +10057,7 @@ One way to use this is: velocityFromRotation(rotation, 200, sprite.velocity) whi
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1820">line 1820</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-1828">line 1828</a>
     </dt>
     
 
@@ -10219,7 +10240,7 @@ taking their x/y and center into account relative to the world.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2128">line 2128</a>
+    <a href="src_physics_arcade_World.js.html">physics/arcade/World.js</a>, <a href="src_physics_arcade_World.js.html#sunlight-1-line-2136">line 2136</a>
     </dt>
     
 
@@ -10267,8 +10288,8 @@ taking their x/y and center into account relative to the world.</p>
 					<br />
 					
 		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Tue May 09 2017 12:05:21 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.2</a>
+		on Thu Jul 13 2017 18:15:12 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>

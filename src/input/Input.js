@@ -949,9 +949,9 @@ Phaser.Input.prototype = {
         {
             return (displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y));
         }
-        else if (displayObject instanceof Phaser.Creature) {
-          var width = displayObject.width;
-          var height = displayObject.height;
+        else if (Phaser.Creature && displayObject instanceof Phaser.Creature) {
+          var width = Math.abs(displayObject.width);
+          var height = Math.abs(displayObject.height);
           var x1 = displayObject.x - (width * displayObject.anchorX);
 
           if (this.game.camera.x + pointer.x >= x1 && this.game.camera.x + pointer.x < x1 + width)
@@ -982,8 +982,8 @@ Phaser.Input.prototype = {
         }
         else if (displayObject instanceof PIXI.Sprite)
         {
-            var width = displayObject.texture.frame.width;
-            var height = displayObject.texture.frame.height;
+            var width = displayObject.texture.frame.width / displayObject.texture.baseTexture.resolution;
+            var height = displayObject.texture.frame.height / displayObject.texture.baseTexture.resolution;
             var x1 = -width * displayObject.anchor.x;
 
             if (this._localPoint.x >= x1 && this._localPoint.x < x1 + width)

@@ -397,6 +397,8 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function()
 
     // increment the draw count
     this.renderSession.drawCount++;
+    this.renderSession.flushCount++;
+
 };
 
 

@@ -49,7 +49,11 @@
 *
 * -  ##### Fluid game/canvas size
 *
-*    Use `scaleMode` RESIZE. Examine the game or canvas size from the {@link onSizeChange} signal and reposition game objects.
+*    Use `scaleMode` RESIZE. Examine the game or canvas size from the {@link #onSizeChange} signal and reposition game objects if necessary.
+*
+* -  ##### Preferred orientation
+*
+*    Call {@link #forceOrientation} with the preferred orientation and use any of the {@link #onOrientationChange}, {@link #enterIncorrectOrientation}, or {@link #leaveIncorrectOrientation} signals.
 *
 * @description
 * Create a new ScaleManager object - this is done automatically by {@link Phaser.Game}
@@ -1213,6 +1217,12 @@ Phaser.ScaleManager.prototype = {
     forceOrientation: function (forceLandscape, forcePortrait) {
 
         if (forcePortrait === undefined) { forcePortrait = false; }
+
+        if (forceLandscape === true && forcePortrait === true)
+        {
+            console.warn('Phaser.ScaleManager: forceLandscape and forcePortrait cannot both be true.');
+            return;
+        }
 
         this.forceLandscape = forceLandscape;
         this.forcePortrait = forcePortrait;

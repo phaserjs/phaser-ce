@@ -1,4 +1,4 @@
-// Type definitions for PIXI with Phaser Deviations. 
+// Type definitions for PIXI with Phaser Deviations.
 
 declare module PIXI {
 
@@ -466,7 +466,7 @@ declare module PIXI {
         filters: AbstractFilter[];
         hitArea: HitArea;
         interactive: boolean;
-        mask: Graphics;
+        mask: Phaser.Graphics;
         parent: DisplayObjectContainer;
         pivot: Point;
         position: Point;
@@ -486,7 +486,7 @@ declare module PIXI {
 
         click(e: InteractionData): void;
         displayObjectUpdateTransform(parent?: DisplayObjectContainer): void;
-        generateTexture(resolution?: number, scaleMode?: number, renderer?: PixiRenderer | number): RenderTexture;
+        generateTexture(resolution?: number, scaleMode?: number, renderer?: PixiRenderer | number): Phaser.RenderTexture;
         mousedown(e: InteractionData): void;
         mouseout(e: InteractionData): void;
         mouseover(e: InteractionData): void;
@@ -584,62 +584,6 @@ declare module PIXI {
         clear(): void;
         resize(width: number, height: number): void;
         destroy(): void;
-
-    }
-
-    export class GraphicsData {
-
-        constructor(lineWidth?: number, lineColor?: number, lineAlpha?: number, fillColor?: number, fillAlpha?: number, fill?: boolean, shape?: any);
-
-        lineWidth: number;
-        lineColor: number;
-        lineAlpha: number;
-        fillColor: number;
-        fillAlpha: number;
-        fill: boolean;
-        shape: any;
-        type: number;
-
-    }
-
-    export class Graphics extends DisplayObjectContainer {
-
-        static POLY: number;
-        static RECT: number;
-        static CIRC: number;
-        static ELIP: number;
-        static RREC: number;
-
-        blendMode: number;
-        boundsPadding: number;
-        fillAlpha: number;
-        isMask: boolean;
-        lineWidth: number;
-        lineColor: number;
-        tint: number;
-        worldAlpha: number;
-
-        arc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number, anticlockwise: boolean): Graphics;
-        arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): Graphics;
-        beginFill(color?: number, alpha?: number): Graphics;
-        bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number): Graphics;
-        clear(): Graphics;
-        destroyCachedSprite(): void;
-        drawCircle(x: number, y: number, diameter: number): Graphics;
-        drawEllipse(x: number, y: number, width: number, height: number): Graphics;
-        drawPolygon(...path: any[]): Graphics;
-        drawRect(x: number, y: number, width: number, height: number): Graphics;
-        drawRoundedRect(x: number, y: number, width: number, height: number, radius: number): Graphics;
-        drawShape(shape: Circle): GraphicsData;
-        drawShape(shape: Rectangle): GraphicsData;
-        drawShape(shape: Ellipse): GraphicsData;
-        drawShape(shape: Polygon): GraphicsData;
-        endFill(): Graphics;
-        generateTexture(resolution?: number, scaleMode?: number, padding?: number): RenderTexture;
-        lineStyle(lineWidth?: number, color?: number, alpha?: number): Graphics;
-        lineTo(x: number, y: number): Graphics;
-        moveTo(x: number, y: number): Graphics;
-        quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number): Graphics;
 
     }
 
@@ -1001,6 +945,8 @@ declare module PIXI {
         texture: Texture;
         tint: number;
 
+        static defaultAnchor: object;
+
         setTexture(texture: Texture, destroyBase?: boolean): void;
 
     }
@@ -1242,16 +1188,16 @@ declare module PIXI {
 
         static graphicsDataPool: any[];
 
-        static renderGraphics(graphics: Graphics, renderRession: RenderSession): void;
-        static updateGraphics(graphics: Graphics, gl: WebGLRenderingContext): void;
+        static renderGraphics(graphics: Phaser.Graphics, renderRession: RenderSession): void;
+        static updateGraphics(graphics: Phaser.Graphics, gl: WebGLRenderingContext): void;
         static switchMode(webGL: WebGLRenderingContext, type: number): any;
-        static buildRectangle(graphicsData: GraphicsData, webGLData: any): void;
-        static buildRoundedRectangle(graphicsData: GraphicsData, webGLData: any): void;
+        static buildRectangle(graphicsData: Phaser.GraphicsData, webGLData: any): void;
+        static buildRoundedRectangle(graphicsData: Phaser.GraphicsData, webGLData: any): void;
         static quadraticBezierCurve(fromX: number, fromY: number, cpX: number, cpY: number, toX: number, toY: number): number[];
-        static buildCircle(graphicsData: GraphicsData, webGLData: any): void;
-        static buildLine(graphicsData: GraphicsData, webGLData: any): void;
-        static buildComplexPoly(graphicsData: GraphicsData, webGLData: any): void;
-        static buildPoly(graphicsData: GraphicsData, webGLData: any): boolean;
+        static buildCircle(graphicsData: Phaser.GraphicsData, webGLData: any): void;
+        static buildLine(graphicsData: Phaser.GraphicsData, webGLData: any): void;
+        static buildComplexPoly(graphicsData: Phaser.GraphicsData, webGLData: any): void;
+        static buildPoly(graphicsData: Phaser.GraphicsData, webGLData: any): boolean;
 
         reset(): void;
         upload(): void;
@@ -1345,10 +1291,10 @@ declare module PIXI {
         reverse: boolean;
         count: number;
 
-        bindGraphics(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
+        bindGraphics(graphics: Phaser.Graphics, webGLData: any[], renderSession: RenderSession): void;
         destroy(): void;
-        popStencil(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
-        pushStencil(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
+        popStencil(graphics: Phaser.Graphics, webGLData: any[], renderSession: RenderSession): void;
+        pushStencil(graphics: Phaser.Graphics, webGLData: any[], renderSession: RenderSession): void;
         setContext(gl: WebGLRenderingContext): void;
 
     }
@@ -1383,25 +1329,6 @@ declare module PIXI {
         setContext(gl: WebGLRenderingContext): void;
         start(): void;
         stop(): void;
-
-    }
-
-    export class RenderTexture extends Texture {
-
-        constructor(width?: number, height?: number, renderer?: PixiRenderer, scaleMode?: scaleModes, resolution?: number);
-
-        frame: Rectangle;
-        baseTexture: BaseTexture;
-        renderer: PixiRenderer;
-        resolution: number;
-        valid: boolean;
-
-        clear(): void;
-        getBase64(): string;
-        getCanvas(): HTMLCanvasElement;
-        getImage(): HTMLImageElement;
-        resize(width: number, height: number, updateBase: boolean): void;
-        render(displayObject: DisplayObject, matrix?: Matrix, clear?: boolean): void;
 
     }
 

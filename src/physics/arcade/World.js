@@ -287,7 +287,7 @@ Phaser.Physics.Arcade.prototype = {
         {
             velocity += acceleration * this.game.time.physicsElapsed;
         }
-        else if (drag)
+        else if (drag && body.allowDrag)
         {
             drag *= this.game.time.physicsElapsed;
 
@@ -392,8 +392,9 @@ Phaser.Physics.Arcade.prototype = {
     * You can perform Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer or Group vs. Tilemap Layer collisions.
     * Both the `object1` and `object2` can be arrays of objects, of differing types.
     *
-    * If two Groups or arrays are passed, the contents of one will be tested against all contents of the other.
-    * If one Group or array **only** is passed (as `object1`), contents of the Group or array will be collided against each other.
+    * If two Groups or arrays are passed, each member of one will be tested against each member of the other.
+    *
+    * If one Group **only** is passed (as `object1`), each member of the Group will be collided against the other members.
     *
     * If either object is `null` the collision test will fail.
     *
@@ -404,6 +405,19 @@ Phaser.Physics.Arcade.prototype = {
     * The collideCallback is an optional function that is only called if two sprites collide. If a processCallback has been set then it needs to return true for collideCallback to be called.
     *
     * **This function is not recursive**, and will not test against children of objects passed (i.e. Groups or Tilemaps within other Groups).
+    *
+    * ##### Examples
+    *
+    *     collide(group);
+    *     collide(group, undefined); // equivalent
+    *
+    *     collide(sprite1, sprite2);
+    *
+    *     collide(sprite, group);
+    *
+    *     collide(group1, group2);
+    *
+    *     collide([sprite1, sprite2], [sprite3, sprite4]); // 1v3, 1v4, 2v3, 2v4
     *
     * ##### Tilemaps
     *
@@ -1014,10 +1028,7 @@ Phaser.Physics.Arcade.prototype = {
                 bottom: bodyRect.bottom
             };
 
-            var circle = {
-                x: bodyCircle.x + bodyCircle.radius,
-                y: bodyCircle.y + bodyCircle.radius
-            };
+            var circle = bodyCircle.center;
 
             if (circle.y < rect.y || circle.y > rect.bottom)
             {
@@ -1107,7 +1118,7 @@ Phaser.Physics.Arcade.prototype = {
             if (body2.isCircle)
             {
                 //  Circle vs. Circle
-                return Phaser.Math.distance(body1.center.x, body1.center.y, body2.center.x, body2.center.y) <= (body1.radius + body2.radius);
+                return Phaser.Math.distance(body1.center.x, body1.center.y, body2.center.x, body2.center.y) <= (body1.halfWidth + body2.halfWidth);
             }
             else
             {
@@ -1167,7 +1178,7 @@ Phaser.Physics.Arcade.prototype = {
         var dx = (circle.center.x - x) * (circle.center.x - x);
         var dy = (circle.center.y - y) * (circle.center.y - y);
 
-        return (dx + dy) <= (circle.radius * circle.radius);
+        return (dx + dy) <= (circle.halfWidth * circle.halfWidth);
 
     },
 
@@ -1204,9 +1215,9 @@ Phaser.Physics.Arcade.prototype = {
             };
 
             var circle = {
-                x: (body1.isCircle) ? (body1.position.x + body1.radius) : (body2.position.x + body2.radius),
-                y: (body1.isCircle) ? (body1.position.y + body1.radius) : (body2.position.y + body2.radius),
-                radius: (body1.isCircle) ? body1.radius : body2.radius
+                x: (body1.isCircle) ? body1.center.x : body2.center.x,
+                y: (body1.isCircle) ? body1.center.y : body2.center.y,
+                radius: (body1.isCircle) ? body1.halfWidth : body2.halfWidth
             };
 
             if (circle.y < rect.y)
@@ -1236,7 +1247,7 @@ Phaser.Physics.Arcade.prototype = {
         }
         else
         {
-            overlap = (body1.radius + body2.radius) - Phaser.Math.distance(body1.center.x, body1.center.y, body2.center.x, body2.center.y);
+            overlap = (body1.halfWidth + body2.halfWidth) - Phaser.Math.distance(body1.center.x, body1.center.y, body2.center.x, body2.center.y);
         }
 
         //  Can't separate two immovable bodies, or a body with its own custom separation logic
@@ -1720,8 +1731,7 @@ Phaser.Physics.Arcade.prototype = {
             speed = this.distanceBetween(displayObject, destination) / (maxTime / 1000);
         }
 
-        displayObject.body.velocity.x = Math.cos(angle) * speed;
-        displayObject.body.velocity.y = Math.sin(angle) * speed;
+        displayObject.body.velocity.setToPolar(angle, speed);
 
         return angle;
 
@@ -1755,8 +1765,7 @@ Phaser.Physics.Arcade.prototype = {
             speed = this.distanceToPointer(displayObject, pointer) / (maxTime / 1000);
         }
 
-        displayObject.body.velocity.x = Math.cos(angle) * speed;
-        displayObject.body.velocity.y = Math.sin(angle) * speed;
+        displayObject.body.velocity.setToPolar(angle, speed);
 
         return angle;
 
@@ -1791,8 +1800,7 @@ Phaser.Physics.Arcade.prototype = {
             speed = this.distanceToXY(displayObject, x, y) / (maxTime / 1000);
         }
 
-        displayObject.body.velocity.x = Math.cos(angle) * speed;
-        displayObject.body.velocity.y = Math.sin(angle) * speed;
+        displayObject.body.velocity.setToPolar(angle, speed);
 
         return angle;
 
@@ -1813,7 +1821,7 @@ Phaser.Physics.Arcade.prototype = {
         if (speed === undefined) { speed = 60; }
         point = point || new Phaser.Point();
 
-        return point.setTo((Math.cos(Phaser.Math.degToRad(angle)) * speed), (Math.sin(Phaser.Math.degToRad(angle)) * speed));
+        return point.setToPolar(angle, speed, true);
 
     },
 
@@ -1832,7 +1840,7 @@ Phaser.Physics.Arcade.prototype = {
         if (speed === undefined) { speed = 60; }
         point = point || new Phaser.Point();
 
-        return point.setTo((Math.cos(rotation) * speed), (Math.sin(rotation) * speed));
+        return point.setToPolar(rotation, speed);
 
     },
 
@@ -1851,7 +1859,7 @@ Phaser.Physics.Arcade.prototype = {
         if (speed === undefined) { speed = 60; }
         point = point || new Phaser.Point();
 
-        return point.setTo((Math.cos(rotation) * speed), (Math.sin(rotation) * speed));
+        return point.setToPolar(rotation, speed);
 
     },
 
@@ -1877,7 +1885,7 @@ Phaser.Physics.Arcade.prototype = {
 
         var angle = this.angleBetween(displayObject, destination);
 
-        displayObject.body.acceleration.setTo(Math.cos(angle) * speed, Math.sin(angle) * speed);
+        displayObject.body.acceleration.setToPolar(angle, speed);
         displayObject.body.maxVelocity.setTo(xSpeedMax, ySpeedMax);
 
         return angle;
@@ -1907,7 +1915,7 @@ Phaser.Physics.Arcade.prototype = {
 
         var angle = this.angleToPointer(displayObject, pointer);
 
-        displayObject.body.acceleration.setTo(Math.cos(angle) * speed, Math.sin(angle) * speed);
+        displayObject.body.acceleration.setToPolar(angle, speed);
         displayObject.body.maxVelocity.setTo(xSpeedMax, ySpeedMax);
 
         return angle;
@@ -1937,7 +1945,7 @@ Phaser.Physics.Arcade.prototype = {
 
         var angle = this.angleToXY(displayObject, x, y);
 
-        displayObject.body.acceleration.setTo(Math.cos(angle) * speed, Math.sin(angle) * speed);
+        displayObject.body.acceleration.setTo(angle, speed);
         displayObject.body.maxVelocity.setTo(xSpeedMax, ySpeedMax);
 
         return angle;

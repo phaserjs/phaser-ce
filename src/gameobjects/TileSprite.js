@@ -65,9 +65,7 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame) {
     key = key || null;
     frame = frame || null;
 
-    var def = game.cache.getImage('__default', true);
-
-    PIXI.Sprite.call(this, new PIXI.Texture(def.base), width, height);
+    PIXI.Sprite.call(this, new PIXI.Texture(Phaser.Cache.DEFAULT.baseTexture), width, height);
 
     /**
     * @property {number} type - The const type of this object.
