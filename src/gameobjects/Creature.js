@@ -712,16 +712,16 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorX', {
 
   set: function(value) {
 
-    if (value === this.data.anchorX) {
-        return;
-    }
-
     if (value == 0) {
         value = 0.01;
     }
 
     if (value == 1) {
         value = 0.99;
+    }
+
+    if (value === this.data.anchorX) {
+        return;
     }
 
     var target = this.manager.target_creature;
@@ -759,16 +759,16 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorY', {
 
   set: function(value) {
 
-    if (value === this.data.anchorY) {
-        return;
-    }
-
     if (value == 0) {
         value = 0.01;
     }
 
     if (value == 1) {
         value = 0.99;
+    }
+
+    if (value === this.data.anchorY) {
+        return;
     }
 
     var target = this.manager.target_creature;
