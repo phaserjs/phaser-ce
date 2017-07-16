@@ -300,6 +300,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### Bug Fixes
 
 * Added missing Phaser.Graphics TypeScript definitions (#284).
+* Fixed creature relative anchor points to be absolute (#288).
 
 ### PIXI updates
 
@@ -307,7 +308,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Thanks
 
-@dolanmiu, @Dreaded-Gnu
+@andrewjb123 @dolanmiu, @Dreaded-Gnu
 
 ## Version 2.8.2 - 14th July 2017
 
