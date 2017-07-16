@@ -697,6 +697,7 @@ Object.defineProperty(Phaser.Creature.prototype, 'width', {
 
 });
 
+
 /**
  * @name Phaser.Creature#anchorX
  * @property {number} anchorX - Sets the anchorX of the animation
@@ -711,13 +712,35 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorX', {
 
   set: function(value) {
 
+    if (value === this.data.anchorX) {
+        return;
+    }
+
+    if (value == 0) {
+        value = 0.01;
+    }
+
+    if (value == 1) {
+        value = 0.99;
+    }
+
     var target = this.manager.target_creature;
 
-    var anchorY = this.data.anchorY ? this.data.anchorY : 0;
+    this.stop();
+    this.manager.RunAtTime(0);
 
-    target.SetAnchorPoint(value, anchorY, this.data.animation);
+    if (this.data.anchorX) {
+      target.SetAnchorPoint(-this.data.anchorX, null, this.data.animation);
+
+        this.play(true);
+        this.stop();
+        this.manager.RunAtTime(0);
+    }
+
+    target.SetAnchorPoint(value, null, this.data.animation);
+    this.play(true);
+
     this.data.anchorX = value;
-
   }
 
 });
@@ -736,13 +759,35 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorY', {
 
   set: function(value) {
 
+    if (value === this.data.anchorY) {
+        return;
+    }
+
+    if (value == 0) {
+        value = 0.01;
+    }
+
+    if (value == 1) {
+        value = 0.99;
+    }
+
     var target = this.manager.target_creature;
 
-    var anchorX = this.data.anchorX ? this.data.anchorX : 0;
+    this.stop();
+    this.manager.RunAtTime(0);
 
-    target.SetAnchorPoint(anchorX, value, this.data.animation);
+    if (this.data.anchorY) {
+        target.SetAnchorPoint(null, -this.data.anchorY, this.data.animation);
+
+        this.play(true);
+        this.stop();
+        this.manager.RunAtTime(0);
+    }
+
+    target.SetAnchorPoint(null, value, this.data.animation);
+    this.play(true);
+
     this.data.anchorY = value;
-
   }
 
 });
