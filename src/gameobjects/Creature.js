@@ -138,18 +138,18 @@ PIXI.CreatureShader.prototype.destroy = function() {
 
 /**
 * Creature is a custom Game Object used in conjunction with the Creature Runtime libraries by Kestrel Moon Studios.
-* 
+*
 * It allows you to display animated Game Objects that were created with the [Creature Automated Animation Tool](http://www.kestrelmoon.com/creature/).
-* 
+*
 * Note 1: You can only use Phaser.Creature objects in WebGL enabled games. They do not work in Canvas mode games.
 *
 * Note 2: You must use a build of Phaser that includes the CreatureMeshBone.js runtime and gl-matrix.js, or have them
 * loaded before your Phaser game boots.
-* 
+*
 * See the Phaser custom build process for more details.
-* 
+*
 * By default the Creature runtimes are NOT included in any pre-configured version of Phaser.
-* 
+*
 * So you'll need to do `grunt custom` to create a build that includes them.
 *
 * @class Phaser.Creature
@@ -241,7 +241,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
     * @protected
     */
     this.creatureBoundsMax = new Phaser.Point();
-    
+
     var target = this.manager.target_creature;
 
     /**
@@ -255,7 +255,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
     * @protected
     */
     this.uvs = new Float32Array(target.total_num_pts * 2);
-    
+
     /**
     * @property {Uint16Array} indices
     * @protected
@@ -266,7 +266,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
     {
         this.indices[i] = target.global_indices[i];
     }
-    
+
     /**
     * @property {Uint16Array} colors - The vertices colors
     * @protected
@@ -281,7 +281,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
 
     Phaser.Component.Core.init.call(this, game, x, y);
 
-    
+
     /**
     * @property {number} tint - colour change
     * @default
@@ -335,7 +335,7 @@ Phaser.Creature.prototype.preUpdate = function () {
 };
 
 /**
-* 
+*
 *
 * @method Phaser.Creature#_initWebGL
 * @memberof Phaser.Creature
@@ -345,12 +345,12 @@ Phaser.Creature.prototype._initWebGL = function (renderSession) {
 
     // build the strip!
     var gl = renderSession.gl;
-    
+
     this._vertexBuffer = gl.createBuffer();
     this._indexBuffer = gl.createBuffer();
     this._uvBuffer = gl.createBuffer();
     this._colorBuffer = gl.createBuffer();
-    
+
     gl.bindBuffer(gl.ARRAY_BUFFER, this._vertexBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, this.vertices, gl.DYNAMIC_DRAW);
 
@@ -359,7 +359,7 @@ Phaser.Creature.prototype._initWebGL = function (renderSession) {
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this._colorBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, this.colors, gl.STATIC_DRAW);
- 
+
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this._indexBuffer);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.indices, gl.STATIC_DRAW);
 
@@ -385,7 +385,7 @@ Phaser.Creature.prototype._renderWebGL = function (renderSession) {
     {
         this._initWebGL(renderSession);
     }
-    
+
     renderSession.shaderManager.setShader(renderSession.shaderManager.creatureShader);
 
     this._renderCreature(renderSession);
@@ -422,11 +422,11 @@ Phaser.Creature.prototype._renderCreature = function (renderSession) {
         gl.bindBuffer(gl.ARRAY_BUFFER, this._vertexBuffer);
         gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices);
         gl.vertexAttribPointer(shader.aVertexPosition, 2, gl.FLOAT, false, 0, 0);
-        
+
         //  Update the uvs
         gl.bindBuffer(gl.ARRAY_BUFFER, this._uvBuffer);
         gl.vertexAttribPointer(shader.aTextureCoord, 2, gl.FLOAT, false, 0, 0);
-            
+
         gl.activeTexture(gl.TEXTURE0);
 
         //  Check if a texture is dirty..
@@ -439,7 +439,7 @@ Phaser.Creature.prototype._renderCreature = function (renderSession) {
             //  Bind the current texture
             gl.bindTexture(gl.TEXTURE_2D, this.texture.baseTexture._glTextures[gl.id]);
         }
-    
+
         //  Don't need to upload!
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this._indexBuffer);
     }
@@ -450,12 +450,12 @@ Phaser.Creature.prototype._renderCreature = function (renderSession) {
         gl.bindBuffer(gl.ARRAY_BUFFER, this._vertexBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, this.vertices, gl.DYNAMIC_DRAW);
         gl.vertexAttribPointer(shader.aVertexPosition, 2, gl.FLOAT, false, 0, 0);
-        
+
         //  Update the uvs
         gl.bindBuffer(gl.ARRAY_BUFFER, this._uvBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, this.uvs, gl.DYNAMIC_DRAW);
         gl.vertexAttribPointer(shader.aTextureCoord, 2, gl.FLOAT, false, 0, 0);
-            
+
         gl.activeTexture(gl.TEXTURE0);
 
         //  Check if a texture is dirty
@@ -467,12 +467,12 @@ Phaser.Creature.prototype._renderCreature = function (renderSession) {
         {
             gl.bindTexture(gl.TEXTURE_2D, this.texture.baseTexture._glTextures[gl.id]);
         }
-    
+
         //  Don't need to upload!
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this._indexBuffer);
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.indices, gl.STATIC_DRAW);
     }
-    
+
     gl.drawElements(gl.TRIANGLES, this.indices.length, gl.UNSIGNED_SHORT, 0);
 
 };
@@ -486,14 +486,14 @@ Phaser.Creature.prototype.updateCreatureBounds = function () {
 
     //  Update bounds based off world transform matrix
     var target = this.manager.target_creature;
-        
+
     target.ComputeBoundaryMinMax();
 
     this.creatureBoundsMin.set(target.boundary_min[0], -target.boundary_min[1]);
     this.creatureBoundsMax.set(target.boundary_max[0], -target.boundary_max[1]);
-    
-    this.worldTransform.apply(this.creatureBoundsMin, this.creatureBoundsMin);  
-    this.worldTransform.apply(this.creatureBoundsMax, this.creatureBoundsMax);              
+
+    this.worldTransform.apply(this.creatureBoundsMin, this.creatureBoundsMin);
+    this.worldTransform.apply(this.creatureBoundsMax, this.creatureBoundsMax);
 
 };
 
@@ -508,7 +508,7 @@ Phaser.Creature.prototype.updateData = function () {
 
     var read_pts = target.render_pts;
     var read_uvs = target.global_uvs;
-    
+
     this.updateRenderData(read_pts, read_uvs);
     this.updateCreatureBounds();
 
@@ -527,20 +527,20 @@ Phaser.Creature.prototype.updateRenderData = function (verts, uvs) {
 
     var pt_index = 0;
     var uv_index = 0;
-    
+
     var write_pt_index = 0;
-    
+
     for (var i = 0; i < target.total_num_pts; i++)
     {
         this.vertices[write_pt_index] = verts[pt_index];
         this.vertices[write_pt_index + 1] = -verts[pt_index + 1];
-        
+
         this.uvs[uv_index] = uvs[uv_index];
         this.uvs[uv_index + 1] = uvs[uv_index + 1];
-        
+
         pt_index += 3;
         uv_index += 2;
-        
+
         write_pt_index += 2;
     }
 
@@ -696,29 +696,50 @@ Object.defineProperty(Phaser.Creature.prototype, 'width', {
   }
 
 });
-
 /**
  * @name Phaser.Creature#anchorX
  * @property {number} anchorX - Sets the anchorX of the animation
  */
 Object.defineProperty(Phaser.Creature.prototype, 'anchorX', {
 
-  get: function() {
+    get: function() {
 
-    return this.data.anchorX;
+        return this.data.anchorX;
 
-  },
+    },
 
-  set: function(value) {
+    set: function(value) {
 
-    var target = this.manager.target_creature;
+        if (value === this.data.anchorX) {
+            return;
+        }
 
-    var anchorY = this.data.anchorY ? this.data.anchorY : 0;
+        if (value == 0) {
+            value = 0.01;
+        }
 
-    target.SetAnchorPoint(value, anchorY, this.data.animation);
-    this.data.anchorX = value;
+        if (value == 1) {
+            value = 0.99;
+        }
 
-  }
+        var target = this.manager.target_creature;
+
+        this.stop();
+        this.manager.RunAtTime(0);
+
+        if (this.data.anchorX) {
+            target.SetAnchorPoint(-this.data.anchorX, null, this.data.animation);
+
+            this.play(true);
+            this.stop();
+            this.manager.RunAtTime(0);
+        }
+
+        target.SetAnchorPoint(value, null, this.data.animation);
+        this.play(true);
+
+        this.data.anchorX = value;
+    }
 
 });
 
@@ -728,22 +749,44 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorX', {
  */
 Object.defineProperty(Phaser.Creature.prototype, 'anchorY', {
 
-  get: function() {
+    get: function() {
 
-    return this.data.anchorY;
+        return this.data.anchorY;
 
-  },
+    },
 
-  set: function(value) {
+    set: function(value) {
 
-    var target = this.manager.target_creature;
+        if (value === this.data.anchorY) {
+            return;
+        }
 
-    var anchorX = this.data.anchorX ? this.data.anchorX : 0;
+        if (value == 0) {
+            value = 0.01;
+        }
 
-    target.SetAnchorPoint(anchorX, value, this.data.animation);
-    this.data.anchorY = value;
+        if (value == 1) {
+            value = 0.99;
+        }
 
-  }
+        var target = this.manager.target_creature;
+
+        this.stop();
+        this.manager.RunAtTime(0);
+
+        if (this.data.anchorY) {
+            target.SetAnchorPoint(null, -this.data.anchorY, this.data.animation);
+
+            this.play(true);
+            this.stop();
+            this.manager.RunAtTime(0);
+        }
+
+        target.SetAnchorPoint(null, value, this.data.animation);
+        this.play(true);
+
+        this.data.anchorY = value;
+    }
 
 });
 
