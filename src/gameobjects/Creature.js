@@ -555,6 +555,8 @@ Phaser.Creature.prototype.updateRenderData = function (verts, uvs) {
 */
 Phaser.Creature.prototype.setAnimation = function (key) {
 
+    this.data.anchorY = null;
+    this.data.anchorX = null;
     this.data.animation = key;
     this.manager.SetActiveAnimationName(key, true);
 
