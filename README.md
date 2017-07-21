@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.8.2](https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.2).
+The [current Phaser CE release is 2.8.3](https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.3).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -122,13 +122,13 @@ Using Browserify? Please [read this](#browserify).
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.2/build/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.3/build/phaser.js"></script>
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.2"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.3"></script>
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.8.2/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.8.3/build/custom/) are available too.
 
 ### Web Templates
 
@@ -299,44 +299,13 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 * Fixed some TypeScript definitions (#284, #285, #286).
 
-### PIXI updates
+### PIXI Updates
 
 * Replaced all references to PIXI.Matrix and PIXI.identityMatrix with [Phaser.Matrix](https://photonstorm.github.io/phaser-ce/Phaser.Matrix.html) and Phaser.identityMatrix.
 
 ### Thanks
 
 @Arche-san, @cloakedninjas, @dolanmiu, @Dreaded-Gnu, @photonstorm, @samme
-
-## Version 2.8.2 - 14th July 2017
-
-### New Features
-
-* Phaser.Point.set is a static counterpart to [Phaser.Point#set](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#set). It can be used on any point-like object, e.g.,
-
-  ```javascript
-  Phaser.Point.set(PIXI.Sprite.defaultAnchor, 0.5); //-> {x: 0.5, y: 0.5}
-  ```
-
-### Updates
-
-* Added TypeScript `types` to package.json (#276).
-* New [webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) (#95).
-* [Phaser.Component.Core.init](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html) checks types of the `game`, `x`, and `y` arguments, since these mistakes can be hard to track down (outside of TypeScript). The cost is likely trivial, but you can skip these by setting [Phaser.Component.Core.skipTypeChecks](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#skipTypeChecks) to true.
-* [Phaser.Utils.Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer) lists [currentBatchedTextures](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#currentBatchedTextures) (added by [PIXI.WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority)).
-* [Phaser.TilemapParser.parseTiledJSON](https://photonstorm.github.io/phaser-ce/Phaser.TilemapParser.html#parseTiledJSON) warns if a tilemap contains an external tileset, which Phaser doesn't read (#273).
-* [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects) assigns the width and height of [Object Tiles](http://doc.mapeditor.org/manual/objects/#insert-tile) to the newly created Sprite (previously these were ignored).
-
-### Bug Fixes
-
-* Added missing [PIXI.DisplayObject#constructor](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html) (#278).
-* [Arcade.Body#render](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#render), [Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom) (circles, ellipses), [Debug#rectangle](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#rectangle), and [Debug#spriteBounds](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#setBounds) use [Debug#lineWidth](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#lineWidth).
-* Fixed [PIXI.CanvasRenderer#renderSession.roundPixels](https://photonstorm.github.io/phaser-ce/PIXI.CanvasRenderer.html#renderSession) misspelled as `roundPx` in [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer). ([roundPx](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#roundPx) is a Camera property.)
-* Fixed some TypeScript definitions (#174, #270, #274, #277).
-* The debug canvas is returned to the canvas pool when the game is destroyed (#269).
-
-### Thanks
-
-@bulgakovk, @cmd-johnson, @dolanmiu, @georgesboris, @johnbuttcoingalt, @mindcity, @photonstorm, @samme
 
 For changes in previous releases please see the extensive [Version History](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
@@ -370,10 +339,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.2/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.2/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.8.2.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.8.2.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.3/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.3/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.8.3.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.8.3.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
