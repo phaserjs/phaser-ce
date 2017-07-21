@@ -945,7 +945,7 @@ declare module PIXI {
         texture: Texture;
         tint: number;
 
-        static defaultAnchor: object;
+        static defaultAnchor: {x: number; y: number};
 
         setTexture(texture: Texture, destroyBase?: boolean): void;
 

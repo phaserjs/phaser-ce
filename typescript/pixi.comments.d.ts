@@ -1728,7 +1728,17 @@ declare module PIXI {
         */
         tint: number;
 
-        static defaultAnchor: object;
+
+                               /**
+                               * The horizontal position of the DisplayObject, in pixels, relative to its parent.
+                               * If you need the world position of the DisplayObject, use `DisplayObject.worldPosition` instead.
+                               */
+
+                                          /**
+                                          * The vertical position of the DisplayObject, in pixels, relative to its parent.
+                                          * If you need the world position of the DisplayObject, use `DisplayObject.worldPosition` instead.
+                                          */
+        static defaultAnchor: {x: number; y: number};
 
 
         /**

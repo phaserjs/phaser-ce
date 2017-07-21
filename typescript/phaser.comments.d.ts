@@ -16328,7 +16328,7 @@ declare module Phaser {
                 * How much each particle should bounce on each axis. 1 = full bounce, 0 = no bounce.
                 */
                 bounce: Phaser.Point;
-                count: object;
+                count: {emitted: number; failed: number; totalEmitted: number; totalFailed: number};
 
                 /**
                 * The point the particles are emitted from.
@@ -22402,7 +22402,7 @@ declare module Phaser {
         * Tests a Point or Point-like object.
         * @return - True if the object has numeric x and y properties.
         */
-        static isPoint(obj: object): boolean;
+        static isPoint(obj: any): boolean;
 
         /**
         * Sets the `x` and `y` values of this Point object to the given values.
@@ -22415,7 +22415,7 @@ declare module Phaser {
         * @param y The vertical value of this point. If not given the x value will be used in its place.
         * @return This Point object. Useful for chaining method calls.
         */
-        static set(obj: object, x: number, y: number): object;
+        static set(obj: any, x: number, y: number): any;
 
 
         /**

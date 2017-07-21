@@ -2836,7 +2836,7 @@ declare module Phaser {
                 angularDrag: number;
                 bottom: number;
                 bounce: Phaser.Point;
-                count: object;
+                count: {emitted: number; failed: number; totalEmitted: number; totalFailed: number};
                 emitX: number;
                 emitY: number;
                 exists: boolean;
@@ -3994,8 +3994,8 @@ declare module Phaser {
         static normalize(a: Phaser.Point, out?: Phaser.Point): Phaser.Point;
         static rotate(a: Phaser.Point, x: number, y: number, angle: number, asDegrees?: boolean, distance?: number): Phaser.Point;
         static centroid(points: Phaser.Point[], out?: Phaser.Point): Phaser.Point;
-        static isPoint(obj: object): boolean;
-        static set(obj: object, x: number, y: number): object;
+        static isPoint(obj: any): boolean;
+        static set(obj: any, x: number, y: number): any;
 
         add(x: number, y: number): Phaser.Point;
         angle(a: Phaser.Point, asDegrees?: boolean): number;
