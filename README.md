@@ -214,17 +214,17 @@ See [our webpack project template](https://github.com/photonstorm/phaser-ce/tree
 
 ### Ionic
 
-For using phaser-ce with ionic, have a look at the ionic example within project templates. To get phaser-ce working with ionic in general, you've to extend "only" the webpack config used by ionic. To get this done are a few steps are necessary.
+For using phaser-ce with [ionic](https://ionicframework.com), have a look at the [ionic example](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) within project templates. To get phaser-ce working with ionic in general, you've to extend "only" the webpack config used by ionic. To get this done are a few steps are necessary.
 
-- Install dependencies webpack-merge and expose-loader
+- Install dependencies webpack-merge and expose-loader:
 
   ```bash
   npm install webpack-merge expose-loader --save-dev
   ```
 
-- Create a new webpack config setting up expose loader and merging it with the ionic webpack script. Have a look at the config within [project template](github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example/webpack.config.js)
+- Create a [new webpack config](https://github.com/photonstorm/phaser-ce/blob/master/resources/Project%20Templates/ionic-example/webpack.config.js) setting up expose-loader and merging it with the ionic webpack script.
 
-- Add own webpack config at package.json, so that ionic will use it
+- Add own webpack config at package.json, so that ionic will use it:
 
   ```javascript
     "config": {
@@ -232,7 +232,7 @@ For using phaser-ce with ionic, have a look at the ionic example within project 
     }
   ```
 
-- Import pixi, p2 and phaser within your project
+- Import pixi, p2 and phaser within your project:
 
   ```javascript
   // import pixi, p2 and phaser ce
@@ -289,25 +289,23 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
-## Unreleased
-
-### New Features
+## Version 2.8.3 - 21st July 2017
 
 ### Updates
 
-* Added ionic project template and a small guide to readme (#96)
+* Added [Ionic project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) and a [small guide](https://github.com/photonstorm/phaser-ce/blob/master/README.md#ionic) to README (#96).
 
 ### Bug Fixes
 
-* Added missing Phaser.Graphics TypeScript definitions (#284).
+* Fixed some TypeScript definitions (#284, #285, #286).
 
 ### PIXI updates
 
-* Removed PIXI.Matrix and PIXI.identityMatrix completely from code
+* Replaced all references to PIXI.Matrix and PIXI.identityMatrix with [Phaser.Matrix](https://photonstorm.github.io/phaser-ce/Phaser.Matrix.html) and Phaser.identityMatrix.
 
 ### Thanks
 
-@dolanmiu, @Dreaded-Gnu
+@Arche-san, @cloakedninjas, @dolanmiu, @Dreaded-Gnu, @photonstorm, @samme
 
 ## Version 2.8.2 - 14th July 2017
 
