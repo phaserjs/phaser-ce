@@ -7377,7 +7377,8 @@ declare module Phaser {
         state?: Phaser.State;
         forceSetTimeOut?: boolean;
         multiTexture?: boolean;
-
+        scaleMode?: number;
+        
     }
 
 
