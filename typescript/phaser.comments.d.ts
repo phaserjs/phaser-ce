@@ -7363,22 +7363,22 @@ declare module Phaser {
 
     interface IGameConfig {
 
-        enableDebug?: boolean;
-        width?: number | string;
-        height?: number | string;
-        renderer?: number;
-        parent?: any;
-        transparent?: boolean;
         antialias?: boolean;
-        resolution?: number;
-        preserveDrawingBuffer?: boolean;
+        enableDebug?: boolean;
+        forceSetTimeOut?: boolean;
+        height?: number | string;
+        multiTexture?: boolean;
+        parent?: any;
         physicsConfig?: any;
+        preserveDrawingBuffer?: boolean;
+        renderer?: number;
+        resolution?: number;
+        scaleMode?: number;
         seed?: string;
         state?: Phaser.State;
-        forceSetTimeOut?: boolean;
-        multiTexture?: boolean;
-        scaleMode?: number;
-        
+        transparent?: boolean;
+        width?: number | string;
+
     }
 
 
@@ -20670,6 +20670,7 @@ declare module Phaser {
                 * @param object The key of the object within the Physics data file that you wish to load the shape data from,
                 *               or if key is null pass the actual physics data object itself as this parameter.
                 * @param scale Optionally resize the loaded polygon. - Default: 1
+                * @param rotation Local rotation of the shape relative to the body center of mass, specified in radians.
                 * @return True on success, else false.
                 */
                 loadPolygon(key: string, object: string, scale ?: number): boolean;
@@ -20787,7 +20788,9 @@ declare module Phaser {
                 reset(x: number, y: number, resetDamping?: boolean, resetMass?: boolean): void;
 
                 /**
-                * Updates the debug draw if any body shapes change.
+                * Updates the debug draw if any body shapes change. Always update the angle data prior to debug drawing the shape.
+                * 
+                * @param rotation Local rotation of the shape relative to the body center of mass, specified in radians.
                 */
                 shapeChanged(): void;
 
@@ -31501,9 +31504,13 @@ declare module Phaser {
         prevTime: number;
 
         /**
-        * Scaling factor to make the game move smoothly in slow motion
+        * Scaling factor to make the game move smoothly in slow motion (or fast motion)
+        * 
         * - 1.0 = normal speed
         * - 2.0 = half speed
+        * - 0.5 = double speed
+        * 
+        * You likely need to adjust {@link Phaser.Time#desiredFps desiredFps} as well such that `desiredFps / slowMotion === 60`.
         * Default: 1
         */
         slowMotion: number;
