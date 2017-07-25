@@ -1395,22 +1395,22 @@ declare module Phaser {
 
     interface IGameConfig {
 
-        enableDebug?: boolean;
-        width?: number | string;
-        height?: number | string;
-        renderer?: number;
-        parent?: any;
-        transparent?: boolean;
         antialias?: boolean;
-        resolution?: number;
-        preserveDrawingBuffer?: boolean;
+        enableDebug?: boolean;
+        forceSetTimeOut?: boolean;
+        height?: number | string;
+        multiTexture?: boolean;
+        parent?: any;
         physicsConfig?: any;
+        preserveDrawingBuffer?: boolean;
+        renderer?: number;
+        resolution?: number;
+        scaleMode?: number;
         seed?: string;
         state?: Phaser.State;
-        forceSetTimeOut?: boolean;
-        multiTexture?: boolean;
-        scaleMode?: number;
-        
+        transparent?: boolean;
+        width?: number | string;
+
     }
 
     class Game {
