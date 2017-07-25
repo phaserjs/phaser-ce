@@ -43,7 +43,8 @@
         "cleverLinks"     : false,
         "monospaceLinks"  : false,
         "default"         : {
-            "outputSourceFiles" : true
+            "outputSourceFiles" : false,
+            "outputSourcePath"  : false
         },
         "systemName"      : "Phaser CE",
         "footer"          : "",
