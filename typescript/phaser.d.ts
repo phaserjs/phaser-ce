@@ -1396,8 +1396,8 @@ declare module Phaser {
     interface IGameConfig {
 
         enableDebug?: boolean;
-        width?: number;
-        height?: number;
+        width?: number | string;
+        height?: number | string;
         renderer?: number;
         parent?: any;
         transparent?: boolean;
