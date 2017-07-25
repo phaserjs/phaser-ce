@@ -7988,7 +7988,7 @@ It also happens mid-step. So do not destroy a Body during this callback, instead
             
 <dt>
     <h4 class="name "
-        id="loadPolygon"><span class="type-signature"></span>loadPolygon<span class="signature">(key, object, <span class="optional">scale</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+        id="loadPolygon"><span class="type-signature"></span>loadPolygon<span class="signature">(key, object, <span class="optional">scale</span>,<span class="optional">rotation</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
     
 </dt>
@@ -8146,6 +8146,44 @@ physics data object as the second. When doing this you must ensure the structure
             
 
             <td class="description last"><p>Optionally resize the loaded polygon.</p></td>
+        </tr>
+
+        
+        <tr>
+            
+                <td class="name"><code>rotation</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>Local rotation of the shape relative to the body center of mass, specified in radians.</p></td>
         </tr>
 
 	
