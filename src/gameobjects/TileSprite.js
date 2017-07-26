@@ -423,7 +423,16 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession) {
     var tx = (wt.tx * resolution) + renderSession.shakeX;
     var ty = (wt.ty * resolution) + renderSession.shakeY;
 
-    context.setTransform(wt.a * resolution, wt.b * resolution, wt.c * resolution, wt.d * resolution, tx, ty);
+    context.setTransform(wt.a * resolution, wt.b * resolution, wt.c * resolution, wt.d * resolution, tx, ty);    
+
+    if (this.tint !== 0xFFFFFF && (this.texture.requiresReTint || this.cachedTint !== this.tint))
+    {
+        this.tintedTexture = PIXI.CanvasTinter.getTintedTexture(this, this.tint);
+
+        this.cachedTint = this.tint;
+        this.texture.requiresReTint = false;
+        this.refreshTexture = true;        
+    }
 
     if (this.refreshTexture)
     {
@@ -579,8 +588,10 @@ Phaser.TileSprite.prototype.generateTilingTexture = function (forcePowerOfTwo) {
         h = targetHeight;
     }
 
+    var targetTexture = this.tintedTexture ? this.tintedTexture : texture.baseTexture.source;
+
     this.canvasBuffer.context.drawImage(
-        texture.baseTexture.source,
+        targetTexture,
         texture.crop.x,
         texture.crop.y,
         texture.crop.width,
