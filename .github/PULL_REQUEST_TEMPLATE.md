@@ -1,10 +1,10 @@
-Make sure you describe your PR in the [README Change Log](https://github.com/photonstorm/phaser-ce/blob/master/README.md#change-log) section!
-
 This PR changes (✏️ delete as applicable)
 
 * Documentation
-* TypeScript Defs
+* TypeScript definitions
 * The public-facing API
-* Nothing, it's a bug fix
+* A bug fix (issue #XXX)
+
+- [ ] I described these changes in [README: Change Log: Unreleased](https://github.com/photonstorm/phaser-ce/blob/master/README.md#change-log)
 
 Describe the changes below:
