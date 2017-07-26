@@ -33072,7 +33072,7 @@ declare module Phaser {
             * @param color Color of the debug rectangle to be rendered. The format is a CSS color string such as '#ff0000' or 'rgba(255,0,0,0.5)'. - Default: 'rgba(0,255,0,0.4)'
             * @param filled Render the body as a filled rectangle (true) or a stroked rectangle (false) - Default: true
             */
-            body(sprite: Phaser.Sprite, color?: string, filled?: boolean): void;
+            body(sprite: Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.Sprite | Phaser.Text | Phaser.TileSprite, color?: string, filled?: boolean): void;
 
             /**
             * Render a Sprites Physic Body information.
@@ -33082,16 +33082,16 @@ declare module Phaser {
             * @param y Y position of the debug info to be rendered.
             * @param color color of the debug info to be rendered. (format is css color string). - Default: 'rgb(255,255,255)'
             */
-            bodyInfo(sprite: Phaser.Sprite, x: number, y: Number, color?: string): void;
+            bodyInfo(sprite: Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.Sprite | Phaser.Text | Phaser.TileSprite, x: number, y: Number, color?: string): void;
 
             /**
             * Renders 'debug draw' data for the given Box2D body.
             * This uses the standard debug drawing feature of Box2D, so colors will be decided by the Box2D engine.
             * 
-            * @param sprite The sprite whos body will be rendered.
-            * @param color color of the debug info to be rendered. (format is css color string). - Default: 'rgb(0,255,0)'
+            * @param body The body to be rendered.
+            * @param color Color of the rendering (format is css color string). - Default: 'rgb(0,255,0)'
             */
-            box2dBody(body: Phaser.Sprite, color?: string): void;
+            box2dBody(body: any /* Phaser.Physics.Box2D.Body */, color?: string): void;
 
             /**
             * Renders 'debug draw' data for the Box2D world if it exists.
