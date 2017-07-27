@@ -297,12 +297,13 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed movement of sprites with `fixedToCamera=true` when dragged by pointer (#297).
 * Fixed creature relative anchor points to be absolute (#288).
 * Fixed P2 Physics body not rotating shape (#258)
 
 ### Thanks
 
-@andrewjb123, @samid737
+@andrewjb123, @davvidbaker, @samid737
 
 ## Version 2.8.3 - 21st July 2017
 
