@@ -59,12 +59,42 @@ Phaser.Utils = {
     },
 
     /**
-     * Sets an objects property by string.
+     * Sets an object's properties from a map of property names and values.
+     *
+     * @example
+     * Phaser.Utils.setProperties(sprite, {
+     *  'animations.paused': true,
+     *  'body.enable': false,
+     *  'input.draggable': true,
+     * });
+     *
+     * @method Phaser.Utils.setProperties
+     * @param  {object} obj - The object to modify.
+     * @param  {object} props - The property names and values to set on the object (see {@link #setProperty}).
+     * @return {object} The modified object.
+     */
+    setProperties: function(obj, props) {
+
+        for (var name in props)
+        {
+            this.setProperty(obj, name, props[name]);
+        }
+
+        return obj;
+
+    },
+
+    /**
+     * Sets an object's property by name and value.
+     *
+     * @example
+     * Phaser.Utils.setProperty(sprite, 'body.velocity.x', 60);
      *
      * @method Phaser.Utils.setProperty
-     * @param {object} obj - The object to traverse
-     * @param {string} prop - The property whose value will be changed
-     * @return {object} The object on which the property was set.
+     * @param {object} obj - The object to modify.
+     * @param {string} prop - The property name, or a series of names separated by `.` (for nested properties).
+     * @param {any} value - The value.
+     * @return {object} The modified object.
      */
     setProperty: function(obj, prop, value) {
 
