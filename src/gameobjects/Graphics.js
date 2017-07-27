@@ -972,7 +972,7 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
 
         this._cachedSprite.worldAlpha = this.worldAlpha;
 
-        Phaser.Sprite.prototype._renderWebGL.call(this._cachedSprite, renderSession);
+        Phaser.DisplaySprite.prototype._renderWebGL.call(this._cachedSprite, renderSession);
 
         return;
     }
@@ -1076,7 +1076,7 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
 
         this._cachedSprite.alpha = this.alpha;
 
-        Phaser.Sprite.prototype._renderCanvas.call(this._cachedSprite, renderSession);
+        Phaser.DisplaySprite.prototype._renderCanvas.call(this._cachedSprite, renderSession);
 
         return;
     }
@@ -1408,7 +1408,7 @@ Phaser.Graphics.prototype._generateCachedSprite = function () {
         var canvasBuffer = new Phaser.CanvasBuffer(bounds.width, bounds.height);
         var texture = Phaser.Texture.fromCanvas(canvasBuffer.canvas);
 
-        this._cachedSprite = new Phaser.Sprite(texture);
+        this._cachedSprite = new Phaser.DisplaySprite(texture);
         this._cachedSprite.buffer = canvasBuffer;
 
         this._cachedSprite.worldTransform = this.worldTransform;

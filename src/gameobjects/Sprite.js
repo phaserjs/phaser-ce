@@ -1,4 +1,4 @@
-Phaser.DisplaySprite.call/**
+/**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2016 Photon Storm Ltd.
 * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
@@ -13,7 +13,7 @@ Phaser.DisplaySprite.call/**
 *
 * @class Phaser.Sprite
 * @constructor
-* @extends Phaser.Sprite
+* @extends Phaser.DisplaySprite
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.Animation
@@ -66,7 +66,7 @@ Phaser.Sprite = function (game, x, y, key, frame) {
 
 };
 
-Phaser.Sprite.prototype = Object.create(Phaser.Sprite.prototype);
+Phaser.Sprite.prototype = Object.create(Phaser.DisplaySprite.prototype);
 Phaser.Sprite.prototype.constructor = Phaser.Sprite;
 
 Phaser.Component.Core.install.call(Phaser.Sprite.prototype, [

@@ -10,7 +10,7 @@
 * It can still rotate, scale, crop and receive input events. This makes it perfect for logos, backgrounds, simple buttons and other non-Sprite graphics.
 *
 * @class Phaser.Image
-* @extends Phaser.Sprite
+* @extends Phaser.DisplaySprite
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.Animation
@@ -53,7 +53,7 @@ Phaser.Image = function (game, x, y, key, frame) {
 
 };
 
-Phaser.Image.prototype = Object.create(Phaser.Sprite.prototype);
+Phaser.Image.prototype = Object.create(Phaser.DisplaySprite.prototype);
 Phaser.Image.prototype.constructor = Phaser.Image;
 
 Phaser.Component.Core.install.call(Phaser.Image.prototype, [

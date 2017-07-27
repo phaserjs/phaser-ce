@@ -1280,7 +1280,7 @@ Phaser.BitmapData.prototype = {
 
         this._image = source;
 
-        if (source instanceof Phaser.Sprite || source instanceof Phaser.Image || source instanceof Phaser.Text || source instanceof Phaser.Sprite)
+        if (source instanceof Phaser.Sprite || source instanceof Phaser.Image || source instanceof Phaser.Text || source instanceof Phaser.DisplaySprite)
         {
             //  Copy over sprite values
             this._pos.set(source.texture.crop.x, source.texture.crop.y);
