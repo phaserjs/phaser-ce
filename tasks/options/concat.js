@@ -34,7 +34,7 @@ module.exports = {
         src: require('../manifests/pixi-main'),
         dest: '<%= modules_dir %>/pixi-main.js'
     },
-    
+
     pixiOutro: {
         src: require('../manifests/pixi-outro'),
         dest: '<%= modules_dir %>/pixi-outro.js'
@@ -48,6 +48,21 @@ module.exports = {
     phaser: {
         src: require('../manifests/phaser'),
         dest: '<%= modules_dir %>/phaser.js'
+    },
+
+    display: {
+        src: require('../manifests/display'),
+        dest: '<%= modules_dir %>/display.js'
+    },
+
+    renderers: {
+        src: require('../manifests/renderers'),
+        dest: '<%= modules_dir %>/renderers.js'
+    },
+
+    textures: {
+        src: require('../manifests/textures'),
+        dest: '<%= modules_dir %>/textures.js'
     },
 
     geom: {
@@ -299,7 +314,7 @@ module.exports = {
         src: require('../manifests/pixidefs'),
         dest: '<%= modules_dir %>/pixidefs.js'
     },
-    
+
     outro: {
         src: require('../manifests/outro'),
         dest: '<%= modules_dir %>/outro.js'

@@ -1,0 +1,5 @@
+[
+    "src/display/DisplayObject.js",
+    "src/display/DisplayObjectContainer.js",
+    "src/display/DisplaySprite.js"
+]

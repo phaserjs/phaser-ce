@@ -1,0 +1,21 @@
+[
+    "src/renderers/webgl/utils/WebGLShaderUtils.js",
+    "src/renderers/webgl/shaders/PixiShader.js",
+    "src/renderers/webgl/shaders/PixiFastShader.js",
+    "src/renderers/webgl/shaders/StripShader.js",
+    "src/renderers/webgl/shaders/PrimitiveShader.js",
+    "src/renderers/webgl/shaders/ComplexPrimitiveShader.js",
+    "src/renderers/webgl/WebGLRenderer.js",
+    "src/renderers/webgl/utils/WebGLBlendModeManager.js",
+    "src/renderers/webgl/utils/WebGLMaskManager.js",
+    "src/renderers/webgl/utils/WebGLStencilManager.js",
+    "src/renderers/webgl/utils/WebGLShaderManager.js",
+    "src/renderers/webgl/utils/WebGLSpriteBatch.js",
+    "src/renderers/webgl/utils/WebGLFastSpriteBatch.js",
+    "src/renderers/webgl/utils/WebGLFilterManager.js",
+    "src/renderers/webgl/utils/FilterTexture.js",
+    "src/renderers/canvas/utils/CanvasBuffer.js",
+    "src/renderers/canvas/utils/CanvasMaskManager.js",
+    "src/renderers/canvas/utils/CanvasTinter.js",
+    "src/renderers/canvas/CanvasRenderer.js"
+]

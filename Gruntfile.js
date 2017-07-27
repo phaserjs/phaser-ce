@@ -34,6 +34,9 @@ module.exports = function (grunt) {
         var modules = {
             'intro':            { 'description': 'Phaser UMD wrapper',                          'optional': true, 'stub': false },
             'phaser':           { 'description': 'Phaser Globals',                              'optional': false, 'stub': false },
+            'display':          { 'description': 'DisplayObject Classes',                       'optional': false, 'stub': false },
+            'renderers':        { 'description': 'Canvas and WebGL Renderers',                  'optional': false, 'stub': false },
+            'textures':         { 'description': 'Texture Classes',                             'optional': false, 'stub': false },
             'geom':             { 'description': 'Geometry Classes',                            'optional': false, 'stub': false },
             'core':             { 'description': 'Phaser Core',                                 'optional': false, 'stub': false },
             'input':            { 'description': 'Input Manager + Mouse and Touch Support',     'optional': false, 'stub': false },
