@@ -92,27 +92,66 @@ Phaser.Utils = {
      *
      * @method Phaser.Utils.setProperty
      * @param {object} obj - The object to modify.
-     * @param {string} prop - The property name, or a series of names separated by `.` (for nested properties).
+     * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
      * @param {any} value - The value.
      * @return {object} The modified object.
      */
-    setProperty: function(obj, prop, value) {
 
-        var parts = prop.split('.'),
-            last = parts.pop(),
-            l = parts.length,
-            i = 1,
-            current = parts[0];
+    setProperty: function(obj, name, value) {
 
-        while (i < l && (obj = obj[current]))
+        var parts = name.split('.');
+
+        switch (parts.length)
         {
-            current = parts[i];
-            i++;
+            case 1:
+                obj[name] = value;
+                break;
+            case 2:
+                obj[parts[0]][parts[1]] = value;
+                break;
+            case 3:
+                obj[parts[0]][parts[1]][parts[2]] = value;
+                break;
+            case 4:
+                obj[parts[0]][parts[1]][parts[2]][parts[3]] = value;
+                break;
+            default:
+                this._setProperty(obj, name, value);
         }
+    },
 
-        if (obj)
+    /**
+     * Sets an object's property by name and value.
+     *
+     * @private
+     * @method Phaser.Utils._setProperty
+     * @param {object} obj - The object to modify.
+     * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
+     * @param {any} value - The value.
+     * @return {object} The modified object.
+     */
+    _setProperty: function(obj, name, value) {
+
+        var parts = name.split('.'),
+            len = parts.length,
+            i = 0,
+            currentObj = obj,
+            key = parts[0];
+
+        if (len === 1)
         {
-            obj[last] = value;
+            obj[name] = value;
+        }
+        else
+        {
+            while (i < (len - 1))
+            {
+                currentObj = currentObj[key];
+                i++;
+                key = parts[i];
+            }
+
+            currentObj[key] = value;
         }
 
         return obj;
