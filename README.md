@@ -295,6 +295,11 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Updated NPM dependencies (except [typescript](https://www.npmjs.com/package/typescript); photonstorm/phaser#2198) and added [package-lock.json](https://docs.npmjs.com/files/package-lock.json).
+* Documented how Phaser.Physics.P2.Body#addPolygon can mutate the `points` argument (#301).
+* Documented how `cacheAsBitmap` and `generateTexture` can trim transparent pixels (#283).
+* Deprecated Phaser.Device.isConsoleOpen. Now it always returns false.
+
 ### Bug Fixes
 
 * Fixed movement of sprites with `fixedToCamera=true` when dragged by pointer (#297).

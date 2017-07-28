@@ -5375,9 +5375,8 @@ declare module Phaser {
         static canPlayVideo(type: string): boolean;
 
         /**
-        * Check whether the console is open.
-        * Note that this only works in Firefox with Firebug and earlier versions of Chrome.
-        * It used to work in Chrome, but then they removed the ability: {@link http://src.chromium.org/viewvc/blink?view=revision&revision=151136}
+        * Returns false.
+        * @return false
         */
         static isConsoleOpen(): boolean;
 
@@ -9485,6 +9484,8 @@ declare module Phaser {
         * Useful function that returns a texture of the graphics object that can then be used to create sprites
         * This can be quite useful if your geometry is complicated and needs to be reused multiple times.
         * 
+        * Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
+        * 
         * @param resolution The resolution of the texture being generated - Default: 1
         * @param scaleMode Should be one of the PIXI.scaleMode consts
         * @param padding Add optional extra padding to the generated texture (default 0)
@@ -10628,7 +10629,7 @@ declare module Phaser {
         * If the cursor is at the start of the group (bottom child) it is moved to the end (top child).
         * @return The child the cursor now points to.
         */
-        previous(): void;
+        previous(): any;
 
         /**
         * Removes the given child from this group.
@@ -20488,8 +20489,8 @@ declare module Phaser {
                 * @param options.skipSimpleCheck Set to true if you already know that the path is not intersecting itself.
                 * @param options.removeCollinearPoints Set to a number (angle threshold value) to remove collinear points, or false to keep all points.
                 * @param points An array of 2d vectors that form the convex or concave polygon.
-                *               Either [[0,0], [0,1],...] or a flat array of numbers that will be interpreted as [x,y, x,y, ...],
-                *               or the arguments passed can be flat x,y values e.g. `setPolygon(options, x,y, x,y, x,y, ...)` where `x` and `y` are numbers.
+                *               Either [[0,0], [0,1],...] or a flat array of numbers that will be interpreted as [x,y, x,y, ...]. In the first form **the array will mutate**.
+                *               Or the arguments passed can be flat x,y values e.g. `setPolygon(options, x,y, x,y, x,y, ...)` where `x` and `y` are numbers.
                 * @return True on success, else false.
                 */
                 addPolygon(options: { optimalDecomp?: boolean; skipSimpleCheck?: boolean; removeCollinearPoints?: boolean; }, points: number[][]): boolean;
