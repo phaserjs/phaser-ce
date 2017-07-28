@@ -291,6 +291,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ## Unreleased
 
+* Corrects documentation for InputHandler#enableDrag (alphaThreshold is not boolean).
+
 ### New Features
 
 ### Updates
