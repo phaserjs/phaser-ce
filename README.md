@@ -295,6 +295,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Documented how `cacheAsBitmap` and `generateTexture` can trim transparent pixels (#283).
 * Deprecated Phaser.Device.isConsoleOpen. Now it always returns false.
 
 ### Bug Fixes
