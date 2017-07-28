@@ -295,6 +295,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Deprecated Phaser.Device.isConsoleOpen. Now it always returns false.
+
 ### Bug Fixes
 
 * Fixed movement of sprites with `fixedToCamera=true` when dragged by pointer (#297).
