@@ -36,6 +36,8 @@ Phaser.Component.PhysicsBody.preUpdate = function () {
 
         this.fresh = false;
 
+        this.preUpdateChildren();
+
         return false;
     }
 
