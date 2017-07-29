@@ -429,9 +429,11 @@ Phaser.StateManager.prototype = {
     */
     checkState: function (key) {
 
-        if (this.states[key])
+        var state = this.states[key];
+
+        if (state)
         {
-            if (this.states[key]['preload'] || this.states[key]['create'] || this.states[key]['update'] || this.states[key]['render'])
+            if (state.preload || state.create || state.update || state.render)
             {
                 return true;
             }
