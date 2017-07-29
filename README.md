@@ -303,6 +303,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Fixed sprites not receiving a preUpdate when they have a `fresh` ancestor with a physics body, which would leave them `fresh` and with incorrect `world` and `body.position` values for several frames (#299). Fresh sprites with _two or more ancestors_ may still have incorrect `world` and `body.position` values for 1 frame because they haven't received a render transform yet.
 * Fixed movement of sprites with `fixedToCamera=true` when dragged by pointer (#297).
 * Fixed creature relative anchor points to be absolute (#288).
 * Fixed P2 Physics body not rotating shape (#258)
