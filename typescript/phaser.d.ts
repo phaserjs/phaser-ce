@@ -4418,7 +4418,7 @@ declare module Phaser {
 
     }
 
-    class RoundedRectangle extends PIXI.RoundedRectangle {
+    class RoundedRectangle {
 
         x: number;
         y: number;
