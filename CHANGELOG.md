@@ -2,15 +2,7 @@
 
 ## Unreleased
 
-See [README: Change Log](README.md#change-log).
-
-### Bug Fixes
-
-* TileSprite tint now works when rendering with Canvas
-
-### Thanks
-
-@Formic
+See [README: Change Log: Unreleased](README.md#unreleased).
 
 ## Version 2.8.3 - 21st July 2017
 
