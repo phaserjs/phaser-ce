@@ -1407,7 +1407,7 @@ declare module Phaser {
         resolution?: number;
         scaleMode?: number;
         seed?: string;
-        state?: Phaser.State;
+        state?: any; // Phaser.State | function | object
         transparent?: boolean;
         width?: number | string;
 
