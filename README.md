@@ -304,6 +304,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Documented how Phaser.Physics.P2.Body#addPolygon can mutate the `points` argument (#301).
 * Documented how `cacheAsBitmap` and `generateTexture` can trim transparent pixels (#283).
 * Deprecated Phaser.Device.isConsoleOpen. Now it always returns false.
+* Moved addTouchLockCallback/removeTouchLockCallback from Phaser.Touch to Phaser.Input, it now also covers Phaser.MSPointer (#37)
 
 ### Bug Fixes
 
@@ -312,10 +313,11 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Fixed movement of sprites with `fixedToCamera=true` when dragged by pointer (#297).
 * Fixed creature relative anchor points to be absolute (#288).
 * Fixed P2 Physics body not rotating shape (#258)
+* Audio is now also unlocked for Chrome > 55, fixes audio not plaing in cross-origin iframe (#37)
 
 ### Thanks
 
-@Aerolivier, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @Plukers, @samid737, @samme, @tommitytom
+@Aerolivier, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @Plukers, @samid737, @samme, @tommitytom, @AleBles
 
 ## Version 2.8.3 - 21st July 2017
 
