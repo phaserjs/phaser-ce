@@ -295,6 +295,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Added missing methods damage, heal, and setHealth to docs (#308).
 * Updated Phaser.ScaleManager#startFullScreen docs.
 * Removed obsolete PIXI TypeScript definitions.
 * Removed [filters/pixi](https://github.com/photonstorm/phaser-ce/tree/v2.8.3/filters/pixi). They require PIXI.AbstractFilter, which was removed in 2.7.0.

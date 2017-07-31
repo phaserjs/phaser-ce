@@ -39,7 +39,7 @@ Phaser.Component.Health.prototype = {
     * 
     * If health is taken below or is equal to zero then the `kill` method is called.
     *
-    * @member
+    * @method
     * @param {number} amount - The amount to subtract from the current `health` value.
     * @return {Phaser.Sprite} This instance.
     */
@@ -63,7 +63,7 @@ Phaser.Component.Health.prototype = {
     * Sets the health property of the Game Object to the given amount.
     * Will never exceed the `maxHealth` value.
     *
-    * @member
+    * @method
     * @param {number} amount - The amount to set the `health` value to. The total will never exceed `maxHealth`.
     * @return {Phaser.Sprite} This instance.
     */
@@ -83,7 +83,7 @@ Phaser.Component.Health.prototype = {
     /**
     * Heal the Game Object. This adds the given amount of health to the `health` property.
     *
-    * @member
+    * @method
     * @param {number} amount - The amount to add to the current `health` value. The total will never exceed `maxHealth`.
     * @return {Phaser.Sprite} This instance.
     */
