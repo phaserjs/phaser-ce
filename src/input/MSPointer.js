@@ -10,7 +10,7 @@
 * It will work only in Internet Explorer 10+ and Windows Store or Windows Phone 8 apps using JavaScript.
 * http://msdn.microsoft.com/en-us/library/ie/hh673557(v=vs.85).aspx
 *
-* You should not normally access this class directly, but instead use a Phaser.Pointer object which 
+* You should not normally access this class directly, but instead use a Phaser.Pointer object which
 * normalises all game input for you including accurate button handling.
 *
 * Please note that at the current time of writing Phaser does not yet support chorded button interactions:
@@ -192,11 +192,23 @@ Phaser.MSPointer.prototype = {
 
     /**
     * The function that handles the PointerDown event.
-    * 
+    *
     * @method Phaser.MSPointer#onPointerDown
     * @param {PointerEvent} event - The native DOM event.
     */
     onPointerDown: function (event) {
+
+        var i = this.game.input.touchLockCallbacks.length;
+
+        while (i--)
+        {
+            var cb = this.game.input.touchLockCallbacks[i];
+
+            if (!cb.onEnd && cb.callback.call(cb.context, this, event))
+            {
+                this.game.input.touchLockCallbacks.splice(i, 1);
+            }
+        }
 
         this.event = event;
 
@@ -272,6 +284,18 @@ Phaser.MSPointer.prototype = {
     */
     onPointerUp: function (event) {
 
+        var i = this.game.input.touchLockCallbacks.length;
+
+        while (i--)
+        {
+            var cb = this.game.input.touchLockCallbacks[i];
+
+            if (cb.onEnd && cb.callback.call(cb.context, this, event))
+            {
+                this.game.input.touchLockCallbacks.splice(i, 1);
+            }
+        }
+
         this.event = event;
 
         if (this.capture)
@@ -304,7 +328,7 @@ Phaser.MSPointer.prototype = {
 
     /**
     * The internal method that handles the mouse up event from the window.
-    * 
+    *
     * @method Phaser.MSPointer#onPointerUpGlobal
     * @param {PointerEvent} event - The native event from the browser. This gets stored in MSPointer.event.
     */
