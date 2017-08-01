@@ -5,7 +5,7 @@
 /**
  * A set of functions used by the webGL renderer to draw the primitive graphics data
  *
- * @class WebGLGraphics
+ * @class PIXI.WebGLGraphics
  * @private
  * @static
  */
@@ -25,7 +25,7 @@ PIXI.WebGLGraphics.stencilBufferLimit = 6;
  *
  * @static
  * @private
- * @method renderGraphics
+ * @method PIXI.WebGLGraphics.renderGraphics
  * @param graphics {Graphics}
  * @param renderSession {Object}
  */
@@ -48,7 +48,7 @@ PIXI.WebGLGraphics.renderGraphics = function(graphics, renderSession)//projectio
     if(!webGL)
     {
         return;
-    }    
+    }
 
     // This  could be speeded up for sure!
 
@@ -62,27 +62,27 @@ PIXI.WebGLGraphics.renderGraphics = function(graphics, renderSession)//projectio
 
             // render quad..
             gl.drawElements(gl.TRIANGLE_FAN, 4, gl.UNSIGNED_SHORT, ( webGLData.indices.length - 4 ) * 2 );
-            
+
             renderSession.stencilManager.popStencil(graphics, webGLData, renderSession);
         }
         else
         {
             webGLData = webGL.data[i];
-           
+
 
             renderSession.shaderManager.setShader( shader );//activatePrimitiveShader();
             shader = renderSession.shaderManager.primitiveShader;
             gl.uniformMatrix3fv(shader.translationMatrix, false, graphics.worldTransform.toArray(true));
-            
+
             gl.uniform1f(shader.flipY, 1);
-            
+
             gl.uniform2f(shader.projectionVector, projection.x, -projection.y);
             gl.uniform2f(shader.offsetVector, -offset.x, -offset.y);
 
             gl.uniform3fv(shader.tintColor, Phaser.Color.hexToRGBArray(graphics.tint));
 
             gl.uniform1f(shader.alpha, graphics.worldAlpha);
-            
+
 
             gl.bindBuffer(gl.ARRAY_BUFFER, webGLData.buffer);
 
@@ -101,7 +101,7 @@ PIXI.WebGLGraphics.renderGraphics = function(graphics, renderSession)//projectio
  *
  * @static
  * @private
- * @method updateGraphics
+ * @method PIXI.WebGLGraphics.updateGraphics
  * @param graphicsData {Graphics} The graphics object to update
  * @param gl {WebGLContext} the current WebGL drawing context
  */
@@ -130,13 +130,13 @@ PIXI.WebGLGraphics.updateGraphics = function(graphics, gl)
             PIXI.WebGLGraphics.graphicsDataPool.push( graphicsData );
         }
 
-        // clear the array and reset the index.. 
+        // clear the array and reset the index..
         webGL.data = [];
         webGL.lastIndex = 0;
     }
-    
+
     var webGLData;
-    
+
     // loop through the graphics datas and construct each one..
     // if the object is a complex fill then the new stencil buffer technique will be used
     // other wise graphics objects will be pushed into a batch..
@@ -165,7 +165,7 @@ PIXI.WebGLGraphics.updateGraphics = function(graphics, gl)
                     if(data.points.length < PIXI.WebGLGraphics.stencilBufferLimit * 2)
                     {
                         webGLData = PIXI.WebGLGraphics.switchMode(webGL, 0);
-                        
+
                         var canDrawUsingSimple = PIXI.WebGLGraphics.buildPoly(data, webGLData);
                    //     console.log(canDrawUsingSimple);
 
@@ -175,7 +175,7 @@ PIXI.WebGLGraphics.updateGraphics = function(graphics, gl)
                             webGLData = PIXI.WebGLGraphics.switchMode(webGL, 1);
                             PIXI.WebGLGraphics.buildComplexPoly(data, webGLData);
                         }
-                        
+
                     }
                     else
                     {
@@ -195,7 +195,7 @@ PIXI.WebGLGraphics.updateGraphics = function(graphics, gl)
         else
         {
             webGLData = PIXI.WebGLGraphics.switchMode(webGL, 0);
-            
+
             if (data.type === Phaser.RECTANGLE)
             {
                 PIXI.WebGLGraphics.buildRectangle(data, webGLData);
@@ -224,7 +224,7 @@ PIXI.WebGLGraphics.updateGraphics = function(graphics, gl)
 /**
  * @static
  * @private
- * @method switchMode
+ * @method PIXI.WebGLGraphics.switchMode
  * @param webGL {WebGLContext}
  * @param type {Number}
  */
@@ -260,7 +260,7 @@ PIXI.WebGLGraphics.switchMode = function(webGL, type)
  *
  * @static
  * @private
- * @method buildRectangle
+ * @method PIXI.WebGLGraphics.buildRectangle
  * @param graphicsData {Graphics} The graphics object containing all the necessary properties
  * @param webGLData {Object}
  */
@@ -328,7 +328,7 @@ PIXI.WebGLGraphics.buildRectangle = function(graphicsData, webGLData)
  *
  * @static
  * @private
- * @method buildRoundedRectangle
+ * @method PIXI.WebGLGraphics.buildRoundedRectangle
  * @param graphicsData {Graphics} The graphics object containing all the necessary properties
  * @param webGLData {Object}
  */
@@ -399,7 +399,7 @@ PIXI.WebGLGraphics.buildRoundedRectangle = function(graphicsData, webGLData)
  *
  * @static
  * @private
- * @method quadraticBezierCurve
+ * @method PIXI.WebGLGraphics.quadraticBezierCurve
  * @param fromX {Number} Origin point x
  * @param fromY {Number} Origin point x
  * @param cpX {Number} Control point x
@@ -450,7 +450,7 @@ PIXI.WebGLGraphics.quadraticBezierCurve = function(fromX, fromY, cpX, cpY, toX, 
  *
  * @static
  * @private
- * @method buildCircle
+ * @method PIXI.WebGLGraphics.buildCircle
  * @param graphicsData {Graphics} The graphics object to draw
  * @param webGLData {Object}
  */
@@ -462,7 +462,7 @@ PIXI.WebGLGraphics.buildCircle = function(graphicsData, webGLData)
     var y = circleData.y;
     var width;
     var height;
-    
+
     // TODO - bit hacky??
     if (graphicsData.type === Phaser.CIRCLE)
     {
@@ -533,7 +533,7 @@ PIXI.WebGLGraphics.buildCircle = function(graphicsData, webGLData)
  *
  * @static
  * @private
- * @method buildLine
+ * @method PIXI.WebGLGraphics.buildLine
  * @param graphicsData {Graphics} The graphics object containing all the necessary properties
  * @param webGLData {Object}
  */
@@ -745,7 +745,7 @@ PIXI.WebGLGraphics.buildLine = function(graphicsData, webGLData)
  *
  * @static
  * @private
- * @method buildComplexPoly
+ * @method PIXI.WebGLGraphics.buildComplexPoly
  * @param graphicsData {Graphics} The graphics object containing all the necessary properties
  * @param webGLData {Object}
  */
@@ -791,8 +791,8 @@ PIXI.WebGLGraphics.buildComplexPoly = function(graphicsData, webGLData)
                 maxX, maxY,
                 minX, maxY);
 
-    // push a quad onto the end.. 
-    
+    // push a quad onto the end..
+
     //TODO - this aint needed!
     var length = points.length / 2;
     for (i = 0; i < length; i++)
@@ -807,7 +807,7 @@ PIXI.WebGLGraphics.buildComplexPoly = function(graphicsData, webGLData)
  *
  * @static
  * @private
- * @method buildPoly
+ * @method PIXI.WebGLGraphics.buildPoly
  * @param graphicsData {Graphics} The graphics object containing all the necessary properties
  * @param webGLData {Object}
  */
@@ -878,7 +878,7 @@ PIXI.WebGLGraphicsData = function(gl)
 };
 
 /**
- * @method reset
+ * @method PIXI.WebGLGraphics.reset
  */
 PIXI.WebGLGraphicsData.prototype.reset = function()
 {
@@ -887,7 +887,7 @@ PIXI.WebGLGraphicsData.prototype.reset = function()
 };
 
 /**
- * @method upload
+ * @method PIXI.WebGLGraphics.upload
  */
 PIXI.WebGLGraphicsData.prototype.upload = function()
 {

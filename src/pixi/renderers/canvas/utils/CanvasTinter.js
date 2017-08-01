@@ -5,15 +5,15 @@
 /**
  * Utility methods for Sprite/Texture tinting.
  *
- * @class CanvasTinter
+ * @class PIXI.CanvasTinter
  * @static
  */
 PIXI.CanvasTinter = function() {};
 
 /**
  * Basically this method just needs a sprite and a color and tints the sprite with the given color.
- * 
- * @method getTintedTexture 
+ *
+ * @method PIXI.CanvasTinter#getTintedTexture
  * @static
  * @param sprite {Sprite} the sprite to tint
  * @param color {Number} the color to use to tint the sprite with
@@ -22,7 +22,7 @@ PIXI.CanvasTinter = function() {};
 PIXI.CanvasTinter.getTintedTexture = function(sprite, color)
 {
     var canvas = sprite.tintedTexture || Phaser.CanvasPool.create(this);
-    
+
     PIXI.CanvasTinter.tintMethod(sprite.texture, color, canvas);
 
     return canvas;
@@ -30,8 +30,8 @@ PIXI.CanvasTinter.getTintedTexture = function(sprite, color)
 
 /**
  * Tint a texture using the "multiply" operation.
- * 
- * @method tintWithMultiply
+ *
+ * @method PIXI.CanvasTinter#tintWithMultiply
  * @static
  * @param texture {Texture} the texture to tint
  * @param color {Number} the color to use to tint the sprite with
@@ -72,13 +72,13 @@ PIXI.CanvasTinter.tintWithMultiply = function(texture, color, canvas)
 
 /**
  * Tint a texture pixel per pixel.
- * 
- * @method tintPerPixel
+ *
+ * @method PIXI.CanvasTinter#tintPerPixel
  * @static
  * @param texture {Texture} the texture to tint
  * @param color {Number} the color to use to tint the sprite with
  * @param canvas {HTMLCanvasElement} the current canvas
- */ 
+ */
 PIXI.CanvasTinter.tintWithPerPixel = function(texture, color, canvas)
 {
     var context = canvas.getContext("2d");
@@ -98,7 +98,7 @@ PIXI.CanvasTinter.tintWithPerPixel = function(texture, color, canvas)
         canvas.width = w;
         canvas.height = h;
     }
-  
+
     context.globalCompositeOperation = "copy";
 
     context.drawImage(texture.baseTexture.source, crop.x, crop.y, w, h, 0, 0, w, h);
@@ -128,4 +128,3 @@ PIXI.CanvasTinter.tintWithPerPixel = function(texture, color, canvas)
 
     context.putImageData(pixelData, 0, 0);
 };
-

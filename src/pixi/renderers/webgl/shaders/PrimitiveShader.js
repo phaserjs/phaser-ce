@@ -3,7 +3,7 @@
  */
 
 /**
-* @class PrimitiveShader
+* @class PIXI.PrimitiveShader
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
@@ -15,7 +15,7 @@ PIXI.PrimitiveShader = function(gl)
      * @private
      */
     this._UID = Phaser._UID++;
- 
+
     /**
      * @property gl
      * @type WebGLContext
@@ -74,8 +74,8 @@ PIXI.PrimitiveShader.prototype.constructor = PIXI.PrimitiveShader;
 
 /**
 * Initialises the shader.
-* 
-* @method init
+*
+* @method PIXI.PrimitiveShader#init
 */
 PIXI.PrimitiveShader.prototype.init = function()
 {
@@ -104,8 +104,8 @@ PIXI.PrimitiveShader.prototype.init = function()
 
 /**
 * Destroys the shader.
-* 
-* @method destroy
+*
+* @method PIXI.PrimitiveShader#destroy
 */
 PIXI.PrimitiveShader.prototype.destroy = function()
 {

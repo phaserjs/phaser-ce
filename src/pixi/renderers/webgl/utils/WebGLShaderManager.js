@@ -3,7 +3,7 @@
  */
 
 /**
-* @class WebGLShaderManager
+* @class PIXI.WebGLShaderManager
 * @constructor
 * @private
 */
@@ -45,7 +45,7 @@ PIXI.WebGLShaderManager.prototype.constructor = PIXI.WebGLShaderManager;
 /**
 * Initialises the context and the properties.
 *
-* @method setContext
+* @method PIXI.WebGLShaderManager#setContext
 * @param gl {WebGLContext} the current WebGL drawing context
 */
 PIXI.WebGLShaderManager.prototype.setContext = function(gl)
@@ -76,7 +76,7 @@ PIXI.WebGLShaderManager.prototype.setContext = function(gl)
 /**
 * Takes the attributes given in parameters.
 *
-* @method setAttribs
+* @method PIXI.WebGLShaderManager#setAttribs
 * @param attribs {Array} attribs
 */
 PIXI.WebGLShaderManager.prototype.setAttribs = function(attribs)
@@ -119,7 +119,7 @@ PIXI.WebGLShaderManager.prototype.setAttribs = function(attribs)
 /**
 * Sets the current shader.
 *
-* @method setShader
+* @method PIXI.WebGLShaderManager#setShader
 * @param shader {Any}
 */
 PIXI.WebGLShaderManager.prototype.setShader = function(shader)
@@ -139,7 +139,7 @@ PIXI.WebGLShaderManager.prototype.setShader = function(shader)
 /**
 * Destroys this object.
 *
-* @method destroy
+* @method PIXI.WebGLShaderManager#destroy
 */
 PIXI.WebGLShaderManager.prototype.destroy = function()
 {

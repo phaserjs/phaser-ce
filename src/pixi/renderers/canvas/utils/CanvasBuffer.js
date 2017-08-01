@@ -5,7 +5,7 @@
 /**
  * Creates a Canvas element of the given size.
  *
- * @class CanvasBuffer
+ * @class PIXI.CanvasBuffer
  * @constructor
  * @param width {Number} the width for the newly created canvas
  * @param height {Number} the height for the newly created canvas
@@ -53,7 +53,7 @@ PIXI.CanvasBuffer.prototype.constructor = PIXI.CanvasBuffer;
 /**
  * Clears the canvas that was created by the CanvasBuffer class.
  *
- * @method clear
+ * @method PIXI.CanvasBuffer#clear
  * @private
  */
 PIXI.CanvasBuffer.prototype.clear = function()
@@ -65,7 +65,7 @@ PIXI.CanvasBuffer.prototype.clear = function()
 /**
  * Resizes the canvas to the specified width and height.
  *
- * @method resize
+ * @method PIXI.CanvasBuffer#resize
  * @param width {Number} the new width of the canvas
  * @param height {Number} the new height of the canvas
  */
@@ -78,7 +78,7 @@ PIXI.CanvasBuffer.prototype.resize = function(width, height)
 /**
  * Frees the canvas up for use again.
  *
- * @method destroy
+ * @method PIXI.CanvasBuffer#destroy
  */
 PIXI.CanvasBuffer.prototype.destroy = function()
 {

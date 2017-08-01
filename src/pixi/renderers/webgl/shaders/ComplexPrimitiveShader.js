@@ -3,7 +3,7 @@
  */
 
 /**
-* @class ComplexPrimitiveShader
+* @class PIXI.ComplexPrimitiveShader
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
@@ -56,7 +56,7 @@ PIXI.ComplexPrimitiveShader = function(gl)
         'uniform mat3 translationMatrix;',
         'uniform vec2 projectionVector;',
         'uniform vec2 offsetVector;',
-        
+
         'uniform vec3 tint;',
         'uniform float alpha;',
         'uniform vec3 color;',
@@ -78,8 +78,8 @@ PIXI.ComplexPrimitiveShader.prototype.constructor = PIXI.ComplexPrimitiveShader;
 
 /**
 * Initialises the shader.
-* 
-* @method init
+*
+* @method PIXI.ComplexPrimitiveShader#init
 */
 PIXI.ComplexPrimitiveShader.prototype.init = function()
 {
@@ -109,8 +109,8 @@ PIXI.ComplexPrimitiveShader.prototype.init = function()
 
 /**
 * Destroys the shader.
-* 
-* @method destroy
+*
+* @method PIXI.ComplexPrimitiveShader#destroy
 */
 PIXI.ComplexPrimitiveShader.prototype.destroy = function()
 {
