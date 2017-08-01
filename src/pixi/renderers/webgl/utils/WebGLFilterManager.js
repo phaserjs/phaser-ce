@@ -3,7 +3,7 @@
  */
 
 /**
-* @class WebGLFilterManager
+* @class PIXI.WebGLFilterManager
 * @constructor
 */
 PIXI.WebGLFilterManager = function()
@@ -13,7 +13,7 @@ PIXI.WebGLFilterManager = function()
      * @type Array
      */
     this.filterStack = [];
-    
+
     /**
      * @property offsetX
      * @type Number
@@ -31,8 +31,8 @@ PIXI.WebGLFilterManager.prototype.constructor = PIXI.WebGLFilterManager;
 
 /**
 * Initialises the context and the properties.
-* 
-* @method setContext 
+*
+* @method PIXI.WebGLFilterManager#setContext
 * @param gl {WebGLContext} the current WebGL drawing context
 */
 PIXI.WebGLFilterManager.prototype.setContext = function(gl)
@@ -44,9 +44,9 @@ PIXI.WebGLFilterManager.prototype.setContext = function(gl)
 };
 
 /**
-* @method begin
-* @param renderSession {RenderSession} 
-* @param buffer {ArrayBuffer} 
+* @method PIXI.WebGLFilterManager#begin
+* @param renderSession {RenderSession}
+* @param buffer {ArrayBuffer}
 */
 PIXI.WebGLFilterManager.prototype.begin = function(renderSession, buffer)
 {
@@ -61,8 +61,8 @@ PIXI.WebGLFilterManager.prototype.begin = function(renderSession, buffer)
 
 /**
 * Applies the filter and adds it to the current filter stack.
-* 
-* @method pushFilter
+*
+* @method PIXI.WebGLFilterManager#pushFilter
 * @param filterBlock {Object} the filter that will be pushed to the current filter stack
 */
 PIXI.WebGLFilterManager.prototype.pushFilter = function(filterBlock)
@@ -73,14 +73,14 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function(filterBlock)
     var offset = this.renderSession.offset;
 
     filterBlock._filterArea = filterBlock.target.filterArea || filterBlock.target.getBounds();
-    
+
     // >>> modify by nextht
     filterBlock._previous_stencil_mgr = this.renderSession.stencilManager;
     this.renderSession.stencilManager = new PIXI.WebGLStencilManager();
     this.renderSession.stencilManager.setContext(gl);
     gl.disable(gl.STENCIL_TEST);
-    // <<<  modify by nextht 
-   
+    // <<<  modify by nextht
+
     // filter program
     // OPTIMISATION - the first filter is free if its a simple color change?
     this.filterStack.push(filterBlock);
@@ -144,8 +144,8 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function(filterBlock)
 
 /**
 * Removes the last filter from the filter stack and doesn't return it.
-* 
-* @method popFilter
+*
+* @method PIXI.WebGLFilterManager#popFilter
 */
 PIXI.WebGLFilterManager.prototype.popFilter = function()
 {
@@ -298,7 +298,7 @@ PIXI.WebGLFilterManager.prototype.popFilter = function()
     // bind the buffer
     gl.bindFramebuffer(gl.FRAMEBUFFER, buffer );
 
-    // set the blend mode! 
+    // set the blend mode!
     //gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
 
     // set texture
@@ -316,7 +316,7 @@ PIXI.WebGLFilterManager.prototype.popFilter = function()
     }
     else {
         gl.disable(gl.STENCIL_TEST);
-    }    
+    }
     // <<< modify by nextht
 
     // apply!
@@ -335,8 +335,8 @@ PIXI.WebGLFilterManager.prototype.popFilter = function()
 
 /**
 * Applies the filter to the specified area.
-* 
-* @method applyFilterPass
+*
+* @method PIXI.WebGLFilterManager#applyFilterPass
 * @param filter {Phaser.Filter} the filter that needs to be applied
 * @param filterArea {Texture} TODO - might need an update
 * @param width {Number} the horizontal range of the filter
@@ -396,8 +396,8 @@ PIXI.WebGLFilterManager.prototype.applyFilterPass = function(filter, filterArea,
 
 /**
 * Initialises the shader buffers.
-* 
-* @method initShaderBuffers
+*
+* @method PIXI.WebGLFilterManager#initShaderBuffers
 */
 PIXI.WebGLFilterManager.prototype.initShaderBuffers = function()
 {
@@ -444,15 +444,15 @@ PIXI.WebGLFilterManager.prototype.initShaderBuffers = function()
 
 /**
 * Destroys the filter and removes it from the filter stack.
-* 
-* @method destroy
+*
+* @method PIXI.WebGLFilterManager#destroy
 */
 PIXI.WebGLFilterManager.prototype.destroy = function()
 {
     var gl = this.gl;
 
     this.filterStack = null;
-    
+
     this.offsetX = 0;
     this.offsetY = 0;
 
@@ -460,7 +460,7 @@ PIXI.WebGLFilterManager.prototype.destroy = function()
     for (var i = 0; i < this.texturePool.length; i++) {
         this.texturePool[i].destroy();
     }
-    
+
     this.texturePool = null;
 
     //destroy buffers..

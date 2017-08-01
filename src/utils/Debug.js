@@ -159,16 +159,13 @@ Phaser.Utils.Debug.prototype = {
     *
     * @method Phaser.Utils.Debug#resize
     * @protected
-    * @param {Phaser.ScaleManager} scaleManager - The Phaser ScaleManager.
-    * @param {number} width - The new width of the game.
-    * @param {number} height - The new height of the game.
     */
-    resize: function (scaleManager, width, height) {
+    resize: function () {
 
-        this.bmd.resize(width, height);
+        this.bmd.resize(this.game.width, this.game.height);
 
-        this.canvas.width = width;
-        this.canvas.height = height;
+        this.canvas.width = this.game.width;
+        this.canvas.height = this.game.height;
 
     },
 

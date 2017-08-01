@@ -641,7 +641,7 @@ Phaser.Video.prototype = {
 
     /**
      * Starts this video playing.
-     * 
+     *
      * If the video is already playing, or has been queued to play with `changeSource` then this method just returns.
      *
      * @method Phaser.Video#play
@@ -1055,7 +1055,7 @@ Phaser.Video.prototype = {
     */
     setTouchLock: function () {
 
-        this.game.input.touch.addTouchLockCallback(this.unlock, this);
+        this.game.input.addTouchLockCallback(this.unlock, this);
         this.touchLocked = true;
 
     },

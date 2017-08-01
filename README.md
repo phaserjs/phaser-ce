@@ -295,27 +295,33 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
-* Added missing methods damage, heal, and setHealth to docs (#308).
-* Updated Phaser.ScaleManager#startFullScreen docs.
 * Removed obsolete PIXI TypeScript definitions.
 * Removed [filters/pixi](https://github.com/photonstorm/phaser-ce/tree/v2.8.3/filters/pixi). They require PIXI.AbstractFilter, which was removed in 2.7.0.
-* Corrected documentation for InputHandler#enableDrag (alphaThreshold is not boolean).
 * Updated NPM dependencies (except [typescript](https://www.npmjs.com/package/typescript); photonstorm/phaser#2198) and added [package-lock.json](https://docs.npmjs.com/files/package-lock.json).
-* Documented how Phaser.Physics.P2.Body#addPolygon can mutate the `points` argument (#301).
-* Documented how `cacheAsBitmap` and `generateTexture` can trim transparent pixels (#283).
 * Deprecated Phaser.Device.isConsoleOpen. Now it always returns false.
+* Moved addTouchLockCallback/removeTouchLockCallback from Phaser.Touch to Phaser.Input, it now also covers Phaser.MSPointer (#37)
 
 ### Bug Fixes
 
-* TileSprite tint now works when rendering with Canvas.
+* Fixed wrong dimensions of Debug#canvas and Debug#sprite when a WEBGL game is scaled (#298).
+* TileSprite tint now works when rendering with CANVAS.
 * Fixed sprites not receiving a preUpdate when they have a `fresh` ancestor with a physics body, which would leave them `fresh` and with incorrect `world` and `body.position` values for several frames (#299). Fresh sprites with _two or more ancestors_ may still have incorrect `world` and `body.position` values for 1 frame because they haven't received a render transform yet.
 * Fixed movement of sprites with `fixedToCamera=true` when dragged by pointer (#297).
 * Fixed creature relative anchor points to be absolute (#288).
-* Fixed P2 Physics body not rotating shape (#258)
+* Fixed P2 Physics body not rotating shape (#258).
+* Audio is now also unlocked for Chrome > 55. Fixes audio not playing in cross-origin iframe (#37).
+
+### Documentation
+
+* `cacheAsBitmap` and `generateTexture` can trim transparent pixels (#283).
+* Phaser.Physics.P2.Body#addPolygon can mutate the `points` argument (#301).
+* InputHandler#enableDrag `alphaThreshold` argument is a number, not boolean.
+* Phaser.ScaleManager#startFullScreen
+* Added missing methods damage, heal, and setHealth (#308).
 
 ### Thanks
 
-@Aerolivier, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @Plukers, @samid737, @samme, @tommitytom
+@Aerolivier, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @Plukers, @samid737, @samme, @tommitytom, @AleBles
 
 ## Version 2.8.3 - 21st July 2017
 

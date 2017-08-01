@@ -12,7 +12,7 @@
 *
 * It is used internally by the likes of PIXI.Sprite.
 *
-* @class DisplayObject
+* @class PIXI.DisplayObject
 * @constructor
 */
 PIXI.DisplayObject = function () {
@@ -286,7 +286,7 @@ PIXI.DisplayObject.prototype = {
 
     },
 
-    /*
+    /**
     * Updates the transform matrix this DisplayObject uses for rendering.
     *
     * If the object has no parent, and no parent parameter is provided, it will default to
