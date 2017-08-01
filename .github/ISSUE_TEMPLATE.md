@@ -1,4 +1,4 @@
-This Issue is about (✏️ delete as applicable)
+This Issue is about (pick one, ✏️ delete others)
 
 * A bug in the API:
   * Phaser version(s):
@@ -6,7 +6,7 @@ This Issue is about (✏️ delete as applicable)
   * What should happen:
   * What happens instead:
 * An error in the documentation
-* An error in the TypeScript defs
+* An error in the TypeScript definitions
 * An error on [phaser.io](http://phaser.io)
 * A problem with my own code
 

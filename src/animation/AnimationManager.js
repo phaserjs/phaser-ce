@@ -517,14 +517,12 @@ Object.defineProperty(Phaser.AnimationManager.prototype, 'frame', {
 
     set: function (value) {
 
-        if (typeof value === 'number' && this._frameData && this._frameData.getFrame(value) !== null)
-        {
-            this.currentFrame = this._frameData.getFrame(value);
+        var gotFrame;
 
-            if (this.currentFrame)
-            {
-                this.sprite.setFrame(this.currentFrame);
-            }
+        if (typeof value === 'number' && this._frameData && (gotFrame = this._frameData.getFrame(value)))
+        {
+            this.currentFrame = gotFrame;
+            this.sprite.setFrame(this.currentFrame);
         }
 
     }
@@ -548,16 +546,13 @@ Object.defineProperty(Phaser.AnimationManager.prototype, 'frameName', {
 
     set: function (value) {
 
-        if (typeof value === 'string' && this._frameData && this._frameData.getFrameByName(value) !== null)
+        var gotFrame;
+
+        if (typeof value === 'string' && this._frameData && (gotFrame = this._frameData.getFrameByName(value)))
         {
-            this.currentFrame = this._frameData.getFrameByName(value);
-
-            if (this.currentFrame)
-            {
-                this._frameIndex = this.currentFrame.index;
-
-                this.sprite.setFrame(this.currentFrame);
-            }
+            this.currentFrame = gotFrame;
+            this._frameIndex = this.currentFrame.index;
+            this.sprite.setFrame(this.currentFrame);
         }
         else
         {

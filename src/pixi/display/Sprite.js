@@ -16,9 +16,11 @@ PIXI.Sprite = function (texture) {
 
     /**
      * The anchor sets the origin point of the texture.
-     * The default is 0,0 this means the texture's origin is the top left
-     * Setting than anchor to 0.5,0.5 means the textures origin is centered
-     * Setting the anchor to 1,1 would mean the textures origin points will be the bottom right corner
+     * The default (0, 0) is the top left.
+     * (0.5, 0.5) is the center.
+     * (1, 1) is the bottom right.
+     *
+     * You can modify the default values in PIXI.Sprite.defaultAnchor.
      *
      * @property anchor
      * @type Point
@@ -119,11 +121,9 @@ PIXI.Sprite = function (texture) {
 };
 
 /**
- * @property {object} PIXI.Sprite.defaultAnchor - A Point-like object.
- * @property {number} PIXI.Sprite.defaultAnchor.x
- * @default 0
- * @property {number} PIXI.Sprite.defaultAnchor.y
- * @default 0
+ * @property PIXI.Sprite.defaultAnchor - A Point-like object.
+ * @type {{x: number, y: number}}
+ * @default
  */
 PIXI.Sprite.defaultAnchor = {x: 0, y: 0};
 
@@ -254,7 +254,7 @@ PIXI.Sprite.prototype.getBounds = function(matrix)
             a *= -1;
             var temp = w0;
             w0 = -w1;
-            w1 = -temp; 
+            w1 = -temp;
         }
 
         if (d < 0)
@@ -262,11 +262,11 @@ PIXI.Sprite.prototype.getBounds = function(matrix)
             d *= -1;
             var temp = h0;
             h0 = -h1;
-            h1 = -temp; 
+            h1 = -temp;
         }
 
         // this means there is no rotation going on right? RIGHT?
-        // if thats the case then we can avoid checking the bound values! yay         
+        // if thats the case then we can avoid checking the bound values! yay
         minX = a * w1 + tx;
         maxX = a * w0 + tx;
         minY = d * h1 + ty;
@@ -331,7 +331,7 @@ PIXI.Sprite.prototype.getLocalBounds = function () {
 
     var matrixCache = this.worldTransform;
 
-    this.worldTransform = PIXI.identityMatrix;
+    this.worldTransform = Phaser.identityMatrix;
 
     for (var i = 0; i < this.children.length; i++)
     {
@@ -501,11 +501,11 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
         var c = wt.c;
         var d = wt.d;
         var e = cw;
-        
+
         // Offset before rotating
         tx = wt.c * ch + tx;
         ty = wt.d * ch + ty;
-        
+
         // Rotate matrix by 90 degrees
         // We use precalculated values for sine and cosine of rad(90)
         wt.a = a * 6.123233995736766e-17 + -c;
@@ -549,7 +549,7 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     {
         var cx = this.texture.crop.x;
         var cy = this.texture.crop.y;
-        
+
         cw = Math.floor(cw)
         ch = Math.floor(ch)
 

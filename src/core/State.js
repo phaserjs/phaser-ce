@@ -8,6 +8,20 @@
 * This is a base State class which can be extended if you are creating your own game.
 * It provides quick access to common functions such as the camera, cache, input, match, sound and more.
 *
+* #### Callbacks
+*
+* | start | preload     | loaded     | paused       | stop     |
+* |-------|-------------|------------|--------------|----------|
+* | init  |             |            |              |          |
+* |       | preload     | create     | paused       |          |
+* |       | loadUpdate* | update*    | pauseUpdate* |          |
+* |       |             | preRender* |              |          |
+* |       | loadRender* | render*    | pauseRender* |          |
+* |       |             |            | resumed      |          |
+* |       |             |            |              | shutdown |
+*
+* Update and render calls (*) are repeated.
+*
 * @class Phaser.State
 * @constructor
 */

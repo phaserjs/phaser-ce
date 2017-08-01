@@ -1031,7 +1031,7 @@
         
 <dt>
     <h4 class="name "
-        id="Game"><span class="type-signature"></span>new Game<span class="signature">(<span class="optional">width</span>, <span class="optional">height</span>, <span class="optional">renderer</span>, <span class="optional">parent</span>, <span class="optional">state</span>, <span class="optional">transparent</span>, <span class="optional">antialias</span>, <span class="optional">physicsConfig</span>, <span class="optional">config</span>)</span><span class="type-signature"></span></h4>
+        id="Game"><span class="type-signature"></span>new Game<span class="signature">(<span class="optional">config</span>)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -1040,28 +1040,7 @@
 
     
     <div class="description">
-        <p>The Phaser.Game object is the main controller for the entire Phaser game. It is responsible
-for handling the boot process, parsing the configuration values, creating the renderer,
-and setting-up all of the Phaser systems, such as physics, sound and input.
-Once that is complete it will start the default State, and then begin the main game loop.</p>
-<p>You can access lots of the Phaser systems via the properties on the <code>game</code> object. For
-example <code>game.renderer</code> is the Renderer, <code>game.sound</code> is the Sound Manager, and so on.</p>
-<p>Anywhere you can access the <code>game</code> property, you can access all of these core systems.
-For example a Sprite has a <code>game</code> property, allowing you to talk to the various parts
-of Phaser directly, without having to look after your own references.</p>
-<p>In it's most simplest form, a Phaser game can be created by providing the arguments
-to the constructor:</p>
-<pre class="prettyprint source"><code>var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });</code></pre><p>In the example above it is passing in a State object directly. You can also use the State
-Manager to do this:</p>
-<pre class="prettyprint source"><code>var game = new Phaser.Game(800, 600, Phaser.AUTO);
-game.state.add('Boot', BasicGame.Boot);
-game.state.add('Preloader', BasicGame.Preloader);
-game.state.add('MainMenu', BasicGame.MainMenu);
-game.state.add('Game', BasicGame.Game);
-game.state.start('Boot');</code></pre><p>In the example above, 4 States are added to the State Manager, and Phaser is told to
-start running the <code>Boot</code> state when it has finished initializing. There are example
-project templates you can use in the Phaser GitHub repo, inside the <code>resources</code> folder.</p>
-<p>Instead of specifying arguments you can also pass a single object instead:</p>
+        <p>Instead of specifying arguments you can also pass a single object instead:</p>
 <pre class="prettyprint source"><code>var config = {
     width: 800,
     height: 600,
@@ -1101,335 +1080,12 @@ var game = new Phaser.Game(config);</code></pre>
 		
 
 		
-		<th>Default</th>
-		
 
 		<th class="last">Description</th>
 	</tr>
 	</thead>
 
 	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>width</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    800
-                
-                </td>
-            
-
-            <td class="description last"><p>The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    600
-                
-                </td>
-            
-
-            <td class="description last"><p>The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>renderer</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    Phaser.AUTO
-                
-                </td>
-            
-
-            <td class="description last"><p>Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all).</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>parent</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">HTMLElement</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    ''
-                
-                </td>
-            
-
-            <td class="description last"><p>The DOM element into which this games canvas will be injected. Either a DOM ID (string) or the element itself.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>state</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    null
-                
-                </td>
-            
-
-            <td class="description last"><p>The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>transparent</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
-
-            <td class="description last"><p>Use a transparent canvas background or not.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>antialias</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    true
-                
-                </td>
-            
-
-            <td class="description last"><p>Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>physicsConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    null
-                
-                </td>
-            
-
-            <td class="description last"><p>A physics configuration object to pass to the Physics world on creation.</p></td>
-        </tr>
-
 	
 
         <tr>
@@ -1458,10 +1114,6 @@ var game = new Phaser.Game(config);</code></pre>
                 </td>
             
 
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last"><p>A single configuration object</p>
@@ -1611,6 +1263,80 @@ var game = new Phaser.Game(config);</code></pre>
             
 
             <td class="description last"><p>Enable <a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a>. You can gain a little performance by disabling this in production.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>fullScreenScaleMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The scaling method used by the ScaleManager when in fullscreen.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>fullScreenTarget</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DOMElement</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The DOM element on which the Fullscreen API enter request will be invoked.</p></td>
         </tr>
 
 	
@@ -1854,6 +1580,43 @@ var game = new Phaser.Game(config);</code></pre>
 
         <tr>
             
+                <td class="name"><code>scaleMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The scaling method used by the ScaleManager when not in fullscreen.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
                 <td class="name"><code>seed</code></td>
             
 
@@ -2044,7 +1807,7 @@ var game = new Phaser.Game(config);</code></pre>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-88">line 88</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-95">line 95</a>
     </dt>
     
 
@@ -2124,7 +1887,7 @@ var game = new Phaser.Game(config);</code></pre>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-234">line 234</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-241">line 241</a>
     </dt>
     
 
@@ -2183,7 +1946,7 @@ var game = new Phaser.Game(config);</code></pre>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-167">line 167</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-174">line 174</a>
     </dt>
     
 
@@ -2239,7 +2002,7 @@ var game = new Phaser.Game(config);</code></pre>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-244">line 244</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-251">line 251</a>
     </dt>
     
 
@@ -2295,7 +2058,7 @@ var game = new Phaser.Game(config);</code></pre>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-319">line 319</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-326">line 326</a>
     </dt>
     
 
@@ -2351,7 +2114,7 @@ var game = new Phaser.Game(config);</code></pre>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-324">line 324</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-331">line 331</a>
     </dt>
     
 
@@ -2411,7 +2174,7 @@ You can set this to <code>false</code> to gain some performance if your game alw
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-194">line 194</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-201">line 201</a>
     </dt>
     
 
@@ -2467,7 +2230,7 @@ You can set this to <code>false</code> to gain some performance if your game alw
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-99">line 99</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-106">line 106</a>
     </dt>
     
 
@@ -2523,7 +2286,7 @@ You can set this to <code>false</code> to gain some performance if your game alw
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-329">line 329</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-336">line 336</a>
     </dt>
     
 
@@ -2579,7 +2342,7 @@ You can set this to <code>false</code> to gain some performance if your game alw
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-344">line 344</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-351">line 351</a>
     </dt>
     
 
@@ -2643,7 +2406,7 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-414">line 414</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-421">line 421</a>
     </dt>
     
 
@@ -2699,7 +2462,7 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-334">line 334</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-341">line 341</a>
     </dt>
     
 
@@ -2755,7 +2518,7 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-314">line 314</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-321">line 321</a>
     </dt>
     
 
@@ -2811,7 +2574,7 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-458">line 458</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-465">line 465</a>
     </dt>
     
 
@@ -2868,7 +2631,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-453">line 453</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-460">line 460</a>
     </dt>
     
 
@@ -2928,7 +2691,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-133">line 133</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-140">line 140</a>
     </dt>
     
 
@@ -2984,7 +2747,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-94">line 94</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-101">line 101</a>
     </dt>
     
 
@@ -3040,7 +2803,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-249">line 249</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-256">line 256</a>
     </dt>
     
 
@@ -3096,7 +2859,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-217">line 217</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-224">line 224</a>
     </dt>
     
 
@@ -3152,7 +2915,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-223">line 223</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-230">line 230</a>
     </dt>
     
 
@@ -3208,7 +2971,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-254">line 254</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-261">line 261</a>
     </dt>
     
 
@@ -3266,7 +3029,7 @@ Please note that if you don't render the display list then none of the game obje
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-353">line 353</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-360">line 360</a>
     </dt>
     
 
@@ -3322,7 +3085,7 @@ Please note that if you don't render the display list then none of the game obje
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-239">line 239</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-246">line 246</a>
     </dt>
     
 
@@ -3378,7 +3141,7 @@ Please note that if you don't render the display list then none of the game obje
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-259">line 259</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-266">line 266</a>
     </dt>
     
 
@@ -3438,7 +3201,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-180">line 180</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-187">line 187</a>
     </dt>
     
 
@@ -3494,7 +3257,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-264">line 264</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-271">line 271</a>
     </dt>
     
 
@@ -3550,7 +3313,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-389">line 389</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-396">line 396</a>
     </dt>
     
 
@@ -3606,7 +3369,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-394">line 394</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-401">line 401</a>
     </dt>
     
 
@@ -3662,7 +3425,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-379">line 379</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-386">line 386</a>
     </dt>
     
 
@@ -3718,7 +3481,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-384">line 384</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-391">line 391</a>
     </dt>
     
 
@@ -3787,7 +3550,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-111">line 111</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-118">line 118</a>
     </dt>
     
 
@@ -3843,7 +3606,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-339">line 339</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-346">line 346</a>
     </dt>
     
 
@@ -3900,7 +3663,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1243">line 1243</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1258">line 1258</a>
     </dt>
     
 
@@ -3956,7 +3719,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-367">line 367</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-374">line 374</a>
     </dt>
     
 
@@ -4012,7 +3775,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-299">line 299</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-306">line 306</a>
     </dt>
     
 
@@ -4068,7 +3831,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-104">line 104</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-111">line 111</a>
     </dt>
     
 
@@ -4124,7 +3887,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-304">line 304</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-311">line 311</a>
     </dt>
     
 
@@ -4180,7 +3943,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-186">line 186</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-193">line 193</a>
     </dt>
     
 
@@ -4243,7 +4006,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-229">line 229</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-236">line 236</a>
     </dt>
     
 
@@ -4319,7 +4082,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-200">line 200</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-207">line 207</a>
     </dt>
     
 
@@ -4375,7 +4138,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-206">line 206</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-213">line 213</a>
     </dt>
     
 
@@ -4434,7 +4197,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-142">line 142</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-149">line 149</a>
     </dt>
     
 
@@ -4490,7 +4253,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-309">line 309</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-316">line 316</a>
     </dt>
     
 
@@ -4546,7 +4309,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-269">line 269</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-276">line 276</a>
     </dt>
     
 
@@ -4602,7 +4365,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-274">line 274</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-281">line 281</a>
     </dt>
     
 
@@ -4658,7 +4421,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-279">line 279</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-286">line 286</a>
     </dt>
     
 
@@ -4714,7 +4477,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-211">line 211</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-218">line 218</a>
     </dt>
     
 
@@ -4770,7 +4533,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-374">line 374</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-381">line 381</a>
     </dt>
     
 
@@ -4826,7 +4589,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-360">line 360</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-367">line 367</a>
     </dt>
     
 
@@ -4882,7 +4645,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-284">line 284</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-291">line 291</a>
     </dt>
     
 
@@ -4938,7 +4701,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-160">line 160</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-167">line 167</a>
     </dt>
     
 
@@ -4994,7 +4757,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-289">line 289</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-296">line 296</a>
     </dt>
     
 
@@ -5057,7 +4820,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-421">line 421</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-428">line 428</a>
     </dt>
     
 
@@ -5117,7 +4880,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-122">line 122</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-129">line 129</a>
     </dt>
     
 
@@ -5173,7 +4936,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-294">line 294</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-301">line 301</a>
     </dt>
     
 
@@ -5248,7 +5011,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-603">line 603</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-610">line 610</a>
     </dt>
     
 
@@ -5321,7 +5084,7 @@ and resets the PIXI default renderer.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1090">line 1090</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1099">line 1099</a>
     </dt>
     
 
@@ -5391,7 +5154,7 @@ and resets the PIXI default renderer.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1065">line 1065</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1074">line 1074</a>
     </dt>
     
 
@@ -5462,7 +5225,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1051">line 1051</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1060">line 1060</a>
     </dt>
     
 
@@ -5588,7 +5351,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1221">line 1221</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1236">line 1236</a>
     </dt>
     
 
@@ -5714,7 +5477,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1203">line 1203</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1218">line 1218</a>
     </dt>
     
 
@@ -5840,7 +5603,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1137">line 1137</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1152">line 1152</a>
     </dt>
     
 
@@ -5966,7 +5729,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1169">line 1169</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1184">line 1184</a>
     </dt>
     
 
@@ -6043,7 +5806,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-518">line 518</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-525">line 525</a>
     </dt>
     
 
@@ -6120,7 +5883,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-759">line 759</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-766">line 766</a>
     </dt>
     
 
@@ -6197,7 +5960,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-692">line 692</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-699">line 699</a>
     </dt>
     
 
@@ -6268,7 +6031,7 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1077">line 1077</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1086">line 1086</a>
     </dt>
     
 
@@ -6394,7 +6157,7 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-867">line 867</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-876">line 876</a>
     </dt>
     
 
@@ -6520,7 +6283,7 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-967">line 967</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-976">line 976</a>
     </dt>
     
 
@@ -6654,7 +6417,7 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1014">line 1014</a>
+    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1023">line 1023</a>
     </dt>
     
 
@@ -6702,8 +6465,8 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 					<br />
 					
 		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Tue May 30 2017 21:46:50 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
+		on Fri Jul 21 2017 07:19:19 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>

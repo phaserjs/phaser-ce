@@ -37,39 +37,14 @@ declare module PIXI {
 
     }
 
-    export var defaultRenderOptions: PixiRendererOptions;
-
-    export var INTERACTION_REQUENCY: number;
-    export var AUTO_PREVENT_DEFAULT: boolean;
-
-    export var PI_2: number;
-    export var RAD_TO_DEG: number;
-    export var DEG_TO_RAD: number;
-
-    export var RETINA_PREFIX: string;
-    export var identityMatrix: Matrix;
     export var glContexts: WebGLRenderingContext[];
     export var instances: any[];
 
     export var TextureSilentFail: boolean;
-    export var BitmapText: { fonts: {} };
-
-    export function isPowerOfTwo(width: number, height: number): boolean;
-
-    export function rgb2hex(rgb: number[]): string;
-    export function hex2rgb(hex: string): number[];
-
-    export function autoDetectRenderer(width?: number, height?: number, options?: PixiRendererOptions): PixiRenderer;
-    export function autoDetectRecommendedRenderer(width?: number, height?: number, options?: PixiRendererOptions): PixiRenderer;
 
     export function canUseNewCanvasBlendModes(): boolean;
-    export function getNextPowerOfTwo(value: number): number;
-
-    export function AjaxRequest(): XMLHttpRequest;
 
     export function CompileFragmentShader(gl: WebGLRenderingContext, shaderSrc: string[]): any;
-    export function CompileProgram(gl: WebGLRenderingContext, vertexSrc: string[], fragmentSrc: string[]): any;
-
 
     export interface IEventCallback {
         (e?: IEvent): void;
@@ -176,6 +151,7 @@ declare module PIXI {
 
     }
 
+    // Phaser.Filter is used instead
     export class AbstractFilter {
 
         constructor(fragmentSrc: string | string[], uniforms: any);
@@ -187,66 +163,6 @@ declare module PIXI {
 
         apply(frameBuffer: WebGLFramebuffer): void;
         syncUniforms(): void;
-
-    }
-
-    export class AlphaMaskFilter extends AbstractFilter {
-
-        constructor(texture: Texture);
-
-        map: Texture;
-
-        onTextureLoaded(): void;
-
-    }
-
-    export class AsciiFilter extends AbstractFilter {
-
-        size: number;
-
-    }
-
-    export class AssetLoader implements Mixin {
-
-        assetURLs: string[];
-        crossorigin: boolean;
-        loadersByType: { [key: string]: Loader };
-
-        constructor(assetURLs: string[], crossorigin: boolean);
-
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
-
-        load(): void;
-
-
-    }
-
-    export class AtlasLoader implements Mixin {
-
-        url: string;
-        baseUrl: string;
-        crossorigin: boolean;
-        loaded: boolean;
-
-        constructor(url: string, crossorigin: boolean);
-
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
-
-        load(): void;
 
     }
 
@@ -280,48 +196,6 @@ declare module PIXI {
         destroy(): void;
         dirty(): void;
         unloadFromGPU(): void;
-
-    }
-
-    export class BitmapFontLoader implements Mixin {
-
-        constructor(url: string, crossorigin: boolean);
-
-        baseUrl: string;
-        crossorigin: boolean;
-        texture: Texture;
-        url: string;
-
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
-
-        load(): void;
-
-    }
-
-    export class BlurFilter extends AbstractFilter {
-
-        blur: number;
-        blurX: number;
-        blurY: number;
-
-    }
-
-    export class BlurXFilter extends AbstractFilter {
-
-        blur: number;
-
-    }
-
-    export class BlurYFilter extends AbstractFilter {
-
-        blur: number;
 
     }
 
@@ -395,67 +269,6 @@ declare module PIXI {
 
     }
 
-    export class Circle implements HitArea {
-
-        constructor(x: number, y: number, radius: number);
-
-        x: number;
-        y: number;
-        radius: number;
-
-        clone(): Circle;
-        contains(x: number, y: number): boolean;
-        getBounds(): Rectangle;
-
-    }
-
-    export class ColorMatrixFilter extends AbstractFilter {
-
-        constructor();
-
-        matrix: number[];
-
-    }
-
-    export class ColorStepFilter extends AbstractFilter {
-
-        step: number;
-
-    }
-
-    export class ConvolutionFilter extends AbstractFilter {
-
-        constructor(matrix: number[], width: number, height: number);
-
-        matrix: Matrix;
-        width: number;
-        height: number;
-
-    }
-
-    export class CrossHatchFilter extends AbstractFilter {
-
-        blur: number;
-
-    }
-
-    export class DisplacementFilter extends AbstractFilter {
-
-        constructor(texture: Texture);
-
-        map: Texture;
-        offset: Point;
-        scale: Point;
-
-    }
-
-    export class DotScreenFilter extends AbstractFilter {
-
-        angle: number;
-        scale: Point;
-
-    }
-
     export class DisplayObject {
 
         alpha: number;
@@ -466,7 +279,7 @@ declare module PIXI {
         filters: AbstractFilter[];
         hitArea: HitArea;
         interactive: boolean;
-        mask: Graphics;
+        mask: Phaser.Graphics;
         parent: DisplayObjectContainer;
         pivot: Point;
         position: Point;
@@ -486,7 +299,7 @@ declare module PIXI {
 
         click(e: InteractionData): void;
         displayObjectUpdateTransform(parent?: DisplayObjectContainer): void;
-        generateTexture(resolution?: number, scaleMode?: number, renderer?: PixiRenderer | number): RenderTexture;
+        generateTexture(resolution?: number, scaleMode?: number, renderer?: PixiRenderer | number): Phaser.RenderTexture;
         mousedown(e: InteractionData): void;
         mouseout(e: InteractionData): void;
         mouseover(e: InteractionData): void;
@@ -534,42 +347,6 @@ declare module PIXI {
 
     }
 
-    export class Ellipse implements HitArea {
-
-        constructor(x: number, y: number, width: number, height: number);
-
-        x: number;
-        y: number;
-        width: number;
-        height: number;
-
-        clone(): Ellipse;
-        contains(x: number, y: number): boolean;
-        getBounds(): Rectangle;
-
-    }
-
-    export class Event {
-
-        constructor(target: any, name: string, data: any);
-
-        target: any;
-        type: string;
-        data: any;
-        timeStamp: number;
-
-        stopPropagation(): void;
-        preventDefault(): void;
-        stopImmediatePropagation(): void;
-
-    }
-
-    export class EventTarget {
-
-        static mixin(obj: any): void;
-
-    }
-
     export class FilterTexture {
 
         constructor(gl: WebGLRenderingContext, width: number, height: number, scaleMode: scaleModes);
@@ -584,68 +361,6 @@ declare module PIXI {
         clear(): void;
         resize(width: number, height: number): void;
         destroy(): void;
-
-    }
-
-    export class GraphicsData {
-
-        constructor(lineWidth?: number, lineColor?: number, lineAlpha?: number, fillColor?: number, fillAlpha?: number, fill?: boolean, shape?: any);
-
-        lineWidth: number;
-        lineColor: number;
-        lineAlpha: number;
-        fillColor: number;
-        fillAlpha: number;
-        fill: boolean;
-        shape: any;
-        type: number;
-
-    }
-
-    export class Graphics extends DisplayObjectContainer {
-
-        static POLY: number;
-        static RECT: number;
-        static CIRC: number;
-        static ELIP: number;
-        static RREC: number;
-
-        blendMode: number;
-        boundsPadding: number;
-        fillAlpha: number;
-        isMask: boolean;
-        lineWidth: number;
-        lineColor: number;
-        tint: number;
-        worldAlpha: number;
-
-        arc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number, anticlockwise: boolean): Graphics;
-        arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): Graphics;
-        beginFill(color?: number, alpha?: number): Graphics;
-        bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number): Graphics;
-        clear(): Graphics;
-        destroyCachedSprite(): void;
-        drawCircle(x: number, y: number, diameter: number): Graphics;
-        drawEllipse(x: number, y: number, width: number, height: number): Graphics;
-        drawPolygon(...path: any[]): Graphics;
-        drawRect(x: number, y: number, width: number, height: number): Graphics;
-        drawRoundedRect(x: number, y: number, width: number, height: number, radius: number): Graphics;
-        drawShape(shape: Circle): GraphicsData;
-        drawShape(shape: Rectangle): GraphicsData;
-        drawShape(shape: Ellipse): GraphicsData;
-        drawShape(shape: Polygon): GraphicsData;
-        endFill(): Graphics;
-        generateTexture(resolution?: number, scaleMode?: number, padding?: number): RenderTexture;
-        lineStyle(lineWidth?: number, color?: number, alpha?: number): Graphics;
-        lineTo(x: number, y: number): Graphics;
-        moveTo(x: number, y: number): Graphics;
-        quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number): Graphics;
-
-    }
-
-    export class GrayFilter extends AbstractFilter {
-
-        gray: number;
 
     }
 
@@ -679,56 +394,7 @@ declare module PIXI {
 
     }
 
-    export class InteractionManager {
-
-        currentCursorStyle: string;
-        last: number;
-        mouse: InteractionData;
-        mouseOut: boolean;
-        mouseoverEnabled: boolean;
-        onMouseMove: Function;
-        onMouseDown: Function;
-        onMouseOut: Function;
-        onMouseUp: Function;
-        onTouchStart: Function;
-        onTouchEnd: Function;
-        onTouchMove: Function;
-        pool: InteractionData[];
-        resolution: number;
-        stage: DisplayObjectContainer;
-        touches: { [id: string]: InteractionData };
-
-        constructor(stage: DisplayObjectContainer);
-    }
-
-    export class InvertFilter extends AbstractFilter {
-
-        invert: number;
-
-    }
-
-    export class JsonLoader implements Mixin {
-
-        constructor(url: string, crossorigin?: boolean);
-
-        baseUrl: string;
-        crossorigin: boolean;
-        loaded: boolean;
-        url: string;
-
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
-
-        load(): void;
-
-    }
-
+    // Phaser.Matrix is used instead
     export class Matrix {
 
         a: number;
@@ -761,26 +427,6 @@ declare module PIXI {
         once(eventName: string, fn: Function): Function;
         off(eventName: string, fn: Function): Function;
         removeAllEventListeners(eventName: string): void;
-
-    }
-
-    export class NoiseFilter extends AbstractFilter {
-
-        noise: number;
-
-    }
-
-    export class NormalMapFilter extends AbstractFilter {
-
-        map: Texture;
-        offset: Point;
-        scale: Point;
-
-    }
-
-    export class PixelateFilter extends AbstractFilter {
-
-        size: number;
 
     }
 
@@ -873,6 +519,7 @@ declare module PIXI {
 
     }
 
+    // Overwritten by Phaser.Point
     export class Point {
 
         constructor(x?: number, y?: number);
@@ -885,20 +532,7 @@ declare module PIXI {
 
     }
 
-    export class Polygon implements HitArea {
-
-        constructor(points: Point[]);
-        constructor(points: number[]);
-        constructor(...points: Point[]);
-        constructor(...points: number[]);
-
-        points: any[];
-
-        clone(): Polygon;
-        contains(x: number, y: number): boolean;
-
-    }
-
+    // Overwritten by Phaser.Rectangle
     export class Rectangle implements HitArea {
 
         constructor(x?: number, y?: number, width?: number, height?: number);
@@ -910,14 +544,6 @@ declare module PIXI {
 
         clone(): Rectangle;
         contains(x: number, y: number): boolean;
-
-    }
-
-    export class RGBSplitFilter extends AbstractFilter {
-
-        red: Point;
-        green: Point;
-        blue: Point;
 
     }
 
@@ -933,63 +559,6 @@ declare module PIXI {
 
     }
 
-    export class RoundedRectangle implements HitArea {
-
-        constructor(x?: number, y?: number, width?: number, height?: number, radius?: number);
-
-        x: number;
-        y: number;
-        width: number;
-        height: number;
-        radius: number;
-
-        clone(): RoundedRectangle;
-        contains(x: number, y: number): boolean;
-
-    }
-
-    export class SepiaFilter extends AbstractFilter {
-
-        sepia: number;
-
-    }
-
-    export class SmartBlurFilter extends AbstractFilter {
-
-        blur: number;
-
-    }
-
-    export class SpineLoader implements Mixin {
-
-        url: string;
-        crossorigin: boolean;
-        loaded: boolean;
-
-        constructor(url: string, crossOrigin: boolean);
-
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
-
-        load(): void;
-
-    }
-
-    export class SpineTextureLoader {
-
-        constructor(basePath: string, crossorigin: boolean);
-
-        load(page: AtlasPage, file: string): void;
-        unload(texture: BaseTexture): void;
-
-    }
-
     export class Sprite extends DisplayObjectContainer {
 
         constructor(texture: Texture);
@@ -1001,7 +570,7 @@ declare module PIXI {
         texture: Texture;
         tint: number;
 
-        static defaultAnchor: object;
+        static defaultAnchor: {x: number; y: number};
 
         setTexture(texture: Texture, destroyBase?: boolean): void;
 
@@ -1015,29 +584,6 @@ declare module PIXI {
         textureThing: Texture;
 
         initWebGL(gl: WebGLRenderingContext): void;
-
-    }
-
-    export class SpriteSheetLoader implements Mixin {
-
-        constructor(url: string, crossorigin?: boolean);
-
-        baseUrl: string;
-        crossorigin: boolean;
-        frames: any;
-        texture: Texture;
-        url: string;
-
-        listeners(eventName: string): Function[];
-        emit(eventName: string, data?: any): boolean;
-        dispatchEvent(eventName: string, data?: any): boolean;
-        on(eventName: string, fn: Function): Function;
-        addEventListener(eventName: string, fn: Function): Function;
-        once(eventName: string, fn: Function): Function;
-        off(eventName: string, fn: Function): Function;
-        removeAllEventListeners(eventName: string): void;
-
-        load(): void;
 
     }
 
@@ -1117,45 +663,6 @@ declare module PIXI {
         destroy(): void;
         generateTilingTexture(forcePowerOfTwo?: boolean): void;
         setTexture(texture: Texture): void;
-
-    }
-
-    export class TiltShiftFilter extends AbstractFilter {
-
-        blur: number;
-        gradientBlur: number;
-        start: number;
-        end: number;
-
-    }
-
-    export class TiltShiftXFilter extends AbstractFilter {
-
-        blur: number;
-        gradientBlur: number;
-        start: number;
-        end: number;
-
-        updateDelta(): void;
-
-    }
-
-    export class TiltShiftYFilter extends AbstractFilter {
-
-        blur: number;
-        gradientBlur: number;
-        start: number;
-        end: number;
-
-        updateDelta(): void;
-
-    }
-
-    export class TwistFilter extends AbstractFilter {
-
-        angle: number;
-        offset: Point;
-        radius: number;
 
     }
 
@@ -1244,16 +751,16 @@ declare module PIXI {
 
         static graphicsDataPool: any[];
 
-        static renderGraphics(graphics: Graphics, renderRession: RenderSession): void;
-        static updateGraphics(graphics: Graphics, gl: WebGLRenderingContext): void;
+        static renderGraphics(graphics: Phaser.Graphics, renderRession: RenderSession): void;
+        static updateGraphics(graphics: Phaser.Graphics, gl: WebGLRenderingContext): void;
         static switchMode(webGL: WebGLRenderingContext, type: number): any;
-        static buildRectangle(graphicsData: GraphicsData, webGLData: any): void;
-        static buildRoundedRectangle(graphicsData: GraphicsData, webGLData: any): void;
+        static buildRectangle(graphicsData: Phaser.GraphicsData, webGLData: any): void;
+        static buildRoundedRectangle(graphicsData: Phaser.GraphicsData, webGLData: any): void;
         static quadraticBezierCurve(fromX: number, fromY: number, cpX: number, cpY: number, toX: number, toY: number): number[];
-        static buildCircle(graphicsData: GraphicsData, webGLData: any): void;
-        static buildLine(graphicsData: GraphicsData, webGLData: any): void;
-        static buildComplexPoly(graphicsData: GraphicsData, webGLData: any): void;
-        static buildPoly(graphicsData: GraphicsData, webGLData: any): boolean;
+        static buildCircle(graphicsData: Phaser.GraphicsData, webGLData: any): void;
+        static buildLine(graphicsData: Phaser.GraphicsData, webGLData: any): void;
+        static buildComplexPoly(graphicsData: Phaser.GraphicsData, webGLData: any): void;
+        static buildPoly(graphicsData: Phaser.GraphicsData, webGLData: any): boolean;
 
         reset(): void;
         upload(): void;
@@ -1347,10 +854,10 @@ declare module PIXI {
         reverse: boolean;
         count: number;
 
-        bindGraphics(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
+        bindGraphics(graphics: Phaser.Graphics, webGLData: any[], renderSession: RenderSession): void;
         destroy(): void;
-        popStencil(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
-        pushStencil(graphics: Graphics, webGLData: any[], renderSession: RenderSession): void;
+        popStencil(graphics: Phaser.Graphics, webGLData: any[], renderSession: RenderSession): void;
+        pushStencil(graphics: Phaser.Graphics, webGLData: any[], renderSession: RenderSession): void;
         setContext(gl: WebGLRenderingContext): void;
 
     }
@@ -1385,470 +892,6 @@ declare module PIXI {
         setContext(gl: WebGLRenderingContext): void;
         start(): void;
         stop(): void;
-
-    }
-
-    export class RenderTexture extends Texture {
-
-        constructor(width?: number, height?: number, renderer?: PixiRenderer, scaleMode?: scaleModes, resolution?: number);
-
-        frame: Rectangle;
-        baseTexture: BaseTexture;
-        renderer: PixiRenderer;
-        resolution: number;
-        valid: boolean;
-
-        clear(): void;
-        getBase64(): string;
-        getCanvas(): HTMLCanvasElement;
-        getImage(): HTMLImageElement;
-        resize(width: number, height: number, updateBase: boolean): void;
-        render(displayObject: DisplayObject, matrix?: Matrix, clear?: boolean): void;
-
-    }
-
-    // SPINE
-
-    export class BoneData {
-
-        constructor(name: string, parent?: any);
-
-        name: string;
-        parent: any;
-        length: number;
-        x: number;
-        y: number;
-        rotation: number;
-        scaleX: number;
-        scaleY: number;
-
-    }
-
-    export class SlotData {
-
-        constructor(name: string, boneData: BoneData);
-
-        name: string;
-        boneData: BoneData;
-        r: number;
-        g: number;
-        b: number;
-        a: number;
-        attachmentName: string;
-
-    }
-
-    export class Bone {
-
-        constructor(boneData: BoneData, parent?: any);
-
-        data: BoneData;
-        parent: any;
-        yDown: boolean;
-        x: number;
-        y: number;
-        rotation: number;
-        scaleX: number;
-        scaleY: number;
-        worldRotation: number;
-        worldScaleX: number;
-        worldScaleY: number;
-
-        updateWorldTransform(flipX: boolean, flip: boolean): void;
-        setToSetupPose(): void;
-
-    }
-
-    export class Slot {
-
-        constructor(slotData: SlotData, skeleton: Skeleton, bone: Bone);
-
-        data: SlotData;
-        skeleton: Skeleton;
-        bone: Bone;
-        r: number;
-        g: number;
-        b: number;
-        a: number;
-        attachment: RegionAttachment;
-        setAttachment(attachment: RegionAttachment): void;
-        setAttachmentTime(time: number): void;
-        getAttachmentTime(): number;
-        setToSetupPose(): void;
-
-    }
-
-    export class Skin {
-
-        constructor(name: string);
-
-        name: string;
-        attachments: any;
-
-        addAttachment(slotIndex: number, name: string, attachment: RegionAttachment): void;
-        getAttachment(slotIndex: number, name: string): void;
-
-    }
-
-    export class Animation {
-
-        constructor(name: string, timelines: ISpineTimeline[], duration: number);
-
-        name: string;
-        timelines: ISpineTimeline[];
-        duration: number;
-        apply(skeleton: Skeleton, time: number, loop: boolean): void;
-        min(skeleton: Skeleton, time: number, loop: boolean, alpha: number): void;
-
-    }
-
-    export class Curves {
-
-        constructor(frameCount: number);
-
-        curves: number[];
-
-        setLinear(frameIndex: number): void;
-        setStepped(frameIndex: number): void;
-        setCurve(frameIndex: number, cx1: number, cy1: number, cx2: number, cy2: number): void;
-        getCurvePercent(frameIndex: number, percent: number): number;
-
-    }
-
-    export interface ISpineTimeline {
-
-        curves: Curves;
-        frames: number[];
-
-        getFrameCount(): number;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
-
-    }
-
-    export class RotateTimeline implements ISpineTimeline {
-
-        constructor(frameCount: number);
-
-        curves: Curves;
-        frames: number[];
-        boneIndex: number;
-
-        getFrameCount(): number;
-        setFrame(frameIndex: number, time: number, angle: number): void;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
-
-    }
-
-    export class TranslateTimeline implements ISpineTimeline {
-
-        constructor(frameCount: number);
-
-        curves: Curves;
-        frames: number[];
-        boneIndex: number;
-
-        getFrameCount(): number;
-        setFrame(frameIndex: number, time: number, x: number, y: number): void;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
-
-    }
-
-    export class ScaleTimeline implements ISpineTimeline {
-
-        constructor(frameCount: number);
-
-        curves: Curves;
-        frames: number[];
-        boneIndex: number;
-
-        getFrameCount(): number;
-        setFrame(frameIndex: number, time: number, x: number, y: number): void;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
-
-    }
-
-    export class ColorTimeline implements ISpineTimeline {
-
-        constructor(frameCount: number);
-
-        curves: Curves;
-        frames: number[];
-        boneIndex: number;
-
-        getFrameCount(): number;
-        setFrame(frameIndex: number, time: number, r: number, g: number, b: number, a: number): void;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
-
-    }
-
-    export class AttachmentTimeline implements ISpineTimeline {
-
-        constructor(frameCount: number);
-
-        curves: Curves;
-        frames: number[];
-        attachmentNames: string[];
-        slotIndex: number;
-
-        getFrameCount(): number;
-        setFrame(frameIndex: number, time: number, attachmentName: string): void;
-        apply(skeleton: Skeleton, time: number, alpha: number): void;
-
-    }
-
-    export class SkeletonData {
-
-        bones: Bone[];
-        slots: Slot[];
-        skins: Skin[];
-        animations: Animation[];
-        defaultSkin: Skin;
-
-        findBone(boneName: string): Bone;
-        findBoneIndex(boneName: string): number;
-        findSlot(slotName: string): Slot;
-        findSlotIndex(slotName: string): number;
-        findSkin(skinName: string): Skin;
-        findAnimation(animationName: string): Animation;
-
-    }
-
-    export class Skeleton {
-
-        constructor(skeletonData: SkeletonData);
-
-        data: SkeletonData;
-        bones: Bone[];
-        slots: Slot[];
-        drawOrder: any[];
-        x: number;
-        y: number;
-        skin: Skin;
-        r: number;
-        g: number;
-        b: number;
-        a: number;
-        time: number;
-        flipX: boolean;
-        flipY: boolean;
-
-        updateWorldTransform(): void;
-        setToSetupPose(): void;
-        setBonesToSetupPose(): void;
-        setSlotsToSetupPose(): void;
-        getRootBone(): Bone;
-        findBone(boneName: string): Bone;
-        fineBoneIndex(boneName: string): number;
-        findSlot(slotName: string): Slot;
-        findSlotIndex(slotName: string): number;
-        setSkinByName(skinName: string): void;
-        setSkin(newSkin: Skin): void;
-        getAttachmentBySlotName(slotName: string, attachmentName: string): RegionAttachment;
-        getAttachmentBySlotIndex(slotIndex: number, attachmentName: string): RegionAttachment;
-        setAttachment(slotName: string, attachmentName: string): void;
-        update(data: number): void;
-
-    }
-
-    export class RegionAttachment {
-
-        offset: number[];
-        uvs: number[];
-        x: number;
-        y: number;
-        rotation: number;
-        scaleX: number;
-        scaleY: number;
-        width: number;
-        height: number;
-        rendererObject: any;
-        regionOffsetX: number;
-        regionOffsetY: number;
-        regionWidth: number;
-        regionHeight: number;
-        regionOriginalWidth: number;
-        regionOriginalHeight: number;
-
-        setUVs(u: number, v: number, u2: number, v2: number, rotate: number): void;
-        updateOffset(): void;
-        computeVertices(x: number, y: number, bone: Bone, vertices: number[]): void;
-
-    }
-
-    export class AnimationStateData {
-
-        constructor(skeletonData: SkeletonData);
-
-        skeletonData: SkeletonData;
-        animationToMixTime: any;
-        defaultMix: number;
-
-        setMixByName(fromName: string, toName: string, duration: number): void;
-        setMix(from: string, to: string): number;
-
-    }
-
-    export class AnimationState {
-
-        constructor(stateData: any);
-
-        animationSpeed: number;
-        current: any;
-        previous: any;
-        currentTime: number;
-        previousTime: number;
-        currentLoop: boolean;
-        previousLoop: boolean;
-        mixTime: number;
-        mixDuration: number;
-        queue: Animation[];
-
-        update(delta: number): void;
-        apply(skeleton: any): void;
-        clearAnimation(): void;
-        setAnimation(animation: any, loop: boolean): void;
-        setAnimationByName(animationName: string, loop: boolean): void;
-        addAnimationByName(animationName: string, loop: boolean, delay: number): void;
-        addAnimation(animation: any, loop: boolean, delay: number): void;
-        isComplete(): number;
-
-    }
-
-    export class SkeletonJson {
-
-        constructor(attachmentLoader: AtlasAttachmentLoader);
-
-        attachmentLoader: AtlasAttachmentLoader;
-        scale: number;
-
-        readSkeletonData(root: any): SkeletonData;
-        readAttachment(skin: Skin, name: string, map: any): RegionAttachment;
-        readAnimation(name: string, map: any, skeletonData: SkeletonData): void;
-        readCurve(timeline: ISpineTimeline, frameIndex: number, valueMap: any): void;
-        toColor(hexString: string, colorIndex: number): number;
-
-    }
-
-    export class Atlas {
-
-        static FORMAT: {
-
-            alpha: number;
-            intensity: number;
-            luminanceAlpha: number;
-            rgb565: number;
-            rgba4444: number;
-            rgb888: number;
-            rgba8888: number;
-
-        };
-
-        static TextureFilter: {
-
-            nearest: number;
-            linear: number;
-            mipMap: number;
-            mipMapNearestNearest: number;
-            mipMapLinearNearest: number;
-            mipMapNearestLinear: number;
-            mipMapLinearLinear: number;
-
-        };
-
-        static textureWrap: {
-
-            mirroredRepeat: number;
-            clampToEdge: number;
-            repeat: number;
-
-        };
-
-        constructor(atlasText: string, textureLoader: AtlasLoader);
-
-        textureLoader: AtlasLoader;
-        pages: AtlasPage[];
-        regions: AtlasRegion[];
-
-        findRegion(name: string): AtlasRegion;
-        dispose(): void;
-        updateUVs(page: AtlasPage): void;
-
-    }
-
-    export class AtlasPage {
-
-        name: string;
-        format: number;
-        minFilter: number;
-        magFilter: number;
-        uWrap: number;
-        vWrap: number;
-        rendererObject: any;
-        width: number;
-        height: number;
-
-    }
-
-    export class AtlasRegion {
-
-        page: AtlasPage;
-        name: string;
-        x: number;
-        y: number;
-        width: number;
-        height: number;
-        u: number;
-        v: number;
-        u2: number;
-        v2: number;
-        offsetX: number;
-        offsetY: number;
-        originalWidth: number;
-        originalHeight: number;
-        index: number;
-        rotate: boolean;
-        splits: any[];
-        pads: any[];
-
-    }
-
-    export class AtlasReader {
-
-        constructor(text: string);
-
-        lines: string[];
-        index: number;
-
-        trim(value: string): string;
-        readLine(): string;
-        readValue(): string;
-        readTuple(tuple: number): number;
-
-    }
-
-    export class AtlasAttachmentLoader {
-
-        constructor(atlas: Atlas);
-
-        atlas: Atlas;
-
-        newAttachment(skin: Skin, type: number, name: string): RegionAttachment;
-
-    }
-
-    export class Spine extends DisplayObjectContainer {
-
-        constructor(url: string);
-
-        autoUpdate: boolean;
-        spineData: any;
-        skeleton: Skeleton;
-        stateData: AnimationStateData;
-        state: AnimationState;
-        slotContainers: DisplayObjectContainer[];
-
-        createSprite(slot: Slot, descriptor: { name: string }): Sprite[];
-        update(dt: number): void;
 
     }
 

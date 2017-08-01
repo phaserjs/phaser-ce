@@ -1395,20 +1395,21 @@ declare module Phaser {
 
     interface IGameConfig {
 
-        enableDebug?: boolean;
-        width?: number;
-        height?: number;
-        renderer?: number;
-        parent?: any;
-        transparent?: boolean;
         antialias?: boolean;
-        resolution?: number;
-        preserveDrawingBuffer?: boolean;
-        physicsConfig?: any;
-        seed?: string;
-        state?: Phaser.State;
+        enableDebug?: boolean;
         forceSetTimeOut?: boolean;
+        height?: number | string;
         multiTexture?: boolean;
+        parent?: any;
+        physicsConfig?: any;
+        preserveDrawingBuffer?: boolean;
+        renderer?: number;
+        resolution?: number;
+        scaleMode?: number;
+        seed?: string;
+        state?: any; // Phaser.State | function | object
+        transparent?: boolean;
+        width?: number | string;
 
     }
 
@@ -1660,38 +1661,44 @@ declare module Phaser {
 
     }
 
-    class Graphics extends PIXI.Graphics {
+    class Graphics extends PIXI.DisplayObjectContainer {
 
         constructor(game: Phaser.Game, x?: number, y?: number);
 
-        angle: number;
         alive: boolean;
+        angle: number;
         animations: Phaser.AnimationManager;
         autoCull: boolean;
+        blendMode: number;
         body: Phaser.Physics.Arcade.Body | Phaser.Physics.P2.Body | Phaser.Physics.Ninja.Body | any;
         bottom: number;
+        boundsPadding: number;
         cameraOffset: Phaser.Point;
         centerX: number;
-		centerY: number;
+        centerY: number;
         checkWorldBounds: boolean;
         components: any;
         data: any;
         debug: boolean;
         destroyPhase: boolean;
-        exists: boolean;
         events: Phaser.Events;
+        exists: boolean;
+        fillAlpha: number;
         fixedToCamera: boolean;
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
         fresh: boolean;
         game: Phaser.Game;
         height: number;
-        input: Phaser.InputHandler;
-        inputEnabled: boolean;
         inCamera: boolean;
         inWorld: boolean;
+        input: Phaser.InputHandler;
+        inputEnabled: boolean;
+        isMask: boolean;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
         left: number;
-        name: string;
         lifespan: number;
+        lineColor: number;
+        lineWidth: number;
+        name: string;
         offsetX: number;
         offsetY: number;
         outOfBoundsKill: boolean;
@@ -1702,23 +1709,61 @@ declare module Phaser {
         previousRotation: number;
         renderOrderID: number;
         right: number;
+        tint: number;
         top: number;
         type: number;
-        world: Phaser.Point;
         width: number;
+        world: Phaser.Point;
+        worldAlpha: number;
         z: number;
 
         alignIn(container: Phaser.Rectangle | Phaser.Sprite | Phaser.Image | Phaser.Text | Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.TileSprite, position?: number, offsetX?: number, offsetY?: number): any;
         alignTo(container: Phaser.Rectangle | Phaser.Sprite | Phaser.Image | Phaser.Text | Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.TileSprite, position?: number, offsetX?: number, offsetY?: number): any;
+        arc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number, anticlockwise: boolean): Phaser.Graphics;
+        arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): Phaser.Graphics;
+        beginFill(color?: number, alpha?: number): Phaser.Graphics;
+        bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number): Phaser.Graphics;
+        clear(): Phaser.Graphics;
         destroy(destroyChildren?: boolean): void;
+        destroyCachedSprite(): void;
+        drawCircle(x: number, y: number, diameter: number): Phaser.Graphics;
+        drawEllipse(x: number, y: number, width: number, height: number): Phaser.Graphics;
+        drawPolygon(...path: any[]): Phaser.Graphics;
+        drawRect(x: number, y: number, width: number, height: number): Phaser.Graphics;
+        drawRoundedRect(x: number, y: number, width: number, height: number, radius: number): Phaser.Graphics;
+        drawShape(shape: Circle): Phaser.GraphicsData;
+        drawShape(shape: Ellipse): Phaser.GraphicsData;
+        drawShape(shape: Polygon): Phaser.GraphicsData;
+        drawShape(shape: Rectangle): Phaser.GraphicsData;
         drawTriangle(points: Phaser.Point[], cull?: boolean): void;
         drawTriangles(vertices: Phaser.Point[] | number[], indices?: number[], cull?: boolean): void;
+        endFill(): Phaser.Graphics;
+        generateTexture(resolution?: number, scaleMode?: number, padding?: number): Phaser.RenderTexture;
         kill(): Phaser.Graphics;
+        lineStyle(lineWidth?: number, color?: number, alpha?: number): Phaser.Graphics;
+        lineTo(x: number, y: number): Phaser.Graphics;
+        moveTo(x: number, y: number): Phaser.Graphics;
         postUpdate(): void;
         preUpdate(): void;
+        quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number): Phaser.Graphics;
         reset(x: number, y: number, health?: number): Phaser.Graphics;
         revive(health?: number): Phaser.Graphics;
         update(): void;
+
+    }
+
+    class GraphicsData {
+
+        constructor(lineWidth?: number, lineColor?: number, lineAlpha?: number, fillColor?: number, fillAlpha?: number, fill?: boolean, shape?: any);
+
+        lineWidth: number;
+        lineColor: number;
+        lineAlpha: number;
+        fillColor: number;
+        fillAlpha: number;
+        fill: boolean;
+        shape: any;
+        type: number;
 
     }
 
@@ -1823,7 +1868,7 @@ declare module Phaser {
         next(): any;
         postUpdate(): void;
         preUpdate(): void;
-        previous(): void;
+        previous(): any;
         remove(child: any, destroy?: boolean, silent?: boolean): boolean;
         removeAll(destroy?: boolean, silent?: boolean, destroyTexture?: boolean): void;
         removeBetween(startIndex: number, endIndex?: number, destroy?: boolean, silent?: boolean): void;
@@ -1840,6 +1885,7 @@ declare module Phaser {
         setAll(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean, operation?: number, force?: boolean): void;
         setAllChildren(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean, operation?: number, force?: boolean): void;
         setProperty(child: any, key: string[], value: any, operation?: number, force?: boolean): boolean;
+        shuffle(): void;
         sort(key?: string, order?: number): void;
         subAll(property: string, amount: number, checkAlive: boolean, checkVisible: boolean): void;
         swap(child1: any, child2: any): boolean;
@@ -2547,7 +2593,7 @@ declare module Phaser {
 
     }
 
-    class Matrix extends PIXI.Matrix {
+    class Matrix {
 
         a: number;
         b: number;
@@ -2791,7 +2837,7 @@ declare module Phaser {
                 angularDrag: number;
                 bottom: number;
                 bounce: Phaser.Point;
-                count: object;
+                count: {emitted: number; failed: number; totalEmitted: number; totalFailed: number};
                 emitX: number;
                 emitY: number;
                 exists: boolean;
@@ -3102,7 +3148,7 @@ declare module Phaser {
                 onWall(): boolean;
                 preUpdate(): void;
                 postUpdate(): void;
-                render(context: any, body: Phaser.Physics.Arcade.Body, color?: string, filled?: boolean): void;
+                render(context: any, body: Phaser.Physics.Arcade.Body, color?: string, filled?: boolean, lineWidth?: number): void;
                 renderBodyInfo(debug: Phaser.Utils.Debug, body: Phaser.Physics.Arcade.Body): void;
                 reset(x: number, y: number): void;
                 setCircle(radius: number, offsetX?: number, offsetY?: number): void;
@@ -3114,7 +3160,6 @@ declare module Phaser {
             class FaceChoices {
 
                 none: boolean;
-                any: boolean;
                 up: boolean;
                 down: boolean;
                 left: boolean;
@@ -3950,7 +3995,8 @@ declare module Phaser {
         static normalize(a: Phaser.Point, out?: Phaser.Point): Phaser.Point;
         static rotate(a: Phaser.Point, x: number, y: number, angle: number, asDegrees?: boolean, distance?: number): Phaser.Point;
         static centroid(points: Phaser.Point[], out?: Phaser.Point): Phaser.Point;
-        static isPoint(obj: object): boolean;
+        static isPoint(obj: any): boolean;
+        static set(obj: any, x: number, y: number): any;
 
         add(x: number, y: number): Phaser.Point;
         angle(a: Phaser.Point, asDegrees?: boolean): number;
@@ -3981,6 +4027,7 @@ declare module Phaser {
         set(x: number, y?: number): Phaser.Point;
         setMagnitude(magnitude: number): Phaser.Point;
         setTo(x: number, y?: number): Phaser.Point;
+        setToPolar(azimuth: number, radius?: number, asDegrees?: boolean): Phaser.Point;
         subtract(x: number, y: number): Phaser.Point;
         toString(): string;
 
@@ -4208,7 +4255,7 @@ declare module Phaser {
 
     }
 
-    class RenderTexture extends PIXI.RenderTexture {
+    class RenderTexture extends PIXI.Texture {
 
         constructor(game: Phaser.Game, width?: number, height?: number, key?: string, scaleMode?: number, resolution?: number);
 
@@ -4349,7 +4396,7 @@ declare module Phaser {
         z: number;
 
         bringToTop(): Phaser.Rope;
-        checkTransform(wt: PIXI.Matrix): void;
+        checkTransform(wt: Phaser.Matrix): void;
         crop(rect: Phaser.Rectangle, copy?: boolean): void;
         destroy(destroyChildren?: boolean): void;
         kill(): Phaser.Rope;
@@ -4371,7 +4418,7 @@ declare module Phaser {
 
     }
 
-    class RoundedRectangle extends PIXI.RoundedRectangle {
+    class RoundedRectangle {
 
         x: number;
         y: number;
@@ -4634,7 +4681,7 @@ declare module Phaser {
         alignTo(container: Phaser.Rectangle | Phaser.Sprite | Phaser.Image | Phaser.Text | Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.TileSprite, position?: number, offsetX?: number, offsetY?: number): any;
         bringToTop(): Phaser.Sprite;
         crop(rect: Phaser.Rectangle, copy: boolean): void;
-        checkTransform(wt: PIXI.Matrix): void;
+        checkTransform(wt: Phaser.Matrix): void;
         damage(amount: number): Phaser.Sprite;
         destroy(destroyChildren?: boolean): void;
         drawPolygon(): void;
@@ -5609,10 +5656,11 @@ declare module Phaser {
 
             AStar(astar: Phaser.Plugin.AStar, x: number, y: number, showVisited: boolean): void;
             boot(): void;
-            body(sprite: Phaser.Sprite, color?: string, filled?: boolean): void;
-            bodyInfo(sprite: Phaser.Sprite, x: number, y: Number, color?: string): void;
-            box2dBody(body: Phaser.Sprite, color?: string): void;
+            body(sprite: Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.Sprite | Phaser.Text | Phaser.TileSprite, color?: string, filled?: boolean): void;
+            bodyInfo(sprite: Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.Sprite | Phaser.Text | Phaser.TileSprite, x: number, y: Number, color?: string): void;
+            box2dBody(body: any /* Phaser.Physics.Box2D.Body */, color?: string): void;
             box2dWorld(): void;
+            camera(camera: Phaser.Camera, color?: string, filled?: boolean): void;
             cameraInfo(camera: Phaser.Camera, x: number, y: number, color?: string): void;
             destroy(): void;
             geom(object: any, color?: string, fiiled?: boolean, forceType?: number): void;
@@ -5625,6 +5673,7 @@ declare module Phaser {
             pointer(pointer: Phaser.Pointer, hideIfUp?: boolean, downColor?: string, upColor?: string, color?: string): void;
             quadTree(quadtree: Phaser.QuadTree, color?: string): void;
             rectangle(object: Phaser.Rectangle, color?: string, filled?: boolean): void;
+            renderer(x?: number, y?: number, color?: string): void;
             reset(): void;
             ropeSegments(rope: Phaser.Rope, color?: number, filled?: boolean): void;
             soundInfo(sound: Phaser.Sound, x: number, y: number, color?: string): void;

@@ -358,10 +358,12 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
         if (x < 0)
         {
             body.blocked.left = true;
+            body.blocked.none = false;
         }
         else if (x > 0)
         {
             body.blocked.right = true;
+            body.blocked.none = false;
         }
 
         body.position.x -= x;
@@ -390,10 +392,12 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
         if (y < 0)
         {
             body.blocked.up = true;
+            body.blocked.none = false;
         }
         else if (y > 0)
         {
             body.blocked.down = true;
+            body.blocked.none = false;
         }
 
         body.position.y -= y;

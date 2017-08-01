@@ -1742,6 +1742,62 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
             
 <dt>
     <h4 class="name "
+        id="isDisabled"><span class="type-signature">&lt;readonly> </span>isDisabled<span class="type-signature"> :boolean</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    <div class="description">
+        <p>If <code>enableDebug: false</code> is passed to <a href="Phaser.Game.html">Phaser.Game</a> or if Phaser is built without the Debug class, this will be true.</p>
+    </div>
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-109">line 109</a>
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name "
         id="lineHeight"><span class="type-signature"></span>lineHeight<span class="type-signature"> :number</span></h4>
     
     
@@ -2377,7 +2433,7 @@ To display a P2 Physics body you should enable debug mode on the body when creat
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-758">line 758</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-816">line 816</a>
     </dt>
     
 
@@ -2621,7 +2677,7 @@ To display a P2 Physics body you should enable debug mode on the body when creat
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-792">line 792</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-850">line 850</a>
     </dt>
     
 
@@ -2698,7 +2754,7 @@ To display a P2 Physics body you should enable debug mode on the body when creat
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-108">line 108</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-127">line 127</a>
     </dt>
     
 
@@ -2873,7 +2929,7 @@ This uses the standard debug drawing feature of Box2D, so colors will be decided
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-839">line 839</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-897">line 897</a>
     </dt>
     
 
@@ -2945,7 +3001,218 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-821">line 821</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-879">line 879</a>
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+       
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name "
+        id="camera"><span class="type-signature"></span>camera<span class="signature">(camera, <span class="optional">color</span>, <span class="optional">filled</span>)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    <div class="description">
+        <p>Marks the follow target and deadzone.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+		<th>Argument</th>
+		
+
+		
+		<th>Default</th>
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>camera</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Camera.html">Phaser.Camera</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The Phaser.Camera to show the debug information for.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Color of the debug shapes to be rendered (format is css color string).</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>filled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Render the shapes filled (default, true) or stroked (false).</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+
+    
+    
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-317">line 317</a>
     </dt>
     
 
@@ -3189,7 +3456,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-295">line 295</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-346">line 346</a>
     </dt>
     
 
@@ -3259,7 +3526,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-888">line 888</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-991">line 991</a>
     </dt>
     
 
@@ -3392,221 +3659,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-855">line 855</a>
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-       
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="geom"><span class="type-signature"></span>geom<span class="signature">(object, <span class="optional">color</span>, <span class="optional">filled</span>)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>Renders a Rectangle.</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-		<th>Argument</th>
-		
-
-		
-		<th>Default</th>
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>object</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span>
-|
-
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The geometry object to render.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>color</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Color of the debug info to be rendered (format is css color string).</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>filled</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    true
-                
-                </td>
-            
-
-            <td class="description last"><p>Render the objected as a filled (default, true) or a stroked (false)</p></td>
-        </tr>
-
-	
-	</tbody>
-</table>
-
-    
-
-    
-    
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-656">line 656</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-913">line 913</a>
     </dt>
     
 
@@ -3865,7 +3918,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-590">line 590</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-648">line 648</a>
     </dt>
     
 
@@ -4074,7 +4127,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-443">line 443</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-501">line 501</a>
     </dt>
     
 
@@ -4318,7 +4371,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-422">line 422</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-480">line 480</a>
     </dt>
     
 
@@ -4395,7 +4448,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-236">line 236</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-258">line 258</a>
     </dt>
     
 
@@ -4639,7 +4692,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-551">line 551</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-609">line 609</a>
     </dt>
     
 
@@ -4885,7 +4938,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-570">line 570</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-628">line 628</a>
     </dt>
     
 
@@ -5176,7 +5229,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-341">line 341</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-399">line 399</a>
     </dt>
     
 
@@ -5253,7 +5306,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-153">line 153</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-175">line 175</a>
     </dt>
     
 
@@ -5395,7 +5448,438 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-718">line 718</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-776">line 776</a>
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+       
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name "
+        id="rectangle"><span class="type-signature"></span>rectangle<span class="signature">(object, <span class="optional">color</span>, <span class="optional">filled</span>)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    <div class="description">
+        <p>Renders a Rectangle.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+		<th>Argument</th>
+		
+
+		
+		<th>Default</th>
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>object</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span>
+|
+
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The rectangle to render.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Color of the debug info to be rendered (format is css color string).</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>filled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Render the rectangle as filled (default, true) or a stroked (false)</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+
+    
+    
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-713">line 713</a>
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+       
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name "
+        id="renderer"><span class="type-signature"></span>renderer<span class="signature">(<span class="optional">x</span>, <span class="optional">y</span>, <span class="optional">color</span>)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    <div class="description">
+        <p>Prints a description of the <a href="Phaser.Game.html#renderer">renderer</a> and render session.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+		<th>Argument</th>
+		
+
+		
+		<th>Default</th>
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>The X value the debug info will start from.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>The Y value the debug info will start from.</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'rgb(255,255,255)'
+                
+                </td>
+            
+
+            <td class="description last"><p>The color the debug text will drawn in.</p></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+
+    
+    
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-946">line 946</a>
     </dt>
     
 
@@ -5465,7 +5949,7 @@ the Box2D engine.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-172">line 172</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-194">line 194</a>
     </dt>
     
 
@@ -5638,7 +6122,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-134">line 134</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-156">line 156</a>
     </dt>
     
 
@@ -5849,7 +6333,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-482">line 482</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-540">line 540</a>
     </dt>
     
 
@@ -6093,7 +6577,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-264">line 264</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-286">line 286</a>
     </dt>
     
 
@@ -6307,7 +6791,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-463">line 463</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-521">line 521</a>
     </dt>
     
 
@@ -6554,7 +7038,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-525">line 525</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-583">line 583</a>
     </dt>
     
 
@@ -6798,7 +7282,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-502">line 502</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-560">line 560</a>
     </dt>
     
 
@@ -7045,7 +7529,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-401">line 401</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-459">line 459</a>
     </dt>
     
 
@@ -7308,7 +7792,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-191">line 191</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-213">line 213</a>
     </dt>
     
 
@@ -7385,7 +7869,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-224">line 224</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-246">line 246</a>
     </dt>
     
 
@@ -7642,7 +8126,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-687">line 687</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-745">line 745</a>
     </dt>
     
 
@@ -7886,7 +8370,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
     
     <dt class="tag-source">Source -
-    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-322">line 322</a>
+    <a href="src_utils_Debug.js.html">utils/Debug.js</a>, <a href="src_utils_Debug.js.html#sunlight-1-line-380">line 380</a>
     </dt>
     
 
@@ -7934,8 +8418,8 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 					<br />
 					
 		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Tue May 30 2017 21:46:55 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
+		on Fri Jul 21 2017 07:19:25 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>

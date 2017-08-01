@@ -142,10 +142,10 @@ PIXI.DisplayObject = function () {
     * that happens this property will contain values based on the previous frame. Be mindful of this if
     * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
     *
-    * @property {PIXI.Matrix} worldTransform
+    * @property {Phaser.Matrix} worldTransform
     * @readOnly
     */
-    this.worldTransform = new PIXI.Matrix();
+    this.worldTransform = new Phaser.Matrix();
 
     /**
     * The coordinates, in pixels, of this DisplayObject within the world.
@@ -245,9 +245,9 @@ PIXI.DisplayObject = function () {
 
 };
 
-PIXI.DisplayObject.prototype.constructor = PIXI.DisplayObject;
-
 PIXI.DisplayObject.prototype = {
+
+    constructor: PIXI.DisplayObject,
 
     /**
     * Destroy this DisplayObject.
@@ -371,7 +371,6 @@ PIXI.DisplayObject.prototype = {
             b  = 0;
             c  = 0;
             d  = this.scale.y;
-
             tx = this.position.x - this.pivot.x * a;
             ty = this.position.y - this.pivot.y * d;
 
@@ -382,6 +381,11 @@ PIXI.DisplayObject.prototype = {
             wt.tx = tx * pt.a + ty * pt.c + pt.tx;
             wt.ty = tx * pt.b + ty * pt.d + pt.ty;
         }
+
+        a = wt.a;
+        b = wt.b;
+        c = wt.c;
+        d = wt.d;
 
         var determ = (a * d) - (b * c);
 
@@ -706,7 +710,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     * To remove a mask, set this property to `null`.
     *
     * @name PIXI.DisplayObject#mask
-    * @property {PIXI.Graphics} mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
+    * @property {Phaser.Graphics} mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
     */
     'mask': {
 
@@ -793,6 +797,8 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     * When invoked it will take a snapshot of the DisplayObject, as it is at that moment, and store it
     * in a RenderTexture. This is then used whenever this DisplayObject is rendered. It can provide a
     * performance benefit for complex, but static, DisplayObjects. I.e. those with lots of children.
+    *
+    * Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
     *
     * Cached Bitmaps do not track their parents. If you update a property of this DisplayObject, it will not
     * re-generate the cached bitmap automatically. To do that you need to call `DisplayObject.updateCache`.

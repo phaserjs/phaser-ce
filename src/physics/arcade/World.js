@@ -1731,8 +1731,7 @@ Phaser.Physics.Arcade.prototype = {
             speed = this.distanceBetween(displayObject, destination) / (maxTime / 1000);
         }
 
-        displayObject.body.velocity.x = Math.cos(angle) * speed;
-        displayObject.body.velocity.y = Math.sin(angle) * speed;
+        displayObject.body.velocity.setToPolar(angle, speed);
 
         return angle;
 
@@ -1766,8 +1765,7 @@ Phaser.Physics.Arcade.prototype = {
             speed = this.distanceToPointer(displayObject, pointer) / (maxTime / 1000);
         }
 
-        displayObject.body.velocity.x = Math.cos(angle) * speed;
-        displayObject.body.velocity.y = Math.sin(angle) * speed;
+        displayObject.body.velocity.setToPolar(angle, speed);
 
         return angle;
 
@@ -1802,8 +1800,7 @@ Phaser.Physics.Arcade.prototype = {
             speed = this.distanceToXY(displayObject, x, y) / (maxTime / 1000);
         }
 
-        displayObject.body.velocity.x = Math.cos(angle) * speed;
-        displayObject.body.velocity.y = Math.sin(angle) * speed;
+        displayObject.body.velocity.setToPolar(angle, speed);
 
         return angle;
 
@@ -1824,7 +1821,7 @@ Phaser.Physics.Arcade.prototype = {
         if (speed === undefined) { speed = 60; }
         point = point || new Phaser.Point();
 
-        return point.setTo((Math.cos(Phaser.Math.degToRad(angle)) * speed), (Math.sin(Phaser.Math.degToRad(angle)) * speed));
+        return point.setToPolar(angle, speed, true);
 
     },
 
@@ -1843,7 +1840,7 @@ Phaser.Physics.Arcade.prototype = {
         if (speed === undefined) { speed = 60; }
         point = point || new Phaser.Point();
 
-        return point.setTo((Math.cos(rotation) * speed), (Math.sin(rotation) * speed));
+        return point.setToPolar(rotation, speed);
 
     },
 
@@ -1862,7 +1859,7 @@ Phaser.Physics.Arcade.prototype = {
         if (speed === undefined) { speed = 60; }
         point = point || new Phaser.Point();
 
-        return point.setTo((Math.cos(rotation) * speed), (Math.sin(rotation) * speed));
+        return point.setToPolar(rotation, speed);
 
     },
 
@@ -1888,7 +1885,7 @@ Phaser.Physics.Arcade.prototype = {
 
         var angle = this.angleBetween(displayObject, destination);
 
-        displayObject.body.acceleration.setTo(Math.cos(angle) * speed, Math.sin(angle) * speed);
+        displayObject.body.acceleration.setToPolar(angle, speed);
         displayObject.body.maxVelocity.setTo(xSpeedMax, ySpeedMax);
 
         return angle;
@@ -1918,7 +1915,7 @@ Phaser.Physics.Arcade.prototype = {
 
         var angle = this.angleToPointer(displayObject, pointer);
 
-        displayObject.body.acceleration.setTo(Math.cos(angle) * speed, Math.sin(angle) * speed);
+        displayObject.body.acceleration.setToPolar(angle, speed);
         displayObject.body.maxVelocity.setTo(xSpeedMax, ySpeedMax);
 
         return angle;
@@ -1948,7 +1945,7 @@ Phaser.Physics.Arcade.prototype = {
 
         var angle = this.angleToXY(displayObject, x, y);
 
-        displayObject.body.acceleration.setTo(Math.cos(angle) * speed, Math.sin(angle) * speed);
+        displayObject.body.acceleration.setTo(angle, speed);
         displayObject.body.maxVelocity.setTo(xSpeedMax, ySpeedMax);
 
         return angle;

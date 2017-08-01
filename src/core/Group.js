@@ -1710,6 +1710,7 @@ Phaser.Group.prototype.preUpdate = function () {
         return false;
     }
 
+    // This chunk is identical to Phaser.Component.Core.prototype.preUpdateChildren, which is not yet defined.
     // This can't loop in reverse, we need the renderOrderID to be in sequence
     var i = 0;
 
@@ -2735,6 +2736,20 @@ Phaser.Group.prototype.scatter = function (rect, checkExists) {
         child.position.set(rect.randomX, rect.randomY);
 
     }, null, checkExists);
+
+};
+
+/**
+ * Orders this Group's children randomly.
+ *
+ * This can be more efficient than calling {@link #getRandom} repeatedly.
+ *
+ * @method Phaser.Group#shuffle
+ */
+Phaser.Group.prototype.shuffle = function () {
+
+    Phaser.ArrayUtils.shuffle(this.children);
+    this.updateZ();
 
 };
 

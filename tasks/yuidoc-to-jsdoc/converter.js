@@ -20,6 +20,8 @@
 */
 'use strict';
 
+var LOG = false;
+
 /**
 * Convert a parameter into a parameter tag string; also do this for each desc.props, specifying the baseprop.
 */
@@ -132,7 +134,7 @@ function fixup_yuidoc_array (rawtype) {
 
     // Trim spaces
     r = r.replace(/^\s+|\s+$/g, '');
-    // make all brackets angles 
+    // make all brackets angles
     r = r.replace(/[({[]/g, '<').replace(/[)}\]]/g, '>');
     // remove whitespace and periods next to brackets
     r = r.replace(/[\s.]*([<>])[\s.]*/g, '$1');
@@ -252,7 +254,7 @@ function resolve_typename(typename, typedescs) {
         }
 
         if (loss) {
-            console.log("Mutilating type: (" + orig + "=>" + part + ")");
+            if (LOG) { console.log("Mutilating type: (" + orig + "=>" + part + ")"); }
         }
 
         var resolved = resolve_single_typename(part, typedescs);
@@ -359,7 +361,7 @@ function propertydesc_to_attrs(itemdesc, typedesc, typedescs)
     }
     attrs.push(['member', resolve_item_qualifiedname(itemdesc, typedesc, typedescs)]);
     attrs.push(['type', "{" + resolve_typename(itemdesc.type, typedescs) + "}"]);
-    
+
     if (itemdesc['readonly'] !== undefined) {
         attrs.push(['readonly', '']);
     }
@@ -418,7 +420,7 @@ function itemdesc_to_attrs(itemdesc, typedesc, typedescs) {
     {
         typedesc._loggedLooseComment = true;
         var name = itemdesc.file.match(/([^\/\\]*)$/)[1];
-        console.log("Skipping loose comment: " + name + ":" + itemdesc.line + " (first)");
+        if (LOG) { console.log("Skipping loose comment: " + name + ":" + itemdesc.line + " (first)"); }
     }
 
 }
@@ -516,7 +518,7 @@ function yuidocdata_to_jsdoc(data) {
                 type_comments.push(flatten_jsdoc_comment(attrs));
             });
         } else {
-            console.log("No items for " + name);
+            if (LOG) { console.log("No items for " + name); }
         }
 
         comments.push(flatten_jsdoc_comment(typeattrs));

@@ -61,7 +61,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.offset = new Phaser.Point();
 
     /**
-    * @property {Phaser.Point} position - The position of the physics body.
+    * @property {Phaser.Point} position - The position of the physics body, equivalent to ({@link #left}, {@link #top}).
     * @readonly
     */
     this.position = new Phaser.Point(sprite.x, sprite.y);
@@ -397,9 +397,9 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     /**
     * This object is populated with boolean values when the Body collides with the World bounds or a Tile.
     * For example if blocked.up is true then the Body cannot move up.
-    * @property {object} blocked - An object containing on which faces this Body is blocked from moving, if any.
+    * @property {object} blocked - An object containing on which faces this Body is blocked from moving, if any (none, up, down, left, right).
     */
-    this.blocked = { up: false, down: false, left: false, right: false };
+    this.blocked = { none: true, up: false, down: false, left: false, right: false };
 
     /**
     * If this is an especially small or fast moving object then it can sometimes skip over tilemap collisions if it moves through a tile in a step.
@@ -568,7 +568,9 @@ Phaser.Physics.Arcade.Body.prototype = {
     * @protected
     */
     updateCenter: function () {
+
         this.center.setTo(this.position.x + this.halfWidth, this.position.y + this.halfHeight);
+
     },
 
     /**
@@ -599,6 +601,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         this.touching.left = false;
         this.touching.right = false;
 
+        this.blocked.none = true;
         this.blocked.up = false;
         this.blocked.down = false;
         this.blocked.left = false;
@@ -617,6 +620,8 @@ Phaser.Physics.Arcade.Body.prototype = {
 
         this.position.y = (this.sprite.world.y - (this.sprite.anchor.y * this.sprite.height)) + this.sprite.scale.y * this.offset.y;
         this.position.y -= this.sprite.scale.y < 0 ? this.height : 0;
+
+        this.updateCenter();
 
         this.rotation = this.sprite.angle;
 
@@ -840,12 +845,14 @@ Phaser.Physics.Arcade.Body.prototype = {
             pos.x = bounds.x;
             this.velocity.x *= bx;
             this.blocked.left = true;
+            this.blocked.none = false;
         }
         else if (this.right > bounds.right && check.right)
         {
             pos.x = bounds.right - this.width;
             this.velocity.x *= bx;
             this.blocked.right = true;
+            this.blocked.none = false;
         }
 
         if (pos.y < bounds.y && check.up)
@@ -853,15 +860,17 @@ Phaser.Physics.Arcade.Body.prototype = {
             pos.y = bounds.y;
             this.velocity.y *= by;
             this.blocked.up = true;
+            this.blocked.none = false;
         }
         else if (this.bottom > bounds.bottom && check.down)
         {
             pos.y = bounds.bottom - this.height;
             this.velocity.y *= by;
             this.blocked.down = true;
+            this.blocked.none = false;
         }
 
-        return (this.blocked.up || this.blocked.down || this.blocked.left || this.blocked.right);
+        return !this.blocked.none;
 
     },
 
@@ -930,7 +939,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         }
         else
         {
-            this.velocity.set(Math.cos(angle) * speed, Math.sin(angle) * speed);
+            this.velocity.setToPolar(angle, speed);
         }
 
         this.isMoving = true;
@@ -1017,7 +1026,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         }
         else
         {
-            this.velocity.set(Math.cos(angle) * speed, Math.sin(angle) * speed);
+            this.velocity.setToPolar(angle, speed);
         }
 
         this.isMoving = true;
@@ -1423,8 +1432,9 @@ Object.defineProperty(Phaser.Physics.Arcade.Body.prototype, "y", {
 * @param {Phaser.Physics.Arcade.Body} body - The Body to render the info of.
 * @param {string} [color='rgba(0,255,0,0.4)'] - color of the debug info to be rendered. (format is css color string).
 * @param {boolean} [filled=true] - Render the objected as a filled (default, true) or a stroked (false)
+* @param {number} [lineWidth=1] - The width of the stroke when unfilled.
 */
-Phaser.Physics.Arcade.Body.render = function (context, body, color, filled) {
+Phaser.Physics.Arcade.Body.render = function (context, body, color, filled, lineWidth) {
 
     if (filled === undefined) { filled = true; }
 
@@ -1432,6 +1442,7 @@ Phaser.Physics.Arcade.Body.render = function (context, body, color, filled) {
 
     context.fillStyle = color;
     context.strokeStyle = color;
+    context.lineWidth = lineWidth || 1;
 
     if (body.isCircle)
     {

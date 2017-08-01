@@ -179,7 +179,7 @@ Phaser.TilemapParser = {
 
     /**
     * Parses a Tiled JSON file into valid map data.
-    * @method Phaser.TilemapParser.parseJSON
+    * @method Phaser.TilemapParser.parseTiledJSON
     * @param {object} json - The JSON map data.
     * @return {object} Generated and parsed map data.
     */
@@ -441,7 +441,11 @@ Phaser.TilemapParser = {
             //  name, firstgid, width, height, margin, spacing, properties
             var set = json.tilesets[i];
 
-            if (set.image)
+            if (set.source)
+            {
+                console.warn('Phaser.TilemapParser - Phaser can\'t load external tilesets (%s). Use the Embed Tileset button and then export the map again.', set.source);
+            }
+            else if (set.image)
             {
                 var newSet = new Phaser.Tileset(set.name, set.firstgid, set.tilewidth, set.tileheight, set.margin, set.spacing, set.properties);
 
@@ -456,7 +460,7 @@ Phaser.TilemapParser = {
 
                 tilesets.push(newSet);
             }
-            else
+            else if (set.tiles)
             {
                 var newCollection = new Phaser.ImageCollection(set.name, set.firstgid, set.tilewidth, set.tileheight, set.margin, set.spacing, set.properties);
 
@@ -469,14 +473,23 @@ Phaser.TilemapParser = {
 
                 imagecollections.push(newCollection);
             }
+            else
+            {
+                throw new Error('Tileset ' + set.name + ' has no `image` or `tiles` property.');
+            }
 
             //  We've got a new Tileset, so set the lastgid into the previous one
             if (lastSet)
             {
                 lastSet.lastgid = set.firstgid - 1;
             }
-            
+
             lastSet = set;
+        }
+
+        if (tilesets.length === 0 && imagecollections.length === 0)
+        {
+            throw new Error('This tilemap has no tilesets.');
         }
 
         map.tilesets = tilesets;
@@ -527,6 +540,8 @@ Phaser.TilemapParser = {
                         type: curo.objects[v].hasOwnProperty("type") ? curo.objects[v].type : "",
                         x: curo.objects[v].x,
                         y: curo.objects[v].y,
+                        width: curo.objects[v].width,
+                        height: curo.objects[v].height,
                         visible: curo.objects[v].visible,
                         properties: curo.objects[v].properties
 

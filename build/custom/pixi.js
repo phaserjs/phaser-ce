@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.8.0 "2017-05-30" - Built: Tue May 30 2017 21:46:30
+* v2.8.3 "2017-07-21" - Built: Fri Jul 21 2017 07:19:01
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -199,10 +199,10 @@ PIXI.DisplayObject = function () {
     * that happens this property will contain values based on the previous frame. Be mindful of this if
     * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
     *
-    * @property {PIXI.Matrix} worldTransform
+    * @property {Phaser.Matrix} worldTransform
     * @readOnly
     */
-    this.worldTransform = new PIXI.Matrix();
+    this.worldTransform = new Phaser.Matrix();
 
     /**
     * The coordinates, in pixels, of this DisplayObject within the world.
@@ -302,9 +302,9 @@ PIXI.DisplayObject = function () {
 
 };
 
-PIXI.DisplayObject.prototype.constructor = PIXI.DisplayObject;
-
 PIXI.DisplayObject.prototype = {
+
+    constructor: PIXI.DisplayObject,
 
     /**
     * Destroy this DisplayObject.
@@ -425,8 +425,9 @@ PIXI.DisplayObject.prototype = {
         {
             // lets do the fast version as we know there is no rotation..
             a  = this.scale.x;
+            b  = 0;
+            c  = 0;
             d  = this.scale.y;
-
             tx = this.position.x - this.pivot.x * a;
             ty = this.position.y - this.pivot.y * d;
 
@@ -438,8 +439,12 @@ PIXI.DisplayObject.prototype = {
             wt.ty = tx * pt.b + ty * pt.d + pt.ty;
         }
 
+        a = wt.a;
+        b = wt.b;
+        c = wt.c;
+        d = wt.d;
+
         var determ = (a * d) - (b * c);
-        var TAU = Math.PI * 0.5;
 
         if (a || b)
         {
@@ -453,7 +458,7 @@ PIXI.DisplayObject.prototype = {
         {
             var s = Math.sqrt((c * c) + (d * d));
 
-            this.worldRotation = TAU - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
+            this.worldRotation = Phaser.Math.HALF_PI - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
             this.worldScale.x = determ / s;
             this.worldScale.y = s;
         }
@@ -612,7 +617,9 @@ PIXI.DisplayObject.prototype = {
         {
             var textureUnit = 0;
             if (this.texture && this.texture.baseTexture && PIXI._enableMultiTextureToggle)
+            {
                 textureUnit = this.texture.baseTexture.textureIndex;
+            }
             var renderTexture = new Phaser.RenderTexture(this.game, bounds.width, bounds.height, undefined, undefined, undefined, undefined, textureUnit);
             this._cachedSprite = new PIXI.Sprite(renderTexture);
             this._cachedSprite.worldTransform = this.worldTransform;
@@ -760,7 +767,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     * To remove a mask, set this property to `null`.
     *
     * @name PIXI.DisplayObject#mask
-    * @property {PIXI.Graphics} mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
+    * @property {Phaser.Graphics} mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
     */
     'mask': {
 
@@ -915,15 +922,15 @@ PIXI.DisplayObjectContainer = function () {
 
     /**
     * If `ignoreChildInput`  is `false` it will allow this objects _children_ to be considered as valid for Input events.
-    * 
+    *
     * If this property is `true` then the children will _not_ be considered as valid for Input events.
-    * 
+    *
     * Note that this property isn't recursive: only immediate children are influenced, it doesn't scan further down.
     * @property {boolean} ignoreChildInput
     * @default
     */
     this.ignoreChildInput = false;
-    
+
 };
 
 PIXI.DisplayObjectContainer.prototype = Object.create( PIXI.DisplayObject.prototype );
@@ -1055,7 +1062,7 @@ PIXI.DisplayObjectContainer.prototype.getChildAt = function (index) {
     }
 
     return this.children[index];
-    
+
 };
 
 /**
@@ -1073,7 +1080,7 @@ PIXI.DisplayObjectContainer.prototype.removeChild = function (child) {
     {
         return;
     }
-    
+
     return this.removeChildAt(index);
 
 };
@@ -1171,7 +1178,7 @@ PIXI.DisplayObjectContainer.prototype.displayObjectContainerUpdateTransform = PI
  * Retrieves the global bounds of the displayObjectContainer as a rectangle. The bounds calculation takes all visible children into consideration.
  *
  * @method getBounds
- * @param {PIXI.DisplayObject|PIXI.Matrix} [targetCoordinateSpace] Returns a rectangle that defines the area of the display object relative to the coordinate system of the targetCoordinateSpace object.
+ * @param {PIXI.DisplayObject|Phaser.Matrix} [targetCoordinateSpace] Returns a rectangle that defines the area of the display object relative to the coordinate system of the targetCoordinateSpace object.
  * @return {Rectangle} The rectangular bounding area
  */
 PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpace) {
@@ -1179,15 +1186,15 @@ PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpac
     var isTargetCoordinateSpaceDisplayObject = (targetCoordinateSpace && targetCoordinateSpace instanceof PIXI.DisplayObject);
     var isTargetCoordinateSpaceThisOrParent = true;
 
-    if (!isTargetCoordinateSpaceDisplayObject) 
+    if (!isTargetCoordinateSpaceDisplayObject)
 	{
         targetCoordinateSpace = this;
-    } 
-	else if (targetCoordinateSpace instanceof PIXI.DisplayObjectContainer) 
+    }
+	else if (targetCoordinateSpace instanceof PIXI.DisplayObjectContainer)
 	{
         isTargetCoordinateSpaceThisOrParent = targetCoordinateSpace.contains(this);
-    } 
-	else 
+    }
+	else
 	{
         isTargetCoordinateSpaceThisOrParent = false;
     }
@@ -1198,9 +1205,9 @@ PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpac
     {
         var matrixCache = targetCoordinateSpace.worldTransform;
 
-        targetCoordinateSpace.worldTransform = PIXI.identityMatrix;
+        targetCoordinateSpace.worldTransform = Phaser.identityMatrix;
 
-        for (i = 0; i < targetCoordinateSpace.children.length; i++) 
+        for (i = 0; i < targetCoordinateSpace.children.length; i++)
 		{
             targetCoordinateSpace.children[i].updateTransform();
         }
@@ -1243,7 +1250,7 @@ PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpac
 
     var bounds = this._bounds;
 
-    if (!childVisible) 
+    if (!childVisible)
 	{
         bounds = new PIXI.Rectangle();
 
@@ -1302,17 +1309,17 @@ PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpac
     bounds.width = maxX - minX;
     bounds.height = maxY - minY;
 
-    if (isTargetCoordinateSpaceDisplayObject) 
+    if (isTargetCoordinateSpaceDisplayObject)
 	{
         targetCoordinateSpace.worldTransform = matrixCache;
 
-        for (i = 0; i < targetCoordinateSpace.children.length; i++) 
+        for (i = 0; i < targetCoordinateSpace.children.length; i++)
 		{
             targetCoordinateSpace.children[i].updateTransform();
         }
     }
 
-    if (!isTargetCoordinateSpaceThisOrParent) 
+    if (!isTargetCoordinateSpaceThisOrParent)
 	{
         var targetCoordinateSpaceBounds = targetCoordinateSpace.getBounds();
 
@@ -1349,11 +1356,11 @@ PIXI.DisplayObjectContainer.prototype.contains = function (child) {
     {
         return false;
     }
-    else if (child === this) 
+    else if (child === this)
 	{
         return true;
     }
-    else 
+    else
 	{
         return this.contains(child.parent);
     }
@@ -1363,7 +1370,7 @@ PIXI.DisplayObjectContainer.prototype.contains = function (child) {
 * Renders the object using the WebGL renderer
 *
 * @method _renderWebGL
-* @param renderSession {RenderSession} 
+* @param renderSession {RenderSession}
 * @private
 */
 PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession) {
@@ -1372,13 +1379,13 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession) {
     {
         return;
     }
-    
+
     if (this._cacheAsBitmap)
     {
         this._renderCachedSprite(renderSession);
         return;
     }
-    
+
     var i;
 
     if (this._mask || this._filters)
@@ -1407,7 +1414,7 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession) {
 
         if (this._mask) renderSession.maskManager.popMask(this._mask, renderSession);
         if (this._filters) renderSession.filterManager.popFilter();
-        
+
         renderSession.spriteBatch.start();
     }
     else
@@ -1425,7 +1432,7 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession) {
 * Renders the object using the Canvas renderer
 *
 * @method _renderCanvas
-* @param renderSession {RenderSession} 
+* @param renderSession {RenderSession}
 * @private
 */
 PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession) {
@@ -1471,7 +1478,7 @@ Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
     },
 
     set: function(value) {
-        
+
         var width = this.getLocalBounds().width;
 
         if (width !== 0)
@@ -1482,7 +1489,7 @@ Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
         {
             this.scale.x = 1;
         }
-        
+
         this._width = value;
     }
 });
@@ -1536,14 +1543,16 @@ PIXI.Sprite = function (texture) {
 
     /**
      * The anchor sets the origin point of the texture.
-     * The default is 0,0 this means the texture's origin is the top left
-     * Setting than anchor to 0.5,0.5 means the textures origin is centered
-     * Setting the anchor to 1,1 would mean the textures origin points will be the bottom right corner
+     * The default (0, 0) is the top left.
+     * (0.5, 0.5) is the center.
+     * (1, 1) is the bottom right.
+     *
+     * You can modify the default values in PIXI.Sprite.defaultAnchor.
      *
      * @property anchor
      * @type Point
      */
-    this.anchor = new PIXI.Point();
+    this.anchor = new PIXI.Point(PIXI.Sprite.defaultAnchor.x, PIXI.Sprite.defaultAnchor.y);
 
     /**
      * The texture that the sprite is using
@@ -1637,6 +1646,13 @@ PIXI.Sprite = function (texture) {
     this.renderable = true;
 
 };
+
+/**
+ * @property PIXI.Sprite.defaultAnchor - A Point-like object.
+ * @type {{x: number, y: number}}
+ * @default
+ */
+PIXI.Sprite.defaultAnchor = {x: 0, y: 0};
 
 // constructor
 PIXI.Sprite.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
@@ -1765,7 +1781,7 @@ PIXI.Sprite.prototype.getBounds = function(matrix)
             a *= -1;
             var temp = w0;
             w0 = -w1;
-            w1 = -temp; 
+            w1 = -temp;
         }
 
         if (d < 0)
@@ -1773,11 +1789,11 @@ PIXI.Sprite.prototype.getBounds = function(matrix)
             d *= -1;
             var temp = h0;
             h0 = -h1;
-            h1 = -temp; 
+            h1 = -temp;
         }
 
         // this means there is no rotation going on right? RIGHT?
-        // if thats the case then we can avoid checking the bound values! yay         
+        // if thats the case then we can avoid checking the bound values! yay
         minX = a * w1 + tx;
         maxX = a * w0 + tx;
         minY = d * h1 + ty;
@@ -1842,7 +1858,7 @@ PIXI.Sprite.prototype.getLocalBounds = function () {
 
     var matrixCache = this.worldTransform;
 
-    this.worldTransform = PIXI.identityMatrix;
+    this.worldTransform = Phaser.identityMatrix;
 
     for (var i = 0; i < this.children.length; i++)
     {
@@ -2012,11 +2028,11 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
         var c = wt.c;
         var d = wt.d;
         var e = cw;
-        
+
         // Offset before rotating
         tx = wt.c * ch + tx;
         ty = wt.d * ch + ty;
-        
+
         // Rotate matrix by 90 degrees
         // We use precalculated values for sine and cosine of rad(90)
         wt.a = a * 6.123233995736766e-17 + -c;
@@ -2060,7 +2076,7 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     {
         var cx = this.texture.crop.x;
         var cy = this.texture.crop.y;
-        
+
         cw = Math.floor(cw)
         ch = Math.floor(ch)
 
@@ -3513,6 +3529,7 @@ PIXI.WebGLRenderer = function(game) {
     this.renderSession.game = this.game;
     this.renderSession.gl = this.gl;
     this.renderSession.drawCount = 0;
+    this.renderSession.flushCount = 0;
     this.renderSession.shaderManager = this.shaderManager;
     this.renderSession.maskManager = this.maskManager;
     this.renderSession.filterManager = this.filterManager;
@@ -3521,6 +3538,7 @@ PIXI.WebGLRenderer = function(game) {
     this.renderSession.stencilManager = this.stencilManager;
     this.renderSession.renderer = this;
     this.renderSession.resolution = this.resolution;
+    this.renderSession.maxTextureAvailableSpace = null; // filled in setTexturePriority()
 
     // time init the context..
     this.initContext();
@@ -3548,6 +3566,7 @@ PIXI.WebGLRenderer.prototype.initContext = function()
     }
 
     this.maxTextures = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
+    this.maxTextureSize = this.gl.getParameter(gl.MAX_TEXTURE_SIZE);
 
     this.glContextId = gl.id = PIXI.WebGLRenderer.glContextId++;
 
@@ -3580,9 +3599,9 @@ PIXI.WebGLRenderer.prototype.initContext = function()
     var pvrtc = gl.getExtension('WEBGL_compressed_texture_pvrtc') || gl.getExtension('WEBKIT_WEBGL_compressed_texture_pvrtc');
     var s3tc = gl.getExtension('WEBGL_compressed_texture_s3tc') || gl.getExtension('WEBKIT_WEBGL_compressed_texture_s3tc');
 
-    if (etc1) this.extensions.compression.ETC1 = etc1;
-    if (pvrtc) this.extensions.compression.PVRTC = pvrtc;
-    if (s3tc) this.extensions.compression.S3TC = s3tc;
+    if (etc1) { this.extensions.compression.ETC1 = etc1; }
+    if (pvrtc) { this.extensions.compression.PVRTC = pvrtc; }
+    if (s3tc) { this.extensions.compression.S3TC = s3tc; }
 };
 
 /**
@@ -3635,10 +3654,11 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
     //  deal with that in their own way.
     for (var i = 0; i < this.currentBatchedTextures.length; i++)
     {
-        imageName = textureNameCollection[index];
+        imageName = this.currentBatchedTextures[i];
 
         if (!(imageName in imageCache))
         {
+            console.warn('setTexturePriority: There is no image "%s" in the image cache.', imageName);
             continue;
         }
 
@@ -3647,12 +3667,13 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
     var maxTextureAvailableSpace = (maxTextureSize) - clampPot(Math.max(this.width, this.height));
     this.currentBatchedTextures.length = 0;
     // We start from 1 because framebuffer texture uses unit 0.
-    for (var index = 0; index < textureNameCollection.length; ++index)
+    for (var j = 0; j < textureNameCollection.length; ++j)
     {
-        imageName = textureNameCollection[index];
+        imageName = textureNameCollection[j];
 
         if (!(imageName in imageCache))
         {
+            console.warn('setTexturePriority: There is no image "%s" in the image cache.', imageName);
             continue;
         }
         // Unit 0 is reserved for Pixi's framebuffer
@@ -3660,11 +3681,15 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         maxTextureAvailableSpace -= clampPot(Math.max(base.width, base.height));
         if (maxTextureAvailableSpace <= 0) {
             base.textureIndex = 0;
+            console.warn('setTexturePriority: Image "%s" was given textureIndex=0 because there is no available texture space (%s).',
+                imageName, maxTextureAvailableSpace);
         } else {
-            base.textureIndex = (1 + (index % (maxTextures - 1)));
+            base.textureIndex = (1 + (j % (maxTextures - 1)));
         }
         this.currentBatchedTextures.push(imageName);
     }
+
+    this.renderSession.maxTextureAvailableSpace = maxTextureAvailableSpace;
 
     return this.currentBatchedTextures;
 
@@ -3719,6 +3744,7 @@ PIXI.WebGLRenderer.prototype.renderDisplayObject = function(displayObject, proje
 
     // reset the render session data..
     this.renderSession.drawCount = 0;
+    this.renderSession.flushCount = 0;
 
     // make sure to flip the Y if using a render texture..
     this.renderSession.flipY = buffer ? -1 : 1;
@@ -5261,6 +5287,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function () {
 
     // then reset the batch!
     this.currentBatchSize = 0;
+    this.renderSession.flushCount++;
 };
 
 /**
@@ -5721,6 +5748,8 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function()
 
     // increment the draw count
     this.renderSession.drawCount++;
+    this.renderSession.flushCount++;
+
 };
 
 
