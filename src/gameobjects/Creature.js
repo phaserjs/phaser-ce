@@ -1,3 +1,5 @@
+/* jshint camelcase:false */
+/* globals Creature,CreatureAnimation,CreatureManager */
 /**
 * @author       Richard Davey <rich@photonstorm.com>
 * @author       Kestrel Moon Studios <creature@kestrelmoon.com>
@@ -719,11 +721,11 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorX', {
 
   set: function(value) {
 
-    if (value == 0) {
+    if (value === 0) {
         value = 0.01;
     }
 
-    if (value == 1) {
+    if (value === 1) {
         value = 0.99;
     }
 
@@ -766,11 +768,11 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorY', {
 
   set: function(value) {
 
-    if (value == 0) {
+    if (value === 0) {
         value = 0.01;
     }
 
-    if (value == 1) {
+    if (value === 1) {
         value = 0.99;
     }
 
