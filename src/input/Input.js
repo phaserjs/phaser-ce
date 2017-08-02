@@ -540,8 +540,7 @@ Phaser.Input.prototype = {
 
 
     /**
-     * Adds a callback that is fired when a browser touchstart or touchend event is received
-     * (pointerdown or pointerup when using pointer events).
+     * Adds a callback that is fired when a browser touchstart/pointerdown or touchend/pointerup event is received.
      *
      * This is used internally to handle audio and video unlocking on mobile devices.
      *
@@ -552,7 +551,7 @@ Phaser.Input.prototype = {
      * @method Phaser.Input#addTouchLockCallback
      * @param {function} callback - The callback that will be called when a touchstart event is received.
      * @param {object} context - The context in which the callback will be called.
-     * @param {boolean} [onEnd=false] - Will the callback fire on a touchstart (default) or touchend event?
+     * @param {boolean} [onEnd=false] - Will the callback fire on a touchstart/pointerdown (default) or touchend/pointerup event?
      */
     addTouchLockCallback: function (callback, context, onEnd) {
 
@@ -585,6 +584,27 @@ Phaser.Input.prototype = {
 
         return false;
 
+    },
+
+    /**
+     * Execute any {@link #touchLockCallbacks} of the given type.
+     *
+     * @method Phaser.Input#executeTouchLockCallbacks
+     * @private
+     * @param {boolean} onEnd - Execute the touchend/pointerup callbacks (true) or the touchstart/pointerdown callbacks (false). Required!
+     */
+    executeTouchLockCallbacks: function (onEnd) {
+        var i = this.touchLockCallbacks.length;
+
+        while (i--)
+        {
+            var cb = this.touchLockCallbacks[i];
+
+            if (cb.onEnd === onEnd && cb.callback.call(cb.context, this, event))
+            {
+                this.touchLockCallbacks.splice(i, 1);
+            }
+        }
     },
 
     /**
