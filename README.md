@@ -303,6 +303,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Improved animation synchronization during irregular frame rates (#310).
 * Fixed bad `game` reference in Phaser.Creature.
 * Fixed wrong dimensions of Debug#canvas and Debug#sprite when a WEBGL game is scaled (#298).
 * TileSprite tint now works when rendering with CANVAS.
@@ -322,7 +323,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Thanks
 
-@Aerolivier, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @Plukers, @samid737, @samme, @tommitytom, @AleBles
+@Aerolivier, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @Plukers, @samid737, @samme, @sarbasamuel, @tommitytom, @AleBles
 
 ## Version 2.8.3 - 21st July 2017
 
