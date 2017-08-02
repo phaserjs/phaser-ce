@@ -216,6 +216,25 @@ Phaser.Circle.prototype = {
 
     },
 
+    sample: function (steps, startAngle, endAngle, asDegrees, out) {
+
+        if (!steps) { steps = 60; }
+        if (startAngle == null) { startAngle = 0; }
+        if (endAngle == null) { endAngle = Phaser.Math.PI2; }
+        if (!out) { out = []; }
+
+        var i = 0;
+
+        while (i < steps)
+        {
+            out[i] = this.circumferencePoint(Phaser.Math.linear(startAngle, endAngle, (1 + i) / (1 + steps)), asDegrees);
+            i += 1;
+        }
+
+        return out;
+
+    },
+
     /**
     * Adjusts the location of the Circle object, as determined by its center coordinate, by the specified amounts.
     * @method Phaser.Circle#offset
