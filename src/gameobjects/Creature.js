@@ -173,6 +173,11 @@ PIXI.CreatureShader.prototype.destroy = function() {
 */
 Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
 
+    /**
+     * @property {Phaser.Game} game - A reference to the currently running game.
+     */
+    this.game = game;
+
     if (animation === undefined) { animation = 'default'; }
 
     /**
@@ -849,13 +854,13 @@ Phaser.Creature.prototype.setAnchorPointEnabled = function(value) {
 */
 Phaser.Creature.prototype.createAllAnimations = function (mesh) {
 
-    if (!game.cache.checkJSONKey(mesh))
+    if (!this.game.cache.checkJSONKey(mesh))
     {
         console.warn('Phaser.Creature: Invalid mesh key given. Not found in Phaser.Cache');
         return;
     }
 
-    var meshData = game.cache.getJSON(mesh);
+    var meshData = this.game.cache.getJSON(mesh);
 
     this.manager.CreateAllAnimations(meshData);
 };
