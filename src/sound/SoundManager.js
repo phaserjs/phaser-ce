@@ -260,7 +260,7 @@ Phaser.SoundManager.prototype = {
         if (!this.noAudio)
         {
             //  On mobile we need a native touch event before we can play anything, so capture it here
-            if (!this.game.device.cocoonJS && (this.game.device.android || this.game.device.iOS || (window['PhaserGlobal'] && window['PhaserGlobal'].fakeiOSTouchLock)))
+            if (this.game.device.needsTouchUnlock())
             {
                 this.setTouchLock();
             }

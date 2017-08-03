@@ -299,7 +299,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Removed [filters/pixi](https://github.com/photonstorm/phaser-ce/tree/v2.8.3/filters/pixi). They require PIXI.AbstractFilter, which was removed in 2.7.0.
 * Updated NPM dependencies (except [typescript](https://www.npmjs.com/package/typescript); photonstorm/phaser#2198) and added [package-lock.json](https://docs.npmjs.com/files/package-lock.json).
 * Deprecated Phaser.Device.isConsoleOpen. Now it always returns false.
-* Moved addTouchLockCallback/removeTouchLockCallback from Phaser.Touch to Phaser.Input, it now also covers Phaser.MSPointer (#37)
+* Phaser.Input now handles touch unlocking via Phaser.Touch or Phaser.MSPointer. Phaser.Touch#addTouchLockCallback and Phaser.Touch#removeTouchLockCallback are still available but deprecated; you should use Phaser.Input#addTouchLockCallback and Phaser.Input.#removeTouchLockCallback instead (#37).
 
 ### Bug Fixes
 
@@ -311,7 +311,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Fixed movement of sprites with `fixedToCamera=true` when dragged by pointer (#297).
 * Fixed creature relative anchor points to be absolute (#288).
 * Fixed P2 Physics body not rotating shape (#258).
-* Audio is now also unlocked for Chrome > 55. Fixes audio not playing in cross-origin iframe (#37).
+* Audio is now also unlocked for Android Chrome ≥ 55, fixing audio not playing in cross-origin iframes (#37).
 
 ### Documentation
 
@@ -323,7 +323,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Thanks
 
-@Aerolivier, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @Plukers, @samid737, @samme, @sarbasamuel, @tommitytom, @AleBles
+@Aerolivier, @AleBles, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @Plukers, @samid737, @samme, @sarbasamuel, @tommitytom
 
 ## Version 2.8.3 - 21st July 2017
 

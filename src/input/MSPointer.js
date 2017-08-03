@@ -198,17 +198,7 @@ Phaser.MSPointer.prototype = {
     */
     onPointerDown: function (event) {
 
-        var i = this.game.input.touchLockCallbacks.length;
-
-        while (i--)
-        {
-            var cb = this.game.input.touchLockCallbacks[i];
-
-            if (!cb.onEnd && cb.callback.call(cb.context, this, event))
-            {
-                this.game.input.touchLockCallbacks.splice(i, 1);
-            }
-        }
+        this.game.input.executeTouchLockCallbacks(false);
 
         this.event = event;
 
@@ -284,17 +274,7 @@ Phaser.MSPointer.prototype = {
     */
     onPointerUp: function (event) {
 
-        var i = this.game.input.touchLockCallbacks.length;
-
-        while (i--)
-        {
-            var cb = this.game.input.touchLockCallbacks[i];
-
-            if (cb.onEnd && cb.callback.call(cb.context, this, event))
-            {
-                this.game.input.touchLockCallbacks.splice(i, 1);
-            }
-        }
+        this.game.input.executeTouchLockCallbacks(true);
 
         this.event = event;
 
