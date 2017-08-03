@@ -1392,7 +1392,7 @@ Phaser.Device.canPlayVideo = function (type) {
  * @return {boolean}
  */
 Phaser.Device.needsTouchUnlock = function () {
-    return (!this.cocoonJS && (this.iOS || this.android) || (window.PhaserGlobal && window.PhaserGlobal.fakeiOSTouchLock));
+    return !!(!this.cocoonJS && (this.iOS || this.android) || (window.PhaserGlobal && window.PhaserGlobal.fakeiOSTouchLock));
 };
 
 /**
