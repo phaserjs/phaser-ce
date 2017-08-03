@@ -1837,7 +1837,7 @@ declare module Phaser {
         countDead(): number;
         countLiving(): number;
         create(x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, exists?: boolean, index?: number): any;
-        createMultiple(quantity: number, key: string | string[], frame?: any | any[], exists?: boolean): any[];
+        createMultiple(quantity: number, key: string | string[], frame?: any | any[], exists?: boolean, callback?: Function, callbackContext?: any): any[];
         customSort(sortHandler: Function, context?: any): void;
         destroy(destroyChildren?: boolean, soft?: boolean): void;
         divideAll(property: string, amount: number, checkAlive?: boolean, checkVisible?: boolean): void;

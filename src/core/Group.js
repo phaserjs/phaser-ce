@@ -630,9 +630,11 @@ Phaser.Group.prototype.create = function (x, y, key, frame, exists, index) {
 * @param {string|array} key - The Cache key of the image that the Sprites will use. Or an Array of keys. See the description for details on how the quantity applies when arrays are used.
 * @param {integer|string|array} [frame=0] - If the Sprite image contains multiple frames you can specify which one to use here. Or an Array of frames. See the description for details on how the quantity applies when arrays are used.
 * @param {boolean} [exists=false] - The default exists state of the Sprite.
+* @param {function} [callback] - The function that will be called for each applicable child. It will be passed the new child and an index (zero through quantity - 1).
+* @param {object} [callbackContext] - The context in which the function should be called (usually 'this').
 * @return {array} An array containing all of the Sprites that were created.
 */
-Phaser.Group.prototype.createMultiple = function (quantity, key, frame, exists) {
+Phaser.Group.prototype.createMultiple = function (quantity, key, frame, exists, callback, callbackContext) {
 
     if (frame === undefined) { frame = 0; }
     if (exists === undefined) { exists = false; }
@@ -656,7 +658,11 @@ Phaser.Group.prototype.createMultiple = function (quantity, key, frame, exists) 
 
             for (var i = 0; i < quantity; i++)
             {
-                children.push(_this.create(0, 0, singleKey, singleFrame, exists));
+                var child = _this.create(0, 0, singleKey, singleFrame, exists);
+
+                if (callback) { callback.call(callbackContext, child, i); }
+
+                children.push(child);
             }
 
         });
