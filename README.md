@@ -303,6 +303,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Bug Fixes
 
+* Improved animation synchronization during irregular frame rates (#310).
+* Fixed bad `game` reference in Phaser.Creature.
 * Fixed wrong dimensions of Debug#canvas and Debug#sprite when a WEBGL game is scaled (#298).
 * TileSprite tint now works when rendering with CANVAS.
 * Fixed sprites not receiving a preUpdate when they have a `fresh` ancestor with a physics body, which would leave them `fresh` and with incorrect `world` and `body.position` values for several frames (#299). Fresh sprites with _two or more ancestors_ may still have incorrect `world` and `body.position` values for 1 frame because they haven't received a render transform yet.
@@ -321,7 +323,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Thanks
 
-@Aerolivier, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @Plukers, @samid737, @samme, @tommitytom, @AleBles
+@Aerolivier, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @Plukers, @samid737, @samme, @sarbasamuel, @tommitytom, @AleBles
 
 ## Version 2.8.3 - 21st July 2017
 
