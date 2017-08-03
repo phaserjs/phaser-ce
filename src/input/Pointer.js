@@ -441,7 +441,7 @@ Phaser.Pointer.prototype = {
     *
     * @method Phaser.Pointer#processButtonsDown
     * @private
-    * @param {integer} buttons - The DOM event.buttons property.
+    * @param {integer} buttons - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons MouseEvent#buttons} value.
     * @param {MouseEvent} event - The DOM event.
     */
     processButtonsDown: function (buttons, event) {
@@ -485,12 +485,10 @@ Phaser.Pointer.prototype = {
     *
     * @method Phaser.Pointer#processButtonsUp
     * @private
-    * @param {integer} buttons - The DOM event.buttons property.
+    * @param {integer} button - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button MouseEvent#button} value.
     * @param {MouseEvent} event - The DOM event.
     */
     processButtonsUp: function (button, event) {
-
-        //  Note: These are bitwise checks, not booleans
 
         if (button === Phaser.Mouse.LEFT_BUTTON)
         {
