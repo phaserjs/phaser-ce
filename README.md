@@ -1,12 +1,12 @@
-# Phaser CE (Community Edition) - HTML5 Game Framework
+# Phaser CE (Community Edition)
 
-<img src="http://phaser.io/images/github/arcade-cab.png" align="right">
+<img src="http://phaser.io/images/github/arcade-cab.png" align="right" width="400" height="617">
 
 Phaser is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development. Years after release, Phaser is still one of the [most starred game frameworks](https://github.com/showcases/javascript-game-engines) on GitHub.
 
 Thousands of developers worldwide use Phaser. From indies and multi-national digital agencies, to schools and Universities. Each creating their own incredible [games](http://phaser.io/games/).
 
-Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
+Phaser v2 was built and maintained by the company [Photon Storm](http://www.photonstorm.com) and turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
 The [current Phaser CE release is 2.8.3](https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.3).
 
