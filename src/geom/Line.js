@@ -728,26 +728,29 @@ Phaser.Line.intersectsRectangle = function (line, rect) {
  * @param {Phaser.Line} line - The line to check for intersection with.
  * @param {Phaser.Rectangle} rect - The rectangle, or rectangle-like object, to check for intersection with.
  * @param {Phaser.Point} [result] - A Point object to store the result in.
- * @param {Phaser.Line[]} [edges] - An array containing exactly four lines, recycled during calculations.
- * @param {Phaser.Point} [edgeIntersection] - A point, recycled during calculations.
  * @return {?Phaser.Point} - The closest Point of intersection, or null if there is no intersection.
  */
-Phaser.Line.intersectionWithRectangle = function (line, rect, result, edges, edgeIntersection) {
+Phaser.Line.intersectionWithRectangle = function (line, rect, result) {
+
+    var self = Phaser.Line.intersectionWithRectangle;
 
     if (!result)
     {
         result = new Phaser.Point();
     }
 
-    if (!edges)
+    if (!self.edges)
     {
-        edges = [new Phaser.Line(), new Phaser.Line(), new Phaser.Line(), new Phaser.Line()];
+        self.edges = [new Phaser.Line(), new Phaser.Line(), new Phaser.Line(), new Phaser.Line()];
     }
 
-    if (!edgeIntersection)
+    if (!self.edgeIntersection)
     {
-        edgeIntersection = new Phaser.Point();
+        self.edgeIntersection = new Phaser.Point();
     }
+
+    var edges = self.edges;
+    var edgeIntersection = self.edgeIntersection.set(0);
 
     var bx1 = rect.x;
     var by1 = rect.y;
