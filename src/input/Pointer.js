@@ -485,7 +485,7 @@ Phaser.Pointer.prototype = {
     *
     * @method Phaser.Pointer#processButtonsUp
     * @private
-    * @param {integer} button - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button MouseEvent#button} value.
+    * @param {integer} buttons - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons MouseEvent#buttons} value.
     * @param {MouseEvent} event - The DOM event.
     */
     processButtonsUp: function (buttons, event) {
