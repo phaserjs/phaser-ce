@@ -253,6 +253,7 @@ declare module PIXI {
 
         render(stage: DisplayObjectContainer): void;
         resize(width: number, height: number): void;
+        setTexturePriority(textureNameCollection: string[]): string[];
         destroy(removeView?: boolean): void;
 
     }
