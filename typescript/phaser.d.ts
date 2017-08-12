@@ -800,6 +800,13 @@ declare module Phaser {
 
     }
 
+    module Component {
+
+        module Core {
+            var skipTypeChecks: boolean;
+        }
+    }
+
     interface RGBColor {
         r: number;
         g: number;

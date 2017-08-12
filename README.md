@@ -314,7 +314,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 * Fixed Creature relative anchor points to be absolute (#288).
 * Fixed P2 Physics body not rotating shape (#258).
 * Audio is now also unlocked for Android Chrome ≥ 55, fixing audio not playing in cross-origin iframes (#37).
-* Fixed some TypeScript definitions (#319).
+* Fixed some TypeScript definitions (#317, #319).
 
 ### Documentation
 
