@@ -49,7 +49,7 @@
 *
 * -  ##### Fluid game/canvas size
 *
-*    Use `scaleMode` RESIZE. Examine the game or canvas size from the {@link #onSizeChange} signal and reposition game objects if necessary.
+*    Use `scaleMode` RESIZE. Examine the game or canvas size from the {@link #onSizeChange} signal **or** the {@link Phaser.State#resize} callback and reposition game objects if necessary.
 *
 * -  ##### Preferred orientation
 *
