@@ -318,6 +318,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Documentation
 
+* [Arcade Physics bodies](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html) don't scale with [camera scale](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#scale) (#315).
 * [cacheAsBitmap](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#cacheAsBitmap) and [generateTexture](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#generateTexture) can trim transparent pixels (#283).
 * [Phaser.Physics.P2.Body#addPolygon](https://photonstorm.github.io/phaser-ce/Phaser.Physics.P2.Body#addPolygon.html#addPolygon) can mutate the `points` argument (#301).
 * [InputHandler#enableDrag](https://photonstorm.github.io/phaser-ce/Phaser.InputHandler.html#enableDrag) `alphaThreshold` argument is a number, not boolean.

@@ -1037,33 +1037,43 @@ Phaser.Physics.Arcade.Body.prototype = {
 
     /**
     * You can modify the size of the physics Body to be any dimension you need.
-    * This allows you to make it smaller, or larger, than the parent Sprite.
-    * You can also control the x and y offset of the Body. This is the position of the
-    * Body relative to the top-left of the Sprite _texture_.
+    * This allows you to make it smaller, or larger, than the parent Sprite. You
+    * can also control the x and y offset of the Body.
+    *
+    * The width, height, and offset arguments are relative to the Sprite
+    * _texture_ and are scaled with the Sprite's {@link Phaser.Sprite#scale}
+    * (but **not** the scale of any ancestors or the {@link Phaser.Camera#scale
+    * Camera scale}).
     *
     * For example: If you have a Sprite with a texture that is 80x100 in size,
-    * and you want the physics body to be 32x32 pixels in the middle of the texture, you would do:
+    * and you want the physics body to be 32x32 pixels in the middle of the
+    * texture, you would do:
     *
-    * `setSize(32 / Math.abs(this.scale.x), 32 / Math.abs(this.scale.y), 24, 34)`
+    * `setSize(32 / Math.abs(this.scale.x), 32 / Math.abs(this.scale.y), 24,
+    * 34)`
     *
-    * Where the first two parameters are the new Body size (32x32 pixels) relative to the Sprite's scale.
-    * 24 is the horizontal offset of the Body from the top-left of the Sprites texture, and 34
-    * is the vertical offset.
+    * Where the first two parameters are the new Body size (32x32 pixels)
+    * relative to the Sprite's scale. 24 is the horizontal offset of the Body
+    * from the top-left of the Sprites texture, and 34 is the vertical offset.
     *
-    * If you've scaled a Sprite by altering its `width`, `height`, or `scale` and you want to
-    * position the Body relative to the Sprite's dimensions (which will differ from its texture's
-    * dimensions), you should divide these arguments by the Sprite's current scale:
+    * If you've scaled a Sprite by altering its `width`, `height`, or `scale`
+    * and you want to position the Body relative to the Sprite's dimensions
+    * (which will differ from its texture's dimensions), you should divide these
+    * arguments by the Sprite's current scale:
     *
     * `setSize(32 / sprite.scale.x, 32 / sprite.scale.y)`
     *
-    * Calling `setSize` on a Body that has already had `setCircle` will reset all of the Circle
-    * properties, making this Body rectangular again.
-    *
+    * Calling `setSize` on a Body that has already had `setCircle` will reset
+    * all of the Circle properties, making this Body rectangular again.
     * @method Phaser.Physics.Arcade.Body#setSize
-    * @param {number} width - The width of the Body.
-    * @param {number} height - The height of the Body.
-    * @param {number} [offsetX] - The X offset of the Body from the left of the Sprite's texture.
-    * @param {number} [offsetY] - The Y offset of the Body from the top of the Sprite's texture.
+    * @param {number} width - The width of the Body, relative to the Sprite's
+    * texture.
+    * @param {number} height - The height of the Body, relative to the Sprite's
+    * texture.
+    * @param {number} [offsetX] - The X offset of the Body from the left of the
+    * Sprite's texture.
+    * @param {number} [offsetY] - The Y offset of the Body from the top of the
+    * Sprite's texture.
     */
     setSize: function (width, height, offsetX, offsetY) {
 
