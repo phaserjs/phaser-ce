@@ -289,6 +289,16 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 # Change Log
 
+## Unreleased
+
+### New Features
+
+### Updates
+
+### Bug Fixes
+
+### Thanks
+
 ## Version 2.8.4 - 15th August 2017
 
 ### Updates
