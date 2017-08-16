@@ -17,8 +17,6 @@
 	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
 	
 
-	<script src="https://use.typekit.net/fmc0gtt.js"></script>
-	<script>Typekit.load()</script>
 </head>
 
 <body>
@@ -551,59 +549,7 @@
 						</li>
 						
 						<li class="class-depth-2">
-							<a href="Phaser.Plugin.AStar.html">AStar</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
-						</li>
-						
-						<li class="class-depth-2">
 							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
 						</li>
 						
 						<li class="class-depth-1">
@@ -823,10 +769,6 @@
 						</li>
 						
 						<li class="class-depth-1">
-							<a href="PIXI.PIXI.html">PIXI</a>
-						</li>
-						
-						<li class="class-depth-1">
 							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
 						</li>
 						
@@ -882,10 +824,6 @@
 						
 						<li class="class-depth-0">
 							<a href="global.html#init">init</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#set">set</a>
 						</li>
 						
 
@@ -1027,6 +965,9 @@
 
     
         
+            <div class="description"><p>Namespace-class for <a href="http://www.pixijs.com/">pixi.js</a>.</p>
+<p>Contains assorted static properties and enumerations.</p></div>
+        
 
         
 <dl class="details">
@@ -1041,6 +982,13 @@
     
 
     
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mat Groves http://matgroves.com/ @Doormat23</li>
+        </ul>
+    </dd>
+    
 
     
 
@@ -1050,7 +998,7 @@
 
     
     <dt class="tag-source">Source -
-    <a href="docs_pixi-jsdoc.js.html">docs/pixi-jsdoc.js</a>, <a href="docs_pixi-jsdoc.js.html#sunlight-1-line-1">line 1</a>
+    pixi/Pixi.js, line 1
     </dt>
     
 
@@ -1167,14 +1115,6 @@
             
                 
                 <dt class="class-depth-1">
-                    <a href="PIXI.PIXI.html">PIXI</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
                     <a href="PIXI.PixiFastShader.html">PixiFastShader</a>
                 </dt>
                 <dd>
@@ -1259,7 +1199,629 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
 
+        <dl>
+            
+<dt>
+    <h4 class="name "
+        id=".glContexts"><span class="type-signature">&lt;static> </span>glContexts<span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mat Groves http://matgroves.com/ @Doormat23</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    pixi/renderers/webgl/WebGLRenderer.js, line 5
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name "
+        id=".TextureSilentFail"><span class="type-signature">&lt;static> </span>TextureSilentFail<span class="type-signature"> :boolean</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+    <div class="description">
+        <p>TextureSilentFail is a boolean that defaults to <code>false</code>.
+If <code>true</code> then <a href="PIXI.Texture.html#setFrame">PIXI.Texture#setFrame</a> will no longer throw an error if the texture dimensions are incorrect.
+Instead <a href="PIXI.Texture.html#valid">PIXI.Texture#valid</a> will be set to <code>false</code> (#1556)</p>
+    </div>
+    
+    
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    pixi/textures/Texture.js, line 12
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<dt>
+    <h4 class="name "
+        id=".CompileFragmentShader"><span class="type-signature">&lt;static> </span>CompileFragmentShader<span class="signature">(gl, shaderSrc)</span><span class="type-signature"> &rarr; {Any}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>gl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">WebGLContext</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the current WebGL drawing context</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>shaderSrc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+
+    
+    <h5>Returns:</h5>
+    <div class="returns">
+        
+            
+    
+        <div class="returns-type">
+        
+<span class="param-type">Any</span>
+
+ -
+        </div>
+    
+    <div class="returns-desc param-desc">
+        
+    </div>
+
+
+        
+    </div>
+    
+    
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    pixi/renderers/webgl/utils/WebGLShaderUtils.js, line 26
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+       
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name "
+        id=".compileProgram"><span class="type-signature">&lt;static> </span>compileProgram<span class="signature">(gl, vertexSrc, fragmentSrc)</span><span class="type-signature"> &rarr; {Any}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>gl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">WebGLContext</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the current WebGL drawing context</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>vertexSrc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>fragmentSrc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+
+    
+    <h5>Returns:</h5>
+    <div class="returns">
+        
+            
+    
+        <div class="returns-type">
+        
+<span class="param-type">Any</span>
+
+ -
+        </div>
+    
+    <div class="returns-desc param-desc">
+        
+    </div>
+
+
+        
+    </div>
+    
+    
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    pixi/renderers/webgl/utils/WebGLShaderUtils.js, line 69
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+       
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name "
+        id=".CompileVertexShader"><span class="type-signature">&lt;static> </span>CompileVertexShader<span class="signature">(gl, shaderSrc)</span><span class="type-signature"> &rarr; {Any}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name"><code>gl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">WebGLContext</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the current WebGL drawing context</p></td>
+        </tr>
+
+	
+
+        <tr>
+            
+                <td class="name"><code>shaderSrc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+
+    
+    <h5>Returns:</h5>
+    <div class="returns">
+        
+            
+    
+        <div class="returns-type">
+        
+<span class="param-type">Any</span>
+
+ -
+        </div>
+    
+    <div class="returns-desc param-desc">
+        
+    </div>
+
+
+        
+    </div>
+    
+    
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source -
+    pixi/renderers/webgl/utils/WebGLShaderUtils.js, line 14
+    </dt>
+    
+
+    
+
+    
+
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+       
+    
+    
+</dd>
+
+        </dl>
     
 
     
@@ -1285,7 +1847,7 @@
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
-		on Fri Jul 21 2017 07:19:26 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Wed, 16 Aug 2017 06:51:21 GMT using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>

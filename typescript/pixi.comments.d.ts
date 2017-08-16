@@ -272,8 +272,8 @@ declare module PIXI {
         * Then calls BaseTexture.dirty.
         * Important for when you don't want to modify the source object by forcing in `complete` or dimension properties it may not have.
         * 
-        * @param width - The new width to force the BaseTexture to be.
-        * @param height - The new height to force the BaseTexture to be.
+        * @param width The new width to force the BaseTexture to be.
+        * @param height The new height to force the BaseTexture to be.
         */
         forceLoaded(width: number, height: number): void;
 
@@ -403,6 +403,10 @@ declare module PIXI {
         */
         constructor(game: Phaser.Game);
 
+
+        /**
+        * A reference to the Phaser Game instance.
+        */
         game: Phaser.Game;
 
         /**
@@ -464,6 +468,10 @@ declare module PIXI {
         * Internal var.
         */
         count: number;
+
+        /**
+        * Instance of a PIXI.CanvasMaskManager, handles masking when using the canvas renderer
+        */
         maskManager: CanvasMaskManager;
 
         /**
@@ -486,6 +494,7 @@ declare module PIXI {
         * @param height the new height of the canvas view
         */
         resize(width: number, height: number): void;
+        setTexturePriority(textureNameCollection: string[]): string[];
 
         /**
         * Removes everything from the renderer and optionally removes the Canvas DOM element.
@@ -546,6 +555,7 @@ declare module PIXI {
         * 
         * The value of this property does not reflect any alpha values set further up the display list.
         * To obtain that value please see the `worldAlpha` property.
+        * Default: 1
         */
         alpha: number;
         buttonMode: boolean;
@@ -562,7 +572,7 @@ declare module PIXI {
         * Cached Bitmaps do not track their parents. If you update a property of this DisplayObject, it will not
         * re-generate the cached bitmap automatically. To do that you need to call `DisplayObject.updateCache`.
         * 
-        * To remove a cached bitmap, set this property to `null`.
+        * To remove a cached bitmap, set this property to `null`. Cache this DisplayObject as a Bitmap. Set to `null` to remove an existing cached bitmap.
         */
         cacheAsBitmap: boolean;
         defaultCursor: string;
@@ -580,7 +590,7 @@ declare module PIXI {
         * To remove filters, set this property to `null`.
         * 
         * Note: You cannot have a filter set, and a MULTIPLY Blend Mode active, at the same time. Setting a
-        * filter will reset this DisplayObjects blend mode to NORMAL.
+        * filter will reset this DisplayObjects blend mode to NORMAL. An Array of Phaser.Filter objects, or objects that extend them.
         */
         filters: AbstractFilter[];
 
@@ -595,7 +605,7 @@ declare module PIXI {
         * Sets a mask for this DisplayObject. A mask is an instance of a Graphics object.
         * When applied it limits the visible area of this DisplayObject to the shape of the mask.
         * Under a Canvas renderer it uses shape clipping. Under a WebGL renderer it uses a Stencil Buffer.
-        * To remove a mask, set this property to `null`.
+        * To remove a mask, set this property to `null`. The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
         */
         mask: Phaser.Graphics;
 
@@ -654,6 +664,7 @@ declare module PIXI {
         * 
         * The value of this property does not reflect any visible values set further up the display list.
         * To obtain that value please see the `worldVisible` property.
+        * Default: true
         */
         visible: boolean;
 
@@ -737,6 +748,19 @@ declare module PIXI {
 
         click(e: InteractionData): void;
         displayObjectUpdateTransform(parent?: DisplayObjectContainer): void;
+
+        /**
+        * Generates a RenderTexture based on this DisplayObject, which can they be used to texture other Sprites.
+        * This can be useful if your DisplayObject is static, or complicated, and needs to be reused multiple times.
+        * 
+        * Please note that no garbage collection takes place on old textures. It is up to you to destroy old textures,
+        * and references to them, so they don't linger in memory.
+        * 
+        * @param resolution The resolution of the texture being generated. - Default: 1
+        * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values. - Default: PIXI.scaleModes.DEFAULT
+        * @param renderer The renderer used to generate the texture.
+        * @return - A RenderTexture containing an image of this DisplayObject at the time it was invoked.
+        */
         generateTexture(resolution?: number, scaleMode?: number, renderer?: PixiRenderer | number): Phaser.RenderTexture;
         mousedown(e: InteractionData): void;
         mouseout(e: InteractionData): void;
@@ -750,12 +774,46 @@ declare module PIXI {
         rightupoutside(e: InteractionData): void;
         setStageReference(stage: DisplayObjectContainer): void;
         tap(e: InteractionData): void;
+
+        /**
+        * Calculates the global position of this DisplayObject, based on the position given.
+        * 
+        * @param position The global position to calculate from.
+        * @return - A point object representing the position of this DisplayObject based on the global position given.
+        */
         toGlobal(position: Point): Point;
+
+        /**
+        * Calculates the local position of this DisplayObject, relative to another point.
+        * 
+        * @param position The world origin to calculate from.
+        * @param from An optional DisplayObject to calculate the global position from.
+        * @return - A point object representing the position of this DisplayObject based on the global position given.
+        */
         toLocal(position: Point, from: DisplayObject): Point;
         touchend(e: InteractionData): void;
         touchendoutside(e: InteractionData): void;
         touchstart(e: InteractionData): void;
         touchmove(e: InteractionData): void;
+
+        /**
+        * Updates the transform matrix this DisplayObject uses for rendering.
+        * 
+        * If the object has no parent, and no parent parameter is provided, it will default to
+        * Phaser.Game.World as the parent transform to use. If that is unavailable the transform fails to take place.
+        * 
+        * The `parent` parameter has priority over the actual parent. Use it as a parent override.
+        * Setting it does **not** change the actual parent of this DisplayObject.
+        * 
+        * Calling this method updates the `worldTransform`, `worldAlpha`, `worldPosition`, `worldScale`
+        * and `worldRotation` properties.
+        * 
+        * If a `transformCallback` has been specified, it is called at the end of this method, and is passed
+        * the new, updated, worldTransform property, along with the parent transform used.
+        * 
+        * @param parent Optional parent to calculate this DisplayObjects transform from.
+        * @return - A reference to this DisplayObject.
+        */
         updateTransform(parent?: DisplayObjectContainer): void;
 
     }
@@ -779,15 +837,7 @@ declare module PIXI {
         * [read-only] The array of children of this container.
         */
         children: DisplayObject[];
-
-        /**
-        * The height of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
-        */
         height: number;
-
-        /**
-        * The width of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
-        */
         width: number;
 
         /**
@@ -883,15 +933,15 @@ declare module PIXI {
         /**
         * Swaps the position of 2 Display Objects within this container.
         * 
-        * @param child -
-        * @param child2 -
+        * @param child
+        * @param child2
         */
         swapChildren(child: DisplayObject, child2: DisplayObject): void;
 
         /**
         * Determines whether the specified display object is a child of the DisplayObjectContainer instance or the instance itself.
         * 
-        * @param child -
+        * @param child
         */
         contains(child: DisplayObject): boolean;
 
@@ -1356,6 +1406,11 @@ declare module PIXI {
         tint: number;
 
 
+        /**
+        * A Point-like object.
+        * Default: {"x":0,"y":0}
+        */
+
                                /**
                                * The horizontal position of the DisplayObject, in pixels, relative to its parent.
                                * If you need the world position of the DisplayObject, use `DisplayObject.worldPosition` instead.
@@ -1627,8 +1682,8 @@ declare module PIXI {
         /**
         * 
         * 
-        * @param spriteBatch -
-        * @param renderSession -
+        * @param spriteBatch
+        * @param renderSession
         */
         begin(spriteBatch: SpriteBatch, renderSession: RenderSession): void;
         destroy(removeView?: boolean): void;
@@ -1637,14 +1692,14 @@ declare module PIXI {
         /**
         * 
         * 
-        * @param spriteBatch -
+        * @param spriteBatch
         */
         render(spriteBatch: SpriteBatch): void;
 
         /**
         * 
         * 
-        * @param sprite -
+        * @param sprite
         */
         renderSprite(sprite: Sprite): void;
 
@@ -1680,8 +1735,8 @@ declare module PIXI {
         /**
         * 
         * 
-        * @param renderSession -
-        * @param buffer -
+        * @param renderSession
+        * @param buffer
         */
         begin(renderSession: RenderSession, buffer: ArrayBuffer): void;
 
@@ -1728,8 +1783,8 @@ declare module PIXI {
         /**
         * Renders the graphics object
         * 
-        * @param graphics -
-        * @param renderSession -
+        * @param graphics
+        * @param renderSession
         */
         static renderGraphics(graphics: Phaser.Graphics, renderRession: RenderSession): void;
 
@@ -1744,8 +1799,8 @@ declare module PIXI {
         /**
         * 
         * 
-        * @param webGL -
-        * @param type -
+        * @param webGL
+        * @param type
         */
         static switchMode(webGL: WebGLRenderingContext, type: number): any;
 
@@ -1753,7 +1808,7 @@ declare module PIXI {
         * Builds a rectangle to draw
         * 
         * @param graphicsData The graphics object containing all the necessary properties
-        * @param webGLData -
+        * @param webGLData
         */
         static buildRectangle(graphicsData: Phaser.GraphicsData, webGLData: any): void;
 
@@ -1761,7 +1816,7 @@ declare module PIXI {
         * Builds a rounded rectangle to draw
         * 
         * @param graphicsData The graphics object containing all the necessary properties
-        * @param webGLData -
+        * @param webGLData
         */
         static buildRoundedRectangle(graphicsData: Phaser.GraphicsData, webGLData: any): void;
 
@@ -1782,7 +1837,7 @@ declare module PIXI {
         * Builds a circle to draw
         * 
         * @param graphicsData The graphics object to draw
-        * @param webGLData -
+        * @param webGLData
         */
         static buildCircle(graphicsData: Phaser.GraphicsData, webGLData: any): void;
 
@@ -1790,7 +1845,7 @@ declare module PIXI {
         * Builds a line to draw
         * 
         * @param graphicsData The graphics object containing all the necessary properties
-        * @param webGLData -
+        * @param webGLData
         */
         static buildLine(graphicsData: Phaser.GraphicsData, webGLData: any): void;
 
@@ -1798,7 +1853,7 @@ declare module PIXI {
         * Builds a complex polygon to draw
         * 
         * @param graphicsData The graphics object containing all the necessary properties
-        * @param webGLData -
+        * @param webGLData
         */
         static buildComplexPoly(graphicsData: Phaser.GraphicsData, webGLData: any): void;
 
@@ -1806,7 +1861,7 @@ declare module PIXI {
         * Builds a polygon to draw
         * 
         * @param graphicsData The graphics object containing all the necessary properties
-        * @param webGLData -
+        * @param webGLData
         */
         static buildPoly(graphicsData: Phaser.GraphicsData, webGLData: any): boolean;
 
@@ -1846,7 +1901,7 @@ declare module PIXI {
         /**
         * Removes the last filter from the filter stack and doesn't return it.
         * 
-        * @param maskData -
+        * @param maskData
         * @param renderSession an object containing all the useful parameters
         */
         popMask(renderSession: RenderSession): void;
@@ -1854,8 +1909,8 @@ declare module PIXI {
         /**
         * Applies the Mask and adds it to the current filter stack.
         * 
-        * @param maskData -
-        * @param renderSession -
+        * @param maskData
+        * @param renderSession
         */
         pushMask(maskData: any[], renderSession: RenderSession): void;
 
@@ -1890,6 +1945,10 @@ declare module PIXI {
         */
         constructor(game: Phaser.Game);
 
+
+        /**
+        * A reference to the Phaser Game instance.
+        */
         game: Phaser.Game;
         type: number;
 
@@ -2071,7 +2130,7 @@ declare module PIXI {
         /**
         * Sets the current shader.
         * 
-        * @param shader -
+        * @param shader
         */
         setShader(shader: IPixiShader): boolean;
 
@@ -2087,9 +2146,9 @@ declare module PIXI {
         /**
         * TODO this does not belong here!
         * 
-        * @param graphics -
-        * @param webGLData -
-        * @param renderSession -
+        * @param graphics
+        * @param webGLData
+        * @param renderSession
         */
         bindGraphics(graphics: Phaser.Graphics, webGLData: any[], renderSession: RenderSession): void;
 
@@ -2101,9 +2160,9 @@ declare module PIXI {
         /**
         * 
         * 
-        * @param graphics -
-        * @param webGLData -
-        * @param renderSession -
+        * @param graphics
+        * @param webGLData
+        * @param renderSession
         */
         popStencil(graphics: Phaser.Graphics, webGLData: any[], renderSession: RenderSession): void;
         pushStencil(graphics: Phaser.Graphics, webGLData: any[], renderSession: RenderSession): void;
@@ -2179,16 +2238,16 @@ declare module PIXI {
         * 
         * 
         * @param sprite the sprite to render when using this spritebatch
-        * @param matrix - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
+        * @param matrix Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
         */
         render(sprite: Sprite): void;
 
         /**
         * 
         * 
-        * @param texture -
-        * @param size -
-        * @param startIndex -
+        * @param texture
+        * @param size
+        * @param startIndex
         */
         renderBatch(texture: Texture, size: number, startIndex: number): void;
 
