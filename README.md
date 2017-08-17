@@ -188,6 +188,10 @@ Phaser includes a grunt based build system, which allows you to strip out  featu
 
 As a result of this work the minimum build size of Phaser is now just 80KB minified and gzipped.
 
+1. Run `npm install`
+2. Run `grunt custom` to see the module and argument lists (it will error; that's OK)
+3. Run, e.g., `grunt custom --exclude=sound,keyboard` and then find the built script in [dist](dist/).
+
 See the [Creating a Custom Phaser Build](http://phaser.io/tutorials/creating-custom-phaser-builds) tutorial for details.
 
 <a name="browserify"></a>
@@ -295,9 +299,17 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Updates
 
+* Since v2.8.4 custom build commands need a slightly different argument syntax (#321, #324), e.g.,
+
+  ```bash
+  grunt custom --exclude=moduleName --filename=phaser-custom
+  ```
+
 ### Bug Fixes
 
 ### Thanks
+
+@goldfire, @rafelsanso
 
 ## Version 2.8.4 - 15th August 2017
 
