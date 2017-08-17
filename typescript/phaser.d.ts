@@ -3980,6 +3980,9 @@ declare module Phaser {
         static multiply(a: Phaser.Point, b: Phaser.Point, out?: Phaser.Point): Phaser.Point;
         static divide(a: Phaser.Point, b: Phaser.Point, out?: Phaser.Point): Phaser.Point;
         static equals(a: Phaser.Point, b: Phaser.Point): boolean;
+        static equalsXY(a: Phaser.Point, x: number, y: number): boolean;
+        static fuzzyEquals(a: Phaser.Point, b: Phaser.Point, epsilon?: number): boolean;
+        static fuzzyEqualsXY(a: Phaser.Point, x: number, y: number, epsilon?: number): boolean;
         static angle(a: Phaser.Point, b: Phaser.Point): number;
         static angleSq(a: Phaser.Point, b: Phaser.Point): number;
         static negative(a: Phaser.Point, out?: Phaser.Point): Phaser.Point;
@@ -4013,6 +4016,9 @@ declare module Phaser {
         distance(dest: Phaser.Point, round?: boolean): number;
         dot(a: Phaser.Point): number;
         equals(a: Phaser.Point): boolean;
+        equalsXY(x: number, y: number): boolean;
+        fuzzyEquals(a: Phaser.Point, epsilon?: number): boolean;
+        fuzzyEqualsXY(x: number, y: number, epsilon?: number): boolean;
         floor(): Phaser.Point;
         getMagnitude(): number;
         getMagnitudeSq(): number;
