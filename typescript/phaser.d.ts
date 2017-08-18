@@ -219,6 +219,7 @@ declare module Phaser {
 
         static getRandomItem<T>(objects: T[], startIndex?: number, length?: number): T;
         static removeRandomItem<T>(objects: T[], startIndex?: number, length?: number): T;
+        static remove<T>(array: T[], startIndex: number, count?: number): T;
         static shuffle<T>(array: T[]): T[];
         static transposeMatrix<T>(array: T[]): T;
         static rotateMatrix(matrix: any, direction: number | string): any;
