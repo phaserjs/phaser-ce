@@ -349,6 +349,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.Circle#sample creates or positions a set of points or objects on the circle.
 * Phaser.Tween.updateColor is a helper for tweening color objects.
 * Phaser.Utils.Debug#physicsGroup displays all the physics bodies in a Group.
+* Phaser.Group#kill and Phaser.Group#revive toggle a Group's `alive`, `exists`, and `visible` properties (#339).
 
 ### Updates
 

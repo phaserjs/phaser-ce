@@ -1919,6 +1919,7 @@ declare module Phaser {
         getTop(): any;
         hasProperty(child: any, key: string[]): boolean;
         iterate(key: string, value: any, returnType: number, callback?: Function, callbackContext?: any, ...args: any[]): any;
+        kill(): void;
         killAll(): void;
         moveAll(group: Phaser.Group, silent?: boolean): Phaser.Group;
         moveDown(child: any): any;
@@ -1937,6 +1938,7 @@ declare module Phaser {
         resetChild(child: any, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
         resetCursor(index?: number): any;
         reverse(): void;
+        revive(): void;
         reviveAll(): void;
         scatter(rect?: Phaser.Rectangle, checkExists?: boolean): void;
         sendToBack(child: any): any;
