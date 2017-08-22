@@ -1,25 +1,29 @@
 {
-	"tags"      : {
-		"allowUnknownTags" : true
-	},
-	"plugins"   : ["plugins/markdown"],
-	"templates" : {
-		"cleverLinks"     : false,
-		"monospaceLinks"  : false,
-		"default"         : {
-			"outputSourceFiles" : true
-		},
-		"systemName"      : "DocStrap",
-		"footer"          : "",
-		"copyright"       : "DocStrap Copyright © 2012-2013 The contributors to the JSDoc3 and DocStrap projects.",
-		"navType"         : "vertical",
-		"theme"           : "cerulean",
-		"linenums"        : true,
-		"collapseSymbols" : false,
-		"inverseNav"      : true
-	},
-	"markdown"  : {
-		"parser"   : "gfm",
-		"hardwrap" : true
-	}
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "plugins": ["plugins/markdown"],
+    "templates": {
+        "cleverLinks": false,
+        "collapseSymbols": false,
+        "copyright": "DocStrap Copyright © 2012-2015 The contributors to the JSDoc3 and DocStrap projects.",
+        "dateFormat": "ddd MMM Do YYYY",
+        "footer": "This is from <var>template/jsdoc.conf.json</var>.",
+        "inverseNav": false,
+        "linenums": false,
+        "logoFile": "",
+        "methodHeadingReturns": false,
+        "monospaceLinks": false,
+        "navType": "vertical",
+        "outputSourceFiles": true,
+        "outputSourcePath": true,
+        "protocol": "html://",
+        "syntaxTheme": "default",
+        "systemName": "DocStrap",
+        "theme": "phaser"
+    },
+    "markdown": {
+        "parser": "gfm",
+        "hardwrap": false
+    }
 }
