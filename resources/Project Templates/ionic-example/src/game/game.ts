@@ -1,4 +1,7 @@
 
+// import pixi, p2 and phaser ce
+import "pixi";
+import "p2";
 import * as Phaser from "phaser-ce";
 
 /**
