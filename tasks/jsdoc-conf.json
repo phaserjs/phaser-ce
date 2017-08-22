@@ -40,24 +40,24 @@
         "plugins/markdown"
     ],
     "templates": {
-        "cleverLinks"     : false,
-        "monospaceLinks"  : false,
-        "default"         : {
-            "outputSourceFiles" : false,
-            "outputSourcePath"  : false
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "default": {
+            "outputSourceFiles": false,
+            "outputSourcePath": false
         },
-        "systemName"      : "Phaser CE",
-        "footer"          : "",
-        "copyright"       : "Phaser Copyright © 2012-2016 Photon Storm Ltd.",
-        "navType"         : "vertical",
-        "theme"           : "phaser",
-        "linenums"        : true,
-        "collapseSymbols" : false,
-        "inverseNav"      : true
+        "systemName": "Phaser CE",
+        "footer": "",
+        "copyright": "Phaser Copyright © 2012-2016 Photon Storm Ltd.",
+        "navType": "vertical",
+        "theme": "phaser",
+        "linenums": true,
+        "collapseSymbols": false,
+        "inverseNav": true
     },
-    "markdown"  : {
-        "parser"   : "gfm",
-        "hardwrap" : false
+    "markdown": {
+        "parser": "gfm",
+        "hardwrap": false
     },
     "opts": {
         "encoding": "utf8",
