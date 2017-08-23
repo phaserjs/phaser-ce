@@ -2,7 +2,6 @@
 var data = obj;
 var self = this;
 ?>
-<hr>
 <dt class="name" id="<?js= id ?>">
     <h4 id="<?js= id ?>"><?js= data.attribs + name + (data.signature ? data.signature : '') ?></h4>
 
@@ -12,7 +11,7 @@ var self = this;
 </dt>
 <dd>
     <?js if (data && data.description) { ?>
-    <div class="description">
+    <div class="description members-description">
         <?js= data.description ?>
     </div>
     <?js } ?>

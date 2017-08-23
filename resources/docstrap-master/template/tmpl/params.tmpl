@@ -102,7 +102,7 @@
                 </td>
             <?js } ?>
 
-            <td class="description last"><?js= param.description ?><?js if (param.subparams) { ?>
+            <td class="description param-description last"><?js= param.description ?><?js if (param.subparams) { ?>
                 <h6 class="method-params-label method-subparams-label">Properties</h6>
                 <?js= self.partial('params.tmpl', param.subparams) ?>
             <?js } ?></td>

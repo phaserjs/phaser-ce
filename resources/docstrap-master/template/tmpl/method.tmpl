@@ -2,7 +2,6 @@
 var data = obj;
 var self = this;
 ?>
-<hr>
 <dt>
     <h4 class="name" id="<?js= id ?>">
       <?js= data.attribs + (kind === 'class' ? 'new ' : '') + name + (kind !== 'event' ? data.signature : '') ?>
@@ -15,7 +14,7 @@ var self = this;
 <dd>
 
     <?js if (data && data.description) { ?>
-    <div class="description">
+    <div class="description method-description">
         <?js= data.description ?>
     </div>
     <?js } ?>

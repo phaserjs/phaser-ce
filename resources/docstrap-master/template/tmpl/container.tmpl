@@ -41,7 +41,7 @@
     <div class="container-overview">
     <?js if (doc.kind === 'module' && doc.modules) { ?>
         <?js if (doc.description) { ?>
-            <div class="description"><?js= doc.description ?></div>
+            <div class="description container-description"><?js= doc.description ?></div>
         <?js } ?>
 
         <?js doc.modules.forEach(function(module) { ?>
@@ -51,7 +51,7 @@
         <?js= self.partial('method.tmpl', doc) ?>
     <?js } else { ?>
         <?js if (doc.description) { ?>
-            <div class="description"><?js= doc.description ?></div>
+            <div class="description container-description"><?js= doc.description ?></div>
         <?js } ?>
 
         <?js= self.partial('details.tmpl', doc) ?>
