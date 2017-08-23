@@ -1,968 +1,126 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Namespace: Phaser · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
+	<meta name="viewport" content="width=device-width">
+	<title>Phaser CE Namespace: Phaser</title>
+	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
+	<link rel="stylesheet" href="styles/site.phaser.css">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+          </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#init">init</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="#">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="#">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Namespace: Phaser</h1>-->
+	<h1 class="page-title">Namespace: Phaser</h1>
 <section>
 
 <header>
-    <h2>
-    Phaser
-    </h2>
+    
+        <h2>
+        Phaser
+        </h2>
+        
     
 </header>
 
+
 <article>
     <div class="container-overview">
-    
-
     
         
 
@@ -970,7 +128,11 @@
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -980,31 +142,36 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 7
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
 
         
     
     </div>
-
-    
 
     
 
@@ -1014,816 +181,311 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Animation.html">Animation</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.AnimationManager.html">AnimationManager</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.AnimationParser.html">AnimationParser</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.ArraySet.html">ArraySet</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.AudioSprite.html">AudioSprite</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.BitmapData.html">BitmapData</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.BitmapText.html">BitmapText</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Bullet.html">Bullet</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Button.html">Button</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Cache.html">Cache</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Camera.html">Camera</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Canvas.html">Canvas</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.CanvasPool.html">CanvasPool</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Circle.html">Circle</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Color.html">Color</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Create.html">Create</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Creature.html">Creature</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Device.html">Device</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.DeviceButton.html">DeviceButton</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.DOM.html">DOM</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Easing.html">Easing</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Ellipse.html">Ellipse</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Events.html">Events</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Filter.html">Filter</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.FlexGrid.html">FlexGrid</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.FlexLayer.html">FlexLayer</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Frame.html">Frame</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.FrameData.html">FrameData</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Game.html">Game</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Gamepad.html">Gamepad</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Graphics.html">Graphics</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Group.html">Group</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Hermite.html">Hermite</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Image.html">Image</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.ImageCollection.html">ImageCollection</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Input.html">Input</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.InputHandler.html">InputHandler</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Key.html">Key</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Keyboard.html">Keyboard</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.KeyCode.html">KeyCode</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Line.html">Line</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.LinkedList.html">LinkedList</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Loader.html">Loader</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.LoaderParser.html">LoaderParser</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Math.html">Math</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Matrix.html">Matrix</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Mouse.html">Mouse</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.MSPointer.html">MSPointer</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Net.html">Net</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Particle.html">Particle</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Particles.html">Particles</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Path.html">Path</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.PathFollower.html">PathFollower</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.PathPoint.html">PathPoint</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Physics.html">Physics</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Plugin.html">Plugin</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.PluginManager.html">PluginManager</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Point.html">Point</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Pointer.html">Pointer</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.PointerMode.html">PointerMode</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Polygon.html">Polygon</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.QuadTree.html">QuadTree</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Rectangle.html">Rectangle</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.RenderTexture.html">RenderTexture</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.RetroFont.html">RetroFont</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Rope.html">Rope</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.ScaleManager.html">ScaleManager</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Signal.html">Signal</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.SignalBinding.html">SignalBinding</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.SinglePad.html">SinglePad</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Sound.html">Sound</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.SoundManager.html">SoundManager</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Sprite.html">Sprite</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Stage.html">Stage</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.State.html">State</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.StateManager.html">StateManager</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Text.html">Text</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Tile.html">Tile</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Tilemap.html">Tilemap</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.TilemapParser.html">TilemapParser</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Tileset.html">Tileset</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.TileSprite.html">TileSprite</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Time.html">Time</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Timer.html">Timer</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.TimerEvent.html">TimerEvent</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Touch.html">Touch</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Tween.html">Tween</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.TweenData.html">TweenData</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.TweenManager.html">TweenManager</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Utils.html">Utils</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Video.html">Video</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.Weapon.html">Weapon</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
-                
-                <dt class="class-depth-1">
-                    <a href="Phaser.World.html">World</a>
-                </dt>
-                <dd>
-                    
-                </dd>
-            
+            <dt><a href="Phaser.Animation.html">Animation</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.AnimationManager.html">AnimationManager</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.AnimationParser.html">AnimationParser</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.ArraySet.html">ArraySet</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.ArrayUtils.html">ArrayUtils</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.AudioSprite.html">AudioSprite</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.BitmapData.html">BitmapData</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.BitmapText.html">BitmapText</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Bullet.html">Bullet</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Button.html">Button</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Cache.html">Cache</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Camera.html">Camera</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Canvas.html">Canvas</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.CanvasPool.html">CanvasPool</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Circle.html">Circle</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Color.html">Color</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Create.html">Create</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Creature.html">Creature</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Device.html">Device</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.DeviceButton.html">DeviceButton</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.DOM.html">DOM</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Easing.html">Easing</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Ellipse.html">Ellipse</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Events.html">Events</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Filter.html">Filter</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.FlexGrid.html">FlexGrid</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.FlexLayer.html">FlexLayer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Frame.html">Frame</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.FrameData.html">FrameData</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Game.html">Game</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.GameObjectCreator.html">GameObjectCreator</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.GameObjectFactory.html">GameObjectFactory</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Gamepad.html">Gamepad</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Graphics.html">Graphics</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Group.html">Group</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Hermite.html">Hermite</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Image.html">Image</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.ImageCollection.html">ImageCollection</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Input.html">Input</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.InputHandler.html">InputHandler</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Key.html">Key</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Keyboard.html">Keyboard</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.KeyCode.html">KeyCode</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Line.html">Line</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.LinkedList.html">LinkedList</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Loader.html">Loader</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.LoaderParser.html">LoaderParser</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Math.html">Math</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Matrix.html">Matrix</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Mouse.html">Mouse</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.MSPointer.html">MSPointer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Net.html">Net</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Particle.html">Particle</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Particles.html">Particles</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Path.html">Path</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.PathFollower.html">PathFollower</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.PathPoint.html">PathPoint</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Physics.html">Physics</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Plugin.html">Plugin</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.PluginManager.html">PluginManager</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Point.html">Point</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Pointer.html">Pointer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.PointerMode.html">PointerMode</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Polygon.html">Polygon</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.QuadTree.html">QuadTree</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Rectangle.html">Rectangle</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.RenderTexture.html">RenderTexture</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.RetroFont.html">RetroFont</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Rope.html">Rope</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.RoundedRectangle.html">RoundedRectangle</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.ScaleManager.html">ScaleManager</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Signal.html">Signal</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.SignalBinding.html">SignalBinding</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.SinglePad.html">SinglePad</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Sound.html">Sound</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.SoundManager.html">SoundManager</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Sprite.html">Sprite</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.SpriteBatch.html">SpriteBatch</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Stage.html">Stage</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.State.html">State</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.StateManager.html">StateManager</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Text.html">Text</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Tile.html">Tile</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Tilemap.html">Tilemap</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.TilemapLayer.html">TilemapLayer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.TilemapParser.html">TilemapParser</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Tileset.html">Tileset</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.TileSprite.html">TileSprite</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Time.html">Time</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Timer.html">Timer</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.TimerEvent.html">TimerEvent</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Touch.html">Touch</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Tween.html">Tween</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.TweenData.html">TweenData</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.TweenManager.html">TweenManager</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Utils.html">Utils</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Video.html">Video</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.Weapon.html">Weapon</a></dt>
+            <dd></dd>
+        
+            <dt><a href="Phaser.World.html">World</a></dt>
+            <dd></dd>
         </dl>
+    
+
     
 
     
@@ -1833,28 +495,40 @@
 
         <dl>
             
-<dt>
-    <h4 class="name "
-        id=".ANGLE_DOWN"><span class="type-signature">&lt;static, constant> </span>ANGLE_DOWN<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ANGLE_DOWN">
+    <h4 id=".ANGLE_DOWN"><span class="type-signature">&lt;static, constant> </span>ANGLE_DOWN<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Angle (in degrees) a Game Object needs to be set to in order to face down.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1864,53 +538,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 341
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ANGLE_LEFT"><span class="type-signature">&lt;static, constant> </span>ANGLE_LEFT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ANGLE_LEFT">
+    <h4 id=".ANGLE_LEFT"><span class="type-signature">&lt;static, constant> </span>ANGLE_LEFT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Angle (in degrees) a Game Object needs to be set to in order to face left.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1920,53 +613,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 348
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ANGLE_NORTH_EAST"><span class="type-signature">&lt;static, constant> </span>ANGLE_NORTH_EAST<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ANGLE_NORTH_EAST">
+    <h4 id=".ANGLE_NORTH_EAST"><span class="type-signature">&lt;static, constant> </span>ANGLE_NORTH_EAST<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Angle (in degrees) a Game Object needs to be set to in order to face north east.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1976,53 +688,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 362
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ANGLE_NORTH_WEST"><span class="type-signature">&lt;static, constant> </span>ANGLE_NORTH_WEST<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ANGLE_NORTH_WEST">
+    <h4 id=".ANGLE_NORTH_WEST"><span class="type-signature">&lt;static, constant> </span>ANGLE_NORTH_WEST<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Angle (in degrees) a Game Object needs to be set to in order to face north west.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2032,53 +763,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 369
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ANGLE_RIGHT"><span class="type-signature">&lt;static, constant> </span>ANGLE_RIGHT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ANGLE_RIGHT">
+    <h4 id=".ANGLE_RIGHT"><span class="type-signature">&lt;static, constant> </span>ANGLE_RIGHT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Angle (in degrees) a Game Object needs to be set to in order to face right.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2088,53 +838,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 355
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ANGLE_SOUTH_EAST"><span class="type-signature">&lt;static, constant> </span>ANGLE_SOUTH_EAST<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ANGLE_SOUTH_EAST">
+    <h4 id=".ANGLE_SOUTH_EAST"><span class="type-signature">&lt;static, constant> </span>ANGLE_SOUTH_EAST<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Angle (in degrees) a Game Object needs to be set to in order to face south east.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2144,53 +913,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 376
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ANGLE_SOUTH_WEST"><span class="type-signature">&lt;static, constant> </span>ANGLE_SOUTH_WEST<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ANGLE_SOUTH_WEST">
+    <h4 id=".ANGLE_SOUTH_WEST"><span class="type-signature">&lt;static, constant> </span>ANGLE_SOUTH_WEST<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Angle (in degrees) a Game Object needs to be set to in order to face south west.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2200,53 +988,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 383
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ANGLE_UP"><span class="type-signature">&lt;static, constant> </span>ANGLE_UP<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ANGLE_UP">
+    <h4 id=".ANGLE_UP"><span class="type-signature">&lt;static, constant> </span>ANGLE_UP<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Angle (in degrees) a Game Object needs to be set to in order to face up.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2256,53 +1063,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 334
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".AUTO"><span class="type-signature">&lt;static, constant> </span>AUTO<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".AUTO">
+    <h4 id=".AUTO"><span class="type-signature">&lt;static, constant> </span>AUTO<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>AUTO renderer - picks between WebGL or Canvas based on device.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2312,53 +1138,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 26
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".BITMAPDATA"><span class="type-signature">&lt;static, constant> </span>BITMAPDATA<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".BITMAPDATA">
+    <h4 id=".BITMAPDATA"><span class="type-signature">&lt;static, constant> </span>BITMAPDATA<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2368,53 +1213,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 187
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".BITMAPTEXT"><span class="type-signature">&lt;static, constant> </span>BITMAPTEXT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".BITMAPTEXT">
+    <h4 id=".BITMAPTEXT"><span class="type-signature">&lt;static, constant> </span>BITMAPTEXT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2424,76 +1288,91 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 138
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".blendModes"><span class="type-signature">&lt;static, constant> </span>blendModes<span class="type-signature"> :Object</span></h4>
-    
+<dt class="name" id=".blendModes">
+    <h4 id=".blendModes"><span class="type-signature">&lt;static, constant> </span>blendModes<span class="type-signature"> :Object</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Various blend modes supported by Pixi.</p>
 <p>IMPORTANT: The WebGL renderer only supports the NORMAL, ADD, MULTIPLY and SCREEN blend modes.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-        <h5 class="subsection-title">Properties:</h5>
+    <h5 class="subsection-title">Properties:</h5>
 
-        <dl>
+    <dl>
 
 <table class="props table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2506,6 +1385,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2513,10 +1393,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2529,6 +1409,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2536,10 +1417,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2552,6 +1433,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2559,10 +1441,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2575,6 +1457,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2582,10 +1465,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2598,6 +1481,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2605,10 +1489,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2621,6 +1505,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2628,10 +1513,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2644,6 +1529,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2651,10 +1537,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2667,6 +1553,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2674,10 +1561,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2690,6 +1577,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2697,10 +1585,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2713,6 +1601,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2720,10 +1609,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2736,6 +1625,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2743,10 +1633,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2759,6 +1649,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2766,10 +1657,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2782,6 +1673,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2789,10 +1681,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2805,6 +1697,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2812,10 +1705,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2828,6 +1721,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2835,10 +1729,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2851,6 +1745,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2858,10 +1753,10 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2874,6 +1769,7 @@
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -2881,17 +1777,21 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 </dl>
 
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2901,53 +1801,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 481
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".BOTTOM_CENTER"><span class="type-signature">&lt;static, constant> </span>BOTTOM_CENTER<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".BOTTOM_CENTER">
+    <h4 id=".BOTTOM_CENTER"><span class="type-signature">&lt;static, constant> </span>BOTTOM_CENTER<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a bottom-center alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2957,53 +1876,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 467
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".BOTTOM_LEFT"><span class="type-signature">&lt;static, constant> </span>BOTTOM_LEFT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".BOTTOM_LEFT">
+    <h4 id=".BOTTOM_LEFT"><span class="type-signature">&lt;static, constant> </span>BOTTOM_LEFT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a bottom-left alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3013,53 +1951,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 460
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".BOTTOM_RIGHT"><span class="type-signature">&lt;static, constant> </span>BOTTOM_RIGHT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".BOTTOM_RIGHT">
+    <h4 id=".BOTTOM_RIGHT"><span class="type-signature">&lt;static, constant> </span>BOTTOM_RIGHT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a bottom-right alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3069,53 +2026,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 474
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".BUTTON"><span class="type-signature">&lt;static, constant> </span>BUTTON<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".BUTTON">
+    <h4 id=".BUTTON"><span class="type-signature">&lt;static, constant> </span>BUTTON<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3125,53 +2101,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 103
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".CANVAS"><span class="type-signature">&lt;static, constant> </span>CANVAS<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".CANVAS">
+    <h4 id=".CANVAS"><span class="type-signature">&lt;static, constant> </span>CANVAS<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Canvas Renderer.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3181,53 +2176,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 33
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".CANVAS_FILTER"><span class="type-signature">&lt;static, constant> </span>CANVAS_FILTER<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".CANVAS_FILTER">
+    <h4 id=".CANVAS_FILTER"><span class="type-signature">&lt;static, constant> </span>CANVAS_FILTER<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3237,53 +2251,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 194
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".CENTER"><span class="type-signature">&lt;static, constant> </span>CENTER<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".CENTER">
+    <h4 id=".CENTER"><span class="type-signature">&lt;static, constant> </span>CENTER<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a center alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3293,53 +2326,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 432
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".CIRCLE"><span class="type-signature">&lt;static, constant> </span>CIRCLE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".CIRCLE">
+    <h4 id=".CIRCLE"><span class="type-signature">&lt;static, constant> </span>CIRCLE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3349,53 +2401,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 243
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".CREATURE"><span class="type-signature">&lt;static, constant> </span>CREATURE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".CREATURE">
+    <h4 id=".CREATURE"><span class="type-signature">&lt;static, constant> </span>CREATURE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3405,53 +2476,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 285
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".DOWN"><span class="type-signature">&lt;static, constant> </span>DOWN<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".DOWN">
+    <h4 id=".DOWN"><span class="type-signature">&lt;static, constant> </span>DOWN<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Direction constant.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3461,53 +2551,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 89
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ELLIPSE"><span class="type-signature">&lt;static, constant> </span>ELLIPSE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ELLIPSE">
+    <h4 id=".ELLIPSE"><span class="type-signature">&lt;static, constant> </span>ELLIPSE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3517,53 +2626,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 208
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".EMITTER"><span class="type-signature">&lt;static, constant> </span>EMITTER<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".EMITTER">
+    <h4 id=".EMITTER"><span class="type-signature">&lt;static, constant> </span>EMITTER<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3573,53 +2701,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 173
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".GAMES"><span class="type-signature">&lt;static, constant> </span>GAMES<span class="type-signature"> :array</span></h4>
-    
+<dt class="name" id=".GAMES">
+    <h4 id=".GAMES"><span class="type-signature">&lt;static, constant> </span>GAMES<span class="type-signature"> :array</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>An array of Phaser game instances.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">array</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3629,53 +2776,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 19
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".GRAPHICS"><span class="type-signature">&lt;static, constant> </span>GRAPHICS<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".GRAPHICS">
+    <h4 id=".GRAPHICS"><span class="type-signature">&lt;static, constant> </span>GRAPHICS<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3685,53 +2851,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 117
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".GROUP"><span class="type-signature">&lt;static, constant> </span>GROUP<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".GROUP">
+    <h4 id=".GROUP"><span class="type-signature">&lt;static, constant> </span>GROUP<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3741,53 +2926,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 145
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".HEADLESS"><span class="type-signature">&lt;static, constant> </span>HEADLESS<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".HEADLESS">
+    <h4 id=".HEADLESS"><span class="type-signature">&lt;static, constant> </span>HEADLESS<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Headless renderer (not visual output)</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3797,53 +3001,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 47
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".HORIZONTAL"><span class="type-signature">&lt;static, constant> </span>HORIZONTAL<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".HORIZONTAL">
+    <h4 id=".HORIZONTAL"><span class="type-signature">&lt;static, constant> </span>HORIZONTAL<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A horizontal orientation</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3853,53 +3076,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 306
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".IMAGE"><span class="type-signature">&lt;static, constant> </span>IMAGE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".IMAGE">
+    <h4 id=".IMAGE"><span class="type-signature">&lt;static, constant> </span>IMAGE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3909,53 +3151,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 110
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".LANDSCAPE"><span class="type-signature">&lt;static, constant> </span>LANDSCAPE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".LANDSCAPE">
+    <h4 id=".LANDSCAPE"><span class="type-signature">&lt;static, constant> </span>LANDSCAPE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A landscape orientation</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3965,53 +3226,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 320
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".LEFT"><span class="type-signature">&lt;static, constant> </span>LEFT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".LEFT">
+    <h4 id=".LEFT"><span class="type-signature">&lt;static, constant> </span>LEFT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Direction constant.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4021,53 +3301,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 68
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".LEFT_BOTTOM"><span class="type-signature">&lt;static, constant> </span>LEFT_BOTTOM<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".LEFT_BOTTOM">
+    <h4 id=".LEFT_BOTTOM"><span class="type-signature">&lt;static, constant> </span>LEFT_BOTTOM<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a left-bottom alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4077,53 +3376,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 425
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".LEFT_TOP"><span class="type-signature">&lt;static, constant> </span>LEFT_TOP<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".LEFT_TOP">
+    <h4 id=".LEFT_TOP"><span class="type-signature">&lt;static, constant> </span>LEFT_TOP<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a left-center alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4133,53 +3451,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 418
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".LINE"><span class="type-signature">&lt;static, constant> </span>LINE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".LINE">
+    <h4 id=".LINE"><span class="type-signature">&lt;static, constant> </span>LINE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4189,53 +3526,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 257
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".MATRIX"><span class="type-signature">&lt;static, constant> </span>MATRIX<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".MATRIX">
+    <h4 id=".MATRIX"><span class="type-signature">&lt;static, constant> </span>MATRIX<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4245,53 +3601,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 264
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".NONE"><span class="type-signature">&lt;static, constant> </span>NONE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".NONE">
+    <h4 id=".NONE"><span class="type-signature">&lt;static, constant> </span>NONE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Direction constant.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4301,53 +3676,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 61
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".PENDING_ATLAS"><span class="type-signature">&lt;static, constant> </span>PENDING_ATLAS<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".PENDING_ATLAS">
+    <h4 id=".PENDING_ATLAS"><span class="type-signature">&lt;static, constant> </span>PENDING_ATLAS<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4357,53 +3751,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 299
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".POINT"><span class="type-signature">&lt;static, constant> </span>POINT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".POINT">
+    <h4 id=".POINT"><span class="type-signature">&lt;static, constant> </span>POINT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4413,53 +3826,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 271
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".POINTER"><span class="type-signature">&lt;static, constant> </span>POINTER<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".POINTER">
+    <h4 id=".POINTER"><span class="type-signature">&lt;static, constant> </span>POINTER<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4469,53 +3901,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 229
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".POLYGON"><span class="type-signature">&lt;static, constant> </span>POLYGON<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".POLYGON">
+    <h4 id=".POLYGON"><span class="type-signature">&lt;static, constant> </span>POLYGON<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4525,53 +3976,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 180
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".PORTRAIT"><span class="type-signature">&lt;static, constant> </span>PORTRAIT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".PORTRAIT">
+    <h4 id=".PORTRAIT"><span class="type-signature">&lt;static, constant> </span>PORTRAIT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A portrait orientation</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4581,53 +4051,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 327
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".RECTANGLE"><span class="type-signature">&lt;static, constant> </span>RECTANGLE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".RECTANGLE">
+    <h4 id=".RECTANGLE"><span class="type-signature">&lt;static, constant> </span>RECTANGLE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4637,53 +4126,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 250
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".RENDERTEXTURE"><span class="type-signature">&lt;static, constant> </span>RENDERTEXTURE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".RENDERTEXTURE">
+    <h4 id=".RENDERTEXTURE"><span class="type-signature">&lt;static, constant> </span>RENDERTEXTURE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4693,53 +4201,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 152
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".RETROFONT"><span class="type-signature">&lt;static, constant> </span>RETROFONT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".RETROFONT">
+    <h4 id=".RETROFONT"><span class="type-signature">&lt;static, constant> </span>RETROFONT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4749,53 +4276,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 222
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".RIGHT"><span class="type-signature">&lt;static, constant> </span>RIGHT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".RIGHT">
+    <h4 id=".RIGHT"><span class="type-signature">&lt;static, constant> </span>RIGHT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Direction constant.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4805,53 +4351,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 75
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".RIGHT_BOTTOM"><span class="type-signature">&lt;static, constant> </span>RIGHT_BOTTOM<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".RIGHT_BOTTOM">
+    <h4 id=".RIGHT_BOTTOM"><span class="type-signature">&lt;static, constant> </span>RIGHT_BOTTOM<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a right-bottom alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4861,53 +4426,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 453
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".RIGHT_CENTER"><span class="type-signature">&lt;static, constant> </span>RIGHT_CENTER<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".RIGHT_CENTER">
+    <h4 id=".RIGHT_CENTER"><span class="type-signature">&lt;static, constant> </span>RIGHT_CENTER<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a right-center alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4917,53 +4501,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 446
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".RIGHT_TOP"><span class="type-signature">&lt;static, constant> </span>RIGHT_TOP<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".RIGHT_TOP">
+    <h4 id=".RIGHT_TOP"><span class="type-signature">&lt;static, constant> </span>RIGHT_TOP<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a right-top alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4973,53 +4576,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 439
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ROPE"><span class="type-signature">&lt;static, constant> </span>ROPE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ROPE">
+    <h4 id=".ROPE"><span class="type-signature">&lt;static, constant> </span>ROPE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5029,53 +4651,72 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 236
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ROUNDEDRECTANGLE"><span class="type-signature">&lt;static, constant> </span>ROUNDEDRECTANGLE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".ROUNDEDRECTANGLE">
+    <h4 id=".ROUNDEDRECTANGLE"><span class="type-signature">&lt;static, constant> </span>ROUNDEDRECTANGLE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5085,79 +4726,94 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 278
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".scaleModes"><span class="type-signature">&lt;static, constant> </span>scaleModes<span class="type-signature"> :Object</span></h4>
-    
+<dt class="name" id=".scaleModes">
+    <h4 id=".scaleModes"><span class="type-signature">&lt;static, constant> </span>scaleModes<span class="type-signature"> :Object</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The scale modes that are supported by Pixi.</p>
 <p>The DEFAULT scale mode affects the default scaling mode of future operations.
 It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-        <h5 class="subsection-title">Properties:</h5>
+    <h5 class="subsection-title">Properties:</h5>
 
-        <dl>
+    <dl>
 
 <table class="props table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5168,6 +4824,7 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
             
                 
 <span class="param-type">Number</span>
+
 
 
             
@@ -5183,10 +4840,10 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5199,6 +4856,7 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -5210,10 +4868,10 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
                 </td>
             
 
-            <td class="description last"><p>Smooth scaling</p></td>
+            <td class="description prop-description last"><p>Smooth scaling</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5226,6 +4884,7 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -5237,17 +4896,21 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
                 </td>
             
 
-            <td class="description last"><p>Pixelating scaling</p></td>
+            <td class="description prop-description last"><p>Pixelating scaling</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 </dl>
 
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5257,53 +4920,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 526
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".SPRITE"><span class="type-signature">&lt;static, constant> </span>SPRITE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".SPRITE">
+    <h4 id=".SPRITE"><span class="type-signature">&lt;static, constant> </span>SPRITE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5313,53 +4995,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 96
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".SPRITEBATCH"><span class="type-signature">&lt;static, constant> </span>SPRITEBATCH<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".SPRITEBATCH">
+    <h4 id=".SPRITEBATCH"><span class="type-signature">&lt;static, constant> </span>SPRITEBATCH<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5369,53 +5070,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 215
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT"><span class="type-signature">&lt;static, constant> </span>TEXT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".TEXT">
+    <h4 id=".TEXT"><span class="type-signature">&lt;static, constant> </span>TEXT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5425,53 +5145,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 124
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TILEMAP"><span class="type-signature">&lt;static, constant> </span>TILEMAP<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".TILEMAP">
+    <h4 id=".TILEMAP"><span class="type-signature">&lt;static, constant> </span>TILEMAP<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5481,53 +5220,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 159
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TILEMAPLAYER"><span class="type-signature">&lt;static, constant> </span>TILEMAPLAYER<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".TILEMAPLAYER">
+    <h4 id=".TILEMAPLAYER"><span class="type-signature">&lt;static, constant> </span>TILEMAPLAYER<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5537,53 +5295,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 166
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TILESPRITE"><span class="type-signature">&lt;static, constant> </span>TILESPRITE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".TILESPRITE">
+    <h4 id=".TILESPRITE"><span class="type-signature">&lt;static, constant> </span>TILESPRITE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5593,53 +5370,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 131
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TOP_CENTER"><span class="type-signature">&lt;static, constant> </span>TOP_CENTER<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".TOP_CENTER">
+    <h4 id=".TOP_CENTER"><span class="type-signature">&lt;static, constant> </span>TOP_CENTER<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a top-center alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5649,53 +5445,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 397
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TOP_LEFT"><span class="type-signature">&lt;static, constant> </span>TOP_LEFT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".TOP_LEFT">
+    <h4 id=".TOP_LEFT"><span class="type-signature">&lt;static, constant> </span>TOP_LEFT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a top-left alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5705,53 +5520,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 390
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TOP_RIGHT"><span class="type-signature">&lt;static, constant> </span>TOP_RIGHT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".TOP_RIGHT">
+    <h4 id=".TOP_RIGHT"><span class="type-signature">&lt;static, constant> </span>TOP_RIGHT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A constant representing a top-right alignment or position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5761,53 +5595,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 404
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".UP"><span class="type-signature">&lt;static, constant> </span>UP<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".UP">
+    <h4 id=".UP"><span class="type-signature">&lt;static, constant> </span>UP<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Direction constant.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5817,53 +5670,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 82
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".VERSION"><span class="type-signature">&lt;static, constant> </span>VERSION<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".VERSION">
+    <h4 id=".VERSION"><span class="type-signature">&lt;static, constant> </span>VERSION<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Phaser version number.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5873,53 +5745,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 12
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".VERTICAL"><span class="type-signature">&lt;static, constant> </span>VERTICAL<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".VERTICAL">
+    <h4 id=".VERTICAL"><span class="type-signature">&lt;static, constant> </span>VERTICAL<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A vertical orientation</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5929,53 +5820,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 313
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".VIDEO"><span class="type-signature">&lt;static, constant> </span>VIDEO<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".VIDEO">
+    <h4 id=".VIDEO"><span class="type-signature">&lt;static, constant> </span>VIDEO<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5985,53 +5895,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 292
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".WEBGL"><span class="type-signature">&lt;static, constant> </span>WEBGL<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".WEBGL">
+    <h4 id=".WEBGL"><span class="type-signature">&lt;static, constant> </span>WEBGL<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>WebGL Renderer.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6041,53 +5970,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 40
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".WEBGL_FILTER"><span class="type-signature">&lt;static, constant> </span>WEBGL_FILTER<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".WEBGL_FILTER">
+    <h4 id=".WEBGL_FILTER"><span class="type-signature">&lt;static, constant> </span>WEBGL_FILTER<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Game Object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6097,53 +6045,72 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 201
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".WEBGL_MULTI"><span class="type-signature">&lt;static, constant> </span>WEBGL_MULTI<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".WEBGL_MULTI">
+    <h4 id=".WEBGL_MULTI"><span class="type-signature">&lt;static, constant> </span>WEBGL_MULTI<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>WebGL Renderer with MultiTexture support enabled.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6153,26 +6120,33 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    Phaser.js, line 54
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		Phaser.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -6185,29 +6159,32 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
         <dl>
             
 <dt>
-    <h4 class="name "
-        id=".Component"><span class="type-signature">&lt;static> </span>Component<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id=".Component">
+      <span class="type-signature">&lt;static> </span>Component()
+      
+    </h4>
     
 </dt>
 <dd>
+
+    
+
     
 
     
 
     
     
-    
-    
-    
 
-    
-    
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6216,48 +6193,67 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
     
 
     
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li><a href="mailto:rich@photonstorm.com">Richard Davey</a></li>
-        </ul>
-    </dd>
-    
 
-    
-    <dt class="tag-copyright">Copyright:</dt>
-    <dd class="tag-copyright"><ul class="dummy"><li>2016 Photon Storm Ltd.</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-license">License:</dt>
-    <dd class="tag-license"><ul class="dummy"><li><a href="https://github.com/photonstorm/phaser/blob/master/license.txt">MIT License</a></li></ul></dd>
-    
+	
+	<dt class="tag-author method-doc-label method-doc-details-label">Author:</dt>
+	<dd class="tag-author">
+		<ul>
+			<li><a href="mailto:rich@photonstorm.com">Richard Davey</a></li>
+			</ul>
+	</dd>
+	
 
-    
+	
+	<dt class="tag-copyright method-doc-label method-doc-details-label">Copyright:</dt>
+	<dd class="tag-copyright">
+		<ul class="dummy">
+			<li>2016 Photon Storm Ltd.</li>
+		</ul>
+	</dd>
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/components/Component.js, line 7
-    </dt>
-    
+	
+	<dt class="tag-license method-doc-label method-doc-details-label">License:</dt>
+	<dd class="tag-license">
+		<ul class="dummy">
+			<li><a href="https://github.com/photonstorm/phaser/blob/master/license.txt">MIT License</a></li>
+		</ul>
+	</dd>
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/components/Component.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -6273,64 +6269,54 @@ It can be re-assigned to either LINEAR or NEAREST, depending upon suitability.</
 
 
 
+</div>
+	    <footer>
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
-		on Wed, 16 Aug 2017 06:51:12 GMT using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
-
-		} );
-	</script>
-
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on Tue Aug 22nd 2017
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="filter">
+    </div>
+  </div>
+  </div>
+  <div id="toc"></div>
+</div>
+
+    
+	</div>
+</div>
+
+
+
+<script src="scripts/bundle.js"></script>
+<script src="scripts/toc.js"></script>
+<script src="scripts/misc.js"></script>
+
+
+
+
 
 </body>
 </html>

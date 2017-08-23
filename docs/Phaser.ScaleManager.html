@@ -1,965 +1,123 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: ScaleManager · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
+	<meta name="viewport" content="width=device-width">
+	<title>Phaser CE Class: ScaleManager</title>
+	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
+	<link rel="stylesheet" href="styles/site.phaser.css">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+          </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#init">init</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="#">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="#">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Class: ScaleManager</h1>-->
+	<h1 class="page-title">Class: ScaleManager</h1>
 <section>
 
 <header>
-    <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
     
-    ScaleManager
-    </h2>
-    
-        <div class="class-description"><p>The ScaleManager object handles the the scaling, resizing, and alignment of the
+        <h2>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
+        
+        ScaleManager
+        </h2>
+        
+            <div class="class-description"><p>The ScaleManager object handles the the scaling, resizing, and alignment of the
 Game size and the game Display canvas.</p>
 <p>The Game size is the logical size of the game; the Display canvas has size as an HTML element.</p>
 <p>The calculations of these are heavily influenced by the bounding Parent size which is the computed
@@ -994,34 +152,35 @@ they may be updated by the ScaleManager.</p>
 <li><h5>Preferred orientation</h5><p>Call <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a> with the preferred orientation and use any of the <a href="Phaser.ScaleManager.html#onOrientationChange">onOrientationChange</a>, <a href="Phaser.ScaleManager.html#enterIncorrectOrientation">enterIncorrectOrientation</a>, or <a href="Phaser.ScaleManager.html#leaveIncorrectOrientation">leaveIncorrectOrientation</a> signals.</p>
 </li>
 </ul></div>
+        
     
 </header>
+
 
 <article>
     <div class="container-overview">
     
-
-    
         
 <dt>
-    <h4 class="name "
-        id="ScaleManager"><span class="type-signature"></span>new ScaleManager<span class="signature">(game, width, height)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="ScaleManager">
+      <span class="type-signature"></span>new ScaleManager(game, width, height)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Create a new ScaleManager object - this is done automatically by <a href="Phaser.Game.html">Phaser.Game</a></p>
 <p>The <code>width</code> and <code>height</code> constructor parameters can either be a number which represents pixels or a string that represents a percentage: e.g. <code>800</code> (for 800 pixels) or <code>&quot;80%&quot;</code> for 80%.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -1029,23 +188,23 @@ they may be updated by the ScaleManager.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -1058,6 +217,7 @@ they may be updated by the ScaleManager.</p>
 <span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
 
 
+
             
             </td>
 
@@ -1065,10 +225,10 @@ they may be updated by the ScaleManager.</p>
 
             
 
-            <td class="description last"><p>A reference to the currently running game.</p></td>
+            <td class="description param-description last"><p>A reference to the currently running game.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1084,6 +244,7 @@ they may be updated by the ScaleManager.</p>
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -1091,10 +252,10 @@ they may be updated by the ScaleManager.</p>
 
             
 
-            <td class="description last"><p>The width of the game. See above.</p></td>
+            <td class="description param-description last"><p>The width of the game. See above.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1110,6 +271,7 @@ they may be updated by the ScaleManager.</p>
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -1117,22 +279,24 @@ they may be updated by the ScaleManager.</p>
 
             
 
-            <td class="description last"><p>The height of the game. See above.</p></td>
+            <td class="description param-description last"><p>The height of the game. See above.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1142,34 +306,45 @@ they may be updated by the ScaleManager.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 68
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -1191,28 +366,40 @@ they may be updated by the ScaleManager.</p>
 
         <dl>
             
-<dt>
-    <h4 class="name "
-        id=".EXACT_FIT"><span class="type-signature">&lt;static, constant> </span>EXACT_FIT<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".EXACT_FIT">
+    <h4 id=".EXACT_FIT"><span class="type-signature">&lt;static, constant> </span>EXACT_FIT<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A scale mode that stretches content to fill all available space - see <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1222,53 +409,72 @@ they may be updated by the ScaleManager.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 632
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".NO_SCALE"><span class="type-signature">&lt;static, constant> </span>NO_SCALE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".NO_SCALE">
+    <h4 id=".NO_SCALE"><span class="type-signature">&lt;static, constant> </span>NO_SCALE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A scale mode that prevents any scaling - see <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1278,53 +484,72 @@ they may be updated by the ScaleManager.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 640
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".RESIZE"><span class="type-signature">&lt;static, constant> </span>RESIZE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".RESIZE">
+    <h4 id=".RESIZE"><span class="type-signature">&lt;static, constant> </span>RESIZE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A scale mode that causes the Game size to change - see <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1334,53 +559,72 @@ they may be updated by the ScaleManager.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 656
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".SHOW_ALL"><span class="type-signature">&lt;static, constant> </span>SHOW_ALL<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".SHOW_ALL">
+    <h4 id=".SHOW_ALL"><span class="type-signature">&lt;static, constant> </span>SHOW_ALL<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A scale mode that shows the entire game while maintaining proportions - see <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1390,53 +634,72 @@ they may be updated by the ScaleManager.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 648
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".USER_SCALE"><span class="type-signature">&lt;static, constant> </span>USER_SCALE<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id=".USER_SCALE">
+    <h4 id=".USER_SCALE"><span class="type-signature">&lt;static, constant> </span>USER_SCALE<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A scale mode that allows a custom scale factor - see <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1446,53 +709,72 @@ they may be updated by the ScaleManager.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 664
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="aspectRatio"><span class="type-signature">&lt;readonly> </span>aspectRatio<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="aspectRatio">
+    <h4 id="aspectRatio"><span class="type-signature">&lt;readonly> </span>aspectRatio<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The aspect ratio of the scaled Display canvas.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1502,55 +784,74 @@ they may be updated by the ScaleManager.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 371
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="boundingParent"><span class="type-signature">&lt;readonly> </span>boundingParent<span class="type-signature"> :DOMElement</span></h4>
-    
+<dt class="name" id="boundingParent">
+    <h4 id="boundingParent"><span class="type-signature">&lt;readonly> </span>boundingParent<span class="type-signature"> :DOMElement</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The DOM element that is considered the Parent bounding element, if any.</p>
 <p>This <code>null</code> if <a href="Phaser.ScaleManager.html#parentIsWindow">parentIsWindow</a> is true or if fullscreen mode is entered and <a href="Phaser.ScaleManager.html#fullScreenTarget">fullScreenTarget</a> is specified.
 It will also be null if there is no game canvas or if the game canvas has no parent.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">DOMElement</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1560,53 +861,72 @@ It will also be null if there is no game canvas or if the game canvas has no par
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2147
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="bounds"><span class="type-signature">&lt;readonly> </span>bounds<span class="type-signature"> :<a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span></h4>
-    
+<dt class="name" id="bounds">
+    <h4 id="bounds"><span class="type-signature">&lt;readonly> </span>bounds<span class="type-signature"> :<a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The bounds of the scaled game. The x/y will match the offset of the canvas element and the width/height the scaled width and height.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1616,81 +936,85 @@ It will also be null if there is no game canvas or if the game canvas has no par
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 364
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="compatibility"><span class="type-signature">&lt;internal> </span>compatibility<span class="type-signature"></span></h4>
-    
+<dt class="name" id="compatibility">
+    <h4 id="compatibility"><span class="type-signature">&lt;protected> </span>compatibility<span class="type-signature"></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Various compatibility settings.
 A value of &quot;(auto)&quot; indicates the setting is configured based on device and runtime information.</p>
 <p>A <a href="Phaser.ScaleManager.html#refresh">refresh</a> may need to be performed after making changes.</p>
     </div>
     
-    
+
     
 
     
 <dl class="details">
     
 
-        <h5 class="subsection-title">Properties:</h5>
+    <h5 class="subsection-title">Properties:</h5>
 
-        <dl>
+    <dl>
 
 <table class="props table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -1703,6 +1027,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
 <span class="param-type">boolean</span>
 
 
+
             
             </td>
 
@@ -1724,10 +1049,10 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
                 </td>
             
 
-            <td class="description last"><p>True only if fullscreen support will be used. (Changing to fullscreen still might not work.)</p></td>
+            <td class="description prop-description last"><p>True only if fullscreen support will be used. (Changing to fullscreen still might not work.)</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1740,6 +1065,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
 <span class="param-type">boolean</span>
 
 
+
             
             </td>
 
@@ -1761,10 +1087,10 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
                 </td>
             
 
-            <td class="description last"><p>See <a href="Phaser.DOM.html#.getScreenOrientation">Phaser.DOM.getScreenOrientation</a>.</p></td>
+            <td class="description prop-description last"><p>See <a href="Phaser.DOM.html#.getScreenOrientation">Phaser.DOM.getScreenOrientation</a>.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1775,6 +1101,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -1798,10 +1125,10 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
                 </td>
             
 
-            <td class="description last"><p>If true then the Display canvas's margins will not be updated anymore: existing margins must be manually cleared. Disabling margins prevents automatic canvas alignment/centering, possibly in fullscreen.</p></td>
+            <td class="description prop-description last"><p>If true then the Display canvas's margins will not be updated anymore: existing margins must be manually cleared. Disabling margins prevents automatic canvas alignment/centering, possibly in fullscreen.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1812,6 +1139,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
             
                 
 <span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
 
 
             
@@ -1837,10 +1165,10 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
                 </td>
             
 
-            <td class="description last"><p>If specified the window will be scrolled to this position on every refresh.</p></td>
+            <td class="description prop-description last"><p>If specified the window will be scrolled to this position on every refresh.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1851,6 +1179,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -1874,11 +1203,11 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
                 </td>
             
 
-            <td class="description last"><p>If enabled the document elements minimum height is explicitly set on updates.
+            <td class="description prop-description last"><p>If enabled the document elements minimum height is explicitly set on updates.
    The height set varies by device and may either be the height of the window or the viewport.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1889,6 +1218,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -1912,10 +1242,10 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
                 </td>
             
 
-            <td class="description last"><p>If enabled then SHOW_ALL and USER_SCALE modes can try and expand the parent element. It may be necessary for the parent element to impose CSS width/height restrictions.</p></td>
+            <td class="description prop-description last"><p>If enabled then SHOW_ALL and USER_SCALE modes can try and expand the parent element. It may be necessary for the parent element to impose CSS width/height restrictions.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1926,6 +1256,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
             
                 
 <span class="param-type">string</span>
+
 
 
             
@@ -1949,33 +1280,24 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
                 </td>
             
 
-            <td class="description last"><p>On certain browsers (eg. IE) FullScreen events need to be triggered via 'click' events.
+            <td class="description prop-description last"><p>On certain browsers (eg. IE) FullScreen events need to be triggered via 'click' events.
     A value of 'when-not-mouse' uses a click trampoline when a pointer that is not the primary mouse is used.
     Any other string value (including the empty string) prevents using click trampolines.
     For more details on click trampolines see <a href="Phaser.Pointer.html#addClickTrampoline">Phaser.Pointer#addClickTrampoline</a>.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 </dl>
 
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -1985,1117 +1307,58 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 432
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="currentScaleMode"><span class="type-signature">&lt;internal, readonly> </span>currentScaleMode<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="currentScaleMode">
+    <h4 id="currentScaleMode"><span class="type-signature">&lt;protected, readonly> </span>currentScaleMode<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Returns the current scale mode - for normal or fullscreen operation.</p>
 <p>See <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a> for the different modes allowed.</p>
     </div>
     
-    
-    
 
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2280
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="dom"><span class="type-signature">&lt;internal, readonly> </span>dom<span class="type-signature"> :<a href="Phaser.DOM.html">Phaser.DOM</a></span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>Provides access to some cross-device DOM functions.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 84
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="enterIncorrectOrientation"><span class="type-signature"></span>enterIncorrectOrientation<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>This signal is dispatched when the browser enters an incorrect orientation, as defined by <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a>.</p>
-<p>This is signaled from <code>preUpdate</code> (or <code>pauseUpdate</code>) <em>even when</em> the game is paused.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 233
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="forceLandscape"><span class="type-signature">&lt;internal, readonly> </span>forceLandscape<span class="type-signature"> :boolean</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>If true, the game should only run in a landscape orientation.
-Change with <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a>.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 162
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="forcePortrait"><span class="type-signature">&lt;internal, readonly> </span>forcePortrait<span class="type-signature"> :boolean</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>If true, the game should only run in a portrait
-Change with <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a>.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 172
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="fullScreenScaleMode"><span class="type-signature"></span>fullScreenScaleMode<span class="type-signature"> :integer</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>The scaling method used by the ScaleManager when in fullscreen.</p>
-<p>See <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a> for the different modes allowed.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2239
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="fullScreenTarget"><span class="type-signature"></span>fullScreenTarget<span class="type-signature"> :DOMElement</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>If specified, this is the DOM element on which the Fullscreen API enter request will be invoked.
-The target element must have the correct CSS styling and contain the Display canvas.</p>
-<p>The elements style will be modified (ie. the width and height might be set to 100%)
-but it will not be added to, removed from, or repositioned within the DOM.
-An attempt is made to restore relevant style changes when fullscreen mode is left.</p>
-<p>For pre-2.2.0 behavior set <code>game.scale.fullScreenTarget = game.canvas</code>.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 270
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="game"><span class="type-signature">&lt;internal, readonly> </span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>A reference to the currently running game.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 76
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="grid"><span class="type-signature"></span>grid<span class="type-signature"> :<a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p><em>EXPERIMENTAL:</em> A responsive grid on which you can align game objects.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 91
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="hasPhaserSetFullScreen"><span class="type-signature"></span>hasPhaserSetFullScreen<span class="type-signature"> :boolean</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>This boolean provides you with a way to determine if the browser is in Full Screen
-mode (via the Full Screen API), and Phaser was the one responsible for activating it.</p>
-<p>It's possible that ScaleManager.isFullScreen returns <code>true</code> even if Phaser wasn't the
-one that made the browser go full-screen, so this flag lets you determine that.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 255
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="height"><span class="type-signature">&lt;readonly> </span>height<span class="type-signature"> :number</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>Target height (in pixels) of the Display canvas.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 105
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="incorrectOrientation"><span class="type-signature">&lt;internal, readonly> </span>incorrectOrientation<span class="type-signature"> :boolean</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>True if <a href="Phaser.ScaleManager.html#forceLandscape">forceLandscape</a> or <a href="Phaser.ScaleManager.html#forcePortrait">forcePortrait</a> are set and do not agree with the browser orientation.</p>
-<p>This value is not updated immediately.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 183
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="isFullScreen"><span class="type-signature">&lt;readonly> </span>isFullScreen<span class="type-signature"> :boolean</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>Returns true if the browser is in fullscreen mode, otherwise false.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2371
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="isGameLandscape"><span class="type-signature">&lt;readonly> </span>isGameLandscape<span class="type-signature"> :boolean</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>Returns true if the game dimensions are landscape (width &gt; height).
-This is especially useful to check when using the RESIZE scale mode
-but wanting to maintain game orientation on desktop browsers,
-where typically the screen orientation will always be landscape regardless of the browser viewport.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2436
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="isGamePortrait"><span class="type-signature">&lt;readonly> </span>isGamePortrait<span class="type-signature"> :boolean</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>Returns true if the game dimensions are portrait (height &gt; width).
-This is especially useful to check when using the RESIZE scale mode
-but wanting to maintain game orientation on desktop browsers,
-where typically the screen orientation will always be landscape regardless of the browser viewport.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2418
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="isLandscape"><span class="type-signature">&lt;readonly> </span>isLandscape<span class="type-signature"> :boolean</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>Returns true if the screen orientation is in landscape mode.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2403
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="isPortrait"><span class="type-signature">&lt;readonly> </span>isPortrait<span class="type-signature"> :boolean</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>Returns true if the screen orientation is in portrait mode.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2388
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="leaveIncorrectOrientation"><span class="type-signature"></span>leaveIncorrectOrientation<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>This signal is dispatched when the browser leaves an incorrect orientation, as defined by <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a>.</p>
-<p>This is signaled from <code>preUpdate</code> (or <code>pauseUpdate</code>) <em>even when</em> the game is paused.</p>
-    </div>
-    
-    
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 243
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id="margin"><span class="type-signature">&lt;internal, readonly> </span>margin<span class="type-signature"> :Bounds-like</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    <div class="description">
-        <p>The Display canvas is aligned by adjusting the margins; the last margins are stored here.</p>
-    </div>
-    
-    
     
         <h5>Type:</h5>
         <ul>
             <li>
                 
-<span class="param-type">Bounds-like</span>
+<span class="param-type">number</span>
+
 
 
             </li>
@@ -3106,20 +1369,11 @@ where typically the screen orientation will always be landscape regardless of th
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -3129,62 +1383,1444 @@ where typically the screen orientation will always be landscape regardless of th
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 357
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="maxHeight"><span class="type-signature">&lt;internal, readonly> </span>maxHeight<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="dom">
+    <h4 id="dom"><span class="type-signature">&lt;protected, readonly> </span>dom<span class="type-signature"> :<a href="Phaser.DOM.html">Phaser.DOM</a></span></h4>
+
     
 </dt>
 <dd>
     
+    <div class="description members-description">
+        <p>Provides access to some cross-device DOM functions.</p>
+    </div>
+    
 
     
-    <div class="description">
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.DOM.html">Phaser.DOM</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="enterIncorrectOrientation">
+    <h4 id="enterIncorrectOrientation"><span class="type-signature"></span>enterIncorrectOrientation<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>This signal is dispatched when the browser enters an incorrect orientation, as defined by <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a>.</p>
+<p>This is signaled from <code>preUpdate</code> (or <code>pauseUpdate</code>) <em>even when</em> the game is paused.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="forceLandscape">
+    <h4 id="forceLandscape"><span class="type-signature">&lt;protected, readonly> </span>forceLandscape<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>If true, the game should only run in a landscape orientation.
+Change with <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a>.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="forcePortrait">
+    <h4 id="forcePortrait"><span class="type-signature">&lt;protected, readonly> </span>forcePortrait<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>If true, the game should only run in a portrait
+Change with <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a>.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="fullScreenScaleMode">
+    <h4 id="fullScreenScaleMode"><span class="type-signature"></span>fullScreenScaleMode<span class="type-signature"> :integer</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>The scaling method used by the ScaleManager when in fullscreen.</p>
+<p>See <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a> for the different modes allowed.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="fullScreenTarget">
+    <h4 id="fullScreenTarget"><span class="type-signature"></span>fullScreenTarget<span class="type-signature"> :DOMElement</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>If specified, this is the DOM element on which the Fullscreen API enter request will be invoked.
+The target element must have the correct CSS styling and contain the Display canvas.</p>
+<p>The elements style will be modified (ie. the width and height might be set to 100%)
+but it will not be added to, removed from, or repositioned within the DOM.
+An attempt is made to restore relevant style changes when fullscreen mode is left.</p>
+<p>For pre-2.2.0 behavior set <code>game.scale.fullScreenTarget = game.canvas</code>.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">DOMElement</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="game">
+    <h4 id="game"><span class="type-signature">&lt;protected, readonly> </span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>A reference to the currently running game.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="grid">
+    <h4 id="grid"><span class="type-signature"></span>grid<span class="type-signature"> :<a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p><em>EXPERIMENTAL:</em> A responsive grid on which you can align game objects.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="hasPhaserSetFullScreen">
+    <h4 id="hasPhaserSetFullScreen"><span class="type-signature"></span>hasPhaserSetFullScreen<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>This boolean provides you with a way to determine if the browser is in Full Screen
+mode (via the Full Screen API), and Phaser was the one responsible for activating it.</p>
+<p>It's possible that ScaleManager.isFullScreen returns <code>true</code> even if Phaser wasn't the
+one that made the browser go full-screen, so this flag lets you determine that.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="height">
+    <h4 id="height"><span class="type-signature">&lt;readonly> </span>height<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>Target height (in pixels) of the Display canvas.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="incorrectOrientation">
+    <h4 id="incorrectOrientation"><span class="type-signature">&lt;protected, readonly> </span>incorrectOrientation<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>True if <a href="Phaser.ScaleManager.html#forceLandscape">forceLandscape</a> or <a href="Phaser.ScaleManager.html#forcePortrait">forcePortrait</a> are set and do not agree with the browser orientation.</p>
+<p>This value is not updated immediately.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="isFullScreen">
+    <h4 id="isFullScreen"><span class="type-signature">&lt;readonly> </span>isFullScreen<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>Returns true if the browser is in fullscreen mode, otherwise false.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="isGameLandscape">
+    <h4 id="isGameLandscape"><span class="type-signature">&lt;readonly> </span>isGameLandscape<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>Returns true if the game dimensions are landscape (width &gt; height).
+This is especially useful to check when using the RESIZE scale mode
+but wanting to maintain game orientation on desktop browsers,
+where typically the screen orientation will always be landscape regardless of the browser viewport.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="isGamePortrait">
+    <h4 id="isGamePortrait"><span class="type-signature">&lt;readonly> </span>isGamePortrait<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>Returns true if the game dimensions are portrait (height &gt; width).
+This is especially useful to check when using the RESIZE scale mode
+but wanting to maintain game orientation on desktop browsers,
+where typically the screen orientation will always be landscape regardless of the browser viewport.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="isLandscape">
+    <h4 id="isLandscape"><span class="type-signature">&lt;readonly> </span>isLandscape<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>Returns true if the screen orientation is in landscape mode.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="isPortrait">
+    <h4 id="isPortrait"><span class="type-signature">&lt;readonly> </span>isPortrait<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>Returns true if the screen orientation is in portrait mode.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="leaveIncorrectOrientation">
+    <h4 id="leaveIncorrectOrientation"><span class="type-signature"></span>leaveIncorrectOrientation<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>This signal is dispatched when the browser leaves an incorrect orientation, as defined by <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a>.</p>
+<p>This is signaled from <code>preUpdate</code> (or <code>pauseUpdate</code>) <em>even when</em> the game is paused.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="margin">
+    <h4 id="margin"><span class="type-signature">&lt;protected, readonly> </span>margin<span class="type-signature"> :Bounds-like</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>The Display canvas is aligned by adjusting the margins; the last margins are stored here.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Bounds-like</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="maxHeight">
+    <h4 id="maxHeight"><span class="type-signature">&lt;protected, readonly> </span>maxHeight<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
         <p>Maximum height the canvas should be scaled to (in pixels).
 If null it will scale to whatever height the browser can handle.
 Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -3194,62 +2830,74 @@ Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 143
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="maxWidth"><span class="type-signature">&lt;internal, readonly> </span>maxWidth<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="maxWidth">
+    <h4 id="maxWidth"><span class="type-signature">&lt;protected, readonly> </span>maxWidth<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Maximum width the canvas should be scaled to (in pixels).
 If null it will scale to whatever width the browser can handle.
 Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -3259,61 +2907,73 @@ Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 124
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="minHeight"><span class="type-signature">&lt;internal, readonly> </span>minHeight<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="minHeight">
+    <h4 id="minHeight"><span class="type-signature">&lt;protected, readonly> </span>minHeight<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Minimum height the canvas should be scaled to (in pixels).
 Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -3323,61 +2983,73 @@ Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 133
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="minWidth"><span class="type-signature">&lt;internal, readonly> </span>minWidth<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="minWidth">
+    <h4 id="minWidth"><span class="type-signature">&lt;protected, readonly> </span>minWidth<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Minimum width the canvas should be scaled to (in pixels).
 Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -3387,61 +3059,73 @@ Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 114
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="offset"><span class="type-signature">&lt;internal, readonly> </span>offset<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-    
+<dt class="name" id="offset">
+    <h4 id="offset"><span class="type-signature">&lt;protected, readonly> </span>offset<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The offset coordinates of the Display canvas from the top-left of the browser window.
 The is used internally by Phaser.Pointer (for Input) and possibly other types.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -3451,49 +3135,74 @@ The is used internally by Phaser.Pointer (for Input) and possibly other types.</
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 152
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onFullScreenChange"><span class="type-signature"></span>onFullScreenChange<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onFullScreenChange">
+    <h4 id="onFullScreenChange"><span class="type-signature"></span>onFullScreenChange<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This signal is dispatched when the browser enters or leaves fullscreen mode, if supported.</p>
 <p>The signal is supplied with a single argument: <code>scale</code> (the ScaleManager). Use <code>scale.isFullScreen</code> to determine
 if currently running in Fullscreen mode.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3503,55 +3212,74 @@ if currently running in Fullscreen mode.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 312
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onFullScreenError"><span class="type-signature"></span>onFullScreenError<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onFullScreenError">
+    <h4 id="onFullScreenError"><span class="type-signature"></span>onFullScreenError<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This signal is dispatched when the browser fails to enter fullscreen mode;
 or if the device does not support fullscreen mode and <code>startFullScreen</code> is invoked.</p>
 <p>The signal is supplied with a single argument: <code>scale</code> (the ScaleManager).</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3561,42 +3289,46 @@ or if the device does not support fullscreen mode and <code>startFullScreen</cod
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 323
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onFullScreenInit"><span class="type-signature"></span>onFullScreenInit<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onFullScreenInit">
+    <h4 id="onFullScreenInit"><span class="type-signature"></span>onFullScreenInit<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This signal is dispatched when fullscreen mode is ready to be initialized but
 before the fullscreen request.</p>
 <p>The signal is passed two arguments: <code>scale</code> (the ScaleManager), and an object in the form <code>{targetElement: DOMElement}</code>.</p>
@@ -3612,14 +3344,29 @@ the duration of the fullscreen mode, and restored to it's original DOM location 
 <p>The behavior of a pre-assigned target element is covered in <a href="Phaser.ScaleManager.html#fullScreenTarget">fullScreenTarget</a>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3629,42 +3376,46 @@ the duration of the fullscreen mode, and restored to it's original DOM location 
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 301
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onOrientationChange"><span class="type-signature"></span>onOrientationChange<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onOrientationChange">
+    <h4 id="onOrientationChange"><span class="type-signature"></span>onOrientationChange<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This signal is dispatched when the orientation changes <em>or</em> the validity of the current orientation changes.</p>
 <p>The signal is supplied with the following arguments:</p>
 <ul>
@@ -3682,14 +3433,29 @@ correctness changes even if the orientation itself does not change.</p>
 <p>This is signaled from <code>preUpdate</code> (or <code>pauseUpdate</code>) <em>even when</em> the game is paused.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3699,42 +3465,46 @@ correctness changes even if the orientation itself does not change.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 223
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onSizeChange"><span class="type-signature"></span>onSizeChange<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onSizeChange">
+    <h4 id="onSizeChange"><span class="type-signature"></span>onSizeChange<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This signal is dispatched when the size of the Display canvas changes <em>or</em> the size of the Game changes.
 When invoked this is done <em>after</em> the Canvas size/position have been updated.</p>
 <p>The callback is supplied with three arguments: the Scale Manager, canvas <a href="Phaser.ScaleManager.html#width">width</a>, and canvas <a href="Phaser.ScaleManager.html#height">height</a>. (Game dimensions can be found in <code>scale.game.width</code> and <code>scale.game.height</code>.)</p>
@@ -3745,14 +3515,29 @@ then this signal will <em>not</em> be triggered.</p>
 <p>This is signaled from <code>preUpdate</code> (or <code>pauseUpdate</code>) <em>even when</em> the game is paused.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3762,56 +3547,75 @@ then this signal will <em>not</em> be triggered.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 510
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="pageAlignHorizontally"><span class="type-signature"></span>pageAlignHorizontally<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="pageAlignHorizontally">
+    <h4 id="pageAlignHorizontally"><span class="type-signature"></span>pageAlignHorizontally<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>When enabled the Display canvas will be horizontally-aligned <em>in the Parent container</em> (or <a href="Phaser.ScaleManager.html#parentIsWindow">window</a>).</p>
 <p>To align horizontally across the page the Display canvas should be added directly to page;
 or the parent container should itself be horizontally aligned.</p>
 <p>Horizontal alignment is not applicable with the <a href="Phaser.ScaleManager.html#.RESIZE">RESIZE</a> scaling mode.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3821,45 +3625,53 @@ or the parent container should itself be horizontally aligned.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2300
-    </dt>
-    
+	
 
-    
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>false</li>
+		</ul>
+	</dd>
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="pageAlignVertically"><span class="type-signature"></span>pageAlignVertically<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="pageAlignVertically">
+    <h4 id="pageAlignVertically"><span class="type-signature"></span>pageAlignVertically<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>When enabled the Display canvas will be vertically-aligned <em>in the Parent container</em> (or <a href="Phaser.ScaleManager.html#parentIsWindow">window</a>).</p>
 <p>To align vertically the Parent element should have a <em>non-collapsible</em> height, such that it will maintain
 a height <em>larger</em> than the height of the contained Game canvas - the game canvas will then be scaled vertically
@@ -3871,14 +3683,29 @@ To automatically update the minimum document height set <a href="Phaser.ScaleMan
 <p>Vertical alignment is not applicable with the <a href="Phaser.ScaleManager.html#.RESIZE">RESIZE</a> scaling mode.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3888,58 +3715,81 @@ To automatically update the minimum document height set <a href="Phaser.ScaleMan
 
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2332
-    </dt>
-    
+	
 
-    
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>false</li>
+		</ul>
+	</dd>
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="parentIsWindow"><span class="type-signature"></span>parentIsWindow<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="parentIsWindow">
+    <h4 id="parentIsWindow"><span class="type-signature"></span>parentIsWindow<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the parent container of the Game canvas is the browser window itself (i.e. document.body),
 rather than another div, this should set to <code>true</code>.</p>
 <p>The <a href="Phaser.ScaleManager.html#parentNode">parentNode</a> property is generally ignored while this is in effect.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3949,55 +3799,74 @@ rather than another div, this should set to <code>true</code>.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 464
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="parentNode"><span class="type-signature"></span>parentNode<span class="type-signature"> :DOMElement</span></h4>
-    
+<dt class="name" id="parentNode">
+    <h4 id="parentNode"><span class="type-signature"></span>parentNode<span class="type-signature"> :DOMElement</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The <em>original</em> DOM element for the parent of the Display canvas.
 This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#createFullScreenTarget">createFullScreenTarget</a>.</p>
 <p>This should only be changed after moving the Game canvas to a different DOM parent.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">DOMElement</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4007,53 +3876,72 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 474
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="parentScaleFactor"><span class="type-signature">&lt;readonly> </span>parentScaleFactor<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-    
+<dt class="name" id="parentScaleFactor">
+    <h4 id="parentScaleFactor"><span class="type-signature">&lt;readonly> </span>parentScaleFactor<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The scale of the game in relation to its parent container.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4063,53 +3951,72 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 481
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="scaleFactor"><span class="type-signature">&lt;readonly> </span>scaleFactor<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-    
+<dt class="name" id="scaleFactor">
+    <h4 id="scaleFactor"><span class="type-signature">&lt;readonly> </span>scaleFactor<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The <em>current</em> scale factor based on the game dimensions vs. the scaled dimensions.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4119,66 +4026,72 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 340
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="scaleFactorInversed"><span class="type-signature">&lt;internal, readonly> </span>scaleFactorInversed<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-    
+<dt class="name" id="scaleFactorInversed">
+    <h4 id="scaleFactorInversed"><span class="type-signature">&lt;protected, readonly> </span>scaleFactorInversed<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The <em>current</em> inversed scale factor. The displayed dimensions divided by the game dimensions.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -4188,36 +4101,46 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 348
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="scaleMode"><span class="type-signature"></span>scaleMode<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id="scaleMode">
+    <h4 id="scaleMode"><span class="type-signature"></span>scaleMode<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The scaling method used by the ScaleManager when not in fullscreen.</p>
 <dl>
   <dt><a href="Phaser.ScaleManager.html#.NO_SCALE">Phaser.ScaleManager.NO_SCALE</a></dt>
@@ -4251,14 +4174,29 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 </dl>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4268,54 +4206,73 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2175
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="screenOrientation"><span class="type-signature">&lt;readonly> </span>screenOrientation<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id="screenOrientation">
+    <h4 id="screenOrientation"><span class="type-signature">&lt;readonly> </span>screenOrientation<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The <em>last known</em> orientation of the screen, as defined in the Window Screen Web API.
 See <a href="Phaser.DOM.html#.getScreenOrientation">Phaser.DOM.getScreenOrientation</a> for possible values.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4325,53 +4282,72 @@ See <a href="Phaser.DOM.html#.getScreenOrientation">Phaser.DOM.getScreenOrientat
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 333
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="sourceAspectRatio"><span class="type-signature">&lt;readonly> </span>sourceAspectRatio<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="sourceAspectRatio">
+    <h4 id="sourceAspectRatio"><span class="type-signature">&lt;readonly> </span>sourceAspectRatio<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The aspect ratio of the original game dimensions.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4381,67 +4357,73 @@ See <a href="Phaser.DOM.html#.getScreenOrientation">Phaser.DOM.getScreenOrientat
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 378
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="trackParentInterval"><span class="type-signature">&lt;internal> </span>trackParentInterval<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id="trackParentInterval">
+    <h4 id="trackParentInterval"><span class="type-signature">&lt;protected> </span>trackParentInterval<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The maximum time (in ms) between dimension update checks for the Canvas's parent element (or window).
 Update checks normally happen quicker in response to other events.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -4450,58 +4432,87 @@ Update checks normally happen quicker in response to other events.</p>
     
 
     
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>2000</li></ul></dd>
-    
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 492
-    </dt>
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="Phaser.ScaleManager.html#refresh">refresh</a></li>
-        </ul>
-    </dd>
-    
+	
 
-    
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>2000</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="Phaser.ScaleManager.html#refresh">refresh</a></li>
+			</ul>
+	</dd>
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="width"><span class="type-signature">&lt;readonly> </span>width<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="width">
+    <h4 id="width"><span class="type-signature">&lt;readonly> </span>width<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Target width (in pixels) of the Display canvas.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4511,42 +4522,46 @@ Update checks normally happen quicker in response to other events.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 98
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="windowConstraints"><span class="type-signature"></span>windowConstraints<span class="type-signature"></span></h4>
-    
+<dt class="name" id="windowConstraints">
+    <h4 id="windowConstraints"><span class="type-signature"></span>windowConstraints<span class="type-signature"></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The edges on which to constrain the game Display/canvas in <em>addition</em> to the restrictions of the parent container.</p>
 <p>The properties are strings and can be '', 'visual', 'layout', or 'layout-soft'.</p>
 <ul>
@@ -4556,36 +4571,36 @@ Update checks normally happen quicker in response to other events.</p>
 </ul>
     </div>
     
-    
+
     
 
     
 <dl class="details">
     
 
-        <h5 class="subsection-title">Properties:</h5>
+    <h5 class="subsection-title">Properties:</h5>
 
-        <dl>
+    <dl>
 
 <table class="props table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4598,6 +4613,7 @@ Update checks normally happen quicker in response to other events.</p>
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -4605,10 +4621,10 @@ Update checks normally happen quicker in response to other events.</p>
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4621,6 +4637,7 @@ Update checks normally happen quicker in response to other events.</p>
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -4628,17 +4645,21 @@ Update checks normally happen quicker in response to other events.</p>
 
             
 
-            <td class="description last"></td>
+            <td class="description prop-description last"></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 </dl>
 
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4648,29 +4669,40 @@ Update checks normally happen quicker in response to other events.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>{"right":"layout","bottom":""}</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 401
-    </dt>
-    
+	
 
-    
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>{"right":"layout","bottom":""}</li>
+		</ul>
+	</dd>
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -4683,46 +4715,36 @@ Update checks normally happen quicker in response to other events.</p>
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="boot"><span class="type-signature">&lt;internal> </span>boot<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="boot">
+      <span class="type-signature">&lt;protected> </span>boot()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Start the ScaleManager.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -4732,44 +4754,61 @@ Update checks normally happen quicker in response to other events.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 668
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="createFullScreenTarget"><span class="type-signature">&lt;internal> </span>createFullScreenTarget<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="createFullScreenTarget">
+      <span class="type-signature">&lt;protected> </span>createFullScreenTarget()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Creates a fullscreen target. This is called automatically as as needed when entering
 fullscreen mode and the resulting element is supplied to <a href="Phaser.ScaleManager.html#onFullScreenInit">onFullScreenInit</a>.</p>
 <p>Use <a href="Phaser.ScaleManager.html#onFullScreenInit">onFullScreenInit</a> to customize the created object.</p>
@@ -4777,31 +4816,21 @@ fullscreen mode and the resulting element is supplied to <a href="Phaser.ScaleMa
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -4811,75 +4840,82 @@ fullscreen mode and the resulting element is supplied to <a href="Phaser.ScaleMa
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 1774
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="destroy"><span class="type-signature">&lt;internal> </span>destroy<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="destroy">
+      <span class="type-signature">&lt;protected> </span>destroy()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Destroys the ScaleManager and removes any event listeners.
 This should probably only be called when the game is destroyed.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -4889,44 +4925,61 @@ This should probably only be called when the game is destroyed.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2114
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="forceOrientation"><span class="type-signature"></span>forceOrientation<span class="signature">(forceLandscape, <span class="optional">forcePortrait</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="forceOrientation">
+      <span class="type-signature"></span>forceOrientation(forceLandscape [, forcePortrait])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Force the game to run in only one orientation.</p>
 <p>This enables generation of incorrect orientation signals and affects resizing but does not otherwise rotate or lock the orientation.</p>
 <p>Orientation checks are performed via the Screen Orientation API, if available in browser. This means it will check your monitor
@@ -4936,8 +4989,9 @@ viewport dimensions instead and bypass the Screen Orientation API then set: <cod
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4945,27 +4999,27 @@ viewport dimensions instead and bypass the Screen Orientation API then set: <cod
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4976,6 +5030,7 @@ viewport dimensions instead and bypass the Screen Orientation API then set: <cod
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -4997,10 +5052,10 @@ viewport dimensions instead and bypass the Screen Orientation API then set: <cod
                 </td>
             
 
-            <td class="description last"><p>true if the game should run in landscape mode only.</p></td>
+            <td class="description param-description last"><p>true if the game should run in landscape mode only.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5011,6 +5066,7 @@ viewport dimensions instead and bypass the Screen Orientation API then set: <cod
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -5036,22 +5092,24 @@ viewport dimensions instead and bypass the Screen Orientation API then set: <cod
                 </td>
             
 
-            <td class="description last"><p>true if the game should run in portrait mode only.</p></td>
+            <td class="description param-description last"><p>true if the game should run in portrait mode only.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5061,50 +5119,61 @@ viewport dimensions instead and bypass the Screen Orientation API then set: <cod
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 1203
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getParentBounds"><span class="type-signature">&lt;internal> </span>getParentBounds<span class="signature">(<span class="optional">target</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Rectangle.html">Phaser.Rectangle</a>}</span></h4>
-    
+    <h4 class="name" id="getParentBounds">
+      <span class="type-signature">&lt;protected> </span>getParentBounds( [target])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Returns the computed Parent size/bounds that the Display canvas is allowed/expected to fill.</p>
 <p>If in fullscreen mode or without parent (see <a href="Phaser.ScaleManager.html#parentIsWindow">parentIsWindow</a>),
 this will be the bounds of the visual viewport itself.</p>
@@ -5115,8 +5184,9 @@ the viewport then this function may return a smaller than expected size.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5124,27 +5194,27 @@ the viewport then this function may return a smaller than expected size.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5155,6 +5225,7 @@ the viewport then this function may return a smaller than expected size.</p>
             
                 
 <span class="param-type"><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span>
+
 
 
             
@@ -5180,55 +5251,24 @@ the viewport then this function may return a smaller than expected size.</p>
                 </td>
             
 
-            <td class="description last"><p>The rectangle to update; a new one is created as needed.</p></td>
+            <td class="description param-description last"><p>The rectangle to update; a new one is created as needed.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>The established parent bounds.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5238,51 +5278,93 @@ the viewport then this function may return a smaller than expected size.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 1454
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The established parent bounds.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="parseConfig"><span class="type-signature">&lt;internal> </span>parseConfig<span class="signature">(config)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="parseConfig">
+      <span class="type-signature">&lt;protected> </span>parseConfig(config)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Load configuration settings.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5290,23 +5372,23 @@ the viewport then this function may return a smaller than expected size.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5319,6 +5401,7 @@ the viewport then this function may return a smaller than expected size.</p>
 <span class="param-type">object</span>
 
 
+
             
             </td>
 
@@ -5326,35 +5409,24 @@ the viewport then this function may return a smaller than expected size.</p>
 
             
 
-            <td class="description last"><p>The game configuration object.</p></td>
+            <td class="description param-description last"><p>The game configuration object.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5364,74 +5436,81 @@ the viewport then this function may return a smaller than expected size.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 771
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="preUpdate"><span class="type-signature">&lt;internal> </span>preUpdate<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="preUpdate">
+      <span class="type-signature">&lt;protected> </span>preUpdate()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The ScaleManager.preUpdate is called automatically by the core Game loop.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5441,44 +5520,61 @@ the viewport then this function may return a smaller than expected size.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 1068
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="refresh"><span class="type-signature"></span>refresh<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="refresh">
+      <span class="type-signature"></span>refresh()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The &quot;refresh&quot; methods informs the ScaleManager that a layout refresh is required.</p>
 <p>The ScaleManager automatically queues a layout refresh (eg. updates the Game size or Display canvas layout)
 when the browser is resized, the orientation changes, or when there is a detected change
@@ -5496,18 +5592,21 @@ such as <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a>, are updated 
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5517,50 +5616,61 @@ such as <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a>, are updated 
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 1347
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="scaleSprite"><span class="type-signature">&lt;internal> </span>scaleSprite<span class="signature">(sprite, <span class="optional">width</span>, <span class="optional">height</span>, <span class="optional">letterBox</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Sprite.html">Phaser.Sprite</a>|<a href="Phaser.Image.html">Phaser.Image</a>}</span></h4>
-    
+    <h4 class="name" id="scaleSprite">
+      <span class="type-signature">&lt;protected> </span>scaleSprite(sprite [, width] [, height] [, letterBox])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Takes a Sprite or Image object and scales it to fit the given dimensions.
 Scaling happens proportionally without distortion to the sprites texture.
 The letterBox parameter controls if scaling will produce a letter-box effect or zoom the
@@ -5570,8 +5680,9 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5579,27 +5690,27 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5615,6 +5726,7 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
 <span class="param-type"><a href="Phaser.Image.html">Phaser.Image</a></span>
 
 
+
             
             </td>
 
@@ -5634,10 +5746,10 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
                 </td>
             
 
-            <td class="description last"><p>The sprite we want to scale.</p></td>
+            <td class="description param-description last"><p>The sprite we want to scale.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5650,6 +5762,7 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
 <span class="param-type">integer</span>
 
 
+
             
             </td>
 
@@ -5671,10 +5784,10 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
                 </td>
             
 
-            <td class="description last"><p>The target width that we want to fit the sprite in to. If not given it defaults to ScaleManager.width.</p></td>
+            <td class="description param-description last"><p>The target width that we want to fit the sprite in to. If not given it defaults to ScaleManager.width.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5687,6 +5800,7 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
 <span class="param-type">integer</span>
 
 
+
             
             </td>
 
@@ -5708,10 +5822,10 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
                 </td>
             
 
-            <td class="description last"><p>The target height that we want to fit the sprite in to. If not given it defaults to ScaleManager.height.</p></td>
+            <td class="description param-description last"><p>The target height that we want to fit the sprite in to. If not given it defaults to ScaleManager.height.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5722,6 +5836,7 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -5747,105 +5862,115 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
                 </td>
             
 
-            <td class="description last"><p>True if we want the <code>fitted</code> mode. Otherwise, the function uses the <code>zoom</code> mode.</p></td>
+            <td class="description param-description last"><p>True if we want the <code>fitted</code> mode. Otherwise, the function uses the <code>zoom</code> mode.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
+<dl class="details">
     
-        <div class="returns-type">
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The scaled sprite.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
         
 <span class="param-type"><a href="Phaser.Sprite.html">Phaser.Sprite</a></span>
 |
 
 <span class="param-type"><a href="Phaser.Image.html">Phaser.Image</a></span>
 
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>The scaled sprite.</p>
-    </div>
 
 
-        
-    </div>
-    
-    
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 2044
-    </dt>
-    
-
-    
-
-    
-
-    
+    </dd>
 </dl>
 
-    
-    
 
-    
+        
 
-    
-    
-       
-    
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setGameSize"><span class="type-signature"></span>setGameSize<span class="signature">(width, height)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setGameSize">
+      <span class="type-signature"></span>setGameSize(width, height)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Set the actual Game size.
 Use this instead of directly changing <code>game.width</code> or <code>game.height</code>.</p>
 <p>The actual physical display (Canvas element size) depends on various settings including</p>
@@ -5859,8 +5984,9 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5868,23 +5994,23 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5897,6 +6023,7 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 <span class="param-type">integer</span>
 
 
+
             
             </td>
 
@@ -5904,10 +6031,10 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 
             
 
-            <td class="description last"><p><em>Game width</em>, in pixels.</p></td>
+            <td class="description param-description last"><p><em>Game width</em>, in pixels.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5920,6 +6047,7 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 <span class="param-type">integer</span>
 
 
+
             
             </td>
 
@@ -5927,22 +6055,24 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 
             
 
-            <td class="description last"><p><em>Game height</em>, in pixels.</p></td>
+            <td class="description param-description last"><p><em>Game height</em>, in pixels.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5952,50 +6082,61 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 904
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setMinMax"><span class="type-signature"></span>setMinMax<span class="signature">(minWidth, minHeight, <span class="optional">maxWidth</span>, <span class="optional">maxHeight</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setMinMax">
+      <span class="type-signature"></span>setMinMax(minWidth, minHeight [, maxWidth] [, maxHeight])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Set the min and max dimensions for the Display canvas.</p>
 <p><em>Note:</em> The min/max dimensions are only applied in some cases</p>
 <ul>
@@ -6006,8 +6147,9 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6015,25 +6157,25 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6046,6 +6188,7 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6061,10 +6204,10 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 
             
 
-            <td class="description last"><p>The minimum width the game is allowed to scale down to.</p></td>
+            <td class="description param-description last"><p>The minimum width the game is allowed to scale down to.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6077,6 +6220,7 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6092,10 +6236,10 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 
             
 
-            <td class="description last"><p>The minimum height the game is allowed to scale down to.</p></td>
+            <td class="description param-description last"><p>The minimum height the game is allowed to scale down to.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6108,6 +6252,7 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6125,10 +6270,10 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 
             
 
-            <td class="description last"><p>The maximum width the game is allowed to scale up to; only changed if specified.</p></td>
+            <td class="description param-description last"><p>The maximum width the game is allowed to scale up to; only changed if specified.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6141,6 +6286,7 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6158,22 +6304,24 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 
             
 
-            <td class="description last"><p>The maximum height the game is allowed to scale up to; only changed if specified.</p></td>
+            <td class="description param-description last"><p>The maximum height the game is allowed to scale up to; only changed if specified.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6183,57 +6331,68 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 1036
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
-    <dt class="tag-todo">To Do:</dt>
-    <dd class="tag-todo">
-        <ul>
-            <li>These values are only sometimes honored.</li>
-        </ul>
-    </dd>
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
+	<dt class="tag-todo method-doc-label method-doc-details-label">To Do:</dt>
+	<dd class="tag-todo">
+		<ul>
+			<li>These values are only sometimes honored.</li>
+			</ul>
+	</dd>
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setResizeCallback"><span class="type-signature"></span>setResizeCallback<span class="signature">(callback, context)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setResizeCallback">
+      <span class="type-signature"></span>setResizeCallback(callback, context)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets the callback that will be invoked before sizing calculations.</p>
 <p>Typically this is triggered when the Scale Manager has detected a change to the canvas's boundaries:
 the browser window has been resized, the device has been rotated, or the parent container's size has changed.
@@ -6254,8 +6413,9 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6263,23 +6423,23 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6292,6 +6452,7 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 <span class="param-type">function</span>
 
 
+
             
             </td>
 
@@ -6299,10 +6460,10 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 
             
 
-            <td class="description last"><p>The callback that will be called each time a window.resize event happens or if set, the parent container resizes.</p></td>
+            <td class="description param-description last"><p>The callback that will be called each time a window.resize event happens or if set, the parent container resizes.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6315,6 +6476,7 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 <span class="param-type">object</span>
 
 
+
             
             </td>
 
@@ -6322,22 +6484,24 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 
             
 
-            <td class="description last"><p>The context in which the callback will be called.</p></td>
+            <td class="description param-description last"><p>The context in which the callback will be called.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6347,58 +6511,70 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 965
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setupScale"><span class="type-signature">&lt;internal> </span>setupScale<span class="signature">(width, height)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setupScale">
+      <span class="type-signature">&lt;protected> </span>setupScale(width, height)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Calculates and sets the game dimensions based on the given width and height.</p>
 <p>This should <em>not</em> be called when in fullscreen mode.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6406,23 +6582,23 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6438,6 +6614,7 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -6445,10 +6622,10 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 
             
 
-            <td class="description last"><p>The width of the game.</p></td>
+            <td class="description param-description last"><p>The width of the game.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6464,6 +6641,7 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -6471,35 +6649,24 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 
             
 
-            <td class="description last"><p>The height of the game.</p></td>
+            <td class="description param-description last"><p>The height of the game.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -6509,44 +6676,61 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 804
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setUserScale"><span class="type-signature"></span>setUserScale<span class="signature">(hScale, vScale, <span class="optional">hTrim</span>, <span class="optional">vTrim</span>, <span class="optional">queueUpdate</span>, <span class="optional">force</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setUserScale">
+      <span class="type-signature"></span>setUserScale(hScale, vScale [, hTrim] [, vTrim] [, queueUpdate] [, force])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Set a User scaling factor used in the USER_SCALE scaling mode.</p>
 <p>The target canvas size is computed by:</p>
 <pre class="prettyprint source"><code>canvas.width = (game.width * hScale) - hTrim
@@ -6555,8 +6739,9 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6564,27 +6749,27 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6597,6 +6782,7 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6616,10 +6802,10 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
                 </td>
             
 
-            <td class="description last"><p>Horizontal scaling factor.</p></td>
+            <td class="description param-description last"><p>Horizontal scaling factor.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6632,6 +6818,7 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
 <span class="param-type">numer</span>
 
 
+
             
             </td>
 
@@ -6651,10 +6838,10 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
                 </td>
             
 
-            <td class="description last"><p>Vertical scaling factor.</p></td>
+            <td class="description param-description last"><p>Vertical scaling factor.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6667,6 +6854,7 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
 <span class="param-type">integer</span>
 
 
+
             
             </td>
 
@@ -6690,10 +6878,10 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
                 </td>
             
 
-            <td class="description last"><p>Horizontal trim, applied after scaling.</p></td>
+            <td class="description param-description last"><p>Horizontal trim, applied after scaling.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6706,6 +6894,7 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
 <span class="param-type">integer</span>
 
 
+
             
             </td>
 
@@ -6729,10 +6918,10 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
                 </td>
             
 
-            <td class="description last"><p>Vertical trim, applied after scaling.</p></td>
+            <td class="description param-description last"><p>Vertical trim, applied after scaling.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6745,6 +6934,7 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
 <span class="param-type">boolean</span>
 
 
+
             
             </td>
 
@@ -6768,10 +6958,10 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
                 </td>
             
 
-            <td class="description last"><p>Queue a size/bounds check at next preUpdate</p></td>
+            <td class="description param-description last"><p>Queue a size/bounds check at next preUpdate</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6784,6 +6974,7 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
 <span class="param-type">boolean</span>
 
 
+
             
             </td>
 
@@ -6807,22 +6998,24 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
                 </td>
             
 
-            <td class="description last"><p>Force a resize during the next preUpdate</p></td>
+            <td class="description param-description last"><p>Force a resize during the next preUpdate</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6832,50 +7025,61 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 932
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="startFullScreen"><span class="type-signature"></span>startFullScreen<span class="signature">(<span class="optional">antialias</span>, <span class="optional">allowTrampoline</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
+    <h4 class="name" id="startFullScreen">
+      <span class="type-signature"></span>startFullScreen( [antialias] [, allowTrampoline])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Display the game in the browser's fullscreen mode.</p>
 <p>This <em>must</em> be called from a user-input Pointer or Mouse event (and possibly a <a href="https://www.chromestatus.com/feature/6131337345892352">"user gesture"</a>), e.g.,</p>
 <ul>
@@ -6893,8 +7097,9 @@ device is reported to support fullscreen mode.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6902,25 +7107,25 @@ device is reported to support fullscreen mode.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6933,6 +7138,7 @@ device is reported to support fullscreen mode.</p>
 <span class="param-type">boolean</span>
 
 
+
             
             </td>
 
@@ -6950,10 +7156,10 @@ device is reported to support fullscreen mode.</p>
 
             
 
-            <td class="description last"><p>Changes the anti-alias feature of the canvas before jumping in to fullscreen (false = retain pixel art, true = smooth art). If not specified then no change is made. Only works in CANVAS mode.</p></td>
+            <td class="description param-description last"><p>Changes the anti-alias feature of the canvas before jumping in to fullscreen (false = retain pixel art, true = smooth art). If not specified then no change is made. Only works in CANVAS mode.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6966,6 +7172,7 @@ device is reported to support fullscreen mode.</p>
 <span class="param-type">boolean</span>
 
 
+
             
             </td>
 
@@ -6983,42 +7190,24 @@ device is reported to support fullscreen mode.</p>
 
             
 
-            <td class="description last"><p>Internal argument. If <code>false</code> click trampolining is suppressed.</p></td>
+            <td class="description param-description last"><p>Internal argument. If <code>false</code> click trampolining is suppressed.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">boolean</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>Returns true if the device supports fullscreen mode and fullscreen mode was attempted to be started. (It might not actually start, wait for the signals.)</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -7028,87 +7217,105 @@ device is reported to support fullscreen mode.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 1795
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns true if the device supports fullscreen mode and fullscreen mode was attempted to be started. (It might not actually start, wait for the signals.)</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="stopFullScreen"><span class="type-signature"></span>stopFullScreen<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
+    <h4 class="name" id="stopFullScreen">
+      <span class="type-signature"></span>stopFullScreen()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Stops / exits fullscreen mode, if active.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
     
-        <div class="returns-type">
-        
-<span class="param-type">boolean</span>
 
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>Returns true if the browser supports fullscreen mode and fullscreen mode will be exited.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -7118,34 +7325,69 @@ device is reported to support fullscreen mode.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/ScaleManager.js, line 1898
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/ScaleManager.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Returns true if the browser supports fullscreen mode and fullscreen mode will be exited.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
@@ -7161,64 +7403,54 @@ device is reported to support fullscreen mode.</p>
 
 
 
+</div>
+	    <footer>
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
-		on Wed, 16 Aug 2017 06:51:19 GMT using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
-
-		} );
-	</script>
-
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on Tue Aug 22nd 2017
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="filter">
+    </div>
+  </div>
+  </div>
+  <div id="toc"></div>
+</div>
+
+    
+	</div>
+</div>
+
+
+
+<script src="scripts/bundle.js"></script>
+<script src="scripts/toc.js"></script>
+<script src="scripts/misc.js"></script>
+
+
+
+
 
 </body>
 </html>
