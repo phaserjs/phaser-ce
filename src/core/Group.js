@@ -3101,11 +3101,27 @@ Object.defineProperty(Phaser.Group.prototype, "bottom", {
 //  This function is set at the bottom of src/gameobjects/components/Bounds.js
 
 /**
-* A display object is any object that can be rendered in the Phaser/pixi.js scene graph.
+* A display object is any object that can be rendered in the Phaser/pixi.js scene graph:
 *
-* This includes {@link Phaser.Group} (groups are display objects!),
-* {@link Phaser.Sprite}, {@link Phaser.Button}, {@link Phaser.Text}
-* as well as {@link PIXI.DisplayObject} and all derived types.
+* - {@link PIXI.DisplayObject}
+*   - {@link PIXI.DisplayObjectContainer}
+*     - {@link Phaser.BitmapText}
+*     - {@link Phaser.Creature}
+*     - {@link Phaser.Graphics}
+*     - {@link Phaser.Group}
+*       - {@link Phaser.Particles.Arcade.Emitter}
+*       - {@link Phaser.SpriteBatch}
+*     - {@link Phaser.Rope}
+*     - {@link Phaser.Stage}
+*     - {@link PIXI.Sprite}
+*       - {@link Phaser.Image}
+*         - {@link Phaser.Button}
+*       - {@link Phaser.Sprite}
+*         - {@link Phaser.Bullet}
+*         - {@link Phaser.Particle}
+*         - {@link Phaser.Text}
+*         - {@link Phaser.TilemapLayer}
+*       - {@link Phaser.TileSprite}
 *
 * @typedef {object} DisplayObject
 */
