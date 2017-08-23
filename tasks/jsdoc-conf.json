@@ -5,6 +5,7 @@
     "source": {
         "include": [
             "./src/Phaser.js",
+            "./src/PhaserGlobal.js",
             "./src/animation/",
             "./src/core/",
             "./src/gameobjects/",
