@@ -254,7 +254,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.maxVelocity = new Phaser.Point(10000, 10000);
 
     /**
-    * @property {Phaser.Point} friction - If this Body is moving, and another Body is 'riding' this one, this is the amount of motion the riding Body receives on each axis.
+    * @property {Phaser.Point} friction - If this Body is {@link #immovable} and moving, and another Body is 'riding' this one, this is the amount of motion the riding Body receives on each axis.
     */
     this.friction = new Phaser.Point(1, 0);
 

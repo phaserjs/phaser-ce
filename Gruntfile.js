@@ -93,12 +93,13 @@ module.exports = function (grunt) {
                 }
             }
 
-            grunt.log.writeln("\nFor example: --exclude p2,tilemaps,retrofont\n");
+            grunt.log.writeln("\nFor example: --exclude=p2,tilemaps,retrofont\n");
             grunt.log.writeln("Optional flags:\n");
             grunt.log.writeln("--filename yourfilename (builds to your own custom file name)");
             grunt.log.writeln("--sourcemap true (creates a source map)");
             grunt.log.writeln("--split true (splits Phaser, PIXI, p2 and Creature into separate files)");
             grunt.log.writeln("--uglify true (runs Uglify on the output files)");
+            grunt.log.writeln("--verbose true (print some extra information)");
             grunt.log.writeln("\nNote that some modules have dependencies on others.\n");
 
             grunt.fail.fatal("No build options were specified.");
