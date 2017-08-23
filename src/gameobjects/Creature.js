@@ -91,7 +91,7 @@ PIXI.CreatureShader.prototype.constructor = PIXI.CreatureShader;
 /**
  * Initialises the shader.
  *
- * @method init
+ * @method PIXI.CreatureShader#init
  */
 PIXI.CreatureShader.prototype.init = function()
 {
@@ -127,7 +127,7 @@ PIXI.CreatureShader.prototype.init = function()
 /**
  * Destroys the shader.
  *
- * @method destroy
+ * @method PIXI.CreatureShader#destroy
  */
 PIXI.CreatureShader.prototype.destroy = function() {
   this.gl.deleteProgram(this.program);
