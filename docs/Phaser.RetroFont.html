@@ -1,991 +1,150 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: RetroFont · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
+	<meta name="viewport" content="width=device-width">
+	<title>Phaser CE Class: RetroFont</title>
+	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
+	<link rel="stylesheet" href="styles/site.phaser.css">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+          </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#init">init</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="#">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="#">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Class: RetroFont</h1>-->
+	<h1 class="page-title">Class: RetroFont</h1>
 <section>
 
 <header>
-    <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
     
-    RetroFont
-    </h2>
+        <h2>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
+        
+        RetroFont
+        </h2>
+        
     
 </header>
+
 
 <article>
     <div class="container-overview">
     
-
-    
         
 <dt>
-    <h4 class="name "
-        id="RetroFont"><span class="type-signature"></span>new RetroFont<span class="signature">(game, key, characterWidth, characterHeight, chars, <span class="optional">charsPerRow</span>, <span class="optional">xSpacing</span>, <span class="optional">ySpacing</span>, <span class="optional">xOffset</span>, <span class="optional">yOffset</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="RetroFont">
+      <span class="type-signature"></span>new RetroFont(game, key, characterWidth, characterHeight, chars [, charsPerRow] [, xSpacing] [, ySpacing] [, xOffset] [, yOffset])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>A Retro Font is similar to a BitmapFont, in that it uses a texture to render the text. However unlike a BitmapFont every character in a RetroFont
 is the same size. This makes it similar to a sprite sheet. You typically find font sheets like this from old 8/16-bit games and demos.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -993,27 +152,27 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -1026,6 +185,7 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 <span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
 
 
+
             
             </td>
 
@@ -1045,10 +205,10 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
                 </td>
             
 
-            <td class="description last"><p>Current game instance.</p></td>
+            <td class="description param-description last"><p>Current game instance.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1061,6 +221,7 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -1080,10 +241,10 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
                 </td>
             
 
-            <td class="description last"><p>The font set graphic set as stored in the Game.Cache.</p></td>
+            <td class="description param-description last"><p>The font set graphic set as stored in the Game.Cache.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1096,6 +257,7 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1115,10 +277,10 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
                 </td>
             
 
-            <td class="description last"><p>The width of each character in the font set.</p></td>
+            <td class="description param-description last"><p>The width of each character in the font set.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1131,6 +293,7 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1150,10 +313,10 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
                 </td>
             
 
-            <td class="description last"><p>The height of each character in the font set.</p></td>
+            <td class="description param-description last"><p>The height of each character in the font set.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1166,6 +329,7 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -1185,10 +349,10 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
                 </td>
             
 
-            <td class="description last"><p>The characters used in the font set, in display order. You can use the TEXT_SET consts for common font set arrangements.</p></td>
+            <td class="description param-description last"><p>The characters used in the font set, in display order. You can use the TEXT_SET consts for common font set arrangements.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1201,6 +365,7 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1222,10 +387,10 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
                 </td>
             
 
-            <td class="description last"><p>The number of characters per row in the font set. If not given charsPerRow will be the image width / characterWidth.</p></td>
+            <td class="description param-description last"><p>The number of characters per row in the font set. If not given charsPerRow will be the image width / characterWidth.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1238,6 +403,7 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1261,10 +427,10 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
                 </td>
             
 
-            <td class="description last"><p>If the characters in the font set have horizontal spacing between them set the required amount here.</p></td>
+            <td class="description param-description last"><p>If the characters in the font set have horizontal spacing between them set the required amount here.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1277,6 +443,7 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1300,10 +467,10 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
                 </td>
             
 
-            <td class="description last"><p>If the characters in the font set have vertical spacing between them set the required amount here.</p></td>
+            <td class="description param-description last"><p>If the characters in the font set have vertical spacing between them set the required amount here.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1316,6 +483,7 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1339,10 +507,10 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
                 </td>
             
 
-            <td class="description last"><p>If the font set doesn't start at the top left of the given image, specify the X coordinate offset here.</p></td>
+            <td class="description param-description last"><p>If the font set doesn't start at the top left of the given image, specify the X coordinate offset here.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1355,6 +523,7 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1378,22 +547,24 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
                 </td>
             
 
-            <td class="description last"><p>If the font set doesn't start at the top left of the given image, specify the Y coordinate offset here.</p></td>
+            <td class="description param-description last"><p>If the font set doesn't start at the top left of the given image, specify the Y coordinate offset here.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1403,34 +574,45 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 25
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -1440,9 +622,14 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
     
         <h3 class="subsection-title">Extends</h3>
 
-        <ul>
-            <li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li>
-        </ul>
+        
+
+
+    <ul>
+        <li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li>
+    </ul>
+
+
     
 
     
@@ -1458,28 +645,40 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
         <dl>
             
-<dt>
-    <h4 class="name "
-        id=".ALIGN_CENTER"><span class="type-signature">&lt;static, constant> </span>ALIGN_CENTER<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".ALIGN_CENTER">
+    <h4 id=".ALIGN_CENTER"><span class="type-signature">&lt;static, constant> </span>ALIGN_CENTER<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Align each line of multi-line text in the center.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1489,53 +688,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 196
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ALIGN_LEFT"><span class="type-signature">&lt;static, constant> </span>ALIGN_LEFT<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".ALIGN_LEFT">
+    <h4 id=".ALIGN_LEFT"><span class="type-signature">&lt;static, constant> </span>ALIGN_LEFT<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Align each line of multi-line text to the left.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1545,53 +763,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 182
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ALIGN_RIGHT"><span class="type-signature">&lt;static, constant> </span>ALIGN_RIGHT<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".ALIGN_RIGHT">
+    <h4 id=".ALIGN_RIGHT"><span class="type-signature">&lt;static, constant> </span>ALIGN_RIGHT<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Align each line of multi-line text to the right.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1601,53 +838,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 189
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET1"><span class="type-signature">&lt;static, constant> </span>TEXT_SET1<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET1">
+    <h4 id=".TEXT_SET1"><span class="type-signature">&lt;static, constant> </span>TEXT_SET1<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 1 =  !&quot;#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1657,53 +913,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 203
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET2"><span class="type-signature">&lt;static, constant> </span>TEXT_SET2<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET2">
+    <h4 id=".TEXT_SET2"><span class="type-signature">&lt;static, constant> </span>TEXT_SET2<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 2 =  !&quot;#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1713,53 +988,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 210
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET3"><span class="type-signature">&lt;static, constant> </span>TEXT_SET3<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET3">
+    <h4 id=".TEXT_SET3"><span class="type-signature">&lt;static, constant> </span>TEXT_SET3<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 3 = ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1769,53 +1063,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 217
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET4"><span class="type-signature">&lt;static, constant> </span>TEXT_SET4<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET4">
+    <h4 id=".TEXT_SET4"><span class="type-signature">&lt;static, constant> </span>TEXT_SET4<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 4 = ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1825,53 +1138,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 224
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET5"><span class="type-signature">&lt;static, constant> </span>TEXT_SET5<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET5">
+    <h4 id=".TEXT_SET5"><span class="type-signature">&lt;static, constant> </span>TEXT_SET5<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 5 = ABCDEFGHIJKLMNOPQRSTUVWXYZ.,/() '!?-*:0123456789</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1881,53 +1213,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 231
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET6"><span class="type-signature">&lt;static, constant> </span>TEXT_SET6<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET6">
+    <h4 id=".TEXT_SET6"><span class="type-signature">&lt;static, constant> </span>TEXT_SET6<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 6 = ABCDEFGHIJKLMNOPQRSTUVWXYZ!?:;0123456789&quot;(),-.'</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1937,53 +1288,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 238
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET7"><span class="type-signature">&lt;static, constant> </span>TEXT_SET7<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET7">
+    <h4 id=".TEXT_SET7"><span class="type-signature">&lt;static, constant> </span>TEXT_SET7<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 7 = AGMSY+:4BHNTZ!;5CIOU.?06DJPV,(17EKQW&quot;)28FLRX-'39</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1993,53 +1363,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 245
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET8"><span class="type-signature">&lt;static, constant> </span>TEXT_SET8<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET8">
+    <h4 id=".TEXT_SET8"><span class="type-signature">&lt;static, constant> </span>TEXT_SET8<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 8 = 0123456789 .ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2049,53 +1438,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 252
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET9"><span class="type-signature">&lt;static, constant> </span>TEXT_SET9<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET9">
+    <h4 id=".TEXT_SET9"><span class="type-signature">&lt;static, constant> </span>TEXT_SET9<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 9 = ABCDEFGHIJKLMNOPQRSTUVWXYZ()-0123456789.:,'&quot;?!</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2105,53 +1513,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 259
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET10"><span class="type-signature">&lt;static, constant> </span>TEXT_SET10<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET10">
+    <h4 id=".TEXT_SET10"><span class="type-signature">&lt;static, constant> </span>TEXT_SET10<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 10 = ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2161,53 +1588,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 266
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".TEXT_SET11"><span class="type-signature">&lt;static, constant> </span>TEXT_SET11<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id=".TEXT_SET11">
+    <h4 id=".TEXT_SET11"><span class="type-signature">&lt;static, constant> </span>TEXT_SET11<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Text Set 11 = ABCDEFGHIJKLMNOPQRSTUVWXYZ.,&quot;-+!?()':;0123456789</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2217,53 +1663,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 273
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="align"><span class="type-signature"></span>align<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id="align">
+    <h4 id="align"><span class="type-signature"></span>align<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Alignment of the text when multiLine = true or a fixedWidth is set. Set to RetroFont.ALIGN_LEFT (default), RetroFont.ALIGN_RIGHT or RetroFont.ALIGN_CENTER.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2273,53 +1738,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 77
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="autoUpperCase"><span class="type-signature"></span>autoUpperCase<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="autoUpperCase">
+    <h4 id="autoUpperCase"><span class="type-signature"></span>autoUpperCase<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Automatically convert any text to upper case. Lots of old bitmap fonts only contain upper-case characters, so the default is true.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2329,80 +1813,89 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 89
-    </dt>
-    
+	
 
-    
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>true</li>
+		</ul>
+	</dd>
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="baseTexture"><span class="type-signature"></span>baseTexture<span class="type-signature"> :BaseTexture</span></h4>
-    
+<dt class="name" id="baseTexture">
+    <h4 id="baseTexture"><span class="type-signature"></span>baseTexture<span class="type-signature"> :BaseTexture</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The base texture object that this texture uses</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">BaseTexture</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#baseTexture">Phaser.RenderTexture#baseTexture</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#baseTexture">Phaser.RenderTexture#baseTexture</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 66
-    </dt>
     
 
     
@@ -2410,36 +1903,73 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="characterHeight"><span class="type-signature"></span>characterHeight<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="characterHeight">
+    <h4 id="characterHeight"><span class="type-signature"></span>characterHeight<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The height of each character in the font set.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2449,53 +1979,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 45
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="characterPerRow"><span class="type-signature"></span>characterPerRow<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="characterPerRow">
+    <h4 id="characterPerRow"><span class="type-signature"></span>characterPerRow<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The number of characters per row in the font set.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2505,53 +2054,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 60
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="characterSpacingX"><span class="type-signature"></span>characterSpacingX<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="characterSpacingX">
+    <h4 id="characterSpacingX"><span class="type-signature"></span>characterSpacingX<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the characters in the font set have horizontal spacing between them set the required amount here.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2561,53 +2129,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 50
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="characterSpacingY"><span class="type-signature"></span>characterSpacingY<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="characterSpacingY">
+    <h4 id="characterSpacingY"><span class="type-signature"></span>characterSpacingY<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the characters in the font set have vertical spacing between them set the required amount here.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2617,53 +2204,72 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 55
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="characterWidth"><span class="type-signature"></span>characterWidth<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="characterWidth">
+    <h4 id="characterWidth"><span class="type-signature"></span>characterWidth<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The width of each character in the font set.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2673,78 +2279,83 @@ is the same size. This makes it similar to a sprite sheet. You typically find fo
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 40
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="crop"><span class="type-signature"></span>crop<span class="type-signature"> :Rectangle</span></h4>
-    
+<dt class="name" id="crop">
+    <h4 id="crop"><span class="type-signature"></span>crop<span class="type-signature"> :Rectangle</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This is the area of the BaseTexture image to actually copy to the Canvas / WebGL when rendering,
 irrespective of the actual frame size or placement (which can be influenced by trimmed texture atlases)</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Rectangle</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#crop">PIXI.Texture#crop</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#crop">PIXI.Texture#crop</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 134
-    </dt>
     
 
     
@@ -2752,36 +2363,73 @@ irrespective of the actual frame size or placement (which can be influenced by t
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="customSpacingX"><span class="type-signature"></span>customSpacingX<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="customSpacingX">
+    <h4 id="customSpacingX"><span class="type-signature"></span>customSpacingX<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Adds horizontal spacing between each character of the font, in pixels.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2791,53 +2439,72 @@ irrespective of the actual frame size or placement (which can be influenced by t
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 95
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="customSpacingY"><span class="type-signature"></span>customSpacingY<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="customSpacingY">
+    <h4 id="customSpacingY"><span class="type-signature"></span>customSpacingY<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Adds vertical spacing between each line of multi-line text, set in pixels.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2847,54 +2514,73 @@ irrespective of the actual frame size or placement (which can be influenced by t
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 101
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="fixedWidth"><span class="type-signature"></span>fixedWidth<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="fixedWidth">
+    <h4 id="fixedWidth"><span class="type-signature"></span>fixedWidth<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If you need this RetroFont image to have a fixed width you can set the width in this value.
 If text is wider than the width specified it will be cropped off.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2904,53 +2590,72 @@ If text is wider than the width specified it will be cropped off.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 108
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="fontSet"><span class="type-signature"></span>fontSet<span class="type-signature"> :Image</span></h4>
-    
+<dt class="name" id="fontSet">
+    <h4 id="fontSet"><span class="type-signature"></span>fontSet<span class="type-signature"> :Image</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the image stored in the Game.Cache that contains the font.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Image</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2960,77 +2665,82 @@ If text is wider than the width specified it will be cropped off.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 113
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="frame"><span class="type-signature"></span>frame<span class="type-signature"> :Rectangle</span></h4>
-    
+<dt class="name" id="frame">
+    <h4 id="frame"><span class="type-signature"></span>frame<span class="type-signature"> :Rectangle</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The frame specifies the region of the base texture that this texture uses</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Rectangle</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#frame">PIXI.Texture#frame</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#frame">PIXI.Texture#frame</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 60
-    </dt>
     
 
     
@@ -3038,36 +2748,73 @@ If text is wider than the width specified it will be cropped off.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="frameData"><span class="type-signature"></span>frameData<span class="type-signature"> :<a href="Phaser.FrameData.html">Phaser.FrameData</a></span></h4>
-    
+<dt class="name" id="frameData">
+    <h4 id="frameData"><span class="type-signature"></span>frameData<span class="type-signature"> :<a href="Phaser.FrameData.html">Phaser.FrameData</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The FrameData representing this Retro Font.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.FrameData.html">Phaser.FrameData</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3077,77 +2824,82 @@ If text is wider than the width specified it will be cropped off.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 130
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
-    
+<dt class="name" id="game">
+    <h4 id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the currently running game.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#game">Phaser.RenderTexture#game</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#game">Phaser.RenderTexture#game</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 34
-    </dt>
     
 
     
@@ -3155,60 +2907,83 @@ If text is wider than the width specified it will be cropped off.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="height"><span class="type-signature"></span>height<span class="type-signature"> :Number</span></h4>
-    
+<dt class="name" id="height">
+    <h4 id="height"><span class="type-signature"></span>height<span class="type-signature"> :Number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The height of the Texture in pixels.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#height">PIXI.Texture#height</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#height">PIXI.Texture#height</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 125
-    </dt>
     
 
     
@@ -3216,60 +2991,83 @@ If text is wider than the width specified it will be cropped off.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="isTiling"><span class="type-signature"></span>isTiling<span class="type-signature"> :Boolean</span></h4>
-    
+<dt class="name" id="isTiling">
+    <h4 id="isTiling"><span class="type-signature"></span>isTiling<span class="type-signature"> :Boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Is this a tiling texture? As used by the likes of a TilingSprite.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#isTiling">PIXI.Texture#isTiling</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#isTiling">PIXI.Texture#isTiling</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 84
-    </dt>
     
 
     
@@ -3277,60 +3075,83 @@ If text is wider than the width specified it will be cropped off.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="key"><span class="type-signature"></span>key<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id="key">
+    <h4 id="key"><span class="type-signature"></span>key<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The key of the RenderTexture in the Cache, if stored there.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#key">Phaser.RenderTexture#key</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#key">Phaser.RenderTexture#key</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 39
-    </dt>
     
 
     
@@ -3338,36 +3159,73 @@ If text is wider than the width specified it will be cropped off.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="multiLine"><span class="type-signature"></span>multiLine<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="multiLine">
+    <h4 id="multiLine"><span class="type-signature"></span>multiLine<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If set to true all carriage-returns in text will form new lines (see align). If false the font will only contain one single line of text (the default)</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3377,77 +3235,82 @@ If text is wider than the width specified it will be cropped off.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 83
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="noFrame"><span class="type-signature"></span>noFrame<span class="type-signature"> :Boolean</span></h4>
-    
+<dt class="name" id="noFrame">
+    <h4 id="noFrame"><span class="type-signature"></span>noFrame<span class="type-signature"> :Boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Does this Texture have any frame data assigned to it?</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#noFrame">PIXI.Texture#noFrame</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#noFrame">PIXI.Texture#noFrame</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 33
-    </dt>
     
 
     
@@ -3455,36 +3318,73 @@ If text is wider than the width specified it will be cropped off.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="offsetX"><span class="type-signature">&lt;readonly> </span>offsetX<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="offsetX">
+    <h4 id="offsetX"><span class="type-signature">&lt;readonly> </span>offsetX<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the font set doesn't start at the top left of the given image, specify the X coordinate offset here.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3494,53 +3394,72 @@ If text is wider than the width specified it will be cropped off.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 66
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="offsetY"><span class="type-signature">&lt;readonly> </span>offsetY<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="offsetY">
+    <h4 id="offsetY"><span class="type-signature">&lt;readonly> </span>offsetY<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the font set doesn't start at the top left of the given image, specify the Y coordinate offset here.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3550,46 +3469,50 @@ If text is wider than the width specified it will be cropped off.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 72
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="renderer"><span class="type-signature"></span>renderer<span class="type-signature"> :CanvasRenderer|WebGLRenderer</span></h4>
-    
+<dt class="name" id="renderer">
+    <h4 id="renderer"><span class="type-signature"></span>renderer<span class="type-signature"> :CanvasRenderer|WebGLRenderer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The renderer this RenderTexture uses. A RenderTexture can only belong to one renderer at the moment if its webGL.</p>
     </div>
     
-    
+
     
         <h5>Type:</h5>
         <ul>
@@ -3601,6 +3524,7 @@ If text is wider than the width specified it will be cropped off.</p>
 <span class="param-type">WebGLRenderer</span>
 
 
+
             </li>
         </ul>
     
@@ -3609,31 +3533,21 @@ If text is wider than the width specified it will be cropped off.</p>
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#renderer">Phaser.RenderTexture#renderer</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#renderer">Phaser.RenderTexture#renderer</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 84
-    </dt>
     
 
     
@@ -3641,60 +3555,88 @@ If text is wider than the width specified it will be cropped off.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="requiresReTint"><span class="type-signature"></span>requiresReTint<span class="type-signature"> :Boolean</span></h4>
-    
+<dt class="name" id="requiresReTint">
+    <h4 id="requiresReTint"><span class="type-signature"></span>requiresReTint<span class="type-signature"> :Boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This will let a renderer know that a tinted parent has updated its texture.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#requiresReTint">PIXI.Texture#requiresReTint</a>
+			</li>
+		</ul>
+	</dd>
+	
 
     
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#requiresReTint">PIXI.Texture#requiresReTint</a>
-    </li></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 100
-    </dt>
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Phaser.RenderTexture.html#requiresReTint">Phaser.RenderTexture#requiresReTint</a>
+    </li></ul></dd>
     
 
     
@@ -3702,60 +3644,83 @@ If text is wider than the width specified it will be cropped off.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="requiresUpdate"><span class="type-signature"></span>requiresUpdate<span class="type-signature"> :Boolean</span></h4>
-    
+<dt class="name" id="requiresUpdate">
+    <h4 id="requiresUpdate"><span class="type-signature"></span>requiresUpdate<span class="type-signature"> :Boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This will let a renderer know that a texture has been updated (used mainly for webGL uv updates)</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#requiresUpdate">PIXI.Texture#requiresUpdate</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#requiresUpdate">PIXI.Texture#requiresUpdate</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 92
-    </dt>
     
 
     
@@ -3763,62 +3728,85 @@ If text is wider than the width specified it will be cropped off.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="rotated"><span class="type-signature"></span>rotated<span class="type-signature"> :Boolean</span></h4>
-    
+<dt class="name" id="rotated">
+    <h4 id="rotated"><span class="type-signature"></span>rotated<span class="type-signature"> :Boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A flag that controls if this frame is rotated or not.
 Rotation allows you to use rotated frames in texture atlas packing, it has nothing to do with
 Sprite rotation.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#rotated">PIXI.Texture#rotated</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#rotated">PIXI.Texture#rotated</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 144
-    </dt>
     
 
     
@@ -3826,36 +3814,73 @@ Sprite rotation.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="smoothed"><span class="type-signature"></span>smoothed<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="smoothed">
+    <h4 id="smoothed"><span class="type-signature"></span>smoothed<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Sets if the stamp is smoothed or not.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3865,53 +3890,72 @@ Sprite rotation.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 585
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="stamp"><span class="type-signature">&lt;readonly> </span>stamp<span class="type-signature"> :<a href="Phaser.Image.html">Phaser.Image</a></span></h4>
-    
+<dt class="name" id="stamp">
+    <h4 id="stamp"><span class="type-signature">&lt;readonly> </span>stamp<span class="type-signature"> :<a href="Phaser.Image.html">Phaser.Image</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The image that is stamped to the RenderTexture for each character in the font.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Image.html">Phaser.Image</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3921,53 +3965,72 @@ Sprite rotation.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 163
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="text"><span class="type-signature"></span>text<span class="type-signature"> :string</span></h4>
-    
+<dt class="name" id="text">
+    <h4 id="text"><span class="type-signature"></span>text<span class="type-signature"> :string</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Set this value to update the text in this sprite. Carriage returns are automatically stripped out if multiLine is false. Text is converted to upper case if autoUpperCase is true.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3977,77 +4040,82 @@ Sprite rotation.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 547
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="trim"><span class="type-signature"></span>trim<span class="type-signature"> :Rectangle</span></h4>
-    
+<dt class="name" id="trim">
+    <h4 id="trim"><span class="type-signature"></span>trim<span class="type-signature"> :Rectangle</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The texture trim data.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Rectangle</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#trim">PIXI.Texture#trim</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#trim">PIXI.Texture#trim</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 68
-    </dt>
     
 
     
@@ -4055,35 +4123,79 @@ Sprite rotation.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="type"><span class="type-signature"></span>type<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="type">
+    <h4 id="type"><span class="type-signature"></span>type<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Base Phaser object type.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
+	
+
+	
+
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="Phaser.RenderTexture.html#type">Phaser.RenderTexture#type</a>
+    </li></ul></dd>
     
 
     
@@ -4092,75 +4204,78 @@ Sprite rotation.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 170
-    </dt>
-    
+	
 
-    
 
-    
 
-    
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="valid"><span class="type-signature"></span>valid<span class="type-signature"> :Boolean</span></h4>
-    
+<dt class="name" id="valid">
+    <h4 id="valid"><span class="type-signature"></span>valid<span class="type-signature"> :Boolean</span></h4>
+
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#valid">Phaser.RenderTexture#valid</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#valid">Phaser.RenderTexture#valid</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 107
-    </dt>
     
 
     
@@ -4168,60 +4283,83 @@ Sprite rotation.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="width"><span class="type-signature"></span>width<span class="type-signature"> :Number</span></h4>
-    
+<dt class="name" id="width">
+    <h4 id="width"><span class="type-signature"></span>width<span class="type-signature"> :Number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The width of the Texture in pixels.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#width">PIXI.Texture#width</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#width">PIXI.Texture#width</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 117
-    </dt>
     
 
     
@@ -4229,9 +4367,34 @@ Sprite rotation.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -4244,33 +4407,36 @@ Sprite rotation.</p>
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="buildRetroFontText"><span class="type-signature"></span>buildRetroFontText<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="buildRetroFontText">
+      <span class="type-signature"></span>buildRetroFontText()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Updates the texture with the new text.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4280,91 +4446,91 @@ Sprite rotation.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 328
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="clear"><span class="type-signature"></span>clear<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="clear">
+      <span class="type-signature"></span>clear()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Clears the RenderTexture.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#clear">Phaser.RenderTexture#clear</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#clear">Phaser.RenderTexture#clear</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 258
-    </dt>
     
 
     
@@ -4372,40 +4538,70 @@ Sprite rotation.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="destroy"><span class="type-signature"></span>destroy<span class="signature">(destroyBase)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="destroy">
+      <span class="type-signature"></span>destroy(destroyBase)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Destroys this texture</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4413,23 +4609,23 @@ Sprite rotation.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4442,6 +4638,7 @@ Sprite rotation.</p>
 <span class="param-type">Boolean</span>
 
 
+
             
             </td>
 
@@ -4449,46 +4646,34 @@ Sprite rotation.</p>
 
             
 
-            <td class="description last"><p>Whether to destroy the base texture as well</p></td>
+            <td class="description param-description last"><p>Whether to destroy the base texture as well</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#destroy">PIXI.Texture#destroy</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#destroy">PIXI.Texture#destroy</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 174
-    </dt>
     
 
     
@@ -4496,40 +4681,70 @@ Sprite rotation.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="fromCanvas"><span class="type-signature"></span>fromCanvas<span class="signature">(canvas, scaleMode)</span><span class="type-signature"> &rarr; {Texture}</span></h4>
-    
+    <h4 class="name" id="fromCanvas">
+      <span class="type-signature"></span>fromCanvas(canvas, scaleMode)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Helper function that creates a new a Texture based on the given canvas element.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4537,23 +4752,23 @@ Sprite rotation.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4566,6 +4781,7 @@ Sprite rotation.</p>
 <span class="param-type">Canvas</span>
 
 
+
             
             </td>
 
@@ -4573,10 +4789,10 @@ Sprite rotation.</p>
 
             
 
-            <td class="description last"><p>The canvas element source of the texture</p></td>
+            <td class="description param-description last"><p>The canvas element source of the texture</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4589,6 +4805,7 @@ Sprite rotation.</p>
 <span class="param-type">Number</span>
 
 
+
             
             </td>
 
@@ -4596,66 +4813,34 @@ Sprite rotation.</p>
 
             
 
-            <td class="description last"><p>See {{#crossLink &quot;PIXI/scaleModes:property&quot;}}PIXI.scaleModes{{/crossLink}} for possible values</p></td>
+            <td class="description param-description last"><p>See {{#crossLink &quot;PIXI/scaleModes:property&quot;}}PIXI.scaleModes{{/crossLink}} for possible values</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">Texture</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#fromCanvas">PIXI.Texture#fromCanvas</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#fromCanvas">PIXI.Texture#fromCanvas</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 286
-    </dt>
     
 
     
@@ -4663,94 +4848,112 @@ Sprite rotation.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Texture</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getBase64"><span class="type-signature"></span>getBase64<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
-    
+    <h4 class="name" id="getBase64">
+      <span class="type-signature"></span>getBase64()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Will return a base64 encoded string of this texture. It works by calling RenderTexture.getCanvas and then running toDataURL on that.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
     
-        <div class="returns-type">
-        
-<span class="param-type">String</span>
 
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>A base64 encoded string of the texture.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#getBase64">Phaser.RenderTexture#getBase64</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#getBase64">Phaser.RenderTexture#getBase64</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 399
-    </dt>
     
 
     
@@ -4758,94 +4961,116 @@ Sprite rotation.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>A base64 encoded string of the texture.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getCanvas"><span class="type-signature"></span>getCanvas<span class="signature">()</span><span class="type-signature"> &rarr; {HTMLCanvasElement}</span></h4>
-    
+    <h4 class="name" id="getCanvas">
+      <span class="type-signature"></span>getCanvas()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Creates a Canvas element, renders this RenderTexture to it and then returns it.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
     
-        <div class="returns-type">
-        
-<span class="param-type">HTMLCanvasElement</span>
 
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>A Canvas element with the texture rendered on.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#getCanvas">Phaser.RenderTexture#getCanvas</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#getCanvas">Phaser.RenderTexture#getCanvas</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 411
-    </dt>
     
 
     
@@ -4853,94 +5078,116 @@ Sprite rotation.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>A Canvas element with the texture rendered on.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">HTMLCanvasElement</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getImage"><span class="type-signature"></span>getImage<span class="signature">()</span><span class="type-signature"> &rarr; {Image}</span></h4>
-    
+    <h4 class="name" id="getImage">
+      <span class="type-signature"></span>getImage()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Will return a HTML Image of the texture</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
     
-        <div class="returns-type">
-        
-<span class="param-type">Image</span>
 
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        
-    </div>
-
-
-        
-    </div>
-    
-    
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#getImage">Phaser.RenderTexture#getImage</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#getImage">Phaser.RenderTexture#getImage</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 384
-    </dt>
     
 
     
@@ -4948,70 +5195,102 @@ Sprite rotation.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Image</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getLongestLine"><span class="type-signature"></span>getLongestLine<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
+    <h4 class="name" id="getLongestLine">
+      <span class="type-signature"></span>getLongestLine()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Works out the longest line of text in _text and returns its length</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
     
-        <div class="returns-type">
-        
-<span class="param-type">number</span>
 
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>The length of the longest line of text.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5021,58 +5300,94 @@ Sprite rotation.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 459
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The length of the longest line of text.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="pasteLine"><span class="type-signature"></span>pasteLine<span class="signature">(line, x, y, customSpacingX)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="pasteLine">
+      <span class="type-signature"></span>pasteLine(line, x, y, customSpacingX)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Internal function that takes a single line of text (2nd parameter) and pastes it into the BitmapData at the given coordinates.
 Used by getLine and getMultiLine</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5080,23 +5395,23 @@ Used by getLine and getMultiLine</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5109,6 +5424,7 @@ Used by getLine and getMultiLine</p>
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -5116,10 +5432,10 @@ Used by getLine and getMultiLine</p>
 
             
 
-            <td class="description last"><p>The single line of text to paste.</p></td>
+            <td class="description param-description last"><p>The single line of text to paste.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5132,6 +5448,7 @@ Used by getLine and getMultiLine</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -5139,10 +5456,10 @@ Used by getLine and getMultiLine</p>
 
             
 
-            <td class="description last"><p>The x coordinate.</p></td>
+            <td class="description param-description last"><p>The x coordinate.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5155,6 +5472,7 @@ Used by getLine and getMultiLine</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -5162,10 +5480,10 @@ Used by getLine and getMultiLine</p>
 
             
 
-            <td class="description last"><p>The y coordinate.</p></td>
+            <td class="description param-description last"><p>The y coordinate.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5178,6 +5496,7 @@ Used by getLine and getMultiLine</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -5185,22 +5504,24 @@ Used by getLine and getMultiLine</p>
 
             
 
-            <td class="description last"><p>Custom X spacing.</p></td>
+            <td class="description param-description last"><p>Custom X spacing.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5210,57 +5531,69 @@ Used by getLine and getMultiLine</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 420
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="removeUnsupportedCharacters"><span class="type-signature">&lt;internal> </span>removeUnsupportedCharacters<span class="signature">(<span class="optional">stripCR</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
+    <h4 class="name" id="removeUnsupportedCharacters">
+      <span class="type-signature">&lt;protected> </span>removeUnsupportedCharacters( [stripCR])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Internal helper function that removes all unsupported characters from the _text String, leaving only characters contained in the font set.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5268,27 +5601,27 @@ Used by getLine and getMultiLine</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5299,6 +5632,7 @@ Used by getLine and getMultiLine</p>
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -5324,55 +5658,24 @@ Used by getLine and getMultiLine</p>
                 </td>
             
 
-            <td class="description last"><p>Should it strip carriage returns as well?</p></td>
+            <td class="description param-description last"><p>Should it strip carriage returns as well?</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">string</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>A clean version of the string.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5382,44 +5685,85 @@ Used by getLine and getMultiLine</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 486
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>A clean version of the string.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="render"><span class="type-signature"></span>render<span class="signature">(displayObject, <span class="optional">matrix</span>, <span class="optional">clear</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="render">
+      <span class="type-signature"></span>render(displayObject [, matrix] [, clear])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This function will draw the display object to the RenderTexture.</p>
 <p>In versions of Phaser prior to 2.4.0 the second parameter was a Phaser.Point object. 
 This is now a Matrix allowing you much more control over how the Display Object is rendered.
@@ -5430,8 +5774,9 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5439,27 +5784,27 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5484,6 +5829,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type"><a href="Phaser.Group.html">Phaser.Group</a></span>
 
 
+
             
             </td>
 
@@ -5503,10 +5849,10 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>The display object to render to this texture.</p></td>
+            <td class="description param-description last"><p>The display object to render to this texture.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5519,6 +5865,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type"><a href="Phaser.Matrix.html">Phaser.Matrix</a></span>
 
 
+
             
             </td>
 
@@ -5540,10 +5887,10 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>Optional matrix to apply to the display object before rendering. If null or undefined it will use the worldTransform matrix of the given display object.</p></td>
+            <td class="description param-description last"><p>Optional matrix to apply to the display object before rendering. If null or undefined it will use the worldTransform matrix of the given display object.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5554,6 +5901,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -5579,46 +5927,34 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>If true the texture will be cleared before the display object is drawn.</p></td>
+            <td class="description param-description last"><p>If true the texture will be cleared before the display object is drawn.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#render">Phaser.RenderTexture#render</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#render">Phaser.RenderTexture#render</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 178
-    </dt>
     
 
     
@@ -5626,33 +5962,62 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="renderRawXY"><span class="type-signature"></span>renderRawXY<span class="signature">(displayObject, x, y, <span class="optional">clear</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="renderRawXY">
+      <span class="type-signature"></span>renderRawXY(displayObject, x, y [, clear])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This function will draw the display object to the RenderTexture at the given coordinates.</p>
 <p>When the display object is drawn it doesn't take into account scale, rotation or translation.</p>
 <p>If you need those then use RenderTexture.renderXY instead.</p>
@@ -5660,8 +6025,9 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5669,27 +6035,27 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5714,6 +6080,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type"><a href="Phaser.Group.html">Phaser.Group</a></span>
 
 
+
             
             </td>
 
@@ -5733,10 +6100,10 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>The display object to render to this texture.</p></td>
+            <td class="description param-description last"><p>The display object to render to this texture.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5749,6 +6116,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -5768,10 +6136,10 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>The x position to render the object at.</p></td>
+            <td class="description param-description last"><p>The x position to render the object at.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5784,6 +6152,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -5803,10 +6172,10 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>The y position to render the object at.</p></td>
+            <td class="description param-description last"><p>The y position to render the object at.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5817,6 +6186,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -5842,46 +6212,34 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>If true the texture will be cleared before the display object is drawn.</p></td>
+            <td class="description param-description last"><p>If true the texture will be cleared before the display object is drawn.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#renderRawXY">Phaser.RenderTexture#renderRawXY</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#renderRawXY">Phaser.RenderTexture#renderRawXY</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 150
-    </dt>
     
 
     
@@ -5889,33 +6247,62 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="renderXY"><span class="type-signature"></span>renderXY<span class="signature">(displayObject, x, y, <span class="optional">clear</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="renderXY">
+      <span class="type-signature"></span>renderXY(displayObject, x, y [, clear])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This function will draw the display object to the RenderTexture at the given coordinates.</p>
 <p>When the display object is drawn it takes into account scale and rotation.</p>
 <p>If you don't want those then use RenderTexture.renderRawXY instead.</p>
@@ -5923,8 +6310,9 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5932,27 +6320,27 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5977,6 +6365,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type"><a href="Phaser.Group.html">Phaser.Group</a></span>
 
 
+
             
             </td>
 
@@ -5996,10 +6385,10 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>The display object to render to this texture.</p></td>
+            <td class="description param-description last"><p>The display object to render to this texture.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6012,6 +6401,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6031,10 +6421,10 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>The x position to render the object at.</p></td>
+            <td class="description param-description last"><p>The x position to render the object at.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6047,6 +6437,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6066,10 +6457,10 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>The y position to render the object at.</p></td>
+            <td class="description param-description last"><p>The y position to render the object at.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6080,6 +6471,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -6105,46 +6497,34 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
                 </td>
             
 
-            <td class="description last"><p>If true the texture will be cleared before the display object is drawn.</p></td>
+            <td class="description param-description last"><p>If true the texture will be cleared before the display object is drawn.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#renderXY">Phaser.RenderTexture#renderXY</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#renderXY">Phaser.RenderTexture#renderXY</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 118
-    </dt>
     
 
     
@@ -6152,40 +6532,70 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="resize"><span class="type-signature"></span>resize<span class="signature">(width, height, updateBase)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="resize">
+      <span class="type-signature"></span>resize(width, height, updateBase)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Resizes the RenderTexture.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6193,23 +6603,23 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6222,6 +6632,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6229,10 +6640,10 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 
             
 
-            <td class="description last"><p>The width to resize to.</p></td>
+            <td class="description param-description last"><p>The width to resize to.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6245,6 +6656,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6252,10 +6664,10 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 
             
 
-            <td class="description last"><p>The height to resize to.</p></td>
+            <td class="description param-description last"><p>The height to resize to.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6268,6 +6680,7 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 <span class="param-type">boolean</span>
 
 
+
             
             </td>
 
@@ -6275,46 +6688,34 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
 
             
 
-            <td class="description last"><p>Should the baseTexture.width and height values be resized as well?</p></td>
+            <td class="description param-description last"><p>Should the baseTexture.width and height values be resized as well?</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="Phaser.RenderTexture.html#resize">Phaser.RenderTexture#resize</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="Phaser.RenderTexture.html#resize">Phaser.RenderTexture#resize</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    gameobjects/RenderTexture.js, line 215
-    </dt>
     
 
     
@@ -6322,41 +6723,71 @@ pass <code>null</code>, leave it undefined or pass <code>displayObject.worldTran
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RenderTexture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setFixedWidth"><span class="type-signature"></span>setFixedWidth<span class="signature">(width, <span class="optional">lineAlignment</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setFixedWidth">
+      <span class="type-signature"></span>setFixedWidth(width [, lineAlignment])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>If you need this RetroFont to have a fixed width and custom alignment you can set the width here.
 If text is wider than the width specified it will be cropped off.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6364,27 +6795,27 @@ If text is wider than the width specified it will be cropped off.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6397,6 +6828,7 @@ If text is wider than the width specified it will be cropped off.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6416,10 +6848,10 @@ If text is wider than the width specified it will be cropped off.</p>
                 </td>
             
 
-            <td class="description last"><p>Width in pixels of this RetroFont. Set to zero to disable and re-enable automatic resizing.</p></td>
+            <td class="description param-description last"><p>Width in pixels of this RetroFont. Set to zero to disable and re-enable automatic resizing.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6430,6 +6862,7 @@ If text is wider than the width specified it will be cropped off.</p>
             
                 
 <span class="param-type">string</span>
+
 
 
             
@@ -6455,22 +6888,24 @@ If text is wider than the width specified it will be cropped off.</p>
                 </td>
             
 
-            <td class="description last"><p>Align the text within this width. Set to RetroFont.ALIGN_LEFT (default), RetroFont.ALIGN_RIGHT or RetroFont.ALIGN_CENTER.</p></td>
+            <td class="description param-description last"><p>Align the text within this width. Set to RetroFont.ALIGN_LEFT (default), RetroFont.ALIGN_RIGHT or RetroFont.ALIGN_CENTER.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6480,57 +6915,69 @@ If text is wider than the width specified it will be cropped off.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 275
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setFrame"><span class="type-signature"></span>setFrame<span class="signature">(frame)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setFrame">
+      <span class="type-signature"></span>setFrame(frame)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Specifies the region of the baseTexture that this texture will use.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6538,23 +6985,23 @@ If text is wider than the width specified it will be cropped off.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6567,6 +7014,7 @@ If text is wider than the width specified it will be cropped off.</p>
 <span class="param-type">Rectangle</span>
 
 
+
             
             </td>
 
@@ -6574,46 +7022,34 @@ If text is wider than the width specified it will be cropped off.</p>
 
             
 
-            <td class="description last"><p>The frame of the texture to set it to</p></td>
+            <td class="description param-description last"><p>The frame of the texture to set it to</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="PIXI.Texture.html#setFrame">PIXI.Texture#setFrame</a>
-    </li></dd>
-    
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="PIXI.Texture.html#setFrame">PIXI.Texture#setFrame</a>
+			</li>
+		</ul>
+	</dd>
+	
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    pixi/textures/Texture.js, line 187
-    </dt>
     
 
     
@@ -6621,40 +7057,70 @@ If text is wider than the width specified it will be cropped off.</p>
     
 
     
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		pixi/textures/Texture.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setText"><span class="type-signature"></span>setText<span class="signature">(content, <span class="optional">multiLine</span>, <span class="optional">characterSpacing</span>, <span class="optional">lineSpacing</span>, <span class="optional">lineAlignment</span>, <span class="optional">allowLowerCase</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setText">
+      <span class="type-signature"></span>setText(content [, multiLine] [, characterSpacing] [, lineSpacing] [, lineAlignment] [, allowLowerCase])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>A helper function that quickly sets lots of variables at once, and then updates the text.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6662,27 +7128,27 @@ If text is wider than the width specified it will be cropped off.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6693,6 +7159,7 @@ If text is wider than the width specified it will be cropped off.</p>
             
                 
 <span class="param-type">string</span>
+
 
 
             
@@ -6714,10 +7181,10 @@ If text is wider than the width specified it will be cropped off.</p>
                 </td>
             
 
-            <td class="description last"><p>The text of this sprite.</p></td>
+            <td class="description param-description last"><p>The text of this sprite.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6728,6 +7195,7 @@ If text is wider than the width specified it will be cropped off.</p>
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -6753,10 +7221,10 @@ If text is wider than the width specified it will be cropped off.</p>
                 </td>
             
 
-            <td class="description last"><p>Set to true if you want to support carriage-returns in the text and create a multi-line sprite instead of a single line.</p></td>
+            <td class="description param-description last"><p>Set to true if you want to support carriage-returns in the text and create a multi-line sprite instead of a single line.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6769,6 +7237,7 @@ If text is wider than the width specified it will be cropped off.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6792,10 +7261,10 @@ If text is wider than the width specified it will be cropped off.</p>
                 </td>
             
 
-            <td class="description last"><p>To add horizontal spacing between each character specify the amount in pixels.</p></td>
+            <td class="description param-description last"><p>To add horizontal spacing between each character specify the amount in pixels.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6808,6 +7277,7 @@ If text is wider than the width specified it will be cropped off.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6831,10 +7301,10 @@ If text is wider than the width specified it will be cropped off.</p>
                 </td>
             
 
-            <td class="description last"><p>To add vertical spacing between each line of text, set the amount in pixels.</p></td>
+            <td class="description param-description last"><p>To add vertical spacing between each line of text, set the amount in pixels.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6845,6 +7315,7 @@ If text is wider than the width specified it will be cropped off.</p>
             
                 
 <span class="param-type">string</span>
+
 
 
             
@@ -6870,10 +7341,10 @@ If text is wider than the width specified it will be cropped off.</p>
                 </td>
             
 
-            <td class="description last"><p>Align each line of multi-line text. Set to RetroFont.ALIGN_LEFT, RetroFont.ALIGN_RIGHT or RetroFont.ALIGN_CENTER.</p></td>
+            <td class="description param-description last"><p>Align each line of multi-line text. Set to RetroFont.ALIGN_LEFT, RetroFont.ALIGN_RIGHT or RetroFont.ALIGN_CENTER.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6884,6 +7355,7 @@ If text is wider than the width specified it will be cropped off.</p>
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -6909,22 +7381,24 @@ If text is wider than the width specified it will be cropped off.</p>
                 </td>
             
 
-            <td class="description last"><p>Lots of bitmap font sets only include upper-case characters, if yours needs to support lower case then set this to true.</p></td>
+            <td class="description param-description last"><p>Lots of bitmap font sets only include upper-case characters, if yours needs to support lower case then set this to true.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6934,50 +7408,61 @@ If text is wider than the width specified it will be cropped off.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 293
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="updateOffset"><span class="type-signature"></span>updateOffset<span class="signature">(<span class="optional">xOffset</span>, <span class="optional">yOffset</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="updateOffset">
+      <span class="type-signature"></span>updateOffset( [xOffset] [, yOffset])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Updates the x and/or y offset that the font is rendered from. This updates all of the texture frames, so be careful how often it is called.
 Note that the values given for the x and y properties are either ADDED to or SUBTRACTED from (if negative) the existing offsetX/Y values of the characters.
 So if the current offsetY is 8 and you want it to start rendering from y16 you would call updateOffset(0, 8) to add 8 to the current y offset.</p>
@@ -6985,8 +7470,9 @@ So if the current offsetY is 8 and you want it to start rendering from y16 you w
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6994,27 +7480,27 @@ So if the current offsetY is 8 and you want it to start rendering from y16 you w
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -7027,6 +7513,7 @@ So if the current offsetY is 8 and you want it to start rendering from y16 you w
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -7050,10 +7537,10 @@ So if the current offsetY is 8 and you want it to start rendering from y16 you w
                 </td>
             
 
-            <td class="description last"><p>If the font set doesn't start at the top left of the given image, specify the X coordinate offset here.</p></td>
+            <td class="description param-description last"><p>If the font set doesn't start at the top left of the given image, specify the X coordinate offset here.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -7066,6 +7553,7 @@ So if the current offsetY is 8 and you want it to start rendering from y16 you w
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -7089,22 +7577,24 @@ So if the current offsetY is 8 and you want it to start rendering from y16 you w
                 </td>
             
 
-            <td class="description last"><p>If the font set doesn't start at the top left of the given image, specify the Y coordinate offset here.</p></td>
+            <td class="description param-description last"><p>If the font set doesn't start at the top left of the given image, specify the Y coordinate offset here.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -7114,34 +7604,45 @@ So if the current offsetY is 8 and you want it to start rendering from y16 you w
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    gameobjects/RetroFont.js, line 514
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		gameobjects/RetroFont.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -7157,64 +7658,54 @@ So if the current offsetY is 8 and you want it to start rendering from y16 you w
 
 
 
+</div>
+	    <footer>
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
-		on Wed, 16 Aug 2017 06:51:19 GMT using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
-
-		} );
-	</script>
-
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on Tue Aug 22nd 2017
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="filter">
+    </div>
+  </div>
+  </div>
+  <div id="toc"></div>
+</div>
+
+    
+	</div>
+</div>
+
+
+
+<script src="scripts/bundle.js"></script>
+<script src="scripts/toc.js"></script>
+<script src="scripts/misc.js"></script>
+
+
+
+
 
 </body>
 </html>
