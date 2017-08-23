@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: Point</title>
 	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
 	<link rel="stylesheet" href="styles/site.phaser.css">
@@ -43,7 +43,7 @@
   			<li class="dropdown">
   				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
   				<ul class="dropdown-menu ">
-  					<li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#init">init</a></li>
+  					<li><a href="global.html">Global</a></li>
   				</ul>
   			</li>
   			
@@ -9098,211 +9098,6 @@ coordinates. If none is given the distance between the two is calculated and use
             
 <dt>
     <h4 class="name" id="set">
-      <span class="type-signature"></span>set(x [, y])
-      
-    </h4>
-    
-</dt>
-<dd>
-
-    
-    <div class="description method-description">
-        <p>Sets the <code>x</code> and <code>y</code> values of this Point object to the given values.
-If you omit the <code>y</code> value then the <code>x</code> value will be applied to both, for example:
-<code>Point.set(2)</code> is the same as <code>Point.set(2, 2)</code></p>
-<p>Identical to <a href="Phaser.Point.html#setTo">setTo</a>.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Argument</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description param-description last"><p>The horizontal value of this point.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description param-description last"><p>The vertical value of this point. If not given the x value will be used in its place.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		geom/Point.js
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>This Point object. Useful for chaining method calls.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="set">
       <span class="type-signature"></span>set(obj, x [, y])
       
     </h4>
@@ -9521,6 +9316,211 @@ If you omit the <code>y</code> value then the <code>x</code> value will be appli
     <dd>
         
 <span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="set">
+      <span class="type-signature"></span>set(x [, y])
+      
+    </h4>
+    
+</dt>
+<dd>
+
+    
+    <div class="description method-description">
+        <p>Sets the <code>x</code> and <code>y</code> values of this Point object to the given values.
+If you omit the <code>y</code> value then the <code>x</code> value will be applied to both, for example:
+<code>Point.set(2)</code> is the same as <code>Point.set(2, 2)</code></p>
+<p>Identical to <a href="Phaser.Point.html#setTo">setTo</a>.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description param-description last"><p>The horizontal value of this point.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description param-description last"><p>The vertical value of this point. If not given the x value will be used in its place.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		geom/Point.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This Point object. Useful for chaining method calls.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
 
 
 
@@ -10466,7 +10466,7 @@ If you omit the <code>y</code> value then the <code>x</code> value will be appli
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on Tue Aug 22nd 2017
+		on Wed Aug 23rd 2017
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </p>
