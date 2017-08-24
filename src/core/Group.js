@@ -3109,8 +3109,11 @@ Object.defineProperty(Phaser.Group.prototype, "bottom", {
 *     - {@link Phaser.Creature}
 *     - {@link Phaser.Graphics}
 *     - {@link Phaser.Group}
+*       - {@link Phaser.FlexLayer}
 *       - {@link Phaser.Particles.Arcade.Emitter}
+*       - {@link Phaser.Physics.P2.BodyDebug}
 *       - {@link Phaser.SpriteBatch}
+*       - {@link Phaser.World}
 *     - {@link Phaser.Rope}
 *     - {@link Phaser.Stage}
 *     - {@link PIXI.Sprite}
