@@ -2899,7 +2899,7 @@ declare module Phaser {
                 setSize(width: number, height: number): Phaser.Particles.Arcade.Emitter;
                 setXSpeed(min: number, max: number): Phaser.Particles.Arcade.Emitter;
                 setYSpeed(min: number, max: number): Phaser.Particles.Arcade.Emitter;
-                start(explode?: boolean, lifespan?: number, frequency?: number, quantity?: number, forceQuantity?: boolean): Phaser.Particles.Arcade.Emitter;
+                start(explode?: boolean, lifespan?: number, frequency?: number, total?: number, forceQuantity?: boolean): Phaser.Particles.Arcade.Emitter;
                 update(): void;
                 revive(): Phaser.Particles.Arcade.Emitter;
 
