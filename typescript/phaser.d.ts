@@ -601,7 +601,7 @@ declare module Phaser {
         removeBitmapData(key: string): void;
         removeBitmapFont(key: string): void;
         removeCanvas(key: string): void;
-        removeImage(key: string, removeFromPixi?: boolean): void;
+        removeImage(key: string, destroyBaseTexture?: boolean): void;
         removeJSON(key: string): void;
         removePhysics(key: string): void;
         removeRenderTexture(key: string): void;
