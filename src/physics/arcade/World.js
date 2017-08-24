@@ -381,16 +381,18 @@ Phaser.Physics.Arcade.prototype = {
     *
     * ##### Examples
     *
-    *     collide(group);
-    *     collide(group, undefined); // equivalent
+    * ```javascript
+    * collide(group);
+    * collide(group, undefined); // equivalent
     *
-    *     collide(sprite1, sprite2);
+    * collide(sprite1, sprite2);
     *
-    *     collide(sprite, group);
+    * collide(sprite, group);
     *
-    *     collide(group1, group2);
+    * collide(group1, group2);
     *
-    *     collide([sprite1, sprite2], [sprite3, sprite4]); // 1v3, 1v4, 2v3, 2v4
+    * collide([sprite1, sprite2], [sprite3, sprite4]); // 1 vs. 3, 1 vs. 4, 2 vs. 3, 2 vs. 4
+    * ```
     *
     * ##### Tilemaps
     *

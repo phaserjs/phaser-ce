@@ -1,990 +1,149 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: Pointer · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Phaser CE Class: Pointer</title>
+	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
+	<link rel="stylesheet" href="styles/site.phaser.css">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+          </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html">Global</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="#">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="#">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Class: Pointer</h1>-->
+	<h1 class="page-title">Class: Pointer</h1>
 <section>
 
 <header>
-    <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
     
-    Pointer
-    </h2>
+        <h2>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
+        
+        Pointer
+        </h2>
+        
     
 </header>
+
 
 <article>
     <div class="container-overview">
     
-
-    
         
 <dt>
-    <h4 class="name "
-        id="Pointer"><span class="type-signature"></span>new Pointer<span class="signature">(game, id, pointerMode)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="Pointer">
+      <span class="type-signature"></span>new Pointer(game, id, pointerMode)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>A Pointer object is used by the Mouse, Touch and MSPoint managers and represents a single finger on the touch screen.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -992,25 +151,25 @@
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -1023,6 +182,7 @@
 <span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
 
 
+
             
             </td>
 
@@ -1034,10 +194,10 @@
                 </td>
             
 
-            <td class="description last"><p>A reference to the currently running game.</p></td>
+            <td class="description param-description last"><p>A reference to the currently running game.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1050,6 +210,7 @@
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1061,10 +222,10 @@
                 </td>
             
 
-            <td class="description last"><p>The ID of the Pointer object within the game. Each game can have up to 10 active pointers.</p></td>
+            <td class="description param-description last"><p>The ID of the Pointer object within the game. Each game can have up to 10 active pointers.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1075,6 +236,7 @@
             
                 
 <span class="param-type"><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></span>
+
 
 
             
@@ -1090,22 +252,24 @@
                 </td>
             
 
-            <td class="description last"><p>The operational mode of this pointer, eg. CURSOR or TOUCH.</p></td>
+            <td class="description param-description last"><p>The operational mode of this pointer, eg. CURSOR or TOUCH.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1115,34 +279,45 @@
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 16
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -1164,29 +339,41 @@
 
         <dl>
             
-<dt>
-    <h4 class="name "
-        id=".BACK_BUTTON"><span class="type-signature">&lt;static, constant> </span>BACK_BUTTON<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".BACK_BUTTON">
+    <h4 id=".BACK_BUTTON"><span class="type-signature">&lt;static, constant> </span>BACK_BUTTON<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The X1 button. This is typically the mouse Back button, but is often reconfigured.
 On Linux (GTK) this is unsupported. On Windows if advanced pointer software (such as IntelliPoint) is installed this doesn't register.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1196,53 +383,72 @@ On Linux (GTK) this is unsupported. On Windows if advanced pointer software (suc
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 397
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".ERASER_BUTTON"><span class="type-signature">&lt;static, constant> </span>ERASER_BUTTON<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".ERASER_BUTTON">
+    <h4 id=".ERASER_BUTTON"><span class="type-signature">&lt;static, constant> </span>ERASER_BUTTON<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Eraser pen button on PointerEvent supported devices only.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1252,54 +458,73 @@ On Linux (GTK) this is unsupported. On Windows if advanced pointer software (suc
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 412
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".FORWARD_BUTTON"><span class="type-signature">&lt;static, constant> </span>FORWARD_BUTTON<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".FORWARD_BUTTON">
+    <h4 id=".FORWARD_BUTTON"><span class="type-signature">&lt;static, constant> </span>FORWARD_BUTTON<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The X2 button. This is typically the mouse Forward button, but is often reconfigured.
 On Linux (GTK) this is unsupported. On Windows if advanced pointer software (such as IntelliPoint) is installed this doesn't register.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1309,53 +534,72 @@ On Linux (GTK) this is unsupported. On Windows if advanced pointer software (suc
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 405
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".LEFT_BUTTON"><span class="type-signature">&lt;static, constant> </span>LEFT_BUTTON<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".LEFT_BUTTON">
+    <h4 id=".LEFT_BUTTON"><span class="type-signature">&lt;static, constant> </span>LEFT_BUTTON<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Left Mouse button, or in PointerEvent devices a Touch contact or Pen contact.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1365,53 +609,72 @@ On Linux (GTK) this is unsupported. On Windows if advanced pointer software (suc
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 375
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".MIDDLE_BUTTON"><span class="type-signature">&lt;static, constant> </span>MIDDLE_BUTTON<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".MIDDLE_BUTTON">
+    <h4 id=".MIDDLE_BUTTON"><span class="type-signature">&lt;static, constant> </span>MIDDLE_BUTTON<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Middle Mouse button.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1421,53 +684,72 @@ On Linux (GTK) this is unsupported. On Windows if advanced pointer software (suc
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 389
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".NO_BUTTON"><span class="type-signature">&lt;static, constant> </span>NO_BUTTON<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".NO_BUTTON">
+    <h4 id=".NO_BUTTON"><span class="type-signature">&lt;static, constant> </span>NO_BUTTON<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>No buttons at all.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1477,53 +759,72 @@ On Linux (GTK) this is unsupported. On Windows if advanced pointer software (suc
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 368
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".RIGHT_BUTTON"><span class="type-signature">&lt;static, constant> </span>RIGHT_BUTTON<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".RIGHT_BUTTON">
+    <h4 id=".RIGHT_BUTTON"><span class="type-signature">&lt;static, constant> </span>RIGHT_BUTTON<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Right Mouse button, or in PointerEvent devices a Pen contact with a barrel button.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1533,53 +834,72 @@ On Linux (GTK) this is unsupported. On Windows if advanced pointer software (suc
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 382
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="active"><span class="type-signature"></span>active<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="active">
+    <h4 id="active"><span class="type-signature"></span>active<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>An active pointer is one that is currently pressed down on the display. A Mouse is always active.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1589,56 +909,75 @@ On Linux (GTK) this is unsupported. On Windows if advanced pointer software (suc
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 316
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="backButton"><span class="type-signature"></span>backButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
-    
+<dt class="name" id="backButton">
+    <h4 id="backButton"><span class="type-signature"></span>backButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If this Pointer is a Mouse or Pen / Stylus then you can access its X1 (back) button directly through this property.</p>
 <p>The DeviceButton has its own properties such as <code>isDown</code>, <code>duration</code> and methods like <code>justReleased</code> for more fine-grained
 button control.</p>
 <p>Please see the DeviceButton docs for details on browser button limitations.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1648,55 +987,74 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 120
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="button"><span class="type-signature"></span>button<span class="type-signature"> :any</span></h4>
-    
+<dt class="name" id="button">
+    <h4 id="button"><span class="type-signature"></span>button<span class="type-signature"> :any</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The button property of the most recent DOM event when this Pointer is started.
 You should not rely on this value for accurate button detection, instead use the Pointer properties
 <code>leftButton</code>, <code>rightButton</code>, <code>middleButton</code> and so on.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">any</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1706,54 +1064,73 @@ You should not rely on this value for accurate button detection, instead use the
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 70
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="circle"><span class="type-signature"></span>circle<span class="type-signature"> :<a href="Phaser.Circle.html">Phaser.Circle</a></span></h4>
-    
+<dt class="name" id="circle">
+    <h4 id="circle"><span class="type-signature"></span>circle<span class="type-signature"> :<a href="Phaser.Circle.html">Phaser.Circle</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A Phaser.Circle that is centered on the x/y coordinates of this pointer, useful for hit detection.
 The Circle size is 44px (Apples recommended &quot;finger tip&quot; size).</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Circle.html">Phaser.Circle</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1763,53 +1140,72 @@ The Circle size is 44px (Apples recommended &quot;finger tip&quot; size).</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 344
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="clientX"><span class="type-signature"></span>clientX<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="clientX">
+    <h4 id="clientX"><span class="type-signature"></span>clientX<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The horizontal coordinate of the Pointer within the application's client area at which the event occurred (as opposed to the coordinates within the page).</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1819,53 +1215,72 @@ The Circle size is 44px (Apples recommended &quot;finger tip&quot; size).</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 181
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="clientY"><span class="type-signature"></span>clientY<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="clientY">
+    <h4 id="clientY"><span class="type-signature"></span>clientY<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The vertical coordinate of the Pointer within the application's client area at which the event occurred (as opposed to the coordinates within the page).</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1875,53 +1290,72 @@ The Circle size is 44px (Apples recommended &quot;finger tip&quot; size).</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 186
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="dirty"><span class="type-signature"></span>dirty<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="dirty">
+    <h4 id="dirty"><span class="type-signature"></span>dirty<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A dirty pointer needs to re-poll any interactive objects it may have been over, regardless if it has moved or not.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1931,55 +1365,74 @@ The Circle size is 44px (Apples recommended &quot;finger tip&quot; size).</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 322
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="duration"><span class="type-signature">&lt;readonly> </span>duration<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="duration">
+    <h4 id="duration"><span class="type-signature">&lt;readonly> </span>duration<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>How long the Pointer has been depressed on the touchscreen or <em>any</em> of the mouse buttons have been held down.
 If not currently down it returns -1.
 If you need to test a specific mouse or pen button then access the buttons directly, i.e. <code>Pointer.rightButton.duration</code>.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1989,56 +1442,75 @@ If you need to test a specific mouse or pen button then access the buttons direc
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 1184
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="eraserButton"><span class="type-signature"></span>eraserButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
-    
+<dt class="name" id="eraserButton">
+    <h4 id="eraserButton"><span class="type-signature"></span>eraserButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If this Pointer is a Pen / Stylus then you can access its eraser button directly through this property.</p>
 <p>The DeviceButton has its own properties such as <code>isDown</code>, <code>duration</code> and methods like <code>justReleased</code> for more fine-grained
 button control.</p>
 <p>Please see the DeviceButton docs for details on browser button limitations.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2048,53 +1520,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 146
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="exists"><span class="type-signature"></span>exists<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="exists">
+    <h4 id="exists"><span class="type-signature"></span>exists<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A Pointer object that exists is allowed to be checked for physics collisions and overlaps.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2104,59 +1595,82 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 38
-    </dt>
-    
+	
 
-    
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>true</li>
+		</ul>
+	</dd>
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="forwardButton"><span class="type-signature"></span>forwardButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
-    
+<dt class="name" id="forwardButton">
+    <h4 id="forwardButton"><span class="type-signature"></span>forwardButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If this Pointer is a Mouse or Pen / Stylus then you can access its X2 (forward) button directly through this property.</p>
 <p>The DeviceButton has its own properties such as <code>isDown</code>, <code>duration</code> and methods like <code>justReleased</code> for more fine-grained
 button control.</p>
 <p>Please see the DeviceButton docs for details on browser button limitations.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2166,53 +1680,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 133
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
-    
+<dt class="name" id="game">
+    <h4 id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the currently running game.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2222,53 +1755,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 21
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="id"><span class="type-signature"></span>id<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="id">
+    <h4 id="id"><span class="type-signature"></span>id<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The ID of the Pointer object within the game. Each game can have up to 10 active pointers.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2278,53 +1830,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 26
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="identifier"><span class="type-signature"></span>identifier<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="identifier">
+    <h4 id="identifier"><span class="type-signature"></span>identifier<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The identifier property of the Pointer as set by the DOM event when this Pointer is started.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2334,42 +1905,46 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 44
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="interactiveCandidates"><span class="type-signature"></span>interactiveCandidates<span class="type-signature"> :array</span></h4>
-    
+<dt class="name" id="interactiveCandidates">
+    <h4 id="interactiveCandidates"><span class="type-signature"></span>interactiveCandidates<span class="type-signature"> :array</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This array is erased and re-populated every time this Pointer is updated. It contains references to all
 of the Game Objects that were considered as being valid for processing by this Pointer, this frame. To be
 valid they must have suitable a <code>priorityID</code>, be Input enabled, visible and actually have the Pointer over
@@ -2377,14 +1952,29 @@ them. You can check the contents of this array in events such as <code>onInputDo
 every frame.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">array</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2394,57 +1984,80 @@ every frame.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>[]</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 310
-    </dt>
-    
+	
 
-    
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>[]</li>
+		</ul>
+	</dd>
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="isDown"><span class="type-signature"></span>isDown<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="isDown">
+    <h4 id="isDown"><span class="type-signature"></span>isDown<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the Pointer is touching the touchscreen, or <em>any</em> mouse or pen button is held down, isDown is set to true.
 If you need to check a specific mouse or pen button then use the button properties, i.e. Pointer.rightButton.isDown.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2454,53 +2067,72 @@ If you need to check a specific mouse or pen button then use the button properti
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 255
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="isMouse"><span class="type-signature"></span>isMouse<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="isMouse">
+    <h4 id="isMouse"><span class="type-signature"></span>isMouse<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the Pointer is a mouse or pen / stylus this is true, otherwise false.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2510,54 +2142,73 @@ If you need to check a specific mouse or pen button then use the button properti
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 247
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="isUp"><span class="type-signature"></span>isUp<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="isUp">
+    <h4 id="isUp"><span class="type-signature"></span>isUp<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the Pointer is not touching the touchscreen, or <em>all</em> mouse or pen buttons are up, isUp is set to true.
 If you need to check a specific mouse or pen button then use the button properties, i.e. Pointer.rightButton.isUp.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2567,58 +2218,81 @@ If you need to check a specific mouse or pen button then use the button properti
 
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 263
-    </dt>
-    
+	
 
-    
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>true</li>
+		</ul>
+	</dd>
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="leftButton"><span class="type-signature"></span>leftButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
-    
+<dt class="name" id="leftButton">
+    <h4 id="leftButton"><span class="type-signature"></span>leftButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If this Pointer is a Mouse or Pen / Stylus then you can access its left button directly through this property.</p>
 <p>The DeviceButton has its own properties such as <code>isDown</code>, <code>duration</code> and methods like <code>justReleased</code> for more fine-grained
 button control.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2628,56 +2302,75 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 81
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="middleButton"><span class="type-signature"></span>middleButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
-    
+<dt class="name" id="middleButton">
+    <h4 id="middleButton"><span class="type-signature"></span>middleButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If this Pointer is a Mouse or Pen / Stylus then you can access its middle button directly through this property.</p>
 <p>The DeviceButton has its own properties such as <code>isDown</code>, <code>duration</code> and methods like <code>justReleased</code> for more fine-grained
 button control.</p>
 <p>Please see the DeviceButton docs for details on browser button limitations.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2687,53 +2380,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 94
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="movementX"><span class="type-signature"></span>movementX<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="movementX">
+    <h4 id="movementX"><span class="type-signature"></span>movementX<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The horizontal processed relative movement of the Pointer in pixels since last event.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2743,53 +2455,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 224
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="movementY"><span class="type-signature"></span>movementY<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="movementY">
+    <h4 id="movementY"><span class="type-signature"></span>movementY<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The vertical processed relative movement of the Pointer in pixels since last event.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2799,53 +2530,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 230
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="msSinceLastClick"><span class="type-signature"></span>msSinceLastClick<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="msSinceLastClick">
+    <h4 id="msSinceLastClick"><span class="type-signature"></span>msSinceLastClick<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The number of milliseconds since the last click or touch event.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2855,53 +2605,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 293
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="pageX"><span class="type-signature"></span>pageX<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="pageX">
+    <h4 id="pageX"><span class="type-signature"></span>pageX<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The horizontal coordinate of the Pointer relative to whole document.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2911,53 +2680,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 191
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="pageY"><span class="type-signature"></span>pageY<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="pageY">
+    <h4 id="pageY"><span class="type-signature"></span>pageY<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The vertical coordinate of the Pointer relative to whole document.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2967,53 +2755,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 196
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="pointerId"><span class="type-signature"></span>pointerId<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="pointerId">
+    <h4 id="pointerId"><span class="type-signature"></span>pointerId<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The pointerId property of the Pointer as set by the DOM event when this Pointer is started. The browser can and will recycle this value.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3023,53 +2830,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 50
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="pointerMode"><span class="type-signature"></span>pointerMode<span class="type-signature"> :<a href="Phaser.PointerMode.html">Phaser.PointerMode</a></span></h4>
-    
+<dt class="name" id="pointerMode">
+    <h4 id="pointerMode"><span class="type-signature"></span>pointerMode<span class="type-signature"> :<a href="Phaser.PointerMode.html">Phaser.PointerMode</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The operational mode of this pointer.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3079,53 +2905,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 55
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="position"><span class="type-signature"></span>position<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-    
+<dt class="name" id="position">
+    <h4 id="position"><span class="type-signature"></span>position<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A Phaser.Point object containing the current x/y values of the pointer on the display.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3135,53 +2980,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 327
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="positionDown"><span class="type-signature"></span>positionDown<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-    
+<dt class="name" id="positionDown">
+    <h4 id="positionDown"><span class="type-signature"></span>positionDown<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A Phaser.Point object containing the x/y values of the pointer when it was last in a down state on the display.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3191,53 +3055,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 332
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="positionUp"><span class="type-signature"></span>positionUp<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-    
+<dt class="name" id="positionUp">
+    <h4 id="positionUp"><span class="type-signature"></span>positionUp<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A Phaser.Point object containing the x/y values of the pointer when it was last released.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3247,53 +3130,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 337
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="previousTapTime"><span class="type-signature"></span>previousTapTime<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="previousTapTime">
+    <h4 id="previousTapTime"><span class="type-signature"></span>previousTapTime<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A timestamp representing when the Pointer was last tapped or clicked.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3303,53 +3205,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 281
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="rawMovementX"><span class="type-signature"></span>rawMovementX<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="rawMovementX">
+    <h4 id="rawMovementX"><span class="type-signature"></span>rawMovementX<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The horizontal raw relative movement of the Pointer in pixels since last event.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3359,53 +3280,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 212
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="rawMovementY"><span class="type-signature"></span>rawMovementY<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="rawMovementY">
+    <h4 id="rawMovementY"><span class="type-signature"></span>rawMovementY<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The vertical raw relative movement of the Pointer in pixels since last event.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3415,56 +3355,75 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 218
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="rightButton"><span class="type-signature"></span>rightButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
-    
+<dt class="name" id="rightButton">
+    <h4 id="rightButton"><span class="type-signature"></span>rightButton<span class="type-signature"> :<a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If this Pointer is a Mouse or Pen / Stylus then you can access its right button directly through this property.</p>
 <p>The DeviceButton has its own properties such as <code>isDown</code>, <code>duration</code> and methods like <code>justReleased</code> for more fine-grained
 button control.</p>
 <p>Please see the DeviceButton docs for details on browser button limitations.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3474,53 +3433,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 107
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="screenX"><span class="type-signature"></span>screenX<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="screenX">
+    <h4 id="screenX"><span class="type-signature"></span>screenX<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The horizontal coordinate of the Pointer relative to the screen.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3530,53 +3508,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 201
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="screenY"><span class="type-signature"></span>screenY<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="screenY">
+    <h4 id="screenY"><span class="type-signature"></span>screenY<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The vertical coordinate of the Pointer relative to the screen.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3586,53 +3583,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 206
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="target"><span class="type-signature"></span>target<span class="type-signature"> :any</span></h4>
-    
+<dt class="name" id="target">
+    <h4 id="target"><span class="type-signature"></span>target<span class="type-signature"> :any</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The target property of the Pointer as set by the DOM event when this Pointer is started.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">any</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3642,53 +3658,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 61
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="targetObject"><span class="type-signature"></span>targetObject<span class="type-signature"> :any</span></h4>
-    
+<dt class="name" id="targetObject">
+    <h4 id="targetObject"><span class="type-signature"></span>targetObject<span class="type-signature"> :any</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Game Object this Pointer is currently over / touching / dragging.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">any</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3698,53 +3733,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 299
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="timeDown"><span class="type-signature"></span>timeDown<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="timeDown">
+    <h4 id="timeDown"><span class="type-signature"></span>timeDown<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A timestamp representing when the Pointer first touched the touchscreen.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3754,53 +3808,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 269
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="timeUp"><span class="type-signature"></span>timeUp<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="timeUp">
+    <h4 id="timeUp"><span class="type-signature"></span>timeUp<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A timestamp representing when the Pointer left the touchscreen.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3810,53 +3883,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 275
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="totalTouches"><span class="type-signature"></span>totalTouches<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="totalTouches">
+    <h4 id="totalTouches"><span class="type-signature"></span>totalTouches<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The total number of times this Pointer has been touched to the touchscreen.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3866,53 +3958,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 287
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="type"><span class="type-signature">&lt;readonly> </span>type<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="type">
+    <h4 id="type"><span class="type-signature">&lt;readonly> </span>type<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The const type of this object.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3922,53 +4033,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 32
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="withinGame"><span class="type-signature"></span>withinGame<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="withinGame">
+    <h4 id="withinGame"><span class="type-signature"></span>withinGame<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>true if the Pointer is over the game canvas, otherwise false.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3978,53 +4108,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 176
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="worldX"><span class="type-signature">&lt;readonly> </span>worldX<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="worldX">
+    <h4 id="worldX"><span class="type-signature">&lt;readonly> </span>worldX<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Gets the X value of this Pointer in world coordinates based on the world camera.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4034,53 +4183,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 1208
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="worldY"><span class="type-signature">&lt;readonly> </span>worldY<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="worldY">
+    <h4 id="worldY"><span class="type-signature">&lt;readonly> </span>worldY<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Gets the Y value of this Pointer in world coordinates based on the world camera.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4090,53 +4258,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 1224
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="x"><span class="type-signature"></span>x<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="x">
+    <h4 id="x"><span class="type-signature"></span>x<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The horizontal coordinate of the Pointer. This value is automatically scaled based on the game scale.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4146,53 +4333,72 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 236
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="y"><span class="type-signature"></span>y<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="y">
+    <h4 id="y"><span class="type-signature"></span>y<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The vertical coordinate of the Pointer. This value is automatically scaled based on the game scale.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4202,26 +4408,33 @@ button control.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 242
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -4234,16 +4447,16 @@ button control.</p>
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="addClickTrampoline"><span class="type-signature">&lt;internal> </span>addClickTrampoline<span class="signature">(name, callback, callbackContext, callbackArgs)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="addClickTrampoline">
+      <span class="type-signature">&lt;protected> </span>addClickTrampoline(name, callback, callbackContext, callbackArgs)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Add a click trampoline to this pointer.</p>
 <p>A click trampoline is a callback that is run on the DOM 'click' event; this is primarily
 needed with certain browsers (ie. IE11) which restrict some actions like requestFullscreen
@@ -4254,8 +4467,9 @@ Click trampolines can only be added to pointers that are currently down.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4263,23 +4477,23 @@ Click trampolines can only be added to pointers that are currently down.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4292,6 +4506,7 @@ Click trampolines can only be added to pointers that are currently down.</p>
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -4299,10 +4514,10 @@ Click trampolines can only be added to pointers that are currently down.</p>
 
             
 
-            <td class="description last"><p>The name of the trampoline; must be unique among active trampolines in this pointer.</p></td>
+            <td class="description param-description last"><p>The name of the trampoline; must be unique among active trampolines in this pointer.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4315,6 +4530,7 @@ Click trampolines can only be added to pointers that are currently down.</p>
 <span class="param-type">function</span>
 
 
+
             
             </td>
 
@@ -4322,10 +4538,10 @@ Click trampolines can only be added to pointers that are currently down.</p>
 
             
 
-            <td class="description last"><p>Callback to run/trampoline.</p></td>
+            <td class="description param-description last"><p>Callback to run/trampoline.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4338,6 +4554,7 @@ Click trampolines can only be added to pointers that are currently down.</p>
 <span class="param-type">object</span>
 
 
+
             
             </td>
 
@@ -4345,10 +4562,10 @@ Click trampolines can only be added to pointers that are currently down.</p>
 
             
 
-            <td class="description last"><p>Context of the callback.</p></td>
+            <td class="description param-description last"><p>Context of the callback.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4364,6 +4581,7 @@ Click trampolines can only be added to pointers that are currently down.</p>
 <span class="param-type">null</span>
 
 
+
             
             </td>
 
@@ -4371,35 +4589,24 @@ Click trampolines can only be added to pointers that are currently down.</p>
 
             
 
-            <td class="description last"><p>Additional callback args, if any. Supplied as an array.</p></td>
+            <td class="description param-description last"><p>Additional callback args, if any. Supplied as an array.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -4409,44 +4616,61 @@ Click trampolines can only be added to pointers that are currently down.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 1065
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="justPressed"><span class="type-signature"></span>justPressed<span class="signature">(<span class="optional">duration</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
+    <h4 class="name" id="justPressed">
+      <span class="type-signature"></span>justPressed( [duration])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The Pointer is considered justPressed if the time it was pressed onto the touchscreen or clicked is less than justPressedRate.
 Note that calling justPressed doesn't reset the pressed status of the Pointer, it will return <code>true</code> for as long as the duration is valid.
 If you wish to check if the Pointer was pressed down just once then see the Sprite.events.onInputDown event.</p>
@@ -4454,8 +4678,9 @@ If you wish to check if the Pointer was pressed down just once then see the Spri
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4463,25 +4688,25 @@ If you wish to check if the Pointer was pressed down just once then see the Spri
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4492,6 +4717,7 @@ If you wish to check if the Pointer was pressed down just once then see the Spri
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -4511,42 +4737,24 @@ If you wish to check if the Pointer was pressed down just once then see the Spri
 
             
 
-            <td class="description last"><p>The time to check against. If none given it will use InputManager.justPressedRate.</p></td>
+            <td class="description param-description last"><p>The time to check against. If none given it will use InputManager.justPressedRate.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">boolean</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>true if the Pointer was pressed down within the duration given.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4556,50 +4764,85 @@ If you wish to check if the Pointer was pressed down just once then see the Spri
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 1033
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if the Pointer was pressed down within the duration given.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="justReleased"><span class="type-signature"></span>justReleased<span class="signature">(<span class="optional">duration</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
+    <h4 class="name" id="justReleased">
+      <span class="type-signature"></span>justReleased( [duration])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The Pointer is considered justReleased if the time it left the touchscreen is less than justReleasedRate.
 Note that calling justReleased doesn't reset the pressed status of the Pointer, it will return <code>true</code> for as long as the duration is valid.
 If you wish to check if the Pointer was released just once then see the Sprite.events.onInputUp event.</p>
@@ -4607,8 +4850,9 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4616,25 +4860,25 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4647,6 +4891,7 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -4664,42 +4909,24 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
             
 
-            <td class="description last"><p>The time to check against. If none given it will use InputManager.justReleasedRate.</p></td>
+            <td class="description param-description last"><p>The time to check against. If none given it will use InputManager.justReleasedRate.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">boolean</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>true if the Pointer was released within the duration given.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4709,57 +4936,93 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 1049
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>true if the Pointer was released within the duration given.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="leave"><span class="type-signature"></span>leave<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="leave">
+      <span class="type-signature"></span>leave(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Called when the Pointer leaves the target area.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4767,23 +5030,23 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4802,6 +5065,7 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 <span class="param-type">TouchEvent</span>
 
 
+
             
             </td>
 
@@ -4809,22 +5073,24 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
             
 
-            <td class="description last"><p>The event passed up from the input handler.</p></td>
+            <td class="description param-description last"><p>The event passed up from the input handler.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4834,57 +5100,69 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 937
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="move"><span class="type-signature"></span>move<span class="signature">(event, <span class="optional">fromClick</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="move">
+      <span class="type-signature"></span>move(event [, fromClick])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Called when the Pointer is moved.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4892,27 +5170,27 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4931,6 +5209,7 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 <span class="param-type">TouchEvent</span>
 
 
+
             
             </td>
 
@@ -4950,10 +5229,10 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
                 </td>
             
 
-            <td class="description last"><p>The event passed up from the input handler.</p></td>
+            <td class="description param-description last"><p>The event passed up from the input handler.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4964,6 +5243,7 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -4989,22 +5269,24 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
                 </td>
             
 
-            <td class="description last"><p>Was this called from the click event?</p></td>
+            <td class="description param-description last"><p>Was this called from the click event?</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5014,57 +5296,69 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 707
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="processInteractiveObjects"><span class="type-signature">&lt;internal> </span>processInteractiveObjects<span class="signature">(<span class="optional">fromClick</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
+    <h4 class="name" id="processInteractiveObjects">
+      <span class="type-signature">&lt;protected> </span>processInteractiveObjects( [fromClick])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Process all interactive objects to find out which ones were updated in the recent Pointer move.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5072,27 +5366,27 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5103,6 +5397,7 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -5128,55 +5423,24 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
                 </td>
             
 
-            <td class="description last"><p>Was this called from the click event?</p></td>
+            <td class="description param-description last"><p>Was this called from the click event?</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">boolean</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>True if this method processes an object (i.e. a Sprite becomes the Pointers currentTarget), otherwise false.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5186,61 +5450,105 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
     
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 798
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>True if this method processes an object (i.e. a Sprite becomes the Pointers currentTarget), otherwise false.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="reset"><span class="type-signature"></span>reset<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="reset">
+      <span class="type-signature"></span>reset()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Resets the Pointer properties. Called by InputManager.reset when you perform a State change.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5250,80 +5558,81 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 1139
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="resetButtons"><span class="type-signature">&lt;internal> </span>resetButtons<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="resetButtons">
+      <span class="type-signature">&lt;protected> </span>resetButtons()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Resets the states of all the button booleans.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5333,61 +5642,81 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
     
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 416
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="resetMovement"><span class="type-signature"></span>resetMovement<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="resetMovement">
+      <span class="type-signature"></span>resetMovement()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Resets the movementX and movementY properties. Use in your update handler after retrieving the values.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5397,57 +5726,69 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 1169
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="start"><span class="type-signature"></span>start<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="start">
+      <span class="type-signature"></span>start(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Called when the Pointer is pressed onto the touchscreen.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5455,23 +5796,23 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5484,6 +5825,7 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 <span class="param-type">any</span>
 
 
+
             
             </td>
 
@@ -5491,22 +5833,24 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
             
 
-            <td class="description last"><p>The DOM event from the browser.</p></td>
+            <td class="description param-description last"><p>The DOM event from the browser.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5516,57 +5860,69 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 585
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="stop"><span class="type-signature"></span>stop<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="stop">
+      <span class="type-signature"></span>stop(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Called when the Pointer leaves the touchscreen.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5574,23 +5930,23 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5609,6 +5965,7 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 <span class="param-type">TouchEvent</span>
 
 
+
             
             </td>
 
@@ -5616,22 +5973,24 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
             
 
-            <td class="description last"><p>The event passed up from the input handler.</p></td>
+            <td class="description param-description last"><p>The event passed up from the input handler.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5641,50 +6000,61 @@ If you wish to check if the Pointer was released just once then see the Sprite.e
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 950
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="swapTarget"><span class="type-signature"></span>swapTarget<span class="signature">(newTarget, <span class="optional">silent</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="swapTarget">
+      <span class="type-signature"></span>swapTarget(newTarget [, silent])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This will change the <code>Pointer.targetObject</code> object to be the one provided.</p>
 <p>This allows you to have fine-grained control over which object the Pointer is targeting.</p>
 <p>Note that even if you set a new Target here, it is still able to be replaced by any other valid
@@ -5693,8 +6063,9 @@ target during the next Pointer update.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5702,27 +6073,27 @@ target during the next Pointer update.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5733,6 +6104,7 @@ target during the next Pointer update.</p>
             
                 
 <span class="param-type"><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></span>
+
 
 
             
@@ -5754,10 +6126,10 @@ target during the next Pointer update.</p>
                 </td>
             
 
-            <td class="description last"><p>The new target for this Pointer. Note this is an <code>InputHandler</code>, so don't pass a Sprite, instead pass <code>sprite.input</code> to it.</p></td>
+            <td class="description param-description last"><p>The new target for this Pointer. Note this is an <code>InputHandler</code>, so don't pass a Sprite, instead pass <code>sprite.input</code> to it.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5768,6 +6140,7 @@ target during the next Pointer update.</p>
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -5793,22 +6166,24 @@ target during the next Pointer update.</p>
                 </td>
             
 
-            <td class="description last"><p>If true the new target AND the old one will NOT dispatch their <code>onInputOver</code> or <code>onInputOut</code> events.</p></td>
+            <td class="description param-description last"><p>If true the new target AND the old one will NOT dispatch their <code>onInputOver</code> or <code>onInputOut</code> events.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5818,67 +6193,81 @@ target during the next Pointer update.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 878
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="update"><span class="type-signature"></span>update<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="update">
+      <span class="type-signature"></span>update()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Called by the Input Manager.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5888,58 +6277,70 @@ target during the next Pointer update.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 655
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="updateButtons"><span class="type-signature">&lt;internal> </span>updateButtons<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="updateButtons">
+      <span class="type-signature">&lt;protected> </span>updateButtons(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Called when the event.buttons property changes from zero.
 Contains a button bitmask.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5947,23 +6348,23 @@ Contains a button bitmask.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5976,6 +6377,7 @@ Contains a button bitmask.</p>
 <span class="param-type">MouseEvent</span>
 
 
+
             
             </td>
 
@@ -5983,35 +6385,24 @@ Contains a button bitmask.</p>
 
             
 
-            <td class="description last"><p>The DOM event.</p></td>
+            <td class="description param-description last"><p>The DOM event.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -6021,28 +6412,45 @@ Contains a button bitmask.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    input/Pointer.js, line 525
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		input/Pointer.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -6058,64 +6466,54 @@ Contains a button bitmask.</p>
 
 
 
+</div>
+	    <footer>
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
-		on Wed, 16 Aug 2017 06:51:18 GMT using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
-
-		} );
-	</script>
-
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on Wed Aug 23rd 2017
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="filter">
+    </div>
+  </div>
+  </div>
+  <div id="toc"></div>
+</div>
+
+    
+	</div>
+</div>
+
+
+
+<script src="scripts/bundle.js"></script>
+<script src="scripts/toc.js"></script>
+<script src="scripts/misc.js"></script>
+
+
+
+
 
 </body>
 </html>

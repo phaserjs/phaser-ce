@@ -1,991 +1,150 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: Camera · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Phaser CE Class: Camera</title>
+	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
+	<link rel="stylesheet" href="styles/site.phaser.css">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+          </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html">Global</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="#">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="#">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Class: Camera</h1>-->
+	<h1 class="page-title">Class: Camera</h1>
 <section>
 
 <header>
-    <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
     
-    Camera
-    </h2>
+        <h2>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
+        
+        Camera
+        </h2>
+        
     
 </header>
+
 
 <article>
     <div class="container-overview">
     
-
-    
         
 <dt>
-    <h4 class="name "
-        id="Camera"><span class="type-signature"></span>new Camera<span class="signature">(game, id, x, y, width, height)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="Camera">
+      <span class="type-signature"></span>new Camera(game, id, x, y, width, height)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>A Camera is your view into the game world. It has a position and size and renders only those objects within its field of view.
 The game automatically creates a single Stage sized camera on boot. Move the camera around the world with Phaser.Camera.x/y</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -993,23 +152,23 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -1022,6 +181,7 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 <span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
 
 
+
             
             </td>
 
@@ -1029,10 +189,10 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
             
 
-            <td class="description last"><p>Game reference to the currently running game.</p></td>
+            <td class="description param-description last"><p>Game reference to the currently running game.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1045,6 +205,7 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1052,10 +213,10 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
             
 
-            <td class="description last"><p>Not being used at the moment, will be when Phaser supports multiple camera</p></td>
+            <td class="description param-description last"><p>Not being used at the moment, will be when Phaser supports multiple camera</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1068,6 +229,7 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1075,10 +237,10 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
             
 
-            <td class="description last"><p>Position of the camera on the X axis</p></td>
+            <td class="description param-description last"><p>Position of the camera on the X axis</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1091,6 +253,7 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1098,10 +261,10 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
             
 
-            <td class="description last"><p>Position of the camera on the Y axis</p></td>
+            <td class="description param-description last"><p>Position of the camera on the Y axis</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1114,6 +277,7 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1121,10 +285,10 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
             
 
-            <td class="description last"><p>The width of the view rectangle</p></td>
+            <td class="description param-description last"><p>The width of the view rectangle</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1137,6 +301,7 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1144,22 +309,24 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
             
 
-            <td class="description last"><p>The height of the view rectangle</p></td>
+            <td class="description param-description last"><p>The height of the view rectangle</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1169,34 +336,45 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 20
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -1218,24 +396,36 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
         <dl>
             
-<dt>
-    <h4 class="name "
-        id=".ENABLE_FX"><span class="type-signature">&lt;static, constant> </span>ENABLE_FX<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id=".ENABLE_FX">
+    <h4 id=".ENABLE_FX"><span class="type-signature">&lt;static, constant> </span>ENABLE_FX<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1245,53 +435,72 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 239
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".FOLLOW_LOCKON"><span class="type-signature">&lt;static, constant> </span>FOLLOW_LOCKON<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".FOLLOW_LOCKON">
+    <h4 id=".FOLLOW_LOCKON"><span class="type-signature">&lt;static, constant> </span>FOLLOW_LOCKON<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A follow style that uses no deadzone.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1301,53 +510,72 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 191
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".FOLLOW_PLATFORMER"><span class="type-signature">&lt;static, constant> </span>FOLLOW_PLATFORMER<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".FOLLOW_PLATFORMER">
+    <h4 id=".FOLLOW_PLATFORMER"><span class="type-signature">&lt;static, constant> </span>FOLLOW_PLATFORMER<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A follow style that uses a tall, narrow deadzone (0.33 x 0.125) with a center slightly above the view center.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1357,53 +585,72 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 199
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".FOLLOW_TOPDOWN"><span class="type-signature">&lt;static, constant> </span>FOLLOW_TOPDOWN<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".FOLLOW_TOPDOWN">
+    <h4 id=".FOLLOW_TOPDOWN"><span class="type-signature">&lt;static, constant> </span>FOLLOW_TOPDOWN<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A follow style that uses a square deadzone (0.25 of the larger view edge).</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1413,105 +660,72 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 207
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".FOLLOW_TOPDOWN_TIGHT"><span class="type-signature">&lt;static, constant> </span>FOLLOW_TOPDOWN_TIGHT<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".FOLLOW_TOPDOWN_TIGHT">
+    <h4 id=".FOLLOW_TOPDOWN_TIGHT"><span class="type-signature">&lt;static, constant> </span>FOLLOW_TOPDOWN_TIGHT<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A follow style that uses a small square deadzone (0.125 of the larger view edge).</p>
     </div>
     
-    
-    
 
     
-<dl class="details">
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
 
-    
 
-    
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 215
-    </dt>
-    
-
-    
-
-    
-
-    
-</dl>
-
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name "
-        id=".SHAKE_BOTH"><span class="type-signature">&lt;static, constant> </span>SHAKE_BOTH<span class="type-signature"> :number</span></h4>
-    
-    
-</dt>
-<dd>
-    
-
-    
-    
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1521,49 +735,68 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 221
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".SHAKE_HORIZONTAL"><span class="type-signature">&lt;static, constant> </span>SHAKE_HORIZONTAL<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".SHAKE_BOTH">
+    <h4 id=".SHAKE_BOTH"><span class="type-signature">&lt;static, constant> </span>SHAKE_BOTH<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1573,49 +806,68 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 227
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id=".SHAKE_VERTICAL"><span class="type-signature">&lt;static, constant> </span>SHAKE_VERTICAL<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id=".SHAKE_HORIZONTAL">
+    <h4 id=".SHAKE_HORIZONTAL"><span class="type-signature">&lt;static, constant> </span>SHAKE_HORIZONTAL<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1625,53 +877,143 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 233
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="atLimit"><span class="type-signature"></span>atLimit<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id=".SHAKE_VERTICAL">
+    <h4 id=".SHAKE_VERTICAL"><span class="type-signature">&lt;static, constant> </span>SHAKE_VERTICAL<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
 
     
-    <div class="description">
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt class="name" id="atLimit">
+    <h4 id="atLimit"><span class="type-signature"></span>atLimit<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
         <p>Whether this camera is flush with the World Bounds or not.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1681,55 +1023,74 @@ The game automatically creates a single Stage sized camera on boot. Move the cam
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 76
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="bounds"><span class="type-signature"></span>bounds<span class="type-signature"> :<a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span></h4>
-    
+<dt class="name" id="bounds">
+    <h4 id="bounds"><span class="type-signature"></span>bounds<span class="type-signature"> :<a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Camera is bound to this Rectangle and cannot move outside of it. By default it is enabled and set to the size of the World.
 The Rectangle can be located anywhere in the world and updated as often as you like. If you don't wish the Camera to be bound
 at all then set this to null. The values can be anything and are in World coordinates, with 0,0 being the top-left of the world. The Rectangle in which the Camera is bounded. Set to null to allow for movement anywhere.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1739,53 +1100,72 @@ at all then set this to null. The values can be anything and are in World coordi
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 54
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="deadzone"><span class="type-signature"></span>deadzone<span class="type-signature"> :<a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span></h4>
-    
+<dt class="name" id="deadzone">
+    <h4 id="deadzone"><span class="type-signature"></span>deadzone<span class="type-signature"> :<a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Moving inside this Rectangle will not cause the camera to move.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1795,53 +1175,72 @@ at all then set this to null. The values can be anything and are in World coordi
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 59
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="displayObject"><span class="type-signature"></span>displayObject<span class="type-signature"> :<a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></span></h4>
-    
+<dt class="name" id="displayObject">
+    <h4 id="displayObject"><span class="type-signature"></span>displayObject<span class="type-signature"> :<a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The display object to which all game objects are added. Set by World.boot.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1851,66 +1250,72 @@ at all then set this to null. The values can be anything and are in World coordi
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 87
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="fx"><span class="type-signature">&lt;internal> </span>fx<span class="type-signature"> :<a href="Phaser.Graphics.html">Phaser.Graphics</a></span></h4>
-    
+<dt class="name" id="fx">
+    <h4 id="fx"><span class="type-signature">&lt;protected> </span>fx<span class="type-signature"> :<a href="Phaser.Graphics.html">Phaser.Graphics</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Graphics object used to handle camera fx such as fade and flash.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Graphics.html">Phaser.Graphics</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -1920,47 +1325,72 @@ at all then set this to null. The values can be anything and are in World coordi
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 135
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
-    
+<dt class="name" id="game">
+    <h4 id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the currently running Game.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1970,53 +1400,72 @@ at all then set this to null. The values can be anything and are in World coordi
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 25
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="height"><span class="type-signature"></span>height<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="height">
+    <h4 id="height"><span class="type-signature"></span>height<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Cameras height. By default this is the same as the Game size and should not be adjusted for now. Gets or sets the cameras height.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2026,53 +1475,72 @@ at all then set this to null. The values can be anything and are in World coordi
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 912
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="id"><span class="type-signature"></span>id<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="id">
+    <h4 id="id"><span class="type-signature"></span>id<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reserved for future multiple camera set-ups.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2082,42 +1550,46 @@ at all then set this to null. The values can be anything and are in World coordi
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 36
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="lerp"><span class="type-signature"></span>lerp<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-    
+<dt class="name" id="lerp">
+    <h4 id="lerp"><span class="type-signature"></span>lerp<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The linear interpolation value to use when following a target.
 The default values of 1 means the camera will instantly snap to the target coordinates.
 A lower value, such as 0.1 means the camera will more slowly track the target, giving
@@ -2125,14 +1597,29 @@ a smooth transition. You can set the horizontal and vertical values independentl
 adjust this value in real-time during your game.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2142,56 +1629,75 @@ adjust this value in real-time during your game.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 109
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onFadeComplete"><span class="type-signature"></span>onFadeComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onFadeComplete">
+    <h4 id="onFadeComplete"><span class="type-signature"></span>onFadeComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This signal is dispatched when the camera fade effect completes.
 When the fade effect completes you will be left with the screen black (or whatever
 color you faded to). In order to reset this call <code>Camera.resetFX</code>. This is called
 automatically when you change State.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2201,53 +1707,72 @@ automatically when you change State.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 128
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onFlashComplete"><span class="type-signature"></span>onFlashComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onFlashComplete">
+    <h4 id="onFlashComplete"><span class="type-signature"></span>onFlashComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This signal is dispatched when the camera flash effect completes.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2257,53 +1782,72 @@ automatically when you change State.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 119
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onShakeComplete"><span class="type-signature"></span>onShakeComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onShakeComplete">
+    <h4 id="onShakeComplete"><span class="type-signature"></span>onShakeComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This signal is dispatched when the camera shake effect completes.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2313,53 +1857,72 @@ automatically when you change State.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 114
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="position"><span class="type-signature"></span>position<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-    
+<dt class="name" id="position">
+    <h4 id="position"><span class="type-signature"></span>position<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Cameras position. This value is automatically clamped if it falls outside of the World bounds. Gets or sets the cameras xy position using Phaser.Point object.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2369,53 +1932,72 @@ automatically when you change State.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 863
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="roundPx"><span class="type-signature"></span>roundPx<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="roundPx">
+    <h4 id="roundPx"><span class="type-signature"></span>roundPx<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If a Camera has roundPx set to <code>true</code> it will call <code>view.floor</code> as part of its update loop, keeping its boundary to integer values. Set this to <code>false</code> to disable this from happening.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2425,56 +2007,79 @@ automatically when you change State.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 71
-    </dt>
-    
+	
 
-    
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>true</li>
+		</ul>
+	</dd>
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="scale"><span class="type-signature"></span>scale<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-    
+<dt class="name" id="scale">
+    <h4 id="scale"><span class="type-signature"></span>scale<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The scale of the display object to which all game objects are added. Set by World.boot.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2484,53 +2089,72 @@ automatically when you change State.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 92
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="shakeIntensity"><span class="type-signature"></span>shakeIntensity<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="shakeIntensity">
+    <h4 id="shakeIntensity"><span class="type-signature"></span>shakeIntensity<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Cameras shake intensity. Gets or sets the cameras shake intensity.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2540,53 +2164,72 @@ automatically when you change State.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 934
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="target"><span class="type-signature"></span>target<span class="type-signature"> :<a href="Phaser.Sprite.html">Phaser.Sprite</a></span></h4>
-    
+<dt class="name" id="target">
+    <h4 id="target"><span class="type-signature"></span>target<span class="type-signature"> :<a href="Phaser.Sprite.html">Phaser.Sprite</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the camera is tracking a Sprite, this is a reference to it, otherwise null.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Sprite.html">Phaser.Sprite</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2596,53 +2239,72 @@ automatically when you change State.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 82
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="totalInView"><span class="type-signature">&lt;readonly> </span>totalInView<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="totalInView">
+    <h4 id="totalInView"><span class="type-signature">&lt;readonly> </span>totalInView<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The total number of Sprites with <code>autoCull</code> set to <code>true</code> that are visible by this Camera.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2652,56 +2314,75 @@ automatically when you change State.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 98
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="view"><span class="type-signature"></span>view<span class="type-signature"> :<a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span></h4>
-    
+<dt class="name" id="view">
+    <h4 id="view"><span class="type-signature"></span>view<span class="type-signature"> :<a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Camera view.
 The view into the world we wish to render (by default the game dimensions).
 The x/y values are in world coordinates, not screen coordinates, the width/height is how many pixels to render.
 Sprites outside of this view are not rendered if Sprite.autoCull is set to <code>true</code>. Otherwise they are always rendered.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2711,53 +2392,72 @@ Sprites outside of this view are not rendered if Sprite.autoCull is set to <code
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 45
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="visible"><span class="type-signature"></span>visible<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="visible">
+    <h4 id="visible"><span class="type-signature"></span>visible<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Whether this camera is visible or not.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2767,56 +2467,79 @@ Sprites outside of this view are not rendered if Sprite.autoCull is set to <code
 
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 65
-    </dt>
-    
+	
 
-    
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>true</li>
+		</ul>
+	</dd>
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="width"><span class="type-signature"></span>width<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="width">
+    <h4 id="width"><span class="type-signature"></span>width<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Cameras width. By default this is the same as the Game size and should not be adjusted for now. Gets or sets the cameras width.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2826,53 +2549,72 @@ Sprites outside of this view are not rendered if Sprite.autoCull is set to <code
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 891
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="world"><span class="type-signature"></span>world<span class="type-signature"> :<a href="Phaser.World.html">Phaser.World</a></span></h4>
-    
+<dt class="name" id="world">
+    <h4 id="world"><span class="type-signature"></span>world<span class="type-signature"> :<a href="Phaser.World.html">Phaser.World</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the game world.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.World.html">Phaser.World</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2882,53 +2624,72 @@ Sprites outside of this view are not rendered if Sprite.autoCull is set to <code
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 30
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="x"><span class="type-signature"></span>x<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="x">
+    <h4 id="x"><span class="type-signature"></span>x<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Cameras x coordinate. This value is automatically clamped if it falls outside of the World bounds. Gets or sets the cameras x position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2938,53 +2699,72 @@ Sprites outside of this view are not rendered if Sprite.autoCull is set to <code
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 813
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="y"><span class="type-signature"></span>y<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="y">
+    <h4 id="y"><span class="type-signature"></span>y<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Cameras y coordinate. This value is automatically clamped if it falls outside of the World bounds. Gets or sets the cameras y position.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2994,26 +2774,33 @@ Sprites outside of this view are not rendered if Sprite.autoCull is set to <code
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 838
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -3026,47 +2813,37 @@ Sprites outside of this view are not rendered if Sprite.autoCull is set to <code
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="checkBounds"><span class="type-signature">&lt;internal> </span>checkBounds<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="checkBounds">
+      <span class="type-signature">&lt;protected> </span>checkBounds()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Method called to ensure the camera doesn't venture outside of the game world.
 Called automatically by Camera.update.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -3076,44 +2853,61 @@ Called automatically by Camera.update.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 669
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="fade"><span class="type-signature"></span>fade<span class="signature">(<span class="optional">color</span>, <span class="optional">duration</span>, <span class="optional">force</span>, <span class="optional">alpha</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
+    <h4 class="name" id="fade">
+      <span class="type-signature"></span>fade( [color] [, duration] [, force] [, alpha])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This creates a camera fade effect. It works by filling the game with the
 color specified, over the duration given, ending with a solid fill.</p>
 <p>You can use this for things such as transitioning to a new scene.</p>
@@ -3126,8 +2920,9 @@ reverse the process, bringing the game back into view again.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3135,27 +2930,27 @@ reverse the process, bringing the game back into view again.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3166,6 +2961,7 @@ reverse the process, bringing the game back into view again.</p>
             
                 
 <span class="param-type">numer</span>
+
 
 
             
@@ -3191,10 +2987,10 @@ reverse the process, bringing the game back into view again.</p>
                 </td>
             
 
-            <td class="description last"><p>The color the game will fade to. I.e. 0x000000 for black, 0xff0000 for red, etc.</p></td>
+            <td class="description param-description last"><p>The color the game will fade to. I.e. 0x000000 for black, 0xff0000 for red, etc.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3205,6 +3001,7 @@ reverse the process, bringing the game back into view again.</p>
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -3230,10 +3027,10 @@ reverse the process, bringing the game back into view again.</p>
                 </td>
             
 
-            <td class="description last"><p>The duration of the fade in milliseconds.</p></td>
+            <td class="description param-description last"><p>The duration of the fade in milliseconds.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3244,6 +3041,7 @@ reverse the process, bringing the game back into view again.</p>
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -3269,10 +3067,10 @@ reverse the process, bringing the game back into view again.</p>
                 </td>
             
 
-            <td class="description last"><p>If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.</p></td>
+            <td class="description param-description last"><p>If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3283,6 +3081,7 @@ reverse the process, bringing the game back into view again.</p>
             
                 
 <span class="param-type">numer</span>
+
 
 
             
@@ -3308,42 +3107,24 @@ reverse the process, bringing the game back into view again.</p>
                 </td>
             
 
-            <td class="description last"><p>The alpha value of the color applied to the fade effect.</p></td>
+            <td class="description param-description last"><p>The alpha value of the color applied to the fade effect.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">boolean</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>True if the effect was started, otherwise false.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3353,50 +3134,85 @@ reverse the process, bringing the game back into view again.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 451
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>True if the effect was started, otherwise false.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="flash"><span class="type-signature"></span>flash<span class="signature">(<span class="optional">color</span>, <span class="optional">duration</span>, <span class="optional">force</span>, <span class="optional">alpha</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
+    <h4 class="name" id="flash">
+      <span class="type-signature"></span>flash( [color] [, duration] [, force] [, alpha])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This creates a camera flash effect. It works by filling the game with the solid fill
 color specified, and then fading it away to alpha 0 over the duration given.</p>
 <p>You can use this for things such as hit feedback effects.</p>
@@ -3405,8 +3221,9 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3414,27 +3231,27 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3445,6 +3262,7 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
             
                 
 <span class="param-type">numer</span>
+
 
 
             
@@ -3470,10 +3288,10 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
                 </td>
             
 
-            <td class="description last"><p>The color of the flash effect. I.e. 0xffffff for white, 0xff0000 for red, etc.</p></td>
+            <td class="description param-description last"><p>The color of the flash effect. I.e. 0xffffff for white, 0xff0000 for red, etc.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3484,6 +3302,7 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -3509,10 +3328,10 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
                 </td>
             
 
-            <td class="description last"><p>The duration of the flash effect in milliseconds.</p></td>
+            <td class="description param-description last"><p>The duration of the flash effect in milliseconds.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3523,6 +3342,7 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -3548,10 +3368,10 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
                 </td>
             
 
-            <td class="description last"><p>If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.</p></td>
+            <td class="description param-description last"><p>If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3562,6 +3382,7 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
             
                 
 <span class="param-type">numer</span>
+
 
 
             
@@ -3587,42 +3408,24 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
                 </td>
             
 
-            <td class="description last"><p>The alpha value of the color applied to the flash effect.</p></td>
+            <td class="description param-description last"><p>The alpha value of the color applied to the flash effect.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">boolean</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>True if the effect was started, otherwise false.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3632,57 +3435,93 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 409
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>True if the effect was started, otherwise false.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="focusOn"><span class="type-signature"></span>focusOn<span class="signature">(displayObject)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="focusOn">
+      <span class="type-signature"></span>focusOn(displayObject)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Move the camera focus on a display object instantly.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3690,23 +3529,23 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3719,6 +3558,7 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 <span class="param-type">any</span>
 
 
+
             
             </td>
 
@@ -3726,22 +3566,24 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 
             
 
-            <td class="description last"><p>The display object to focus the camera on. Must have visible x/y properties.</p></td>
+            <td class="description param-description last"><p>The display object to focus the camera on. Must have visible x/y properties.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3751,57 +3593,69 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 343
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="focusOnXY"><span class="type-signature"></span>focusOnXY<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="focusOnXY">
+      <span class="type-signature"></span>focusOnXY(x, y)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Move the camera focus on a location instantly.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3809,23 +3663,23 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3838,6 +3692,7 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -3845,10 +3700,10 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 
             
 
-            <td class="description last"><p>X position.</p></td>
+            <td class="description param-description last"><p>X position.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3861,6 +3716,7 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -3868,22 +3724,24 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 
             
 
-            <td class="description last"><p>Y position.</p></td>
+            <td class="description param-description last"><p>Y position.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3893,50 +3751,61 @@ color specified, and then fading it away to alpha 0 over the duration given.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 354
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="follow"><span class="type-signature"></span>follow<span class="signature">(target, <span class="optional">style</span>, <span class="optional">lerpX</span>, <span class="optional">lerpY</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="follow">
+      <span class="type-signature"></span>follow(target [, style] [, lerpX] [, lerpY])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Tell the camera which sprite to follow.</p>
 <p>You can set the follow type and a linear interpolation value.
 Use low lerp values (such as 0.1) to automatically smooth the camera motion.</p>
@@ -3946,8 +3815,9 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3955,27 +3825,27 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3994,6 +3864,7 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
 <span class="param-type"><a href="Phaser.Text.html">Phaser.Text</a></span>
 
 
+
             
             </td>
 
@@ -4013,10 +3884,10 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
                 </td>
             
 
-            <td class="description last"><p>The object you want the camera to track. Set to null to not follow anything.</p></td>
+            <td class="description param-description last"><p>The object you want the camera to track. Set to null to not follow anything.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4029,6 +3900,7 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -4050,10 +3922,10 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
                 </td>
             
 
-            <td class="description last"><p>Leverage one of the existing deadzone presets. If you use a custom deadzone, ignore this parameter and manually specify the deadzone after calling follow().</p></td>
+            <td class="description param-description last"><p>Leverage one of the existing deadzone presets. If you use a custom deadzone, ignore this parameter and manually specify the deadzone after calling follow().</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4066,6 +3938,7 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
 <span class="param-type">float</span>
 
 
+
             
             </td>
 
@@ -4089,10 +3962,10 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
                 </td>
             
 
-            <td class="description last"><p>A value between 0 and 1. This value specifies the amount of linear interpolation to use when horizontally tracking the target. The closer the value to 1, the faster the camera will track.</p></td>
+            <td class="description param-description last"><p>A value between 0 and 1. This value specifies the amount of linear interpolation to use when horizontally tracking the target. The closer the value to 1, the faster the camera will track.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4105,6 +3978,7 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
 <span class="param-type">float</span>
 
 
+
             
             </td>
 
@@ -4128,22 +4002,24 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
                 </td>
             
 
-            <td class="description last"><p>A value between 0 and 1. This value specifies the amount of linear interpolation to use when vertically tracking the target. The closer the value to 1, the faster the camera will track.</p></td>
+            <td class="description param-description last"><p>A value between 0 and 1. This value specifies the amount of linear interpolation to use when vertically tracking the target. The closer the value to 1, the faster the camera will track.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4153,67 +4029,81 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 277
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="preUpdate"><span class="type-signature"></span>preUpdate<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="preUpdate">
+      <span class="type-signature"></span>preUpdate()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Camera preUpdate. Sets the total view counter to zero.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4223,50 +4113,61 @@ This can be disabled by setting <code>game.renderer.renderSession.roundPixels = 
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 266
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="reset"><span class="type-signature"></span>reset<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="reset">
+      <span class="type-signature"></span>reset()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Resets the camera back to 0,0 and un-follows any object it may have been tracking.
 Also immediately resets any camera effects that may have been running such as
 shake, flash or fade.</p>
@@ -4274,18 +4175,21 @@ shake, flash or fade.</p>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4295,68 +4199,82 @@ shake, flash or fade.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 769
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="resetFX"><span class="type-signature"></span>resetFX<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="resetFX">
+      <span class="type-signature"></span>resetFX()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Resets any active FX, such as a fade or flash and immediately clears it.
 Useful to calling after a fade in order to remove the fade from the Stage.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4366,67 +4284,81 @@ Useful to calling after a fade in order to remove the fade from the Stage.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 791
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setBoundsToWorld"><span class="type-signature"></span>setBoundsToWorld<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setBoundsToWorld">
+      <span class="type-signature"></span>setBoundsToWorld()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Update the Camera bounds to match the game world.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4436,58 +4368,70 @@ Useful to calling after a fade in order to remove the fade from the Stage.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 655
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setPosition"><span class="type-signature"></span>setPosition<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setPosition">
+      <span class="type-signature"></span>setPosition(x, y)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>A helper function to set both the X and Y properties of the camera at once
 without having to use game.camera.x and game.camera.y.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4495,23 +4439,23 @@ without having to use game.camera.x and game.camera.y.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4524,6 +4468,7 @@ without having to use game.camera.x and game.camera.y.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -4531,10 +4476,10 @@ without having to use game.camera.x and game.camera.y.</p>
 
             
 
-            <td class="description last"><p>X position.</p></td>
+            <td class="description param-description last"><p>X position.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4547,6 +4492,7 @@ without having to use game.camera.x and game.camera.y.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -4554,22 +4500,24 @@ without having to use game.camera.x and game.camera.y.</p>
 
             
 
-            <td class="description last"><p>Y position.</p></td>
+            <td class="description param-description last"><p>Y position.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4579,57 +4527,69 @@ without having to use game.camera.x and game.camera.y.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 735
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setSize"><span class="type-signature"></span>setSize<span class="signature">(width, height)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setSize">
+      <span class="type-signature"></span>setSize(width, height)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets the size of the view rectangle given the width and height in parameters.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4637,23 +4597,23 @@ without having to use game.camera.x and game.camera.y.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4666,6 +4626,7 @@ without having to use game.camera.x and game.camera.y.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -4673,10 +4634,10 @@ without having to use game.camera.x and game.camera.y.</p>
 
             
 
-            <td class="description last"><p>The desired width.</p></td>
+            <td class="description param-description last"><p>The desired width.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4689,6 +4650,7 @@ without having to use game.camera.x and game.camera.y.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -4696,22 +4658,24 @@ without having to use game.camera.x and game.camera.y.</p>
 
             
 
-            <td class="description last"><p>The desired height.</p></td>
+            <td class="description param-description last"><p>The desired height.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4721,50 +4685,61 @@ without having to use game.camera.x and game.camera.y.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 755
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="shake"><span class="type-signature"></span>shake<span class="signature">(<span class="optional">intensity</span>, <span class="optional">duration</span>, <span class="optional">force</span>, <span class="optional">direction</span>, <span class="optional">shakeBounds</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
+    <h4 class="name" id="shake">
+      <span class="type-signature"></span>shake( [intensity] [, duration] [, force] [, direction] [, shakeBounds])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This creates a camera shake effect. It works by applying a random amount of additional
 spacing on the x and y axis each frame. You can control the intensity and duration
 of the effect, and if it should effect both axis or just one.</p>
@@ -4773,8 +4748,9 @@ of the effect, and if it should effect both axis or just one.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4782,27 +4758,27 @@ of the effect, and if it should effect both axis or just one.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4813,6 +4789,7 @@ of the effect, and if it should effect both axis or just one.</p>
             
                 
 <span class="param-type">float</span>
+
 
 
             
@@ -4838,10 +4815,10 @@ of the effect, and if it should effect both axis or just one.</p>
                 </td>
             
 
-            <td class="description last"><p>The intensity of the camera shake. Given as a percentage of the camera size representing the maximum distance that the camera can move while shaking.</p></td>
+            <td class="description param-description last"><p>The intensity of the camera shake. Given as a percentage of the camera size representing the maximum distance that the camera can move while shaking.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4852,6 +4829,7 @@ of the effect, and if it should effect both axis or just one.</p>
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -4877,10 +4855,10 @@ of the effect, and if it should effect both axis or just one.</p>
                 </td>
             
 
-            <td class="description last"><p>The duration of the shake effect in milliseconds.</p></td>
+            <td class="description param-description last"><p>The duration of the shake effect in milliseconds.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4891,6 +4869,7 @@ of the effect, and if it should effect both axis or just one.</p>
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -4916,10 +4895,10 @@ of the effect, and if it should effect both axis or just one.</p>
                 </td>
             
 
-            <td class="description last"><p>If a camera shake effect is already running and force is true it will replace the previous effect, resetting the duration.</p></td>
+            <td class="description param-description last"><p>If a camera shake effect is already running and force is true it will replace the previous effect, resetting the duration.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4930,6 +4909,7 @@ of the effect, and if it should effect both axis or just one.</p>
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -4955,10 +4935,10 @@ of the effect, and if it should effect both axis or just one.</p>
                 </td>
             
 
-            <td class="description last"><p>The directions in which the camera can shake. Either Phaser.Camera.SHAKE_BOTH, Phaser.Camera.SHAKE_HORIZONTAL or Phaser.Camera.SHAKE_VERTICAL.</p></td>
+            <td class="description param-description last"><p>The directions in which the camera can shake. Either Phaser.Camera.SHAKE_BOTH, Phaser.Camera.SHAKE_HORIZONTAL or Phaser.Camera.SHAKE_VERTICAL.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4969,6 +4949,7 @@ of the effect, and if it should effect both axis or just one.</p>
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -4994,42 +4975,24 @@ of the effect, and if it should effect both axis or just one.</p>
                 </td>
             
 
-            <td class="description last"><p>Is the effect allowed to shake the camera beyond its bounds (if set?).</p></td>
+            <td class="description param-description last"><p>Is the effect allowed to shake the camera beyond its bounds (if set?).</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">boolean</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>True if the shake effect was started, otherwise false.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5039,67 +5002,105 @@ of the effect, and if it should effect both axis or just one.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 366
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>True if the shake effect was started, otherwise false.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="unfollow"><span class="type-signature"></span>unfollow<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="unfollow">
+      <span class="type-signature"></span>unfollow()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets the Camera follow target to null, stopping it from following an object if it's doing so.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5109,80 +5110,81 @@ of the effect, and if it should effect both axis or just one.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 332
-    </dt>
-    
+	
 
-    
+	
 
-    
 
-    
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="update"><span class="type-signature">&lt;internal> </span>update<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="update">
+      <span class="type-signature">&lt;protected> </span>update()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The camera update loop. This is called automatically by the core game loop.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5192,28 +5194,45 @@ of the effect, and if it should effect both axis or just one.</p>
 
     
 
-    
-    <dt class="tag-source">Source -
-    core/Camera.js, line 498
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		core/Camera.js
+	</dd>
+	
+
+	
+
+	
+
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -5229,64 +5248,54 @@ of the effect, and if it should effect both axis or just one.</p>
 
 
 
+</div>
+	    <footer>
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a>
-		on Wed, 16 Aug 2017 06:51:13 GMT using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
-
-		} );
-	</script>
-
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on Wed Aug 23rd 2017
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="filter">
+    </div>
+  </div>
+  </div>
+  <div id="toc"></div>
+</div>
+
+    
+	</div>
+</div>
+
+
+
+<script src="scripts/bundle.js"></script>
+<script src="scripts/toc.js"></script>
+<script src="scripts/misc.js"></script>
+
+
+
+
 
 </body>
 </html>

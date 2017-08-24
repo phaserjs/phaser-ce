@@ -179,7 +179,7 @@ Object.defineProperty(PIXI.Sprite.prototype, 'height', {
  */
 PIXI.Sprite.prototype.setTexture = function(texture, destroyBase)
 {
-    if (destroyBase !== undefined)
+    if (destroyBase)
     {
         this.texture.baseTexture.destroy();
     }
