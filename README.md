@@ -110,11 +110,15 @@ Phaser is [hosted on Github][phaser]. There are a number of ways to download it:
 
 Install via [bower](http://bower.io):
 
-    bower install phaser-ce
+```bash
+bower install phaser-ce
+```
 
 Install via [npm](https://www.npmjs.com):
 
-    npm install phaser-ce
+```bash
+npm install phaser-ce
+```
 
 Using Browserify? Please [read this](#browserify).
 
@@ -122,11 +126,15 @@ Using Browserify? Please [read this](#browserify).
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.4/build/phaser.js"></script>
+```html
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.4/build/phaser.js"></script>
+```
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.4"></script>
+```html
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.4"></script>
+```
 
 [Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.8.4/build/custom/) are available too.
 
@@ -220,7 +228,7 @@ See [our webpack project template](https://github.com/photonstorm/phaser-ce/tree
 
 For using phaser-ce with [ionic](https://ionicframework.com), have a look at the [ionic example](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) within project templates. To get phaser-ce working with ionic in general, you've to extend "only" the webpack config used by ionic. To get this done are a few steps are necessary.
 
-- Install dependencies webpack-merge and expose-loader:
+- Install dependencies [webpack-merge](https://www.npmjs.com/package/webpack-merge) and [expose-loader](https://www.npmjs.com/package/expose-loader):
 
   ```bash
   npm install webpack-merge expose-loader --save-dev
@@ -230,16 +238,17 @@ For using phaser-ce with [ionic](https://ionicframework.com), have a look at the
 
 - Add own webpack config at package.json, so that ionic will use it:
 
-  ```javascript
+  ```json
+  {
     "config": {
       "ionic_webpack": "./webpack.config.js"
     }
+  }
   ```
 
 - Import pixi, p2 and phaser within your project:
 
   ```javascript
-  // import pixi, p2 and phaser ce
   import "pixi";
   import "p2";
   import * as Phaser from "phaser-ce";
