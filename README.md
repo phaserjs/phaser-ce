@@ -309,6 +309,10 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 * Fixed sprite texture being destroyed in [setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) if `destroyBase` is set to false.
 
+### Documentation
+
+* Added PhaserGlobal
+
 ### Thanks
 
 @goldfire, @rafelsanso, @ryanrossiter
