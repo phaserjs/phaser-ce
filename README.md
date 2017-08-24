@@ -312,6 +312,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### Documentation
 
 * Added PhaserGlobal
+* Renamed Emitter#start argument `quantity` to `total` to match Emitter#flow. But just use Emitter#explode or Emitter#flow instead.
 
 ### Thanks
 

@@ -261,10 +261,10 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this._maxParticleScale = new Phaser.Point(1, 1);
 
     /**
-    * @property {number} _quantity - Internal helper for deciding how many particles to launch.
+    * @property {number} _total - Internal helper for deciding how many particles to launch (via {@link #start}).
     * @private
     */
-    this._quantity = 0;
+    this._total = 0;
 
     /**
     * @property {number} _timer - Internal helper for deciding when to launch particles or kill them.
@@ -285,7 +285,7 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this._flowQuantity = 0;
 
     /**
-    * @property {number} _flowTotal - Internal counter for figuring out how many particles to launch in total.
+    * @property {number} _flowTotal - Internal counter for figuring out how many particles to launch in total (via {@link #flow}).
     * @private
     */
     this._flowTotal = 0;
@@ -358,7 +358,7 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function () {
             {
                 this._counter++;
 
-                if (this._quantity > 0 && this._counter >= this._quantity)
+                if (this._total > 0 && this._counter >= this._total)
                 {
                     this.on = false;
                 }
@@ -552,12 +552,17 @@ Phaser.Particles.Arcade.Emitter.prototype.flow = function (lifespan, frequency, 
 *
 * There are two patterns, based on the `explode` argument:
 *
-* - `start(true, lifespan=0, null, quantity)`
-* - `start(false, lifespan=0, frequency=250, quantity=0)`
+* ##### explode=true
 *
-* When `explode` is true or `forceQuantity` is true, `start` emits `quantity` particles immediately. You should pass a nonzero `quantity`.
+*     start(true, lifespan=0, null, total)
 *
-* When `explode` is false and `forceQuantity` is false, `start` emits 1 particle every interval of `frequency` ms. If `quantity` is not zero, the emitter turns itself off after `quantity` particles have been released. If `quantity` is zero, the emitter keeps emitting particles as long as they are available. To emit more than 1 particle per flow interval, use {@link #flow} instead.
+* When `explode` is true or `forceQuantity` is true, `start` emits `total` particles immediately. You should pass a nonzero `total`.
+*
+* ##### explode=false
+*
+*     start(false, lifespan=0, frequency=250, total=0)
+*
+* When `explode` is false and `forceQuantity` is false, `start` emits 1 particle every interval of `frequency` ms. If `total` is not zero, the emitter turns itself off after `total` particles have been released. If `total` is zero, the emitter keeps emitting particles as long as they are available. To emit more than 1 particle per flow interval, use {@link #flow} instead.
 *
 * `forceQuantity` seems equivalent to `explode` and can probably be avoided.
 *
@@ -565,21 +570,21 @@ Phaser.Particles.Arcade.Emitter.prototype.flow = function (lifespan, frequency, 
 * @param {boolean} [explode=true] - Whether the particles should all burst out at once (true) or at the frequency given (false).
 * @param {number} [lifespan=0] - How long each particle lives once emitted in ms. 0 = forever.
 * @param {number} [frequency=250] - Frequency is how often to emit 1 particle when `explode` is false. Value given in ms. Ignored if `explode` is set to true.
-* @param {number} [quantity=0] - How many particles to launch in total (not larger than {@link Phaser.Particles.Arcade.Emitter#maxParticles maxParticles}).
+* @param {number} [total=0] - How many particles to launch in total (not larger than {@link Phaser.Particles.Arcade.Emitter#maxParticles maxParticles}).
 * @param {number} [forceQuantity=false] - Equivalent to `explodes`.
 * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
 */
-Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, frequency, quantity, forceQuantity) {
+Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, frequency, total, forceQuantity) {
 
     if (explode === undefined) { explode = true; }
     if (lifespan === undefined) { lifespan = 0; }
     if (frequency === undefined || frequency === null) { frequency = 250; }
-    if (quantity === undefined) { quantity = 0; }
+    if (total === undefined) { total = 0; }
     if (forceQuantity === undefined) { forceQuantity = false; }
 
-    if (quantity > this.maxParticles)
+    if (total > this.maxParticles)
     {
-        quantity = this.maxParticles;
+        total = this.maxParticles;
     }
 
     this.revive();
@@ -591,7 +596,7 @@ Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, f
 
     if (explode || forceQuantity)
     {
-        for (var i = 0; i < quantity; i++)
+        for (var i = 0; i < total; i++)
         {
             this.emitParticle();
         }
@@ -599,7 +604,7 @@ Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, f
     else
     {
         this.on = true;
-        this._quantity = quantity;
+        this._total = total;
         this._counter = 0;
         this._timer = this.game.time.time + frequency * this.game.time.slowMotion;
     }
