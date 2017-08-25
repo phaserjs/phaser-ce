@@ -654,6 +654,7 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     else if (key !== undefined)
     {
         particle.loadTexture(key);
+        particle.frame = Array.isArray(this._frames) ? rnd.pick(this._frames) : this._frames;
     }
 
     var emitX = this.emitX;
@@ -677,7 +678,25 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
         emitY = rnd.between(this.top, this.bottom);
     }
 
-    particle.reset(emitX, emitY);
+    this.resetParticle(particle, emitX, emitY);
+
+    return true;
+
+};
+
+/**
+ * Helper for {@link #emitParticle}. Sets particle properties and calls {@link Particle#onEmit}.
+ *
+ * @private
+ * @param {Phaser.Particle} particle
+ * @param {number} x
+ * @param {number} y
+ */
+Phaser.Particles.Arcade.Emitter.prototype.resetParticle = function (particle, x, y) {
+
+    var rnd = this.game.rnd;
+
+    particle.reset(x, y);
 
     particle.angle = 0;
     particle.lifespan = this.lifespan;
@@ -706,18 +725,6 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     else
     {
         particle.scale.set(this._minParticleScale.x, this._minParticleScale.y);
-    }
-
-    if (frame === undefined)
-    {
-        if (Array.isArray(this._frames))
-        {
-            particle.frame = this.game.rnd.pick(this._frames);
-        }
-        else
-        {
-            particle.frame = this._frames;
-        }
     }
 
     if (this.autoAlpha)
@@ -757,8 +764,6 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     body.angularDrag = this.angularDrag;
 
     particle.onEmit();
-
-    return true;
 
 };
 
