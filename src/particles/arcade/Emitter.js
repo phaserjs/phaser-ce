@@ -51,7 +51,7 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.physicsType = Phaser.GROUP;
 
     /**
-    * @property {Phaser.Rectangle} area - The area of the emitter. Particles can be randomly generated from anywhere within this rectangle.
+    * @property {Phaser.Rectangle} area - The {@link #setSize size} of the emitter's emit area. The **actual** emit area is a rectangle of this size centered on (emitX, emitY): `{x: this.left, y: this.top, width: this.area.width, height: this.area.height}`. Particles are generated at a random position within this area.
     * @default
     */
     this.area = new Phaser.Rectangle(x, y, 1, 1);

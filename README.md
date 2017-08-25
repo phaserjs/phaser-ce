@@ -323,6 +323,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### Documentation
 
 * Added PhaserGlobal
+* A particle emitter's actual emit area is Emitter#area shifted to (x: Emitter#left, y: Emitter#top).
 
 ### Thanks
 
