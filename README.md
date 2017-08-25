@@ -314,6 +314,8 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
   grunt custom --exclude=moduleName --filename=phaser-custom
   ```
 
+  * Renamed Emitter#start argument `quantity` to `total` to match Emitter#flow. But just use Emitter#explode or Emitter#flow instead.
+
 ### Bug Fixes
 
 * Fixed sprite texture being destroyed in [setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) if `destroyBase` is set to false.
@@ -321,7 +323,6 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### Documentation
 
 * Added PhaserGlobal
-* Renamed Emitter#start argument `quantity` to `total` to match Emitter#flow. But just use Emitter#explode or Emitter#flow instead.
 
 ### Thanks
 
