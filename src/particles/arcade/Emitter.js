@@ -635,7 +635,7 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     if (x === undefined) { x = null; }
     if (y === undefined) { y = null; }
 
-    var particle = this.getFirstExists(false);
+    var particle = this.getNextParticle();
 
     if (particle === null)
     {
@@ -684,6 +684,24 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     this.resetParticle(particle, emitX, emitY);
 
     return true;
+
+};
+
+Phaser.Particles.Arcade.Emitter.prototype.getNextParticle = function () {
+
+    var i = this.length;
+
+    while (i--)
+    {
+        var next = this.next();
+
+        if (!next.exists)
+        {
+            return next;
+        }
+    }
+
+    return null;
 
 };
 
