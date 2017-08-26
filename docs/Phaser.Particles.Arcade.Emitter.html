@@ -29,7 +29,7 @@
   			<li class="dropdown">
   				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
   				<ul class="dropdown-menu ">
-  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PIXI.html">PIXI</a></li>
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PhaserGlobal.html">PhaserGlobal</a></li><li><a href="PIXI.html">PIXI</a></li>
   				</ul>
   			</li>
   			
@@ -48,14 +48,14 @@
   			</li>
   			
         <li>
-  <a href="#">
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
     <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
     README
   </a>
 </li>
 
 <li>
-  <a href="#">
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
     <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
     CHANGELOG
   </a>
@@ -849,7 +849,7 @@ and on-screen orientation and position.</p>
 <dd>
     
     <div class="description members-description">
-        <p>The area of the emitter. Particles can be randomly generated from anywhere within this rectangle.</p>
+        <p>The size of the emitter's emit area. The <strong>actual</strong> emit area is a rectangle of this size centered on (emitX, emitY): <code>{x: this.left, y: this.top, width: this.area.width, height: this.area.height}</code>. Particles are generated at a random position within this area.</p>
     </div>
     
 
@@ -1877,7 +1877,7 @@ visible children.</p>
 
             
 
-            <td class="description prop-description last">
+            <td class="description prop-description last"><p>Records emitter activity.</p>
                 <h6>Properties</h6>
 
 <table class="props table table-striped">
@@ -11370,8 +11370,8 @@ one expands it.</p>
 
     
     <div class="description method-description">
-        <p>Change the emitters center to match the center of any object with a <code>center</code> property, such as a Sprite.
-If the object doesn't have a center property it will be set to object.x + object.width / 2</p>
+        <p>Change the emitter's center to match the center of any object with a <code>center</code> property, such as an Arcade Body.
+If the object doesn't have a <code>center</code> property it will be set to the object's anchor-adjusted world position (<code>object.world</code>).</p>
     </div>
     
 
@@ -15818,11 +15818,13 @@ healthyList.callAll('attack');</code></pre><p>Note: Currently this will skip any
 
     
     <div class="description method-description">
-        <p>Call this function to start emitting a flow of particles at the given frequency.
-It will carry on going until the total given is reached.
-Each time the flow is run the quantity number of particles will be emitted together.
-If you set the total to be 20 and quantity to be 5 then flow will emit 4 times in total (4 x 5 = 20 total)
-If you set the total to be -1 then no quantity cap is used and it will keep emitting.</p>
+        <p>Call this function to start emitting a flow of particles.
+<code>quantity</code> particles are released every interval of <code>frequency</code> ms until <code>total</code> particles have been released (or forever).
+If you set the total to be 20 and quantity to be 5 then flow will emit 4 times in total (4 × 5 = 20 total) and then turn off.
+If you set the total to be -1 then no quantity cap is used and it will keep emitting (as long as there are inactive particles available).</p>
+<p><a href="Phaser.Particles.Arcade.Emitter.html#output">output</a>, <a href="Phaser.Particles.Arcade.Emitter.html#lifespanOutput">lifespanOutput</a>, and <a href="Phaser.Particles.Arcade.Emitter.html#remainder">remainder</a> describe the particle flow rate.
+During a stable flow, the number of active particles approaches <a href="Phaser.Particles.Arcade.Emitter.html#lifespanOutput">lifespanOutput</a> and the number of inactive particles approaches <a href="Phaser.Particles.Arcade.Emitter.html#remainder">remainder</a>.
+If <a href="Phaser.Particles.Arcade.Emitter.html#remainder">remainder</a> is less than 0, there will likely be no particles available for a portion of the flow (see <a href="Phaser.Particles.Arcade.Emitter.html#count">count</a>).</p>
     </div>
     
 
@@ -15934,7 +15936,7 @@ If you set the total to be -1 then no quantity cap is used and it will keep emit
                 </td>
             
 
-            <td class="description param-description last"><p>Frequency is how often to emit the particles, given in ms.</p></td>
+            <td class="description param-description last"><p>The interval between each release of particles, given in ms. Values between 0 and 16.66 will behave the same (60 releases per second).</p></td>
         </tr>
 
     
@@ -15974,7 +15976,7 @@ If you set the total to be -1 then no quantity cap is used and it will keep emit
                 </td>
             
 
-            <td class="description param-description last"><p>How many particles to launch each time the frequency is met. Can never be &gt; Emitter.maxParticles.</p></td>
+            <td class="description param-description last"><p>How many particles to launch at each interval. Not larger than #maxParticles.</p></td>
         </tr>
 
     
@@ -16014,7 +16016,7 @@ If you set the total to be -1 then no quantity cap is used and it will keep emit
                 </td>
             
 
-            <td class="description param-description last"><p>How many particles to launch in total. If -1 it will carry on indefinitely.</p></td>
+            <td class="description param-description last"><p>Turn off after launching this many particles in total. If -1 it will carry on indefinitely.</p></td>
         </tr>
 
     
@@ -30502,7 +30504,7 @@ alphabetical sorting, mixing strings and numbers, and Unicode sorting. See MDN f
             
 <dt>
     <h4 class="name" id="start">
-      <span class="type-signature"></span>start( [explode] [, lifespan] [, frequency] [, quantity] [, forceQuantity])
+      <span class="type-signature"></span>start( [explode] [, lifespan] [, frequency] [, total] [, forceQuantity])
       
     </h4>
     
@@ -30514,12 +30516,8 @@ alphabetical sorting, mixing strings and numbers, and Unicode sorting. See MDN f
         <p>Start emitting particles.</p>
 <p><a href="Phaser.Particles.Arcade.Emitter.html#explode">explode</a> and <a href="Phaser.Particles.Arcade.Emitter.html#flow">flow</a> are simpler methods.</p>
 <p>There are two patterns, based on the <code>explode</code> argument:</p>
-<ul>
-<li><code>start(true, lifespan=0, null, quantity)</code></li>
-<li><code>start(false, lifespan=0, frequency=250, quantity=0)</code></li>
-</ul>
-<p>When <code>explode</code> is true or <code>forceQuantity</code> is true, <code>start</code> emits <code>quantity</code> particles immediately. You should pass a nonzero <code>quantity</code>.</p>
-<p>When <code>explode</code> is false and <code>forceQuantity</code> is false, <code>start</code> emits 1 particle every interval of <code>frequency</code> ms. If <code>quantity</code> is not zero, the emitter turns itself off after <code>quantity</code> particles have been released. If <code>quantity</code> is zero, the emitter keeps emitting particles as long as they are available. To emit more than 1 particle per flow interval, use <a href="Phaser.Particles.Arcade.Emitter.html#flow">flow</a> instead.</p>
+<h5>explode=true</h5><pre class="prettyprint source"><code>start(true, lifespan=0, null, total)</code></pre><p>When <code>explode</code> is true or <code>forceQuantity</code> is true, <code>start</code> emits <code>total</code> particles immediately. You should pass a nonzero <code>total</code>.</p>
+<h5>explode=false</h5><pre class="prettyprint source"><code>start(false, lifespan=0, frequency=250, total=0)</code></pre><p>When <code>explode</code> is false and <code>forceQuantity</code> is false, <code>start</code> emits 1 particle every interval of <code>frequency</code> ms. If <code>total</code> is not zero, the emitter turns itself off after <code>total</code> particles have been released. If <code>total</code> is zero, the emitter keeps emitting particles as long as they are available. To emit more than 1 particle per flow interval, use <a href="Phaser.Particles.Arcade.Emitter.html#flow">flow</a> instead.</p>
 <p><code>forceQuantity</code> seems equivalent to <code>explode</code> and can probably be avoided.</p>
     </div>
     
@@ -30672,14 +30670,14 @@ alphabetical sorting, mixing strings and numbers, and Unicode sorting. See MDN f
                 </td>
             
 
-            <td class="description param-description last"><p>Frequency is how often to emit 1 particle when <code>explode</code> is false. Value given in ms. Ignored if <code>explode</code> is set to true.</p></td>
+            <td class="description param-description last"><p>The interval between each release of 1 particle, when <code>explode</code> is false. Value given in ms. Ignored if <code>explode</code> is set to true.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>quantity</code></td>
+                <td class="name"><code>total</code></td>
             
 
             <td class="type">
@@ -30712,7 +30710,7 @@ alphabetical sorting, mixing strings and numbers, and Unicode sorting. See MDN f
                 </td>
             
 
-            <td class="description param-description last"><p>How many particles to launch in total (not larger than <a href="Phaser.Particles.Arcade.Emitter.html#maxParticles">maxParticles</a>).</p></td>
+            <td class="description param-description last"><p>Turn off after launching this many particles in total.</p></td>
         </tr>
 
     
@@ -32486,7 +32484,7 @@ the new, updated, worldTransform property, along with the parent transform used.
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on Wed Aug 23rd 2017
+		on 2017-08-26
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </p>

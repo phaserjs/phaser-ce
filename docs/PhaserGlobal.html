@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Phaser CE Class: Quintic</title>
+	<title>Phaser CE Namespace: PhaserGlobal</title>
 	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
 	<link rel="stylesheet" href="styles/site.phaser.css">
 </head>
@@ -106,15 +106,13 @@
 		
 			<div id="main">
 
-	<h1 class="page-title">Class: Quintic</h1>
+	<h1 class="page-title">Namespace: PhaserGlobal</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="Phaser.html">Phaser</a><a href="Phaser.Easing.html">.Easing</a>.</span>
-        
-        Quintic
+        PhaserGlobal
         </h2>
         
     
@@ -125,133 +123,24 @@
     <div class="container-overview">
     
         
-<dt>
-    <h4 class="name" id="Quintic">
-      <span class="type-signature"></span>new Quintic()
-      
-    </h4>
-    
-</dt>
-<dd>
+            <div class="description container-description"><p>You can create a <code>PhaserGlobal</code> object to recycle Phaser's <a href="Phaser.SoundManager.html#context">AudioContext</a> or change certain settings.</p>
+<pre class="prettyprint source lang-javascript"><code>window.PhaserGlobal = {}; // empty; Phaser will save Phaser.SoundManager#context here
+// or
+window.PhaserGlobal = {
+  disableAudio: true,
+  hideBanner: true,
+};</code></pre></div>
+        
 
-    
-    <div class="description method-description">
-        <p>Quintic easing.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
+        
 <dl class="details">
     
 
-	
+    <h5 class="subsection-title">Properties:</h5>
 
-	
+    <dl>
 
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		tween/Easing.js
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
-<dt>
-    <h4 class="name" id="In">
-      <span class="type-signature"></span>In(k)
-      
-    </h4>
-    
-</dt>
-<dd>
-
-    
-    <div class="description method-description">
-        <p>Quintic ease-in.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
+<table class="props table table-striped">
     <thead>
     <tr>
         
@@ -260,6 +149,8 @@
 
         <th>Type</th>
 
+        
+        <th>Argument</th>
         
 
         
@@ -273,13 +164,13 @@
 
         <tr>
             
-                <td class="name"><code>k</code></td>
+                <td class="name"><code>audioContext</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">AudioContext</span>
 
 
 
@@ -287,157 +178,31 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description param-description last"><p>The value to be tweened.</p></td>
+            <td class="description prop-description last"><p>Phaser will save <a href="Phaser.SoundManager.html#context">the AudioContext being used for playback</a> here</p></td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		tween/Easing.js
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>The tweened value.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="InOut">
-      <span class="type-signature"></span>InOut(k)
-      
-    </h4>
-    
-</dt>
-<dd>
-
-    
-    <div class="description method-description">
-        <p>Quintic ease-in/out.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>k</code></td>
+                <td class="name"><code>disableAudio</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -445,157 +210,31 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description param-description last"><p>The value to be tweened.</p></td>
+            <td class="description prop-description last"><p>Disable <a href="Phaser.SoundManager.html">Phaser.SoundManager</a> (<a href="Phaser.SoundManager.html#noAudio">noAudio</a>)</p></td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		tween/Easing.js
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>The tweened value.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="Out">
-      <span class="type-signature"></span>Out(k)
-      
-    </h4>
-    
-</dt>
-<dd>
-
-    
-    <div class="description method-description">
-        <p>Quintic ease-out.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>k</code></td>
+                <td class="name"><code>disableWebAudio</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -603,20 +242,121 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description param-description last"><p>The value to be tweened.</p></td>
+            <td class="description prop-description last"><p>Use <a href="Phaser.SoundManager.html#usingAudioTag">Audio Tags</a> instead of  <a href="Phaser.SoundManager.html#usingWebAudio">Web Audio</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fakeiOSTouchLock</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description prop-description last"><p>Force touch unlocking of media</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hideBanner</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description prop-description last"><p>Don't print the <a href="Phaser.Game.html#showDebugHeader">Phaser debug header</a> in the console</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stopFocus</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description prop-description last"><p>Don't call <code>window.focus()</code> when booting the game</p></td>
         </tr>
 
     
     </tbody>
 </table>
+</dl>
 
-    
-
-    
-<dl class="details">
     
 
 	
@@ -648,7 +388,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		tween/Easing.js
+		PhaserGlobal.js
 	</dd>
 	
 
@@ -660,46 +400,22 @@
 </dl>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>The tweened value.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
         
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
+    
+    </div>
 
     
-</dd>
 
-        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
