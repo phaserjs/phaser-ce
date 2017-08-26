@@ -44,7 +44,7 @@
         "cleverLinks": false,
         "collapseSymbols": false,
         "copyright": "Phaser Copyright © 2012-2016 Photon Storm Ltd.",
-        "dateFormat": "ddd MMM Do YYYY",
+        "dateFormat": "YYYY-MM-DD",
         "disablePackagePath": true,
         "footer": "",
         "inverseNav": true,
