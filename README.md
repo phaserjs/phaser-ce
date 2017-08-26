@@ -314,7 +314,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
   grunt custom --exclude=moduleName --filename=phaser-custom
   ```
 
-  * Renamed Emitter#start argument `quantity` to `total` to match Emitter#flow. But just use Emitter#explode or Emitter#flow instead.
+* Renamed Emitter#start argument `quantity` to `total` to match Emitter#flow. But just use Emitter#explode or Emitter#flow instead.
 
 ### Bug Fixes
 
