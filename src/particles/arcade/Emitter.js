@@ -229,7 +229,7 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.particleSendToBack = false;
 
     /**
-     * @property {object} count
+     * @property {object} count - Records emitter activity.
      * @property {number} count.emitted - How many particles were emitted during the last update.
      * @property {number} count.failed - How many particles could not be emitted during the last update (because no particles were available).
      * @property {number} count.totalEmitted - How many particles have been emitted.
@@ -498,17 +498,20 @@ Phaser.Particles.Arcade.Emitter.prototype.explode = function (lifespan, quantity
 };
 
 /**
-* Call this function to start emitting a flow of particles at the given frequency.
-* It will carry on going until the total given is reached.
-* Each time the flow is run the quantity number of particles will be emitted together.
-* If you set the total to be 20 and quantity to be 5 then flow will emit 4 times in total (4 x 5 = 20 total)
-* If you set the total to be -1 then no quantity cap is used and it will keep emitting.
+* Call this function to start emitting a flow of particles.
+* `quantity` particles are released every interval of `frequency` ms until `total` particles have been released (or forever).
+* If you set the total to be 20 and quantity to be 5 then flow will emit 4 times in total (4 × 5 = 20 total) and then turn {@link #on off}.
+* If you set the total to be -1 then no quantity cap is used and it will keep emitting (as long as there are inactive particles available).
+*
+* {@link #output}, {@link #lifespanOutput}, and {@link #remainder} describe the particle flow rate.
+* During a stable flow, the number of active particles approaches {@link #lifespanOutput} and the number of inactive particles approaches {@link #remainder}.
+* If {@link #remainder} is less than 0, there will likely be no particles available for a portion of the flow (see {@link #count}).
 *
 * @method Phaser.Particles.Arcade.Emitter#flow
 * @param {number} [lifespan=0] - How long each particle lives once emitted in ms. 0 = forever.
-* @param {number} [frequency=250] - Frequency is how often to emit the particles, given in ms.
-* @param {number} [quantity=1] - How many particles to launch each time the frequency is met. Can never be > Emitter.maxParticles.
-* @param {number} [total=-1] - How many particles to launch in total. If -1 it will carry on indefinitely.
+* @param {number} [frequency=250] - The interval between each release of particles, given in ms. Values between 0 and 16.66 will behave the same (60 releases per second).
+* @param {number} [quantity=1] - How many particles to launch at each interval. Not larger than {@link #maxParticles}.
+* @param {number} [total=-1] - Turn {@link #on off} after launching this many particles in total. If -1 it will carry on indefinitely.
 * @param {boolean} [immediate=true] - Should the flow start immediately (true) or wait until the first frequency event? (false)
 * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
 */
@@ -569,8 +572,8 @@ Phaser.Particles.Arcade.Emitter.prototype.flow = function (lifespan, frequency, 
 * @method Phaser.Particles.Arcade.Emitter#start
 * @param {boolean} [explode=true] - Whether the particles should all burst out at once (true) or at the frequency given (false).
 * @param {number} [lifespan=0] - How long each particle lives once emitted in ms. 0 = forever.
-* @param {number} [frequency=250] - Frequency is how often to emit 1 particle when `explode` is false. Value given in ms. Ignored if `explode` is set to true.
-* @param {number} [total=0] - How many particles to launch in total (not larger than {@link Phaser.Particles.Arcade.Emitter#maxParticles maxParticles}).
+* @param {number} [frequency=250] - The interval between each release of 1 particle, when `explode` is false. Value given in ms. Ignored if `explode` is set to true.
+* @param {number} [total=0] - Turn {@link #on off} after launching this many particles in total.
 * @param {number} [forceQuantity=false] - Equivalent to `explodes`.
 * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
 */
