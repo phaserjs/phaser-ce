@@ -12,27 +12,27 @@ Likely defaults:
 
 ```json
 {
-	"templates": {
-		"analytics"             : {
-			"ua"                  : "",
-			"domain"              : ""
-		},
-		"collapseSymbols"       : false,
-		"copyright"             : "",
-		"dateFormat"            : "",
-		"footer"                : "",
-		"includeDate"           : true,
-		"inverseNav"            : false,
-		"linenums"              : false,
-		"navType"               : "vertical",
-		"outputSourceFiles"     : true,
-		"outputSourcePath"      : true,
-		"search"                : false,
-		"sort"                  : null,
-		"syntaxTheme"           : "default",
-		"systemName"            : "Documentation",
-		"theme"                 : "phaser"
-	}
+    "templates": {
+        "analytics"             : {
+            "ua"                  : "",
+            "domain"              : ""
+        },
+        "collapseSymbols"       : false,
+        "copyright"             : "",
+        "dateFormat"            : "",
+        "footer"                : "",
+        "includeDate"           : true,
+        "inverseNav"            : false,
+        "linenums"              : false,
+        "navType"               : "vertical",
+        "outputSourceFiles"     : true,
+        "outputSourcePath"      : true,
+        "search"                : false,
+        "sort"                  : null,
+        "syntaxTheme"           : "default",
+        "systemName"            : "Documentation",
+        "theme"                 : "phaser"
+    }
 }
 ```
 
