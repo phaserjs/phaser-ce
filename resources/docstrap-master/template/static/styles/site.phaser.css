@@ -6722,12 +6722,11 @@ button.close {
     display: none !important;
   }
 }
-@prism-dark-hue = hue(@prism-dark-bg);
-@prism-default-hue = hue(@prism-default-hue);
 a {
   font-weight: 500;
 }
 code {
+  font-size: 100%;
   background-color: white;
   border-bottom: thin solid #eee;
 }
@@ -6743,9 +6742,6 @@ ul {
 }
 ul {
   list-style: square;
-}
-table {
-  table-layout: fixed;
 }
 .list-group-item {
   padding: 5px 10px;
