@@ -4,7 +4,7 @@ A modified [DocStrap](https://github.com/docstrap/docstrap) template for [JSDoc3
 
 ## Configuration
 
-See [tasks/jsdoc.conf.json](../../tasks/jsdoc.conf.json).
+See [tasks/jsdoc-conf.json](../../tasks/jsdoc-conf.json).
 
 A [JSDoc configuration file](http://usejsdoc.org/about-configuring-jsdoc.html) with some [extra options](https://github.com/docstrap/docstrap#configuring-the-template).
 
