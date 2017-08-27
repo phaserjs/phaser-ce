@@ -1,33 +1,36 @@
-$(function () {
-  $('[id*="$"]')
-    .each(function () {
-      var $this = $(this);
-      $this.attr('id', $this.attr('id').replace('$', '__'));
-    });
+var _scrollSpyListGroup = {
 
-  $.catchAnchorLinks({
-    navbarOffset: 10
+  activate: function activate (target) {
+    this.activeTarget = target;
+    this.clear();
+
+    var selector = this.selector + '[data-target="' + target + '"],' + this.selector + '[href="' + target + '"]';
+    var active = $(selector).addClass('active');
+
+    active.trigger('activate.bs.scrollspy');
+  },
+
+  clear: function clear () {
+    $(this.selector).removeClass('active');
+  },
+
+};
+
+jQuery(function ($) {
+  $.toc({
+    attrClass: 'list-group-item',
+    destination: '#toc-insert',
+    prefix: 'toc-',
+    search: '#main',
+    selector: 'h1, h2, h3, h4'
   });
 
-  $('#toc')
-    .toc({
-      anchorName: function (i, heading, prefix) {
-        return $(heading).attr('id') || (prefix + i);
-      },
-      selectors: '#toc-content h1, #toc-content h2, #toc-content h3, #toc-content h4',
-      showAndHide: false,
-      smoothScrolling: true
-    });
-
   holmes({
-    input: '#filter',
     find: '#toc a',
-    placeholder: '<div class="alert alert-warning" role="alert">None match.</div>',
+    input: '#filter',
+    placeholder: '<div class="alert alert-warning" role="alert">None match.</div>'
   })
     .start();
-
-  $('#main span[id^=toc]')
-    .addClass('toc-shim');
 
   $('.dropdown-toggle')
     .dropdown();
@@ -35,4 +38,17 @@ $(function () {
   $('table')
     .addClass('table');
 
+  var $scrollElement = $('body').scrollspy({
+    offset: $('.navbar').height(),
+    target: '#toc',
+  });
+  var scrollspy = $scrollElement.data('bs.scrollspy');
+
+  scrollspy.selector = scrollspy.options.target + ' .list-group-item';
+  Object.assign(scrollspy, _scrollSpyListGroup);
+  scrollspy.refresh();
+
+  console.log('offsets', scrollspy.offsets);
+  console.log('targets', scrollspy.targets);
+  console.log('scrollspy', scrollspy);
 });

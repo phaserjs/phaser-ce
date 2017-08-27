@@ -53,8 +53,6 @@ var navOptions = {
   theme: conf.theme || 'cerulean',
 };
 
-console.info('navOptions', navOptions);
-
 var searchableDocuments = {};
 
 var navigationMaster = {
@@ -466,7 +464,10 @@ exports.publish = function (taffyData, opts, tutorials) {
 
   conf['default'] = conf['default'] || {};
 
-  console.log('opts', opts);
+  if (opts.debug) {
+    console.info('opts', opts);
+    console.info('navOptions', navOptions);
+  }
 
   var templatePath = opts.template;
   view = new template.Template(templatePath + '/tmpl');
@@ -556,6 +557,16 @@ exports.publish = function (taffyData, opts, tutorials) {
   var packageInfo = (find({
     kind: 'package'
   }) || [])[0];
+
+  if (opts.debug) {
+    console.info('packageInfo', packageInfo);
+  }
+
+  navOptions.buildDate = new Date();
+  navOptions.buildTime = moment().format('X');
+  navOptions.assetTimestamp = moment().format('YYYYMMDDHH');
+  navOptions.packageInfo = Object.freeze(Object.assign({}, packageInfo));
+
   if (navOptions.disablePackagePath !== true && packageInfo && packageInfo.name) {
     if (packageInfo.version) {
       outdir = path.join(outdir, packageInfo.name, packageInfo.version);
@@ -613,12 +624,15 @@ exports.publish = function (taffyData, opts, tutorials) {
 
     // add a shortened version of the full path
     var docletPath;
-    if (doclet.meta) {
+    var meta = doclet.meta;
+
+    if (meta) {
       docletPath = getPathFromDoclet(doclet);
       if (!_.isEmpty(sourceFiles[docletPath])) {
         docletPath = sourceFiles[docletPath].shortened;
         if (docletPath) {
-          doclet.meta.shortpath = docletPath;
+          meta.shortpath = docletPath;
+          // meta.gitHubURL = `https://github.com/photonstorm/phaser-ce/blob/v${packageInfo.version}/src/${docletPath}#L${meta.lineno}`;
         }
       }
     }
