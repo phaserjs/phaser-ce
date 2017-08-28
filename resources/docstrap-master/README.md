@@ -4,7 +4,7 @@ A modified [DocStrap](https://github.com/docstrap/docstrap) template for [JSDoc3
 
 ## Configuration
 
-See [tasks/jsdoc.conf.json](../../tasks/jsdoc.conf.json).
+See [tasks/jsdoc-conf.json](../../tasks/jsdoc-conf.json).
 
 A [JSDoc configuration file](http://usejsdoc.org/about-configuring-jsdoc.html) with some [extra options](https://github.com/docstrap/docstrap#configuring-the-template).
 
@@ -12,27 +12,27 @@ Likely defaults:
 
 ```json
 {
-	"templates": {
-		"analytics"             : {
-			"ua"                  : "",
-			"domain"              : ""
-		},
-		"collapseSymbols"       : false,
-		"copyright"             : "",
-		"dateFormat"            : "",
-		"footer"                : "",
-		"includeDate"           : true,
-		"inverseNav"            : false,
-		"linenums"              : false,
-		"navType"               : "vertical",
-		"outputSourceFiles"     : true,
-		"outputSourcePath"      : true,
-		"search"                : false,
-		"sort"                  : null,
-		"syntaxTheme"           : "default",
-		"systemName"            : "Documentation",
-		"theme"                 : "phaser"
-	}
+    "templates": {
+        "analytics"             : {
+            "ua"                  : "",
+            "domain"              : ""
+        },
+        "collapseSymbols"       : false,
+        "copyright"             : "",
+        "dateFormat"            : "",
+        "footer"                : "",
+        "includeDate"           : true,
+        "inverseNav"            : false,
+        "linenums"              : false,
+        "navType"               : "vertical",
+        "outputSourceFiles"     : true,
+        "outputSourcePath"      : true,
+        "search"                : false,
+        "sort"                  : null,
+        "syntaxTheme"           : "default",
+        "systemName"            : "Documentation",
+        "theme"                 : "phaser"
+    }
 }
 ```
 
