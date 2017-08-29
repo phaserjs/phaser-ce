@@ -331,6 +331,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 ### Bug Fixes
 
 * Fixed sprite texture being destroyed in [setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) if `destroyBase` is set to false.
+* Fixed a ReferenceError in Phaser.Input#executeTouchLockCallbacks (#336).
 
 ### Documentation
 
@@ -339,7 +340,7 @@ If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehe
 
 ### Thanks
 
-@goldfire, @rafelsanso, @ryanrossiter
+@goldfire, @rafelsanso, @ryanrossiter, @Zykino
 
 ## Version 2.8.4 - 15th August 2017
 
