@@ -863,6 +863,22 @@ Phaser.Color = {
 
     },
 
+    linear: function (color1, color2, t) {
+
+        return this.interpolateColor(color1, color2, 1, t);
+
+    },
+
+    linearInterpolation: function (colors, t) {
+
+        var k = Phaser.Math.linear(0, colors.length - 1, t);
+        var color1 = colors[ Math.floor(k) ];
+        var color2 = colors[ Math.ceil(k)] ;
+
+        return this.linear(color1, color2, k % 1);
+
+    },
+
     /**
     * Returns a random color value between black and white
     * Set the min value to start each channel from the given offset.
