@@ -11,7 +11,8 @@ var template = require('jsdoc/template'),
   fs = require('jsdoc/fs'),
   _ = require('underscore'),
   path = require('jsdoc/path'),
-
+  util = require('util'),
+  logger = require('jsdoc/util/logger'),
   taffy = require('taffydb').taffy,
   handle = require('jsdoc/util/error').handle,
   helper = require('jsdoc/util/templateHelper'),
@@ -26,6 +27,8 @@ var template = require('jsdoc/template'),
   view,
   outdir = env.opts.destination,
   searchEnabled = conf.search !== false;
+
+logger.info('logger level', logger.getLevel());
 
 var globalUrl = helper.getUniqueFilename('global');
 var indexUrl = helper.getUniqueFilename('index');
@@ -46,11 +49,12 @@ var navOptions = {
   outputSourceFiles: conf.outputSourceFiles === true,
   outputSourcePath: conf.outputSourcePath,
   search: searchEnabled,
+  sourceLinkFormat: conf.sourceLinkFormat,
   sort: conf.sort,
-  sourceRootPath: conf.sourceRootPath,
+  sourceRootPath: fs.realpathSync(conf.sourceRootPath),
   syntaxTheme: conf.syntaxTheme || 'default',
   systemName: conf.systemName || 'Documentation',
-  theme: conf.theme || 'cerulean',
+  theme: conf.theme || 'phaser',
 };
 
 var searchableDocuments = {};
@@ -202,23 +206,15 @@ function addAttribs (f) {
 }
 
 function shortenPaths (files, commonPrefix) {
-  //	// always use forward slashes
-  //	var regexp = new RegExp( '\\\\', 'g' );
-  //
-  //	var prefix = commonPrefix.toLowerCase().replace( regexp, "/" );
-  //
-  //	Object.keys( files ).forEach( function ( file ) {
-  //		files[file].shortened = files[file]
-  //			.resolved
-  //			.toLowerCase()
-  //			.replace( regexp, '/' )
-  //			.replace( prefix, '' );
-  //	} );
+  logger.info('shortenPaths commonPrefix=%s', commonPrefix);
 
-  Object.keys(files).forEach(function (file) {
-    files[file].shortened = files[file].resolved.replace(commonPrefix, '')
-    // always use forward slashes
-    .replace(/\\/g, '/');
+  Object.keys(files).forEach(function (key) {
+    var file = files[key];
+    file.shortened = file.resolved
+      .replace(commonPrefix, '')
+      // always use forward slashes
+      .replace(/\\/g, '/');
+    logger.verbose('%s -> %s', file.resolved, file.shortened);
   });
 
   return files;
@@ -295,8 +291,7 @@ function generateSourceFiles (sourceFiles) {
       handle(e);
     }
 
-    generate('source', 'Source: ' + sourceFiles[file].shortened, [source], sourceOutfile,
-      false);
+    generate('source', 'Source: ' + sourceFiles[file].shortened, [source], sourceOutfile, false);
   });
 }
 
@@ -464,10 +459,9 @@ exports.publish = function (taffyData, opts, tutorials) {
 
   conf['default'] = conf['default'] || {};
 
-  if (opts.debug) {
-    console.info('opts', opts);
-    console.info('navOptions', navOptions);
-  }
+  logger.info('config', opts.configure);
+  logger.debug('opts', opts);
+  logger.debug('navOptions', navOptions);
 
   var templatePath = opts.template;
   view = new template.Template(templatePath + '/tmpl');
@@ -558,8 +552,15 @@ exports.publish = function (taffyData, opts, tutorials) {
     kind: 'package'
   }) || [])[0];
 
-  if (opts.debug) {
-    console.info('packageInfo', packageInfo);
+  if (packageInfo) {
+    navOptions.npmUrl = util.format('https://www.npmjs.com/package/%s', packageInfo.name);
+    navOptions.githubUrl = util.format('https://github.com/photonstorm/%s/releases/tag/v%s', packageInfo.name, packageInfo.version);
+    logger.info('packageInfo.name', packageInfo.name);
+    logger.info('packageInfo.version', packageInfo.version);
+  }
+
+  if (!packageInfo) {
+    logger.warn('Missing packageInfo');
   }
 
   navOptions.buildDate = new Date();
@@ -567,7 +568,7 @@ exports.publish = function (taffyData, opts, tutorials) {
   navOptions.assetTimestamp = moment().format('YYYYMMDDHH');
   navOptions.packageInfo = Object.freeze(Object.assign({}, packageInfo));
 
-  if (navOptions.disablePackagePath !== true && packageInfo && packageInfo.name) {
+  if (packageInfo && packageInfo.name && !navOptions.disablePackagePath) {
     if (packageInfo.version) {
       outdir = path.join(outdir, packageInfo.name, packageInfo.version);
     } else {
@@ -586,16 +587,16 @@ exports.publish = function (taffyData, opts, tutorials) {
     fs.copyFileSync(fileName, toDir);
   });
 
-    // copy user-specified static files to outdir
+  // copy user-specified static files to outdir
   var staticFilePaths;
   var staticFileFilter;
   var staticFileScanner;
   if (conf.default.staticFiles) {
-        // The canonical property name is `include`. We accept `paths` for backwards compatibility
-        // with a bug in JSDoc 3.2.x.
+    // The canonical property name is `include`. We accept `paths` for backwards compatibility
+    // with a bug in JSDoc 3.2.x.
     staticFilePaths = conf.default.staticFiles.include ||
-            conf.default.staticFiles.paths ||
-            [];
+      conf.default.staticFiles.paths ||
+      [];
     staticFileFilter = new (require('jsdoc/src/filter')).Filter(conf.default.staticFiles);
     staticFileScanner = new (require('jsdoc/src/scanner')).Scanner();
 
@@ -613,11 +614,17 @@ exports.publish = function (taffyData, opts, tutorials) {
 
   if (sourceFilePaths.length) {
     var payload = navOptions.sourceRootPath;
+    logger.info('sourceRootPath', navOptions.sourceRootPath);
+    logger.info('commonPrefix(sourceFilePaths)', path.commonPrefix(sourceFilePaths));
     if (!payload) {
       payload = path.commonPrefix(sourceFilePaths);
+      logger.warn('`templates.sourceRootPath` is recommended. Using "%s" instead', payload);
     }
     sourceFiles = shortenPaths(sourceFiles, payload);
   }
+
+  logger.info('sourceLinkFormat', navOptions.sourceLinkFormat);
+
   data().each(function (doclet) {
     var url = helper.createLink(doclet);
     helper.registerLink(doclet.longname, url);
@@ -632,7 +639,13 @@ exports.publish = function (taffyData, opts, tutorials) {
         docletPath = sourceFiles[docletPath].shortened;
         if (docletPath) {
           meta.shortpath = docletPath;
-          // meta.gitHubURL = `https://github.com/photonstorm/phaser-ce/blob/v${packageInfo.version}/src/${docletPath}#L${meta.lineno}`;
+          if (packageInfo.version) {
+            meta.sourceUrl = util.format(navOptions.sourceLinkFormat, packageInfo.version, docletPath, meta.lineno);
+            meta.sourceLocation = util.format('%s line %s', meta.shortpath, meta.lineno);
+            meta.sourceDescription = util.format('%s on line %s of %s', doclet.name, meta.lineno, meta.shortpath);
+            logger.verbose('meta.sourceUrl', meta.sourceUrl);
+          }
+          // logger.verbose('meta', meta);
         }
       }
     }

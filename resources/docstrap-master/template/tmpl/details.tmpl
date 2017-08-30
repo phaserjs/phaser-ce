@@ -149,7 +149,10 @@ var self = this;
 	<?js } else if (data.meta && this.navOptions.outputSourcePath) { ?>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-    <a href="https://github.com/photonstorm/phaser-ce/blob/v<?js= self.navOptions.packageInfo.version ?>/src/<?js= meta.shortpath ?>#L<?js= meta.lineno ?>" title=""><?js= meta.shortpath ?> line <?js= meta.lineno ?></a>
+    <?js if (meta.sourceUrl) ?>
+      <a href="<?js= meta.sourceUrl ?>" title="<?js= meta.sourceDescription ?>"><?js= meta.sourceLocation ?></a>
+    <?js else ?>
+      <?js= meta.sourceLocation ?>
 	</dd>
 	<?js } ?>
 
