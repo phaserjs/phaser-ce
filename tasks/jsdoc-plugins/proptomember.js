@@ -38,25 +38,25 @@ exports.handlers.newDoclet = function (e) {
         var prop = props[0];
 
         // Common!
-        // console.debug('Duplicate? %s', prop.name);
+        // console.log('Duplicate? %s', prop.name);
         //
         var name = doclet.longname || doclet.name;
 
         if (!doclet.type)
         {
-            console.debug('[%s] Copying type from @property', name);
+            console.log('[%s] Copying type from @property', name);
             doclet.type = prop.type;
         }
 
         if (!doclet.description)
         {
-            console.debug('[%s] Copying description from @property (%s)', name);
+            console.log('[%s] Copying description from @property (%s)', name);
             doclet.description = prop.description;
         }
         else if (prop.description && !looksLikeItMightContain(doclet.description, prop.description))
         {
             // Tack it on..
-            console.debug('[%s] Appending description from @property (%s)', name);
+            console.log('[%s] Appending description from @property (%s)', name);
             doclet.description += " " + prop.description;
         }
 
