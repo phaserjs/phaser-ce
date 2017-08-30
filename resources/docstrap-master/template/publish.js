@@ -51,7 +51,7 @@ var navOptions = {
   search: searchEnabled,
   sourceLinkFormat: conf.sourceLinkFormat,
   sort: conf.sort,
-  sourceRootPath: fs.realpathSync(conf.sourceRootPath),
+  sourceRootPath: path.join(fs.realpathSync(conf.sourceRootPath), '/'),
   syntaxTheme: conf.syntaxTheme || 'default',
   systemName: conf.systemName || 'Documentation',
   theme: conf.theme || 'phaser',
