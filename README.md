@@ -106,7 +106,7 @@ Phaser is [hosted on Github][phaser]. There are a number of ways to download it:
 * Download just the build files: [phaser.js][get-js] and [phaser.min.js][get-minjs]
 * Checkout with [svn][clone-svn]
 
-### Bower / npm
+### Bower / NPM
 
 Install via [bower](http://bower.io):
 
@@ -120,7 +120,7 @@ Install via [npm](https://www.npmjs.com):
 npm install phaser-ce
 ```
 
-Using Browserify? Please [read this](#browserify).
+Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack](#webpack).
 
 ### CDN
 
@@ -141,10 +141,6 @@ or the minified version:
 ### Web Templates
 
 If you'd like to try coding in Phaser right now, with nothing more than your web browser, open up the [Phaser CE Game Template](http://codepen.io/pen?template=vyKJvw). There are [CoffeeScript](http://codepen.io/pen?template=OWxELE) and [ES6](http://codepen.io/pen?template=pRGPKG) variants too.
-
-### License
-
-Phaser is released under the [MIT License](http://opensource.org/licenses/MIT).
 
 <a name="getting-started"></a>
 
@@ -175,6 +171,60 @@ Prefer **videos**? Zenva have an excellent [Phaser video course](https://academy
 Ever since we started Phaser we've been growing and expanding our extensive set of examples. Currently there are over 700 of them, with the full source code and assets available.
 
 Browse the [Phaser Examples](http://phaser.io/examples), or clone the [examples repo][examples], and eat your heart out!
+
+<a name="browserify"></a>
+
+### Browserify / CommonJS
+
+Phaser was never written to be modular. Everything exists under one single global namespace, and you cannot `require` selected parts of it into your builds. It expects 3 global vars to exist in order to work properly: `Phaser`, `PIXI` and `p2`. The following is one way of doing this:
+
+```javascript
+window.PIXI   = require('phaser-ce/build/custom/pixi');
+window.p2     = require('phaser-ce/build/custom/p2');
+window.Phaser = require('phaser-ce/build/custom/phaser-split');
+```
+
+If you [build a custom version of Phaser](#building-phaser) it will split the 3 core libs out into their own files, allowing you to require them as above.
+
+Full module-based development is available in Phaser v3.
+
+<a name="webpack"></a>
+
+### Webpack
+
+As with browserify, use the `pixi`, `p2`, and `phaser-split` modules in [build/custom](https://github.com/photonstorm/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
+
+See [our webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) or [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
+
+### Ionic
+
+For using phaser-ce with [ionic](https://ionicframework.com), have a look at the [ionic example](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) within project templates. To get phaser-ce working with ionic in general, you've to extend "only" the webpack config used by ionic. To get this done are a few steps are necessary.
+
+- Install dependencies [webpack-merge](https://www.npmjs.com/package/webpack-merge) and [expose-loader](https://www.npmjs.com/package/expose-loader):
+
+  ```bash
+  npm install webpack-merge expose-loader --save-dev
+  ```
+
+- Create a [new webpack config](https://github.com/photonstorm/phaser-ce/blob/master/resources/Project%20Templates/ionic-example/webpack.config.js) setting up expose-loader and merging it with the ionic webpack script.
+
+- Add own webpack config at package.json, so that ionic will use it:
+
+  ```json
+  {
+    "config": {
+      "ionic_webpack": "./webpack.config.js"
+    }
+  }
+  ```
+
+- Import pixi, p2 and phaser within your project:
+
+  ```javascript
+  import "pixi";
+  import "p2";
+  import * as Phaser from "phaser-ce";
+  ```
 
 ### Interphase
 
@@ -213,58 +263,6 @@ As a result of this work the minimum build size of Phaser is now just 80KB minif
 3. Run, e.g., `grunt custom --exclude=sound,keyboard` and then find the built script in [dist](dist/).
 
 See the [Creating a Custom Phaser Build](http://phaser.io/tutorials/creating-custom-phaser-builds) tutorial for details.
-
-<a name="browserify"></a>
-
-### Browserify / CommonJS
-
-Phaser was never written to be modular. Everything exists under one single global namespace, and you cannot `require` selected parts of it into your builds. It expects 3 global vars to exist in order to work properly: `Phaser`, `PIXI` and `p2`. The following is one way of doing this:
-
-```javascript
-window.PIXI   = require('phaser-ce/build/custom/pixi');
-window.p2     = require('phaser-ce/build/custom/p2');
-window.Phaser = require('phaser-ce/build/custom/phaser-split');
-```
-
-If you build a custom version of Phaser it will split the 3 core libs out into their own files, allowing you to require them as above.
-
-We appreciate this is just a band-aid, and not a proper use of modules, but please understand it was never built to be used this way. You're trying to fit a square peg in a round browserify-shaped hole, so compromises have to be made. Please don't open GitHub issues about it as we've no intention of changing Phaser at this stage of its life. Full module based development is available in Phaser v3.
-
-### Webpack
-
-As with browserify, use the `pixi`, `p2`, and `phaser-split` modules in [build/custom](https://github.com/photonstorm/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
-
-See [our webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) or [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
-
-### Ionic
-
-For using phaser-ce with [ionic](https://ionicframework.com), have a look at the [ionic example](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) within project templates. To get phaser-ce working with ionic in general, you've to extend "only" the webpack config used by ionic. To get this done are a few steps are necessary.
-
-- Install dependencies [webpack-merge](https://www.npmjs.com/package/webpack-merge) and [expose-loader](https://www.npmjs.com/package/expose-loader):
-
-  ```bash
-  npm install webpack-merge expose-loader --save-dev
-  ```
-
-- Create a [new webpack config](https://github.com/photonstorm/phaser-ce/blob/master/resources/Project%20Templates/ionic-example/webpack.config.js) setting up expose-loader and merging it with the ionic webpack script.
-
-- Add own webpack config at package.json, so that ionic will use it:
-
-  ```json
-  {
-    "config": {
-      "ionic_webpack": "./webpack.config.js"
-    }
-  }
-  ```
-
-- Import pixi, p2 and phaser within your project:
-
-  ```javascript
-  import "pixi";
-  import "p2";
-  import * as Phaser from "phaser-ce";
-  ```
 
 ### Building from source
 
@@ -393,6 +391,10 @@ The [Contributors Guide][contribute] contains full details on how to help with P
 - Before contributing read the [code of conduct](https://github.com/photonstorm/phaser-ce/blob/master/CODE_OF_CONDUCT.md).
 
 Written something cool in Phaser? Please tell us about it in the [forum][forum], or email support@phaser.io
+
+# License
+
+Phaser is released under the [MIT License](http://opensource.org/licenses/MIT).
 
 # Created by
 
