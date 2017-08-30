@@ -343,6 +343,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Bug Fixes
 
 * Fixed sprite texture being destroyed in [PIXI.Sprite#setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) when `destroyBase=false`.
+* Fixed a ReferenceError in Phaser.Input#executeTouchLockCallbacks (#336).
 
 ### Documentation
 
@@ -353,7 +354,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@Dreaded-Gnu, @goldfire, @photonstorm, @rafelsanso, @ryanrossiter, @samme
+@Dreaded-Gnu, @goldfire, @photonstorm, @rafelsanso, @ryanrossiter, @samme, @Zykino
 
 ## Version 2.8.4 - 15th August 2017
 

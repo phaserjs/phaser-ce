@@ -592,8 +592,9 @@ Phaser.Input.prototype = {
      * @method Phaser.Input#executeTouchLockCallbacks
      * @private
      * @param {boolean} onEnd - Execute the touchend/pointerup callbacks (true) or the touchstart/pointerdown callbacks (false). Required!
+     * @param {Event} event - The native event from the browser.
      */
-    executeTouchLockCallbacks: function (onEnd) {
+    executeTouchLockCallbacks: function (onEnd, event) {
         var i = this.touchLockCallbacks.length;
 
         while (i--)
