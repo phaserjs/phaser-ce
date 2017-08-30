@@ -56,8 +56,10 @@
         "outputSourcePath": true,
         "protocol": "html://",
         "search": false,
+        "sourceLinkFormat": "https://github.com/photonstorm/phaser-ce/blob/v%s/%s#L%s",
+        "sourceRootPath": "./",
         "syntaxTheme": "twilight",
-        "systemName": "Phaser CE",
+        "systemName": "Phaser CE API",
         "theme": "phaser"
     },
     "markdown": {
