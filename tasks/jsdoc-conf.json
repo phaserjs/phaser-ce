@@ -29,6 +29,7 @@
     ],
     "excludePattern": "(^|\\/|\\\\)_",
     "include": [
+      "./package.json",
       "./src/Phaser.js",
       "./src/PhaserGlobal.js",
       "./src/animation/",
