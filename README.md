@@ -339,18 +339,21 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
   ```
 
 * Updated [Ionic project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) (#328).
+* [API Docs](https://github.com/photonstorm/phaser-ce/) have a new look.
 
 ### Bug Fixes
 
-* Fixed sprite texture being destroyed in [PIXI.Sprite#setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) when `destroyBase=false`.
-* Fixed a ReferenceError in Phaser.Input#executeTouchLockCallbacks (#336).
+* Fixed sprite texture being destroyed in [PIXI.Sprite#setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) contrary to `destroyBase=false`.
+* Fixed a ReferenceError in Phaser.Input#executeTouchLockCallbacks affecting Firefox Mobile (#336).
 
 ### Documentation
 
-* Added [PhaserGlobal](https://photonstorm.github.io/phaser-ce/PhaserGlobal.html)
-* Updated [DisplayObject](https://photonstorm.github.io/phaser-ce/global.html#DisplayObject)
-* Updated [Emitter#area](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#area), [Emitter#flow](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#flow), and [Emitter#start](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#start) (#330)
-* Updated [Arcade.Body#friction](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#friction)
+* [Arcade.Body#friction](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#friction): a moving, immovable Body applies its own `friction` to a non-immovable riding Body
+* [DisplayObject](https://photonstorm.github.io/phaser-ce/global.html#DisplayObject)
+* [Emitter#area](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#area): only the `width` and `height` are used.
+* [Emitter#flow](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#flow)
+* [Emitter#start](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#start) (#330)
+* [PhaserGlobal](https://photonstorm.github.io/phaser-ce/PhaserGlobal.html): added.
 
 ### Thanks
 
