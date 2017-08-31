@@ -485,37 +485,37 @@ Phaser.Pointer.prototype = {
     *
     * @method Phaser.Pointer#processButtonsUp
     * @private
-    * @param {integer} button - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button MouseEvent#button} value.
+    * @param {integer} buttons - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons MouseEvent#buttons} value.
     * @param {MouseEvent} event - The DOM event.
     */
-    processButtonsUp: function (button, event) {
+    processButtonsUp: function (buttons, event) {
 
-        if (button === Phaser.Mouse.LEFT_BUTTON)
+        if (Phaser.Pointer.LEFT_BUTTON & ~buttons)
         {
             this.leftButton.stop(event);
         }
 
-        if (button === Phaser.Mouse.RIGHT_BUTTON)
+        if (Phaser.Pointer.RIGHT_BUTTON & ~buttons)
         {
             this.rightButton.stop(event);
         }
 
-        if (button === Phaser.Mouse.MIDDLE_BUTTON)
+        if (Phaser.Pointer.MIDDLE_BUTTON & ~buttons)
         {
             this.middleButton.stop(event);
         }
 
-        if (button === Phaser.Mouse.BACK_BUTTON)
+        if (Phaser.Pointer.BACK_BUTTON & ~buttons)
         {
             this.backButton.stop(event);
         }
 
-        if (button === Phaser.Mouse.FORWARD_BUTTON)
+        if (Phaser.Pointer.FORWARD_BUTTON & ~buttons)
         {
             this.forwardButton.stop(event);
         }
 
-        if (button === 5)
+        if (Phaser.Pointer.ERASER_BUTTON & ~buttons)
         {
             this.eraserButton.stop(event);
         }
@@ -544,7 +544,7 @@ Phaser.Pointer.prototype = {
             }
             else
             {
-                this.processButtonsUp(event.button, event);
+                this.processButtonsUp(event.buttons, event);
             }
         }
         else
