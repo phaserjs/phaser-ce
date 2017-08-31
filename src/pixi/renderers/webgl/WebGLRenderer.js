@@ -385,8 +385,8 @@ PIXI.WebGLRenderer.prototype.render = function(stage)
         gl.clear(gl.COLOR_BUFFER_BIT);
     }
 
-    this.offset.x = this.game.camera._shake.x;
-    this.offset.y = this.game.camera._shake.y;
+    this.offset.x = 0;
+    this.offset.y = 0;
 
     this.renderDisplayObject(stage, this.projection);
 };

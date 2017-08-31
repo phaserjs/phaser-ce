@@ -162,8 +162,8 @@ PIXI.CanvasRenderer.prototype.render = function (root) {
     this.context.globalAlpha = 1;
 
     this.renderSession.currentBlendMode = 0;
-    this.renderSession.shakeX = this.game.camera._shake.x;
-    this.renderSession.shakeY = this.game.camera._shake.y;
+    this.renderSession.shakeX = 0;
+    this.renderSession.shakeY = 0;
 
     this.context.globalCompositeOperation = 'source-over';
 
