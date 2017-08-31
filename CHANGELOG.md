@@ -4,6 +4,37 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.8.5 - 30th August 2017
+
+### Updates
+
+* Since v2.8.4 custom build commands need a slightly different argument syntax (#321, #324), e.g.,
+
+  ```bash
+  grunt custom --exclude=moduleName --filename=phaser-custom
+  ```
+
+* Updated [Ionic project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) (#328).
+* [API Docs](https://github.com/photonstorm/phaser-ce/) have a new look.
+
+### Bug Fixes
+
+* Fixed sprite texture being destroyed in [PIXI.Sprite#setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) contrary to `destroyBase=false`.
+* Fixed a ReferenceError in Phaser.Input#executeTouchLockCallbacks affecting Firefox Mobile (#336).
+
+### Documentation
+
+* [Arcade.Body#friction](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#friction): a moving, immovable Body applies its own `friction` to a non-immovable riding Body
+* [DisplayObject](https://photonstorm.github.io/phaser-ce/global.html#DisplayObject)
+* [Emitter#area](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#area): only the `width` and `height` are used.
+* [Emitter#flow](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#flow)
+* [Emitter#start](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#start) (#330)
+* [PhaserGlobal](https://photonstorm.github.io/phaser-ce/PhaserGlobal.html): added.
+
+### Thanks
+
+@Dreaded-Gnu, @goldfire, @photonstorm, @rafelsanso, @ryanrossiter, @samme, @Zykino
+
 ## Version 2.8.4 - 15th August 2017
 
 ### Updates
