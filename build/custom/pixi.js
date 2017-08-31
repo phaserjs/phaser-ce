@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.8.4 "2017-08-15" - Built: Tue Aug 15 2017 23:50:56
+* v2.8.5 "2017-08-30" - Built: Wed Aug 30 2017 16:40:57
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -1697,7 +1697,7 @@ Object.defineProperty(PIXI.Sprite.prototype, 'height', {
  */
 PIXI.Sprite.prototype.setTexture = function(texture, destroyBase)
 {
-    if (destroyBase !== undefined)
+    if (destroyBase)
     {
         this.texture.baseTexture.destroy();
     }
