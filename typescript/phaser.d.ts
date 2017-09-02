@@ -3053,6 +3053,7 @@ declare module Phaser {
         volume: boolean;
         playbackRate: boolean;
         playing: boolean;
+        playWhenUnlocked: boolean;
         loop: boolean;
         width: number;
         height: number;
@@ -3068,6 +3069,7 @@ declare module Phaser {
         onError: Phaser.Signal;
         onPlay: Phaser.Signal;
         onComplete: Phaser.Signal;
+        onTouchUnlock: Phaser.Signal;
         onUpdate: Phaser.Signal;
         onTimeout: Phaser.Signal;
 

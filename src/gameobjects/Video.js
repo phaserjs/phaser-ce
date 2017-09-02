@@ -113,6 +113,19 @@ Phaser.Video = function (game, key, url) {
     this.onTimeout = new Phaser.Signal();
 
     /**
+    * This signal is dispatched when the Video is unlocked.
+    * @property {Phaser.Signal} onTouchUnlock
+    */
+    this.onTouchUnlock = new Phaser.Signal();
+
+    /**
+    * Start playing the video when it's unlocked.
+    * @property {boolean} playWhenUnlocked
+    * @default
+    */
+    this.playWhenUnlocked = true;
+
+    /**
     * @property {integer} timeout - The amount of ms allowed to elapsed before the Video.onTimeout signal is dispatched while waiting for webcam access.
     * @default
     */
@@ -1071,9 +1084,12 @@ Phaser.Video.prototype = {
 
         this.touchLocked = false;
 
-        this.video.play();
+        if (this.playWhenUnlocked)
+        {
+            this.video.play();
 
-        this.onPlay.dispatch(this, this.loop, this.playbackRate);
+            this.onPlay.dispatch(this, this.loop, this.playbackRate);
+        }
 
         if (this.key)
         {
@@ -1084,6 +1100,8 @@ Phaser.Video.prototype = {
                 _video.locked = false;
             }
         }
+
+        this.onTouchUnlock.dispatch(this);
 
         return true;
 

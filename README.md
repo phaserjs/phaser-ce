@@ -345,6 +345,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
     - `roundPixels`
     - `scaleH`, `scaleV`, `trimH`, `trimV`
 * Phaser.SoundManager#onTouchUnlock signal (#434)
+* Phaser.Video#onTouchUnlock signal
+* Phaser.Video#playWhenUnlocked
 
 ### Updates
 
