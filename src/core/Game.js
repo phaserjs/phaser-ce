@@ -897,13 +897,6 @@ Phaser.Game.prototype = {
 
         this.time.update(time);
 
-        if (this.cache._pendingCount > 0)
-        {
-            console.count('Waiting for cache');
-
-            return;
-        }
-
         if (this._kickstart)
         {
             console.timeEnd('boot-kickstart');

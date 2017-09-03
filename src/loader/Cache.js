@@ -121,23 +121,7 @@ Phaser.Cache = function (game) {
 
     this.onReady = new Phaser.Signal();
 
-    this.onReadyTimeout = 1000;
-
-    this.addDefaultImage();
-    this.addMissingImage();
-
-    var self = this;
-
-    setTimeout(function () {
-        if (!self.isReady)
-        {
-            self._pendingCount = 0;
-
-            console.warn('Phaser.Cache: Still waiting for images after 1s.');
-
-            self.onReady.dispatch(this);
-        }
-    }, this.onReadyTimeout);
+    this._addImages();
 
 };
 
@@ -272,6 +256,8 @@ Phaser.Cache.MISSING_KEY = '__missing';
  * @type {string}
  */
 Phaser.Cache.MISSING_SRC = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ9JREFUeNq01ssOwyAMRFG46v//Mt1ESmgh+DFmE2GPOBARKb2NVjo+17PXLD8a1+pl5+A+wSgFygymWYHBb0FtsKhJDdZlncG2IzJ4ayoMDv20wTmSMzClEgbWYNTAkQ0Z+OJ+A/eWnAaR9+oxCF4Os0H8htsMUp+pwcgBBiMNnAwF8GqIgL2hAzaGFFgZauDPKABmowZ4GL369/0rwACp2yA/ttmvsQAAAABJRU5ErkJggg==';
+
+Phaser.Cache.READY_TIMEOUT = 1000;
 
 Phaser.Cache.prototype = {
 
@@ -2183,6 +2169,34 @@ Phaser.Cache.prototype = {
 
     },
 
+    _addImages: function () {
+
+        this._pendingCount = 0;
+
+        this.addDefaultImage();
+        this.addMissingImage();
+
+        var self = this;
+        var readyTimeout = Phaser.Cache.READY_TIMEOUT;
+
+        if (Phaser.Cache.READY_TIMEOUT > 0)
+        {
+            setTimeout(function () {
+                if (!self.isReady)
+                {
+                    console.warn('Phaser.Cache: Still waiting for images after %s ms.', readyTimeout);
+
+                    self._ready();
+                }
+            }, Phaser.Cache.READY_TIMEOUT);
+        }
+        else
+        {
+            this._ready();
+        }
+
+    },
+
     _addPending: function () {
 
         this._pendingCount += 1;
@@ -2197,10 +2211,19 @@ Phaser.Cache.prototype = {
     },
 
     _checkReady: function () {
+
         if (this.isReady)
         {
-            this.onReady.dispatch(this);
+            this._ready();
         }
+
+    },
+
+    _ready: function () {
+
+        this._pendingCount = 0;
+        this.onReady.dispatch(this);
+
     }
 
 };
