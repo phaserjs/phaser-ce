@@ -503,6 +503,7 @@ declare module Phaser {
         static IMAGE: number;
         static JSON: number;
         static PHYSICS: number;
+        static READY_TIMEOUT: number;
         static RENDER_TEXTURE: number;
         static SHADER: number;
         static SOUND: number;
@@ -519,6 +520,7 @@ declare module Phaser {
 
         autoResolveURL: boolean;
         game: Phaser.Game;
+        onReady: Phaser.Signal;
         onSoundUnlock: Phaser.Signal;
 
         addBinary(key: string, binaryData: any): void;
