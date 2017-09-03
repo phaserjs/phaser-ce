@@ -577,7 +577,7 @@ Phaser.Circle.intersectsRectangle = function (c, r) {
 * Checks if the given Circle and Line objects intersect.
 * @method Phaser.Circle.intersectsLine
 * @param {Phaser.Circle} c - The Circle object to test.
-* @param {Phaser.Line} l - The Rectangle object to test.
+* @param {Phaser.Line} l - The Line object to test.
 * @param {boolean} [returnpoints] - optional Array Object, Return an array of intersection points if true, otherwise return boolean.
 * @return {boolean} True if the two objects intersect, otherwise false.
 */

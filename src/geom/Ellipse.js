@@ -326,7 +326,7 @@ Phaser.Ellipse.contains = function (a, x, y) {
 * Checks if the given Ellipse and Line objects intersect.
 * @method Phaser.Ellipse.intersectsLine
 * @param {Phaser.Ellipse} e - The Ellipse object to test.
-* @param {Phaser.Line} l - The Rectangle object to test.
+* @param {Phaser.Line} l - The Line object to test.
 * @param {boolean} [returnpoints] - optional Array Object, Return an array of intersection points if true, otherwise return boolean.
 * @return {boolean} True if the two objects intersect, otherwise false.
 */
