@@ -692,17 +692,13 @@ Phaser.Game.prototype = {
             }
         }
 
-        console.time('boot-kickstart');
-
         if (this.cache.isReady)
         {
-            console.log('raf.start (isReady)');
             this.raf.start();
         }
         else
         {
             this.cache.onReady.addOnce(function () {
-                console.log('raf.start (onReady)');
                 this.raf.start();
             }, this);
         }
@@ -899,8 +895,6 @@ Phaser.Game.prototype = {
 
         if (this._kickstart)
         {
-            console.timeEnd('boot-kickstart');
-
             this.updateLogic(this.time.desiredFpsMult);
 
             // call the game render update exactly once every frame

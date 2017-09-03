@@ -390,15 +390,10 @@ Phaser.Cache.prototype = {
      */
     addImageAsync: function (key, src, callback) {
 
-        console.time(key);
-        console.log('addImageAsync', key);
-
         var self = this;
         var img = new Image();
 
         img.onload = function () {
-            console.log('loaded', key);
-            console.timeEnd(key);
             callback.call(this, self.addImage(key, null, img));
             self._removePending();
             img.onload = null;
