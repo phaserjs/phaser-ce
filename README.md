@@ -332,6 +332,9 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### New Features
 
+* Added intersectsLine for [Phaser.Circle](https://photonstorm.github.io/phaser-ce/Phaser.Circle.html), [Phaser.Ellipse](https://photonstorm.github.io/phaser-ce/Phaser.Ellipse.html)
+* Added Ellipse geom debug [Phaser.Utils.Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom)
+
 ### Updates
 
 * Added new (internal) helper function `Phaser.DeviceButton#startStop` (#340)
@@ -347,7 +350,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@2called-chaos
+@2called-chaos, @samid737
 
 ## Version 2.8.5 - 30th August 2017
 
