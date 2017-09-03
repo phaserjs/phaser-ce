@@ -643,13 +643,13 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
-    * Renders a Phaser geometry object including Rectangle, Circle, Point or Line.
+    * Renders a Phaser geometry object including Rectangle, Circle, Ellipse, Point or Line.
     *
     * @method Phaser.Utils.Debug#geom
     * @param {Phaser.Rectangle|Phaser.Circle|Phaser.Point|Phaser.Line} object - The geometry object to render.
     * @param {string} [color] - Color of the debug info to be rendered (format is css color string).
     * @param {boolean} [filled=true] - Render the objected as a filled (default, true) or a stroked (false)
-    * @param {number} [forceType=0] - Force rendering of a specific type. If 0 no type will be forced, otherwise 1 = Rectangle, 2 = Circle, 3 = Point and 4 = Line.
+    * @param {number} [forceType=0] - Force rendering of a specific type. If 0 no type will be forced, otherwise 1 = Rectangle, 2 = Circle,3 = Ellipse, 4 = Point and 5 = Line.
     */
     geom: function (object, color, filled, forceType) {
 
@@ -690,11 +690,26 @@ Phaser.Utils.Debug.prototype = {
                 this.context.stroke();
             }
         }
-        else if (object instanceof Phaser.Point || forceType === 3)
+        else if (object instanceof Phaser.Ellipse || forceType === 3)
+            {
+                this.context.beginPath();
+                this.context.ellipse(object.x - this.game.camera.x, object.y - this.game.camera.y, object.width/2, object.height/2, 0,2 * Math.PI,false);
+                this.context.closePath();
+    
+                if (filled)
+                {
+                    this.context.fill();
+                }
+                else
+                {
+                    this.context.stroke();
+                }
+            }
+        else if (object instanceof Phaser.Point || forceType === 4)
         {
             this.context.fillRect(object.x - this.game.camera.x, object.y - this.game.camera.y, 4, 4);
         }
-        else if (object instanceof Phaser.Line || forceType === 4)
+        else if (object instanceof Phaser.Line || forceType === 5)
         {
             this.context.beginPath();
             this.context.moveTo((object.start.x + 0.5) - this.game.camera.x, (object.start.y + 0.5) - this.game.camera.y);

@@ -322,5 +322,40 @@ Phaser.Ellipse.contains = function (a, x, y) {
  
 };
 
+/**
+* Checks if the given Ellipse and Line objects intersect.
+* @method Phaser.Ellipse.intersectsLine
+* @param {Phaser.Ellipse} e - The Ellipse object to test.
+* @param {Phaser.Line} l - The Rectangle object to test.
+* @param {boolean} [returnpoints] - optional Array Object, Return an array of intersection points if true, otherwise return boolean.
+* @return {boolean} True if the two objects intersect, otherwise false.
+*/
+Phaser.Ellipse.intersectsLine=function(e,l,returnpoints){
+    var h=e.x;
+    var k=e.y;
+    var m=((l.end.y-l.start.y)/(l.end.x-l.start.x));
+    var n= l.end.y- (m*l.end.x);
+    var a=e.width/2;
+    var b=e.height/2;
+    var del= n+m*h;
+  
+    var x0=( h*(b*b)- m*(a*a) * (n-k) +  a*b* (Math.sqrt((a*a)*(m*m)+(b*b)-(del*del)-(k*k) + (2*del*k))))/((a*a)*(m*m)+(b*b));
+    var x1=( h*(b*b)- m*(a*a) * (n-k) -  a*b* (Math.sqrt((a*a)*(m*m)+(b*b)-(del*del)-(k*k) + (2*del*k))))/((a*a)*(m*m)+(b*b));
+      
+    var y0= m*x0 + n;
+    var y1=m*x1 +n;
+    var p0= new Phaser.Point(x0,y0);
+    var p1= new Phaser.Point(x1,y1);
+    
+    if(l.pointOnSegment(p0.x,p0.y,0.01)||l.pointOnSegment(p1.x,p1.y,0))
+    {
+        return returnpoints?[p0,p1]:true;          
+    }
+    else
+    {
+        return returnpoints?[]:false;
+    }
+};
+
 //   Because PIXI uses its own Ellipse, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Ellipse = Phaser.Ellipse;
