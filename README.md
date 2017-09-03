@@ -1,21 +1,21 @@
-# Phaser CE (Community Edition) - HTML5 Game Framework
+# Phaser CE (Community Edition)
 
-<img src="http://phaser.io/images/github/arcade-cab.png" align="right">
+<img src="http://phaser.io/images/github/arcade-cab.png" align="right" width="400" height="617">
 
 Phaser is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development. Years after release, Phaser is still one of the [most starred game frameworks](https://github.com/showcases/javascript-game-engines) on GitHub.
 
 Thousands of developers worldwide use Phaser. From indies and multi-national digital agencies, to schools and Universities. Each creating their own incredible [games](http://phaser.io/games/).
 
-Phaser v2 was originally built and maintained by the company [Photon Storm](http://www.photonstorm.com), but was turned over to the community in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
+Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.8.1](https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.1).
+The [current Phaser CE release is 2.8.5](https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.5).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
 - **Code:** 700+ [Examples](http://phaser.io/examples) ([source][examples]), new [Phaser CE examples](https://codepen.io/collection/AMbZgY/)
 - **Read:** Weekly [Phaser World](#newsletter) Newsletter
 - **Chat:** [Slack](http://phaser.io/community/slack) and [Discord](http://phaser.io/community/discord)
-- **Extend:** With [Phaser Plugins](http://phaser.io/shop/plugins)
+- **Extend:** Phaser plugins – [Shop](http://phaser.io/shop/plugins), [GitHub](https://github.com/search?q=topic%3Aphaser-plugin&type=Repositories "Phaser plugins on GitHub"), [NPM](https://www.npmjs.com/browse/keyword/phaser-plugin "Phaser plugins on NPM")
 - **Be awesome:** [Support](#support) the future of Phaser
 
 Grab the source and join in the fun!
@@ -23,15 +23,15 @@ Grab the source and join in the fun!
 ## Contents
 
 - [What's New?](#whats-new)
-- [Support Phaser](#support)
-- [Phaser World Newsletter](#newsletter)
+- [Games made with Phaser](#games)
+- [Requirements](#requirements)
 - [Download Phaser](#download)
 - [Getting Started](#getting-started)
 - [Building Phaser](#building-phaser)
-- [Games made with Phaser](#games)
-- [Requirements](#requirements)
-- [Change Log](#change-log)
+- [Support Phaser](#support)
+- [Phaser World Newsletter](#newsletter)
 - [Contributing](#contributing)
+- [Change Log](#change-log)
 
 <a name="whats-new"></a>
 
@@ -70,30 +70,31 @@ Rich - [@photonstorm](https://twitter.com/photonstorm)
 
 ![boogie](http://www.phaser.io/images/spacedancer.gif)
 
-<a name="support"></a>
+<a name="games"></a>
 
-## Support Phaser
+## Made With Phaser
 
-Developing Phaser takes a lot of time, effort, and money. There are monthly running costs; such as the forum and site, which we maintain 100% ad-free. As well as countless hours of development time, community support, and assistance resolving issues. We do this out of our love for Phaser of course, but at the end of the day there are real tangible costs involved.
+Thousands of [games](http://phaser.io/news/category/game) have been made in Phaser. From game jam entries, to titles by some of the largest entertainment brands in the world. You can find [hundreds more on our web site](http://phaser.io/games).
 
-If you have found Phaser useful in your development life. Or have made income as a result of using it, and are in a position to support us financially, without causing any detriment to yourself, then please do. There are a number of ways:
+We add [new games](http://phaser.io/news/category/game) to the Phaser site weekly, so be sure to send us yours when it's finished!
 
-* A monthly contribution via [Patreon](https://www.patreon.com/photonstorm).
-* A [one-off donation](http://phaser.io/community/donate) via PayPal.
-* Purchase any of our [plugins or books](http://phaser.io/shop).
-* Companies can sponsor a release of Phaser, or an issue of our newsletter.
+<a name="requirements"></a>
 
-It all helps cover our running costs, and genuinely contributes towards future development.
+## Requirements
 
-If you would like to sponsor Phaser then please [get in touch](mailto:support@phaser.io). We have sponsorship options available on our GitHub repo, web site, and newsletter. All of which receive tens of thousands of eyeballs per day.
+Phaser requires a web browser that supports the [canvas tag](http://caniuse.com/#feat=canvas). This includes Internet Explorer 9+, Firefox, Chrome, Safari and Opera on desktop. iOS Safari, Android Browser and Chrome for Android are supported on mobile.
 
-<a name="newsletter"></a>
+While Phaser does its best to ensure a consistent cross-platform experience, always be aware of browser and device limitations. This is especially important with memory and GPU limitations on mobile, and legacy browser HTML5 compatibility.
 
-## Weekly Newsletter
+### IE9
 
-Every Friday we publish the [Phaser World](http://phaser.io/community/newsletter) newsletter. It's packed full of the latest Phaser games, tutorials, videos, meet-ups, talks, and more. It also contains our weekly Development Progress updates. If you want to know what we're working on, this is the newsletter to read!
+If you need to support IE9 / Android 2.x _and_ use P2 physics, then you must use the polyfills in the [resources/IE9 Polyfill folder](https://github.com/photonstorm/phaser-ce/tree/master/resources/IE9%20Polyfill). If you don't use P2 (or don't care about IE9!) you can skip this.
 
-Previous editions can found on our [Back Issues](http://phaser.io/community/backissues) page.
+### JavaScript and TypeScript
+
+Phaser is developed in ES5 JavaScript. We've made no assumptions about how you like to code, and were careful not to impose a strict structure upon you. You won't find Phaser split into modules, requiring a build step, or making you use a class / inheritance OOP approach. That doesn't mean you can't do so, it just means we don't _force_ you to. It's your choice.
+
+If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehensive definition files in the [typescript folder](https://github.com/photonstorm/phaser-ce/tree/master/typescript). They are for TypeScript 1.4+.
 
 <a name="download"></a>
 
@@ -106,43 +107,43 @@ Phaser is [hosted on Github][phaser]. There are a number of ways to download it:
 * Download just the build files: [phaser.js][get-js] and [phaser.min.js][get-minjs]
 * Checkout with [svn][clone-svn]
 
-### Bower / npm
+### Bower / NPM
 
 Install via [bower](http://bower.io):
 
-    bower install phaser-ce
+```bash
+bower install phaser-ce
+```
 
 Install via [npm](https://www.npmjs.com):
 
-    npm install phaser-ce
+```bash
+npm install phaser-ce
+```
 
-Using Browserify? Please [read this](#browserify).
+Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack](#webpack).
 
 ### CDN
 
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
-    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.1/build/phaser.js"></script>
+```html
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.5/build/phaser.js"></script>
+```
 
 or the minified version:
 
-    <script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.1"></script>
+```html
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.5"></script>
+```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.8.1/build/custom/) are available too.
-
-### Web Templates
-
-If you'd like to try coding in Phaser right now, with nothing more than your web browser, open up the [Phaser CE Game Template](http://codepen.io/pen?template=vyKJvw). There are [CoffeeScript](http://codepen.io/pen?template=OWxELE) and [ES6](http://codepen.io/pen?template=pRGPKG) variants too.
-
-### License
-
-Phaser is released under the [MIT License](http://opensource.org/licenses/MIT).
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.8.5/build/custom/) are available too.
 
 <a name="getting-started"></a>
 
 ## Getting Started
 
-Our [Getting Started Guide](http://phaser.io/tutorials/getting-started) will get you up to speed quickly. From setting up a web server, to picking an IDE. After which read our [Making your first Game](http://phaser.io/tutorials/making-your-first-phaser-game) tutorial. Please work through this, no matter what your development experience, to learn how Phaser approaches things.
+Our [Getting Started Guide](http://phaser.io/tutorials/getting-started) will get you up to speed quickly: from setting up a web server to picking an editor/IDE. After that read our [Making your first Game](http://phaser.io/tutorials/making-your-first-phaser-game) tutorial. Please work through this, **no matter what your development experience**, to learn how Phaser approaches things.
 
 The single biggest Phaser resource is the [Phaser web site](http://phaser.io/news). You'll find hundreds of tutorials, with new ones added every week. Subscribe to the [Phaser World](http://phaser.io/community/newsletter) newsletter for a weekly links round-up.
 
@@ -154,7 +155,79 @@ Prefer **videos**? Zenva have an excellent [Phaser video course](https://academy
 
 Ever since we started Phaser we've been growing and expanding our extensive set of examples. Currently there are over 700 of them, with the full source code and assets available.
 
-Browse the [Phaser Examples](http://phaser.io/examples), or clone the [examples repo][examples], and eat your heart out!
+Browse [Phaser Examples](http://phaser.io/examples) or clone [phaser-examples-mirror](https://github.com/samme/phaser-examples-mirror) and eat your heart out!
+
+### Web Templates
+
+If you'd like to try coding in Phaser right now, with nothing more than your web browser, open up the [Phaser CE Game Template](http://codepen.io/pen?template=vyKJvw). There are [CoffeeScript](http://codepen.io/pen?template=OWxELE) and [ES6](http://codepen.io/pen?template=pRGPKG) variants too.
+
+### http-server
+
+For most development, you'll need to run a local web server. If you already have [node](https://nodejs.org), it's as easy as:
+
+```bash
+npm install -g http-server
+```
+
+Then from your project:
+
+```bash
+http-server . -c-1 -o
+```
+
+<a name="browserify"></a>
+
+### Browserify / CommonJS
+
+Phaser was never written to be modular. Everything exists under one single global namespace, and you cannot `require` selected parts of it into your builds. It expects 3 global vars to exist in order to work properly: `Phaser`, `PIXI` and `p2`. The following is one way of doing this:
+
+```javascript
+window.PIXI   = require('phaser-ce/build/custom/pixi');
+window.p2     = require('phaser-ce/build/custom/p2');
+window.Phaser = require('phaser-ce/build/custom/phaser-split');
+```
+
+If you [build a custom version of Phaser](#building-phaser) it will split the 3 core libs out into their own files, allowing you to require them as above.
+
+Full module-based development is available in Phaser v3.
+
+<a name="webpack"></a>
+
+### Webpack
+
+As with browserify, use the **pixi**, **p2**, and **phaser-split** modules in [build/custom](https://github.com/photonstorm/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
+
+See [our webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) or [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
+
+### Ionic
+
+For using phaser-ce with [ionic](https://ionicframework.com), have a look at the [ionic example](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) within project templates. To get phaser-ce working with ionic in general, you've to extend "only" the webpack config used by ionic. To get this done are a few steps are necessary.
+
+- Install dependencies [webpack-merge](https://www.npmjs.com/package/webpack-merge) and [expose-loader](https://www.npmjs.com/package/expose-loader):
+
+  ```bash
+  npm install webpack-merge expose-loader --save-dev
+  ```
+
+- Create a [new webpack config](https://github.com/photonstorm/phaser-ce/blob/master/resources/Project%20Templates/ionic-example/webpack.config.js) setting up expose-loader and merging it with the ionic webpack script.
+
+- Add own webpack config at package.json, so that ionic will use it:
+
+  ```json
+  {
+    "config": {
+      "ionic_webpack": "./webpack.config.js"
+    }
+  }
+  ```
+
+- Import **pixi**, **p2** and **phaser-ce** within your project:
+
+  ```javascript
+  import "pixi";
+  import "p2";
+  import * as Phaser from "phaser-ce";
+  ```
 
 ### Interphase
 
@@ -188,29 +261,11 @@ Phaser includes a grunt based build system, which allows you to strip out  featu
 
 As a result of this work the minimum build size of Phaser is now just 80KB minified and gzipped.
 
+1. Run `npm install`
+2. Run `grunt custom` to see the module and argument lists (it will error; that's OK)
+3. Run, e.g., `grunt custom --exclude=sound,keyboard` and then find the built script in [dist](dist/).
+
 See the [Creating a Custom Phaser Build](http://phaser.io/tutorials/creating-custom-phaser-builds) tutorial for details.
-
-<a name="browserify"></a>
-
-### Browserify / CommonJS
-
-Phaser was never written to be modular. Everything exists under one single global namespace, and you cannot `require` selected parts of it into your builds. It expects 3 global vars to exist in order to work properly: `Phaser`, `PIXI` and `p2`. The following is one way of doing this:
-
-```javascript
-window.PIXI   = require('phaser-ce/build/custom/pixi');
-window.p2     = require('phaser-ce/build/custom/p2');
-window.Phaser = require('phaser-ce/build/custom/phaser-split');
-```
-
-If you build a custom version of Phaser it will split the 3 core libs out into their own files, allowing you to require them as above.
-
-We appreciate this is just a band-aid, and not a proper use of modules, but please understand it was never built to be used this way. You're trying to fit a square peg in a round browserify-shaped hole, so compromises have to be made. Please don't open GitHub issues about it as we've no intention of changing Phaser at this stage of its life. Full module based development is available in Phaser v3.
-
-### Webpack
-
-As with browserify, use the `pixi`, `p2`, and `phaser-split` modules in [build/custom](https://github.com/photonstorm/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
-
-See [our webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) or [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
 
 ### Building from source
 
@@ -230,107 +285,30 @@ Releases of new versions of Phaser CE are under the communities control. If you 
 
 4. Once jshint passes run `grunt release`, sit back, and wait. It will build all of the versions of Phaser required, update the doc files, TypeScript defs and lots more. When finished, commit all of the new files and make sure to include a clear message in your commit saying you want this release pushed to npm. Be sure to tag me when doing this, i.e. 'Phaser CE Version 2.X.X. Please publish to npm @photonstorm' - I'll see it, and then publish as soon as I can (often the same day).
 
-<a name="games"></a>
+<a name="support"></a>
 
-## Made With Phaser
+## Support Phaser
 
-Thousands of [games](http://phaser.io/news/category/game) have been made in Phaser. From game jam entries, to titles by some of the largest entertainment brands in the world. You can find [hundreds more on our web site](http://phaser.io/games).
+Developing Phaser takes a lot of time, effort, and money. There are monthly running costs; such as the forum and site, which we maintain 100% ad-free. As well as countless hours of development time, community support, and assistance resolving issues. We do this out of our love for Phaser of course, but at the end of the day there are real tangible costs involved.
 
-We add [new games](http://phaser.io/news/category/game) to the Phaser site weekly, so be sure to send us yours when it's finished!
+If you have found Phaser useful in your development life. Or have made income as a result of using it, and are in a position to support us financially, without causing any detriment to yourself, then please do. There are a number of ways:
 
-<a name="requirements"></a>
+* A monthly contribution via [Patreon](https://www.patreon.com/photonstorm).
+* A [one-off donation](http://phaser.io/community/donate) via PayPal.
+* Purchase any of our [plugins or books](http://phaser.io/shop).
+* Companies can sponsor a release of Phaser, or an issue of our newsletter.
 
-## Requirements
+It all helps cover our running costs, and genuinely contributes towards future development.
 
-Phaser requires a web browser that supports the [canvas tag](http://caniuse.com/#feat=canvas). This includes Internet Explorer 9+, Firefox, Chrome, Safari and Opera on desktop. iOS Safari, Android Browser and Chrome for Android are supported on mobile.
+If you would like to sponsor Phaser then please [get in touch](mailto:support@phaser.io). We have sponsorship options available on our GitHub repo, web site, and newsletter. All of which receive tens of thousands of eyeballs per day.
 
-While Phaser does its best to ensure a consistent cross-platform experience, always be aware of browser and device limitations. This is especially important with memory and GPU limitations on mobile, and legacy browser HTML5 compatibility.
+<a name="newsletter"></a>
 
-### IE9
+## Weekly Newsletter
 
-If you need to support IE9 / Android 2.x _and_ use P2 physics, then you must use the polyfills in the [resources/IE9 Polyfill folder](https://github.com/photonstorm/phaser-ce/tree/master/resources/IE9%20Polyfill). If you don't use P2 (or don't care about IE9!) you can skip this.
+Every Friday we publish the [Phaser World](http://phaser.io/community/newsletter) newsletter. It's packed full of the latest Phaser games, tutorials, videos, meet-ups, talks, and more. It also contains our weekly Development Progress updates. If you want to know what we're working on, this is the newsletter to read!
 
-### JavaScript and TypeScript
-
-Phaser is developed in ES5 JavaScript. We've made no assumptions about how you like to code, and were careful not to impose a strict structure upon you. You won't find Phaser split into modules, requiring a build step, or making you use a class / inheritance OOP approach. That doesn't mean you can't do so, it just means we don't _force_ you to. It's your choice.
-
-If you code with [TypeScript](http://www.typescriptlang.org/) there are comprehensive definition files in the [typescript folder](https://github.com/photonstorm/phaser-ce/tree/master/typescript). They are for TypeScript 1.4+.
-
-<a name="change-log"></a>
-
-# Change Log
-
-## Unreleased
-
-### New Features
-
-* Point.set is a static counterpart to [Point#set](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#set). It can be used on any point-like object, e.g.,
-
-  ```javascript
-  Phaser.Point.set(PIXI.Sprite.defaultAnchor, 0.5); //-> {x: 0.5, y: 0.5}
-  ```
-
-### Updates
-
-* Added TypeScript `types` to package.json (#276).
-* New [webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack).
-* [Component.Core.init](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html) checks types of the `game`, `x`, and `y` arguments, since these mistakes can be hard to track down (outside of TypeScript). The cost is likely trivial, but you can skip these by setting [Component.Core.skipTypeChecks](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#skipTypeChecks) to true.
-* [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer) lists [currentBatchedTextures](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#currentBatchedTextures) (added by [PIXI.WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority)).
-* [TilemapParser.parseTiledJSON](https://photonstorm.github.io/phaser-ce/Phaser.TilemapParser.html#parseTiledJSON) warns if a tilemap contains an external tileset, which Phaser doesn't read (#273).
-* [Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects) assigns the width and height of [Object Tiles](http://doc.mapeditor.org/manual/objects/#insert-tile) to the newly created Sprite (previously these were ignored).
-
-### Bug Fixes
-
-* Added missing [PIXI.DisplayObject#constructor](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html) (#278).
-* Arcade.Body#render, [Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom) (circles, ellipses), [Debug#rectangle](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#rectangle), and [Debug#spriteBounds](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#setBounds) use [Debug#lineWidth](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#lineWidth).
-* Fixed [CanvasRenderer#renderSession.roundPixels](https://photonstorm.github.io/phaser-ce/PIXI.CanvasRenderer.html#renderSession) misspelled as `roundPx` in [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer). ([roundPx](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#roundPx) is a Camera property.)
-* Fixed some TypeScript definitions (#174, #270, #274, #277).
-* The debug canvas is returned to the canvas pool when the game is destroyed (#269).
-
-### Thanks
-
-@bulgakovk, @cmd-johnson, @dolanmiu, @georgesboris, @johnbuttcoingalt,
-@mindcity, @photonstorm, @samme
-
-## Version 2.8.1 - 20th June 2017
-
-### New Features
-
-* [Debug#camera](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#camera) shows the camera [follow target](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#target) and [deadzone](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#deadzone).
-* [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer) prints some useful properties of the [game renderer](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#renderer). In WebGL mode, this includes draw counts, texture space limit, and texture batch size.
-* [Point#setToPolar](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#setToPolar) places a Point from polar coordinates (angle and distance). You can use it to set velocity or acceleration (as `velocity.setToPolar(angle, speed)`), as many of the Arcade Physics helpers now do.
-* [Arcade.Body#blocked.none](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#blocked) describes whether a Body is blocked on any edge. `blocked` and [touching](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#touching) now have identical keys.
-* [Arcade.Body#stop](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#stop) halts all motion.
-* [Emitter#count](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#count) records some diagnostic quantities: `count.emitted`, `count.failed`, `count.totalEmitted`, `count.totalFailed`.
-* [Group#shuffle](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#shuffle) orders children randomly.
-* [PIXI.Sprite.defaultAnchor](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html) holds the initial anchor values for new Sprites (default: [x=0, y=0]).
-* Phaser.Math.HALF_PI is π / 2.
-
-### Updates
-
-* Added PIXI.canUseNewCanvasBlendModes to support [Particle Storm Plugin](https://phaser.io/shop/plugins/particlestorm) (photonstorm/phaser#2909). It's equivalent to [Phaser.Device.canUseMultiply](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#canUseMultiply).
-* [Debug#cameraInfo](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#cameraInfo) now displays the follow target (`target`), `roundPx`, `atLimit`, and `deadzone`.
-* [Debug#isDisabled](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#isDisabled) is now defined in two additional cases: `true` when a new game is created with `enableDebug: false`; and `false` otherwise. As before, it is `true` when Phaser is built without the Debug class.
-* [ScaleManager#forceOrientation](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#forceOrientation) warns if you try to force both orientations.
-* [WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority) warns if `maxTextureAvailableSpace` is exhausted.
-* Documented an undocumented feature of [Phaser.Signal](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html): returning `false` from a callback stops Signal propagation, just as [Signal#halt](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html#halt) does (#243).
-
-### Bug Fixes
-
-* Fixed [WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority) not clearing the current batch.
-* Fixed incorrect `worldRotation` for some objects (#259).
-* Fixed `NaN` value for some objects' `worldRotation` and `worldScale` properties. `worldTransform` was still correct.
-* Fixed [Phaser.Input#hitTest](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#hitTest) when texture resolution ≠ 1.
-* Fixed an incorrect area in [Phaser.Input#hitTest](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#hitTest) when a Creature is reversed on either axis.
-* Fixed camera shake failing to be reset to 0 when camera is reset.
-* Added some missing TypeScript return values (#255).
-* Fixed typo for TypeScript definition of `IGameConfig.multiTexture` property.
-
-### Thanks
-
-@andrewjb123, @dhashvir, @Formic, @jbpuryear, @noidexe, @pavle-goloskokovic, @photonstorm, @rgk, @samme, stupot
-
-For changes in previous releases please see the extensive [Version History](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
+Previous editions can found on our [Back Issues](http://phaser.io/community/backissues) page.
 
 <a name="contributing"></a>
 
@@ -345,6 +323,68 @@ The [Contributors Guide][contribute] contains full details on how to help with P
 - Before contributing read the [code of conduct](https://github.com/photonstorm/phaser-ce/blob/master/CODE_OF_CONDUCT.md).
 
 Written something cool in Phaser? Please tell us about it in the [forum][forum], or email support@phaser.io
+
+<a name="change-log"></a>
+
+# Change Log
+
+## Unreleased
+
+### New Features
+
+### Updates
+
+* Added new (internal) helper function `Phaser.DeviceButton#startStop` (#340)
+* Added new (internal) function `Phaser.Pointer#processButtonsUpDown` and changed behavior of `Phaser.Pointer#updateButtons`, `Phaser.Pointer#processButtonsUp` and `Phaser.Pointer#processButtonsDown` (#340)
+
+### Bug Fixes
+
+* Fixed several issues related to `[Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer)` and pointer events (#293, #250)
+
+### Documentation
+
+* Updated [Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html)
+
+### Thanks
+
+@2called-chaos
+
+## Version 2.8.5 - 30th August 2017
+
+### Updates
+
+* Since v2.8.4 custom build commands need a slightly different argument syntax (#321, #324), e.g.,
+
+  ```bash
+  grunt custom --exclude=moduleName --filename=phaser-custom
+  ```
+
+* Updated [Ionic project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) (#328).
+* [API Docs](https://github.com/photonstorm/phaser-ce/) have a new look.
+
+### Bug Fixes
+
+* Fixed sprite texture being destroyed in [PIXI.Sprite#setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) contrary to `destroyBase=false`.
+* Fixed a ReferenceError in Phaser.Input#executeTouchLockCallbacks affecting Firefox Mobile (#336).
+
+### Documentation
+
+* [Arcade.Body#friction](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#friction): a moving, immovable Body applies its own `friction` to a non-immovable riding Body
+* [DisplayObject](https://photonstorm.github.io/phaser-ce/global.html#DisplayObject)
+* [Emitter#area](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#area): only the `width` and `height` are used.
+* [Emitter#flow](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#flow)
+* [Emitter#start](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#start) (#330)
+* [PhaserGlobal](https://photonstorm.github.io/phaser-ce/PhaserGlobal.html): added.
+
+### Thanks
+
+@Dreaded-Gnu, @goldfire, @photonstorm, @rafelsanso, @ryanrossiter, @samme, @Zykino
+
+For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
+
+# License
+
+Phaser is released under the [MIT License](http://opensource.org/licenses/MIT).
 
 # Created by
 
@@ -362,10 +402,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.1/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.1/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.8.1.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.8.1.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.5/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.5/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.8.5.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.8.5.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser

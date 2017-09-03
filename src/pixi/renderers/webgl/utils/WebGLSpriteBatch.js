@@ -11,7 +11,7 @@
 
 /**
  *
- * @class WebGLSpriteBatch
+ * @class PIXI.WebGLSpriteBatch
  * @private
  * @constructor
  */
@@ -148,7 +148,7 @@ PIXI.WebGLSpriteBatch = function (game) {
 };
 
 /**
- * @method setContext
+ * @method PIXI.WebGLSpriteBatch#setContext
  * @param gl {WebGLContext} the current WebGL drawing context
  */
 PIXI.WebGLSpriteBatch.prototype.setContext = function (gl) {
@@ -220,7 +220,7 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl) {
 };
 
 /**
- * @method begin
+ * @method PIXI.WebGLSpriteBatch#begin
  * @param renderSession {Object} The RenderSession object
  */
 PIXI.WebGLSpriteBatch.prototype.begin = function (renderSession) {
@@ -231,14 +231,14 @@ PIXI.WebGLSpriteBatch.prototype.begin = function (renderSession) {
 };
 
 /**
- * @method end
+ * @method PIXI.WebGLSpriteBatch#end
  */
 PIXI.WebGLSpriteBatch.prototype.end = function () {
     this.flush();
 };
 
 /**
- * @method render
+ * @method PIXI.WebGLSpriteBatch#render
  * @param sprite {Sprite} the sprite to render when using this spritebatch
  * @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
  */
@@ -410,7 +410,7 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix) {
 /**
  * Renders a TilingSprite using the spriteBatch.
  *
- * @method renderTilingSprite
+ * @method PIXI.WebGLSpriteBatch#renderTilingSprite
  * @param sprite {TilingSprite} the sprite to render
  */
 PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite) {
@@ -550,7 +550,7 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite) {
 /**
  * Renders the content and empties the current batch.
  *
- * @method flush
+ * @method PIXI.WebGLSpriteBatch#flush
  */
 PIXI.WebGLSpriteBatch.prototype.flush = function () {
     // If the batch is length 0 then return as there is nothing to draw
@@ -688,7 +688,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function () {
 };
 
 /**
- * @method renderBatch
+ * @method PIXI.WebGLSpriteBatch#renderBatch
  * @param texture {Texture}
  * @param size {Number}
  * @param startIndex {Number}
@@ -716,7 +716,7 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
 };
 
 /**
- * @method stop
+ * @method PIXI.WebGLSpriteBatch#stop
  */
 PIXI.WebGLSpriteBatch.prototype.stop = function () {
     this.flush();
@@ -724,7 +724,7 @@ PIXI.WebGLSpriteBatch.prototype.stop = function () {
 };
 
 /**
- * @method start
+ * @method PIXI.WebGLSpriteBatch#start
  */
 PIXI.WebGLSpriteBatch.prototype.start = function () {
     this.dirty = true;
@@ -733,7 +733,7 @@ PIXI.WebGLSpriteBatch.prototype.start = function () {
 /**
  * Destroys the SpriteBatch.
  *
- * @method destroy
+ * @method PIXI.WebGLSpriteBatch#destroy
  */
 PIXI.WebGLSpriteBatch.prototype.destroy = function () {
     this.vertices = null;

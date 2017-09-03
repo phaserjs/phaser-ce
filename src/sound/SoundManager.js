@@ -11,8 +11,8 @@
 * There is a good guide to what's supported here: http://hpr.dogphilosophy.net/test/
 *
 * If you are reloading a Phaser Game on a page that never properly refreshes (such as in an AngularJS project) then you will quickly run out
-* of AudioContext nodes. If this is the case create a global var called PhaserGlobal on the window object before creating the game. The active
-* AudioContext will then be saved to window.PhaserGlobal.audioContext when the Phaser game is destroyed, and re-used when it starts again.
+* of AudioContext nodes. If this is the case create a global var called {@link PhaserGlobal} on the window object before creating the game. The active
+* AudioContext will then be saved to `window.PhaserGlobal.audioContext` when the Phaser game is destroyed, and re-used when it starts again.
 *
 * Mobile warning: There are some mobile devices (certain iPad 2 and iPad Mini revisions) that cannot play 48000 Hz audio.
 * When they try to play the audio becomes extremely distorted and buzzes, eventually crashing the sound system.
@@ -99,7 +99,7 @@ Phaser.SoundManager = function (game) {
     * Set to true to have all sound muted when the Phaser game pauses (such as on loss of focus),
     * or set to false to keep audio playing, regardless of the game pause state. You may need to
     * do this should you wish to control audio muting via external DOM buttons or similar.
-    * @property {boolean} muteOnPause 
+    * @property {boolean} muteOnPause
     * @default
     */
     this.muteOnPause = true;
@@ -131,6 +131,7 @@ Phaser.SoundManager = function (game) {
     * @default
     */
     this._volume = 1;
+
 
     /**
     * @property {array} _sounds - An array containing all the sounds
@@ -259,7 +260,7 @@ Phaser.SoundManager.prototype = {
         if (!this.noAudio)
         {
             //  On mobile we need a native touch event before we can play anything, so capture it here
-            if (!this.game.device.cocoonJS && this.game.device.iOS || (window['PhaserGlobal'] && window['PhaserGlobal'].fakeiOSTouchLock))
+            if (this.game.device.needsTouchUnlock())
             {
                 this.setTouchLock();
             }
@@ -280,13 +281,13 @@ Phaser.SoundManager.prototype = {
             return;
         }
 
-        if (this.game.device.iOSVersion > 8)
+        if (this.game.device.iOSVersion > 8 || this.game.device.chromeVersion >= 55)
         {
-            this.game.input.touch.addTouchLockCallback(this.unlock, this, true);
+            this.game.input.addTouchLockCallback(this.unlock, this, true);
         }
         else
         {
-            this.game.input.touch.addTouchLockCallback(this.unlock, this);
+            this.game.input.addTouchLockCallback(this.unlock, this);
         }
 
         this.touchLocked = true;
@@ -329,6 +330,11 @@ Phaser.SoundManager.prototype = {
             else
             {
                 this._unlockSource.start(0);
+            }
+
+            //This fixes locked audio in Chrome > 55 cross origin iframes
+            if (this._unlockSource.context.state === 'suspended') {
+                this._unlockSource.context.resume();
             }
         }
 

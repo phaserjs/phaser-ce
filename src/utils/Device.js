@@ -1385,35 +1385,27 @@ Phaser.Device.canPlayVideo = function (type) {
 };
 
 /**
-* Check whether the console is open.
-* Note that this only works in Firefox with Firebug and earlier versions of Chrome.
-* It used to work in Chrome, but then they removed the ability: {@link http://src.chromium.org/viewvc/blink?view=revision&revision=151136}
+ * Whether the device plays audio/video only in response to a user touch event.
+ *
+ * @method needsTouchUnlock
+ * @memberof Phaser.Device.prototype
+ * @return {boolean}
+ */
+Phaser.Device.needsTouchUnlock = function () {
+    return !!(!this.cocoonJS && (this.iOS || this.android) || (window.PhaserGlobal && window.PhaserGlobal.fakeiOSTouchLock));
+};
+
+/**
+* Returns false.
 *
+* @deprecated
 * @method isConsoleOpen
 * @memberof Phaser.Device.prototype
+* @return false
 */
 Phaser.Device.isConsoleOpen = function () {
 
-    if (window.console && window.console['firebug'])
-    {
-        return true;
-    }
-
-    if (window.console)
-    {
-        console.profile();
-        console.profileEnd();
-
-        if (console.clear)
-        {
-            console.clear();
-        }
-
-        if (console['profiles'])
-        {
-            return console['profiles'].length > 0;
-        }
-    }
+    console.warn('Phaser.Device.isConsoleOpen is deprecated and will be removed.');
 
     return false;
 

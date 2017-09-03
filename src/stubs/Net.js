@@ -9,6 +9,9 @@
 * It allows you to exclude the default Net from your build, without making Game crash.
 */
 
+/**
+* No-operation for Phaser Net stub.
+*/
 var netNoop = function () {};
 
 Phaser.Net = netNoop;

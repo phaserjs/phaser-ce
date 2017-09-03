@@ -108,7 +108,7 @@ Phaser.Utils.extend(Phaser.Physics.P2.BodyDebug.prototype, {
             {
                 child = obj.shapes[i];
                 offset = child.position || 0;
-                angle = child.angle || 0;
+                angle = 0 ;
 
                 if (child instanceof p2.Circle)
                 {

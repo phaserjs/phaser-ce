@@ -10,5 +10,6 @@ exports.handlers.newDoclet = function (e) {
     if ((doclet.meta.filename === "p2.js") && (doclet.kind === 'class' || doclet.kind === 'interface'))
     {
         doclet.longname = "Phaser.Physics.P2." + doclet.longname;
+        console.log('Changed `longname` to %s', doclet.longname);
     }
 };

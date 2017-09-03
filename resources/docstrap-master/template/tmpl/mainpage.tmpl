@@ -3,13 +3,8 @@ var data = obj;
 var self = this;
 ?>
 
-
-<?js if (data.kind === 'package' && (data.name ||data.version)) { ?>
-    <h3><?js= data.name ?> <?js= data.version ?></h3>
-<?js } ?>
-
 <?js if (data.readme) { ?>
-    <section>
-        <article class="markdown readme"><?js= data.readme ?></article>
+    <section class="readme-section">
+        <article><?js= data.readme ?></article>
     </section>
 <?js } ?>

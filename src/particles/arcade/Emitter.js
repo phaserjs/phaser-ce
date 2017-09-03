@@ -51,7 +51,7 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.physicsType = Phaser.GROUP;
 
     /**
-    * @property {Phaser.Rectangle} area - The area of the emitter. Particles can be randomly generated from anywhere within this rectangle.
+    * @property {Phaser.Rectangle} area - The {@link #setSize size} of the emitter's emit area. The **actual** emit area is a rectangle of this size centered on (emitX, emitY): `{x: this.left, y: this.top, width: this.area.width, height: this.area.height}`. Particles are generated at a random position within this area.
     * @default
     */
     this.area = new Phaser.Rectangle(x, y, 1, 1);
@@ -229,7 +229,7 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.particleSendToBack = false;
 
     /**
-     * @property {object} count
+     * @property {object} count - Records emitter activity.
      * @property {number} count.emitted - How many particles were emitted during the last update.
      * @property {number} count.failed - How many particles could not be emitted during the last update (because no particles were available).
      * @property {number} count.totalEmitted - How many particles have been emitted.
@@ -261,10 +261,10 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this._maxParticleScale = new Phaser.Point(1, 1);
 
     /**
-    * @property {number} _quantity - Internal helper for deciding how many particles to launch.
+    * @property {number} _total - Internal helper for deciding how many particles to launch (via {@link #start}).
     * @private
     */
-    this._quantity = 0;
+    this._total = 0;
 
     /**
     * @property {number} _timer - Internal helper for deciding when to launch particles or kill them.
@@ -285,7 +285,7 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this._flowQuantity = 0;
 
     /**
-    * @property {number} _flowTotal - Internal counter for figuring out how many particles to launch in total.
+    * @property {number} _flowTotal - Internal counter for figuring out how many particles to launch in total (via {@link #flow}).
     * @private
     */
     this._flowTotal = 0;
@@ -358,7 +358,7 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function () {
             {
                 this._counter++;
 
-                if (this._quantity > 0 && this._counter >= this._quantity)
+                if (this._total > 0 && this._counter >= this._total)
                 {
                     this.on = false;
                 }
@@ -498,17 +498,20 @@ Phaser.Particles.Arcade.Emitter.prototype.explode = function (lifespan, quantity
 };
 
 /**
-* Call this function to start emitting a flow of particles at the given frequency.
-* It will carry on going until the total given is reached.
-* Each time the flow is run the quantity number of particles will be emitted together.
-* If you set the total to be 20 and quantity to be 5 then flow will emit 4 times in total (4 x 5 = 20 total)
-* If you set the total to be -1 then no quantity cap is used and it will keep emitting.
+* Call this function to start emitting a flow of particles.
+* `quantity` particles are released every interval of `frequency` ms until `total` particles have been released (or forever).
+* If you set the total to be 20 and quantity to be 5 then flow will emit 4 times in total (4 × 5 = 20 total) and then turn {@link #on off}.
+* If you set the total to be -1 then no quantity cap is used and it will keep emitting (as long as there are inactive particles available).
+*
+* {@link #output}, {@link #lifespanOutput}, and {@link #remainder} describe the particle flow rate.
+* During a stable flow, the number of active particles approaches {@link #lifespanOutput} and the number of inactive particles approaches {@link #remainder}.
+* If {@link #remainder} is less than 0, there will likely be no particles available for a portion of the flow (see {@link #count}).
 *
 * @method Phaser.Particles.Arcade.Emitter#flow
 * @param {number} [lifespan=0] - How long each particle lives once emitted in ms. 0 = forever.
-* @param {number} [frequency=250] - Frequency is how often to emit the particles, given in ms.
-* @param {number} [quantity=1] - How many particles to launch each time the frequency is met. Can never be > Emitter.maxParticles.
-* @param {number} [total=-1] - How many particles to launch in total. If -1 it will carry on indefinitely.
+* @param {number} [frequency=250] - The interval between each release of particles, given in ms. Values between 0 and 16.66 will behave the same (60 releases per second).
+* @param {number} [quantity=1] - How many particles to launch at each interval. Not larger than {@link #maxParticles}.
+* @param {number} [total=-1] - Turn {@link #on off} after launching this many particles in total. If -1 it will carry on indefinitely.
 * @param {boolean} [immediate=true] - Should the flow start immediately (true) or wait until the first frequency event? (false)
 * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
 */
@@ -552,34 +555,39 @@ Phaser.Particles.Arcade.Emitter.prototype.flow = function (lifespan, frequency, 
 *
 * There are two patterns, based on the `explode` argument:
 *
-* - `start(true, lifespan=0, null, quantity)`
-* - `start(false, lifespan=0, frequency=250, quantity=0)`
+* ##### explode=true
 *
-* When `explode` is true or `forceQuantity` is true, `start` emits `quantity` particles immediately. You should pass a nonzero `quantity`.
+*     start(true, lifespan=0, null, total)
 *
-* When `explode` is false and `forceQuantity` is false, `start` emits 1 particle every interval of `frequency` ms. If `quantity` is not zero, the emitter turns itself off after `quantity` particles have been released. If `quantity` is zero, the emitter keeps emitting particles as long as they are available. To emit more than 1 particle per flow interval, use {@link #flow} instead.
+* When `explode` is true or `forceQuantity` is true, `start` emits `total` particles immediately. You should pass a nonzero `total`.
+*
+* ##### explode=false
+*
+*     start(false, lifespan=0, frequency=250, total=0)
+*
+* When `explode` is false and `forceQuantity` is false, `start` emits 1 particle every interval of `frequency` ms. If `total` is not zero, the emitter turns itself off after `total` particles have been released. If `total` is zero, the emitter keeps emitting particles as long as they are available. To emit more than 1 particle per flow interval, use {@link #flow} instead.
 *
 * `forceQuantity` seems equivalent to `explode` and can probably be avoided.
 *
 * @method Phaser.Particles.Arcade.Emitter#start
 * @param {boolean} [explode=true] - Whether the particles should all burst out at once (true) or at the frequency given (false).
 * @param {number} [lifespan=0] - How long each particle lives once emitted in ms. 0 = forever.
-* @param {number} [frequency=250] - Frequency is how often to emit 1 particle when `explode` is false. Value given in ms. Ignored if `explode` is set to true.
-* @param {number} [quantity=0] - How many particles to launch in total (not larger than {@link Phaser.Particles.Arcade.Emitter#maxParticles maxParticles}).
+* @param {number} [frequency=250] - The interval between each release of 1 particle, when `explode` is false. Value given in ms. Ignored if `explode` is set to true.
+* @param {number} [total=0] - Turn {@link #on off} after launching this many particles in total.
 * @param {number} [forceQuantity=false] - Equivalent to `explodes`.
 * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
 */
-Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, frequency, quantity, forceQuantity) {
+Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, frequency, total, forceQuantity) {
 
     if (explode === undefined) { explode = true; }
     if (lifespan === undefined) { lifespan = 0; }
     if (frequency === undefined || frequency === null) { frequency = 250; }
-    if (quantity === undefined) { quantity = 0; }
+    if (total === undefined) { total = 0; }
     if (forceQuantity === undefined) { forceQuantity = false; }
 
-    if (quantity > this.maxParticles)
+    if (total > this.maxParticles)
     {
-        quantity = this.maxParticles;
+        total = this.maxParticles;
     }
 
     this.revive();
@@ -591,7 +599,7 @@ Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, f
 
     if (explode || forceQuantity)
     {
-        for (var i = 0; i < quantity; i++)
+        for (var i = 0; i < total; i++)
         {
             this.emitParticle();
         }
@@ -599,7 +607,7 @@ Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, f
     else
     {
         this.on = true;
-        this._quantity = quantity;
+        this._total = total;
         this._counter = 0;
         this._timer = this.game.time.time + frequency * this.game.time.slowMotion;
     }
@@ -649,6 +657,7 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     else if (key !== undefined)
     {
         particle.loadTexture(key);
+        particle.frame = Array.isArray(this._frames) ? rnd.pick(this._frames) : this._frames;
     }
 
     var emitX = this.emitX;
@@ -672,7 +681,25 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
         emitY = rnd.between(this.top, this.bottom);
     }
 
-    particle.reset(emitX, emitY);
+    this.resetParticle(particle, emitX, emitY);
+
+    return true;
+
+};
+
+/**
+ * Helper for {@link #emitParticle}. Sets particle properties and calls {@link Particle#onEmit}.
+ *
+ * @private
+ * @param {Phaser.Particle} particle
+ * @param {number} x
+ * @param {number} y
+ */
+Phaser.Particles.Arcade.Emitter.prototype.resetParticle = function (particle, x, y) {
+
+    var rnd = this.game.rnd;
+
+    particle.reset(x, y);
 
     particle.angle = 0;
     particle.lifespan = this.lifespan;
@@ -701,18 +728,6 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     else
     {
         particle.scale.set(this._minParticleScale.x, this._minParticleScale.y);
-    }
-
-    if (frame === undefined)
-    {
-        if (Array.isArray(this._frames))
-        {
-            particle.frame = this.game.rnd.pick(this._frames);
-        }
-        else
-        {
-            particle.frame = this._frames;
-        }
     }
 
     if (this.autoAlpha)
@@ -752,8 +767,6 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     body.angularDrag = this.angularDrag;
 
     particle.onEmit();
-
-    return true;
 
 };
 
@@ -965,8 +978,8 @@ Phaser.Particles.Arcade.Emitter.prototype.setAngle = function (minAngle, maxAngl
 };
 
 /**
-* Change the emitters center to match the center of any object with a `center` property, such as a Sprite.
-* If the object doesn't have a center property it will be set to object.x + object.width / 2
+* Change the emitter's center to match the center of any object with a `center` property, such as an Arcade Body.
+* If the object doesn't have a `center` property it will be set to the object's anchor-adjusted world position (`object.world`).
 *
 * @method Phaser.Particles.Arcade.Emitter#at
 * @param {object|Phaser.Sprite|Phaser.Image|Phaser.TileSprite|Phaser.Text|PIXI.DisplayObject} object - The object that you wish to match the center with.

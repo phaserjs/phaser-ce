@@ -159,16 +159,13 @@ Phaser.Utils.Debug.prototype = {
     *
     * @method Phaser.Utils.Debug#resize
     * @protected
-    * @param {Phaser.ScaleManager} scaleManager - The Phaser ScaleManager.
-    * @param {number} width - The new width of the game.
-    * @param {number} height - The new height of the game.
     */
-    resize: function (scaleManager, width, height) {
+    resize: function () {
 
-        this.bmd.resize(width, height);
+        this.bmd.resize(this.game.width, this.game.height);
 
-        this.canvas.width = width;
-        this.canvas.height = height;
+        this.canvas.width = this.game.width;
+        this.canvas.height = this.game.height;
 
     },
 
@@ -899,8 +896,8 @@ Phaser.Utils.Debug.prototype = {
     * This uses the standard debug drawing feature of Box2D, so colors will be decided by the Box2D engine.
     *
     * @method Phaser.Utils.Debug#box2dBody
-    * @param {Phaser.Sprite} sprite - The sprite whos body will be rendered.
-    * @param {string} [color='rgb(0,255,0)'] - color of the debug info to be rendered. (format is css color string).
+    * @param {Phaser.Physics.Box2D.Body} body - The body to be rendered.
+    * @param {string} [color='rgb(0,255,0)'] - Color of the rendering (format is css color string).
     */
     box2dBody: function (body, color) {
 

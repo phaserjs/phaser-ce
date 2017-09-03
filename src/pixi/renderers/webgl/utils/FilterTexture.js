@@ -2,6 +2,9 @@
  * @author Mat Groves http://matgroves.com/ @Doormat23
  */
 
+/**
+ * @private
+ */
 function _CreateEmptyTexture(gl, width, height, scaleMode) {
     var texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -13,6 +16,9 @@ function _CreateEmptyTexture(gl, width, height, scaleMode) {
     return texture;
 }
 
+/**
+ * @private
+ */
 var _fbErrors = {
     36054: 'Incomplete attachment',
     36055: 'Missing attachment',
@@ -20,18 +26,21 @@ var _fbErrors = {
     36061: 'Framebuffer unsupported'
 };
 
+/**
+ * @private
+ */
 function _CreateFramebuffer(gl, width, height, scaleMode, textureUnit) {
     var framebuffer = gl.createFramebuffer();
     var depthStencilBuffer = gl.createRenderbuffer();
-    var colorBuffer = null;   
+    var colorBuffer = null;
     var fbStatus = 0;
-    
+
     gl.activeTexture(gl.TEXTURE0 + textureUnit);
     gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
     gl.bindRenderbuffer(gl.RENDERBUFFER, depthStencilBuffer);
     gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);
     colorBuffer = _CreateEmptyTexture(gl, width, height, scaleMode);
-    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, colorBuffer, 0);        
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, colorBuffer, 0);
     fbStatus = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
     if(fbStatus !== gl.FRAMEBUFFER_COMPLETE) {
         console.error('Incomplete GL framebuffer. ', _fbErrors[fbStatus]);
@@ -44,7 +53,7 @@ function _CreateFramebuffer(gl, width, height, scaleMode, textureUnit) {
 }
 
 /**
-* @class FilterTexture
+* @class PIXI.FilterTexture
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 * @param width {Number} the horizontal range of the filter
@@ -80,13 +89,13 @@ PIXI.FilterTexture.prototype.constructor = PIXI.FilterTexture;
 
 /**
 * Clears the filter texture.
-* 
-* @method clear
+*
+* @method PIXI.FilterTexture#clear
 */
 PIXI.FilterTexture.prototype.clear = function()
 {
     var gl = this.gl;
-    
+
     gl.clearColor(0,0,0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 };
@@ -94,7 +103,7 @@ PIXI.FilterTexture.prototype.clear = function()
 /**
  * Resizes the texture to the specified width and height
  *
- * @method resize
+ * @method PIXI.FilterTexture#resize
  * @param width {Number} the new width of the texture
  * @param height {Number} the new height of the texture
  */
@@ -115,8 +124,8 @@ PIXI.FilterTexture.prototype.resize = function(width, height)
 
 /**
 * Destroys the filter texture.
-* 
-* @method destroy
+*
+* @method PIXI.FilterTexture#destroy
 */
 PIXI.FilterTexture.prototype.destroy = function()
 {

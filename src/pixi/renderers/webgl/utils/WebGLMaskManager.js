@@ -3,7 +3,7 @@
  */
 
 /**
-* @class WebGLMaskManager
+* @class PIXI.WebGLMaskManager
 * @constructor
 * @private
 */
@@ -15,8 +15,8 @@ PIXI.WebGLMaskManager.prototype.constructor = PIXI.WebGLMaskManager;
 
 /**
 * Sets the drawing context to the one given in parameter.
-* 
-* @method setContext 
+*
+* @method PIXI.WebGLMaskManager#setContext
 * @param gl {WebGLContext} the current WebGL drawing context
 */
 PIXI.WebGLMaskManager.prototype.setContext = function(gl)
@@ -26,8 +26,8 @@ PIXI.WebGLMaskManager.prototype.setContext = function(gl)
 
 /**
 * Applies the Mask and adds it to the current filter stack.
-* 
-* @method pushMask
+*
+* @method PIXI.WebGLMaskManager#pushMask
 * @param maskData {Array}
 * @param renderSession {Object}
 */
@@ -50,8 +50,8 @@ PIXI.WebGLMaskManager.prototype.pushMask = function(maskData, renderSession)
 
 /**
 * Removes the last filter from the filter stack and doesn't return it.
-* 
-* @method popMask
+*
+* @method PIXI.WebGLMaskManager#popMask
 * @param maskData {Array}
 * @param renderSession {Object} an object containing all the useful parameters
 */
@@ -70,8 +70,8 @@ PIXI.WebGLMaskManager.prototype.popMask = function(maskData, renderSession)
 
 /**
 * Destroys the mask stack.
-* 
-* @method destroy
+*
+* @method PIXI.WebGLMaskManager#destroy
 */
 PIXI.WebGLMaskManager.prototype.destroy = function()
 {

@@ -1,1047 +1,164 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: Game · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
-	<script src="https://use.typekit.net/fmc0gtt.js"></script>
-	<script>Typekit.load()</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Phaser CE Class: Game</title>
+	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
+	<link rel="stylesheet" href="styles/site.phaser.css?2017083016">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+      </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PhaserGlobal.html">PhaserGlobal</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html">Global</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.AStar.html">AStar</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PIXI.html">PIXI</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#set">set</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Class: Game</h1>-->
+	<h1 class="page-title">Class: Game</h1>
 <section>
 
 <header>
-    <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
     
-    Game
-    </h2>
+        <h2>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
+        
+        Game
+        </h2>
+        
     
 </header>
+
 
 <article>
     <div class="container-overview">
     
-
-    
         
 <dt>
-    <h4 class="name "
-        id="Game"><span class="type-signature"></span>new Game<span class="signature">(<span class="optional">config</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="Game">
+      <span class="type-signature"></span>new Game( [width] [, height] [, renderer] [, parent] [, state] [, transparent] [, antialias] [, physicsConfig])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
-        <p>Instead of specifying arguments you can also pass a single object instead:</p>
-<pre class="prettyprint source"><code>var config = {
+    <div class="description method-description">
+        <p>The Phaser.Game object is the main controller for the entire Phaser game. It is responsible
+for handling the boot process, parsing the configuration values, creating the renderer,
+and setting-up all of the Phaser systems, such as physics, sound and input.
+Once that is complete it will start the default State, and then begin the main game loop.</p>
+<p>You can access lots of the Phaser systems via the properties on the <code>game</code> object. For
+example <code>game.renderer</code> is the Renderer, <code>game.sound</code> is the Sound Manager, and so on.</p>
+<p>Anywhere you can access the <code>game</code> property, you can access all of these core systems.
+For example a Sprite has a <code>game</code> property, allowing you to talk to the various parts
+of Phaser directly, without having to look after your own references.</p>
+<p>In it's most simplest form, a Phaser game can be created by providing the arguments
+to the constructor:</p>
+<pre class="prettyprint source lang-javascript"><code>var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });</code></pre><p>In the example above it is passing in a State object directly. You can also use the State
+Manager to do this:</p>
+<pre class="prettyprint source lang-javascript"><code>var game = new Phaser.Game(800, 600, Phaser.AUTO);
+game.state.add('Boot', BasicGame.Boot);
+game.state.add('Preloader', BasicGame.Preloader);
+game.state.add('MainMenu', BasicGame.MainMenu);
+game.state.add('Game', BasicGame.Game);
+game.state.start('Boot');</code></pre><p>In the example above, 4 States are added to the State Manager, and Phaser is told to
+start running the <code>Boot</code> state when it has finished initializing. There are example
+project templates you can use in the Phaser GitHub repo, inside the <code>resources</code> folder.</p>
+<p>Instead of specifying arguments you can also pass <a href="global.html#GameConfig">a single object</a> instead:</p>
+<pre class="prettyprint source lang-javascript"><code>var config = {
     width: 800,
     height: 600,
     renderer: Phaser.AUTO,
@@ -1059,8 +176,9 @@ var game = new Phaser.Game(config);</code></pre>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -1068,667 +186,27 @@ var game = new Phaser.Game(config);</code></pre>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-		<th>Argument</th>
-		
-
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>config</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>A single configuration object</p>
-                <h6>Properties</h6>
-                
-
-<table class="params table table-striped">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-
-		<th>Type</th>
-
-		
-		<th>Argument</th>
-		
-
-		
-		<th>Default</th>
-		
-
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-
-	<tbody>
-	
-
-        <tr>
-            
-                <td class="name"><code>antialias</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    true
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    600
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>enableDebug</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    true
-                
-                </td>
-            
-
-            <td class="description last"><p>Enable <a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a>. You can gain a little performance by disabling this in production.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>fullScreenScaleMode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The scaling method used by the ScaleManager when in fullscreen.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>fullScreenTarget</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">DOMElement</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The DOM element on which the Fullscreen API enter request will be invoked.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>multiTexture</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
-
-            <td class="description last"><p>Enable support for multiple bound Textures in WebGL. Same as <code>renderer: Phaser.WEBGL_MULTI</code>.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>parent</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">HTMLElement</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    ''
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>physicsConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    null
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>preserveDrawingBuffer</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
-
-            <td class="description last"><p>Whether or not the contents of the stencil buffer is retained after rendering.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>renderer</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    Phaser.AUTO
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>resolution</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    1
-                
-                </td>
-            
-
-            <td class="description last"><p>The resolution of your game, as a ratio of canvas pixels to game pixels.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>scaleMode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The scaling method used by the ScaleManager when not in fullscreen.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>seed</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Seed for <a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a>.</p></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>state</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    null
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
-
-        <tr>
-            
-                <td class="name"><code>transparent</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
-
-            <td class="description last"></td>
-        </tr>
-
-	
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
 
         <tr>
             
@@ -1742,6 +220,10 @@ var game = new Phaser.Game(config);</code></pre>
 |
 
 <span class="param-type">string</span>
+|
+
+<span class="param-type"><a href="global.html#GameConfig">GameConfig</a></span>
+
 
 
             
@@ -1767,29 +249,310 @@ var game = new Phaser.Game(config);</code></pre>
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description param-description last"><p>The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given.</p></td>
         </tr>
 
-	
-	</tbody>
-</table>
+    
 
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
+
+
+
+            
             </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    600
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>renderer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    Phaser.AUTO
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">HTMLElement</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ''
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>The DOM element into which this games canvas will be injected. Either a DOM ID (string) or the element itself.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>transparent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>Use a transparent canvas background or not.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>antialias</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>physicsConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>A physics configuration object to pass to the Physics world on creation.</p></td>
+        </tr>
+
+    
+    </tbody>
 </table>
 
     
 
-    
-    
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1799,34 +562,45 @@ var game = new Phaser.Game(config);</code></pre>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L73" title="Game on line 73 of src/core/Game.js">src/core/Game.js line 73</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-95">line 95</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -1848,28 +622,40 @@ var game = new Phaser.Game(config);</code></pre>
 
         <dl>
             
-<dt>
-    <h4 class="name "
-        id="add"><span class="type-signature"></span>add<span class="type-signature"> :<a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></span></h4>
-    
+<dt class="name" id="add">
+    <h4 id="add"><span class="type-signature"></span>add<span class="type-signature"> :<a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the Phaser.GameObjectFactory.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1879,53 +665,72 @@ var game = new Phaser.Game(config);</code></pre>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L219" title="add on line 219 of src/core/Game.js">src/core/Game.js line 219</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-241">line 241</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="antialias"><span class="type-signature">&lt;readonly> </span>antialias<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="antialias">
+    <h4 id="antialias"><span class="type-signature">&lt;readonly> </span>antialias<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Anti-alias graphics (as set when the Game is created). By default scaled and rotated images are smoothed in Canvas and WebGL; set <code>antialias</code> to false to disable this globally. After the game boots, use <code>game.stage.smoothed</code> instead.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1935,56 +740,79 @@ var game = new Phaser.Game(config);</code></pre>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>true</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L152" title="antialias on line 152 of src/core/Game.js">src/core/Game.js line 152</a>
     
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-174">line 174</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="cache"><span class="type-signature"></span>cache<span class="type-signature"> :<a href="Phaser.Cache.html">Phaser.Cache</a></span></h4>
-    
+<dt class="name" id="cache">
+    <h4 id="cache"><span class="type-signature"></span>cache<span class="type-signature"> :<a href="Phaser.Cache.html">Phaser.Cache</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the assets cache.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Cache.html">Phaser.Cache</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1994,53 +822,72 @@ var game = new Phaser.Game(config);</code></pre>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L229" title="cache on line 229 of src/core/Game.js">src/core/Game.js line 229</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-251">line 251</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="camera"><span class="type-signature"></span>camera<span class="type-signature"> :<a href="Phaser.Camera.html">Phaser.Camera</a></span></h4>
-    
+<dt class="name" id="camera">
+    <h4 id="camera"><span class="type-signature"></span>camera<span class="type-signature"> :<a href="Phaser.Camera.html">Phaser.Camera</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A handy reference to world.camera.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Camera.html">Phaser.Camera</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2050,53 +897,72 @@ var game = new Phaser.Game(config);</code></pre>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L304" title="camera on line 304 of src/core/Game.js">src/core/Game.js line 304</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-326">line 326</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="canvas"><span class="type-signature"></span>canvas<span class="type-signature"> :HTMLCanvasElement</span></h4>
-    
+<dt class="name" id="canvas">
+    <h4 id="canvas"><span class="type-signature"></span>canvas<span class="type-signature"> :HTMLCanvasElement</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A handy reference to renderer.view, the canvas that the game is being rendered in to.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">HTMLCanvasElement</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2106,54 +972,73 @@ var game = new Phaser.Game(config);</code></pre>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L309" title="canvas on line 309 of src/core/Game.js">src/core/Game.js line 309</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-331">line 331</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="clearBeforeRender"><span class="type-signature"></span>clearBeforeRender<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="clearBeforeRender">
+    <h4 id="clearBeforeRender"><span class="type-signature"></span>clearBeforeRender<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Clear the Canvas each frame before rendering the display list.
 You can set this to <code>false</code> to gain some performance if your game always contains a background that completely fills the display.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2163,56 +1048,79 @@ You can set this to <code>false</code> to gain some performance if your game alw
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>true</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L179" title="clearBeforeRender on line 179 of src/core/Game.js">src/core/Game.js line 179</a>
     
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-201">line 201</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="config"><span class="type-signature"></span>config<span class="type-signature"> :object</span></h4>
-    
+<dt class="name" id="config">
+    <h4 id="config"><span class="type-signature"></span>config<span class="type-signature"> :object</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Phaser.Game configuration object.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">object</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2222,53 +1130,72 @@ You can set this to <code>false</code> to gain some performance if your game alw
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L84" title="config on line 84 of src/core/Game.js">src/core/Game.js line 84</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-106">line 106</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="context"><span class="type-signature"></span>context<span class="type-signature"> :CanvasRenderingContext2D</span></h4>
-    
+<dt class="name" id="context">
+    <h4 id="context"><span class="type-signature"></span>context<span class="type-signature"> :CanvasRenderingContext2D</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A handy reference to renderer.context (only set for CANVAS games, not WebGL)</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">CanvasRenderingContext2D</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2278,53 +1205,72 @@ You can set this to <code>false</code> to gain some performance if your game alw
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L314" title="context on line 314 of src/core/Game.js">src/core/Game.js line 314</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-336">line 336</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="create"><span class="type-signature"></span>create<span class="type-signature"> :<a href="Phaser.Create.html">Phaser.Create</a></span></h4>
-    
+<dt class="name" id="create">
+    <h4 id="create"><span class="type-signature"></span>create<span class="type-signature"> :<a href="Phaser.Create.html">Phaser.Create</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Asset Generator.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Create.html">Phaser.Create</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2334,67 +1280,73 @@ You can set this to <code>false</code> to gain some performance if your game alw
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L329" title="create on line 329 of src/core/Game.js">src/core/Game.js line 329</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-351">line 351</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="currentUpdateID"><span class="type-signature">&lt;internal> </span>currentUpdateID<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id="currentUpdateID">
+    <h4 id="currentUpdateID"><span class="type-signature">&lt;protected> </span>currentUpdateID<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The ID of the current/last logic update applied this render frame, starting from 0.
 The first update is <code>currentUpdateID === 0</code> and the last update is <code>currentUpdateID === updatesThisFrame.</code></p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -2404,47 +1356,72 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-421">line 421</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L399" title="currentUpdateID on line 399 of src/core/Game.js">src/core/Game.js line 399</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="debug"><span class="type-signature"></span>debug<span class="type-signature"> :<a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></span></h4>
-    
+<dt class="name" id="debug">
+    <h4 id="debug"><span class="type-signature"></span>debug<span class="type-signature"> :<a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A set of useful debug utilities.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2454,53 +1431,72 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L319" title="debug on line 319 of src/core/Game.js">src/core/Game.js line 319</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-341">line 341</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="device"><span class="type-signature"></span>device<span class="type-signature"> :<a href="Phaser.Device.html">Phaser.Device</a></span></h4>
-    
+<dt class="name" id="device">
+    <h4 id="device"><span class="type-signature"></span>device<span class="type-signature"> :<a href="Phaser.Device.html">Phaser.Device</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Contains device information and capabilities.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Device.html">Phaser.Device</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2510,53 +1506,72 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L299" title="device on line 299 of src/core/Game.js">src/core/Game.js line 299</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-321">line 321</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="forceSingleUpdate"><span class="type-signature"></span>forceSingleUpdate<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="forceSingleUpdate">
+    <h4 id="forceSingleUpdate"><span class="type-signature"></span>forceSingleUpdate<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2566,54 +1581,73 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L443" title="forceSingleUpdate on line 443 of src/core/Game.js">src/core/Game.js line 443</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-465">line 465</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="fpsProblemNotifier"><span class="type-signature"></span>fpsProblemNotifier<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="fpsProblemNotifier">
+    <h4 id="fpsProblemNotifier"><span class="type-signature"></span>fpsProblemNotifier<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the game is struggling to maintain the desired FPS, this signal will be dispatched.
 The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.html#suggestedFps">Phaser.Time#suggestedFps</a> value.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2623,54 +1657,73 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L438" title="fpsProblemNotifier on line 438 of src/core/Game.js">src/core/Game.js line 438</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-460">line 460</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="height"><span class="type-signature">&lt;readonly> </span>height<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id="height">
+    <h4 id="height"><span class="type-signature">&lt;readonly> </span>height<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The current Game Height in pixels.</p>
-<p><em>Do not modify this property directly:</em> use <a href="Phaser.ScaleManager.html#setGameSize">Phaser.ScaleManager#setGameSize</a> - eg. <code>game.scale.setGameSize(width, height)</code> - instead.</p>
+<p><em>Do not modify this property directly:</em> use <a href="Phaser.ScaleManager.html#setGameSize">Phaser.ScaleManager#setGameSize</a> - e.g. <code>game.scale.setGameSize(width, height)</code> - instead.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2680,56 +1733,79 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>600</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L118" title="height on line 118 of src/core/Game.js">src/core/Game.js line 118</a>
     
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>600</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-140">line 140</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="id"><span class="type-signature">&lt;readonly> </span>id<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="id">
+    <h4 id="id"><span class="type-signature">&lt;readonly> </span>id<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Phaser Game ID</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2739,53 +1815,72 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L79" title="id on line 79 of src/core/Game.js">src/core/Game.js line 79</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-101">line 101</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="input"><span class="type-signature"></span>input<span class="type-signature"> :<a href="Phaser.Input.html">Phaser.Input</a></span></h4>
-    
+<dt class="name" id="input">
+    <h4 id="input"><span class="type-signature"></span>input<span class="type-signature"> :<a href="Phaser.Input.html">Phaser.Input</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the input manager</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Input.html">Phaser.Input</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2795,53 +1890,72 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L234" title="input on line 234 of src/core/Game.js">src/core/Game.js line 234</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-256">line 256</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="isBooted"><span class="type-signature">&lt;readonly> </span>isBooted<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="isBooted">
+    <h4 id="isBooted"><span class="type-signature">&lt;readonly> </span>isBooted<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Whether the game engine is booted, aka available.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2851,53 +1965,72 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L202" title="isBooted on line 202 of src/core/Game.js">src/core/Game.js line 202</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-224">line 224</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="isRunning"><span class="type-signature">&lt;readonly> </span>isRunning<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="isRunning">
+    <h4 id="isRunning"><span class="type-signature">&lt;readonly> </span>isRunning<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Is game running or paused?</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2907,53 +2040,72 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L208" title="isRunning on line 208 of src/core/Game.js">src/core/Game.js line 208</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-230">line 230</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="load"><span class="type-signature"></span>load<span class="type-signature"> :<a href="Phaser.Loader.html">Phaser.Loader</a></span></h4>
-    
+<dt class="name" id="load">
+    <h4 id="load"><span class="type-signature"></span>load<span class="type-signature"> :<a href="Phaser.Loader.html">Phaser.Loader</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the assets loader.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Loader.html">Phaser.Loader</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2963,55 +2115,74 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L239" title="load on line 239 of src/core/Game.js">src/core/Game.js line 239</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-261">line 261</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="lockRender"><span class="type-signature"></span>lockRender<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="lockRender">
+    <h4 id="lockRender"><span class="type-signature"></span>lockRender<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If <code>false</code> Phaser will automatically render the display list every update. If <code>true</code> the render loop will be skipped.
 You can toggle this value at run-time to gain exact control over when Phaser renders. This can be useful in certain types of game or application.
 Please note that if you don't render the display list then none of the game object transforms will be updated, so use this value carefully.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3021,53 +2192,72 @@ Please note that if you don't render the display list then none of the game obje
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L338" title="lockRender on line 338 of src/core/Game.js">src/core/Game.js line 338</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-360">line 360</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="make"><span class="type-signature"></span>make<span class="type-signature"> :<a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></span></h4>
-    
+<dt class="name" id="make">
+    <h4 id="make"><span class="type-signature"></span>make<span class="type-signature"> :<a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the GameObject Creator.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3077,53 +2267,72 @@ Please note that if you don't render the display list then none of the game obje
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L224" title="make on line 224 of src/core/Game.js">src/core/Game.js line 224</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-246">line 246</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="math"><span class="type-signature"></span>math<span class="type-signature"> :<a href="Phaser.Math.html">Phaser.Math</a></span></h4>
-    
+<dt class="name" id="math">
+    <h4 id="math"><span class="type-signature"></span>math<span class="type-signature"> :<a href="Phaser.Math.html">Phaser.Math</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the math helper.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Math.html">Phaser.Math</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3133,42 +2342,46 @@ Please note that if you don't render the display list then none of the game obje
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L244" title="math on line 244 of src/core/Game.js">src/core/Game.js line 244</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-266">line 266</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="multiTexture"><span class="type-signature">&lt;readonly> </span>multiTexture<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="multiTexture">
+    <h4 id="multiTexture"><span class="type-signature">&lt;readonly> </span>multiTexture<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Has support for Multiple bound Textures in WebGL been enabled? This is a read-only property.
 To set it you need to either specify <code>Phaser.WEBGL_MULTI</code> as the renderer type, or use the Game
 Configuration object with the property <code>multiTexture</code> set to true. It has to be enabled before
@@ -3176,14 +2389,29 @@ Pixi boots, and cannot be changed after the game is running. Once enabled, take 
 via the <code>game.renderer.setTexturePriority</code> method.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3193,53 +2421,72 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L165" title="multiTexture on line 165 of src/core/Game.js">src/core/Game.js line 165</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-187">line 187</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="net"><span class="type-signature"></span>net<span class="type-signature"> :<a href="Phaser.Net.html">Phaser.Net</a></span></h4>
-    
+<dt class="name" id="net">
+    <h4 id="net"><span class="type-signature"></span>net<span class="type-signature"> :<a href="Phaser.Net.html">Phaser.Net</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the network class.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Net.html">Phaser.Net</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3249,53 +2496,72 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L249" title="net on line 249 of src/core/Game.js">src/core/Game.js line 249</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-271">line 271</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onBlur"><span class="type-signature"></span>onBlur<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onBlur">
+    <h4 id="onBlur"><span class="type-signature"></span>onBlur<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This event is fired when the game no longer has focus (typically on page hide).</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3305,53 +2571,72 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L374" title="onBlur on line 374 of src/core/Game.js">src/core/Game.js line 374</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-396">line 396</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onFocus"><span class="type-signature"></span>onFocus<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onFocus">
+    <h4 id="onFocus"><span class="type-signature"></span>onFocus<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This event is fired when the game has focus (typically on page show).</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3361,53 +2646,72 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L379" title="onFocus on line 379 of src/core/Game.js">src/core/Game.js line 379</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-401">line 401</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onPause"><span class="type-signature"></span>onPause<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onPause">
+    <h4 id="onPause"><span class="type-signature"></span>onPause<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This event is fired when the game pauses.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3417,53 +2721,72 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L364" title="onPause on line 364 of src/core/Game.js">src/core/Game.js line 364</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-386">line 386</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onResume"><span class="type-signature"></span>onResume<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onResume">
+    <h4 id="onResume"><span class="type-signature"></span>onResume<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This event is fired when the game resumes from a paused state.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3473,46 +2796,50 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L369" title="onResume on line 369 of src/core/Game.js">src/core/Game.js line 369</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-391">line 391</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="parent"><span class="type-signature">&lt;readonly> </span>parent<span class="type-signature"> :string|HTMLElement</span></h4>
-    
+<dt class="name" id="parent">
+    <h4 id="parent"><span class="type-signature">&lt;readonly> </span>parent<span class="type-signature"> :string|HTMLElement</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Game's DOM parent (or name thereof), if any, as set when the game was created. The actual parent can be found in <code>game.canvas.parentNode</code>. Setting this has no effect after <a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a> is booted.</p>
     </div>
     
-    
+
     
         <h5>Type:</h5>
         <ul>
@@ -3524,6 +2851,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 <span class="param-type">HTMLElement</span>
 
 
+
             </li>
         </ul>
     
@@ -3532,7 +2860,11 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3542,53 +2874,72 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L96" title="parent on line 96 of src/core/Game.js">src/core/Game.js line 96</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-118">line 118</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="particles"><span class="type-signature"></span>particles<span class="type-signature"> :<a href="Phaser.Particles.html">Phaser.Particles</a></span></h4>
-    
+<dt class="name" id="particles">
+    <h4 id="particles"><span class="type-signature"></span>particles<span class="type-signature"> :<a href="Phaser.Particles.html">Phaser.Particles</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Particle Manager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Particles.html">Phaser.Particles</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3598,54 +2949,73 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L324" title="particles on line 324 of src/core/Game.js">src/core/Game.js line 324</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-346">line 346</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="paused"><span class="type-signature"></span>paused<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="paused">
+    <h4 id="paused"><span class="type-signature"></span>paused<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The paused state of the Game. A paused game doesn't update any of its subsystems.
 When a game is paused the onPause event is dispatched. When it is resumed the onResume event is dispatched. Gets and sets the paused state of the Game.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3655,53 +3025,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L1259" title="paused on line 1259 of src/core/Game.js">src/core/Game.js line 1259</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1252">line 1252</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="pendingStep"><span class="type-signature">&lt;readonly> </span>pendingStep<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="pendingStep">
+    <h4 id="pendingStep"><span class="type-signature">&lt;readonly> </span>pendingStep<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>An internal property used by enableStep, but also useful to query from your own game objects.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3711,53 +3100,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L352" title="pendingStep on line 352 of src/core/Game.js">src/core/Game.js line 352</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-374">line 374</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="physics"><span class="type-signature"></span>physics<span class="type-signature"> :<a href="Phaser.Physics.html">Phaser.Physics</a></span></h4>
-    
+<dt class="name" id="physics">
+    <h4 id="physics"><span class="type-signature"></span>physics<span class="type-signature"> :<a href="Phaser.Physics.html">Phaser.Physics</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the physics manager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Physics.html">Phaser.Physics</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3767,53 +3175,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L284" title="physics on line 284 of src/core/Game.js">src/core/Game.js line 284</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-306">line 306</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="physicsConfig"><span class="type-signature"></span>physicsConfig<span class="type-signature"> :object</span></h4>
-    
+<dt class="name" id="physicsConfig">
+    <h4 id="physicsConfig"><span class="type-signature"></span>physicsConfig<span class="type-signature"> :object</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Phaser.Physics.World configuration object.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">object</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3823,53 +3250,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L89" title="physicsConfig on line 89 of src/core/Game.js">src/core/Game.js line 89</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-111">line 111</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="plugins"><span class="type-signature"></span>plugins<span class="type-signature"> :<a href="Phaser.PluginManager.html">Phaser.PluginManager</a></span></h4>
-    
+<dt class="name" id="plugins">
+    <h4 id="plugins"><span class="type-signature"></span>plugins<span class="type-signature"> :<a href="Phaser.PluginManager.html">Phaser.PluginManager</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the plugin manager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3879,53 +3325,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L289" title="plugins on line 289 of src/core/Game.js">src/core/Game.js line 289</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-311">line 311</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="preserveDrawingBuffer"><span class="type-signature"></span>preserveDrawingBuffer<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="preserveDrawingBuffer">
+    <h4 id="preserveDrawingBuffer"><span class="type-signature"></span>preserveDrawingBuffer<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The value of the preserveDrawingBuffer flag affects whether or not the contents of the stencil buffer is retained after rendering.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3935,66 +3400,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L171" title="preserveDrawingBuffer on line 171 of src/core/Game.js">src/core/Game.js line 171</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-193">line 193</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="raf"><span class="type-signature">&lt;internal> </span>raf<span class="type-signature"> :<a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></span></h4>
-    
+<dt class="name" id="raf">
+    <h4 id="raf"><span class="type-signature">&lt;protected> </span>raf<span class="type-signature"> :<a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Automatically handles the core game loop via requestAnimationFrame or setTimeout</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -4004,40 +3475,50 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-236">line 236</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L214" title="raf on line 214 of src/core/Game.js">src/core/Game.js line 214</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="renderer"><span class="type-signature">&lt;internal> </span>renderer<span class="type-signature"> :<a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a>|<a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></span></h4>
-    
+<dt class="name" id="renderer">
+    <h4 id="renderer"><span class="type-signature">&lt;protected> </span>renderer<span class="type-signature"> :<a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a>|<a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Pixi Renderer.</p>
     </div>
     
-    
+
     
         <h5>Type:</h5>
         <ul>
@@ -4049,6 +3530,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 <span class="param-type"><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></span>
 
 
+
             </li>
         </ul>
     
@@ -4057,20 +3539,11 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -4080,47 +3553,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-207">line 207</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L185" title="renderer on line 185 of src/core/Game.js">src/core/Game.js line 185</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="renderType"><span class="type-signature">&lt;readonly> </span>renderType<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="renderType">
+    <h4 id="renderType"><span class="type-signature">&lt;readonly> </span>renderType<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType reflects the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. HEADLESS skips <code>render</code> hooks but not <code>preRender</code> or <code>postRender</code>; set lockRender to skip those as well.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4130,53 +3628,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L191" title="renderType on line 191 of src/core/Game.js">src/core/Game.js line 191</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-213">line 213</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="resolution"><span class="type-signature">&lt;readonly> </span>resolution<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id="resolution">
+    <h4 id="resolution"><span class="type-signature">&lt;readonly> </span>resolution<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The resolution of your game, as a ratio of canvas pixels to game pixels. This value is read only, but can be changed at start time it via a game configuration object.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4186,56 +3703,79 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>1</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L127" title="resolution on line 127 of src/core/Game.js">src/core/Game.js line 127</a>
     
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-149">line 149</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="rnd"><span class="type-signature"></span>rnd<span class="type-signature"> :<a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></span></h4>
-    
+<dt class="name" id="rnd">
+    <h4 id="rnd"><span class="type-signature"></span>rnd<span class="type-signature"> :<a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Instance of repeatable random data generator helper.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4245,53 +3785,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L294" title="rnd on line 294 of src/core/Game.js">src/core/Game.js line 294</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-316">line 316</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="scale"><span class="type-signature"></span>scale<span class="type-signature"> :<a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></span></h4>
-    
+<dt class="name" id="scale">
+    <h4 id="scale"><span class="type-signature"></span>scale<span class="type-signature"> :<a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The game scale manager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4301,53 +3860,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L254" title="scale on line 254 of src/core/Game.js">src/core/Game.js line 254</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-276">line 276</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="sound"><span class="type-signature"></span>sound<span class="type-signature"> :<a href="Phaser.SoundManager.html">Phaser.SoundManager</a></span></h4>
-    
+<dt class="name" id="sound">
+    <h4 id="sound"><span class="type-signature"></span>sound<span class="type-signature"> :<a href="Phaser.SoundManager.html">Phaser.SoundManager</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the sound manager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4357,53 +3935,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L259" title="sound on line 259 of src/core/Game.js">src/core/Game.js line 259</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-281">line 281</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="stage"><span class="type-signature"></span>stage<span class="type-signature"> :<a href="Phaser.Stage.html">Phaser.Stage</a></span></h4>
-    
+<dt class="name" id="stage">
+    <h4 id="stage"><span class="type-signature"></span>stage<span class="type-signature"> :<a href="Phaser.Stage.html">Phaser.Stage</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the stage.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Stage.html">Phaser.Stage</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4413,53 +4010,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L264" title="stage on line 264 of src/core/Game.js">src/core/Game.js line 264</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-286">line 286</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="state"><span class="type-signature"></span>state<span class="type-signature"> :<a href="Phaser.StateManager.html">Phaser.StateManager</a></span></h4>
-    
+<dt class="name" id="state">
+    <h4 id="state"><span class="type-signature"></span>state<span class="type-signature"> :<a href="Phaser.StateManager.html">Phaser.StateManager</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The StateManager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.StateManager.html">Phaser.StateManager</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4469,53 +4085,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L196" title="state on line 196 of src/core/Game.js">src/core/Game.js line 196</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-218">line 218</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="stepCount"><span class="type-signature">&lt;readonly> </span>stepCount<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="stepCount">
+    <h4 id="stepCount"><span class="type-signature">&lt;readonly> </span>stepCount<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>When stepping is enabled this contains the current step cycle.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4525,53 +4160,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L359" title="stepCount on line 359 of src/core/Game.js">src/core/Game.js line 359</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-381">line 381</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="stepping"><span class="type-signature">&lt;readonly> </span>stepping<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="stepping">
+    <h4 id="stepping"><span class="type-signature">&lt;readonly> </span>stepping<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Enable core loop stepping with Game.enableStep().</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4581,53 +4235,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L345" title="stepping on line 345 of src/core/Game.js">src/core/Game.js line 345</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-367">line 367</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="time"><span class="type-signature"></span>time<span class="type-signature"> :<a href="Phaser.Time.html">Phaser.Time</a></span></h4>
-    
+<dt class="name" id="time">
+    <h4 id="time"><span class="type-signature"></span>time<span class="type-signature"> :<a href="Phaser.Time.html">Phaser.Time</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the core game clock.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Time.html">Phaser.Time</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4637,53 +4310,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L269" title="time on line 269 of src/core/Game.js">src/core/Game.js line 269</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-291">line 291</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="transparent"><span class="type-signature"></span>transparent<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="transparent">
+    <h4 id="transparent"><span class="type-signature"></span>transparent<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Use a transparent canvas background or not.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4693,53 +4385,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L145" title="transparent on line 145 of src/core/Game.js">src/core/Game.js line 145</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-167">line 167</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="tweens"><span class="type-signature"></span>tweens<span class="type-signature"> :<a href="Phaser.TweenManager.html">Phaser.TweenManager</a></span></h4>
-    
+<dt class="name" id="tweens">
+    <h4 id="tweens"><span class="type-signature"></span>tweens<span class="type-signature"> :<a href="Phaser.TweenManager.html">Phaser.TweenManager</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the tween manager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4749,66 +4460,72 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L274" title="tweens on line 274 of src/core/Game.js">src/core/Game.js line 274</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-296">line 296</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="updatesThisFrame"><span class="type-signature">&lt;internal> </span>updatesThisFrame<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id="updatesThisFrame">
+    <h4 id="updatesThisFrame"><span class="type-signature">&lt;protected> </span>updatesThisFrame<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Number of logic updates expected to occur this render frame; will be 1 unless there are catch-ups required (and allowed).</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -4818,48 +4535,73 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-428">line 428</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L406" title="updatesThisFrame on line 406 of src/core/Game.js">src/core/Game.js line 406</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="width"><span class="type-signature">&lt;readonly> </span>width<span class="type-signature"> :integer</span></h4>
-    
+<dt class="name" id="width">
+    <h4 id="width"><span class="type-signature">&lt;readonly> </span>width<span class="type-signature"> :integer</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The current Game Width in pixels.</p>
-<p><em>Do not modify this property directly:</em> use <a href="Phaser.ScaleManager.html#setGameSize">Phaser.ScaleManager#setGameSize</a> - eg. <code>game.scale.setGameSize(width, height)</code> - instead.</p>
+<p><em>Do not modify this property directly:</em> use <a href="Phaser.ScaleManager.html#setGameSize">Phaser.ScaleManager#setGameSize</a> - e.g. <code>game.scale.setGameSize(width, height)</code> - instead.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">integer</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4869,56 +4611,79 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>800</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L107" title="width on line 107 of src/core/Game.js">src/core/Game.js line 107</a>
     
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>800</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-129">line 129</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="world"><span class="type-signature"></span>world<span class="type-signature"> :<a href="Phaser.World.html">Phaser.World</a></span></h4>
-    
+<dt class="name" id="world">
+    <h4 id="world"><span class="type-signature"></span>world<span class="type-signature"> :<a href="Phaser.World.html">Phaser.World</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the world.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.World.html">Phaser.World</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4928,26 +4693,33 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L279" title="world on line 279 of src/core/Game.js">src/core/Game.js line 279</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-301">line 301</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -4960,46 +4732,36 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="boot"><span class="type-signature">&lt;internal> </span>boot<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="boot">
+      <span class="type-signature">&lt;protected> </span>boot()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Initialize engine sub modules and start the game.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5009,44 +4771,61 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-610">line 610</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L611" title="boot on line 611 of src/core/Game.js">src/core/Game.js line 611</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="destroy"><span class="type-signature"></span>destroy<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="destroy">
+      <span class="type-signature"></span>destroy()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Nukes the entire game from orbit.</p>
 <p>Calls destroy on Game.state, Game.sound, Game.scale, Game.stage, Game.input, Game.physics and Game.plugins.</p>
 <p>Then sets all of those local handlers to null, destroys the renderer, removes the canvas from the DOM
@@ -5055,18 +4834,21 @@ and resets the PIXI default renderer.</p>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5076,67 +4858,81 @@ and resets the PIXI default renderer.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L1100" title="destroy on line 1100 of src/core/Game.js">src/core/Game.js line 1100</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1099">line 1099</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="disableStep"><span class="type-signature"></span>disableStep<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="disableStep">
+      <span class="type-signature"></span>disableStep()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Disables core game loop stepping.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5146,68 +4942,82 @@ and resets the PIXI default renderer.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L1075" title="disableStep on line 1075 of src/core/Game.js">src/core/Game.js line 1075</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1074">line 1074</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="enableStep"><span class="type-signature"></span>enableStep<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="enableStep">
+      <span class="type-signature"></span>enableStep()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Enable core game loop stepping. When enabled you must call game.step() directly (perhaps via a DOM button?)
 Calling step will advance the game loop by one frame. This is extremely useful for hard to track down errors!</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5217,57 +5027,69 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L1061" title="enableStep on line 1061 of src/core/Game.js">src/core/Game.js line 1061</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1060">line 1060</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="focusGain"><span class="type-signature">&lt;internal> </span>focusGain<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="focusGain">
+      <span class="type-signature">&lt;protected> </span>focusGain(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Called by the Stage visibility handler.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5275,23 +5097,23 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5304,6 +5126,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 <span class="param-type">object</span>
 
 
+
             
             </td>
 
@@ -5311,35 +5134,24 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
             
 
-            <td class="description last"><p>The DOM event that caused the game to pause, if any.</p></td>
+            <td class="description param-description last"><p>The DOM event that caused the game to pause, if any.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5349,51 +5161,69 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1230">line 1230</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L1237" title="focusGain on line 1237 of src/core/Game.js">src/core/Game.js line 1237</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="focusLoss"><span class="type-signature">&lt;internal> </span>focusLoss<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="focusLoss">
+      <span class="type-signature">&lt;protected> </span>focusLoss(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Called by the Stage visibility handler.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5401,23 +5231,23 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5430,6 +5260,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 <span class="param-type">object</span>
 
 
+
             
             </td>
 
@@ -5437,35 +5268,24 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
             
 
-            <td class="description last"><p>The DOM event that caused the game to pause, if any.</p></td>
+            <td class="description param-description last"><p>The DOM event that caused the game to pause, if any.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5475,51 +5295,69 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1212">line 1212</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L1219" title="focusLoss on line 1219 of src/core/Game.js">src/core/Game.js line 1219</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="gamePaused"><span class="type-signature">&lt;internal> </span>gamePaused<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="gamePaused">
+      <span class="type-signature">&lt;protected> </span>gamePaused(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Called by the Stage visibility handler.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5527,23 +5365,23 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5556,6 +5394,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 <span class="param-type">object</span>
 
 
+
             
             </td>
 
@@ -5563,35 +5402,24 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
             
 
-            <td class="description last"><p>The DOM event that caused the game to pause, if any.</p></td>
+            <td class="description param-description last"><p>The DOM event that caused the game to pause, if any.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5601,51 +5429,69 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1146">line 1146</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L1153" title="gamePaused on line 1153 of src/core/Game.js">src/core/Game.js line 1153</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="gameResumed"><span class="type-signature">&lt;internal> </span>gameResumed<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="gameResumed">
+      <span class="type-signature">&lt;protected> </span>gameResumed(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Called by the Stage visibility handler.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5653,23 +5499,23 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5682,6 +5528,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 <span class="param-type">object</span>
 
 
+
             
             </td>
 
@@ -5689,35 +5536,24 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
             
 
-            <td class="description last"><p>The DOM event that caused the game to pause, if any.</p></td>
+            <td class="description param-description last"><p>The DOM event that caused the game to pause, if any.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5727,74 +5563,81 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1178">line 1178</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L1185" title="gameResumed on line 1185 of src/core/Game.js">src/core/Game.js line 1185</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="parseConfig"><span class="type-signature">&lt;internal> </span>parseConfig<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="parseConfig">
+      <span class="type-signature">&lt;protected> </span>parseConfig()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Parses a Game configuration object.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5804,74 +5647,81 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-525">line 525</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L526" title="parseConfig on line 526 of src/core/Game.js">src/core/Game.js line 526</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="setUpRenderer"><span class="type-signature">&lt;internal> </span>setUpRenderer<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="setUpRenderer">
+      <span class="type-signature">&lt;protected> </span>setUpRenderer()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Checks if the device is capable of using the requested renderer and sets it up or an alternative if not.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5881,74 +5731,81 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-766">line 766</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L767" title="setUpRenderer on line 767 of src/core/Game.js">src/core/Game.js line 767</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="showDebugHeader"><span class="type-signature">&lt;internal> </span>showDebugHeader<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="showDebugHeader">
+      <span class="type-signature">&lt;protected> </span>showDebugHeader()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Displays a Phaser version debug header in the console.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -5958,62 +5815,82 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-699">line 699</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L700" title="showDebugHeader on line 700 of src/core/Game.js">src/core/Game.js line 700</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="step"><span class="type-signature"></span>step<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="step">
+      <span class="type-signature"></span>step()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>When stepping is enabled you must call this function directly (perhaps via a DOM button?) to advance the game loop by one frame.
 This is extremely useful to hard to track down errors! Use the internal stepCount property to monitor progress.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6023,57 +5900,69 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L1087" title="step on line 1087 of src/core/Game.js">src/core/Game.js line 1087</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1086">line 1086</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="update"><span class="type-signature">&lt;internal> </span>update<span class="signature">(time)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="update">
+      <span class="type-signature">&lt;protected> </span>update(time)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The core game loop.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6081,23 +5970,23 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6110,6 +5999,7 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6117,35 +6007,24 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 
             
 
-            <td class="description last"><p>The current time as provided by RequestAnimationFrame.</p></td>
+            <td class="description param-description last"><p>The current time as provided by RequestAnimationFrame.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -6155,51 +6034,69 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-876">line 876</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L877" title="update on line 877 of src/core/Game.js">src/core/Game.js line 877</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="updateLogic"><span class="type-signature">&lt;internal> </span>updateLogic<span class="signature">(timeStep)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="updateLogic">
+      <span class="type-signature">&lt;protected> </span>updateLogic(timeStep)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Updates all logic subsystems in Phaser. Called automatically by Game.update.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6207,23 +6104,23 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6236,6 +6133,7 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6243,35 +6141,24 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 
             
 
-            <td class="description last"><p>The current timeStep value as determined by Game.update.</p></td>
+            <td class="description param-description last"><p>The current timeStep value as determined by Game.update.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -6281,44 +6168,61 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-976">line 976</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L977" title="updateLogic on line 977 of src/core/Game.js">src/core/Game.js line 977</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="updateRender"><span class="type-signature">&lt;internal> </span>updateRender<span class="signature">(elapsedTime)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="updateRender">
+      <span class="type-signature">&lt;protected> </span>updateRender(elapsedTime)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Runs the Render cycle.
 It starts by calling State.preRender. In here you can do any last minute adjustments of display objects as required.
 It then calls the renderer, which renders the entire display list, starting from the Stage object and working down.
@@ -6332,8 +6236,9 @@ Phaser will only render when this boolean is <code>false</code>.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6341,23 +6246,23 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6370,6 +6275,7 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6377,35 +6283,24 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 
             
 
-            <td class="description last"><p>The time elapsed since the last update.</p></td>
+            <td class="description param-description last"><p>The time elapsed since the last update.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -6415,28 +6310,45 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_core_Game.js.html">core/Game.js</a>, <a href="src_core_Game.js.html#sunlight-1-line-1023">line 1023</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/core/Game.js#L1024" title="updateRender on line 1024 of src/core/Game.js">src/core/Game.js line 1024</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -6452,64 +6364,68 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 
 
 
+</div>
+	    <footer class="footer">
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Tue Jun 20 2017 19:07:41 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
+<p class="package-signature">
+  phaser-ce@2.8.5
+  is on
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.5">GitHub</a>
+  and
+  <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
+</p>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
 
-		} );
-	</script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
+
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on 2017-08-30
+	
+	using a <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">DocStrap template</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="filter">
+    </div>
+  </div>
+  </div>
+  <div id="toc">
+    <div class="list-group">
+      <div id="toc-insert"></div>
+    </div>
+  </div>
+</div>
+
+    
+	</div>
+</div>
+
+
+
+<script src="scripts/bundle.js?2017083016"></script>
+<script src="scripts/toc.js?2017083016"></script>
+<script src="scripts/misc.js?2017083016"></script>
+
+
+
+
 
 </body>
 </html>

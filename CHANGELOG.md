@@ -2,7 +2,125 @@
 
 ## Unreleased
 
-See [README: Change Log](README.md#change-log).
+See [README: Change Log: Unreleased](README.md#unreleased).
+
+## Version 2.8.5 - 30th August 2017
+
+### Updates
+
+* Since v2.8.4 custom build commands need a slightly different argument syntax (#321, #324), e.g.,
+
+  ```bash
+  grunt custom --exclude=moduleName --filename=phaser-custom
+  ```
+
+* Updated [Ionic project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) (#328).
+* [API Docs](https://github.com/photonstorm/phaser-ce/) have a new look.
+
+### Bug Fixes
+
+* Fixed sprite texture being destroyed in [PIXI.Sprite#setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) contrary to `destroyBase=false`.
+* Fixed a ReferenceError in Phaser.Input#executeTouchLockCallbacks affecting Firefox Mobile (#336).
+
+### Documentation
+
+* [Arcade.Body#friction](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#friction): a moving, immovable Body applies its own `friction` to a non-immovable riding Body
+* [DisplayObject](https://photonstorm.github.io/phaser-ce/global.html#DisplayObject)
+* [Emitter#area](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#area): only the `width` and `height` are used.
+* [Emitter#flow](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#flow)
+* [Emitter#start](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#start) (#330)
+* [PhaserGlobal](https://photonstorm.github.io/phaser-ce/PhaserGlobal.html): added.
+
+### Thanks
+
+@Dreaded-Gnu, @goldfire, @photonstorm, @rafelsanso, @ryanrossiter, @samme, @Zykino
+
+## Version 2.8.4 - 15th August 2017
+
+### Updates
+
+* Arcade#collide and Arcade#overlap skip empty array members in calls like `collide(group, [undefined])`, so you don't unintentionally collide a group against itself.
+* Added an `epsilon` argument for fuzzy comparisons in [Phaser.Line#pointOnLine](https://photonstorm.github.io/phaser-ce/Phaser.Line.html#pointOnLine) and [Phaser.Line#pointOnSegment](https://photonstorm.github.io/phaser-ce/Phaser.Line.html#pointOnSegment) (#312).
+* Removed obsolete PIXI TypeScript definitions.
+* Removed [filters/pixi](https://github.com/photonstorm/phaser-ce/tree/v2.8.3/filters/pixi). They require PIXI.AbstractFilter, which was removed in 2.7.0.
+* Updated NPM dependencies (except [typescript](https://www.npmjs.com/package/typescript); photonstorm/phaser#2198) and added [package-lock.json](https://docs.npmjs.com/files/package-lock.json).
+* Deprecated [Phaser.Device.isConsoleOpen](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#isConsoleOpen). Now it always returns false.
+* Phaser.Input now handles touch unlocking via Phaser.Touch or Phaser.MSPointer. [Phaser.Touch#addTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Touch.html#addTouchLockCallback) and [Phaser.Touch#removeTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Touch.html#removeTouchLockCallback) are still available but deprecated; you should use [Phaser.Input#addTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#addTouchLockCallback) and [Phaser.Input.#removeTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#removeTouchLockCallback) instead (#37).
+
+### Bug Fixes
+
+* Improved animation synchronization during irregular frame rates (#310).
+* Fixed bad `game` reference in [Phaser.Creature](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html).
+* Fixed wrong dimensions of [Debug#canvas](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#canvas) and [Debug#sprite](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#sprite) when a WEBGL game is scaled (#298).
+* [TileSprite#tint](https://photonstorm.github.io/phaser-ce/Phaser.TileSprite.html#tint) now works when rendering with CANVAS.
+* Fixed sprites not receiving a preUpdate when they have a `fresh` ancestor with a physics body, which would leave them `fresh` and with incorrect `world` and `body.position` values for several frames (#299).
+* Fixed movement of sprites with [fixedToCamera](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#fixedToCamera) when dragged by pointer (#297).
+* Fixed Creature relative anchor points to be absolute (#288).
+* Fixed P2 Physics body not rotating shape (#258).
+* Audio is now also unlocked for Android Chrome ≥ 55, fixing audio not playing in cross-origin iframes (#37).
+* Fixed some TypeScript definitions (#317, #319).
+
+### Documentation
+
+* [Arcade Physics bodies](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html) don't scale with [camera scale](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#scale) (#315).
+* [cacheAsBitmap](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#cacheAsBitmap) and [generateTexture](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#generateTexture) can trim transparent pixels (#283).
+* [Phaser.Physics.P2.Body#addPolygon](https://photonstorm.github.io/phaser-ce/Phaser.Physics.P2.Body#addPolygon.html#addPolygon) can mutate the `points` argument (#301).
+* [InputHandler#enableDrag](https://photonstorm.github.io/phaser-ce/Phaser.InputHandler.html#enableDrag) `alphaThreshold` argument is a number, not boolean.
+* [Phaser.ScaleManager#startFullScreen](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#startFullScreen)
+* [Health#damage](https://photonstorm.github.io/phaser-ce/Phaser.Component.Health.html#damage), [Health#heal](https://photonstorm.github.io/phaser-ce/Phaser.Component.Health.html#heal), and [Health#setHealth](https://photonstorm.github.io/phaser-ce/Phaser.Component.Health.html#setHealth) were missing (#308).
+
+### Thanks
+
+@Aerolivier, @AleBles, @andrewjb123, @davvidbaker, @Formic, @fyyyyy, @Majirefy, @photonstorm, @Plukers, @samid737, @samme, @sarbasamuel, @tommitytom
+
+## Version 2.8.3 - 21st July 2017
+
+### Updates
+
+* Added [Ionic project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) and a [small guide](https://github.com/photonstorm/phaser-ce/blob/master/README.md#ionic) to README (#96).
+
+### Bug Fixes
+
+* Fixed some TypeScript definitions (#284, #285, #286).
+
+### PIXI Updates
+
+* Replaced all references to PIXI.Matrix and PIXI.identityMatrix with [Phaser.Matrix](https://photonstorm.github.io/phaser-ce/Phaser.Matrix.html) and Phaser.identityMatrix.
+
+### Thanks
+
+@Arche-san, @cloakedninjas, @dolanmiu, @Dreaded-Gnu, @photonstorm, @samme
+
+## Version 2.8.2 - 14th July 2017
+
+### New Features
+
+* Phaser.Point.set is a static counterpart to [Phaser.Point#set](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#set). It can be used on any point-like object, e.g.,
+
+  ```javascript
+  Phaser.Point.set(PIXI.Sprite.defaultAnchor, 0.5); //-> {x: 0.5, y: 0.5}
+  ```
+
+### Updates
+
+* Added TypeScript `types` to package.json (#276).
+* New [webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) (#95).
+* [Phaser.Component.Core.init](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html) checks types of the `game`, `x`, and `y` arguments, since these mistakes can be hard to track down (outside of TypeScript). The cost is likely trivial, but you can skip these by setting [Phaser.Component.Core.skipTypeChecks](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#skipTypeChecks) to true.
+* [Phaser.Utils.Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer) lists [currentBatchedTextures](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#currentBatchedTextures) (added by [PIXI.WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority)).
+* [Phaser.TilemapParser.parseTiledJSON](https://photonstorm.github.io/phaser-ce/Phaser.TilemapParser.html#parseTiledJSON) warns if a tilemap contains an external tileset, which Phaser doesn't read (#273).
+* [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects) assigns the width and height of [Object Tiles](http://doc.mapeditor.org/manual/objects/#insert-tile) to the newly created Sprite (previously these were ignored).
+
+### Bug Fixes
+
+* Added missing [PIXI.DisplayObject#constructor](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html) (#278).
+* [Arcade.Body#render](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#render), [Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom) (circles, ellipses), [Debug#rectangle](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#rectangle), and [Debug#spriteBounds](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#setBounds) use [Debug#lineWidth](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#lineWidth).
+* Fixed [PIXI.CanvasRenderer#renderSession.roundPixels](https://photonstorm.github.io/phaser-ce/PIXI.CanvasRenderer.html#renderSession) misspelled as `roundPx` in [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer). ([roundPx](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#roundPx) is a Camera property.)
+* Fixed some TypeScript definitions (#174, #270, #274, #277).
+* The debug canvas is returned to the canvas pool when the game is destroyed (#269).
+
+### Thanks
+
+@bulgakovk, @cmd-johnson, @dolanmiu, @georgesboris, @johnbuttcoingalt, @mindcity, @photonstorm, @samme
 
 ## Version 2.8.1 - 20th June 2017
 

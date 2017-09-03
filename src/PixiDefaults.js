@@ -24,7 +24,7 @@ if (PIXI.Texture.emptyTexture === undefined)
 
 if (PIXI.DisplayObject._tempMatrix === undefined)
 {
-    PIXI.DisplayObject._tempMatrix = new PIXI.Matrix();
+    PIXI.DisplayObject._tempMatrix = new Phaser.Matrix();
 }
 
 PIXI.TextureSilentFail = true;

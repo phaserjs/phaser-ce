@@ -353,41 +353,14 @@ Phaser.Physics.Arcade.prototype = {
 
         this._total = 0;
 
-        if (!Array.isArray(object1) && Array.isArray(object2))
-        {
-            for (var i = 0; i < object2.length; i++)
-            {
-                this.collideHandler(object1, object2[i], overlapCallback, processCallback, callbackContext, true);
-            }
-        }
-        else if (Array.isArray(object1) && !Array.isArray(object2))
-        {
-            for (var i = 0; i < object1.length; i++)
-            {
-                this.collideHandler(object1[i], object2, overlapCallback, processCallback, callbackContext, true);
-            }
-        }
-        else if (Array.isArray(object1) && Array.isArray(object2))
-        {
-            for (var i = 0; i < object1.length; i++)
-            {
-                for (var j = 0; j < object2.length; j++)
-                {
-                    this.collideHandler(object1[i], object2[j], overlapCallback, processCallback, callbackContext, true);
-                }
-            }
-        }
-        else
-        {
-            this.collideHandler(object1, object2, overlapCallback, processCallback, callbackContext, true);
-        }
+        this.collideObjects(object1, object2, overlapCallback, processCallback, callbackContext, true);
 
         return (this._total > 0);
 
     },
 
     /**
-    * Checks for collision between two game objects and separates them if colliding. If you don't require separation then use {@link #overlap} instead.
+    * Checks for collision between two game objects and separates them if colliding ({@link https://gist.github.com/samme/cbb81dd19f564dcfe2232761e575063d details}). If you don't require separation then use {@link #overlap} instead.
     *
     * You can perform Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer or Group vs. Tilemap Layer collisions.
     * Both the `object1` and `object2` can be arrays of objects, of differing types.
@@ -408,16 +381,18 @@ Phaser.Physics.Arcade.prototype = {
     *
     * ##### Examples
     *
-    *     collide(group);
-    *     collide(group, undefined); // equivalent
+    * ```javascript
+    * collide(group);
+    * collide(group, undefined); // equivalent
     *
-    *     collide(sprite1, sprite2);
+    * collide(sprite1, sprite2);
     *
-    *     collide(sprite, group);
+    * collide(sprite, group);
     *
-    *     collide(group1, group2);
+    * collide(group1, group2);
     *
-    *     collide([sprite1, sprite2], [sprite3, sprite4]); // 1v3, 1v4, 2v3, 2v4
+    * collide([sprite1, sprite2], [sprite3, sprite4]); // 1 vs. 3, 1 vs. 4, 2 vs. 3, 2 vs. 4
+    * ```
     *
     * ##### Tilemaps
     *
@@ -441,34 +416,7 @@ Phaser.Physics.Arcade.prototype = {
 
         this._total = 0;
 
-        if (!Array.isArray(object1) && Array.isArray(object2))
-        {
-            for (var i = 0; i < object2.length; i++)
-            {
-                this.collideHandler(object1, object2[i], collideCallback, processCallback, callbackContext, false);
-            }
-        }
-        else if (Array.isArray(object1) && !Array.isArray(object2))
-        {
-            for (var i = 0; i < object1.length; i++)
-            {
-                this.collideHandler(object1[i], object2, collideCallback, processCallback, callbackContext, false);
-            }
-        }
-        else if (Array.isArray(object1) && Array.isArray(object2))
-        {
-            for (var i = 0; i < object1.length; i++)
-            {
-                for (var j = 0; j < object2.length; j++)
-                {
-                    this.collideHandler(object1[i], object2[j], collideCallback, processCallback, callbackContext, false);
-                }
-            }
-        }
-        else
-        {
-            this.collideHandler(object1, object2, collideCallback, processCallback, callbackContext, false);
-        }
+        this.collideObjects(object1, object2, collideCallback, processCallback, callbackContext, false);
 
         return (this._total > 0);
 
@@ -606,7 +554,54 @@ Phaser.Physics.Arcade.prototype = {
     },
 
     /**
-    * Internal collision handler.
+    * Internal collision handler. Extracts objects for {@link #collideHandler}.
+    *
+    * @method Phaser.Physics.Arcade#collideObjects
+    * @private
+    */
+    collideObjects: function (object1, object2, collideCallback, processCallback, callbackContext, overlapOnly) {
+
+        if (!Array.isArray(object1) && Array.isArray(object2))
+        {
+            for (var i = 0; i < object2.length; i++)
+            {
+                if (!object2[i]) { continue; }
+
+                this.collideHandler(object1, object2[i], collideCallback, processCallback, callbackContext, overlapOnly);
+            }
+        }
+        else if (Array.isArray(object1) && !Array.isArray(object2))
+        {
+            for (var i = 0; i < object1.length; i++)
+            {
+                if (!object1[i]) { continue; }
+
+                this.collideHandler(object1[i], object2, collideCallback, processCallback, callbackContext, overlapOnly);
+            }
+        }
+        else if (Array.isArray(object1) && Array.isArray(object2))
+        {
+            for (var i = 0; i < object1.length; i++)
+            {
+                if (!object1[i]) { continue; }
+
+                for (var j = 0; j < object2.length; j++)
+                {
+                    if (!object2[j]) { continue; }
+
+                    this.collideHandler(object1[i], object2[j], collideCallback, processCallback, callbackContext, overlapOnly);
+                }
+            }
+        }
+        else
+        {
+            this.collideHandler(object1, object2, collideCallback, processCallback, callbackContext, overlapOnly);
+        }
+
+    },
+
+    /**
+    * Internal collision handler. Matches arguments to other handlers.
     *
     * @method Phaser.Physics.Arcade#collideHandler
     * @private

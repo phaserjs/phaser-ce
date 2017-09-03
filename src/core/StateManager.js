@@ -182,8 +182,15 @@ Phaser.StateManager.prototype = {
 
     /**
     * Adds a new State into the StateManager. You must give each State a unique key by which you'll identify it.
-    * The State can be either a Phaser.State object (or an object that extends it), a plain JavaScript object or a function.
-    * If a function is given a new state object will be created by calling it.
+    *
+    * The State can be any of
+    *
+    *  - a plain JavaScript object containing at least one required callback (see {@link #checkState})
+    *  - an instance of {@link Phaser.State}
+    *  - an instance of a class extending Phaser.State
+    *  - a constructor function (class)
+    *
+    * If a function is given a new state object will be created by calling it, passing the current {@link Phaser.Game game} as the first argument.
     *
     * @method Phaser.StateManager#add
     * @param {string} key - A unique key you use to reference this state, i.e. "MainMenu", "Level1".
@@ -429,9 +436,11 @@ Phaser.StateManager.prototype = {
     */
     checkState: function (key) {
 
-        if (this.states[key])
+        var state = this.states[key];
+
+        if (state)
         {
-            if (this.states[key]['preload'] || this.states[key]['create'] || this.states[key]['update'] || this.states[key]['render'])
+            if (state.preload || state.create || state.update || state.render)
             {
                 return true;
             }

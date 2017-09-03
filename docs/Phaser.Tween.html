@@ -1,1045 +1,141 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: Tween · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
-	<script src="https://use.typekit.net/fmc0gtt.js"></script>
-	<script>Typekit.load()</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Phaser CE Class: Tween</title>
+	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
+	<link rel="stylesheet" href="styles/site.phaser.css?2017083016">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+      </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PhaserGlobal.html">PhaserGlobal</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html">Global</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.AStar.html">AStar</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PIXI.html">PIXI</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#set">set</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Class: Tween</h1>-->
+	<h1 class="page-title">Class: Tween</h1>
 <section>
 
 <header>
-    <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
     
-    Tween
-    </h2>
+        <h2>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
+        
+        Tween
+        </h2>
+        
     
 </header>
+
 
 <article>
     <div class="container-overview">
     
-
-    
         
 <dt>
-    <h4 class="name "
-        id="Tween"><span class="type-signature"></span>new Tween<span class="signature">(target, game, manager)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="Tween">
+      <span class="type-signature"></span>new Tween(target, game, manager)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>A Tween allows you to alter one or more properties of a target object over a defined period of time.
 This can be used for things such as alpha fading Sprites, scaling them or motion.
 Use <code>Tween.to</code> or <code>Tween.from</code> to set-up the tween values. You can create multiple tweens on the same object
@@ -1049,8 +145,9 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -1058,23 +155,23 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -1087,6 +184,7 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 <span class="param-type">object</span>
 
 
+
             
             </td>
 
@@ -1094,10 +192,10 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 
             
 
-            <td class="description last"><p>The target object, such as a Phaser.Sprite or Phaser.Sprite.scale.</p></td>
+            <td class="description param-description last"><p>The target object, such as a Phaser.Sprite or Phaser.Sprite.scale.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1110,6 +208,7 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 <span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
 
 
+
             
             </td>
 
@@ -1117,10 +216,10 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 
             
 
-            <td class="description last"><p>Current game instance.</p></td>
+            <td class="description param-description last"><p>Current game instance.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1133,6 +232,7 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 <span class="param-type"><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></span>
 
 
+
             
             </td>
 
@@ -1140,22 +240,24 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 
             
 
-            <td class="description last"><p>The TweenManager responsible for looking after this Tween.</p></td>
+            <td class="description param-description last"><p>The TweenManager responsible for looking after this Tween.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1165,34 +267,45 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L20" title="Tween on line 20 of src/tween/Tween.js">src/tween/Tween.js line 20</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-20">line 20</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -1214,28 +327,40 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 
         <dl>
             
-<dt>
-    <h4 class="name "
-        id="chainedTween"><span class="type-signature"></span>chainedTween<span class="type-signature"> :<a href="Phaser.Tween.html">Phaser.Tween</a></span></h4>
-    
+<dt class="name" id="chainedTween">
+    <h4 id="chainedTween"><span class="type-signature"></span>chainedTween<span class="type-signature"> :<a href="Phaser.Tween.html">Phaser.Tween</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If this Tween is chained to another this holds a reference to it.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1245,53 +370,72 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L130" title="chainedTween on line 130 of src/tween/Tween.js">src/tween/Tween.js line 130</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-130">line 130</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="current"><span class="type-signature">&lt;readonly> </span>current<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="current">
+    <h4 id="current"><span class="type-signature">&lt;readonly> </span>current<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The current Tween child being run.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1301,42 +445,46 @@ are played through in sequence. You can use Tween.timeScale and Tween.reverse to
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L120" title="current on line 120 of src/tween/Tween.js">src/tween/Tween.js line 120</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-120">line 120</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="frameBased"><span class="type-signature"></span>frameBased<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="frameBased">
+    <h4 id="frameBased"><span class="type-signature"></span>frameBased<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Is this Tween frame or time based? A frame based tween will use the physics elapsed timer when updating. This means
 it will retain the same consistent frame rate, regardless of the speed of the device. The duration value given should
 be given in frames.</p>
@@ -1346,14 +494,29 @@ has actually been through. For very short tweens you may wish to experiment with
 <p>The default value is whatever you've set in TweenManager.frameBased.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1363,53 +526,72 @@ has actually been through. For very short tweens you may wish to experiment with
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L152" title="frameBased on line 152 of src/tween/Tween.js">src/tween/Tween.js line 152</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-152">line 152</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
-    
+<dt class="name" id="game">
+    <h4 id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the currently running Game.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1419,53 +601,72 @@ has actually been through. For very short tweens you may wish to experiment with
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L25" title="game on line 25 of src/tween/Tween.js">src/tween/Tween.js line 25</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-25">line 25</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="isPaused"><span class="type-signature"></span>isPaused<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="isPaused">
+    <h4 id="isPaused"><span class="type-signature"></span>isPaused<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Is this Tween paused or not?</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1475,53 +676,72 @@ has actually been through. For very short tweens you may wish to experiment with
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L136" title="isPaused on line 136 of src/tween/Tween.js">src/tween/Tween.js line 136</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-136">line 136</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="isRunning"><span class="type-signature"></span>isRunning<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="isRunning">
+    <h4 id="isRunning"><span class="type-signature"></span>isRunning<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the tween is running this is set to true, otherwise false. Tweens that are in a delayed state or waiting to start are considered as being running.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1531,53 +751,72 @@ has actually been through. For very short tweens you may wish to experiment with
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L113" title="isRunning on line 113 of src/tween/Tween.js">src/tween/Tween.js line 113</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-113">line 113</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="manager"><span class="type-signature"></span>manager<span class="type-signature"> :<a href="Phaser.TweenManager.html">Phaser.TweenManager</a></span></h4>
-    
+<dt class="name" id="manager">
+    <h4 id="manager"><span class="type-signature"></span>manager<span class="type-signature"> :<a href="Phaser.TweenManager.html">Phaser.TweenManager</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Reference to the TweenManager responsible for updating this Tween.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1587,55 +826,74 @@ has actually been through. For very short tweens you may wish to experiment with
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L35" title="manager on line 35 of src/tween/Tween.js">src/tween/Tween.js line 35</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-35">line 35</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onChildComplete"><span class="type-signature"></span>onChildComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onChildComplete">
+    <h4 id="onChildComplete"><span class="type-signature"></span>onChildComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The onChildComplete event is fired when the Tween or any of its children completes.
 Fires every time a child completes unless a child is set to repeat forever.
 It will be sent 2 parameters: the target object and this tween.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1645,54 +903,73 @@ It will be sent 2 parameters: the target object and this tween.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L100" title="onChildComplete on line 100 of src/tween/Tween.js">src/tween/Tween.js line 100</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-100">line 100</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onComplete"><span class="type-signature"></span>onComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onComplete">
+    <h4 id="onComplete"><span class="type-signature"></span>onComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The onComplete event is fired when the Tween and all of its children completes. Does not fire if the Tween is set to loop or repeatAll(-1).
 It will be sent 2 parameters: the target object and this tween.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1702,54 +979,73 @@ It will be sent 2 parameters: the target object and this tween.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L107" title="onComplete on line 107 of src/tween/Tween.js">src/tween/Tween.js line 107</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-107">line 107</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onLoop"><span class="type-signature"></span>onLoop<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onLoop">
+    <h4 id="onLoop"><span class="type-signature"></span>onLoop<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The onLoop event is fired if the Tween, or any child tweens loop.
 It will be sent 2 parameters: the target object and this tween.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1759,54 +1055,73 @@ It will be sent 2 parameters: the target object and this tween.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L85" title="onLoop on line 85 of src/tween/Tween.js">src/tween/Tween.js line 85</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-85">line 85</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onRepeat"><span class="type-signature"></span>onRepeat<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onRepeat">
+    <h4 id="onRepeat"><span class="type-signature"></span>onRepeat<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The onRepeat event is fired if the Tween and all of its children repeats. If this tween has no children this will never be fired.
 It will be sent 2 parameters: the target object and this tween.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1816,54 +1131,73 @@ It will be sent 2 parameters: the target object and this tween.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L92" title="onRepeat on line 92 of src/tween/Tween.js">src/tween/Tween.js line 92</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-92">line 92</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="onStart"><span class="type-signature"></span>onStart<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+<dt class="name" id="onStart">
+    <h4 id="onStart"><span class="type-signature"></span>onStart<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The onStart event is fired when the Tween begins. If there is a delay before the tween starts then onStart fires after the delay is finished.
 It will be sent 2 parameters: the target object and this tween.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1873,53 +1207,72 @@ It will be sent 2 parameters: the target object and this tween.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L77" title="onStart on line 77 of src/tween/Tween.js">src/tween/Tween.js line 77</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-77">line 77</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="pendingDelete"><span class="type-signature">&lt;readonly> </span>pendingDelete<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="pendingDelete">
+    <h4 id="pendingDelete"><span class="type-signature">&lt;readonly> </span>pendingDelete<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>True if this Tween is ready to be deleted by the TweenManager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1929,53 +1282,72 @@ It will be sent 2 parameters: the target object and this tween.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L70" title="pendingDelete on line 70 of src/tween/Tween.js">src/tween/Tween.js line 70</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-70">line 70</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="properties"><span class="type-signature"></span>properties<span class="type-signature"> :object</span></h4>
-    
+<dt class="name" id="properties">
+    <h4 id="properties"><span class="type-signature"></span>properties<span class="type-signature"> :object</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Target property cache used when building the child data values.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">object</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1985,53 +1357,72 @@ It will be sent 2 parameters: the target object and this tween.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L125" title="properties on line 125 of src/tween/Tween.js">src/tween/Tween.js line 125</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-125">line 125</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="repeatCounter"><span class="type-signature"></span>repeatCounter<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="repeatCounter">
+    <h4 id="repeatCounter"><span class="type-signature"></span>repeatCounter<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the Tween and any child tweens are set to repeat this contains the current repeat count.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2041,55 +1432,74 @@ It will be sent 2 parameters: the target object and this tween.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L63" title="repeatCounter on line 63 of src/tween/Tween.js">src/tween/Tween.js line 63</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-63">line 63</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="reverse"><span class="type-signature"></span>reverse<span class="type-signature"> :boolean</span></h4>
-    
+<dt class="name" id="reverse">
+    <h4 id="reverse"><span class="type-signature"></span>reverse<span class="type-signature"> :boolean</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If set to <code>true</code> the current tween will play in reverse.
 If the tween hasn't yet started this has no effect.
 If there are child tweens then all child tweens will play in reverse from the current point.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2099,53 +1509,72 @@ If there are child tweens then all child tweens will play in reverse from the cu
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L49" title="reverse on line 49 of src/tween/Tween.js">src/tween/Tween.js line 49</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-49">line 49</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="target"><span class="type-signature"></span>target<span class="type-signature"> :object</span></h4>
-    
+<dt class="name" id="target">
+    <h4 id="target"><span class="type-signature"></span>target<span class="type-signature"> :object</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The target object, such as a Phaser.Sprite or property like Phaser.Sprite.scale.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">object</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2155,53 +1584,72 @@ If there are child tweens then all child tweens will play in reverse from the cu
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L30" title="target on line 30 of src/tween/Tween.js">src/tween/Tween.js line 30</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-30">line 30</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="timeline"><span class="type-signature"></span>timeline<span class="type-signature"> :Array</span></h4>
-    
+<dt class="name" id="timeline">
+    <h4 id="timeline"><span class="type-signature"></span>timeline<span class="type-signature"> :Array</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>An Array of TweenData objects that comprise the different parts of this Tween.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2211,54 +1659,73 @@ If there are child tweens then all child tweens will play in reverse from the cu
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L40" title="timeline on line 40 of src/tween/Tween.js">src/tween/Tween.js line 40</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-40">line 40</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="timeScale"><span class="type-signature"></span>timeScale<span class="type-signature"> :number</span></h4>
-    
+<dt class="name" id="timeScale">
+    <h4 id="timeScale"><span class="type-signature"></span>timeScale<span class="type-signature"> :number</span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The speed at which the tweens will run. A value of 1 means it will match the game frame rate. 0.5 will run at half the frame rate. 2 at double the frame rate, etc.
 If a tweens duration is 1 second but timeScale is 0.5 then it will take 2 seconds to complete.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2268,56 +1735,79 @@ If a tweens duration is 1 second but timeScale is 0.5 then it will take 2 second
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>1</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L58" title="timeScale on line 58 of src/tween/Tween.js">src/tween/Tween.js line 58</a>
     
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-58">line 58</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
-<dt>
-    <h4 class="name "
-        id="totalDuration"><span class="type-signature"></span>totalDuration<span class="type-signature"> :<a href="Phaser.TweenData.html">Phaser.TweenData</a></span></h4>
-    
+<dt class="name" id="totalDuration">
+    <h4 id="totalDuration"><span class="type-signature"></span>totalDuration<span class="type-signature"> :<a href="Phaser.TweenData.html">Phaser.TweenData</a></span></h4>
+
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Gets the total duration of this Tween, including all child tweens, in milliseconds.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.TweenData.html">Phaser.TweenData</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2327,26 +1817,33 @@ If a tweens duration is 1 second but timeScale is 0.5 then it will take 2 second
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L893" title="totalDuration on line 893 of src/tween/Tween.js">src/tween/Tween.js line 893</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-893">line 893</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -2359,16 +1856,16 @@ If a tweens duration is 1 second but timeScale is 0.5 then it will take 2 second
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="chain"><span class="type-signature"></span>chain<span class="signature">(tweens)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="chain">
+      <span class="type-signature"></span>chain(tweens)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This method allows you to chain tweens together. Any tween chained to this tween will have its <code>Tween.start</code> method called
 as soon as this tween completes. If this tween never completes (i.e. repeatAll or loop is set) then the chain will never progress.
 Note that <code>Tween.onComplete</code> will fire when <em>this</em> tween completes, not when the whole chain completes.
@@ -2380,8 +1877,9 @@ Any previously chained tweens that may have been set will be overwritten.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2389,25 +1887,25 @@ Any previously chained tweens that may have been set will be overwritten.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2418,6 +1916,7 @@ Any previously chained tweens that may have been set will be overwritten.</p>
             
                 
 <span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
 
 
             
@@ -2437,42 +1936,24 @@ Any previously chained tweens that may have been set will be overwritten.</p>
 
             
 
-            <td class="description last"><p>One or more tweens that will be chained to this one.</p></td>
+            <td class="description param-description last"><p>One or more tweens that will be chained to this one.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2482,50 +1963,85 @@ Any previously chained tweens that may have been set will be overwritten.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L566" title="chain on line 566 of src/tween/Tween.js">src/tween/Tween.js line 566</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-566">line 566</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="delay"><span class="type-signature"></span>delay<span class="signature">(duration, <span class="optional">index</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="delay">
+      <span class="type-signature"></span>delay(duration [, index])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets the delay in milliseconds before this tween will start. If there are child tweens it sets the delay before the first child starts.
 The delay is invoked as soon as you call <code>Tween.start</code>. If the tween is already running this method doesn't do anything for the current active tween.
 If you have not yet called <code>Tween.to</code> or <code>Tween.from</code> at least once then this method will do nothing, as there are no tweens to delay.
@@ -2534,8 +2050,9 @@ If you have child tweens and pass -1 as the index value it sets the delay across
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2543,27 +2060,27 @@ If you have child tweens and pass -1 as the index value it sets the delay across
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2574,6 +2091,7 @@ If you have child tweens and pass -1 as the index value it sets the delay across
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -2595,10 +2113,10 @@ If you have child tweens and pass -1 as the index value it sets the delay across
                 </td>
             
 
-            <td class="description last"><p>The amount of time in ms that the Tween should wait until it begins once started is called. Set to zero to remove any active delay.</p></td>
+            <td class="description param-description last"><p>The amount of time in ms that the Tween should wait until it begins once started is called. Set to zero to remove any active delay.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2609,6 +2127,7 @@ If you have child tweens and pass -1 as the index value it sets the delay across
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -2634,42 +2153,24 @@ If you have child tweens and pass -1 as the index value it sets the delay across
                 </td>
             
 
-            <td class="description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the delay on all the children.</p></td>
+            <td class="description param-description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the delay on all the children.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2679,50 +2180,85 @@ If you have child tweens and pass -1 as the index value it sets the delay across
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L408" title="delay on line 408 of src/tween/Tween.js">src/tween/Tween.js line 408</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-408">line 408</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="easing"><span class="type-signature"></span>easing<span class="signature">(ease, <span class="optional">index</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="easing">
+      <span class="type-signature"></span>easing(ease [, index])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Set easing function this tween will use, i.e. Phaser.Easing.Linear.None.
 The ease function allows you define the rate of change. You can pass either a function such as Phaser.Easing.Circular.Out or a string such as &quot;Circ&quot;.
 &quot;.easeIn&quot;, &quot;.easeOut&quot; and &quot;easeInOut&quot; variants are all supported for all ease types.
@@ -2731,8 +2267,9 @@ If you have child tweens and pass -1 as the index value it sets the easing funct
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2740,27 +2277,27 @@ If you have child tweens and pass -1 as the index value it sets the easing funct
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2776,6 +2313,7 @@ If you have child tweens and pass -1 as the index value it sets the easing funct
 <span class="param-type">string</span>
 
 
+
             
             </td>
 
@@ -2795,10 +2333,10 @@ If you have child tweens and pass -1 as the index value it sets the easing funct
                 </td>
             
 
-            <td class="description last"><p>The easing function this tween will use, i.e. Phaser.Easing.Linear.None.</p></td>
+            <td class="description param-description last"><p>The easing function this tween will use, i.e. Phaser.Easing.Linear.None.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2809,6 +2347,7 @@ If you have child tweens and pass -1 as the index value it sets the easing funct
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -2834,42 +2373,24 @@ If you have child tweens and pass -1 as the index value it sets the easing funct
                 </td>
             
 
-            <td class="description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the easing function on all children.</p></td>
+            <td class="description param-description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the easing function on all children.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2879,50 +2400,85 @@ If you have child tweens and pass -1 as the index value it sets the easing funct
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L504" title="easing on line 504 of src/tween/Tween.js">src/tween/Tween.js line 504</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-504">line 504</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="from"><span class="type-signature"></span>from<span class="signature">(properties, <span class="optional">duration</span>, <span class="optional">ease</span>, <span class="optional">autoStart</span>, <span class="optional">delay</span>, <span class="optional">repeat</span>, <span class="optional">yoyo</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="from">
+      <span class="type-signature"></span>from(properties [, duration] [, ease] [, autoStart] [, delay] [, repeat] [, yoyo])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets this tween to be a <code>from</code> tween on the properties given. A <code>from</code> tween sets the target to the destination value and tweens to its current value.
 For example a Sprite with an <code>x</code> coordinate of 100 tweened from <code>x</code> 500 would be set to <code>x</code> 500 and then tweened to <code>x</code> 100 by giving a properties object of <code>{ x: 500 }</code>.
 The ease function allows you define the rate of change. You can pass either a function such as Phaser.Easing.Circular.Out or a string such as &quot;Circ&quot;.
@@ -2931,8 +2487,9 @@ The ease function allows you define the rate of change. You can pass either a fu
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2940,27 +2497,27 @@ The ease function allows you define the rate of change. You can pass either a fu
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2971,6 +2528,7 @@ The ease function allows you define the rate of change. You can pass either a fu
             
                 
 <span class="param-type">object</span>
+
 
 
             
@@ -2992,10 +2550,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>An object containing the properties you want to tween., such as <code>Sprite.x</code> or <code>Sound.volume</code>. Given as a JavaScript object.</p></td>
+            <td class="description param-description last"><p>An object containing the properties you want to tween., such as <code>Sprite.x</code> or <code>Sound.volume</code>. Given as a JavaScript object.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3006,6 +2564,7 @@ The ease function allows you define the rate of change. You can pass either a fu
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -3031,10 +2590,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>Duration of this tween in ms. Or if <code>Tween.frameBased</code> is true this represents the number of frames that should elapse.</p></td>
+            <td class="description param-description last"><p>Duration of this tween in ms. Or if <code>Tween.frameBased</code> is true this represents the number of frames that should elapse.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3048,6 +2607,7 @@ The ease function allows you define the rate of change. You can pass either a fu
 |
 
 <span class="param-type">string</span>
+
 
 
             
@@ -3073,10 +2633,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>Easing function. If not set it will default to Phaser.Easing.Default, which is Phaser.Easing.Linear.None by default but can be over-ridden.</p></td>
+            <td class="description param-description last"><p>Easing function. If not set it will default to Phaser.Easing.Default, which is Phaser.Easing.Linear.None by default but can be over-ridden.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3089,6 +2649,7 @@ The ease function allows you define the rate of change. You can pass either a fu
 <span class="param-type">boolean</span>
 
 
+
             
             </td>
 
@@ -3112,10 +2673,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>Set to <code>true</code> to allow this tween to start automatically. Otherwise call Tween.start().</p></td>
+            <td class="description param-description last"><p>Set to <code>true</code> to allow this tween to start automatically. Otherwise call Tween.start().</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3128,6 +2689,7 @@ The ease function allows you define the rate of change. You can pass either a fu
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -3151,10 +2713,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>Delay before this tween will start in milliseconds. Defaults to 0, no delay.</p></td>
+            <td class="description param-description last"><p>Delay before this tween will start in milliseconds. Defaults to 0, no delay.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3167,6 +2729,7 @@ The ease function allows you define the rate of change. You can pass either a fu
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -3190,10 +2753,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>Should the tween automatically restart once complete? If you want it to run forever set as -1. This only effects this individual tween, not any chained tweens.</p></td>
+            <td class="description param-description last"><p>Should the tween automatically restart once complete? If you want it to run forever set as -1. This only effects this individual tween, not any chained tweens.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3204,6 +2767,7 @@ The ease function allows you define the rate of change. You can pass either a fu
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -3229,42 +2793,24 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>A tween that yoyos will reverse itself and play backwards automatically. A yoyo'd tween doesn't fire the Tween.onComplete event, so listen for Tween.onLoop instead.</p></td>
+            <td class="description param-description last"><p>A tween that yoyos will reverse itself and play backwards automatically. A yoyo'd tween doesn't fire the Tween.onComplete event, so listen for Tween.onLoop instead.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This Tween object.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3274,50 +2820,85 @@ The ease function allows you define the rate of change. You can pass either a fu
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L237" title="from on line 237 of src/tween/Tween.js">src/tween/Tween.js line 237</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-237">line 237</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This Tween object.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="generateData"><span class="type-signature"></span>generateData<span class="signature">(<span class="optional">frameRate</span>, <span class="optional">data</span>)</span><span class="type-signature"> &rarr; {array}</span></h4>
-    
+    <h4 class="name" id="generateData">
+      <span class="type-signature"></span>generateData( [frameRate] [, data])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This will generate an array populated with the tweened object values from start to end.
 It works by running the tween simulation at the given frame rate based on the values set-up in Tween.to and Tween.from.
 It ignores delay and repeat counts and any chained tweens, but does include child tweens.
@@ -3326,8 +2907,9 @@ Just one play through of the tween data is returned, including yoyo if set.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3335,27 +2917,27 @@ Just one play through of the tween data is returned, including yoyo if set.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3366,6 +2948,7 @@ Just one play through of the tween data is returned, including yoyo if set.</p>
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -3391,10 +2974,10 @@ Just one play through of the tween data is returned, including yoyo if set.</p>
                 </td>
             
 
-            <td class="description last"><p>The speed in frames per second that the data should be generated at. The higher the value, the larger the array it creates.</p></td>
+            <td class="description param-description last"><p>The speed in frames per second that the data should be generated at. The higher the value, the larger the array it creates.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3407,6 +2990,7 @@ Just one play through of the tween data is returned, including yoyo if set.</p>
 <span class="param-type">array</span>
 
 
+
             
             </td>
 
@@ -3428,42 +3012,24 @@ Just one play through of the tween data is returned, including yoyo if set.</p>
                 </td>
             
 
-            <td class="description last"><p>If given the generated data will be appended to this array, otherwise a new array will be returned.</p></td>
+            <td class="description param-description last"><p>If given the generated data will be appended to this array, otherwise a new array will be returned.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">array</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>An array of tweened values.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3473,50 +3039,85 @@ Just one play through of the tween data is returned, including yoyo if set.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L840" title="generateData on line 840 of src/tween/Tween.js">src/tween/Tween.js line 840</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-840">line 840</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>An array of tweened values.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">array</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="interpolation"><span class="type-signature"></span>interpolation<span class="signature">(interpolation, <span class="optional">context</span>, <span class="optional">index</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="interpolation">
+      <span class="type-signature"></span>interpolation(interpolation [, context] [, index])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets the interpolation function the tween will use. By default it uses Phaser.Math.linearInterpolation.
 Also available: Phaser.Math.bezierInterpolation and Phaser.Math.catmullRomInterpolation.
 The interpolation function is only used if the target properties is an array.
@@ -3525,8 +3126,9 @@ If you have child tweens and pass -1 as the index value and it will set the inte
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3534,27 +3136,27 @@ If you have child tweens and pass -1 as the index value and it will set the inte
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3567,6 +3169,7 @@ If you have child tweens and pass -1 as the index value and it will set the inte
 <span class="param-type">function</span>
 
 
+
             
             </td>
 
@@ -3586,10 +3189,10 @@ If you have child tweens and pass -1 as the index value and it will set the inte
                 </td>
             
 
-            <td class="description last"><p>The interpolation function to use (Phaser.Math.linearInterpolation by default)</p></td>
+            <td class="description param-description last"><p>The interpolation function to use (Phaser.Math.linearInterpolation by default)</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3600,6 +3203,7 @@ If you have child tweens and pass -1 as the index value and it will set the inte
             
                 
 <span class="param-type">object</span>
+
 
 
             
@@ -3623,10 +3227,10 @@ If you have child tweens and pass -1 as the index value and it will set the inte
                 </td>
             
 
-            <td class="description last"><p>The context under which the interpolation function will be run.</p></td>
+            <td class="description param-description last"><p>The context under which the interpolation function will be run.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3637,6 +3241,7 @@ If you have child tweens and pass -1 as the index value and it will set the inte
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -3662,42 +3267,24 @@ If you have child tweens and pass -1 as the index value and it will set the inte
                 </td>
             
 
-            <td class="description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the interpolation function on all children.</p></td>
+            <td class="description param-description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the interpolation function on all children.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3707,50 +3294,85 @@ If you have child tweens and pass -1 as the index value and it will set the inte
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L526" title="interpolation on line 526 of src/tween/Tween.js">src/tween/Tween.js line 526</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-526">line 526</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="loop"><span class="type-signature"></span>loop<span class="signature">(<span class="optional">value</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="loop">
+      <span class="type-signature"></span>loop( [value])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Enables the looping of this tween. The tween will loop forever, and onComplete will never fire.</p>
 <p>If <code>value</code> is <code>true</code> then this is the same as setting <code>Tween.repeatAll(-1)</code>.
 If <code>value</code> is <code>false</code> it is the same as setting <code>Tween.repeatAll(0)</code> and will reset the <code>repeatCounter</code> to zero.</p>
@@ -3764,8 +3386,9 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3773,27 +3396,27 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3804,6 +3427,7 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -3829,42 +3453,24 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
                 </td>
             
 
-            <td class="description last"><p>If <code>true</code> this tween will loop once it reaches the end. Set to <code>false</code> to remove an active loop.</p></td>
+            <td class="description param-description last"><p>If <code>true</code> this tween will loop once it reaches the end. Set to <code>false</code> to remove an active loop.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3874,57 +3480,93 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L600" title="loop on line 600 of src/tween/Tween.js">src/tween/Tween.js line 600</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-600">line 600</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="onUpdateCallback"><span class="type-signature"></span>onUpdateCallback<span class="signature">(callback, callbackContext)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="onUpdateCallback">
+      <span class="type-signature"></span>onUpdateCallback(callback, callbackContext)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets a callback to be fired each time this tween updates.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3932,23 +3574,23 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3961,6 +3603,7 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
 <span class="param-type">function</span>
 
 
+
             
             </td>
 
@@ -3968,10 +3611,10 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
 
             
 
-            <td class="description last"><p>The callback to invoke each time this tween is updated. Set to <code>null</code> to remove an already active callback.</p></td>
+            <td class="description param-description last"><p>The callback to invoke each time this tween is updated. Set to <code>null</code> to remove an already active callback.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -3984,6 +3627,7 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
 <span class="param-type">object</span>
 
 
+
             
             </td>
 
@@ -3991,42 +3635,24 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
 
             
 
-            <td class="description last"><p>The context in which to call the onUpdate callback.</p></td>
+            <td class="description param-description last"><p>The context in which to call the onUpdate callback.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4036,67 +3662,105 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L626" title="onUpdateCallback on line 626 of src/tween/Tween.js">src/tween/Tween.js line 626</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-626">line 626</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="pause"><span class="type-signature"></span>pause<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="pause">
+      <span class="type-signature"></span>pause()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Pauses the tween. Resume playback with Tween.resume.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4106,50 +3770,61 @@ game.add.tween(p).to({ x: 700 }, 1000, Phaser.Easing.Linear.None, true)
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L643" title="pause on line 643 of src/tween/Tween.js">src/tween/Tween.js line 643</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-643">line 643</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="repeat"><span class="type-signature"></span>repeat<span class="signature">(total, <span class="optional">repeat</span>, <span class="optional">index</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="repeat">
+      <span class="type-signature"></span>repeat(total [, repeat] [, index])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets the number of times this tween will repeat.
 If you have not yet called <code>Tween.to</code> or <code>Tween.from</code> at least once then this method will do nothing, as there are no tweens to repeat.
 If you have child tweens and pass -1 as the index value it sets the number of times they'll repeat across all of them.
@@ -4158,8 +3833,9 @@ If you wish to define how many times this Tween and all children will repeat see
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4167,27 +3843,27 @@ If you wish to define how many times this Tween and all children will repeat see
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4198,6 +3874,7 @@ If you wish to define how many times this Tween and all children will repeat see
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -4219,10 +3896,10 @@ If you wish to define how many times this Tween and all children will repeat see
                 </td>
             
 
-            <td class="description last"><p>How many times a tween should repeat before completing. Set to zero to remove an active repeat. Set to -1 to repeat forever.</p></td>
+            <td class="description param-description last"><p>How many times a tween should repeat before completing. Set to zero to remove an active repeat. Set to -1 to repeat forever.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4235,6 +3912,7 @@ If you wish to define how many times this Tween and all children will repeat see
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -4258,10 +3936,10 @@ If you wish to define how many times this Tween and all children will repeat see
                 </td>
             
 
-            <td class="description last"><p>This is the amount of time to pause (in ms) before the repeat will start.</p></td>
+            <td class="description param-description last"><p>This is the amount of time to pause (in ms) before the repeat will start.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4274,6 +3952,7 @@ If you wish to define how many times this Tween and all children will repeat see
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -4297,42 +3976,24 @@ If you wish to define how many times this Tween and all children will repeat see
                 </td>
             
 
-            <td class="description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the repeat value on all the children.</p></td>
+            <td class="description param-description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the repeat value on all the children.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4342,58 +4003,94 @@ If you wish to define how many times this Tween and all children will repeat see
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L425" title="repeat on line 425 of src/tween/Tween.js">src/tween/Tween.js line 425</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-425">line 425</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="repeatAll"><span class="type-signature"></span>repeatAll<span class="signature">(<span class="optional">total</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="repeatAll">
+      <span class="type-signature"></span>repeatAll( [total])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Set how many times this tween and all of its children will repeat.
 A tween (A) with 3 children (B,C,D) with a <code>repeatAll</code> value of 2 would play as: ABCDABCD before completing.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4401,27 +4098,27 @@ A tween (A) with 3 children (B,C,D) with a <code>repeatAll</code> value of 2 wou
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4434,6 +4131,7 @@ A tween (A) with 3 children (B,C,D) with a <code>repeatAll</code> value of 2 wou
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -4457,42 +4155,24 @@ A tween (A) with 3 children (B,C,D) with a <code>repeatAll</code> value of 2 wou
                 </td>
             
 
-            <td class="description last"><p>How many times this tween and all children should repeat before completing. Set to zero to remove an active repeat. Set to -1 to repeat forever.</p></td>
+            <td class="description param-description last"><p>How many times this tween and all children should repeat before completing. Set to zero to remove an active repeat. Set to -1 to repeat forever.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4502,50 +4182,85 @@ A tween (A) with 3 children (B,C,D) with a <code>repeatAll</code> value of 2 wou
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L548" title="repeatAll on line 548 of src/tween/Tween.js">src/tween/Tween.js line 548</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-548">line 548</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="repeatDelay"><span class="type-signature"></span>repeatDelay<span class="signature">(duration, <span class="optional">index</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="repeatDelay">
+      <span class="type-signature"></span>repeatDelay(duration [, index])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets the delay in milliseconds before this tween will repeat itself.
 The repeatDelay is invoked as soon as you call <code>Tween.start</code>. If the tween is already running this method doesn't do anything for the current active tween.
 If you have not yet called <code>Tween.to</code> or <code>Tween.from</code> at least once then this method will do nothing, as there are no tweens to set repeatDelay on.
@@ -4554,8 +4269,9 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4563,27 +4279,27 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4596,6 +4312,7 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -4615,10 +4332,10 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
                 </td>
             
 
-            <td class="description last"><p>The amount of time in ms that the Tween should wait until it repeats or yoyos once start is called. Set to zero to remove any active repeatDelay.</p></td>
+            <td class="description param-description last"><p>The amount of time in ms that the Tween should wait until it repeats or yoyos once start is called. Set to zero to remove any active repeatDelay.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -4629,6 +4346,7 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -4654,42 +4372,24 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
                 </td>
             
 
-            <td class="description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the repeatDelay on all the children.</p></td>
+            <td class="description param-description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the repeatDelay on all the children.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4699,67 +4399,105 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L447" title="repeatDelay on line 447 of src/tween/Tween.js">src/tween/Tween.js line 447</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-447">line 447</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="resume"><span class="type-signature"></span>resume<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="resume">
+      <span class="type-signature"></span>resume()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Resumes a paused tween.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4769,50 +4507,61 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L675" title="resume on line 675 of src/tween/Tween.js">src/tween/Tween.js line 675</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-675">line 675</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="start"><span class="type-signature"></span>start<span class="signature">(<span class="optional">index</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="start">
+      <span class="type-signature"></span>start( [index])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Starts the tween running. Can also be called by the autoStart parameter of <code>Tween.to</code> or <code>Tween.from</code>.
 This sets the <code>Tween.isRunning</code> property to <code>true</code> and dispatches a <code>Tween.onStart</code> signal.
 If the Tween has a delay set then nothing will start tweening until the delay has expired.</p>
@@ -4820,8 +4569,9 @@ If the Tween has a delay set then nothing will start tweening until the delay ha
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4829,27 +4579,27 @@ If the Tween has a delay set then nothing will start tweening until the delay ha
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -4860,6 +4610,7 @@ If the Tween has a delay set then nothing will start tweening until the delay ha
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -4885,42 +4636,24 @@ If the Tween has a delay set then nothing will start tweening until the delay ha
                 </td>
             
 
-            <td class="description last"><p>If this Tween contains child tweens you can specify which one to start from. The default is zero, i.e. the first tween created.</p></td>
+            <td class="description param-description last"><p>If this Tween contains child tweens you can specify which one to start from. The default is zero, i.e. the first tween created.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -4930,50 +4663,85 @@ If the Tween has a delay set then nothing will start tweening until the delay ha
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L284" title="start on line 284 of src/tween/Tween.js">src/tween/Tween.js line 284</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-284">line 284</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="stop"><span class="type-signature"></span>stop<span class="signature">(<span class="optional">complete</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="stop">
+      <span class="type-signature"></span>stop( [complete])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Stops the tween if running and flags it for deletion from the TweenManager.
 If called directly the <code>Tween.onComplete</code> signal is not dispatched and no chained tweens are started unless the complete parameter is set to <code>true</code>.
 If you just wish to pause a tween then use Tween.pause instead.</p>
@@ -4981,8 +4749,9 @@ If you just wish to pause a tween then use Tween.pause instead.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -4990,27 +4759,27 @@ If you just wish to pause a tween then use Tween.pause instead.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5021,6 +4790,7 @@ If you just wish to pause a tween then use Tween.pause instead.</p>
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -5046,42 +4816,24 @@ If you just wish to pause a tween then use Tween.pause instead.</p>
                 </td>
             
 
-            <td class="description last"><p>Set to <code>true</code> to dispatch the Tween.onComplete signal.</p></td>
+            <td class="description param-description last"><p>Set to <code>true</code> to dispatch the Tween.onComplete signal.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5091,50 +4843,85 @@ If you just wish to pause a tween then use Tween.pause instead.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L340" title="stop on line 340 of src/tween/Tween.js">src/tween/Tween.js line 340</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-340">line 340</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="to"><span class="type-signature"></span>to<span class="signature">(properties, <span class="optional">duration</span>, <span class="optional">ease</span>, <span class="optional">autoStart</span>, <span class="optional">delay</span>, <span class="optional">repeat</span>, <span class="optional">yoyo</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="to">
+      <span class="type-signature"></span>to(properties [, duration] [, ease] [, autoStart] [, delay] [, repeat] [, yoyo])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets this tween to be a <code>to</code> tween on the properties given. A <code>to</code> tween starts at the current value and tweens to the destination value given.
 For example a Sprite with an <code>x</code> coordinate of 100 could be tweened to <code>x</code> 200 by giving a properties object of <code>{ x: 200 }</code>.
 The ease function allows you define the rate of change. You can pass either a function such as Phaser.Easing.Circular.Out or a string such as &quot;Circ&quot;.
@@ -5143,8 +4930,9 @@ The ease function allows you define the rate of change. You can pass either a fu
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5152,27 +4940,27 @@ The ease function allows you define the rate of change. You can pass either a fu
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5183,6 +4971,7 @@ The ease function allows you define the rate of change. You can pass either a fu
             
                 
 <span class="param-type">object</span>
+
 
 
             
@@ -5204,10 +4993,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>An object containing the properties you want to tween, such as <code>Sprite.x</code> or <code>Sound.volume</code>. Given as a JavaScript object.</p></td>
+            <td class="description param-description last"><p>An object containing the properties you want to tween, such as <code>Sprite.x</code> or <code>Sound.volume</code>. Given as a JavaScript object.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5218,6 +5007,7 @@ The ease function allows you define the rate of change. You can pass either a fu
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -5243,10 +5033,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>Duration of this tween in ms. Or if <code>Tween.frameBased</code> is true this represents the number of frames that should elapse.</p></td>
+            <td class="description param-description last"><p>Duration of this tween in ms. Or if <code>Tween.frameBased</code> is true this represents the number of frames that should elapse.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5260,6 +5050,7 @@ The ease function allows you define the rate of change. You can pass either a fu
 |
 
 <span class="param-type">string</span>
+
 
 
             
@@ -5285,10 +5076,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>Easing function. If not set it will default to Phaser.Easing.Default, which is Phaser.Easing.Linear.None by default but can be over-ridden.</p></td>
+            <td class="description param-description last"><p>Easing function. If not set it will default to Phaser.Easing.Default, which is Phaser.Easing.Linear.None by default but can be over-ridden.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5301,6 +5092,7 @@ The ease function allows you define the rate of change. You can pass either a fu
 <span class="param-type">boolean</span>
 
 
+
             
             </td>
 
@@ -5324,10 +5116,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>Set to <code>true</code> to allow this tween to start automatically. Otherwise call Tween.start().</p></td>
+            <td class="description param-description last"><p>Set to <code>true</code> to allow this tween to start automatically. Otherwise call Tween.start().</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5340,6 +5132,7 @@ The ease function allows you define the rate of change. You can pass either a fu
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -5363,10 +5156,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>Delay before this tween will start in milliseconds. Defaults to 0, no delay.</p></td>
+            <td class="description param-description last"><p>Delay before this tween will start in milliseconds. Defaults to 0, no delay.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5379,6 +5172,7 @@ The ease function allows you define the rate of change. You can pass either a fu
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -5402,10 +5196,10 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>Should the tween automatically restart once complete? If you want it to run forever set as -1. This only effects this individual tween, not any chained tweens.</p></td>
+            <td class="description param-description last"><p>Should the tween automatically restart once complete? If you want it to run forever set as -1. This only effects this individual tween, not any chained tweens.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5416,6 +5210,7 @@ The ease function allows you define the rate of change. You can pass either a fu
             
                 
 <span class="param-type">boolean</span>
+
 
 
             
@@ -5441,42 +5236,24 @@ The ease function allows you define the rate of change. You can pass either a fu
                 </td>
             
 
-            <td class="description last"><p>A tween that yoyos will reverse itself and play backwards automatically. A yoyo'd tween doesn't fire the Tween.onComplete event, so listen for Tween.onLoop instead.</p></td>
+            <td class="description param-description last"><p>A tween that yoyos will reverse itself and play backwards automatically. A yoyo'd tween doesn't fire the Tween.onComplete event, so listen for Tween.onLoop instead.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This Tween object.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5486,57 +5263,93 @@ The ease function allows you define the rate of change. You can pass either a fu
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L190" title="to on line 190 of src/tween/Tween.js">src/tween/Tween.js line 190</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-190">line 190</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This Tween object.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="update"><span class="type-signature"></span>update<span class="signature">(time)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
+    <h4 class="name" id="update">
+      <span class="type-signature"></span>update(time)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Core tween update function called by the TweenManager. Does not need to be invoked directly.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5544,23 +5357,23 @@ The ease function allows you define the rate of change. You can pass either a fu
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5573,6 +5386,7 @@ The ease function allows you define the rate of change. You can pass either a fu
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -5580,42 +5394,24 @@ The ease function allows you define the rate of change. You can pass either a fu
 
             
 
-            <td class="description last"><p>A timestamp passed in by the TweenManager.</p></td>
+            <td class="description param-description last"><p>A timestamp passed in by the TweenManager.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">boolean</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>false if the tween and all child tweens have completed and should be deleted from the manager, otherwise true (still active).</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5625,50 +5421,85 @@ The ease function allows you define the rate of change. You can pass either a fu
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L717" title="update on line 717 of src/tween/Tween.js">src/tween/Tween.js line 717</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-717">line 717</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>false if the tween and all child tweens have completed and should be deleted from the manager, otherwise true (still active).</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="updateTweenData"><span class="type-signature"></span>updateTweenData<span class="signature">(property, value, <span class="optional">index</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="updateTweenData">
+      <span class="type-signature"></span>updateTweenData(property, value [, index])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Updates either a single TweenData or all TweenData objects properties to the given value.
 Used internally by methods like Tween.delay, Tween.yoyo, etc. but can also be called directly if you know which property you want to tweak.
 The property is not checked, so if you pass an invalid one you'll generate a run-time error.</p>
@@ -5676,8 +5507,9 @@ The property is not checked, so if you pass an invalid one you'll generate a run
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5685,27 +5517,27 @@ The property is not checked, so if you pass an invalid one you'll generate a run
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5716,6 +5548,7 @@ The property is not checked, so if you pass an invalid one you'll generate a run
             
                 
 <span class="param-type">string</span>
+
 
 
             
@@ -5737,10 +5570,10 @@ The property is not checked, so if you pass an invalid one you'll generate a run
                 </td>
             
 
-            <td class="description last"><p>The property to update.</p></td>
+            <td class="description param-description last"><p>The property to update.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5756,6 +5589,7 @@ The property is not checked, so if you pass an invalid one you'll generate a run
 <span class="param-type">function</span>
 
 
+
             
             </td>
 
@@ -5775,10 +5609,10 @@ The property is not checked, so if you pass an invalid one you'll generate a run
                 </td>
             
 
-            <td class="description last"><p>The value to set the property to.</p></td>
+            <td class="description param-description last"><p>The value to set the property to.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5789,6 +5623,7 @@ The property is not checked, so if you pass an invalid one you'll generate a run
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -5814,42 +5649,24 @@ The property is not checked, so if you pass an invalid one you'll generate a run
                 </td>
             
 
-            <td class="description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the delay on all the children.</p></td>
+            <td class="description param-description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the delay on all the children.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -5859,50 +5676,85 @@ The property is not checked, so if you pass an invalid one you'll generate a run
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L375" title="updateTweenData on line 375 of src/tween/Tween.js">src/tween/Tween.js line 375</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-375">line 375</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="yoyo"><span class="type-signature"></span>yoyo<span class="signature">(enable, <span class="optional">yoyoDelay</span>, <span class="optional">index</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="yoyo">
+      <span class="type-signature"></span>yoyo(enable [, yoyoDelay] [, index])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>A Tween that has yoyo set to true will run through from its starting values to its end values and then play back in reverse from end to start.
 Used in combination with repeat you can create endless loops.
 If you have not yet called <code>Tween.to</code> or <code>Tween.from</code> at least once then this method will do nothing, as there are no tweens to yoyo.
@@ -5912,8 +5764,9 @@ If you wish to yoyo this Tween and all of its children then see Tween.yoyoAll.</
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -5921,27 +5774,27 @@ If you wish to yoyo this Tween and all of its children then see Tween.yoyoAll.</
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -5954,6 +5807,7 @@ If you wish to yoyo this Tween and all of its children then see Tween.yoyoAll.</
 <span class="param-type">boolean</span>
 
 
+
             
             </td>
 
@@ -5973,10 +5827,10 @@ If you wish to yoyo this Tween and all of its children then see Tween.yoyoAll.</
                 </td>
             
 
-            <td class="description last"><p>Set to true to yoyo this tween, or false to disable an already active yoyo.</p></td>
+            <td class="description param-description last"><p>Set to true to yoyo this tween, or false to disable an already active yoyo.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -5989,6 +5843,7 @@ If you wish to yoyo this Tween and all of its children then see Tween.yoyoAll.</
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6012,10 +5867,10 @@ If you wish to yoyo this Tween and all of its children then see Tween.yoyoAll.</
                 </td>
             
 
-            <td class="description last"><p>This is the amount of time to pause (in ms) before the yoyo will start.</p></td>
+            <td class="description param-description last"><p>This is the amount of time to pause (in ms) before the yoyo will start.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6028,6 +5883,7 @@ If you wish to yoyo this Tween and all of its children then see Tween.yoyoAll.</
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6051,42 +5907,24 @@ If you wish to yoyo this Tween and all of its children then see Tween.yoyoAll.</
                 </td>
             
 
-            <td class="description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set yoyo on all the children.</p></td>
+            <td class="description param-description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set yoyo on all the children.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6096,50 +5934,85 @@ If you wish to yoyo this Tween and all of its children then see Tween.yoyoAll.</
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L464" title="yoyo on line 464 of src/tween/Tween.js">src/tween/Tween.js line 464</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-464">line 464</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="yoyoDelay"><span class="type-signature"></span>yoyoDelay<span class="signature">(duration, <span class="optional">index</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Tween.html">Phaser.Tween</a>}</span></h4>
-    
+    <h4 class="name" id="yoyoDelay">
+      <span class="type-signature"></span>yoyoDelay(duration [, index])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Sets the delay in milliseconds before this tween will run a yoyo (only applies if yoyo is enabled).
 The repeatDelay is invoked as soon as you call <code>Tween.start</code>. If the tween is already running this method doesn't do anything for the current active tween.
 If you have not yet called <code>Tween.to</code> or <code>Tween.from</code> at least once then this method will do nothing, as there are no tweens to set repeatDelay on.
@@ -6148,8 +6021,9 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -6157,27 +6031,27 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -6190,6 +6064,7 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -6209,10 +6084,10 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
                 </td>
             
 
-            <td class="description last"><p>The amount of time in ms that the Tween should wait until it repeats or yoyos once start is called. Set to zero to remove any active yoyoDelay.</p></td>
+            <td class="description param-description last"><p>The amount of time in ms that the Tween should wait until it repeats or yoyos once start is called. Set to zero to remove any active yoyoDelay.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -6223,6 +6098,7 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -6248,42 +6124,24 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
                 </td>
             
 
-            <td class="description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the yoyoDelay on all the children.</p></td>
+            <td class="description param-description last"><p>If this tween has more than one child this allows you to target a specific child. If set to -1 it will set the yoyoDelay on all the children.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This tween. Useful for method chaining.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -6293,34 +6151,69 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/tween/Tween.js#L487" title="yoyoDelay on line 487 of src/tween/Tween.js">src/tween/Tween.js line 487</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_tween_Tween.js.html">tween/Tween.js</a>, <a href="src_tween_Tween.js.html#sunlight-1-line-487">line 487</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This tween. Useful for method chaining.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Tween.html">Phaser.Tween</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
@@ -6336,64 +6229,68 @@ If you have child tweens and pass -1 as the index value it sets the repeatDelay 
 
 
 
+</div>
+	    <footer class="footer">
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
-		on Tue Jun 20 2017 19:07:48 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
+<p class="package-signature">
+  phaser-ce@2.8.5
+  is on
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.5">GitHub</a>
+  and
+  <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
+</p>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
 
-		} );
-	</script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
+
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on 2017-08-30
+	
+	using a <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">DocStrap template</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="filter">
+    </div>
+  </div>
+  </div>
+  <div id="toc">
+    <div class="list-group">
+      <div id="toc-insert"></div>
+    </div>
+  </div>
+</div>
+
+    
+	</div>
+</div>
+
+
+
+<script src="scripts/bundle.js?2017083016"></script>
+<script src="scripts/toc.js?2017083016"></script>
+<script src="scripts/misc.js?2017083016"></script>
+
+
+
+
 
 </body>
 </html>

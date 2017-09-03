@@ -278,7 +278,7 @@ Phaser.Graphics.prototype.destroy = function (destroyChildren) {
 };
 
 /**
-* Draws a single {Phaser.Polygon} triangle from a {Phaser.Point} array
+* Draws a single {@link Phaser.Polygon} triangle from a {@link Phaser.Point} array
 *
 * @method Phaser.Graphics#drawTriangle
 * @param {Array<Phaser.Point>} points - An array of Phaser.Points that make up the three vertices of this triangle
@@ -310,11 +310,11 @@ Phaser.Graphics.prototype.drawTriangle = function (points, cull) {
 };
 
 /**
-* Draws {Phaser.Polygon} triangles
+* Draws {@link Phaser.Polygon} triangles
 *
 * @method Phaser.Graphics#drawTriangles
 * @param {Array<Phaser.Point>|Array<number>} vertices - An array of Phaser.Points or numbers that make up the vertices of the triangles
-* @param {Array<number>} {indices=null} - An array of numbers that describe what order to draw the vertices in
+* @param {Array<number>} [indices=null] - An array of numbers that describe what order to draw the vertices in
 * @param {boolean} [cull=false] - Should we check if the triangle is back-facing
 */
 Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull) {
@@ -908,6 +908,8 @@ Phaser.Graphics.prototype.clear = function () {
 /**
  * Useful function that returns a texture of the graphics object that can then be used to create sprites
  * This can be quite useful if your geometry is complicated and needs to be reused multiple times.
+ *
+ * Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
  *
  * @method Phaser.Graphics#generateTexture
  * @param [resolution=1] {Number} The resolution of the texture being generated
@@ -1516,7 +1518,7 @@ Phaser.Graphics.prototype.drawShape = function (shape) {
 };
 
 /**
- * When cacheAsBitmap is set to true the graphics object will be rendered as if it was a sprite.
+ * When cacheAsBitmap is set to true the graphics object will be rendered as if it was a sprite. Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
  * This is useful if your graphics element does not change often, as it will speed up the rendering of the object in exchange for taking up texture memory.
  * It is also useful if you need the graphics object to be anti-aliased, because it will be rendered using canvas.
  * This is not recommended if you are constantly redrawing the graphics element.
