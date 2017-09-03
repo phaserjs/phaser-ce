@@ -341,6 +341,10 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Fixed several issues related to `[Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer)` and pointer events (#293, #250)
 
+### Documentation
+
+* Updated [Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html)
+
 ### Thanks
 
 @2called-chaos
