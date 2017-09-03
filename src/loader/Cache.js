@@ -122,6 +122,17 @@ Phaser.Cache = function (game) {
     this.addDefaultImage();
     this.addMissingImage();
 
+    var cache = this;
+
+    setTimeout(function () {
+        if (cache._pendingCount > 0)
+        {
+            cache._pendingCount = 0;
+
+            console.warn('Phaser.Cache: Still waiting for images after 1s.');
+        }
+    }, 1000);
+
 };
 
 /**
@@ -376,6 +387,8 @@ Phaser.Cache.prototype = {
      */
     addImageAsync: function (key, src, callback) {
 
+        console.time(key);
+
         var cache = this;
         var img = new Image();
 
@@ -383,6 +396,7 @@ Phaser.Cache.prototype = {
             callback.call(this, cache.addImage(key, null, img));
             cache._pendingCount -=1;
             img.onload = null;
+            console.timeEnd(key);
         };
 
         this._pendingCount += 1;

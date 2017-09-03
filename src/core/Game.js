@@ -692,6 +692,8 @@ Phaser.Game.prototype = {
             }
         }
 
+        console.time('kickstart');
+
         this.raf.start();
 
     },
@@ -886,11 +888,15 @@ Phaser.Game.prototype = {
 
         if (this.cache._pendingCount > 0)
         {
+            console.count('Waiting for cache');
+
             return;
         }
 
         if (this._kickstart)
         {
+            console.timeEnd('kickstart');
+
             this.updateLogic(this.time.desiredFpsMult);
 
             // call the game render update exactly once every frame
