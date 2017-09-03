@@ -119,6 +119,11 @@ Phaser.Cache = function (game) {
      */
     this._pendingCount = 0;
 
+    /**
+    * Dispatched when the DEFAULT and MISSING images have loaded (or the {@link #READY_TIMEOUT load timeout} was exceeded).
+    *
+    * @property {Phaser.Signal} onReady
+    */
     this.onReady = new Phaser.Signal();
 
     this._addImages();
@@ -257,6 +262,12 @@ Phaser.Cache.MISSING_KEY = '__missing';
  */
 Phaser.Cache.MISSING_SRC = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ9JREFUeNq01ssOwyAMRFG46v//Mt1ESmgh+DFmE2GPOBARKb2NVjo+17PXLD8a1+pl5+A+wSgFygymWYHBb0FtsKhJDdZlncG2IzJ4ayoMDv20wTmSMzClEgbWYNTAkQ0Z+OJ+A/eWnAaR9+oxCF4Os0H8htsMUp+pwcgBBiMNnAwF8GqIgL2hAzaGFFgZauDPKABmowZ4GL369/0rwACp2yA/ttmvsQAAAABJRU5ErkJggg==';
 
+/**
+* The maximum amount of time (ms) to wait for the built-in DEFAULT and MISSING images to load.
+* @static
+* @type {number}
+* @default
+*/
 Phaser.Cache.READY_TIMEOUT = 1000;
 
 Phaser.Cache.prototype = {
@@ -2169,6 +2180,11 @@ Phaser.Cache.prototype = {
 
     },
 
+    /**
+    * Starts loading the DEFAULT and MISSING images.
+    *
+    * @private
+    */
     _addImages: function () {
 
         this._pendingCount = 0;
@@ -2197,12 +2213,24 @@ Phaser.Cache.prototype = {
 
     },
 
+
+    /**
+    * Increments the pending count.
+    *
+    * @private
+    */
     _addPending: function () {
 
         this._pendingCount += 1;
 
     },
 
+
+    /**
+    * Decrements the pending count and checks if complete.
+    *
+    * @private
+    */
     _removePending: function () {
 
         this._pendingCount -= 1;
@@ -2210,6 +2238,12 @@ Phaser.Cache.prototype = {
 
     },
 
+
+    /**
+    * Calls {@link #_ready} if no pending items remain.
+    *
+    * @private
+    */
     _checkReady: function () {
 
         if (this.isReady)
@@ -2219,6 +2253,12 @@ Phaser.Cache.prototype = {
 
     },
 
+
+    /**
+    * Resets pending count and triggers {@link #onReady}.
+    *
+    * @private
+    */
     _ready: function () {
 
         this._pendingCount = 0;
@@ -2230,6 +2270,11 @@ Phaser.Cache.prototype = {
 
 Phaser.Cache.prototype.constructor = Phaser.Cache;
 
+/**
+* The DEFAULT and MISSING textures have loaded (or the {@link #READY_TIMEOUT load timeout} was exceeded).
+*
+* @property {boolean} Phaser.Cache#isReady
+*/
 Object.defineProperty(Phaser.Cache.prototype, 'isReady', {
     get: function () {
         return this._pendingCount <= 0;
