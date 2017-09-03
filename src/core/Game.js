@@ -692,9 +692,20 @@ Phaser.Game.prototype = {
             }
         }
 
-        console.time('kickstart');
+        console.time('boot-kickstart');
 
-        this.raf.start();
+        if (this.cache.isReady)
+        {
+            console.log('raf.start (isReady)');
+            this.raf.start();
+        }
+        else
+        {
+            this.cache.onReady.addOnce(function () {
+                console.log('raf.start (onReady)');
+                this.raf.start();
+            }, this);
+        }
 
     },
 
@@ -895,7 +906,7 @@ Phaser.Game.prototype = {
 
         if (this._kickstart)
         {
-            console.timeEnd('kickstart');
+            console.timeEnd('boot-kickstart');
 
             this.updateLogic(this.time.desiredFpsMult);
 

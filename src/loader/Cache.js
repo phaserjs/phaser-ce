@@ -119,19 +119,25 @@ Phaser.Cache = function (game) {
      */
     this._pendingCount = 0;
 
+    this.onReady = new Phaser.Signal();
+
+    this.onReadyTimeout = 1000;
+
     this.addDefaultImage();
     this.addMissingImage();
 
-    var cache = this;
+    var self = this;
 
     setTimeout(function () {
-        if (cache._pendingCount > 0)
+        if (!self.isReady)
         {
-            cache._pendingCount = 0;
+            self._pendingCount = 0;
 
             console.warn('Phaser.Cache: Still waiting for images after 1s.');
+
+            self.onReady.dispatch(this);
         }
-    }, 1000);
+    }, this.onReadyTimeout);
 
 };
 
@@ -388,18 +394,20 @@ Phaser.Cache.prototype = {
     addImageAsync: function (key, src, callback) {
 
         console.time(key);
+        console.log('addImageAsync', key);
 
-        var cache = this;
+        var self = this;
         var img = new Image();
 
         img.onload = function () {
-            callback.call(this, cache.addImage(key, null, img));
-            cache._pendingCount -=1;
-            img.onload = null;
+            console.log('loaded', key);
             console.timeEnd(key);
+            callback.call(this, self.addImage(key, null, img));
+            self._removePending();
+            img.onload = null;
         };
 
-        this._pendingCount += 1;
+        this._addPending();
         img.src = src;
 
     },
@@ -2173,8 +2181,34 @@ Phaser.Cache.prototype = {
             }
         }
 
+    },
+
+    _addPending: function () {
+
+        this._pendingCount += 1;
+
+    },
+
+    _removePending: function () {
+
+        this._pendingCount -= 1;
+        this._checkReady();
+
+    },
+
+    _checkReady: function () {
+        if (this.isReady)
+        {
+            this.onReady.dispatch(this);
+        }
     }
 
 };
 
 Phaser.Cache.prototype.constructor = Phaser.Cache;
+
+Object.defineProperty(Phaser.Cache.prototype, 'isReady', {
+    get: function () {
+        return this._pendingCount <= 0;
+    }
+});
