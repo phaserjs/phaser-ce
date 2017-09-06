@@ -2844,6 +2844,7 @@ declare module Phaser {
                 autoScale: boolean;
                 angle: number;
                 angularDrag: number;
+                blendMode: PIXI.blendMode;
                 bottom: number;
                 bounce: Phaser.Point;
                 count: {emitted: number; failed: number; totalEmitted: number; totalFailed: number};
