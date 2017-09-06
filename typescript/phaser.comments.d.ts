@@ -15407,7 +15407,7 @@ declare module Phaser {
         * @param epsilon The epsilon (a small value used in the calculation) - Default: 0.0001
         * @return ceiling(val-epsilon)
         */
-        static fuzzyCeil(val: number, epsilon?: number): boolean;
+        static fuzzyCeil(val: number, epsilon?: number): number;
 
         /**
         * Two number are fuzzyEqual if their difference is less than epsilon.
@@ -15427,7 +15427,7 @@ declare module Phaser {
         * @param epsilon The epsilon (a small value used in the calculation) - Default: 0.0001
         * @return True if a<b+epsilon
         */
-        static fuzzyLessThan(a: Number, b: number, epsilon?: number): boolean;
+        static fuzzyLessThan(a: number, b: number, epsilon?: number): boolean;
 
         /**
         * Applies a fuzzy floor to the given value.
@@ -15436,7 +15436,7 @@ declare module Phaser {
         * @param epsilon The epsilon (a small value used in the calculation) - Default: 0.0001
         * @return floor(val+epsilon)
         */
-        static fuzzyFloor(val: number, epsilon?: number): boolean;
+        static fuzzyFloor(val: number, epsilon?: number): number;
 
         /**
         * `a` is fuzzyGreaterThan `b` if it is more than b - epsilon.
