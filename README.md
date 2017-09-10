@@ -342,6 +342,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Fixed an issue where the [DEFAULT](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#_DEFAULT) and [MISSING](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#_MISSING) textures could be missing from the game cache when the game starts (#280 via #138).
 * Fixed several issues related to [Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer) and pointer events (#293, #250)
 * Fixed some TypeScript definitions (#342, #344).
+* Fixed an error when using [TweenData#generateData](https://photonstorm.github.io/phaser-ce/Phaser.TweenData.html#generateData) with an array-based tween (#346).
 
 ### Documentation
 
@@ -349,7 +350,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@2called-chaos, @bseiller, @johnbuttcoingalt, @samme, @samvieten
+@2called-chaos, @bseiller, @johnbuttcoingalt, @samme, @samvieten, @yupaul
 
 ## Version 2.8.5 - 30th August 2017
 
