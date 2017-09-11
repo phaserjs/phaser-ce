@@ -2889,6 +2889,12 @@ declare module Phaser {
         static IMAGE: number;
         static JSON: number;
         static PHYSICS: number;
+
+        /**
+        * The maximum amount of time (ms) to wait for the built-in DEFAULT and MISSING images to load.
+        * Default: 1000
+        */
+        static READY_TIMEOUT: number;
         static RENDER_TEXTURE: number;
         static SHADER: number;
         static SOUND: number;
@@ -2921,6 +2927,11 @@ declare module Phaser {
         * Local reference to game.
         */
         game: Phaser.Game;
+
+        /**
+        * Dispatched when the DEFAULT and MISSING images have loaded (or the {@link #READY_TIMEOUT load timeout} was exceeded).
+        */
+        onReady: Phaser.Signal;
 
         /**
         * This event is dispatched when the sound system is unlocked via a touch event on cellular devices.
@@ -16085,31 +16096,57 @@ declare module Phaser {
 
 
     /**
-    * The MSPointer class handles Microsoft touch interactions with the game and the resulting Pointer objects.
+    * The MSPointer class handles {@link https://developers.google.com/web/updates/2016/10/pointer-events Pointer-event} interactions with the game via a dedicated {@link Phaser.Pointer}. (It's named after the nonstandard {@link https://msdn.microsoft.com/library/hh673557(v=vs.85).aspx MSPointerEvent} since that was the first browser implementation.)
     * 
-    * It will work only in Internet Explorer 10+ and Windows Store or Windows Phone 8 apps using JavaScript.
-    * http://msdn.microsoft.com/en-us/library/ie/hh673557(v=vs.85).aspx
+    * It's {@link http://caniuse.com/#feat=pointer currently supported  in IE 10+, Edge, Chrome (including Android), and Opera}.
     * 
-    * You should not normally access this class directly, but instead use a Phaser.Pointer object which
+    * You should not normally access this class directly, but instead use a {@link Phaser.Pointer} object which
     * normalises all game input for you including accurate button handling.
     * 
     * Please note that at the current time of writing Phaser does not yet support chorded button interactions:
     * http://www.w3.org/TR/pointerevents/#chorded-button-interactions
+    * 
+    * You can disable Phaser's use of Pointer Events by either of two ways:
+    * 
+    * ```javascript
+    * // **Before** `new Phaser.Game(…)`:
+    * Phaser.Device.onInitialized.add(function () {
+    *     this.mspointer = false;
+    * });
+    * ```
+    * 
+    * ```javascript
+    * // Once, in the earliest State `init` or `create` callback (e.g., Boot):
+    * this.input.mspointer.stop();
+    * ```
     */
     class MSPointer {
 
 
         /**
-        * The MSPointer class handles Microsoft touch interactions with the game and the resulting Pointer objects.
+        * The MSPointer class handles {@link https://developers.google.com/web/updates/2016/10/pointer-events Pointer-event} interactions with the game via a dedicated {@link Phaser.Pointer}. (It's named after the nonstandard {@link https://msdn.microsoft.com/library/hh673557(v=vs.85).aspx MSPointerEvent} since that was the first browser implementation.)
         * 
-        * It will work only in Internet Explorer 10+ and Windows Store or Windows Phone 8 apps using JavaScript.
-        * http://msdn.microsoft.com/en-us/library/ie/hh673557(v=vs.85).aspx
+        * It's {@link http://caniuse.com/#feat=pointer currently supported  in IE 10+, Edge, Chrome (including Android), and Opera}.
         * 
-        * You should not normally access this class directly, but instead use a Phaser.Pointer object which
+        * You should not normally access this class directly, but instead use a {@link Phaser.Pointer} object which
         * normalises all game input for you including accurate button handling.
         * 
         * Please note that at the current time of writing Phaser does not yet support chorded button interactions:
         * http://www.w3.org/TR/pointerevents/#chorded-button-interactions
+        * 
+        * You can disable Phaser's use of Pointer Events by either of two ways:
+        * 
+        * ```javascript
+        * // **Before** `new Phaser.Game(…)`:
+        * Phaser.Device.onInitialized.add(function () {
+        *     this.mspointer = false;
+        * });
+        * ```
+        * 
+        * ```javascript
+        * // Once, in the earliest State `init` or `create` callback (e.g., Boot):
+        * this.input.mspointer.stop();
+        * ```
         * 
         * @param game A reference to the currently running game.
         */
@@ -16124,7 +16161,7 @@ declare module Phaser {
         button: number;
 
         /**
-        * If true the Pointer events will have event.preventDefault applied to them, if false they will propagate fully.
+        * If true the Pointer events will have event.preventDefault applied to them, canceling the corresponding MouseEvent or TouchEvent.
         */
         capture: boolean;
 
@@ -16134,7 +16171,7 @@ declare module Phaser {
         callbackContext: any;
 
         /**
-        * The browser MSPointer DOM event. Will be null if no event has ever been received.
+        * The most recent PointerEvent from the browser. Will be null if no event has ever been received.
         * Access this property only inside a Pointer event handler and do not keep references to it.
         */
         event: MSPointerEvent;
@@ -16421,6 +16458,11 @@ declare module Phaser {
                 * The angular drag component of particles launched from the emitter if they are rotating.
                 */
                 angularDrag: number;
+
+                /**
+                * The blendMode as set on the particle when emitted from the Emitter. Defaults to NORMAL. Needs browser capable of supporting canvas blend-modes (most not available in WebGL)
+                */
+                blendMode: PIXI.blendMode;
 
                 /**
                 * Gets the bottom position of the Emitter.
@@ -17470,6 +17512,11 @@ declare module Phaser {
             * The World gravity setting. Defaults to x: 0, y: 0, or no gravity.
             */
             gravity: Phaser.Point;
+
+            /**
+            * If `true` the `Body.preUpdate` method will be skipped, halting all motion for all bodies. Note that other methods such as `collide` will still work, so be careful not to call them on paused bodies.
+            */
+            isPaused: boolean;
 
             /**
             * The world QuadTree.
@@ -25786,8 +25833,8 @@ declare module Phaser {
     * There is a good guide to what's supported here: http://hpr.dogphilosophy.net/test/
     * 
     * If you are reloading a Phaser Game on a page that never properly refreshes (such as in an AngularJS project) then you will quickly run out
-    * of AudioContext nodes. If this is the case create a global var called PhaserGlobal on the window object before creating the game. The active
-    * AudioContext will then be saved to window.PhaserGlobal.audioContext when the Phaser game is destroyed, and re-used when it starts again.
+    * of AudioContext nodes. If this is the case create a global var called {@link PhaserGlobal} on the window object before creating the game. The active
+    * AudioContext will then be saved to `window.PhaserGlobal.audioContext` when the Phaser game is destroyed, and re-used when it starts again.
     * 
     * Mobile warning: There are some mobile devices (certain iPad 2 and iPad Mini revisions) that cannot play 48000 Hz audio.
     * When they try to play the audio becomes extremely distorted and buzzes, eventually crashing the sound system.
@@ -25804,8 +25851,8 @@ declare module Phaser {
         * There is a good guide to what's supported here: http://hpr.dogphilosophy.net/test/
         * 
         * If you are reloading a Phaser Game on a page that never properly refreshes (such as in an AngularJS project) then you will quickly run out
-        * of AudioContext nodes. If this is the case create a global var called PhaserGlobal on the window object before creating the game. The active
-        * AudioContext will then be saved to window.PhaserGlobal.audioContext when the Phaser game is destroyed, and re-used when it starts again.
+        * of AudioContext nodes. If this is the case create a global var called {@link PhaserGlobal} on the window object before creating the game. The active
+        * AudioContext will then be saved to `window.PhaserGlobal.audioContext` when the Phaser game is destroyed, and re-used when it starts again.
         * 
         * Mobile warning: There are some mobile devices (certain iPad 2 and iPad Mini revisions) that cannot play 48000 Hz audio.
         * When they try to play the audio becomes extremely distorted and buzzes, eventually crashing the sound system.
@@ -26988,6 +27035,11 @@ declare module Phaser {
 
         /**
         * This method is called when the document visibility is changed.
+        * 
+        * - `blur` and `pagehide` events trigger {@link Phaser.Game#onBlur}. They {@link Phaser.Game#gamePaused pause the game} unless {@link Phaser.Stage#disableVisibilityChange disableVisibilityChange} is on.
+        * - `click`, `focus`, and `pageshow` trigger {@link Phaser.Game#onFocus}. They {@link Phaser.Game#gameResumed resume the game} unless {@link Phaser.Stage#disableVisibilityChange disableVisibilityChange} is on.
+        * - `visibilitychange` (hidden) and CocoonJS's `onSuspended` {@link Phaser.Game#gamePaused pause the game} unless {@link Phaser.Stage#disableVisibilityChange disableVisibilityChange} is on.
+        * - `visibilitychange` (visible) and CocoonJS's `onActivated` {@link Phaser.Game#gameResumed resume the game} unless {@link Phaser.Stage#disableVisibilityChange disableVisibilityChange} is on.
         * 
         * @param event Its type will be used to decide whether the game should be paused or not.
         */
@@ -32118,6 +32170,14 @@ declare module Phaser {
         /**
         * Sets a callback to be fired each time this tween updates.
         * 
+        * The callback receives the current Tween, the {@link Phaser.TweenData#value 'value' of the current TweenData}, and the current {@link Phaser.TweenData TweenData}. The second parameter is most useful.
+        * 
+        * ```javascript
+        * tween.onUpdateCallback(function (tween, value, tweenData) {
+        *   console.log('Tween running -- percent: %.2f value: %.2f', tweenData.percent, value);
+        * });
+        * ```
+        * 
         * @param callback The callback to invoke each time this tween is updated. Set to `null` to remove an already active callback.
         * @param callbackContext The context in which to call the onUpdate callback.
         * @return This tween. Useful for method chaining.
@@ -32339,7 +32399,7 @@ declare module Phaser {
         interpolationContext: Phaser.Math;
 
         /**
-        * The interpolation function used for the Tween.
+        * The interpolation function used for Array-based Tween.
         * Default: Phaser.Math.linearInterpolation
         */
         interpolationFunction: Function;
@@ -32375,7 +32435,7 @@ declare module Phaser {
         startTime: number;
 
         /**
-        * The current calculated value.
+        * The output of the easing function for the current {@link Phaser.TweenData#percent percent}. Depending on the easing function, this will be within [0, 1] or a slightly larger range (e.g., Bounce). When easing is Linear, this will be identical to {@link Phaser.TweenData#percent percent}.
         */
         value: number;
 
