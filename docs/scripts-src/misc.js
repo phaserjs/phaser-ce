@@ -17,6 +17,8 @@ var _scrollSpyListGroup = {
 };
 
 jQuery(function ($) {
+  var navbarHeight = $('.navbar').height();
+
   $.toc({
     attrClass: 'list-group-item',
     destination: '#toc-insert',
@@ -32,6 +34,20 @@ jQuery(function ($) {
   })
     .start();
 
+  $(window)
+    .on('hashchange', function () {
+      var hash = location.hash.slice(1);
+      var elm = hash && document.getElementById(hash);
+
+      if (hash && !elm) {
+        console.warn('No such element: "%s"', hash);
+      }
+
+      if (elm) {
+        window.scrollTo(0, elm.offsetTop - navbarHeight);
+      }
+    });
+
   $('.dropdown-toggle')
     .dropdown();
 
@@ -39,9 +55,10 @@ jQuery(function ($) {
     .addClass('table');
 
   var $scrollElement = $('body').scrollspy({
-    offset: $('.navbar').height(),
+    offset: navbarHeight,
     target: '#toc',
   });
+
   var scrollspy = $scrollElement.data('bs.scrollspy');
 
   scrollspy.selector = scrollspy.options.target + ' .list-group-item';

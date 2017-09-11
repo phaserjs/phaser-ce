@@ -6,8 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: SoundManager</title>
-	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
-	<link rel="stylesheet" href="styles/site.phaser.css?2017083016">
+	<link rel="stylesheet" href="styles/site.phaser.css?2017091023">
 </head>
 
 <body>
@@ -141,8 +140,8 @@ Note: On Firefox 25+ on Linux if you have media.gstreamer disabled in about:conf
 The audio file type and the encoding of those files are extremely important. Not all browsers can play all audio formats.
 There is a good guide to what's supported here: http://hpr.dogphilosophy.net/test/</p>
 <p>If you are reloading a Phaser Game on a page that never properly refreshes (such as in an AngularJS project) then you will quickly run out
-of AudioContext nodes. If this is the case create a global var called PhaserGlobal on the window object before creating the game. The active
-AudioContext will then be saved to window.PhaserGlobal.audioContext when the Phaser game is destroyed, and re-used when it starts again.</p>
+of AudioContext nodes. If this is the case create a global var called <a href="PhaserGlobal.html">PhaserGlobal</a> on the window object before creating the game. The active
+AudioContext will then be saved to <code>window.PhaserGlobal.audioContext</code> when the Phaser game is destroyed, and re-used when it starts again.</p>
 <p>Mobile warning: There are some mobile devices (certain iPad 2 and iPad Mini revisions) that cannot play 48000 Hz audio.
 When they try to play the audio becomes extremely distorted and buzzes, eventually crashing the sound system.
 The solution is to use a lower encoding rate such as 44100 Hz. Sometimes the audio context will
@@ -241,7 +240,7 @@ be created with a sampleRate of 48000. If this happens and audio distorts you sh
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L26" title="SoundManager on line 26 of src/sound/SoundManager.js">src/sound/SoundManager.js line 26</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L26" title="SoundManager on line 26 of src/sound/SoundManager.js">src/sound/SoundManager.js line 26</a>
     
 
 	
@@ -351,7 +350,7 @@ be created with a sampleRate of 48000. If this happens and audio distorts you sh
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L96" title="channels on line 96 of src/sound/SoundManager.js">src/sound/SoundManager.js line 96</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L96" title="channels on line 96 of src/sound/SoundManager.js">src/sound/SoundManager.js line 96</a>
     
 
 	
@@ -433,7 +432,7 @@ be created with a sampleRate of 48000. If this happens and audio distorts you sh
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L84" title="connectToMaster on line 84 of src/sound/SoundManager.js">src/sound/SoundManager.js line 84</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L84" title="connectToMaster on line 84 of src/sound/SoundManager.js">src/sound/SoundManager.js line 84</a>
     
 
 	
@@ -508,7 +507,7 @@ be created with a sampleRate of 48000. If this happens and audio distorts you sh
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L60" title="context on line 60 of src/sound/SoundManager.js">src/sound/SoundManager.js line 60</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L60" title="context on line 60 of src/sound/SoundManager.js">src/sound/SoundManager.js line 60</a>
     
 
 	
@@ -583,7 +582,7 @@ be created with a sampleRate of 48000. If this happens and audio distorts you sh
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L31" title="game on line 31 of src/sound/SoundManager.js">src/sound/SoundManager.js line 31</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L31" title="game on line 31 of src/sound/SoundManager.js">src/sound/SoundManager.js line 31</a>
     
 
 	
@@ -658,7 +657,7 @@ be created with a sampleRate of 48000. If this happens and audio distorts you sh
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L771" title="mute on line 771 of src/sound/SoundManager.js">src/sound/SoundManager.js line 771</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L771" title="mute on line 771 of src/sound/SoundManager.js">src/sound/SoundManager.js line 771</a>
     
 
 	
@@ -742,7 +741,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L105" title="muteOnPause on line 105 of src/sound/SoundManager.js">src/sound/SoundManager.js line 105</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L105" title="muteOnPause on line 105 of src/sound/SoundManager.js">src/sound/SoundManager.js line 105</a>
     
 
 	
@@ -817,7 +816,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L78" title="noAudio on line 78 of src/sound/SoundManager.js">src/sound/SoundManager.js line 78</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L78" title="noAudio on line 78 of src/sound/SoundManager.js">src/sound/SoundManager.js line 78</a>
     
 
 	
@@ -892,7 +891,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L48" title="onMute on line 48 of src/sound/SoundManager.js">src/sound/SoundManager.js line 48</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L48" title="onMute on line 48 of src/sound/SoundManager.js">src/sound/SoundManager.js line 48</a>
     
 
 	
@@ -967,7 +966,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L36" title="onSoundDecode on line 36 of src/sound/SoundManager.js">src/sound/SoundManager.js line 36</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L36" title="onSoundDecode on line 36 of src/sound/SoundManager.js">src/sound/SoundManager.js line 36</a>
     
 
 	
@@ -1042,7 +1041,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L54" title="onUnMute on line 54 of src/sound/SoundManager.js">src/sound/SoundManager.js line 54</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L54" title="onUnMute on line 54 of src/sound/SoundManager.js">src/sound/SoundManager.js line 54</a>
     
 
 	
@@ -1117,7 +1116,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L42" title="onVolumeChange on line 42 of src/sound/SoundManager.js">src/sound/SoundManager.js line 42</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L42" title="onVolumeChange on line 42 of src/sound/SoundManager.js">src/sound/SoundManager.js line 42</a>
     
 
 	
@@ -1192,7 +1191,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L90" title="touchLocked on line 90 of src/sound/SoundManager.js">src/sound/SoundManager.js line 90</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L90" title="touchLocked on line 90 of src/sound/SoundManager.js">src/sound/SoundManager.js line 90</a>
     
 
 	
@@ -1267,7 +1266,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L72" title="usingAudioTag on line 72 of src/sound/SoundManager.js">src/sound/SoundManager.js line 72</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L72" title="usingAudioTag on line 72 of src/sound/SoundManager.js">src/sound/SoundManager.js line 72</a>
     
 
 	
@@ -1342,7 +1341,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L66" title="usingWebAudio on line 66 of src/sound/SoundManager.js">src/sound/SoundManager.js line 66</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L66" title="usingWebAudio on line 66 of src/sound/SoundManager.js">src/sound/SoundManager.js line 66</a>
     
 
 	
@@ -1417,7 +1416,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L811" title="volume on line 811 of src/sound/SoundManager.js">src/sound/SoundManager.js line 811</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L811" title="volume on line 811 of src/sound/SoundManager.js">src/sound/SoundManager.js line 811</a>
     
 
 	
@@ -1681,7 +1680,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L546" title="add on line 546 of src/sound/SoundManager.js">src/sound/SoundManager.js line 546</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L546" title="add on line 546 of src/sound/SoundManager.js">src/sound/SoundManager.js line 546</a>
     
 
 	
@@ -1839,7 +1838,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L570" title="addSprite on line 570 of src/sound/SoundManager.js">src/sound/SoundManager.js line 570</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L570" title="addSprite on line 570 of src/sound/SoundManager.js">src/sound/SoundManager.js line 570</a>
     
 
 	
@@ -1947,7 +1946,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L170" title="boot on line 170 of src/sound/SoundManager.js">src/sound/SoundManager.js line 170</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L170" title="boot on line 170 of src/sound/SoundManager.js">src/sound/SoundManager.js line 170</a>
     
 
 	
@@ -2125,7 +2124,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L412" title="decode on line 412 of src/sound/SoundManager.js">src/sound/SoundManager.js line 412</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L412" title="decode on line 412 of src/sound/SoundManager.js">src/sound/SoundManager.js line 412</a>
     
 
 	
@@ -2209,7 +2208,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L728" title="destroy on line 728 of src/sound/SoundManager.js">src/sound/SoundManager.js line 728</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L728" title="destroy on line 728 of src/sound/SoundManager.js">src/sound/SoundManager.js line 728</a>
     
 
 	
@@ -2293,7 +2292,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L368" title="pauseAll on line 368 of src/sound/SoundManager.js">src/sound/SoundManager.js line 368</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L368" title="pauseAll on line 368 of src/sound/SoundManager.js">src/sound/SoundManager.js line 368</a>
     
 
 	
@@ -2523,7 +2522,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L637" title="play on line 637 of src/sound/SoundManager.js">src/sound/SoundManager.js line 637</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L637" title="play on line 637 of src/sound/SoundManager.js">src/sound/SoundManager.js line 637</a>
     
 
 	
@@ -2681,7 +2680,7 @@ do this should you wish to control audio muting via external DOM buttons or simi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L585" title="remove on line 585 of src/sound/SoundManager.js">src/sound/SoundManager.js line 585</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L585" title="remove on line 585 of src/sound/SoundManager.js">src/sound/SoundManager.js line 585</a>
     
 
 	
@@ -2840,7 +2839,7 @@ The removed Sounds are destroyed before removal.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L610" title="removeByKey on line 610 of src/sound/SoundManager.js">src/sound/SoundManager.js line 610</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L610" title="removeByKey on line 610 of src/sound/SoundManager.js">src/sound/SoundManager.js line 610</a>
     
 
 	
@@ -2948,7 +2947,7 @@ The removed Sounds are destroyed before removal.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L390" title="resumeAll on line 390 of src/sound/SoundManager.js">src/sound/SoundManager.js line 390</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L390" title="resumeAll on line 390 of src/sound/SoundManager.js">src/sound/SoundManager.js line 390</a>
     
 
 	
@@ -3136,7 +3135,7 @@ If all of the files given have already decoded the callback is triggered immedia
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L449" title="setDecodedCallback on line 449 of src/sound/SoundManager.js">src/sound/SoundManager.js line 449</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L449" title="setDecodedCallback on line 449 of src/sound/SoundManager.js">src/sound/SoundManager.js line 449</a>
     
 
 	
@@ -3221,7 +3220,7 @@ Required for iOS audio device unlocking. Mostly just used internally.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L271" title="setTouchLock on line 271 of src/sound/SoundManager.js">src/sound/SoundManager.js line 271</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L271" title="setTouchLock on line 271 of src/sound/SoundManager.js">src/sound/SoundManager.js line 271</a>
     
 
 	
@@ -3305,7 +3304,7 @@ Required for iOS audio device unlocking. Mostly just used internally.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L346" title="stopAll on line 346 of src/sound/SoundManager.js">src/sound/SoundManager.js line 346</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L346" title="stopAll on line 346 of src/sound/SoundManager.js">src/sound/SoundManager.js line 346</a>
     
 
 	
@@ -3389,7 +3388,7 @@ Required for iOS audio device unlocking. Mostly just used internally.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L297" title="unlock on line 297 of src/sound/SoundManager.js">src/sound/SoundManager.js line 297</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L297" title="unlock on line 297 of src/sound/SoundManager.js">src/sound/SoundManager.js line 297</a>
     
 
 	
@@ -3497,7 +3496,7 @@ Required for iOS audio device unlocking. Mostly just used internally.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.5/src/sound/SoundManager.js#L499" title="update on line 499 of src/sound/SoundManager.js">src/sound/SoundManager.js line 499</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.6/src/sound/SoundManager.js#L499" title="update on line 499 of src/sound/SoundManager.js">src/sound/SoundManager.js line 499</a>
     
 
 	
@@ -3540,9 +3539,9 @@ Required for iOS audio device unlocking. Mostly just used internally.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.8.5
+  phaser-ce@2.8.6
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.5">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.6">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -3559,7 +3558,7 @@ Required for iOS audio device unlocking. Mostly just used internally.</p>
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-08-30
+		on 2017-09-10
 	
 	using a <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">DocStrap template</a>.
 </p>
@@ -3588,13 +3587,7 @@ Required for iOS audio device unlocking. Mostly just used internally.</p>
 	</div>
 </div>
 
-
-
-<script src="scripts/bundle.js?2017083016"></script>
-<script src="scripts/toc.js?2017083016"></script>
-<script src="scripts/misc.js?2017083016"></script>
-
-
+<script defer src="scripts/bundle.js?2017091023"></script>
 
 
 
