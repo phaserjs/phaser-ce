@@ -503,6 +503,7 @@ declare module Phaser {
         static IMAGE: number;
         static JSON: number;
         static PHYSICS: number;
+        static READY_TIMEOUT: number;
         static RENDER_TEXTURE: number;
         static SHADER: number;
         static SOUND: number;
@@ -519,6 +520,7 @@ declare module Phaser {
 
         autoResolveURL: boolean;
         game: Phaser.Game;
+        onReady: Phaser.Signal;
         onSoundUnlock: Phaser.Signal;
 
         addBinary(key: string, binaryData: any): void;
@@ -2651,10 +2653,10 @@ declare module Phaser {
         static distancePow(xy: number, y1: number, x2: number, y2: number, pow?: number): number;
         static factorial(value: number): number;
         static floorTo(value: number, place: number, base: number): number;
-        static fuzzyCeil(val: number, epsilon?: number): boolean;
+        static fuzzyCeil(val: number, epsilon?: number): number;
         static fuzzyEqual(a: number, b: number, epsilon?: number): boolean;
-        static fuzzyLessThan(a: Number, b: number, epsilon?: number): boolean;
-        static fuzzyFloor(val: number, epsilon?: number): boolean;
+        static fuzzyLessThan(a: number, b: number, epsilon?: number): boolean;
+        static fuzzyFloor(val: number, epsilon?: number): number;
         static fuzzyGreaterThan(a: number, b: number, epsilon?: number): boolean;
         static fuzzyLessThan(a: number, b: number, epsilon?: number): boolean;
         static getShortestAngle(angle1: number, angle2: number): number;
@@ -2842,6 +2844,7 @@ declare module Phaser {
                 autoScale: boolean;
                 angle: number;
                 angularDrag: number;
+                blendMode: PIXI.blendMode;
                 bottom: number;
                 bounce: Phaser.Point;
                 count: {emitted: number; failed: number; totalEmitted: number; totalFailed: number};
@@ -3020,6 +3023,7 @@ declare module Phaser {
             forceX: boolean;
             game: Phaser.Game;
             gravity: Phaser.Point;
+            isPaused: boolean;
             quadTree: Phaser.QuadTree;
             maxObjects: number;
             maxLevels: number;
