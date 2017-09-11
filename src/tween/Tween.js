@@ -79,7 +79,7 @@ Phaser.Tween = function (target, game, manager) {
     /**
     * The onLoop event is fired if the Tween, or any child tweens loop.
     * It will be sent 2 parameters: the target object and this tween.
-    * 
+    *
     * @property {Phaser.Signal} onLoop
     */
     this.onLoop = new Phaser.Signal();
@@ -625,6 +625,14 @@ Phaser.Tween.prototype = {
 
     /**
     * Sets a callback to be fired each time this tween updates.
+    *
+    * The callback receives the current Tween, the {@link Phaser.TweenData#value 'value' of the current TweenData}, and the current {@link Phaser.TweenData TweenData}. The second parameter is most useful.
+    *
+    * ```javascript
+    * tween.onUpdateCallback(function (tween, value, tweenData) {
+    *   console.log('Tween running -- percent: %.2f value: %.2f', tweenData.percent, value);
+    * });
+    * ```
     *
     * @method Phaser.Tween#onUpdateCallback
     * @param {function} callback - The callback to invoke each time this tween is updated. Set to `null` to remove an already active callback.

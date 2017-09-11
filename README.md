@@ -348,6 +348,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Updated [Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html)
 * Fixed navigation menu obscuring anchor link targets at the top of the window (#343).
+* Added example for [Tween#tween.onUpdateCallback](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#onUpdateCallback).
+* Updated [TweenData#value](https://photonstorm.github.io/phaser-ce/Phaser.TweenData.html#value).
 
 ### Thanks
 
