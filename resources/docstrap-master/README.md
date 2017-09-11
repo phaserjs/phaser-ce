@@ -1,10 +1,20 @@
-# DocStrap
+# Tomorrow
 
 A modified [DocStrap](https://github.com/docstrap/docstrap) template for [JSDoc3](http://usejsdoc.org/).
 
-## Configuration
+## Command Line Example
 
-See [tasks/jsdoc-conf.json](../../tasks/jsdoc-conf.json).
+```bash
+jsdoc -c path/to/conf.json -t ./node_modules/ink-docstrap/template -R README.md -r .
+```
+
+- The `-c` sets the config, and the docstrap README does talk about the options you can put in templates that docstrap is supposed to look for.
+- The `-t` sets the template. This is the option you need to set to get the docstrap template to be used.
+- The `-R` sets a markdown file to be the front page of the documentation.
+- The `-r` tells jsdoc to run recursively.
+- The `.` says from current directory.
+
+## Configuring the template
 
 A [JSDoc configuration file](http://usejsdoc.org/about-configuring-jsdoc.html) with some [extra options](https://github.com/docstrap/docstrap#configuring-the-template).
 
@@ -12,27 +22,29 @@ Likely defaults:
 
 ```json
 {
-    "templates": {
-        "analytics"             : {
-            "ua"                  : "",
-            "domain"              : ""
-        },
-        "collapseSymbols"       : false,
-        "copyright"             : "",
-        "dateFormat"            : "",
-        "footer"                : "",
-        "includeDate"           : true,
-        "inverseNav"            : false,
-        "linenums"              : false,
-        "navType"               : "vertical",
-        "outputSourceFiles"     : true,
-        "outputSourcePath"      : true,
-        "search"                : false,
-        "sort"                  : null,
-        "syntaxTheme"           : "default",
-        "systemName"            : "Documentation",
-        "theme"                 : "phaser"
-    }
+	"opts": {
+		"debug"                 : false,
+	},
+	"templates": {
+		"analytics"             : {
+			"ua"                  : "",
+			"domain"              : ""
+		},
+		"collapseSymbols"       : false,
+		"copyright"             : "",
+		"dateFormat"            : "",
+		"footer"                : "",
+		"includeDate"           : true,
+		"inverseNav"            : false,
+		"linenums"              : false,
+		"navType"               : "vertical",
+		"outputSourceFiles"     : true,
+		"outputSourcePath"      : true,
+		"search"                : false,
+		"sort"                  : null,
+		"systemName"            : "Documentation",
+		"theme"                 : "phaser"
+	}
 }
 ```
 
@@ -62,7 +74,7 @@ grunt concat
 # Build bundle.min.js
 grunt uglify
 
-# Build sample to themes/phaser
+# Build themes/phaser/…
 grunt examples
 ```
 
