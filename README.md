@@ -334,8 +334,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Updates
 
-* Added new (internal) helper function `Phaser.DeviceButton#startStop` (#340)
-* Added new (internal) function `Phaser.Pointer#processButtonsUpDown` and changed behavior of `Phaser.Pointer#updateButtons`, `Phaser.Pointer#processButtonsUp` and `Phaser.Pointer#processButtonsDown` (#340)
+* Several internal changes in [Phaser.DeviceButton](https://photonstorm.github.io/phaser-ce/Phaser.DeviceButton.html) and [Phaser.Pointer](https://photonstorm.github.io/phaser-ce/Phaser.Pointer.html) (#340).
 
 ### Bug Fixes
 
