@@ -343,6 +343,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Fixed several issues related to [Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer) and pointer events (#293, #250)
 * Fixed some TypeScript definitions (#342, #344).
 * Fixed an error when using [TweenData#generateData](https://photonstorm.github.io/phaser-ce/Phaser.TweenData.html#generateData) with an array-based tween (#346).
+* Fixed game in an iframe not auto-resuming when refocused (#236).
 
 ### Documentation
 
