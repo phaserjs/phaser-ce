@@ -347,6 +347,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Documentation
 
 * Updated [Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html)
+* Fixed navigation menu obscuring anchor link targets at the top of the window (#343).
 
 ### Thanks
 
