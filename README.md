@@ -332,12 +332,12 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Bug Fixes
 
-* `onChildInput*` signals now fire correctly for particle emitters (#349).
 * Fixed TypeScript error (#351).
+* [onChildInputDown](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputDown), [onChildInputUp](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputUp), [onChildInputOver](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputOver), and [onChildInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputOut) signals now fire correctly for particle emitters (#349).
 
 ### Thanks
 
-@lucasgray, @samme, @yupaul
+@lucasgray, @photonstorm, @samme, @yupaul
 
 ## Version 2.8.6 - 10th September 2017
 
