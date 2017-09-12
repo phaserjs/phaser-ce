@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.8.6 "2017-09-10" - Built: Sun Sep 10 2017 23:13:02
+* v2.8.7 "2017-09-12" - Built: Tue Sep 12 2017 10:19:48
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
