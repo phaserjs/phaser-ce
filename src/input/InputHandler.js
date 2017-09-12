@@ -961,7 +961,7 @@ Phaser.InputHandler.prototype = {
                 this.sprite.events.onInputOver$dispatch(this.sprite, pointer);
             }
 
-            if (this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+            if (this.sprite.parent && this.sprite.parent.onChildInputOver)
             {
                 this.sprite.parent.onChildInputOver.dispatch(this.sprite, pointer);
             }
@@ -1001,7 +1001,7 @@ Phaser.InputHandler.prototype = {
         {
             this.sprite.events.onInputOut$dispatch(this.sprite, pointer);
 
-            if (this.sprite && this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+            if (this.sprite && this.sprite.parent && this.sprite.parent.onChildInputOut)
             {
                 this.sprite.parent.onChildInputOut.dispatch(this.sprite, pointer);
             }
@@ -1047,7 +1047,7 @@ Phaser.InputHandler.prototype = {
                 this.sprite.events.onInputDown$dispatch(this.sprite, pointer);
 
                 //  The event above might have destroyed this sprite.
-                if (this.sprite && this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+                if (this.sprite && this.sprite.parent && this.sprite.parent.onChildInputDown)
                 {
                     this.sprite.parent.onChildInputDown.dispatch(this.sprite, pointer);
                 }
@@ -1148,7 +1148,7 @@ Phaser.InputHandler.prototype = {
                     this.sprite.events.onInputUp$dispatch(this.sprite, pointer, isOver);
                 }
 
-                if (this.sprite && this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+                if (this.sprite && this.sprite.parent && this.sprite.parent.onChildInputUp)
                 {
                     this.sprite.parent.onChildInputUp.dispatch(this.sprite, pointer, isOver);
                 }
