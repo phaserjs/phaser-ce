@@ -330,15 +330,14 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
-### New Features
-
-### Updates
-
 ### Bug Fixes
 
 * `onChildInput*` signals now fire correctly for particle emitters (#349).
+* Fixed TypeScript error (#351).
 
 ### Thanks
+
+@lucasgray, @samme, @yupaul
 
 ## Version 2.8.6 - 10th September 2017
 

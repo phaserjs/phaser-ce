@@ -16462,7 +16462,7 @@ declare module Phaser {
                 /**
                 * The blendMode as set on the particle when emitted from the Emitter. Defaults to NORMAL. Needs browser capable of supporting canvas blend-modes (most not available in WebGL)
                 */
-                blendMode: PIXI.blendMode;
+                blendMode: PIXI.blendModes;
 
                 /**
                 * Gets the bottom position of the Emitter.
