@@ -479,15 +479,15 @@ var Phaser = Phaser || {    // jshint ignore:line
     BOTTOM_RIGHT: 12,
 
     /**
-    * Various blend modes supported by Pixi.
+    * Various blend modes supported by Pixi. See the samples in {@link https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing Canvas Tutorial: Compositing}.
     *
     * IMPORTANT: The WebGL renderer only supports the NORMAL, ADD, MULTIPLY and SCREEN blend modes.
     *
     * @constant {Object} Phaser.blendModes
-    * @property {Number} blendModes.NORMAL
-    * @property {Number} blendModes.ADD
-    * @property {Number} blendModes.MULTIPLY
-    * @property {Number} blendModes.SCREEN
+    * @property {Number} blendModes.NORMAL - Draws new shapes on top of the existing content. This is the default setting.
+    * @property {Number} blendModes.ADD - Where both shapes overlap the color is determined by adding color values.
+    * @property {Number} blendModes.MULTIPLY - The pixels of the top layer are multiplied with the corresponding pixel of the bottom layer, making a darker picture.
+    * @property {Number} blendModes.SCREEN - The pixels are inverted, multiplied, and inverted again, making a lighter picture.
     * @property {Number} blendModes.OVERLAY
     * @property {Number} blendModes.DARKEN
     * @property {Number} blendModes.LIGHTEN
