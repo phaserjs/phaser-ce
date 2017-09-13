@@ -1,4 +1,5 @@
 /// <binding BeforeBuild='default' />
+/*jshint browser:false, camelcase: false, node:true */
 module.exports = function (grunt) {
 
     var loadConfig = require('load-grunt-config');
@@ -27,9 +28,9 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['build']);
 
     grunt.registerTask('docs', ['clean:docs', 'gitclone:plugins', 'jsdoc:html', 'replace:docs', 'clean:out']);
-    grunt.registerTask('tsdocs', ['clean:out', 'gitclone:plugins', 'jsdoc:json', 'buildtsdoc:pixi', 'buildtsdoc:phaser', 'replace:phasertsdefheader']);
+    grunt.registerTask('tsdocs', ['ts', 'clean:out', 'gitclone:plugins', 'jsdoc:json', 'buildtsdoc:pixi', 'buildtsdoc:phaser', 'replace:phasertsdefheader']);
 
-    grunt.registerTask('custom', 'Build a custom version of Phaser', function(arg) {
+    grunt.registerTask('custom', 'Build a custom version of Phaser', function () {
 
         var modules = {
             'intro':            { 'description': 'Phaser UMD wrapper',                          'optional': true, 'stub': false },
