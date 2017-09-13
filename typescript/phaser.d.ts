@@ -92,6 +92,36 @@ declare class Phaser {
 
 declare module Phaser {
 
+    enum blendModes {
+
+        NORMAL,
+        ADD,
+        MULTIPLY,
+        SCREEN,
+        OVERLAY,
+        DARKEN,
+        LIGHTEN,
+        COLOR_DODGE,
+        COLOR_BURN,
+        HARD_LIGHT,
+        SOFT_LIGHT,
+        DIFFERENCE,
+        EXCLUSION,
+        HUE,
+        SATURATION,
+        COLOR,
+        LUMINOSITY
+
+    }
+
+    export enum scaleModes {
+
+        DEFAULT,
+        LINEAR,
+        NEAREST
+
+    }
+
     class Animation {
 
         constructor(game: Phaser.Game, parent: Phaser.Sprite, name: string, frameData: Phaser.FrameData, frames: number[] | string[], frameRate?: number, loop?: boolean);
@@ -1678,7 +1708,7 @@ declare module Phaser {
         angle: number;
         animations: Phaser.AnimationManager;
         autoCull: boolean;
-        blendMode: number;
+        blendMode: Phaser.blendModes;
         body: Phaser.Physics.Arcade.Body | Phaser.Physics.P2.Body | Phaser.Physics.Ninja.Body | any;
         bottom: number;
         boundsPadding: number;
@@ -1747,7 +1777,7 @@ declare module Phaser {
         drawTriangle(points: Phaser.Point[], cull?: boolean): void;
         drawTriangles(vertices: Phaser.Point[] | number[], indices?: number[], cull?: boolean): void;
         endFill(): Phaser.Graphics;
-        generateTexture(resolution?: number, scaleMode?: number, padding?: number): Phaser.RenderTexture;
+        generateTexture(resolution?: number, scaleMode?: Phaser.scaleModes, padding?: number): Phaser.RenderTexture;
         kill(): Phaser.Graphics;
         lineStyle(lineWidth?: number, color?: number, alpha?: number): Phaser.Graphics;
         lineTo(x: number, y: number): Phaser.Graphics;
@@ -2844,7 +2874,7 @@ declare module Phaser {
                 autoScale: boolean;
                 angle: number;
                 angularDrag: number;
-                blendMode: PIXI.blendModes;
+                blendMode: Phaser.blendModes;
                 bottom: number;
                 bounce: Phaser.Point;
                 count: {emitted: number; failed: number; totalEmitted: number; totalFailed: number};
@@ -4268,7 +4298,7 @@ declare module Phaser {
 
     class RenderTexture extends PIXI.Texture {
 
-        constructor(game: Phaser.Game, width?: number, height?: number, key?: string, scaleMode?: number, resolution?: number);
+        constructor(game: Phaser.Game, width?: number, height?: number, key?: string, scaleMode?: Phaser.scaleModes, resolution?: number);
 
         crop: PIXI.Rectangle;
         game: Phaser.Game;
