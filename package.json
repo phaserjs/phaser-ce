@@ -47,6 +47,7 @@
     "grunt-jsdoc": "^2.1.0",
     "grunt-notify": "^0.4.5",
     "grunt-text-replace": "^0.4.0",
+    "grunt-ts": "^6.0.0-beta.16",
     "jsdoc": "^3.5.4",
     "load-grunt-config": "^0.19.2",
     "typescript": "1.4.1",
