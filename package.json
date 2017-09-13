@@ -17,7 +17,8 @@
   },
   "scripts": {
     "grunt": "grunt",
-    "test": "NODE_ENV=test grunt jshint"
+    "test": "NODE_ENV=test grunt jshint",
+    "test:ts": "./node_modules/typescript/bin/tsc ./typescript/*.comments.d.ts"
   },
   "keywords": [
     "2d",
