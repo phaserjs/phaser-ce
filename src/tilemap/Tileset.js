@@ -157,6 +157,7 @@ Phaser.Tileset.prototype = {
     *
     * @method Phaser.Tileset#containsTileIndex
     * @public
+    * @param {number} tileIndex
     * @return {boolean} True if this tileset contains the given index.
     */
     containsTileIndex: function (tileIndex) {
@@ -179,7 +180,7 @@ Phaser.Tileset.prototype = {
 
         this.image = image;
         this.updateTileData(image.width, image.height);
-       
+
     },
 
     /**
