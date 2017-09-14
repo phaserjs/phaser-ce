@@ -338,6 +338,13 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Bug Fixes
 
+* Fixed some TypeScript definitions (#354).
+
+### Documentation
+
+* Added Phaser.Button `callback` arguments (same as Phaser.Events#onInputUp) (#353).
+* Corrected [Phaser.Tileset#containsTileIndex](https://photonstorm.github.io/phaser-ce/Phaser.Tileset.html#containsTileIndex) (#358).
+
 ### Thanks
 
 ## Version 2.8.7 - 12th September 2017
