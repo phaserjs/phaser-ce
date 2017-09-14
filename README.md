@@ -334,6 +334,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Updates
 
+* Removed deprecated Phaser.Events#onRemovedFromWorld.
+
 ### Bug Fixes
 
 ### Thanks
