@@ -260,15 +260,31 @@ Phaser.ArrayUtils = {
     },
 
     /**
-    * Create an array representing the inclusive range of numbers (usually integers) in `[start, end]`.
+    * Create an array representing the inclusive range of numbers (usually integers) in `[start, end]` (or `[0, start]`, if `end` is omitted).
     * This is equivalent to `numberArrayStep(start, 1 + end, 1)`.
+    *
+    * When exactly one argument is passed, it's used as `end` and 0 is used as `start`. The length of the result is (1 + end).
+    *
+    * ##### Examples
+    *
+    * ```javascript
+    * numberArray(3);    // -> [0, 1, 2, 3]
+    * numberArray(0, 3); // -> [0, 1, 2, 3]
+    * numberArray(1, 3); // -> [1, 2, 3]
+    * ```
     *
     * @method Phaser.ArrayUtils.numberArray
     * @param {number} start - The minimum value the array starts with.
-    * @param {number} end - The maximum value the array contains.
+    * @param {number} [end] - The maximum value the array contains.
     * @return {number[]} The array of number values.
     */
     numberArray: function (start, end) {
+
+        if (end === undefined || end === null)
+        {
+            end = start;
+            start = 0;
+        }
 
         var result = [];
 
