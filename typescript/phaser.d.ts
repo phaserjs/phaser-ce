@@ -2865,6 +2865,13 @@ declare module Phaser {
 
         module Arcade {
 
+            interface EmitterCount {
+                emitted: number;
+                failed: number;
+                totalEmitted: number;
+                totalFailed: number;
+            }
+
             class Emitter extends Phaser.Group {
 
                 constructor(game: Phaser.Game, x?: number, y?: number, maxParticles?: number);
@@ -2877,7 +2884,8 @@ declare module Phaser {
                 blendMode: Phaser.blendModes;
                 bottom: number;
                 bounce: Phaser.Point;
-                count: {emitted: number; failed: number; totalEmitted: number; totalFailed: number};
+                count: EmitterCount; // deprecated
+                counts: EmitterCount;
                 emitX: number;
                 emitY: number;
                 exists: boolean;
