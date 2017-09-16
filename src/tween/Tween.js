@@ -185,6 +185,17 @@ Phaser.Tween = function (target, game, manager) {
     this._hasStarted = false;
 };
 
+/**
+* @method Phaser.Tween.updateColor
+* @static
+* @param {Phaser.Tween} tween
+*/
+Phaser.Tween.updateColor = function (tween) {
+
+    Phaser.Color.updateColor(tween.target);
+
+};
+
 Phaser.Tween.prototype = {
 
     /**

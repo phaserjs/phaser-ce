@@ -5552,6 +5552,8 @@ declare module Phaser {
 
     class Tween {
 
+        static updateColor(tween: Tween);
+
         constructor(target: any, game: Phaser.Game, manager: Phaser.TweenManager);
 
         chainedTween: Phaser.Tween;
