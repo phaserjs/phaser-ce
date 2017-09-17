@@ -339,6 +339,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Bug Fixes
 
 * Fixed some TypeScript definitions (#354).
+* [Phaser.Color.updateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_updateColor) rounds RGB values to integers when updating the `rgba` property (#361).
 
 ### Documentation
 
