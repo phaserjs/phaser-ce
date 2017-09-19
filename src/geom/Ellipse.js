@@ -327,43 +327,43 @@ Phaser.Ellipse.contains = function (a, x, y) {
 * @method Phaser.Ellipse.intersectsLine
 * @param {Phaser.Ellipse} e - The Ellipse object to test.
 * @param {Phaser.Line} l - The Line object to test.
-* @param {boolean} [returnpoints] - optional Array Object, Return an array of intersection points if true, otherwise return boolean.
+* @param {boolean} [returnPoints] - optional Array Object, Return an array of intersection points if true, otherwise return boolean.
 * @return {boolean} True if the two objects intersect, otherwise false.
 */
-Phaser.Ellipse.intersectsLine=function(e,l,returnpoints){
-    var h=e.x;
-    var k=e.y;
-    var m=((l.end.y-l.start.y)/(l.end.x-l.start.x));
-    var n= l.end.y- (m*l.end.x);
-    var a=e.width/2;
-    var b=e.height/2;
-    var del= n+m*h;
-  
-    var x0=( h*(b*b)- m*(a*a) * (n-k) +  a*b* (Math.sqrt((a*a)*(m*m)+(b*b)-(del*del)-(k*k) + (2*del*k))))/((a*a)*(m*m)+(b*b));
-    var x1=( h*(b*b)- m*(a*a) * (n-k) -  a*b* (Math.sqrt((a*a)*(m*m)+(b*b)-(del*del)-(k*k) + (2*del*k))))/((a*a)*(m*m)+(b*b));
-      
-    var y0= m*x0 + n;
-    var y1=m*x1 +n;
-    var p0= new Phaser.Point(x0,y0);
-    var p1= new Phaser.Point(x1,y1);
-    var p0_exists=l.pointOnSegment(p0.x,p0.y,0.01);
-    var p1_exists=l.pointOnSegment(p1.x,p1.y,0.01);
-    
-    if(p0_exists&&p1_exists)
+Phaser.Ellipse.intersectsLine = function (e, l, returnPoints) {
+    var h = e.x;
+    var k = e.y;
+    var m = ((l.end.y - l.start.y) / (l.end.x - l.start.x));
+    var n = l.end.y - (m * l.end.x);
+    var a = e.width / 2;
+    var b = e.height / 2;
+    var del = n + m * h;
+
+    var x0 = (h * (b * b) - m * (a * a) * (n - k) + a * b * (Math.sqrt((a * a) * (m * m) + (b * b) - (del * del) - (k * k) + (2 * del * k)))) / ((a * a) * (m * m) + (b * b));
+    var x1 = (h * (b * b) - m * (a * a) * (n - k) - a * b * (Math.sqrt((a * a) * (m * m) + (b * b) - (del * del) - (k * k) + (2 * del * k)))) / ((a * a) * (m * m) + (b * b));
+
+    var y0 = m * x0 + n;
+    var y1 = m * x1 + n;
+    var p0 = new Phaser.Point(x0, y0);
+    var p1 = new Phaser.Point(x1, y1);
+    var p0Exists = l.pointOnSegment(p0.x, p0.y, 0.01);
+    var p1Exists = l.pointOnSegment(p1.x, p1.y, 0.01);
+
+    if (p0Exists && p1Exists)
     {
-        return returnpoints?[p0,p1]:true;          
+        return returnPoints ? [p0, p1] : true;
     }
-    else if(p0_exists)
+    else if (p0Exists)
     {
-        return returnpoints?[p0]:true;
+        return returnPoints ? [p0] : true;
     }
-    else if(p1_exists)
+    else if (p1Exists)
     {
-        return returnpoints?[p1]:true;        
+        return returnPoints ? [p1] : true;
     }
     else
     {
-        return returnpoints?[]:false;
+        return returnPoints ? [] : false;
     }
 };
 
