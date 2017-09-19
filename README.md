@@ -1,4 +1,3 @@
->>>>>>> master
 # Phaser CE (Community Edition)
 
 <img src="http://phaser.io/images/github/arcade-cab.png" align="right" width="400" height="617">
