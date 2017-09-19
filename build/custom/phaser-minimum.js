@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.8.5 "2017-08-30" - Built: Wed Aug 30 2017 16:40:42
+* v2.8.7 "2017-09-12" - Built: Tue Sep 12 2017 10:19:33
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -7597,7 +7597,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.8.5',
+    VERSION: '2.8.7',
 
     /**
     * An array of Phaser game instances.
@@ -16964,6 +16964,13 @@ Phaser.Stage.prototype.checkVisibility = function () {
         return _this.visibilityChange(event);
     };
 
+    this._onClick = function (event) {
+        if (!document.hasFocus())
+        {
+            _this.visibilityChange(event);
+        }
+    };
+
     //  Does browser support it? If not (like in IE9 or old Android) we need to fall back to blur/focus
     if (this._hiddenVar)
     {
@@ -16975,6 +16982,8 @@ Phaser.Stage.prototype.checkVisibility = function () {
 
     window.onpagehide = this._onChange;
     window.onpageshow = this._onChange;
+
+    window.addEventListener('click', this._onClick);
 
     if (this.game.device.cocoonJSApp)
     {
@@ -16992,23 +17001,29 @@ Phaser.Stage.prototype.checkVisibility = function () {
 /**
 * This method is called when the document visibility is changed.
 *
+* - `blur` and `pagehide` events trigger {@link Phaser.Game#onBlur}. They {@link Phaser.Game#gamePaused pause the game} unless {@link #disableVisibilityChange} is on.
+* - `click`, `focus`, and `pageshow` trigger {@link Phaser.Game#onFocus}. They {@link Phaser.Game#gameResumed resume the game} unless {@link #disableVisibilityChange} is on.
+* - `visibilitychange` (hidden) and CocoonJS's `onSuspended` {@link Phaser.Game#gamePaused pause the game} unless {@link #disableVisibilityChange} is on.
+* - `visibilitychange` (visible) and CocoonJS's `onActivated` {@link Phaser.Game#gameResumed resume the game} unless {@link #disableVisibilityChange} is on.
+*
 * @method Phaser.Stage#visibilityChange
 * @param {Event} event - Its type will be used to decide whether the game should be paused or not.
 */
 Phaser.Stage.prototype.visibilityChange = function (event) {
 
-    if (event.type === 'pagehide' || event.type === 'blur' || event.type === 'pageshow' || event.type === 'focus')
-    {
-        if (event.type === 'pagehide' || event.type === 'blur')
-        {
-            this.game.focusLoss(event);
-        }
-        else if (event.type === 'pageshow' || event.type === 'focus')
-        {
-            this.game.focusGain(event);
-        }
+    // These events always trigger the Game#onBlur or Game#onFocus signals.
 
-        return;
+    switch (event.type)
+    {
+        case 'blur':
+        case 'pagehide':
+            this.game.focusLoss(event);
+            return;
+        case 'click':
+        case 'focus':
+        case 'pageshow':
+            this.game.focusGain(event);
+            return;
     }
 
     if (this.disableVisibilityChange)
@@ -17071,6 +17086,8 @@ Phaser.Stage.prototype.destroy = function () {
 
     window.onblur = null;
     window.onfocus = null;
+
+    window.removeEventListener('click', this._onClick);
 
 };
 
@@ -21352,7 +21369,16 @@ Phaser.Game.prototype = {
             }
         }
 
-        this.raf.start();
+        if (this.cache.isReady)
+        {
+            this.raf.start();
+        }
+        else
+        {
+            this.cache.onReady.addOnce(function () {
+                this.raf.start();
+            }, this);
+        }
 
     },
 
@@ -23636,8 +23662,9 @@ Phaser.Mouse.prototype = {
         //  No matter what, we must cancel the left and right buttons
 
         this.input.mousePointer.stop(event);
-        this.input.mousePointer.leftButton.stop(event);
-        this.input.mousePointer.rightButton.stop(event);
+
+        // Clear the button states (again?)
+        this.input.mousePointer.resetButtons();
 
     },
 
@@ -23925,16 +23952,29 @@ Object.defineProperties(WheelEventProxy.prototype, {
 */
 
 /**
-* The MSPointer class handles Microsoft touch interactions with the game and the resulting Pointer objects.
+* The MSPointer class handles {@link https://developers.google.com/web/updates/2016/10/pointer-events Pointer-event} interactions with the game via a dedicated {@link Phaser.Pointer}. (It's named after the nonstandard {@link https://msdn.microsoft.com/library/hh673557(v=vs.85).aspx MSPointerEvent} since that was the first browser implementation.)
 *
-* It will work only in Internet Explorer 10+ and Windows Store or Windows Phone 8 apps using JavaScript.
-* http://msdn.microsoft.com/en-us/library/ie/hh673557(v=vs.85).aspx
+* It's {@link http://caniuse.com/#feat=pointer currently supported  in IE 10+, Edge, Chrome (including Android), and Opera}.
 *
-* You should not normally access this class directly, but instead use a Phaser.Pointer object which
+* You should not normally access this class directly, but instead use a {@link Phaser.Pointer} object which
 * normalises all game input for you including accurate button handling.
 *
 * Please note that at the current time of writing Phaser does not yet support chorded button interactions:
 * http://www.w3.org/TR/pointerevents/#chorded-button-interactions
+*
+* You can disable Phaser's use of Pointer Events by either of two ways:
+*
+* ```javascript
+* // **Before** `new Phaser.Game(…)`:
+* Phaser.Device.onInitialized.add(function () {
+*     this.mspointer = false;
+* });
+* ```
+*
+* ```javascript
+* // Once, in the earliest State `init` or `create` callback (e.g., Boot):
+* this.input.mspointer.stop();
+* ```
 *
 * @class Phaser.MSPointer
 * @constructor
@@ -23974,7 +24014,7 @@ Phaser.MSPointer = function (game) {
     this.pointerUpCallback = null;
 
     /**
-    * @property {boolean} capture - If true the Pointer events will have event.preventDefault applied to them, if false they will propagate fully.
+    * @property {boolean} capture - If true the Pointer events will have event.preventDefault applied to them, canceling the corresponding MouseEvent or TouchEvent.
     */
     this.capture = true;
 
@@ -23987,15 +24027,15 @@ Phaser.MSPointer = function (game) {
     this.button = -1;
 
     /**
-    * The browser MSPointer DOM event. Will be null if no event has ever been received.
+    * The most recent PointerEvent from the browser. Will be null if no event has ever been received.
     * Access this property only inside a Pointer event handler and do not keep references to it.
-    * @property {MSPointerEvent|null} event
+    * @property {MSPointerEvent|PointerEvent|null} event
     * @default
     */
     this.event = null;
 
     /**
-    * MSPointer input will only be processed if enabled.
+    * PointerEvent input will only be processed if enabled.
     * @property {boolean} enabled
     * @default
     */
@@ -24392,12 +24432,12 @@ Phaser.MSPointer.prototype.constructor = Phaser.MSPointer;
 *
 * At the time of writing this there are device limitations you should be aware of:
 *
-* - On Windows, if you install a mouse driver, and its utility software allows you to customize button actions 
-*   (e.g., IntelliPoint and SetPoint), the middle (wheel) button, the 4th button, and the 5th button might not be set, 
+* - On Windows, if you install a mouse driver, and its utility software allows you to customize button actions
+*   (e.g., IntelliPoint and SetPoint), the middle (wheel) button, the 4th button, and the 5th button might not be set,
 *   even when they are pressed.
 * - On Linux (GTK), the 4th button and the 5th button are not supported.
 * - On Mac OS X 10.5 there is no platform API for implementing any advanced buttons.
-* 
+*
 * @class Phaser.DeviceButton
 * @constructor
 * @param {Phaser.Pointer|Phaser.SinglePad} parent - A reference to the parent of this button. Either a Pointer or a Gamepad.
@@ -24519,7 +24559,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Called automatically by Phaser.Pointer and Phaser.SinglePad.
     * Handles the button down state.
-    * 
+    *
     * @method Phaser.DeviceButton#start
     * @protected
     * @param {object} [event] - The DOM event that triggered the button change.
@@ -24554,7 +24594,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Called automatically by Phaser.Pointer and Phaser.SinglePad.
     * Handles the button up state.
-    * 
+    *
     * @method Phaser.DeviceButton#stop
     * @protected
     * @param {object} [event] - The DOM event that triggered the button change.
@@ -24586,8 +24626,31 @@ Phaser.DeviceButton.prototype = {
     },
 
     /**
+    * Called automatically by Phaser.Pointer.
+    * Starts or stops button based on condition.
+    *
+    * @method Phaser.DeviceButton#startStop
+    * @protected
+    * @param {boolean} [condition] - The condition that decides between start or stop.
+    * @param {object} [event] - The DOM event that triggered the button change.
+    * @param {number} [value] - The button value. Only get for Gamepads.
+    */
+    startStop: function (condition, event, value) {
+
+        if (condition)
+        {
+            this.start(event, value);
+        }
+        else
+        {
+            this.stop(event, value);
+        }
+
+    },
+
+    /**
     * Called automatically by Phaser.SinglePad.
-    * 
+    *
     * @method Phaser.DeviceButton#padFloat
     * @protected
     * @param {number} value - Button value
@@ -24606,7 +24669,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Returns the "just pressed" state of this button.
     * Just pressed is considered true if the button was pressed down within the duration given (default 250ms).
-    * 
+    *
     * @method Phaser.DeviceButton#justPressed
     * @param {number} [duration=250] - The duration in ms below which the button is considered as being just pressed.
     * @return {boolean} True if the button is just pressed otherwise false.
@@ -24622,7 +24685,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Returns the "just released" state of this button.
     * Just released is considered as being true if the button was released within the duration given (default 250ms).
-    * 
+    *
     * @method Phaser.DeviceButton#justReleased
     * @param {number} [duration=250] - The duration in ms below which the button is considered as being just released.
     * @return {boolean} True if the button is just released otherwise false.
@@ -24637,7 +24700,7 @@ Phaser.DeviceButton.prototype = {
 
     /**
     * Resets this DeviceButton, changing it to an isUp state and resetting the duration and repeats counters.
-    * 
+    *
     * @method Phaser.DeviceButton#reset
     */
     reset: function () {
@@ -24655,9 +24718,9 @@ Phaser.DeviceButton.prototype = {
     },
 
     /**
-    * Destroys this DeviceButton, this disposes of the onDown, onUp and onFloat signals 
+    * Destroys this DeviceButton, this disposes of the onDown, onUp and onFloat signals
     * and clears the parent and game references.
-    * 
+    *
     * @method Phaser.DeviceButton#destroy
     */
     destroy: function () {
@@ -24678,7 +24741,7 @@ Phaser.DeviceButton.prototype.constructor = Phaser.DeviceButton;
 /**
 * How long the button has been held down for in milliseconds.
 * If not currently down it returns -1.
-* 
+*
 * @name Phaser.DeviceButton#duration
 * @property {number} duration
 * @readonly
@@ -25137,51 +25200,46 @@ Phaser.Pointer.prototype = {
     },
 
     /**
-    * Called by updateButtons.
+    * Called by processButtonsUpDown.
     *
     * @method Phaser.Pointer#processButtonsDown
     * @private
-    * @param {integer} buttons - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons MouseEvent#buttons} value.
+    * @param {integer} button - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button MouseEvent#button} value.
     * @param {MouseEvent} event - The DOM event.
     */
-    processButtonsDown: function (buttons, event) {
+    processButtonsDown: function (button, event) {
 
         //  Note: These are bitwise checks, not booleans
 
-        if (Phaser.Pointer.LEFT_BUTTON & buttons)
+        if (button === Phaser.Mouse.LEFT_BUTTON)
         {
             this.leftButton.start(event);
         }
 
-        if (Phaser.Pointer.RIGHT_BUTTON & buttons)
+        if (button === Phaser.Mouse.RIGHT_BUTTON)
         {
             this.rightButton.start(event);
         }
 
-        if (Phaser.Pointer.MIDDLE_BUTTON & buttons)
+        if (button === Phaser.Mouse.MIDDLE_BUTTON)
         {
             this.middleButton.start(event);
         }
 
-        if (Phaser.Pointer.BACK_BUTTON & buttons)
+        if (button === Phaser.Mouse.BACK_BUTTON)
         {
             this.backButton.start(event);
         }
 
-        if (Phaser.Pointer.FORWARD_BUTTON & buttons)
+        if (button === Phaser.Mouse.FORWARD_BUTTON)
         {
             this.forwardButton.start(event);
-        }
-
-        if (Phaser.Pointer.ERASER_BUTTON & buttons)
-        {
-            this.eraserButton.start(event);
         }
 
     },
 
     /**
-    * Called by updateButtons.
+    * Called by processButtonsUpDown.
     *
     * @method Phaser.Pointer#processButtonsUp
     * @private
@@ -25189,6 +25247,8 @@ Phaser.Pointer.prototype = {
     * @param {MouseEvent} event - The DOM event.
     */
     processButtonsUp: function (button, event) {
+
+        //  Note: These are bitwise checks, not booleans
 
         if (button === Phaser.Mouse.LEFT_BUTTON)
         {
@@ -25215,9 +25275,80 @@ Phaser.Pointer.prototype = {
             this.forwardButton.stop(event);
         }
 
-        if (button === 5)
+    },
+
+    /**
+    * Called by updateButtons.
+    *
+    * @method Phaser.Pointer#processButtonsUpDown
+    * @private
+    * @param {integer} buttons - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons MouseEvent#buttons} value.
+    * @param {MouseEvent} event - The DOM event.
+    */
+    processButtonsUpDown: function (buttons, event) {
+
+        var down = (event.type.toLowerCase().substr(-4) === 'down');
+        var move = (event.type.toLowerCase().substr(-4) === 'move');
+
+        if (buttons !== undefined)
         {
-            this.eraserButton.stop(event);
+            // On OS X (and other devices with trackpads) you have to press CTRL + the pad to initiate a right-click event.
+            if (down && buttons === 1 && event.ctrlKey)
+            {
+                buttons = 2;
+            }
+
+            // Note: These are bitwise checks, not booleans
+            this.leftButton.startStop(Phaser.Pointer.LEFT_BUTTON & buttons, event);
+            this.rightButton.startStop(Phaser.Pointer.RIGHT_BUTTON & buttons, event);
+            this.middleButton.startStop(Phaser.Pointer.MIDDLE_BUTTON & buttons, event);
+            this.backButton.startStop(Phaser.Pointer.BACK_BUTTON & buttons, event);
+            this.forwardButton.startStop(Phaser.Pointer.FORWARD_BUTTON & buttons, event);
+            this.eraserButton.startStop(Phaser.Pointer.ERASER_BUTTON & buttons, event);
+        }
+        else
+        {
+            // No buttons property (like Safari on OSX when using a trackpad)
+            // Attempt to use event.button property or fallback to default
+            if (event.button !== undefined)
+            {
+                // On OS X (and other devices with trackpads) you have to press CTRL + the pad to initiate a right-click event.
+                if (down && event.ctrlKey && event.button === 0)
+                {
+                    this.rightButton.start(event);
+                }
+                else
+                {
+                    if (down)
+                    {
+                        this.processButtonsDown(event.button, event);
+                    }
+                    else if (!move)
+                    {
+                        this.processButtonsUp(event.button, event);
+                    }
+                }
+            }
+            else
+            {
+                if (down)
+                {
+                    // On OS X (and other devices with trackpads) you have to press CTRL + the pad to initiate a right-click event.
+                    if (event.ctrlKey)
+                    {
+                        this.rightButton.start(event);
+                    }
+                    else
+                    {
+                        this.leftButton.start(event);
+                    }
+                }
+                else
+                {
+                    this.leftButton.stop(event);
+                    this.rightButton.stop(event);
+                }
+            }
         }
 
     },
@@ -25233,43 +25364,7 @@ Phaser.Pointer.prototype = {
     updateButtons: function (event) {
 
         this.button = event.button;
-
-        var down = (event.type.toLowerCase().substr(-4) === 'down');
-
-        if (event.buttons !== undefined)
-        {
-            if (down)
-            {
-                this.processButtonsDown(event.buttons, event);
-            }
-            else
-            {
-                this.processButtonsUp(event.button, event);
-            }
-        }
-        else
-        {
-            //  No buttons property (like Safari on OSX when using a trackpad)
-            if (down)
-            {
-                this.leftButton.start(event);
-            }
-            else
-            {
-                this.leftButton.stop(event);
-                this.rightButton.stop(event);
-            }
-        }
-
-        //  On OS X (and other devices with trackpads) you have to press CTRL + the pad
-        //  to initiate a right-click event, so we'll check for that here ONLY if
-        //  event.buttons = 1 (i.e. they only have a 1 button mouse or trackpad)
-
-        if (event.buttons === 1 && event.ctrlKey && this.leftButton.isDown)
-        {
-            this.leftButton.stop(event);
-            this.rightButton.start(event);
-        }
+        this.processButtonsUpDown(event.buttons, event);
 
         this.isUp = true;
         this.isDown = false;
@@ -25427,7 +25522,7 @@ Phaser.Pointer.prototype = {
             this.button = event.button;
         }
 
-        if (fromClick && this.isMouse)
+        if (this.isMouse)
         {
             this.updateButtons(event);
         }
@@ -26655,7 +26750,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Starts the Input Handler running. This is called automatically when you enable input on a Sprite, or can be called directly if you need to set a specific priority.
-    * 
+    *
     * @method Phaser.InputHandler#start
     * @param {number} [priority=0] - Higher priority sprites take click priority over low-priority sprites when they are stacked on-top of each other.
     * @param {boolean} [useHandCursor=false] - If true the Sprite will show the hand cursor on mouse-over (doesn't apply to mobile browsers)
@@ -27240,7 +27335,7 @@ Phaser.InputHandler.prototype = {
     /**
     * Internal Update method. This is called automatically and handles the Pointer
     * and drag update loops.
-    * 
+    *
     * @method Phaser.InputHandler#update
     * @protected
     * @param {Phaser.Pointer} pointer
@@ -27296,7 +27391,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Internal method handling the pointer over event.
-    * 
+    *
     * @method Phaser.InputHandler#_pointerOverHandler
     * @private
     * @param {Phaser.Pointer} pointer - The pointer that triggered the event
@@ -27333,7 +27428,7 @@ Phaser.InputHandler.prototype = {
                 this.sprite.events.onInputOver$dispatch(this.sprite, pointer);
             }
 
-            if (this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+            if (this.sprite.parent && this.sprite.parent.onChildInputOver)
             {
                 this.sprite.parent.onChildInputOver.dispatch(this.sprite, pointer);
             }
@@ -27343,7 +27438,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Internal method handling the pointer out event.
-    * 
+    *
     * @method Phaser.InputHandler#_pointerOutHandler
     * @private
     * @param {Phaser.Pointer} pointer - The pointer that triggered the event.
@@ -27373,7 +27468,7 @@ Phaser.InputHandler.prototype = {
         {
             this.sprite.events.onInputOut$dispatch(this.sprite, pointer);
 
-            if (this.sprite && this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+            if (this.sprite && this.sprite.parent && this.sprite.parent.onChildInputOut)
             {
                 this.sprite.parent.onChildInputOut.dispatch(this.sprite, pointer);
             }
@@ -27383,7 +27478,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Internal method handling the touched / clicked event.
-    * 
+    *
     * @method Phaser.InputHandler#_touchedHandler
     * @private
     * @param {Phaser.Pointer} pointer - The pointer that triggered the event.
@@ -27419,7 +27514,7 @@ Phaser.InputHandler.prototype = {
                 this.sprite.events.onInputDown$dispatch(this.sprite, pointer);
 
                 //  The event above might have destroyed this sprite.
-                if (this.sprite && this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+                if (this.sprite && this.sprite.parent && this.sprite.parent.onChildInputDown)
                 {
                     this.sprite.parent.onChildInputDown.dispatch(this.sprite, pointer);
                 }
@@ -27466,7 +27561,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Internal method handling the drag threshold timer.
-    * 
+    *
     * @method Phaser.InputHandler#dragTimeElapsed
     * @private
     * @param {Phaser.Pointer} pointer
@@ -27520,7 +27615,7 @@ Phaser.InputHandler.prototype = {
                     this.sprite.events.onInputUp$dispatch(this.sprite, pointer, isOver);
                 }
 
-                if (this.sprite && this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+                if (this.sprite && this.sprite.parent && this.sprite.parent.onChildInputUp)
                 {
                     this.sprite.parent.onChildInputUp.dispatch(this.sprite, pointer, isOver);
                 }
@@ -27531,7 +27626,7 @@ Phaser.InputHandler.prototype = {
                     isOver = this.checkPointerOver(pointer);
                 }
             }
-            
+
             data.isOver = isOver;
 
             if (!isOver && this.useHandCursor)
@@ -27556,7 +27651,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Called as a Pointer actively drags this Game Object.
-    * 
+    *
     * @method Phaser.InputHandler#updateDrag
     * @private
     * @param {Phaser.Pointer} pointer - The Pointer causing the drag update.
@@ -27757,11 +27852,11 @@ Phaser.InputHandler.prototype = {
     * Allow this Sprite to be dragged by any valid pointer.
     *
     * When the drag begins the Sprite.events.onDragStart event will be dispatched.
-    * 
+    *
     * When the drag completes by way of the user letting go of the pointer that was dragging the sprite, the Sprite.events.onDragStop event is dispatched.
     *
     * You can control the thresholds over when a drag starts via the properties:
-    * 
+    *
     * `Pointer.dragDistanceThreshold` the distance, in pixels, that the pointer has to move
     * before the drag will start.
     *
@@ -27772,7 +27867,7 @@ Phaser.InputHandler.prototype = {
     *
     * For the duration of the drag the Sprite.events.onDragUpdate event is dispatched. This event is only dispatched when the pointer actually
     * changes position and moves. The event sends 5 parameters: `sprite`, `pointer`, `dragX`, `dragY` and `snapPoint`.
-    * 
+    *
     * @method Phaser.InputHandler#enableDrag
     * @param {boolean} [lockCenter=false] - If false the Sprite will drag from where you click it minus the dragOffset. If true it will center itself to the tip of the mouse pointer.
     * @param {boolean} [bringToTop=false] - If true the Sprite will be bought to the top of the rendering list in its current Group.
@@ -27932,7 +28027,7 @@ Phaser.InputHandler.prototype = {
         return y;
 
     },
-	
+
     /**
     * Convert global coordinates to local sprite coordinates
     *
@@ -27951,7 +28046,7 @@ Phaser.InputHandler.prototype = {
 			return globalCoord;
 		}
 
-    },	
+    },
 
     /**
     * Called by Pointer when drag is stopped on this Sprite. Should not usually be called directly.
@@ -41351,8 +41446,20 @@ Phaser.Cache = function (game) {
     this._cacheMap[Phaser.Cache.SHADER] = this._cache.shader;
     this._cacheMap[Phaser.Cache.RENDER_TEXTURE] = this._cache.renderTexture;
 
-    this.addDefaultImage();
-    this.addMissingImage();
+    /**
+     * @property {number}
+     * @private
+     */
+    this._pendingCount = 0;
+
+    /**
+    * Dispatched when the DEFAULT and MISSING images have loaded (or the {@link #READY_TIMEOUT load timeout} was exceeded).
+    *
+    * @property {Phaser.Signal} onReady
+    */
+    this.onReady = new Phaser.Signal();
+
+    this._addImages();
 
 };
 
@@ -41454,11 +41561,47 @@ Phaser.Cache.RENDER_TEXTURE = 15;
 Phaser.Cache.DEFAULT = null;
 
 /**
+ * Key for the DEFAULT texture.
+ * @constant
+ * @type {string}
+ */
+Phaser.Cache.DEFAULT_KEY = '__default';
+
+/**
+ * URL for the DEFAULT texture.
+ * @constant
+ * @type {string}
+ */
+Phaser.Cache.DEFAULT_SRC = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABVJREFUeF7NwIEAAAAAgKD9qdeocAMAoAABm3DkcAAAAABJRU5ErkJggg==';
+
+/**
 * The default image used for a texture when the source image is missing.
 * @constant
 * @type {PIXI.Texture}
 */
 Phaser.Cache.MISSING = null;
+
+/**
+ * Key for the MISSING texture.
+ * @constant
+ * @type {string}
+ */
+Phaser.Cache.MISSING_KEY = '__missing';
+
+/**
+ * URL for the MISSING texture.
+ * @constant
+ * @type {string}
+ */
+Phaser.Cache.MISSING_SRC = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ9JREFUeNq01ssOwyAMRFG46v//Mt1ESmgh+DFmE2GPOBARKb2NVjo+17PXLD8a1+pl5+A+wSgFygymWYHBb0FtsKhJDdZlncG2IzJ4ayoMDv20wTmSMzClEgbWYNTAkQ0Z+OJ+A/eWnAaR9+oxCF4Os0H8htsMUp+pwcgBBiMNnAwF8GqIgL2hAzaGFFgZauDPKABmowZ4GL369/0rwACp2yA/ttmvsQAAAABJRU5ErkJggg==';
+
+/**
+* The maximum amount of time (ms) to wait for the built-in DEFAULT and MISSING images to load.
+* @static
+* @type {number}
+* @default
+*/
+Phaser.Cache.READY_TIMEOUT = 1000;
 
 Phaser.Cache.prototype = {
 
@@ -41575,6 +41718,26 @@ Phaser.Cache.prototype = {
     },
 
     /**
+     * @method Phaser.Cache#addImageAsync
+     * @private
+     */
+    addImageAsync: function (key, src, callback) {
+
+        var self = this;
+        var img = new Image();
+
+        img.onload = function () {
+            callback.call(this, self.addImage(key, null, img));
+            self._removePending();
+            img.onload = null;
+        };
+
+        this._addPending();
+        img.src = src;
+
+    },
+
+    /**
     * Adds a default image to be used in special cases such as WebGL Filters.
     * It uses the special reserved key of `__default`.
     * This method is called automatically when the Cache is created.
@@ -41585,22 +41748,13 @@ Phaser.Cache.prototype = {
     */
     addDefaultImage: function () {
 
-        var cache = this;
-        var img = new Image();
-
-        img.onload = function () {
-            var obj = cache.addImage('__default', null, img);
-
+        this.addImageAsync(Phaser.Cache.DEFAULT_KEY, Phaser.Cache.DEFAULT_SRC, function (obj) {
             //  Because we don't want to invalidate the sprite batch for an invisible texture
             obj.base.skipRender = true;
 
             //  Make it easily available within the rest of Phaser / Pixi
             Phaser.Cache.DEFAULT = new PIXI.Texture(obj.base);
-
-            img.onload = null;
-        };
-
-        img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABVJREFUeF7NwIEAAAAAgKD9qdeocAMAoAABm3DkcAAAAABJRU5ErkJggg==";
+        });
 
     },
 
@@ -41615,19 +41769,10 @@ Phaser.Cache.prototype = {
     */
     addMissingImage: function () {
 
-        var cache = this;
-        var img = new Image();
-
-        img.onload = function () {
-            var obj = cache.addImage('__missing', null, img);
-
+        this.addImageAsync(Phaser.Cache.MISSING_KEY, Phaser.Cache.MISSING_SRC, function (obj) {
             //  Make it easily available within the rest of Phaser / Pixi
             Phaser.Cache.MISSING = new PIXI.Texture(obj.base);
-
-            img.onload = null;
-        };
-
-        img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ9JREFUeNq01ssOwyAMRFG46v//Mt1ESmgh+DFmE2GPOBARKb2NVjo+17PXLD8a1+pl5+A+wSgFygymWYHBb0FtsKhJDdZlncG2IzJ4ayoMDv20wTmSMzClEgbWYNTAkQ0Z+OJ+A/eWnAaR9+oxCF4Os0H8htsMUp+pwcgBBiMNnAwF8GqIgL2hAzaGFFgZauDPKABmowZ4GL369/0rwACp2yA/ttmvsQAAAABJRU5ErkJggg==";
+        });
 
     },
 
@@ -43361,11 +43506,108 @@ Phaser.Cache.prototype = {
             }
         }
 
+    },
+
+    /**
+    * Starts loading the DEFAULT and MISSING images.
+    *
+    * @private
+    */
+    _addImages: function () {
+
+        this._pendingCount = 0;
+
+        this.addDefaultImage();
+        this.addMissingImage();
+
+        var self = this;
+        var readyTimeout = Phaser.Cache.READY_TIMEOUT;
+
+        if (Phaser.Cache.READY_TIMEOUT > 0)
+        {
+            setTimeout(function () {
+                if (!self.isReady)
+                {
+                    console.warn('Phaser.Cache: Still waiting for images after %s ms.', readyTimeout);
+
+                    self._ready();
+                }
+            }, Phaser.Cache.READY_TIMEOUT);
+        }
+        else
+        {
+            this._ready();
+        }
+
+    },
+
+
+    /**
+    * Increments the pending count.
+    *
+    * @private
+    */
+    _addPending: function () {
+
+        this._pendingCount += 1;
+
+    },
+
+
+    /**
+    * Decrements the pending count and checks if complete.
+    *
+    * @private
+    */
+    _removePending: function () {
+
+        this._pendingCount -= 1;
+        this._checkReady();
+
+    },
+
+
+    /**
+    * Calls {@link #_ready} if no pending items remain.
+    *
+    * @private
+    */
+    _checkReady: function () {
+
+        if (this.isReady)
+        {
+            this._ready();
+        }
+
+    },
+
+
+    /**
+    * Resets pending count and triggers {@link #onReady}.
+    *
+    * @private
+    */
+    _ready: function () {
+
+        this._pendingCount = 0;
+        this.onReady.dispatch(this);
+
     }
 
 };
 
 Phaser.Cache.prototype.constructor = Phaser.Cache;
+
+/**
+* The DEFAULT and MISSING textures have loaded (or the {@link #READY_TIMEOUT load timeout} was exceeded).
+*
+* @property {boolean} Phaser.Cache#isReady
+*/
+Object.defineProperty(Phaser.Cache.prototype, 'isReady', {
+    get: function () {
+        return this._pendingCount <= 0;
+    }
+});
 
 /* jshint wsh:true */
 /**

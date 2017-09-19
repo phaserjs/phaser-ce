@@ -504,7 +504,7 @@ Phaser.Color = {
     */
     updateColor: function (out) {
 
-        out.rgba = 'rgba(' + out.r.toString() + ',' + out.g.toString() + ',' + out.b.toString() + ',' + out.a.toString() + ')';
+        out.rgba = 'rgba(' + out.r.toFixed() + ',' + out.g.toFixed() + ',' + out.b.toFixed() + ',' + out.a.toString() + ')';
         out.color = Phaser.Color.getColor(out.r, out.g, out.b);
         out.color32 = Phaser.Color.getColor32(out.a * 255, out.r, out.g, out.b);
 

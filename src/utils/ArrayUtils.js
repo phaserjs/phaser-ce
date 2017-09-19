@@ -261,7 +261,7 @@ Phaser.ArrayUtils = {
 
     /**
     * Create an array representing the inclusive range of numbers (usually integers) in `[start, end]`.
-    * This is equivalent to `numberArrayStep(start, end, 1)`.
+    * This is equivalent to `numberArrayStep(start, 1 + end, 1)`.
     *
     * @method Phaser.ArrayUtils.numberArray
     * @param {number} start - The minimum value the array starts with.

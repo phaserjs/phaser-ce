@@ -92,6 +92,36 @@ declare class Phaser {
 
 declare module Phaser {
 
+    enum blendModes {
+
+        NORMAL,
+        ADD,
+        MULTIPLY,
+        SCREEN,
+        OVERLAY,
+        DARKEN,
+        LIGHTEN,
+        COLOR_DODGE,
+        COLOR_BURN,
+        HARD_LIGHT,
+        SOFT_LIGHT,
+        DIFFERENCE,
+        EXCLUSION,
+        HUE,
+        SATURATION,
+        COLOR,
+        LUMINOSITY
+
+    }
+
+    export enum scaleModes {
+
+        DEFAULT,
+        LINEAR,
+        NEAREST
+
+    }
+
     class Animation {
 
         constructor(game: Phaser.Game, parent: Phaser.Sprite, name: string, frameData: Phaser.FrameData, frames: number[] | string[], frameRate?: number, loop?: boolean);
@@ -503,6 +533,7 @@ declare module Phaser {
         static IMAGE: number;
         static JSON: number;
         static PHYSICS: number;
+        static READY_TIMEOUT: number;
         static RENDER_TEXTURE: number;
         static SHADER: number;
         static SOUND: number;
@@ -519,6 +550,7 @@ declare module Phaser {
 
         autoResolveURL: boolean;
         game: Phaser.Game;
+        onReady: Phaser.Signal;
         onSoundUnlock: Phaser.Signal;
 
         addBinary(key: string, binaryData: any): void;
@@ -1676,7 +1708,7 @@ declare module Phaser {
         angle: number;
         animations: Phaser.AnimationManager;
         autoCull: boolean;
-        blendMode: number;
+        blendMode: Phaser.blendModes;
         body: Phaser.Physics.Arcade.Body | Phaser.Physics.P2.Body | Phaser.Physics.Ninja.Body | any;
         bottom: number;
         boundsPadding: number;
@@ -1745,7 +1777,7 @@ declare module Phaser {
         drawTriangle(points: Phaser.Point[], cull?: boolean): void;
         drawTriangles(vertices: Phaser.Point[] | number[], indices?: number[], cull?: boolean): void;
         endFill(): Phaser.Graphics;
-        generateTexture(resolution?: number, scaleMode?: number, padding?: number): Phaser.RenderTexture;
+        generateTexture(resolution?: number, scaleMode?: Phaser.scaleModes, padding?: number): Phaser.RenderTexture;
         kill(): Phaser.Graphics;
         lineStyle(lineWidth?: number, color?: number, alpha?: number): Phaser.Graphics;
         lineTo(x: number, y: number): Phaser.Graphics;
@@ -2651,10 +2683,10 @@ declare module Phaser {
         static distancePow(xy: number, y1: number, x2: number, y2: number, pow?: number): number;
         static factorial(value: number): number;
         static floorTo(value: number, place: number, base: number): number;
-        static fuzzyCeil(val: number, epsilon?: number): boolean;
+        static fuzzyCeil(val: number, epsilon?: number): number;
         static fuzzyEqual(a: number, b: number, epsilon?: number): boolean;
-        static fuzzyLessThan(a: Number, b: number, epsilon?: number): boolean;
-        static fuzzyFloor(val: number, epsilon?: number): boolean;
+        static fuzzyLessThan(a: number, b: number, epsilon?: number): boolean;
+        static fuzzyFloor(val: number, epsilon?: number): number;
         static fuzzyGreaterThan(a: number, b: number, epsilon?: number): boolean;
         static fuzzyLessThan(a: number, b: number, epsilon?: number): boolean;
         static getShortestAngle(angle1: number, angle2: number): number;
@@ -2842,6 +2874,7 @@ declare module Phaser {
                 autoScale: boolean;
                 angle: number;
                 angularDrag: number;
+                blendMode: Phaser.blendModes;
                 bottom: number;
                 bounce: Phaser.Point;
                 count: {emitted: number; failed: number; totalEmitted: number; totalFailed: number};
@@ -3020,6 +3053,7 @@ declare module Phaser {
             forceX: boolean;
             game: Phaser.Game;
             gravity: Phaser.Point;
+            isPaused: boolean;
             quadTree: Phaser.QuadTree;
             maxObjects: number;
             maxLevels: number;
@@ -4264,7 +4298,7 @@ declare module Phaser {
 
     class RenderTexture extends PIXI.Texture {
 
-        constructor(game: Phaser.Game, width?: number, height?: number, key?: string, scaleMode?: number, resolution?: number);
+        constructor(game: Phaser.Game, width?: number, height?: number, key?: string, scaleMode?: Phaser.scaleModes, resolution?: number);
 
         crop: PIXI.Rectangle;
         game: Phaser.Game;

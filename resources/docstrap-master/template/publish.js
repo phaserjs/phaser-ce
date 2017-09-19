@@ -33,6 +33,10 @@ logger.info('logger level', logger.getLevel());
 var globalUrl = helper.getUniqueFilename('global');
 var indexUrl = helper.getUniqueFilename('index');
 
+if (conf.syntaxTheme) {
+  logger.warn('`template.syntaxTheme` is ignored. Import the Prism theme in template/styles/main.less.');
+}
+
 var navOptions = {
   analytics: conf.analytics || null,
   collapseSymbols: conf.collapseSymbols || false,
@@ -51,8 +55,8 @@ var navOptions = {
   search: searchEnabled,
   sourceLinkFormat: conf.sourceLinkFormat,
   sort: conf.sort,
-  sourceRootPath: path.join(fs.realpathSync(conf.sourceRootPath), '/'),
-  syntaxTheme: conf.syntaxTheme || 'default',
+  sourceRootPath: conf.sourceRootPath ? path.join(fs.realpathSync(conf.sourceRootPath), '/') : null,
+  syntaxTheme: 'default',
   systemName: conf.systemName || 'Documentation',
   theme: conf.theme || 'phaser',
 };

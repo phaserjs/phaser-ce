@@ -62,7 +62,7 @@ Phaser.TweenData = function (parent) {
     this.percent = 0;
 
     /**
-    * @property {number} value - The current calculated value.
+    * @property {number} value - The output of the easing function for the current {@link #percent}. Depending on the easing function, this will be within [0, 1] or a slightly larger range (e.g., Bounce). When easing is Linear, this will be identical to {@link #percent}.
     * @readonly
     */
     this.value = 0;
@@ -86,6 +86,7 @@ Phaser.TweenData = function (parent) {
     /**
     * @property {boolean} interpolate - True if the Tween will use interpolation (i.e. is an Array to Array tween)
     * @default
+    * @todo Appears unused.
     */
     this.interpolate = false;
 
@@ -129,7 +130,7 @@ Phaser.TweenData = function (parent) {
     this.easingFunction = Phaser.Easing.Default;
 
     /**
-    * @property {function} interpolationFunction - The interpolation function used for the Tween.
+    * @property {function} interpolationFunction - The interpolation function used for Array-based Tween.
     * @default Phaser.Math.linearInterpolation
     */
     this.interpolationFunction = Phaser.Math.linearInterpolation;
@@ -403,7 +404,7 @@ Phaser.TweenData.prototype = {
         {
             return this.repeat();
         }
-        
+
         return Phaser.TweenData.RUNNING;
 
     },
@@ -458,7 +459,7 @@ Phaser.TweenData.prototype = {
 
                 if (Array.isArray(end))
                 {
-                    blob[property] = this.interpolationFunction(end, this.value);
+                    blob[property] = this.interpolationFunction.call(this.interpolationContext, end, this.value);
                 }
                 else
                 {

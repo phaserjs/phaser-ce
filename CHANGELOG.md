@@ -4,6 +4,42 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.8.7 - 12th September 2017
+
+### Bug Fixes
+
+* Fixed TypeScript error (#351).
+* [onChildInputDown](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputDown), [onChildInputUp](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputUp), [onChildInputOver](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputOver), and [onChildInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputOut) signals now fire correctly for particle emitters (#349).
+
+### Thanks
+
+@lucasgray, @photonstorm, @samme, @yupaul
+
+## Version 2.8.6 - 10th September 2017
+
+### Updates
+
+* Several internal changes in [Phaser.DeviceButton](https://photonstorm.github.io/phaser-ce/Phaser.DeviceButton.html) and [Phaser.Pointer](https://photonstorm.github.io/phaser-ce/Phaser.Pointer.html) (#340).
+
+### Bug Fixes
+
+* Fixed an issue where the [DEFAULT](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#_DEFAULT) and [MISSING](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#_MISSING) textures could be missing from the game cache when the game starts (#280 via #138).
+* Fixed several issues related to [Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer) and pointer events (#293, #250)
+* Fixed an error when using [TweenData#generateData](https://photonstorm.github.io/phaser-ce/Phaser.TweenData.html#generateData) with an array-based tween (#346).
+* Fixed game in an iframe not auto-resuming when refocused (#236).
+* Fixed some TypeScript definitions (#342, #344).
+
+### Documentation
+
+* Fixed navigation menu obscuring anchor link targets at the top of the window (#343).
+* Updated [Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html)
+* Added example for [Tween#tween.onUpdateCallback](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#onUpdateCallback).
+* Updated [TweenData#value](https://photonstorm.github.io/phaser-ce/Phaser.TweenData.html#value).
+
+### Thanks
+
+@2called-chaos, @bseiller, @falquaddoomi, @johnbuttcoingalt, @photonstorm, @samme, @samvieten, @yupaul
+
 ## Version 2.8.5 - 30th August 2017
 
 ### Updates

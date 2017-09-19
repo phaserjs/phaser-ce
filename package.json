@@ -1,7 +1,7 @@
 {
   "name": "phaser-ce",
-  "version": "2.8.5",
-  "release": "2017-08-30",
+  "version": "2.8.7",
+  "release": "2017-09-12",
   "description": "Phaser CE (Community Edition) is a fast, free and fun HTML5 Game Framework for Desktop and Mobile web browsers.",
   "author": "Richard Davey <rdavey@gmail.com> (http://www.photonstorm.com)",
   "logo": "https://raw.github.com/photonstorm/phaser-ce/master/phaser-logo-small.png",
@@ -17,7 +17,8 @@
   },
   "scripts": {
     "grunt": "grunt",
-    "test": "NODE_ENV=test grunt jshint"
+    "test": "NODE_ENV=test grunt jshint",
+    "test:ts": "./node_modules/typescript/bin/tsc ./typescript/*.comments.d.ts"
   },
   "keywords": [
     "2d",
@@ -46,6 +47,7 @@
     "grunt-jsdoc": "^2.1.0",
     "grunt-notify": "^0.4.5",
     "grunt-text-replace": "^0.4.0",
+    "grunt-ts": "^6.0.0-beta.16",
     "jsdoc": "^3.5.4",
     "load-grunt-config": "^0.19.2",
     "typescript": "1.4.1",
