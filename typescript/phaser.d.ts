@@ -4852,6 +4852,7 @@ declare module Phaser {
             right: string;
         };
 
+        align(horizontal?: boolean, vertical?: boolean);
         boot(): void;
         createFullScreenTarget(): HTMLDivElement;
         destroy(): void;
