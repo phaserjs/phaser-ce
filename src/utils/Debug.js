@@ -960,25 +960,27 @@ Phaser.Utils.Debug.prototype = {
         this.line('clearBeforeRender: ' + r.clearBeforeRender);
         this.line('resolution: ' + r.resolution);
         this.line('transparent: ' + r.transparent);
+        this.line('renderSession:');
 
         if (r.gl)
         {
-            this.line('drawCount: ' + s.drawCount);
-            this.line('flushCount: ' + s.flushCount);
-            this.line('maxTextures: ' + r.maxTextures);
-            this.line('maxTextureSize: ' + r.maxTextureSize);
-            this.line('maxTextureAvailableSpace: ' + s.maxTextureAvailableSpace);
-            this.line('currentBatchedTextures: ('+ r.currentBatchedTextures.length + ')');
+            this.line('  currentBatchedTextures: ('+ r.currentBatchedTextures.length + ')');
 
             for (var i = 0; i < r.currentBatchedTextures.length; i++)
             {
-                this.line('  ' + r.currentBatchedTextures[i]);
+                this.line('    ' + r.currentBatchedTextures[i]);
             }
+
+            this.line('  drawCount: ' + s.drawCount);
+            this.line('  maxTextures: ' + r.maxTextures);
+            this.line('  maxTextureSize: ' + r.maxTextureSize);
+            this.line('  maxTextureAvailableSpace: ' + s.maxTextureAvailableSpace);
+            this.line('  roundPixels: ' + s.roundPixels);
         }
         else
         {
-            this.line('roundPixels: ' + s.roundPixels);
-            this.line('scaleMode: ' + (s.scaleMode === 0 ? 'LINEAR' : (s.scaleMode === 1 ? 'NEAREST' : s.scaleMode)));
+            this.line('  roundPixels: ' + s.roundPixels);
+            this.line('  scaleMode: ' + (s.scaleMode === 0 ? 'LINEAR' : (s.scaleMode === 1 ? 'NEAREST' : s.scaleMode)));
         }
 
         this.stop();

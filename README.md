@@ -334,7 +334,19 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Updates
 
+* Removed deprecated Phaser.Events#onRemovedFromWorld.
+
 ### Bug Fixes
+
+* Fixed some TypeScript definitions (#354).
+* [Phaser.Color.updateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_updateColor) rounds RGB values to integers when updating the `rgba` property (#361).
+
+### Documentation
+
+* Added Phaser.Button `callback` arguments (same as Phaser.Events#onInputUp) (#353).
+* Corrected [Phaser.Tileset#containsTileIndex](https://photonstorm.github.io/phaser-ce/Phaser.Tileset.html#containsTileIndex) (#358).
+* Corrected [Phaser.State: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.State.html).
+* Added [Phaser.Plugin: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.Plugin.html).
 
 ### Thanks
 
