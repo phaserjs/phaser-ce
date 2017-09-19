@@ -7,6 +7,18 @@
 /**
 * This is a base Plugin template to use for any Phaser plugin development.
 *
+* ##### Callbacks
+*
+* add  | active      | visible     | remove
+* -----|-------------|-------------|--------
+* init |             |             |
+*      | preUpdate*  |             |
+*      | update*     | render*     |
+*      | postUpdate* | postRender* |
+*      |             |             | destroy
+*
+* Update and render calls are repeated (*).
+*
 * @class Phaser.Plugin
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.

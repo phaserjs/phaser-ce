@@ -346,6 +346,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Added Phaser.Button `callback` arguments (same as Phaser.Events#onInputUp) (#353).
 * Corrected [Phaser.Tileset#containsTileIndex](https://photonstorm.github.io/phaser-ce/Phaser.Tileset.html#containsTileIndex) (#358).
 * Corrected [Phaser.State: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.State.html).
+* Added [Phaser.Plugin: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.Plugin.html).
 
 ### Thanks
 
