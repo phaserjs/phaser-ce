@@ -810,14 +810,14 @@ Phaser.Color = {
         var src1 = Phaser.Color.getRGB(color1);
         var src2 = Phaser.Color.getRGB(color2);
         
-        if(colorSpace == 0)
+        if(colorSpace === 0)
         {
             var r = (((src2.red - src1.red) * currentStep) / steps) + src1.red;
             var g = (((src2.green - src1.green) * currentStep) / steps) + src1.green;
             var b = (((src2.blue - src1.blue) * currentStep) / steps) + src1.blue;
         }
 
-        if(colorSpace == 1)
+        if(colorSpace === 1)
         {
             var hsv1 = Phaser.Color.RGBtoHSV(src1.r,src1.g,src1.b);
             var hsv2 = Phaser.Color.RGBtoHSV(src2.r,src2.g,src2.b);
