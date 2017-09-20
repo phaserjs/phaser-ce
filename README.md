@@ -332,6 +332,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### New Features
 
+* added color space option (RGB or HSV) in [Phaser.Color.interpolateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_interpolateColor)
+
 ### Updates
 
 * Removed deprecated Phaser.Events#onRemovedFromWorld.
@@ -350,6 +352,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Added [Phaser.Plugin: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.Plugin.html).
 
 ### Thanks
+
+@samid737
 
 ## Version 2.8.7 - 12th September 2017
 

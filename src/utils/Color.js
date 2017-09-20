@@ -798,22 +798,64 @@ Phaser.Color = {
     * @param {number} color2 - The second color value.
     * @param {number} steps - The number of steps to run the interpolation over.
     * @param {number} currentStep - The currentStep value. If the interpolation will take 100 steps, a currentStep value of 50 would be half-way between the two.
+    * @param {number} [colorSpace=0] - The color space to interpolate in. 0=RGB , 1=HSV.
     * @param {number} alpha - The alpha of the returned color.
     * @returns {number} The interpolated color value.
     */
-    interpolateColor: function (color1, color2, steps, currentStep, alpha) {
-
+    interpolateColor: function (color1, color2, steps, currentStep, colorSpace,alpha) {
+        
         if (alpha === undefined) { alpha = 255; }
-
+        if (colorSpace === undefined) { colorSpace = 0; }
+        
         var src1 = Phaser.Color.getRGB(color1);
         var src2 = Phaser.Color.getRGB(color2);
-        var r = (((src2.red - src1.red) * currentStep) / steps) + src1.red;
-        var g = (((src2.green - src1.green) * currentStep) / steps) + src1.green;
-        var b = (((src2.blue - src1.blue) * currentStep) / steps) + src1.blue;
+        
+        if(colorSpace == 0)
+        {
+            var r = (((src2.red - src1.red) * currentStep) / steps) + src1.red;
+            var g = (((src2.green - src1.green) * currentStep) / steps) + src1.green;
+            var b = (((src2.blue - src1.blue) * currentStep) / steps) + src1.blue;
+        }
+
+        if(colorSpace == 1)
+        {
+            var hsv1 = Phaser.Color.RGBtoHSV(src1.r,src1.g,src1.b);
+            var hsv2 = Phaser.Color.RGBtoHSV(src2.r,src2.g,src2.b);
+            var dh = hsv2.h - hsv1.h;
+            var h;
+
+            if (hsv1.h > hsv2.h)
+            {
+                var h3 = hsv2.h;
+                hsv2.h = hsv1.h;
+                hsv1.h = h3;
+                dh = -dh;
+                currentStep = steps - currentStep;
+            }
+
+            if (dh > 0.5)
+            {
+                hsv1.h = hsv1.h + 1; 
+                h =  (((hsv2.h-hsv1.h) * currentStep / steps) + hsv1.h)%1;
+            }
+            
+            if (dh <= 0.5)
+            {
+                h = ((hsv2.h-hsv1.h) * currentStep / steps) + hsv1.h;
+            }
+            
+            var s = (((hsv2.s - hsv1.s) * currentStep) / steps) + hsv1.s;
+            var v = (((hsv2.v - hsv1.v) * currentStep) / steps) + hsv1.v;
+
+            var rgb = Phaser.Color.HSVtoRGB(h,s,v,rgb);
+            var r = rgb.r;
+            var g = rgb.g;
+            var b = rgb.b;             
+        }
 
         return Phaser.Color.getColor32(alpha, r, g, b);
 
-    },
+        },
 
     /**
     * Interpolates the two given colours based on the supplied step and currentStep properties.
