@@ -2884,7 +2884,6 @@ declare module Phaser {
                 blendMode: Phaser.blendModes;
                 bottom: number;
                 bounce: Phaser.Point;
-                count: EmitterCount; // deprecated
                 counts: EmitterCount;
                 emitX: number;
                 emitY: number;
