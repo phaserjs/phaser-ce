@@ -2174,6 +2174,20 @@ Phaser.Group.prototype.iterate = function (key, value, returnType, callback, cal
 };
 
 /**
+* Get the first display object with the given property name and value.
+*
+* @method Phaser.Group#getFirst
+* @param {string} key - The child property to check.
+* @param {string} value - A child matches if `child[key] === value` is true.
+* @return {DisplayObject} The first child matching the query, or `null` if none were found.
+*/
+Phaser.Group.prototype.getFirst = function (key, value) {
+
+    return this.iterate(key, value, Phaser.Group.RETURN_CHILD);
+
+};
+
+/**
 * Get the first display object that exists, or doesn't exist.
 *
 * You can use the optional argument `createIfNull` to create a new Game Object if none matching your exists argument were found in this Group.
@@ -2201,7 +2215,7 @@ Phaser.Group.prototype.getFirstExists = function (exists, createIfNull, x, y, ke
         exists = true;
     }
 
-    var child = this.iterate('exists', exists, Phaser.Group.RETURN_CHILD);
+    var child = this.getFirst('exists', exists);
 
     return (child === null && createIfNull) ? this.create(x, y, key, frame) : this.resetChild(child, x, y, key, frame);
 
@@ -2231,7 +2245,7 @@ Phaser.Group.prototype.getFirstAlive = function (createIfNull, x, y, key, frame)
 
     if (createIfNull === undefined) { createIfNull = false; }
 
-    var child = this.iterate('alive', true, Phaser.Group.RETURN_CHILD);
+    var child = this.getFirst('alive', true);
 
     return (child === null && createIfNull) ? this.create(x, y, key, frame) : this.resetChild(child, x, y, key, frame);
 
@@ -2261,7 +2275,7 @@ Phaser.Group.prototype.getFirstDead = function (createIfNull, x, y, key, frame) 
 
     if (createIfNull === undefined) { createIfNull = false; }
 
-    var child = this.iterate('alive', false, Phaser.Group.RETURN_CHILD);
+    var child = this.getFirst('alive', false);
 
     return (child === null && createIfNull) ? this.create(x, y, key, frame) : this.resetChild(child, x, y, key, frame);
 
@@ -2429,6 +2443,20 @@ Phaser.Group.prototype.getFurthestFrom = function (object, callback, callbackCon
 };
 
 /**
+* Get the number of children with the given property name and value.
+*
+* @method Phaser.Group#count
+* @param {string} key - The child property to check.
+* @param {string} value - A child matches if `child[key] === value` is true.
+* @return {integer} The number of children matching the query.
+*/
+Phaser.Group.prototype.count = function (key, value) {
+
+    return this.iterate(key, value, Phaser.Group.RETURN_TOTAL);
+
+};
+
+/**
 * Get the number of living children in this group.
 *
 * @method Phaser.Group#countLiving
@@ -2436,7 +2464,7 @@ Phaser.Group.prototype.getFurthestFrom = function (object, callback, callbackCon
 */
 Phaser.Group.prototype.countLiving = function () {
 
-    return this.iterate('alive', true, Phaser.Group.RETURN_TOTAL);
+    return this.count('alive', true);
 
 };
 
@@ -2448,7 +2476,7 @@ Phaser.Group.prototype.countLiving = function () {
 */
 Phaser.Group.prototype.countDead = function () {
 
-    return this.iterate('alive', false, Phaser.Group.RETURN_TOTAL);
+    return this.count('alive', false);
 
 };
 
