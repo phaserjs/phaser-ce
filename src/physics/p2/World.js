@@ -1650,8 +1650,9 @@ Phaser.Physics.P2.prototype = {
             // polyline: json.layers[i].objects[v].polyline
 
             var object = map.collision[layer][i];
+            var shapeData = object.polyline || object.polygon;
 
-            var body = this.createBody(object.x, object.y, 0, addToWorld, {}, object.polyline);
+            var body = this.createBody(object.x, object.y, 0, addToWorld, {}, shapeData);
 
             if (body)
             {
