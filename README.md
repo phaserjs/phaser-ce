@@ -341,6 +341,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Fixed some TypeScript definitions (#354).
 * [Phaser.Color.updateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_updateColor) rounds RGB values to integers when updating the `rgba` property (#361).
+* Fixed a nonfatal error when clicking the game canvas in browsers not supporting [Document.hasFocus()](https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus) (e.g., Opera Mini, older Opera) (#367). In these browsers the game may not automatically resume when refocused in an iframe; use one of the workarounds in #236.
 
 ### Documentation
 

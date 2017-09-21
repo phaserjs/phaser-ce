@@ -263,7 +263,7 @@ Phaser.Stage.prototype.checkVisibility = function () {
     };
 
     this._onClick = function (event) {
-        if (!document.hasFocus())
+        if ((document.hasFocus !== undefined) && !document.hasFocus())
         {
             _this.visibilityChange(event);
         }
