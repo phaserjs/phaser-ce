@@ -571,6 +571,7 @@ Phaser.TilemapParser = {
 
         //  Tilesets & Image Collections
         var tilesets = [];
+        var tilesetGroupObjects = {};
         var imagecollections = [];
         var lastSet = null;
 
@@ -614,6 +615,17 @@ Phaser.TilemapParser = {
             else
             {
                 throw new Error('Tileset ' + set.name + ' has no `image` or `tiles` property.');
+            }
+
+            // build a temporary object for objectgroups found in the tileset's tiles
+            for (var ti in set.tiles)
+            {
+                var objectGroup = set.tiles[ti].objectgroup
+                if (!objectGroup)
+                {
+                    continue;
+                }
+                tilesetGroupObjects[parseInt(ti) + set.firstgid] = objectGroup;
             }
 
             //  We've got a new Tileset, so set the lastgid into the previous one
@@ -738,6 +750,21 @@ Phaser.TilemapParser = {
                     if (set.tileProperties && set.tileProperties[tile.index - set.firstgid])
                     {
                         tile.properties = Phaser.Utils.mixin(set.tileProperties[tile.index - set.firstgid], tile.properties);
+                    }
+
+                    var objectGroup = tilesetGroupObjects[tile.index];
+                    if (objectGroup)
+                    {
+                        // build collisions and objects for objectgroups found in the tileset's tiles
+                        this.parseObjectGroup(
+                            objectGroup,
+                            map.objects,
+                            map.collision,
+                            tile.layer.name,
+                            {
+                                x: tile.worldX + objectGroup.x,
+                                y: tile.worldY + objectGroup.y
+                            });
                     }
 
                 }
