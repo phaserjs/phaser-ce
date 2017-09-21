@@ -349,6 +349,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Corrected [Phaser.Tileset#containsTileIndex](https://photonstorm.github.io/phaser-ce/Phaser.Tileset.html#containsTileIndex) (#358).
 * Corrected [Phaser.State: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.State.html).
 * Added [Phaser.Plugin: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.Plugin.html).
+* Updated [TypeScript guide](https://github.com/photonstorm/phaser-ce/issues/292) (#292). Edits are welcome.
 
 ### Thanks
 
