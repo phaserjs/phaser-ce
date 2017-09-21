@@ -177,6 +177,144 @@ Phaser.TilemapParser = {
 
     },
 
+
+    /**
+    * Parses an object group in Tiled JSON files. Object groups can be found in both layers and tilesets. Called internally in parseTiledJSON.
+    * @method Phaser.TilemapParser.parseObjectGroup
+    * @param {object} objectGroup - A JSON object group.
+    * @param {object} objectsCollection - An object into which new array of Tiled map objects will be added.
+    * @param {object} collisionCollection - An object into which new array of collision objects will be added. Currently only polylines are added.
+    * @param {string} [nameKey=objectGroup.name] - Key under which to store objects in collisions in objectsCollection and collisionCollection
+    * @param {object} [relativePosition={x: 0, y: 0}] - Coordinates the object group's positionis relative to.
+    * @return {object} A object literal containing the objectsCollection and collisionCollection
+    */
+    parseObjectGroup: function(objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition){
+        var nameKey = nameKey || objectGroup.name
+        var relativePosition = relativePosition || {x: 0, y: 0}
+
+        if (!nameKey) {
+            console.warn("No name found for objectGroup", objectGroup);
+        }
+        if (relativePosition.x === undefined || relativePosition.y === undefined) {
+            console.warn("Malformed xy properties in relativePosition", relativePosition);
+        }
+
+        objectsCollection[nameKey] = objectsCollection[nameKey] || [];
+        collisionCollection[nameKey] = collisionCollection[nameKey] || [];
+
+        for (var v = 0, len = objectGroup.objects.length; v < len; v++)
+        {
+            //  Object Tiles
+            if (objectGroup.objects[v].gid)
+            {
+                var object = {
+
+                    gid: objectGroup.objects[v].gid,
+                    name: objectGroup.objects[v].name,
+                    type: objectGroup.objects[v].hasOwnProperty("type") ? objectGroup.objects[v].type : "",
+                    x: objectGroup.objects[v].x + relativePosition.x,
+                    y: objectGroup.objects[v].y + relativePosition.y,
+                    width: objectGroup.objects[v].width,
+                    height: objectGroup.objects[v].height,
+                    visible: objectGroup.objects[v].visible,
+                    properties: objectGroup.objects[v].properties
+
+                };
+
+                if (objectGroup.objects[v].rotation)
+                {
+                    object.rotation = objectGroup.objects[v].rotation;
+                }
+
+                objectsCollection[nameKey].push(object);
+            }
+            else if (objectGroup.objects[v].polyline)
+            {
+                var object = {
+
+                    name: objectGroup.objects[v].name,
+                    type: objectGroup.objects[v].type,
+                    x: objectGroup.objects[v].x + relativePosition.x,
+                    y: objectGroup.objects[v].y + relativePosition.y,
+                    width: objectGroup.objects[v].width,
+                    height: objectGroup.objects[v].height,
+                    visible: objectGroup.objects[v].visible,
+                    properties: objectGroup.objects[v].properties
+
+                };
+
+                if (objectGroup.objects[v].rotation)
+                {
+                    object.rotation = objectGroup.objects[v].rotation;
+                }
+
+                object.polyline = [];
+
+                //  Parse the polyline into an array
+                for (var p = 0; p < objectGroup.objects[v].polyline.length; p++)
+                {
+                    object.polyline.push([objectGroup.objects[v].polyline[p].x, objectGroup.objects[v].polyline[p].y]);
+                }
+
+
+                collisionCollection[nameKey].push(object);
+                objectsCollection[nameKey].push(object);
+            }
+            // polygon
+            else if (objectGroup.objects[v].polygon)
+            {
+                var object = slice(objectGroup.objects[v], ['name', 'type', 'x', 'y', 'visible', 'rotation', 'properties']);
+
+                //  Parse the polygon into an array
+                object.polygon = [];
+
+                for (var p = 0; p < objectGroup.objects[v].polygon.length; p++)
+                {
+                    object.polygon.push([objectGroup.objects[v].polygon[p].x, objectGroup.objects[v].polygon[p].y]);
+                }
+
+                collisionCollection[nameKey].push(object);
+                objectsCollection[nameKey].push(object);
+
+            }
+            // ellipse
+            else if (objectGroup.objects[v].ellipse)
+            {
+                var object = slice(objectGroup.objects[v], ['name', 'type', 'ellipse', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
+                objectsCollection[nameKey].push(object);
+            }
+            // otherwise it's a rectangle
+            else
+            {
+                var object = slice(objectGroup.objects[v], ['name', 'type', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
+                object.rectangle = true;
+                objectsCollection[nameKey].push(object);
+            }
+        }
+
+        function slice (obj, fields) {
+
+            var sliced = {};
+
+            for (var k in fields)
+            {
+                var key = fields[k];
+
+                if (typeof obj[key] !== 'undefined')
+                {
+                    sliced[key] = obj[key];
+                }
+            }
+
+            return sliced;
+        }
+
+        return {
+            objectsCollection: objectsCollection,
+            collisionCollection: collisionCollection
+        }
+    },
+
     /**
     * Parses a Tiled JSON file into valid map data.
     * @method Phaser.TilemapParser.parseTiledJSON
@@ -499,23 +637,6 @@ Phaser.TilemapParser = {
         var objects = {};
         var collision = {};
 
-        function slice (obj, fields) {
-
-            var sliced = {};
-
-            for (var k in fields)
-            {
-                var key = fields[k];
-
-                if (typeof obj[key] !== 'undefined')
-                {
-                    sliced[key] = obj[key];
-                }
-            }
-
-            return sliced;
-        }
-
         for (var i = 0; i < json.layers.length; i++)
         {
             if (json.layers[i].type !== 'objectgroup')
@@ -523,98 +644,8 @@ Phaser.TilemapParser = {
                 continue;
             }
 
-            var curo = json.layers[i];
-
-            objects[curo.name] = [];
-            collision[curo.name] = [];
-
-            for (var v = 0, len = curo.objects.length; v < len; v++)
-            {
-                //  Object Tiles
-                if (curo.objects[v].gid)
-                {
-                    var object = {
-
-                        gid: curo.objects[v].gid,
-                        name: curo.objects[v].name,
-                        type: curo.objects[v].hasOwnProperty("type") ? curo.objects[v].type : "",
-                        x: curo.objects[v].x,
-                        y: curo.objects[v].y,
-                        width: curo.objects[v].width,
-                        height: curo.objects[v].height,
-                        visible: curo.objects[v].visible,
-                        properties: curo.objects[v].properties
-
-                    };
-
-                    if (curo.objects[v].rotation)
-                    {
-                        object.rotation = curo.objects[v].rotation;
-                    }
-
-                    objects[curo.name].push(object);
-                }
-                else if (curo.objects[v].polyline)
-                {
-                    var object = {
-
-                        name: curo.objects[v].name,
-                        type: curo.objects[v].type,
-                        x: curo.objects[v].x,
-                        y: curo.objects[v].y,
-                        width: curo.objects[v].width,
-                        height: curo.objects[v].height,
-                        visible: curo.objects[v].visible,
-                        properties: curo.objects[v].properties
-
-                    };
-
-                    if (curo.objects[v].rotation)
-                    {
-                        object.rotation = curo.objects[v].rotation;
-                    }
-
-                    object.polyline = [];
-
-                    //  Parse the polyline into an array
-                    for (var p = 0; p < curo.objects[v].polyline.length; p++)
-                    {
-                        object.polyline.push([ curo.objects[v].polyline[p].x, curo.objects[v].polyline[p].y ]);
-                    }
-
-                    collision[curo.name].push(object);
-                    objects[curo.name].push(object);
-                }
-                // polygon
-                else if (curo.objects[v].polygon)
-                {
-                    var object = slice(curo.objects[v], ['name', 'type', 'x', 'y', 'visible', 'rotation', 'properties']);
-
-                    //  Parse the polygon into an array
-                    object.polygon = [];
-
-                    for (var p = 0; p < curo.objects[v].polygon.length; p++)
-                    {
-                        object.polygon.push([curo.objects[v].polygon[p].x, curo.objects[v].polygon[p].y]);
-                    }
-
-                    objects[curo.name].push(object);
-
-                }
-                // ellipse
-                else if (curo.objects[v].ellipse)
-                {
-                    var object = slice(curo.objects[v], ['name', 'type', 'ellipse', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
-                    objects[curo.name].push(object);
-                }
-                // otherwise it's a rectangle
-                else
-                {
-                    var object = slice(curo.objects[v], ['name', 'type', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
-                    object.rectangle = true;
-                    objects[curo.name].push(object);
-                }
-            }
+            var objectGroup = json.layers[i];
+            this.parseObjectGroup(objectGroup, objects, collision)
         }
 
         map.objects = objects;
