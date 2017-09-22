@@ -185,7 +185,7 @@ Phaser.TilemapParser = {
     * @param {object} objectsCollection - An object into which new array of Tiled map objects will be added.
     * @param {object} collisionCollection - An object into which new array of collision objects will be added. Currently only polylines are added.
     * @param {string} [nameKey=objectGroup.name] - Key under which to store objects in collisions in objectsCollection and collisionCollection
-    * @param {object} [relativePosition={x: 0, y: 0}] - Coordinates the object group's positionis relative to.
+    * @param {object} [relativePosition={x: 0, y: 0}] - Coordinates the object group's position is relative to.
     * @return {object} A object literal containing the objectsCollection and collisionCollection
     */
     parseObjectGroup: function(objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition){
@@ -265,6 +265,9 @@ Phaser.TilemapParser = {
             {
                 var object = slice(objectGroup.objects[v], ['name', 'type', 'x', 'y', 'visible', 'rotation', 'properties']);
 
+                object.x += relativePosition.x
+                object.y += relativePosition.y
+
                 //  Parse the polygon into an array
                 object.polygon = [];
 
@@ -281,13 +284,21 @@ Phaser.TilemapParser = {
             else if (objectGroup.objects[v].ellipse)
             {
                 var object = slice(objectGroup.objects[v], ['name', 'type', 'ellipse', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
+                object.x += relativePosition.x;
+                object.y += relativePosition.y;
+
+                collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
             }
             // otherwise it's a rectangle
             else
             {
                 var object = slice(objectGroup.objects[v], ['name', 'type', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
+                object.x += relativePosition.x;
+                object.y += relativePosition.y;
+
                 object.rectangle = true;
+                collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
             }
         }
@@ -721,7 +732,7 @@ Phaser.TilemapParser = {
         for (var i = 0; i < map.layers.length; i++)
         {
             layer = map.layers[i];
-
+            collision[layer.name] = []
             set = null;
 
             // rows of tiles
