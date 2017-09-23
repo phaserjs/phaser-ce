@@ -535,7 +535,7 @@ Phaser.BitmapData.prototype = {
     *
     * Most browsers now load the image data asynchronously, so you should use a callback:
     *
-    * ```
+    * ```javascript
     * bitmapdata.generateTexture('ball', function (texture) {
     *     game.add.sprite(0, 0, texture);
     *     // or

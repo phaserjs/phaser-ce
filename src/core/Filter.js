@@ -11,7 +11,7 @@
 *
 * The default uniforms, types and values for all Filters are:
 *
-* ```
+* ```javascript
 * resolution: { type: '2f', value: { x: 256, y: 256 }}
 * time: { type: '1f', value: 0 }
 * mouse: { type: '2f', value: { x: 0.0, y: 0.0 } }
