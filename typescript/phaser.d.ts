@@ -5700,6 +5700,7 @@ declare module Phaser {
             font: string;
             game: Phaser.Game;
             lineHeight: number;
+            lineWidth: number;
             renderShadow: boolean;
             sprite: Phaser.Image;
 
