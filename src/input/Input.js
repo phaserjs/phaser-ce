@@ -291,25 +291,44 @@ Phaser.Input = function (game) {
     this.resetLocked = false;
 
     /**
-    * A Signal that is dispatched each time a pointer is pressed down.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is pressed down.
+    * It is sent two arguments:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    * - {Event} The original DOM event.
+    *
     * @property {Phaser.Signal} onDown
     */
     this.onDown = null;
 
     /**
-    * A Signal that is dispatched each time a pointer is released.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is released.
+    * It is sent two arguments:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    * - {Event} The original DOM event.
+    *
     * @property {Phaser.Signal} onUp
     */
     this.onUp = null;
 
     /**
-    * A Signal that is dispatched each time a pointer is tapped.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is tapped.
+    * It is sent two arguments:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    * - {boolean} True if this was a double tap.
+    *
     * @property {Phaser.Signal} onTap
     */
     this.onTap = null;
 
     /**
-    * A Signal that is dispatched each time a pointer is held down.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is held down.
+    * It is sent one argument:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    *
     * @property {Phaser.Signal} onHold
     */
     this.onHold = null;
