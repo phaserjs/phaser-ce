@@ -330,6 +330,9 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
+* Tiled polygons and rectangles are now converted into p2 physics bodies when using `Phaser.Physics.P2#convertCollisionObjects`.
+* Tileset-level collision objects created in Tiled are now added to a map's `collision` and 'objects' properties using the layer's name as the key.
+
 ### New Features
 
 ### Updates
@@ -356,7 +359,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@bobhfut, @falquaddoomi, @HaoboZ, @pavle-goloskokovic, @samme
+@bobhfut, @falquaddoomi, @HaoboZ, @pavle-goloskokovic, @samme, @masondesu
 
 ## Version 2.8.7 - 12th September 2017
 
