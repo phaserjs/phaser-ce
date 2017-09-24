@@ -1662,7 +1662,7 @@ Phaser.Physics.P2.prototype = {
             else if (object.rectangle)
             {
                 var body = this.createBody(object.x, object.y, 0, addToWorld);
-                body.addRectangle(object.width, object.height, object.width / 2, object.height / 2)
+                body.addRectangle(object.width, object.height, object.width / 2, object.height / 2);
             }
 
             // ellipse could be added here, but Tiled ellipses use height/width instead of radius

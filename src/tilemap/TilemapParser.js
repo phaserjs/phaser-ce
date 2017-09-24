@@ -189,8 +189,8 @@ Phaser.TilemapParser = {
     * @return {object} A object literal containing the objectsCollection and collisionCollection
     */
     parseObjectGroup: function(objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition){
-        var nameKey = nameKey || objectGroup.name
-        var relativePosition = relativePosition || {x: 0, y: 0}
+        var nameKey = nameKey || objectGroup.name;
+        var relativePosition = relativePosition || {x: 0, y: 0};
 
         if (!nameKey) {
             console.warn("No name found for objectGroup", objectGroup);
@@ -323,7 +323,7 @@ Phaser.TilemapParser = {
         return {
             objectsCollection: objectsCollection,
             collisionCollection: collisionCollection
-        }
+        };
     },
 
     /**
@@ -668,7 +668,7 @@ Phaser.TilemapParser = {
             }
 
             var objectGroup = json.layers[i];
-            this.parseObjectGroup(objectGroup, objects, collision)
+            this.parseObjectGroup(objectGroup, objects, collision);
         }
 
         map.objects = objects;
@@ -732,7 +732,7 @@ Phaser.TilemapParser = {
         for (var i = 0; i < map.layers.length; i++)
         {
             layer = map.layers[i];
-            collision[layer.name] = []
+            collision[layer.name] = [];
             set = null;
 
             // rows of tiles
