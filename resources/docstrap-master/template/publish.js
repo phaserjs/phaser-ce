@@ -191,7 +191,7 @@ function addSignatureReturns (f) {
   if (navOptions.methodHeadingReturns) {
     var returnTypes = helper.getSignatureReturns(f);
 
-    f.signature = '<span class="signature">' + (f.signature || '') + '</span>' + '<span class="type-signature">' + (returnTypes.length ? ' &rarr; {' + returnTypes.join('|') + '}' : '') + '</span>';
+    f.signature = '<span class="signature">' + (f.signature || '') + '</span>' + '<span class="type-signature">' + (returnTypes.length ? (' &rarr; {' + returnTypes.join(' | ') + '}') : '') + '</span>';
   } else {
     f.signature = f.signature || '';
   }
@@ -200,13 +200,13 @@ function addSignatureReturns (f) {
 function addSignatureTypes (f) {
   var types = helper.getSignatureTypes(f);
 
-  f.signature = (f.signature || '') + '<span class="type-signature">' + (types.length ? ' :' + types.join('|') : '') + '</span>';
+  f.signature = (f.signature || '') + '<span class="type-signature">' + (types.length ? (' : ' + types.join(' | ')) : '') + '</span>';
 }
 
 function addAttribs (f) {
   var attribs = helper.getAttribs(f);
 
-  f.attribs = '<span class="type-signature">' + htmlsafe(attribs.length ? '<' + attribs.join(', ') + '> ' : '') + '</span>';
+  f.attribs = '<span class="type-signature">' + htmlsafe(attribs.length ? ('<' + attribs.join(', ') + '> ') : '') + '</span>';
 }
 
 function shortenPaths (files, commonPrefix) {

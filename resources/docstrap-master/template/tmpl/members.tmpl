@@ -2,9 +2,11 @@
 var data = obj;
 var self = this;
 ?>
-<dt class="name" id="<?js= id ?>">
-    <h4 id="<?js= id ?>"><?js= data.attribs + name + (data.signature ? data.signature : '') ?></h4>
-
+<dt>
+    <h4 id="<?js= id ?>" data-name="<?js= name ?>">
+      <?js= data.attribs + name + (data.signature ? data.signature : '') ?>
+      <?js if (data.deprecated) { ?><span class="label label-warning">deprecated</span><?js } ?>
+    </h4>
     <?js if (data.summary) { ?>
     <p class="summary"><?js= summary ?></p>
     <?js } ?>
