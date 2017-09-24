@@ -29,7 +29,7 @@ jQuery(function ($) {
 
   holmes({
     find: '#toc a',
-    input: '#filter',
+    input: '#toc-filter-input',
     placeholder: '<div class="alert alert-warning" role="alert">None match.</div>'
   })
     .start();
