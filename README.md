@@ -328,7 +328,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.8.8 - 25th September 2017
 
 ### New Features
 
@@ -357,17 +357,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Thanks
 
 @bobhfut, @falquaddoomi, @HaoboZ, @pavle-goloskokovic, @photonstorm, @samme
-
-## Version 2.8.7 - 12th September 2017
-
-### Bug Fixes
-
-* Fixed TypeScript error (#351).
-* [onChildInputDown](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputDown), [onChildInputUp](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputUp), [onChildInputOver](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputOver), and [onChildInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputOut) signals now fire correctly for particle emitters (#349).
-
-### Thanks
-
-@lucasgray, @photonstorm, @samme, @yupaul
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
