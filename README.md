@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.8.7](https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.7).
+The [current Phaser CE release is 2.8.8](https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.8).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -128,16 +128,16 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.7/build/phaser.js"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.8/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.7"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.8.8"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.8.7/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.8.8/build/custom/) are available too.
 
 <a name="getting-started"></a>
 
@@ -328,7 +328,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.8.8 - 25th September 2017
 
 ### New Features
 
@@ -341,7 +341,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Fixed p2 polygon collisions (#366).
 * Fixed a nonfatal error when clicking the game canvas in browsers not supporting [Document.hasFocus()](https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus) (e.g., Opera Mini, older Opera) (#367). In these browsers the game may not automatically resume when refocused in an iframe; use one of the workarounds in #236.
-* [Phaser.Color.updateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_updateColor) rounds RGB values to integers when updating the `rgba` property (#361).
+* [Phaser.Color.updateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_updateColor) now rounds fractional RGB values to integers when updating the `rgba` property (#361).
 * Added `roundPixels` to [WebGLRenderer#renderSession](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#renderSession) (#362).
 * Fixed some TypeScript definitions (#354, #368).
 
@@ -356,18 +356,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@bobhfut, @falquaddoomi, @HaoboZ, @pavle-goloskokovic, @samme
-
-## Version 2.8.7 - 12th September 2017
-
-### Bug Fixes
-
-* Fixed TypeScript error (#351).
-* [onChildInputDown](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputDown), [onChildInputUp](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputUp), [onChildInputOver](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputOver), and [onChildInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputOut) signals now fire correctly for particle emitters (#349).
-
-### Thanks
-
-@lucasgray, @photonstorm, @samme, @yupaul
+@bobhfut, @falquaddoomi, @HaoboZ, @pavle-goloskokovic, @photonstorm, @samme
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
@@ -391,10 +380,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.7/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.7/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.8.7.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.8.7.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.8/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.8.8/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.8.8.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.8.8.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser

@@ -1,11 +1,37 @@
 (function ($) {
 
-  $.create = function (elm) {
-    return $(document.createElement(elm));
-  };
-
   var getSafeId = function (id) {
     return id.replace(/^\W+/i, '_');
+  };
+
+  var getExistingIds = function () {
+    return $('[id]')
+      .map(function (i, elm) {
+        return elm.id;
+      })
+      .get()
+      .sort();
+  };
+
+  var getExistingIdsMap = function () {
+    var ids = getExistingIds();
+    var map = {};
+
+    for (var i = 0; i < ids.length; i++) {
+      var id = ids[i];
+
+      if (map[id]) {
+        console.warn('Duplicate id:', id);
+      } else {
+        map[id] = true;
+      }
+    }
+
+    return map;
+  };
+
+  $.create = function (elm) {
+    return $(document.createElement(elm));
   };
 
   $.toc = function (options) {
@@ -21,6 +47,8 @@
       return options.prefix + (n++);
     };
 
+    getExistingIdsMap(); // as check
+
     $targets.each(function (i, target) {
       var id = target.id;
       var textContent = target.textContent.trim();
@@ -29,6 +57,8 @@
         console.warn('textContent is empty', id);
         return true; // continue
       }
+
+      var name = target.getAttribute('data-name') || textContent;
 
       var $output = $.create('a');
       var $span = $.create('span');
@@ -52,7 +82,7 @@
       }
 
       $span
-        .text(textContent)
+        .text(name)
         .addClass(options.prefix + target.tagName.toLowerCase())
         .appendTo($output);
 

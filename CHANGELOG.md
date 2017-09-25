@@ -4,6 +4,36 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.8.8 - 25th September 2017
+
+### New Features
+
+### Updates
+
+* Renamed [Emitter#count](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#count) to [Emitter#counts](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#counts). Emitter#count is deprecated and will be removed in v2.9.0.
+* Removed deprecated Phaser.Events#onRemovedFromWorld.
+
+### Bug Fixes
+
+* Fixed p2 polygon collisions (#366).
+* Fixed a nonfatal error when clicking the game canvas in browsers not supporting [Document.hasFocus()](https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus) (e.g., Opera Mini, older Opera) (#367). In these browsers the game may not automatically resume when refocused in an iframe; use one of the workarounds in #236.
+* [Phaser.Color.updateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_updateColor) now rounds fractional RGB values to integers when updating the `rgba` property (#361).
+* Added `roundPixels` to [WebGLRenderer#renderSession](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#renderSession) (#362).
+* Fixed some TypeScript definitions (#354, #368).
+
+### Documentation
+
+* Updated [TypeScript guide](https://github.com/photonstorm/phaser-ce/issues/292) (#292). Edits are welcome.
+* Added [Phaser.Button](https://photonstorm.github.io/phaser-ce/Phaser.Button.html) `callback` arguments (same as [Phaser.Events#onInputUp](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onInputUp)) (#353).
+* Added [Phaser.Input](https://photonstorm.github.io/phaser-ce/Phaser.Input.html) callback arguments (#368).
+* Added [Phaser.Plugin: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.Plugin.html).
+* Corrected [Phaser.Tileset#containsTileIndex](https://photonstorm.github.io/phaser-ce/Phaser.Tileset.html#containsTileIndex) (#358).
+* Corrected [Phaser.State: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.State.html).
+
+### Thanks
+
+@bobhfut, @falquaddoomi, @HaoboZ, @pavle-goloskokovic, @photonstorm, @samme
+
 ## Version 2.8.7 - 12th September 2017
 
 ### Bug Fixes

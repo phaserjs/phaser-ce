@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: Events</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2017091210">
+	<link rel="stylesheet" href="styles/site.phaser.css?2017092513">
 </head>
 
 <body>
@@ -125,7 +125,7 @@
     
         
 <dt>
-    <h4 class="name" id="Events">
+    <h4 class="name" id="Events" data-name="Events">
       <span class="type-signature"></span>new Events(sprite)
       
     </h4>
@@ -140,11 +140,11 @@
 this class are signals you can subscribe to, much in the same way you'd &quot;listen&quot; for
 an event.</p>
 <p>For example to tell when a Sprite has been added to a new group, you can bind a function
-to the <code>onAddedToGroup</code> signal:</p>
+to the <a href="Phaser.Events.html#onAddedToGroup">onAddedToGroup</a> signal:</p>
 <p><code>sprite.events.onAddedToGroup.add(yourFunction, this);</code></p>
 <p>Where <code>yourFunction</code> is the function you want called when this event occurs.</p>
-<p>For more details about how signals work please see the Phaser.Signal class.</p>
-<p>The Input-related events will only be dispatched if the Sprite has had <code>inputEnabled</code> set to <code>true</code>
+<p>For more details about how signals work please see the <a href="Phaser.Signal.html">Phaser.Signal</a> class.</p>
+<p>The Input-related events will only be dispatched if the Sprite has had <a href="Phaser.Component.InputEnabled.html#inputEnabled">inputEnabled</a> set to <code>true</code>
 and the Animation-related events only apply to game objects with animations like <a href="Phaser.Sprite.html">Phaser.Sprite</a>.</p>
     </div>
     
@@ -240,7 +240,7 @@ and the Animation-related events only apply to game objects with animations like
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L30" title="Events on line 30 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 30</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L30" title="Events on line 30 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 30</a>
     
 
 	
@@ -284,18 +284,22 @@ and the Animation-related events only apply to game objects with animations like
 
         <dl>
             
-<dt class="name" id="onAddedToGroup">
-    <h4 id="onAddedToGroup"><span class="type-signature"></span>onAddedToGroup<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onAddedToGroup" data-name="onAddedToGroup">
+      <span class="type-signature"></span>onAddedToGroup<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched when this Game Object is added to a new Group.
-It is sent two arguments:
-{any} The Game Object that was added to the Group.
-{Phaser.Group} The Group it was added to.</p>
+        <p>This signal is dispatched when this Game Object is added to a new <a href="Phaser.Group.html">Group</a>.
+It is sent two arguments:</p>
+<ul>
+<li>{any} The Game Object that was added to the Group.</li>
+<li>{Phaser.Group} The Group it was added to.</li>
+</ul>
     </div>
     
 
@@ -346,7 +350,7 @@ It is sent two arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L84" title="onAddedToGroup on line 84 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 84</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L85" title="onAddedToGroup on line 85 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 85</a>
     
 
 	
@@ -362,20 +366,24 @@ It is sent two arguments:
 
         
             
-<dt class="name" id="onAnimationComplete">
-    <h4 id="onAnimationComplete"><span class="type-signature"></span>onAnimationComplete<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onAnimationComplete" data-name="onAnimationComplete">
+      <span class="type-signature"></span>onAnimationComplete<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched if the Game Object has the AnimationManager component, 
-and an Animation has been stopped (via <code>animation.stop()</code> and the <code>dispatchComplete</code> argument has been set.
-You can also listen to <code>Animation.onComplete</code> rather than via the Game Objects events.
-It is sent two arguments:
-{any} The Game Object that received the event.
-{Phaser.Animation} The Phaser.Animation that was stopped.</p>
+        <p>This signal is dispatched if the Game Object has the <a href="Phaser.AnimationManager.html">AnimationManager</a> component,
+and an Animation has been stopped (via <a href="Phaser.AnimationManager.html#stop">animation.stop()</a> and the <code>dispatchComplete</code> argument has been set.
+You can also listen to <a href="Phaser.Animation.html#onComplete">Phaser.Animation#onComplete</a> rather than via the Game Objects events.
+It is sent two arguments:</p>
+<ul>
+<li>{any} The Game Object that received the event.</li>
+<li>{Phaser.Animation} The Phaser.Animation that was stopped.</li>
+</ul>
     </div>
     
 
@@ -426,7 +434,7 @@ It is sent two arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L249" title="onAnimationComplete on line 249 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 249</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L273" title="onAnimationComplete on line 273 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 273</a>
     
 
 	
@@ -442,20 +450,24 @@ It is sent two arguments:
 
         
             
-<dt class="name" id="onAnimationLoop">
-    <h4 id="onAnimationLoop"><span class="type-signature"></span>onAnimationLoop<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onAnimationLoop" data-name="onAnimationLoop">
+      <span class="type-signature"></span>onAnimationLoop<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched if the Game Object has the AnimationManager component, 
+        <p>This signal is dispatched if the Game Object has the <a href="Phaser.AnimationManager.html">AnimationManager</a> component,
 and an Animation has looped playback.
-You can also listen to <code>Animation.onLoop</code> rather than via the Game Objects events.
-It is sent two arguments:
-{any} The Game Object that received the event.
-{Phaser.Animation} The Phaser.Animation that looped.</p>
+You can also listen to <a href="Phaser.Animation.html#onLoop">Phaser.Animation#onLoop</a> rather than via the Game Objects events.
+It is sent two arguments:</p>
+<ul>
+<li>{any} The Game Object that received the event.</li>
+<li>{Phaser.Animation} The Phaser.Animation that looped.</li>
+</ul>
     </div>
     
 
@@ -506,7 +518,7 @@ It is sent two arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L260" title="onAnimationLoop on line 260 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 260</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L286" title="onAnimationLoop on line 286 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 286</a>
     
 
 	
@@ -522,20 +534,24 @@ It is sent two arguments:
 
         
             
-<dt class="name" id="onAnimationStart">
-    <h4 id="onAnimationStart"><span class="type-signature"></span>onAnimationStart<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onAnimationStart" data-name="onAnimationStart">
+      <span class="type-signature"></span>onAnimationStart<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched if the Game Object has the AnimationManager component, 
+        <p>This signal is dispatched if the Game Object has the <a href="Phaser.AnimationManager.html">AnimationManager</a> component,
 and an Animation has been played.
-You can also listen to <code>Animation.onStart</code> rather than via the Game Objects events.
-It is sent two arguments:
-{any} The Game Object that received the event.
-{Phaser.Animation} The Phaser.Animation that was started.</p>
+You can also listen to <a href="Phaser.Animation.html#onStart">Phaser.Animation#onStart</a> rather than via the Game Objects events.
+It is sent two arguments:</p>
+<ul>
+<li>{any} The Game Object that received the event.</li>
+<li>{Phaser.Animation} The Phaser.Animation that was started.</li>
+</ul>
     </div>
     
 
@@ -586,7 +602,7 @@ It is sent two arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L238" title="onAnimationStart on line 238 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 238</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L260" title="onAnimationStart on line 260 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 260</a>
     
 
 	
@@ -602,18 +618,22 @@ It is sent two arguments:
 
         
             
-<dt class="name" id="onDestroy">
-    <h4 id="onDestroy"><span class="type-signature"></span>onDestroy<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onDestroy" data-name="onDestroy">
+      <span class="type-signature"></span>onDestroy<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
         <p>This signal is dispatched when the Game Object is destroyed.
-This happens when <code>Sprite.destroy()</code> is called, or <code>Group.destroy()</code> with <code>destroyChildren</code> set to true.
-It is sent one argument:
-{any} The Game Object that was destroyed.</p>
+This happens when <a href="Phaser.Sprite.html#destroy">Sprite.destroy()</a> is called, or <a href="Phaser.Group.html#destroy">Group.destroy()</a> with <code>destroyChildren</code> set to true.
+It is sent one argument:</p>
+<ul>
+<li>{any} The Game Object that was destroyed.</li>
+</ul>
     </div>
     
 
@@ -664,7 +684,7 @@ It is sent one argument:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L109" title="onDestroy on line 109 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 109</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L107" title="onDestroy on line 107 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 107</a>
     
 
 	
@@ -680,22 +700,26 @@ It is sent one argument:
 
         
             
-<dt class="name" id="onDragStart">
-    <h4 id="onDragStart"><span class="type-signature"></span>onDragStart<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onDragStart" data-name="onDragStart">
+      <span class="type-signature"></span>onDragStart<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched if the Game Object has been <code>inputEnabled</code> and <code>enableDrag</code> has been set.
-It is sent when a Phaser.Pointer starts to drag the Game Object, taking into consideration the various
+        <p>This signal is dispatched if the Game Object has been <a href="Phaser.Component.InputEnabled.html#inputEnabled">inputEnabled</a> and <a href="Phaser.InputHandler.html#enableDrag">enableDrag</a> has been set.
+It is sent when a <a href="Phaser.Pointer.html">Phaser.Pointer</a> starts to drag the Game Object, taking into consideration the various
 drag limitations that may be set.
-It is sent four arguments:
-{any} The Game Object that received the event.
-{Phaser.Pointer} The Phaser.Pointer object that caused the event.
-{number} The x coordinate that the drag started from.
-{number} The y coordinate that the drag started from.</p>
+It is sent four arguments:</p>
+<ul>
+<li>{any} The Game Object that received the event.</li>
+<li>{Phaser.Pointer} The Phaser.Pointer object that caused the event.</li>
+<li>{number} The x coordinate that the drag started from.</li>
+<li>{number} The y coordinate that the drag started from.</li>
+</ul>
     </div>
     
 
@@ -746,7 +770,7 @@ It is sent four arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L202" title="onDragStart on line 202 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 202</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L218" title="onDragStart on line 218 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 218</a>
     
 
 	
@@ -762,19 +786,23 @@ It is sent four arguments:
 
         
             
-<dt class="name" id="onDragStop">
-    <h4 id="onDragStop"><span class="type-signature"></span>onDragStop<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onDragStop" data-name="onDragStop">
+      <span class="type-signature"></span>onDragStop<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched if the Game Object has been <code>inputEnabled</code> and <code>enableDrag</code> has been set.
-It is sent when a Phaser.Pointer stops dragging the Game Object.
-It is sent two arguments:
-{any} The Game Object that received the event.
-{Phaser.Pointer} The Phaser.Pointer object that caused the event.</p>
+        <p>This signal is dispatched if the Game Object has been <a href="Phaser.Component.InputEnabled.html#inputEnabled">inputEnabled</a> and <a href="Phaser.InputHandler.html#enableDrag">enableDrag</a> has been set.
+It is sent when a <a href="Phaser.Pointer.html">Phaser.Pointer</a> stops dragging the Game Object.
+It is sent two arguments:</p>
+<ul>
+<li>{any} The Game Object that received the event.</li>
+<li>{Phaser.Pointer} The Phaser.Pointer object that caused the event.</li>
+</ul>
     </div>
     
 
@@ -825,7 +853,7 @@ It is sent two arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L227" title="onDragStop on line 227 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 227</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L247" title="onDragStop on line 247 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 247</a>
     
 
 	
@@ -841,24 +869,28 @@ It is sent two arguments:
 
         
             
-<dt class="name" id="onDragUpdate">
-    <h4 id="onDragUpdate"><span class="type-signature"></span>onDragUpdate<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onDragUpdate" data-name="onDragUpdate">
+      <span class="type-signature"></span>onDragUpdate<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched if the Game Object has been <code>inputEnabled</code> and <code>enableDrag</code> has been set.
-It is sent when a Phaser.Pointer is actively dragging the Game Object.
+        <p>This signal is dispatched if the Game Object has been <a href="Phaser.Component.InputEnabled.html#inputEnabled">inputEnabled</a> and <a href="Phaser.InputHandler.html#enableDrag">enableDrag</a> has been set.
+It is sent when a <a href="Phaser.Pointer.html">Phaser.Pointer</a> is actively dragging the Game Object.
 Be warned: This is a high volume Signal. Be careful what you bind to it.
-It is sent six arguments:
-{any} The Game Object that received the event.
-{Phaser.Pointer} The Phaser.Pointer object that caused the event.
-{number} The new x coordinate of the Game Object.
-{number} The new y coordinate of the Game Object.
-{Phaser.Point} A Point object that contains the point the Game Object was snapped to, if <code>snapOnDrag</code> has been enabled.
-{boolean} The <code>fromStart</code> boolean, indicates if this is the first update immediately after the drag has started.</p>
+It is sent six arguments:</p>
+<ul>
+<li>{any} The Game Object that received the event.</li>
+<li>{Phaser.Pointer} The Phaser.Pointer object that caused the event.</li>
+<li>{number} The new x coordinate of the Game Object.</li>
+<li>{number} The new y coordinate of the Game Object.</li>
+<li>{Phaser.Point} A Point object that contains the point the Game Object was snapped to, if <code>snapOnDrag</code> has been enabled.</li>
+<li>{boolean} The <code>fromStart</code> boolean, indicates if this is the first update immediately after the drag has started.</li>
+</ul>
     </div>
     
 
@@ -909,7 +941,7 @@ It is sent six arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L217" title="onDragUpdate on line 217 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 217</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L235" title="onDragUpdate on line 235 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 235</a>
     
 
 	
@@ -925,18 +957,22 @@ It is sent six arguments:
 
         
             
-<dt class="name" id="onEnterBounds">
-    <h4 id="onEnterBounds"><span class="type-signature"></span>onEnterBounds<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onEnterBounds" data-name="onEnterBounds">
+      <span class="type-signature"></span>onEnterBounds<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched when the Game Object returns within the Phaser.World bounds, having previously been outside of them.
-This signal is only if <code>Sprite.checkWorldBounds</code> is set to <code>true</code>.
-It is sent one argument:
-{any} The Game Object that entered the World bounds.</p>
+        <p>This signal is dispatched when the Game Object returns within the Phaser.World <a href="Phaser.World.html#bounds">bounds</a>, having previously been outside of them.
+This signal is only if <a href="Phaser.Sprite.html#checkWorldBounds">Sprite.checkWorldBounds</a> is set to <code>true</code>.
+It is sent one argument:</p>
+<ul>
+<li>{any} The Game Object that entered the World bounds.</li>
+</ul>
     </div>
     
 
@@ -987,7 +1023,7 @@ It is sent one argument:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L146" title="onEnterBounds on line 146 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 146</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L152" title="onEnterBounds on line 152 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 152</a>
     
 
 	
@@ -1003,20 +1039,24 @@ It is sent one argument:
 
         
             
-<dt class="name" id="onInputDown">
-    <h4 id="onInputDown"><span class="type-signature"></span>onInputDown<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onInputDown" data-name="onInputDown">
+      <span class="type-signature"></span>onInputDown<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched if the Game Object has <code>inputEnabled</code> set to <code>true</code>, 
-and receives a down event from a Phaser.Pointer. This effectively means the Pointer has been
+        <p>This signal is dispatched if the Game Object has <a href="Phaser.Component.InputEnabled.html#inputEnabled">inputEnabled</a> set to <code>true</code>,
+and receives a down event from a <a href="Phaser.Pointer.html">Phaser.Pointer</a>. This effectively means the Pointer has been
 pressed down (but not yet released) on the Game Object.
-It is sent two arguments:
-{any} The Game Object that received the event.
-{Phaser.Pointer} The Phaser.Pointer object that caused the event.</p>
+It is sent two arguments:</p>
+<ul>
+<li>{any} The Game Object that received the event.</li>
+<li>{Phaser.Pointer} The Phaser.Pointer object that caused the event.</li>
+</ul>
     </div>
     
 
@@ -1067,7 +1107,7 @@ It is sent two arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L177" title="onInputDown on line 177 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 177</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L189" title="onInputDown on line 189 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 189</a>
     
 
 	
@@ -1083,19 +1123,23 @@ It is sent two arguments:
 
         
             
-<dt class="name" id="onInputOut">
-    <h4 id="onInputOut"><span class="type-signature"></span>onInputOut<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onInputOut" data-name="onInputOut">
+      <span class="type-signature"></span>onInputOut<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched if the Game Object has <code>inputEnabled</code> set to <code>true</code>, 
-and receives an out event from a Phaser.Pointer, which was previously over it.
-It is sent two arguments:
-{any} The Game Object that received the event.
-{Phaser.Pointer} The Phaser.Pointer object that caused the event.</p>
+        <p>This signal is dispatched if the Game Object has <a href="Phaser.Component.InputEnabled.html#inputEnabled">inputEnabled</a> set to <code>true</code>,
+and receives an out event from a <a href="Phaser.Pointer.html">Phaser.Pointer</a>, which was previously over it.
+It is sent two arguments:</p>
+<ul>
+<li>{any} The Game Object that received the event.</li>
+<li>{Phaser.Pointer} The Phaser.Pointer object that caused the event.</li>
+</ul>
     </div>
     
 
@@ -1146,7 +1190,7 @@ It is sent two arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L166" title="onInputOut on line 166 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 166</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L176" title="onInputOut on line 176 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 176</a>
     
 
 	
@@ -1162,19 +1206,23 @@ It is sent two arguments:
 
         
             
-<dt class="name" id="onInputOver">
-    <h4 id="onInputOver"><span class="type-signature"></span>onInputOver<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onInputOver" data-name="onInputOver">
+      <span class="type-signature"></span>onInputOver<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched if the Game Object has <code>inputEnabled</code> set to <code>true</code>, 
-and receives an over event from a Phaser.Pointer.
-It is sent two arguments:
-{any} The Game Object that received the event.
-{Phaser.Pointer} The Phaser.Pointer object that caused the event.</p>
+        <p>This signal is dispatched if the Game Object has <a href="Phaser.Component.InputEnabled.html#inputEnabled">inputEnabled</a> set to <code>true</code>,
+and receives an over event from a <a href="Phaser.Pointer.html">Phaser.Pointer</a>.
+It is sent two arguments:</p>
+<ul>
+<li>{any} The Game Object that received the event.</li>
+<li>{Phaser.Pointer} The Phaser.Pointer object that caused the event.</li>
+</ul>
     </div>
     
 
@@ -1225,7 +1273,7 @@ It is sent two arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L156" title="onInputOver on line 156 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 156</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L164" title="onInputOver on line 164 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 164</a>
     
 
 	
@@ -1241,21 +1289,25 @@ It is sent two arguments:
 
         
             
-<dt class="name" id="onInputUp">
-    <h4 id="onInputUp"><span class="type-signature"></span>onInputUp<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onInputUp" data-name="onInputUp">
+      <span class="type-signature"></span>onInputUp<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched if the Game Object has <code>inputEnabled</code> set to <code>true</code>, 
-and receives an up event from a Phaser.Pointer. This effectively means the Pointer had been
+        <p>This signal is dispatched if the Game Object has <a href="Phaser.Component.InputEnabled.html#inputEnabled">inputEnabled</a> set to <code>true</code>,
+and receives an up event from a <a href="Phaser.Pointer.html">Phaser.Pointer</a>. This effectively means the Pointer had been
 pressed down, and was then released on the Game Object.
-It is sent three arguments:
-{any} The Game Object that received the event.
-{Phaser.Pointer} The Phaser.Pointer object that caused the event.
-{boolean} isOver - Is the Pointer still over the Game Object?</p>
+It is sent three arguments:</p>
+<ul>
+<li>{any} The Game Object that received the event.</li>
+<li>{Phaser.Pointer} The Phaser.Pointer object that caused the event.</li>
+<li>{boolean} isOver - Is the Pointer still over the Game Object?</li>
+</ul>
     </div>
     
 
@@ -1306,7 +1358,7 @@ It is sent three arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L189" title="onInputUp on line 189 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 189</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L203" title="onInputUp on line 203 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 203</a>
     
 
 	
@@ -1322,19 +1374,23 @@ It is sent three arguments:
 
         
             
-<dt class="name" id="onKilled">
-    <h4 id="onKilled"><span class="type-signature"></span>onKilled<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onKilled" data-name="onKilled">
+      <span class="type-signature"></span>onKilled<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
         <p>This signal is dispatched when the Game Object is killed.
-This happens when <code>Sprite.kill()</code> is called.
-Please understand the difference between <code>kill</code> and <code>destroy</code> by looking at their respective methods.
-It is sent one argument:
-{any} The Game Object that was killed.</p>
+This happens when <a href="Phaser.Sprite.html#kill">Sprite.kill()</a> is called.
+Please understand the difference between <a href="Phaser.Sprite.html#kill">kill</a> and <a href="Phaser.Sprite.html#destroy">destroy</a> by looking at their respective methods.
+It is sent one argument:</p>
+<ul>
+<li>{any} The Game Object that was killed.</li>
+</ul>
     </div>
     
 
@@ -1385,7 +1441,7 @@ It is sent one argument:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L119" title="onKilled on line 119 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 119</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L119" title="onKilled on line 119 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 119</a>
     
 
 	
@@ -1401,18 +1457,22 @@ It is sent one argument:
 
         
             
-<dt class="name" id="onOutOfBounds">
-    <h4 id="onOutOfBounds"><span class="type-signature"></span>onOutOfBounds<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onOutOfBounds" data-name="onOutOfBounds">
+      <span class="type-signature"></span>onOutOfBounds<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched when the Game Object leaves the Phaser.World bounds.
-This signal is only if <code>Sprite.checkWorldBounds</code> is set to <code>true</code>.
-It is sent one argument:
-{any} The Game Object that left the World bounds.</p>
+        <p>This signal is dispatched when the Game Object leaves the Phaser.World <a href="Phaser.World.html#bounds">bounds</a>.
+This signal is only if <a href="Phaser.Sprite.html#checkWorldBounds">Sprite.checkWorldBounds</a> is set to <code>true</code>.
+It is sent one argument:</p>
+<ul>
+<li>{any} The Game Object that left the World bounds.</li>
+</ul>
     </div>
     
 
@@ -1463,7 +1523,7 @@ It is sent one argument:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L137" title="onOutOfBounds on line 137 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 137</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L141" title="onOutOfBounds on line 141 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 141</a>
     
 
 	
@@ -1479,18 +1539,22 @@ It is sent one argument:
 
         
             
-<dt class="name" id="onRemovedFromGroup">
-    <h4 id="onRemovedFromGroup"><span class="type-signature"></span>onRemovedFromGroup<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onRemovedFromGroup" data-name="onRemovedFromGroup">
+      <span class="type-signature"></span>onRemovedFromGroup<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>This signal is dispatched when the Game Object is removed from a Group.
-It is sent two arguments:
-{any} The Game Object that was removed from the Group.
-{Phaser.Group} The Group it was removed from.</p>
+        <p>This signal is dispatched when the Game Object is removed from a <a href="Phaser.Group.html">Group</a>.
+It is sent two arguments:</p>
+<ul>
+<li>{any} The Game Object that was removed from the Group.</li>
+<li>{Phaser.Group} The Group it was removed from.</li>
+</ul>
     </div>
     
 
@@ -1541,7 +1605,7 @@ It is sent two arguments:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L93" title="onRemovedFromGroup on line 93 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 93</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L96" title="onRemovedFromGroup on line 96 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 96</a>
     
 
 	
@@ -1557,102 +1621,22 @@ It is sent two arguments:
 
         
             
-<dt class="name" id="onRemovedFromWorld">
-    <h4 id="onRemovedFromWorld"><span class="type-signature"></span>onRemovedFromWorld<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description members-description">
-        <p>This Signal is never used internally by Phaser and is now deprecated.</p>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
-	
-    <dd class="yes-def tag-deprecated">
-        <ul class="dummy">
-            <li>Yes</li>
-        </ul>
-    </dd>
-    
-    
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-    
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L100" title="onRemovedFromWorld on line 100 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 100</a>
-    
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<dt class="name" id="onRevived">
-    <h4 id="onRevived"><span class="type-signature"></span>onRevived<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-
+<dt>
+    <h4 id="onRevived" data-name="onRevived">
+      <span class="type-signature"></span>onRevived<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
         <p>This signal is dispatched when the Game Object is revived from a previously killed state.
-This happens when <code>Sprite.revive()</code> is called.
-It is sent one argument:
-{any} The Game Object that was revived.</p>
+This happens when <a href="Phaser.Sprite.html#revive">Sprite.revive()</a> is called.
+It is sent one argument:</p>
+<ul>
+<li>{any} The Game Object that was revived.</li>
+</ul>
     </div>
     
 
@@ -1703,7 +1687,7 @@ It is sent one argument:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L128" title="onRevived on line 128 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 128</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L130" title="onRevived on line 130 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 130</a>
     
 
 	
@@ -1719,9 +1703,11 @@ It is sent one argument:
 
         
             
-<dt class="name" id="parent">
-    <h4 id="parent"><span class="type-signature"></span>parent<span class="type-signature"> :<a href="Phaser.Sprite.html">Phaser.Sprite</a></span></h4>
-
+<dt>
+    <h4 id="parent" data-name="parent">
+      <span class="type-signature"></span>parent<span class="type-signature"> : <a href="Phaser.Sprite.html">Phaser.Sprite</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -1778,7 +1764,7 @@ It is sent one argument:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L35" title="parent on line 35 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 35</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L35" title="parent on line 35 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 35</a>
     
 
 	
@@ -1801,7 +1787,7 @@ It is sent one argument:
         <dl>
             
 <dt>
-    <h4 class="name" id="destroy">
+    <h4 class="name" id="destroy" data-name="destroy">
       <span class="type-signature"></span>destroy()
       
     </h4>
@@ -1856,7 +1842,7 @@ It is sent one argument:
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/gameobjects/components/Events.js#L43" title="destroy on line 43 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 43</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/gameobjects/components/Events.js#L43" title="destroy on line 43 of src/gameobjects/components/Events.js">src/gameobjects/components/Events.js line 43</a>
     
 
 	
@@ -1899,9 +1885,9 @@ It is sent one argument:
 
 
 <p class="package-signature">
-  phaser-ce@2.8.7
+  phaser-ce@2.8.8
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.7">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.8">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -1918,9 +1904,9 @@ It is sent one argument:
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-09-12
+		on 2017-09-25
 	
-	using a <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">DocStrap template</a>.
+	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
 
 </footer>
@@ -1932,7 +1918,7 @@ It is sent one argument:
     <div class="form-inline">
     <div class="form-group">
       <label for="filter" class="control-label">Filter</label>
-      <input type="text" class="form-control" id="filter">
+      <input type="text" class="form-control" id="toc-filter-input">
     </div>
   </div>
   </div>
@@ -1947,7 +1933,7 @@ It is sent one argument:
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2017091210"></script>
+<script defer src="scripts/bundle.js?2017092513"></script>
 
 
 
