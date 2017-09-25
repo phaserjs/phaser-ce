@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: Filter</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2017091210">
+	<link rel="stylesheet" href="styles/site.phaser.css?2017092513">
 </head>
 
 <body>
@@ -125,7 +125,7 @@
     
         
 <dt>
-    <h4 class="name" id="Filter">
+    <h4 class="name" id="Filter" data-name="Filter">
       <span class="type-signature"></span>new Filter(game [, uniforms] [, fragmentSrc])
       
     </h4>
@@ -138,7 +138,7 @@
         <p>This is a base Filter class to use for any Phaser filter development.
 If you want to make a custom filter, this should be your base class.</p>
 <p>The default uniforms, types and values for all Filters are:</p>
-<pre class="prettyprint source"><code>resolution: { type: '2f', value: { x: 256, y: 256 }}
+<pre class="prettyprint source lang-javascript"><code>resolution: { type: '2f', value: { x: 256, y: 256 }}
 time: { type: '1f', value: 0 }
 mouse: { type: '2f', value: { x: 0.0, y: 0.0 } }
 date: { type: '4fv', value: [ d.getFullYear(),  d.getMonth(),  d.getDate(), d.getHours() *60 * 60 + d.getMinutes() * 60 + d.getSeconds() ] }
@@ -323,7 +323,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L35" title="Filter on line 35 of src/core/Filter.js">src/core/Filter.js line 35</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L35" title="Filter on line 35 of src/core/Filter.js">src/core/Filter.js line 35</a>
     
 
 	
@@ -367,9 +367,11 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 
         <dl>
             
-<dt class="name" id="dirty">
-    <h4 id="dirty"><span class="type-signature"></span>dirty<span class="type-signature"> :boolean</span></h4>
-
+<dt>
+    <h4 id="dirty" data-name="dirty">
+      <span class="type-signature"></span>dirty<span class="type-signature"> : boolean</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -433,7 +435,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L66" title="dirty on line 66 of src/core/Filter.js">src/core/Filter.js line 66</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L66" title="dirty on line 66 of src/core/Filter.js">src/core/Filter.js line 66</a>
     
 
 	
@@ -449,9 +451,11 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 
         
             
-<dt class="name" id="fragmentSrc">
-    <h4 id="fragmentSrc"><span class="type-signature"></span>fragmentSrc<span class="type-signature"> :array|string</span></h4>
-
+<dt>
+    <h4 id="fragmentSrc" data-name="fragmentSrc">
+      <span class="type-signature"></span>fragmentSrc<span class="type-signature"> : array | string</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -511,7 +515,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L120" title="fragmentSrc on line 120 of src/core/Filter.js">src/core/Filter.js line 120</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L120" title="fragmentSrc on line 120 of src/core/Filter.js">src/core/Filter.js line 120</a>
     
 
 	
@@ -527,9 +531,11 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 
         
             
-<dt class="name" id="game">
-    <h4 id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
-
+<dt>
+    <h4 id="game" data-name="game">
+      <span class="type-signature"></span>game<span class="type-signature"> : <a href="Phaser.Game.html">Phaser.Game</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -586,7 +592,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L40" title="game on line 40 of src/core/Filter.js">src/core/Filter.js line 40</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L40" title="game on line 40 of src/core/Filter.js">src/core/Filter.js line 40</a>
     
 
 	
@@ -602,9 +608,11 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 
         
             
-<dt class="name" id="height">
-    <h4 id="height"><span class="type-signature"></span>height<span class="type-signature"> :number</span></h4>
-
+<dt>
+    <h4 id="height" data-name="height">
+      <span class="type-signature"></span>height<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -661,7 +669,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L285" title="height on line 285 of src/core/Filter.js">src/core/Filter.js line 285</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L285" title="height on line 285 of src/core/Filter.js">src/core/Filter.js line 285</a>
     
 
 	
@@ -677,9 +685,11 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 
         
             
-<dt class="name" id="padding">
-    <h4 id="padding"><span class="type-signature"></span>padding<span class="type-signature"> :number</span></h4>
-
+<dt>
+    <h4 id="padding" data-name="padding">
+      <span class="type-signature"></span>padding<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -736,7 +746,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L72" title="padding on line 72 of src/core/Filter.js">src/core/Filter.js line 72</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L72" title="padding on line 72 of src/core/Filter.js">src/core/Filter.js line 72</a>
     
 
 	
@@ -752,9 +762,11 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 
         
             
-<dt class="name" id="prevPoint">
-    <h4 id="prevPoint"><span class="type-signature"></span>prevPoint<span class="type-signature"> :<a href="Phaser.Point.html">Phaser.Point</a></span></h4>
-
+<dt>
+    <h4 id="prevPoint" data-name="prevPoint">
+      <span class="type-signature"></span>prevPoint<span class="type-signature"> : <a href="Phaser.Point.html">Phaser.Point</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -811,7 +823,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L77" title="prevPoint on line 77 of src/core/Filter.js">src/core/Filter.js line 77</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L77" title="prevPoint on line 77 of src/core/Filter.js">src/core/Filter.js line 77</a>
     
 
 	
@@ -827,9 +839,11 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 
         
             
-<dt class="name" id="type">
-    <h4 id="type"><span class="type-signature"></span>type<span class="type-signature"> :number</span></h4>
-
+<dt>
+    <h4 id="type" data-name="type">
+      <span class="type-signature"></span>type<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -886,7 +900,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L46" title="type on line 46 of src/core/Filter.js">src/core/Filter.js line 46</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L46" title="type on line 46 of src/core/Filter.js">src/core/Filter.js line 46</a>
     
 
 	
@@ -902,9 +916,11 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 
         
             
-<dt class="name" id="uniforms">
-    <h4 id="uniforms"><span class="type-signature"></span>uniforms<span class="type-signature"> :object</span></h4>
-
+<dt>
+    <h4 id="uniforms" data-name="uniforms">
+      <span class="type-signature"></span>uniforms<span class="type-signature"> : object</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -961,7 +977,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L88" title="uniforms on line 88 of src/core/Filter.js">src/core/Filter.js line 88</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L88" title="uniforms on line 88 of src/core/Filter.js">src/core/Filter.js line 88</a>
     
 
 	
@@ -977,9 +993,11 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 
         
             
-<dt class="name" id="width">
-    <h4 id="width"><span class="type-signature"></span>width<span class="type-signature"> :number</span></h4>
-
+<dt>
+    <h4 id="width" data-name="width">
+      <span class="type-signature"></span>width<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -1036,7 +1054,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L265" title="width on line 265 of src/core/Filter.js">src/core/Filter.js line 265</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L265" title="width on line 265 of src/core/Filter.js">src/core/Filter.js line 265</a>
     
 
 	
@@ -1059,7 +1077,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
         <dl>
             
 <dt>
-    <h4 class="name" id="addToWorld">
+    <h4 class="name" id="addToWorld" data-name="addToWorld">
       <span class="type-signature"></span>addToWorld( [x] [, y] [, width] [, height] [, anchorX] [, anchorY])
       
     </h4>
@@ -1069,7 +1087,7 @@ therefore only work in WebGL and are not supported by Canvas at all.</p>
 
     
     <div class="description method-description">
-        <p>Creates a new Phaser.Image object using a blank texture and assigns 
+        <p>Creates a new Phaser.Image object using a blank texture and assigns
 this Filter to it. The image is then added to the world.</p>
 <p>If you don't provide width and height values then Filter.width and Filter.height are used.</p>
 <p>If you do provide width and height values then this filter will be resized to match those
@@ -1384,7 +1402,7 @@ values.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L176" title="addToWorld on line 176 of src/core/Filter.js">src/core/Filter.js line 176</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L176" title="addToWorld on line 176 of src/core/Filter.js">src/core/Filter.js line 176</a>
     
 
 	
@@ -1437,7 +1455,7 @@ values.</p>
         
             
 <dt>
-    <h4 class="name" id="destroy">
+    <h4 class="name" id="destroy" data-name="destroy">
       <span class="type-signature"></span>destroy()
       
     </h4>
@@ -1492,7 +1510,7 @@ values.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L244" title="destroy on line 244 of src/core/Filter.js">src/core/Filter.js line 244</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L244" title="destroy on line 244 of src/core/Filter.js">src/core/Filter.js line 244</a>
     
 
 	
@@ -1521,7 +1539,7 @@ values.</p>
         
             
 <dt>
-    <h4 class="name" id="init">
+    <h4 class="name" id="init" data-name="init">
       <span class="type-signature"></span>init()
       
     </h4>
@@ -1576,7 +1594,7 @@ values.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L126" title="init on line 126 of src/core/Filter.js">src/core/Filter.js line 126</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L126" title="init on line 126 of src/core/Filter.js">src/core/Filter.js line 126</a>
     
 
 	
@@ -1605,7 +1623,7 @@ values.</p>
         
             
 <dt>
-    <h4 class="name" id="setResolution">
+    <h4 class="name" id="setResolution" data-name="setResolution">
       <span class="type-signature"></span>setResolution(width, height)
       
     </h4>
@@ -1734,7 +1752,7 @@ values.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L137" title="setResolution on line 137 of src/core/Filter.js">src/core/Filter.js line 137</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L137" title="setResolution on line 137 of src/core/Filter.js">src/core/Filter.js line 137</a>
     
 
 	
@@ -1763,7 +1781,7 @@ values.</p>
         
             
 <dt>
-    <h4 class="name" id="syncUniforms">
+    <h4 class="name" id="syncUniforms" data-name="syncUniforms">
       <span class="type-signature"></span>syncUniforms()
       
     </h4>
@@ -1818,7 +1836,7 @@ values.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L230" title="syncUniforms on line 230 of src/core/Filter.js">src/core/Filter.js line 230</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L230" title="syncUniforms on line 230 of src/core/Filter.js">src/core/Filter.js line 230</a>
     
 
 	
@@ -1847,7 +1865,7 @@ values.</p>
         
             
 <dt>
-    <h4 class="name" id="update">
+    <h4 class="name" id="update" data-name="update">
       <span class="type-signature"></span>update( [pointer])
       
     </h4>
@@ -1964,7 +1982,7 @@ values.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.7/src/core/Filter.js#L151" title="update on line 151 of src/core/Filter.js">src/core/Filter.js line 151</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/core/Filter.js#L151" title="update on line 151 of src/core/Filter.js">src/core/Filter.js line 151</a>
     
 
 	
@@ -2007,9 +2025,9 @@ values.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.8.7
+  phaser-ce@2.8.8
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.7">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.8">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -2026,9 +2044,9 @@ values.</p>
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-09-12
+		on 2017-09-25
 	
-	using a <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">DocStrap template</a>.
+	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
 
 </footer>
@@ -2040,7 +2058,7 @@ values.</p>
     <div class="form-inline">
     <div class="form-group">
       <label for="filter" class="control-label">Filter</label>
-      <input type="text" class="form-control" id="filter">
+      <input type="text" class="form-control" id="toc-filter-input">
     </div>
   </div>
   </div>
@@ -2055,7 +2073,7 @@ values.</p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2017091210"></script>
+<script defer src="scripts/bundle.js?2017092513"></script>
 
 
 

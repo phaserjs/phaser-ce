@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.8.7 "2017-09-12" - Built: Tue Sep 12 2017 10:19:33
+* v2.8.8 "2017-09-25" - Built: Mon Sep 25 2017 13:19:02
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -3522,7 +3522,6 @@ PIXI.WebGLRenderer = function(game) {
     this.renderSession.game = this.game;
     this.renderSession.gl = this.gl;
     this.renderSession.drawCount = 0;
-    this.renderSession.flushCount = 0;
     this.renderSession.shaderManager = this.shaderManager;
     this.renderSession.maskManager = this.maskManager;
     this.renderSession.filterManager = this.filterManager;
@@ -3531,6 +3530,7 @@ PIXI.WebGLRenderer = function(game) {
     this.renderSession.stencilManager = this.stencilManager;
     this.renderSession.renderer = this;
     this.renderSession.resolution = this.resolution;
+    this.renderSession.roundPixels = false;
     this.renderSession.maxTextureAvailableSpace = null; // filled in setTexturePriority()
 
     // time init the context..
@@ -3737,7 +3737,6 @@ PIXI.WebGLRenderer.prototype.renderDisplayObject = function(displayObject, proje
 
     // reset the render session data..
     this.renderSession.drawCount = 0;
-    this.renderSession.flushCount = 0;
 
     // make sure to flip the Y if using a render texture..
     this.renderSession.flipY = buffer ? -1 : 1;
@@ -5280,7 +5279,6 @@ PIXI.WebGLSpriteBatch.prototype.flush = function () {
 
     // then reset the batch!
     this.currentBatchSize = 0;
-    this.renderSession.flushCount++;
 };
 
 /**
@@ -5742,7 +5740,6 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function()
 
     // increment the draw count
     this.renderSession.drawCount++;
-    this.renderSession.flushCount++;
 
 };
 
@@ -7597,7 +7594,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.8.7',
+    VERSION: '2.8.8',
 
     /**
     * An array of Phaser game instances.
@@ -8062,15 +8059,15 @@ var Phaser = Phaser || {    // jshint ignore:line
     BOTTOM_RIGHT: 12,
 
     /**
-    * Various blend modes supported by Pixi.
+    * Various blend modes supported by Pixi. See the samples in {@link https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing Canvas Tutorial: Compositing}.
     *
     * IMPORTANT: The WebGL renderer only supports the NORMAL, ADD, MULTIPLY and SCREEN blend modes.
     *
     * @constant {Object} Phaser.blendModes
-    * @property {Number} blendModes.NORMAL
-    * @property {Number} blendModes.ADD
-    * @property {Number} blendModes.MULTIPLY
-    * @property {Number} blendModes.SCREEN
+    * @property {Number} blendModes.NORMAL - Draws new shapes on top of the existing content. This is the default setting.
+    * @property {Number} blendModes.ADD - Where both shapes overlap the color is determined by adding color values.
+    * @property {Number} blendModes.MULTIPLY - The pixels of the top layer are multiplied with the corresponding pixel of the bottom layer, making a darker picture.
+    * @property {Number} blendModes.SCREEN - The pixels are inverted, multiplied, and inverted again, making a lighter picture.
     * @property {Number} blendModes.OVERLAY
     * @property {Number} blendModes.DARKEN
     * @property {Number} blendModes.LIGHTEN
@@ -14237,7 +14234,7 @@ Object.defineProperty(Phaser.Camera.prototype, "shakeIntensity", {
 * |       | preload     | create     | paused       |          |
 * |       | loadUpdate* | update*    | pauseUpdate* |          |
 * |       |             | preRender* |              |          |
-* |       | loadRender* | render*    | pauseRender* |          |
+* |       | loadRender* | render*    | render*      |          |
 * |       |             |            | resumed      |          |
 * |       |             |            |              | shutdown |
 *
@@ -15991,7 +15988,7 @@ Phaser.SignalBinding.prototype.constructor = Phaser.SignalBinding;
 *
 * The default uniforms, types and values for all Filters are:
 *
-* ```
+* ```javascript
 * resolution: { type: '2f', value: { x: 256, y: 256 }}
 * time: { type: '1f', value: 0 }
 * mouse: { type: '2f', value: { x: 0.0, y: 0.0 } }
@@ -16105,7 +16102,7 @@ Phaser.Filter.prototype = {
 
     /**
     * This should be over-ridden. Will receive a variable number of arguments.
-    * 
+    *
     * @method Phaser.Filter#init
     */
     init: function () {
@@ -16116,7 +16113,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Set the resolution uniforms on the filter.
-    * 
+    *
     * @method Phaser.Filter#setResolution
     * @param {number} width - The width of the display.
     * @param {number} height - The height of the display.
@@ -16130,7 +16127,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Updates the filter.
-    * 
+    *
     * @method Phaser.Filter#update
     * @param {Phaser.Pointer} [pointer] - A Pointer object to use for the filter. The coordinates are mapped to the mouse uniform.
     */
@@ -16154,7 +16151,7 @@ Phaser.Filter.prototype = {
     },
 
     /**
-    * Creates a new Phaser.Image object using a blank texture and assigns 
+    * Creates a new Phaser.Image object using a blank texture and assigns
     * this Filter to it. The image is then added to the world.
     *
     * If you don't provide width and height values then Filter.width and Filter.height are used.
@@ -16209,7 +16206,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Syncs the uniforms between the class object and the shaders.
-    * 
+    *
     * @method Phaser.Filter#syncUniforms
     */
     syncUniforms: function () {
@@ -16223,7 +16220,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Clear down this Filter and null out references to game.
-    * 
+    *
     * @method Phaser.Filter#destroy
     */
     destroy: function () {
@@ -16290,6 +16287,18 @@ Object.defineProperty(Phaser.Filter.prototype, 'height', {
 
 /**
 * This is a base Plugin template to use for any Phaser plugin development.
+*
+* ##### Callbacks
+*
+* add  | active      | visible     | remove
+* -----|-------------|-------------|--------
+* init |             |             |
+*      | preUpdate*  |             |
+*      | update*     | render*     |
+*      | postUpdate* | postRender* |
+*      |             |             | destroy
+*
+* Update and render calls are repeated (*).
 *
 * @class Phaser.Plugin
 * @constructor
@@ -16965,7 +16974,7 @@ Phaser.Stage.prototype.checkVisibility = function () {
     };
 
     this._onClick = function (event) {
-        if (!document.hasFocus())
+        if ((document.hasFocus !== undefined) && !document.hasFocus())
         {
             _this.visibilityChange(event);
         }
@@ -22284,25 +22293,44 @@ Phaser.Input = function (game) {
     this.resetLocked = false;
 
     /**
-    * A Signal that is dispatched each time a pointer is pressed down.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is pressed down.
+    * It is sent two arguments:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    * - {Event} The original DOM event.
+    *
     * @property {Phaser.Signal} onDown
     */
     this.onDown = null;
 
     /**
-    * A Signal that is dispatched each time a pointer is released.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is released.
+    * It is sent two arguments:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    * - {Event} The original DOM event.
+    *
     * @property {Phaser.Signal} onUp
     */
     this.onUp = null;
 
     /**
-    * A Signal that is dispatched each time a pointer is tapped.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is tapped.
+    * It is sent two arguments:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    * - {boolean} True if this was a double tap.
+    *
     * @property {Phaser.Signal} onTap
     */
     this.onTap = null;
 
     /**
-    * A Signal that is dispatched each time a pointer is held down.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is held down.
+    * It is sent one argument:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    *
     * @property {Phaser.Signal} onHold
     */
     this.onHold = null;
@@ -29674,21 +29702,21 @@ Phaser.Component.Destroy.prototype = {
 
 /**
 * The Events component is a collection of events fired by the parent Game Object.
-* 
+*
 * Phaser uses what are known as 'Signals' for all event handling. All of the events in
 * this class are signals you can subscribe to, much in the same way you'd "listen" for
 * an event.
 *
 * For example to tell when a Sprite has been added to a new group, you can bind a function
-* to the `onAddedToGroup` signal:
+* to the {@link #onAddedToGroup} signal:
 *
 * `sprite.events.onAddedToGroup.add(yourFunction, this);`
 *
 * Where `yourFunction` is the function you want called when this event occurs.
-* 
-* For more details about how signals work please see the Phaser.Signal class.
 *
-* The Input-related events will only be dispatched if the Sprite has had `inputEnabled` set to `true`
+* For more details about how signals work please see the {@link Phaser.Signal} class.
+*
+* The Input-related events will only be dispatched if the Sprite has had {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`
 * and the Animation-related events only apply to game objects with animations like {@link Phaser.Sprite}.
 *
 * @class Phaser.Events
@@ -29720,7 +29748,6 @@ Phaser.Events.prototype = {
         if (this._onDestroy)           { this._onDestroy.dispose(); }
         if (this._onAddedToGroup)      { this._onAddedToGroup.dispose(); }
         if (this._onRemovedFromGroup)  { this._onRemovedFromGroup.dispose(); }
-        if (this._onRemovedFromWorld)  { this._onRemovedFromWorld.dispose(); }
         if (this._onKilled)            { this._onKilled.dispose(); }
         if (this._onRevived)           { this._onRevived.dispose(); }
         if (this._onEnterBounds)       { this._onEnterBounds.dispose(); }
@@ -29743,186 +29770,213 @@ Phaser.Events.prototype = {
     // The following properties are sentinels that will be replaced with getters
 
     /**
-    * This signal is dispatched when this Game Object is added to a new Group.
+    * This signal is dispatched when this Game Object is added to a new {@link Phaser.Group Group}.
     * It is sent two arguments:
-    * {any} The Game Object that was added to the Group.
-    * {Phaser.Group} The Group it was added to.
+    *
+    * - {any} The Game Object that was added to the Group.
+    * - {Phaser.Group} The Group it was added to.
+    *
     * @property {Phaser.Signal} onAddedToGroup
     */
     onAddedToGroup: null,
 
     /**
-    * This signal is dispatched when the Game Object is removed from a Group.
+    * This signal is dispatched when the Game Object is removed from a {@link Phaser.Group Group}.
     * It is sent two arguments:
-    * {any} The Game Object that was removed from the Group.
-    * {Phaser.Group} The Group it was removed from.
+    *
+    * - {any} The Game Object that was removed from the Group.
+    * - {Phaser.Group} The Group it was removed from.
+    *
     * @property {Phaser.Signal} onRemovedFromGroup
     */
     onRemovedFromGroup: null,
 
     /**
-    * This Signal is never used internally by Phaser and is now deprecated.
-    * @deprecated
-    * @property {Phaser.Signal} onRemovedFromWorld
-    */
-    onRemovedFromWorld: null,
-
-    /**
     * This signal is dispatched when the Game Object is destroyed.
-    * This happens when `Sprite.destroy()` is called, or `Group.destroy()` with `destroyChildren` set to true.
+    * This happens when {@link Phaser.Sprite#destroy Sprite.destroy()} is called, or {@link Phaser.Group#destroy Group.destroy()} with `destroyChildren` set to true.
     * It is sent one argument:
-    * {any} The Game Object that was destroyed.
+    *
+    * - {any} The Game Object that was destroyed.
+    *
     * @property {Phaser.Signal} onDestroy
     */
     onDestroy: null,
 
     /**
     * This signal is dispatched when the Game Object is killed.
-    * This happens when `Sprite.kill()` is called.
-    * Please understand the difference between `kill` and `destroy` by looking at their respective methods.
+    * This happens when {@link Phaser.Sprite#kill Sprite.kill()} is called.
+    * Please understand the difference between {@link Phaser.Sprite#kill kill} and {@link Phaser.Sprite#destroy destroy} by looking at their respective methods.
     * It is sent one argument:
-    * {any} The Game Object that was killed.
+    *
+    * - {any} The Game Object that was killed.
+    *
     * @property {Phaser.Signal} onKilled
     */
     onKilled: null,
 
     /**
     * This signal is dispatched when the Game Object is revived from a previously killed state.
-    * This happens when `Sprite.revive()` is called.
+    * This happens when {@link Phaser.Sprite#revive Sprite.revive()} is called.
     * It is sent one argument:
-    * {any} The Game Object that was revived.
+    *
+    * - {any} The Game Object that was revived.
+    *
     * @property {Phaser.Signal} onRevived
     */
     onRevived: null,
 
     /**
-    * This signal is dispatched when the Game Object leaves the Phaser.World bounds.
-    * This signal is only if `Sprite.checkWorldBounds` is set to `true`.
+    * This signal is dispatched when the Game Object leaves the Phaser.World {@link Phaser.World#bounds bounds}.
+    * This signal is only if {@link Phaser.Sprite#checkWorldBounds Sprite.checkWorldBounds} is set to `true`.
     * It is sent one argument:
-    * {any} The Game Object that left the World bounds.
+    *
+    * - {any} The Game Object that left the World bounds.
+    *
     * @property {Phaser.Signal} onOutOfBounds
     */
     onOutOfBounds: null,
 
     /**
-    * This signal is dispatched when the Game Object returns within the Phaser.World bounds, having previously been outside of them.
-    * This signal is only if `Sprite.checkWorldBounds` is set to `true`.
+    * This signal is dispatched when the Game Object returns within the Phaser.World {@link Phaser.World#bounds bounds}, having previously been outside of them.
+    * This signal is only if {@link Phaser.Sprite#checkWorldBounds Sprite.checkWorldBounds} is set to `true`.
     * It is sent one argument:
-    * {any} The Game Object that entered the World bounds.
+    *
+    * - {any} The Game Object that entered the World bounds.
+    *
     * @property {Phaser.Signal} onEnterBounds
     */
     onEnterBounds: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives an over event from a Phaser.Pointer.
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives an over event from a {@link Phaser.Pointer}.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onInputOver
     */
     onInputOver: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives an out event from a Phaser.Pointer, which was previously over it.
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives an out event from a {@link Phaser.Pointer}, which was previously over it.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onInputOut
     */
     onInputOut: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives a down event from a Phaser.Pointer. This effectively means the Pointer has been
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives a down event from a {@link Phaser.Pointer}. This effectively means the Pointer has been
     * pressed down (but not yet released) on the Game Object.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onInputDown
     */
     onInputDown: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives an up event from a Phaser.Pointer. This effectively means the Pointer had been
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives an up event from a {@link Phaser.Pointer}. This effectively means the Pointer had been
     * pressed down, and was then released on the Game Object.
     * It is sent three arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
-    * {boolean} isOver - Is the Pointer still over the Game Object?
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    * - {boolean} isOver - Is the Pointer still over the Game Object?
+    *
     * @property {Phaser.Signal} onInputUp
     */
     onInputUp: null,
 
     /**
-    * This signal is dispatched if the Game Object has been `inputEnabled` and `enableDrag` has been set.
-    * It is sent when a Phaser.Pointer starts to drag the Game Object, taking into consideration the various
+    * This signal is dispatched if the Game Object has been {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} and {@link Phaser.InputHandler#enableDrag enableDrag} has been set.
+    * It is sent when a {@link Phaser.Pointer} starts to drag the Game Object, taking into consideration the various
     * drag limitations that may be set.
     * It is sent four arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
-    * {number} The x coordinate that the drag started from.
-    * {number} The y coordinate that the drag started from.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    * - {number} The x coordinate that the drag started from.
+    * - {number} The y coordinate that the drag started from.
+    *
     * @property {Phaser.Signal} onDragStart
     */
     onDragStart: null,
 
     /**
-    * This signal is dispatched if the Game Object has been `inputEnabled` and `enableDrag` has been set.
-    * It is sent when a Phaser.Pointer is actively dragging the Game Object.
+    * This signal is dispatched if the Game Object has been {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} and {@link Phaser.InputHandler#enableDrag enableDrag} has been set.
+    * It is sent when a {@link Phaser.Pointer} is actively dragging the Game Object.
     * Be warned: This is a high volume Signal. Be careful what you bind to it.
     * It is sent six arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
-    * {number} The new x coordinate of the Game Object.
-    * {number} The new y coordinate of the Game Object.
-    * {Phaser.Point} A Point object that contains the point the Game Object was snapped to, if `snapOnDrag` has been enabled.
-    * {boolean} The `fromStart` boolean, indicates if this is the first update immediately after the drag has started.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    * - {number} The new x coordinate of the Game Object.
+    * - {number} The new y coordinate of the Game Object.
+    * - {Phaser.Point} A Point object that contains the point the Game Object was snapped to, if `snapOnDrag` has been enabled.
+    * - {boolean} The `fromStart` boolean, indicates if this is the first update immediately after the drag has started.
+    *
     * @property {Phaser.Signal} onDragUpdate
     */
     onDragUpdate: null,
 
     /**
-    * This signal is dispatched if the Game Object has been `inputEnabled` and `enableDrag` has been set.
-    * It is sent when a Phaser.Pointer stops dragging the Game Object.
+    * This signal is dispatched if the Game Object has been {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} and {@link Phaser.InputHandler#enableDrag enableDrag} has been set.
+    * It is sent when a {@link Phaser.Pointer} stops dragging the Game Object.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onDragStop
     */
     onDragStop: null,
 
     /**
-    * This signal is dispatched if the Game Object has the AnimationManager component, 
+    * This signal is dispatched if the Game Object has the {@link Phaser.AnimationManager AnimationManager} component,
     * and an Animation has been played.
-    * You can also listen to `Animation.onStart` rather than via the Game Objects events.
+    * You can also listen to {@link Phaser.Animation#onStart} rather than via the Game Objects events.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Animation} The Phaser.Animation that was started.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Animation} The Phaser.Animation that was started.
+    *
     * @property {Phaser.Signal} onAnimationStart
     */
     onAnimationStart: null,
 
     /**
-    * This signal is dispatched if the Game Object has the AnimationManager component, 
-    * and an Animation has been stopped (via `animation.stop()` and the `dispatchComplete` argument has been set.
-    * You can also listen to `Animation.onComplete` rather than via the Game Objects events.
+    * This signal is dispatched if the Game Object has the {@link Phaser.AnimationManager AnimationManager} component,
+    * and an Animation has been stopped (via {@link Phaser.AnimationManager#stop animation.stop()} and the `dispatchComplete` argument has been set.
+    * You can also listen to {@link Phaser.Animation#onComplete} rather than via the Game Objects events.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Animation} The Phaser.Animation that was stopped.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Animation} The Phaser.Animation that was stopped.
+    *
     * @property {Phaser.Signal} onAnimationComplete
     */
     onAnimationComplete: null,
 
     /**
-    * This signal is dispatched if the Game Object has the AnimationManager component, 
+    * This signal is dispatched if the Game Object has the {@link Phaser.AnimationManager AnimationManager} component,
     * and an Animation has looped playback.
-    * You can also listen to `Animation.onLoop` rather than via the Game Objects events.
+    * You can also listen to {@link Phaser.Animation#onLoop} rather than via the Game Objects events.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Animation} The Phaser.Animation that looped.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Animation} The Phaser.Animation that looped.
+    *
     * @property {Phaser.Signal} onAnimationLoop
     */
     onAnimationLoop: null
@@ -32578,7 +32632,7 @@ Phaser.Image.prototype.preUpdate = function() {
 * @param {number} [x=0] - X position of the Button.
 * @param {number} [y=0] - Y position of the Button.
 * @param {string} [key] - The image key (in the Game.Cache) to use as the texture for this Button.
-* @param {function} [callback] - The function to call when this Button is pressed.
+* @param {function} [callback] - The function to call when this Button is pressed, receiving `this` (the Button), `pointer`, and `isOver` (see {@link Phaser.Events#onInputUp}.)
 * @param {object} [callbackContext] - The context in which the callback will be called (usually 'this').
 * @param {string|integer} [overFrame] - The frame / frameName when the button is in the Over state.
 * @param {string|integer} [outFrame] - The frame / frameName when the button is in the Out state.
@@ -32733,7 +32787,7 @@ Phaser.Button = function (game, x, y, key, callback, callbackContext, overFrame,
     * @property {Phaser.PointerMode?} justReleasedPreventsOver=ACTIVE_CURSOR
     */
     this.justReleasedPreventsOver = Phaser.PointerMode.TOUCH;
-    
+
     /**
     * When true the the texture frame will not be automatically switched on up/down/over/out events.
     * @property {boolean} freezeFrames
@@ -32770,8 +32824,6 @@ Phaser.Button = function (game, x, y, key, callback, callbackContext, overFrame,
     this.events.onInputDown.add(this.onInputDownHandler, this);
     this.events.onInputUp.add(this.onInputUpHandler, this);
 
-    this.events.onRemovedFromWorld.add(this.removedFromWorld, this);
-
 };
 
 Phaser.Button.prototype = Object.create(Phaser.Image.prototype);
@@ -32791,18 +32843,6 @@ var STATE_UP = 'Up';
 Phaser.Button.prototype.clearFrames = function () {
 
     this.setFrames(null, null, null, null);
-
-};
-
-/**
-* Called when this Button is removed from the World.
-*
-* @method Phaser.Button#removedFromWorld
-* @protected
-*/
-Phaser.Button.prototype.removedFromWorld = function () {
-
-    this.inputEnabled = false;
 
 };
 
@@ -44333,7 +44373,7 @@ Phaser.Loader.prototype = {
     *
     * The texture path object looks like this:
     *
-    * ```
+    * ```javascript
     * load.image('factory', {
     *     etc1: 'assets/factory_etc1.pkm',
     *     s3tc: 'assets/factory_dxt1.pvr',
@@ -44393,7 +44433,7 @@ Phaser.Loader.prototype = {
     *
     * The texture path object looks like this:
     *
-    * ```
+    * ```javascript
     * load.texture('factory', {
     *     etc1: 'assets/factory_etc1.pkm',
     *     s3tc: 'assets/factory_dxt1.pvr',
@@ -50868,7 +50908,7 @@ Phaser.ArrayUtils = {
 
     /**
     * Create an array representing the inclusive range of numbers (usually integers) in `[start, end]`.
-    * This is equivalent to `numberArrayStep(start, end, 1)`.
+    * This is equivalent to `numberArrayStep(start, 1 + end, 1)`.
     *
     * @method Phaser.ArrayUtils.numberArray
     * @param {number} start - The minimum value the array starts with.
@@ -52327,7 +52367,7 @@ Phaser.Color = {
     */
     updateColor: function (out) {
 
-        out.rgba = 'rgba(' + out.r.toString() + ',' + out.g.toString() + ',' + out.b.toString() + ',' + out.a.toString() + ')';
+        out.rgba = 'rgba(' + out.r.toFixed() + ',' + out.g.toFixed() + ',' + out.b.toFixed() + ',' + out.a.toString() + ')';
         out.color = Phaser.Color.getColor(out.r, out.g, out.b);
         out.color32 = Phaser.Color.getColor32(out.a * 255, out.r, out.g, out.b);
 
