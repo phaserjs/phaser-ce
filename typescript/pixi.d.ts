@@ -222,6 +222,8 @@ declare module PIXI {
         static removeByCanvas(canvas: HTMLCanvasElement): HTMLCanvasElement;
         static getTotal(): number;
         static getFree(): number;
+        static length: number;
+        static log(): void;
 
     }
 

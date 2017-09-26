@@ -1002,6 +1002,17 @@ Phaser.Utils.Debug.prototype = {
 
     },
 
+    canvasPool: function (x, y, color, columnWidth) {
+        var pool = Phaser.CanvasPool;
+
+        this.start(x, y, color, columnWidth || 100);
+        this.line('Canvas Pool');
+        this.line('Used:', pool.getTotal());
+        this.line('Free:', pool.getFree());
+        this.line('Total:', pool.length);
+        this.stop();
+    },
+
     /**
     * Destroy this object.
     *

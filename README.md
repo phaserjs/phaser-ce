@@ -340,6 +340,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.ArrayUtils.remove is a faster alternative to Array#splice.
 * Phaser.ArrayUtils.numberArray can be passed a single argument to create a range starting from 0.
 * Phaser.Camera#fixedView is like Phaser.Camera#view but it never moves. You can use it to align objects independent of the camera's position.
+* Phaser.CanvasPool.log prints canvas pool counts to the console.
+* Phaser.Utils.Debug#canvasPool displays canvas pool counts.
 
 ### Updates
 
