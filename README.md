@@ -332,11 +332,15 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### New Features
 
+* added color space option (RGB or HSV) in [Phaser.Color.interpolateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_interpolateColor)
+
 ### Updates
 
 ### Bug Fixes
 
 ### Thanks
+
+@samid737
 
 ## Version 2.8.8 - 25th September 2017
 
