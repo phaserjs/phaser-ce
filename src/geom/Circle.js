@@ -7,7 +7,7 @@
 /**
 * Creates a new Circle object with the center coordinate specified by the x and y parameters and the diameter specified by the diameter parameter.
 * If you call this function without parameters, a circle with x, y, diameter and radius properties set to 0 is created.
-* 
+*
 * @class Phaser.Circle
 * @constructor
 * @param {number} [x=0] - The x coordinate of the center of the circle.
@@ -59,7 +59,7 @@ Phaser.Circle.prototype = {
 
     /**
     * The circumference of the circle.
-    * 
+    *
     * @method Phaser.Circle#circumference
     * @return {number} The circumference of the circle.
     */
@@ -71,7 +71,7 @@ Phaser.Circle.prototype = {
 
     /**
     * Returns a uniformly distributed random point from anywhere within this Circle.
-    * 
+    *
     * @method Phaser.Circle#random
     * @param {Phaser.Point|object} [out] - A Phaser.Point, or any object with public x/y properties, that the values will be set in.
     *     If no object is provided a new Phaser.Point object will be created. In high performance areas avoid this by re-using an existing object.
@@ -96,7 +96,7 @@ Phaser.Circle.prototype = {
 
     /**
     * Returns the framing rectangle of the circle as a Phaser.Rectangle object.
-    * 
+    *
     * @method Phaser.Circle#getBounds
     * @return {Phaser.Rectangle} The bounds of the Circle.
     */
@@ -257,7 +257,7 @@ Phaser.Circle.prototype.constructor = Phaser.Circle;
 
 /**
 * The largest distance between any two points on the circle. The same as the radius * 2.
-* 
+*
 * @name Phaser.Circle#diameter
 * @property {number} diameter - Gets or sets the diameter of the circle.
 */
@@ -572,6 +572,52 @@ Phaser.Circle.intersectsRectangle = function (c, r) {
     return xCornerDistSq + yCornerDistSq <= maxCornerDistSq;
 
 };
+
+/**
+* Checks if the given Circle and Line objects intersect.
+* @method Phaser.Circle.intersectsLine
+* @param {Phaser.Circle} c - The Circle object to test.
+* @param {Phaser.Line} l - The Line object to test.
+* @param {boolean} [returnpoints] - optional Array Object, Return an array of intersection points if true, otherwise return boolean.
+* @return {boolean} True if the two objects intersect, otherwise false.
+*/
+Phaser.Circle.intersectsLine = function (c, l, returnPoints) {
+    var h = c.x;
+    var k = c.y;
+    var m = ((l.end.y - l.start.y) / (l.end.x - l.start.x));
+    var n = l.end.y - (m * l.end.x);
+    var a = c.radius;
+    var b = c.radius;
+    var del = n + m * h;
+
+    var x0 = (h * (b * b) - m * (a * a) * (n - k) + a * b * (Math.sqrt((a * a) * (m * m) + (b * b) - (del * del) - (k * k) + (2 * del * k)))) / ((a * a) * (m * m) + (b * b));
+    var x1 = (h * (b * b) - m * (a * a) * (n - k) - a * b * (Math.sqrt((a * a) * (m * m) + (b * b) - (del * del) - (k * k) + (2 * del * k)))) / ((a * a) * (m * m) + (b * b));
+
+    var y0 = m * x0 + n;
+    var y1 = m * x1 + n;
+    var p0 = new Phaser.Point(x0, y0);
+    var p1 = new Phaser.Point(x1, y1);
+    var p0Exists = l.pointOnSegment(p0.x, p0.y, 0.01);
+    var p1Exists = l.pointOnSegment(p1.x, p1.y, 0.01);
+
+    if (p0Exists && p1Exists)
+    {
+        return returnPoints ? [p0, p1] : true;
+    }
+    else if (p0Exists)
+    {
+        return returnPoints ? [p0] : true;
+    }
+    else if (p1Exists)
+    {
+        return returnPoints ? [p1] : true;
+    }
+    else
+    {
+        return returnPoints ? [] : false;
+    }
+};
+
 
 //   Because PIXI uses its own Circle, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Circle = Phaser.Circle;
