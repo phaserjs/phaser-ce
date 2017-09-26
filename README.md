@@ -338,6 +338,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Tiled polygons and rectangles are now converted into p2 physics bodies when using `Phaser.Physics.P2#convertCollisionObjects` (#369).
 * Tileset-level collision objects created in Tiled are now added to a map's `collision` and `objects` properties using the layer's name as the key (#369).
 * Phaser.ArrayUtils.remove is a faster alternative to Array#splice.
+* Phaser.ArrayUtils.numberArray can be passed a single argument to create a range starting from 0.
 
 ### Updates
 

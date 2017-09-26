@@ -257,7 +257,7 @@ declare module Phaser {
         static rotate(array: any[]): any;
         static rotateLeft(array: any[]): any;
         static rotateRight(array: any[]): any;
-        static numberArray(start: number, end: number): number[];
+        static numberArray(start: number, end?: number): number[];
         static numberArrayStep(start: number, end?: number, step?: number): number[];
 
     }
