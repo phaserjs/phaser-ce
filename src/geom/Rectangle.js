@@ -197,6 +197,18 @@ Phaser.Rectangle.prototype = {
     },
 
     /**
+    * Copies the left, top, width and height properties from any given object to this Rectangle.
+    * @method Phaser.Rectangle#copyFromBounds
+    * @param {any} source - The object to copy from.
+    * @return {Phaser.Rectangle} This Rectangle object.
+    */
+    copyFromBounds: function(source) {
+
+        return this.setTo(source.left, source.top, source.width, source.height);
+
+    },
+
+    /**
     * Copies the x, y, width and height properties from this Rectangle to any given object.
     * @method Phaser.Rectangle#copyTo
     * @param {any} source - The object to copy to.
@@ -831,6 +843,24 @@ Phaser.Rectangle.clone = function (a, output) {
     }
 
     return output;
+
+};
+
+/**
+* Returns a new Rectangle object with the same values for the left, top, width, and height properties as the original object.
+* @method Phaser.Rectangle.createFromBounds
+* @param {any} a - An object with `left`, `top`, `width`, and `height` properties.
+* @param {Phaser.Rectangle} [output] - Optional Rectangle object. If given the values will be set into the object, otherwise a brand new Rectangle object will be created and returned.
+* @return {Phaser.Rectangle}
+*/
+Phaser.Rectangle.createFromBounds = function (a, output) {
+
+    if (output === undefined || output === null)
+    {
+        output = new Phaser.Rectangle(a.x, a.y, a.width, a.height);
+    }
+
+    return output.copyFromBounds(a);
 
 };
 
