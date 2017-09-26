@@ -676,6 +676,7 @@ declare module Phaser {
         deadzone: Phaser.Rectangle;
         displayObject: PIXI.DisplayObject;
         id: number;
+        fixedView: Phaser.Rectangle;
         fx: Phaser.Graphics;
         game: Phaser.Game;
         height: number;
