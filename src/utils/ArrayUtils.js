@@ -71,6 +71,40 @@ Phaser.ArrayUtils = {
     },
 
     /**
+    * Remove one or more items at the given index and reorder the array.
+    *
+    * The new array length will be `array.length - count`.
+    *
+    * This is an alternative to `array.splice(startIndex, count)`.
+    *
+    * @see https://github.com/mreinstein/remove-array-items
+    * @see https://gamealchemist.wordpress.com/2013/05/01/lets-get-those-javascript-arrays-to-work-fast/
+    *
+    * @method Phaser.ArrayUtils.remove
+    * @param {any[]} array
+    * @param {integer} startIndex
+    * @param {integer} [count=1]
+    * @return {any[]} The modified array.
+    */
+    remove: function (array, startIndex, count)
+    {
+        var length = array.length;
+
+        if (startIndex >= length || count === 0) { return; }
+
+        if (count == null) { count = 1; }
+
+        var newLength = length - count;
+
+        for (var i = startIndex; i < newLength; ++i)
+        {
+            array[i] = array[i + count];
+        }
+
+        array.length = newLength;
+    },
+
+    /**
     * A standard Fisher-Yates Array shuffle implementation which modifies the array in place.
     *
     * @method Phaser.ArrayUtils.shuffle
