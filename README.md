@@ -335,6 +335,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * added color space option (RGB or HSV) in [Phaser.Color.interpolateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_interpolateColor)
 * Added intersectsLine for [Phaser.Circle](https://photonstorm.github.io/phaser-ce/Phaser.Circle.html), [Phaser.Ellipse](https://photonstorm.github.io/phaser-ce/Phaser.Ellipse.html)
 * Added Ellipse geom debug [Phaser.Utils.Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom)
+* Tiled polygons and rectangles are now converted into p2 physics bodies when using `Phaser.Physics.P2#convertCollisionObjects`.
+* Tileset-level collision objects created in Tiled are now added to a map's `collision` and 'objects' properties using the layer's name as the key.
 
 ### Updates
 
@@ -342,7 +344,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@samid737
+@masondesu, @samid737
 
 ## Version 2.8.8 - 25th September 2017
 

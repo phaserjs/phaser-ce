@@ -1623,8 +1623,8 @@ Phaser.Physics.P2.prototype = {
     },
 
     /**
-    * Converts all of the polylines objects inside a Tiled ObjectGroup into physics bodies that are added to the world.
-    * Note that the polylines must be created in such a way that they can withstand polygon decomposition.
+    * Converts all of the polyline, polygon, and rectangle objects inside a Tiled ObjectGroup into physics bodies that are added to the world.
+    * Note that the polylines and polygons must be created in such a way that they can withstand polygon decomposition.
     *
     * @method Phaser.Physics.P2#convertCollisionObjects
     * @param {Phaser.Tilemap} map - The Tilemap to get the map data from.
@@ -1650,8 +1650,23 @@ Phaser.Physics.P2.prototype = {
             // polyline: json.layers[i].objects[v].polyline
 
             var object = map.collision[layer][i];
+            var shapeData = object.polyline || object.polygon;
 
-            var body = this.createBody(object.x, object.y, 0, addToWorld, {}, object.polyline);
+            // polyline/polygon shape data present
+            if (shapeData)
+            {
+                var body = this.createBody(object.x, object.y, 0, addToWorld, {}, shapeData);
+            }
+
+            // tilemap parser sets rectangle=true when parsing object groups
+            else if (object.rectangle)
+            {
+                var body = this.createBody(object.x, object.y, 0, addToWorld);
+                body.addRectangle(object.width, object.height, object.width / 2, object.height / 2);
+            }
+
+            // ellipse could be added here, but Tiled ellipses use height/width instead of radius
+            // (to support oblong ellipses), which p2 doesn't currently support.
 
             if (body)
             {
