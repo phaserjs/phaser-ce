@@ -340,8 +340,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Version 2.8.8 - 25th September 2017
 
-### New Features
-
 ### Updates
 
 * Renamed [Emitter#count](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#count) to [Emitter#counts](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#counts). Emitter#count is deprecated and will be removed in v2.9.0.
