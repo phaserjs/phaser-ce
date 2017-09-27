@@ -1513,6 +1513,7 @@ Phaser.ScaleManager.prototype = {
     /**
      * Shorthand for setting {@link #pageAlignHorizontally} and {@link #pageAlignVertically}.
      *
+     * @method Phaser.ScaleManager#align
      * @param {boolean} [horizontal] - Value for {@link #pageAlignHorizontally}. Pass `null` to leave unchanged.
      * @param {boolean} [vertical] - Value for {@link #pageAlignVertically}. Omit or pass `null` to leave unchanged.
      */
