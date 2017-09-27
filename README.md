@@ -342,6 +342,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.Camera#fixedView is like Phaser.Camera#view but it never moves. You can use it to align objects independent of the camera's position.
 * Phaser.CanvasPool.log prints canvas pool counts to the console.
 * Phaser.Utils.Debug#canvasPool displays canvas pool counts.
+* Phaser.Color.linear and Phaser.Color.linearInterpolation interpolate color values. Phaser.Color.linearInterpolation can be used to tween through an array of colors.
 
 ### Updates
 

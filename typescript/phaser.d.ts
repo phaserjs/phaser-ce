@@ -808,6 +808,8 @@ declare module Phaser {
         static interpolateColor(color1: number, color2: number, steps: number, currentStep: number, alpha?: number): number;
         static interpolateColorWithRGB(color: number, r: number, g: number, b: number, steps: number, currentStep: number): number;
         static interpolateRGB(r1: number, g1: number, b1: number, r2: number, g2: number, b2: number, steps: number, currentStep: number): number;
+        static linear(color1: number, color2: number, t: number): number;
+        static linearInterpolation(colors: number[], t: number): number;
         static packPixel(r: number, g: number, b: number, a: number): number;
         static RGBArrayToHex(rgb: number[]): number;
         static RGBtoHSL(r: number, g: number, b: number, out?: ColorComponents): ColorComponents;

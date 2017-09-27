@@ -596,7 +596,7 @@ Phaser.Color = {
     /**
     * Converts a hex string into a Phaser Color object.
     *
-    * The hex string can supplied as `'#0033ff'` or the short-hand format of `'#03f'`; it can begin with an optional "#" or "0x", or be unprefixed.    
+    * The hex string can supplied as `'#0033ff'` or the short-hand format of `'#03f'`; it can begin with an optional "#" or "0x", or be unprefixed.
     *
     * An alpha channel is _not_ supported.
     *
@@ -905,6 +905,48 @@ Phaser.Color = {
 
     },
 
+
+    /**
+    * Calculates a linear (interpolation) value of two colors over t.
+    *
+    * This is a slightly simpler interface to {@link Phaser.Color.interpolateColor}.
+    *
+    * The arguments are similar to {@link Phaser.Math.linear}.
+    *
+    * @method Phaser.Color.linear
+    * @param {number} color1 - The first color value.
+    * @param {number} color2 - The second color value.
+    * @param {number} t - A value between 0 and 1.
+    * @return {number} The interpolated color value.
+    */
+    linear: function (color1, color2, t) {
+
+        return this.interpolateColor(color1, color2, 1, t);
+
+    },
+
+    /**
+    * Calculates a linear (interpolation) value of an array of colors over t.
+    *
+    * The arguments are similar to {@link Phaser.Math.linearInterpolation}.
+    *
+    * This can be used as a {@link Phaser.TweenData#interpolationFunction}.
+    *
+    * @method Phaser.Color.linearInterpolation
+    * @param {number[]} colors - The input array of color values to interpolate between.
+    * @param {number} t - A value between 0 and 1.
+    * @return {number} The interpolated color value.
+    */
+    linearInterpolation: function (colors, t) {
+
+        var k = Phaser.Math.linear(0, colors.length - 1, t);
+        var color1 = colors[ Math.floor(k) ];
+        var color2 = colors[ Math.ceil(k)] ;
+
+        return this.linear(color1, color2, k % 1);
+
+    },
+
     /**
     * Returns a random color value between black and white
     * Set the min value to start each channel from the given offset.
@@ -1157,8 +1199,8 @@ Phaser.Color = {
 
     /**
     * Subtracts the darker of the two constituent colors from the lighter.
-    * 
-    * Painting with white inverts the backdrop color; painting with black produces no change. 
+    *
+    * Painting with white inverts the backdrop color; painting with black produces no change.
     *
     * @method Phaser.Color.blendDifference
     * @static
@@ -1185,8 +1227,8 @@ Phaser.Color = {
 
     /**
     * Multiplies the complements of the backdrop and source color values, then complements the result.
-    * The result color is always at least as light as either of the two constituent colors. 
-    * Screening any color with white produces white; screening with black leaves the original color unchanged. 
+    * The result color is always at least as light as either of the two constituent colors.
+    * Screening any color with white produces white; screening with black leaves the original color unchanged.
     *
     * @method Phaser.Color.blendScreen
     * @static
@@ -1199,8 +1241,8 @@ Phaser.Color = {
     },
 
     /**
-    * Produces an effect similar to that of the Difference mode, but lower in contrast. 
-    * Painting with white inverts the backdrop color; painting with black produces no change. 
+    * Produces an effect similar to that of the Difference mode, but lower in contrast.
+    * Painting with white inverts the backdrop color; painting with black produces no change.
     *
     * @method Phaser.Color.blendExclusion
     * @static
@@ -1214,7 +1256,7 @@ Phaser.Color = {
 
     /**
     * Multiplies or screens the colors, depending on the backdrop color.
-    * Source colors overlay the backdrop while preserving its highlights and shadows. 
+    * Source colors overlay the backdrop while preserving its highlights and shadows.
     * The backdrop color is not replaced, but is mixed with the source color to reflect the lightness or darkness of the backdrop.
     *
     * @method Phaser.Color.blendOverlay
@@ -1228,17 +1270,17 @@ Phaser.Color = {
     },
 
     /**
-    * Darkens or lightens the colors, depending on the source color value. 
-    * 
-    * If the source color is lighter than 0.5, the backdrop is lightened, as if it were dodged; 
-    * this is useful for adding highlights to a scene. 
-    * 
-    * If the source color is darker than 0.5, the backdrop is darkened, as if it were burned in. 
-    * The degree of lightening or darkening is proportional to the difference between the source color and 0.5; 
+    * Darkens or lightens the colors, depending on the source color value.
+    *
+    * If the source color is lighter than 0.5, the backdrop is lightened, as if it were dodged;
+    * this is useful for adding highlights to a scene.
+    *
+    * If the source color is darker than 0.5, the backdrop is darkened, as if it were burned in.
+    * The degree of lightening or darkening is proportional to the difference between the source color and 0.5;
     * if it is equal to 0.5, the backdrop is unchanged.
-    * 
-    * Painting with pure black or white produces a distinctly darker or lighter area, but does not result in pure black or white. 
-    * The effect is similar to shining a diffused spotlight on the backdrop. 
+    *
+    * Painting with pure black or white produces a distinctly darker or lighter area, but does not result in pure black or white.
+    * The effect is similar to shining a diffused spotlight on the backdrop.
     *
     * @method Phaser.Color.blendSoftLight
     * @static
@@ -1251,18 +1293,18 @@ Phaser.Color = {
     },
 
     /**
-    * Multiplies or screens the colors, depending on the source color value. 
-    * 
-    * If the source color is lighter than 0.5, the backdrop is lightened, as if it were screened; 
-    * this is useful for adding highlights to a scene. 
-    * 
-    * If the source color is darker than 0.5, the backdrop is darkened, as if it were multiplied; 
-    * this is useful for adding shadows to a scene. 
-    * 
-    * The degree of lightening or darkening is proportional to the difference between the source color and 0.5; 
+    * Multiplies or screens the colors, depending on the source color value.
+    *
+    * If the source color is lighter than 0.5, the backdrop is lightened, as if it were screened;
+    * this is useful for adding highlights to a scene.
+    *
+    * If the source color is darker than 0.5, the backdrop is darkened, as if it were multiplied;
+    * this is useful for adding shadows to a scene.
+    *
+    * The degree of lightening or darkening is proportional to the difference between the source color and 0.5;
     * if it is equal to 0.5, the backdrop is unchanged.
-    * 
-    * Painting with pure black or white produces pure black or white. The effect is similar to shining a harsh spotlight on the backdrop. 
+    *
+    * Painting with pure black or white produces pure black or white. The effect is similar to shining a harsh spotlight on the backdrop.
     *
     * @method Phaser.Color.blendHardLight
     * @static
@@ -1275,7 +1317,7 @@ Phaser.Color = {
     },
 
     /**
-    * Brightens the backdrop color to reflect the source color. 
+    * Brightens the backdrop color to reflect the source color.
     * Painting with black produces no change.
     *
     * @method Phaser.Color.blendColorDodge
@@ -1290,7 +1332,7 @@ Phaser.Color = {
 
     /**
     * Darkens the backdrop color to reflect the source color.
-    * Painting with white produces no change. 
+    * Painting with white produces no change.
     *
     * @method Phaser.Color.blendColorBurn
     * @static
@@ -1346,7 +1388,7 @@ Phaser.Color = {
     /**
     * This blend mode combines Color Dodge and Color Burn (rescaled so that neutral colors become middle gray).
     * Dodge applies when values in the top layer are lighter than middle gray, and burn to darker values.
-    * The middle gray is the neutral color. When color is lighter than this, this effectively moves the white point of the bottom 
+    * The middle gray is the neutral color. When color is lighter than this, this effectively moves the white point of the bottom
     * layer down by twice the difference; when it is darker, the black point is moved up by twice the difference. The perceived contrast increases.
     *
     * @method Phaser.Color.blendVividLight
@@ -1390,7 +1432,7 @@ Phaser.Color = {
     },
 
     /**
-    * Reflect blend mode. This mode is useful when adding shining objects or light zones to images. 
+    * Reflect blend mode. This mode is useful when adding shining objects or light zones to images.
     *
     * @method Phaser.Color.blendReflect
     * @static
