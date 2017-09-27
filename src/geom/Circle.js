@@ -228,7 +228,7 @@ Phaser.Circle.prototype = {
         while (i < steps)
         {
             this.circumferencePoint(
-                Phaser.Math.linear(startAngle, endAngle, (1 + i) / (1 + steps)),
+                Phaser.Math.linear(startAngle, endAngle, i / steps),
                 asDegrees,
                 out[i] || (out[i] = new Phaser.Point())
             );
