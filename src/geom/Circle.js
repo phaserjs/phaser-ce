@@ -216,6 +216,45 @@ Phaser.Circle.prototype = {
 
     },
 
+
+    /**
+     * Creates or positions points on the circle.
+     *
+     * The points are equally distributed in the half-closed interval [startAngle, endAngle). The default arc is the entire circle.
+     *
+     * If the `out` argument is omitted, this method creates and returns an array of {@link Phaser.Point points}. If an array is passed as `out`, its items are treated as points and placed in the same way.
+     *
+     * @param {type} [steps=60] - The number of points to place.
+     * @param {type} [startAngle=0] - The starting angle in radians (unless asDegrees is true).
+     * @param {type} [endAngle=Phaser.Math.PI2] - The end angle in radians (unless asDegrees is true).
+     * @param {type} [asDegrees=false]  - Are the given angles in radians (false) or degrees (true)?
+     * @param {any[]} [out] - An array of points or point-like objects (e.g., sprites). It should start at index 0 and its length should be equal to or greater than `steps`.
+     * @return {any[]} - The modified `out` argument or a new array of points.
+     */
+    sample: function (steps, startAngle, endAngle, asDegrees, out) {
+
+        if (!steps) { steps = 60; }
+        if (startAngle == null) { startAngle = 0; }
+        if (endAngle == null) { endAngle = Phaser.Math.PI2; }
+        if (!out) { out = []; }
+
+        var i = 0;
+
+        while (i < steps)
+        {
+            this.circumferencePoint(
+                Phaser.Math.linear(startAngle, endAngle, i / steps),
+                asDegrees,
+                out[i] || (out[i] = new Phaser.Point())
+            );
+
+            i += 1;
+        }
+
+        return out;
+
+    },
+
     /**
     * Adjusts the location of the Circle object, as determined by its center coordinate, by the specified amounts.
     * @method Phaser.Circle#offset

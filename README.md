@@ -346,6 +346,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.Group#count counts children matching a key-value query and Phaser.Group#getFirst fetches the first child matching a key-value query.
 * Phaser.Rectangle#copyFromBounds and Phaser.Rectangle.createFromBounds are variations of copyFrom and clone that extract `left` and `top` properties instead of `x` and `y`.
 * Phaser.ScaleManager#align is a shortcut for setting pageAlignHorizontally and pageAlignVertically.
+* Phaser.Circle#sample creates or positions a set of points or objects on the circle.
 
 ### Updates
 
