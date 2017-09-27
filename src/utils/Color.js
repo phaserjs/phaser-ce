@@ -863,12 +863,38 @@ Phaser.Color = {
 
     },
 
+
+    /**
+    * Calculates a linear (interpolation) value of two colors over t.
+    *
+    * This is a slightly simpler interface to {@link Phaser.Color.interpolateColor}.
+    *
+    * The arguments are similar to {@link Phaser.Math.linear}.
+    *
+    * @method Phaser.Color.linear
+    * @param {number} color1 - The first color value.
+    * @param {number} color2 - The second color value.
+    * @param {number} t - A value between 0 and 1.
+    * @return {number} The interpolated color value.
+    */
     linear: function (color1, color2, t) {
 
         return this.interpolateColor(color1, color2, 1, t);
 
     },
 
+    /**
+    * Calculates a linear (interpolation) value of an array of colors over t.
+    *
+    * The arguments are similar to {@link Phaser.Math.linearInterpolation}.
+    *
+    * This can be used as a {@link Phaser.TweenData#interpolationFunction}.
+    *
+    * @method Phaser.Color.linearInterpolation
+    * @param {number[]} colors - The input array of color values to interpolate between.
+    * @param {number} t - A value between 0 and 1.
+    * @return {number} The interpolated color value.
+    */
     linearInterpolation: function (colors, t) {
 
         var k = Phaser.Math.linear(0, colors.length - 1, t);
