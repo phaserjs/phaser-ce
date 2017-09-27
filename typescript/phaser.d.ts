@@ -4285,6 +4285,7 @@ declare module Phaser {
         static containsPoint(a: Phaser.Rectangle, point: Phaser.Point): boolean;
         static containsRaw(rx: number, ry: number, rw: number, rh: number, x: number, y: number): boolean;
         static containsRect(a: Phaser.Rectangle, b: Phaser.Rectangle): boolean;
+        static createFromBounds(a: any, output?: Phaser.Rectangle): Phaser.Rectangle;
         static equals(a: Phaser.Rectangle, b: Phaser.Rectangle): boolean;
         static inflate(a: Phaser.Rectangle, dx: number, dy: number): Phaser.Rectangle;
         static inflatePoint(a: Phaser.Rectangle, point: Phaser.Point): Phaser.Rectangle;
@@ -4301,6 +4302,7 @@ declare module Phaser {
         contains(x: number, y: number): boolean;
         containsRect(b: Phaser.Rectangle): boolean;
         copyFrom(source: any): Phaser.Rectangle;
+        copyFromBounds(source: any): Phaser.Rectangle;
         copyTo(dest: any): any;
         equals(b: Phaser.Rectangle): boolean;
         floor(): void;
