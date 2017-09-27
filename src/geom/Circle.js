@@ -216,6 +216,21 @@ Phaser.Circle.prototype = {
 
     },
 
+
+    /**
+     * Creates or positions points on the circle.
+     *
+     * The points are equally distributed in the half-closed interval [startAngle, endAngle). The default arc is the entire circle.
+     *
+     * If the `out` argument is omitted, this method creates and returns an array of {@link Phaser.Point points}. If an array is passed as `out`, its items are treated as points and placed in the same way.
+     *
+     * @param {type} [steps=60] - The number of points to place.
+     * @param {type} [startAngle=0] - The starting angle in radians (unless asDegrees is true).
+     * @param {type} [endAngle=Phaser.Math.PI2] - The end angle in radians (unless asDegrees is true).
+     * @param {type} [asDegrees=false]  - Are the given angles in radians (false) or degrees (true)?
+     * @param {any[]} [out] - An array of points or point-like objects (e.g., sprites). It should start at index 0 and its length should be equal to or greater than `steps`.
+     * @return {any[]} - The modified `out` argument or a new array of points.
+     */
     sample: function (steps, startAngle, endAngle, asDegrees, out) {
 
         if (!steps) { steps = 60; }
