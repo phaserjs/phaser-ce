@@ -243,13 +243,6 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     };
 
     /**
-    * Alias for {@link #counts}. Will be removed in a future release.
-    *
-    * @deprecated Use {@link #counts} instead.
-    */
-    this.count = this.counts;
-
-    /**
     * @property {Phaser.Point} _gravity - Internal gravity value.
     * @private
     */

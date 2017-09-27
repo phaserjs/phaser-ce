@@ -343,6 +343,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.CanvasPool.log prints canvas pool counts to the console.
 * Phaser.Utils.Debug#canvasPool displays canvas pool counts.
 * Phaser.Color.linear and Phaser.Color.linearInterpolation interpolate color values. Phaser.Color.linearInterpolation can be used to tween through an array of colors.
+* Phaser.Group#count counts children matching a key-value query and Phaser.Group#getFirst fetches the first child matching a key-value query.
 
 ### Updates
 

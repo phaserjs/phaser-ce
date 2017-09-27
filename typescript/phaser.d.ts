@@ -1890,6 +1890,7 @@ declare module Phaser {
         checkAll(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean, force?: boolean): boolean;
         checkAny(key: string, value: any, checkAlive?: boolean, checkVisible?: boolean): boolean;
         checkProperty(child: any, key: string, value: any, force?: boolean): boolean;
+        count(key: string, value: any): number;
         countDead(): number;
         countLiving(): number;
         create(x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, exists?: boolean, index?: number): any;
@@ -1907,6 +1908,7 @@ declare module Phaser {
         getBottom(): any;
         getByName(name: string): any;
         getClosestTo(object: any, callback?: Function, callbackContext?: any): any;
+        getFirst(key: string, value: any): any;
         getFirstAlive(createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
         getFirstDead(createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
         getFirstExists(exists: boolean, createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
@@ -2901,7 +2903,6 @@ declare module Phaser {
                 blendMode: Phaser.blendModes;
                 bottom: number;
                 bounce: Phaser.Point;
-                count: EmitterCount; // deprecated
                 counts: EmitterCount;
                 emitX: number;
                 emitY: number;
