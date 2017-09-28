@@ -623,6 +623,8 @@ Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, f
 *
 * When called externally you can use the arguments to override any defaults the Emitter has set.
 *
+* The newly emitted particle is available in {@link Phaser.Particles.Arcade.Emitter#cursor}.
+*
 * @method Phaser.Particles.Arcade.Emitter#emitParticle
 * @param {number} [x] - The x coordinate to emit the particle from. If `null` or `undefined` it will use `Emitter.emitX` or if the Emitter has a width > 1 a random value between `Emitter.left` and `Emitter.right`.
 * @param {number} [y] - The y coordinate to emit the particle from. If `null` or `undefined` it will use `Emitter.emitY` or if the Emitter has a height > 1 a random value between `Emitter.top` and `Emitter.bottom`.
