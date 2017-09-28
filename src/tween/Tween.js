@@ -185,6 +185,33 @@ Phaser.Tween = function (target, game, manager) {
     this._hasStarted = false;
 };
 
+/**
+* A helper for tweening {@link Phaser.Color.createColor color objects}.
+*
+* It can be passed to {@link #onUpdateCallback}.
+*
+* ```javascript
+* var color = Phaser.Color.createColor(255, 0, 0); // red
+*
+* var tween = game.add.tween(color).to({
+*     r: 0, g: 0, b: 255 // blue
+* });
+*
+* tween.onUpdateCallback(Phaser.Tween.updateColor);
+*
+* tween.start();
+* ```
+*
+* @method Phaser.Tween.updateColor
+* @static
+* @param {Phaser.Tween} tween - A Tween with a {@link #target} that is a {@link Phaser.Color.createColor color object}.
+*/
+Phaser.Tween.updateColor = function (tween) {
+
+    Phaser.Color.updateColor(tween.target);
+
+};
+
 Phaser.Tween.prototype = {
 
     /**
