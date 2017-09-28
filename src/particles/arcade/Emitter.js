@@ -623,6 +623,8 @@ Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, f
 *
 * When called externally you can use the arguments to override any defaults the Emitter has set.
 *
+* The newly emitted particle is available in {@link Phaser.Particles.Arcade.Emitter#cursor}.
+*
 * @method Phaser.Particles.Arcade.Emitter#emitParticle
 * @param {number} [x] - The x coordinate to emit the particle from. If `null` or `undefined` it will use `Emitter.emitX` or if the Emitter has a width > 1 a random value between `Emitter.left` and `Emitter.right`.
 * @param {number} [y] - The y coordinate to emit the particle from. If `null` or `undefined` it will use `Emitter.emitY` or if the Emitter has a height > 1 a random value between `Emitter.top` and `Emitter.bottom`.
@@ -635,7 +637,7 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     if (x === undefined) { x = null; }
     if (y === undefined) { y = null; }
 
-    var particle = this.getFirstExists(false);
+    var particle = this.getNextParticle();
 
     if (particle === null)
     {
@@ -684,6 +686,31 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     this.resetParticle(particle, emitX, emitY);
 
     return true;
+
+};
+
+
+/**
+* Helper for {@link #emitParticle}. Gets the next available particle.
+*
+* @private
+* @return {?Phaser.Particle} The first particle with exists=false, or null
+*/
+Phaser.Particles.Arcade.Emitter.prototype.getNextParticle = function () {
+
+    var i = this.length;
+
+    while (i--)
+    {
+        var next = this.next();
+
+        if (!next.exists)
+        {
+            return next;
+        }
+    }
+
+    return null;
 
 };
 

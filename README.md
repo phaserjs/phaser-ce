@@ -352,7 +352,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Updates
 
-…
+* Particle emitter release has been made more efficient (#333). You can access the most recently emitted particle in Emitter#cursor.
 
 ### Bug Fixes
 
