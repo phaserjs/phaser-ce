@@ -142,14 +142,17 @@ var self = this;
 		<ul class="dummy">
 			<li>
 				<?js= self.linkto(meta.shortpath) ?><?js if (this.navOptions.linenums) {?>,
-				 <?js= self.linkto(meta.shortpath, 'line ' + meta.lineno, null, 'sunlight-1-line-' + meta.lineno) ?><?js } ?>
+				<?js= self.linkto(meta.shortpath, 'line ' + meta.lineno, null, 'sunlight-1-line-' + meta.lineno) ?><?js } ?>
 			</li>
 		</ul>
 	</dd>
 	<?js } else if (data.meta && this.navOptions.outputSourcePath) { ?>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<?js= meta.shortpath ?>
+    <?js if (meta.sourceUrl) ?>
+      <a href="<?js= meta.sourceUrl ?>" title="<?js= meta.sourceDescription ?>"><?js= meta.sourceLocation ?></a>
+    <?js else ?>
+      <?js= meta.sourceLocation ?>
 	</dd>
 	<?js } ?>
 

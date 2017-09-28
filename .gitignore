@@ -2,6 +2,7 @@
 Thumbs.db
 .DS_Store
 .idea
+.tscache
 *.suo
 *.sublime-project
 *.sublime-workspace

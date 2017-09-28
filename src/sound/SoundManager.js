@@ -11,8 +11,8 @@
 * There is a good guide to what's supported here: http://hpr.dogphilosophy.net/test/
 *
 * If you are reloading a Phaser Game on a page that never properly refreshes (such as in an AngularJS project) then you will quickly run out
-* of AudioContext nodes. If this is the case create a global var called PhaserGlobal on the window object before creating the game. The active
-* AudioContext will then be saved to window.PhaserGlobal.audioContext when the Phaser game is destroyed, and re-used when it starts again.
+* of AudioContext nodes. If this is the case create a global var called {@link PhaserGlobal} on the window object before creating the game. The active
+* AudioContext will then be saved to `window.PhaserGlobal.audioContext` when the Phaser game is destroyed, and re-used when it starts again.
 *
 * Mobile warning: There are some mobile devices (certain iPad 2 and iPad Mini revisions) that cannot play 48000 Hz audio.
 * When they try to play the audio becomes extremely distorted and buzzes, eventually crashing the sound system.

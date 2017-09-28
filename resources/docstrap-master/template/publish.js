@@ -11,7 +11,8 @@ var template = require('jsdoc/template'),
   fs = require('jsdoc/fs'),
   _ = require('underscore'),
   path = require('jsdoc/path'),
-
+  util = require('util'),
+  logger = require('jsdoc/util/logger'),
   taffy = require('taffydb').taffy,
   handle = require('jsdoc/util/error').handle,
   helper = require('jsdoc/util/templateHelper'),
@@ -27,8 +28,14 @@ var template = require('jsdoc/template'),
   outdir = env.opts.destination,
   searchEnabled = conf.search !== false;
 
+logger.info('logger level', logger.getLevel());
+
 var globalUrl = helper.getUniqueFilename('global');
 var indexUrl = helper.getUniqueFilename('index');
+
+if (conf.syntaxTheme) {
+  logger.warn('`template.syntaxTheme` is ignored. Import the Prism theme in template/styles/main.less.');
+}
 
 var navOptions = {
   analytics: conf.analytics || null,
@@ -46,14 +53,13 @@ var navOptions = {
   outputSourceFiles: conf.outputSourceFiles === true,
   outputSourcePath: conf.outputSourcePath,
   search: searchEnabled,
+  sourceLinkFormat: conf.sourceLinkFormat,
   sort: conf.sort,
-  sourceRootPath: conf.sourceRootPath,
-  syntaxTheme: conf.syntaxTheme || 'default',
+  sourceRootPath: conf.sourceRootPath ? path.join(fs.realpathSync(conf.sourceRootPath), '/') : null,
+  syntaxTheme: 'default',
   systemName: conf.systemName || 'Documentation',
-  theme: conf.theme || 'cerulean',
+  theme: conf.theme || 'phaser',
 };
-
-console.info('navOptions', navOptions);
 
 var searchableDocuments = {};
 
@@ -185,7 +191,7 @@ function addSignatureReturns (f) {
   if (navOptions.methodHeadingReturns) {
     var returnTypes = helper.getSignatureReturns(f);
 
-    f.signature = '<span class="signature">' + (f.signature || '') + '</span>' + '<span class="type-signature">' + (returnTypes.length ? ' &rarr; {' + returnTypes.join('|') + '}' : '') + '</span>';
+    f.signature = '<span class="signature">' + (f.signature || '') + '</span>' + '<span class="type-signature">' + (returnTypes.length ? (' &rarr; {' + returnTypes.join(' | ') + '}') : '') + '</span>';
   } else {
     f.signature = f.signature || '';
   }
@@ -194,33 +200,25 @@ function addSignatureReturns (f) {
 function addSignatureTypes (f) {
   var types = helper.getSignatureTypes(f);
 
-  f.signature = (f.signature || '') + '<span class="type-signature">' + (types.length ? ' :' + types.join('|') : '') + '</span>';
+  f.signature = (f.signature || '') + '<span class="type-signature">' + (types.length ? (' : ' + types.join(' | ')) : '') + '</span>';
 }
 
 function addAttribs (f) {
   var attribs = helper.getAttribs(f);
 
-  f.attribs = '<span class="type-signature">' + htmlsafe(attribs.length ? '<' + attribs.join(', ') + '> ' : '') + '</span>';
+  f.attribs = '<span class="type-signature">' + htmlsafe(attribs.length ? ('<' + attribs.join(', ') + '> ') : '') + '</span>';
 }
 
 function shortenPaths (files, commonPrefix) {
-  //	// always use forward slashes
-  //	var regexp = new RegExp( '\\\\', 'g' );
-  //
-  //	var prefix = commonPrefix.toLowerCase().replace( regexp, "/" );
-  //
-  //	Object.keys( files ).forEach( function ( file ) {
-  //		files[file].shortened = files[file]
-  //			.resolved
-  //			.toLowerCase()
-  //			.replace( regexp, '/' )
-  //			.replace( prefix, '' );
-  //	} );
+  logger.info('shortenPaths commonPrefix=%s', commonPrefix);
 
-  Object.keys(files).forEach(function (file) {
-    files[file].shortened = files[file].resolved.replace(commonPrefix, '')
-    // always use forward slashes
-    .replace(/\\/g, '/');
+  Object.keys(files).forEach(function (key) {
+    var file = files[key];
+    file.shortened = file.resolved
+      .replace(commonPrefix, '')
+      // always use forward slashes
+      .replace(/\\/g, '/');
+    logger.verbose('%s -> %s', file.resolved, file.shortened);
   });
 
   return files;
@@ -297,8 +295,7 @@ function generateSourceFiles (sourceFiles) {
       handle(e);
     }
 
-    generate('source', 'Source: ' + sourceFiles[file].shortened, [source], sourceOutfile,
-      false);
+    generate('source', 'Source: ' + sourceFiles[file].shortened, [source], sourceOutfile, false);
   });
 }
 
@@ -466,7 +463,9 @@ exports.publish = function (taffyData, opts, tutorials) {
 
   conf['default'] = conf['default'] || {};
 
-  console.log('opts', opts);
+  logger.info('config', opts.configure);
+  logger.debug('opts', opts);
+  logger.debug('navOptions', navOptions);
 
   var templatePath = opts.template;
   view = new template.Template(templatePath + '/tmpl');
@@ -556,7 +555,24 @@ exports.publish = function (taffyData, opts, tutorials) {
   var packageInfo = (find({
     kind: 'package'
   }) || [])[0];
-  if (navOptions.disablePackagePath !== true && packageInfo && packageInfo.name) {
+
+  if (packageInfo) {
+    navOptions.npmUrl = util.format('https://www.npmjs.com/package/%s', packageInfo.name);
+    navOptions.githubUrl = util.format('https://github.com/photonstorm/%s/releases/tag/v%s', packageInfo.name, packageInfo.version);
+    logger.info('packageInfo.name', packageInfo.name);
+    logger.info('packageInfo.version', packageInfo.version);
+  }
+
+  if (!packageInfo) {
+    logger.warn('Missing packageInfo');
+  }
+
+  navOptions.buildDate = new Date();
+  navOptions.buildTime = moment().format('X');
+  navOptions.assetTimestamp = moment().format('YYYYMMDDHH');
+  navOptions.packageInfo = Object.freeze(Object.assign({}, packageInfo));
+
+  if (packageInfo && packageInfo.name && !navOptions.disablePackagePath) {
     if (packageInfo.version) {
       outdir = path.join(outdir, packageInfo.name, packageInfo.version);
     } else {
@@ -575,16 +591,16 @@ exports.publish = function (taffyData, opts, tutorials) {
     fs.copyFileSync(fileName, toDir);
   });
 
-    // copy user-specified static files to outdir
+  // copy user-specified static files to outdir
   var staticFilePaths;
   var staticFileFilter;
   var staticFileScanner;
   if (conf.default.staticFiles) {
-        // The canonical property name is `include`. We accept `paths` for backwards compatibility
-        // with a bug in JSDoc 3.2.x.
+    // The canonical property name is `include`. We accept `paths` for backwards compatibility
+    // with a bug in JSDoc 3.2.x.
     staticFilePaths = conf.default.staticFiles.include ||
-            conf.default.staticFiles.paths ||
-            [];
+      conf.default.staticFiles.paths ||
+      [];
     staticFileFilter = new (require('jsdoc/src/filter')).Filter(conf.default.staticFiles);
     staticFileScanner = new (require('jsdoc/src/scanner')).Scanner();
 
@@ -602,23 +618,38 @@ exports.publish = function (taffyData, opts, tutorials) {
 
   if (sourceFilePaths.length) {
     var payload = navOptions.sourceRootPath;
+    logger.info('sourceRootPath', navOptions.sourceRootPath);
+    logger.info('commonPrefix(sourceFilePaths)', path.commonPrefix(sourceFilePaths));
     if (!payload) {
       payload = path.commonPrefix(sourceFilePaths);
+      logger.warn('`templates.sourceRootPath` is recommended. Using "%s" instead', payload);
     }
     sourceFiles = shortenPaths(sourceFiles, payload);
   }
+
+  logger.info('sourceLinkFormat', navOptions.sourceLinkFormat);
+
   data().each(function (doclet) {
     var url = helper.createLink(doclet);
     helper.registerLink(doclet.longname, url);
 
     // add a shortened version of the full path
     var docletPath;
-    if (doclet.meta) {
+    var meta = doclet.meta;
+
+    if (meta) {
       docletPath = getPathFromDoclet(doclet);
       if (!_.isEmpty(sourceFiles[docletPath])) {
         docletPath = sourceFiles[docletPath].shortened;
         if (docletPath) {
-          doclet.meta.shortpath = docletPath;
+          meta.shortpath = docletPath;
+          if (packageInfo.version) {
+            meta.sourceUrl = util.format(navOptions.sourceLinkFormat, packageInfo.version, docletPath, meta.lineno);
+            meta.sourceLocation = util.format('%s line %s', meta.shortpath, meta.lineno);
+            meta.sourceDescription = util.format('%s on line %s of %s', doclet.name, meta.lineno, meta.shortpath);
+            logger.verbose('meta.sourceUrl', meta.sourceUrl);
+          }
+          // logger.verbose('meta', meta);
         }
       }
     }

@@ -17,12 +17,12 @@
 *
 * At the time of writing this there are device limitations you should be aware of:
 *
-* - On Windows, if you install a mouse driver, and its utility software allows you to customize button actions 
-*   (e.g., IntelliPoint and SetPoint), the middle (wheel) button, the 4th button, and the 5th button might not be set, 
+* - On Windows, if you install a mouse driver, and its utility software allows you to customize button actions
+*   (e.g., IntelliPoint and SetPoint), the middle (wheel) button, the 4th button, and the 5th button might not be set,
 *   even when they are pressed.
 * - On Linux (GTK), the 4th button and the 5th button are not supported.
 * - On Mac OS X 10.5 there is no platform API for implementing any advanced buttons.
-* 
+*
 * @class Phaser.DeviceButton
 * @constructor
 * @param {Phaser.Pointer|Phaser.SinglePad} parent - A reference to the parent of this button. Either a Pointer or a Gamepad.
@@ -144,7 +144,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Called automatically by Phaser.Pointer and Phaser.SinglePad.
     * Handles the button down state.
-    * 
+    *
     * @method Phaser.DeviceButton#start
     * @protected
     * @param {object} [event] - The DOM event that triggered the button change.
@@ -179,7 +179,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Called automatically by Phaser.Pointer and Phaser.SinglePad.
     * Handles the button up state.
-    * 
+    *
     * @method Phaser.DeviceButton#stop
     * @protected
     * @param {object} [event] - The DOM event that triggered the button change.
@@ -211,8 +211,31 @@ Phaser.DeviceButton.prototype = {
     },
 
     /**
+    * Called automatically by Phaser.Pointer.
+    * Starts or stops button based on condition.
+    *
+    * @method Phaser.DeviceButton#startStop
+    * @protected
+    * @param {boolean} [condition] - The condition that decides between start or stop.
+    * @param {object} [event] - The DOM event that triggered the button change.
+    * @param {number} [value] - The button value. Only get for Gamepads.
+    */
+    startStop: function (condition, event, value) {
+
+        if (condition)
+        {
+            this.start(event, value);
+        }
+        else
+        {
+            this.stop(event, value);
+        }
+
+    },
+
+    /**
     * Called automatically by Phaser.SinglePad.
-    * 
+    *
     * @method Phaser.DeviceButton#padFloat
     * @protected
     * @param {number} value - Button value
@@ -231,7 +254,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Returns the "just pressed" state of this button.
     * Just pressed is considered true if the button was pressed down within the duration given (default 250ms).
-    * 
+    *
     * @method Phaser.DeviceButton#justPressed
     * @param {number} [duration=250] - The duration in ms below which the button is considered as being just pressed.
     * @return {boolean} True if the button is just pressed otherwise false.
@@ -247,7 +270,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Returns the "just released" state of this button.
     * Just released is considered as being true if the button was released within the duration given (default 250ms).
-    * 
+    *
     * @method Phaser.DeviceButton#justReleased
     * @param {number} [duration=250] - The duration in ms below which the button is considered as being just released.
     * @return {boolean} True if the button is just released otherwise false.
@@ -262,7 +285,7 @@ Phaser.DeviceButton.prototype = {
 
     /**
     * Resets this DeviceButton, changing it to an isUp state and resetting the duration and repeats counters.
-    * 
+    *
     * @method Phaser.DeviceButton#reset
     */
     reset: function () {
@@ -280,9 +303,9 @@ Phaser.DeviceButton.prototype = {
     },
 
     /**
-    * Destroys this DeviceButton, this disposes of the onDown, onUp and onFloat signals 
+    * Destroys this DeviceButton, this disposes of the onDown, onUp and onFloat signals
     * and clears the parent and game references.
-    * 
+    *
     * @method Phaser.DeviceButton#destroy
     */
     destroy: function () {
@@ -303,7 +326,7 @@ Phaser.DeviceButton.prototype.constructor = Phaser.DeviceButton;
 /**
 * How long the button has been held down for in milliseconds.
 * If not currently down it returns -1.
-* 
+*
 * @name Phaser.DeviceButton#duration
 * @property {number} duration
 * @readonly

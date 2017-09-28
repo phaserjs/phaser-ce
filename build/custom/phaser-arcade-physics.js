@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.8.4 "2017-08-15" - Built: Tue Aug 15 2017 23:50:28
+* v2.8.8 "2017-09-25" - Built: Mon Sep 25 2017 13:18:50
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -1697,7 +1697,7 @@ Object.defineProperty(PIXI.Sprite.prototype, 'height', {
  */
 PIXI.Sprite.prototype.setTexture = function(texture, destroyBase)
 {
-    if (destroyBase !== undefined)
+    if (destroyBase)
     {
         this.texture.baseTexture.destroy();
     }
@@ -3522,7 +3522,6 @@ PIXI.WebGLRenderer = function(game) {
     this.renderSession.game = this.game;
     this.renderSession.gl = this.gl;
     this.renderSession.drawCount = 0;
-    this.renderSession.flushCount = 0;
     this.renderSession.shaderManager = this.shaderManager;
     this.renderSession.maskManager = this.maskManager;
     this.renderSession.filterManager = this.filterManager;
@@ -3531,6 +3530,7 @@ PIXI.WebGLRenderer = function(game) {
     this.renderSession.stencilManager = this.stencilManager;
     this.renderSession.renderer = this;
     this.renderSession.resolution = this.resolution;
+    this.renderSession.roundPixels = false;
     this.renderSession.maxTextureAvailableSpace = null; // filled in setTexturePriority()
 
     // time init the context..
@@ -3737,7 +3737,6 @@ PIXI.WebGLRenderer.prototype.renderDisplayObject = function(displayObject, proje
 
     // reset the render session data..
     this.renderSession.drawCount = 0;
-    this.renderSession.flushCount = 0;
 
     // make sure to flip the Y if using a render texture..
     this.renderSession.flipY = buffer ? -1 : 1;
@@ -5280,7 +5279,6 @@ PIXI.WebGLSpriteBatch.prototype.flush = function () {
 
     // then reset the batch!
     this.currentBatchSize = 0;
-    this.renderSession.flushCount++;
 };
 
 /**
@@ -5742,7 +5740,6 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function()
 
     // increment the draw count
     this.renderSession.drawCount++;
-    this.renderSession.flushCount++;
 
 };
 
@@ -7597,7 +7594,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.8.4',
+    VERSION: '2.8.8',
 
     /**
     * An array of Phaser game instances.
@@ -8062,15 +8059,15 @@ var Phaser = Phaser || {    // jshint ignore:line
     BOTTOM_RIGHT: 12,
 
     /**
-    * Various blend modes supported by Pixi.
+    * Various blend modes supported by Pixi. See the samples in {@link https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing Canvas Tutorial: Compositing}.
     *
     * IMPORTANT: The WebGL renderer only supports the NORMAL, ADD, MULTIPLY and SCREEN blend modes.
     *
     * @constant {Object} Phaser.blendModes
-    * @property {Number} blendModes.NORMAL
-    * @property {Number} blendModes.ADD
-    * @property {Number} blendModes.MULTIPLY
-    * @property {Number} blendModes.SCREEN
+    * @property {Number} blendModes.NORMAL - Draws new shapes on top of the existing content. This is the default setting.
+    * @property {Number} blendModes.ADD - Where both shapes overlap the color is determined by adding color values.
+    * @property {Number} blendModes.MULTIPLY - The pixels of the top layer are multiplied with the corresponding pixel of the bottom layer, making a darker picture.
+    * @property {Number} blendModes.SCREEN - The pixels are inverted, multiplied, and inverted again, making a lighter picture.
     * @property {Number} blendModes.OVERLAY
     * @property {Number} blendModes.DARKEN
     * @property {Number} blendModes.LIGHTEN
@@ -14237,7 +14234,7 @@ Object.defineProperty(Phaser.Camera.prototype, "shakeIntensity", {
 * |       | preload     | create     | paused       |          |
 * |       | loadUpdate* | update*    | pauseUpdate* |          |
 * |       |             | preRender* |              |          |
-* |       | loadRender* | render*    | pauseRender* |          |
+* |       | loadRender* | render*    | render*      |          |
 * |       |             |            | resumed      |          |
 * |       |             |            |              | shutdown |
 *
@@ -15991,7 +15988,7 @@ Phaser.SignalBinding.prototype.constructor = Phaser.SignalBinding;
 *
 * The default uniforms, types and values for all Filters are:
 *
-* ```
+* ```javascript
 * resolution: { type: '2f', value: { x: 256, y: 256 }}
 * time: { type: '1f', value: 0 }
 * mouse: { type: '2f', value: { x: 0.0, y: 0.0 } }
@@ -16105,7 +16102,7 @@ Phaser.Filter.prototype = {
 
     /**
     * This should be over-ridden. Will receive a variable number of arguments.
-    * 
+    *
     * @method Phaser.Filter#init
     */
     init: function () {
@@ -16116,7 +16113,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Set the resolution uniforms on the filter.
-    * 
+    *
     * @method Phaser.Filter#setResolution
     * @param {number} width - The width of the display.
     * @param {number} height - The height of the display.
@@ -16130,7 +16127,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Updates the filter.
-    * 
+    *
     * @method Phaser.Filter#update
     * @param {Phaser.Pointer} [pointer] - A Pointer object to use for the filter. The coordinates are mapped to the mouse uniform.
     */
@@ -16154,7 +16151,7 @@ Phaser.Filter.prototype = {
     },
 
     /**
-    * Creates a new Phaser.Image object using a blank texture and assigns 
+    * Creates a new Phaser.Image object using a blank texture and assigns
     * this Filter to it. The image is then added to the world.
     *
     * If you don't provide width and height values then Filter.width and Filter.height are used.
@@ -16209,7 +16206,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Syncs the uniforms between the class object and the shaders.
-    * 
+    *
     * @method Phaser.Filter#syncUniforms
     */
     syncUniforms: function () {
@@ -16223,7 +16220,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Clear down this Filter and null out references to game.
-    * 
+    *
     * @method Phaser.Filter#destroy
     */
     destroy: function () {
@@ -16290,6 +16287,18 @@ Object.defineProperty(Phaser.Filter.prototype, 'height', {
 
 /**
 * This is a base Plugin template to use for any Phaser plugin development.
+*
+* ##### Callbacks
+*
+* add  | active      | visible     | remove
+* -----|-------------|-------------|--------
+* init |             |             |
+*      | preUpdate*  |             |
+*      | update*     | render*     |
+*      | postUpdate* | postRender* |
+*      |             |             | destroy
+*
+* Update and render calls are repeated (*).
 *
 * @class Phaser.Plugin
 * @constructor
@@ -16964,6 +16973,13 @@ Phaser.Stage.prototype.checkVisibility = function () {
         return _this.visibilityChange(event);
     };
 
+    this._onClick = function (event) {
+        if ((document.hasFocus !== undefined) && !document.hasFocus())
+        {
+            _this.visibilityChange(event);
+        }
+    };
+
     //  Does browser support it? If not (like in IE9 or old Android) we need to fall back to blur/focus
     if (this._hiddenVar)
     {
@@ -16975,6 +16991,8 @@ Phaser.Stage.prototype.checkVisibility = function () {
 
     window.onpagehide = this._onChange;
     window.onpageshow = this._onChange;
+
+    window.addEventListener('click', this._onClick);
 
     if (this.game.device.cocoonJSApp)
     {
@@ -16992,23 +17010,29 @@ Phaser.Stage.prototype.checkVisibility = function () {
 /**
 * This method is called when the document visibility is changed.
 *
+* - `blur` and `pagehide` events trigger {@link Phaser.Game#onBlur}. They {@link Phaser.Game#gamePaused pause the game} unless {@link #disableVisibilityChange} is on.
+* - `click`, `focus`, and `pageshow` trigger {@link Phaser.Game#onFocus}. They {@link Phaser.Game#gameResumed resume the game} unless {@link #disableVisibilityChange} is on.
+* - `visibilitychange` (hidden) and CocoonJS's `onSuspended` {@link Phaser.Game#gamePaused pause the game} unless {@link #disableVisibilityChange} is on.
+* - `visibilitychange` (visible) and CocoonJS's `onActivated` {@link Phaser.Game#gameResumed resume the game} unless {@link #disableVisibilityChange} is on.
+*
 * @method Phaser.Stage#visibilityChange
 * @param {Event} event - Its type will be used to decide whether the game should be paused or not.
 */
 Phaser.Stage.prototype.visibilityChange = function (event) {
 
-    if (event.type === 'pagehide' || event.type === 'blur' || event.type === 'pageshow' || event.type === 'focus')
-    {
-        if (event.type === 'pagehide' || event.type === 'blur')
-        {
-            this.game.focusLoss(event);
-        }
-        else if (event.type === 'pageshow' || event.type === 'focus')
-        {
-            this.game.focusGain(event);
-        }
+    // These events always trigger the Game#onBlur or Game#onFocus signals.
 
-        return;
+    switch (event.type)
+    {
+        case 'blur':
+        case 'pagehide':
+            this.game.focusLoss(event);
+            return;
+        case 'click':
+        case 'focus':
+        case 'pageshow':
+            this.game.focusGain(event);
+            return;
     }
 
     if (this.disableVisibilityChange)
@@ -17071,6 +17095,8 @@ Phaser.Stage.prototype.destroy = function () {
 
     window.onblur = null;
     window.onfocus = null;
+
+    window.removeEventListener('click', this._onClick);
 
 };
 
@@ -20225,11 +20251,30 @@ Object.defineProperty(Phaser.Group.prototype, "bottom", {
 //  This function is set at the bottom of src/gameobjects/components/Bounds.js
 
 /**
-* A display object is any object that can be rendered in the Phaser/pixi.js scene graph.
+* A display object is any object that can be rendered in the Phaser/pixi.js scene graph:
 *
-* This includes {@link Phaser.Group} (groups are display objects!),
-* {@link Phaser.Sprite}, {@link Phaser.Button}, {@link Phaser.Text}
-* as well as {@link PIXI.DisplayObject} and all derived types.
+* - {@link PIXI.DisplayObject}
+*   - {@link PIXI.DisplayObjectContainer}
+*     - {@link Phaser.BitmapText}
+*     - {@link Phaser.Creature}
+*     - {@link Phaser.Graphics}
+*     - {@link Phaser.Group}
+*       - {@link Phaser.FlexLayer}
+*       - {@link Phaser.Particles.Arcade.Emitter}
+*       - {@link Phaser.Physics.P2.BodyDebug}
+*       - {@link Phaser.SpriteBatch}
+*       - {@link Phaser.World}
+*     - {@link Phaser.Rope}
+*     - {@link Phaser.Stage}
+*     - {@link PIXI.Sprite}
+*       - {@link Phaser.Image}
+*         - {@link Phaser.Button}
+*       - {@link Phaser.Sprite}
+*         - {@link Phaser.Bullet}
+*         - {@link Phaser.Particle}
+*         - {@link Phaser.Text}
+*         - {@link Phaser.TilemapLayer}
+*       - {@link Phaser.TileSprite}
 *
 * @typedef {object} DisplayObject
 */
@@ -20660,42 +20705,29 @@ Object.defineProperty(Phaser.World.prototype, "randomY", {
 * In it's most simplest form, a Phaser game can be created by providing the arguments
 * to the constructor:
 *
-* ```
+* ```javascript
 * var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
 * ```
 *
 * In the example above it is passing in a State object directly. You can also use the State
 * Manager to do this:
 *
-* ```
+* ```javascript
 * var game = new Phaser.Game(800, 600, Phaser.AUTO);
 * game.state.add('Boot', BasicGame.Boot);
 * game.state.add('Preloader', BasicGame.Preloader);
 * game.state.add('MainMenu', BasicGame.MainMenu);
 * game.state.add('Game', BasicGame.Game);
 * game.state.start('Boot');
-*
 * ```
+*
 * In the example above, 4 States are added to the State Manager, and Phaser is told to
 * start running the `Boot` state when it has finished initializing. There are example
 * project templates you can use in the Phaser GitHub repo, inside the `resources` folder.
 *
-* @class Phaser.Game
-* @constructor
-* @param {number|string} [width=800] - The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given.
-* @param {number|string} [height=600] - The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given.
-* @param {number} [renderer=Phaser.AUTO] - Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all).
-* @param {string|HTMLElement} [parent=''] - The DOM element into which this games canvas will be injected. Either a DOM ID (string) or the element itself.
-* @param {object} [state=null] - The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.
-* @param {boolean} [transparent=false] - Use a transparent canvas background or not.
-* @param {boolean} [antialias=true] - Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art.
-* @param {object} [physicsConfig=null] - A physics configuration object to pass to the Physics world on creation.
-*/
-
-/**
-* Instead of specifying arguments you can also pass a single object instead:
+* Instead of specifying arguments you can also pass {@link GameConfig a single object} instead:
 *
-* ```
+* ```javascript
 * var config = {
 *     width: 800,
 *     height: 600,
@@ -20714,23 +20746,14 @@ Object.defineProperty(Phaser.World.prototype, "randomY", {
 *
 * @class Phaser.Game
 * @constructor
-* @param {object} [config] - A single configuration object
-* @param {number|string} [config.antialias=true]
-* @param {number|string} [config.height=600]
-* @param {boolean} [config.enableDebug=true] - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
-* @param {number} [config.fullScreenScaleMode] - The scaling method used by the ScaleManager when in fullscreen.
-* @param {DOMElement} [config.fullScreenTarget] - The DOM element on which the Fullscreen API enter request will be invoked.
-* @param {boolean} [config.multiTexture=false] - Enable support for multiple bound Textures in WebGL. Same as `renderer: Phaser.WEBGL_MULTI`.
-* @param {string|HTMLElement} [config.parent='']
-* @param {object} [config.physicsConfig=null]
-* @param {boolean} [config.preserveDrawingBuffer=false] - Whether or not the contents of the stencil buffer is retained after rendering.
-* @param {number} [config.renderer=Phaser.AUTO]
-* @param {number} [config.resolution=1] - The resolution of your game, as a ratio of canvas pixels to game pixels.
-* @param {number} [config.scaleMode] - The scaling method used by the ScaleManager when not in fullscreen.
-* @param {number} [config.seed] - Seed for {@link Phaser.RandomDataGenerator}.
-* @param {object} [config.state=null]
-* @param {boolean} [config.transparent=false]
-* @param {number|string} [config.width=800]
+* @param {number|string|GameConfig} [width=800] - The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given.
+* @param {number|string} [height=600] - The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given.
+* @param {number} [renderer=Phaser.AUTO] - Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all).
+* @param {string|HTMLElement} [parent=''] - The DOM element into which this games canvas will be injected. Either a DOM ID (string) or the element itself.
+* @param {object} [state=null] - The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.
+* @param {boolean} [transparent=false] - Use a transparent canvas background or not.
+* @param {boolean} [antialias=true] - Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art.
+* @param {object} [physicsConfig=null] - A physics configuration object to pass to the Physics world on creation.
 */
 Phaser.Game = function (width, height, renderer, parent, state, transparent, antialias, physicsConfig) {
 
@@ -20760,7 +20783,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     /**
     * The current Game Width in pixels.
     *
-    * _Do not modify this property directly:_ use {@link Phaser.ScaleManager#setGameSize} - eg. `game.scale.setGameSize(width, height)` - instead.
+    * _Do not modify this property directly:_ use {@link Phaser.ScaleManager#setGameSize} - e.g. `game.scale.setGameSize(width, height)` - instead.
     *
     * @property {integer} width
     * @readonly
@@ -20771,7 +20794,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     /**
     * The current Game Height in pixels.
     *
-    * _Do not modify this property directly:_ use {@link Phaser.ScaleManager#setGameSize} - eg. `game.scale.setGameSize(width, height)` - instead.
+    * _Do not modify this property directly:_ use {@link Phaser.ScaleManager#setGameSize} - e.g. `game.scale.setGameSize(width, height)` - instead.
     *
     * @property {integer} height
     * @readonly
@@ -21160,6 +21183,29 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 
 };
 
+/**
+* A configuration object for {@link Phaser.Game}.
+*
+* @typedef {object} GameConfig
+* @property {number|string} [GameConfig.antialias=true]
+* @property {number|string} [GameConfig.height=600]
+* @property {boolean} [GameConfig.enableDebug=true] - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
+* @property {number} [GameConfig.fullScreenScaleMode] - The scaling method used by the ScaleManager when in fullscreen.
+* @property {DOMElement} [GameConfig.fullScreenTarget] - The DOM element on which the Fullscreen API enter request will be invoked.
+* @property {boolean} [GameConfig.multiTexture=false] - Enable support for multiple bound Textures in WebGL. Same as `{renderer: Phaser.WEBGL_MULTI}`.
+* @property {string|HTMLElement} [GameConfig.parent='']
+* @property {object} [GameConfig.physicsConfig=null]
+* @property {boolean} [GameConfig.preserveDrawingBuffer=false] - Whether or not the contents of the stencil buffer is retained after rendering.
+* @property {number} [GameConfig.renderer=Phaser.AUTO]
+* @property {number} [GameConfig.resolution=1] - The resolution of your game, as a ratio of canvas pixels to game pixels.
+* @property {number} [GameConfig.scaleMode] - The scaling method used by the ScaleManager when not in fullscreen.
+* @property {number} [GameConfig.seed] - Seed for {@link Phaser.RandomDataGenerator}.
+* @property {object} [GameConfig.state=null]
+* @property {boolean} [GameConfig.transparent=false]
+* @property {number|string} [GameConfig.width=800]
+*/
+// Documentation stub for linking.
+
 Phaser.Game.prototype = {
 
     /**
@@ -21332,7 +21378,16 @@ Phaser.Game.prototype = {
             }
         }
 
-        this.raf.start();
+        if (this.cache.isReady)
+        {
+            this.raf.start();
+        }
+        else
+        {
+            this.cache.onReady.addOnce(function () {
+                this.raf.start();
+            }, this);
+        }
 
     },
 
@@ -22238,25 +22293,44 @@ Phaser.Input = function (game) {
     this.resetLocked = false;
 
     /**
-    * A Signal that is dispatched each time a pointer is pressed down.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is pressed down.
+    * It is sent two arguments:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    * - {Event} The original DOM event.
+    *
     * @property {Phaser.Signal} onDown
     */
     this.onDown = null;
 
     /**
-    * A Signal that is dispatched each time a pointer is released.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is released.
+    * It is sent two arguments:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    * - {Event} The original DOM event.
+    *
     * @property {Phaser.Signal} onUp
     */
     this.onUp = null;
 
     /**
-    * A Signal that is dispatched each time a pointer is tapped.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is tapped.
+    * It is sent two arguments:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    * - {boolean} True if this was a double tap.
+    *
     * @property {Phaser.Signal} onTap
     */
     this.onTap = null;
 
     /**
-    * A Signal that is dispatched each time a pointer is held down.
+    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is held down.
+    * It is sent one argument:
+    *
+    * - {Phaser.Pointer} The pointer that caused the event.
+    *
     * @property {Phaser.Signal} onHold
     */
     this.onHold = null;
@@ -22539,8 +22613,9 @@ Phaser.Input.prototype = {
      * @method Phaser.Input#executeTouchLockCallbacks
      * @private
      * @param {boolean} onEnd - Execute the touchend/pointerup callbacks (true) or the touchstart/pointerdown callbacks (false). Required!
+     * @param {Event} event - The native event from the browser.
      */
-    executeTouchLockCallbacks: function (onEnd) {
+    executeTouchLockCallbacks: function (onEnd, event) {
         var i = this.touchLockCallbacks.length;
 
         while (i--)
@@ -23615,8 +23690,9 @@ Phaser.Mouse.prototype = {
         //  No matter what, we must cancel the left and right buttons
 
         this.input.mousePointer.stop(event);
-        this.input.mousePointer.leftButton.stop(event);
-        this.input.mousePointer.rightButton.stop(event);
+
+        // Clear the button states (again?)
+        this.input.mousePointer.resetButtons();
 
     },
 
@@ -23904,16 +23980,29 @@ Object.defineProperties(WheelEventProxy.prototype, {
 */
 
 /**
-* The MSPointer class handles Microsoft touch interactions with the game and the resulting Pointer objects.
+* The MSPointer class handles {@link https://developers.google.com/web/updates/2016/10/pointer-events Pointer-event} interactions with the game via a dedicated {@link Phaser.Pointer}. (It's named after the nonstandard {@link https://msdn.microsoft.com/library/hh673557(v=vs.85).aspx MSPointerEvent} since that was the first browser implementation.)
 *
-* It will work only in Internet Explorer 10+ and Windows Store or Windows Phone 8 apps using JavaScript.
-* http://msdn.microsoft.com/en-us/library/ie/hh673557(v=vs.85).aspx
+* It's {@link http://caniuse.com/#feat=pointer currently supported  in IE 10+, Edge, Chrome (including Android), and Opera}.
 *
-* You should not normally access this class directly, but instead use a Phaser.Pointer object which
+* You should not normally access this class directly, but instead use a {@link Phaser.Pointer} object which
 * normalises all game input for you including accurate button handling.
 *
 * Please note that at the current time of writing Phaser does not yet support chorded button interactions:
 * http://www.w3.org/TR/pointerevents/#chorded-button-interactions
+*
+* You can disable Phaser's use of Pointer Events by either of two ways:
+*
+* ```javascript
+* // **Before** `new Phaser.Game(…)`:
+* Phaser.Device.onInitialized.add(function () {
+*     this.mspointer = false;
+* });
+* ```
+*
+* ```javascript
+* // Once, in the earliest State `init` or `create` callback (e.g., Boot):
+* this.input.mspointer.stop();
+* ```
 *
 * @class Phaser.MSPointer
 * @constructor
@@ -23953,7 +24042,7 @@ Phaser.MSPointer = function (game) {
     this.pointerUpCallback = null;
 
     /**
-    * @property {boolean} capture - If true the Pointer events will have event.preventDefault applied to them, if false they will propagate fully.
+    * @property {boolean} capture - If true the Pointer events will have event.preventDefault applied to them, canceling the corresponding MouseEvent or TouchEvent.
     */
     this.capture = true;
 
@@ -23966,15 +24055,15 @@ Phaser.MSPointer = function (game) {
     this.button = -1;
 
     /**
-    * The browser MSPointer DOM event. Will be null if no event has ever been received.
+    * The most recent PointerEvent from the browser. Will be null if no event has ever been received.
     * Access this property only inside a Pointer event handler and do not keep references to it.
-    * @property {MSPointerEvent|null} event
+    * @property {MSPointerEvent|PointerEvent|null} event
     * @default
     */
     this.event = null;
 
     /**
-    * MSPointer input will only be processed if enabled.
+    * PointerEvent input will only be processed if enabled.
     * @property {boolean} enabled
     * @default
     */
@@ -24097,7 +24186,7 @@ Phaser.MSPointer.prototype = {
     */
     onPointerDown: function (event) {
 
-        this.game.input.executeTouchLockCallbacks(false);
+        this.game.input.executeTouchLockCallbacks(false, event);
 
         this.event = event;
 
@@ -24173,7 +24262,7 @@ Phaser.MSPointer.prototype = {
     */
     onPointerUp: function (event) {
 
-        this.game.input.executeTouchLockCallbacks(true);
+        this.game.input.executeTouchLockCallbacks(true, event);
 
         this.event = event;
 
@@ -24371,12 +24460,12 @@ Phaser.MSPointer.prototype.constructor = Phaser.MSPointer;
 *
 * At the time of writing this there are device limitations you should be aware of:
 *
-* - On Windows, if you install a mouse driver, and its utility software allows you to customize button actions 
-*   (e.g., IntelliPoint and SetPoint), the middle (wheel) button, the 4th button, and the 5th button might not be set, 
+* - On Windows, if you install a mouse driver, and its utility software allows you to customize button actions
+*   (e.g., IntelliPoint and SetPoint), the middle (wheel) button, the 4th button, and the 5th button might not be set,
 *   even when they are pressed.
 * - On Linux (GTK), the 4th button and the 5th button are not supported.
 * - On Mac OS X 10.5 there is no platform API for implementing any advanced buttons.
-* 
+*
 * @class Phaser.DeviceButton
 * @constructor
 * @param {Phaser.Pointer|Phaser.SinglePad} parent - A reference to the parent of this button. Either a Pointer or a Gamepad.
@@ -24498,7 +24587,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Called automatically by Phaser.Pointer and Phaser.SinglePad.
     * Handles the button down state.
-    * 
+    *
     * @method Phaser.DeviceButton#start
     * @protected
     * @param {object} [event] - The DOM event that triggered the button change.
@@ -24533,7 +24622,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Called automatically by Phaser.Pointer and Phaser.SinglePad.
     * Handles the button up state.
-    * 
+    *
     * @method Phaser.DeviceButton#stop
     * @protected
     * @param {object} [event] - The DOM event that triggered the button change.
@@ -24565,8 +24654,31 @@ Phaser.DeviceButton.prototype = {
     },
 
     /**
+    * Called automatically by Phaser.Pointer.
+    * Starts or stops button based on condition.
+    *
+    * @method Phaser.DeviceButton#startStop
+    * @protected
+    * @param {boolean} [condition] - The condition that decides between start or stop.
+    * @param {object} [event] - The DOM event that triggered the button change.
+    * @param {number} [value] - The button value. Only get for Gamepads.
+    */
+    startStop: function (condition, event, value) {
+
+        if (condition)
+        {
+            this.start(event, value);
+        }
+        else
+        {
+            this.stop(event, value);
+        }
+
+    },
+
+    /**
     * Called automatically by Phaser.SinglePad.
-    * 
+    *
     * @method Phaser.DeviceButton#padFloat
     * @protected
     * @param {number} value - Button value
@@ -24585,7 +24697,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Returns the "just pressed" state of this button.
     * Just pressed is considered true if the button was pressed down within the duration given (default 250ms).
-    * 
+    *
     * @method Phaser.DeviceButton#justPressed
     * @param {number} [duration=250] - The duration in ms below which the button is considered as being just pressed.
     * @return {boolean} True if the button is just pressed otherwise false.
@@ -24601,7 +24713,7 @@ Phaser.DeviceButton.prototype = {
     /**
     * Returns the "just released" state of this button.
     * Just released is considered as being true if the button was released within the duration given (default 250ms).
-    * 
+    *
     * @method Phaser.DeviceButton#justReleased
     * @param {number} [duration=250] - The duration in ms below which the button is considered as being just released.
     * @return {boolean} True if the button is just released otherwise false.
@@ -24616,7 +24728,7 @@ Phaser.DeviceButton.prototype = {
 
     /**
     * Resets this DeviceButton, changing it to an isUp state and resetting the duration and repeats counters.
-    * 
+    *
     * @method Phaser.DeviceButton#reset
     */
     reset: function () {
@@ -24634,9 +24746,9 @@ Phaser.DeviceButton.prototype = {
     },
 
     /**
-    * Destroys this DeviceButton, this disposes of the onDown, onUp and onFloat signals 
+    * Destroys this DeviceButton, this disposes of the onDown, onUp and onFloat signals
     * and clears the parent and game references.
-    * 
+    *
     * @method Phaser.DeviceButton#destroy
     */
     destroy: function () {
@@ -24657,7 +24769,7 @@ Phaser.DeviceButton.prototype.constructor = Phaser.DeviceButton;
 /**
 * How long the button has been held down for in milliseconds.
 * If not currently down it returns -1.
-* 
+*
 * @name Phaser.DeviceButton#duration
 * @property {number} duration
 * @readonly
@@ -25116,51 +25228,46 @@ Phaser.Pointer.prototype = {
     },
 
     /**
-    * Called by updateButtons.
+    * Called by processButtonsUpDown.
     *
     * @method Phaser.Pointer#processButtonsDown
     * @private
-    * @param {integer} buttons - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons MouseEvent#buttons} value.
+    * @param {integer} button - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button MouseEvent#button} value.
     * @param {MouseEvent} event - The DOM event.
     */
-    processButtonsDown: function (buttons, event) {
+    processButtonsDown: function (button, event) {
 
         //  Note: These are bitwise checks, not booleans
 
-        if (Phaser.Pointer.LEFT_BUTTON & buttons)
+        if (button === Phaser.Mouse.LEFT_BUTTON)
         {
             this.leftButton.start(event);
         }
 
-        if (Phaser.Pointer.RIGHT_BUTTON & buttons)
+        if (button === Phaser.Mouse.RIGHT_BUTTON)
         {
             this.rightButton.start(event);
         }
 
-        if (Phaser.Pointer.MIDDLE_BUTTON & buttons)
+        if (button === Phaser.Mouse.MIDDLE_BUTTON)
         {
             this.middleButton.start(event);
         }
 
-        if (Phaser.Pointer.BACK_BUTTON & buttons)
+        if (button === Phaser.Mouse.BACK_BUTTON)
         {
             this.backButton.start(event);
         }
 
-        if (Phaser.Pointer.FORWARD_BUTTON & buttons)
+        if (button === Phaser.Mouse.FORWARD_BUTTON)
         {
             this.forwardButton.start(event);
-        }
-
-        if (Phaser.Pointer.ERASER_BUTTON & buttons)
-        {
-            this.eraserButton.start(event);
         }
 
     },
 
     /**
-    * Called by updateButtons.
+    * Called by processButtonsUpDown.
     *
     * @method Phaser.Pointer#processButtonsUp
     * @private
@@ -25168,6 +25275,8 @@ Phaser.Pointer.prototype = {
     * @param {MouseEvent} event - The DOM event.
     */
     processButtonsUp: function (button, event) {
+
+        //  Note: These are bitwise checks, not booleans
 
         if (button === Phaser.Mouse.LEFT_BUTTON)
         {
@@ -25194,9 +25303,80 @@ Phaser.Pointer.prototype = {
             this.forwardButton.stop(event);
         }
 
-        if (button === 5)
+    },
+
+    /**
+    * Called by updateButtons.
+    *
+    * @method Phaser.Pointer#processButtonsUpDown
+    * @private
+    * @param {integer} buttons - {@link https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons MouseEvent#buttons} value.
+    * @param {MouseEvent} event - The DOM event.
+    */
+    processButtonsUpDown: function (buttons, event) {
+
+        var down = (event.type.toLowerCase().substr(-4) === 'down');
+        var move = (event.type.toLowerCase().substr(-4) === 'move');
+
+        if (buttons !== undefined)
         {
-            this.eraserButton.stop(event);
+            // On OS X (and other devices with trackpads) you have to press CTRL + the pad to initiate a right-click event.
+            if (down && buttons === 1 && event.ctrlKey)
+            {
+                buttons = 2;
+            }
+
+            // Note: These are bitwise checks, not booleans
+            this.leftButton.startStop(Phaser.Pointer.LEFT_BUTTON & buttons, event);
+            this.rightButton.startStop(Phaser.Pointer.RIGHT_BUTTON & buttons, event);
+            this.middleButton.startStop(Phaser.Pointer.MIDDLE_BUTTON & buttons, event);
+            this.backButton.startStop(Phaser.Pointer.BACK_BUTTON & buttons, event);
+            this.forwardButton.startStop(Phaser.Pointer.FORWARD_BUTTON & buttons, event);
+            this.eraserButton.startStop(Phaser.Pointer.ERASER_BUTTON & buttons, event);
+        }
+        else
+        {
+            // No buttons property (like Safari on OSX when using a trackpad)
+            // Attempt to use event.button property or fallback to default
+            if (event.button !== undefined)
+            {
+                // On OS X (and other devices with trackpads) you have to press CTRL + the pad to initiate a right-click event.
+                if (down && event.ctrlKey && event.button === 0)
+                {
+                    this.rightButton.start(event);
+                }
+                else
+                {
+                    if (down)
+                    {
+                        this.processButtonsDown(event.button, event);
+                    }
+                    else if (!move)
+                    {
+                        this.processButtonsUp(event.button, event);
+                    }
+                }
+            }
+            else
+            {
+                if (down)
+                {
+                    // On OS X (and other devices with trackpads) you have to press CTRL + the pad to initiate a right-click event.
+                    if (event.ctrlKey)
+                    {
+                        this.rightButton.start(event);
+                    }
+                    else
+                    {
+                        this.leftButton.start(event);
+                    }
+                }
+                else
+                {
+                    this.leftButton.stop(event);
+                    this.rightButton.stop(event);
+                }
+            }
         }
 
     },
@@ -25212,43 +25392,7 @@ Phaser.Pointer.prototype = {
     updateButtons: function (event) {
 
         this.button = event.button;
-
-        var down = (event.type.toLowerCase().substr(-4) === 'down');
-
-        if (event.buttons !== undefined)
-        {
-            if (down)
-            {
-                this.processButtonsDown(event.buttons, event);
-            }
-            else
-            {
-                this.processButtonsUp(event.button, event);
-            }
-        }
-        else
-        {
-            //  No buttons property (like Safari on OSX when using a trackpad)
-            if (down)
-            {
-                this.leftButton.start(event);
-            }
-            else
-            {
-                this.leftButton.stop(event);
-                this.rightButton.stop(event);
-            }
-        }
-
-        //  On OS X (and other devices with trackpads) you have to press CTRL + the pad
-        //  to initiate a right-click event, so we'll check for that here ONLY if
-        //  event.buttons = 1 (i.e. they only have a 1 button mouse or trackpad)
-
-        if (event.buttons === 1 && event.ctrlKey && this.leftButton.isDown)
-        {
-            this.leftButton.stop(event);
-            this.rightButton.start(event);
-        }
+        this.processButtonsUpDown(event.buttons, event);
 
         this.isUp = true;
         this.isDown = false;
@@ -25406,7 +25550,7 @@ Phaser.Pointer.prototype = {
             this.button = event.button;
         }
 
-        if (fromClick && this.isMouse)
+        if (this.isMouse)
         {
             this.updateButtons(event);
         }
@@ -26158,7 +26302,7 @@ Phaser.Touch.prototype = {
     */
     onTouchStart: function (event) {
 
-        this.game.input.executeTouchLockCallbacks(false);
+        this.game.input.executeTouchLockCallbacks(false, event);
 
         this.event = event;
 
@@ -26303,7 +26447,7 @@ Phaser.Touch.prototype = {
     */
     onTouchEnd: function (event) {
 
-        this.game.input.executeTouchLockCallbacks(true);
+        this.game.input.executeTouchLockCallbacks(true, event);
 
         this.event = event;
 
@@ -26634,7 +26778,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Starts the Input Handler running. This is called automatically when you enable input on a Sprite, or can be called directly if you need to set a specific priority.
-    * 
+    *
     * @method Phaser.InputHandler#start
     * @param {number} [priority=0] - Higher priority sprites take click priority over low-priority sprites when they are stacked on-top of each other.
     * @param {boolean} [useHandCursor=false] - If true the Sprite will show the hand cursor on mouse-over (doesn't apply to mobile browsers)
@@ -27219,7 +27363,7 @@ Phaser.InputHandler.prototype = {
     /**
     * Internal Update method. This is called automatically and handles the Pointer
     * and drag update loops.
-    * 
+    *
     * @method Phaser.InputHandler#update
     * @protected
     * @param {Phaser.Pointer} pointer
@@ -27275,7 +27419,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Internal method handling the pointer over event.
-    * 
+    *
     * @method Phaser.InputHandler#_pointerOverHandler
     * @private
     * @param {Phaser.Pointer} pointer - The pointer that triggered the event
@@ -27312,7 +27456,7 @@ Phaser.InputHandler.prototype = {
                 this.sprite.events.onInputOver$dispatch(this.sprite, pointer);
             }
 
-            if (this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+            if (this.sprite.parent && this.sprite.parent.onChildInputOver)
             {
                 this.sprite.parent.onChildInputOver.dispatch(this.sprite, pointer);
             }
@@ -27322,7 +27466,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Internal method handling the pointer out event.
-    * 
+    *
     * @method Phaser.InputHandler#_pointerOutHandler
     * @private
     * @param {Phaser.Pointer} pointer - The pointer that triggered the event.
@@ -27352,7 +27496,7 @@ Phaser.InputHandler.prototype = {
         {
             this.sprite.events.onInputOut$dispatch(this.sprite, pointer);
 
-            if (this.sprite && this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+            if (this.sprite && this.sprite.parent && this.sprite.parent.onChildInputOut)
             {
                 this.sprite.parent.onChildInputOut.dispatch(this.sprite, pointer);
             }
@@ -27362,7 +27506,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Internal method handling the touched / clicked event.
-    * 
+    *
     * @method Phaser.InputHandler#_touchedHandler
     * @private
     * @param {Phaser.Pointer} pointer - The pointer that triggered the event.
@@ -27398,7 +27542,7 @@ Phaser.InputHandler.prototype = {
                 this.sprite.events.onInputDown$dispatch(this.sprite, pointer);
 
                 //  The event above might have destroyed this sprite.
-                if (this.sprite && this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+                if (this.sprite && this.sprite.parent && this.sprite.parent.onChildInputDown)
                 {
                     this.sprite.parent.onChildInputDown.dispatch(this.sprite, pointer);
                 }
@@ -27445,7 +27589,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Internal method handling the drag threshold timer.
-    * 
+    *
     * @method Phaser.InputHandler#dragTimeElapsed
     * @private
     * @param {Phaser.Pointer} pointer
@@ -27499,7 +27643,7 @@ Phaser.InputHandler.prototype = {
                     this.sprite.events.onInputUp$dispatch(this.sprite, pointer, isOver);
                 }
 
-                if (this.sprite && this.sprite.parent && this.sprite.parent.type === Phaser.GROUP)
+                if (this.sprite && this.sprite.parent && this.sprite.parent.onChildInputUp)
                 {
                     this.sprite.parent.onChildInputUp.dispatch(this.sprite, pointer, isOver);
                 }
@@ -27510,7 +27654,7 @@ Phaser.InputHandler.prototype = {
                     isOver = this.checkPointerOver(pointer);
                 }
             }
-            
+
             data.isOver = isOver;
 
             if (!isOver && this.useHandCursor)
@@ -27535,7 +27679,7 @@ Phaser.InputHandler.prototype = {
 
     /**
     * Called as a Pointer actively drags this Game Object.
-    * 
+    *
     * @method Phaser.InputHandler#updateDrag
     * @private
     * @param {Phaser.Pointer} pointer - The Pointer causing the drag update.
@@ -27736,11 +27880,11 @@ Phaser.InputHandler.prototype = {
     * Allow this Sprite to be dragged by any valid pointer.
     *
     * When the drag begins the Sprite.events.onDragStart event will be dispatched.
-    * 
+    *
     * When the drag completes by way of the user letting go of the pointer that was dragging the sprite, the Sprite.events.onDragStop event is dispatched.
     *
     * You can control the thresholds over when a drag starts via the properties:
-    * 
+    *
     * `Pointer.dragDistanceThreshold` the distance, in pixels, that the pointer has to move
     * before the drag will start.
     *
@@ -27751,7 +27895,7 @@ Phaser.InputHandler.prototype = {
     *
     * For the duration of the drag the Sprite.events.onDragUpdate event is dispatched. This event is only dispatched when the pointer actually
     * changes position and moves. The event sends 5 parameters: `sprite`, `pointer`, `dragX`, `dragY` and `snapPoint`.
-    * 
+    *
     * @method Phaser.InputHandler#enableDrag
     * @param {boolean} [lockCenter=false] - If false the Sprite will drag from where you click it minus the dragOffset. If true it will center itself to the tip of the mouse pointer.
     * @param {boolean} [bringToTop=false] - If true the Sprite will be bought to the top of the rendering list in its current Group.
@@ -27911,7 +28055,7 @@ Phaser.InputHandler.prototype = {
         return y;
 
     },
-	
+
     /**
     * Convert global coordinates to local sprite coordinates
     *
@@ -27930,7 +28074,7 @@ Phaser.InputHandler.prototype = {
 			return globalCoord;
 		}
 
-    },	
+    },
 
     /**
     * Called by Pointer when drag is stopped on this Sprite. Should not usually be called directly.
@@ -32048,21 +32192,21 @@ Phaser.Component.Destroy.prototype = {
 
 /**
 * The Events component is a collection of events fired by the parent Game Object.
-* 
+*
 * Phaser uses what are known as 'Signals' for all event handling. All of the events in
 * this class are signals you can subscribe to, much in the same way you'd "listen" for
 * an event.
 *
 * For example to tell when a Sprite has been added to a new group, you can bind a function
-* to the `onAddedToGroup` signal:
+* to the {@link #onAddedToGroup} signal:
 *
 * `sprite.events.onAddedToGroup.add(yourFunction, this);`
 *
 * Where `yourFunction` is the function you want called when this event occurs.
-* 
-* For more details about how signals work please see the Phaser.Signal class.
 *
-* The Input-related events will only be dispatched if the Sprite has had `inputEnabled` set to `true`
+* For more details about how signals work please see the {@link Phaser.Signal} class.
+*
+* The Input-related events will only be dispatched if the Sprite has had {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`
 * and the Animation-related events only apply to game objects with animations like {@link Phaser.Sprite}.
 *
 * @class Phaser.Events
@@ -32094,7 +32238,6 @@ Phaser.Events.prototype = {
         if (this._onDestroy)           { this._onDestroy.dispose(); }
         if (this._onAddedToGroup)      { this._onAddedToGroup.dispose(); }
         if (this._onRemovedFromGroup)  { this._onRemovedFromGroup.dispose(); }
-        if (this._onRemovedFromWorld)  { this._onRemovedFromWorld.dispose(); }
         if (this._onKilled)            { this._onKilled.dispose(); }
         if (this._onRevived)           { this._onRevived.dispose(); }
         if (this._onEnterBounds)       { this._onEnterBounds.dispose(); }
@@ -32117,186 +32260,213 @@ Phaser.Events.prototype = {
     // The following properties are sentinels that will be replaced with getters
 
     /**
-    * This signal is dispatched when this Game Object is added to a new Group.
+    * This signal is dispatched when this Game Object is added to a new {@link Phaser.Group Group}.
     * It is sent two arguments:
-    * {any} The Game Object that was added to the Group.
-    * {Phaser.Group} The Group it was added to.
+    *
+    * - {any} The Game Object that was added to the Group.
+    * - {Phaser.Group} The Group it was added to.
+    *
     * @property {Phaser.Signal} onAddedToGroup
     */
     onAddedToGroup: null,
 
     /**
-    * This signal is dispatched when the Game Object is removed from a Group.
+    * This signal is dispatched when the Game Object is removed from a {@link Phaser.Group Group}.
     * It is sent two arguments:
-    * {any} The Game Object that was removed from the Group.
-    * {Phaser.Group} The Group it was removed from.
+    *
+    * - {any} The Game Object that was removed from the Group.
+    * - {Phaser.Group} The Group it was removed from.
+    *
     * @property {Phaser.Signal} onRemovedFromGroup
     */
     onRemovedFromGroup: null,
 
     /**
-    * This Signal is never used internally by Phaser and is now deprecated.
-    * @deprecated
-    * @property {Phaser.Signal} onRemovedFromWorld
-    */
-    onRemovedFromWorld: null,
-
-    /**
     * This signal is dispatched when the Game Object is destroyed.
-    * This happens when `Sprite.destroy()` is called, or `Group.destroy()` with `destroyChildren` set to true.
+    * This happens when {@link Phaser.Sprite#destroy Sprite.destroy()} is called, or {@link Phaser.Group#destroy Group.destroy()} with `destroyChildren` set to true.
     * It is sent one argument:
-    * {any} The Game Object that was destroyed.
+    *
+    * - {any} The Game Object that was destroyed.
+    *
     * @property {Phaser.Signal} onDestroy
     */
     onDestroy: null,
 
     /**
     * This signal is dispatched when the Game Object is killed.
-    * This happens when `Sprite.kill()` is called.
-    * Please understand the difference between `kill` and `destroy` by looking at their respective methods.
+    * This happens when {@link Phaser.Sprite#kill Sprite.kill()} is called.
+    * Please understand the difference between {@link Phaser.Sprite#kill kill} and {@link Phaser.Sprite#destroy destroy} by looking at their respective methods.
     * It is sent one argument:
-    * {any} The Game Object that was killed.
+    *
+    * - {any} The Game Object that was killed.
+    *
     * @property {Phaser.Signal} onKilled
     */
     onKilled: null,
 
     /**
     * This signal is dispatched when the Game Object is revived from a previously killed state.
-    * This happens when `Sprite.revive()` is called.
+    * This happens when {@link Phaser.Sprite#revive Sprite.revive()} is called.
     * It is sent one argument:
-    * {any} The Game Object that was revived.
+    *
+    * - {any} The Game Object that was revived.
+    *
     * @property {Phaser.Signal} onRevived
     */
     onRevived: null,
 
     /**
-    * This signal is dispatched when the Game Object leaves the Phaser.World bounds.
-    * This signal is only if `Sprite.checkWorldBounds` is set to `true`.
+    * This signal is dispatched when the Game Object leaves the Phaser.World {@link Phaser.World#bounds bounds}.
+    * This signal is only if {@link Phaser.Sprite#checkWorldBounds Sprite.checkWorldBounds} is set to `true`.
     * It is sent one argument:
-    * {any} The Game Object that left the World bounds.
+    *
+    * - {any} The Game Object that left the World bounds.
+    *
     * @property {Phaser.Signal} onOutOfBounds
     */
     onOutOfBounds: null,
 
     /**
-    * This signal is dispatched when the Game Object returns within the Phaser.World bounds, having previously been outside of them.
-    * This signal is only if `Sprite.checkWorldBounds` is set to `true`.
+    * This signal is dispatched when the Game Object returns within the Phaser.World {@link Phaser.World#bounds bounds}, having previously been outside of them.
+    * This signal is only if {@link Phaser.Sprite#checkWorldBounds Sprite.checkWorldBounds} is set to `true`.
     * It is sent one argument:
-    * {any} The Game Object that entered the World bounds.
+    *
+    * - {any} The Game Object that entered the World bounds.
+    *
     * @property {Phaser.Signal} onEnterBounds
     */
     onEnterBounds: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives an over event from a Phaser.Pointer.
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives an over event from a {@link Phaser.Pointer}.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onInputOver
     */
     onInputOver: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives an out event from a Phaser.Pointer, which was previously over it.
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives an out event from a {@link Phaser.Pointer}, which was previously over it.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onInputOut
     */
     onInputOut: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives a down event from a Phaser.Pointer. This effectively means the Pointer has been
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives a down event from a {@link Phaser.Pointer}. This effectively means the Pointer has been
     * pressed down (but not yet released) on the Game Object.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onInputDown
     */
     onInputDown: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives an up event from a Phaser.Pointer. This effectively means the Pointer had been
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives an up event from a {@link Phaser.Pointer}. This effectively means the Pointer had been
     * pressed down, and was then released on the Game Object.
     * It is sent three arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
-    * {boolean} isOver - Is the Pointer still over the Game Object?
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    * - {boolean} isOver - Is the Pointer still over the Game Object?
+    *
     * @property {Phaser.Signal} onInputUp
     */
     onInputUp: null,
 
     /**
-    * This signal is dispatched if the Game Object has been `inputEnabled` and `enableDrag` has been set.
-    * It is sent when a Phaser.Pointer starts to drag the Game Object, taking into consideration the various
+    * This signal is dispatched if the Game Object has been {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} and {@link Phaser.InputHandler#enableDrag enableDrag} has been set.
+    * It is sent when a {@link Phaser.Pointer} starts to drag the Game Object, taking into consideration the various
     * drag limitations that may be set.
     * It is sent four arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
-    * {number} The x coordinate that the drag started from.
-    * {number} The y coordinate that the drag started from.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    * - {number} The x coordinate that the drag started from.
+    * - {number} The y coordinate that the drag started from.
+    *
     * @property {Phaser.Signal} onDragStart
     */
     onDragStart: null,
 
     /**
-    * This signal is dispatched if the Game Object has been `inputEnabled` and `enableDrag` has been set.
-    * It is sent when a Phaser.Pointer is actively dragging the Game Object.
+    * This signal is dispatched if the Game Object has been {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} and {@link Phaser.InputHandler#enableDrag enableDrag} has been set.
+    * It is sent when a {@link Phaser.Pointer} is actively dragging the Game Object.
     * Be warned: This is a high volume Signal. Be careful what you bind to it.
     * It is sent six arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
-    * {number} The new x coordinate of the Game Object.
-    * {number} The new y coordinate of the Game Object.
-    * {Phaser.Point} A Point object that contains the point the Game Object was snapped to, if `snapOnDrag` has been enabled.
-    * {boolean} The `fromStart` boolean, indicates if this is the first update immediately after the drag has started.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    * - {number} The new x coordinate of the Game Object.
+    * - {number} The new y coordinate of the Game Object.
+    * - {Phaser.Point} A Point object that contains the point the Game Object was snapped to, if `snapOnDrag` has been enabled.
+    * - {boolean} The `fromStart` boolean, indicates if this is the first update immediately after the drag has started.
+    *
     * @property {Phaser.Signal} onDragUpdate
     */
     onDragUpdate: null,
 
     /**
-    * This signal is dispatched if the Game Object has been `inputEnabled` and `enableDrag` has been set.
-    * It is sent when a Phaser.Pointer stops dragging the Game Object.
+    * This signal is dispatched if the Game Object has been {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} and {@link Phaser.InputHandler#enableDrag enableDrag} has been set.
+    * It is sent when a {@link Phaser.Pointer} stops dragging the Game Object.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onDragStop
     */
     onDragStop: null,
 
     /**
-    * This signal is dispatched if the Game Object has the AnimationManager component, 
+    * This signal is dispatched if the Game Object has the {@link Phaser.AnimationManager AnimationManager} component,
     * and an Animation has been played.
-    * You can also listen to `Animation.onStart` rather than via the Game Objects events.
+    * You can also listen to {@link Phaser.Animation#onStart} rather than via the Game Objects events.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Animation} The Phaser.Animation that was started.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Animation} The Phaser.Animation that was started.
+    *
     * @property {Phaser.Signal} onAnimationStart
     */
     onAnimationStart: null,
 
     /**
-    * This signal is dispatched if the Game Object has the AnimationManager component, 
-    * and an Animation has been stopped (via `animation.stop()` and the `dispatchComplete` argument has been set.
-    * You can also listen to `Animation.onComplete` rather than via the Game Objects events.
+    * This signal is dispatched if the Game Object has the {@link Phaser.AnimationManager AnimationManager} component,
+    * and an Animation has been stopped (via {@link Phaser.AnimationManager#stop animation.stop()} and the `dispatchComplete` argument has been set.
+    * You can also listen to {@link Phaser.Animation#onComplete} rather than via the Game Objects events.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Animation} The Phaser.Animation that was stopped.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Animation} The Phaser.Animation that was stopped.
+    *
     * @property {Phaser.Signal} onAnimationComplete
     */
     onAnimationComplete: null,
 
     /**
-    * This signal is dispatched if the Game Object has the AnimationManager component, 
+    * This signal is dispatched if the Game Object has the {@link Phaser.AnimationManager AnimationManager} component,
     * and an Animation has looped playback.
-    * You can also listen to `Animation.onLoop` rather than via the Game Objects events.
+    * You can also listen to {@link Phaser.Animation#onLoop} rather than via the Game Objects events.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Animation} The Phaser.Animation that looped.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Animation} The Phaser.Animation that looped.
+    *
     * @property {Phaser.Signal} onAnimationLoop
     */
     onAnimationLoop: null
@@ -34952,7 +35122,7 @@ Phaser.Image.prototype.preUpdate = function() {
 * @param {number} [x=0] - X position of the Button.
 * @param {number} [y=0] - Y position of the Button.
 * @param {string} [key] - The image key (in the Game.Cache) to use as the texture for this Button.
-* @param {function} [callback] - The function to call when this Button is pressed.
+* @param {function} [callback] - The function to call when this Button is pressed, receiving `this` (the Button), `pointer`, and `isOver` (see {@link Phaser.Events#onInputUp}.)
 * @param {object} [callbackContext] - The context in which the callback will be called (usually 'this').
 * @param {string|integer} [overFrame] - The frame / frameName when the button is in the Over state.
 * @param {string|integer} [outFrame] - The frame / frameName when the button is in the Out state.
@@ -35107,7 +35277,7 @@ Phaser.Button = function (game, x, y, key, callback, callbackContext, overFrame,
     * @property {Phaser.PointerMode?} justReleasedPreventsOver=ACTIVE_CURSOR
     */
     this.justReleasedPreventsOver = Phaser.PointerMode.TOUCH;
-    
+
     /**
     * When true the the texture frame will not be automatically switched on up/down/over/out events.
     * @property {boolean} freezeFrames
@@ -35144,8 +35314,6 @@ Phaser.Button = function (game, x, y, key, callback, callbackContext, overFrame,
     this.events.onInputDown.add(this.onInputDownHandler, this);
     this.events.onInputUp.add(this.onInputUpHandler, this);
 
-    this.events.onRemovedFromWorld.add(this.removedFromWorld, this);
-
 };
 
 Phaser.Button.prototype = Object.create(Phaser.Image.prototype);
@@ -35165,18 +35333,6 @@ var STATE_UP = 'Up';
 Phaser.Button.prototype.clearFrames = function () {
 
     this.setFrames(null, null, null, null);
-
-};
-
-/**
-* Called when this Button is removed from the World.
-*
-* @method Phaser.Button#removedFromWorld
-* @protected
-*/
-Phaser.Button.prototype.removedFromWorld = function () {
-
-    this.inputEnabled = false;
 
 };
 
@@ -36226,28 +36382,34 @@ Phaser.BitmapData.prototype = {
     },
 
     /**
-    * Creates a new Image element by converting this BitmapDatas canvas into a dataURL.
+    * Creates a new {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image Image} element by converting this BitmapDatas canvas into a dataURL.
     *
-    * The image is then stored in the image Cache using the key given.
+    * The image is then stored in the {@link Phaser.Cache image Cache} using the key given.
     *
-    * Finally a PIXI.Texture is created based on the image and returned.
+    * Finally a {@link PIXI.Texture} is created based on the image and returned.
     *
     * You can apply the texture to a sprite or any other supporting object by using either the
-    * key or the texture. First call generateTexture:
+    * key or the texture. First call `generateTexture`:
     *
-    * `var texture = bitmapdata.generateTexture('ball');`
+    * ```javascript
+    * var texture = bitmapdata.generateTexture('ball');
+    * ```
     *
     * Then you can either apply the texture to a sprite:
     *
-    * `game.add.sprite(0, 0, texture);`
+    * ```javascript
+    * game.add.sprite(0, 0, texture);
+    * ```
     *
     * or by using the string based key:
     *
-    * `game.add.sprite(0, 0, 'ball');`
+    * ```javascript
+    * game.add.sprite(0, 0, 'ball');
+    * ```
     *
     * Most browsers now load the image data asynchronously, so you should use a callback:
     *
-    * ```
+    * ```javascript
     * bitmapdata.generateTexture('ball', function (texture) {
     *     game.add.sprite(0, 0, texture);
     *     // or
@@ -40183,7 +40345,7 @@ Phaser.GraphicsData.prototype.clone = function () {
 * Circles and Polygons. They also include lines, arcs and curves. When you initially create a Graphics object it will
 * be empty. To 'draw' to it you first specify a lineStyle or fillStyle (or both), and then draw a shape. For example:
 *
-* ```
+* ```javascript
 * graphics.beginFill(0xff0000);
 * graphics.drawCircle(50, 50, 100);
 * graphics.endFill();
@@ -40452,7 +40614,7 @@ Phaser.Graphics.prototype.destroy = function (destroyChildren) {
 };
 
 /**
-* Draws a single {Phaser.Polygon} triangle from a {Phaser.Point} array
+* Draws a single {@link Phaser.Polygon} triangle from a {@link Phaser.Point} array
 *
 * @method Phaser.Graphics#drawTriangle
 * @param {Array<Phaser.Point>} points - An array of Phaser.Points that make up the three vertices of this triangle
@@ -40484,11 +40646,11 @@ Phaser.Graphics.prototype.drawTriangle = function (points, cull) {
 };
 
 /**
-* Draws {Phaser.Polygon} triangles
+* Draws {@link Phaser.Polygon} triangles
 *
 * @method Phaser.Graphics#drawTriangles
 * @param {Array<Phaser.Point>|Array<number>} vertices - An array of Phaser.Points or numbers that make up the vertices of the triangles
-* @param {Array<number>} {indices=null} - An array of numbers that describe what order to draw the vertices in
+* @param {Array<number>} [indices=null] - An array of numbers that describe what order to draw the vertices in
 * @param {boolean} [cull=false] - Should we check if the triangle is back-facing
 */
 Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull) {
@@ -52157,7 +52319,7 @@ Phaser.Tween = function (target, game, manager) {
     /**
     * The onLoop event is fired if the Tween, or any child tweens loop.
     * It will be sent 2 parameters: the target object and this tween.
-    * 
+    *
     * @property {Phaser.Signal} onLoop
     */
     this.onLoop = new Phaser.Signal();
@@ -52704,6 +52866,14 @@ Phaser.Tween.prototype = {
     /**
     * Sets a callback to be fired each time this tween updates.
     *
+    * The callback receives the current Tween, the {@link Phaser.TweenData#value 'value' of the current TweenData}, and the current {@link Phaser.TweenData TweenData}. The second parameter is most useful.
+    *
+    * ```javascript
+    * tween.onUpdateCallback(function (tween, value, tweenData) {
+    *   console.log('Tween running -- percent: %.2f value: %.2f', tweenData.percent, value);
+    * });
+    * ```
+    *
     * @method Phaser.Tween#onUpdateCallback
     * @param {function} callback - The callback to invoke each time this tween is updated. Set to `null` to remove an already active callback.
     * @param {object} callbackContext - The context in which to call the onUpdate callback.
@@ -53055,7 +53225,7 @@ Phaser.TweenData = function (parent) {
     this.percent = 0;
 
     /**
-    * @property {number} value - The current calculated value.
+    * @property {number} value - The output of the easing function for the current {@link #percent}. Depending on the easing function, this will be within [0, 1] or a slightly larger range (e.g., Bounce). When easing is Linear, this will be identical to {@link #percent}.
     * @readonly
     */
     this.value = 0;
@@ -53079,6 +53249,7 @@ Phaser.TweenData = function (parent) {
     /**
     * @property {boolean} interpolate - True if the Tween will use interpolation (i.e. is an Array to Array tween)
     * @default
+    * @todo Appears unused.
     */
     this.interpolate = false;
 
@@ -53122,7 +53293,7 @@ Phaser.TweenData = function (parent) {
     this.easingFunction = Phaser.Easing.Default;
 
     /**
-    * @property {function} interpolationFunction - The interpolation function used for the Tween.
+    * @property {function} interpolationFunction - The interpolation function used for Array-based Tween.
     * @default Phaser.Math.linearInterpolation
     */
     this.interpolationFunction = Phaser.Math.linearInterpolation;
@@ -53396,7 +53567,7 @@ Phaser.TweenData.prototype = {
         {
             return this.repeat();
         }
-        
+
         return Phaser.TweenData.RUNNING;
 
     },
@@ -53451,7 +53622,7 @@ Phaser.TweenData.prototype = {
 
                 if (Array.isArray(end))
                 {
-                    blob[property] = this.interpolationFunction(end, this.value);
+                    blob[property] = this.interpolationFunction.call(this.interpolationContext, end, this.value);
                 }
                 else
                 {
@@ -58069,8 +58240,20 @@ Phaser.Cache = function (game) {
     this._cacheMap[Phaser.Cache.SHADER] = this._cache.shader;
     this._cacheMap[Phaser.Cache.RENDER_TEXTURE] = this._cache.renderTexture;
 
-    this.addDefaultImage();
-    this.addMissingImage();
+    /**
+     * @property {number}
+     * @private
+     */
+    this._pendingCount = 0;
+
+    /**
+    * Dispatched when the DEFAULT and MISSING images have loaded (or the {@link #READY_TIMEOUT load timeout} was exceeded).
+    *
+    * @property {Phaser.Signal} onReady
+    */
+    this.onReady = new Phaser.Signal();
+
+    this._addImages();
 
 };
 
@@ -58172,11 +58355,47 @@ Phaser.Cache.RENDER_TEXTURE = 15;
 Phaser.Cache.DEFAULT = null;
 
 /**
+ * Key for the DEFAULT texture.
+ * @constant
+ * @type {string}
+ */
+Phaser.Cache.DEFAULT_KEY = '__default';
+
+/**
+ * URL for the DEFAULT texture.
+ * @constant
+ * @type {string}
+ */
+Phaser.Cache.DEFAULT_SRC = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABVJREFUeF7NwIEAAAAAgKD9qdeocAMAoAABm3DkcAAAAABJRU5ErkJggg==';
+
+/**
 * The default image used for a texture when the source image is missing.
 * @constant
 * @type {PIXI.Texture}
 */
 Phaser.Cache.MISSING = null;
+
+/**
+ * Key for the MISSING texture.
+ * @constant
+ * @type {string}
+ */
+Phaser.Cache.MISSING_KEY = '__missing';
+
+/**
+ * URL for the MISSING texture.
+ * @constant
+ * @type {string}
+ */
+Phaser.Cache.MISSING_SRC = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ9JREFUeNq01ssOwyAMRFG46v//Mt1ESmgh+DFmE2GPOBARKb2NVjo+17PXLD8a1+pl5+A+wSgFygymWYHBb0FtsKhJDdZlncG2IzJ4ayoMDv20wTmSMzClEgbWYNTAkQ0Z+OJ+A/eWnAaR9+oxCF4Os0H8htsMUp+pwcgBBiMNnAwF8GqIgL2hAzaGFFgZauDPKABmowZ4GL369/0rwACp2yA/ttmvsQAAAABJRU5ErkJggg==';
+
+/**
+* The maximum amount of time (ms) to wait for the built-in DEFAULT and MISSING images to load.
+* @static
+* @type {number}
+* @default
+*/
+Phaser.Cache.READY_TIMEOUT = 1000;
 
 Phaser.Cache.prototype = {
 
@@ -58293,6 +58512,26 @@ Phaser.Cache.prototype = {
     },
 
     /**
+     * @method Phaser.Cache#addImageAsync
+     * @private
+     */
+    addImageAsync: function (key, src, callback) {
+
+        var self = this;
+        var img = new Image();
+
+        img.onload = function () {
+            callback.call(this, self.addImage(key, null, img));
+            self._removePending();
+            img.onload = null;
+        };
+
+        this._addPending();
+        img.src = src;
+
+    },
+
+    /**
     * Adds a default image to be used in special cases such as WebGL Filters.
     * It uses the special reserved key of `__default`.
     * This method is called automatically when the Cache is created.
@@ -58303,22 +58542,13 @@ Phaser.Cache.prototype = {
     */
     addDefaultImage: function () {
 
-        var cache = this;
-        var img = new Image();
-
-        img.onload = function () {
-            var obj = cache.addImage('__default', null, img);
-
+        this.addImageAsync(Phaser.Cache.DEFAULT_KEY, Phaser.Cache.DEFAULT_SRC, function (obj) {
             //  Because we don't want to invalidate the sprite batch for an invisible texture
             obj.base.skipRender = true;
 
             //  Make it easily available within the rest of Phaser / Pixi
             Phaser.Cache.DEFAULT = new PIXI.Texture(obj.base);
-
-            img.onload = null;
-        };
-
-        img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABVJREFUeF7NwIEAAAAAgKD9qdeocAMAoAABm3DkcAAAAABJRU5ErkJggg==";
+        });
 
     },
 
@@ -58333,19 +58563,10 @@ Phaser.Cache.prototype = {
     */
     addMissingImage: function () {
 
-        var cache = this;
-        var img = new Image();
-
-        img.onload = function () {
-            var obj = cache.addImage('__missing', null, img);
-
+        this.addImageAsync(Phaser.Cache.MISSING_KEY, Phaser.Cache.MISSING_SRC, function (obj) {
             //  Make it easily available within the rest of Phaser / Pixi
             Phaser.Cache.MISSING = new PIXI.Texture(obj.base);
-
-            img.onload = null;
-        };
-
-        img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ9JREFUeNq01ssOwyAMRFG46v//Mt1ESmgh+DFmE2GPOBARKb2NVjo+17PXLD8a1+pl5+A+wSgFygymWYHBb0FtsKhJDdZlncG2IzJ4ayoMDv20wTmSMzClEgbWYNTAkQ0Z+OJ+A/eWnAaR9+oxCF4Os0H8htsMUp+pwcgBBiMNnAwF8GqIgL2hAzaGFFgZauDPKABmowZ4GL369/0rwACp2yA/ttmvsQAAAABJRU5ErkJggg==";
+        });
 
     },
 
@@ -60079,11 +60300,108 @@ Phaser.Cache.prototype = {
             }
         }
 
+    },
+
+    /**
+    * Starts loading the DEFAULT and MISSING images.
+    *
+    * @private
+    */
+    _addImages: function () {
+
+        this._pendingCount = 0;
+
+        this.addDefaultImage();
+        this.addMissingImage();
+
+        var self = this;
+        var readyTimeout = Phaser.Cache.READY_TIMEOUT;
+
+        if (Phaser.Cache.READY_TIMEOUT > 0)
+        {
+            setTimeout(function () {
+                if (!self.isReady)
+                {
+                    console.warn('Phaser.Cache: Still waiting for images after %s ms.', readyTimeout);
+
+                    self._ready();
+                }
+            }, Phaser.Cache.READY_TIMEOUT);
+        }
+        else
+        {
+            this._ready();
+        }
+
+    },
+
+
+    /**
+    * Increments the pending count.
+    *
+    * @private
+    */
+    _addPending: function () {
+
+        this._pendingCount += 1;
+
+    },
+
+
+    /**
+    * Decrements the pending count and checks if complete.
+    *
+    * @private
+    */
+    _removePending: function () {
+
+        this._pendingCount -= 1;
+        this._checkReady();
+
+    },
+
+
+    /**
+    * Calls {@link #_ready} if no pending items remain.
+    *
+    * @private
+    */
+    _checkReady: function () {
+
+        if (this.isReady)
+        {
+            this._ready();
+        }
+
+    },
+
+
+    /**
+    * Resets pending count and triggers {@link #onReady}.
+    *
+    * @private
+    */
+    _ready: function () {
+
+        this._pendingCount = 0;
+        this.onReady.dispatch(this);
+
     }
 
 };
 
 Phaser.Cache.prototype.constructor = Phaser.Cache;
+
+/**
+* The DEFAULT and MISSING textures have loaded (or the {@link #READY_TIMEOUT load timeout} was exceeded).
+*
+* @property {boolean} Phaser.Cache#isReady
+*/
+Object.defineProperty(Phaser.Cache.prototype, 'isReady', {
+    get: function () {
+        return this._pendingCount <= 0;
+    }
+});
 
 /* jshint wsh:true */
 /**
@@ -60809,7 +61127,7 @@ Phaser.Loader.prototype = {
     *
     * The texture path object looks like this:
     *
-    * ```
+    * ```javascript
     * load.image('factory', {
     *     etc1: 'assets/factory_etc1.pkm',
     *     s3tc: 'assets/factory_dxt1.pvr',
@@ -60869,7 +61187,7 @@ Phaser.Loader.prototype = {
     *
     * The texture path object looks like this:
     *
-    * ```
+    * ```javascript
     * load.texture('factory', {
     *     etc1: 'assets/factory_etc1.pkm',
     *     s3tc: 'assets/factory_dxt1.pvr',
@@ -65230,8 +65548,8 @@ Object.defineProperty(Phaser.Sound.prototype, "volume", {
 * There is a good guide to what's supported here: http://hpr.dogphilosophy.net/test/
 *
 * If you are reloading a Phaser Game on a page that never properly refreshes (such as in an AngularJS project) then you will quickly run out
-* of AudioContext nodes. If this is the case create a global var called PhaserGlobal on the window object before creating the game. The active
-* AudioContext will then be saved to window.PhaserGlobal.audioContext when the Phaser game is destroyed, and re-used when it starts again.
+* of AudioContext nodes. If this is the case create a global var called {@link PhaserGlobal} on the window object before creating the game. The active
+* AudioContext will then be saved to `window.PhaserGlobal.audioContext` when the Phaser game is destroyed, and re-used when it starts again.
 *
 * Mobile warning: There are some mobile devices (certain iPad 2 and iPad Mini revisions) that cannot play 48000 Hz audio.
 * When they try to play the audio becomes extremely distorted and buzzes, eventually crashing the sound system.
@@ -69492,25 +69810,27 @@ Phaser.Utils.Debug.prototype = {
         this.line('clearBeforeRender: ' + r.clearBeforeRender);
         this.line('resolution: ' + r.resolution);
         this.line('transparent: ' + r.transparent);
+        this.line('renderSession:');
 
         if (r.gl)
         {
-            this.line('drawCount: ' + s.drawCount);
-            this.line('flushCount: ' + s.flushCount);
-            this.line('maxTextures: ' + r.maxTextures);
-            this.line('maxTextureSize: ' + r.maxTextureSize);
-            this.line('maxTextureAvailableSpace: ' + s.maxTextureAvailableSpace);
-            this.line('currentBatchedTextures: ('+ r.currentBatchedTextures.length + ')');
+            this.line('  currentBatchedTextures: ('+ r.currentBatchedTextures.length + ')');
 
             for (var i = 0; i < r.currentBatchedTextures.length; i++)
             {
-                this.line('  ' + r.currentBatchedTextures[i]);
+                this.line('    ' + r.currentBatchedTextures[i]);
             }
+
+            this.line('  drawCount: ' + s.drawCount);
+            this.line('  maxTextures: ' + r.maxTextures);
+            this.line('  maxTextureSize: ' + r.maxTextureSize);
+            this.line('  maxTextureAvailableSpace: ' + s.maxTextureAvailableSpace);
+            this.line('  roundPixels: ' + s.roundPixels);
         }
         else
         {
-            this.line('roundPixels: ' + s.roundPixels);
-            this.line('scaleMode: ' + (s.scaleMode === 0 ? 'LINEAR' : (s.scaleMode === 1 ? 'NEAREST' : s.scaleMode)));
+            this.line('  roundPixels: ' + s.roundPixels);
+            this.line('  scaleMode: ' + (s.scaleMode === 0 ? 'LINEAR' : (s.scaleMode === 1 ? 'NEAREST' : s.scaleMode)));
         }
 
         this.stop();
@@ -70410,7 +70730,7 @@ Phaser.ArrayUtils = {
     },
 
     /**
-    * Snaps a value to the nearest value in an array.
+    * Snaps a value to the nearest value in a sorted numeric array.
     * The result will always be in the range `[first_value, last_value]`.
     *
     * @method Phaser.ArrayUtils.findClosest
@@ -70447,7 +70767,7 @@ Phaser.ArrayUtils = {
     *
     * Before: `[ A, B, C, D, E, F ]`
     * After: `[ F, A, B, C, D, E ]`
-    * 
+    *
     * See also Phaser.ArrayUtils.rotateLeft.
     *
     * @method Phaser.ArrayUtils.rotateRight
@@ -70469,7 +70789,7 @@ Phaser.ArrayUtils = {
     *
     * Before: `[ A, B, C, D, E, F ]`
     * After: `[ B, C, D, E, F, A ]`
-    * 
+    *
     * See also Phaser.ArrayUtils.rotateRight
     *
     * @method Phaser.ArrayUtils.rotateLeft
@@ -70491,7 +70811,7 @@ Phaser.ArrayUtils = {
     *
     * Before: `[ A, B, C, D, E, F ]`
     * After: `[ B, C, D, E, F, A ]`
-    * 
+    *
     * See also Phaser.ArrayUtils.rotateRight
     *
     * @method Phaser.ArrayUtils.rotate
@@ -70510,7 +70830,7 @@ Phaser.ArrayUtils = {
 
     /**
     * Create an array representing the inclusive range of numbers (usually integers) in `[start, end]`.
-    * This is equivalent to `numberArrayStep(start, end, 1)`.
+    * This is equivalent to `numberArrayStep(start, 1 + end, 1)`.
     *
     * @method Phaser.ArrayUtils.numberArray
     * @param {number} start - The minimum value the array starts with.
@@ -71969,7 +72289,7 @@ Phaser.Color = {
     */
     updateColor: function (out) {
 
-        out.rgba = 'rgba(' + out.r.toString() + ',' + out.g.toString() + ',' + out.b.toString() + ',' + out.a.toString() + ')';
+        out.rgba = 'rgba(' + out.r.toFixed() + ',' + out.g.toFixed() + ',' + out.b.toFixed() + ',' + out.a.toString() + ')';
         out.color = Phaser.Color.getColor(out.r, out.g, out.b);
         out.color32 = Phaser.Color.getColor32(out.a * 255, out.r, out.g, out.b);
 
@@ -73647,7 +73967,7 @@ Phaser.Physics.Arcade.prototype = {
     },
 
     /**
-    * Checks for collision between two game objects and separates them if colliding. If you don't require separation then use {@link #overlap} instead.
+    * Checks for collision between two game objects and separates them if colliding ({@link https://gist.github.com/samme/cbb81dd19f564dcfe2232761e575063d details}). If you don't require separation then use {@link #overlap} instead.
     *
     * You can perform Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer or Group vs. Tilemap Layer collisions.
     * Both the `object1` and `object2` can be arrays of objects, of differing types.
@@ -73668,16 +73988,18 @@ Phaser.Physics.Arcade.prototype = {
     *
     * ##### Examples
     *
-    *     collide(group);
-    *     collide(group, undefined); // equivalent
+    * ```javascript
+    * collide(group);
+    * collide(group, undefined); // equivalent
     *
-    *     collide(sprite1, sprite2);
+    * collide(sprite1, sprite2);
     *
-    *     collide(sprite, group);
+    * collide(sprite, group);
     *
-    *     collide(group1, group2);
+    * collide(group1, group2);
     *
-    *     collide([sprite1, sprite2], [sprite3, sprite4]); // 1v3, 1v4, 2v3, 2v4
+    * collide([sprite1, sprite2], [sprite3, sprite4]); // 1 vs. 3, 1 vs. 4, 2 vs. 3, 2 vs. 4
+    * ```
     *
     * ##### Tilemaps
     *
@@ -75686,7 +76008,7 @@ Phaser.Physics.Arcade.Body = function (sprite) {
     this.maxVelocity = new Phaser.Point(10000, 10000);
 
     /**
-    * @property {Phaser.Point} friction - If this Body is moving, and another Body is 'riding' this one, this is the amount of motion the riding Body receives on each axis.
+    * @property {Phaser.Point} friction - If this Body is {@link #immovable} and moving, and another Body is 'riding' this one, this is the amount of motion the riding Body receives on each axis.
     */
     this.friction = new Phaser.Point(1, 0);
 
@@ -82125,6 +82447,7 @@ Phaser.Tileset.prototype = {
     *
     * @method Phaser.Tileset#containsTileIndex
     * @public
+    * @param {number} tileIndex
     * @return {boolean} True if this tileset contains the given index.
     */
     containsTileIndex: function (tileIndex) {
@@ -82147,7 +82470,7 @@ Phaser.Tileset.prototype = {
 
         this.image = image;
         this.updateTileData(image.width, image.height);
-       
+
     },
 
     /**
@@ -82537,7 +82860,7 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.physicsType = Phaser.GROUP;
 
     /**
-    * @property {Phaser.Rectangle} area - The area of the emitter. Particles can be randomly generated from anywhere within this rectangle.
+    * @property {Phaser.Rectangle} area - The {@link #setSize size} of the emitter's emit area. The **actual** emit area is a rectangle of this size centered on (emitX, emitY): `{x: this.left, y: this.top, width: this.area.width, height: this.area.height}`. Particles are generated at a random position within this area.
     * @default
     */
     this.area = new Phaser.Rectangle(x, y, 1, 1);
@@ -82715,18 +83038,25 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.particleSendToBack = false;
 
     /**
-     * @property {object} count
-     * @property {number} count.emitted - How many particles were emitted during the last update.
-     * @property {number} count.failed - How many particles could not be emitted during the last update (because no particles were available).
-     * @property {number} count.totalEmitted - How many particles have been emitted.
-     * @property {number} count.totalFailed - How many particles could not be emitted when they were due (because no particles were available).
-     */
-    this.count = {
+    * @property {object} counts - Records emitter activity.
+    * @property {number} counts.emitted - How many particles were emitted during the last update.
+    * @property {number} counts.failed - How many particles could not be emitted during the last update (because no particles were available).
+    * @property {number} counts.totalEmitted - How many particles have been emitted.
+    * @property {number} counts.totalFailed - How many particles could not be emitted when they were due (because no particles were available).
+    */
+    this.counts = {
         emitted: 0,
         failed: 0,
         totalEmitted: 0,
         totalFailed: 0
     };
+
+    /**
+    * Alias for {@link #counts}. Will be removed in a future release.
+    *
+    * @deprecated Use {@link #counts} instead.
+    */
+    this.count = this.counts;
 
     /**
     * @property {Phaser.Point} _gravity - Internal gravity value.
@@ -82747,10 +83077,10 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this._maxParticleScale = new Phaser.Point(1, 1);
 
     /**
-    * @property {number} _quantity - Internal helper for deciding how many particles to launch.
+    * @property {number} _total - Internal helper for deciding how many particles to launch (via {@link #start}).
     * @private
     */
-    this._quantity = 0;
+    this._total = 0;
 
     /**
     * @property {number} _timer - Internal helper for deciding when to launch particles or kill them.
@@ -82771,7 +83101,7 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this._flowQuantity = 0;
 
     /**
-    * @property {number} _flowTotal - Internal counter for figuring out how many particles to launch in total.
+    * @property {number} _flowTotal - Internal counter for figuring out how many particles to launch in total (via {@link #flow}).
     * @private
     */
     this._flowTotal = 0;
@@ -82844,7 +83174,7 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function () {
             {
                 this._counter++;
 
-                if (this._quantity > 0 && this._counter >= this._quantity)
+                if (this._total > 0 && this._counter >= this._total)
                 {
                     this.on = false;
                 }
@@ -82984,17 +83314,20 @@ Phaser.Particles.Arcade.Emitter.prototype.explode = function (lifespan, quantity
 };
 
 /**
-* Call this function to start emitting a flow of particles at the given frequency.
-* It will carry on going until the total given is reached.
-* Each time the flow is run the quantity number of particles will be emitted together.
-* If you set the total to be 20 and quantity to be 5 then flow will emit 4 times in total (4 x 5 = 20 total)
-* If you set the total to be -1 then no quantity cap is used and it will keep emitting.
+* Call this function to start emitting a flow of particles.
+* `quantity` particles are released every interval of `frequency` ms until `total` particles have been released (or forever).
+* If you set the total to be 20 and quantity to be 5 then flow will emit 4 times in total (4 × 5 = 20 total) and then turn {@link #on off}.
+* If you set the total to be -1 then no quantity cap is used and it will keep emitting (as long as there are inactive particles available).
+*
+* {@link #output}, {@link #lifespanOutput}, and {@link #remainder} describe the particle flow rate.
+* During a stable flow, the number of active particles approaches {@link #lifespanOutput} and the number of inactive particles approaches {@link #remainder}.
+* If {@link #remainder} is less than 0, there will likely be no particles available for a portion of the flow (see {@link #count}).
 *
 * @method Phaser.Particles.Arcade.Emitter#flow
 * @param {number} [lifespan=0] - How long each particle lives once emitted in ms. 0 = forever.
-* @param {number} [frequency=250] - Frequency is how often to emit the particles, given in ms.
-* @param {number} [quantity=1] - How many particles to launch each time the frequency is met. Can never be > Emitter.maxParticles.
-* @param {number} [total=-1] - How many particles to launch in total. If -1 it will carry on indefinitely.
+* @param {number} [frequency=250] - The interval between each release of particles, given in ms. Values between 0 and 16.66 will behave the same (60 releases per second).
+* @param {number} [quantity=1] - How many particles to launch at each interval. Not larger than {@link #maxParticles}.
+* @param {number} [total=-1] - Turn {@link #on off} after launching this many particles in total. If -1 it will carry on indefinitely.
 * @param {boolean} [immediate=true] - Should the flow start immediately (true) or wait until the first frequency event? (false)
 * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
 */
@@ -83038,34 +83371,39 @@ Phaser.Particles.Arcade.Emitter.prototype.flow = function (lifespan, frequency, 
 *
 * There are two patterns, based on the `explode` argument:
 *
-* - `start(true, lifespan=0, null, quantity)`
-* - `start(false, lifespan=0, frequency=250, quantity=0)`
+* ##### explode=true
 *
-* When `explode` is true or `forceQuantity` is true, `start` emits `quantity` particles immediately. You should pass a nonzero `quantity`.
+*     start(true, lifespan=0, null, total)
 *
-* When `explode` is false and `forceQuantity` is false, `start` emits 1 particle every interval of `frequency` ms. If `quantity` is not zero, the emitter turns itself off after `quantity` particles have been released. If `quantity` is zero, the emitter keeps emitting particles as long as they are available. To emit more than 1 particle per flow interval, use {@link #flow} instead.
+* When `explode` is true or `forceQuantity` is true, `start` emits `total` particles immediately. You should pass a nonzero `total`.
+*
+* ##### explode=false
+*
+*     start(false, lifespan=0, frequency=250, total=0)
+*
+* When `explode` is false and `forceQuantity` is false, `start` emits 1 particle every interval of `frequency` ms. If `total` is not zero, the emitter turns itself off after `total` particles have been released. If `total` is zero, the emitter keeps emitting particles as long as they are available. To emit more than 1 particle per flow interval, use {@link #flow} instead.
 *
 * `forceQuantity` seems equivalent to `explode` and can probably be avoided.
 *
 * @method Phaser.Particles.Arcade.Emitter#start
 * @param {boolean} [explode=true] - Whether the particles should all burst out at once (true) or at the frequency given (false).
 * @param {number} [lifespan=0] - How long each particle lives once emitted in ms. 0 = forever.
-* @param {number} [frequency=250] - Frequency is how often to emit 1 particle when `explode` is false. Value given in ms. Ignored if `explode` is set to true.
-* @param {number} [quantity=0] - How many particles to launch in total (not larger than {@link Phaser.Particles.Arcade.Emitter#maxParticles maxParticles}).
+* @param {number} [frequency=250] - The interval between each release of 1 particle, when `explode` is false. Value given in ms. Ignored if `explode` is set to true.
+* @param {number} [total=0] - Turn {@link #on off} after launching this many particles in total.
 * @param {number} [forceQuantity=false] - Equivalent to `explodes`.
 * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
 */
-Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, frequency, quantity, forceQuantity) {
+Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, frequency, total, forceQuantity) {
 
     if (explode === undefined) { explode = true; }
     if (lifespan === undefined) { lifespan = 0; }
     if (frequency === undefined || frequency === null) { frequency = 250; }
-    if (quantity === undefined) { quantity = 0; }
+    if (total === undefined) { total = 0; }
     if (forceQuantity === undefined) { forceQuantity = false; }
 
-    if (quantity > this.maxParticles)
+    if (total > this.maxParticles)
     {
-        quantity = this.maxParticles;
+        total = this.maxParticles;
     }
 
     this.revive();
@@ -83077,7 +83415,7 @@ Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, f
 
     if (explode || forceQuantity)
     {
-        for (var i = 0; i < quantity; i++)
+        for (var i = 0; i < total; i++)
         {
             this.emitParticle();
         }
@@ -83085,7 +83423,7 @@ Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, f
     else
     {
         this.on = true;
-        this._quantity = quantity;
+        this._total = total;
         this._counter = 0;
         this._timer = this.game.time.time + frequency * this.game.time.slowMotion;
     }
@@ -83135,6 +83473,7 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     else if (key !== undefined)
     {
         particle.loadTexture(key);
+        particle.frame = Array.isArray(this._frames) ? rnd.pick(this._frames) : this._frames;
     }
 
     var emitX = this.emitX;
@@ -83158,7 +83497,25 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
         emitY = rnd.between(this.top, this.bottom);
     }
 
-    particle.reset(emitX, emitY);
+    this.resetParticle(particle, emitX, emitY);
+
+    return true;
+
+};
+
+/**
+ * Helper for {@link #emitParticle}. Sets particle properties and calls {@link Particle#onEmit}.
+ *
+ * @private
+ * @param {Phaser.Particle} particle
+ * @param {number} x
+ * @param {number} y
+ */
+Phaser.Particles.Arcade.Emitter.prototype.resetParticle = function (particle, x, y) {
+
+    var rnd = this.game.rnd;
+
+    particle.reset(x, y);
 
     particle.angle = 0;
     particle.lifespan = this.lifespan;
@@ -83187,18 +83544,6 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     else
     {
         particle.scale.set(this._minParticleScale.x, this._minParticleScale.y);
-    }
-
-    if (frame === undefined)
-    {
-        if (Array.isArray(this._frames))
-        {
-            particle.frame = this.game.rnd.pick(this._frames);
-        }
-        else
-        {
-            particle.frame = this._frames;
-        }
     }
 
     if (this.autoAlpha)
@@ -83238,8 +83583,6 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     body.angularDrag = this.angularDrag;
 
     particle.onEmit();
-
-    return true;
 
 };
 
@@ -83451,8 +83794,8 @@ Phaser.Particles.Arcade.Emitter.prototype.setAngle = function (minAngle, maxAngl
 };
 
 /**
-* Change the emitters center to match the center of any object with a `center` property, such as a Sprite.
-* If the object doesn't have a center property it will be set to object.x + object.width / 2
+* Change the emitter's center to match the center of any object with a `center` property, such as an Arcade Body.
+* If the object doesn't have a `center` property it will be set to the object's anchor-adjusted world position (`object.world`).
 *
 * @method Phaser.Particles.Arcade.Emitter#at
 * @param {object|Phaser.Sprite|Phaser.Image|Phaser.TileSprite|Phaser.Text|PIXI.DisplayObject} object - The object that you wish to match the center with.

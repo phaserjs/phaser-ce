@@ -229,13 +229,13 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles) {
     this.particleSendToBack = false;
 
     /**
-     * @property {object} count - Records emitter activity.
-     * @property {number} count.emitted - How many particles were emitted during the last update.
-     * @property {number} count.failed - How many particles could not be emitted during the last update (because no particles were available).
-     * @property {number} count.totalEmitted - How many particles have been emitted.
-     * @property {number} count.totalFailed - How many particles could not be emitted when they were due (because no particles were available).
-     */
-    this.count = {
+    * @property {object} counts - Records emitter activity.
+    * @property {number} counts.emitted - How many particles were emitted during the last update.
+    * @property {number} counts.failed - How many particles could not be emitted during the last update (because no particles were available).
+    * @property {number} counts.totalEmitted - How many particles have been emitted.
+    * @property {number} counts.totalFailed - How many particles could not be emitted when they were due (because no particles were available).
+    */
+    this.counts = {
         emitted: 0,
         failed: 0,
         totalEmitted: 0,

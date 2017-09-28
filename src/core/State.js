@@ -16,7 +16,7 @@
 * |       | preload     | create     | paused       |          |
 * |       | loadUpdate* | update*    | pauseUpdate* |          |
 * |       |             | preRender* |              |          |
-* |       | loadRender* | render*    | pauseRender* |          |
+* |       | loadRender* | render*    | render*      |          |
 * |       |             |            | resumed      |          |
 * |       |             |            |              | shutdown |
 *

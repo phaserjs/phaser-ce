@@ -722,7 +722,7 @@ Phaser.Loader.prototype = {
     *
     * The texture path object looks like this:
     *
-    * ```
+    * ```javascript
     * load.image('factory', {
     *     etc1: 'assets/factory_etc1.pkm',
     *     s3tc: 'assets/factory_dxt1.pvr',
@@ -782,7 +782,7 @@ Phaser.Loader.prototype = {
     *
     * The texture path object looks like this:
     *
-    * ```
+    * ```javascript
     * load.texture('factory', {
     *     etc1: 'assets/factory_etc1.pkm',
     *     s3tc: 'assets/factory_dxt1.pvr',

@@ -180,6 +180,12 @@ Phaser.Camera = function (game, id, x, y, width, height) {
     */
     this._fxType = 0;
 
+    /**
+    * @property {Phaser.Rectangle}
+    * @private
+    */
+    this._fixedView = new Phaser.Rectangle();
+
 };
 
 /**
@@ -947,6 +953,25 @@ Object.defineProperty(Phaser.Camera.prototype, "shakeIntensity", {
     set: function (value) {
 
         this._shake.intensity = value;
+
+    }
+
+});
+
+
+/**
+ * Immobile {@link #view} rectangle. Its top-left is always (0, 0). You can use this align fixedToCamera objects.
+ * @name Phaser.Camera#fixedView
+ * @property {Phaser.Rectangle} fixedView
+ * @readonly
+ */
+Object.defineProperty(Phaser.Camera.prototype, "fixedView", {
+
+    get: function () {
+
+        this._fixedView.setTo(0, 0, this.view.width, this.view.height);
+
+        return this._fixedView;
 
     }
 

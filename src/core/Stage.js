@@ -262,6 +262,13 @@ Phaser.Stage.prototype.checkVisibility = function () {
         return _this.visibilityChange(event);
     };
 
+    this._onClick = function (event) {
+        if ((document.hasFocus !== undefined) && !document.hasFocus())
+        {
+            _this.visibilityChange(event);
+        }
+    };
+
     //  Does browser support it? If not (like in IE9 or old Android) we need to fall back to blur/focus
     if (this._hiddenVar)
     {
@@ -273,6 +280,8 @@ Phaser.Stage.prototype.checkVisibility = function () {
 
     window.onpagehide = this._onChange;
     window.onpageshow = this._onChange;
+
+    window.addEventListener('click', this._onClick);
 
     if (this.game.device.cocoonJSApp)
     {
@@ -290,23 +299,29 @@ Phaser.Stage.prototype.checkVisibility = function () {
 /**
 * This method is called when the document visibility is changed.
 *
+* - `blur` and `pagehide` events trigger {@link Phaser.Game#onBlur}. They {@link Phaser.Game#gamePaused pause the game} unless {@link #disableVisibilityChange} is on.
+* - `click`, `focus`, and `pageshow` trigger {@link Phaser.Game#onFocus}. They {@link Phaser.Game#gameResumed resume the game} unless {@link #disableVisibilityChange} is on.
+* - `visibilitychange` (hidden) and CocoonJS's `onSuspended` {@link Phaser.Game#gamePaused pause the game} unless {@link #disableVisibilityChange} is on.
+* - `visibilitychange` (visible) and CocoonJS's `onActivated` {@link Phaser.Game#gameResumed resume the game} unless {@link #disableVisibilityChange} is on.
+*
 * @method Phaser.Stage#visibilityChange
 * @param {Event} event - Its type will be used to decide whether the game should be paused or not.
 */
 Phaser.Stage.prototype.visibilityChange = function (event) {
 
-    if (event.type === 'pagehide' || event.type === 'blur' || event.type === 'pageshow' || event.type === 'focus')
-    {
-        if (event.type === 'pagehide' || event.type === 'blur')
-        {
-            this.game.focusLoss(event);
-        }
-        else if (event.type === 'pageshow' || event.type === 'focus')
-        {
-            this.game.focusGain(event);
-        }
+    // These events always trigger the Game#onBlur or Game#onFocus signals.
 
-        return;
+    switch (event.type)
+    {
+        case 'blur':
+        case 'pagehide':
+            this.game.focusLoss(event);
+            return;
+        case 'click':
+        case 'focus':
+        case 'pageshow':
+            this.game.focusGain(event);
+            return;
     }
 
     if (this.disableVisibilityChange)
@@ -369,6 +384,8 @@ Phaser.Stage.prototype.destroy = function () {
 
     window.onblur = null;
     window.onfocus = null;
+
+    window.removeEventListener('click', this._onClick);
 
 };
 

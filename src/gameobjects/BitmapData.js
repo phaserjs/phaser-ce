@@ -514,28 +514,34 @@ Phaser.BitmapData.prototype = {
     },
 
     /**
-    * Creates a new Image element by converting this BitmapDatas canvas into a dataURL.
+    * Creates a new {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image Image} element by converting this BitmapDatas canvas into a dataURL.
     *
-    * The image is then stored in the image Cache using the key given.
+    * The image is then stored in the {@link Phaser.Cache image Cache} using the key given.
     *
-    * Finally a PIXI.Texture is created based on the image and returned.
+    * Finally a {@link PIXI.Texture} is created based on the image and returned.
     *
     * You can apply the texture to a sprite or any other supporting object by using either the
-    * key or the texture. First call generateTexture:
+    * key or the texture. First call `generateTexture`:
     *
-    * `var texture = bitmapdata.generateTexture('ball');`
+    * ```javascript
+    * var texture = bitmapdata.generateTexture('ball');
+    * ```
     *
     * Then you can either apply the texture to a sprite:
     *
-    * `game.add.sprite(0, 0, texture);`
+    * ```javascript
+    * game.add.sprite(0, 0, texture);
+    * ```
     *
     * or by using the string based key:
     *
-    * `game.add.sprite(0, 0, 'ball');`
+    * ```javascript
+    * game.add.sprite(0, 0, 'ball');
+    * ```
     *
     * Most browsers now load the image data asynchronously, so you should use a callback:
     *
-    * ```
+    * ```javascript
     * bitmapdata.generateTexture('ball', function (texture) {
     *     game.add.sprite(0, 0, texture);
     *     // or

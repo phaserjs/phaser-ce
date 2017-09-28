@@ -79,7 +79,7 @@ Phaser.Tween = function (target, game, manager) {
     /**
     * The onLoop event is fired if the Tween, or any child tweens loop.
     * It will be sent 2 parameters: the target object and this tween.
-    * 
+    *
     * @property {Phaser.Signal} onLoop
     */
     this.onLoop = new Phaser.Signal();
@@ -183,6 +183,33 @@ Phaser.Tween = function (target, game, manager) {
     * @private
     */
     this._hasStarted = false;
+};
+
+/**
+* A helper for tweening {@link Phaser.Color.createColor color objects}.
+*
+* It can be passed to {@link #onUpdateCallback}.
+*
+* ```javascript
+* var color = Phaser.Color.createColor(255, 0, 0); // red
+*
+* var tween = game.add.tween(color).to({
+*     r: 0, g: 0, b: 255 // blue
+* });
+*
+* tween.onUpdateCallback(Phaser.Tween.updateColor);
+*
+* tween.start();
+* ```
+*
+* @method Phaser.Tween.updateColor
+* @static
+* @param {Phaser.Tween} tween - A Tween with a {@link #target} that is a {@link Phaser.Color.createColor color object}.
+*/
+Phaser.Tween.updateColor = function (tween) {
+
+    Phaser.Color.updateColor(tween.target);
+
 };
 
 Phaser.Tween.prototype = {
@@ -625,6 +652,14 @@ Phaser.Tween.prototype = {
 
     /**
     * Sets a callback to be fired each time this tween updates.
+    *
+    * The callback receives the current Tween, the {@link Phaser.TweenData#value 'value' of the current TweenData}, and the current {@link Phaser.TweenData TweenData}. The second parameter is most useful.
+    *
+    * ```javascript
+    * tween.onUpdateCallback(function (tween, value, tweenData) {
+    *   console.log('Tween running -- percent: %.2f value: %.2f', tweenData.percent, value);
+    * });
+    * ```
     *
     * @method Phaser.Tween#onUpdateCallback
     * @param {function} callback - The callback to invoke each time this tween is updated. Set to `null` to remove an already active callback.

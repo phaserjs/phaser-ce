@@ -6,8 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?js= this.navOptions.systemName ?> <?js= title ?></title>
-	<link rel="stylesheet" href="styles/prism/prism-<?js= this.navOptions.syntaxTheme ?>.css">
-	<link rel="stylesheet" href="styles/site.<?js= this.navOptions.theme ?>.css">
+	<link rel="stylesheet" href="styles/site.<?js= this.navOptions.theme ?>.css?<?js= this.navOptions.assetTimestamp ?>">
 </head>
 
 <body>
@@ -30,22 +29,7 @@
 	</div>
 </div>
 
-<?js if (this.navOptions.search) { ?>
-  <?js= this.partial('searchResults.tmpl', this) ?>
-<?js } ?>
-
-<script src="scripts/bundle.js"></script>
-<script src="scripts/toc.js"></script>
-<script src="scripts/misc.js"></script>
-
-<?js if (this.navOptions.search) { ?>
-	<script src="scripts/fulltext-search-ui.js"></script>
-	<script>
-	  $(document).ready(function() {
-	    SearcherDisplay.init();
-	  });
-	</script>
-<?js } ?>
+<script defer src="scripts/bundle.js?<?js= this.navOptions.assetTimestamp ?>"></script>
 
 <?js if (this.navOptions.analytics && this.navOptions.analytics.ua && this.navOptions.analytics.domain) { ?>
 	<script>

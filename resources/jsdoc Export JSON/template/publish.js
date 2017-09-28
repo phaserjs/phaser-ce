@@ -13,7 +13,7 @@ function findClass(parentNode, className)
     .filter(function (element) {
         return (element.name === className);
     });
-    
+
     return elements[0];
 }
 
@@ -93,7 +93,7 @@ function graft2(parentNode, childNodes) {
                     'name': element.name,
                     'access': element.access || '',
                     'virtual': !!element.virtual,
-                    'description': element.description || (((element.properties !== undefined) && (element.properties.length === 1)) ? (element.properties[0].description || '') : ''), //properties
+                    'description': element.description || (((element.properties) && (element.properties.length === 1)) ? (element.properties[0].description || '') : ''), //properties
                     'type': element.type ? (element.type.length === 1 ? element.type[0] : element.type) : '',
                     'default': element.defaultvalue || '',
                 });

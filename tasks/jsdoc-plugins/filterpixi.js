@@ -1,5 +1,5 @@
 /**
-* Mark various PIXI properties/methods as private if they are not relevant to Phaser. 
+* Mark various PIXI properties/methods as private if they are not relevant to Phaser.
 */
 
 var path = require('path');
@@ -37,6 +37,7 @@ exports.handlers.newDoclet = function (e) {
         hasUnwantedName(doclet))
     {
         doclet.access = 'private';
+        console.warn('Marked "%s" private.', doclet.longname);
     }
 
 };

@@ -1,12 +1,22 @@
-<footer>
+<footer class="footer">
 
-<?js if (this.navOptions.footer.length > 0){ ?>
+<?js if (this.navOptions.packageInfo) { ?>
+<p class="package-signature">
+  <?js= this.navOptions.packageInfo.name ?>@<?js= this.navOptions.packageInfo.version ?>
+  is on
+  <a href="<?js= this.navOptions.githubUrl ?>">GitHub</a>
+  and
+  <a href="<?js= this.navOptions.npmUrl ?>">NPM</a>
+</p>
+<?js } ?>
+
+<?js if (this.navOptions.footer.length > 0) { ?>
 	<p class="footer-message">
 	<?js= this.navOptions.footer ?>
 	</p>
 <?js } ?>
 
-<?js if (this.navOptions.copyright.length > 0){ ?>
+<?js if (this.navOptions.copyright.length > 0) { ?>
 	<p class="copyright">
 	<?js= this.navOptions.copyright ?>
 	</p>
@@ -17,7 +27,7 @@
 	<?js if (this.navOptions.includeDate) { ?>
 		on <?js= (this.moment().format(this.navOptions.dateFormat)) ?>
 	<?js } ?>
-	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
 
 </footer>

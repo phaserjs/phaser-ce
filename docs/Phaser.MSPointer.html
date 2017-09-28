@@ -6,8 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: MSPointer</title>
-	<link rel="stylesheet" href="styles/prism/prism-twilight.css">
-	<link rel="stylesheet" href="styles/site.phaser.css">
+	<link rel="stylesheet" href="styles/site.phaser.css?2017092513">
 </head>
 
 <body>
@@ -21,7 +20,7 @@
   			<span class="icon-bar"></span>
   			<span class="icon-bar"></span>
   			<span class="icon-bar"></span>
-          </button>
+      </button>
   	</div>
   	<div class="navbar-collapse collapse" id="topNavigation">
   		<ul class="nav navbar-nav">
@@ -29,7 +28,7 @@
   			<li class="dropdown">
   				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
   				<ul class="dropdown-menu ">
-  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PIXI.html">PIXI</a></li>
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PhaserGlobal.html">PhaserGlobal</a></li><li><a href="PIXI.html">PIXI</a></li>
   				</ul>
   			</li>
   			
@@ -48,14 +47,14 @@
   			</li>
   			
         <li>
-  <a href="#">
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
     <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
     README
   </a>
 </li>
 
 <li>
-  <a href="#">
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
     <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
     CHANGELOG
   </a>
@@ -126,7 +125,7 @@
     
         
 <dt>
-    <h4 class="name" id="MSPointer">
+    <h4 class="name" id="MSPointer" data-name="MSPointer">
       <span class="type-signature"></span>new MSPointer(game)
       
     </h4>
@@ -136,13 +135,18 @@
 
     
     <div class="description method-description">
-        <p>The MSPointer class handles Microsoft touch interactions with the game and the resulting Pointer objects.</p>
-<p>It will work only in Internet Explorer 10+ and Windows Store or Windows Phone 8 apps using JavaScript.
-http://msdn.microsoft.com/en-us/library/ie/hh673557(v=vs.85).aspx</p>
-<p>You should not normally access this class directly, but instead use a Phaser.Pointer object which
+        <p>The MSPointer class handles <a href="https://developers.google.com/web/updates/2016/10/pointer-events">Pointer-event</a> interactions with the game via a dedicated <a href="Phaser.Pointer.html">Phaser.Pointer</a>. (It's named after the nonstandard <a href="https://msdn.microsoft.com/library/hh673557(v=vs.85).aspx">MSPointerEvent</a> since that was the first browser implementation.)</p>
+<p>It's <a href="http://caniuse.com/#feat=pointer">currently supported  in IE 10+, Edge, Chrome (including Android), and Opera</a>.</p>
+<p>You should not normally access this class directly, but instead use a <a href="Phaser.Pointer.html">Phaser.Pointer</a> object which
 normalises all game input for you including accurate button handling.</p>
 <p>Please note that at the current time of writing Phaser does not yet support chorded button interactions:
 http://www.w3.org/TR/pointerevents/#chorded-button-interactions</p>
+<p>You can disable Phaser's use of Pointer Events by either of two ways:</p>
+<pre class="prettyprint source lang-javascript"><code>// **Before** `new Phaser.Game(…)`:
+Phaser.Device.onInitialized.add(function () {
+    this.mspointer = false;
+});</code></pre><pre class="prettyprint source lang-javascript"><code>// Once, in the earliest State `init` or `create` callback (e.g., Boot):
+this.input.mspointer.stop();</code></pre>
     </div>
     
 
@@ -236,9 +240,9 @@ http://www.w3.org/TR/pointerevents/#chorded-button-interactions</p>
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L36" title="MSPointer on line 36 of src/input/MSPointer.js">src/input/MSPointer.js line 36</a>
+    
 
 	
 
@@ -281,9 +285,11 @@ http://www.w3.org/TR/pointerevents/#chorded-button-interactions</p>
 
         <dl>
             
-<dt class="name" id="button">
-    <h4 id="button"><span class="type-signature"></span>button<span class="type-signature"> :number</span></h4>
-
+<dt>
+    <h4 id="button" data-name="button">
+      <span class="type-signature"></span>button<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -341,9 +347,9 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L80" title="button on line 80 of src/input/MSPointer.js">src/input/MSPointer.js line 80</a>
+    
 
 	
 
@@ -358,9 +364,11 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 
         
             
-<dt class="name" id="callbackContext">
-    <h4 id="callbackContext"><span class="type-signature"></span>callbackContext<span class="type-signature"> :object</span></h4>
-
+<dt>
+    <h4 id="callbackContext" data-name="callbackContext">
+      <span class="type-signature"></span>callbackContext<span class="type-signature"> : object</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -416,9 +424,9 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L52" title="callbackContext on line 52 of src/input/MSPointer.js">src/input/MSPointer.js line 52</a>
+    
 
 	
 
@@ -433,15 +441,17 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 
         
             
-<dt class="name" id="capture">
-    <h4 id="capture"><span class="type-signature"></span>capture<span class="type-signature"> :boolean</span></h4>
-
+<dt>
+    <h4 id="capture" data-name="capture">
+      <span class="type-signature"></span>capture<span class="type-signature"> : boolean</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>If true the Pointer events will have event.preventDefault applied to them, if false they will propagate fully.</p>
+        <p>If true the Pointer events will have event.preventDefault applied to them, canceling the corresponding MouseEvent or TouchEvent.</p>
     </div>
     
 
@@ -491,9 +501,9 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L72" title="capture on line 72 of src/input/MSPointer.js">src/input/MSPointer.js line 72</a>
+    
 
 	
 
@@ -508,15 +518,17 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 
         
             
-<dt class="name" id="enabled">
-    <h4 id="enabled"><span class="type-signature"></span>enabled<span class="type-signature"> :boolean</span></h4>
-
+<dt>
+    <h4 id="enabled" data-name="enabled">
+      <span class="type-signature"></span>enabled<span class="type-signature"> : boolean</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>MSPointer input will only be processed if enabled.</p>
+        <p>PointerEvent input will only be processed if enabled.</p>
     </div>
     
 
@@ -573,9 +585,9 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L95" title="enabled on line 95 of src/input/MSPointer.js">src/input/MSPointer.js line 95</a>
+    
 
 	
 
@@ -590,15 +602,17 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 
         
             
-<dt class="name" id="event">
-    <h4 id="event"><span class="type-signature"></span>event<span class="type-signature"> :MSPointerEvent|null</span></h4>
-
+<dt>
+    <h4 id="event" data-name="event">
+      <span class="type-signature"></span>event<span class="type-signature"> : MSPointerEvent | PointerEvent | null</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
     <div class="description members-description">
-        <p>The browser MSPointer DOM event. Will be null if no event has ever been received.
+        <p>The most recent PointerEvent from the browser. Will be null if no event has ever been received.
 Access this property only inside a Pointer event handler and do not keep references to it.</p>
     </div>
     
@@ -609,6 +623,9 @@ Access this property only inside a Pointer event handler and do not keep referen
             <li>
                 
 <span class="param-type">MSPointerEvent</span>
+|
+
+<span class="param-type">PointerEvent</span>
 |
 
 <span class="param-type">null</span>
@@ -652,9 +669,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L88" title="event on line 88 of src/input/MSPointer.js">src/input/MSPointer.js line 88</a>
+    
 
 	
 
@@ -669,9 +686,11 @@ Access this property only inside a Pointer event handler and do not keep referen
 
         
             
-<dt class="name" id="game">
-    <h4 id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
-
+<dt>
+    <h4 id="game" data-name="game">
+      <span class="type-signature"></span>game<span class="type-signature"> : <a href="Phaser.Game.html">Phaser.Game</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -727,9 +746,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L41" title="game on line 41 of src/input/MSPointer.js">src/input/MSPointer.js line 41</a>
+    
 
 	
 
@@ -744,9 +763,11 @@ Access this property only inside a Pointer event handler and do not keep referen
 
         
             
-<dt class="name" id="input">
-    <h4 id="input"><span class="type-signature">&lt;protected> </span>input<span class="type-signature"> :<a href="Phaser.Input.html">Phaser.Input</a></span></h4>
-
+<dt>
+    <h4 id="input" data-name="input">
+      <span class="type-signature">&lt;protected> </span>input<span class="type-signature"> : <a href="Phaser.Input.html">Phaser.Input</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -802,9 +823,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L47" title="input on line 47 of src/input/MSPointer.js">src/input/MSPointer.js line 47</a>
+    
 
 	
 
@@ -819,9 +840,11 @@ Access this property only inside a Pointer event handler and do not keep referen
 
         
             
-<dt class="name" id="pointerDownCallback">
-    <h4 id="pointerDownCallback"><span class="type-signature"></span>pointerDownCallback<span class="type-signature"> :function</span></h4>
-
+<dt>
+    <h4 id="pointerDownCallback" data-name="pointerDownCallback">
+      <span class="type-signature"></span>pointerDownCallback<span class="type-signature"> : function</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -877,9 +900,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L57" title="pointerDownCallback on line 57 of src/input/MSPointer.js">src/input/MSPointer.js line 57</a>
+    
 
 	
 
@@ -894,9 +917,11 @@ Access this property only inside a Pointer event handler and do not keep referen
 
         
             
-<dt class="name" id="pointerMoveCallback">
-    <h4 id="pointerMoveCallback"><span class="type-signature"></span>pointerMoveCallback<span class="type-signature"> :function</span></h4>
-
+<dt>
+    <h4 id="pointerMoveCallback" data-name="pointerMoveCallback">
+      <span class="type-signature"></span>pointerMoveCallback<span class="type-signature"> : function</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -952,9 +977,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L62" title="pointerMoveCallback on line 62 of src/input/MSPointer.js">src/input/MSPointer.js line 62</a>
+    
 
 	
 
@@ -969,9 +994,11 @@ Access this property only inside a Pointer event handler and do not keep referen
 
         
             
-<dt class="name" id="pointerUpCallback">
-    <h4 id="pointerUpCallback"><span class="type-signature"></span>pointerUpCallback<span class="type-signature"> :function</span></h4>
-
+<dt>
+    <h4 id="pointerUpCallback" data-name="pointerUpCallback">
+      <span class="type-signature"></span>pointerUpCallback<span class="type-signature"> : function</span>
+      
+    </h4>
     
 </dt>
 <dd>
@@ -1027,9 +1054,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L67" title="pointerUpCallback on line 67 of src/input/MSPointer.js">src/input/MSPointer.js line 67</a>
+    
 
 	
 
@@ -1051,7 +1078,7 @@ Access this property only inside a Pointer event handler and do not keep referen
         <dl>
             
 <dt>
-    <h4 class="name" id="onPointerDown">
+    <h4 class="name" id="onPointerDown" data-name="onPointerDown">
       <span class="type-signature"></span>onPointerDown(event)
       
     </h4>
@@ -1155,9 +1182,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L206" title="onPointerDown on line 206 of src/input/MSPointer.js">src/input/MSPointer.js line 206</a>
+    
 
 	
 
@@ -1185,7 +1212,7 @@ Access this property only inside a Pointer event handler and do not keep referen
         
             
 <dt>
-    <h4 class="name" id="onPointerMove">
+    <h4 class="name" id="onPointerMove" data-name="onPointerMove">
       <span class="type-signature"></span>onPointerMove(event)
       
     </h4>
@@ -1289,9 +1316,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L246" title="onPointerMove on line 246 of src/input/MSPointer.js">src/input/MSPointer.js line 246</a>
+    
 
 	
 
@@ -1319,7 +1346,7 @@ Access this property only inside a Pointer event handler and do not keep referen
         
             
 <dt>
-    <h4 class="name" id="onPointerOut">
+    <h4 class="name" id="onPointerOut" data-name="onPointerOut">
       <span class="type-signature"></span>onPointerOut(event)
       
     </h4>
@@ -1423,9 +1450,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L401" title="onPointerOut on line 401 of src/input/MSPointer.js">src/input/MSPointer.js line 401</a>
+    
 
 	
 
@@ -1453,7 +1480,7 @@ Access this property only inside a Pointer event handler and do not keep referen
         
             
 <dt>
-    <h4 class="name" id="onPointerOut">
+    <h4 class="name" id="onPointerOut" data-name="onPointerOut">
       <span class="type-signature"></span>onPointerOut(event)
       
     </h4>
@@ -1557,9 +1584,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L346" title="onPointerOut on line 346 of src/input/MSPointer.js">src/input/MSPointer.js line 346</a>
+    
 
 	
 
@@ -1587,7 +1614,7 @@ Access this property only inside a Pointer event handler and do not keep referen
         
             
 <dt>
-    <h4 class="name" id="onPointerUp">
+    <h4 class="name" id="onPointerUp" data-name="onPointerUp">
       <span class="type-signature"></span>onPointerUp(event)
       
     </h4>
@@ -1691,9 +1718,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L283" title="onPointerUp on line 283 of src/input/MSPointer.js">src/input/MSPointer.js line 283</a>
+    
 
 	
 
@@ -1721,7 +1748,7 @@ Access this property only inside a Pointer event handler and do not keep referen
         
             
 <dt>
-    <h4 class="name" id="onPointerUpGlobal">
+    <h4 class="name" id="onPointerUpGlobal" data-name="onPointerUpGlobal">
       <span class="type-signature"></span>onPointerUpGlobal(event)
       
     </h4>
@@ -1825,9 +1852,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L322" title="onPointerUpGlobal on line 322 of src/input/MSPointer.js">src/input/MSPointer.js line 322</a>
+    
 
 	
 
@@ -1855,7 +1882,7 @@ Access this property only inside a Pointer event handler and do not keep referen
         
             
 <dt>
-    <h4 class="name" id="start">
+    <h4 class="name" id="start" data-name="start">
       <span class="type-signature"></span>start()
       
     </h4>
@@ -1909,9 +1936,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L137" title="start on line 137 of src/input/MSPointer.js">src/input/MSPointer.js line 137</a>
+    
 
 	
 
@@ -1939,7 +1966,7 @@ Access this property only inside a Pointer event handler and do not keep referen
         
             
 <dt>
-    <h4 class="name" id="stop">
+    <h4 class="name" id="stop" data-name="stop">
       <span class="type-signature"></span>stop()
       
     </h4>
@@ -1993,9 +2020,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		input/MSPointer.js
-	</dd>
-	
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/input/MSPointer.js#L437" title="stop on line 437 of src/input/MSPointer.js">src/input/MSPointer.js line 437</a>
+    
 
 	
 
@@ -2033,7 +2060,17 @@ Access this property only inside a Pointer event handler and do not keep referen
 
 
 </div>
-	    <footer>
+	    <footer class="footer">
+
+
+<p class="package-signature">
+  phaser-ce@2.8.8
+  is on
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.8">GitHub</a>
+  and
+  <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
+</p>
+
 
 
 
@@ -2046,9 +2083,9 @@ Access this property only inside a Pointer event handler and do not keep referen
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on Wed Aug 23rd 2017
+		on 2017-09-25
 	
-	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
 
 </footer>
@@ -2060,24 +2097,22 @@ Access this property only inside a Pointer event handler and do not keep referen
     <div class="form-inline">
     <div class="form-group">
       <label for="filter" class="control-label">Filter</label>
-      <input type="text" class="form-control" id="filter">
+      <input type="text" class="form-control" id="toc-filter-input">
     </div>
   </div>
   </div>
-  <div id="toc"></div>
+  <div id="toc">
+    <div class="list-group">
+      <div id="toc-insert"></div>
+    </div>
+  </div>
 </div>
 
     
 	</div>
 </div>
 
-
-
-<script src="scripts/bundle.js"></script>
-<script src="scripts/toc.js"></script>
-<script src="scripts/misc.js"></script>
-
-
+<script defer src="scripts/bundle.js?2017092513"></script>
 
 
 

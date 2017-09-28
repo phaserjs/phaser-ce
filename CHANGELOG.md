@@ -4,6 +4,101 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.8.8 - 25th September 2017
+
+### Updates
+
+* Renamed [Emitter#count](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#count) to [Emitter#counts](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#counts). Emitter#count is deprecated and will be removed in v2.9.0.
+* Removed deprecated Phaser.Events#onRemovedFromWorld.
+
+### Bug Fixes
+
+* Fixed p2 polygon collisions (#366).
+* Fixed a nonfatal error when clicking the game canvas in browsers not supporting [Document.hasFocus()](https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus) (e.g., Opera Mini, older Opera) (#367). In these browsers the game may not automatically resume when refocused in an iframe; use one of the workarounds in #236.
+* [Phaser.Color.updateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_updateColor) now rounds fractional RGB values to integers when updating the `rgba` property (#361).
+* Added `roundPixels` to [WebGLRenderer#renderSession](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#renderSession) (#362).
+* Fixed some TypeScript definitions (#354, #368).
+
+### Documentation
+
+* Updated [TypeScript guide](https://github.com/photonstorm/phaser-ce/issues/292) (#292). Edits are welcome.
+* Added [Phaser.Button](https://photonstorm.github.io/phaser-ce/Phaser.Button.html) `callback` arguments (same as [Phaser.Events#onInputUp](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onInputUp)) (#353).
+* Added [Phaser.Input](https://photonstorm.github.io/phaser-ce/Phaser.Input.html) callback arguments (#368).
+* Added [Phaser.Plugin: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.Plugin.html).
+* Corrected [Phaser.Tileset#containsTileIndex](https://photonstorm.github.io/phaser-ce/Phaser.Tileset.html#containsTileIndex) (#358).
+* Corrected [Phaser.State: Callbacks](https://photonstorm.github.io/phaser-ce/Phaser.State.html).
+
+### Thanks
+
+@bobhfut, @falquaddoomi, @HaoboZ, @pavle-goloskokovic, @photonstorm, @samme
+
+## Version 2.8.7 - 12th September 2017
+
+### Bug Fixes
+
+* Fixed TypeScript error (#351).
+* [onChildInputDown](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputDown), [onChildInputUp](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputUp), [onChildInputOver](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputOver), and [onChildInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#onChildInputOut) signals now fire correctly for particle emitters (#349).
+
+### Thanks
+
+@lucasgray, @photonstorm, @samme, @yupaul
+
+## Version 2.8.6 - 10th September 2017
+
+### Updates
+
+* Several internal changes in [Phaser.DeviceButton](https://photonstorm.github.io/phaser-ce/Phaser.DeviceButton.html) and [Phaser.Pointer](https://photonstorm.github.io/phaser-ce/Phaser.Pointer.html) (#340).
+
+### Bug Fixes
+
+* Fixed an issue where the [DEFAULT](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#_DEFAULT) and [MISSING](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#_MISSING) textures could be missing from the game cache when the game starts (#280 via #138).
+* Fixed several issues related to [Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer) and pointer events (#293, #250)
+* Fixed an error when using [TweenData#generateData](https://photonstorm.github.io/phaser-ce/Phaser.TweenData.html#generateData) with an array-based tween (#346).
+* Fixed game in an iframe not auto-resuming when refocused (#236).
+* Fixed some TypeScript definitions (#342, #344).
+
+### Documentation
+
+* Fixed navigation menu obscuring anchor link targets at the top of the window (#343).
+* Updated [Phaser.MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html)
+* Added example for [Tween#tween.onUpdateCallback](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#onUpdateCallback).
+* Updated [TweenData#value](https://photonstorm.github.io/phaser-ce/Phaser.TweenData.html#value).
+
+### Thanks
+
+@2called-chaos, @bseiller, @falquaddoomi, @johnbuttcoingalt, @photonstorm, @samme, @samvieten, @yupaul
+
+## Version 2.8.5 - 30th August 2017
+
+### Updates
+
+* Since v2.8.4 custom build commands need a slightly different argument syntax (#321, #324), e.g.,
+
+  ```bash
+  grunt custom --exclude=moduleName --filename=phaser-custom
+  ```
+
+* Updated [Ionic project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) (#328).
+* [API Docs](https://github.com/photonstorm/phaser-ce/) have a new look.
+
+### Bug Fixes
+
+* Fixed sprite texture being destroyed in [PIXI.Sprite#setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) contrary to `destroyBase=false`.
+* Fixed a ReferenceError in Phaser.Input#executeTouchLockCallbacks affecting Firefox Mobile (#336).
+
+### Documentation
+
+* [Arcade.Body#friction](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#friction): a moving, immovable Body applies its own `friction` to a non-immovable riding Body
+* [DisplayObject](https://photonstorm.github.io/phaser-ce/global.html#DisplayObject)
+* [Emitter#area](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#area): only the `width` and `height` are used.
+* [Emitter#flow](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#flow)
+* [Emitter#start](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#start) (#330)
+* [PhaserGlobal](https://photonstorm.github.io/phaser-ce/PhaserGlobal.html): added.
+
+### Thanks
+
+@Dreaded-Gnu, @goldfire, @photonstorm, @rafelsanso, @ryanrossiter, @samme, @Zykino
+
 ## Version 2.8.4 - 15th August 2017
 
 ### Updates

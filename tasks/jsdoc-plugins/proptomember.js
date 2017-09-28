@@ -37,24 +37,31 @@ exports.handlers.newDoclet = function (e) {
         // "Duplicate"
         var prop = props[0];
 
+        // Common!
+        // console.log('Duplicate? %s', prop.name);
+        //
+        var name = doclet.longname || doclet.name;
+
         if (!doclet.type)
         {
+            console.log('[%s] Copying type from @property', name);
             doclet.type = prop.type;
         }
 
         if (!doclet.description)
         {
+            console.log('[%s] Copying description from @property (%s)', name);
             doclet.description = prop.description;
         }
-        else if (prop.description &&
-            !looksLikeItMightContain(doclet.description, prop.description))
+        else if (prop.description && !looksLikeItMightContain(doclet.description, prop.description))
         {
             // Tack it on..
+            console.log('[%s] Appending description from @property (%s)', name);
             doclet.description += " " + prop.description;
         }
 
         // And no more prop
-        e.doclet.properties = undefined;
+        e.doclet.properties = null;
     }
 
 };

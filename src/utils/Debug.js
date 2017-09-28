@@ -643,14 +643,14 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
-    * Renders a Phaser geometry object including Rectangle, Circle, Point or Line.
+    * Renders a Phaser geometry object including Rectangle, Circle, Ellipse, Point or Line.
     *
     * @method Phaser.Utils.Debug#geom
-    * @param {Phaser.Rectangle|Phaser.Circle|Phaser.Point|Phaser.Line} object - The geometry object to render.
+    * @param {Phaser.Rectangle|Phaser.Circle|Phaser.Ellipse|Phaser.Point|Phaser.Line} object - The geometry object to render.
     * @param {string} [color] - Color of the debug info to be rendered (format is css color string).
     * @param {boolean} [filled=true] - Render the objected as a filled (default, true) or a stroked (false)
-    * @param {number} [forceType=0] - Force rendering of a specific type. If 0 no type will be forced, otherwise 1 = Rectangle, 2 = Circle, 3 = Point and 4 = Line.
-    */
+    * @param {number} [forceType=0] - Force rendering of a specific type. If 0 no type will be forced, otherwise 1 = Rectangle, 2 = Circle,3 = Point, 4 = Line and 5 = Ellipse.
+     */
     geom: function (object, color, filled, forceType) {
 
         if (filled === undefined) { filled = true; }
@@ -702,9 +702,24 @@ Phaser.Utils.Debug.prototype = {
             this.context.closePath();
             this.context.stroke();
         }
+        else if (object instanceof Phaser.Ellipse || forceType === 5)
+        {
+            this.context.beginPath();
+            this.context.ellipse(object.x - this.game.camera.x, object.y - this.game.camera.y, object.width/2, object.height/2, 0,2 * Math.PI,false);
+            this.context.closePath();
+
+            if (filled)
+            {
+                this.context.fill();
+            }
+            else
+            {
+                this.context.stroke();
+            }
+        }
 
         this.stop();
-
+        
     },
 
     /**
@@ -960,28 +975,56 @@ Phaser.Utils.Debug.prototype = {
         this.line('clearBeforeRender: ' + r.clearBeforeRender);
         this.line('resolution: ' + r.resolution);
         this.line('transparent: ' + r.transparent);
+        this.line('renderSession:');
 
         if (r.gl)
         {
-            this.line('drawCount: ' + s.drawCount);
-            this.line('flushCount: ' + s.flushCount);
-            this.line('maxTextures: ' + r.maxTextures);
-            this.line('maxTextureSize: ' + r.maxTextureSize);
-            this.line('maxTextureAvailableSpace: ' + s.maxTextureAvailableSpace);
-            this.line('currentBatchedTextures: ('+ r.currentBatchedTextures.length + ')');
+            this.line('  currentBatchedTextures: ('+ r.currentBatchedTextures.length + ')');
 
             for (var i = 0; i < r.currentBatchedTextures.length; i++)
             {
-                this.line('  ' + r.currentBatchedTextures[i]);
+                this.line('    ' + r.currentBatchedTextures[i]);
             }
+
+            this.line('  drawCount: ' + s.drawCount);
+            this.line('  maxTextures: ' + r.maxTextures);
+            this.line('  maxTextureSize: ' + r.maxTextureSize);
+            this.line('  maxTextureAvailableSpace: ' + s.maxTextureAvailableSpace);
+            this.line('  roundPixels: ' + s.roundPixels);
         }
         else
         {
-            this.line('roundPixels: ' + s.roundPixels);
-            this.line('scaleMode: ' + (s.scaleMode === 0 ? 'LINEAR' : (s.scaleMode === 1 ? 'NEAREST' : s.scaleMode)));
+            this.line('  roundPixels: ' + s.roundPixels);
+            this.line('  scaleMode: ' + (s.scaleMode === 0 ? 'LINEAR' : (s.scaleMode === 1 ? 'NEAREST' : s.scaleMode)));
         }
 
         this.stop();
+
+    },
+
+    canvasPool: function (x, y, color, columnWidth) {
+        var pool = Phaser.CanvasPool;
+
+        this.start(x, y, color, columnWidth || 100);
+        this.line('Canvas Pool');
+        this.line('Used:', pool.getTotal());
+        this.line('Free:', pool.getFree());
+        this.line('Total:', pool.length);
+        this.stop();
+    },
+
+    /**
+    * Render each physics {@link #body} in a group.
+    *
+    * @method Phaser.Utils.Debug#physicsGroup
+    * @param {Phaser.Group} group - A group containing physics-enabled sprites.
+    * @param {string} [color='rgba(0,255,0,0.4)'] - Color of the debug rectangle to be rendered. The format is a CSS color string such as '#ff0000' or 'rgba(255,0,0,0.5)'.
+    * @param {boolean} [filled=true] - Render the body as a filled rectangle (true) or a stroked rectangle (false).
+    * @param {boolean} [checkExists=false] Render only children with `exists=true`.
+    */
+    physicsGroup: function (group, color, filled, checkExists) {
+
+        group.forEach(this.body, this, checkExists, color, filled);
 
     },
 

@@ -11,7 +11,7 @@
 *
 * The default uniforms, types and values for all Filters are:
 *
-* ```
+* ```javascript
 * resolution: { type: '2f', value: { x: 256, y: 256 }}
 * time: { type: '1f', value: 0 }
 * mouse: { type: '2f', value: { x: 0.0, y: 0.0 } }
@@ -125,7 +125,7 @@ Phaser.Filter.prototype = {
 
     /**
     * This should be over-ridden. Will receive a variable number of arguments.
-    * 
+    *
     * @method Phaser.Filter#init
     */
     init: function () {
@@ -136,7 +136,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Set the resolution uniforms on the filter.
-    * 
+    *
     * @method Phaser.Filter#setResolution
     * @param {number} width - The width of the display.
     * @param {number} height - The height of the display.
@@ -150,7 +150,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Updates the filter.
-    * 
+    *
     * @method Phaser.Filter#update
     * @param {Phaser.Pointer} [pointer] - A Pointer object to use for the filter. The coordinates are mapped to the mouse uniform.
     */
@@ -174,7 +174,7 @@ Phaser.Filter.prototype = {
     },
 
     /**
-    * Creates a new Phaser.Image object using a blank texture and assigns 
+    * Creates a new Phaser.Image object using a blank texture and assigns
     * this Filter to it. The image is then added to the world.
     *
     * If you don't provide width and height values then Filter.width and Filter.height are used.
@@ -229,7 +229,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Syncs the uniforms between the class object and the shaders.
-    * 
+    *
     * @method Phaser.Filter#syncUniforms
     */
     syncUniforms: function () {
@@ -243,7 +243,7 @@ Phaser.Filter.prototype = {
 
     /**
     * Clear down this Filter and null out references to game.
-    * 
+    *
     * @method Phaser.Filter#destroy
     */
     destroy: function () {

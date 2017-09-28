@@ -9,7 +9,7 @@
 * Circles and Polygons. They also include lines, arcs and curves. When you initially create a Graphics object it will
 * be empty. To 'draw' to it you first specify a lineStyle or fillStyle (or both), and then draw a shape. For example:
 *
-* ```
+* ```javascript
 * graphics.beginFill(0xff0000);
 * graphics.drawCircle(50, 50, 100);
 * graphics.endFill();
@@ -278,7 +278,7 @@ Phaser.Graphics.prototype.destroy = function (destroyChildren) {
 };
 
 /**
-* Draws a single {Phaser.Polygon} triangle from a {Phaser.Point} array
+* Draws a single {@link Phaser.Polygon} triangle from a {@link Phaser.Point} array
 *
 * @method Phaser.Graphics#drawTriangle
 * @param {Array<Phaser.Point>} points - An array of Phaser.Points that make up the three vertices of this triangle
@@ -310,11 +310,11 @@ Phaser.Graphics.prototype.drawTriangle = function (points, cull) {
 };
 
 /**
-* Draws {Phaser.Polygon} triangles
+* Draws {@link Phaser.Polygon} triangles
 *
 * @method Phaser.Graphics#drawTriangles
 * @param {Array<Phaser.Point>|Array<number>} vertices - An array of Phaser.Points or numbers that make up the vertices of the triangles
-* @param {Array<number>} {indices=null} - An array of numbers that describe what order to draw the vertices in
+* @param {Array<number>} [indices=null] - An array of numbers that describe what order to draw the vertices in
 * @param {boolean} [cull=false] - Should we check if the triangle is back-facing
 */
 Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull) {

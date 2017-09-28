@@ -30,7 +30,9 @@ exports.handlers.jsdocCommentFound = function (e) {
     {
         raw = raw.replace(extract, function (m, pre, doclet, extra) {
             if (doclet === '@class' && extra.trim()) {
-                return pre + '@alias ' + extra.trim() + '\n' + pre + '@class';
+                console.log('[%s:%s] Changing @class to @alias', e.filename, e.lineno);
+                var output = pre + '@alias ' + extra.trim() + '\n' + pre + '@class';
+                return output;
             } else if (doclet === '@constructor') {
                 return '';
             } else {
