@@ -689,6 +689,13 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
 
 };
 
+
+/**
+* Helper for {@link #emitParticle}. Gets the next available particle.
+*
+* @private
+* @return {?Phaser.Particle} The first particle with exists=false, or null
+*/
 Phaser.Particles.Arcade.Emitter.prototype.getNextParticle = function () {
 
     var i = this.length;
