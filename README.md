@@ -348,6 +348,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.ScaleManager#align is a shortcut for setting pageAlignHorizontally and pageAlignVertically.
 * Phaser.Circle#sample creates or positions a set of points or objects on the circle.
 * Phaser.Tween.updateColor is a helper for tweening color objects.
+* Phaser.Utils.Debug#physicsGroup displays all the physics bodies in a Group.
 
 ### Updates
 

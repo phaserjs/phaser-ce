@@ -1014,6 +1014,21 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
+    * Render each physics {@link #body} in a group.
+    *
+    * @method Phaser.Utils.Debug#physicsGroup
+    * @param {Phaser.Group} group - A group containing physics-enabled sprites.
+    * @param {string} [color='rgba(0,255,0,0.4)'] - Color of the debug rectangle to be rendered. The format is a CSS color string such as '#ff0000' or 'rgba(255,0,0,0.5)'.
+    * @param {boolean} [filled=true] - Render the body as a filled rectangle (true) or a stroked rectangle (false).
+    * @param {boolean} [checkExists=false] Render only children with `exists=true`.
+    */
+    physicsGroup: function (group, color, filled, checkExists) {
+
+        group.forEach(this.body, this, checkExists, color, filled);
+
+    },
+
+    /**
     * Destroy this object.
     *
     * @method Phaser.Utils.Debug#destroy
