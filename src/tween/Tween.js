@@ -186,7 +186,9 @@ Phaser.Tween = function (target, game, manager) {
 };
 
 /**
-* TODO
+* A helper for tweening {@link Phaser.Color.createColor color objects}.
+*
+* It can be passed to {@link #onUpdateCallback}.
 *
 * ```javascript
 * var color = Phaser.Color.createColor(255, 0, 0); // red
@@ -202,7 +204,7 @@ Phaser.Tween = function (target, game, manager) {
 *
 * @method Phaser.Tween.updateColor
 * @static
-* @param {Phaser.Tween} tween
+* @param {Phaser.Tween} tween - A Tween with a {@link #target} that is a {@link Phaser.Color.createColor color object}.
 */
 Phaser.Tween.updateColor = function (tween) {
 
