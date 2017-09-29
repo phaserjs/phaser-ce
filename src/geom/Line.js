@@ -724,6 +724,72 @@ Phaser.Line.intersectsRectangle = function (line, rect) {
 };
 
 /**
+* Finds the closest intersection between the Line and a Rectangle shape, or a rectangle-like
+* object, such as a Sprite or Body.
+*
+* @method Phaser.Line.intersectionWithRectangle
+* @param {Phaser.Line} line - The line to check for intersection with.
+* @param {Phaser.Rectangle} rect - The rectangle, or rectangle-like object, to check for intersection with.
+* @param {Phaser.Point} [result] - A Point object to store the result in.
+* @return {?Phaser.Point} - The intersection closest to the Line's start, or null if there is no intersection.
+*/
+Phaser.Line.intersectionWithRectangle = function (line, rect, result) {
+
+    var self = Phaser.Line.intersectionWithRectangle;
+
+    if (!result)
+    {
+        result = new Phaser.Point();
+    }
+
+    if (!self.edges)
+    {
+        self.edges = [new Phaser.Line(), new Phaser.Line(), new Phaser.Line(), new Phaser.Line()];
+    }
+
+    if (!self.edgeIntersection)
+    {
+        self.edgeIntersection = new Phaser.Point();
+    }
+
+    var edges = self.edges;
+    var edgeIntersection = self.edgeIntersection.set(0);
+
+    var bx1 = rect.x;
+    var by1 = rect.y;
+    var bx2 = rect.right;
+    var by2 = rect.bottom;
+    var closestDistance = Infinity;
+
+    edges[0].setTo(bx1, by1, bx2, by1);
+    edges[1].setTo(bx1, by2, bx2, by2);
+    edges[2].setTo(bx1, by1, bx1, by2);
+    edges[3].setTo(bx2, by1, bx2, by2);
+
+    for (var edge, i = 0; (edge = edges[i]); i++)
+    {
+        if (line.intersects(edge, true, edgeIntersection))
+        {
+            var distance = line.start.distance(edgeIntersection);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                result.copyFrom(edgeIntersection);
+            }
+        }
+    }
+
+    if (distance != null)
+    {
+        return result;
+    }
+
+    return null;
+
+};
+
+/**
 * Returns the reflected angle between two lines.
 * This is the outgoing angle based on the angle of Line 1 and the normalAngle of Line 2.
 *

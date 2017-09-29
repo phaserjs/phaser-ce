@@ -350,6 +350,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.Tween.updateColor is a helper for tweening color objects.
 * Phaser.Utils.Debug#physicsGroup displays all the physics bodies in a Group.
 * Phaser.Group#kill and Phaser.Group#revive toggle a Group's `alive`, `exists`, and `visible` properties (#339).
+* Phaser.Line#intersectionWithRectangle finds the closest line-rectangle intersection (#260). You can use it for precise raycasting.
+* Phaser.Rectangle#sides creates or positions four lines representing the rectangle's sides.
 
 ### Updates
 
