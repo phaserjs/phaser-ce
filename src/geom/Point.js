@@ -310,7 +310,33 @@ Phaser.Point.prototype = {
     */
     equals: function (a) {
 
-        return (a.x === this.x && a.y === this.y);
+        return a.x === this.x && a.y === this.y;
+
+    },
+
+    /**
+    * Determines whether a set of x-y coordinates are equal to this Point's.
+    *
+    * @method Phaser.Point#equalsXY
+    * @param {number} x - The x-coordinate to compare with this Point.
+    * @param {number} y - The y-coordinate to compare with this Point.
+    * @return {boolean} A value of true if the Point's coordinates are identical to the arguments, otherwise false.
+    */
+    equalsXY: function (x, y) {
+
+        return this.x === x && this.y === y;
+
+    },
+
+    fuzzyEquals: function (a, epsilon) {
+
+        return Phaser.Point.fuzzyEquals(this, a, epsilon);
+
+    },
+
+    fuzzyEqualsXY: function (x, y, epsilon) {
+
+        return Phaser.Point.fuzzyEqualsXY(this, x, y, epsilon);
 
     },
 
@@ -632,7 +658,27 @@ Phaser.Point.divide = function (a, b, out) {
 */
 Phaser.Point.equals = function (a, b) {
 
-    return (a.x === b.x && a.y === b.y);
+    return a.x === b.x && a.y === b.y;
+
+};
+
+Phaser.Point.equalsXY = function (a, x, y) {
+
+    return a.x === x && a.y === y;
+
+};
+
+Phaser.Point.fuzzyEquals = function (a, b, epsilon) {
+
+    return Phaser.Math.fuzzyEquals(a.x, b.x, epsilon) &&
+           Phaser.Math.fuzzyEquals(a.y, b.y, epsilon);
+
+};
+
+Phaser.Point.fuzzyEqualsXY = function (a, x, y, epsilon) {
+
+    return Phaser.Math.fuzzyEquals(a.x, x, epsilon) &&
+           Phaser.Math.fuzzyEquals(a.y, y, epsilon);
 
 };
 
