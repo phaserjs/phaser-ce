@@ -230,6 +230,26 @@ Phaser.Point.prototype = {
     },
 
     /**
+    * If this Point is not within the given object, moves it inside (at the nearest edge).
+    *
+    * @method Phaser.Point#clip
+    * @param {any} rect - A {@link Phaser.Rectangle} or any object with left, top, right, and bottom properties.
+    * @return {Phaser.Point} This Point object.
+    */
+    clip: function (rect) {
+
+        var left = rect.left, top = rect.top, right = rect.right, bottom = rect.bottom;
+
+        if      (this.x < left )  { this.x = left; }
+        else if (this.x > right)  { this.x = right; }
+        if      (this.y < top)    { this.y = top; }
+        else if (this.y > bottom) { this.y = bottom; }
+
+        return this;
+
+    },
+
+    /**
     * Creates a copy of the given Point.
     *
     * @method Phaser.Point#clone

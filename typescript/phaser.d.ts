@@ -4075,6 +4075,7 @@ declare module Phaser {
         clamp(min: number, max: number): Phaser.Point;
         clampX(min: number, max: number): Phaser.Point;
         clampY(min: number, max: number): Phaser.Point;
+        clip(rect: any): Phaser.Point;
         clone(output?: Phaser.Point): Phaser.Point;
         copyFrom(source: Phaser.Point): Phaser.Point;
         copyTo<T>(dest: T): T;
