@@ -2025,6 +2025,63 @@ Phaser.Physics.Arcade.prototype = {
 
     },
 
+
+    /**
+    * From a set of points or display objects, find the one closest to a source point or object.
+    *
+    * @method Phaser.Physics.Arcade#closest
+    * @param {any} source - The {@link Phaser.Point Point} or Display Object distances will be measured from.
+    * @param {any[]} targets - The {@link Phaser.Point Points} or Display Objects whose distances to the source will be compared.
+    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default).
+    * @return {any} - The first target closest to the origin.
+    */
+    closest: function (source, targets, world) {
+        var min = Infinity;
+        var closest = null;
+
+        for (var i = 0, len = targets.length; i < len; i++)
+        {
+            var target = targets[i];
+            var distance = this.distanceBetween(source, target, world);
+
+            if (distance < min)
+            {
+                closest = target;
+                min = distance;
+            }
+        }
+
+        return closest;
+    },
+
+    /**
+    * From a set of points or display objects, find the one farthest from a source point or object.
+    *
+    * @method Phaser.Physics.Arcade#farthest
+    * @param {any} source - The {@link Phaser.Point Point} or Display Object distances will be measured from.
+    * @param {any[]} targets - The {@link Phaser.Point Points} or Display Objects whose distances to the source will be compared.
+    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default).
+    * @return {any} - The target closest to the origin.
+    */
+    farthest: function (source, targets, world) {
+        var max = -1;
+        var farthest = null;
+
+        for (var i = 0, len = targets.length; i < len; i++)
+        {
+            var target = targets[i];
+            var distance = this.distanceBetween(source, target, world);
+
+            if (distance > max)
+            {
+                farthest = target;
+                max = distance;
+            }
+        }
+
+        return farthest;
+    },
+
     /**
     * Find the angle in radians between two display objects (like Sprites).
     *

@@ -348,6 +348,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * [Phaser.Group#getFirst](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#getFirst) fetches the first child matching a key-value query.
 * [Phaser.Group#kill](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#kill) and [Phaser.Group#revive](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#revive) toggle a Group's `alive`, `exists`, and `visible` properties (#339).
 * [Phaser.Line#intersectionWithRectangle](https://photonstorm.github.io/phaser-ce/Phaser.Line.html#_intersectionWithRectangle) finds the closest line-rectangle intersection (#260). You can use it for precise raycasting.
+* [Phaser.Physics.Arcade#closest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade#closest) finds the point or display object closest to another.
+* [Phaser.Physics.Arcade#farthest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade#farthest) finds the point or display object farthest from another.
 * [Phaser.Point#clip](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#clip) constrains a Point to a rectangular area.
 * [Phaser.Point#equalsXY](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#equalsXY)
 * [Phaser.Point#fuzzyEquals](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#fuzzyEquals) and [Phaser.Point#fuzzyEqualsXY](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#fuzzyEqualsXY) test approximate Point equality.
