@@ -4952,19 +4952,19 @@ declare module Phaser {
         tweens: Phaser.TweenManager;
         world: Phaser.World;
 
-        create(): void;
+        create(game: Phaser.Game): void;
         init(...args: any[]): void;
-        loadRender(): void;
-        loadUpdate(): void;
-        paused(): void;
-        pauseUpdate(): void;
-        preload(): void;
-        preRender(): void;
-        render(): void;
-        resize(): void;
-        resumed(): void;
-        shutdown(): void;
-        update(): void;
+        loadRender(game: Phaser.Game): void;
+        loadUpdate(game: Phaser.Game): void;
+        paused(game: Phaser.Game): void;
+        pauseUpdate(game: Phaser.Game): void;
+        preload(game: Phaser.Game): void;
+        preRender(game: Phaser.Game, elapsedTime: number): void;
+        render(game: Phaser.Game): void;
+        resize(width: number, height: number): void;
+        resumed(game: Phaser.Game): void;
+        shutdown(game: Phaser.Game): void;
+        update(game: Phaser.Game): void;
 
     }
 

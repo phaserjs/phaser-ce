@@ -367,11 +367,15 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Bug Fixes
 
-…
+* Fixed some TypeScript definitions (#374).
+
+### Documentation
+
+* Added missing arguments in [Phaser.State](https://photonstorm.github.io/phaser-ce/Phaser.State.html) methods.
 
 ### Thanks
 
-@cursorial, @masondesu, @samme, @samid737
+@cursorial, @HeinousTugboat, @masondesu, @samme, @samid737
 
 ## Version 2.8.8 - 25th September 2017
 
