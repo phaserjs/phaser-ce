@@ -335,6 +335,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.SoundManager#removeAll destroys all sounds and removes them from the Manager.
 * Phaser.Utils.Debug#sound displays information on the [Sound Manager](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html), including volume, mute, audio mode, and locked status.
 * Phaser.Point#round rounds a point's coordinates.
+* [Phaser.Color](https://photonstorm.github.io/phaser-ce/Phaser.Color.html) constants AQUA, BLACK, BLUE, GRAY, GREEN, ORANGE, RED, VIOLET, WHITE, and YELLOW.
 
 ### Updates
 

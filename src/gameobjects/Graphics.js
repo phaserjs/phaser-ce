@@ -109,7 +109,7 @@ Phaser.Graphics = function (game, x, y) {
     this.graphicsData = [];
 
     /**
-     * The tint applied to the graphic shape. This is a hex value. Apply a value of 0xFFFFFF to reset the tint.
+     * The tint applied to the graphic shape. This is a hex value. Apply a value of 0xFFFFFF (Phaser.Color.WHITE) to reset the tint.
      *
      * @property tint
      * @type Number

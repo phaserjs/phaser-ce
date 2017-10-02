@@ -12,6 +12,96 @@
 Phaser.Color = {
 
     /**
+    * Red (0xff0000)
+    *
+    * @type number
+    * @constant
+    * @default
+    */
+    RED: 0xff0000,
+
+    /**
+    * Orange (0xff9900)
+    *
+    * @type number
+    * @constant
+    * @default
+    */
+    ORANGE: 0xff9900,
+
+    /**
+    * Yellow (0xffff00)
+    *
+    * @type number
+    * @constant
+    * @default
+    */
+    YELLOW: 0xffff00,
+
+    /**
+    * Green (0x00ff00)
+    *
+    * @type number
+    * @constant
+    * @default
+    */
+    GREEN: 0x00ff00,
+
+    /**
+    * Aqua (0x00ffff)
+    *
+    * @type number
+    * @constant
+    * @default
+    */
+    AQUA: 0x00ffff,
+
+    /**
+    * Blue (0x0000ff)
+    *
+    * @type number
+    * @constant
+    * @default
+    */
+    BLUE: 0x0000ff,
+
+    /**
+    * Violet/purple (0xff00ff)
+    *
+    * @type number
+    * @constant
+    * @default
+    */
+    VIOLET: 0xff00ff,
+
+    /**
+    * White (0xffffff)
+    *
+    * @type number
+    * @constant
+    * @default
+    */
+    WHITE: 0xffffff,
+
+    /**
+    * Black (0x000000)
+    *
+    * @type number
+    * @constant
+    * @default
+    */
+    BLACK: 0,
+
+    /**
+    * Gray (0x666666)
+    *
+    * @type number
+    * @constant
+    * @default
+    */
+    GRAY: 0x666666,
+
+    /**
     * Packs the r, g, b, a components into a single integer, for use with Int32Array.
     * If device is little endian then ABGR order is used. Otherwise RGBA order is used.
     *

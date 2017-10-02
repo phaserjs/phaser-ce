@@ -786,6 +786,17 @@ declare module Phaser {
 
     class Color {
 
+        static AQUA: number;
+        static BLACK: number;
+        static BLUE: number;
+        static GRAY: number;
+        static GREEN: number;
+        static ORANGE: number;
+        static RED: number;
+        static VIOLET: number;
+        static WHITE: number;
+        static YELLOW: number;
+
         static componentToHex(color: number): string;
         static createColor(r?: number, g?: number, b?: number, a?: number, h?: number, s?: number, l?: number, v?: number): ColorComponents;
         static fromRGBA(rgba: number, out?: ColorComponents): ColorComponents;
