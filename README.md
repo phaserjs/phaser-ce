@@ -329,7 +329,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 # Change Log
 
 ## Unreleased
-* Prevent `Phaser.Tilemap#createFromObjects` from overriding sprite visibility as set in Tiled.
 
 ### New Features
 
@@ -369,6 +368,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Bug Fixes
 
 * Fixed some TypeScript definitions (#374).
+* [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects) no longer overrides the `visibility` property value as set in Tiled.
 
 ### Documentation
 
