@@ -329,6 +329,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 # Change Log
 
 ## Unreleased
+* Prevent `Phaser.Tilemap#createFromObjects` from overriding sprite visibility as set in Tiled.
 
 ### New Features
 
