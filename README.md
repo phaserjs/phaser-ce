@@ -345,6 +345,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * [Phaser.Color.linearInterpolation](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_linearInterpolation) interpolates an array of numeric color values. You can assign it to [TweenData#interpolationFunction](https://photonstorm.github.io/phaser-ce/Phaser.TweenData.html#interpolationFunction) to tween through such an array.
 * [Phaser.Ellipse#intersectsLine](https://photonstorm.github.io/phaser-ce/Phaser.Ellipse.html#intersectsLine)
 * [Phaser.Group#count](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#count) counts children matching a key-value query.
+* [Phaser.Group#createMultiple](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#createMultiple) now has a callback argument that lets you modify each new child.
 * [Phaser.Group#getFirst](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#getFirst) fetches the first child matching a key-value query.
 * [Phaser.Group#kill](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#kill) and [Phaser.Group#revive](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#revive) toggle a Group's `alive`, `exists`, and `visible` properties (#339).
 * [Phaser.Line#intersectionWithRectangle](https://photonstorm.github.io/phaser-ce/Phaser.Line.html#_intersectionWithRectangle) finds the closest line-rectangle intersection (#260). You can use it for precise raycasting.
