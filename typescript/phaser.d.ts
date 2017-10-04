@@ -5755,7 +5755,7 @@ declare module Phaser {
             lineInfo(line: Phaser.Line, x: number, y: number, color?: string): void;
             key(key: Phaser.Key, x?: number, y?: number, color?: string): void;
             line(...args: string[]): void;
-            phaser(x?: number, y?: number, color?: string): void;
+            phaser(x: number, y: number, color?: string): void;
             preUpdate(): void;
             physicsGroup(group: Phaser.Group, color?: string, filled?: boolean, checkExists?: boolean): void;
             pixel(x: number, y: number, color?: string, size?: number): void;

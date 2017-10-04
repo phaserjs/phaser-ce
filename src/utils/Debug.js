@@ -1029,17 +1029,18 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
-     * Prints Phaser {@link Phaser.VERSION version} and {@link Phaser.Game.#renderType rendering mode}.
+     * Prints Phaser {@link Phaser.VERSION version}, {@link Phaser.Game.#renderType rendering mode}, and {@link Phaser.Device#webAudio device audio support}.
      *
      * @method Phaser.Utils.Debug#phaser
-     * @param {number} [x=0] - The X value the debug info will start from.
-     * @param {number} [y=0] - The Y value the debug info will start from.
+     * @param {number} x - The X value the debug info will start from.
+     * @param {number} y - The Y value the debug info will start from.
      * @param {string} [color='rgb(255,255,255)'] - The color the debug text will drawn in.
      */
     phaser: function (x, y, color) {
 
         this.text('Phaser v' + Phaser.VERSION + ' ' +
-            (this.game.renderType === Phaser.WEBGL ? 'WebGL' : 'Canvas'),
+            (this.game.renderType === Phaser.WEBGL ? 'WebGL' : 'Canvas') + ' ' +
+            (this.game.device.webAudio ? 'WebAudio' : 'HTML Audio'),
             x, y, color, this.font);
 
     },
