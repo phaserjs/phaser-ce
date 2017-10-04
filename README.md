@@ -360,6 +360,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * [Phaser.Tween.updateColor](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#_updateColor) is a helper for tweening color objects.
 * [Phaser.Utils.Debug#canvasPool](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#canvasPool) displays canvas pool counts.
 * [Phaser.Utils.Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom) can display Ellipses.
+* [Phaser.Utils.Debug#phaser](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#phaser) displays Phaser's version, rendering mode, and device audio support.
 * [Phaser.Utils.Debug#physicsGroup](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#physicsGroup) displays all the physics bodies in a Group.
 
 ### Updates
