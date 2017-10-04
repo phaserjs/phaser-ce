@@ -362,6 +362,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * [Phaser.Utils.Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom) can display Ellipses.
 * [Phaser.Utils.Debug#phaser](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#phaser) displays Phaser's version, rendering mode, and device audio support.
 * [Phaser.Utils.Debug#physicsGroup](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#physicsGroup) displays all the physics bodies in a Group.
+* [Phaser.Utils.setProperties](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#_setProperties) is deep-property setter that works on any object.
 
 ### Updates
 
@@ -371,6 +372,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Fixed some TypeScript definitions (#374).
 * [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects) no longer overrides the `visibility` property value as set in Tiled.
+* Fixed and optimized [Phaser.Utils.setProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#_setProperty).
 
 ### Documentation
 

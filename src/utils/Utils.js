@@ -59,30 +59,101 @@ Phaser.Utils = {
     },
 
     /**
-     * Sets an objects property by string.
+     * Sets an object's properties from a map of property names and values.
      *
-     * @method Phaser.Utils.setProperty
-     * @param {object} obj - The object to traverse
-     * @param {string} prop - The property whose value will be changed
-     * @return {object} The object on which the property was set.
+     * ```javascript
+     * Phaser.Utils.setProperties(sprite, {
+     *  'animations.paused': true,
+     *  'body.enable': false,
+     *  'input.draggable': true,
+     * });
+     * ```
+     *
+     * @method Phaser.Utils.setProperties
+     * @param  {object} obj - The object to modify.
+     * @param  {object} props - The property names and values to set on the object (see {@link #setProperty}).
+     * @return {object} The modified object.
      */
-    setProperty: function(obj, prop, value) {
+    setProperties: function(obj, props) {
 
-        var parts = prop.split('.'),
-            last = parts.pop(),
-            l = parts.length,
-            i = 1,
-            current = parts[0];
-
-        while (i < l && (obj = obj[current]))
+        for (var name in props)
         {
-            current = parts[i];
-            i++;
+            this.setProperty(obj, name, props[name]);
         }
 
-        if (obj)
+        return obj;
+
+    },
+
+    /**
+     * Sets an object's property by name and value.
+     *
+     * ```javascript
+     * Phaser.Utils.setProperty(sprite, 'body.velocity.x', 60);
+     * ```
+     *
+     * @method Phaser.Utils.setProperty
+     * @param {object} obj - The object to modify.
+     * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
+     * @param {any} value - The value.
+     * @return {object} The modified object.
+     */
+
+    setProperty: function(obj, name, value) {
+
+        var parts = name.split('.');
+
+        switch (parts.length)
         {
-            obj[last] = value;
+            case 1:
+                obj[name] = value;
+                break;
+            case 2:
+                obj[parts[0]][parts[1]] = value;
+                break;
+            case 3:
+                obj[parts[0]][parts[1]][parts[2]] = value;
+                break;
+            case 4:
+                obj[parts[0]][parts[1]][parts[2]][parts[3]] = value;
+                break;
+            default:
+                this._setProperty(obj, name, value);
+        }
+    },
+
+    /**
+     * Sets an object's property by name and value.
+     *
+     * @private
+     * @method Phaser.Utils._setProperty
+     * @param {object} obj - The object to modify.
+     * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
+     * @param {any} value - The value.
+     * @return {object} The modified object.
+     */
+    _setProperty: function(obj, name, value) {
+
+        var parts = name.split('.'),
+            len = parts.length,
+            i = 0,
+            currentObj = obj,
+            key = parts[0];
+
+        if (len === 1)
+        {
+            obj[name] = value;
+        }
+        else
+        {
+            while (i < (len - 1))
+            {
+                currentObj = currentObj[key];
+                i++;
+                key = parts[i];
+            }
+
+            currentObj[key] = value;
         }
 
         return obj;
