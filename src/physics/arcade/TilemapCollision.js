@@ -152,7 +152,7 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
             //  If it returns true then we can carry on, otherwise we should abort.
             return false;
         }
-        else if (typeof tile.layer.callbacks !== 'undefined' && tile.layer.callbacks[tile.index] && !tile.layer.callbacks[tile.index].callback.call(tile.layer.callbacks[tile.index].callbackContext, body.sprite, tile))
+        else if (typeof tile.layer.callbacks !== 'undefined' && tile.layer.callbacks[tile.index] && typeof tile.layer.callbacks[tile.index].callback === 'function' && !tile.layer.callbacks[tile.index].callback.call(tile.layer.callbacks[tile.index].callbackContext, body.sprite, tile))
         {
             //  If it returns true then we can carry on, otherwise we should abort.
             return false;
