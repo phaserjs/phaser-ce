@@ -329,6 +329,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 # Change Log
 
 ## Unreleased
+[Phaser.Tilemap#setTileIndexCallback](https://github.com/photonstorm/phaser/blob/v2.4.4/src/tilemap/Tilemap.js#L754) can now correctly remove a callback by setting it to `null`.
 
 ### New Features
 
