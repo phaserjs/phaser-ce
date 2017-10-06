@@ -366,7 +366,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Updates
 
-* Particle emitter release has been made more efficient (#333). You can access the most recently emitted particle in [Emitter#cursor](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#cursor).
+* Particle emitter release has been made more efficient (#333).
+* You can access the most recently emitted particle in [Emitter#cursor](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#cursor). After the emitter has started, you should treat Emitter#cursor as read-only, because Phaser will modify it while it emits particles.
 
 ### Bug Fixes
 
