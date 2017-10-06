@@ -332,8 +332,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### New Features
 
-* Tiled polygons and rectangles are now converted into p2 physics bodies when using `Phaser.Physics.P2#convertCollisionObjects` (#369).
-* Tileset-level collision objects created in Tiled are now added to a map's `collision` and `objects` properties using the layer's name as the key (#369).
+* Tiled polygons and rectangles are now converted into p2 physics bodies when using [Phaser.Physics.P2#convertCollisionObjects](https://photonstorm.github.io/phaser-ce/Phaser.Physics.P2.html#convertCollisionObjects) (#369).
+* Tileset-level collision objects created in Tiled are now added to a map's [collision](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#collision) and [objects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#objects) properties using the layer's name as the key (#369).
 * [Phaser.ArrayUtils.numberArray](https://photonstorm.github.io/phaser-ce/Phaser.ArrayUtils.html#_numberArray) can be passed a single argument to create a range starting from 0.
 * [Phaser.ArrayUtils.remove](https://photonstorm.github.io/phaser-ce/Phaser.ArrayUtils.html#_remove) is a faster alternative to Array#splice.
 * [Phaser.Camera#fixedView](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#fixedView) is like [Phaser.Camera#view](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#view) but it never moves. You can use it to align objects independent of the camera's position.
