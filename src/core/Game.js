@@ -504,6 +504,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 *
 * @typedef {object} GameConfig
 * @property {number|string} [GameConfig.antialias=true]
+* @property {string} [GameConfig.backgroundColor=0] - Sets {@link Phaser.Stage#backgroundColor}.
+* @property {boolean} [GameConfig.disableVisibilityChange=false] - Sets {@link Phaser.Stage#disableVisibilityChange}
 * @property {number|string} [GameConfig.height=600]
 * @property {boolean} [GameConfig.enableDebug=true] - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
 * @property {number} [GameConfig.fullScreenScaleMode] - The scaling method used by the ScaleManager when in fullscreen.

@@ -379,6 +379,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Added missing arguments in [Phaser.State](https://photonstorm.github.io/phaser-ce/Phaser.State.html) methods.
 * [Phaser.Game#clearBeforeRender](https://photonstorm.github.io/phaser-ce/Phaser.Game#clearBeforeRender) must be true for [Phaser.Stage#backgroundColor](https://photonstorm.github.io/phaser-ce/Phaser.Stage#backgroundColor) to appear (#377).
+* [Phaser.Stage#backgroundColor](https://photonstorm.github.io/phaser-ce/Phaser.Stage#backgroundColor) and [Phaser.Stage#disableVisibilityChange](https://photonstorm.github.io/phaser-ce/Phaser.Stage#disableVisibilityChange) can be set directly in a [Phaser.Game](https://photonstorm.github.io/phaser-ce/Phaser.Game.html) configuration object.
 
 ### Thanks
 
