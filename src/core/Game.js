@@ -173,6 +173,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     /**
     * Clear the Canvas each frame before rendering the display list.
     * You can set this to `false` to gain some performance if your game always contains a background that completely fills the display.
+    * This must be `true` to show any {@link Phaser.Stage#backgroundColor} set on the Stage.
     * @property {boolean} clearBeforeRender
     * @default
     */
