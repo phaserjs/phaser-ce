@@ -314,8 +314,8 @@ Phaser.Particles.Arcade.Emitter.prototype.constructor = Phaser.Particles.Arcade.
 */
 Phaser.Particles.Arcade.Emitter.prototype.update = function () {
 
-    this.count.emitted = 0;
-    this.count.failed = 0;
+    this.counts.emitted = 0;
+    this.counts.failed = 0;
 
     if (this.on && this.game.time.time >= this._timer)
     {
@@ -641,14 +641,14 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
 
     if (particle === null)
     {
-        this.count.failed++;
-        this.count.totalFailed++;
+        this.counts.failed++;
+        this.counts.totalFailed++;
 
         return false;
     }
 
-    this.count.emitted++;
-    this.count.totalEmitted++;
+    this.counts.emitted++;
+    this.counts.totalEmitted++;
 
     var rnd = this.game.rnd;
 
