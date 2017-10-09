@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: ArrayUtils</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2017092513">
+	<link rel="stylesheet" href="styles/site.phaser.css?2017100819">
 </head>
 
 <body>
@@ -180,7 +180,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L13" title="ArrayUtils on line 13 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 13</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L13" title="ArrayUtils on line 13 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 13</a>
     
 
 	
@@ -357,7 +357,7 @@ The result will always be in the range <code>[first_value, last_value]</code>.</
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L163" title="findClosest on line 163 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 163</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L197" title="findClosest on line 197 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 197</a>
     
 
 	
@@ -565,7 +565,7 @@ or if there is no item for the randomly chosen index.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L15" title="getRandomItem on line 15 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 15</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L15" title="getRandomItem on line 15 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 15</a>
     
 
 	
@@ -619,7 +619,7 @@ or if there is no item for the randomly chosen index.</p>
             
 <dt>
     <h4 class="name" id=".numberArray" data-name="numberArray">
-      <span class="type-signature">&lt;static> </span>numberArray(start, end)
+      <span class="type-signature">&lt;static> </span>numberArray(start [, end])
       
     </h4>
     
@@ -628,8 +628,12 @@ or if there is no item for the randomly chosen index.</p>
 
     
     <div class="description method-description">
-        <p>Create an array representing the inclusive range of numbers (usually integers) in <code>[start, end]</code>.
+        <p>Create an array representing the inclusive range of numbers (usually integers) in <code>[start, end]</code> (or <code>[0, start]</code>, if <code>end</code> is omitted).
 This is equivalent to <code>numberArrayStep(start, 1 + end, 1)</code>.</p>
+<p>When exactly one argument is passed, it's used as <code>end</code> and 0 is used as <code>start</code>. The length of the result is (1 + end).</p>
+<h5>Examples</h5><pre class="prettyprint source lang-javascript"><code>numberArray(3);    // -> [0, 1, 2, 3]
+numberArray(0, 3); // -> [0, 1, 2, 3]
+numberArray(1, 3); // -> [1, 2, 3]</code></pre>
     </div>
     
 
@@ -651,6 +655,8 @@ This is equivalent to <code>numberArrayStep(start, 1 + end, 1)</code>.</p>
 
         <th>Type</th>
 
+        
+        <th>Argument</th>
         
 
         
@@ -678,6 +684,14 @@ This is equivalent to <code>numberArrayStep(start, 1 + end, 1)</code>.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -701,6 +715,16 @@ This is equivalent to <code>numberArrayStep(start, 1 + end, 1)</code>.</p>
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -748,7 +772,7 @@ This is equivalent to <code>numberArrayStep(start, 1 + end, 1)</code>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L262" title="numberArray on line 262 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 262</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L296" title="numberArray on line 296 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 296</a>
     
 
 	
@@ -1004,7 +1028,7 @@ for forward compatibility make sure to pass in actual numbers.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L284" title="numberArrayStep on line 284 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 284</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L334" title="numberArrayStep on line 334 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 334</a>
     
 
 	
@@ -1072,6 +1096,267 @@ Phaser.ArrayUtils.numberArrayStep(1, 4, 0);
 Phaser.ArrayUtils.numberArrayStep(0);
 // =&gt; []</pre>
 
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id=".remove" data-name="remove">
+      <span class="type-signature">&lt;static> </span>remove(array, startIndex [, count])
+      
+    </h4>
+    
+</dt>
+<dd>
+
+    
+    <div class="description method-description">
+        <p>Remove one or more items at the given index and reorder the array.</p>
+<p>The new array length will be <code>array.length - count</code>.</p>
+<p>This is an alternative to <code>array.splice(startIndex, count)</code>.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>array</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;any></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>startIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L73" title="remove on line 73 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 73</a>
+    
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="https://github.com/mreinstein/remove-array-items">https://github.com/mreinstein/remove-array-items</a></li>
+			
+			<li><a href="https://gamealchemist.wordpress.com/2013/05/01/lets-get-those-javascript-arrays-to-work-fast/">https://gamealchemist.wordpress.com/2013/05/01/lets-get-those-javascript-arrays-to-work-fast/</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The modified array.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;any></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -1234,7 +1519,7 @@ or if there is no item for the randomly chosen index.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L39" title="removeRandomItem on line 39 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 39</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L39" title="removeRandomItem on line 39 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 39</a>
     
 
 	
@@ -1405,7 +1690,7 @@ After: <code>[ B, C, D, E, F, A ]</code></p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L239" title="rotate on line 239 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 239</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L273" title="rotate on line 273 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 273</a>
     
 
 	
@@ -1567,7 +1852,7 @@ After: <code>[ B, C, D, E, F, A ]</code></p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L217" title="rotateLeft on line 217 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 217</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L251" title="rotateLeft on line 251 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 251</a>
     
 
 	
@@ -1753,7 +2038,7 @@ After: <code>[ B, C, D, E, F, A ]</code></p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L122" title="rotateMatrix on line 122 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 122</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L156" title="rotateMatrix on line 156 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 156</a>
     
 
 	
@@ -1915,7 +2200,7 @@ After: <code>[ F, A, B, C, D, E ]</code></p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L195" title="rotateRight on line 195 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 195</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L229" title="rotateRight on line 229 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 229</a>
     
 
 	
@@ -2073,7 +2358,7 @@ After: <code>[ F, A, B, C, D, E ]</code></p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L73" title="shuffle on line 73 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 73</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L107" title="shuffle on line 107 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 107</a>
     
 
 	
@@ -2231,7 +2516,7 @@ After: <code>[ F, A, B, C, D, E ]</code></p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/utils/ArrayUtils.js#L94" title="transposeMatrix on line 94 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 94</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/utils/ArrayUtils.js#L128" title="transposeMatrix on line 128 of src/utils/ArrayUtils.js">src/utils/ArrayUtils.js line 128</a>
     
 
 	
@@ -2298,9 +2583,9 @@ After: <code>[ F, A, B, C, D, E ]</code></p>
 
 
 <p class="package-signature">
-  phaser-ce@2.8.8
+  phaser-ce@2.9.0
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.8">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.0">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -2317,7 +2602,7 @@ After: <code>[ F, A, B, C, D, E ]</code></p>
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-09-25
+		on 2017-10-08
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -2346,7 +2631,7 @@ After: <code>[ F, A, B, C, D, E ]</code></p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2017092513"></script>
+<script defer src="scripts/bundle.js?2017100819"></script>
 
 
 
