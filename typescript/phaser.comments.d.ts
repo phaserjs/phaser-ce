@@ -4634,7 +4634,7 @@ declare module Phaser {
         * @param out An array of points or point-like objects (e.g., sprites). It should start at index 0 and its length should be equal to or greater than `steps`.
         * @return - The modified `out` argument or a new array of points.
         */
-        sample(steps?: number, startAngle?: number, endAngle?: number, asDegrees?: boolean, out?: any[]);
+        sample(steps?: number, startAngle?: number, endAngle?: number, asDegrees?: boolean, out?: any[]): any[];
         scale(x: number, y?: number): Phaser.Rectangle;
 
         /**
@@ -13731,7 +13731,7 @@ declare module Phaser {
         * @param result A Point object to store the result in.
         * @return - The intersection closest to the Line's start, or null if there is no intersection.
         */
-        static intersectionWithRectangle(line: Phaser.Line, rect: Phaser.Rectangle, result?: Phaser.Point);
+        static intersectionWithRectangle(line: Phaser.Line, rect: Phaser.Rectangle, result?: Phaser.Point): Phaser.Point;
 
         /**
         * Checks for intersection between two lines as defined by the given start and end points.
@@ -27913,7 +27913,7 @@ declare module Phaser {
         * @param horizontal Value for {@link #pageAlignHorizontally}. Pass `null` to leave unchanged.
         * @param vertical Value for {@link #pageAlignVertically}. Omit or pass `null` to leave unchanged.
         */
-        align(horizontal?: boolean, vertical?: boolean);
+        align(horizontal?: boolean, vertical?: boolean): void;
 
         /**
         * Start the ScaleManager.
@@ -32307,7 +32307,7 @@ declare module Phaser {
         * 
         * @param tween A Tween with a {@link #target} that is a {@link Phaser.Color.createColor color object}.
         */
-        static updateColor(tween: Tween);
+        static updateColor(tween: Tween): void;
 
 
         /**
@@ -33067,7 +33067,7 @@ declare module Phaser {
         * @param props The property names and values to set on the object (see {@link #setProperty}).
         * @return The modified object.
         */
-        static setProperties(obj: any, props: any);
+        static setProperties(obj: any, props: any): any;
 
         /**
         * Generate a random bool result based on the chance value.

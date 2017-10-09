@@ -776,7 +776,7 @@ declare module Phaser {
         offset(dx: number, dy: number): Phaser.Circle;
         offsetPoint(point: Phaser.Point): Phaser.Circle;
         random(out?: Phaser.Point): Phaser.Point;
-        sample(steps?: number, startAngle?: number, endAngle?: number, asDegrees?: boolean, out?: any[]);
+        sample(steps?: number, startAngle?: number, endAngle?: number, asDegrees?: boolean, out?: any[]): any[];
         scale(x: number, y?: number): Phaser.Rectangle;
         setTo(x: number, y: number, diameter: number): Circle;
         toString(): string;
@@ -2516,7 +2516,7 @@ declare module Phaser {
         x: number;
         y: number;
 
-        static intersectionWithRectangle(line: Phaser.Line, rect: Phaser.Rectangle, result?: Phaser.Point);
+        static intersectionWithRectangle(line: Phaser.Line, rect: Phaser.Rectangle, result?: Phaser.Point): Phaser.Point;
         static intersectsPoints(a: Phaser.Point, b: Phaser.Point, e: Phaser.Point, f: Phaser.Point, asSegment?: boolean, result?: Phaser.Point): Phaser.Point;
         static intersects(a: Phaser.Line, b: Phaser.Line, asSegment?: boolean, result?: Phaser.Point): Phaser.Point;
         static intersectsRectangle(line: Phaser.Line, rect: Phaser.Rectangle): boolean;
@@ -4894,7 +4894,7 @@ declare module Phaser {
             right: string;
         };
 
-        align(horizontal?: boolean, vertical?: boolean);
+        align(horizontal?: boolean, vertical?: boolean): void;
         boot(): void;
         createFullScreenTarget(): HTMLDivElement;
         destroy(): void;
@@ -5595,7 +5595,7 @@ declare module Phaser {
 
     class Tween {
 
-        static updateColor(tween: Tween);
+        static updateColor(tween: Tween): void;
 
         constructor(target: any, game: Phaser.Game, manager: Phaser.TweenManager);
 
@@ -5708,7 +5708,7 @@ declare module Phaser {
 
         static getProperty(obj: any, prop: string): any;
         static setProperty(obj: any, prop: string, value: any): any;
-        static setProperties(obj: any, props: any);
+        static setProperties(obj: any, props: any): any;
         static chanceRoll(chance: number): boolean;
         static randomChoice(choice1: string | number, choice2: any): any;
         static reverseString(string: string): string;
