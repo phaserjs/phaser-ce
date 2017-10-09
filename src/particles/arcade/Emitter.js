@@ -314,8 +314,8 @@ Phaser.Particles.Arcade.Emitter.prototype.constructor = Phaser.Particles.Arcade.
 */
 Phaser.Particles.Arcade.Emitter.prototype.update = function () {
 
-    this.count.emitted = 0;
-    this.count.failed = 0;
+    this.counts.emitted = 0;
+    this.counts.failed = 0;
 
     if (this.on && this.game.time.time >= this._timer)
     {
@@ -641,14 +641,14 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
 
     if (particle === null)
     {
-        this.count.failed++;
-        this.count.totalFailed++;
+        this.counts.failed++;
+        this.counts.totalFailed++;
 
         return false;
     }
 
-    this.count.emitted++;
-    this.count.totalEmitted++;
+    this.counts.emitted++;
+    this.counts.totalEmitted++;
 
     var rnd = this.game.rnd;
 
@@ -1217,3 +1217,32 @@ Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "remainder", {
     }
 
 });
+
+/**
+* The last particle released, if any.
+*
+* You should treat this as read-only (and also avoid {@link #next} and {@link #previous}) once the emitter is started. Phaser uses it internally to track particles.
+*
+* @name Phaser.Particles.Arcade.Emitter#cursor
+* @property {?DisplayObject} cursor
+* @readonly
+*/
+// Inherited from Phaser.Group#cursor
+
+/**
+* Advances the cursor to the next particle.
+*
+* @method Phaser.Particles.Arcade.Emitter#next
+* @protected
+* @return {any} The child the cursor now points to.
+*/
+// Inherited from Phaser.Group#next
+
+/**
+* Moves the group cursor to the previous particle.
+*
+* @method Phaser.Particles.Arcade.Emitter#previous
+* @protected
+* @return {any} The child the cursor now points to.
+*/
+// Inherited from Phaser.Group#previous

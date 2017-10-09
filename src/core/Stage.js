@@ -347,7 +347,9 @@ Phaser.Stage.prototype.visibilityChange = function (event) {
 *
 * An alpha channel is _not_ supported and will be ignored.
 *
-* If you've set your game to be transparent then calls to setBackgroundColor are ignored.
+* If you've set your game to be {@link Phaser.Game#transparent transparent} then calls to setBackgroundColor are ignored.
+*
+* If {@link Phaser.Game#clearBeforeRender} is off then the background color won't appear.
 *
 * @method Phaser.Stage#setBackgroundColor
 * @param {number|string} color - The color of the background.
@@ -392,6 +394,7 @@ Phaser.Stage.prototype.destroy = function () {
 /**
 * @name Phaser.Stage#backgroundColor
 * @property {number|string} backgroundColor - Gets and sets the background color of the stage. The color can be given as a number: 0xff0000 or a hex string: '#ff0000'
+* @see Phaser.Stage#setBackgroundColor
 */
 Object.defineProperty(Phaser.Stage.prototype, "backgroundColor", {
 

@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: TilemapParser</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2017092513">
+	<link rel="stylesheet" href="styles/site.phaser.css?2017100819">
 </head>
 
 <body>
@@ -180,7 +180,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/tilemap/TilemapParser.js#L13" title="TilemapParser on line 13 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 13</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/tilemap/TilemapParser.js#L13" title="TilemapParser on line 13 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 13</a>
     
 
 	
@@ -290,7 +290,7 @@ during the game) then leave the default value set.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/tilemap/TilemapParser.js#L26" title="INSERT_NULL on line 26 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 26</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/tilemap/TilemapParser.js#L26" title="INSERT_NULL on line 26 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 26</a>
     
 
 	
@@ -368,7 +368,7 @@ during the game) then leave the default value set.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/tilemap/TilemapParser.js#L135" title="getEmptyData on line 135 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 135</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/tilemap/TilemapParser.js#L135" title="getEmptyData on line 135 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 135</a>
     
 
 	
@@ -738,7 +738,7 @@ during the game) then leave the default value set.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/tilemap/TilemapParser.js#L28" title="parse on line 28 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 28</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/tilemap/TilemapParser.js#L28" title="parse on line 28 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 28</a>
     
 
 	
@@ -1028,7 +1028,7 @@ during the game) then leave the default value set.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/tilemap/TilemapParser.js#L77" title="parseCSV on line 77 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 77</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/tilemap/TilemapParser.js#L77" title="parseCSV on line 77 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 77</a>
     
 
 	
@@ -1055,6 +1055,332 @@ during the game) then leave the default value set.</p>
             
 <div class="param-desc">
     <p>Generated map data.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id=".parseObjectGroup" data-name="parseObjectGroup">
+      <span class="type-signature">&lt;static> </span>parseObjectGroup(objectGroup, objectsCollection, collisionCollection [, nameKey] [, relativePosition])
+      
+    </h4>
+    
+</dt>
+<dd>
+
+    
+    <div class="description method-description">
+        <p>Parses an object group in Tiled JSON files. Object groups can be found in both layers and tilesets. Called internally in parseTiledJSON.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>objectGroup</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>A JSON object group.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>objectsCollection</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>An object into which new array of Tiled map objects will be added.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>collisionCollection</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>An object into which new array of collision objects will be added. Currently only polylines are added.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>nameKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    objectGroup.name
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>Key under which to store objects in collisions in objectsCollection and collisionCollection</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>relativePosition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    {x: 0, y: 0}
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>Coordinates the object group's position is relative to.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/tilemap/TilemapParser.js#L181" title="parseObjectGroup on line 181 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 181</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>A object literal containing the objectsCollection and collisionCollection</p>
 </div>
 
 
@@ -1186,7 +1512,7 @@ during the game) then leave the default value set.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.8.8/src/tilemap/TilemapParser.js#L180" title="parseTiledJSON on line 180 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 180</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.0/src/tilemap/TilemapParser.js#L329" title="parseTiledJSON on line 329 of src/tilemap/TilemapParser.js">src/tilemap/TilemapParser.js line 329</a>
     
 
 	
@@ -1253,9 +1579,9 @@ during the game) then leave the default value set.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.8.8
+  phaser-ce@2.9.0
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.8">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.0">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -1272,7 +1598,7 @@ during the game) then leave the default value set.</p>
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-09-25
+		on 2017-10-08
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -1301,7 +1627,7 @@ during the game) then leave the default value set.</p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2017092513"></script>
+<script defer src="scripts/bundle.js?2017100819"></script>
 
 
 
