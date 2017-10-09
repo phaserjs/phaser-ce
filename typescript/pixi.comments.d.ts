@@ -352,17 +352,6 @@ declare module PIXI {
 
     }
 
-    export class CanvasPool {
-
-        static create(parent: HTMLElement, width?: number, height?: number): HTMLCanvasElement;
-        static getFirst(): HTMLCanvasElement;
-        static remove(parent: HTMLElement): void;
-        static removeByCanvas(canvas: HTMLCanvasElement): HTMLCanvasElement;
-        static getTotal(): number;
-        static getFree(): number;
-
-    }
-
 
     /**
     * A set of functions used to handle masking.

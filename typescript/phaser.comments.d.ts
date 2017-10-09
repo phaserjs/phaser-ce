@@ -846,6 +846,20 @@ declare module Phaser {
         static removeRandomItem<T>(objects: T[], startIndex?: number, length?: number): T;
 
         /**
+        * Remove one or more items at the given index and reorder the array.
+        * 
+        * The new array length will be `array.length - count`.
+        * 
+        * This is an alternative to `array.splice(startIndex, count)`.
+        * 
+        * @param array
+        * @param startIndex
+        * @param count  - Default: 1
+        * @return The modified array.
+        */
+        static remove<T>(array: T[], startIndex: number, count?: number): T;
+
+        /**
         * A standard Fisher-Yates Array shuffle implementation which modifies the array in place.
         * 
         * @param array The array to shuffle.
@@ -925,14 +939,24 @@ declare module Phaser {
         static rotateRight(array: any[]): any;
 
         /**
-        * Create an array representing the inclusive range of numbers (usually integers) in `[start, end]`.
+        * Create an array representing the inclusive range of numbers (usually integers) in `[start, end]` (or `[0, start]`, if `end` is omitted).
         * This is equivalent to `numberArrayStep(start, 1 + end, 1)`.
+        * 
+        * When exactly one argument is passed, it's used as `end` and 0 is used as `start`. The length of the result is (1 + end).
+        * 
+        * ##### Examples
+        * 
+        * ```javascript
+        * numberArray(3);    // -> [0, 1, 2, 3]
+        * numberArray(0, 3); // -> [0, 1, 2, 3]
+        * numberArray(1, 3); // -> [1, 2, 3]
+        * ```
         * 
         * @param start The minimum value the array starts with.
         * @param end The maximum value the array contains.
         * @return The array of number values.
         */
-        static numberArray(start: number, end: number): number[];
+        static numberArray(start: number, end?: number): number[];
 
         /**
         * Create an array of numbers (positive and/or negative) progressing from `start`
@@ -3951,6 +3975,11 @@ declare module Phaser {
         id: number;
 
         /**
+        * Immobile {@link Phaser.Camera#view view} rectangle. Its top-left is always (0, 0). You can use this align fixedToCamera objects.
+        */
+        fixedView: Phaser.Rectangle;
+
+        /**
         * The Graphics object used to handle camera fx such as fade and flash.
         */
         fx: Phaser.Graphics;
@@ -4325,6 +4354,64 @@ declare module Phaser {
 
 
     /**
+    * The CanvasPool is a global static object, that allows Phaser to recycle and pool Canvas DOM elements.
+    */
+    export class CanvasPool {
+
+
+        /**
+        * Creates a new Canvas DOM element, or pulls one from the pool if free.
+        * 
+        * @param parent The parent of the canvas element.
+        * @param width The width of the canvas element.
+        * @param height The height of the canvas element.
+        * @return The canvas element.
+        */
+        static create(parent: HTMLElement, width?: number, height?: number): HTMLCanvasElement;
+
+        /**
+        * Gets the first free canvas index from the pool.
+        */
+        static getFirst(): HTMLCanvasElement;
+
+        /**
+        * Looks up a canvas based on its parent, and if found puts it back in the pool, freeing it up for re-use.
+        * The canvas has its width and height set to 1, and its parent attribute nulled.
+        * 
+        * @param parent The parent of the canvas element.
+        */
+        static remove(parent: HTMLElement): void;
+
+        /**
+        * Looks up a canvas based on its type, and if found puts it back in the pool, freeing it up for re-use.
+        * The canvas has its width and height set to 1, and its parent attribute nulled.
+        * 
+        * @param canvas The canvas element to remove.
+        */
+        static removeByCanvas(canvas: HTMLCanvasElement): HTMLCanvasElement;
+
+        /**
+        * Gets the total number of used canvas elements in the pool.
+        * @return The number of in-use (parented) canvas elements in the pool.
+        */
+        static getTotal(): number;
+
+        /**
+        * Gets the total number of free canvas elements in the pool.
+        * @return The number of free (un-parented) canvas elements in the pool.
+        */
+        static getFree(): number;
+        static length: number;
+
+        /**
+        * Prints in-use, free, and total counts to console.log.
+        */
+        static log(): void;
+
+    }
+
+
+    /**
     * Creates a new Circle object with the center coordinate specified by the x and y parameters and the diameter specified by the diameter parameter.
     * If you call this function without parameters, a circle with x, y, diameter and radius properties set to 0 is created.
     */
@@ -4532,6 +4619,22 @@ declare module Phaser {
         * @return An object containing the random point in its `x` and `y` properties.
         */
         random(out?: Phaser.Point): Phaser.Point;
+
+        /**
+        * Creates or positions points on the circle.
+        * 
+        * The points are equally distributed in the half-closed interval [startAngle, endAngle). The default arc is the entire circle.
+        * 
+        * If the `out` argument is omitted, this method creates and returns an array of {@link Phaser.Point points}. If an array is passed as `out`, its items are treated as points and placed in the same way.
+        * 
+        * @param steps The number of points to place. - Default: 60
+        * @param startAngle The starting angle in radians (unless asDegrees is true).
+        * @param endAngle The end angle in radians (unless asDegrees is true). - Default: Phaser.Math.PI2
+        * @param asDegrees Are the given angles in radians (false) or degrees (true)?
+        * @param out An array of points or point-like objects (e.g., sprites). It should start at index 0 and its length should be equal to or greater than `steps`.
+        * @return - The modified `out` argument or a new array of points.
+        */
+        sample(steps?: number, startAngle?: number, endAngle?: number, asDegrees?: boolean, out?: any[]);
         scale(x: number, y?: number): Phaser.Rectangle;
 
         /**
@@ -4780,9 +4883,10 @@ declare module Phaser {
         * @param steps The number of steps to run the interpolation over.
         * @param currentStep The currentStep value. If the interpolation will take 100 steps, a currentStep value of 50 would be half-way between the two.
         * @param alpha The alpha of the returned color.
+        * @param colorSpace The color space to interpolate in. 0 = RGB, 1 = HSV.
         * @return The interpolated color value.
         */
-        static interpolateColor(color1: number, color2: number, steps: number, currentStep: number, alpha?: number): number;
+        static interpolateColor(color1: number, color2: number, steps: number, currentStep: number, alpha?: number, colorSpace?: number): number;
 
         /**
         * Interpolates the two given colours based on the supplied step and currentStep properties.
@@ -4811,6 +4915,33 @@ declare module Phaser {
         * @return The interpolated color value.
         */
         static interpolateRGB(r1: number, g1: number, b1: number, r2: number, g2: number, b2: number, steps: number, currentStep: number): number;
+
+        /**
+        * Calculates a linear (interpolation) value of two colors over t.
+        * 
+        * This is a slightly simpler interface to {@link Phaser.Color.interpolateColor}.
+        * 
+        * The arguments are similar to {@link Phaser.Math.linear}.
+        * 
+        * @param color1 The first color value.
+        * @param color2 The second color value.
+        * @param t A value between 0 and 1.
+        * @return The interpolated color value.
+        */
+        static linear(color1: number, color2: number, t: number): number;
+
+        /**
+        * Calculates a linear (interpolation) value of an array of colors over t.
+        * 
+        * The arguments are similar to {@link Phaser.Math.linearInterpolation}.
+        * 
+        * This can be used as a {@link Phaser.TweenData#interpolationFunction}.
+        * 
+        * @param colors The input array of color values to interpolate between.
+        * @param t A value between 0 and 1.
+        * @return The interpolated color value.
+        */
+        static linearInterpolation(colors: number[], t: number): number;
 
         /**
         * Packs the r, g, b, a components into a single integer, for use with Int32Array.
@@ -7682,6 +7813,7 @@ declare module Phaser {
         /**
         * Clear the Canvas each frame before rendering the display list.
         * You can set this to `false` to gain some performance if your game always contains a background that completely fills the display.
+        * This must be `true` to show any {@link Phaser.Stage#backgroundColor} set on the Stage.
         * Default: true
         */
         clearBeforeRender: boolean;
@@ -9916,7 +10048,7 @@ declare module Phaser {
         enableBodyDebug: boolean;
 
         /**
-        * If exists is false the group will be excluded from collision checks and filters such as {@link Phaser.Group#forEachExists forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link Phaser.Group#visible visible} and will still call `update` on its children.
+        * If exists is false the group will be excluded from collision checks and filters such as {@link Phaser.Group#forEachExists forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link Phaser.Group#visible visible} and will still call `update` on its children (unless {@link Phaser.Group#updateOnlyExistingChildren updateOnlyExistingChildren} is true).
         * Default: true
         */
         exists: boolean;
@@ -10328,6 +10460,15 @@ declare module Phaser {
         checkProperty(child: any, key: string, value: any, force?: boolean): boolean;
 
         /**
+        * Get the number of children with the given property name and value.
+        * 
+        * @param key The child property to check.
+        * @param value A child matches if `child[key] === value` is true.
+        * @return The number of children matching the query.
+        */
+        count(key: string, value: any): number;
+
+        /**
         * Get the number of dead children in this group.
         * @return The number of children flagged as dead.
         */
@@ -10407,9 +10548,11 @@ declare module Phaser {
         * @param key The Cache key of the image that the Sprites will use. Or an Array of keys. See the description for details on how the quantity applies when arrays are used.
         * @param frame If the Sprite image contains multiple frames you can specify which one to use here. Or an Array of frames. See the description for details on how the quantity applies when arrays are used.
         * @param exists The default exists state of the Sprite.
+        * @param callback The function that will be called for each applicable child. It will be passed the new child and the loop index (0 through quantity - 1).
+        * @param callbackContext The context in which the function should be called (usually 'this'). The default context is the new child.
         * @return An array containing all of the Sprites that were created.
         */
-        createMultiple(quantity: number, key: string | string[], frame?: any | any[], exists?: boolean): any[];
+        createMultiple(quantity: number, key: string | string[], frame?: any | any[], exists?: boolean, callback?: Function, callbackContext?: any): any[];
 
         /**
         * Sort the children in the group according to custom sort function.
@@ -10578,6 +10721,15 @@ declare module Phaser {
         getClosestTo(object: any, callback?: Function, callbackContext?: any): any;
 
         /**
+        * Get the first display object with the given property name and value.
+        * 
+        * @param key The child property to check.
+        * @param value A child matches if `child[key] === value` is true.
+        * @return The first child matching the query, or `null` if none were found.
+        */
+        getFirst(key: string, value: any): any;
+
+        /**
         * Get the first child that is alive (`child.alive === true`).
         * 
         * This is handy for choosing a squad leader, etc.
@@ -10722,6 +10874,11 @@ declare module Phaser {
         * @return Returns either an integer (for RETURN_TOTAL), the first matched child (for RETURN_CHILD), or null.
         */
         iterate(key: string, value: any, returnType: number, callback?: Function, callbackContext?: any, ...args: any[]): any;
+
+        /**
+        * Sets {@link Phaser.Group#alive alive}, {@link Phaser.Group#exists exists}, and {@link Phaser.Group#visible visible} to false.
+        */
+        kill(): void;
 
         /**
         * Kills all children having exists=true.
@@ -10894,6 +11051,11 @@ declare module Phaser {
         * This operation applies only to immediate children and does not propagate to subgroups.
         */
         reverse(): void;
+
+        /**
+        * Sets {@link Phaser.Group#alive alive}, {@link Phaser.Group#exists exists}, and {@link Phaser.Group#visible visible} to true.
+        */
+        revive(): void;
 
         /**
         * Revives all children having exists=false.
@@ -13559,6 +13721,17 @@ declare module Phaser {
         */
         y: number;
 
+
+        /**
+        * Finds the closest intersection between the Line and a Rectangle shape, or a rectangle-like
+        * object, such as a Sprite or Body.
+        * 
+        * @param line The line to check for intersection with.
+        * @param rect The rectangle, or rectangle-like object, to check for intersection with.
+        * @param result A Point object to store the result in.
+        * @return - The intersection closest to the Line's start, or null if there is no intersection.
+        */
+        static intersectionWithRectangle(line: Phaser.Line, rect: Phaser.Rectangle, result?: Phaser.Point);
 
         /**
         * Checks for intersection between two lines as defined by the given start and end points.
@@ -16540,11 +16713,6 @@ declare module Phaser {
                 * How much each particle should bounce on each axis. 1 = full bounce, 0 = no bounce.
                 */
                 bounce: Phaser.Point;
-
-                /**
-                * Alias for {@link Phaser.Particles.Arcade.Emitter#counts counts}. Will be removed in a future release.
-                */
-                count: EmitterCount; // deprecated
                 counts: EmitterCount;
 
                 /**
@@ -16562,7 +16730,7 @@ declare module Phaser {
                 emitY: number;
 
                 /**
-                * If exists is false the group will be excluded from collision checks and filters such as {@link Phaser.Group#forEachExists forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link Phaser.Group#visible visible} and will still call `update` on its children.
+                * If exists is false the group will be excluded from collision checks and filters such as {@link Phaser.Group#forEachExists forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link Phaser.Group#visible visible} and will still call `update` on its children (unless {@link Phaser.Group#updateOnlyExistingChildren updateOnlyExistingChildren} is true).
                 * Default: true
                 */
                 exists: boolean;
@@ -16768,6 +16936,8 @@ declare module Phaser {
                 * However it can also be called externally to emit a particle.
                 * 
                 * When called externally you can use the arguments to override any defaults the Emitter has set.
+                * 
+                * The newly emitted particle is available in {@link Phaser.Particles.Arcade.Emitter#cursor}.
                 * 
                 * @param x The x coordinate to emit the particle from. If `null` or `undefined` it will use `Emitter.emitX` or if the Emitter has a width > 1 a random value between `Emitter.left` and `Emitter.right`.
                 * @param y The y coordinate to emit the particle from. If `null` or `undefined` it will use `Emitter.emitY` or if the Emitter has a height > 1 a random value between `Emitter.top` and `Emitter.bottom`.
@@ -17717,6 +17887,16 @@ declare module Phaser {
             angleToXY(displayObject: any, x: number, y: number, world?: boolean): number;
 
             /**
+            * From a set of points or display objects, find the one closest to a source point or object.
+            * 
+            * @param source The {@link Phaser.Point Point} or Display Object distances will be measured from.
+            * @param targets The {@link Phaser.Point Points} or Display Objects whose distances to the source will be compared.
+            * @param world Calculate the distance using World coordinates (true), or Object coordinates (false, the default).
+            * @return - The first target closest to the origin.
+            */
+            closest(source: any, targets: any[], world?: boolean): any;
+
+            /**
             * Checks for collision between two game objects and separates them if colliding ({@link https://gist.github.com/samme/cbb81dd19f564dcfe2232761e575063d details}). If you don't require separation then use {@link Phaser.Physics.Arcade#overlap overlap} instead.
             * 
             * You can perform Sprite vs. Sprite, Sprite vs. Group, Group vs. Group, Sprite vs. Tilemap Layer or Group vs. Tilemap Layer collisions.
@@ -17846,6 +18026,16 @@ declare module Phaser {
             * @param object The game object to create the physics body on. A body will only be created if this object has a null `body` property.
             */
             enableBody(object: any): void;
+
+            /**
+            * From a set of points or display objects, find the one farthest from a source point or object.
+            * 
+            * @param source The {@link Phaser.Point Point} or Display Object distances will be measured from.
+            * @param targets The {@link Phaser.Point Points} or Display Objects whose distances to the source will be compared.
+            * @param world Calculate the distance using World coordinates (true), or Object coordinates (false, the default).
+            * @return - The target closest to the origin.
+            */
+            farthest(source: any, targets: any[], world?: boolean): any;
 
             /**
             * Given a Group and a location this will check to see which Group children overlap with the coordinates.
@@ -19942,8 +20132,8 @@ declare module Phaser {
             clearTilemapLayerBodies(map: Phaser.Tilemap, layer?: any): void;
 
             /**
-            * Converts all of the polylines objects inside a Tiled ObjectGroup into physics bodies that are added to the world.
-            * Note that the polylines must be created in such a way that they can withstand polygon decomposition.
+            * Converts all of the polyline, polygon, and rectangle objects inside a Tiled ObjectGroup into physics bodies that are added to the world.
+            * Note that the polylines and polygons must be created in such a way that they can withstand polygon decomposition.
             * 
             * @param map The Tilemap to get the map data from.
             * @param layer The layer to operate on. If not given will default to map.currentLayer.
@@ -22164,6 +22354,17 @@ declare module Phaser {
         static equals(a: Phaser.Point, b: Phaser.Point): boolean;
 
         /**
+        * Determines whether a set of x-y coordinates are equal to this Point's.
+        * 
+        * @param x The x-coordinate to compare with this Point.
+        * @param y The y-coordinate to compare with this Point.
+        * @return A value of true if the Point's coordinates are identical to the arguments, otherwise false.
+        */
+        static equalsXY(a: Phaser.Point, x: number, y: number): boolean;
+        static fuzzyEquals(a: Phaser.Point, b: Phaser.Point, epsilon?: number): boolean;
+        static fuzzyEqualsXY(a: Phaser.Point, x: number, y: number, epsilon?: number): boolean;
+
+        /**
         * Returns the angle between this Point object and another object with public x and y properties.
         * 
         * @param a The object to get the angle from this Point to.
@@ -22356,6 +22557,14 @@ declare module Phaser {
         clampY(min: number, max: number): Phaser.Point;
 
         /**
+        * If this Point is not within the given object, moves it inside (at the nearest edge).
+        * 
+        * @param rect A {@link Phaser.Rectangle} or any object with left, top, right, and bottom properties.
+        * @return This Point object.
+        */
+        clip(rect: any): Phaser.Point;
+
+        /**
         * Creates a copy of the given Point.
         * 
         * @param output Optional Point object. If given the values will be set into this object, otherwise a brand new Point object will be created and returned.
@@ -22426,6 +22635,17 @@ declare module Phaser {
         * @return A value of true if the x and y points are equal, otherwise false.
         */
         equals(a: Phaser.Point): boolean;
+
+        /**
+        * Determines whether a set of x-y coordinates are equal to this Point's.
+        * 
+        * @param x The x-coordinate to compare with this Point.
+        * @param y The y-coordinate to compare with this Point.
+        * @return A value of true if the Point's coordinates are identical to the arguments, otherwise false.
+        */
+        equalsXY(x: number, y: number): boolean;
+        fuzzyEquals(a: Phaser.Point, epsilon?: number): boolean;
+        fuzzyEqualsXY(x: number, y: number, epsilon?: number): boolean;
 
         /**
         * Math.floor() both the x and y properties of this Point.
@@ -23663,6 +23883,14 @@ declare module Phaser {
         static containsRect(a: Phaser.Rectangle, b: Phaser.Rectangle): boolean;
 
         /**
+        * Returns a new Rectangle object with the same values for the left, top, width, and height properties as the original object.
+        * 
+        * @param a An object with `left`, `top`, `width`, and `height` properties.
+        * @param output Optional Rectangle object. If given the values will be set into the object, otherwise a brand new Rectangle object will be created and returned.
+        */
+        static createFromBounds(a: any, output?: Phaser.Rectangle): Phaser.Rectangle;
+
+        /**
         * Determines whether the two Rectangles are equal.
         * This method compares the x, y, width and height properties of each Rectangle.
         * 
@@ -23788,6 +24016,14 @@ declare module Phaser {
         * @return This Rectangle object.
         */
         copyFrom(source: any): Phaser.Rectangle;
+
+        /**
+        * Copies the left, top, width and height properties from any given object to this Rectangle.
+        * 
+        * @param source The object to copy from.
+        * @return This Rectangle object.
+        */
+        copyFromBounds(source: any): Phaser.Rectangle;
 
         /**
         * Copies the x, y, width and height properties from this Rectangle to any given object.
@@ -23927,6 +24163,17 @@ declare module Phaser {
         * @return This Rectangle object
         */
         scale(x: number, y?: number): Phaser.Rectangle;
+
+        /**
+        * Creates or positions four {@link Phaser.Line} lines representing the Rectangle's sides.
+        * 
+        * @param top
+        * @param right
+        * @param bottom
+        * @param left
+        * @return - An array containing four lines (if no arguments were given), or null.
+        */
+        sides(top?: Phaser.Line, right?: Phaser.Line, bottom?: Phaser.Line, left?: Phaser.Line): Phaser.Line[];
 
         /**
         * The size of the Rectangle object, expressed as a Point object with the values of the width and height properties.
@@ -27145,7 +27392,9 @@ declare module Phaser {
         * 
         * An alpha channel is _not_ supported and will be ignored.
         * 
-        * If you've set your game to be transparent then calls to setBackgroundColor are ignored.
+        * If you've set your game to be {@link Phaser.Game#transparent transparent} then calls to setBackgroundColor are ignored.
+        * 
+        * If {@link Phaser.Game#clearBeforeRender} is off then the background color won't appear.
         * 
         * @param color The color of the background.
         */
@@ -27659,6 +27908,14 @@ declare module Phaser {
 
 
         /**
+        * Shorthand for setting {@link Phaser.ScaleManager#pageAlignHorizontally pageAlignHorizontally} and {@link Phaser.ScaleManager#pageAlignVertically pageAlignVertically}.
+        * 
+        * @param horizontal Value for {@link #pageAlignHorizontally}. Pass `null` to leave unchanged.
+        * @param vertical Value for {@link #pageAlignVertically}. Omit or pass `null` to leave unchanged.
+        */
+        align(horizontal?: boolean, vertical?: boolean);
+
+        /**
         * Start the ScaleManager.
         */
         boot(): void;
@@ -28050,6 +28307,8 @@ declare module Phaser {
     * |       |             |            |              | shutdown |
     * 
     * Update and render calls (*) are repeated.
+    * 
+    * If your State has a constructor, it will be invoked exactly once, during {@link {@link Phaser.StateManager#add}.
     */
     class State {
 
@@ -28148,77 +28407,105 @@ declare module Phaser {
         /**
         * create is called once preload has completed, this includes the loading of any assets from the Loader.
         * If you don't have a preload method then create is the first method called in your State.
+        * 
+        * @param game
         */
-        create(): void;
+        create(game: Phaser.Game): void;
 
         /**
         * init is the very first function called when your State starts up. It's called before preload, create or anything else.
         * If you need to route the game away to another State you could do so here, or if you need to prepare a set of variables
         * or objects before the preloading starts.
+        * 
+        * @param args Any extra arguments passed to {@link Phaser.StateManager#start} or {@link Phaser.StateManager#restart}.
         */
         init(...args: any[]): void;
 
         /**
         * loadRender is called during the Loader process. This only happens if you've set one or more assets to load in the preload method.
         * The difference between loadRender and render is that any objects you render in this method you must be sure their assets exist.
+        * 
+        * @param game
         */
-        loadRender(): void;
+        loadRender(game: Phaser.Game): void;
 
         /**
         * loadUpdate is called during the Loader process. This only happens if you've set one or more assets to load in the preload method.
+        * 
+        * @param game
         */
-        loadUpdate(): void;
+        loadUpdate(game: Phaser.Game): void;
 
         /**
         * This method will be called if the core game loop is paused.
+        * 
+        * @param game
         */
-        paused(): void;
+        paused(game: Phaser.Game): void;
 
         /**
         * pauseUpdate is called while the game is paused instead of preUpdate, update and postUpdate.
+        * 
+        * @param game
         */
-        pauseUpdate(): void;
+        pauseUpdate(game: Phaser.Game): void;
 
         /**
         * preload is called first. Normally you'd use this to load your game assets (or those needed for the current State)
         * You shouldn't create any objects in this method that require assets that you're also loading in this method, as
         * they won't yet be available.
+        * 
+        * @param game
         */
-        preload(): void;
+        preload(game: Phaser.Game): void;
 
         /**
         * The preRender method is called after all Game Objects have been updated, but before any rendering takes place.
+        * 
+        * @param game
+        * @param elapsedTime
         */
-        preRender(): void;
+        preRender(game: Phaser.Game, elapsedTime: number): void;
 
         /**
         * Nearly all display objects in Phaser render automatically, you don't need to tell them to render.
         * However the render method is called AFTER the game renderer and plugins have rendered, so you're able to do any
         * final post-processing style effects here. Note that this happens before plugins postRender takes place.
+        * 
+        * @param game
         */
-        render(): void;
+        render(game: Phaser.Game): void;
 
         /**
         * If your game is set to Scalemode RESIZE then each time the browser resizes it will call this function, passing in the new width and height.
+        * 
+        * @param width
+        * @param height
         */
-        resize(): void;
+        resize(width: number, height: number): void;
 
         /**
         * This method will be called when the core game loop resumes from a paused state.
+        * 
+        * @param game
         */
-        resumed(): void;
+        resumed(game: Phaser.Game): void;
 
         /**
         * This method will be called when the State is shutdown (i.e. you switch to another state from this one).
+        * 
+        * @param game
         */
-        shutdown(): void;
+        shutdown(game: Phaser.Game): void;
 
         /**
         * The update method is left empty for your own use.
         * It is called during the core game loop AFTER debug, physics, plugins and the Stage have had their preUpdate methods called.
         * It is called BEFORE Stage, Tweens, Sounds, Input, Physics, Particles and Plugins have had their postUpdate methods called.
+        * 
+        * @param game
         */
-        update(): void;
+        update(game: Phaser.Game): void;
 
     }
 
@@ -32002,6 +32289,28 @@ declare module Phaser {
 
 
         /**
+        * A helper for tweening {@link Phaser.Color.createColor color objects}.
+        * 
+        * It can be passed to {@link Phaser.Tween#onUpdateCallback onUpdateCallback}.
+        * 
+        * ```javascript
+        * var color = Phaser.Color.createColor(255, 0, 0); // red
+        * 
+        * var tween = game.add.tween(color).to({
+        *     r: 0, g: 0, b: 255 // blue
+        * });
+        * 
+        * tween.onUpdateCallback(Phaser.Tween.updateColor);
+        * 
+        * tween.start();
+        * ```
+        * 
+        * @param tween A Tween with a {@link #target} that is a {@link Phaser.Color.createColor color object}.
+        */
+        static updateColor(tween: Tween);
+
+
+        /**
         * A Tween allows you to alter one or more properties of a target object over a defined period of time.
         * This can be used for things such as alpha fading Sprites, scaling them or motion.
         * Use `Tween.to` or `Tween.from` to set-up the tween values. You can create multiple tweens on the same object
@@ -32730,13 +33039,35 @@ declare module Phaser {
         static getProperty(obj: any, prop: string): any;
 
         /**
-        * Sets an objects property by string.
+        * Sets an object's property by name and value.
         * 
-        * @param obj The object to traverse
-        * @param prop The property whose value will be changed
-        * @return The object on which the property was set.
+        * ```javascript
+        * Phaser.Utils.setProperty(sprite, 'body.velocity.x', 60);
+        * ```
+        * 
+        * @param obj The object to modify.
+        * @param name The property name, or a series of names separated by `.` (for nested properties).
+        * @param value The value.
+        * @return The modified object.
         */
         static setProperty(obj: any, prop: string, value: any): any;
+
+        /**
+        * Sets an object's properties from a map of property names and values.
+        * 
+        * ```javascript
+        * Phaser.Utils.setProperties(sprite, {
+        *  'animations.paused': true,
+        *  'body.enable': false,
+        *  'input.draggable': true,
+        * });
+        * ```
+        * 
+        * @param obj The object to modify.
+        * @param props The property names and values to set on the object (see {@link #setProperty}).
+        * @return The modified object.
+        */
+        static setProperties(obj: any, props: any);
 
         /**
         * Generate a random bool result based on the chance value.
@@ -33027,12 +33358,12 @@ declare module Phaser {
             destroy(): void;
 
             /**
-            * Renders a Phaser geometry object including Rectangle, Circle, Point or Line.
+            * Renders a Phaser geometry object including Rectangle, Circle, Ellipse, Point or Line.
             * 
             * @param object The geometry object to render.
             * @param color Color of the debug info to be rendered (format is css color string).
             * @param filled Render the objected as a filled (default, true) or a stroked (false) - Default: true
-            * @param forceType Force rendering of a specific type. If 0 no type will be forced, otherwise 1 = Rectangle, 2 = Circle, 3 = Point and 4 = Line.
+            * @param forceType Force rendering of a specific type. If 0 no type will be forced, otherwise 1 = Rectangle, 2 = Circle,3 = Point, 4 = Line and 5 = Ellipse.
             */
             geom(object: any, color?: string, fiiled?: boolean, forceType?: number): void;
 
@@ -33071,9 +33402,28 @@ declare module Phaser {
             line(...args: string[]): void;
 
             /**
+            * Prints Phaser {@link Phaser.VERSION version}, {@link Phaser.Game.#renderType rendering mode}, and {@link Phaser.Device#webAudio device audio support}.
+            * 
+            * @param x The X value the debug info will start from.
+            * @param y The Y value the debug info will start from.
+            * @param color The color the debug text will drawn in. - Default: 'rgb(255,255,255)'
+            */
+            phaser(x: number, y: number, color?: string): void;
+
+            /**
             * Internal method that clears the canvas (if a Sprite) ready for a new debug session.
             */
             preUpdate(): void;
+
+            /**
+            * Render each physics {@link Phaser.Utils.Debug#body body} in a group.
+            * 
+            * @param group A group containing physics-enabled sprites.
+            * @param color Color of the debug rectangle to be rendered. The format is a CSS color string such as '#ff0000' or 'rgba(255,0,0,0.5)'. - Default: 'rgba(0,255,0,0.4)'
+            * @param filled Render the body as a filled rectangle (true) or a stroked rectangle (false). - Default: true
+            * @param checkExists Render only children with `exists=true`.
+            */
+            physicsGroup(group: Phaser.Group, color?: string, filled?: boolean, checkExists?: boolean): void;
 
             /**
             * Renders a single pixel at the given size.
