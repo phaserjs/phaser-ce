@@ -22,6 +22,6 @@ Creature
 1. creature.js
 1. p2.js
 1. pixi.js
-1. phaser-split.js
+1. phaser-creature.js
 
 You can also [make your own custom build](http://phaser.io/tutorials/creating-custom-phaser-builds).
