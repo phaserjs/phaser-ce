@@ -4,6 +4,18 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.9.1 - 10th October 2017
+
+### Bug Fixes
+
+* [Phaser.Tilemap#setTileIndexCallback](https://github.com/photonstorm/phaser-ce/blob/master/src/tilemap/Tilemap.js#L798) now correctly removes a callback when `null` is passed.
+* Fixed [Emitter#counts](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#counts) not counting.
+* Fixed missing TypeScript return values (#382).
+
+### Thanks
+
+@masondesu, @pavle-goloskokovic, @photonstorm, @samme
+
 ## Version 2.9.0 - 8th October 2017
 
 The minor version increase is for changes to [Emitter#cursor](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#cursor).
