@@ -330,7 +330,15 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
-[Phaser.Tilemap#setTileIndexCallback](https://github.com/photonstorm/phaser-ce/blob/master/src/tilemap/Tilemap.js#L798) can now correctly remove a callback by setting it to `null`.
+### Bug Fixes
+
+* [Phaser.Tilemap#setTileIndexCallback](https://github.com/photonstorm/phaser-ce/blob/master/src/tilemap/Tilemap.js#L798) now correctly removes a callback when `null` is passed.
+* Fixed [Emitter#counts](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#counts) not counting.
+* Fixed missing TypeScript return values (#382).
+
+### Thanks
+
+@masondesu, @pavle-goloskokovic, @photonstorm, @samme
 
 ## Version 2.9.0 - 8th October 2017
 
