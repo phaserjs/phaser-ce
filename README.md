@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.9.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.0).
+The [current Phaser CE release is 2.9.1](https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.1).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -128,16 +128,16 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.9.0/build/phaser.js"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.9.1/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.9.0"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.9.1"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.9.0/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.9.1/build/custom/) are available too.
 
 <a name="getting-started"></a>
 
@@ -328,7 +328,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.9.1 - 10th October 2017
 
 ### Bug Fixes
 
@@ -339,65 +339,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Thanks
 
 @masondesu, @pavle-goloskokovic, @photonstorm, @samme
-
-## Version 2.9.0 - 8th October 2017
-
-The minor version increase is for changes to [Emitter#cursor](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#cursor).
-
-### New Features
-
-* Tiled polygons and rectangles are now converted into p2 physics bodies when using [Phaser.Physics.P2#convertCollisionObjects](https://photonstorm.github.io/phaser-ce/Phaser.Physics.P2.html#convertCollisionObjects) (#369).
-* Tileset-level collision objects created in Tiled are now added to a map's [collision](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#collision) and [objects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#objects) properties using the layer's name as the key (#369).
-* [Phaser.ArrayUtils.numberArray](https://photonstorm.github.io/phaser-ce/Phaser.ArrayUtils.html#_numberArray) can be passed a single argument to create a range starting from 0.
-* [Phaser.ArrayUtils.remove](https://photonstorm.github.io/phaser-ce/Phaser.ArrayUtils.html#_remove) is a faster alternative to Array#splice.
-* [Phaser.Camera#fixedView](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#fixedView) is like [Phaser.Camera#view](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#view) but it never moves. You can use it to align objects independent of the camera's position.
-* [Phaser.CanvasPool.log](https://photonstorm.github.io/phaser-ce/Phaser.CanvasPool.html#_log) prints canvas pool counts to the console.
-* [Phaser.Circle#intersectsLine](https://photonstorm.github.io/phaser-ce/Phaser.Circle.html#intersectsLine)
-* [Phaser.Circle#sample](https://photonstorm.github.io/phaser-ce/Phaser.Circle.html#sample) creates or positions a set of points or objects on the circle.
-* [Phaser.Color.interpolateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_interpolateColor) can use either HSL or RGB color spaces.
-* [Phaser.Color.linear](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_linear) interpolates two numeric color values.
-* [Phaser.Color.linearInterpolation](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_linearInterpolation) interpolates an array of numeric color values. You can assign it to [TweenData#interpolationFunction](https://photonstorm.github.io/phaser-ce/Phaser.TweenData.html#interpolationFunction) to tween through such an array.
-* [Phaser.Ellipse#intersectsLine](https://photonstorm.github.io/phaser-ce/Phaser.Ellipse.html#intersectsLine)
-* [Phaser.Group#count](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#count) counts children matching a key-value query.
-* [Phaser.Group#createMultiple](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#createMultiple) now has a callback argument that lets you modify each new child.
-* [Phaser.Group#getFirst](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#getFirst) fetches the first child matching a key-value query.
-* [Phaser.Group#kill](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#kill) and [Phaser.Group#revive](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#revive) toggle a Group's `alive`, `exists`, and `visible` properties (#339).
-* [Phaser.Line#intersectionWithRectangle](https://photonstorm.github.io/phaser-ce/Phaser.Line.html#_intersectionWithRectangle) finds the closest line-rectangle intersection (#260). You can use it for precise raycasting.
-* [Phaser.Physics.Arcade#closest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade#closest) finds the point or display object closest to another.
-* [Phaser.Physics.Arcade#farthest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade#farthest) finds the point or display object farthest from another.
-* [Phaser.Point#clip](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#clip) constrains a Point to a rectangular area.
-* [Phaser.Point#equalsXY](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#equalsXY)
-* [Phaser.Point#fuzzyEquals](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#fuzzyEquals) and [Phaser.Point#fuzzyEqualsXY](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#fuzzyEqualsXY) test approximate Point equality.
-* [Phaser.Rectangle#copyFromBounds](https://photonstorm.github.io/phaser-ce/Phaser.Rectangle.html#copyFromBounds) and [Phaser.Rectangle.createFromBounds](https://photonstorm.github.io/phaser-ce/Phaser.Rectangle.html#_createFromBounds) are variations of [copyFrom](https://photonstorm.github.io/phaser-ce/Phaser.Rectangle.html#copyFrom) and [clone](https://photonstorm.github.io/phaser-ce/Phaser.Rectangle.html#_clone) that extract `left` and `top` properties instead of `x` and `y`.
-* [Phaser.Rectangle#sides](https://photonstorm.github.io/phaser-ce/Phaser.Rectangle.html#sides) creates or positions four lines representing the rectangle's sides.
-* [Phaser.ScaleManager#align](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#align) is a shortcut for setting pageAlignHorizontally and pageAlignVertically.
-* [Phaser.Tween.updateColor](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#_updateColor) is a helper for tweening color objects.
-* [Phaser.Utils.Debug#canvasPool](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#canvasPool) displays canvas pool counts.
-* [Phaser.Utils.Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom) can display Ellipses.
-* [Phaser.Utils.Debug#phaser](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#phaser) displays Phaser's version, rendering mode, and device audio support.
-* [Phaser.Utils.Debug#physicsGroup](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#physicsGroup) displays all the physics bodies in a Group.
-* [Phaser.Utils.setProperties](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#_setProperties) is deep-property setter that works on any object.
-
-### Updates
-
-* Particle emitter release has been made more efficient (#333).
-* You can access the most recently emitted particle in [Emitter#cursor](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#cursor). After the emitter has started, you should treat Emitter#cursor as read-only, because Phaser will modify it while it emits particles.
-
-### Bug Fixes
-
-* Fixed some TypeScript definitions (#374).
-* [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects) no longer overrides the `visibility` property value as set in Tiled.
-* Fixed and optimized [Phaser.Utils.setProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#_setProperty).
-
-### Documentation
-
-* Added missing arguments in [Phaser.State](https://photonstorm.github.io/phaser-ce/Phaser.State.html) methods.
-* [Phaser.Game#clearBeforeRender](https://photonstorm.github.io/phaser-ce/Phaser.Game#clearBeforeRender) must be true for [Phaser.Stage#backgroundColor](https://photonstorm.github.io/phaser-ce/Phaser.Stage#backgroundColor) to appear (#377).
-* [Phaser.Stage#backgroundColor](https://photonstorm.github.io/phaser-ce/Phaser.Stage#backgroundColor) and [Phaser.Stage#disableVisibilityChange](https://photonstorm.github.io/phaser-ce/Phaser.Stage#disableVisibilityChange) can be set directly in a [Phaser.Game](https://photonstorm.github.io/phaser-ce/Phaser.Game.html) configuration object.
-
-### Thanks
-
-@cursorial, @HeinousTugboat, @masondesu, @photonstorm, @samme, @samid737
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
@@ -421,10 +362,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.9.0/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.9.0/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.9.0.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.9.0.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.9.1/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.9.1/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.9.1.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.9.1.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
