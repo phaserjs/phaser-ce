@@ -328,6 +328,16 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+
+* Fixed bug that did not show the last line of text on a BitmapText when the last character was the one that created the need for a newLine (when maxWidth was set).
+
+### Thanks
+
+@andiCR
+
 ## Version 2.9.1 - 10th October 2017
 
 ### Bug Fixes
