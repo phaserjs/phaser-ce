@@ -328,6 +328,16 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+
+* Fixed bug that did not show the last line of text on a BitmapText when the last character was the one that created the need for a newLine (when maxWidth was set).
+
+### Thanks
+
+@andiCR
+
 ## Version 2.9.1 - 10th October 2017
 
 ### Bug Fixes
@@ -335,11 +345,10 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * [Phaser.Tilemap#setTileIndexCallback](https://github.com/photonstorm/phaser-ce/blob/master/src/tilemap/Tilemap.js#L798) now correctly removes a callback when `null` is passed.
 * Fixed [Emitter#counts](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#counts) not counting.
 * Fixed missing TypeScript return values (#382).
-* Fixed bug that did not show the last line of text on a BitmapText when the last character was the one that created the need for a newLine (when maxWidth was set).
 
 ### Thanks
 
-@masondesu, @pavle-goloskokovic, @photonstorm, @samme, @andiCR
+@masondesu, @pavle-goloskokovic, @photonstorm, @samme
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
