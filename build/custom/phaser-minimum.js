@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.9.0 "2017-10-08" - Built: Sun Oct 08 2017 19:21:16
+* v2.9.1 "2017-10-10" - Built: Tue Oct 10 2017 11:18:10
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -7594,7 +7594,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.9.0',
+    VERSION: '2.9.1',
 
     /**
     * An array of Phaser game instances.
