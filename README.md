@@ -333,10 +333,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Bug Fixes
 
 * Fixed bug that did not show the last line of text on a BitmapText when the last character was the one that created the need for a newLine (when maxWidth was set).
+* Fixed grammar in the error message if an invalid State object is provided to the StateManager.
 
 ### Thanks
 
-@andiCR
+@andiCR, @JamesSkemp
 
 ## Version 2.9.1 - 10th October 2017
 
