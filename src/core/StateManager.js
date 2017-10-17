@@ -446,7 +446,7 @@ Phaser.StateManager.prototype = {
             }
             else
             {
-                console.warn("Invalid Phaser State object given. Must contain at least a one of the required functions: preload, create, update or render");
+                console.warn("Invalid Phaser State object given. Must contain at least one of the required functions: preload, create, update or render");
                 return false;
             }
         }
