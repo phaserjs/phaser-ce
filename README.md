@@ -330,6 +330,10 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
+### New Features
+
+* Add adjustSize parameter to Phaser.Tilemap#createFromObjects. Setting this to false will disable copying object width and height to the sprite
+
 ### Bug Fixes
 
 * Fixed bug that did not show the last line of text on a BitmapText when the last character was the one that created the need for a newLine (when maxWidth was set).
@@ -337,7 +341,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@andiCR, @JamesSkemp
+@andiCR, @JamesSkemp, @16patsle
 
 ## Version 2.9.1 - 10th October 2017
 
