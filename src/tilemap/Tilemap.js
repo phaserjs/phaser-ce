@@ -397,14 +397,16 @@ Phaser.Tilemap.prototype = {
     * @param {Phaser.Group} [group=Phaser.World] - Group to add the Sprite to. If not specified it will be added to the World group.
     * @param {object} [CustomClass=Phaser.Sprite] - If you wish to create your own class, rather than Phaser.Sprite, pass the class here. Your class must extend Phaser.Sprite and have the same constructor parameters.
     * @param {boolean} [adjustY=true] - By default the Tiled map editor uses a bottom-left coordinate system. Phaser uses top-left. So most objects will appear too low down. This parameter moves them up by their height.
+    * @param {boolean} [adjustSize=true] - By default the width and height of the objects are transferred to the sprite. This parameter controls that behavior.
     */
-    createFromObjects: function (name, gid, key, frame, exists, autoCull, group, CustomClass, adjustY) {
+    createFromObjects: function (name, gid, key, frame, exists, autoCull, group, CustomClass, adjustY, adjustSize) {
 
         if (exists === undefined) { exists = true; }
         if (autoCull === undefined) { autoCull = false; }
         if (group === undefined) { group = this.game.world; }
         if (CustomClass === undefined) { CustomClass = Phaser.Sprite; }
         if (adjustY === undefined) { adjustY = true; }
+        if (adjustSize === undefined) { adjustSize = true; }
 
         if (!this.objects[name])
         {
@@ -439,14 +441,17 @@ Phaser.Tilemap.prototype = {
                 sprite.exists = exists;
                 sprite.visible = obj.visible;
 
-                if (obj.width)
+                if (adjustSize)
                 {
-                    sprite.width = obj.width;
-                }
+                    if (obj.width)
+                    {
+                        sprite.width = obj.width;
+                    }
 
-                if (obj.height)
-                {
-                    sprite.height = obj.height;
+                    if (obj.height)
+                    {
+                        sprite.height = obj.height;
+                    }
                 }
 
                 if (obj.rotation)
