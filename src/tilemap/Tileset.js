@@ -219,7 +219,10 @@ Phaser.Tileset.prototype = {
 
         if (rowCount % 1 !== 0 || colCount % 1 !== 0)
         {
-            console.warn("Phaser.Tileset - " + this.name + " image tile area is not an even multiple of tile size");
+            console.warn(
+                "Phaser.Tileset - '%s' image tile area (%s x %s) is not a whole multiple of tile size (%s x %s + %s + %s)",
+                this.name, imageWidth, imageHeight, this.tileWidth, this.tileHeight, this.tileMargin, this.tileSpacing
+            );
         }
 
         // In Tiled a tileset image that is not an even multiple of the tile dimensions
@@ -229,7 +232,10 @@ Phaser.Tileset.prototype = {
 
         if ((this.rows && this.rows !== rowCount) || (this.columns && this.columns !== colCount))
         {
-            console.warn("Phaser.Tileset - actual and expected number of tile rows and columns differ");
+            console.warn(
+                "Phaser.Tileset - Tile layout from image '%s' (%s rows by %s columns) differs from tileset '%s' (%s rows by %s columns)",
+                this.image.name, colCount, rowCount, this.name, this.columns, this.rows
+            );
         }
 
         this.rows = rowCount;

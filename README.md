@@ -330,6 +330,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
+### Updates
+
+* Tilemap#addTilesetImage, Tilemap#createFromObjects, and Tilemap#createLayer print the map's contents (following the usual warning) in the console if you pass a bad name or identifier.
+* Tileset#addTilesetImage gives a little more information when warning about image dimension mismatches.
+
 ### Bug Fixes
 
 * Fixed bug that did not show the last line of text on a BitmapText when the last character was the one that created the need for a newLine (when maxWidth was set).
@@ -337,7 +342,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@andiCR, @JamesSkemp
+@andiCR, @JamesSkemp, @samme
 
 ## Version 2.9.1 - 10th October 2017
 

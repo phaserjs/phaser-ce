@@ -313,6 +313,7 @@ Phaser.Tilemap.prototype = {
         if (idx === null && this.format === Phaser.Tilemap.TILED_JSON)
         {
             console.warn('Phaser.Tilemap.addTilesetImage: No data found in the JSON matching the tileset name: "' + tileset + '"');
+            console.log('Tilesets: ', this.tilesets);
             return null;
         }
 
@@ -409,6 +410,7 @@ Phaser.Tilemap.prototype = {
         if (!this.objects[name])
         {
             console.warn('Tilemap.createFromObjects: Invalid objectgroup name given: ' + name);
+            console.log('Objects: ', this.objects);
             return;
         }
 
@@ -595,6 +597,7 @@ Phaser.Tilemap.prototype = {
         if (index === null || index > this.layers.length)
         {
             console.warn('Tilemap.createLayer: Invalid layer ID given: "' + layer + '"');
+            console.log('Layers: ', this.layers);
             return;
         }
 
