@@ -659,10 +659,10 @@ Phaser.Color = {
 
         if (result)
         {
-            out.r = parseInt(result[1], 10);
-            out.g = parseInt(result[2], 10);
-            out.b = parseInt(result[3], 10);
-            out.a = result[4] !== undefined ? parseFloat(result[4]) : 1;
+            out.r = ~~Number(result[1]);
+            out.g = ~~Number(result[2]);
+            out.b = ~~Number(result[3]);
+            out.a = result[4] !== undefined ? Number(result[4]) : 1;
             Phaser.Color.updateColor(out);
         }
 
