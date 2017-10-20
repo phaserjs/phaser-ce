@@ -1421,7 +1421,7 @@ Phaser.Text.prototype.setTextBounds = function (x, y, width, height) {
             this.style.wordWrapWidth = width;
         }
     }
-
+	this.updateText();
     this.updateTexture();
     
     return this;
