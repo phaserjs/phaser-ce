@@ -4081,6 +4081,7 @@ declare module Phaser {
         static centroid(points: Phaser.Point[], out?: Phaser.Point): Phaser.Point;
         static isPoint(obj: any): boolean;
         static set(obj: any, x: number, y: number): any;
+        static sortClockwise(points: any[], center?: Phaser.Point);
 
         add(x: number, y: number): Phaser.Point;
         angle(a: Phaser.Point, asDegrees?: boolean): number;

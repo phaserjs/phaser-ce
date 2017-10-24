@@ -334,6 +334,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Phaser.Keyboard#removeCallbacks removes callbacks added by [Phaser.Keyboard#addCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#addCallbacks).
 * Phaser.BitmapData#polygon draws a polygon.
+* Phaser.Point.sortClockwise sorts points around a reference point.
 
 ### Updates
 
