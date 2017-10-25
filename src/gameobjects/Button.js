@@ -179,7 +179,7 @@ Phaser.Button = function (game, x, y, key, callback, callbackContext, overFrame,
     *
     * @property {Phaser.PointerMode?} justReleasedPreventsOver=ACTIVE_CURSOR
     */
-    this.justReleasedPreventsOver = Phaser.PointerMode.TOUCH;
+    this.justReleasedPreventsOver = Phaser.PointerMode.CONTACT;
 
     /**
     * When true the the texture frame will not be automatically switched on up/down/over/out events.
