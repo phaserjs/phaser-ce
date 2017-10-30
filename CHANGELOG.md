@@ -3104,7 +3104,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * StateManager.start can now have as many parameters as you like. The order is: start(key, clearWorld, clearCache, ...) - they are passed to State.init() (NOT create!)
 * Loader.script now has callback (and callbackContext) parameters, so you can specify a function to run once the JS has been injected into the body.
 * Phaser.Timer.stop has a new parameter: clearEvents (default true), if true all the events in Timer will be cleared, otherwise they will remain (fixes #383)
-* All GameObjects now have a 'destroyChildren' boolean as a parameter to their destroy method. It's default is true and the value propogates down its children.
+* All GameObjects now have a 'destroyChildren' boolean as a parameter to their destroy method. It's default is true and the value propagates down its children.
 * Pixi GrayFilter ported over (thanks nickryall #404)
 * Animation.speed added. You can now change the animation speed on the fly, without re-starting the animation (feature request #458)
 * Brand new Grunt task - creates each core library as its own file and a combined phaser.js.
@@ -3193,7 +3193,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Tweens now resume correctly if the game pauses (focus loss) while they are paused.
 * Tweens don't double pause if they were already paused and the game pauses.
 * Buttons are now cleanly destroyed if part of a Group without leaving their InputHandler running.
-* You can now safely destroy a Group and the 'destroyChildren' boolean will propogate fully down the display list.
+* You can now safely destroy a Group and the 'destroyChildren' boolean will propagate fully down the display list.
 * Calling destroy on an already destroyed object would throw a run-time error. Now checked for and aborted.
 * Calling destroy while in an Input Event callback now works for either the parent Group or the calling object itself.
 * Loader.replaceInFileList wouldn't over-write the previous entry correctly, which caused the Loader.image overwrite parameter to fail (thanks basoko, fixes #493)
@@ -3453,7 +3453,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Enhanced renderTexture so it can accept a Phaser.Group object and improved documentation and examples.
 * Device.littleEndian boolean added. Only safe to use if the browser supports TypedArrays (which IE9 doesn't, but nearly all others do)
 * You can now call game.sound.play() and simply pass it a key. The sound will play if the audio system is unlocked and optionally destroy itself on complete.
-* Mouse.capture is a boolean. If set to true then DOM mouse events will have event.preventDefault() applied, if false they will propogate fully.
+* Mouse.capture is a boolean. If set to true then DOM mouse events will have event.preventDefault() applied, if false they will propagate fully.
 * The object returned by Math.sinCosGenerator now contains a length property.
 
 ### Updates
