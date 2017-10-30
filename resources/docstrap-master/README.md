@@ -176,7 +176,7 @@ grunt examples
 - Bump to follow semver (initial development is well and truly over)
 - Corrected list of themes
 - Added Search
-- Remove highlightTutorialCode option - it didnt work
+- Remove highlightTutorialCode option - it didn't work
 
 ## 0.5.4
 
