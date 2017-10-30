@@ -13,7 +13,7 @@ $ npm run build    # prepare your game for deployment (available on the public f
 ## Notes
 
 This is supposed to be a completely barebones project.
-There's no extra candy. No ES6, uglyfing your code, compressing your images. Nada.
+There's no extra candy. No ES6, uglifying your code, compressing your images. Nada.
 By providing only the minimum setup you will be able to customize it however you like,
 and will make learning the needed steps to integrate webpack and phaser really easy.
 
