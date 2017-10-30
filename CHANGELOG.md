@@ -2713,7 +2713,7 @@ The Plugins have now all moved to [their own repository](https://github.com/phot
 * Blank Tilemaps no longer create `null` tiles, but instead create Tile objects with an index of -1 which can be replaced and updated like any other tile.
 * Tilemap.addTilesetImage will now raise a console.warn if you specify an invalid tileset key and not create the tileset rather than pick the default set.
 * Math.smoothstep and Math.smootherstep have been updated to work regardless if a is > or < b (thanks @gre, fix #772)
-* Text.updateText now sets the lineCap to `round` to avoid occassional font glitching issues in Chrome.
+* Text.updateText now sets the lineCap to `round` to avoid occasional font glitching issues in Chrome.
 * Loader now uses XDomainRequest in IE9 to load JSON data to help with CORS issues.
 
 ### New Features
