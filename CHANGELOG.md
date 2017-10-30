@@ -1811,7 +1811,7 @@ We've rolled our own fixes into our version of Pixi, ensuring we keep it as bug-
 * Tween.delay, Tween.repeat and Tween.yoyo will no longer throw an error if called before a TweenData object has been created (via Tween.to or Tween.from) (thanks @SomMeri #1419)
 * The click trampoline added for IE prevented Chrome for Android from being
 able to launch Full Screen mode with the default parameters for
-ScaleManger#startFullScreen (the desktop version of Chrome was not
+ScaleManager#startFullScreen (the desktop version of Chrome was not
 affected.). This is now fixed and additional compatibility settings (clickTrampoline) that can be used to configure when such is used. By default the 'when-not-mouse' mode is only enabled for Desktop browsers, where the
 primary input is ubiquitously a mouse. There are no known breaking compatibility changes - the Full Screen should be initiatable in Chrome for Android as it was in 2.1.x. The default Android browser does not support Full Screen (thanks @pnstickne)
 * TilemapParser now checks for image collections, avoiding crashes. These would arise with maps exported from the new release of Tiled (thanks @paul-reilly #1440)
