@@ -1021,7 +1021,7 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 * BitmapData.setHSL now accepts 0 as a valid parameter (thanks @FracturedShader #2209)
 * Force the usage of typescript 1.4.1 in the package.json so that the TypeScript defs with comments is rebuilt properly again (thanks @vulvulune #2198)
 * A tiny logic update in the StateManager (thanks @jaminscript #2151)
-* The Style object passed in to Phaser.Text is now cloned instead of referenced. This means you can adjust single Text instances without invaliding other Text objects using the same style object (thanks @asyncanup #2267)
+* The Style object passed in to Phaser.Text is now cloned instead of referenced. This means you can adjust single Text instances without invalidating other Text objects using the same style object (thanks @asyncanup #2267)
 * Added a typescript section to the bower and npm configs to support `tsd link` (thanks @mjohnsonengr #2189 #2180)
 * SoundManager.destroy now calls AudioContext.close (thanks @stoneman1 #2237)
 * Sound.onEndedHandler now sets Sound.currentTime to be Sound.durationMS (thanks @stoneman1 #2237)
