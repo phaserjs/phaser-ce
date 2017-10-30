@@ -3389,7 +3389,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Phaser.Math.min enhanced so you can now pass in either an array of numbers or lots of numbers as parameters to get the lowest.
 * Phaser.Math.max added as the opposite of Math.min.
 * Phaser.Math.minProperty and maxProperty added. Like Math.min/max but can be given a property an an array or list of objects to inspect.
-* Added 'full' paramter to Body.reset, allowing you to control if motion or all data is reset or not.
+* Added 'full' parameter to Body.reset, allowing you to control if motion or all data is reset or not.
 * Exposed Group.pivot and Sprite.pivot to allow you to directly set the pivot points for rotation.
 * Swapped to using the native and faster Array.isArray check.
 * Added callback context parameter to Tween.onUpdateCallback(callback, context) to avoid having to bind or create anonymous functions.
