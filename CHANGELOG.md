@@ -3925,7 +3925,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Added GameMath.shuffleArray
 * Updated Animation.frame to return the index of the currentFrame if set
 * Added Quad.copyTo and Quad.copyFrom
-* Removed the bakedRotations parameter from Emiter.makeParticles - update your code accordingly!
+* Removed the bakedRotations parameter from Emitter.makeParticles - update your code accordingly!
 * Updated various classes to remove the Flixel left-over CamelCase parameters
 * Updated QuadTree to use the new CollisionMask values and significantly optimised and reduced overall class size
 * Updated Collision.separate to use the new CollisionMask
