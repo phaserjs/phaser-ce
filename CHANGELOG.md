@@ -3381,7 +3381,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Added StateManager.getCurrentState to return the currently running State object (thanks Niondir)
 * Removed the console.log redirect from Utils as it was messing with Firefox.
 * Body.acceleration is now much smoother and less erratic at high speeds.
-* Removed ArcadePhysics binding to the QuadTree, so it can now be used independantly of the physics system.
+* Removed ArcadePhysics binding to the QuadTree, so it can now be used independently of the physics system.
 * Removed ArcadePhysics.preUpdate and postUpdate as neither are needed any more.
 * Body.bottom and Body.right are no longer rounded, so will give accurate sub-pixel values.
 * Fixed lots of documentation in the Emitter class.
