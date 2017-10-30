@@ -2424,7 +2424,7 @@ After talking with Mat at GoodBoyDigital about the issue it was his idea to just
 * BitmapData.alphaMask now calls BitmapData.update after running.
 * BitmapData.draw now has two optional parameters: width and height, to let you stretch the image being drawn if needed.
 * Group.destroy now removes any set filters (thanks @Jmaharman fix #844)
-* RetroFont charsPerRow paramters is now optional. If not given it will take the image width and divide it by the characterWidth value.
+* RetroFont charsPerRow parameters is now optional. If not given it will take the image width and divide it by the characterWidth value.
 * RetroFont now uses Phaser.scaleModes.NEAREST by default for its RenderTexture to preserve scaling.
 * Loader.tilemap has renamed the `mapURL` parameter to `url` and `mapData` to `data` to keep it consistent with the other Loader methods.
 * Loader.physics has renamed the `dataURL` parameter to `url` and `jsonData` to `data` to keep it consistent with the other Loader methods.
