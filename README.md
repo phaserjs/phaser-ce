@@ -333,6 +333,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### New Features
 
 * Phaser.Keyboard#removeCallbacks removes callbacks added by [Phaser.Keyboard#addCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#addCallbacks).
+* Phaser.BitmapData#polygon draws a polygon.
 
 ### Updates
 

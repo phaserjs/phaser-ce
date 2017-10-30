@@ -1990,6 +1990,55 @@ Phaser.BitmapData.prototype = {
     },
 
     /**
+    * Draws a polygon.
+    *
+    * @method Phaser.BitmapData#polygon
+    * @param {object[]} points - An array of {@link Phaser.Point} or point-like objects.
+    * @param {CanvasGradient|CanvasPattern|string} [fillStyle] - A color, gradient, or pattern.
+    * @param {number} [lineWidth=0] - The line thickness.
+    * @param {CanvasGradient|CanvasPattern|string} [strokeStyle='#fff'] - The line color, gradient, or pattern (when `lineWidth` > 0).
+    * @return {Phaser.BitmapData} This BitmapData object for method chaining.
+    */
+    polygon: function (points, fillStyle, lineWidth, strokeStyle) {
+
+        // Could reject points.length < 3
+
+        if (strokeStyle === undefined) { strokeStyle = '#fff'; }
+        if (lineWidth === undefined) { lineWidth = 0; }
+
+        var ctx = this.context;
+
+        if (fillStyle)
+        {
+            ctx.fillStyle = fillStyle;
+        }
+
+        if (lineWidth)
+        {
+            ctx.lineWidth = lineWidth;
+            ctx.strokeStyle = strokeStyle;
+        }
+
+        ctx.beginPath();
+
+        ctx.moveTo(points[0].x, points[0].y);
+
+        for (var i = 1, len = points.length; i < len; i++)
+        {
+            var point = points[i];
+            ctx.lineTo(point.x, point.y);
+        }
+
+        ctx.closePath();
+
+        if (fillStyle) { ctx.fill(); }
+        if (lineWidth) { ctx.stroke(); }
+
+        return this;
+
+    },
+
+    /**
     * Takes the given Line object and image and renders it to this BitmapData as a repeating texture line.
     *
     * @method Phaser.BitmapData#textureLine
