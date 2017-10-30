@@ -3463,7 +3463,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * RequestAnimationFrame now retains the callbackID which is passed to cancelRequestAnimationFrame.
 * Button now goes back to over state when setFrames used in action (thanks beeglebug)
 * plugins now have a postUpdate callback (thanks cocoademon)
-* Tided up the Graphics object (thanks BorisKozo)
+* Tidied up the Graphics object (thanks BorisKozo)
 * If running in Canvas mode and you have a render function it will save the context and reset the transform before running your render function.
 * Sprite will now check the exists property of the Group it is in, if the Group.exists = false the Sprite won't update.
 * If you specify 'null' as a Group parent it will now revert to using the World as the parent (before only 'undefined' worked)
