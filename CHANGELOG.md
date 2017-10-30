@@ -2580,7 +2580,7 @@ The following changes were part of the Pixi 1.6.0 release:
 * Fixed Data URI loading.
 * Fixed issue so now loader only uses XDomainRequest in IE, if a crossorigin request is needed.
 * Fixed issue where alpha not being respected if cacheAsBitmap is true
-* Fixed PIXI.RendeTexture resize bug.
+* Fixed PIXI.RenderTexture resize bug.
 * Fixed PIXI.TilingSprite not render children on canvas.
 * Fixes issue where if both mask and filter are applied to one object the object did not render.
 * If the texture is destroyed, it should be removed from PIXI.TextureCache too.
