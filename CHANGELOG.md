@@ -3229,7 +3229,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * ArcadePhysics.collideSpriteVsTilemapLayer wouldn't call the process or collide callbacks if only 1 tile was involved in the check (thanks mandarinx)
 * Lots of documentation fixes (thanks nhowell)
 * Fix for PixiPatch so it renders masks again (thanks georgios)
-* Modified ArcadePhysics.intersects so it returns a value as well as asigns (thanks bunnyhero)
+* Modified ArcadePhysics.intersects so it returns a value as well as assigns (thanks bunnyhero)
 * Lots of TypeScript defs fixes (thanks clark)
 
 
