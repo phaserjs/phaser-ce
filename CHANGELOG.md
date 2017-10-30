@@ -886,7 +886,7 @@ Thanks to Corin Wilkins at Aardman Digital, for lots of the investigation work, 
 
 Please note that Phaser uses a custom build of Pixi and always has done. The following changes have been made to our custom build, not to Pixi in general.
 
-* Sprites that had a tint on them, that then had their frame changed via either `Sprite.frame` or `Sprite.frameName` wouldn't re-tint the new frame, and would become stuck on the old frame in Canvas mode (thaks @spayton #2453)
+* Sprites that had a tint on them, that then had their frame changed via either `Sprite.frame` or `Sprite.frameName` wouldn't re-tint the new frame, and would become stuck on the old frame in Canvas mode (thanks @spayton #2453)
 
 ## Version 2.4.7 - "Hinderstap" - 22nd April 2016
 
@@ -3480,7 +3480,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Mouse.stop now uses the true useCapture, which means the event listeners stop listening correctly (thanks beeglebug)
 * Input Keyboard example fix (thanks Atrodilla)
 * BitmapText.destroy now checks if it has a canvas before calling parentNode on it.
-* Group.swap had a hellish to find bug that only manifested when B-A upward swaps occured. Hours of debugging later = bug crushed.
+* Group.swap had a hellish to find bug that only manifested when B-A upward swaps occurred. Hours of debugging later = bug crushed.
 * Point.rotate asDegrees fixed (thanks BorisKozo)
 * ArcadePhysics.separateTile wasn't returning the value, so the custom process callback wasn't getting called (thanks flameiguana)
 * StageScaleMode.forceOrientation now correctly stores the forcePortrait value (thanks haden)
