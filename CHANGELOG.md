@@ -909,7 +909,7 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 * Camera.resetFX resets any active FX, such as a fade or flash and immediately clears it. Useful for calling after a fade in order to remove the fade from the Stage.
 * Phaser.Camera.ENABLE_FX is a const that controls if the Camera FX are available or not. It's `true` by default, but if you set it to `false` before boot then it won't create the Graphics object required to process the effects.
 * The Arcade Physics Body has two new properties: `left` and `top`. These are the same as `Body.x` and `Body.y` but allow you to pass the Body to geometry level functions such as Circle.contains.
-* World.separate has been optimized to cut down on the number of calls to `intersect` from 3 calls per Game Object collision check, to 2. So if you were colliding 50 sprites it will reduce the call count from 150 to 100 per frame. It also reduces the calls made to `seperateX` and `seperateY` by the same factor.
+* World.separate has been optimized to cut down on the number of calls to `intersect` from 3 calls per Game Object collision check, to 2. So if you were colliding 50 sprites it will reduce the call count from 150 to 100 per frame. It also reduces the calls made to `separateX` and `separateY` by the same factor.
 * Two immovable bodies would never set their overlap data, even if an overlap only check was being made. As this is useful data to have this has been changed. Two immovable bodies will still never separate from each other, but they _will_ have their `overlapX` and `overlapY` properties calculated now.
 * P2.Body.offset is now used and applied to the Sprite position during rendering. The values given are normal pixel values, and offset the P2 Body from the center of the Sprite (thanks @Mourtz #2430)
 
@@ -3005,7 +3005,7 @@ Use cases:
 * World.shutdown now removes all children iteratively, calling destroy on each one, ultimately performing a soft reset of the World.
 * Objects with a scale.x or y of 0 are no longer considered valid for input (fix #602)
 * InputHandler will set the browser pointer back to default if destroyed while over (fix #602)
-* ArcadePhysics.separate doesn't pass over to seperateX/Y if overlapOnly is true (fix #604)
+* ArcadePhysics.separate doesn't pass over to separateX/Y if overlapOnly is true (fix #604)
 * ArcadePhysics.collideSpriteVsSprite checks if both objects have bodies before processing.
 * Debug.spriteBounds will now take the position of the camera into consideration when rendering the bounds (fix #603)
 * InputHandler.dragFromCenter will now work regardless of the anchor point of the Sprite (fix #600)
@@ -3045,7 +3045,7 @@ Use cases:
 * Lots of fixes to the TypeScript definitions file (thanks as always to clark-stevenson for his tireless work on these)
 * Emitters now bring the particle they are about to emit to the top of the Group before doing so. Avoids particles hidden behind others.
 * ArcadePhysics.Body.setSize corrected to take the parameters as positive, not negative values.
-* ArcadePhysics.World.seperate will now check gravity totals to determine separation order. You can set World.forceX to true to always separate on X first and skip this check.
+* ArcadePhysics.World.separate will now check gravity totals to determine separation order. You can set World.forceX to true to always separate on X first and skip this check.
 * TileSprites now emit outOfBounds and enterBounds events accordingly.
 * You can now create multiple blank layers in a Tilemap.
 
@@ -3928,7 +3928,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Removed the bakedRotations parameter from Emiter.makeParticles - update your code accordingly!
 * Updated various classes to remove the Flixel left-over CamelCase parameters
 * Updated QuadTree to use the new CollisionMask values and significantly optimised and reduced overall class size
-* Updated Collision.seperate to use the new CollisionMask
+* Updated Collision.separate to use the new CollisionMask
 * Added a callback context parameter to Game.collide, Collision.overlap and the QuadTree class
 * Stage.canvas now calls preventDefault() when the context menu is activated (oncontextmenu)
 * Added Point.rotate to allow you to rotate a point around another point, with optional distance clamping. Also created test cases.
