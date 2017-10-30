@@ -3293,7 +3293,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * TilemapLayers now have debug and debugAlpha values, this turns on the drawing of the collision edges (very handy for debugging, as the name implies!)
 * Tweens have a new event: onLoop.
 * You can now load any binary file via the Loader: game.load.binary(key, url, callback) - the optional callback allows for post-load processing before entering the Cache.
-* Group.set will let you deep set a new propery on a single child of the Group.
+* Group.set will let you deep set a new property on a single child of the Group.
 * Stage.display property added. A direct reference to the root Pixi Stage object (very useful for RenderTexture manipulation)
 * Added Ejecta detection to Device (thanks endel)
 * Tweens can now work with relative + and - values. You can do: `tween(sprite).to( { x: '+400' })` and it will add 400 to the current sprite.x value.
