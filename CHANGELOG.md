@@ -3175,7 +3175,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * IE11 didn't populate the Device.ie## Version value. Now extracted from Trident revision, but still use Device.trident instead for IE11+ checks.
 * Fixed bug in Math.angleBetween where it was using the coordinates in the wrong order.
 * Previously using a Pixel Perfect check didn't work if the Sprite was rotated or had a non-zero anchor point, now works under all conditions + atlas frames.
-* If pixelPerfect Input Sprites overlapped each other the pixel check wasn't taken into consieration in the Pointer move method.
+* If pixelPerfect Input Sprites overlapped each other the pixel check wasn't taken into consideration in the Pointer move method.
 * Updated Input.Mouse to use event.button not event.which, so the const reference from input.mouse.button is correct (thanks grimor)
 * Text that was fixedToCamera would 'jitter' if the world scrolled. Now works as expected across all fixed objects.
 * Fixed a bug where Sound.play wouldn't pick-up the local loop setting if not specified in the parameter.
