@@ -265,7 +265,7 @@ grunt examples
 
 ##  0.2.0
 
-- Added jump to source linenumers - still a problem scrolling with fixed header
+- Added jump to source linenumbers - still a problem scrolling with fixed header
 - changed syntax highlighter to [sunlight](http://sunlightjs.com/)
 - Modify incoming bootswatch files to make font calls without protocol.
 
