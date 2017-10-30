@@ -2417,7 +2417,7 @@ After talking with Mat at GoodBoyDigital about the issue it was his idea to just
 * Merged Pixi 1.6.0 with Phaser - all of the lovely new Pixi features are in, like complex Graphics objects and masking.
 * TypeScript definitions fixes and updates (thanks @clark-stevenson and @Phaiax)
 * Documentation fixes (thanks @kay-is #941)
-* BitmapData.draw can now also take a Phaser.Sprite, Phaser.Image or BitmapData object as a source type. As a result BitmapData.drawSprite is now depcreated.
+* BitmapData.draw can now also take a Phaser.Sprite, Phaser.Image or BitmapData object as a source type. As a result BitmapData.drawSprite is now deprecated.
 * BitmapData.alphaMask can now also take a Phaser.Sprite, Phaser.Image or BitmapData object as a source type.
 * BitmapData.alphaMask has 2 new optional parameters: sourceRect and maskRect to give more fine-grained control over where the source and mask are drawn and their size
 * BitmapData.alphaMask 'mask' parameter is now optional, if not given it will use itself as the mask.
