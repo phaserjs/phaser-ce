@@ -2572,7 +2572,7 @@ The following changes were part of the Pixi 1.6.0 release:
 * Fix to roundPixels property in PIXI.CanvasRenderer.
 * Fixed interactive bug when mousemove being called on removed objects.
 * Fix bug touch move event handling.
-* Various CocoonJS Fixs.
+* Various CocoonJS fixes.
 * Masks now work when used in PIXI.RenderTextures / cacheAsBitmap and PIXI.Filters.
 * Fixed bug where stroked PIXI.Text sometimes got clipped.
 * Removed the trailing whitespace when wordwrapping a PIXI.Text.
