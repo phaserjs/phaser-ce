@@ -3380,7 +3380,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * The Time class now has its own Phaser.Timer which you can access through game.time.events. See the new Timer examples to show how to use them.
 * Added StateManager.getCurrentState to return the currently running State object (thanks Niondir)
 * Removed the console.log redirect from Utils as it was messing with Firefox.
-* Body.acceleration is now much smoother and less eratic at high speeds.
+* Body.acceleration is now much smoother and less erratic at high speeds.
 * Removed ArcadePhysics binding to the QuadTree, so it can now be used independantly of the physics system.
 * Removed ArcadePhysics.preUpdate and postUpdate as neither are needed any more.
 * Body.bottom and Body.right are no longer rounded, so will give accurate sub-pixel values.
