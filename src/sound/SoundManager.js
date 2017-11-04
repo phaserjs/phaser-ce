@@ -253,7 +253,7 @@ Phaser.SoundManager.prototype = {
                 this.masterGain = this.context.createGain();
             }
 
-            this.masterGain.gain.value = 1;
+            this._setGain(1);
             this.masterGain.connect(this.context.destination);
         }
 
@@ -676,7 +676,7 @@ Phaser.SoundManager.prototype = {
         if (this.usingWebAudio)
         {
             this._muteVolume = this.masterGain.gain.value;
-            this.masterGain.gain.value = 0;
+            this._setGain(0);
         }
 
         //  Loop through sounds
@@ -709,7 +709,7 @@ Phaser.SoundManager.prototype = {
 
         if (this.usingWebAudio)
         {
-            this.masterGain.gain.value = this._muteVolume;
+            this._setGain(this._muteVolume);
         }
 
         //  Loop through sounds
@@ -761,6 +761,12 @@ Phaser.SoundManager.prototype = {
                 }
             }
         }
+
+    },
+
+    _setGain: function (value) {
+
+        this.masterGain.gain.setTargetAtTime(value, 0, 0.01);
 
     }
 
@@ -837,7 +843,7 @@ Object.defineProperty(Phaser.SoundManager.prototype, "volume", {
 
             if (this.usingWebAudio)
             {
-                this.masterGain.gain.value = value;
+                this._setGain(value);
             }
             else
             {

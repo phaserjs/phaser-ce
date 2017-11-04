@@ -334,6 +334,10 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Add adjustSize parameter to Phaser.Tilemap#createFromObjects. Setting this to false will disable copying object width and height to the sprite
 
+### Updates
+
+* When using Web Audio, volume and mute changes are smoothed (#385).
+
 ### Bug Fixes
 
 * Fixed bug that did not show the last line of text on a BitmapText when the last character was the one that created the need for a newLine (when maxWidth was set).
