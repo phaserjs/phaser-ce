@@ -3236,7 +3236,7 @@ declare module box2d {
         //  damping done. 
         maxTimestep: number;
         Step(step: b2TimeStep): void;
-        //  Sets damping independantly along the x and y axes 
+        //  Sets damping independently along the x and y axes 
         SetAxisAligned(xDamping: number, yDamping: number): void;
     }
 

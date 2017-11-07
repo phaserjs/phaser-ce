@@ -695,7 +695,7 @@ Phaser.Physics.Ninja.AABB.prototype = {
             }
         }
 
-        //if we've reached this point, no collision has occured
+        //if we've reached this point, no collision has occurred
         return Phaser.Physics.Ninja.AABB.COL_NONE;
     },
 
@@ -826,7 +826,7 @@ Phaser.Physics.Ninja.AABB.prototype = {
             }
         }
 
-        //if we've reached this point, no collision has occured
+        //if we've reached this point, no collision has occurred
         return Phaser.Physics.Ninja.AABB.COL_NONE;
 
     },

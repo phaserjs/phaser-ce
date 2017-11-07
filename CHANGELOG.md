@@ -753,7 +753,7 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 
 * Removed `_renderWebGL`, `_renderCanvas`, `getLocalBounds` and `getBounds` from PIXI.DisplayObject, as they were only there to pass ancient jshint rules.
 * All Pixi.Graphics methods that change the Graphics, i.e. `drawShape`, `lineTo`, `arc`, etc will now all automatically call `Graphics.updateLocalBounds`. This is so that the bounds of the Graphics object are kept updated, allowing you to scale and rotate the Graphics object and still obtain correct dimensions from it (thanks @kelu-smiley #2573)
-* PIXI.CanvasPool no longer _just_ checks for `null` parent comparisons. It will check for all falsey parents, helping free-up canvases when the parent objects have been removed elsewhere.
+* PIXI.CanvasPool no longer _just_ checks for `null` parent comparisons. It will check for all falsy parents, helping free-up canvases when the parent objects have been removed elsewhere.
 * PIXI.CanvasPool.remove and `removeByCanvas` both now set the removed canvas width and height to 1.
 * PIXI.Texture.fromImage, PIXI.BaseTexture.fromImage and PIXI.Sprite.fromImage have all been removed. They should never have actually been used, as they bypass the Phaser Loader, and don't factor in CORs or any other advanced loader settings.
 * The PIXI.BaseTexture.imageUrl property has been removed, as it was never actually populated.
@@ -886,7 +886,7 @@ Thanks to Corin Wilkins at Aardman Digital, for lots of the investigation work, 
 
 Please note that Phaser uses a custom build of Pixi and always has done. The following changes have been made to our custom build, not to Pixi in general.
 
-* Sprites that had a tint on them, that then had their frame changed via either `Sprite.frame` or `Sprite.frameName` wouldn't re-tint the new frame, and would become stuck on the old frame in Canvas mode (thaks @spayton #2453)
+* Sprites that had a tint on them, that then had their frame changed via either `Sprite.frame` or `Sprite.frameName` wouldn't re-tint the new frame, and would become stuck on the old frame in Canvas mode (thanks @spayton #2453)
 
 ## Version 2.4.7 - "Hinderstap" - 22nd April 2016
 
@@ -909,7 +909,7 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 * Camera.resetFX resets any active FX, such as a fade or flash and immediately clears it. Useful for calling after a fade in order to remove the fade from the Stage.
 * Phaser.Camera.ENABLE_FX is a const that controls if the Camera FX are available or not. It's `true` by default, but if you set it to `false` before boot then it won't create the Graphics object required to process the effects.
 * The Arcade Physics Body has two new properties: `left` and `top`. These are the same as `Body.x` and `Body.y` but allow you to pass the Body to geometry level functions such as Circle.contains.
-* World.separate has been optimized to cut down on the number of calls to `intersect` from 3 calls per Game Object collision check, to 2. So if you were colliding 50 sprites it will reduce the call count from 150 to 100 per frame. It also reduces the calls made to `seperateX` and `seperateY` by the same factor.
+* World.separate has been optimized to cut down on the number of calls to `intersect` from 3 calls per Game Object collision check, to 2. So if you were colliding 50 sprites it will reduce the call count from 150 to 100 per frame. It also reduces the calls made to `separateX` and `separateY` by the same factor.
 * Two immovable bodies would never set their overlap data, even if an overlap only check was being made. As this is useful data to have this has been changed. Two immovable bodies will still never separate from each other, but they _will_ have their `overlapX` and `overlapY` properties calculated now.
 * P2.Body.offset is now used and applied to the Sprite position during rendering. The values given are normal pixel values, and offset the P2 Body from the center of the Sprite (thanks @Mourtz #2430)
 
@@ -925,7 +925,7 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 * Ensure a parent container is a Group before removing from its hash (thanks @rblopes #2397)
 * The Game Object Input Handler now checks to see if the Object was destroyed during the `onInputDown` phase, and bails out early if so (thanks @zeterain #2394)
 * The Destroy component will now call TweenManager.removeFrom, removing any active tweens from the TweenManager upon the Game Objects destructions (thanks @PokemonAshLovesMyTurkeyAndILikeYouTwo #2408)
-* Tween.update will now return `false` (flagging the Tween for destruction) should the Tween.target property every become falsey. This can happen if the object the Tween was tracking is destroyed, nulled or generally removed.
+* Tween.update will now return `false` (flagging the Tween for destruction) should the Tween.target property every become falsy. This can happen if the object the Tween was tracking is destroyed, nulled or generally removed.
 * TweenData.repeatTotal is a new property that keeps track of the total number of times the Tween should repeat. If TweenData.start is called, as a result of the Tween repeatCount being > 0 then the child tween resets its total before re-starting.
 * The Debug canvas now listens for the ScaleManager.onSizeChange signal and resizes itself accordingly when running under WebGL. This means if your game size changes the Debug canvas won't be clipped off (thanks @francisberesford #1919)
 * Camera.follow now uses the Targets `world` property to seed the camera coordinates from, rather than its local position. This means Sprites that are members of offset Groups, or transformed display lists, should now be followed more accurately (thanks @rbozan #2106)
@@ -1021,7 +1021,7 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 * BitmapData.setHSL now accepts 0 as a valid parameter (thanks @FracturedShader #2209)
 * Force the usage of typescript 1.4.1 in the package.json so that the TypeScript defs with comments is rebuilt properly again (thanks @vulvulune #2198)
 * A tiny logic update in the StateManager (thanks @jaminscript #2151)
-* The Style object passed in to Phaser.Text is now cloned instead of referenced. This means you can adjust single Text instances without invaliding other Text objects using the same style object (thanks @asyncanup #2267)
+* The Style object passed in to Phaser.Text is now cloned instead of referenced. This means you can adjust single Text instances without invalidating other Text objects using the same style object (thanks @asyncanup #2267)
 * Added a typescript section to the bower and npm configs to support `tsd link` (thanks @mjohnsonengr #2189 #2180)
 * SoundManager.destroy now calls AudioContext.close (thanks @stoneman1 #2237)
 * Sound.onEndedHandler now sets Sound.currentTime to be Sound.durationMS (thanks @stoneman1 #2237)
@@ -1062,7 +1062,7 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 * BitmapText would crash if it tried to render a character that didn't exist in the font set. Any character that doesn't exist in the font set now renders a space character instead.
 * BitmapText would load and parse the kerning data from the font, but would never use it when rendering. The kerning values are now applied on rendering as well (thanks @veu #2165)
 * SinglePad.callbackContext is now set through addCallbacks method (thanks @puzzud #2161)
-* Both `transparent` and `antialias` were ignored if set to `false` in a Game configuration object, as the `parseConfig` method didn't check for falsey values (thanks @amadeus #2302)
+* Both `transparent` and `antialias` were ignored if set to `false` in a Game configuration object, as the `parseConfig` method didn't check for falsy values (thanks @amadeus #2302)
 * GameObject.revive used to add the health amount given to the Game Object (via `heal`) instead of setting it as the new health amount. It now calls `setHealth` instead, giving it the exact amount (thanks @netgfx #2231)
 * Group.add and Group.addAt would forget to remove the child from the hash of its previous Group if it had a physics body enabled, causing unbounded hash increase (thanks @strawlion @McIntozh #2232)
 * Fixed a really nasty bug in Chrome OS X where a ctrl + click (i.e. simulated right-click) on a trackpad would lock up the Pointer leftButton, causing future clicks to fail. This is now handled by way of a mouseout listener on the window object, sadly the only way to force a mouseup in Chrome (thanks @KyleU #2286)
@@ -1493,7 +1493,7 @@ For the full list of p2 additions please read [their change log](https://github.
 * Tween.generateData didn't set a default value for the `frameRate` parameter if undefined, causing an infinite loop (thanks @rblopes #1782 #1785)
 * Fixed the Pixelate filter, changing the `dimensions` uniform to a 2f and removing un-needed vecs from the fragment src. Also fixed the size getter and added sizeX and sizeY getters/setters (#1780)
 * Tween.to and Tween.from can now accept `null` as the ease parameter value. If `null` it will use the default tween, as per the documentation (thanks @nkovacs #1817)
-* TilemapParser.parseTiledJSON would ignore 'falsey' properties set on Objects in Tiled JSON tilemaps, such as `x: 0` or `visible: false`. These properties are now accurately copied over to the destination map data (thanks @MaksJS #1818)
+* TilemapParser.parseTiledJSON would ignore 'falsy' properties set on Objects in Tiled JSON tilemaps, such as `x: 0` or `visible: false`. These properties are now accurately copied over to the destination map data (thanks @MaksJS #1818)
 * Removed un-necessary PIXI.TextureCache pollution in Phaser.LoaderParser.bitmapFont.
 * Sound.resume wouldn't properly restart looped sounds in Chrome after being paused. Phaser now specifically handles the Chrome 42 bug and later fix (thanks @nkovacs #1820)
 * Setting the BitmapText.maxWidth property would throw an error (thanks @drhayes #1807)
@@ -1811,7 +1811,7 @@ We've rolled our own fixes into our version of Pixi, ensuring we keep it as bug-
 * Tween.delay, Tween.repeat and Tween.yoyo will no longer throw an error if called before a TweenData object has been created (via Tween.to or Tween.from) (thanks @SomMeri #1419)
 * The click trampoline added for IE prevented Chrome for Android from being
 able to launch Full Screen mode with the default parameters for
-ScaleManger#startFullScreen (the desktop version of Chrome was not
+ScaleManager#startFullScreen (the desktop version of Chrome was not
 affected.). This is now fixed and additional compatibility settings (clickTrampoline) that can be used to configure when such is used. By default the 'when-not-mouse' mode is only enabled for Desktop browsers, where the
 primary input is ubiquitously a mouse. There are no known breaking compatibility changes - the Full Screen should be initiatable in Chrome for Android as it was in 2.1.x. The default Android browser does not support Full Screen (thanks @pnstickne)
 * TilemapParser now checks for image collections, avoiding crashes. These would arise with maps exported from the new release of Tiled (thanks @paul-reilly #1440)
@@ -1875,7 +1875,7 @@ primary input is ubiquitously a mouse. There are no known breaking compatibility
 * Phaser.DOM.documentWidth returns the document width in pixels.
 * Phaser.DOM.documentHeight returns the document height in pixels.
 * TilemapLayers have been given a decent performance boost on canvas with map shifting edge-redraw (thanks @pnstickne #1250)
-* A large refactor to how the internal game timers and physics calculations has been made. We've now swapped to using a fixed time step internally across Phaser, instead of the variable one we had before that caused glitchse on low-fps systems. Thanks to pjbaron for his help with all of these related changes.
+* A large refactor to how the internal game timers and physics calculations has been made. We've now swapped to using a fixed time step internally across Phaser, instead of the variable one we had before that caused glitches on low-fps systems. Thanks to pjbaron for his help with all of these related changes.
 * We have separated the logic and render updates to permit slow motion and time slicing effects. We've fixed time calling to fix physics problems caused by variable time updates (i.e. collisions sometimes missing, objects tunneling, etc)
 * Once per frame calling for rendering and tweening to keep things as smooth as possible
 * Calculates a `suggestedFps` value (in multiples of 5 fps) based on a 2 second average of actual elapsed time values in the `Time.update` method.  This is recalculated every 2 seconds so it could be used on a level-by-level basis if a game varies dramatically. I.e. if the fps rate consistently drops, you can adjust your game effects accordingly.
@@ -2003,7 +2003,7 @@ _bindings array creation is deferred. This change, coupled with the
 removal of the automatic closure, results in a very lightweight
 ~24bytes/object (in Chrome) for unbound signals.
 * With this change in place Signals now consume less than 50KB / 50KB (shallow / retained memory) for 200 sprites, where-as before they used 300KB / 600KB (thanks @pnstickne #1359)
-* Time.elapsedMS holds the number of milliseconds since the last Game loop, regardless of raF or setTimout being used.
+* Time.elapsedMS holds the number of milliseconds since the last Game loop, regardless of raF or setTimeout being used.
 * Incorrectly prepared tilemap images (with dimensions not evenly divisible by the tile dimensions) would render incorrectly when compared to the display seen in Tiled. The Phaser tilemap code has been adjusted to match the way Tiled deals with this, which should help if you're using tileset images that contain extra padding/margin pixels. Additional console warnings have been added. However the fact remains that you should carefully prepare your tilesets before using them. Crop off extra padding, make sure they are the right dimensions (thanks @SoulBeaver for the report and @pnstickne for the fix #1371)
 * Text.setShadow has had the default `color` value changed from `rgba(0,0,0,0)` to `rgba(0,0,0,1)` so it appears as a black shadow by default - before the alpha channel made it invisible.
 * Math.getRandom will now return `null` if random selection is missing, or array has no entries (thanks @pnstickne #1395)
@@ -2417,14 +2417,14 @@ After talking with Mat at GoodBoyDigital about the issue it was his idea to just
 * Merged Pixi 1.6.0 with Phaser - all of the lovely new Pixi features are in, like complex Graphics objects and masking.
 * TypeScript definitions fixes and updates (thanks @clark-stevenson and @Phaiax)
 * Documentation fixes (thanks @kay-is #941)
-* BitmapData.draw can now also take a Phaser.Sprite, Phaser.Image or BitmapData object as a source type. As a result BitmapData.drawSprite is now depcreated.
+* BitmapData.draw can now also take a Phaser.Sprite, Phaser.Image or BitmapData object as a source type. As a result BitmapData.drawSprite is now deprecated.
 * BitmapData.alphaMask can now also take a Phaser.Sprite, Phaser.Image or BitmapData object as a source type.
 * BitmapData.alphaMask has 2 new optional parameters: sourceRect and maskRect to give more fine-grained control over where the source and mask are drawn and their size
 * BitmapData.alphaMask 'mask' parameter is now optional, if not given it will use itself as the mask.
 * BitmapData.alphaMask now calls BitmapData.update after running.
 * BitmapData.draw now has two optional parameters: width and height, to let you stretch the image being drawn if needed.
 * Group.destroy now removes any set filters (thanks @Jmaharman fix #844)
-* RetroFont charsPerRow paramters is now optional. If not given it will take the image width and divide it by the characterWidth value.
+* RetroFont charsPerRow parameters is now optional. If not given it will take the image width and divide it by the characterWidth value.
 * RetroFont now uses Phaser.scaleModes.NEAREST by default for its RenderTexture to preserve scaling.
 * Loader.tilemap has renamed the `mapURL` parameter to `url` and `mapData` to `data` to keep it consistent with the other Loader methods.
 * Loader.physics has renamed the `dataURL` parameter to `url` and `jsonData` to `data` to keep it consistent with the other Loader methods.
@@ -2473,7 +2473,7 @@ After talking with Mat at GoodBoyDigital about the issue it was his idea to just
 * Sprite.crop (and Image.crop) has been completely overhauled. You can now crop animated sprites (sprite sheet and texture atlas), you can define the x/y crop offset and the crop rectangle is exposed in the Sprite.cropRect property.
 * Sprite.updateCrop is available if you wish to update an externally referenced crop rectangle.
 * Sprites and Images now have their own textures objects, they are no longer references to those stored in the global Pixi.TextureCache. This allows you to redefine the texture frame dynamically without messing up any other Sprites in your game, such as via cropping. They still share global Base Textures, so image references are kept to a minimum.
-* Sprite.resetFrame will revert the Sprites texture frame back to its defaults dimensions. This is called when you call Sprite.crop with no rectangle, to reset the crop effect, but can be userful in other situations so we've left it as a public method.
+* Sprite.resetFrame will revert the Sprites texture frame back to its defaults dimensions. This is called when you call Sprite.crop with no rectangle, to reset the crop effect, but can be useful in other situations so we've left it as a public method.
 * TilemapLayers can now be used with an unbounded camera (a camera that can move beyond the world boundaries). Currently, when an unbounded camera moves outside of the world, tilemaps start acting weird because they only render themselves strictly within the world limits. With this change, the tilemap will continue scrolling and show empty space beyond its edge (thanks @jotson #851)
 * TilemapLayer.wrap property - if true the map is rendered as if it is on the surface of a toroid (donut) instead of a plane. This allows for games that seamlessly scroll from one edge to the opposite edge of the world without noticing the transition. Note that the World size must match the Map size (thanks @jotson #851)
 * Added PlayStation 3 controller button mappings to Phaser.Gamepad (thanks @wayfu)
@@ -2572,7 +2572,7 @@ The following changes were part of the Pixi 1.6.0 release:
 * Fix to roundPixels property in PIXI.CanvasRenderer.
 * Fixed interactive bug when mousemove being called on removed objects.
 * Fix bug touch move event handling.
-* Various CocoonJS Fixs.
+* Various CocoonJS fixes.
 * Masks now work when used in PIXI.RenderTextures / cacheAsBitmap and PIXI.Filters.
 * Fixed bug where stroked PIXI.Text sometimes got clipped.
 * Removed the trailing whitespace when wordwrapping a PIXI.Text.
@@ -2580,7 +2580,7 @@ The following changes were part of the Pixi 1.6.0 release:
 * Fixed Data URI loading.
 * Fixed issue so now loader only uses XDomainRequest in IE, if a crossorigin request is needed.
 * Fixed issue where alpha not being respected if cacheAsBitmap is true
-* Fixed PIXI.RendeTexture resize bug.
+* Fixed PIXI.RenderTexture resize bug.
 * Fixed PIXI.TilingSprite not render children on canvas.
 * Fixes issue where if both mask and filter are applied to one object the object did not render.
 * If the texture is destroyed, it should be removed from PIXI.TextureCache too.
@@ -2713,7 +2713,7 @@ The Plugins have now all moved to [their own repository](https://github.com/phot
 * Blank Tilemaps no longer create `null` tiles, but instead create Tile objects with an index of -1 which can be replaced and updated like any other tile.
 * Tilemap.addTilesetImage will now raise a console.warn if you specify an invalid tileset key and not create the tileset rather than pick the default set.
 * Math.smoothstep and Math.smootherstep have been updated to work regardless if a is > or < b (thanks @gre, fix #772)
-* Text.updateText now sets the lineCap to `round` to avoid occassional font glitching issues in Chrome.
+* Text.updateText now sets the lineCap to `round` to avoid occasional font glitching issues in Chrome.
 * Loader now uses XDomainRequest in IE9 to load JSON data to help with CORS issues.
 
 ### New Features
@@ -3005,7 +3005,7 @@ Use cases:
 * World.shutdown now removes all children iteratively, calling destroy on each one, ultimately performing a soft reset of the World.
 * Objects with a scale.x or y of 0 are no longer considered valid for input (fix #602)
 * InputHandler will set the browser pointer back to default if destroyed while over (fix #602)
-* ArcadePhysics.separate doesn't pass over to seperateX/Y if overlapOnly is true (fix #604)
+* ArcadePhysics.separate doesn't pass over to separateX/Y if overlapOnly is true (fix #604)
 * ArcadePhysics.collideSpriteVsSprite checks if both objects have bodies before processing.
 * Debug.spriteBounds will now take the position of the camera into consideration when rendering the bounds (fix #603)
 * InputHandler.dragFromCenter will now work regardless of the anchor point of the Sprite (fix #600)
@@ -3045,7 +3045,7 @@ Use cases:
 * Lots of fixes to the TypeScript definitions file (thanks as always to clark-stevenson for his tireless work on these)
 * Emitters now bring the particle they are about to emit to the top of the Group before doing so. Avoids particles hidden behind others.
 * ArcadePhysics.Body.setSize corrected to take the parameters as positive, not negative values.
-* ArcadePhysics.World.seperate will now check gravity totals to determine separation order. You can set World.forceX to true to always separate on X first and skip this check.
+* ArcadePhysics.World.separate will now check gravity totals to determine separation order. You can set World.forceX to true to always separate on X first and skip this check.
 * TileSprites now emit outOfBounds and enterBounds events accordingly.
 * You can now create multiple blank layers in a Tilemap.
 
@@ -3093,7 +3093,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Loader.physics now lets you load Lime + Corona JSON Physics data, which can be used with Body.loadPolygon and Body.loadData.
 * Cache.addPhysicsData and Cache.getPhysicsData allow you to store parsed JSON physics data in the cache, for sharing between Bodies.
 * fixedToCamera now works across all display objects. When enabled it will fix at its current x/y coordinate, but can be changed via cameraOffset.
-* fixedToCamrea now works for Groups as well :) You can fix a Group to the camera and it will influence its children.
+* fixedToCamera now works for Groups as well :) You can fix a Group to the camera and it will influence its children.
 * Tilemap.createCollisionObjects will parse Tiled data for objectgroups and convert polyline instances into physics objects you can collide with in the world.
 * Loader can now load JSON files specifically (game.load.json) and they are parsed and stored in the Game.Cache. Retrieve with game.cache.getJSON(key).
 * TileSprites can now receive full Input events, dragging, etc and be positioned in-world and fixed to cameras.
@@ -3104,7 +3104,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * StateManager.start can now have as many parameters as you like. The order is: start(key, clearWorld, clearCache, ...) - they are passed to State.init() (NOT create!)
 * Loader.script now has callback (and callbackContext) parameters, so you can specify a function to run once the JS has been injected into the body.
 * Phaser.Timer.stop has a new parameter: clearEvents (default true), if true all the events in Timer will be cleared, otherwise they will remain (fixes #383)
-* All GameObjects now have a 'destroyChildren' boolean as a parameter to their destroy method. It's default is true and the value propogates down its children.
+* All GameObjects now have a 'destroyChildren' boolean as a parameter to their destroy method. It's default is true and the value propagates down its children.
 * Pixi GrayFilter ported over (thanks nickryall #404)
 * Animation.speed added. You can now change the animation speed on the fly, without re-starting the animation (feature request #458)
 * Brand new Grunt task - creates each core library as its own file and a combined phaser.js.
@@ -3175,7 +3175,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * IE11 didn't populate the Device.ie## Version value. Now extracted from Trident revision, but still use Device.trident instead for IE11+ checks.
 * Fixed bug in Math.angleBetween where it was using the coordinates in the wrong order.
 * Previously using a Pixel Perfect check didn't work if the Sprite was rotated or had a non-zero anchor point, now works under all conditions + atlas frames.
-* If pixelPerfect Input Sprites overlapped each other the pixel check wasn't taken into consieration in the Pointer move method.
+* If pixelPerfect Input Sprites overlapped each other the pixel check wasn't taken into consideration in the Pointer move method.
 * Updated Input.Mouse to use event.button not event.which, so the const reference from input.mouse.button is correct (thanks grimor)
 * Text that was fixedToCamera would 'jitter' if the world scrolled. Now works as expected across all fixed objects.
 * Fixed a bug where Sound.play wouldn't pick-up the local loop setting if not specified in the parameter.
@@ -3193,7 +3193,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Tweens now resume correctly if the game pauses (focus loss) while they are paused.
 * Tweens don't double pause if they were already paused and the game pauses.
 * Buttons are now cleanly destroyed if part of a Group without leaving their InputHandler running.
-* You can now safely destroy a Group and the 'destroyChildren' boolean will propogate fully down the display list.
+* You can now safely destroy a Group and the 'destroyChildren' boolean will propagate fully down the display list.
 * Calling destroy on an already destroyed object would throw a run-time error. Now checked for and aborted.
 * Calling destroy while in an Input Event callback now works for either the parent Group or the calling object itself.
 * Loader.replaceInFileList wouldn't over-write the previous entry correctly, which caused the Loader.image overwrite parameter to fail (thanks basoko, fixes #493)
@@ -3229,7 +3229,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * ArcadePhysics.collideSpriteVsTilemapLayer wouldn't call the process or collide callbacks if only 1 tile was involved in the check (thanks mandarinx)
 * Lots of documentation fixes (thanks nhowell)
 * Fix for PixiPatch so it renders masks again (thanks georgios)
-* Modified ArcadePhysics.intersects so it returns a value as well as asigns (thanks bunnyhero)
+* Modified ArcadePhysics.intersects so it returns a value as well as assigns (thanks bunnyhero)
 * Lots of TypeScript defs fixes (thanks clark)
 
 
@@ -3293,7 +3293,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * TilemapLayers now have debug and debugAlpha values, this turns on the drawing of the collision edges (very handy for debugging, as the name implies!)
 * Tweens have a new event: onLoop.
 * You can now load any binary file via the Loader: game.load.binary(key, url, callback) - the optional callback allows for post-load processing before entering the Cache.
-* Group.set will let you deep set a new propery on a single child of the Group.
+* Group.set will let you deep set a new property on a single child of the Group.
 * Stage.display property added. A direct reference to the root Pixi Stage object (very useful for RenderTexture manipulation)
 * Added Ejecta detection to Device (thanks endel)
 * Tweens can now work with relative + and - values. You can do: `tween(sprite).to( { x: '+400' })` and it will add 400 to the current sprite.x value.
@@ -3380,8 +3380,8 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * The Time class now has its own Phaser.Timer which you can access through game.time.events. See the new Timer examples to show how to use them.
 * Added StateManager.getCurrentState to return the currently running State object (thanks Niondir)
 * Removed the console.log redirect from Utils as it was messing with Firefox.
-* Body.acceleration is now much smoother and less eratic at high speeds.
-* Removed ArcadePhysics binding to the QuadTree, so it can now be used independantly of the physics system.
+* Body.acceleration is now much smoother and less erratic at high speeds.
+* Removed ArcadePhysics binding to the QuadTree, so it can now be used independently of the physics system.
 * Removed ArcadePhysics.preUpdate and postUpdate as neither are needed any more.
 * Body.bottom and Body.right are no longer rounded, so will give accurate sub-pixel values.
 * Fixed lots of documentation in the Emitter class.
@@ -3389,7 +3389,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Phaser.Math.min enhanced so you can now pass in either an array of numbers or lots of numbers as parameters to get the lowest.
 * Phaser.Math.max added as the opposite of Math.min.
 * Phaser.Math.minProperty and maxProperty added. Like Math.min/max but can be given a property an an array or list of objects to inspect.
-* Added 'full' paramter to Body.reset, allowing you to control if motion or all data is reset or not.
+* Added 'full' parameter to Body.reset, allowing you to control if motion or all data is reset or not.
 * Exposed Group.pivot and Sprite.pivot to allow you to directly set the pivot points for rotation.
 * Swapped to using the native and faster Array.isArray check.
 * Added callback context parameter to Tween.onUpdateCallback(callback, context) to avoid having to bind or create anonymous functions.
@@ -3453,7 +3453,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Enhanced renderTexture so it can accept a Phaser.Group object and improved documentation and examples.
 * Device.littleEndian boolean added. Only safe to use if the browser supports TypedArrays (which IE9 doesn't, but nearly all others do)
 * You can now call game.sound.play() and simply pass it a key. The sound will play if the audio system is unlocked and optionally destroy itself on complete.
-* Mouse.capture is a boolean. If set to true then DOM mouse events will have event.preventDefault() applied, if false they will propogate fully.
+* Mouse.capture is a boolean. If set to true then DOM mouse events will have event.preventDefault() applied, if false they will propagate fully.
 * The object returned by Math.sinCosGenerator now contains a length property.
 
 ### Updates
@@ -3463,7 +3463,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * RequestAnimationFrame now retains the callbackID which is passed to cancelRequestAnimationFrame.
 * Button now goes back to over state when setFrames used in action (thanks beeglebug)
 * plugins now have a postUpdate callback (thanks cocoademon)
-* Tided up the Graphics object (thanks BorisKozo)
+* Tidied up the Graphics object (thanks BorisKozo)
 * If running in Canvas mode and you have a render function it will save the context and reset the transform before running your render function.
 * Sprite will now check the exists property of the Group it is in, if the Group.exists = false the Sprite won't update.
 * If you specify 'null' as a Group parent it will now revert to using the World as the parent (before only 'undefined' worked)
@@ -3480,7 +3480,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Mouse.stop now uses the true useCapture, which means the event listeners stop listening correctly (thanks beeglebug)
 * Input Keyboard example fix (thanks Atrodilla)
 * BitmapText.destroy now checks if it has a canvas before calling parentNode on it.
-* Group.swap had a hellish to find bug that only manifested when B-A upward swaps occured. Hours of debugging later = bug crushed.
+* Group.swap had a hellish to find bug that only manifested when B-A upward swaps occurred. Hours of debugging later = bug crushed.
 * Point.rotate asDegrees fixed (thanks BorisKozo)
 * ArcadePhysics.separateTile wasn't returning the value, so the custom process callback wasn't getting called (thanks flameiguana)
 * StageScaleMode.forceOrientation now correctly stores the forcePortrait value (thanks haden)
@@ -3925,10 +3925,10 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Added GameMath.shuffleArray
 * Updated Animation.frame to return the index of the currentFrame if set
 * Added Quad.copyTo and Quad.copyFrom
-* Removed the bakedRotations parameter from Emiter.makeParticles - update your code accordingly!
+* Removed the bakedRotations parameter from Emitter.makeParticles - update your code accordingly!
 * Updated various classes to remove the Flixel left-over CamelCase parameters
 * Updated QuadTree to use the new CollisionMask values and significantly optimised and reduced overall class size
-* Updated Collision.seperate to use the new CollisionMask
+* Updated Collision.separate to use the new CollisionMask
 * Added a callback context parameter to Game.collide, Collision.overlap and the QuadTree class
 * Stage.canvas now calls preventDefault() when the context menu is activated (oncontextmenu)
 * Added Point.rotate to allow you to rotate a point around another point, with optional distance clamping. Also created test cases.

@@ -231,8 +231,8 @@ Ninja Physics is not bundled in Phaser by default. Please see the README custom 
 | [CollisionGroup](./Phaser.Physics.P2.CollisionGroup.html) | - | A P2 Collision Group. |
 | [FixtureList](./Phaser.Physics.P2.FixtureList.html) | - | The P2 Fixture List handler. |
 | **Constraints:** | - | [Distance Constraint](./Phaser.Physics.P2.DistanceConstraint.html), [GearConstraint](./Phaser.Physics.P2.GearConstraint.html), [LockConstraint](./Phaser.Physics.P2.LockConstraint.html), [PrismaticConstraint](./Phaser.Physics.P2.PrismaticConstraint.html), [RevoluteConstraint](./Phaser.Physics.P2.RevoluteConstraint.html) |
-| [PointProxy](./Phaser.Physics.P2.PointProxy.html) | - | Responsible for proxing Phaser Game World to P2 Physics values. |
-| [InversePointProxy](./Phaser.Physics.P2.InversePointProxy.html) | - | Responsible for proxing Phaser Game World to inversed P2 Physics values. |
+| [PointProxy](./Phaser.Physics.P2.PointProxy.html) | - | Responsible for proxying Phaser Game World to P2 Physics values. |
+| [InversePointProxy](./Phaser.Physics.P2.InversePointProxy.html) | - | Responsible for proxying Phaser Game World to inversed P2 Physics values. |
 | [Spring](./Phaser.Physics.P2.Spring.html) | - | A P2 Spring object. |
 | [RotationalSpring](./Phaser.Physics.P2.RotationalSpring.html) | - | A P2 Rotational Spring object. |
 

@@ -19031,7 +19031,7 @@ declare module Phaser {
             * @param collideCallback An optional callback function that is called if the objects collide. The two objects will be passed to this function in the same order in which you specified them.
             * @param processCallback A callback function that lets you perform additional checks against the two objects if they overlap. If this is set then collision will only happen if processCallback returns true. The two objects will be passed to this function in the same order in which you specified them.
             * @param callbackContext The context in which to run the callbacks.
-            * @return True if a collision occured otherwise false.
+            * @return True if a collision occurred otherwise false.
             */
             collide(object1: any, object2: any, collideCallback?: Function, processCallback?: Function, callbackContext?: any): boolean;
 
@@ -19117,7 +19117,7 @@ declare module Phaser {
             * @param overlapCallback An optional callback function that is called if the objects overlap. The two objects will be passed to this function in the same order in which you specified them.
             * @param processCallback A callback function that lets you perform additional checks against the two objects if they overlap. If this is set then overlapCallback will only be called if processCallback returns true.
             * @param callbackContext The context in which to run the callbacks.
-            * @return True if an overlap occured otherwise false.
+            * @return True if an overlap occurred otherwise false.
             */
             overlap(object1: any, object2: any, overlapCallback?: Function, processCallback?: Function, callbackContext?: any): boolean;
 
