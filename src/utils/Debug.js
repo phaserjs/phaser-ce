@@ -288,6 +288,36 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
+    * Render Sound Manager information, including volume, mute, audio mode, and locked status.
+    *
+    * @method Phaser.Utils.Debug#sound
+    * @param {number} x - X position of the debug info to be rendered.
+    * @param {number} y - Y position of the debug info to be rendered.
+    * @param {string} [color='rgb(255,255,255)'] - color of the debug info to be rendered. (format is css color string).
+    */
+    sound: function (x, y, color) {
+
+      var sound = this.game.sound;
+
+      this.start(x, y, color);
+
+      if (sound.noAudio)
+      {
+        this.line('Audio is disabled');
+      }
+      else
+      {
+        this.line('Volume: ' + sound.volume.toFixed(2) + (sound.mute ? ' (Mute)' : ''));
+        this.line('Mute on pause: ' + sound.muteOnPause);
+        this.line('Using: ' + (sound.usingWebAudio ? 'Web Audio' : 'Audio Tag'));
+        this.line('Touch locked: ' + sound.touchLocked);
+      }
+
+      this.stop();
+
+    },
+
+    /**
     * Render Sound information, including decoded state, duration, volume and more.
     *
     * @method Phaser.Utils.Debug#soundInfo
@@ -299,13 +329,13 @@ Phaser.Utils.Debug.prototype = {
     soundInfo: function (sound, x, y, color) {
 
         this.start(x, y, color);
-        this.line('Sound: ' + sound.key + ' Locked: ' + sound.game.sound.touchLocked);
+        this.line('Sound: ' + sound.key + ' Touch locked: ' + sound.game.sound.touchLocked);
         this.line('Is Ready?: ' + this.game.cache.isSoundReady(sound.key) + ' Pending Playback: ' + sound.pendingPlayback);
         this.line('Decoded: ' + sound.isDecoded + ' Decoding: ' + sound.isDecoding);
         this.line('Total Duration: ' + sound.totalDuration + ' Playing: ' + sound.isPlaying);
         this.line('Time: ' + sound.currentTime);
-        this.line('Volume: ' + sound.volume + ' Muted: ' + sound.mute);
-        this.line('WebAudio: ' + sound.usingWebAudio + ' Audio: ' + sound.usingAudioTag);
+        this.line('Volume: ' + sound.volume.toFixed(2) + (sound.mute ? ' (Mute)' : ''));
+        this.line('Using: ' + (sound.usingWebAudio ? 'Web Audio' : 'Audio Tag'));
 
         if (sound.currentMarker !== '')
         {

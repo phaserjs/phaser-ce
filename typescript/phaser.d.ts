@@ -5787,6 +5787,7 @@ declare module Phaser {
             renderer(x?: number, y?: number, color?: string): void;
             reset(): void;
             ropeSegments(rope: Phaser.Rope, color?: number, filled?: boolean): void;
+            sound(x: number, y: number, color?: string): void;
             soundInfo(sound: Phaser.Sound, x: number, y: number, color?: string): void;
             spriteBounds(sprite: any, color?: string, filled?: boolean): void;
             spriteCoords(sprite: any, x: number, y: number, color?: string): void;
