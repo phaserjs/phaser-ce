@@ -343,10 +343,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Fixed bug that did not show the last line of text on a BitmapText when the last character was the one that created the need for a newLine (when maxWidth was set).
 * Fixed grammar in the error message if an invalid State object is provided to the StateManager.
 * The correct [Phaser.PointerMode#CONTACT](https://photonstorm.github.io/phaser-ce/Phaser.PointerMode.html#_CONTACT) is now used instead of the undefined Phaser.PointerMode.TOUCH in determining the input mode.
+* Fixed dead, physics-enabled game objects not being destroyed by [pendingDestroy](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#pendingDestroy) (#399)
 
 ### Thanks
 
-@andiCR, @JamesSkemp, @16patsle, @daniel-nth
+@andiCR, @JamesSkemp, @16patsle, @daniel-nth, @samme
 
 ## Version 2.9.1 - 10th October 2017
 

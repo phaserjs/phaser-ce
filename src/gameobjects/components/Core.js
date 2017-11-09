@@ -120,7 +120,7 @@ Phaser.Component.Core.preUpdate = function () {
     if (this.pendingDestroy)
     {
         this.destroy();
-        return;
+        return false;
     }
 
     this.previousPosition.set(this.world.x, this.world.y);

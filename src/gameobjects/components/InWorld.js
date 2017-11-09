@@ -21,6 +21,12 @@ Phaser.Component.InWorld = function () {};
  */
 Phaser.Component.InWorld.preUpdate = function () {
 
+    if (this.pendingDestroy)
+    {
+        this.destroy();
+        return false;
+    }
+
     //  Cache the bounds if we need it
     if (this.autoCull || this.checkWorldBounds)
     {
