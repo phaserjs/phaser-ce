@@ -328,7 +328,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.9.2 - 9th November 2017
 
 ### New Features
 
@@ -348,18 +348,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Thanks
 
 @16patsle, @andiCR, @daniel-nth, @JamesSkemp, @martinlindhe, @photonstorm, @rmartone, @samme
-
-## Version 2.9.1 - 10th October 2017
-
-### Bug Fixes
-
-* [Phaser.Tilemap#setTileIndexCallback](https://github.com/photonstorm/phaser-ce/blob/master/src/tilemap/Tilemap.js#L798) now correctly removes a callback when `null` is passed.
-* Fixed [Emitter#counts](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#counts) not counting.
-* Fixed missing TypeScript return values (#382).
-
-### Thanks
-
-@masondesu, @pavle-goloskokovic, @photonstorm, @samme
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 

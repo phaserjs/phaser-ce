@@ -4,6 +4,27 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.9.2 - 9th November 2017
+
+### New Features
+
+* Added `adjustSize` parameter to [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects). Setting this to false will disable copying the object's `width` and `height` to the new sprite.
+
+### Updates
+
+* When [using Web Audio](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#usingWebAudio) (gain), [volume](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#volume) and [mute](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#mute) changes are smoothed (#385).
+
+### Bug Fixes
+
+* Fixed a bug that did not show the last line of text of a [BitmapText](https://photonstorm.github.io/phaser-ce/Phaser.BitmapText.html) when the last character was the one that created the need for a new line (when [maxWidth](https://photonstorm.github.io/phaser-ce/Phaser.BitmapText.html#maxWidth) was set).
+* Fixed grammar in the error message if an invalid State object is provided to the StateManager.
+* Fixed [Button#forceOut](https://photonstorm.github.io/phaser-ce/Phaser.Button.html#forceOut) and [Button#justReleasedPreventsOver](https://photonstorm.github.io/phaser-ce/Phaser.Button.html#justReleasedPreventsOver) failing on touch devices. The correct [Phaser.PointerMode#CONTACT](https://photonstorm.github.io/phaser-ce/Phaser.PointerMode.html#_CONTACT) is now used instead of the undefined Phaser.PointerMode.TOUCH (#392).
+* Fixed dead, physics-enabled game objects not being destroyed by [pendingDestroy](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#pendingDestroy) (#399).
+
+### Thanks
+
+@16patsle, @andiCR, @daniel-nth, @JamesSkemp, @martinlindhe, @photonstorm, @rmartone, @samme
+
 ## Version 2.9.1 - 10th October 2017
 
 ### Bug Fixes
