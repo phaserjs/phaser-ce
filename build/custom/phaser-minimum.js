@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.9.1 "2017-10-10" - Built: Tue Oct 10 2017 11:18:10
+* v2.9.2 "2017-11-09" - Built: Thu Nov 09 2017 18:05:50
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -7594,7 +7594,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.9.1',
+    VERSION: '2.9.2',
 
     /**
     * An array of Phaser game instances.
@@ -15353,7 +15353,7 @@ Phaser.StateManager.prototype = {
             }
             else
             {
-                console.warn("Invalid Phaser State object given. Must contain at least a one of the required functions: preload, create, update or render");
+                console.warn("Invalid Phaser State object given. Must contain at least one of the required functions: preload, create, update or render");
                 return false;
             }
         }
@@ -23177,7 +23177,7 @@ Phaser.Input.prototype = {
         }
 
         var id = this.pointers.length + 1;
-        var pointer = new Phaser.Pointer(this.game, id, Phaser.PointerMode.TOUCH);
+        var pointer = new Phaser.Pointer(this.game, id, Phaser.PointerMode.CONTACT);
 
         this.pointers.push(pointer);
         this['pointer' + id] = pointer;
@@ -25311,7 +25311,7 @@ Object.defineProperty(Phaser.DeviceButton.prototype, "duration", {
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {number} id - The ID of the Pointer object within the game. Each game can have up to 10 active pointers.
-* @param {Phaser.PointerMode} pointerMode=(CURSOR|CONTACT) - The operational mode of this pointer, eg. CURSOR or TOUCH.
+* @param {Phaser.PointerMode} pointerMode=(CURSOR|CONTACT) - The operational mode of this pointer, eg. CURSOR or CONTACT.
 */
 Phaser.Pointer = function (game, id, pointerMode) {
 
@@ -29552,7 +29552,7 @@ Phaser.Component.Core.preUpdate = function () {
     if (this.pendingDestroy)
     {
         this.destroy();
-        return;
+        return false;
     }
 
     this.previousPosition.set(this.world.x, this.world.y);
@@ -30857,6 +30857,12 @@ Phaser.Component.InWorld = function () {};
  */
 Phaser.Component.InWorld.preUpdate = function () {
 
+    if (this.pendingDestroy)
+    {
+        this.destroy();
+        return false;
+    }
+
     //  Cache the bounds if we need it
     if (this.autoCull || this.checkWorldBounds)
     {
@@ -30994,6 +31000,12 @@ Phaser.Component.LifeSpan = function () {};
  * @method
  */
 Phaser.Component.LifeSpan.preUpdate = function () {
+
+    if (this.pendingDestroy)
+    {
+        this.destroy();
+        return false;
+    }
 
     if (this.lifespan > 0)
     {
@@ -31457,6 +31469,12 @@ Phaser.Component.PhysicsBody = function () {};
  * @method
  */
 Phaser.Component.PhysicsBody.preUpdate = function () {
+
+    if (this.pendingDestroy)
+    {
+        this.destroy();
+        return false;
+    }
 
     if (this.fresh && this.exists)
     {
@@ -33295,7 +33313,7 @@ Phaser.Button = function (game, x, y, key, callback, callbackContext, overFrame,
     *
     * @property {Phaser.PointerMode?} justReleasedPreventsOver=ACTIVE_CURSOR
     */
-    this.justReleasedPreventsOver = Phaser.PointerMode.TOUCH;
+    this.justReleasedPreventsOver = Phaser.PointerMode.CONTACT;
 
     /**
     * When true the the texture frame will not be automatically switched on up/down/over/out events.
@@ -53131,10 +53149,10 @@ Phaser.Color = {
 
         if (result)
         {
-            out.r = parseInt(result[1], 10);
-            out.g = parseInt(result[2], 10);
-            out.b = parseInt(result[3], 10);
-            out.a = result[4] !== undefined ? parseFloat(result[4]) : 1;
+            out.r = ~~Number(result[1]);
+            out.g = ~~Number(result[2]);
+            out.b = ~~Number(result[3]);
+            out.a = result[4] !== undefined ? Number(result[4]) : 1;
             Phaser.Color.updateColor(out);
         }
 
