@@ -336,7 +336,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Updates
 
-* When using Web Audio (gain), [volume](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#volume) and [mute](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#mute) changes are smoothed (#385).
+* When [using Web Audio](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#usingWebAudio) (gain), [volume](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#volume) and [mute](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#mute) changes are smoothed (#385).
 
 ### Bug Fixes
 
