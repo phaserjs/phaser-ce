@@ -927,7 +927,7 @@ Phaser.Tween.prototype = {
 
 /**
 * @name Phaser.Tween#totalDuration
-* @property {Phaser.TweenData} totalDuration - Gets the total duration of this Tween, including all child tweens, in milliseconds.
+* @property {number} totalDuration - Gets the total duration of this Tween, including all child tweens, in milliseconds.
 */
 Object.defineProperty(Phaser.Tween.prototype, 'totalDuration', {
 
