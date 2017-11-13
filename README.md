@@ -334,6 +334,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Updates
 
+* Optimized [Phaser.Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#_getProperty).
+
 ### Bug Fixes
 
 ## Version 2.9.2 - 9th November 2017
