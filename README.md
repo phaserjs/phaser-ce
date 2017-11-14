@@ -335,6 +335,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Updates
 
 * Optimized [Phaser.Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#_getProperty).
+* Audio and video are now [touch-unlocked](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#needsTouchUnlock) only via the [touchend](https://developer.mozilla.org/en-US/docs/Web/Events/touchend) event (#92). Previously we used `touchend` for audio on newer Chrome and iOS clients and `touchstart` in all other cases.
 
 ### Bug Fixes
 
