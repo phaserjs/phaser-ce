@@ -906,9 +906,9 @@ Phaser.BitmapData.prototype = {
     * The hue is wrapped to keep it within the range 0 to 1. Saturation and lightness are clamped to not exceed 1.
     *
     * @method Phaser.BitmapData#shiftHSL
-    * @param {number} [h=null] - The amount to shift the hue by.
-    * @param {number} [s=null] - The amount to shift the saturation by.
-    * @param {number} [l=null] - The amount to shift the lightness by.
+    * @param {number} [h=null] - The amount to shift the hue by. Within [-1, 1].
+    * @param {number} [s=null] - The amount to shift the saturation by. Within [-1, 1].
+    * @param {number} [l=null] - The amount to shift the lightness by. Within [-1, 1].
     * @param {Phaser.Rectangle} [region] - The area to perform the operation on. If not given it will run over the whole BitmapData.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
