@@ -454,8 +454,9 @@ Phaser.ScaleManager = function (game, width, height) {
     this._fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
 
     /**
-    * If the parent container of the Game canvas is the browser window itself (i.e. document.body),
-    * rather than another div, this should set to `true`.
+    * True if the the browser window (instead of the display canvas's DOM parent) should be used as the bounding parent.
+    *
+    * This is set automatically based on the `parent` argument passed to {@link Phaser.Game}.
     *
     * The {@link #parentNode} property is generally ignored while this is in effect.
     *
@@ -466,6 +467,8 @@ Phaser.ScaleManager = function (game, width, height) {
     /**
     * The _original_ DOM element for the parent of the Display canvas.
     * This may be different in fullscreen - see {@link #createFullScreenTarget}.
+    *
+    * This is set automatically based on the `parent` argument passed to {@link Phaser.Game}.
     *
     * This should only be changed after moving the Game canvas to a different DOM parent.
     *
