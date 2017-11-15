@@ -1452,18 +1452,24 @@ declare module Phaser {
 
     interface IGameConfig {
 
+        backgroundColor?: string;
+        canvas?: HTMLCanvasElement;
+        canvasId?: string;
+        canvasStyle?: string;
+        disableVisibilityChange?: boolean;
+        fullScreenScaleMode?: number;
         antialias?: boolean;
         enableDebug?: boolean;
         forceSetTimeOut?: boolean;
         height?: number | string;
         multiTexture?: boolean;
-        parent?: any;
+        parent?: HTMLElement | string;
         physicsConfig?: any;
         preserveDrawingBuffer?: boolean;
         renderer?: number;
         resolution?: number;
         scaleMode?: number;
-        seed?: string;
+        seed?: number;
         state?: any; // Phaser.State | function | object
         transparent?: boolean;
         width?: number | string;
@@ -2377,7 +2383,7 @@ declare module Phaser {
         processKeyDown(event: KeyboardEvent): void;
         processKeyPress(event: KeyboardEvent): void;
         processKeyUp(event: KeyboardEvent): void;
-		removeCallbacks(): void;
+        removeCallbacks(): void;
         removeKey(keycode: number): void;
         removeKeyCapture(keycode: number): void;
         reset(hard?: boolean): void;
