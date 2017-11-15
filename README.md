@@ -341,6 +341,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Bug Fixes
 
+* [Phaser.Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) no longer tries to start a tween marked for deletion (such as by [Tween#stop](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#stop)). Instead it prints a warning to the console (#401).
+
 ## Version 2.9.2 - 9th November 2017
 
 ### New Features
