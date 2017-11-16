@@ -2558,7 +2558,7 @@ Phaser.Loader.prototype = {
     *
     * This is designed specifically to use with asset file processing.
     *
-    * @method Phaser.Loader#xhrLoad
+    * @method Phaser.Loader#xhrLoadWithXDR
     * @private
     * @param {object} file - The file/pack to load.
     * @param {string} url - The URL of the file.
