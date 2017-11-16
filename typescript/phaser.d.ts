@@ -1000,7 +1000,6 @@ declare module Phaser {
         webApp: boolean;
         webAudio: boolean;
         webGL: boolean;
-        webGLError: Error;
         webm: boolean;
         webmVideo: boolean;
         windows: boolean;

@@ -190,16 +190,10 @@ Phaser.Device = function () {
     this.canUseMultiply = false;
 
     /**
-    * @property {boolean} webGL - Is webGL (and stencil support) available?
+    * @property {boolean} webGL - Is webGL available?
     * @default
     */
     this.webGL = false;
-
-    /**
-    * @property {?Error} webGLError - Any error raised while creating a test {@link #webGL} context.
-    * @default
-    */
-    this.webGLError = null;
 
     /**
     * @property {boolean} file - Is file available?
@@ -817,30 +811,7 @@ Phaser.Device._initialize = function () {
         device.file = !!window['File'] && !!window['FileReader'] && !!window['FileList'] && !!window['Blob'];
         device.fileSystem = !!window['requestFileSystem'];
 
-        device.webGL = !!(function () {
-            if (!window.WebGLRenderingContext)
-            {
-                return false;
-            }
-
-            try {
-                var canvas = document.createElement('canvas');
-
-                // Force screencanvas to false
-                canvas.screencanvas = false;
-
-                // See PIXI.WebGLRenderer#_contextOptions
-                var contextOptions = { stencil: true };
-
-                return canvas.getContext('webgl'             , contextOptions) ||
-                       canvas.getContext('experimental-webgl', contextOptions);
-
-            } catch (error) {
-                device.webGLError = error;
-
-                return false;
-            }
-        })();
+        device.webGL = !!window.WebGLRenderingContext;
 
         device.worker = !!window['Worker'];
 

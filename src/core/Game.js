@@ -814,6 +814,12 @@ Phaser.Game.prototype = {
     */
     setUpRenderer: function () {
 
+        if (!this.device.canvas)
+        {
+            // Nothing else to do
+            throw new Error('Phaser.Game - Cannot create Canvas 2d context, aborting.');
+        }
+
         if (this.config['canvas'])
         {
             this.canvas = this.config['canvas'];
@@ -837,42 +843,47 @@ Phaser.Game.prototype = {
             Phaser.Canvas.setImageRenderingCrisp(this.canvas);
         }
 
-        if (this.renderType === Phaser.HEADLESS || this.renderType === Phaser.CANVAS || (this.renderType === Phaser.AUTO && !this.device.webGL))
+        if ((this.renderType === Phaser.WEBGL) ||
+            (this.renderType === Phaser.WEBGL_MULTI) ||
+            (this.renderType === Phaser.AUTO && this.device.webGL))
         {
-            if (this.device.canvas)
-            {
-                this.renderer = new PIXI.CanvasRenderer(this, this.config);
-
-                this.context = this.renderer.context;
-
-                if (this.renderType === Phaser.AUTO) {
-                    this.renderType = Phaser.CANVAS;
-                }
-            }
-            else
-            {
-                throw new Error('Phaser.Game - Cannot create Canvas or WebGL context, aborting.');
-            }
-        }
-        else
-        {
-            //  They requested WebGL and their browser supports it
-
             if (this.multiTexture || this.renderType === Phaser.WEBGL_MULTI)
             {
                 PIXI.enableMultiTexture();
-
                 this.multiTexture = true;
             }
 
-            this.renderType = Phaser.WEBGL;
+            try
+            {
+                this.renderer = new PIXI.WebGLRenderer(this, this.config);
+                this.renderType = Phaser.WEBGL;
+                this.context = null;
+                this.canvas.addEventListener('webglcontextlost', this.contextLost.bind(this), false);
+                this.canvas.addEventListener('webglcontextrestored', this.contextRestored.bind(this), false);
+            }
+            catch (webGLRendererError)
+            {
+                this.renderer = null;
+                this.multiTexture = false;
+                PIXI._enableMultiTextureToggle = false;
 
-            this.renderer = new PIXI.WebGLRenderer(this, this.config);
+                if (this.renderType === Phaser.WEBGL)
+                {
+                    // No fallback
+                    throw webGLRendererError;
+                }
+            }
+        }
 
-            this.context = null;
+        if (!this.renderer)
+        {
+            this.renderer = new PIXI.CanvasRenderer(this, this.config);
+            this.context = this.renderer.context;
 
-            this.canvas.addEventListener('webglcontextlost', this.contextLost.bind(this), false);
-            this.canvas.addEventListener('webglcontextrestored', this.contextRestored.bind(this), false);
+            if (this.renderType === Phaser.AUTO)
+            {
+                this.renderType = Phaser.CANVAS;
+            }
         }
 
         if (this.device.cocoonJS)
