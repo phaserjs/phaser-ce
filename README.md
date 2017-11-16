@@ -336,6 +336,10 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * You can now pass `game.stage` as the `parent` parameter in many of the `game.add` methods.
 * Arcade#closest, Arcade#distanceBetween, and Arcade#farthest have a `useCenter` argument (#418).
 
+### Updates
+
+* Phaser.Device tests for WebGL stencil buffer support (#402).
+
 ### Bug Fixes
 
 * Fixed a TypeError when a [Text](https://photonstorm.github.io/phaser-ce/Phaser.Text.html) object is created without a `style` argument (#415).
