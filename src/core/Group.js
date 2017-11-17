@@ -359,7 +359,7 @@ Phaser.Group.SORT_DESCENDING = 1;
 *
 * If `Group.inputEnableChildren` is set, then an Input Handler will be created on the object, so long as one does not already exist.
 *
-* Use {@link #addAt} to control where a child is added. Use {@link #create} to create and add a new child.
+* Use {@link #create} to create and add a new child.
 *
 * @method Phaser.Group#add
 * @param {DisplayObject} child - The display object to add as a child.

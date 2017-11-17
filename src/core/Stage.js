@@ -392,6 +392,46 @@ Phaser.Stage.prototype.destroy = function () {
 };
 
 /**
+* Adds an existing object to the Stage.
+*
+* The child is automatically added to the front of the Stage, and is displayed above every previous child.
+* Or if the _optional_ `index` is specified, the child is added at the location specified by the index value,
+* this allows you to control child ordering.
+*
+* If the object was already on the Stage, it is simply returned, and nothing else happens to it.
+*
+* @method Phaser.Stage#add
+* @param {DisplayObject} child - The display object to add as a child.
+* @param {boolean} [silent] - Unused. Kept for compatibility with {@link Phaser.Group#add}.
+* @param {integer} [index] - The index to insert the object to.
+* @return {DisplayObject} The child that was added to the group.
+*/
+Phaser.Stage.prototype.add = function (child, silent, index) {
+
+    if (child.parent === this)
+    {
+        return child;
+    }
+
+    if (child.body && child.parent && child.parent.hash)
+    {
+        child.parent.removeFromHash(child);
+    }
+
+    if (index === undefined)
+    {
+        this.addChild(child);
+    }
+    else
+    {
+        this.addChildAt(child, index);
+    }
+
+    return child;
+
+};
+
+/**
 * @name Phaser.Stage#backgroundColor
 * @property {number|string} backgroundColor - Gets and sets the background color of the stage. The color can be given as a number: 0xff0000 or a hex string: '#ff0000'
 * @see Phaser.Stage#setBackgroundColor

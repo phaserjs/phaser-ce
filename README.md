@@ -331,6 +331,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### New Features
 
 * TweenManager#isTweening has a `checkIsRunning` argument (#414).
+* You can now pass `game.stage` as the `parent` parameter in many of the `game.add` methods.
 
 ### Bug Fixes
 
