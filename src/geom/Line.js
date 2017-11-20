@@ -61,6 +61,21 @@ Phaser.Line.prototype = {
     },
 
     /**
+    * Sets the line to match the x/y coordinates of the two given points.
+    *
+    * @param {any} start - A {@link Phaser.Point} or point-like object.
+    * @param {any} end - A {@link Phaser.Point} or point-like object.
+    * @return {Phaser.Line} - This line object.
+    */
+    fromPoints: function (start, end) {
+
+        this.setTo(start.x, start.y, end.x, end.y);
+
+        return this;
+
+    },
+
+    /**
     * Sets the line to match the x/y coordinates of the two given sprites.
     * Can optionally be calculated from their center coordinates.
     *
@@ -79,7 +94,7 @@ Phaser.Line.prototype = {
             return this.setTo(startSprite.centerX, startSprite.centerY, endSprite.centerX, endSprite.centerY);
         }
 
-        return this.setTo(startSprite.x, startSprite.y, endSprite.x, endSprite.y);
+        return this.fromPoints(startSprite, endSprite);
 
     },
 
