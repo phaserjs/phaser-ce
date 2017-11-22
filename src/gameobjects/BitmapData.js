@@ -906,9 +906,9 @@ Phaser.BitmapData.prototype = {
     * The hue is wrapped to keep it within the range 0 to 1. Saturation and lightness are clamped to not exceed 1.
     *
     * @method Phaser.BitmapData#shiftHSL
-    * @param {number} [h=null] - The amount to shift the hue by.
-    * @param {number} [s=null] - The amount to shift the saturation by.
-    * @param {number} [l=null] - The amount to shift the lightness by.
+    * @param {number} [h=null] - The amount to shift the hue by. Within [-1, 1].
+    * @param {number} [s=null] - The amount to shift the saturation by. Within [-1, 1].
+    * @param {number} [l=null] - The amount to shift the lightness by. Within [-1, 1].
     * @param {Phaser.Rectangle} [region] - The area to perform the operation on. If not given it will run over the whole BitmapData.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
@@ -1984,6 +1984,55 @@ Phaser.BitmapData.prototype = {
         ctx.stroke();
 
         ctx.closePath();
+
+        return this;
+
+    },
+
+    /**
+    * Draws a polygon.
+    *
+    * @method Phaser.BitmapData#polygon
+    * @param {object[]} points - An array of {@link Phaser.Point} or point-like objects.
+    * @param {CanvasGradient|CanvasPattern|string} [fillStyle] - A color, gradient, or pattern.
+    * @param {number} [lineWidth=0] - The line thickness.
+    * @param {CanvasGradient|CanvasPattern|string} [strokeStyle='#fff'] - The line color, gradient, or pattern (when `lineWidth` > 0).
+    * @return {Phaser.BitmapData} This BitmapData object for method chaining.
+    */
+    polygon: function (points, fillStyle, lineWidth, strokeStyle) {
+
+        // Could reject points.length < 3
+
+        if (strokeStyle === undefined) { strokeStyle = '#fff'; }
+        if (lineWidth === undefined) { lineWidth = 0; }
+
+        var ctx = this.context;
+
+        if (fillStyle)
+        {
+            ctx.fillStyle = fillStyle;
+        }
+
+        if (lineWidth)
+        {
+            ctx.lineWidth = lineWidth;
+            ctx.strokeStyle = strokeStyle;
+        }
+
+        ctx.beginPath();
+
+        ctx.moveTo(points[0].x, points[0].y);
+
+        for (var i = 1, len = points.length; i < len; i++)
+        {
+            var point = points[i];
+            ctx.lineTo(point.x, point.y);
+        }
+
+        ctx.closePath();
+
+        if (fillStyle) { ctx.fill(); }
+        if (lineWidth) { ctx.stroke(); }
 
         return this;
 

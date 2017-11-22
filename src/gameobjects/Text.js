@@ -51,8 +51,6 @@ Phaser.Text = function (game, x, y, text, style) {
         text = text.toString();
     }
 
-    style = Phaser.Utils.extend({}, style);
-
     /**
     * @property {number} type - The const type of this object.
     * @default

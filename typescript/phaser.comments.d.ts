@@ -19031,7 +19031,7 @@ declare module Phaser {
             * @param collideCallback An optional callback function that is called if the objects collide. The two objects will be passed to this function in the same order in which you specified them.
             * @param processCallback A callback function that lets you perform additional checks against the two objects if they overlap. If this is set then collision will only happen if processCallback returns true. The two objects will be passed to this function in the same order in which you specified them.
             * @param callbackContext The context in which to run the callbacks.
-            * @return True if a collision occured otherwise false.
+            * @return True if a collision occurred, otherwise false.
             */
             collide(object1: any, object2: any, collideCallback?: Function, processCallback?: Function, callbackContext?: any): boolean;
 
@@ -19117,7 +19117,7 @@ declare module Phaser {
             * @param overlapCallback An optional callback function that is called if the objects overlap. The two objects will be passed to this function in the same order in which you specified them.
             * @param processCallback A callback function that lets you perform additional checks against the two objects if they overlap. If this is set then overlapCallback will only be called if processCallback returns true.
             * @param callbackContext The context in which to run the callbacks.
-            * @return True if an overlap occured otherwise false.
+            * @return True if an overlap occurred, otherwise false.
             */
             overlap(object1: any, object2: any, overlapCallback?: Function, processCallback?: Function, callbackContext?: any): boolean;
 
@@ -22795,7 +22795,7 @@ declare module Phaser {
         * 
         * @param game A reference to the currently running game.
         * @param id The ID of the Pointer object within the game. Each game can have up to 10 active pointers.
-        * @param pointerMode The operational mode of this pointer, eg. CURSOR or TOUCH. - Default: (CURSOR|CONTACT)
+        * @param pointerMode The operational mode of this pointer, eg. CURSOR or CONTACT. - Default: (CURSOR|CONTACT)
         */
         constructor(game: Phaser.Game, id: number, pointerMode?: number);
 
@@ -30011,8 +30011,9 @@ declare module Phaser {
         * @param group Group to add the Sprite to. If not specified it will be added to the World group. - Default: Phaser.World
         * @param CustomClass If you wish to create your own class, rather than Phaser.Sprite, pass the class here. Your class must extend Phaser.Sprite and have the same constructor parameters. - Default: Phaser.Sprite
         * @param adjustY By default the Tiled map editor uses a bottom-left coordinate system. Phaser uses top-left. So most objects will appear too low down. This parameter moves them up by their height. - Default: true
+        * @param adjustSize By default the width and height of the objects are transferred to the sprite. This parameter controls that behavior. - Default: true
         */
-        createFromObjects(name: string, gid: number, key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean): void;
+        createFromObjects(name: string, gid: number, key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean, adjustSize?: boolean): void;
 
         /**
         * Creates a Sprite for every object matching the given tile indexes in the map data.

@@ -25,36 +25,30 @@ Phaser.Utils = {
     },
 
     /**
-     * Gets an object's property by string.
-     *
-     * @method Phaser.Utils.getProperty
-     * @param {object} obj - The object to traverse.
-     * @param {string} prop - The property whose value will be returned.
-     * @return {any} - The value of the property or `undefined` if the property isn't found.
-     */
-    getProperty: function(obj, prop) {
+    * Gets an object's property by string.
+    *
+    * @method Phaser.Utils.getProperty
+    * @param {object} obj - The object to traverse.
+    * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
+    * @return {any} - The value of the property or `undefined` if the property isn't found.
+    */
+    getProperty: function(obj, name) {
 
-        var parts = prop.split('.'),
-            len = parts.length,
-            i = 0,
-            val = obj;
+        var parts = name.split('.');
 
-        while (i < len)
+        switch (parts.length)
         {
-            var key = parts[i];
-
-            if (val != null)
-            {
-                val = val[key];
-                i++;
-            }
-            else
-            {
-                return undefined;
-            }
+            case 1:
+                return obj[name];
+            case 2:
+                return obj[parts[0]][parts[1]];
+            case 3:
+                return obj[parts[0]][parts[1]][parts[2]];
+            case 4:
+                return obj[parts[0]][parts[1]][parts[2]][parts[3]];
+            default:
+                return this._getProperty(obj, name);
         }
-
-        return val;
 
     },
 
@@ -120,6 +114,41 @@ Phaser.Utils = {
             default:
                 this._setProperty(obj, name, value);
         }
+    },
+
+    /**
+     * Gets an object's property by string.
+     *
+     * @private
+     * @method Phaser.Utils._getProperty
+     * @param {object} obj - The object to traverse.
+     * @param {string} name - The property whose value will be returned.
+     * @return {any} - The value of the property or `undefined` if the property isn't found.
+     */
+    _getProperty: function(obj, name) {
+
+        var parts = name.split('.'),
+            len = parts.length,
+            i = 0,
+            val = obj;
+
+        while (i < len)
+        {
+            var key = parts[i];
+
+            if (val != null)
+            {
+                val = val[key];
+                i++;
+            }
+            else
+            {
+                return undefined;
+            }
+        }
+
+        return val;
+
     },
 
     /**

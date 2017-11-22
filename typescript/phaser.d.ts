@@ -376,6 +376,7 @@ declare module Phaser {
         move(x: number, y: number, wrap?: boolean): Phaser.BitmapData;
         moveH(distance: number, wrap?: boolean): Phaser.BitmapData;
         moveV(distance: number, wrap?: boolean): Phaser.BitmapData;
+        polygon(points: any[], fillStyle?: string | CanvasGradient | CanvasPattern, lineWidth?: number, strokeStyle?: string | CanvasGradient | CanvasPattern): Phaser.BitmapData;
         processPixel(callback: (color: number, x: number, y: number) => void, callbackContext: any, x?: number, y?: Number, width?: number, height?: number): Phaser.BitmapData;
         processPixelRGB(callback: (color: ColorComponents, x: number, y: number) => void, callbackContext: any, x?: number, y?: Number, width?: number, height?: number): Phaser.BitmapData;
         rect(x: number, y: number, width: number, height: number, fillStyle?: string): Phaser.BitmapData;
@@ -1452,18 +1453,24 @@ declare module Phaser {
 
     interface IGameConfig {
 
+        backgroundColor?: string;
+        canvas?: HTMLCanvasElement;
+        canvasId?: string;
+        canvasStyle?: string;
+        disableVisibilityChange?: boolean;
+        fullScreenScaleMode?: number;
         antialias?: boolean;
         enableDebug?: boolean;
         forceSetTimeOut?: boolean;
         height?: number | string;
         multiTexture?: boolean;
-        parent?: any;
+        parent?: HTMLElement | string;
         physicsConfig?: any;
         preserveDrawingBuffer?: boolean;
         renderer?: number;
         resolution?: number;
         scaleMode?: number;
-        seed?: string;
+        seed?: number;
         state?: any; // Phaser.State | function | object
         transparent?: boolean;
         width?: number | string;
@@ -2377,6 +2384,7 @@ declare module Phaser {
         processKeyDown(event: KeyboardEvent): void;
         processKeyPress(event: KeyboardEvent): void;
         processKeyUp(event: KeyboardEvent): void;
+        removeCallbacks(): void;
         removeKey(keycode: number): void;
         removeKeyCapture(keycode: number): void;
         reset(hard?: boolean): void;
@@ -5232,7 +5240,7 @@ declare module Phaser {
         copy(x: number, y: number, width: number, height: number, layer?: any): Phaser.Tile[];
         create(name: string, width: number, height: number, tileWidth: number, tileHeight: number, group?: Phaser.Group): Phaser.TilemapLayer;
         createBlankLayer(name: string, width: number, height: number, tileWidth: number, tileHeight: number, group?: Phaser.Group): Phaser.TilemapLayer;
-        createFromObjects(name: string, gid: number, key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean): void;
+        createFromObjects(name: string, gid: number, key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean, adjustSize?: boolean): void;
         createFromTiles(tiles: any, replacements: any, key: string, layer?: any, group?: Phaser.Group, properties?: any): number;
         createLayer(layer: any, width?: number, height?: number, group?: Phaser.Group): Phaser.TilemapLayer;
         destroy(): void;

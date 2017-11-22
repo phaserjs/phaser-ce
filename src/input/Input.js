@@ -666,7 +666,7 @@ Phaser.Input.prototype = {
         }
 
         var id = this.pointers.length + 1;
-        var pointer = new Phaser.Pointer(this.game, id, Phaser.PointerMode.TOUCH);
+        var pointer = new Phaser.Pointer(this.game, id, Phaser.PointerMode.CONTACT);
 
         this.pointers.push(pointer);
         this['pointer' + id] = pointer;

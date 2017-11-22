@@ -177,6 +177,21 @@ Phaser.TilemapParser = {
 
     },
 
+    _slice: function(obj, fields) {
+        var sliced = {};
+
+        for (var k in fields)
+        {
+            var key = fields[k];
+
+            if (typeof obj[key] !== 'undefined')
+            {
+                sliced[key] = obj[key];
+            }
+        }
+
+        return sliced;
+    },
 
     /**
     * Parses an object group in Tiled JSON files. Object groups can be found in both layers and tilesets. Called internally in parseTiledJSON.
@@ -188,31 +203,20 @@ Phaser.TilemapParser = {
     * @param {object} [relativePosition={x: 0, y: 0}] - Coordinates the object group's position is relative to.
     * @return {object} A object literal containing the objectsCollection and collisionCollection
     */
-    parseObjectGroup: function(objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition){
+    parseObjectGroup: function(objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition) {
+
         var nameKey = nameKey || objectGroup.name;
         var relativePosition = relativePosition || {x: 0, y: 0};
+        var slice = this._slice;
 
-        var slice = function(obj, fields) {
-            var sliced = {};
-
-            for (var k in fields)
-            {
-                var key = fields[k];
-
-                if (typeof obj[key] !== 'undefined')
-                {
-                    sliced[key] = obj[key];
-                }
-            }
-
-            return sliced;
-        };
-
-        if (!nameKey) {
-            console.warn("No name found for objectGroup", objectGroup);
+        if (!nameKey)
+        {
+            console.warn('No name found for objectGroup', objectGroup);
         }
-        if (relativePosition.x === undefined || relativePosition.y === undefined) {
-            console.warn("Malformed xy properties in relativePosition", relativePosition);
+
+        if (relativePosition.x === undefined || relativePosition.y === undefined)
+        {
+            console.warn('Malformed xy properties in relativePosition', relativePosition);
         }
 
         objectsCollection[nameKey] = objectsCollection[nameKey] || [];
@@ -220,66 +224,63 @@ Phaser.TilemapParser = {
 
         for (var v = 0, len = objectGroup.objects.length; v < len; v++)
         {
+            var o = objectGroup.objects[v];
+
             //  Object Tiles
-            if (objectGroup.objects[v].gid)
+            if (o.gid)
             {
                 var object = {
-
-                    gid: objectGroup.objects[v].gid,
-                    name: objectGroup.objects[v].name,
-                    type: objectGroup.objects[v].hasOwnProperty("type") ? objectGroup.objects[v].type : "",
-                    x: objectGroup.objects[v].x + relativePosition.x,
-                    y: objectGroup.objects[v].y + relativePosition.y,
-                    width: objectGroup.objects[v].width,
-                    height: objectGroup.objects[v].height,
-                    visible: objectGroup.objects[v].visible,
-                    properties: objectGroup.objects[v].properties
-
+                    gid: o.gid,
+                    name: o.name,
+                    type: o.type || '',
+                    x: o.x + relativePosition.x,
+                    y: o.y + relativePosition.y,
+                    width: o.width,
+                    height: o.height,
+                    visible: o.visible,
+                    properties: o.properties
                 };
 
-                if (objectGroup.objects[v].rotation)
+                if (o.rotation)
                 {
-                    object.rotation = objectGroup.objects[v].rotation;
+                    object.rotation = o.rotation;
                 }
 
                 objectsCollection[nameKey].push(object);
             }
-            else if (objectGroup.objects[v].polyline)
+            else if (o.polyline)
             {
                 var object = {
-
-                    name: objectGroup.objects[v].name,
-                    type: objectGroup.objects[v].type,
-                    x: objectGroup.objects[v].x + relativePosition.x,
-                    y: objectGroup.objects[v].y + relativePosition.y,
-                    width: objectGroup.objects[v].width,
-                    height: objectGroup.objects[v].height,
-                    visible: objectGroup.objects[v].visible,
-                    properties: objectGroup.objects[v].properties
-
+                    name: o.name,
+                    type: o.type,
+                    x: o.x + relativePosition.x,
+                    y: o.y + relativePosition.y,
+                    width: o.width,
+                    height: o.height,
+                    visible: o.visible,
+                    properties: o.properties
                 };
 
-                if (objectGroup.objects[v].rotation)
+                if (o.rotation)
                 {
-                    object.rotation = objectGroup.objects[v].rotation;
+                    object.rotation = o.rotation;
                 }
 
                 object.polyline = [];
 
                 //  Parse the polyline into an array
-                for (var p = 0; p < objectGroup.objects[v].polyline.length; p++)
+                for (var p = 0; p < o.polyline.length; p++)
                 {
-                    object.polyline.push([objectGroup.objects[v].polyline[p].x, objectGroup.objects[v].polyline[p].y]);
+                    object.polyline.push([o.polyline[p].x, o.polyline[p].y]);
                 }
-
 
                 collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
             }
             // polygon
-            else if (objectGroup.objects[v].polygon)
+            else if (o.polygon)
             {
-                var object = slice(objectGroup.objects[v], ['name', 'type', 'x', 'y', 'visible', 'rotation', 'properties']);
+                var object = slice(o, ['name', 'type', 'x', 'y', 'visible', 'rotation', 'properties']);
 
                 object.x += relativePosition.x;
                 object.y += relativePosition.y;
@@ -287,19 +288,18 @@ Phaser.TilemapParser = {
                 //  Parse the polygon into an array
                 object.polygon = [];
 
-                for (var p = 0; p < objectGroup.objects[v].polygon.length; p++)
+                for (var p = 0; p < o.polygon.length; p++)
                 {
-                    object.polygon.push([objectGroup.objects[v].polygon[p].x, objectGroup.objects[v].polygon[p].y]);
+                    object.polygon.push([o.polygon[p].x, o.polygon[p].y]);
                 }
 
                 collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
-
             }
             // ellipse
-            else if (objectGroup.objects[v].ellipse)
+            else if (o.ellipse)
             {
-                var object = slice(objectGroup.objects[v], ['name', 'type', 'ellipse', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
+                var object = slice(o, ['name', 'type', 'ellipse', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
                 object.x += relativePosition.x;
                 object.y += relativePosition.y;
 
@@ -309,7 +309,7 @@ Phaser.TilemapParser = {
             // otherwise it's a rectangle
             else
             {
-                var object = slice(objectGroup.objects[v], ['name', 'type', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
+                var object = slice(o, ['name', 'type', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
                 object.x += relativePosition.x;
                 object.y += relativePosition.y;
 

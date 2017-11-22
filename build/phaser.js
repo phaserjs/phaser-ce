@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.9.1 "2017-10-10" - Built: Tue Oct 10 2017 11:17:47
+* v2.9.2 "2017-11-09" - Built: Thu Nov 09 2017 18:05:28
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -21232,7 +21232,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.9.1',
+    VERSION: '2.9.2',
 
     /**
     * An array of Phaser game instances.
@@ -28991,7 +28991,7 @@ Phaser.StateManager.prototype = {
             }
             else
             {
-                console.warn("Invalid Phaser State object given. Must contain at least a one of the required functions: preload, create, update or render");
+                console.warn("Invalid Phaser State object given. Must contain at least one of the required functions: preload, create, update or render");
                 return false;
             }
         }
@@ -36815,7 +36815,7 @@ Phaser.Input.prototype = {
         }
 
         var id = this.pointers.length + 1;
-        var pointer = new Phaser.Pointer(this.game, id, Phaser.PointerMode.TOUCH);
+        var pointer = new Phaser.Pointer(this.game, id, Phaser.PointerMode.CONTACT);
 
         this.pointers.push(pointer);
         this['pointer' + id] = pointer;
@@ -38949,7 +38949,7 @@ Object.defineProperty(Phaser.DeviceButton.prototype, "duration", {
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {number} id - The ID of the Pointer object within the game. Each game can have up to 10 active pointers.
-* @param {Phaser.PointerMode} pointerMode=(CURSOR|CONTACT) - The operational mode of this pointer, eg. CURSOR or TOUCH.
+* @param {Phaser.PointerMode} pointerMode=(CURSOR|CONTACT) - The operational mode of this pointer, eg. CURSOR or CONTACT.
 */
 Phaser.Pointer = function (game, id, pointerMode) {
 
@@ -45680,7 +45680,7 @@ Phaser.Component.Core.preUpdate = function () {
     if (this.pendingDestroy)
     {
         this.destroy();
-        return;
+        return false;
     }
 
     this.previousPosition.set(this.world.x, this.world.y);
@@ -46985,6 +46985,12 @@ Phaser.Component.InWorld = function () {};
  */
 Phaser.Component.InWorld.preUpdate = function () {
 
+    if (this.pendingDestroy)
+    {
+        this.destroy();
+        return false;
+    }
+
     //  Cache the bounds if we need it
     if (this.autoCull || this.checkWorldBounds)
     {
@@ -47122,6 +47128,12 @@ Phaser.Component.LifeSpan = function () {};
  * @method
  */
 Phaser.Component.LifeSpan.preUpdate = function () {
+
+    if (this.pendingDestroy)
+    {
+        this.destroy();
+        return false;
+    }
 
     if (this.lifespan > 0)
     {
@@ -47585,6 +47597,12 @@ Phaser.Component.PhysicsBody = function () {};
  * @method
  */
 Phaser.Component.PhysicsBody.preUpdate = function () {
+
+    if (this.pendingDestroy)
+    {
+        this.destroy();
+        return false;
+    }
 
     if (this.fresh && this.exists)
     {
@@ -49423,7 +49441,7 @@ Phaser.Button = function (game, x, y, key, callback, callbackContext, overFrame,
     *
     * @property {Phaser.PointerMode?} justReleasedPreventsOver=ACTIVE_CURSOR
     */
-    this.justReleasedPreventsOver = Phaser.PointerMode.TOUCH;
+    this.justReleasedPreventsOver = Phaser.PointerMode.CONTACT;
 
     /**
     * When true the the texture frame will not be automatically switched on up/down/over/out events.
@@ -59113,7 +59131,7 @@ Phaser.BitmapText.prototype.scanLine = function (data, scale, text) {
             if (maxWidth && ((w + c) >= maxWidth) && lastSpace > -1)
             {
                 //  The last space was at "lastSpace" which was "i - lastSpace" characters ago
-                return { width: wrappedWidth || w, text: text.substr(0, i - (i - lastSpace)), end: end, chars: chars };
+                return { width: wrappedWidth || w, text: text.substr(0, i - (i - lastSpace)), end: false, chars: chars };
             }
             else
             {
@@ -79992,7 +80010,7 @@ Phaser.SoundManager.prototype = {
                 this.masterGain = this.context.createGain();
             }
 
-            this.masterGain.gain.value = 1;
+            this._setGain(1);
             this.masterGain.connect(this.context.destination);
         }
 
@@ -80415,7 +80433,7 @@ Phaser.SoundManager.prototype = {
         if (this.usingWebAudio)
         {
             this._muteVolume = this.masterGain.gain.value;
-            this.masterGain.gain.value = 0;
+            this._setGain(0);
         }
 
         //  Loop through sounds
@@ -80448,7 +80466,7 @@ Phaser.SoundManager.prototype = {
 
         if (this.usingWebAudio)
         {
-            this.masterGain.gain.value = this._muteVolume;
+            this._setGain(this._muteVolume);
         }
 
         //  Loop through sounds
@@ -80500,6 +80518,12 @@ Phaser.SoundManager.prototype = {
                 }
             }
         }
+
+    },
+
+    _setGain: function (value) {
+
+        this.masterGain.gain.setTargetAtTime(value, 0, 0.01);
 
     }
 
@@ -80576,7 +80600,7 @@ Object.defineProperty(Phaser.SoundManager.prototype, "volume", {
 
             if (this.usingWebAudio)
             {
-                this.masterGain.gain.value = value;
+                this._setGain(value);
             }
             else
             {
@@ -86776,10 +86800,10 @@ Phaser.Color = {
 
         if (result)
         {
-            out.r = parseInt(result[1], 10);
-            out.g = parseInt(result[2], 10);
-            out.b = parseInt(result[3], 10);
-            out.a = result[4] !== undefined ? parseFloat(result[4]) : 1;
+            out.r = ~~Number(result[1]);
+            out.g = ~~Number(result[2]);
+            out.b = ~~Number(result[3]);
+            out.a = result[4] !== undefined ? Number(result[4]) : 1;
             Phaser.Color.updateColor(out);
         }
 
@@ -98545,14 +98569,16 @@ Phaser.Tilemap.prototype = {
     * @param {Phaser.Group} [group=Phaser.World] - Group to add the Sprite to. If not specified it will be added to the World group.
     * @param {object} [CustomClass=Phaser.Sprite] - If you wish to create your own class, rather than Phaser.Sprite, pass the class here. Your class must extend Phaser.Sprite and have the same constructor parameters.
     * @param {boolean} [adjustY=true] - By default the Tiled map editor uses a bottom-left coordinate system. Phaser uses top-left. So most objects will appear too low down. This parameter moves them up by their height.
+    * @param {boolean} [adjustSize=true] - By default the width and height of the objects are transferred to the sprite. This parameter controls that behavior.
     */
-    createFromObjects: function (name, gid, key, frame, exists, autoCull, group, CustomClass, adjustY) {
+    createFromObjects: function (name, gid, key, frame, exists, autoCull, group, CustomClass, adjustY, adjustSize) {
 
         if (exists === undefined) { exists = true; }
         if (autoCull === undefined) { autoCull = false; }
         if (group === undefined) { group = this.game.world; }
         if (CustomClass === undefined) { CustomClass = Phaser.Sprite; }
         if (adjustY === undefined) { adjustY = true; }
+        if (adjustSize === undefined) { adjustSize = true; }
 
         if (!this.objects[name])
         {
@@ -98587,14 +98613,17 @@ Phaser.Tilemap.prototype = {
                 sprite.exists = exists;
                 sprite.visible = obj.visible;
 
-                if (obj.width)
+                if (adjustSize)
                 {
-                    sprite.width = obj.width;
-                }
+                    if (obj.width)
+                    {
+                        sprite.width = obj.width;
+                    }
 
-                if (obj.height)
-                {
-                    sprite.height = obj.height;
+                    if (obj.height)
+                    {
+                        sprite.height = obj.height;
+                    }
                 }
 
                 if (obj.rotation)
@@ -101689,6 +101718,21 @@ Phaser.TilemapParser = {
 
     },
 
+    _slice: function(obj, fields) {
+        var sliced = {};
+
+        for (var k in fields)
+        {
+            var key = fields[k];
+
+            if (typeof obj[key] !== 'undefined')
+            {
+                sliced[key] = obj[key];
+            }
+        }
+
+        return sliced;
+    },
 
     /**
     * Parses an object group in Tiled JSON files. Object groups can be found in both layers and tilesets. Called internally in parseTiledJSON.
@@ -101700,15 +101744,20 @@ Phaser.TilemapParser = {
     * @param {object} [relativePosition={x: 0, y: 0}] - Coordinates the object group's position is relative to.
     * @return {object} A object literal containing the objectsCollection and collisionCollection
     */
-    parseObjectGroup: function(objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition){
+    parseObjectGroup: function(objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition) {
+
         var nameKey = nameKey || objectGroup.name;
         var relativePosition = relativePosition || {x: 0, y: 0};
+        var slice = this._slice;
 
-        if (!nameKey) {
-            console.warn("No name found for objectGroup", objectGroup);
+        if (!nameKey)
+        {
+            console.warn('No name found for objectGroup', objectGroup);
         }
-        if (relativePosition.x === undefined || relativePosition.y === undefined) {
-            console.warn("Malformed xy properties in relativePosition", relativePosition);
+
+        if (relativePosition.x === undefined || relativePosition.y === undefined)
+        {
+            console.warn('Malformed xy properties in relativePosition', relativePosition);
         }
 
         objectsCollection[nameKey] = objectsCollection[nameKey] || [];
@@ -101716,86 +101765,82 @@ Phaser.TilemapParser = {
 
         for (var v = 0, len = objectGroup.objects.length; v < len; v++)
         {
+            var o = objectGroup.objects[v];
+
             //  Object Tiles
-            if (objectGroup.objects[v].gid)
+            if (o.gid)
             {
                 var object = {
-
-                    gid: objectGroup.objects[v].gid,
-                    name: objectGroup.objects[v].name,
-                    type: objectGroup.objects[v].hasOwnProperty("type") ? objectGroup.objects[v].type : "",
-                    x: objectGroup.objects[v].x + relativePosition.x,
-                    y: objectGroup.objects[v].y + relativePosition.y,
-                    width: objectGroup.objects[v].width,
-                    height: objectGroup.objects[v].height,
-                    visible: objectGroup.objects[v].visible,
-                    properties: objectGroup.objects[v].properties
-
+                    gid: o.gid,
+                    name: o.name,
+                    type: o.type || '',
+                    x: o.x + relativePosition.x,
+                    y: o.y + relativePosition.y,
+                    width: o.width,
+                    height: o.height,
+                    visible: o.visible,
+                    properties: o.properties
                 };
 
-                if (objectGroup.objects[v].rotation)
+                if (o.rotation)
                 {
-                    object.rotation = objectGroup.objects[v].rotation;
+                    object.rotation = o.rotation;
                 }
 
                 objectsCollection[nameKey].push(object);
             }
-            else if (objectGroup.objects[v].polyline)
+            else if (o.polyline)
             {
                 var object = {
-
-                    name: objectGroup.objects[v].name,
-                    type: objectGroup.objects[v].type,
-                    x: objectGroup.objects[v].x + relativePosition.x,
-                    y: objectGroup.objects[v].y + relativePosition.y,
-                    width: objectGroup.objects[v].width,
-                    height: objectGroup.objects[v].height,
-                    visible: objectGroup.objects[v].visible,
-                    properties: objectGroup.objects[v].properties
-
+                    name: o.name,
+                    type: o.type,
+                    x: o.x + relativePosition.x,
+                    y: o.y + relativePosition.y,
+                    width: o.width,
+                    height: o.height,
+                    visible: o.visible,
+                    properties: o.properties
                 };
 
-                if (objectGroup.objects[v].rotation)
+                if (o.rotation)
                 {
-                    object.rotation = objectGroup.objects[v].rotation;
+                    object.rotation = o.rotation;
                 }
 
                 object.polyline = [];
 
                 //  Parse the polyline into an array
-                for (var p = 0; p < objectGroup.objects[v].polyline.length; p++)
+                for (var p = 0; p < o.polyline.length; p++)
                 {
-                    object.polyline.push([objectGroup.objects[v].polyline[p].x, objectGroup.objects[v].polyline[p].y]);
+                    object.polyline.push([o.polyline[p].x, o.polyline[p].y]);
                 }
-
 
                 collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
             }
             // polygon
-            else if (objectGroup.objects[v].polygon)
+            else if (o.polygon)
             {
-                var object = slice(objectGroup.objects[v], ['name', 'type', 'x', 'y', 'visible', 'rotation', 'properties']);
+                var object = slice(o, ['name', 'type', 'x', 'y', 'visible', 'rotation', 'properties']);
 
-                object.x += relativePosition.x
-                object.y += relativePosition.y
+                object.x += relativePosition.x;
+                object.y += relativePosition.y;
 
                 //  Parse the polygon into an array
                 object.polygon = [];
 
-                for (var p = 0; p < objectGroup.objects[v].polygon.length; p++)
+                for (var p = 0; p < o.polygon.length; p++)
                 {
-                    object.polygon.push([objectGroup.objects[v].polygon[p].x, objectGroup.objects[v].polygon[p].y]);
+                    object.polygon.push([o.polygon[p].x, o.polygon[p].y]);
                 }
 
                 collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
-
             }
             // ellipse
-            else if (objectGroup.objects[v].ellipse)
+            else if (o.ellipse)
             {
-                var object = slice(objectGroup.objects[v], ['name', 'type', 'ellipse', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
+                var object = slice(o, ['name', 'type', 'ellipse', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
                 object.x += relativePosition.x;
                 object.y += relativePosition.y;
 
@@ -101805,7 +101850,7 @@ Phaser.TilemapParser = {
             // otherwise it's a rectangle
             else
             {
-                var object = slice(objectGroup.objects[v], ['name', 'type', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
+                var object = slice(o, ['name', 'type', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
                 object.x += relativePosition.x;
                 object.y += relativePosition.y;
 
@@ -101813,23 +101858,6 @@ Phaser.TilemapParser = {
                 collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
             }
-        }
-
-        function slice (obj, fields) {
-
-            var sliced = {};
-
-            for (var k in fields)
-            {
-                var key = fields[k];
-
-                if (typeof obj[key] !== 'undefined')
-                {
-                    sliced[key] = obj[key];
-                }
-            }
-
-            return sliced;
         }
 
         return {
@@ -102143,12 +102171,14 @@ Phaser.TilemapParser = {
             // build a temporary object for objectgroups found in the tileset's tiles
             for (var ti in set.tiles)
             {
-                var objectGroup = set.tiles[ti].objectgroup
+                var objectGroup = set.tiles[ti].objectgroup;
+
                 if (!objectGroup)
                 {
                     continue;
                 }
-                tilesetGroupObjects[parseInt(ti) + set.firstgid] = objectGroup;
+
+                tilesetGroupObjects[parseInt(ti, 10) + set.firstgid] = objectGroup;
             }
 
             //  We've got a new Tileset, so set the lastgid into the previous one

@@ -176,11 +176,11 @@ grunt examples
 - Bump to follow semver (initial development is well and truly over)
 - Corrected list of themes
 - Added Search
-- Remove highlightTutorialCode option - it didnt work
+- Remove highlightTutorialCode option - it didn't work
 
 ## 0.5.4
 
-- Fix layout glitch on hte bottom of code samples
+- Fix layout glitch on the bottom of code samples
 - Support for specifying the language for fenced code blocks in the normal way
 - Fix the active item in some themes, which was missing a background
 - Tables get marked as tables
@@ -265,7 +265,7 @@ grunt examples
 
 ##  0.2.0
 
-- Added jump to source linenumers - still a problem scrolling with fixed header
+- Added jump to source linenumbers - still a problem scrolling with fixed header
 - changed syntax highlighter to [sunlight](http://sunlightjs.com/)
 - Modify incoming bootswatch files to make font calls without protocol.
 

@@ -13,7 +13,18 @@
 *
 * Unless otherwise noted the device capabilities are only guaranteed after initialization. Initialization
 * occurs automatically and is guaranteed complete before {@link Phaser.Game} begins its "boot" phase.
-* Feature detection can be modified in the {@link Phaser.Device.onInitialized onInitialized} signal.
+* Feature detection can be modified in the {@link Phaser.Device.onInitialized onInitialized} signal, e.g.,
+*
+* ```javascript
+* Phaser.Device.onInitialized.add(function (device) {
+*
+*     device.canvasBitBltShift = true;
+*     device.mspointer = false;
+*
+* });
+*
+* var game = new Phaser.Game();
+* ```
 *
 * When checking features using the exposed properties only the *truth-iness* of the value should be relied upon
 * unless the documentation states otherwise: properties may return `false`, `''`, `null`, or even `undefined`

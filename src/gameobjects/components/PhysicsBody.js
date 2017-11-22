@@ -20,6 +20,12 @@ Phaser.Component.PhysicsBody = function () {};
  */
 Phaser.Component.PhysicsBody.preUpdate = function () {
 
+    if (this.pendingDestroy)
+    {
+        this.destroy();
+        return false;
+    }
+
     if (this.fresh && this.exists)
     {
         this.world.setTo(this.parent.position.x + this.position.x, this.parent.position.y + this.position.y);

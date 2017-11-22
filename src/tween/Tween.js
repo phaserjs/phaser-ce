@@ -309,9 +309,11 @@ Phaser.Tween.prototype = {
     },
 
     /**
-    * Starts the tween running. Can also be called by the autoStart parameter of `Tween.to` or `Tween.from`.
-    * This sets the `Tween.isRunning` property to `true` and dispatches a `Tween.onStart` signal.
-    * If the Tween has a delay set then nothing will start tweening until the delay has expired.
+    * Starts the tween running. Can also be called by the `autoStart` parameter of {@link #to} or {@link #from}.
+    * This sets the {@link #isRunning} property to `true` and dispatches the {@link #onStart} signal.
+    * If the tween has a delay set then nothing will start tweening until the delay has expired.
+    * If the tween is already running, is flagged for deletion (such as after {@link #stop}),
+    * or has an empty timeline, calling start has no effect and the `onStart` signal is not dispatched.
     *
     * @method Phaser.Tween#start
     * @param {number} [index=0] - If this Tween contains child tweens you can specify which one to start from. The default is zero, i.e. the first tween created.
@@ -320,6 +322,12 @@ Phaser.Tween.prototype = {
     start: function (index) {
 
         if (index === undefined) { index = 0; }
+
+        if (this.pendingDelete)
+        {
+            console.warn('Phaser.Tween.start cannot be called after Tween.stop');
+            return this;
+        }
 
         if (this.game === null || this.target === null || this.timeline.length === 0 || this.isRunning)
         {
@@ -365,9 +373,10 @@ Phaser.Tween.prototype = {
     },
 
     /**
-    * Stops the tween if running and flags it for deletion from the TweenManager.
-    * If called directly the `Tween.onComplete` signal is not dispatched and no chained tweens are started unless the complete parameter is set to `true`.
-    * If you just wish to pause a tween then use Tween.pause instead.
+    * Stops the tween if running and flags it for deletion from the TweenManager. The tween can't be {@link #start restarted} after this.
+    * The {@link #onComplete} signal is not dispatched and no chained tweens are started unless the `complete` parameter is set to `true`.
+    * If you just wish to pause a tween then use {@link #pause} instead.
+    * If the tween is not running, it is **not** flagged for deletion and can be started again.
     *
     * @method Phaser.Tween#stop
     * @param {boolean} [complete=false] - Set to `true` to dispatch the Tween.onComplete signal.
@@ -927,7 +936,7 @@ Phaser.Tween.prototype = {
 
 /**
 * @name Phaser.Tween#totalDuration
-* @property {Phaser.TweenData} totalDuration - Gets the total duration of this Tween, including all child tweens, in milliseconds.
+* @property {number} totalDuration - Gets the total duration of this Tween, including all child tweens, in milliseconds.
 */
 Object.defineProperty(Phaser.Tween.prototype, 'totalDuration', {
 

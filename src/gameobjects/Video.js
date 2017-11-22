@@ -1055,7 +1055,7 @@ Phaser.Video.prototype = {
     */
     setTouchLock: function () {
 
-        this.game.input.addTouchLockCallback(this.unlock, this);
+        this.game.input.addTouchLockCallback(this.unlock, this, true);
         this.touchLocked = true;
 
     },
