@@ -1,1045 +1,140 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: Hermite · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
-	<script src="https://use.typekit.net/fmc0gtt.js"></script>
-	<script>Typekit.load()</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Phaser CE Class: Hermite</title>
+	<link rel="stylesheet" href="styles/site.phaser.css?2017110918">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+      </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PhaserGlobal.html">PhaserGlobal</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html">Global</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.AStar.html">AStar</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PIXI.html">PIXI</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#set">set</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Class: Hermite</h1>-->
+	<h1 class="page-title">Class: Hermite</h1>
 <section>
 
 <header>
-    <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
     
-    Hermite
-    </h2>
+        <h2>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
+        
+        Hermite
+        </h2>
+        
     
 </header>
+
 
 <article>
     <div class="container-overview">
     
-
-    
         
 <dt>
-    <h4 class="name "
-        id="Hermite"><span class="type-signature"></span>new Hermite<span class="signature">(p1x, p1y, p2x, p2y, v1x, v1y, v2x, v2y, <span class="optional">accuracy</span>)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="Hermite" data-name="Hermite">
+      <span class="type-signature"></span>new Hermite(p1x, p1y, p2x, p2y, v1x, v1y, v2x, v2y [, accuracy])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>A data representation of a Hermite Curve (see http://en.wikipedia.org/wiki/Cubic_Hermite_spline)</p>
 <p>A Hermite curve has a start and end point and tangent vectors for both of them.
 The curve will always pass through the two control points and the shape of it is controlled
@@ -1058,8 +153,9 @@ this value further.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -1067,27 +163,27 @@ this value further.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -1100,6 +196,7 @@ this value further.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1119,10 +216,10 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The x coordinate of the start of the curve.</p></td>
+            <td class="description param-description last"><p>The x coordinate of the start of the curve.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1135,6 +232,7 @@ this value further.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1154,10 +252,10 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The y coordinate of the start of the curve.</p></td>
+            <td class="description param-description last"><p>The y coordinate of the start of the curve.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1170,6 +268,7 @@ this value further.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1189,10 +288,10 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The x coordinate of the end of the curve.</p></td>
+            <td class="description param-description last"><p>The x coordinate of the end of the curve.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1205,6 +304,7 @@ this value further.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1224,10 +324,10 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The y coordinate of the end of the curve.</p></td>
+            <td class="description param-description last"><p>The y coordinate of the end of the curve.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1240,6 +340,7 @@ this value further.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1259,10 +360,10 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The x component of the tangent vector for the start of the curve.</p></td>
+            <td class="description param-description last"><p>The x component of the tangent vector for the start of the curve.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1275,6 +376,7 @@ this value further.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1294,10 +396,10 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The y component of the tangent vector for the start of the curve.</p></td>
+            <td class="description param-description last"><p>The y component of the tangent vector for the start of the curve.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1310,6 +412,7 @@ this value further.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1329,10 +432,10 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The x component of the tangent vector for the end of the curve.</p></td>
+            <td class="description param-description last"><p>The x component of the tangent vector for the end of the curve.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1345,6 +448,7 @@ this value further.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -1364,10 +468,10 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The y component of the tangent vector for the end of the curve.</p></td>
+            <td class="description param-description last"><p>The y component of the tangent vector for the end of the curve.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -1378,6 +482,7 @@ this value further.</p>
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -1403,22 +508,24 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The amount of points to pre-calculate on the curve.</p></td>
+            <td class="description param-description last"><p>The amount of points to pre-calculate on the curve.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1428,34 +535,45 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L39" title="Hermite on line 39 of src/geom/Hermite.js">src/geom/Hermite.js line 39</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-39">line 39</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -1478,27 +596,41 @@ this value further.</p>
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="accuracy"><span class="type-signature"></span>accuracy<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="accuracy" data-name="accuracy">
+      <span class="type-signature"></span>accuracy<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The amount of points to pre-calculate on the curve.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1508,53 +640,74 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L396" title="accuracy on line 396 of src/geom/Hermite.js">src/geom/Hermite.js line 396</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-396">line 396</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="p1x"><span class="type-signature"></span>p1x<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="p1x" data-name="p1x">
+      <span class="type-signature"></span>p1x<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The x coordinate of the start of the curve. Setting this value will recalculate the curve.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1564,53 +717,74 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L420" title="p1x on line 420 of src/geom/Hermite.js">src/geom/Hermite.js line 420</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-420">line 420</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="p1y"><span class="type-signature"></span>p1y<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="p1y" data-name="p1y">
+      <span class="type-signature"></span>p1y<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The y coordinate of the start of the curve. Setting this value will recalculate the curve.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1620,53 +794,74 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L444" title="p1y on line 444 of src/geom/Hermite.js">src/geom/Hermite.js line 444</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-444">line 444</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="p2x"><span class="type-signature"></span>p2x<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="p2x" data-name="p2x">
+      <span class="type-signature"></span>p2x<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The x coordinate of the end of the curve. Setting this value will recalculate the curve.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1676,53 +871,74 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L468" title="p2x on line 468 of src/geom/Hermite.js">src/geom/Hermite.js line 468</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-468">line 468</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="p2y"><span class="type-signature"></span>p2y<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="p2y" data-name="p2y">
+      <span class="type-signature"></span>p2y<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The y coordinate of the end of the curve. Setting this value will recalculate the curve.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1732,53 +948,74 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L492" title="p2y on line 492 of src/geom/Hermite.js">src/geom/Hermite.js line 492</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-492">line 492</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="v1x"><span class="type-signature"></span>v1x<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="v1x" data-name="v1x">
+      <span class="type-signature"></span>v1x<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The x component of the tangent vector for the start of the curve. Setting this value will recalculate the curve.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1788,53 +1025,74 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L516" title="v1x on line 516 of src/geom/Hermite.js">src/geom/Hermite.js line 516</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-516">line 516</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="v1y"><span class="type-signature"></span>v1y<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="v1y" data-name="v1y">
+      <span class="type-signature"></span>v1y<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The y component of the tangent vector for the start of the curve. Setting this value will recalculate the curve.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1844,53 +1102,74 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L540" title="v1y on line 540 of src/geom/Hermite.js">src/geom/Hermite.js line 540</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-540">line 540</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="v2x"><span class="type-signature"></span>v2x<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="v2x" data-name="v2x">
+      <span class="type-signature"></span>v2x<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The x component of the tangent vector for the end of the curve. Setting this value will recalculate the curve.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1900,53 +1179,74 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L564" title="v2x on line 564 of src/geom/Hermite.js">src/geom/Hermite.js line 564</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-564">line 564</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="v2y"><span class="type-signature"></span>v2y<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="v2y" data-name="v2y">
+      <span class="type-signature"></span>v2y<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The y component of the tangent vector for the end of the curve. Setting this value will recalculate the curve.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1956,26 +1256,33 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L588" title="v2y on line 588 of src/geom/Hermite.js">src/geom/Hermite.js line 588</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-588">line 588</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -1988,53 +1295,36 @@ this value further.</p>
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="calculateEvenPoints"><span class="type-signature"></span>calculateEvenPoints<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
+    <h4 class="name" id="calculateEvenPoints" data-name="calculateEvenPoints">
+      <span class="type-signature"></span>calculateEvenPoints()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Calculate a number of points along the curve, based on <code>Hermite.accuracy</code>, and stores them in the private <code>_points</code> array.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
     
-        <div class="returns-type">
-        
-<span class="param-type">number</span>
 
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>The total length of the curve approximated as straight line distances between the points.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2044,58 +1334,94 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L146" title="calculateEvenPoints on line 146 of src/geom/Hermite.js">src/geom/Hermite.js line 146</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-146">line 146</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The total length of the curve approximated as straight line distances between the points.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="findT"><span class="type-signature"></span>findT<span class="signature">(distance)</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
+    <h4 class="name" id="findT" data-name="findT">
+      <span class="type-signature"></span>findT(distance)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Convert a distance along this curve into a <code>time</code> value which will be between 0 and 1.</p>
 <p>For example if this curve has a length of 100 pixels then <code>findT(50)</code> would return <code>0.5</code>.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2103,23 +1429,23 @@ this value further.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2132,6 +1458,7 @@ this value further.</p>
 <span class="param-type">integer</span>
 
 
+
             
             </td>
 
@@ -2139,42 +1466,24 @@ this value further.</p>
 
             
 
-            <td class="description last"><p>The distance into the curve in pixels. Should be a positive integer.</p></td>
+            <td class="description param-description last"><p>The distance into the curve in pixels. Should be a positive integer.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">number</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>The time (<code>t</code>) value, a float between 0 and 1.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2184,57 +1493,93 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L173" title="findT on line 173 of src/geom/Hermite.js">src/geom/Hermite.js line 173</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-173">line 173</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The time (<code>t</code>) value, a float between 0 and 1.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getAngle"><span class="type-signature"></span>getAngle<span class="signature">(<span class="optional">t</span>)</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
+    <h4 class="name" id="getAngle" data-name="getAngle">
+      <span class="type-signature"></span>getAngle( [t])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Calculate and return the angle, in radians, of the curves tangent based on time.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2242,27 +1587,27 @@ this value further.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2273,6 +1618,7 @@ this value further.</p>
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -2298,42 +1644,24 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The <code>t</code> (time) value at which to find the angle. Must be between 0 and 1.</p></td>
+            <td class="description param-description last"><p>The <code>t</code> (time) value at which to find the angle. Must be between 0 and 1.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">number</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>The angle of the line at the specified <code>t</code> time value along the curve. The value is in radians.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2343,57 +1671,93 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L336" title="getAngle on line 336 of src/geom/Hermite.js">src/geom/Hermite.js line 336</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-336">line 336</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The angle of the line at the specified <code>t</code> time value along the curve. The value is in radians.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getAngleWithDistance"><span class="type-signature"></span>getAngleWithDistance<span class="signature">(<span class="optional">distance</span>)</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
+    <h4 class="name" id="getAngleWithDistance" data-name="getAngleWithDistance">
+      <span class="type-signature"></span>getAngleWithDistance( [distance])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Calculate and return the angle, in radians, of the curves tangent at the given pixel distance along the curves length.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2401,27 +1765,27 @@ this value further.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2434,6 +1798,7 @@ this value further.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -2457,42 +1822,24 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The distance along the curve to get the angle from, in pixels.</p></td>
+            <td class="description param-description last"><p>The distance along the curve to get the angle from, in pixels.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">number</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>The angle of the line at the specified distance along the curve. The value is in radians.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2502,57 +1849,93 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L354" title="getAngleWithDistance on line 354 of src/geom/Hermite.js">src/geom/Hermite.js line 354</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-354">line 354</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The angle of the line at the specified distance along the curve. The value is in radians.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getEntryTangent"><span class="type-signature"></span>getEntryTangent<span class="signature">(point)</span><span class="type-signature"> &rarr; {<a href="Phaser.Point.html">Phaser.Point</a>}</span></h4>
-    
+    <h4 class="name" id="getEntryTangent" data-name="getEntryTangent">
+      <span class="type-signature"></span>getEntryTangent(point)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Get the angle of the curves entry point.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2560,23 +1943,23 @@ this value further.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2592,6 +1975,7 @@ this value further.</p>
 <span class="param-type">Object</span>
 
 
+
             
             </td>
 
@@ -2599,42 +1983,24 @@ this value further.</p>
 
             
 
-            <td class="description last"><p>The Phaser.Point object, or an Object with public <code>x</code> and <code>y</code> properties, in which the tangent vector values will be stored.</p></td>
+            <td class="description param-description last"><p>The Phaser.Point object, or an Object with public <code>x</code> and <code>y</code> properties, in which the tangent vector values will be stored.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>A Point object containing the tangent vector of this Hermite curve.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2644,57 +2010,93 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L376" title="getEntryTangent on line 376 of src/geom/Hermite.js">src/geom/Hermite.js line 376</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-376">line 376</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>A Point object containing the tangent vector of this Hermite curve.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getPoint"><span class="type-signature"></span>getPoint<span class="signature">(<span class="optional">t</span>, <span class="optional">point</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Point.html">Phaser.Point</a>}</span></h4>
-    
+    <h4 class="name" id="getPoint" data-name="getPoint">
+      <span class="type-signature"></span>getPoint( [t] [, point])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Get a point on the curve using the <code>t</code> (time) value, which must be between 0 and 1.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2702,27 +2104,27 @@ this value further.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2735,6 +2137,7 @@ this value further.</p>
 <span class="param-type">number</span>
 
 
+
             
             </td>
 
@@ -2758,10 +2161,10 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The time value along the curve from which to extract a point. This is a value between 0 and 1, where 0 represents the start of the curve and 1 the end.</p></td>
+            <td class="description param-description last"><p>The time value along the curve from which to extract a point. This is a value between 0 and 1, where 0 represents the start of the curve and 1 the end.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2775,6 +2178,7 @@ this value further.</p>
 |
 
 <span class="param-type">Object</span>
+
 
 
             
@@ -2798,42 +2202,24 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>An optional Phaser.Point, or Object containing public <code>x</code> and <code>y</code> properties. If given the resulting values will be stored in the Objects <code>x</code> and <code>y</code> properties. If omitted a new Phaser.Point object is created.</p></td>
+            <td class="description param-description last"><p>An optional Phaser.Point, or Object containing public <code>x</code> and <code>y</code> properties. If given the resulting values will be stored in the Objects <code>x</code> and <code>y</code> properties. If omitted a new Phaser.Point object is created.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>An Object with the x, y coordinate of the curve at the specified <code>t</code> value set in its <code>x</code> and <code>y</code> properties.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2843,57 +2229,93 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L276" title="getPoint on line 276 of src/geom/Hermite.js">src/geom/Hermite.js line 276</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-276">line 276</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>An Object with the x, y coordinate of the curve at the specified <code>t</code> value set in its <code>x</code> and <code>y</code> properties.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getPointWithDistance"><span class="type-signature"></span>getPointWithDistance<span class="signature">(<span class="optional">distance</span>, <span class="optional">point</span>)</span><span class="type-signature"> &rarr; {<a href="Phaser.Point.html">Phaser.Point</a>}</span></h4>
-    
+    <h4 class="name" id="getPointWithDistance" data-name="getPointWithDistance">
+      <span class="type-signature"></span>getPointWithDistance( [distance] [, point])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Get a point on the curve using the distance, in pixels, along the curve.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2901,27 +2323,27 @@ this value further.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2934,6 +2356,7 @@ this value further.</p>
 <span class="param-type">integer</span>
 
 
+
             
             </td>
 
@@ -2957,10 +2380,10 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The distance along the curve to get the point from, given in pixels.</p></td>
+            <td class="description param-description last"><p>The distance along the curve to get the point from, given in pixels.</p></td>
         </tr>
 
-	
+    
 
         <tr>
             
@@ -2976,6 +2399,7 @@ this value further.</p>
 <span class="param-type">Object</span>
 
 
+
             
             </td>
 
@@ -2997,42 +2421,24 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>An optional Phaser.Point, or Object containing public <code>x</code> and <code>y</code> properties. If given the resulting values will be stored in the Objects <code>x</code> and <code>y</code> properties. If omitted a new Phaser.Point object is created.</p></td>
+            <td class="description param-description last"><p>An optional Phaser.Point, or Object containing public <code>x</code> and <code>y</code> properties. If given the resulting values will be stored in the Objects <code>x</code> and <code>y</code> properties. If omitted a new Phaser.Point object is created.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>The point on the line at the specified 'distance' along the curve.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3042,57 +2448,93 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L309" title="getPointWithDistance on line 309 of src/geom/Hermite.js">src/geom/Hermite.js line 309</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-309">line 309</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The point on the line at the specified 'distance' along the curve.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Point.html">Phaser.Point</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getX"><span class="type-signature"></span>getX<span class="signature">(<span class="optional">t</span>)</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
+    <h4 class="name" id="getX" data-name="getX">
+      <span class="type-signature"></span>getX( [t])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Get the X component of a point on the curve based on the <code>t</code> (time) value, which must be between 0 and 1.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3100,27 +2542,27 @@ this value further.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3131,6 +2573,7 @@ this value further.</p>
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -3156,42 +2599,24 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The time value along the curve from which to extract a point. This is a value between 0 and 1, where 0 represents the start of the curve and 1 the end.</p></td>
+            <td class="description param-description last"><p>The time value along the curve from which to extract a point. This is a value between 0 and 1, where 0 represents the start of the curve and 1 the end.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">number</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>The X component of a point on the curve based on the <code>t</code> (time) value.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3201,57 +2626,93 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L210" title="getX on line 210 of src/geom/Hermite.js">src/geom/Hermite.js line 210</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-210">line 210</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The X component of a point on the curve based on the <code>t</code> (time) value.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="getY"><span class="type-signature"></span>getY<span class="signature">(<span class="optional">t</span>)</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
+    <h4 class="name" id="getY" data-name="getY">
+      <span class="type-signature"></span>getY( [t])
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Get the Y component of a point on the curve based on the <code>t</code> (time) value, which must be between 0 and 1.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3259,27 +2720,27 @@ this value further.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
-		<th>Argument</th>
-		
+        
+        <th>Argument</th>
+        
 
-		
-		<th>Default</th>
-		
+        
+        <th>Default</th>
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3290,6 +2751,7 @@ this value further.</p>
             
                 
 <span class="param-type">number</span>
+
 
 
             
@@ -3315,42 +2777,24 @@ this value further.</p>
                 </td>
             
 
-            <td class="description last"><p>The time value along the curve from which to extract a point. This is a value between 0 and 1, where 0 represents the start of the curve and 1 the end.</p></td>
+            <td class="description param-description last"><p>The time value along the curve from which to extract a point. This is a value between 0 and 1, where 0 represents the start of the curve and 1 the end.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
-    
-        <div class="returns-type">
-        
-<span class="param-type">number</span>
-
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>The Y component of a point on the curve based on the <code>t</code> (time) value.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3360,50 +2804,85 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L243" title="getY on line 243 of src/geom/Hermite.js">src/geom/Hermite.js line 243</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-243">line 243</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The Y component of a point on the curve based on the <code>t</code> (time) value.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="recalculate"><span class="type-signature"></span>recalculate<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Phaser.Hermite.html">Phaser.Hermite</a>}</span></h4>
-    
+    <h4 class="name" id="recalculate" data-name="recalculate">
+      <span class="type-signature"></span>recalculate()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Performs the curve calculations.</p>
 <p>This is called automatically if you change any of the curves public properties, such as <code>Hermite.p1x</code> or <code>Hermite.v2y</code>.</p>
 <p>If you adjust any of the internal private values, then call this to update the points.</p>
@@ -3411,38 +2890,21 @@ this value further.</p>
     
 
     
-    
-    
-    
+
     
 
     
-    <h5>Returns:</h5>
-    <div class="returns">
-        
-            
     
-        <div class="returns-type">
-        
-<span class="param-type"><a href="Phaser.Hermite.html">Phaser.Hermite</a></span>
 
- -
-        </div>
-    
-    <div class="returns-desc param-desc">
-        <p>This object.</p>
-    </div>
-
-
-        
-    </div>
-    
-    
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3452,34 +2914,69 @@ this value further.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/geom/Hermite.js#L123" title="recalculate on line 123 of src/geom/Hermite.js">src/geom/Hermite.js line 123</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_geom_Hermite.js.html">geom/Hermite.js</a>, <a href="src_geom_Hermite.js.html#sunlight-1-line-123">line 123</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>This object.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Phaser.Hermite.html">Phaser.Hermite</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
     
 </dd>
 
@@ -3495,64 +2992,62 @@ this value further.</p>
 
 
 
+</div>
+	    <footer class="footer">
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.2</a>
-		on Thu Jul 13 2017 18:15:11 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
+<p class="package-signature">
+  phaser-ce@2.9.2
+  is on
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.2">GitHub</a>
+  and
+  <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
+</p>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
 
-		} );
-	</script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
+
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on 2017-11-09
+	
+	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="toc-filter-input">
+    </div>
+  </div>
+  </div>
+  <div id="toc">
+    <div class="list-group">
+      <div id="toc-insert"></div>
+    </div>
+  </div>
+</div>
+
+    
+	</div>
+</div>
+
+<script defer src="scripts/bundle.js?2017110918"></script>
+
+
 
 </body>
 </html>

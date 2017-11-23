@@ -149,9 +149,14 @@ Phaser.Time = function (game) {
     this.suggestedFps = this.desiredFps;
 
     /**
-    * Scaling factor to make the game move smoothly in slow motion
+    * Scaling factor to make the game move smoothly in slow motion (or fast motion)
+    *
     * - 1.0 = normal speed
     * - 2.0 = half speed
+    * - 0.5 = double speed
+    *
+    * You likely need to adjust {@link #desiredFps} as well such that `desiredFps / slowMotion === 60`.
+    *
     * @property {number} slowMotion
     * @default
     */

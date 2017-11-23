@@ -2231,12 +2231,35 @@ Creature.prototype.SetAnchorPoint = function(x, y, anim_clip_name_in) {
   var target_size_x = this.boundary_max[0];
   var target_size_y = this.boundary_max[1];
 
-  if (x !== 0) {
-    target_size_x = this.boundary_max[0] - (mesh_size_x * (x));
+
+  if (x >= 0 && x !== null) {
+    target_size_x = (this.boundary_max[0] - (mesh_size_x * (x)));
+  }
+  else if (x < 0) {
+    target_size_x = -Math.abs(this.boundary_max[0] - (mesh_size_x * (Math.abs(x))));
+  }
+  else if (x === null) {
+    if (this.anchor_point_map && this.anchor_point_map[anim_clip_name_in]) {
+        target_size_x = this.anchor_point_map[anim_clip_name_in][0];
+    }
+    else {
+        target_size_x = 0;
+    }
   }
 
-  if (y !== 0) {
-    target_size_y = this.boundary_max[1] - (mesh_size_y * (y));
+  if (y >= 0 && y !== null) {
+    target_size_y = (this.boundary_max[1] - (mesh_size_y * (y)));
+  }
+  else if (y < 0) {
+    target_size_y = -Math.abs(this.boundary_max[1] - (mesh_size_y * (Math.abs(y))));
+  }
+  else if (y === null) {
+    if (this.anchor_point_map && this.anchor_point_map[anim_clip_name_in]) {
+        target_size_y = this.anchor_point_map[anim_clip_name_in][1];
+    }
+    else {
+        target_size_y = 0;
+    }
   }
 
   var anchor_point_base = {

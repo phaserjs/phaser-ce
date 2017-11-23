@@ -4,7 +4,7 @@
  */
 
 /**
-* @class PixiShader
+* @class PIXI.PixiShader
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
@@ -78,8 +78,8 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
     var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n'
     for (var index = 1; index < this.MAX_TEXTURES; ++index)
     {
-        dynamicIfs += '\tif (vTextureIndex == ' + 
-                    index + '.0) {gl_FragColor = texture2D(uSamplerArray[' + 
+        dynamicIfs += '\tif (vTextureIndex == ' +
+                    index + '.0) {gl_FragColor = texture2D(uSamplerArray[' +
                     index + '], vTextureCoord) * vColor;return;}\n'
     }
     this.fragmentSrc = [
@@ -224,7 +224,7 @@ PIXI.PixiShader.prototype.initDefaultShader = function () {
 /**
 * Initialises the shader.
 *
-* @method init
+* @method PIXI.PixiShader#init
 */
 PIXI.PixiShader.prototype.init = function(usingFilter)
 {
@@ -232,7 +232,7 @@ PIXI.PixiShader.prototype.init = function(usingFilter)
         this.initMultitexShader();
     } else {
         this.initDefaultShader();
-    }  
+    }
 };
 
 /**
@@ -241,7 +241,7 @@ PIXI.PixiShader.prototype.init = function(usingFilter)
 * Uniforms are specified in the GLSL_ES Specification: http://www.khronos.org/registry/webgl/specs/latest/1.0/
 * http://www.khronos.org/registry/gles/specs/2.0/GLSL_ES_Specification_1.0.17.pdf
 *
-* @method initUniforms
+* @method PIXI.PixiShader#initUniforms
 */
 PIXI.PixiShader.prototype.initUniforms = function()
 {
@@ -312,7 +312,7 @@ PIXI.PixiShader.prototype.initUniforms = function()
 /**
 * Initialises a Sampler2D uniform (which may only be available later on after initUniforms once the texture has loaded)
 *
-* @method initSampler2D
+* @method PIXI.PixiShader#initSampler2D
 */
 PIXI.PixiShader.prototype.initSampler2D = function(uniform)
 {
@@ -388,7 +388,7 @@ PIXI.PixiShader.prototype.initSampler2D = function(uniform)
 /**
 * Updates the shader uniform values.
 *
-* @method syncUniforms
+* @method PIXI.PixiShader#syncUniforms
 */
 PIXI.PixiShader.prototype.syncUniforms = function()
 {
@@ -455,7 +455,7 @@ PIXI.PixiShader.prototype.syncUniforms = function()
 /**
 * Destroys the shader.
 *
-* @method destroy
+* @method PIXI.PixiShader#destroy
 */
 PIXI.PixiShader.prototype.destroy = function()
 {

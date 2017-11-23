@@ -142,6 +142,20 @@ Phaser.Keyboard.prototype = {
     },
 
     /**
+    * Removes callbacks added by {@link #addCallbacks} and restores {@link #callbackContext}.
+    *
+    * @method Phaser.Keyboard#removeCallbacks
+    */
+    removeCallbacks: function () {
+
+        this.callbackContext = this;
+        this.onDownCallback = null;
+        this.onUpCallback = null;
+        this.onPressCallback = null;
+
+    },
+
+    /**
     * If you need more fine-grained control over a Key you can create a new Phaser.Key object via this method.
     * The Key object can then be polled, have events attached to it, etc.
     *

@@ -313,6 +313,7 @@ Phaser.Tilemap.prototype = {
         if (idx === null && this.format === Phaser.Tilemap.TILED_JSON)
         {
             console.warn('Phaser.Tilemap.addTilesetImage: No data found in the JSON matching the tileset name: "' + tileset + '"');
+            console.log('Tilesets: ', this.tilesets);
             return null;
         }
 
@@ -397,18 +398,21 @@ Phaser.Tilemap.prototype = {
     * @param {Phaser.Group} [group=Phaser.World] - Group to add the Sprite to. If not specified it will be added to the World group.
     * @param {object} [CustomClass=Phaser.Sprite] - If you wish to create your own class, rather than Phaser.Sprite, pass the class here. Your class must extend Phaser.Sprite and have the same constructor parameters.
     * @param {boolean} [adjustY=true] - By default the Tiled map editor uses a bottom-left coordinate system. Phaser uses top-left. So most objects will appear too low down. This parameter moves them up by their height.
+    * @param {boolean} [adjustSize=true] - By default the width and height of the objects are transferred to the sprite. This parameter controls that behavior.
     */
-    createFromObjects: function (name, gid, key, frame, exists, autoCull, group, CustomClass, adjustY) {
+    createFromObjects: function (name, gid, key, frame, exists, autoCull, group, CustomClass, adjustY, adjustSize) {
 
         if (exists === undefined) { exists = true; }
         if (autoCull === undefined) { autoCull = false; }
         if (group === undefined) { group = this.game.world; }
         if (CustomClass === undefined) { CustomClass = Phaser.Sprite; }
         if (adjustY === undefined) { adjustY = true; }
+        if (adjustSize === undefined) { adjustSize = true; }
 
         if (!this.objects[name])
         {
             console.warn('Tilemap.createFromObjects: Invalid objectgroup name given: ' + name);
+            console.log('Objects: ', this.objects);
             return;
         }
 
@@ -435,18 +439,21 @@ Phaser.Tilemap.prototype = {
                 var sprite = new CustomClass(this.game, parseFloat(obj.x, 10), parseFloat(obj.y, 10), key, frame);
 
                 sprite.name = obj.name;
-                sprite.visible = obj.visible;
                 sprite.autoCull = autoCull;
                 sprite.exists = exists;
+                sprite.visible = obj.visible;
 
-                if (obj.width)
+                if (adjustSize)
                 {
-                    sprite.width = obj.width;
-                }
+                    if (obj.width)
+                    {
+                        sprite.width = obj.width;
+                    }
 
-                if (obj.height)
-                {
-                    sprite.height = obj.height;
+                    if (obj.height)
+                    {
+                        sprite.height = obj.height;
+                    }
                 }
 
                 if (obj.rotation)
@@ -595,6 +602,7 @@ Phaser.Tilemap.prototype = {
         if (index === null || index > this.layers.length)
         {
             console.warn('Tilemap.createLayer: Invalid layer ID given: "' + layer + '"');
+            console.log('Layers: ', this.layers);
             return;
         }
 
@@ -801,15 +809,29 @@ Phaser.Tilemap.prototype = {
 
         if (typeof indexes === 'number')
         {
-            //  This may seem a bit wasteful, because it will cause empty array elements to be created, but the look-up cost is much
-            //  less than having to iterate through the callbacks array hunting down tile indexes each frame, so I'll take the small memory hit.
-            this.layers[layer].callbacks[indexes] = { callback: callback, callbackContext: callbackContext };
+            if (callback === null)
+            {
+                delete this.layers[layer].callbacks[indexes];
+            }
+            else
+            {
+                //  This may seem a bit wasteful, because it will cause empty array elements to be created, but the look-up cost is much
+                //  less than having to iterate through the callbacks array hunting down tile indexes each frame, so I'll take the small memory hit.
+                this.layers[layer].callbacks[indexes] = { callback: callback, callbackContext: callbackContext };
+            }
         }
         else
         {
             for (var i = 0, len = indexes.length; i < len; i++)
             {
-                this.layers[layer].callbacks[indexes[i]] = { callback: callback, callbackContext: callbackContext };
+                if (callback === null)
+                {
+                    delete this.layers[layer].callbacks[indexes[i]];
+                }
+                else
+                {
+                    this.layers[layer].callbacks[indexes[i]] = { callback: callback, callbackContext: callbackContext };
+                }
             }
         }
 

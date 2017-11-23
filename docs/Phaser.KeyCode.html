@@ -1,1045 +1,140 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: KeyCode · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
-	<script src="https://use.typekit.net/fmc0gtt.js"></script>
-	<script>Typekit.load()</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Phaser CE Class: KeyCode</title>
+	<link rel="stylesheet" href="styles/site.phaser.css?2017110918">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+      </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PhaserGlobal.html">PhaserGlobal</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html">Global</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.AStar.html">AStar</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PIXI.html">PIXI</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#set">set</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Class: KeyCode</h1>-->
+	<h1 class="page-title">Class: KeyCode</h1>
 <section>
 
 <header>
-    <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
     
-    KeyCode
-    </h2>
+        <h2>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
+        
+        KeyCode
+        </h2>
+        
     
 </header>
+
 
 <article>
     <div class="container-overview">
     
-
-    
         
 <dt>
-    <h4 class="name "
-        id="KeyCode"><span class="type-signature"></span>new KeyCode<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="KeyCode" data-name="KeyCode">
+      <span class="type-signature"></span>new KeyCode()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>A key code represents a physical key on a keyboard.</p>
 <p>The KeyCode class contains commonly supported keyboard key codes which can be used
 as keycode`-parameters in several <a href="Phaser.Keyboard.html">Phaser.Keyboard</a> and <a href="Phaser.Key.html">Phaser.Key</a> methods.</p>
@@ -1052,18 +147,21 @@ the latter approach is supported for compatibility.</p>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1073,34 +171,45 @@ the latter approach is supported for compatibility.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L639" title="KeyCode on line 639 of src/input/Keyboard.js">src/input/Keyboard.js line 639</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-639">line 639</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -1123,27 +232,26 @@ the latter approach is supported for compatibility.</p>
         <dl>
             
 <dt>
-    <h4 class="name "
-        id=".A"><span class="type-signature">&lt;static> </span>A<span class="type-signature"></span></h4>
+    <h4 id=".A" data-name="A">
+      <span class="type-signature">&lt;static> </span>A<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1153,49 +261,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-641">line 641</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L641" title="A on line 641 of src/input/Keyboard.js">src/input/Keyboard.js line 641</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".ALT"><span class="type-signature">&lt;static> </span>ALT<span class="type-signature"></span></h4>
+    <h4 id=".ALT" data-name="ALT">
+      <span class="type-signature">&lt;static> </span>ALT<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1205,49 +323,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-809">line 809</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L809" title="ALT on line 809 of src/input/Keyboard.js">src/input/Keyboard.js line 809</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".B"><span class="type-signature">&lt;static> </span>B<span class="type-signature"></span></h4>
+    <h4 id=".B" data-name="B">
+      <span class="type-signature">&lt;static> </span>B<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1257,49 +385,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
 
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-643">line 643</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L643" title="B on line 643 of src/input/Keyboard.js">src/input/Keyboard.js line 643</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".BACKSPACE"><span class="type-signature">&lt;static> </span>BACKSPACE<span class="type-signature"></span></h4>
+    <h4 id=".BACKSPACE" data-name="BACKSPACE">
+      <span class="type-signature">&lt;static> </span>BACKSPACE<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1309,49 +447,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-797">line 797</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L797" title="BACKSPACE on line 797 of src/input/Keyboard.js">src/input/Keyboard.js line 797</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".BACKWARD_SLASH"><span class="type-signature">&lt;static> </span>BACKWARD_SLASH<span class="type-signature"></span></h4>
+    <h4 id=".BACKWARD_SLASH" data-name="BACKWARD_SLASH">
+      <span class="type-signature">&lt;static> </span>BACKWARD_SLASH<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1361,49 +509,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-791">line 791</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L791" title="BACKWARD_SLASH on line 791 of src/input/Keyboard.js">src/input/Keyboard.js line 791</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".C"><span class="type-signature">&lt;static> </span>C<span class="type-signature"></span></h4>
+    <h4 id=".C" data-name="C">
+      <span class="type-signature">&lt;static> </span>C<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1413,49 +571,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-645">line 645</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L645" title="C on line 645 of src/input/Keyboard.js">src/input/Keyboard.js line 645</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".CAPS_LOCK"><span class="type-signature">&lt;static> </span>CAPS_LOCK<span class="type-signature"></span></h4>
+    <h4 id=".CAPS_LOCK" data-name="CAPS_LOCK">
+      <span class="type-signature">&lt;static> </span>CAPS_LOCK<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1465,49 +633,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
 
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-811">line 811</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L811" title="CAPS_LOCK on line 811 of src/input/Keyboard.js">src/input/Keyboard.js line 811</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".CLEAR"><span class="type-signature">&lt;static> </span>CLEAR<span class="type-signature"></span></h4>
+    <h4 id=".CLEAR" data-name="CLEAR">
+      <span class="type-signature">&lt;static> </span>CLEAR<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1517,49 +695,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-801">line 801</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L801" title="CLEAR on line 801 of src/input/Keyboard.js">src/input/Keyboard.js line 801</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".CLOSED_BRACKET"><span class="type-signature">&lt;static> </span>CLOSED_BRACKET<span class="type-signature"></span></h4>
+    <h4 id=".CLOSED_BRACKET" data-name="CLOSED_BRACKET">
+      <span class="type-signature">&lt;static> </span>CLOSED_BRACKET<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1569,49 +757,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-793">line 793</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L793" title="CLOSED_BRACKET on line 793 of src/input/Keyboard.js">src/input/Keyboard.js line 793</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".COLON"><span class="type-signature">&lt;static> </span>COLON<span class="type-signature"></span></h4>
+    <h4 id=".COLON" data-name="COLON">
+      <span class="type-signature">&lt;static> </span>COLON<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1621,49 +819,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-775">line 775</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L775" title="COLON on line 775 of src/input/Keyboard.js">src/input/Keyboard.js line 775</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".COMMA"><span class="type-signature">&lt;static> </span>COMMA<span class="type-signature"></span></h4>
+    <h4 id=".COMMA" data-name="COMMA">
+      <span class="type-signature">&lt;static> </span>COMMA<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1673,49 +881,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
 
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-779">line 779</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L779" title="COMMA on line 779 of src/input/Keyboard.js">src/input/Keyboard.js line 779</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".CONTROL"><span class="type-signature">&lt;static> </span>CONTROL<span class="type-signature"></span></h4>
+    <h4 id=".CONTROL" data-name="CONTROL">
+      <span class="type-signature">&lt;static> </span>CONTROL<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1725,49 +943,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-807">line 807</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L807" title="CONTROL on line 807 of src/input/Keyboard.js">src/input/Keyboard.js line 807</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".D"><span class="type-signature">&lt;static> </span>D<span class="type-signature"></span></h4>
+    <h4 id=".D" data-name="D">
+      <span class="type-signature">&lt;static> </span>D<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1777,49 +1005,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-647">line 647</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L647" title="D on line 647 of src/input/Keyboard.js">src/input/Keyboard.js line 647</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".DELETE"><span class="type-signature">&lt;static> </span>DELETE<span class="type-signature"></span></h4>
+    <h4 id=".DELETE" data-name="DELETE">
+      <span class="type-signature">&lt;static> </span>DELETE<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1829,49 +1067,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-839">line 839</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L839" title="DELETE on line 839 of src/input/Keyboard.js">src/input/Keyboard.js line 839</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".DOWN"><span class="type-signature">&lt;static> </span>DOWN<span class="type-signature"></span></h4>
+    <h4 id=".DOWN" data-name="DOWN">
+      <span class="type-signature">&lt;static> </span>DOWN<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1881,49 +1129,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-831">line 831</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L831" title="DOWN on line 831 of src/input/Keyboard.js">src/input/Keyboard.js line 831</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".E"><span class="type-signature">&lt;static> </span>E<span class="type-signature"></span></h4>
-    
+    <h4 id=".E" data-name="E">
+      <span class="type-signature">&lt;static> </span>E<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1933,49 +1191,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-649">line 649</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L649" title="E on line 649 of src/input/Keyboard.js">src/input/Keyboard.js line 649</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".EIGHT"><span class="type-signature">&lt;static> </span>EIGHT<span class="type-signature"></span></h4>
-    
+    <h4 id=".EIGHT" data-name="EIGHT">
+      <span class="type-signature">&lt;static> </span>EIGHT<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -1985,49 +1253,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-709">line 709</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L709" title="EIGHT on line 709 of src/input/Keyboard.js">src/input/Keyboard.js line 709</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".END"><span class="type-signature">&lt;static> </span>END<span class="type-signature"></span></h4>
-    
+    <h4 id=".END" data-name="END">
+      <span class="type-signature">&lt;static> </span>END<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2037,49 +1315,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-821">line 821</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L821" title="END on line 821 of src/input/Keyboard.js">src/input/Keyboard.js line 821</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".ENTER"><span class="type-signature">&lt;static> </span>ENTER<span class="type-signature"></span></h4>
-    
+    <h4 id=".ENTER" data-name="ENTER">
+      <span class="type-signature">&lt;static> </span>ENTER<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2089,49 +1377,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-803">line 803</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L803" title="ENTER on line 803 of src/input/Keyboard.js">src/input/Keyboard.js line 803</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".EQUALS"><span class="type-signature">&lt;static> </span>EQUALS<span class="type-signature"></span></h4>
-    
+    <h4 id=".EQUALS" data-name="EQUALS">
+      <span class="type-signature">&lt;static> </span>EQUALS<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2141,49 +1439,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-777">line 777</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L777" title="EQUALS on line 777 of src/input/Keyboard.js">src/input/Keyboard.js line 777</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".ESC"><span class="type-signature">&lt;static> </span>ESC<span class="type-signature"></span></h4>
-    
+    <h4 id=".ESC" data-name="ESC">
+      <span class="type-signature">&lt;static> </span>ESC<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2193,49 +1501,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-813">line 813</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L813" title="ESC on line 813 of src/input/Keyboard.js">src/input/Keyboard.js line 813</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F"><span class="type-signature">&lt;static> </span>F<span class="type-signature"></span></h4>
-    
+    <h4 id=".F" data-name="F">
+      <span class="type-signature">&lt;static> </span>F<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2245,49 +1563,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-651">line 651</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L651" title="F on line 651 of src/input/Keyboard.js">src/input/Keyboard.js line 651</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F1"><span class="type-signature">&lt;static> </span>F1<span class="type-signature"></span></h4>
-    
+    <h4 id=".F1" data-name="F1">
+      <span class="type-signature">&lt;static> </span>F1<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2297,49 +1625,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-745">line 745</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L745" title="F1 on line 745 of src/input/Keyboard.js">src/input/Keyboard.js line 745</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F2"><span class="type-signature">&lt;static> </span>F2<span class="type-signature"></span></h4>
-    
+    <h4 id=".F2" data-name="F2">
+      <span class="type-signature">&lt;static> </span>F2<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2349,49 +1687,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-747">line 747</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L747" title="F2 on line 747 of src/input/Keyboard.js">src/input/Keyboard.js line 747</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F3"><span class="type-signature">&lt;static> </span>F3<span class="type-signature"></span></h4>
-    
+    <h4 id=".F3" data-name="F3">
+      <span class="type-signature">&lt;static> </span>F3<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2401,49 +1749,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-749">line 749</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L749" title="F3 on line 749 of src/input/Keyboard.js">src/input/Keyboard.js line 749</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F4"><span class="type-signature">&lt;static> </span>F4<span class="type-signature"></span></h4>
-    
+    <h4 id=".F4" data-name="F4">
+      <span class="type-signature">&lt;static> </span>F4<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2453,49 +1811,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-751">line 751</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L751" title="F4 on line 751 of src/input/Keyboard.js">src/input/Keyboard.js line 751</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F5"><span class="type-signature">&lt;static> </span>F5<span class="type-signature"></span></h4>
-    
+    <h4 id=".F5" data-name="F5">
+      <span class="type-signature">&lt;static> </span>F5<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2505,49 +1873,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-753">line 753</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L753" title="F5 on line 753 of src/input/Keyboard.js">src/input/Keyboard.js line 753</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F6"><span class="type-signature">&lt;static> </span>F6<span class="type-signature"></span></h4>
-    
+    <h4 id=".F6" data-name="F6">
+      <span class="type-signature">&lt;static> </span>F6<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2557,49 +1935,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-755">line 755</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L755" title="F6 on line 755 of src/input/Keyboard.js">src/input/Keyboard.js line 755</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F7"><span class="type-signature">&lt;static> </span>F7<span class="type-signature"></span></h4>
-    
+    <h4 id=".F7" data-name="F7">
+      <span class="type-signature">&lt;static> </span>F7<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2609,49 +1997,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-757">line 757</a>
-    </dt>
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L757" title="F7 on line 757 of src/input/Keyboard.js">src/input/Keyboard.js line 757</a>
+    
+
+	
+
+	
+
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F8"><span class="type-signature">&lt;static> </span>F8<span class="type-signature"></span></h4>
-    
+    <h4 id=".F8" data-name="F8">
+      <span class="type-signature">&lt;static> </span>F8<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2661,49 +2059,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-759">line 759</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L759" title="F8 on line 759 of src/input/Keyboard.js">src/input/Keyboard.js line 759</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F9"><span class="type-signature">&lt;static> </span>F9<span class="type-signature"></span></h4>
-    
+    <h4 id=".F9" data-name="F9">
+      <span class="type-signature">&lt;static> </span>F9<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2713,49 +2121,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-761">line 761</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L761" title="F9 on line 761 of src/input/Keyboard.js">src/input/Keyboard.js line 761</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F10"><span class="type-signature">&lt;static> </span>F10<span class="type-signature"></span></h4>
+    <h4 id=".F10" data-name="F10">
+      <span class="type-signature">&lt;static> </span>F10<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2765,49 +2183,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-763">line 763</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L763" title="F10 on line 763 of src/input/Keyboard.js">src/input/Keyboard.js line 763</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F11"><span class="type-signature">&lt;static> </span>F11<span class="type-signature"></span></h4>
+    <h4 id=".F11" data-name="F11">
+      <span class="type-signature">&lt;static> </span>F11<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2817,49 +2245,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-765">line 765</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L765" title="F11 on line 765 of src/input/Keyboard.js">src/input/Keyboard.js line 765</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F12"><span class="type-signature">&lt;static> </span>F12<span class="type-signature"></span></h4>
-    
+    <h4 id=".F12" data-name="F12">
+      <span class="type-signature">&lt;static> </span>F12<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2869,49 +2307,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-767">line 767</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L767" title="F12 on line 767 of src/input/Keyboard.js">src/input/Keyboard.js line 767</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F13"><span class="type-signature">&lt;static> </span>F13<span class="type-signature"></span></h4>
-    
+    <h4 id=".F13" data-name="F13">
+      <span class="type-signature">&lt;static> </span>F13<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2921,49 +2369,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-769">line 769</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L769" title="F13 on line 769 of src/input/Keyboard.js">src/input/Keyboard.js line 769</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F14"><span class="type-signature">&lt;static> </span>F14<span class="type-signature"></span></h4>
+    <h4 id=".F14" data-name="F14">
+      <span class="type-signature">&lt;static> </span>F14<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -2973,49 +2431,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
 
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-771">line 771</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L771" title="F14 on line 771 of src/input/Keyboard.js">src/input/Keyboard.js line 771</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".F15"><span class="type-signature">&lt;static> </span>F15<span class="type-signature"></span></h4>
+    <h4 id=".F15" data-name="F15">
+      <span class="type-signature">&lt;static> </span>F15<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3025,49 +2493,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-773">line 773</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L773" title="F15 on line 773 of src/input/Keyboard.js">src/input/Keyboard.js line 773</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".FIVE"><span class="type-signature">&lt;static> </span>FIVE<span class="type-signature"></span></h4>
-    
+    <h4 id=".FIVE" data-name="FIVE">
+      <span class="type-signature">&lt;static> </span>FIVE<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3077,49 +2555,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-703">line 703</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L703" title="FIVE on line 703 of src/input/Keyboard.js">src/input/Keyboard.js line 703</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".FOUR"><span class="type-signature">&lt;static> </span>FOUR<span class="type-signature"></span></h4>
-    
+    <h4 id=".FOUR" data-name="FOUR">
+      <span class="type-signature">&lt;static> </span>FOUR<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3129,49 +2617,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-701">line 701</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L701" title="FOUR on line 701 of src/input/Keyboard.js">src/input/Keyboard.js line 701</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".G"><span class="type-signature">&lt;static> </span>G<span class="type-signature"></span></h4>
+    <h4 id=".G" data-name="G">
+      <span class="type-signature">&lt;static> </span>G<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3181,49 +2679,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-653">line 653</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L653" title="G on line 653 of src/input/Keyboard.js">src/input/Keyboard.js line 653</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".H"><span class="type-signature">&lt;static> </span>H<span class="type-signature"></span></h4>
+    <h4 id=".H" data-name="H">
+      <span class="type-signature">&lt;static> </span>H<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3233,49 +2741,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-655">line 655</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L655" title="H on line 655 of src/input/Keyboard.js">src/input/Keyboard.js line 655</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".HELP"><span class="type-signature">&lt;static> </span>HELP<span class="type-signature"></span></h4>
-    
+    <h4 id=".HELP" data-name="HELP">
+      <span class="type-signature">&lt;static> </span>HELP<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3285,49 +2803,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-841">line 841</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L841" title="HELP on line 841 of src/input/Keyboard.js">src/input/Keyboard.js line 841</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".HOME"><span class="type-signature">&lt;static> </span>HOME<span class="type-signature"></span></h4>
-    
+    <h4 id=".HOME" data-name="HOME">
+      <span class="type-signature">&lt;static> </span>HOME<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3337,49 +2865,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-823">line 823</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L823" title="HOME on line 823 of src/input/Keyboard.js">src/input/Keyboard.js line 823</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".I"><span class="type-signature">&lt;static> </span>I<span class="type-signature"></span></h4>
+    <h4 id=".I" data-name="I">
+      <span class="type-signature">&lt;static> </span>I<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3389,49 +2927,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-657">line 657</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L657" title="I on line 657 of src/input/Keyboard.js">src/input/Keyboard.js line 657</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".INSERT"><span class="type-signature">&lt;static> </span>INSERT<span class="type-signature"></span></h4>
-    
+    <h4 id=".INSERT" data-name="INSERT">
+      <span class="type-signature">&lt;static> </span>INSERT<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3441,49 +2989,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-837">line 837</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L837" title="INSERT on line 837 of src/input/Keyboard.js">src/input/Keyboard.js line 837</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".J"><span class="type-signature">&lt;static> </span>J<span class="type-signature"></span></h4>
+    <h4 id=".J" data-name="J">
+      <span class="type-signature">&lt;static> </span>J<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3493,49 +3051,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-659">line 659</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L659" title="J on line 659 of src/input/Keyboard.js">src/input/Keyboard.js line 659</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".K"><span class="type-signature">&lt;static> </span>K<span class="type-signature"></span></h4>
+    <h4 id=".K" data-name="K">
+      <span class="type-signature">&lt;static> </span>K<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3545,49 +3113,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-661">line 661</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L661" title="K on line 661 of src/input/Keyboard.js">src/input/Keyboard.js line 661</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".L"><span class="type-signature">&lt;static> </span>L<span class="type-signature"></span></h4>
+    <h4 id=".L" data-name="L">
+      <span class="type-signature">&lt;static> </span>L<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3597,49 +3175,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
 
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-663">line 663</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L663" title="L on line 663 of src/input/Keyboard.js">src/input/Keyboard.js line 663</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".LEFT"><span class="type-signature">&lt;static> </span>LEFT<span class="type-signature"></span></h4>
+    <h4 id=".LEFT" data-name="LEFT">
+      <span class="type-signature">&lt;static> </span>LEFT<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3649,49 +3237,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-825">line 825</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L825" title="LEFT on line 825 of src/input/Keyboard.js">src/input/Keyboard.js line 825</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".M"><span class="type-signature">&lt;static> </span>M<span class="type-signature"></span></h4>
+    <h4 id=".M" data-name="M">
+      <span class="type-signature">&lt;static> </span>M<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3701,49 +3299,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-665">line 665</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L665" title="M on line 665 of src/input/Keyboard.js">src/input/Keyboard.js line 665</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".MINUS"><span class="type-signature">&lt;static> </span>MINUS<span class="type-signature"></span></h4>
+    <h4 id=".MINUS" data-name="MINUS">
+      <span class="type-signature">&lt;static> </span>MINUS<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3753,49 +3361,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-835">line 835</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L835" title="MINUS on line 835 of src/input/Keyboard.js">src/input/Keyboard.js line 835</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".N"><span class="type-signature">&lt;static> </span>N<span class="type-signature"></span></h4>
+    <h4 id=".N" data-name="N">
+      <span class="type-signature">&lt;static> </span>N<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3805,49 +3423,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
 
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-667">line 667</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L667" title="N on line 667 of src/input/Keyboard.js">src/input/Keyboard.js line 667</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NINE"><span class="type-signature">&lt;static> </span>NINE<span class="type-signature"></span></h4>
+    <h4 id=".NINE" data-name="NINE">
+      <span class="type-signature">&lt;static> </span>NINE<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3857,49 +3485,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-711">line 711</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L711" title="NINE on line 711 of src/input/Keyboard.js">src/input/Keyboard.js line 711</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUM_LOCK"><span class="type-signature">&lt;static> </span>NUM_LOCK<span class="type-signature"></span></h4>
+    <h4 id=".NUM_LOCK" data-name="NUM_LOCK">
+      <span class="type-signature">&lt;static> </span>NUM_LOCK<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3909,49 +3547,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-843">line 843</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L843" title="NUM_LOCK on line 843 of src/input/Keyboard.js">src/input/Keyboard.js line 843</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_0"><span class="type-signature">&lt;static> </span>NUMPAD_0<span class="type-signature"></span></h4>
+    <h4 id=".NUMPAD_0" data-name="NUMPAD_0">
+      <span class="type-signature">&lt;static> </span>NUMPAD_0<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -3961,49 +3609,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-713">line 713</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L713" title="NUMPAD_0 on line 713 of src/input/Keyboard.js">src/input/Keyboard.js line 713</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_1"><span class="type-signature">&lt;static> </span>NUMPAD_1<span class="type-signature"></span></h4>
+    <h4 id=".NUMPAD_1" data-name="NUMPAD_1">
+      <span class="type-signature">&lt;static> </span>NUMPAD_1<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4013,49 +3671,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
 
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-715">line 715</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L715" title="NUMPAD_1 on line 715 of src/input/Keyboard.js">src/input/Keyboard.js line 715</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_2"><span class="type-signature">&lt;static> </span>NUMPAD_2<span class="type-signature"></span></h4>
+    <h4 id=".NUMPAD_2" data-name="NUMPAD_2">
+      <span class="type-signature">&lt;static> </span>NUMPAD_2<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4065,49 +3733,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-717">line 717</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L717" title="NUMPAD_2 on line 717 of src/input/Keyboard.js">src/input/Keyboard.js line 717</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_3"><span class="type-signature">&lt;static> </span>NUMPAD_3<span class="type-signature"></span></h4>
+    <h4 id=".NUMPAD_3" data-name="NUMPAD_3">
+      <span class="type-signature">&lt;static> </span>NUMPAD_3<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4117,49 +3795,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-719">line 719</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L719" title="NUMPAD_3 on line 719 of src/input/Keyboard.js">src/input/Keyboard.js line 719</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_4"><span class="type-signature">&lt;static> </span>NUMPAD_4<span class="type-signature"></span></h4>
+    <h4 id=".NUMPAD_4" data-name="NUMPAD_4">
+      <span class="type-signature">&lt;static> </span>NUMPAD_4<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4169,45 +3857,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-721">line 721</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L721" title="NUMPAD_4 on line 721 of src/input/Keyboard.js">src/input/Keyboard.js line 721</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_5"><span class="type-signature">&lt;static> </span>NUMPAD_5<span class="type-signature"></span></h4>
+    <h4 id=".NUMPAD_5" data-name="NUMPAD_5">
+      <span class="type-signature">&lt;static> </span>NUMPAD_5<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
+
+	
+
+	
 
-    
+	
 
     
 
@@ -4217,53 +3919,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
-    
+	
 
-    
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-723">line 723</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L723" title="NUMPAD_5 on line 723 of src/input/Keyboard.js">src/input/Keyboard.js line 723</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_6"><span class="type-signature">&lt;static> </span>NUMPAD_6<span class="type-signature"></span></h4>
-    
+    <h4 id=".NUMPAD_6" data-name="NUMPAD_6">
+      <span class="type-signature">&lt;static> </span>NUMPAD_6<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4273,49 +3981,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-725">line 725</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L725" title="NUMPAD_6 on line 725 of src/input/Keyboard.js">src/input/Keyboard.js line 725</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_7"><span class="type-signature">&lt;static> </span>NUMPAD_7<span class="type-signature"></span></h4>
-    
+    <h4 id=".NUMPAD_7" data-name="NUMPAD_7">
+      <span class="type-signature">&lt;static> </span>NUMPAD_7<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4325,49 +4043,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-727">line 727</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L727" title="NUMPAD_7 on line 727 of src/input/Keyboard.js">src/input/Keyboard.js line 727</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_8"><span class="type-signature">&lt;static> </span>NUMPAD_8<span class="type-signature"></span></h4>
-    
+    <h4 id=".NUMPAD_8" data-name="NUMPAD_8">
+      <span class="type-signature">&lt;static> </span>NUMPAD_8<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4377,49 +4105,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-729">line 729</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L729" title="NUMPAD_8 on line 729 of src/input/Keyboard.js">src/input/Keyboard.js line 729</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_9"><span class="type-signature">&lt;static> </span>NUMPAD_9<span class="type-signature"></span></h4>
-    
+    <h4 id=".NUMPAD_9" data-name="NUMPAD_9">
+      <span class="type-signature">&lt;static> </span>NUMPAD_9<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4429,49 +4167,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-731">line 731</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L731" title="NUMPAD_9 on line 731 of src/input/Keyboard.js">src/input/Keyboard.js line 731</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_ADD"><span class="type-signature">&lt;static> </span>NUMPAD_ADD<span class="type-signature"></span></h4>
-    
+    <h4 id=".NUMPAD_ADD" data-name="NUMPAD_ADD">
+      <span class="type-signature">&lt;static> </span>NUMPAD_ADD<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4481,49 +4229,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-735">line 735</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L735" title="NUMPAD_ADD on line 735 of src/input/Keyboard.js">src/input/Keyboard.js line 735</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_DECIMAL"><span class="type-signature">&lt;static> </span>NUMPAD_DECIMAL<span class="type-signature"></span></h4>
-    
+    <h4 id=".NUMPAD_DECIMAL" data-name="NUMPAD_DECIMAL">
+      <span class="type-signature">&lt;static> </span>NUMPAD_DECIMAL<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4533,49 +4291,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-741">line 741</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L741" title="NUMPAD_DECIMAL on line 741 of src/input/Keyboard.js">src/input/Keyboard.js line 741</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_DIVIDE"><span class="type-signature">&lt;static> </span>NUMPAD_DIVIDE<span class="type-signature"></span></h4>
-    
+    <h4 id=".NUMPAD_DIVIDE" data-name="NUMPAD_DIVIDE">
+      <span class="type-signature">&lt;static> </span>NUMPAD_DIVIDE<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4585,49 +4353,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-743">line 743</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L743" title="NUMPAD_DIVIDE on line 743 of src/input/Keyboard.js">src/input/Keyboard.js line 743</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_ENTER"><span class="type-signature">&lt;static> </span>NUMPAD_ENTER<span class="type-signature"></span></h4>
-    
+    <h4 id=".NUMPAD_ENTER" data-name="NUMPAD_ENTER">
+      <span class="type-signature">&lt;static> </span>NUMPAD_ENTER<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4637,49 +4415,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-737">line 737</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L737" title="NUMPAD_ENTER on line 737 of src/input/Keyboard.js">src/input/Keyboard.js line 737</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_MULTIPLY"><span class="type-signature">&lt;static> </span>NUMPAD_MULTIPLY<span class="type-signature"></span></h4>
-    
+    <h4 id=".NUMPAD_MULTIPLY" data-name="NUMPAD_MULTIPLY">
+      <span class="type-signature">&lt;static> </span>NUMPAD_MULTIPLY<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4689,49 +4477,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-733">line 733</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L733" title="NUMPAD_MULTIPLY on line 733 of src/input/Keyboard.js">src/input/Keyboard.js line 733</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NUMPAD_SUBTRACT"><span class="type-signature">&lt;static> </span>NUMPAD_SUBTRACT<span class="type-signature"></span></h4>
-    
+    <h4 id=".NUMPAD_SUBTRACT" data-name="NUMPAD_SUBTRACT">
+      <span class="type-signature">&lt;static> </span>NUMPAD_SUBTRACT<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4741,49 +4539,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-739">line 739</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L739" title="NUMPAD_SUBTRACT on line 739 of src/input/Keyboard.js">src/input/Keyboard.js line 739</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".O"><span class="type-signature">&lt;static> </span>O<span class="type-signature"></span></h4>
-    
+    <h4 id=".O" data-name="O">
+      <span class="type-signature">&lt;static> </span>O<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4793,49 +4601,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-669">line 669</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L669" title="O on line 669 of src/input/Keyboard.js">src/input/Keyboard.js line 669</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".ONE"><span class="type-signature">&lt;static> </span>ONE<span class="type-signature"></span></h4>
-    
+    <h4 id=".ONE" data-name="ONE">
+      <span class="type-signature">&lt;static> </span>ONE<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4845,49 +4663,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-695">line 695</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L695" title="ONE on line 695 of src/input/Keyboard.js">src/input/Keyboard.js line 695</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".OPEN_BRACKET"><span class="type-signature">&lt;static> </span>OPEN_BRACKET<span class="type-signature"></span></h4>
-    
+    <h4 id=".OPEN_BRACKET" data-name="OPEN_BRACKET">
+      <span class="type-signature">&lt;static> </span>OPEN_BRACKET<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -4897,42 +4725,60 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-789">line 789</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L789" title="OPEN_BRACKET on line 789 of src/input/Keyboard.js">src/input/Keyboard.js line 789</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".P"><span class="type-signature">&lt;static> </span>P<span class="type-signature"></span></h4>
-    
+    <h4 id=".P" data-name="P">
+      <span class="type-signature">&lt;static> </span>P<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
+    
+
+	
+
+	
+
+	
+
     
 
     
@@ -4940,58 +4786,60 @@ the latter approach is supported for compatibility.</p>
     
 
     
+
+	
+
+	
 
-    
+	
 
-    
+	
 
-    
+	
 
-    
 
-    
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-671">line 671</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L671" title="P on line 671 of src/input/Keyboard.js">src/input/Keyboard.js line 671</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".PAGE_DOWN"><span class="type-signature">&lt;static> </span>PAGE_DOWN<span class="type-signature"></span></h4>
+    <h4 id=".PAGE_DOWN" data-name="PAGE_DOWN">
+      <span class="type-signature">&lt;static> </span>PAGE_DOWN<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5001,49 +4849,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-819">line 819</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L819" title="PAGE_DOWN on line 819 of src/input/Keyboard.js">src/input/Keyboard.js line 819</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".PAGE_UP"><span class="type-signature">&lt;static> </span>PAGE_UP<span class="type-signature"></span></h4>
+    <h4 id=".PAGE_UP" data-name="PAGE_UP">
+      <span class="type-signature">&lt;static> </span>PAGE_UP<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5053,49 +4911,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
 
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-817">line 817</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L817" title="PAGE_UP on line 817 of src/input/Keyboard.js">src/input/Keyboard.js line 817</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".PERIOD"><span class="type-signature">&lt;static> </span>PERIOD<span class="type-signature"></span></h4>
+    <h4 id=".PERIOD" data-name="PERIOD">
+      <span class="type-signature">&lt;static> </span>PERIOD<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5105,49 +4973,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-783">line 783</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L783" title="PERIOD on line 783 of src/input/Keyboard.js">src/input/Keyboard.js line 783</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".PLUS"><span class="type-signature">&lt;static> </span>PLUS<span class="type-signature"></span></h4>
+    <h4 id=".PLUS" data-name="PLUS">
+      <span class="type-signature">&lt;static> </span>PLUS<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5157,49 +5035,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-833">line 833</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L833" title="PLUS on line 833 of src/input/Keyboard.js">src/input/Keyboard.js line 833</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".Q"><span class="type-signature">&lt;static> </span>Q<span class="type-signature"></span></h4>
+    <h4 id=".Q" data-name="Q">
+      <span class="type-signature">&lt;static> </span>Q<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5209,49 +5097,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-673">line 673</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L673" title="Q on line 673 of src/input/Keyboard.js">src/input/Keyboard.js line 673</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".QUESTION_MARK"><span class="type-signature">&lt;static> </span>QUESTION_MARK<span class="type-signature"></span></h4>
+    <h4 id=".QUESTION_MARK" data-name="QUESTION_MARK">
+      <span class="type-signature">&lt;static> </span>QUESTION_MARK<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5261,49 +5159,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
 
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-785">line 785</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L785" title="QUESTION_MARK on line 785 of src/input/Keyboard.js">src/input/Keyboard.js line 785</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".QUOTES"><span class="type-signature">&lt;static> </span>QUOTES<span class="type-signature"></span></h4>
+    <h4 id=".QUOTES" data-name="QUOTES">
+      <span class="type-signature">&lt;static> </span>QUOTES<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5313,49 +5221,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-795">line 795</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L795" title="QUOTES on line 795 of src/input/Keyboard.js">src/input/Keyboard.js line 795</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".R"><span class="type-signature">&lt;static> </span>R<span class="type-signature"></span></h4>
+    <h4 id=".R" data-name="R">
+      <span class="type-signature">&lt;static> </span>R<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5365,49 +5283,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-675">line 675</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L675" title="R on line 675 of src/input/Keyboard.js">src/input/Keyboard.js line 675</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".RIGHT"><span class="type-signature">&lt;static> </span>RIGHT<span class="type-signature"></span></h4>
+    <h4 id=".RIGHT" data-name="RIGHT">
+      <span class="type-signature">&lt;static> </span>RIGHT<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5417,49 +5345,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-829">line 829</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L829" title="RIGHT on line 829 of src/input/Keyboard.js">src/input/Keyboard.js line 829</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".S"><span class="type-signature">&lt;static> </span>S<span class="type-signature"></span></h4>
+    <h4 id=".S" data-name="S">
+      <span class="type-signature">&lt;static> </span>S<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5469,49 +5407,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
 
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-677">line 677</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L677" title="S on line 677 of src/input/Keyboard.js">src/input/Keyboard.js line 677</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".SEVEN"><span class="type-signature">&lt;static> </span>SEVEN<span class="type-signature"></span></h4>
+    <h4 id=".SEVEN" data-name="SEVEN">
+      <span class="type-signature">&lt;static> </span>SEVEN<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5521,49 +5469,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-707">line 707</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L707" title="SEVEN on line 707 of src/input/Keyboard.js">src/input/Keyboard.js line 707</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".SHIFT"><span class="type-signature">&lt;static> </span>SHIFT<span class="type-signature"></span></h4>
+    <h4 id=".SHIFT" data-name="SHIFT">
+      <span class="type-signature">&lt;static> </span>SHIFT<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5573,49 +5531,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
 
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-805">line 805</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L805" title="SHIFT on line 805 of src/input/Keyboard.js">src/input/Keyboard.js line 805</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".SIX"><span class="type-signature">&lt;static> </span>SIX<span class="type-signature"></span></h4>
+    <h4 id=".SIX" data-name="SIX">
+      <span class="type-signature">&lt;static> </span>SIX<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5625,49 +5593,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
 
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-705">line 705</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L705" title="SIX on line 705 of src/input/Keyboard.js">src/input/Keyboard.js line 705</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".SPACEBAR"><span class="type-signature">&lt;static> </span>SPACEBAR<span class="type-signature"></span></h4>
+    <h4 id=".SPACEBAR" data-name="SPACEBAR">
+      <span class="type-signature">&lt;static> </span>SPACEBAR<span class="type-signature"></span>
+      
+    </h4>
     
-    
 </dt>
 <dd>
     
 
-    
     
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5677,49 +5655,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-815">line 815</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L815" title="SPACEBAR on line 815 of src/input/Keyboard.js">src/input/Keyboard.js line 815</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".T"><span class="type-signature">&lt;static> </span>T<span class="type-signature"></span></h4>
-    
+    <h4 id=".T" data-name="T">
+      <span class="type-signature">&lt;static> </span>T<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5729,49 +5717,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-679">line 679</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L679" title="T on line 679 of src/input/Keyboard.js">src/input/Keyboard.js line 679</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".TAB"><span class="type-signature">&lt;static> </span>TAB<span class="type-signature"></span></h4>
-    
+    <h4 id=".TAB" data-name="TAB">
+      <span class="type-signature">&lt;static> </span>TAB<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5781,49 +5779,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-799">line 799</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L799" title="TAB on line 799 of src/input/Keyboard.js">src/input/Keyboard.js line 799</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".THREE"><span class="type-signature">&lt;static> </span>THREE<span class="type-signature"></span></h4>
-    
+    <h4 id=".THREE" data-name="THREE">
+      <span class="type-signature">&lt;static> </span>THREE<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5833,49 +5841,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-699">line 699</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L699" title="THREE on line 699 of src/input/Keyboard.js">src/input/Keyboard.js line 699</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".TILDE"><span class="type-signature">&lt;static> </span>TILDE<span class="type-signature"></span></h4>
-    
+    <h4 id=".TILDE" data-name="TILDE">
+      <span class="type-signature">&lt;static> </span>TILDE<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5885,49 +5903,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-787">line 787</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L787" title="TILDE on line 787 of src/input/Keyboard.js">src/input/Keyboard.js line 787</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".TWO"><span class="type-signature">&lt;static> </span>TWO<span class="type-signature"></span></h4>
-    
+    <h4 id=".TWO" data-name="TWO">
+      <span class="type-signature">&lt;static> </span>TWO<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5937,49 +5965,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-697">line 697</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L697" title="TWO on line 697 of src/input/Keyboard.js">src/input/Keyboard.js line 697</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".U"><span class="type-signature">&lt;static> </span>U<span class="type-signature"></span></h4>
-    
+    <h4 id=".U" data-name="U">
+      <span class="type-signature">&lt;static> </span>U<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -5989,49 +6027,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-681">line 681</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L681" title="U on line 681 of src/input/Keyboard.js">src/input/Keyboard.js line 681</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".UNDERSCORE"><span class="type-signature">&lt;static> </span>UNDERSCORE<span class="type-signature"></span></h4>
-    
+    <h4 id=".UNDERSCORE" data-name="UNDERSCORE">
+      <span class="type-signature">&lt;static> </span>UNDERSCORE<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -6041,49 +6089,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-781">line 781</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L781" title="UNDERSCORE on line 781 of src/input/Keyboard.js">src/input/Keyboard.js line 781</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".UP"><span class="type-signature">&lt;static> </span>UP<span class="type-signature"></span></h4>
-    
+    <h4 id=".UP" data-name="UP">
+      <span class="type-signature">&lt;static> </span>UP<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -6093,49 +6151,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-827">line 827</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L827" title="UP on line 827 of src/input/Keyboard.js">src/input/Keyboard.js line 827</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".V"><span class="type-signature">&lt;static> </span>V<span class="type-signature"></span></h4>
-    
+    <h4 id=".V" data-name="V">
+      <span class="type-signature">&lt;static> </span>V<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -6145,49 +6213,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-683">line 683</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L683" title="V on line 683 of src/input/Keyboard.js">src/input/Keyboard.js line 683</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".W"><span class="type-signature">&lt;static> </span>W<span class="type-signature"></span></h4>
-    
+    <h4 id=".W" data-name="W">
+      <span class="type-signature">&lt;static> </span>W<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -6197,49 +6275,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-685">line 685</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L685" title="W on line 685 of src/input/Keyboard.js">src/input/Keyboard.js line 685</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".X"><span class="type-signature">&lt;static> </span>X<span class="type-signature"></span></h4>
-    
+    <h4 id=".X" data-name="X">
+      <span class="type-signature">&lt;static> </span>X<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -6249,49 +6337,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
 
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-687">line 687</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L687" title="X on line 687 of src/input/Keyboard.js">src/input/Keyboard.js line 687</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".Y"><span class="type-signature">&lt;static> </span>Y<span class="type-signature"></span></h4>
-    
+    <h4 id=".Y" data-name="Y">
+      <span class="type-signature">&lt;static> </span>Y<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -6301,49 +6399,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
+
+
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-689">line 689</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L689" title="Y on line 689 of src/input/Keyboard.js">src/input/Keyboard.js line 689</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".Z"><span class="type-signature">&lt;static> </span>Z<span class="type-signature"></span></h4>
-    
+    <h4 id=".Z" data-name="Z">
+      <span class="type-signature">&lt;static> </span>Z<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
-    
-    
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -6353,49 +6461,59 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
+
+	
+
+	
 
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-691">line 691</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L691" title="Z on line 691 of src/input/Keyboard.js">src/input/Keyboard.js line 691</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".ZERO"><span class="type-signature">&lt;static> </span>ZERO<span class="type-signature"></span></h4>
-    
+    <h4 id=".ZERO" data-name="ZERO">
+      <span class="type-signature">&lt;static> </span>ZERO<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
+	
 
     
 
@@ -6405,22 +6523,33 @@ the latter approach is supported for compatibility.</p>
 
     
 
-    
+	
+
+	
+
+	
 
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Keyboard.js.html">input/Keyboard.js</a>, <a href="src_input_Keyboard.js.html#sunlight-1-line-693">line 693</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Keyboard.js#L693" title="ZERO on line 693 of src/input/Keyboard.js">src/input/Keyboard.js line 693</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -6438,64 +6567,62 @@ the latter approach is supported for compatibility.</p>
 
 
 
+</div>
+	    <footer class="footer">
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.2</a>
-		on Thu Jul 13 2017 18:15:11 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
+<p class="package-signature">
+  phaser-ce@2.9.2
+  is on
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.2">GitHub</a>
+  and
+  <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
+</p>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
 
-		} );
-	</script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
+
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on 2017-11-09
+	
+	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="toc-filter-input">
+    </div>
+  </div>
+  </div>
+  <div id="toc">
+    <div class="list-group">
+      <div id="toc-insert"></div>
+    </div>
+  </div>
+</div>
+
+    
+	</div>
+</div>
+
+<script defer src="scripts/bundle.js?2017110918"></script>
+
+
 
 </body>
 </html>

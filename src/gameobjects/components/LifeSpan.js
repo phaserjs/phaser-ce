@@ -19,6 +19,12 @@ Phaser.Component.LifeSpan = function () {};
  */
 Phaser.Component.LifeSpan.preUpdate = function () {
 
+    if (this.pendingDestroy)
+    {
+        this.destroy();
+        return false;
+    }
+
     if (this.lifespan > 0)
     {
         this.lifespan -= this.game.time.physicsElapsedMS;

@@ -448,32 +448,34 @@ Phaser.Timer.prototype = {
         {
             while (this._i < this._len && this.running)
             {
-                if (this._now >= this.events[this._i].tick && !this.events[this._i].pendingDelete)
+                var event = this.events[this._i];
+
+                if (this._now >= event.tick && !event.pendingDelete)
                 {
                     //  (now + delay) - (time difference from last tick to now)
-                    this._newTick = (this._now + this.events[this._i].delay) - (this._now - this.events[this._i].tick);
+                    this._newTick = (this._now + event.delay) - (this._now - event.tick);
 
                     if (this._newTick < 0)
                     {
-                        this._newTick = this._now + this.events[this._i].delay;
+                        this._newTick = this._now + event.delay;
                     }
 
-                    if (this.events[this._i].loop === true)
+                    if (event.loop === true)
                     {
-                        this.events[this._i].tick = this._newTick;
-                        this.events[this._i].callback.apply(this.events[this._i].callbackContext, this.events[this._i].args);
+                        event.tick = this._newTick;
+                        event.callback.apply(event.callbackContext, event.args);
                     }
-                    else if (this.events[this._i].repeatCount > 0)
+                    else if (event.repeatCount > 0)
                     {
-                        this.events[this._i].repeatCount--;
-                        this.events[this._i].tick = this._newTick;
-                        this.events[this._i].callback.apply(this.events[this._i].callbackContext, this.events[this._i].args);
+                        event.repeatCount--;
+                        event.tick = this._newTick;
+                        event.callback.apply(event.callbackContext, event.args);
                     }
                     else
                     {
                         this._marked++;
-                        this.events[this._i].pendingDelete = true;
-                        this.events[this._i].callback.apply(this.events[this._i].callbackContext, this.events[this._i].args);
+                        event.pendingDelete = true;
+                        event.callback.apply(event.callbackContext, event.args);
                     }
 
                     this._i++;
@@ -629,7 +631,7 @@ Phaser.Timer.prototype = {
     },
 
     /**
-    * Removes all Events from this Timer and all callbacks linked to onComplete, but leaves the Timer running.    
+    * Removes all Events from this Timer and all callbacks linked to onComplete, but leaves the Timer running.
     * The onComplete callbacks won't be called.
     *
     * @method Phaser.Timer#removeAll

@@ -722,7 +722,7 @@ Phaser.Loader.prototype = {
     *
     * The texture path object looks like this:
     *
-    * ```
+    * ```javascript
     * load.image('factory', {
     *     etc1: 'assets/factory_etc1.pkm',
     *     s3tc: 'assets/factory_dxt1.pvr',
@@ -782,7 +782,7 @@ Phaser.Loader.prototype = {
     *
     * The texture path object looks like this:
     *
-    * ```
+    * ```javascript
     * load.texture('factory', {
     *     etc1: 'assets/factory_etc1.pkm',
     *     s3tc: 'assets/factory_dxt1.pvr',
@@ -2558,7 +2558,7 @@ Phaser.Loader.prototype = {
     *
     * This is designed specifically to use with asset file processing.
     *
-    * @method Phaser.Loader#xhrLoad
+    * @method Phaser.Loader#xhrLoadWithXDR
     * @private
     * @param {object} file - The file/pack to load.
     * @param {string} url - The URL of the file.

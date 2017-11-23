@@ -1,71 +1,80 @@
 {
-    "tags": {
-        "allowUnknownTags": true
-    },
-    "source": {
-        "include": [
-            "./docs/pixi-jsdoc.js",
-            "./src/Phaser.js",
-            "./src/animation/",
-            "./src/core/",
-            "./src/gameobjects/",
-            "./src/geom/",
-            "./src/input/",
-            "./src/loader/",
-            "./src/math/",
-            "./src/net/",
-            "./src/particles/",
-            "./src/physics/",
-            "./src/plugins/",
-            "./src/sound/",
-            "./src/tilemap/",
-            "./src/time/",
-            "./src/tween/",
-            "./src/utils/",
-            "./out/plugins/"
-        ],
-        "exclude": [
-            "./src/physics/p2/p2.js",
-            "./src/animation/creature/"
-        ],
-        "includePattern": ".+\\.js(doc)?$",
-        "excludePattern": "(^|\\/|\\\\)_"
-    },
-    "plugins": [
-        "./tasks/jsdoc-plugins/namealias",
-        "./tasks/jsdoc-plugins/filterpixi",
-        "./tasks/jsdoc-plugins/proptomember",
-        "./tasks/jsdoc-plugins/sourceproxy",
-        "./tasks/jsdoc-plugins/shortlinks",
-        "plugins/markdown"
+  "markdown": {
+    "hardwrap": false,
+    "parser": "gfm"
+  },
+  "opts": {
+    "debug": true,
+    "destination": "./docs",
+    "encoding": "utf8",
+    "lenient": true,
+    "mainpagetitle": "API",
+    "private": false,
+    "readme": "./DOCS.md",
+    "recurse": true,
+    "template": "./resources/docstrap-master/template"
+  },
+  "plugins": [
+    "./tasks/jsdoc-plugins/namealias",
+    "./tasks/jsdoc-plugins/proptomember",
+    "./tasks/jsdoc-plugins/shortlinks",
+    "plugins/markdown"
+  ],
+  "source": {
+    "exclude": [
+      "./src/physics/p2/p2.js",
+      "./src/pixi/Intro.js",
+      "./src/pixi/Outro.js",
+      "./src/animation/creature/"
     ],
-    "templates": {
-        "cleverLinks"     : false,
-        "monospaceLinks"  : false,
-        "default"         : {
-            "outputSourceFiles" : true
-        },
-        "systemName"      : "Phaser CE",
-        "footer"          : "",
-        "copyright"       : "Phaser Copyright © 2012-2016 Photon Storm Ltd.",
-        "navType"         : "vertical",
-        "theme"           : "cerulean",
-        "linenums"        : true,
-        "collapseSymbols" : false,
-        "inverseNav"      : true
-    },
-    "markdown"  : {
-        "parser"   : "gfm",
-        "hardwrap" : false
-    },
-    "opts": {
-        "encoding": "utf8",
-        "recurse": true,
-        "private": false,
-        "lenient": true,
-        "destination": "./docs",
-        "template": "./resources/docstrap-master/template",
-        "readme": "./DOCS.md",
-        "mainpagetitle": "API"
-    }
+    "excludePattern": "(^|\\/|\\\\)_",
+    "include": [
+      "./package.json",
+      "./src/Phaser.js",
+      "./src/PhaserGlobal.js",
+      "./src/animation/",
+      "./src/core/",
+      "./src/gameobjects/",
+      "./src/geom/",
+      "./src/input/",
+      "./src/loader/",
+      "./src/math/",
+      "./src/net/",
+      "./src/particles/",
+      "./src/physics/",
+      "./src/pixi/",
+      "./src/plugins/",
+      "./src/sound/",
+      "./src/tilemap/",
+      "./src/time/",
+      "./src/tween/",
+      "./src/utils/"
+    ],
+    "includePattern": ".+\\.js(doc)?$"
+  },
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "templates": {
+    "cleverLinks": false,
+    "collapseSymbols": false,
+    "copyright": "Phaser Copyright © 2012-2016 Photon Storm Ltd.",
+    "dateFormat": "YYYY-MM-DD",
+    "disablePackagePath": true,
+    "footer": "",
+    "inverseNav": true,
+    "linenums": true,
+    "logoFile": "",
+    "methodHeadingReturns": false,
+    "monospaceLinks": false,
+    "navType": "vertical",
+    "outputSourceFiles": false,
+    "outputSourcePath": true,
+    "protocol": "html://",
+    "search": false,
+    "sourceLinkFormat": "https://github.com/photonstorm/phaser-ce/blob/v%s/%s#L%s",
+    "sourceRootPath": "./",
+    "systemName": "Phaser CE",
+    "theme": "phaser"
+  }
 }

@@ -6,21 +6,21 @@
 
 /**
 * The Events component is a collection of events fired by the parent Game Object.
-* 
+*
 * Phaser uses what are known as 'Signals' for all event handling. All of the events in
 * this class are signals you can subscribe to, much in the same way you'd "listen" for
 * an event.
 *
 * For example to tell when a Sprite has been added to a new group, you can bind a function
-* to the `onAddedToGroup` signal:
+* to the {@link #onAddedToGroup} signal:
 *
 * `sprite.events.onAddedToGroup.add(yourFunction, this);`
 *
 * Where `yourFunction` is the function you want called when this event occurs.
-* 
-* For more details about how signals work please see the Phaser.Signal class.
 *
-* The Input-related events will only be dispatched if the Sprite has had `inputEnabled` set to `true`
+* For more details about how signals work please see the {@link Phaser.Signal} class.
+*
+* The Input-related events will only be dispatched if the Sprite has had {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`
 * and the Animation-related events only apply to game objects with animations like {@link Phaser.Sprite}.
 *
 * @class Phaser.Events
@@ -52,7 +52,6 @@ Phaser.Events.prototype = {
         if (this._onDestroy)           { this._onDestroy.dispose(); }
         if (this._onAddedToGroup)      { this._onAddedToGroup.dispose(); }
         if (this._onRemovedFromGroup)  { this._onRemovedFromGroup.dispose(); }
-        if (this._onRemovedFromWorld)  { this._onRemovedFromWorld.dispose(); }
         if (this._onKilled)            { this._onKilled.dispose(); }
         if (this._onRevived)           { this._onRevived.dispose(); }
         if (this._onEnterBounds)       { this._onEnterBounds.dispose(); }
@@ -75,186 +74,213 @@ Phaser.Events.prototype = {
     // The following properties are sentinels that will be replaced with getters
 
     /**
-    * This signal is dispatched when this Game Object is added to a new Group.
+    * This signal is dispatched when this Game Object is added to a new {@link Phaser.Group Group}.
     * It is sent two arguments:
-    * {any} The Game Object that was added to the Group.
-    * {Phaser.Group} The Group it was added to.
+    *
+    * - {any} The Game Object that was added to the Group.
+    * - {Phaser.Group} The Group it was added to.
+    *
     * @property {Phaser.Signal} onAddedToGroup
     */
     onAddedToGroup: null,
 
     /**
-    * This signal is dispatched when the Game Object is removed from a Group.
+    * This signal is dispatched when the Game Object is removed from a {@link Phaser.Group Group}.
     * It is sent two arguments:
-    * {any} The Game Object that was removed from the Group.
-    * {Phaser.Group} The Group it was removed from.
+    *
+    * - {any} The Game Object that was removed from the Group.
+    * - {Phaser.Group} The Group it was removed from.
+    *
     * @property {Phaser.Signal} onRemovedFromGroup
     */
     onRemovedFromGroup: null,
 
     /**
-    * This Signal is never used internally by Phaser and is now deprecated.
-    * @deprecated
-    * @property {Phaser.Signal} onRemovedFromWorld
-    */
-    onRemovedFromWorld: null,
-
-    /**
     * This signal is dispatched when the Game Object is destroyed.
-    * This happens when `Sprite.destroy()` is called, or `Group.destroy()` with `destroyChildren` set to true.
+    * This happens when {@link Phaser.Sprite#destroy Sprite.destroy()} is called, or {@link Phaser.Group#destroy Group.destroy()} with `destroyChildren` set to true.
     * It is sent one argument:
-    * {any} The Game Object that was destroyed.
+    *
+    * - {any} The Game Object that was destroyed.
+    *
     * @property {Phaser.Signal} onDestroy
     */
     onDestroy: null,
 
     /**
     * This signal is dispatched when the Game Object is killed.
-    * This happens when `Sprite.kill()` is called.
-    * Please understand the difference between `kill` and `destroy` by looking at their respective methods.
+    * This happens when {@link Phaser.Sprite#kill Sprite.kill()} is called.
+    * Please understand the difference between {@link Phaser.Sprite#kill kill} and {@link Phaser.Sprite#destroy destroy} by looking at their respective methods.
     * It is sent one argument:
-    * {any} The Game Object that was killed.
+    *
+    * - {any} The Game Object that was killed.
+    *
     * @property {Phaser.Signal} onKilled
     */
     onKilled: null,
 
     /**
     * This signal is dispatched when the Game Object is revived from a previously killed state.
-    * This happens when `Sprite.revive()` is called.
+    * This happens when {@link Phaser.Sprite#revive Sprite.revive()} is called.
     * It is sent one argument:
-    * {any} The Game Object that was revived.
+    *
+    * - {any} The Game Object that was revived.
+    *
     * @property {Phaser.Signal} onRevived
     */
     onRevived: null,
 
     /**
-    * This signal is dispatched when the Game Object leaves the Phaser.World bounds.
-    * This signal is only if `Sprite.checkWorldBounds` is set to `true`.
+    * This signal is dispatched when the Game Object leaves the Phaser.World {@link Phaser.World#bounds bounds}.
+    * This signal is only if {@link Phaser.Sprite#checkWorldBounds Sprite.checkWorldBounds} is set to `true`.
     * It is sent one argument:
-    * {any} The Game Object that left the World bounds.
+    *
+    * - {any} The Game Object that left the World bounds.
+    *
     * @property {Phaser.Signal} onOutOfBounds
     */
     onOutOfBounds: null,
 
     /**
-    * This signal is dispatched when the Game Object returns within the Phaser.World bounds, having previously been outside of them.
-    * This signal is only if `Sprite.checkWorldBounds` is set to `true`.
+    * This signal is dispatched when the Game Object returns within the Phaser.World {@link Phaser.World#bounds bounds}, having previously been outside of them.
+    * This signal is only if {@link Phaser.Sprite#checkWorldBounds Sprite.checkWorldBounds} is set to `true`.
     * It is sent one argument:
-    * {any} The Game Object that entered the World bounds.
+    *
+    * - {any} The Game Object that entered the World bounds.
+    *
     * @property {Phaser.Signal} onEnterBounds
     */
     onEnterBounds: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives an over event from a Phaser.Pointer.
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives an over event from a {@link Phaser.Pointer}.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onInputOver
     */
     onInputOver: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives an out event from a Phaser.Pointer, which was previously over it.
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives an out event from a {@link Phaser.Pointer}, which was previously over it.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onInputOut
     */
     onInputOut: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives a down event from a Phaser.Pointer. This effectively means the Pointer has been
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives a down event from a {@link Phaser.Pointer}. This effectively means the Pointer has been
     * pressed down (but not yet released) on the Game Object.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onInputDown
     */
     onInputDown: null,
 
     /**
-    * This signal is dispatched if the Game Object has `inputEnabled` set to `true`, 
-    * and receives an up event from a Phaser.Pointer. This effectively means the Pointer had been
+    * This signal is dispatched if the Game Object has {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} set to `true`,
+    * and receives an up event from a {@link Phaser.Pointer}. This effectively means the Pointer had been
     * pressed down, and was then released on the Game Object.
     * It is sent three arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
-    * {boolean} isOver - Is the Pointer still over the Game Object?
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    * - {boolean} isOver - Is the Pointer still over the Game Object?
+    *
     * @property {Phaser.Signal} onInputUp
     */
     onInputUp: null,
 
     /**
-    * This signal is dispatched if the Game Object has been `inputEnabled` and `enableDrag` has been set.
-    * It is sent when a Phaser.Pointer starts to drag the Game Object, taking into consideration the various
+    * This signal is dispatched if the Game Object has been {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} and {@link Phaser.InputHandler#enableDrag enableDrag} has been set.
+    * It is sent when a {@link Phaser.Pointer} starts to drag the Game Object, taking into consideration the various
     * drag limitations that may be set.
     * It is sent four arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
-    * {number} The x coordinate that the drag started from.
-    * {number} The y coordinate that the drag started from.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    * - {number} The x coordinate that the drag started from.
+    * - {number} The y coordinate that the drag started from.
+    *
     * @property {Phaser.Signal} onDragStart
     */
     onDragStart: null,
 
     /**
-    * This signal is dispatched if the Game Object has been `inputEnabled` and `enableDrag` has been set.
-    * It is sent when a Phaser.Pointer is actively dragging the Game Object.
+    * This signal is dispatched if the Game Object has been {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} and {@link Phaser.InputHandler#enableDrag enableDrag} has been set.
+    * It is sent when a {@link Phaser.Pointer} is actively dragging the Game Object.
     * Be warned: This is a high volume Signal. Be careful what you bind to it.
     * It is sent six arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
-    * {number} The new x coordinate of the Game Object.
-    * {number} The new y coordinate of the Game Object.
-    * {Phaser.Point} A Point object that contains the point the Game Object was snapped to, if `snapOnDrag` has been enabled.
-    * {boolean} The `fromStart` boolean, indicates if this is the first update immediately after the drag has started.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    * - {number} The new x coordinate of the Game Object.
+    * - {number} The new y coordinate of the Game Object.
+    * - {Phaser.Point} A Point object that contains the point the Game Object was snapped to, if `snapOnDrag` has been enabled.
+    * - {boolean} The `fromStart` boolean, indicates if this is the first update immediately after the drag has started.
+    *
     * @property {Phaser.Signal} onDragUpdate
     */
     onDragUpdate: null,
 
     /**
-    * This signal is dispatched if the Game Object has been `inputEnabled` and `enableDrag` has been set.
-    * It is sent when a Phaser.Pointer stops dragging the Game Object.
+    * This signal is dispatched if the Game Object has been {@link Phaser.Component.InputEnabled#inputEnabled inputEnabled} and {@link Phaser.InputHandler#enableDrag enableDrag} has been set.
+    * It is sent when a {@link Phaser.Pointer} stops dragging the Game Object.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Pointer} The Phaser.Pointer object that caused the event.
+    *
     * @property {Phaser.Signal} onDragStop
     */
     onDragStop: null,
 
     /**
-    * This signal is dispatched if the Game Object has the AnimationManager component, 
+    * This signal is dispatched if the Game Object has the {@link Phaser.AnimationManager AnimationManager} component,
     * and an Animation has been played.
-    * You can also listen to `Animation.onStart` rather than via the Game Objects events.
+    * You can also listen to {@link Phaser.Animation#onStart} rather than via the Game Objects events.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Animation} The Phaser.Animation that was started.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Animation} The Phaser.Animation that was started.
+    *
     * @property {Phaser.Signal} onAnimationStart
     */
     onAnimationStart: null,
 
     /**
-    * This signal is dispatched if the Game Object has the AnimationManager component, 
-    * and an Animation has been stopped (via `animation.stop()` and the `dispatchComplete` argument has been set.
-    * You can also listen to `Animation.onComplete` rather than via the Game Objects events.
+    * This signal is dispatched if the Game Object has the {@link Phaser.AnimationManager AnimationManager} component,
+    * and an Animation has been stopped (via {@link Phaser.AnimationManager#stop animation.stop()} and the `dispatchComplete` argument has been set.
+    * You can also listen to {@link Phaser.Animation#onComplete} rather than via the Game Objects events.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Animation} The Phaser.Animation that was stopped.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Animation} The Phaser.Animation that was stopped.
+    *
     * @property {Phaser.Signal} onAnimationComplete
     */
     onAnimationComplete: null,
 
     /**
-    * This signal is dispatched if the Game Object has the AnimationManager component, 
+    * This signal is dispatched if the Game Object has the {@link Phaser.AnimationManager AnimationManager} component,
     * and an Animation has looped playback.
-    * You can also listen to `Animation.onLoop` rather than via the Game Objects events.
+    * You can also listen to {@link Phaser.Animation#onLoop} rather than via the Game Objects events.
     * It is sent two arguments:
-    * {any} The Game Object that received the event.
-    * {Phaser.Animation} The Phaser.Animation that looped.
+    *
+    * - {any} The Game Object that received the event.
+    * - {Phaser.Animation} The Phaser.Animation that looped.
+    *
     * @property {Phaser.Signal} onAnimationLoop
     */
     onAnimationLoop: null

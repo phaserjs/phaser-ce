@@ -290,7 +290,7 @@ Phaser.BitmapText.prototype.scanLine = function (data, scale, text) {
             if (maxWidth && ((w + c) >= maxWidth) && lastSpace > -1)
             {
                 //  The last space was at "lastSpace" which was "i - lastSpace" characters ago
-                return { width: wrappedWidth || w, text: text.substr(0, i - (i - lastSpace)), end: end, chars: chars };
+                return { width: wrappedWidth || w, text: text.substr(0, i - (i - lastSpace)), end: false, chars: chars };
             }
             else
             {

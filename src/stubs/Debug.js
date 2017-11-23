@@ -9,6 +9,9 @@
 * It allows you to exclude the default Debug from your build, without making Game crash.
 */
 
+/**
+* No-operation for Phaser Debug stub.
+*/
 var debugNoop = function () {};
 
 Phaser.Utils.Debug = debugNoop;

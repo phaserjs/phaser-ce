@@ -4,7 +4,6 @@
     },
     "source": {
         "include": [
-            "./docs/pixi-jsdoc.js",
             "./src/Phaser.js",
             "./src/animation/",
             "./src/core/",
@@ -16,15 +15,19 @@
             "./src/net/",
             "./src/particles/",
             "./src/physics/",
+            "./src/pixi/",
+            "./src/plugins/",
             "./src/sound/",
             "./src/tilemap/",
             "./src/time/",
             "./src/tween/",
-            "./src/utils/",
-            "./out/plugins/"
+            "./src/utils/"
         ],
         "exclude": [
-            "./src/physics/p2/p2.js"
+            "./src/physics/p2/p2.js",
+            "./src/pixi/Intro.js",
+            "./src/pixi/Outro.js",
+            "./src/animation/creature/"
         ],
         "includePattern": ".+\\.js(doc)?$",
         "excludePattern": "(^|\\/|\\\\)_"

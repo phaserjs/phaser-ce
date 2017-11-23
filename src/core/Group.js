@@ -93,7 +93,7 @@ Phaser.Group = function (game, parent, name, addToStage, enableBody, physicsBody
     this.alive = true;
 
     /**
-    * If exists is false the group will be excluded from collision checks and filters such as {@link #forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link #visible} and will still call `update` on its children.
+    * If exists is false the group will be excluded from collision checks and filters such as {@link #forEachExists}. The group will not call `preUpdate` and `postUpdate` on its children and the children will not receive physics updates or camera/world boundary checks. The group will still be {@link #visible} and will still call `update` on its children (unless {@link #updateOnlyExistingChildren} is true).
     * @property {boolean} exists
     * @default
     */
@@ -630,9 +630,11 @@ Phaser.Group.prototype.create = function (x, y, key, frame, exists, index) {
 * @param {string|array} key - The Cache key of the image that the Sprites will use. Or an Array of keys. See the description for details on how the quantity applies when arrays are used.
 * @param {integer|string|array} [frame=0] - If the Sprite image contains multiple frames you can specify which one to use here. Or an Array of frames. See the description for details on how the quantity applies when arrays are used.
 * @param {boolean} [exists=false] - The default exists state of the Sprite.
+* @param {function} [callback] - The function that will be called for each applicable child. It will be passed the new child and the loop index (0 through quantity - 1).
+* @param {object} [callbackContext] - The context in which the function should be called (usually 'this'). The default context is the new child.
 * @return {array} An array containing all of the Sprites that were created.
 */
-Phaser.Group.prototype.createMultiple = function (quantity, key, frame, exists) {
+Phaser.Group.prototype.createMultiple = function (quantity, key, frame, exists, callback, callbackContext) {
 
     if (frame === undefined) { frame = 0; }
     if (exists === undefined) { exists = false; }
@@ -656,7 +658,11 @@ Phaser.Group.prototype.createMultiple = function (quantity, key, frame, exists) 
 
             for (var i = 0; i < quantity; i++)
             {
-                children.push(_this.create(0, 0, singleKey, singleFrame, exists));
+                var child = _this.create(0, 0, singleKey, singleFrame, exists);
+
+                if (callback) { callback.call(callbackContext || child, child, i); }
+
+                children.push(child);
             }
 
         });
@@ -1497,6 +1503,19 @@ Phaser.Group.prototype.divideAll = function (property, amount, checkAlive, check
 };
 
 /**
+ * Sets {@link #alive}, {@link #exists}, and {@link #visible} to false.
+ *
+ * @method Phaser.Group#kill
+ */
+Phaser.Group.prototype.kill = function () {
+
+    this.alive = false;
+    this.exists = false;
+    this.visible = false;
+
+};
+
+/**
  * Kills all children having exists=true.
  *
  * @method Phaser.Group#killAll
@@ -1504,6 +1523,19 @@ Phaser.Group.prototype.divideAll = function (property, amount, checkAlive, check
 Phaser.Group.prototype.killAll = function () {
 
     this.callAllExists('kill', true);
+
+};
+
+/**
+ * Sets {@link #alive}, {@link #exists}, and {@link #visible} to true.
+ *
+ * @method Phaser.Group#revive
+ */
+Phaser.Group.prototype.revive = function () {
+
+    this.alive = true;
+    this.exists = true;
+    this.visible = true;
 
 };
 
@@ -1710,6 +1742,7 @@ Phaser.Group.prototype.preUpdate = function () {
         return false;
     }
 
+    // This chunk is identical to Phaser.Component.Core.prototype.preUpdateChildren, which is not yet defined.
     // This can't loop in reverse, we need the renderOrderID to be in sequence
     var i = 0;
 
@@ -2173,6 +2206,20 @@ Phaser.Group.prototype.iterate = function (key, value, returnType, callback, cal
 };
 
 /**
+* Get the first display object with the given property name and value.
+*
+* @method Phaser.Group#getFirst
+* @param {string} key - The child property to check.
+* @param {string} value - A child matches if `child[key] === value` is true.
+* @return {DisplayObject} The first child matching the query, or `null` if none were found.
+*/
+Phaser.Group.prototype.getFirst = function (key, value) {
+
+    return this.iterate(key, value, Phaser.Group.RETURN_CHILD);
+
+};
+
+/**
 * Get the first display object that exists, or doesn't exist.
 *
 * You can use the optional argument `createIfNull` to create a new Game Object if none matching your exists argument were found in this Group.
@@ -2200,7 +2247,7 @@ Phaser.Group.prototype.getFirstExists = function (exists, createIfNull, x, y, ke
         exists = true;
     }
 
-    var child = this.iterate('exists', exists, Phaser.Group.RETURN_CHILD);
+    var child = this.getFirst('exists', exists);
 
     return (child === null && createIfNull) ? this.create(x, y, key, frame) : this.resetChild(child, x, y, key, frame);
 
@@ -2230,7 +2277,7 @@ Phaser.Group.prototype.getFirstAlive = function (createIfNull, x, y, key, frame)
 
     if (createIfNull === undefined) { createIfNull = false; }
 
-    var child = this.iterate('alive', true, Phaser.Group.RETURN_CHILD);
+    var child = this.getFirst('alive', true);
 
     return (child === null && createIfNull) ? this.create(x, y, key, frame) : this.resetChild(child, x, y, key, frame);
 
@@ -2260,7 +2307,7 @@ Phaser.Group.prototype.getFirstDead = function (createIfNull, x, y, key, frame) 
 
     if (createIfNull === undefined) { createIfNull = false; }
 
-    var child = this.iterate('alive', false, Phaser.Group.RETURN_CHILD);
+    var child = this.getFirst('alive', false);
 
     return (child === null && createIfNull) ? this.create(x, y, key, frame) : this.resetChild(child, x, y, key, frame);
 
@@ -2428,6 +2475,20 @@ Phaser.Group.prototype.getFurthestFrom = function (object, callback, callbackCon
 };
 
 /**
+* Get the number of children with the given property name and value.
+*
+* @method Phaser.Group#count
+* @param {string} key - The child property to check.
+* @param {string} value - A child matches if `child[key] === value` is true.
+* @return {integer} The number of children matching the query.
+*/
+Phaser.Group.prototype.count = function (key, value) {
+
+    return this.iterate(key, value, Phaser.Group.RETURN_TOTAL);
+
+};
+
+/**
 * Get the number of living children in this group.
 *
 * @method Phaser.Group#countLiving
@@ -2435,7 +2496,7 @@ Phaser.Group.prototype.getFurthestFrom = function (object, callback, callbackCon
 */
 Phaser.Group.prototype.countLiving = function () {
 
-    return this.iterate('alive', true, Phaser.Group.RETURN_TOTAL);
+    return this.count('alive', true);
 
 };
 
@@ -2447,7 +2508,7 @@ Phaser.Group.prototype.countLiving = function () {
 */
 Phaser.Group.prototype.countDead = function () {
 
-    return this.iterate('alive', false, Phaser.Group.RETURN_TOTAL);
+    return this.count('alive', false);
 
 };
 
@@ -3100,11 +3161,30 @@ Object.defineProperty(Phaser.Group.prototype, "bottom", {
 //  This function is set at the bottom of src/gameobjects/components/Bounds.js
 
 /**
-* A display object is any object that can be rendered in the Phaser/pixi.js scene graph.
+* A display object is any object that can be rendered in the Phaser/pixi.js scene graph:
 *
-* This includes {@link Phaser.Group} (groups are display objects!),
-* {@link Phaser.Sprite}, {@link Phaser.Button}, {@link Phaser.Text}
-* as well as {@link PIXI.DisplayObject} and all derived types.
+* - {@link PIXI.DisplayObject}
+*   - {@link PIXI.DisplayObjectContainer}
+*     - {@link Phaser.BitmapText}
+*     - {@link Phaser.Creature}
+*     - {@link Phaser.Graphics}
+*     - {@link Phaser.Group}
+*       - {@link Phaser.FlexLayer}
+*       - {@link Phaser.Particles.Arcade.Emitter}
+*       - {@link Phaser.Physics.P2.BodyDebug}
+*       - {@link Phaser.SpriteBatch}
+*       - {@link Phaser.World}
+*     - {@link Phaser.Rope}
+*     - {@link Phaser.Stage}
+*     - {@link PIXI.Sprite}
+*       - {@link Phaser.Image}
+*         - {@link Phaser.Button}
+*       - {@link Phaser.Sprite}
+*         - {@link Phaser.Bullet}
+*         - {@link Phaser.Particle}
+*         - {@link Phaser.Text}
+*         - {@link Phaser.TilemapLayer}
+*       - {@link Phaser.TileSprite}
 *
 * @typedef {object} DisplayObject
 */

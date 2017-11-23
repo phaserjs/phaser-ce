@@ -7,7 +7,7 @@
 
 /**
 * Creates a Ellipse object. A curve on a plane surrounding two focal points.
-* 
+*
 * @class Phaser.Ellipse
 * @constructor
 * @param {number} [x=0] - The X coordinate of the upper-left corner of the framing rectangle of this ellipse.
@@ -74,7 +74,7 @@ Phaser.Ellipse.prototype = {
 
     /**
     * Returns the framing rectangle of the ellipse as a Phaser.Rectangle object.
-    * 
+    *
     * @method Phaser.Ellipse#getBounds
     * @return {Phaser.Rectangle} The bounds of the Ellipse.
     */
@@ -86,7 +86,7 @@ Phaser.Ellipse.prototype = {
 
     /**
     * Copies the x, y, width and height properties from any given object to this Ellipse.
-    * 
+    *
     * @method Phaser.Ellipse#copyFrom
     * @param {any} source - The object to copy from.
     * @return {Phaser.Ellipse} This Ellipse object.
@@ -137,7 +137,7 @@ Phaser.Ellipse.prototype = {
 
     /**
     * Return true if the given x/y coordinates are within this Ellipse object.
-    * 
+    *
     * @method Phaser.Ellipse#contains
     * @param {number} x - The X value of the coordinate to test.
     * @param {number} y - The Y value of the coordinate to test.
@@ -151,7 +151,7 @@ Phaser.Ellipse.prototype = {
 
     /**
     * Returns a uniformly distributed random point from anywhere within this Ellipse.
-    * 
+    *
     * @method Phaser.Ellipse#random
     * @param {Phaser.Point|object} [out] - A Phaser.Point, or any object with public x/y properties, that the values will be set in.
     *     If no object is provided a new Phaser.Point object will be created. In high performance areas avoid this by re-using an existing object.
@@ -298,7 +298,7 @@ Object.defineProperty(Phaser.Ellipse.prototype, "empty", {
 
 /**
 * Return true if the given x/y coordinates are within the Ellipse object.
-* 
+*
 * @method Phaser.Ellipse.contains
 * @param {Phaser.Ellipse} a - The Ellipse to be checked.
 * @param {number} x - The X value of the coordinate to test.
@@ -306,21 +306,67 @@ Object.defineProperty(Phaser.Ellipse.prototype, "empty", {
 * @return {boolean} True if the coordinates are within this ellipse, otherwise false.
 */
 Phaser.Ellipse.contains = function (a, x, y) {
- 
+
     if (a.width <= 0 || a.height <= 0) {
         return false;
     }
- 
+
     //  Normalize the coords to an ellipse with center 0,0 and a radius of 0.5
     var normx = ((x - a.x) / a.width) - 0.5;
     var normy = ((y - a.y) / a.height) - 0.5;
- 
+
     normx *= normx;
     normy *= normy;
- 
+
     return (normx + normy < 0.25);
- 
+
 };
+
+/**
+* Checks if the given Ellipse and Line objects intersect.
+* @method Phaser.Ellipse.intersectsLine
+* @param {Phaser.Ellipse} e - The Ellipse object to test.
+* @param {Phaser.Line} l - The Line object to test.
+* @param {boolean} [returnPoints] - optional Array Object, Return an array of intersection points if true, otherwise return boolean.
+* @return {boolean} True if the two objects intersect, otherwise false.
+*/
+Phaser.Ellipse.intersectsLine = function (e, l, returnPoints) {
+    var h = e.x;
+    var k = e.y;
+    var m = ((l.end.y - l.start.y) / (l.end.x - l.start.x));
+    var n = l.end.y - (m * l.end.x);
+    var a = e.width / 2;
+    var b = e.height / 2;
+    var del = n + m * h;
+
+    var x0 = (h * (b * b) - m * (a * a) * (n - k) + a * b * (Math.sqrt((a * a) * (m * m) + (b * b) - (del * del) - (k * k) + (2 * del * k)))) / ((a * a) * (m * m) + (b * b));
+    var x1 = (h * (b * b) - m * (a * a) * (n - k) - a * b * (Math.sqrt((a * a) * (m * m) + (b * b) - (del * del) - (k * k) + (2 * del * k)))) / ((a * a) * (m * m) + (b * b));
+
+    var y0 = m * x0 + n;
+    var y1 = m * x1 + n;
+    var p0 = new Phaser.Point(x0, y0);
+    var p1 = new Phaser.Point(x1, y1);
+    var p0Exists = l.pointOnSegment(p0.x, p0.y, 0.01);
+    var p1Exists = l.pointOnSegment(p1.x, p1.y, 0.01);
+
+    if (p0Exists && p1Exists)
+    {
+        return returnPoints ? [p0, p1] : true;
+    }
+    else if (p0Exists)
+    {
+        return returnPoints ? [p0] : true;
+    }
+    else if (p1Exists)
+    {
+        return returnPoints ? [p1] : true;
+    }
+    else
+    {
+        return returnPoints ? [] : false;
+    }
+};
+
 
 //   Because PIXI uses its own Ellipse, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Ellipse = Phaser.Ellipse;

@@ -36,7 +36,7 @@ Phaser.Physics.P2.BodyDebug = function(game, body, settings) {
         alpha: 0.5
     };
 
-    this.settings = Phaser.Utils.extend(defaultSettings, settings);
+    this.settings = Object.assign(defaultSettings, settings);
 
     /**
     * @property {number} ppu - Pixels per Length Unit.
@@ -67,7 +67,7 @@ Phaser.Physics.P2.BodyDebug = function(game, body, settings) {
 Phaser.Physics.P2.BodyDebug.prototype = Object.create(Phaser.Group.prototype);
 Phaser.Physics.P2.BodyDebug.prototype.constructor = Phaser.Physics.P2.BodyDebug;
 
-Phaser.Utils.extend(Phaser.Physics.P2.BodyDebug.prototype, {
+Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
 
     /**
     * Core update.

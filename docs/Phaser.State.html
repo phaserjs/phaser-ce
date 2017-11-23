@@ -1,1045 +1,140 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: State · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
-	<script src="https://use.typekit.net/fmc0gtt.js"></script>
-	<script>Typekit.load()</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Phaser CE Class: State</title>
+	<link rel="stylesheet" href="styles/site.phaser.css?2017110918">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+      </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PhaserGlobal.html">PhaserGlobal</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html">Global</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.AStar.html">AStar</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PIXI.html">PIXI</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#set">set</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Class: State</h1>-->
+	<h1 class="page-title">Class: State</h1>
 <section>
 
 <header>
-    <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
     
-    State
-    </h2>
+        <h2>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
+        
+        State
+        </h2>
+        
     
 </header>
+
 
 <article>
     <div class="container-overview">
     
-
-    
         
 <dt>
-    <h4 class="name "
-        id="State"><span class="type-signature"></span>new State<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="State" data-name="State">
+      <span class="type-signature"></span>new State()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This is a base State class which can be extended if you are creating your own game.
 It provides quick access to common functions such as the camera, cache, input, match, sound and more.</p>
 <h4>Callbacks</h4><table>
@@ -1085,7 +180,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 <td></td>
 <td>loadRender*</td>
 <td>render*</td>
-<td>pauseRender*</td>
+<td>render*</td>
 <td></td>
 </tr>
 <tr>
@@ -1105,22 +200,26 @@ It provides quick access to common functions such as the camera, cache, input, m
 </tbody>
 </table>
 <p>Update and render calls (*) are repeated.</p>
+<p>If your State has a constructor, it will be invoked exactly once, during Phaser.StateManager#add.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1130,34 +229,45 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L30" title="State on line 30 of src/core/State.js">src/core/State.js line 30</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-28">line 28</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -1180,27 +290,41 @@ It provides quick access to common functions such as the camera, cache, input, m
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="add"><span class="type-signature"></span>add<span class="type-signature"> :<a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></span></h4>
-    
+    <h4 id="add" data-name="add">
+      <span class="type-signature"></span>add<span class="type-signature"> : <a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the GameObjectFactory which can be used to add new objects to the World.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1210,53 +334,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L45" title="add on line 45 of src/core/State.js">src/core/State.js line 45</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-43">line 43</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="cache"><span class="type-signature"></span>cache<span class="type-signature"> :<a href="Phaser.Cache.html">Phaser.Cache</a></span></h4>
-    
+    <h4 id="cache" data-name="cache">
+      <span class="type-signature"></span>cache<span class="type-signature"> : <a href="Phaser.Cache.html">Phaser.Cache</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the game cache which contains any loaded or generated assets, such as images, sound and more.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Cache.html">Phaser.Cache</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1266,53 +411,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L60" title="cache on line 60 of src/core/State.js">src/core/State.js line 60</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-58">line 58</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="camera"><span class="type-signature"></span>camera<span class="type-signature"> :<a href="Phaser.Camera.html">Phaser.Camera</a></span></h4>
-    
+    <h4 id="camera" data-name="camera">
+      <span class="type-signature"></span>camera<span class="type-signature"> : <a href="Phaser.Camera.html">Phaser.Camera</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A handy reference to World.camera.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Camera.html">Phaser.Camera</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1322,53 +488,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L55" title="camera on line 55 of src/core/State.js">src/core/State.js line 55</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-53">line 53</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
-    
+    <h4 id="game" data-name="game">
+      <span class="type-signature"></span>game<span class="type-signature"> : <a href="Phaser.Game.html">Phaser.Game</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This is a reference to the currently running Game.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1378,53 +565,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L35" title="game on line 35 of src/core/State.js">src/core/State.js line 35</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-33">line 33</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="input"><span class="type-signature"></span>input<span class="type-signature"> :<a href="Phaser.Input.html">Phaser.Input</a></span></h4>
-    
+    <h4 id="input" data-name="input">
+      <span class="type-signature"></span>input<span class="type-signature"> : <a href="Phaser.Input.html">Phaser.Input</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the Input Manager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Input.html">Phaser.Input</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1434,53 +642,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L65" title="input on line 65 of src/core/State.js">src/core/State.js line 65</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-63">line 63</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="key"><span class="type-signature"></span>key<span class="type-signature"> :string</span></h4>
-    
+    <h4 id="key" data-name="key">
+      <span class="type-signature"></span>key<span class="type-signature"> : string</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The string based identifier given to the State when added into the State Manager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1490,53 +719,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L40" title="key on line 40 of src/core/State.js">src/core/State.js line 40</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-38">line 38</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="load"><span class="type-signature"></span>load<span class="type-signature"> :<a href="Phaser.Loader.html">Phaser.Loader</a></span></h4>
-    
+    <h4 id="load" data-name="load">
+      <span class="type-signature"></span>load<span class="type-signature"> : <a href="Phaser.Loader.html">Phaser.Loader</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the Loader, which you mostly use in the preload method of your state to load external assets.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Loader.html">Phaser.Loader</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1546,53 +796,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L70" title="load on line 70 of src/core/State.js">src/core/State.js line 70</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-68">line 68</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="make"><span class="type-signature"></span>make<span class="type-signature"> :<a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></span></h4>
-    
+    <h4 id="make" data-name="make">
+      <span class="type-signature"></span>make<span class="type-signature"> : <a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the GameObjectCreator which can be used to make new objects.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1602,53 +873,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L50" title="make on line 50 of src/core/State.js">src/core/State.js line 50</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-48">line 48</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="math"><span class="type-signature"></span>math<span class="type-signature"> :<a href="Phaser.Math.html">Phaser.Math</a></span></h4>
-    
+    <h4 id="math" data-name="math">
+      <span class="type-signature"></span>math<span class="type-signature"> : <a href="Phaser.Math.html">Phaser.Math</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to Math class with lots of helpful functions.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Math.html">Phaser.Math</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1658,53 +950,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L75" title="math on line 75 of src/core/State.js">src/core/State.js line 75</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-73">line 73</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="particles"><span class="type-signature"></span>particles<span class="type-signature"> :<a href="Phaser.Particles.html">Phaser.Particles</a></span></h4>
-    
+    <h4 id="particles" data-name="particles">
+      <span class="type-signature"></span>particles<span class="type-signature"> : <a href="Phaser.Particles.html">Phaser.Particles</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The Particle Manager. It is called during the core gameloop and updates any Particle Emitters it has created.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Particles.html">Phaser.Particles</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1714,53 +1027,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L115" title="particles on line 115 of src/core/State.js">src/core/State.js line 115</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-113">line 113</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="physics"><span class="type-signature"></span>physics<span class="type-signature"> :<a href="Phaser.Physics.html">Phaser.Physics</a></span></h4>
-    
+    <h4 id="physics" data-name="physics">
+      <span class="type-signature"></span>physics<span class="type-signature"> : <a href="Phaser.Physics.html">Phaser.Physics</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the physics manager which looks after the different physics systems available within Phaser.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Physics.html">Phaser.Physics</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1770,53 +1104,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L120" title="physics on line 120 of src/core/State.js">src/core/State.js line 120</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-118">line 118</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="rnd"><span class="type-signature"></span>rnd<span class="type-signature"> :<a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></span></h4>
-    
+    <h4 id="rnd" data-name="rnd">
+      <span class="type-signature"></span>rnd<span class="type-signature"> : <a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the seeded and repeatable random data generator.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1826,53 +1181,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L125" title="rnd on line 125 of src/core/State.js">src/core/State.js line 125</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-123">line 123</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="scale"><span class="type-signature"></span>scale<span class="type-signature"> :<a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></span></h4>
-    
+    <h4 id="scale" data-name="scale">
+      <span class="type-signature"></span>scale<span class="type-signature"> : <a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the Scale Manager which controls the way the game scales on different displays.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1882,53 +1258,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L85" title="scale on line 85 of src/core/State.js">src/core/State.js line 85</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-83">line 83</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="sound"><span class="type-signature"></span>sound<span class="type-signature"> :<a href="Phaser.SoundManager.html">Phaser.SoundManager</a></span></h4>
-    
+    <h4 id="sound" data-name="sound">
+      <span class="type-signature"></span>sound<span class="type-signature"> : <a href="Phaser.SoundManager.html">Phaser.SoundManager</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the Sound Manager which can create, play and stop sounds, as well as adjust global volume.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1938,53 +1335,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L80" title="sound on line 80 of src/core/State.js">src/core/State.js line 80</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-78">line 78</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="stage"><span class="type-signature"></span>stage<span class="type-signature"> :<a href="Phaser.Stage.html">Phaser.Stage</a></span></h4>
-    
+    <h4 id="stage" data-name="stage">
+      <span class="type-signature"></span>stage<span class="type-signature"> : <a href="Phaser.Stage.html">Phaser.Stage</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the Stage.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Stage.html">Phaser.Stage</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1994,71 +1412,77 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L90" title="stage on line 90 of src/core/State.js">src/core/State.js line 90</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-88">line 88</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="state"><span class="type-signature"></span>state<span class="type-signature"></span></h4>
-    
+    <h4 id="state" data-name="state">
+      <span class="type-signature"></span>state<span class="type-signature"></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
-    
 
     
 <dl class="details">
     
 
-        <h5 class="subsection-title">Properties:</h5>
+    <h5 class="subsection-title">Properties:</h5>
 
-        <dl>
+    <dl>
 
 <table class="props table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2071,6 +1495,7 @@ It provides quick access to common functions such as the camera, cache, input, m
 <span class="param-type"><a href="Phaser.StateManager.html">Phaser.StateManager</a></span>
 
 
+
             
             </td>
 
@@ -2078,17 +1503,21 @@ It provides quick access to common functions such as the camera, cache, input, m
 
             
 
-            <td class="description last"><p>A reference to the State Manager, which controls state changes.</p></td>
+            <td class="description prop-description last"><p>A reference to the State Manager, which controls state changes.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 </dl>
 
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2098,53 +1527,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L95" title="state on line 95 of src/core/State.js">src/core/State.js line 95</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-93">line 93</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="time"><span class="type-signature"></span>time<span class="type-signature"> :<a href="Phaser.Time.html">Phaser.Time</a></span></h4>
-    
+    <h4 id="time" data-name="time">
+      <span class="type-signature"></span>time<span class="type-signature"> : <a href="Phaser.Time.html">Phaser.Time</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the game clock and timed events system.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Time.html">Phaser.Time</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2154,53 +1604,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L100" title="time on line 100 of src/core/State.js">src/core/State.js line 100</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-98">line 98</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="tweens"><span class="type-signature"></span>tweens<span class="type-signature"> :<a href="Phaser.TweenManager.html">Phaser.TweenManager</a></span></h4>
-    
+    <h4 id="tweens" data-name="tweens">
+      <span class="type-signature"></span>tweens<span class="type-signature"> : <a href="Phaser.TweenManager.html">Phaser.TweenManager</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the tween manager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2210,53 +1681,74 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L105" title="tweens on line 105 of src/core/State.js">src/core/State.js line 105</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-103">line 103</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="world"><span class="type-signature"></span>world<span class="type-signature"> :<a href="Phaser.World.html">Phaser.World</a></span></h4>
-    
+    <h4 id="world" data-name="world">
+      <span class="type-signature"></span>world<span class="type-signature"> : <a href="Phaser.World.html">Phaser.World</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the game world. All objects live in the Game World and its size is not bound by the display resolution.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.World.html">Phaser.World</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2266,26 +1758,33 @@ It provides quick access to common functions such as the camera, cache, input, m
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L110" title="world on line 110 of src/core/State.js">src/core/State.js line 110</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-108">line 108</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -2298,34 +1797,87 @@ It provides quick access to common functions such as the camera, cache, input, m
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="create"><span class="type-signature"></span>create<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="create" data-name="create">
+      <span class="type-signature"></span>create(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>create is called once preload has completed, this includes the loading of any assets from the Loader.
 If you don't have a preload method then create is the first method called in your State.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2335,50 +1887,61 @@ If you don't have a preload method then create is the first method called in you
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L172" title="create on line 172 of src/core/State.js">src/core/State.js line 172</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-166">line 166</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="init"><span class="type-signature"></span>init<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="init" data-name="init">
+      <span class="type-signature"></span>init(args)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>init is the very first function called when your State starts up. It's called before preload, create or anything else.
 If you need to route the game away to another State you could do so here, or if you need to prepare a set of variables
 or objects before the preloading starts.</p>
@@ -2386,18 +1949,83 @@ or objects before the preloading starts.</p>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description param-description last"><p>Any extra arguments passed to <a href="Phaser.StateManager.html#start">Phaser.StateManager#start</a> or <a href="Phaser.StateManager.html#restart">Phaser.StateManager#restart</a>.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2407,68 +2035,132 @@ or objects before the preloading starts.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L131" title="init on line 131 of src/core/State.js">src/core/State.js line 131</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-129">line 129</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="loadRender"><span class="type-signature"></span>loadRender<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="loadRender" data-name="loadRender">
+      <span class="type-signature"></span>loadRender(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>loadRender is called during the Loader process. This only happens if you've set one or more assets to load in the preload method.
 The difference between loadRender and render is that any objects you render in this method you must be sure their assets exist.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2478,67 +2170,131 @@ The difference between loadRender and render is that any objects you render in t
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L162" title="loadRender on line 162 of src/core/State.js">src/core/State.js line 162</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-157">line 157</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="loadUpdate"><span class="type-signature"></span>loadUpdate<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="loadUpdate" data-name="loadUpdate">
+      <span class="type-signature"></span>loadUpdate(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>loadUpdate is called during the Loader process. This only happens if you've set one or more assets to load in the preload method.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2548,67 +2304,131 @@ The difference between loadRender and render is that any objects you render in t
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L153" title="loadUpdate on line 153 of src/core/State.js">src/core/State.js line 153</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-149">line 149</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="paused"><span class="type-signature"></span>paused<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="paused" data-name="paused">
+      <span class="type-signature"></span>paused(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This method will be called if the core game loop is paused.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2618,67 +2438,131 @@ The difference between loadRender and render is that any objects you render in t
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L224" title="paused on line 224 of src/core/State.js">src/core/State.js line 224</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-211">line 211</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="pauseUpdate"><span class="type-signature"></span>pauseUpdate<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="pauseUpdate" data-name="pauseUpdate">
+      <span class="type-signature"></span>pauseUpdate(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>pauseUpdate is called while the game is paused instead of preUpdate, update and postUpdate.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2688,50 +2572,61 @@ The difference between loadRender and render is that any objects you render in t
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L242" title="pauseUpdate on line 242 of src/core/State.js">src/core/State.js line 242</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-227">line 227</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="preload"><span class="type-signature"></span>preload<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="preload" data-name="preload">
+      <span class="type-signature"></span>preload(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>preload is called first. Normally you'd use this to load your game assets (or those needed for the current State)
 You shouldn't create any objects in this method that require assets that you're also loading in this method, as
 they won't yet be available.</p>
@@ -2739,18 +2634,71 @@ they won't yet be available.</p>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2760,67 +2708,155 @@ they won't yet be available.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L142" title="preload on line 142 of src/core/State.js">src/core/State.js line 142</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-139">line 139</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="preRender"><span class="type-signature"></span>preRender<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="preRender" data-name="preRender">
+      <span class="type-signature"></span>preRender(game, elapsedTime)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The preRender method is called after all Game Objects have been updated, but before any rendering takes place.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>elapsedTime</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2830,50 +2866,61 @@ they won't yet be available.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L193" title="preRender on line 193 of src/core/State.js">src/core/State.js line 193</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-185">line 185</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="render"><span class="type-signature"></span>render<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="render" data-name="render">
+      <span class="type-signature"></span>render(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Nearly all display objects in Phaser render automatically, you don't need to tell them to render.
 However the render method is called AFTER the game renderer and plugins have rendered, so you're able to do any
 final post-processing style effects here. Note that this happens before plugins postRender takes place.</p>
@@ -2881,18 +2928,71 @@ final post-processing style effects here. Note that this happens before plugins 
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2902,67 +3002,155 @@ final post-processing style effects here. Note that this happens before plugins 
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L203" title="render on line 203 of src/core/State.js">src/core/State.js line 203</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-193">line 193</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="resize"><span class="type-signature"></span>resize<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="resize" data-name="resize">
+      <span class="type-signature"></span>resize(width, height)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>If your game is set to Scalemode RESIZE then each time the browser resizes it will call this function, passing in the new width and height.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2972,67 +3160,131 @@ final post-processing style effects here. Note that this happens before plugins 
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L214" title="resize on line 214 of src/core/State.js">src/core/State.js line 214</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-203">line 203</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="resumed"><span class="type-signature"></span>resumed<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="resumed" data-name="resumed">
+      <span class="type-signature"></span>resumed(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This method will be called when the core game loop resumes from a paused state.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3042,67 +3294,131 @@ final post-processing style effects here. Note that this happens before plugins 
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L233" title="resumed on line 233 of src/core/State.js">src/core/State.js line 233</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-219">line 219</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="shutdown"><span class="type-signature"></span>shutdown<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="shutdown" data-name="shutdown">
+      <span class="type-signature"></span>shutdown(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>This method will be called when the State is shutdown (i.e. you switch to another state from this one).</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3112,50 +3428,61 @@ final post-processing style effects here. Note that this happens before plugins 
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L251" title="shutdown on line 251 of src/core/State.js">src/core/State.js line 251</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-235">line 235</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="update"><span class="type-signature"></span>update<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="update" data-name="update">
+      <span class="type-signature"></span>update(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The update method is left empty for your own use.
 It is called during the core game loop AFTER debug, physics, plugins and the Stage have had their preUpdate methods called.
 It is called BEFORE Stage, Tweens, Sounds, Input, Physics, Particles and Plugins have had their postUpdate methods called.</p>
@@ -3163,18 +3490,71 @@ It is called BEFORE Stage, Tweens, Sounds, Input, Physics, Particles and Plugins
     
 
     
-    
-    
-    
+
     
 
     
     
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3184,34 +3564,45 @@ It is called BEFORE Stage, Tweens, Sounds, Input, Physics, Particles and Plugins
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/core/State.js#L182" title="update on line 182 of src/core/State.js">src/core/State.js line 182</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_core_State.js.html">core/State.js</a>, <a href="src_core_State.js.html#sunlight-1-line-175">line 175</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -3227,64 +3618,62 @@ It is called BEFORE Stage, Tweens, Sounds, Input, Physics, Particles and Plugins
 
 
 
+</div>
+	    <footer class="footer">
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.2</a>
-		on Thu Jul 13 2017 18:15:15 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
+<p class="package-signature">
+  phaser-ce@2.9.2
+  is on
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.2">GitHub</a>
+  and
+  <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
+</p>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
 
-		} );
-	</script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
+
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on 2017-11-09
+	
+	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="toc-filter-input">
+    </div>
+  </div>
+  </div>
+  <div id="toc">
+    <div class="list-group">
+      <div id="toc-insert"></div>
+    </div>
+  </div>
+</div>
+
+    
+	</div>
+</div>
+
+<script defer src="scripts/bundle.js?2017110918"></script>
+
+
 
 </body>
 </html>

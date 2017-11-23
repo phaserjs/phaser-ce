@@ -1,0 +1,43 @@
+{
+  "name": "ink-docstrap",
+  "version": "2.0.0",
+  "decription": "A template for JSDoc3 based on Bootstrap and Bootswatch",
+  "devDependencies": {
+    "async": "^2.5.0",
+    "grunt": "~1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-less": "~1.4.0",
+    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-shell": "^2.1.0",
+    "jsdoc": "^3.5.4",
+    "lodash": "^4.17.4",
+    "request": "^2.74.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "bootstrap",
+    "bootswatch",
+    "docstrap",
+    "documentation",
+    "jsdoc",
+    "jsdoc3",
+    "theme"
+  ],
+  "author": {
+    "email": "me@terryweiss.net",
+    "name": "Terry Weiss"
+  },
+  "bugs": {
+    "url": "https://github.com/docstrap/docstrap/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/docstrap/docstrap.git"
+  },
+  "main": "./template/publish.js",
+  "dependencies": {
+    "moment": "^2.14.1",
+    "sanitize-html": "^1.13.0"
+  }
+}

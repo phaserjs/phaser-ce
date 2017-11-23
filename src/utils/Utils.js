@@ -25,16 +25,109 @@ Phaser.Utils = {
     },
 
     /**
+    * Gets an object's property by string.
+    *
+    * @method Phaser.Utils.getProperty
+    * @param {object} obj - The object to traverse.
+    * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
+    * @return {any} - The value of the property or `undefined` if the property isn't found.
+    */
+    getProperty: function(obj, name) {
+
+        var parts = name.split('.');
+
+        switch (parts.length)
+        {
+            case 1:
+                return obj[name];
+            case 2:
+                return obj[parts[0]][parts[1]];
+            case 3:
+                return obj[parts[0]][parts[1]][parts[2]];
+            case 4:
+                return obj[parts[0]][parts[1]][parts[2]][parts[3]];
+            default:
+                return this._getProperty(obj, name);
+        }
+
+    },
+
+    /**
+     * Sets an object's properties from a map of property names and values.
+     *
+     * ```javascript
+     * Phaser.Utils.setProperties(sprite, {
+     *  'animations.paused': true,
+     *  'body.enable': false,
+     *  'input.draggable': true,
+     * });
+     * ```
+     *
+     * @method Phaser.Utils.setProperties
+     * @param  {object} obj - The object to modify.
+     * @param  {object} props - The property names and values to set on the object (see {@link #setProperty}).
+     * @return {object} The modified object.
+     */
+    setProperties: function(obj, props) {
+
+        for (var name in props)
+        {
+            this.setProperty(obj, name, props[name]);
+        }
+
+        return obj;
+
+    },
+
+    /**
+     * Sets an object's property by name and value.
+     *
+     * ```javascript
+     * Phaser.Utils.setProperty(sprite, 'body.velocity.x', 60);
+     * ```
+     *
+     * @method Phaser.Utils.setProperty
+     * @param {object} obj - The object to modify.
+     * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
+     * @param {any} value - The value.
+     * @return {object} The modified object.
+     */
+
+    setProperty: function(obj, name, value) {
+
+        var parts = name.split('.');
+
+        switch (parts.length)
+        {
+            case 1:
+                obj[name] = value;
+                break;
+            case 2:
+                obj[parts[0]][parts[1]] = value;
+                break;
+            case 3:
+                obj[parts[0]][parts[1]][parts[2]] = value;
+                break;
+            case 4:
+                obj[parts[0]][parts[1]][parts[2]][parts[3]] = value;
+                break;
+            default:
+                this._setProperty(obj, name, value);
+        }
+    },
+
+    /**
      * Gets an object's property by string.
      *
-     * @method Phaser.Utils.getProperty
+     * @private
+     * @method Phaser.Utils._getProperty
      * @param {object} obj - The object to traverse.
-     * @param {string} prop - The property whose value will be returned.
+     * @param {string} name - The property whose value will be returned.
      * @return {any} - The value of the property or `undefined` if the property isn't found.
      */
-    getProperty: function(obj, prop) {
+    _getProperty: function(obj, name) {
 
-        var parts = prop.split('.'),
+        var parts = name.split('.'),
             len = parts.length,
             i = 0,
             val = obj;
@@ -59,30 +152,37 @@ Phaser.Utils = {
     },
 
     /**
-     * Sets an objects property by string.
+     * Sets an object's property by name and value.
      *
-     * @method Phaser.Utils.setProperty
-     * @param {object} obj - The object to traverse
-     * @param {string} prop - The property whose value will be changed
-     * @return {object} The object on which the property was set.
+     * @private
+     * @method Phaser.Utils._setProperty
+     * @param {object} obj - The object to modify.
+     * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
+     * @param {any} value - The value.
+     * @return {object} The modified object.
      */
-    setProperty: function(obj, prop, value) {
+    _setProperty: function(obj, name, value) {
 
-        var parts = prop.split('.'),
-            last = parts.pop(),
-            l = parts.length,
-            i = 1,
-            current = parts[0];
+        var parts = name.split('.'),
+            len = parts.length,
+            i = 0,
+            currentObj = obj,
+            key = parts[0];
 
-        while (i < l && (obj = obj[current]))
+        if (len === 1)
         {
-            current = parts[i];
-            i++;
+            obj[name] = value;
         }
-
-        if (obj)
+        else
         {
-            obj[last] = value;
+            while (i < (len - 1))
+            {
+                currentObj = currentObj[key];
+                i++;
+                key = parts[i];
+            }
+
+            currentObj[key] = value;
         }
 
         return obj;

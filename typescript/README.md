@@ -1,30 +1,41 @@
-# TypeScript Definitions #
+# TypeScript Definitions
 
-Reference the `phaser.d.ts` in your project. 
+Since [v2.8.2](https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.2) Phaser's definitions will likely be found automatically when Phaser is installed with npm.
 
-Please use TypeScript 1.4+
+If necessary, reference [phaser.d.ts](./phaser.d.ts) (or [phaser.comments.d.ts](./phaser.comments.d.ts)) in your project. `phaser.d.ts`, `pixi.d.ts`, `p2.d.ts` must remain siblings in the same directory.
 
-- `phaser.d.ts` contains a reference to `pixi.d.ts` and `p2.d.ts` and so both these files must remain siblings in the same directory. 
-- `pixi.d.ts` has deviated from the official project. If you are a pixi user, pick up the ball over at [the  official pixi typescript repo](https://github.com/pixijs/pixi-typescript). 
+## Using [tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
-## Including typescript definitions in your project using Typings
-
-You can now use typings, the TypeScript Definition Manager, to include Phaser's typescript definitions in your project: 
-- Make sure that typings is installed in your system: `npm install -g typings`
-- Install phaser typescript definitions as a global dependency: 
+```json
+{
+  "files": [
+    "PATH/TO/phaser.d.ts"
+  ]
+}
 ```
+
+For npm-installed Phaser, the path will be `./node_modules/phaser-ce/typescript/phaser.d.ts`.
+
+## Using Typings
+
+You can use [typings](https://www.npmjs.com/package/typings), the TypeScript Definition Manager, to include Phaser's typescript definitions in your project:
+
+- Make sure that typings is installed in your system: `npm install -g typings`
+- Install phaser typescript definitions as a global dependency:
+
+```bash
 typings install github:photonstorm/phaser-ce/typescript/typings.json -GD
 ```
 
-This will make phaser typescript definitions available for your compiler so that there is no need to reference them from your source files. 
-For more information, check [the official typings site](https://github.com/typings/typings). 
+This will make phaser typescript definitions available for your compiler so that there is no need to reference them from your source files.
+For more information, check [the official typings site](https://github.com/typings/typings).
 
-## Contributing ##
+## Contributing
 
-If you find any mistakes in these definitions or you feel they can be improved in any way, please make a pull request against the dev branch. 
+If you find any mistakes in these definitions or you feel they can be improved in any way, please [open an issue](https://github.com/photonstorm/phaser-ce/issues) or [make a pull request](https://github.com/photonstorm/phaser-ce/pulls).
 
-## Note ##
+## Note
 
 `Creature` defs are not yet provided.
 
-The Box2D defs come from https://github.com/SBCGames/Phaser-Box2D-Typescript-defs
+The Box2D defs come from https://github.com/SBCGames/Phaser-Box2D-Typescript-defs.

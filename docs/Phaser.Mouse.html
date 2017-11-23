@@ -1,1045 +1,140 @@
 <!DOCTYPE html>
 
+
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Class: Mouse · Phaser CE</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<link type="text/css" rel="stylesheet" href="styles/default.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
-
-	
-	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
-	
-
-	<script src="https://use.typekit.net/fmc0gtt.js"></script>
-	<script>Typekit.load()</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Phaser CE Class: Mouse</title>
+	<link rel="stylesheet" href="styles/site.phaser.css?2017110918">
 </head>
 
 <body>
 
-<div class="container-fluid">
-	<div class="navbar navbar-fixed-top navbar-inverse">
-		<div style="position: absolute; width: 143px; height: 31px; right: 10px; top: 10px; z-index: 1050"><a href="http://phaser.io"><img src="img/phaser.png" border="0" /></a></div>
-		<div class="navbar-inner">
-			<a class="brand" href="index.html">Phaser API</a>
-			<ul class="nav">
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
-						<i class="icon-info-sign icon-white"></i>
-						Read Me
-					</a>
-                </li>
-                <li>
-                    <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
-						<i class="icon-list icon-white"></i>
-						Change Log
-					</a>
-                </li>
-				
-				<li class="dropdown">
-					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
-						class="caret"></b></a>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="Phaser.html">Phaser</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="PIXI.html">PIXI</a>
-						</li>
-						
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="index.html">Phaser CE</a>
+  		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+      </button>
+  	</div>
+  	<div class="navbar-collapse collapse" id="topNavigation">
+  		<ul class="nav navbar-nav">
+  			
+  			<li class="dropdown">
+  				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="Phaser.html">Phaser</a></li><li><a href="PhaserGlobal.html">PhaserGlobal</a></li><li><a href="PIXI.html">PIXI</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="CreatureShader.html">CreatureShader</a></li><li><a href="EarCut.html">EarCut</a></li><li><a href="Event.html">Event</a></li><li><a href="EventTarget.html">EventTarget</a></li><li><a href="Phaser.Animation.html">Phaser.Animation</a></li><li><a href="Phaser.AnimationManager.html">Phaser.AnimationManager</a></li><li><a href="Phaser.AnimationParser.html">Phaser.AnimationParser</a></li><li><a href="Phaser.ArraySet.html">Phaser.ArraySet</a></li><li><a href="Phaser.ArrayUtils.html">Phaser.ArrayUtils</a></li><li><a href="Phaser.AudioSprite.html">Phaser.AudioSprite</a></li><li><a href="Phaser.BitmapData.html">Phaser.BitmapData</a></li><li><a href="Phaser.BitmapText.html">Phaser.BitmapText</a></li><li><a href="Phaser.Bullet.html">Phaser.Bullet</a></li><li><a href="Phaser.Button.html">Phaser.Button</a></li><li><a href="Phaser.Cache.html">Phaser.Cache</a></li><li><a href="Phaser.Camera.html">Phaser.Camera</a></li><li><a href="Phaser.Canvas.html">Phaser.Canvas</a></li><li><a href="Phaser.CanvasPool.html">Phaser.CanvasPool</a></li><li><a href="Phaser.Circle.html">Phaser.Circle</a></li><li><a href="Phaser.Color.html">Phaser.Color</a></li><li><a href="Phaser.Component.Angle.html">Phaser.Component.Angle</a></li><li><a href="Phaser.Component.Animation.html">Phaser.Component.Animation</a></li><li><a href="Phaser.Component.AutoCull.html">Phaser.Component.AutoCull</a></li><li><a href="Phaser.Component.Bounds.html">Phaser.Component.Bounds</a></li><li><a href="Phaser.Component.BringToTop.html">Phaser.Component.BringToTop</a></li><li><a href="Phaser.Component.Core.html">Phaser.Component.Core</a></li><li><a href="Phaser.Component.Crop.html">Phaser.Component.Crop</a></li><li><a href="Phaser.Component.Delta.html">Phaser.Component.Delta</a></li><li><a href="Phaser.Component.Destroy.html">Phaser.Component.Destroy</a></li><li><a href="Phaser.Component.FixedToCamera.html">Phaser.Component.FixedToCamera</a></li><li><a href="Phaser.Component.Health.html">Phaser.Component.Health</a></li><li><a href="Phaser.Component.InCamera.html">Phaser.Component.InCamera</a></li><li><a href="Phaser.Component.InputEnabled.html">Phaser.Component.InputEnabled</a></li><li><a href="Phaser.Component.InWorld.html">Phaser.Component.InWorld</a></li><li><a href="Phaser.Component.LifeSpan.html">Phaser.Component.LifeSpan</a></li><li><a href="Phaser.Component.LoadTexture.html">Phaser.Component.LoadTexture</a></li><li><a href="Phaser.Component.Overlap.html">Phaser.Component.Overlap</a></li><li><a href="Phaser.Component.PhysicsBody.html">Phaser.Component.PhysicsBody</a></li><li><a href="Phaser.Component.Reset.html">Phaser.Component.Reset</a></li><li><a href="Phaser.Component.ScaleMinMax.html">Phaser.Component.ScaleMinMax</a></li><li><a href="Phaser.Component.Smoothed.html">Phaser.Component.Smoothed</a></li><li><a href="Phaser.Create.html">Phaser.Create</a></li><li><a href="Phaser.Creature.html">Phaser.Creature</a></li><li><a href="Phaser.Device.html">Phaser.Device</a></li><li><a href="Phaser.DeviceButton.html">Phaser.DeviceButton</a></li><li><a href="Phaser.DOM.html">Phaser.DOM</a></li><li><a href="Phaser.Easing.html">Phaser.Easing</a></li><li><a href="Phaser.Easing.Back.html">Phaser.Easing.Back</a></li><li><a href="Phaser.Easing.Bounce.html">Phaser.Easing.Bounce</a></li><li><a href="Phaser.Easing.Circular.html">Phaser.Easing.Circular</a></li><li><a href="Phaser.Easing.Cubic.html">Phaser.Easing.Cubic</a></li><li><a href="Phaser.Easing.Elastic.html">Phaser.Easing.Elastic</a></li><li><a href="Phaser.Easing.Exponential.html">Phaser.Easing.Exponential</a></li><li><a href="Phaser.Easing.Linear.html">Phaser.Easing.Linear</a></li><li><a href="Phaser.Easing.Quadratic.html">Phaser.Easing.Quadratic</a></li><li><a href="Phaser.Easing.Quartic.html">Phaser.Easing.Quartic</a></li><li><a href="Phaser.Easing.Quintic.html">Phaser.Easing.Quintic</a></li><li><a href="Phaser.Easing.Sinusoidal.html">Phaser.Easing.Sinusoidal</a></li><li><a href="Phaser.Ellipse.html">Phaser.Ellipse</a></li><li><a href="Phaser.Events.html">Phaser.Events</a></li><li><a href="Phaser.Filter.html">Phaser.Filter</a></li><li><a href="Phaser.FlexGrid.html">Phaser.FlexGrid</a></li><li><a href="Phaser.FlexLayer.html">Phaser.FlexLayer</a></li><li><a href="Phaser.Frame.html">Phaser.Frame</a></li><li><a href="Phaser.FrameData.html">Phaser.FrameData</a></li><li><a href="Phaser.Game.html">Phaser.Game</a></li><li><a href="Phaser.GameObjectCreator.html">Phaser.GameObjectCreator</a></li><li><a href="Phaser.GameObjectFactory.html">Phaser.GameObjectFactory</a></li><li><a href="Phaser.Gamepad.html">Phaser.Gamepad</a></li><li><a href="Phaser.Graphics.html">Phaser.Graphics</a></li><li><a href="Phaser.Group.html">Phaser.Group</a></li><li><a href="Phaser.Hermite.html">Phaser.Hermite</a></li><li><a href="Phaser.Image.html">Phaser.Image</a></li><li><a href="Phaser.ImageCollection.html">Phaser.ImageCollection</a></li><li><a href="Phaser.Input.html">Phaser.Input</a></li><li><a href="Phaser.InputHandler.html">Phaser.InputHandler</a></li><li><a href="Phaser.Key.html">Phaser.Key</a></li><li><a href="Phaser.Keyboard.html">Phaser.Keyboard</a></li><li><a href="Phaser.KeyCode.html">Phaser.KeyCode</a></li><li><a href="Phaser.Line.html">Phaser.Line</a></li><li><a href="Phaser.LinkedList.html">Phaser.LinkedList</a></li><li><a href="Phaser.Loader.html">Phaser.Loader</a></li><li><a href="Phaser.LoaderParser.html">Phaser.LoaderParser</a></li><li><a href="Phaser.Math.html">Phaser.Math</a></li><li><a href="Phaser.Matrix.html">Phaser.Matrix</a></li><li><a href="Phaser.Mouse.html">Phaser.Mouse</a></li><li><a href="Phaser.MSPointer.html">Phaser.MSPointer</a></li><li><a href="Phaser.Net.html">Phaser.Net</a></li><li><a href="Phaser.Particle.html">Phaser.Particle</a></li><li><a href="Phaser.Particles.html">Phaser.Particles</a></li><li><a href="Phaser.Particles.Arcade.html">Phaser.Particles.Arcade</a></li><li><a href="Phaser.Particles.Arcade.Emitter.html">Phaser.Particles.Arcade.Emitter</a></li><li><a href="Phaser.Path.html">Phaser.Path</a></li><li><a href="Phaser.PathFollower.html">Phaser.PathFollower</a></li><li><a href="Phaser.PathPoint.html">Phaser.PathPoint</a></li><li><a href="Phaser.Physics.html">Phaser.Physics</a></li><li><a href="Phaser.Physics.Arcade.html">Phaser.Physics.Arcade</a></li><li><a href="Phaser.Physics.Arcade.Body.html">Phaser.Physics.Arcade.Body</a></li><li><a href="Phaser.Physics.Arcade.TilemapCollision.html">Phaser.Physics.Arcade.TilemapCollision</a></li><li><a href="Phaser.Physics.Ninja.html">Phaser.Physics.Ninja</a></li><li><a href="Phaser.Physics.Ninja.AABB.html">Phaser.Physics.Ninja.AABB</a></li><li><a href="Phaser.Physics.Ninja.Body.html">Phaser.Physics.Ninja.Body</a></li><li><a href="Phaser.Physics.Ninja.Circle.html">Phaser.Physics.Ninja.Circle</a></li><li><a href="Phaser.Physics.Ninja.Tile.html">Phaser.Physics.Ninja.Tile</a></li><li><a href="Phaser.Physics.P2.html">Phaser.Physics.P2</a></li><li><a href="Phaser.Physics.P2.Body.html">Phaser.Physics.P2.Body</a></li><li><a href="Phaser.Physics.P2.BodyDebug.html">Phaser.Physics.P2.BodyDebug</a></li><li><a href="Phaser.Physics.P2.CollisionGroup.html">Phaser.Physics.P2.CollisionGroup</a></li><li><a href="Phaser.Physics.P2.ContactMaterial.html">Phaser.Physics.P2.ContactMaterial</a></li><li><a href="Phaser.Physics.P2.DistanceConstraint.html">Phaser.Physics.P2.DistanceConstraint</a></li><li><a href="Phaser.Physics.P2.FixtureList.html">Phaser.Physics.P2.FixtureList</a></li><li><a href="Phaser.Physics.P2.GearConstraint.html">Phaser.Physics.P2.GearConstraint</a></li><li><a href="Phaser.Physics.P2.InversePointProxy.html">Phaser.Physics.P2.InversePointProxy</a></li><li><a href="Phaser.Physics.P2.LockConstraint.html">Phaser.Physics.P2.LockConstraint</a></li><li><a href="Phaser.Physics.P2.Material.html">Phaser.Physics.P2.Material</a></li><li><a href="Phaser.Physics.P2.PointProxy.html">Phaser.Physics.P2.PointProxy</a></li><li><a href="Phaser.Physics.P2.PrismaticConstraint.html">Phaser.Physics.P2.PrismaticConstraint</a></li><li><a href="Phaser.Physics.P2.RevoluteConstraint.html">Phaser.Physics.P2.RevoluteConstraint</a></li><li><a href="Phaser.Physics.P2.RotationalSpring.html">Phaser.Physics.P2.RotationalSpring</a></li><li><a href="Phaser.Physics.P2.Spring.html">Phaser.Physics.P2.Spring</a></li><li><a href="Phaser.Plugin.html">Phaser.Plugin</a></li><li><a href="Phaser.Plugin.PathManager.html">Phaser.Plugin.PathManager</a></li><li><a href="Phaser.PluginManager.html">Phaser.PluginManager</a></li><li><a href="Phaser.Point.html">Phaser.Point</a></li><li><a href="Phaser.Pointer.html">Phaser.Pointer</a></li><li><a href="Phaser.PointerMode.html">Phaser.PointerMode</a></li><li><a href="Phaser.Polygon.html">Phaser.Polygon</a></li><li><a href="Phaser.QuadTree.html">Phaser.QuadTree</a></li><li><a href="Phaser.RandomDataGenerator.html">Phaser.RandomDataGenerator</a></li><li><a href="Phaser.Rectangle.html">Phaser.Rectangle</a></li><li><a href="Phaser.RenderTexture.html">Phaser.RenderTexture</a></li><li><a href="Phaser.RequestAnimationFrame.html">Phaser.RequestAnimationFrame</a></li><li><a href="Phaser.RetroFont.html">Phaser.RetroFont</a></li><li><a href="Phaser.Rope.html">Phaser.Rope</a></li><li><a href="Phaser.RoundedRectangle.html">Phaser.RoundedRectangle</a></li><li><a href="Phaser.ScaleManager.html">Phaser.ScaleManager</a></li><li><a href="Phaser.Signal.html">Phaser.Signal</a></li><li><a href="Phaser.SignalBinding.html">Phaser.SignalBinding</a></li><li><a href="Phaser.SinglePad.html">Phaser.SinglePad</a></li><li><a href="Phaser.Sound.html">Phaser.Sound</a></li><li><a href="Phaser.SoundManager.html">Phaser.SoundManager</a></li><li><a href="Phaser.Sprite.html">Phaser.Sprite</a></li><li><a href="Phaser.SpriteBatch.html">Phaser.SpriteBatch</a></li><li><a href="Phaser.Stage.html">Phaser.Stage</a></li><li><a href="Phaser.State.html">Phaser.State</a></li><li><a href="Phaser.StateManager.html">Phaser.StateManager</a></li><li><a href="Phaser.Text.html">Phaser.Text</a></li><li><a href="Phaser.Tile.html">Phaser.Tile</a></li><li><a href="Phaser.Tilemap.html">Phaser.Tilemap</a></li><li><a href="Phaser.TilemapLayer.html">Phaser.TilemapLayer</a></li><li><a href="Phaser.TilemapParser.html">Phaser.TilemapParser</a></li><li><a href="Phaser.Tileset.html">Phaser.Tileset</a></li><li><a href="Phaser.TileSprite.html">Phaser.TileSprite</a></li><li><a href="Phaser.Time.html">Phaser.Time</a></li><li><a href="Phaser.Timer.html">Phaser.Timer</a></li><li><a href="Phaser.TimerEvent.html">Phaser.TimerEvent</a></li><li><a href="Phaser.Touch.html">Phaser.Touch</a></li><li><a href="Phaser.Tween.html">Phaser.Tween</a></li><li><a href="Phaser.TweenData.html">Phaser.TweenData</a></li><li><a href="Phaser.TweenManager.html">Phaser.TweenManager</a></li><li><a href="Phaser.Utils.html">Phaser.Utils</a></li><li><a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a></li><li><a href="Phaser.Video.html">Phaser.Video</a></li><li><a href="Phaser.Weapon.html">Phaser.Weapon</a></li><li><a href="Phaser.World.html">Phaser.World</a></li><li><a href="PIXI.BaseTexture.html">PIXI.BaseTexture</a></li><li><a href="PIXI.CanvasBuffer.html">PIXI.CanvasBuffer</a></li><li><a href="PIXI.CanvasGraphics.html">PIXI.CanvasGraphics</a></li><li><a href="PIXI.CanvasMaskManager.html">PIXI.CanvasMaskManager</a></li><li><a href="PIXI.CanvasRenderer.html">PIXI.CanvasRenderer</a></li><li><a href="PIXI.CanvasTinter.html">PIXI.CanvasTinter</a></li><li><a href="PIXI.ComplexPrimitiveShader.html">PIXI.ComplexPrimitiveShader</a></li><li><a href="PIXI.DisplayObject.html">PIXI.DisplayObject</a></li><li><a href="PIXI.DisplayObjectContainer.html">PIXI.DisplayObjectContainer</a></li><li><a href="PIXI.FilterTexture.html">PIXI.FilterTexture</a></li><li><a href="PIXI.Phaser.GraphicsData.html">PIXI.Phaser.GraphicsData</a></li><li><a href="PIXI.PixiFastShader.html">PIXI.PixiFastShader</a></li><li><a href="PIXI.PixiShader.html">PIXI.PixiShader</a></li><li><a href="PIXI.PrimitiveShader.html">PIXI.PrimitiveShader</a></li><li><a href="PIXI.Sprite.html">PIXI.Sprite</a></li><li><a href="PIXI.StripShader.html">PIXI.StripShader</a></li><li><a href="PIXI.Texture.html">PIXI.Texture</a></li><li><a href="PIXI.WebGLBlendModeManager.html">PIXI.WebGLBlendModeManager</a></li><li><a href="PIXI.WebGLFastSpriteBatch.html">PIXI.WebGLFastSpriteBatch</a></li><li><a href="PIXI.WebGLFilterManager.html">PIXI.WebGLFilterManager</a></li><li><a href="PIXI.WebGLRenderer.html">PIXI.WebGLRenderer</a></li>
+  				</ul>
+  			</li>
+  			
+  			<li class="dropdown">
+  				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+  				<ul class="dropdown-menu ">
+  					<li><a href="global.html">Global</a></li>
+  				</ul>
+  			</li>
+  			
+        <li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    README
+  </a>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
-						class="caret"></b></a>
+<li>
+  <a href="https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md">
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+    CHANGELOG
+  </a>
+</li>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="CreatureShader.html">CreatureShader</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EarCut.html">EarCut</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="Event.html">Event</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="EventTarget.html">EventTarget</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationManager.html">AnimationManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AnimationParser.html">AnimationParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArraySet.html">ArraySet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ArrayUtils.html">ArrayUtils</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.AudioSprite.html">AudioSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapData.html">BitmapData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.BitmapText.html">BitmapText</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Bullet.html">Bullet</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Button.html">Button</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Cache.html">Cache</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Camera.html">Camera</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Canvas.html">Canvas</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.CanvasPool.html">CanvasPool</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Color.html">Color</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Angle.html">Angle</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Animation.html">Animation</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.AutoCull.html">AutoCull</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Bounds.html">Bounds</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.BringToTop.html">BringToTop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Core.html">Core</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Crop.html">Crop</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Delta.html">Delta</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Destroy.html">Destroy</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.FixedToCamera.html">FixedToCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Health.html">Health</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InCamera.html">InCamera</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InputEnabled.html">InputEnabled</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.InWorld.html">InWorld</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LifeSpan.html">LifeSpan</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.LoadTexture.html">LoadTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Overlap.html">Overlap</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.PhysicsBody.html">PhysicsBody</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Reset.html">Reset</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.ScaleMinMax.html">ScaleMinMax</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Component.Smoothed.html">Smoothed</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Create.html">Create</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Creature.html">Creature</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Device.html">Device</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DeviceButton.html">DeviceButton</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.DOM.html">DOM</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Easing.html">Easing</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Back.html">Back</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Bounce.html">Bounce</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Circular.html">Circular</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Cubic.html">Cubic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Elastic.html">Elastic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Exponential.html">Exponential</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Linear.html">Linear</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quadratic.html">Quadratic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quartic.html">Quartic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Quintic.html">Quintic</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Easing.Sinusoidal.html">Sinusoidal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Ellipse.html">Ellipse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Events.html">Events</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Filter.html">Filter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexGrid.html">FlexGrid</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FlexLayer.html">FlexLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Frame.html">Frame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.FrameData.html">FrameData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Game.html">Game</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectCreator.html">GameObjectCreator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.GameObjectFactory.html">GameObjectFactory</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Gamepad.html">Gamepad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Graphics.html">Graphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Group.html">Group</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Hermite.html">Hermite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Image.html">Image</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ImageCollection.html">ImageCollection</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Input.html">Input</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.InputHandler.html">InputHandler</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Key.html">Key</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Keyboard.html">Keyboard</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.KeyCode.html">KeyCode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Line.html">Line</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LinkedList.html">LinkedList</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Loader.html">Loader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.LoaderParser.html">LoaderParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Math.html">Math</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Matrix.html">Matrix</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Mouse.html">Mouse</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.MSPointer.html">MSPointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Net.html">Net</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particle.html">Particle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Particles.html">Particles</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Particles.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Particles.Arcade.Emitter.html">Emitter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Path.html">Path</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathFollower.html">PathFollower</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PathPoint.html">PathPoint</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Physics.html">Physics</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Arcade.html">Arcade</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Arcade.TilemapCollision.html">TilemapCollision</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.Ninja.html">Ninja</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.AABB.html">AABB</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Circle.html">Circle</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.Ninja.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Physics.P2.html">P2</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Body.html">Body</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.BodyDebug.html">BodyDebug</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.DistanceConstraint.html">DistanceConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.FixtureList.html">FixtureList</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.GearConstraint.html">GearConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.InversePointProxy.html">InversePointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.LockConstraint.html">LockConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Material.html">Material</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PointProxy.html">PointProxy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.PrismaticConstraint.html">PrismaticConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RevoluteConstraint.html">RevoluteConstraint</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.RotationalSpring.html">RotationalSpring</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Physics.P2.Spring.html">Spring</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Plugin.html">Plugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.AStar.html">AStar</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarNode.html">AStarNode</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.AStar.AStarPath.html">AStarPath</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.ColorHarmony.html">ColorHarmony</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.CSS3Filters.html">CSS3Filters</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Juicy.html">Juicy</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.ScreenFlash.html">ScreenFlash</a>
-						</li>
-						
-						<li class="class-depth-3">
-							<a href="Phaser.Plugin.Juicy.Trail.html">Trail</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.KineticScrolling.html">KineticScrolling</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.PathManager.html">PathManager</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.SamplePlugin.html">SamplePlugin</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.TilemapWalker.html">TilemapWalker</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.VirtualJoystick.html">VirtualJoystick</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Plugin.Webcam.html">Webcam</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PluginManager.html">PluginManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Point.html">Point</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Pointer.html">Pointer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.PointerMode.html">PointerMode</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Polygon.html">Polygon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.QuadTree.html">QuadTree</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RandomDataGenerator.html">RandomDataGenerator</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rectangle.html">Rectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RenderTexture.html">RenderTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RequestAnimationFrame.html">RequestAnimationFrame</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RetroFont.html">RetroFont</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Rope.html">Rope</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.RoundedRectangle.html">RoundedRectangle</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.ScaleManager.html">ScaleManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Signal.html">Signal</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SignalBinding.html">SignalBinding</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SinglePad.html">SinglePad</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sound.html">Sound</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SoundManager.html">SoundManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.SpriteBatch.html">SpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Stage.html">Stage</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.State.html">State</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.StateManager.html">StateManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Text.html">Text</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tile.html">Tile</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tilemap.html">Tilemap</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapLayer.html">TilemapLayer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TilemapParser.html">TilemapParser</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tileset.html">Tileset</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TileSprite.html">TileSprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Time.html">Time</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Timer.html">Timer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TimerEvent.html">TimerEvent</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Touch.html">Touch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Tween.html">Tween</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenData.html">TweenData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.TweenManager.html">TweenManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Utils.html">Utils</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="Phaser.Utils.Debug.html">Debug</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Video.html">Video</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.Weapon.html">Weapon</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="Phaser.World.html">World</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.BaseTexture.html">BaseTexture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasBuffer.html">CanvasBuffer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasGraphics.html">CanvasGraphics</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasMaskManager.html">CanvasMaskManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasRenderer.html">CanvasRenderer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.CanvasTinter.html">CanvasTinter</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.ComplexPrimitiveShader.html">ComplexPrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObject.html">DisplayObject</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.DisplayObjectContainer.html">DisplayObjectContainer</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.FilterTexture.html">FilterTexture</a>
-						</li>
-						
-						<li class="class-depth-2">
-							<a href="PIXI.Phaser.GraphicsData.html">Phaser.GraphicsData</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PIXI.html">PIXI</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiFastShader.html">PixiFastShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PixiShader.html">PixiShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.PrimitiveShader.html">PrimitiveShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Sprite.html">Sprite</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.StripShader.html">StripShader</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.Texture.html">Texture</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLBlendModeManager.html">WebGLBlendModeManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFastSpriteBatch.html">WebGLFastSpriteBatch</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLFilterManager.html">WebGLFilterManager</a>
-						</li>
-						
-						<li class="class-depth-1">
-							<a href="PIXI.WebGLRenderer.html">WebGLRenderer</a>
-						</li>
-						
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+    Community
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="http://phaser.io">Phaser</a>
+    </li>
+    <li>
+      <a href="https://github.com/photonstorm/phaser-ce">Phaser CE on GitHub</a>
+    </li>
+    <li>
+      <a href="https://codepen.io/collection/AMbZgY/">Phaser CE Examples</a>
+    </li>
+    <li>
+      <a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a>
+    </li>
+    <li>
+      <a href="https://twitter.com/photonstorm">Twitter</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/slack">Slack</a>
+    </li>
+    <li>
+      <a href="http://phaser.io/community/donate">Donate</a>
+    </li>
+  </ul>
+</li>
 
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
-						class="caret"></b></a>
+  		</ul>
+          
+  	</div>
+  </div>
+</div>
 
-					<ul class="dropdown-menu ">
-						
-						<li class="class-depth-0">
-							<a href="global.html#destroy">destroy</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#init">init</a>
-						</li>
-						
-						<li class="class-depth-0">
-							<a href="global.html#set">set</a>
-						</li>
-						
 
-					</ul>
-				</li>
-				
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Core<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Game.html">Game</a></li>
-						<li class="class-depth-1"><a href="Phaser.Group.html">Group</a></li>
-						<li class="class-depth-1"><a href="Phaser.World.html">World</a></li>
-						<li class="class-depth-1"><a href="Phaser.Loader.html">Loader</a></li>
-						<li class="class-depth-1"><a href="Phaser.Cache.html">Cache</a></li>
-						<li class="class-depth-1"><a href="Phaser.Time.html">Time</a></li>
-						<li class="class-depth-1"><a href="Phaser.Camera.html">Camera</a></li>
-						<li class="class-depth-1"><a href="Phaser.StateManager.html">State Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.TweenManager.html">Tween Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.SoundManager.html">Sound Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.Input.html">Input Manager</a></li>
-						<li class="class-depth-1"><a href="Phaser.ScaleManager.html">Scale Manager</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Game Objects<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.GameObjectFactory.html">Factory (game.add)</a></li>
-						<li class="class-depth-1"><a href="Phaser.GameObjectCreator.html">Creator (game.make)</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sprite.html">Sprite</a></li>
-						<li class="class-depth-1"><a href="Phaser.Image.html">Image</a></li>
-						<li class="class-depth-1"><a href="Phaser.Sound.html">Sound</a></li>
-						<li class="class-depth-1"><a href="Phaser.Video.html">Video</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particles.Arcade.Emitter.html">Particle Emitter</a></li>
-						<li class="class-depth-1"><a href="Phaser.Particle.html">Particle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Text.html">Text</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tween.html">Tween</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapText.html">BitmapText</a></li>
-						<li class="class-depth-1"><a href="Phaser.Tilemap.html">Tilemap</a></li>
-						<li class="class-depth-1"><a href="Phaser.BitmapData.html">BitmapData</a></li>
-						<li class="class-depth-1"><a href="Phaser.RetroFont.html">RetroFont</a></li>
-						<li class="class-depth-1"><a href="Phaser.Button.html">Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Animation.html">Animation</a></li>
-						<li class="class-depth-1"><a href="Phaser.Graphics.html">Graphics</a></li>
-						<li class="class-depth-1"><a href="Phaser.RenderTexture.html">RenderTexture</a></li>
-						<li class="class-depth-1"><a href="Phaser.TileSprite.html">TileSprite</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Geometry<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Circle.html">Circle</a></li>
-						<li class="class-depth-1"><a href="Phaser.Ellipse.html">Ellipse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Line.html">Line</a></li>
-						<li class="class-depth-1"><a href="Phaser.Matrix.html">Matrix</a></li>
-						<li class="class-depth-1"><a href="Phaser.Point.html">Point</a></li>
-						<li class="class-depth-1"><a href="Phaser.Polygon.html">Polygon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Rectangle.html">Rectangle</a></li>
-						<li class="class-depth-1"><a href="Phaser.RoundedRectangle.html">Rounded Rectangle</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Physics<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.Physics.Arcade.html">Arcade Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Arcade.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Weapon.html">Weapon</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.P2.html">P2 Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Body.html">Body</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.Spring.html">Spring</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.CollisionGroup.html">CollisionGroup</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.P2.ContactMaterial.html">ContactMaterial</a></li>
-						<li class="class-depth-1"><a href="Phaser.Physics.Ninja.html">Ninja Physics</a></li>
-						<li class="class-depth-2"><a href="Phaser.Physics.Body.html">Body</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Input<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="Phaser.InputHandler.html">Input Handler</a></li>
-						<li class="class-depth-1"><a href="Phaser.Pointer.html">Pointer</a></li>
-						<li class="class-depth-1"><a href="Phaser.DeviceButton.html">Device Button</a></li>
-						<li class="class-depth-1"><a href="Phaser.Mouse.html">Mouse</a></li>
-						<li class="class-depth-1"><a href="Phaser.Keyboard.html">Keyboard</a></li>
-						<li class="class-depth-1"><a href="Phaser.Key.html">Key</a></li>
-						<li class="class-depth-1"><a href="Phaser.KeyCode.html">Key Codes</a></li>
-						<li class="class-depth-1"><a href="Phaser.Gamepad.html">Gamepad</a></li>
-					</ul>
-				</li>
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe icon-white"></i> Community<b class="caret"></b></a>
-					<ul class="dropdown-menu ">
-						<li class="class-depth-1"><a href="http://phaser.io">Phaser Web Site</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-ce">Phaser CE Github</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/examples">Phaser Examples</a></li>
-						<li class="class-depth-1"><a href="https://github.com/photonstorm/phaser-plugins">Phaser Plugins</a></li>
-						<li class="class-depth-1"><a href="http://www.html5gamedevs.com/forum/14-phaser/">Forum</a></li>
-						<li class="class-depth-1"><a href="http://stackoverflow.com/questions/tagged/phaser-framework">Stack Overflow</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/learn">Tutorials</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/newsletter">Newsletter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/twitter">Twitter</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/slack">Slack</a></li>
-						<li class="class-depth-1"><a href="http://phaser.io/community/donate">Donate</a></li>
-						<li class="class-depth-1"><a href="https://www.codeandweb.com/texturepacker/phaser">Texture Packer</a></li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</div>
-
-	<div class="row-fluid">
-
+<div class="container-fluid" id="toc-content">
+	<div class="row">
 		
-		<div class="span8">
-			
-				<div id="main">
-					
+	  <div class="col-md-9 col-md-offset-3">
+		
+			<div id="main">
 
-
-	<!--<h1 class="page-title">Class: Mouse</h1>-->
+	<h1 class="page-title">Class: Mouse</h1>
 <section>
 
 <header>
-    <h2>
-        <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
     
-    Mouse
-    </h2>
+        <h2>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
+        
+        Mouse
+        </h2>
+        
     
 </header>
+
 
 <article>
     <div class="container-overview">
     
-
-    
         
 <dt>
-    <h4 class="name "
-        id="Mouse"><span class="type-signature"></span>new Mouse<span class="signature">(game)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="Mouse" data-name="Mouse">
+      <span class="type-signature"></span>new Mouse(game)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The Mouse class is responsible for handling all aspects of mouse interaction with the browser.</p>
 <p>It captures and processes mouse events that happen on the game canvas object.
 It also adds a single <code>mouseup</code> listener to <code>window</code> which is used to capture the mouse being released
@@ -1050,8 +145,9 @@ which normalises all game input for you, including accurate button handling.</p>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -1059,23 +155,23 @@ which normalises all game input for you, including accurate button handling.</p>
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -1088,6 +184,7 @@ which normalises all game input for you, including accurate button handling.</p>
 <span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
 
 
+
             
             </td>
 
@@ -1095,22 +192,24 @@ which normalises all game input for you, including accurate button handling.</p>
 
             
 
-            <td class="description last"><p>A reference to the currently running game.</p></td>
+            <td class="description param-description last"><p>A reference to the currently running game.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1120,34 +219,45 @@ which normalises all game input for you, including accurate button handling.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L21" title="Mouse on line 21 of src/input/Mouse.js">src/input/Mouse.js line 21</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-21">line 21</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -1170,23 +280,37 @@ which normalises all game input for you, including accurate button handling.</p>
         <dl>
             
 <dt>
-    <h4 class="name "
-        id=".BACK_BUTTON"><span class="type-signature">&lt;static, constant> </span>BACK_BUTTON<span class="type-signature"> :number</span></h4>
-    
+    <h4 id=".BACK_BUTTON" data-name="BACK_BUTTON">
+      <span class="type-signature">&lt;static, constant> </span>BACK_BUTTON<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1196,49 +320,70 @@ which normalises all game input for you, including accurate button handling.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L190" title="BACK_BUTTON on line 190 of src/input/Mouse.js">src/input/Mouse.js line 190</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-190">line 190</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".FORWARD_BUTTON"><span class="type-signature">&lt;static, constant> </span>FORWARD_BUTTON<span class="type-signature"> :number</span></h4>
-    
+    <h4 id=".FORWARD_BUTTON" data-name="FORWARD_BUTTON">
+      <span class="type-signature">&lt;static, constant> </span>FORWARD_BUTTON<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1248,49 +393,70 @@ which normalises all game input for you, including accurate button handling.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L196" title="FORWARD_BUTTON on line 196 of src/input/Mouse.js">src/input/Mouse.js line 196</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-196">line 196</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".LEFT_BUTTON"><span class="type-signature">&lt;static, constant> </span>LEFT_BUTTON<span class="type-signature"> :number</span></h4>
-    
+    <h4 id=".LEFT_BUTTON" data-name="LEFT_BUTTON">
+      <span class="type-signature">&lt;static, constant> </span>LEFT_BUTTON<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1300,49 +466,70 @@ which normalises all game input for you, including accurate button handling.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L172" title="LEFT_BUTTON on line 172 of src/input/Mouse.js">src/input/Mouse.js line 172</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-172">line 172</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".MIDDLE_BUTTON"><span class="type-signature">&lt;static, constant> </span>MIDDLE_BUTTON<span class="type-signature"> :number</span></h4>
-    
+    <h4 id=".MIDDLE_BUTTON" data-name="MIDDLE_BUTTON">
+      <span class="type-signature">&lt;static, constant> </span>MIDDLE_BUTTON<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1352,49 +539,70 @@ which normalises all game input for you, including accurate button handling.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L178" title="MIDDLE_BUTTON on line 178 of src/input/Mouse.js">src/input/Mouse.js line 178</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-178">line 178</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".NO_BUTTON"><span class="type-signature">&lt;static, constant> </span>NO_BUTTON<span class="type-signature"> :number</span></h4>
-    
+    <h4 id=".NO_BUTTON" data-name="NO_BUTTON">
+      <span class="type-signature">&lt;static, constant> </span>NO_BUTTON<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1404,49 +612,70 @@ which normalises all game input for you, including accurate button handling.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L166" title="NO_BUTTON on line 166 of src/input/Mouse.js">src/input/Mouse.js line 166</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-166">line 166</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".RIGHT_BUTTON"><span class="type-signature">&lt;static, constant> </span>RIGHT_BUTTON<span class="type-signature"> :number</span></h4>
-    
+    <h4 id=".RIGHT_BUTTON" data-name="RIGHT_BUTTON">
+      <span class="type-signature">&lt;static, constant> </span>RIGHT_BUTTON<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1456,49 +685,70 @@ which normalises all game input for you, including accurate button handling.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L184" title="RIGHT_BUTTON on line 184 of src/input/Mouse.js">src/input/Mouse.js line 184</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-184">line 184</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".WHEEL_DOWN"><span class="type-signature">&lt;static, constant> </span>WHEEL_DOWN<span class="type-signature"> :number</span></h4>
-    
+    <h4 id=".WHEEL_DOWN" data-name="WHEEL_DOWN">
+      <span class="type-signature">&lt;static, constant> </span>WHEEL_DOWN<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1508,49 +758,70 @@ which normalises all game input for you, including accurate button handling.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L208" title="WHEEL_DOWN on line 208 of src/input/Mouse.js">src/input/Mouse.js line 208</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-208">line 208</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id=".WHEEL_UP"><span class="type-signature">&lt;static, constant> </span>WHEEL_UP<span class="type-signature"> :number</span></h4>
-    
+    <h4 id=".WHEEL_UP" data-name="WHEEL_UP">
+      <span class="type-signature">&lt;static, constant> </span>WHEEL_UP<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
 
     
-    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1560,55 +831,76 @@ which normalises all game input for you, including accurate button handling.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L202" title="WHEEL_UP on line 202 of src/input/Mouse.js">src/input/Mouse.js line 202</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-202">line 202</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="button"><span class="type-signature"></span>button<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="button" data-name="button">
+      <span class="type-signature"></span>button<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This property was removed in Phaser 2.4 and should no longer be used.
 Instead please see the Pointer button properties such as <code>Pointer.leftButton</code>, <code>Pointer.rightButton</code> and so on.
 Or Pointer.button holds the DOM event button value if you require that.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1618,53 +910,74 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L76" title="button on line 76 of src/input/Mouse.js">src/input/Mouse.js line 76</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-76">line 76</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="callbackContext"><span class="type-signature"></span>callbackContext<span class="type-signature"> :object</span></h4>
-    
+    <h4 id="callbackContext" data-name="callbackContext">
+      <span class="type-signature"></span>callbackContext<span class="type-signature"> : object</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The context under which callbacks are called.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">object</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1674,53 +987,74 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L37" title="callbackContext on line 37 of src/input/Mouse.js">src/input/Mouse.js line 37</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-37">line 37</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="capture"><span class="type-signature"></span>capture<span class="type-signature"> :boolean</span></h4>
-    
+    <h4 id="capture" data-name="capture">
+      <span class="type-signature"></span>capture<span class="type-signature"> : boolean</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If true the DOM mouse events will have event.preventDefault applied to them, if false they will propagate fully.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1730,53 +1064,74 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L67" title="capture on line 67 of src/input/Mouse.js">src/input/Mouse.js line 67</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-67">line 67</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="enabled"><span class="type-signature"></span>enabled<span class="type-signature"> :boolean</span></h4>
-    
+    <h4 id="enabled" data-name="enabled">
+      <span class="type-signature"></span>enabled<span class="type-signature"> : boolean</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>Mouse input will only be processed if enabled.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1786,50 +1141,60 @@ Or Pointer.button holds the DOM event button value if you require that.</p>
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>true</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L89" title="enabled on line 89 of src/input/Mouse.js">src/input/Mouse.js line 89</a>
     
 
-    
+	
 
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-89">line 89</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="event"><span class="type-signature"></span>event<span class="type-signature"> :MouseEvent|null</span></h4>
-    
+    <h4 id="event" data-name="event">
+      <span class="type-signature"></span>event<span class="type-signature"> : MouseEvent | null</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The browser mouse DOM event. Will be null if no mouse event has ever been received.
 Access this property only inside a Mouse event handler and do not keep references to it.</p>
     </div>
     
-    
+
     
         <h5>Type:</h5>
         <ul>
@@ -1841,6 +1206,7 @@ Access this property only inside a Mouse event handler and do not keep reference
 <span class="param-type">null</span>
 
 
+
             </li>
         </ul>
     
@@ -1849,7 +1215,11 @@ Access this property only inside a Mouse event handler and do not keep reference
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1859,53 +1229,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L115" title="event on line 115 of src/input/Mouse.js">src/input/Mouse.js line 115</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-115">line 115</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="game"><span class="type-signature"></span>game<span class="type-signature"> :<a href="Phaser.Game.html">Phaser.Game</a></span></h4>
-    
+    <h4 id="game" data-name="game">
+      <span class="type-signature"></span>game<span class="type-signature"> : <a href="Phaser.Game.html">Phaser.Game</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the currently running game.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -1915,66 +1306,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L26" title="game on line 26 of src/input/Mouse.js">src/input/Mouse.js line 26</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-26">line 26</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="input"><span class="type-signature">&lt;internal> </span>input<span class="type-signature"> :<a href="Phaser.Input.html">Phaser.Input</a></span></h4>
-    
+    <h4 id="input" data-name="input">
+      <span class="type-signature">&lt;protected> </span>input<span class="type-signature"> : <a href="Phaser.Input.html">Phaser.Input</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A reference to the Phaser Input Manager.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Input.html">Phaser.Input</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
 
-    
+	
 
-    
-
-    
-        <dt class="important tag-deprecated">Internal:</dt>
-        <dd class="tag-deprecated"><ul>
-        
-            <li>This member is <em>internal (protected)</em> and may be modified or removed in the future.</li>
-        
-        </ul></dd>
-    
+	
 
     
 
@@ -1984,47 +1383,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
     
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-32">line 32</a>
-    </dt>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L32" title="input on line 32 of src/input/Mouse.js">src/input/Mouse.js line 32</a>
     
 
-    
+	
 
-    
+	
 
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="locked"><span class="type-signature"></span>locked<span class="type-signature"> :boolean</span></h4>
-    
+    <h4 id="locked" data-name="locked">
+      <span class="type-signature"></span>locked<span class="type-signature"> : boolean</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If the mouse has been Pointer Locked successfully this will be set to true.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2034,53 +1460,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L95" title="locked on line 95 of src/input/Mouse.js">src/input/Mouse.js line 95</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-95">line 95</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="mouseDownCallback"><span class="type-signature"></span>mouseDownCallback<span class="type-signature"> :function</span></h4>
-    
+    <h4 id="mouseDownCallback" data-name="mouseDownCallback">
+      <span class="type-signature"></span>mouseDownCallback<span class="type-signature"> : function</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A callback that can be fired when the mouse is pressed down.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">function</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2090,53 +1537,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L42" title="mouseDownCallback on line 42 of src/input/Mouse.js">src/input/Mouse.js line 42</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-42">line 42</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="mouseOutCallback"><span class="type-signature"></span>mouseOutCallback<span class="type-signature"> :function</span></h4>
-    
+    <h4 id="mouseOutCallback" data-name="mouseOutCallback">
+      <span class="type-signature"></span>mouseOutCallback<span class="type-signature"> : function</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A callback that can be fired when the mouse is no longer over the game canvas.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">function</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2146,53 +1614,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L52" title="mouseOutCallback on line 52 of src/input/Mouse.js">src/input/Mouse.js line 52</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-52">line 52</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="mouseOverCallback"><span class="type-signature"></span>mouseOverCallback<span class="type-signature"> :function</span></h4>
-    
+    <h4 id="mouseOverCallback" data-name="mouseOverCallback">
+      <span class="type-signature"></span>mouseOverCallback<span class="type-signature"> : function</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A callback that can be fired when the mouse enters the game canvas (usually after a mouseout).</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">function</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2202,53 +1691,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L57" title="mouseOverCallback on line 57 of src/input/Mouse.js">src/input/Mouse.js line 57</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-57">line 57</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="mouseUpCallback"><span class="type-signature"></span>mouseUpCallback<span class="type-signature"> :function</span></h4>
-    
+    <h4 id="mouseUpCallback" data-name="mouseUpCallback">
+      <span class="type-signature"></span>mouseUpCallback<span class="type-signature"> : function</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A callback that can be fired when the mouse is released from a pressed down state.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">function</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2258,53 +1768,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L47" title="mouseUpCallback on line 47 of src/input/Mouse.js">src/input/Mouse.js line 47</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-47">line 47</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="mouseWheelCallback"><span class="type-signature"></span>mouseWheelCallback<span class="type-signature"> :function</span></h4>
-    
+    <h4 id="mouseWheelCallback" data-name="mouseWheelCallback">
+      <span class="type-signature"></span>mouseWheelCallback<span class="type-signature"> : function</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>A callback that can be fired when the mousewheel is used.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">function</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2314,53 +1845,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L62" title="mouseWheelCallback on line 62 of src/input/Mouse.js">src/input/Mouse.js line 62</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-62">line 62</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="pointerLock"><span class="type-signature"></span>pointerLock<span class="type-signature"> :<a href="Phaser.Signal.html">Phaser.Signal</a></span></h4>
-    
+    <h4 id="pointerLock" data-name="pointerLock">
+      <span class="type-signature"></span>pointerLock<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>This event is dispatched when the browser enters or leaves pointer lock state.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2370,53 +1922,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L107" title="pointerLock on line 107 of src/input/Mouse.js">src/input/Mouse.js line 107</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-107">line 107</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="stopOnGameOut"><span class="type-signature"></span>stopOnGameOut<span class="type-signature"> :boolean</span></h4>
-    
+    <h4 id="stopOnGameOut" data-name="stopOnGameOut">
+      <span class="type-signature"></span>stopOnGameOut<span class="type-signature"> : boolean</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>If true Pointer.stop will be called if the mouse leaves the game canvas.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2426,53 +1999,74 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L101" title="stopOnGameOut on line 101 of src/input/Mouse.js">src/input/Mouse.js line 101</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-101">line 101</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="wheelDelta"><span class="type-signature"></span>wheelDelta<span class="type-signature"> :number</span></h4>
-    
+    <h4 id="wheelDelta" data-name="wheelDelta">
+      <span class="type-signature"></span>wheelDelta<span class="type-signature"> : number</span>
+      
+    </h4>
     
 </dt>
 <dd>
     
-
-    
-    <div class="description">
+    <div class="description members-description">
         <p>The direction of the <em>last</em> mousewheel usage 1 for up -1 for down.</p>
     </div>
     
+
     
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
     
 
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2482,26 +2076,33 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L82" title="wheelDelta on line 82 of src/input/Mouse.js">src/input/Mouse.js line 82</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-82">line 82</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
-    
+
     
 </dd>
 
@@ -2514,23 +2115,24 @@ Access this property only inside a Mouse event handler and do not keep reference
         <dl>
             
 <dt>
-    <h4 class="name "
-        id="onMouseDown"><span class="type-signature"></span>onMouseDown<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="onMouseDown" data-name="onMouseDown">
+      <span class="type-signature"></span>onMouseDown(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The internal method that handles the mouse down event from the browser.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2538,23 +2140,23 @@ Access this property only inside a Mouse event handler and do not keep reference
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2567,6 +2169,7 @@ Access this property only inside a Mouse event handler and do not keep reference
 <span class="param-type">MouseEvent</span>
 
 
+
             
             </td>
 
@@ -2574,22 +2177,24 @@ Access this property only inside a Mouse event handler and do not keep reference
 
             
 
-            <td class="description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
+            <td class="description param-description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2599,57 +2204,69 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L296" title="onMouseDown on line 296 of src/input/Mouse.js">src/input/Mouse.js line 296</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-296">line 296</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="onMouseMove"><span class="type-signature"></span>onMouseMove<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="onMouseMove" data-name="onMouseMove">
+      <span class="type-signature"></span>onMouseMove(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The internal method that handles the mouse move event from the browser.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2657,23 +2274,23 @@ Access this property only inside a Mouse event handler and do not keep reference
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2686,6 +2303,7 @@ Access this property only inside a Mouse event handler and do not keep reference
 <span class="param-type">MouseEvent</span>
 
 
+
             
             </td>
 
@@ -2693,22 +2311,24 @@ Access this property only inside a Mouse event handler and do not keep reference
 
             
 
-            <td class="description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
+            <td class="description param-description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2718,57 +2338,69 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L326" title="onMouseMove on line 326 of src/input/Mouse.js">src/input/Mouse.js line 326</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-326">line 326</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="onMouseOut"><span class="type-signature"></span>onMouseOut<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="onMouseOut" data-name="onMouseOut">
+      <span class="type-signature"></span>onMouseOut(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The internal method that handles the mouse out event from the browser.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2776,23 +2408,23 @@ Access this property only inside a Mouse event handler and do not keep reference
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2805,6 +2437,7 @@ Access this property only inside a Mouse event handler and do not keep reference
 <span class="param-type">MouseEvent</span>
 
 
+
             
             </td>
 
@@ -2812,22 +2445,24 @@ Access this property only inside a Mouse event handler and do not keep reference
 
             
 
-            <td class="description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
+            <td class="description param-description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2837,57 +2472,69 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L445" title="onMouseOut on line 445 of src/input/Mouse.js">src/input/Mouse.js line 445</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-444">line 444</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="onMouseOutGlobal"><span class="type-signature"></span>onMouseOutGlobal<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="onMouseOutGlobal" data-name="onMouseOutGlobal">
+      <span class="type-signature"></span>onMouseOutGlobal(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The internal method that handles the mouse out event from the window.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -2895,23 +2542,23 @@ Access this property only inside a Mouse event handler and do not keep reference
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -2924,6 +2571,7 @@ Access this property only inside a Mouse event handler and do not keep reference
 <span class="param-type">MouseEvent</span>
 
 
+
             
             </td>
 
@@ -2931,22 +2579,24 @@ Access this property only inside a Mouse event handler and do not keep reference
 
             
 
-            <td class="description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
+            <td class="description param-description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -2956,57 +2606,69 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L408" title="onMouseOutGlobal on line 408 of src/input/Mouse.js">src/input/Mouse.js line 408</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-408">line 408</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="onMouseOver"><span class="type-signature"></span>onMouseOver<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="onMouseOver" data-name="onMouseOver">
+      <span class="type-signature"></span>onMouseOver(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The internal method that handles the mouse over event from the browser.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3014,23 +2676,23 @@ Access this property only inside a Mouse event handler and do not keep reference
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3043,6 +2705,7 @@ Access this property only inside a Mouse event handler and do not keep reference
 <span class="param-type">MouseEvent</span>
 
 
+
             
             </td>
 
@@ -3050,22 +2713,24 @@ Access this property only inside a Mouse event handler and do not keep reference
 
             
 
-            <td class="description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
+            <td class="description param-description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3075,57 +2740,69 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L481" title="onMouseOver on line 481 of src/input/Mouse.js">src/input/Mouse.js line 481</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-480">line 480</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="onMouseUp"><span class="type-signature"></span>onMouseUp<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="onMouseUp" data-name="onMouseUp">
+      <span class="type-signature"></span>onMouseUp(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The internal method that handles the mouse up event from the browser.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3133,23 +2810,23 @@ Access this property only inside a Mouse event handler and do not keep reference
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3162,6 +2839,7 @@ Access this property only inside a Mouse event handler and do not keep reference
 <span class="param-type">MouseEvent</span>
 
 
+
             
             </td>
 
@@ -3169,22 +2847,24 @@ Access this property only inside a Mouse event handler and do not keep reference
 
             
 
-            <td class="description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
+            <td class="description param-description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3194,57 +2874,69 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L356" title="onMouseUp on line 356 of src/input/Mouse.js">src/input/Mouse.js line 356</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-356">line 356</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="onMouseUpGlobal"><span class="type-signature"></span>onMouseUpGlobal<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="onMouseUpGlobal" data-name="onMouseUpGlobal">
+      <span class="type-signature"></span>onMouseUpGlobal(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The internal method that handles the mouse up event from the window.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3252,23 +2944,23 @@ Access this property only inside a Mouse event handler and do not keep reference
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3281,6 +2973,7 @@ Access this property only inside a Mouse event handler and do not keep reference
 <span class="param-type">MouseEvent</span>
 
 
+
             
             </td>
 
@@ -3288,22 +2981,24 @@ Access this property only inside a Mouse event handler and do not keep reference
 
             
 
-            <td class="description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
+            <td class="description param-description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3313,57 +3008,69 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L386" title="onMouseUpGlobal on line 386 of src/input/Mouse.js">src/input/Mouse.js line 386</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-386">line 386</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="onMouseWheel"><span class="type-signature"></span>onMouseWheel<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="onMouseWheel" data-name="onMouseWheel">
+      <span class="type-signature"></span>onMouseWheel(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>The internal method that handles the mouse wheel event from the browser.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3371,23 +3078,23 @@ Access this property only inside a Mouse event handler and do not keep reference
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3400,6 +3107,7 @@ Access this property only inside a Mouse event handler and do not keep reference
 <span class="param-type">MouseEvent</span>
 
 
+
             
             </td>
 
@@ -3407,22 +3115,24 @@ Access this property only inside a Mouse event handler and do not keep reference
 
             
 
-            <td class="description last"><p>The native event from the browser.</p></td>
+            <td class="description param-description last"><p>The native event from the browser.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3432,57 +3142,69 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L505" title="onMouseWheel on line 505 of src/input/Mouse.js">src/input/Mouse.js line 505</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-504">line 504</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="pointerLockChange"><span class="type-signature"></span>pointerLockChange<span class="signature">(event)</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="pointerLockChange" data-name="pointerLockChange">
+      <span class="type-signature"></span>pointerLockChange(event)
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Internal pointerLockChange handler.</p>
     </div>
     
 
     
+
     
-    
+
     
     
         <h5>Parameters:</h5>
@@ -3490,23 +3212,23 @@ Access this property only inside a Mouse event handler and do not keep reference
 
 <table class="params table table-striped">
     <thead>
-	<tr>
-		
-		<th>Name</th>
-		
+    <tr>
+        
+        <th>Name</th>
+        
 
-		<th>Type</th>
+        <th>Type</th>
 
-		
+        
 
-		
+        
 
-		<th class="last">Description</th>
-	</tr>
-	</thead>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-	<tbody>
-	
+    <tbody>
+    
 
         <tr>
             
@@ -3519,6 +3241,7 @@ Access this property only inside a Mouse event handler and do not keep reference
 <span class="param-type"><a href="Event.html">Event</a></span>
 
 
+
             
             </td>
 
@@ -3526,22 +3249,24 @@ Access this property only inside a Mouse event handler and do not keep reference
 
             
 
-            <td class="description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
+            <td class="description param-description last"><p>The native event from the browser. This gets stored in Mouse.event.</p></td>
         </tr>
 
-	
-	</tbody>
+    
+    </tbody>
 </table>
 
     
 
     
-    
-    
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3551,67 +3276,81 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L563" title="pointerLockChange on line 563 of src/input/Mouse.js">src/input/Mouse.js line 563</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-562">line 562</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="releasePointerLock"><span class="type-signature"></span>releasePointerLock<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="releasePointerLock" data-name="releasePointerLock">
+      <span class="type-signature"></span>releasePointerLock()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Internal release pointer lock handler.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3621,50 +3360,61 @@ Access this property only inside a Mouse event handler and do not keep reference
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L588" title="releasePointerLock on line 588 of src/input/Mouse.js">src/input/Mouse.js line 588</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-587">line 587</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="requestPointerLock"><span class="type-signature"></span>requestPointerLock<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="requestPointerLock" data-name="requestPointerLock">
+      <span class="type-signature"></span>requestPointerLock()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>If the browser supports it you can request that the pointer be locked to the browser window.
 This is classically known as 'FPS controls', where the pointer can't leave the browser until the user presses an exit key.
 If the browser successfully enters a locked state the event Phaser.Mouse.pointerLock will be dispatched and the first parameter will be 'true'.</p>
@@ -3672,18 +3422,21 @@ If the browser successfully enters a locked state the event Phaser.Mouse.pointer
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3693,67 +3446,81 @@ If the browser successfully enters a locked state the event Phaser.Mouse.pointer
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L534" title="requestPointerLock on line 534 of src/input/Mouse.js">src/input/Mouse.js line 534</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-533">line 533</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="start"><span class="type-signature"></span>start<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="start" data-name="start">
+      <span class="type-signature"></span>start()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Starts the event listeners running.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3763,67 +3530,81 @@ If the browser successfully enters a locked state the event Phaser.Mouse.pointer
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L212" title="start on line 212 of src/input/Mouse.js">src/input/Mouse.js line 212</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-212">line 212</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
         
             
 <dt>
-    <h4 class="name "
-        id="stop"><span class="type-signature"></span>stop<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="stop" data-name="stop">
+      <span class="type-signature"></span>stop()
+      
+    </h4>
     
 </dt>
 <dd>
-    
 
     
-    <div class="description">
+    <div class="description method-description">
         <p>Stop the event listeners.</p>
     </div>
     
 
     
-    
-    
-    
+
     
 
     
     
+
     
 <dl class="details">
     
 
-    
+	
+
+	
+
+	
 
     
 
@@ -3833,34 +3614,45 @@ If the browser successfully enters a locked state the event Phaser.Mouse.pointer
 
     
 
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/input/Mouse.js#L604" title="stop on line 604 of src/input/Mouse.js">src/input/Mouse.js line 604</a>
     
 
-    
+	
 
-    
+	
 
-    
-    <dt class="tag-source">Source -
-    <a href="src_input_Mouse.js.html">input/Mouse.js</a>, <a href="src_input_Mouse.js.html#sunlight-1-line-603">line 603</a>
-    </dt>
-    
-
-    
-
-    
-
-    
+	
 </dl>
 
+
     
+
     
 
     
 
     
+
     
-       
+
     
+
     
 </dd>
 
@@ -3876,64 +3668,62 @@ If the browser successfully enters a locked state the event Phaser.Mouse.pointer
 
 
 
+</div>
+	    <footer class="footer">
 
-				</div>
 
-				<div class="clearfix"></div>
-				<footer>
-					
-					
-		<span class="copyright">
-		Phaser Copyright © 2012-2016 Photon Storm Ltd.
-		</span>
-					<br />
-					
-		<span class="jsdoc-message">
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.2</a>
-		on Thu Jul 13 2017 18:15:12 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
-		</span>
-				</footer>
-			</div>
+<p class="package-signature">
+  phaser-ce@2.9.2
+  is on
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.2">GitHub</a>
+  and
+  <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
+</p>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
-			
-			<br clear="both">
-		</div>
 
-	</div>
-	<script src="scripts/sunlight.js"></script>
-	<script src="scripts/sunlight.javascript.js"></script>
-	<script src="scripts/sunlight-plugin.doclinks.js"></script>
-	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
-	<script src="scripts/sunlight-plugin.menu.js"></script>
-	<script src="scripts/jquery.min.js"></script>
-	<script src="scripts/jquery.scrollTo.js"></script>
-	<script src="scripts/jquery.localScroll.js"></script>
-	<script src="scripts/bootstrap-dropdown.js"></script>
-	<script src="scripts/toc.js"></script>
 
-	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
 
-	<script>
-		$( function () {
-			$( "#toc" ).toc( {
-				anchorName  : function(i, heading, prefix) {
-					return $(heading).attr("id") || ( prefix + i );
-				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : 60
-			} );
-			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
-			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
 
-		} );
-	</script>
+	<p class="copyright">
+	Phaser Copyright © 2012-2016 Photon Storm Ltd.
+	</p>
 
+
+<p class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
+		on 2017-11-09
+	
+	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
+</p>
+
+</footer>
+
+		</div>
+    
+      <div class="toc-container hidden-xs hidden-sm">
+  <div class="toc-filter">
+    <div class="form-inline">
+    <div class="form-group">
+      <label for="filter" class="control-label">Filter</label>
+      <input type="text" class="form-control" id="toc-filter-input">
+    </div>
+  </div>
+  </div>
+  <div id="toc">
+    <div class="list-group">
+      <div id="toc-insert"></div>
+    </div>
+  </div>
+</div>
+
+    
+	</div>
+</div>
+
+<script defer src="scripts/bundle.js?2017110918"></script>
+
+
 
 </body>
 </html>

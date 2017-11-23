@@ -12,7 +12,7 @@ PIXI._enableMultiTextureToggle = false;
  * So no need for Sprite Batches or Sprite Clouds.
  * Don't forget to add the view to your DOM or you will not see anything :)
  *
- * @class WebGLRenderer
+ * @class PIXI.WebGLRenderer
  * @constructor
  * @param game {Phaser.Game} A reference to the Phaser Game instance
  */
@@ -190,7 +190,6 @@ PIXI.WebGLRenderer = function(game) {
     this.renderSession.game = this.game;
     this.renderSession.gl = this.gl;
     this.renderSession.drawCount = 0;
-    this.renderSession.flushCount = 0;
     this.renderSession.shaderManager = this.shaderManager;
     this.renderSession.maskManager = this.maskManager;
     this.renderSession.filterManager = this.filterManager;
@@ -199,6 +198,7 @@ PIXI.WebGLRenderer = function(game) {
     this.renderSession.stencilManager = this.stencilManager;
     this.renderSession.renderer = this;
     this.renderSession.resolution = this.resolution;
+    this.renderSession.roundPixels = false;
     this.renderSession.maxTextureAvailableSpace = null; // filled in setTexturePriority()
 
     // time init the context..
@@ -213,7 +213,7 @@ PIXI.WebGLRenderer = function(game) {
 PIXI.WebGLRenderer.prototype.constructor = PIXI.WebGLRenderer;
 
 /**
-* @method initContext
+* @method PIXI.WebGLRenderer#initContext
 */
 PIXI.WebGLRenderer.prototype.initContext = function()
 {
@@ -284,7 +284,7 @@ PIXI.WebGLRenderer.prototype.initContext = function()
 *
 * Note: Throws a warning if you haven't enabled Multiple Texture batching support in the Phaser Game config.
 *
-* @method setTexturePriority
+* @method PIXI.WebGLRenderer#setTexturePriority
 * @param textureNameCollection {Array} An Array of Texture Cache keys to use for multi-texture batching.
 * @return {Array} An array containing the texture keys that were enabled for batching.
 */
@@ -359,7 +359,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
 /**
  * Renders the stage to its webGL view
  *
- * @method render
+ * @method PIXI.WebGLRenderer#render
  * @param stage {Stage} the Stage element to be rendered
  */
 PIXI.WebGLRenderer.prototype.render = function(stage)
@@ -394,7 +394,7 @@ PIXI.WebGLRenderer.prototype.render = function(stage)
 /**
  * Renders a Display Object.
  *
- * @method renderDisplayObject
+ * @method PIXI.WebGLRenderer#renderDisplayObject
  * @param displayObject {DisplayObject} The DisplayObject to render
  * @param projection {Point} The projection
  * @param buffer {Array} a standard WebGL buffer
@@ -405,7 +405,6 @@ PIXI.WebGLRenderer.prototype.renderDisplayObject = function(displayObject, proje
 
     // reset the render session data..
     this.renderSession.drawCount = 0;
-    this.renderSession.flushCount = 0;
 
     // make sure to flip the Y if using a render texture..
     this.renderSession.flipY = buffer ? -1 : 1;
@@ -432,7 +431,7 @@ PIXI.WebGLRenderer.prototype.renderDisplayObject = function(displayObject, proje
 /**
  * Resizes the webGL view to the specified width and height.
  *
- * @method resize
+ * @method PIXI.WebGLRenderer#resize
  * @param width {Number} the new width of the webGL view
  * @param height {Number} the new height of the webGL view
  */
@@ -458,7 +457,7 @@ PIXI.WebGLRenderer.prototype.resize = function(width, height)
 /**
  * Updates and creates a WebGL compressed texture for the renderers context.
  *
- * @method updateCompressedTexture
+ * @method PIXI.WebGLRenderer#updateCompressedTexture
  * @param texture {Texture} the texture to update
  * @return {boolean} True if the texture was successfully bound, otherwise false.
  */
@@ -517,7 +516,7 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture) {
 /**
  * Updates and Creates a WebGL texture for the renderers context.
  *
- * @method updateTexture
+ * @method PIXI.WebGLRenderer#updateTexture
  * @param texture {Texture} the texture to update
  * @return {boolean} True if the texture was successfully bound, otherwise false.
  */
@@ -578,7 +577,7 @@ PIXI.WebGLRenderer.prototype.updateTexture = function(texture)
 /**
  * Removes everything from the renderer (event listeners, spritebatch, etc...)
  *
- * @method destroy
+ * @method PIXI.WebGLRenderer#destroy
  */
 PIXI.WebGLRenderer.prototype.destroy = function()
 {
@@ -610,7 +609,7 @@ PIXI.WebGLRenderer.prototype.destroy = function()
 /**
  * Maps Pixi blend modes to WebGL blend modes.
  *
- * @method mapBlendModes
+ * @method PIXI.WebGLRenderer#mapBlendModes
  */
 PIXI.WebGLRenderer.prototype.mapBlendModes = function()
 {

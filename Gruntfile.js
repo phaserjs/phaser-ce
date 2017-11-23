@@ -1,4 +1,5 @@
 /// <binding BeforeBuild='default' />
+/*jshint browser:false, camelcase: false, node:true */
 module.exports = function (grunt) {
 
     var loadConfig = require('load-grunt-config');
@@ -26,10 +27,10 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['build']);
 
-    grunt.registerTask('docs', ['clean:docs', 'pixidoc', 'gitclone:plugins', 'jsdoc:html', 'replace:docs', 'clean:out']);
-    grunt.registerTask('tsdocs', ['clean:out', 'pixidoc', 'gitclone:plugins', 'jsdoc:json', 'buildtsdoc:pixi', 'buildtsdoc:phaser', 'replace:phasertsdefheader']);
+    grunt.registerTask('docs', ['clean:docs', 'gitclone:plugins', 'jsdoc:html', 'replace:docs', 'clean:out']);
+    grunt.registerTask('tsdocs', ['ts:defs', 'clean:out', 'gitclone:plugins', 'jsdoc:json', 'buildtsdoc:pixi', 'buildtsdoc:phaser', 'replace:phasertsdefheader']);
 
-    grunt.registerTask('custom', 'Build a custom version of Phaser', function(arg) {
+    grunt.registerTask('custom', 'Build a custom version of Phaser', function () {
 
         var modules = {
             'intro':            { 'description': 'Phaser UMD wrapper',                          'optional': true, 'stub': false },
@@ -93,12 +94,13 @@ module.exports = function (grunt) {
                 }
             }
 
-            grunt.log.writeln("\nFor example: --exclude p2,tilemaps,retrofont\n");
+            grunt.log.writeln("\nFor example: --exclude=p2,tilemaps,retrofont\n");
             grunt.log.writeln("Optional flags:\n");
             grunt.log.writeln("--filename yourfilename (builds to your own custom file name)");
             grunt.log.writeln("--sourcemap true (creates a source map)");
             grunt.log.writeln("--split true (splits Phaser, PIXI, p2 and Creature into separate files)");
             grunt.log.writeln("--uglify true (runs Uglify on the output files)");
+            grunt.log.writeln("--verbose true (print some extra information)");
             grunt.log.writeln("\nNote that some modules have dependencies on others.\n");
 
             grunt.fail.fatal("No build options were specified.");

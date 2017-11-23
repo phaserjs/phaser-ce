@@ -3,7 +3,7 @@
  */
 
 /**
-* @class StripShader
+* @class PIXI.StripShader
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
@@ -15,7 +15,7 @@ PIXI.StripShader = function(gl)
      * @private
      */
     this._UID = Phaser._UID++;
-    
+
     /**
      * @property gl
      * @type WebGLContext
@@ -35,8 +35,8 @@ PIXI.StripShader = function(gl)
         var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord);return;}\n'
         for (var index = 1; index < this.MAX_TEXTURES; ++index)
         {
-            dynamicIfs += '\tif (vTextureIndex == ' + 
-                        index + '.0) { gl_FragColor = texture2D(uSamplerArray[' + 
+            dynamicIfs += '\tif (vTextureIndex == ' +
+                        index + '.0) { gl_FragColor = texture2D(uSamplerArray[' +
                         index + '], vTextureCoord) ;return;}\n'
         }
 
@@ -66,7 +66,7 @@ PIXI.StripShader = function(gl)
             '   if(vTextureIndex >= ' + this.MAX_TEXTURES + '.0) { gl_FragColor = BLUE;return;}',
             '   if(isnan(vTextureIndex)) {gl_FragColor = RED;return;}',
             '}'
-        ];    
+        ];
     } else {
         /**
          * The fragment shader.
@@ -84,7 +84,7 @@ PIXI.StripShader = function(gl)
             'void main(void) {',
             '   gl_FragColor = texture2D(uSampler, vTextureCoord);',
             '}'
-        ]; 
+        ];
     }
 
     /**
@@ -123,8 +123,8 @@ PIXI.StripShader.prototype.constructor = PIXI.StripShader;
 
 /**
 * Initialises the shader.
-* 
-* @method init
+*
+* @method PIXI.StripShader#init
 */
 PIXI.StripShader.prototype.init = function()
 {
@@ -134,7 +134,7 @@ PIXI.StripShader.prototype.init = function()
 
     // get and store the uniforms for the shader
     this.uSampler = PIXI._enableMultiTextureToggle ?
-                         gl.getUniformLocation(program, 'uSamplerArray[0]') : 
+                         gl.getUniformLocation(program, 'uSamplerArray[0]') :
                          gl.getUniformLocation(program, 'uSampler');
 
 
@@ -151,9 +151,9 @@ PIXI.StripShader.prototype.init = function()
             indices.push(i);
         }
         gl.activeTexture(gl.TEXTURE0);
-        gl.uniform1iv(this.uSampler, indices); 
-    }                         
-   
+        gl.uniform1iv(this.uSampler, indices);
+    }
+
     this.projectionVector = gl.getUniformLocation(program, 'projectionVector');
     this.offsetVector = gl.getUniformLocation(program, 'offsetVector');
     this.colorAttribute = gl.getAttribLocation(program, 'aColor');
@@ -174,8 +174,8 @@ PIXI.StripShader.prototype.init = function()
 
 /**
 * Destroys the shader.
-* 
-* @method destroy
+*
+* @method PIXI.StripShader#destroy
 */
 PIXI.StripShader.prototype.destroy = function()
 {

@@ -102,7 +102,7 @@ Phaser.Rectangle.prototype = {
 
     /**
     * Scales the width and height of this Rectangle by the given amounts.
-    * 
+    *
     * @method Phaser.Rectangle#scale
     * @param {number} x - The amount to scale the width of the Rectangle by. A value of 0.5 would reduce by half, a value of 2 would double the width, etc.
     * @param {number} [y] - The amount to scale the height of the Rectangle by. A value of 0.5 would reduce by half, a value of 2 would double the height, etc.
@@ -197,6 +197,18 @@ Phaser.Rectangle.prototype = {
     },
 
     /**
+    * Copies the left, top, width and height properties from any given object to this Rectangle.
+    * @method Phaser.Rectangle#copyFromBounds
+    * @param {any} source - The object to copy from.
+    * @return {Phaser.Rectangle} This Rectangle object.
+    */
+    copyFromBounds: function(source) {
+
+        return this.setTo(source.left, source.top, source.width, source.height);
+
+    },
+
+    /**
     * Copies the x, y, width and height properties from this Rectangle to any given object.
     * @method Phaser.Rectangle#copyTo
     * @param {any} source - The object to copy to.
@@ -241,7 +253,7 @@ Phaser.Rectangle.prototype = {
     /**
     * Resize the Rectangle by providing a new width and height.
     * The x and y positions remain unchanged.
-    * 
+    *
     * @method Phaser.Rectangle#resize
     * @param {number} width - The width of the Rectangle. Should always be either zero or a positive value.
     * @param {number} height - The height of the Rectangle. Should always be either zero or a positive value.
@@ -323,7 +335,7 @@ Phaser.Rectangle.prototype = {
     /**
     * Determines whether this Rectangle and another given Rectangle intersect with each other.
     * This method checks the x, y, width, and height properties of the two Rectangles.
-    * 
+    *
     * @method Phaser.Rectangle#intersects
     * @param {Phaser.Rectangle} b - The second Rectangle object.
     * @return {boolean} A value of true if the specified object intersects with this Rectangle object; otherwise false.
@@ -366,7 +378,7 @@ Phaser.Rectangle.prototype = {
 
     /**
     * Returns a uniformly distributed random point from anywhere within this Rectangle.
-    * 
+    *
     * @method Phaser.Rectangle#random
     * @param {Phaser.Point|object} [out] - A Phaser.Point, or any object with public x/y properties, that the values will be set in.
     *     If no object is provided a new Phaser.Point object will be created. In high performance areas avoid this by re-using an existing object.
@@ -385,14 +397,14 @@ Phaser.Rectangle.prototype = {
 
     /**
     * Returns a point based on the given position constant, which can be one of:
-    * 
+    *
     * `Phaser.TOP_LEFT`, `Phaser.TOP_CENTER`, `Phaser.TOP_RIGHT`, `Phaser.LEFT_CENTER`,
-    * `Phaser.CENTER`, `Phaser.RIGHT_CENTER`, `Phaser.BOTTOM_LEFT`, `Phaser.BOTTOM_CENTER` 
+    * `Phaser.CENTER`, `Phaser.RIGHT_CENTER`, `Phaser.BOTTOM_LEFT`, `Phaser.BOTTOM_CENTER`
     * and `Phaser.BOTTOM_RIGHT`.
     *
     * This method returns the same values as calling Rectangle.bottomLeft, etc, but those
     * calls always create a new Point object, where-as this one allows you to use your own.
-    * 
+    *
     * @method Phaser.Rectangle#getPoint
     * @param {integer} [position] - One of the Phaser position constants, such as `Phaser.TOP_RIGHT`.
     * @param {Phaser.Point} [out] - A Phaser.Point that the values will be set in.
@@ -433,6 +445,43 @@ Phaser.Rectangle.prototype = {
             case Phaser.BOTTOM_RIGHT:
                 return out.set(this.right, this.bottom);
         }
+
+    },
+
+    /**
+     * Creates or positions four {@link Phaser.Line} lines representing the Rectangle's sides.
+     *
+     * @method Phaser.Rectangle#sides
+     * @param  {Phaser.Line} [top]
+     * @param  {Phaser.Line} [right]
+     * @param  {Phaser.Line} [bottom]
+     * @param  {Phaser.Line} [left]
+     * @return {?Phaser.Line[]} - An array containing four lines (if no arguments were given), or null.
+     */
+    sides: function (top, right, bottom, left) {
+
+        if (!arguments.length) {
+            top = new Phaser.Line();
+            right = new Phaser.Line();
+            bottom = new Phaser.Line();
+            left = new Phaser.Line();
+        }
+
+        var x1 = this.x;
+        var y1 = this.y;
+        var x2 = this.right;
+        var y2 = this.bottom;
+
+        top.setTo(x1, y1, x2, y1);
+        right.setTo(x2, y1, x2, y2);
+        bottom.setTo(x1, y2, x2, y2);
+        left.setTo(x1, y1, x1, y2);
+
+        if (!arguments.length) {
+            return [top, right, bottom, left];
+        }
+
+        return null;
 
     },
 
@@ -831,6 +880,24 @@ Phaser.Rectangle.clone = function (a, output) {
     }
 
     return output;
+
+};
+
+/**
+* Returns a new Rectangle object with the same values for the left, top, width, and height properties as the original object.
+* @method Phaser.Rectangle.createFromBounds
+* @param {any} a - An object with `left`, `top`, `width`, and `height` properties.
+* @param {Phaser.Rectangle} [output] - Optional Rectangle object. If given the values will be set into the object, otherwise a brand new Rectangle object will be created and returned.
+* @return {Phaser.Rectangle}
+*/
+Phaser.Rectangle.createFromBounds = function (a, output) {
+
+    if (output === undefined || output === null)
+    {
+        output = new Phaser.Rectangle(a.x, a.y, a.width, a.height);
+    }
+
+    return output.copyFromBounds(a);
 
 };
 
