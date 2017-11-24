@@ -205,7 +205,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
     /**
     * @property {CreatureAnimation} animation - The CreatureAnimation instance.
     */
-    this.animation = new CreatureAnimation(meshData, animation, this._creature);
+    this.animation = new CreatureAnimation(meshData, animation, false);
 
     /**
     * @property {CreatureManager} manager - The CreatureManager instance for this object.
