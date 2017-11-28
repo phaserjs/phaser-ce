@@ -346,10 +346,15 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Bug Fixes
 
 * [Phaser.Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) no longer tries to start a tween marked for deletion (such as by [Tween#stop](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#stop)). Instead it prints a warning to the console (#401).
+* Fixed tweens not repeating when [Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) is called after [Tween#repeat](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#repeat) (#408).
 
 ### Documentation
 
 * `canvas`, `canvasId`, `canvasStyle`, `forceSetTimeOut` can be set in the [game configuration object](https://photonstorm.github.io/phaser-ce/global.html#GameConfig).
+
+### Thanks
+
+@husengbatute29, @Nek-, @samme
 
 ## Version 2.9.2 - 9th November 2017
 
@@ -370,7 +375,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@16patsle, @andiCR, @daniel-nth, @JamesSkemp, @martinlindhe, @photonstorm, @rmartone, @samme, @Nek-
+@16patsle, @andiCR, @daniel-nth, @JamesSkemp, @martinlindhe, @photonstorm, @rmartone, @samme
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 

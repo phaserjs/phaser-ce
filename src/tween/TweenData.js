@@ -68,7 +68,7 @@ Phaser.TweenData = function (parent) {
     this.value = 0;
 
     /**
-    * @property {number} repeatCounter - If the Tween is set to repeat this contains the current repeat count.
+    * @property {number} repeatCounter - If the Tween is set to repeat this is the number of repeats remaining (and `repeatTotal - repeatCounter` is the number of repeats completed).
     */
     this.repeatCounter = 0;
 

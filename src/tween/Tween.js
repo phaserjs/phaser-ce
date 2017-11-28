@@ -475,6 +475,7 @@ Phaser.Tween.prototype = {
         if (repeatDelay === undefined) { repeatDelay = 0; }
 
         this.updateTweenData('repeatCounter', total, index);
+        this.updateTweenData('repeatTotal', total, index);
 
         return this.updateTweenData('repeatDelay', repeatDelay, index);
 
