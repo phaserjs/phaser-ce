@@ -341,7 +341,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Audio and video are now [touch-unlocked](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#needsTouchUnlock) only via the [touchend](https://developer.mozilla.org/en-US/docs/Web/Events/touchend) event (#92). Previously we used `touchend` for audio on newer Chrome and iOS clients and `touchstart` in all other cases.
 * Tilemap#addTilesetImage, Tilemap#createFromObjects, and Tilemap#createLayer print the map's contents (following the usual warning) in the console if you pass a bad name or identifier.
 * Tileset#addTilesetImage gives a little more information when warning about image dimension mismatches.
-* p2.js typeScript definitions fixes and updates 
+* p2 TypeScript definitions fixes and updates (#406).
 * Removed Phaser.TweenData#yoyoCounter, an undocumented property that Phaser set but never used.
 
 ### Bug Fixes
@@ -351,7 +351,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Documentation
 
-* `canvas`, `canvasId`, `canvasStyle`, `forceSetTimeOut` can be set in the [game configuration object](https://photonstorm.github.io/phaser-ce/global.html#GameConfig).
+* `canvas`, `canvasId`, `canvasStyle`, and [forceSetTimeOut](https://photonstorm.github.io/phaser-ce/Phaser.RequestAnimationFrame.html#forceSetTimeOut) can be set in the [game configuration object](https://photonstorm.github.io/phaser-ce/global.html#GameConfig).
 
 ### Thanks
 
