@@ -342,6 +342,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Tilemap#addTilesetImage, Tilemap#createFromObjects, and Tilemap#createLayer print the map's contents (following the usual warning) in the console if you pass a bad name or identifier.
 * Tileset#addTilesetImage gives a little more information when warning about image dimension mismatches.
 * p2.js typeScript definitions fixes and updates 
+* Removed Phaser.TweenData#yoyoCounter, an undocumented property that Phaser set but never used.
 
 ### Bug Fixes
 

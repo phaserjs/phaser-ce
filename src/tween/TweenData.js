@@ -277,7 +277,6 @@ Phaser.TweenData.prototype = {
         }
 
         this.value = 0;
-        this.yoyoCounter = 0;
         this.repeatCounter = this.repeatTotal;
 
         return this;
