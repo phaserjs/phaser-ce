@@ -1202,8 +1202,17 @@ Phaser.InputHandler.prototype = {
         }
 
 		var pointerLocalCoord = this.globalToLocal(pointer);
-        var px = pointerLocalCoord.x + this._dragPoint.x + this.dragOffset.x;
-        var py = pointerLocalCoord.y + this._dragPoint.y + this.dragOffset.y;
+
+        if (this.sprite.fixedToCamera)
+        {
+            var px = this.game.camera.scale.x * pointerLocalCoord.x + this._dragPoint.x + this.dragOffset.x;
+            var py = this.game.camera.scale.y * pointerLocalCoord.y + this._dragPoint.y + this.dragOffset.y;
+        }
+        else
+        {
+            var px = pointerLocalCoord.x + this._dragPoint.x + this.dragOffset.x;
+            var py = pointerLocalCoord.y + this._dragPoint.y + this.dragOffset.y;
+        }
 
         if (this.sprite.fixedToCamera)
         {
