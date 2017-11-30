@@ -78,6 +78,13 @@ Phaser.Utils.Debug = function (game) {
     this.renderShadow = true;
 
     /**
+    * @property {string} currentColor - The color last set by {@link #start} or {@link #text}.
+    * @default
+    * @protected
+    */
+    this.currentColor = null;
+
+    /**
     * @property {number} currentX - The current X position the debug information will be rendered at.
     * @default
     */
@@ -719,7 +726,7 @@ Phaser.Utils.Debug.prototype = {
         }
 
         this.stop();
-        
+
     },
 
     /**
