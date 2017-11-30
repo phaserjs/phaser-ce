@@ -2052,8 +2052,9 @@ Phaser.Loader.prototype = {
 
         this.onLoadComplete.dispatch();
 
-        //Completes if the state still exists since destroy could have occurred while loading
-        if (this.game.state) {
+        // Check if the state still exists since destroy could have occurred while loading
+        if (this.game.state)
+        {
             this.game.state.loadComplete();
         }
 
