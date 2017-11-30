@@ -30,7 +30,7 @@
 * ```javascript
 * var weapon = this.game.plugins.add(Phaser.Weapon);
 * // …
-* weapon.createBullets();
+* weapon.createBullets(10, 'bullet');
 * ```
 *
 * @class Phaser.Weapon
@@ -519,6 +519,11 @@ Phaser.Weapon.prototype.createBullets = function (quantity, key, frame, group) {
 
     if (quantity === undefined) { quantity = 1; }
     if (group === undefined) { group = this.game.world; }
+
+    if (this.bullets && !this.bullets.game)
+    {
+        this.bullets = null;
+    }
 
     if (!this.bullets)
     {
