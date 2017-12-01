@@ -75,7 +75,7 @@ Phaser.World.prototype.boot = function () {
 
 /**
 * Called whenever the State changes or resets.
-* 
+*
 * It resets the world.x and world.y coordinates back to zero,
 * then resets the Camera.
 *
@@ -123,7 +123,10 @@ Phaser.World.prototype.setBounds = function (x, y, width, height) {
 };
 
 /**
-* Updates the size of this world. Note that this doesn't modify the world x/y coordinates, just the width and height.
+* Updates this world's width and height (but not smaller than any previous {@link #setBounds defined size}).
+*
+* Phaser uses this to adapt to {@link Phaser.ScaleManager#updateDimensions layout changes}.
+* You probably want to use {@link #setBounds} instead.
 *
 * @method Phaser.World#resize
 * @param {number} width - New width of the game world in pixels.
