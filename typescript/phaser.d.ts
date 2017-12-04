@@ -5896,6 +5896,7 @@ declare module Phaser {
         sort(key?: string, order?: number): void;
         shutdown(): void;
         wrap(sprite: any, padding?: number, useBounds?: boolean, horizontal?: boolean, vertical?: boolean): void;
+        wrapAll(group: Phaser.Group, checkExists?: boolean, padding?: number, useBounds?: boolean, horizontal?: boolean, vertical?: boolean): void;
 
     }
 

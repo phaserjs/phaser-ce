@@ -244,6 +244,21 @@ Phaser.World.prototype.wrap = function (sprite, padding, useBounds, horizontal, 
 };
 
 /**
+* @method Phaser.World#wrapAll
+* @param {Phaser.Group} group - A group of sprites.
+* @param {boolean} [checkExists=false] - Wrap only sprites having `exists=true`.
+* @param {number} [padding=0] - Extra padding added equally to the sprite.x and y coordinates before checking if within the world bounds. Ignored if useBounds is true.
+* @param {boolean} [useBounds=false] - If useBounds is false wrap checks the object.x/y coordinates. If true it does a more accurate bounds check, which is more expensive.
+* @param {boolean} [horizontal=true] - If horizontal is false, wrap will not wrap the object.x coordinates horizontally.
+* @param {boolean} [vertical=true] - If vertical is false, wrap will not wrap the object.y coordinates vertically.
+*/
+Phaser.World.prototype.wrapAll = function (group, checkExists, padding, useBounds, horizontal, vertical) {
+
+    group.forEach(this.wrap, this, checkExists, padding, useBounds, horizontal, vertical);
+
+};
+
+/**
 * @name Phaser.World#width
 * @property {number} width - Gets or sets the current width of the game world. The world can never be smaller than the game (canvas) dimensions.
 */
