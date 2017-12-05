@@ -540,7 +540,7 @@ Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "speed", {
 Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "angle", {
 
     get: function () {
-        return Math.atan2(this.shape.velocity.y, this.shape.velocity.x);
+        return this.shape.velocity.atan();
     }
 
 });

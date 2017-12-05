@@ -90,7 +90,7 @@ Phaser.Bullet.prototype.update = function () {
     
     if (this.data.rotateToVelocity)
     {
-        this.rotation = Math.atan2(this.body.velocity.y, this.body.velocity.x);
+        this.rotation = this.body.velocity.atan();
     }
 
     if (this.data.bulletManager.bulletWorldWrap)
