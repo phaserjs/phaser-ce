@@ -60,7 +60,7 @@ Phaser.Bullet.prototype.kill = function () {
 /**
 * Updates the Bullet, killing as required.
 *
-* @method Phaser.Bullet#kill
+* @method Phaser.Bullet#update
 * @memberof Phaser.Bullet
 */
 Phaser.Bullet.prototype.update = function () {
