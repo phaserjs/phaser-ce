@@ -7,7 +7,7 @@
 /**
 * Create a new `Bullet` object. Bullets are used by the `Phaser.Weapon` class, and are normal Sprites,
 * with a few extra properties in the data object to handle Weapon specific features.
-* 
+*
 * @class Phaser.Bullet
 * @constructor
 * @extends Phaser.Sprite
@@ -87,7 +87,7 @@ Phaser.Bullet.prototype.update = function () {
             }
         }
     }
-    
+
     if (this.data.rotateToVelocity)
     {
         this.rotation = this.body.velocity.atan();
