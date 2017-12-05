@@ -345,20 +345,57 @@ Phaser.Point.prototype = {
     *
     * @method Phaser.Point#angle
     * @param {Phaser.Point|any} a - The object to get the angle from this Point to.
-    * @param {boolean} [asDegrees=false] - Is the given angle in radians (false) or degrees (true)?
-    * @return {number} The angle between the two objects.
+    * @param {boolean} [asDegrees=false] - Return a value in radians (false) or degrees (true)?
+    * @return {number} The angle, where this Point is the vertex. Within [-pi, pi] or [-180deg, 180deg].
     */
     angle: function (a, asDegrees) {
 
-        if (asDegrees === undefined) { asDegrees = false; }
+        return this.angleXY(a.x, a.y, asDegrees);
+
+    },
+
+    /**
+    * Returns the angle between this Point object and an x-y coordinate pair.
+    *
+    * @method Phaser.Point#angleXY
+    * @param {number} x - The x-coordinate
+    * @param {number} y - The y-coordinate
+    * @param {boolean} [asDegrees=false] - Return a value in radians (false) or degrees (true)?
+    * @return {number} The angle, where this Point is the vertex. Within [-pi, pi] or [-180deg, 180deg].
+    */
+    angleXY: function (x, y, asDegrees) {
+
+        var angle = Math.atan2(y - this.y, x - this.x);
 
         if (asDegrees)
         {
-            return Phaser.Math.radToDeg(Math.atan2(a.y - this.y, a.x - this.x));
+            return Phaser.Math.radToDeg(angle);
         }
         else
         {
-            return Math.atan2(a.y - this.y, a.x - this.x);
+            return angle;
+        }
+
+    },
+
+    /**
+    * Returns the arctangent of this Point.
+    *
+    * @method Phaser.Point#atan
+    * @param {boolean} [asDegrees=false] - Return a value in radians (false) or degrees (true)?
+    * @return {number} The angle, where the vertex is (0, 0). Within [-pi, pi] or [-180deg, 180deg].
+    */
+    atan: function (asDegrees) {
+
+        var angle = Math.atan2(this.y, this.x);
+
+        if (asDegrees)
+        {
+            return Phaser.Math.radToDeg(angle);
+        }
+        else
+        {
+            return angle;
         }
 
     },
@@ -688,11 +725,10 @@ Phaser.Point.fuzzyEqualsXY = function (a, x, y, epsilon) {
 * @method Phaser.Point.angle
 * @param {Phaser.Point} a - The first Point object.
 * @param {Phaser.Point} b - The second Point object.
-* @return {number} The angle between the two Points.
+* @return {number} The angle, where b is the vertex. Within [-pi, pi].
 */
 Phaser.Point.angle = function (a, b) {
 
-    // return Math.atan2(a.x * b.y - a.y * b.x, a.x * b.x + a.y * b.y);
     return Math.atan2(a.y - b.y, a.x - b.x);
 
 };

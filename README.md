@@ -336,6 +336,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.BitmapData#polygon draws a polygon.
 * Phaser.Point.sortClockwise sorts points around a reference point.
 * Phaser.World#wrapAll wraps all members of a group.
+* Phaser.Point#angleXY
+* Phaser.Point#arctangent
 
 ### Updates
 
