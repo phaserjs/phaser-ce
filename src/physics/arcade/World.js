@@ -1718,7 +1718,7 @@ Phaser.Physics.Arcade.prototype = {
         if (speed === undefined) { speed = 60; }
         if (maxTime === undefined) { maxTime = 0; }
 
-        var angle = Math.atan2(destination.y - displayObject.y, destination.x - displayObject.x);
+        var angle = Phaser.Point.angle(destination, displayObject);
 
         if (maxTime > 0)
         {
@@ -2101,11 +2101,11 @@ Phaser.Physics.Arcade.prototype = {
 
         if (world)
         {
-            return Math.atan2(target.world.y - source.world.y, target.world.x - source.world.x);
+            return Phaser.Point.angle(target.world, source.world);
         }
         else
         {
-            return Math.atan2(target.y - source.y, target.x - source.x);
+            return Phaser.Point.angle(target, source);
         }
 
     },

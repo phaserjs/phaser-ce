@@ -379,7 +379,7 @@ Object.defineProperty(Phaser.Line.prototype, "length", {
 Object.defineProperty(Phaser.Line.prototype, "angle", {
 
     get: function () {
-        return Math.atan2(this.end.y - this.start.y, this.end.x - this.start.x);
+        return Phaser.Point.angle(this.end, this.start);
     }
 
 });
