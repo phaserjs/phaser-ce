@@ -4086,9 +4086,10 @@ declare module Phaser {
 
         add(x: number, y: number): Phaser.Point;
         angle(a: Phaser.Point, asDegrees?: boolean): number;
-        angleXY(x: number, y: number, asDegrees?: boolean): number;
         angleSq(a: Phaser.Point): number;
+        angleXY(x: number, y: number, asDegrees?: boolean): number;
         arctangent(asDegrees?: boolean): number;
+        ceil(): Phaser.Point;
         clamp(min: number, max: number): Phaser.Point;
         clampX(min: number, max: number): Phaser.Point;
         clampY(min: number, max: number): Phaser.Point;
@@ -4096,16 +4097,15 @@ declare module Phaser {
         clone(output?: Phaser.Point): Phaser.Point;
         copyFrom(source: Phaser.Point): Phaser.Point;
         copyTo<T>(dest: T): T;
-        ceil(): Phaser.Point;
         cross(a: Phaser.Point): number;
-        divide(x: number, y: number): Phaser.Point;
         distance(dest: Phaser.Point, round?: boolean): number;
+        divide(x: number, y: number): Phaser.Point;
         dot(a: Phaser.Point): number;
         equals(a: Phaser.Point): boolean;
         equalsXY(x: number, y: number): boolean;
+        floor(): Phaser.Point;
         fuzzyEquals(a: Phaser.Point, epsilon?: number): boolean;
         fuzzyEqualsXY(x: number, y: number, epsilon?: number): boolean;
-        floor(): Phaser.Point;
         getMagnitude(): number;
         getMagnitudeSq(): number;
         invert(): Phaser.Point;
@@ -4114,8 +4114,8 @@ declare module Phaser {
         normalize(): Phaser.Point;
         normalRightHand(): Phaser.Point;
         perp(): Phaser.Point;
-        rperp(): Phaser.Point;
         rotate(x: number, y: number, angle: number, asDegrees?: boolean, distance?: number): Phaser.Point;
+        rperp(): Phaser.Point;
         set(x: number, y?: number): Phaser.Point;
         setMagnitude(magnitude: number): Phaser.Point;
         setTo(x: number, y?: number): Phaser.Point;
