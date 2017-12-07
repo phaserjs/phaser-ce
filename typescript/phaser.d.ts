@@ -4088,7 +4088,7 @@ declare module Phaser {
         angle(a: Phaser.Point, asDegrees?: boolean): number;
         angleSq(a: Phaser.Point): number;
         angleXY(x: number, y: number, asDegrees?: boolean): number;
-        arctangent(asDegrees?: boolean): number;
+        atan(asDegrees?: boolean): number;
         ceil(): Phaser.Point;
         clamp(min: number, max: number): Phaser.Point;
         clampX(min: number, max: number): Phaser.Point;
