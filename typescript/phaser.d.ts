@@ -4110,6 +4110,7 @@ declare module Phaser {
         getMagnitudeSq(): number;
         invert(): Phaser.Point;
         isZero(): boolean;
+        limit(max: number): Phaser.Point;
         multiply(x: number, y: number): Phaser.Point;
         normalize(): Phaser.Point;
         normalRightHand(): Phaser.Point;
