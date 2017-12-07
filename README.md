@@ -332,30 +332,30 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### New Features
 
-* Phaser.Keyboard#removeCallbacks removes callbacks added by [Phaser.Keyboard#addCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#addCallbacks).
 * Phaser.BitmapData#polygon draws a polygon.
-* Phaser.Point.sortClockwise sorts points around a reference point.
-* Phaser.World#wrapAll wraps all members of a group.
-* Phaser.Point#angleXY
-* Phaser.Point#atan
-* Phaser.Point#expand
+* Phaser.Keyboard#removeCallbacks removes callbacks added by [Phaser.Keyboard#addCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#addCallbacks).
 * Phaser.Line#fromPoints
+* Phaser.Point.sortClockwise sorts points around a reference point.
+* Phaser.Point#angleXY
+* Phaser.Point#atan computes a point's arctangent.
+* Phaser.Point#expand increases a point's magnitude to a minimum length.
+* Phaser.World#wrapAll wraps all members of a group.
 
 ### Updates
 
-* Optimized [Phaser.Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#_getProperty).
 * Audio and video are now [touch-unlocked](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#needsTouchUnlock) only via the [touchend](https://developer.mozilla.org/en-US/docs/Web/Events/touchend) event (#92). Previously we used `touchend` for audio on newer Chrome and iOS clients and `touchstart` in all other cases.
-* Tilemap#addTilesetImage, Tilemap#createFromObjects, and Tilemap#createLayer print the map's contents (following the usual warning) in the console if you pass a bad name or identifier.
-* Tileset#addTilesetImage gives a little more information when warning about image dimension mismatches.
+* [Tilemap#addTilesetImage](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#addTilesetImage), [Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects), and [Tilemap#createLayer](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createLayer) print the map's contents (following the usual warning) in the console if you pass a bad name or identifier, to help you correct it.
+* [Tileset#addTilesetImage](https://photonstorm.github.io/phaser-ce/Phaser.Tileset.html#addTilesetImage) gives a little more information when warning about image dimension mismatches.
+* Optimized [Phaser.Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#_getProperty).
+* Removed Phaser.TweenData#yoyoCounter, an extraneous property that Phaser never used.
 * p2 TypeScript definitions fixes and updates (#406).
-* Removed Phaser.TweenData#yoyoCounter, an undocumented property that Phaser set but never used.
 
 ### Bug Fixes
 
 * [Phaser.Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) no longer tries to start a tween marked for deletion (such as by [Tween#stop](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#stop)). Instead it prints a warning to the console (#401).
-* Fixed tweens not repeating when [Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) is called after [Tween#repeat](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#repeat) (#408).
-* Fixed async load complete when state is destroyed (#410).
 * Fixed drag movement of [fixedToCamera](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#fixedToCamera) sprites when the camera is scaled (#405).
+* Fixed tweens not repeating when [Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) is called after [Tween#repeat](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#repeat) (#408).
+* State#loadComplete is no longer called by the [Loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) if the state has been destroyed (#410).
 
 ### Documentation
 
