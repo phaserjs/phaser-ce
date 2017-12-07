@@ -355,7 +355,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * [Phaser.Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) no longer tries to start a tween marked for deletion (such as by [Tween#stop](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#stop)). Instead it prints a warning to the console (#401).
 * Fixed drag movement of [fixedToCamera](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#fixedToCamera) sprites when the camera is scaled (#405).
 * Fixed tweens not repeating when [Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) is called after [Tween#repeat](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#repeat) (#408).
-* State#loadComplete is no longer called by the [Loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) if the state has been destroyed (#410).
+* [StateManager#loadComplete](https://photonstorm.github.io/phaser-ce/Phaser.StateManager.html) is no longer called by the [Loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) if the state has been destroyed (#410).
 
 ### Documentation
 
