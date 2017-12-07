@@ -877,6 +877,8 @@ Phaser.Tilemap.prototype = {
     *
     * Collision-enabled tiles can be collided against Sprites using {@link Phaser.Physics.Arcade#collide}.
     *
+    * You can verify the collision faces by enabling {@link Phaser.TilemapLayer#debug}.
+    *
     * @method Phaser.Tilemap#setCollision
     * @param {number|array} indexes - Either a single tile index, or an array of tile IDs to be checked for collision.
     * @param {boolean} [collides=true] - If true it will enable collision. If false it will clear collision.
@@ -1064,7 +1066,14 @@ Phaser.Tilemap.prototype = {
         }
         else if (typeof layer === 'string')
         {
+            var layerArg = layer;
+
             layer = this.getLayerIndex(layer);
+
+            if (!layer)
+            {
+                console.warn('No such layer name: ' + layerArg);
+            }
         }
         else if (layer instanceof Phaser.TilemapLayer)
         {
