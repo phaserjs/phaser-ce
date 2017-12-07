@@ -4103,6 +4103,7 @@ declare module Phaser {
         dot(a: Phaser.Point): number;
         equals(a: Phaser.Point): boolean;
         equalsXY(x: number, y: number): boolean;
+        expand(min: number): Phaser.Point;
         floor(): Phaser.Point;
         fuzzyEquals(a: Phaser.Point, epsilon?: number): boolean;
         fuzzyEqualsXY(x: number, y: number, epsilon?: number): boolean;

@@ -474,17 +474,37 @@ Phaser.Point.prototype = {
     },
 
     /**
-    * Alters the Point object so it's magnitude is at most the max value.
+    * Alters the Point object so its magnitude is at most the max value.
     *
     * @method Phaser.Point#limit
     * @param {number} max - The maximum magnitude for the Point.
     * @return {Phaser.Point} This Point object.
+    * @see Phaser.Point#expand
     */
     limit: function (max) {
 
         if (this.getMagnitudeSq() > max * max)
         {
             this.setMagnitude(max);
+        }
+
+        return this;
+
+    },
+
+    /**
+    * Alters the Point object so its magnitude is at least the min value.
+    *
+    * @method Phaser.Point#expand
+    * @param {number} min - The minimum magnitude for the Point.
+    * @return {Phaser.Point} This Point object.
+    * @see Phaser.Point#limit
+    */
+    expand: function (min) {
+
+        if (this.getMagnitudeSq() < min * min)
+        {
+            this.setMagnitude(min);
         }
 
         return this;

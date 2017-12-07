@@ -338,6 +338,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.World#wrapAll wraps all members of a group.
 * Phaser.Point#angleXY
 * Phaser.Point#arctangent
+* Phaser.Point#expand
 * Phaser.Line#fromPoints
 
 ### Updates
