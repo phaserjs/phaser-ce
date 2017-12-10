@@ -769,6 +769,30 @@ Phaser.Loader.prototype = {
     },
 
     /**
+    * Generate a grid image and add it to the current load queue.
+    *
+    * @method Phaser.Loader#imageFromGrid
+    * @see Phaser.Create#grid
+    */
+    imageFromGrid: function (key, width, height, cellWidth, cellHeight, color) {
+
+        return this.imageFromBitmapData(key, this.game.create.grid(key, width, height, cellWidth, cellHeight, color, false));
+
+    },
+
+    /**
+    * Generate a texture image and add it to the current load queue.
+    *
+    * @method Phaser.Loader#imageFromTexture
+    * @see Phaser.Create#texture
+    */
+    imageFromTexture: function (key, data, pixelWidth, pixelHeight, palette) {
+
+        return this.imageFromBitmapData(key, this.game.create.texture(key, data, pixelWidth, pixelHeight, palette, false));
+
+    },
+
+    /**
     * Adds a Compressed Texture Image to the current load queue.
     *
     * Compressed Textures are a WebGL only feature, and require 3rd party tools to create.

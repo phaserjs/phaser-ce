@@ -335,6 +335,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.BitmapData#polygon draws a polygon.
 * Phaser.Keyboard#removeCallbacks removes callbacks added by [Phaser.Keyboard#addCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#addCallbacks).
 * Phaser.Line#fromPoints
+* Phaser.Loader#imageFromGrid and Phaser.Loader#imageFromTexture are image-loading counterparts of [Phaser.Create#grid](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#grid) and [Phaser.Create#texture](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#texture).
 * Phaser.Point.sortClockwise sorts points around a reference point.
 * Phaser.Point#angleXY
 * Phaser.Point#atan computes a point's arctangent.

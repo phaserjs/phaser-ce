@@ -110,6 +110,8 @@ Phaser.Create.prototype = {
      * The above will create a new texture called `bob`, which will look like a little man wearing a hat. You can then use it
      * for sprites the same way you use any other texture: `game.add.sprite(0, 0, 'bob');`
      *
+     * Use {@link Phaser.Loader#imageFromTexture} to preload an image of the same.
+     *
      * @method Phaser.Create#texture
      * @param {string} key - The key used to store this texture in the Phaser Cache.
      * @param {array} data - An array of pixel data.
@@ -167,6 +169,8 @@ Phaser.Create.prototype = {
 
     /**
      * Creates a grid texture based on the given dimensions.
+     *
+     * Use {@link Phaser.Loader#imageFromGrid} to preload an image of the same.
      *
      * @method Phaser.Create#grid
      * @param {string} key - The key used to store this texture in the Phaser Cache.

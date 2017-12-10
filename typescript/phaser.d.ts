@@ -2617,6 +2617,8 @@ declare module Phaser {
         getAudioURL(urls: any[]): void;
         image(key: string, url?: string | any, overwrite?: boolean): Phaser.Loader;
         imageFromBitmapData(key: string, bitmapData: Phaser.BitmapData, overwrite?: boolean): Phaser.Loader;
+        imageFromGrid(key: string, width: number, height: number, cellWidth: number, cellHeight: number, color?: string): Phaser.Loader;
+        imageFromTexture(key: string, data: any, pixelWidth: number, pixelHeight: number, palette?: number): Phaser.Loader;
         images(keys: string[], urls?: string[]): Phaser.Loader;
         json(key: string, url?: string, overwrite?: boolean): Phaser.Loader;
         jsonLoadComplete(file: any, xhr: XMLHttpRequest): void;
