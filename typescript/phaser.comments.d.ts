@@ -26759,11 +26759,6 @@ declare module Phaser {
         outOfBoundsKill: boolean;
 
         /**
-         * If this and the autoCull property are both set to true, then the kill method is called as soon as the Game Object leaves the camera bounds. 
-         */
-        outOfCameraBoundsKill: boolean;
-
-        /**
         * A Game Object is that is pendingDestroy is flagged to have its destroy method called on the next logic update.
         * You can set it directly to allow you to flag an object to be destroyed on its next update.
         * 

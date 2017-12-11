@@ -357,6 +357,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Fixed drag movement of [fixedToCamera](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#fixedToCamera) sprites when the camera is scaled (#405).
 * Fixed tweens not repeating when [Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) is called after [Tween#repeat](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#repeat) (#408).
 * [StateManager#loadComplete](https://photonstorm.github.io/phaser-ce/Phaser.StateManager.html) is no longer called by the [Loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) if the state has been destroyed (#410).
+* Added typescript definitions for Phaser#Sprite.outOfCameraBoundsKill.
 
 ### Documentation
 
@@ -364,7 +365,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@clesquir, @husengbatute29, @Nek-, @samme
+@clesquir, @GrindheadGames, @husengbatute29, @Nek-, @samme
 
 ## Version 2.9.2 - 9th November 2017
 

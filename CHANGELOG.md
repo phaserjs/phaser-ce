@@ -1,8 +1,6 @@
 # Change Log
 
 ## Unreleased
-* Added typescript definitions for Phaser.Sprite.outOfCameraBoundsKill
-Thanks @GrindheadGames
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
