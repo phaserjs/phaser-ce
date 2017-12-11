@@ -4754,6 +4754,7 @@ declare module Phaser {
         offsetX: number;
         offsetY: number;
         outOfBoundsKill: boolean;
+        outOfCameraBoundsKill: boolean;
         pendingDestroy: boolean;
         previousPosition: Phaser.Point;
         previousRotation: number;
