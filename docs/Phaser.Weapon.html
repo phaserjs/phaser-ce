@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: Weapon</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2017110918">
+	<link rel="stylesheet" href="styles/site.phaser.css?2017121111">
 </head>
 
 <body>
@@ -136,17 +136,20 @@
     
     <div class="description method-description">
         <p>The Weapon Plugin provides the ability to easily create a bullet pool and manager.</p>
-<p>Weapons fire Phaser.Bullet objects, which are essentially Sprites with a few extra properties.
-The Bullets are enabled for Arcade Physics. They do not currently work with P2 Physics.</p>
-<p>The Bullets are created inside of <code>Weapon.bullets</code>, which is a Phaser.Group instance. Anything you
+<p>Weapons fire <a href="Phaser.Bullet.html">Phaser.Bullet</a> objects, which are essentially Sprites with a few extra properties.
+The Bullets are enabled for <a href="Phaser.Physics.Arcade.html">Arcade Physics</a>. They do not currently work with P2 Physics.</p>
+<p>The Bullets are created inside of weapon.bullets, which is a <a href="Phaser.Group.html">Phaser.Group</a> instance. Anything you
 can usually do with a Group, such as move it around the display list, iterate it, etc can be done
 to the bullets Group too.</p>
 <p>Bullets can have textures and even animations. You can control the speed at which they are fired,
 the firing rate, the firing angle, and even set things like gravity for them.</p>
-<p>A small example, assumed to be running from within a Phaser.State create method.</p>
-<p><code>var weapon = this.add.weapon(10, 'bullet');</code>
-<code>weapon.fireFrom.set(300, 300);</code>
-<code>this.input.onDown.add(weapon.fire, this);</code></p>
+<p>A small example, using <a href="Phaser.GameObjectFactory.html#weapon">add.weapon</a>, assumed to be running from within a <a href="Phaser.State.html#create">Phaser.State#create</a> method:</p>
+<pre class="prettyprint source lang-javascript"><code>var weapon = this.add.weapon(10, 'bullet');
+weapon.fireFrom.set(300, 300);
+this.input.onDown.add(weapon.fire, this);</code></pre><p>If you want to (re)create the bullet pool separately, you can use:</p>
+<pre class="prettyprint source lang-javascript"><code>var weapon = this.game.plugins.add(Phaser.Weapon);
+// …
+weapon.createBullets();</code></pre>
     </div>
     
 
@@ -265,7 +268,7 @@ the firing rate, the firing angle, and even set things like gravity for them.</p
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L31" title="Weapon on line 31 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 31</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L41" title="Weapon on line 41 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 41</a>
     
 
 	
@@ -319,7 +322,7 @@ the firing rate, the firing angle, and even set things like gravity for them.</p
 <dd>
     
     <div class="description members-description">
-        <p>A <code>bulletKillType</code> constant that automatically kills the bullets when they leave the <code>Camera.bounds</code> rectangle.</p>
+        <p>A <a href="Phaser.Weapon.html#bulletKillType">bulletKillType</a> constant that automatically kills the bullets when they leave the <a href="Phaser.Camera.html#bounds">Phaser.Camera#bounds</a> rectangle.</p>
     </div>
     
 
@@ -370,7 +373,7 @@ the firing rate, the firing angle, and even set things like gravity for them.</p
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L443" title="KILL_CAMERA_BOUNDS on line 443 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 443</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L476" title="KILL_CAMERA_BOUNDS on line 476 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 476</a>
     
 
 	
@@ -396,8 +399,8 @@ the firing rate, the firing angle, and even set things like gravity for them.</p
 <dd>
     
     <div class="description members-description">
-        <p>A <code>bulletKillType</code> constant that automatically kills the bullets after they
-exceed the <code>bulletDistance</code> from their original firing position.</p>
+        <p>A <a href="Phaser.Weapon.html#bulletKillType">bulletKillType</a> constant that automatically kills the bullets after they
+exceed the bulletDistance from their original firing position.</p>
     </div>
     
 
@@ -448,7 +451,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L429" title="KILL_DISTANCE on line 429 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 429</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L462" title="KILL_DISTANCE on line 462 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 462</a>
     
 
 	
@@ -474,7 +477,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 <dd>
     
     <div class="description members-description">
-        <p>A <code>bulletKillType</code> constant that automatically kills the bullets when their <code>bulletLifespan</code> expires.</p>
+        <p>A <a href="Phaser.Weapon.html#bulletKillType">bulletKillType</a> constant that automatically kills the bullets when their <a href="Phaser.Weapon.html#bulletLifespan">bulletLifespan</a> expires.</p>
     </div>
     
 
@@ -525,7 +528,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L421" title="KILL_LIFESPAN on line 421 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 421</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L454" title="KILL_LIFESPAN on line 454 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 454</a>
     
 
 	
@@ -551,7 +554,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 <dd>
     
     <div class="description members-description">
-        <p>A <code>bulletKillType</code> constant that stops the bullets from ever being destroyed automatically.</p>
+        <p>A <a href="Phaser.Weapon.html#bulletKillType">bulletKillType</a> constant that stops the bullets from ever being destroyed automatically.</p>
     </div>
     
 
@@ -602,7 +605,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L414" title="KILL_NEVER on line 414 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 414</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L447" title="KILL_NEVER on line 447 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 447</a>
     
 
 	
@@ -628,7 +631,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 <dd>
     
     <div class="description members-description">
-        <p>A <code>bulletKillType</code> constant that automatically kills the bullets when they leave the <code>Weapon.bounds</code> rectangle.</p>
+        <p>A <a href="Phaser.Weapon.html#bulletKillType">bulletKillType</a> constant that automatically kills the bullets when they leave the <a href="Phaser.Weapon.html#bounds">bounds</a> rectangle.</p>
     </div>
     
 
@@ -679,7 +682,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L457" title="KILL_STATIC_BOUNDS on line 457 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 457</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L490" title="KILL_STATIC_BOUNDS on line 490 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 490</a>
     
 
 	
@@ -705,7 +708,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 <dd>
     
     <div class="description members-description">
-        <p>A <code>bulletKillType</code> constant that automatically kills the bullets when they leave the <code>Weapon.bounds</code> rectangle.</p>
+        <p>A <a href="Phaser.Weapon.html#bulletKillType">bulletKillType</a> constant that automatically kills the bullets when they leave the <a href="Phaser.Weapon.html#bounds">bounds</a> rectangle.</p>
     </div>
     
 
@@ -756,7 +759,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L436" title="KILL_WEAPON_BOUNDS on line 436 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 436</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L469" title="KILL_WEAPON_BOUNDS on line 469 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 469</a>
     
 
 	
@@ -782,7 +785,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 <dd>
     
     <div class="description members-description">
-        <p>A <code>bulletKillType</code> constant that automatically kills the bullets when they leave the <code>World.bounds</code> rectangle.</p>
+        <p>A <a href="Phaser.Weapon.html#bulletKillType">bulletKillType</a> constant that automatically kills the bullets when they leave the <a href="Phaser.World.html#bounds">Phaser.World#bounds</a> rectangle.</p>
     </div>
     
 
@@ -833,7 +836,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L450" title="KILL_WORLD_BOUNDS on line 450 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 450</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L483" title="KILL_WORLD_BOUNDS on line 483 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 483</a>
     
 
 	
@@ -910,7 +913,7 @@ exceed the <code>bulletDistance</code> from their original firing position.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L359" title="_hasFired on line 359 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 359</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L391" title="_hasFired on line 391 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 391</a>
     
 
 	
@@ -988,7 +991,7 @@ boolean controls if the Group will create a brand new bullet object or not.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L46" title="autoExpandBulletsGroup on line 46 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 46</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L57" title="autoExpandBulletsGroup on line 57 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 57</a>
     
 
 	
@@ -1015,7 +1018,7 @@ boolean controls if the Group will create a brand new bullet object or not.</p>
     
     <div class="description members-description">
         <p>Will this weapon auto fire? If set to true then a new bullet will be fired
-based on the <code>fireRate</code> value.</p>
+based on the <a href="Phaser.Weapon.html#fireRate">fireRate</a> value.</p>
     </div>
     
 
@@ -1066,7 +1069,7 @@ based on the <code>fireRate</code> value.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L53" title="autofire on line 53 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 53</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L65" title="autofire on line 65 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 65</a>
     
 
 	
@@ -1093,7 +1096,7 @@ based on the <code>fireRate</code> value.</p>
     
     <div class="description members-description">
         <p>This Rectangle defines the bounds that are used when determining if a Bullet should be killed or not.
-It's used in combination with <code>Weapon.bulletKillType</code> when that is set to either <code>Phaser.Weapon.KILL_WEAPON_BOUNDS</code>
+It's used in combination with <a href="Phaser.Weapon.html#bulletKillType">bulletKillType</a> when that is set to either <code>Phaser.Weapon.KILL_WEAPON_BOUNDS</code>
 or <code>Phaser.Weapon.KILL_STATIC_BOUNDS</code>. If you are not using either of these kill types then the bounds are ignored.
 If you are tracking a Sprite or Point then the bounds are centered on that object every frame.</p>
     </div>
@@ -1146,7 +1149,7 @@ If you are tracking a Sprite or Point then the bounds are centered on that objec
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L266" title="bounds on line 266 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 266</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L297" title="bounds on line 297 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 297</a>
     
 
 	
@@ -1226,7 +1229,7 @@ angle offset to be 90 and they'll be properly rotated when fired.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L153" title="bulletAngleOffset on line 153 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 153</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L177" title="bulletAngleOffset on line 177 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 177</a>
     
 
 	
@@ -1306,7 +1309,7 @@ great 'spread' effect to a Weapon.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L162" title="bulletAngleVariance on line 162 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 162</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L187" title="bulletAngleVariance on line 187 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 187</a>
     
 
 	
@@ -1333,7 +1336,7 @@ great 'spread' effect to a Weapon.</p>
     
     <div class="description members-description">
         <p>The string based name of the animation that the Bullet will be given on launch.
-This is set via <code>Weapon.addBulletAnimation</code>.</p>
+This is set via <a href="Phaser.Weapon.html#addBulletAnimation">addBulletAnimation</a>.</p>
     </div>
     
 
@@ -1384,7 +1387,7 @@ This is set via <code>Weapon.addBulletAnimation</code>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L112" title="bulletAnimation on line 112 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 112</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L131" title="bulletAnimation on line 131 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 131</a>
     
 
 	
@@ -1463,7 +1466,7 @@ overridden before calling <code>createBullets</code> and set to your own class t
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1275" title="bulletClass on line 1275 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1275</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1308" title="bulletClass on line 1308 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1308</a>
     
 
 	
@@ -1540,7 +1543,7 @@ overridden before calling <code>createBullets</code> and set to your own class t
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1367" title="bulletCollideWorldBounds on line 1367 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1367</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1400" title="bulletCollideWorldBounds on line 1400 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1400</a>
     
 
 	
@@ -1621,7 +1624,7 @@ Changing this has no effect on bullets in-flight, only on newly spawned bullets.
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L221" title="bulletFrame on line 221 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 221</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L252" title="bulletFrame on line 252 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 252</a>
     
 
 	
@@ -1647,7 +1650,7 @@ Changing this has no effect on bullets in-flight, only on newly spawned bullets.
 <dd>
     
     <div class="description members-description">
-        <p>If you've added a set of frames via <code>Weapon.setBulletFrames</code> then you can optionally
+        <p>If you've added a set of frames via <a href="Phaser.Weapon.html#setBulletFrames">setBulletFrames</a> then you can optionally
 chose for each Bullet fired to use the next frame in the set. The frame index is then
 advanced one frame until it reaches the end of the set, then it starts from the start
 again. Cycling frames like this allows you to create varied bullet effects via
@@ -1702,7 +1705,7 @@ sprite sheets.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L129" title="bulletFrameCycle on line 129 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 129</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L150" title="bulletFrameCycle on line 150 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 150</a>
     
 
 	
@@ -1728,7 +1731,7 @@ sprite sheets.</p>
 <dd>
     
     <div class="description members-description">
-        <p>If you've added a set of frames via <code>Weapon.setBulletFrames</code> then you can optionally
+        <p>If you've added a set of frames via <a href="Phaser.Weapon.html#setBulletFrames">setBulletFrames</a> then you can optionally
 chose for each Bullet fired to pick a random frame from the set.</p>
     </div>
     
@@ -1780,7 +1783,7 @@ chose for each Bullet fired to pick a random frame from the set.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L119" title="bulletFrameRandom on line 119 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 119</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L139" title="bulletFrameRandom on line 139 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 139</a>
     
 
 	
@@ -1806,7 +1809,7 @@ chose for each Bullet fired to pick a random frame from the set.</p>
 <dd>
     
     <div class="description members-description">
-        <p>This array stores the frames added via <code>Weapon.setBulletFrames</code>.</p>
+        <p>This array stores the frames added via @link #setBulletFrames.</p>
     </div>
     
 
@@ -1857,7 +1860,7 @@ chose for each Bullet fired to pick a random frame from the set.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L282" title="bulletFrames on line 282 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 282</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L313" title="bulletFrames on line 313 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 313</a>
     
 
 	
@@ -1883,7 +1886,7 @@ chose for each Bullet fired to pick a random frame from the set.</p>
 <dd>
     
     <div class="description members-description">
-        <p>This is the amount of gravity added to the Bullets physics body when fired.
+        <p>This is the amount of <a href="Phaser.Physics.Arcade.Body.html#gravity">Phaser.Physics.Arcade.Body#gravity</a> added to the Bullets physics body when fired.
 Gravity is expressed in pixels / second / second.</p>
     </div>
     
@@ -1935,7 +1938,7 @@ Gravity is expressed in pixels / second / second.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L199" title="bulletGravity on line 199 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 199</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L227" title="bulletGravity on line 227 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 227</a>
     
 
 	
@@ -2012,7 +2015,7 @@ Gravity is expressed in pixels / second / second.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L105" title="bulletInheritSpriteSpeed on line 105 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 105</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L123" title="bulletInheritSpriteSpeed on line 123 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 123</a>
     
 
 	
@@ -2090,7 +2093,7 @@ Changing this has no effect on bullets in-flight, only on newly spawned bullets.
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L214" title="bulletKey on line 214 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 214</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L244" title="bulletKey on line 244 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 244</a>
     
 
 	
@@ -2116,7 +2119,7 @@ Changing this has no effect on bullets in-flight, only on newly spawned bullets.
 <dd>
     
     <div class="description members-description">
-        <p>If you've set <code>bulletKillType</code> to <code>Phaser.Weapon.KILL_DISTANCE</code> this controls the distance
+        <p>If you've set <a href="Phaser.Weapon.html#bulletKillType">bulletKillType</a> to <code>Phaser.Weapon.KILL_DISTANCE</code> this controls the distance
 the Bullet can travel before it is automatically killed. The distance is given in pixels.</p>
     </div>
     
@@ -2168,7 +2171,7 @@ the Bullet can travel before it is automatically killed. The distance is given i
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L192" title="bulletKillDistance on line 192 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 192</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L220" title="bulletKillDistance on line 220 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 220</a>
     
 
 	
@@ -2207,16 +2210,16 @@ The bullets are automatically killed when their <code>bulletLifespan</code> amou
 The bullets are automatically killed when they exceed <code>bulletDistance</code> pixels away from their original launch position.</p>
 </li>
 <li><p><code>Phaser.Weapon.KILL_WEAPON_BOUNDS</code>
-The bullets are automatically killed when they no longer intersect with the <code>Weapon.bounds</code> rectangle.</p>
+The bullets are automatically killed when they no longer intersect with the <a href="Phaser.Weapon.html#bounds">bounds</a> rectangle.</p>
 </li>
 <li><p><code>Phaser.Weapon.KILL_CAMERA_BOUNDS</code>
-The bullets are automatically killed when they no longer intersect with the <code>Camera.bounds</code> rectangle.</p>
+The bullets are automatically killed when they no longer intersect with the <a href="Phaser.Camera.html#bounds">Phaser.Camera#bounds</a> rectangle.</p>
 </li>
 <li><p><code>Phaser.Weapon.KILL_WORLD_BOUNDS</code>
-The bullets are automatically killed when they no longer intersect with the <code>World.bounds</code> rectangle.</p>
+The bullets are automatically killed when they no longer intersect with the <a href="Phaser.World.html#bounds">Phaser.World#bounds</a> rectangle.</p>
 </li>
 <li><p><code>Phaser.Weapon.KILL_STATIC_BOUNDS</code>
-The bullets are automatically killed when they no longer intersect with the <code>Weapon.bounds</code> rectangle.
+The bullets are automatically killed when they no longer intersect with the <a href="Phaser.Weapon.html#bounds">bounds</a> rectangle.
 The difference between static bounds and weapon bounds, is that a static bounds will never be adjusted to
 match the position of a tracked sprite or pointer.</p>
 </li>
@@ -2271,7 +2274,7 @@ match the position of a tracked sprite or pointer.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1304" title="bulletKillType on line 1304 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1304</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1337" title="bulletKillType on line 1337 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1337</a>
     
 
 	
@@ -2297,7 +2300,7 @@ match the position of a tracked sprite or pointer.</p>
 <dd>
     
     <div class="description members-description">
-        <p>If you've set <code>bulletKillType</code> to <code>Phaser.Weapon.KILL_LIFESPAN</code> this controls the amount
+        <p>If you've set <a href="Phaser.Weapon.html#bulletKillType">bulletKillType</a> to <code>Phaser.Weapon.KILL_LIFESPAN</code> this controls the amount
 of lifespan the Bullets have set on launch. The value is given in milliseconds.
 When a Bullet hits its lifespan limit it will be automatically killed.</p>
     </div>
@@ -2350,7 +2353,7 @@ When a Bullet hits its lifespan limit it will be automatically killed.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L185" title="bulletLifespan on line 185 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 185</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L212" title="bulletLifespan on line 212 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 212</a>
     
 
 	
@@ -2378,7 +2381,7 @@ When a Bullet hits its lifespan limit it will be automatically killed.</p>
     <div class="description members-description">
         <p>Bullets can optionally adjust their rotation in-flight to match their velocity.
 This can create the effect of a bullet 'pointing' to the path it is following, for example
-an arrow being fired from a bow, and works especially well when added to <code>bulletGravity</code>.</p>
+an arrow being fired from a bow, and works especially well when added to <a href="Phaser.Weapon.html#bulletGravity">bulletGravity</a>.</p>
     </div>
     
 
@@ -2429,7 +2432,7 @@ an arrow being fired from a bow, and works especially well when added to <code>b
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L207" title="bulletRotateToVelocity on line 207 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 207</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L236" title="bulletRotateToVelocity on line 236 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 236</a>
     
 
 	
@@ -2506,7 +2509,7 @@ an arrow being fired from a bow, and works especially well when added to <code>b
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L39" title="bullets on line 39 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 39</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L49" title="bullets on line 49 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 49</a>
     
 
 	
@@ -2532,8 +2535,7 @@ an arrow being fired from a bow, and works especially well when added to <code>b
 <dd>
     
     <div class="description members-description">
-        <p>The speed at which the bullets are fired. This value is given in pixels per second, and
-is used to set the starting velocity of the bullets.</p>
+        <p>The initial velocity of fired bullets, in pixels per second.</p>
     </div>
     
 
@@ -2577,6 +2579,13 @@ is used to set the starting velocity of the bullets.</p>
 	
 
 	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>200</li>
+		</ul>
+	</dd>
+	
 
 
 
@@ -2584,7 +2593,7 @@ is used to set the starting velocity of the bullets.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L169" title="bulletSpeed on line 169 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 169</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L194" title="bulletSpeed on line 194 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 194</a>
     
 
 	
@@ -2611,7 +2620,7 @@ is used to set the starting velocity of the bullets.</p>
     
     <div class="description members-description">
         <p>This is a variance added to the speed of Bullets when they are fired.
-If bullets have a <code>bulletSpeed</code> value of 200, and a <code>bulletSpeedVariance</code> of 50
+If bullets have a <a href="Phaser.Weapon.html#bulletSpeed">bulletSpeed</a> value of 200, and a <code>bulletSpeedVariance</code> of 50
 then the actual speed of the Bullets will be between 150 and 250 pixels per second.</p>
     </div>
     
@@ -2663,7 +2672,7 @@ then the actual speed of the Bullets will be between 150 and 250 pixels per seco
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L177" title="bulletSpeedVariance on line 177 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 177</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L203" title="bulletSpeedVariance on line 203 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 203</a>
     
 
 	
@@ -2741,7 +2750,7 @@ then the actual speed of the Bullets will be between 150 and 250 pixels per seco
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L136" title="bulletWorldWrap on line 136 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 136</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L158" title="bulletWorldWrap on line 158 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 158</a>
     
 
 	
@@ -2820,7 +2829,7 @@ the world or not. The value is given in pixels.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L144" title="bulletWorldWrapPadding on line 144 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 144</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L167" title="bulletWorldWrapPadding on line 167 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 167</a>
     
 
 	
@@ -2898,7 +2907,7 @@ or it can be any number from 0 to 360 inclusive, where 0 degrees is to the right
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L99" title="fireAngle on line 99 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 99</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L116" title="fireAngle on line 116 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 116</a>
     
 
 	
@@ -2977,7 +2986,7 @@ larger than 1x1 it'll pick a random point within the rectangle to launch the bul
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L92" title="fireFrom on line 92 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 92</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L108" title="fireFrom on line 108 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 108</a>
     
 
 	
@@ -3004,8 +3013,8 @@ larger than 1x1 it'll pick a random point within the rectangle to launch the bul
     
     <div class="description members-description">
         <p>The maximum number of shots that this Weapon is allowed to fire before it stops.
-When the limit is his the <code>Weapon.onFireLimit</code> Signal is dispatched.
-You can reset the shot counter via <code>Weapon.resetShots</code>.</p>
+When the limit is his the <a href="Phaser.Weapon.html#onFireLimit">onFireLimit</a> Signal is dispatched.
+You can reset the shot counter via <a href="Phaser.Weapon.html#resetShots">resetShots</a>.</p>
     </div>
     
 
@@ -3056,7 +3065,7 @@ You can reset the shot counter via <code>Weapon.resetShots</code>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L69" title="fireLimit on line 69 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 69</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L83" title="fireLimit on line 83 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 83</a>
     
 
 	
@@ -3082,7 +3091,7 @@ You can reset the shot counter via <code>Weapon.resetShots</code>.</p>
 <dd>
     
     <div class="description members-description">
-        <p>The rate at which this Weapon can fire. The value is given in milliseconds.</p>
+        <p>The minimum interval between shots, in milliseconds.</p>
     </div>
     
 
@@ -3126,6 +3135,13 @@ You can reset the shot counter via <code>Weapon.resetShots</code>.</p>
 	
 
 	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>100</li>
+		</ul>
+	</dd>
+	
 
 
 
@@ -3133,7 +3149,7 @@ You can reset the shot counter via <code>Weapon.resetShots</code>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L75" title="fireRate on line 75 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 75</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L90" title="fireRate on line 90 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 90</a>
     
 
 	
@@ -3159,7 +3175,7 @@ You can reset the shot counter via <code>Weapon.resetShots</code>.</p>
 <dd>
     
     <div class="description members-description">
-        <p>This is a modifier that is added to the <code>fireRate</code> each update to add variety
+        <p>This is a modifier that is added to the <a href="Phaser.Weapon.html#fireRate">fireRate</a> each update to add variety
 to the firing rate of the Weapon. The value is given in milliseconds.
 If you've a <code>fireRate</code> of 200 and a <code>fireRateVariance</code> of 50 then the actual
 firing rate of the Weapon will be between 150 and 250.</p>
@@ -3213,7 +3229,7 @@ firing rate of the Weapon will be between 150 and 250.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L84" title="fireRateVariance on line 84 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 84</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L100" title="fireRateVariance on line 100 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 100</a>
     
 
 	
@@ -3294,7 +3310,7 @@ single game update.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L352" title="multiFire on line 352 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 352</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L384" title="multiFire on line 384 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 384</a>
     
 
 	
@@ -3320,7 +3336,7 @@ single game update.</p>
 <dd>
     
     <div class="description members-description">
-        <p>The onFire Signal is dispatched each time <code>Weapon.fire</code> is called, and a Bullet is
+        <p>The onFire Signal is dispatched each time <a href="Phaser.Weapon.html#fire">fire</a> is called, and a Bullet is
 <em>successfully</em> launched. The callback is set two arguments: a reference to the bullet sprite itself,
 and a reference to the Weapon that fired the bullet.</p>
     </div>
@@ -3373,7 +3389,7 @@ and a reference to the Weapon that fired the bullet.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L306" title="onFire on line 306 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 306</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L337" title="onFire on line 337 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 337</a>
     
 
 	
@@ -3399,10 +3415,10 @@ and a reference to the Weapon that fired the bullet.</p>
 <dd>
     
     <div class="description members-description">
-        <p>The onFireLimit Signal is dispatched if <code>Weapon.fireLimit</code> is &gt; 0, and a bullet launch takes the number
+        <p>The onFireLimit Signal is dispatched if <a href="Phaser.Weapon.html#fireLimit">fireLimit</a> is &gt; 0, and a bullet launch takes the number
 of shots fired to equal the fire limit.
-The callback is sent two arguments: A reference to the Weapon that hit the limit, and the value of
-<code>Weapon.fireLimit</code>.</p>
+The callback is sent two arguments: A reference to this Weapon, and the value of
+<a href="Phaser.Weapon.html#fireLimit">fireLimit</a>.</p>
     </div>
     
 
@@ -3453,7 +3469,7 @@ The callback is sent two arguments: A reference to the Weapon that hit the limit
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L325" title="onFireLimit on line 325 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 325</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L356" title="onFireLimit on line 356 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 356</a>
     
 
 	
@@ -3532,7 +3548,7 @@ The callback is sent one argument: A reference to the bullet sprite itself.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L315" title="onKill on line 315 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 315</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L346" title="onKill on line 346 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 346</a>
     
 
 	
@@ -3559,8 +3575,8 @@ The callback is sent one argument: A reference to the bullet sprite itself.</p>
     
     <div class="description members-description">
         <p>The total number of bullets this Weapon has fired so far.
-You can limit the number of shots allowed (via <code>fireLimit</code>), and reset
-this total via <code>Weapon.resetShots</code>.</p>
+You can limit the number of shots allowed (via <a href="Phaser.Weapon.html#fireLimit">fireLimit</a>), and reset
+this total via <a href="Phaser.Weapon.html#resetShots">resetShots</a>.</p>
     </div>
     
 
@@ -3611,7 +3627,7 @@ this total via <code>Weapon.resetShots</code>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L61" title="shots on line 61 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 61</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L74" title="shots on line 74 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 74</a>
     
 
 	
@@ -3638,7 +3654,7 @@ this total via <code>Weapon.resetShots</code>.</p>
     
     <div class="description members-description">
         <p>The Pointer currently being tracked by the Weapon, if any.
-This is set via the <code>Weapon.trackPointer</code> method.</p>
+This is set via the <a href="Phaser.Weapon.html#trackPointer">trackPointer</a> method.</p>
     </div>
     
 
@@ -3689,7 +3705,7 @@ This is set via the <code>Weapon.trackPointer</code> method.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L341" title="trackedPointer on line 341 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 341</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L372" title="trackedPointer on line 372 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 372</a>
     
 
 	
@@ -3716,7 +3732,7 @@ This is set via the <code>Weapon.trackPointer</code> method.</p>
     
     <div class="description members-description">
         <p>The Sprite currently being tracked by the Weapon, if any.
-This is set via the <code>Weapon.trackSprite</code> method.</p>
+This is set via the <a href="Phaser.Weapon.html#trackSprite">trackSprite</a> method.</p>
     </div>
     
 
@@ -3770,7 +3786,7 @@ This is set via the <code>Weapon.trackSprite</code> method.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L333" title="trackedSprite on line 333 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 333</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L364" title="trackedSprite on line 364 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 364</a>
     
 
 	
@@ -3850,7 +3866,7 @@ the bullet launched from the center of the Sprite.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L378" title="trackOffset on line 378 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 378</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L411" title="trackOffset on line 411 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 411</a>
     
 
 	
@@ -3929,7 +3945,7 @@ on the sprites rotation.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L368" title="trackRotation on line 368 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 368</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L401" title="trackRotation on line 401 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 401</a>
     
 
 	
@@ -3956,7 +3972,7 @@ on the sprites rotation.</p>
     
     <div class="description members-description">
         <p>The x coordinate from which bullets are fired. This is the same as <code>Weapon.fireFrom.x</code>, and
-can be overridden by the <code>Weapon.fire</code> arguments.</p>
+can be overridden by the <a href="Phaser.Weapon.html#fire">fire</a> arguments.</p>
     </div>
     
 
@@ -4007,7 +4023,7 @@ can be overridden by the <code>Weapon.fire</code> arguments.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1392" title="x on line 1392 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1392</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1425" title="x on line 1425 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1425</a>
     
 
 	
@@ -4034,7 +4050,7 @@ can be overridden by the <code>Weapon.fire</code> arguments.</p>
     
     <div class="description members-description">
         <p>The y coordinate from which bullets are fired. This is the same as <code>Weapon.fireFrom.y</code>, and
-can be overridden by the <code>Weapon.fire</code> arguments.</p>
+can be overridden by the <a href="Phaser.Weapon.html#fire">fire</a> arguments.</p>
     </div>
     
 
@@ -4085,7 +4101,7 @@ can be overridden by the <code>Weapon.fire</code> arguments.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1414" title="y on line 1414 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1414</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1447" title="y on line 1447 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1447</a>
     
 
 	
@@ -4120,11 +4136,11 @@ can be overridden by the <code>Weapon.fire</code> arguments.</p>
     <div class="description method-description">
         <p>Adds a new animation under the given key. Optionally set the frames, frame rate and loop.
 The arguments are all the same as for <code>Animation.add</code>, and work in the same way.</p>
-<p><code>Weapon.bulletAnimation</code> will be set to this animation after it's created. From that point on, all
+<p><a href="Phaser.Weapon.html#bulletAnimation">bulletAnimation</a> will be set to this animation after it's created. From that point on, all
 bullets fired will play using this animation. You can swap between animations by calling this method
-several times, and then just changing the <code>Weapon.bulletAnimation</code> property to the name of the animation
+several times, and then just changing the <a href="Phaser.Weapon.html#bulletAnimation">bulletAnimation</a> property to the name of the animation
 you wish to play for the next launched bullet.</p>
-<p>If you wish to stop using animations at all, set <code>Weapon.bulletAnimation</code> to '' (an empty string).</p>
+<p>If you wish to stop using animations at all, set <a href="Phaser.Weapon.html#bulletAnimation">bulletAnimation</a> to '' (an empty string).</p>
     </div>
     
 
@@ -4395,7 +4411,7 @@ you wish to play for the next launched bullet.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1212" title="addBulletAnimation on line 1212 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1212</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1245" title="addBulletAnimation on line 1245 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1245</a>
     
 
 	
@@ -4458,7 +4474,7 @@ you wish to play for the next launched bullet.</p>
 
     
     <div class="description method-description">
-        <p>This method performs two actions: First it will check to see if the <code>Weapon.bullets</code> Group exists or not,
+        <p>This method performs two actions: First it will check to see if the <a href="Phaser.Weapon.html#bullets">bullets</a> Group exists or not,
 and if not it creates it, adding it the <code>group</code> given as the 4th argument.</p>
 <p>Then it will seed the bullet pool with the <code>quantity</code> number of Bullets, using the texture key and frame
 provided (if any).</p>
@@ -4468,7 +4484,7 @@ the in-flight bullets have been killed, freeing them up for use by the Weapon ag
 <p>If you do not wish to have a limit set, then pass in -1 as the quantity. In this instance the Weapon will
 keep increasing the size of the bullet pool as needed. It will never reduce the size of the pool however,
 so be careful it doesn't grow too large.</p>
-<p>You can either set the texture key and frame here, or via the <code>Weapon.bulletKey</code> and <code>Weapon.bulletFrame</code>
+<p>You can either set the texture key and frame here, or via the <a href="Phaser.Weapon.html#bulletKey">bulletKey</a> and <a href="Phaser.Weapon.html#bulletFrame">bulletFrame</a>
 properties. You can also animate bullets, or set them to use random frames. All Bullets belonging to a
 single Weapon instance must share the same texture key however.</p>
     </div>
@@ -4702,7 +4718,7 @@ single Weapon instance must share the same texture key however.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L459" title="createBullets on line 459 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 459</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L492" title="createBullets on line 492 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 492</a>
     
 
 	
@@ -4961,7 +4977,7 @@ both in-flight, and available. And optionally the physics debug bodies of the bu
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1250" title="debug on line 1250 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1250</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1283" title="debug on line 1283 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1283</a>
     
 
 	
@@ -5001,7 +5017,7 @@ both in-flight, and available. And optionally the physics debug bodies of the bu
     
     <div class="description method-description">
         <p>Destroys this Weapon. It removes itself from the PluginManager, destroys
-the bullets Group, and nulls internal references.</p>
+the <a href="Phaser.Weapon.html#bullets">bullets</a> Group, and nulls internal references.</p>
     </div>
     
 
@@ -5046,7 +5062,7 @@ the bullets Group, and nulls internal references.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L605" title="destroy on line 605 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 605</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L638" title="destroy on line 638 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 638</a>
     
 
 	
@@ -5087,11 +5103,11 @@ the bullets Group, and nulls internal references.</p>
     <div class="description method-description">
         <p>Attempts to fire a single Bullet. If there are no more bullets available in the pool, and the pool cannot be extended,
 then this method returns <code>null</code>. It will also return <code>null</code> if not enough time has expired since the last time
-the Weapon was fired, as defined in the <code>Weapon.fireRate</code> property.</p>
+the Weapon was fired, as defined in the <a href="Phaser.Weapon.html#fireRate">fireRate</a> property.</p>
 <p>Otherwise the first available bullet is selected, launched, and returned.</p>
 <p>The arguments are all optional, but allow you to control both where the bullet is launched from, and aimed at.</p>
-<p>If you don't provide any of the arguments then it uses those set via properties such as <code>Weapon.trackedSprite</code>,
-<code>Weapon.bulletAngle</code> and so on.</p>
+<p>If you don't provide any of the arguments then it uses those set via properties such as <a href="Phaser.Weapon.html#trackedSprite">trackedSprite</a>,
+bulletAngle and so on.</p>
 <p>When the bullet is launched it has its texture and frame updated, as required. The velocity of the bullet is
 calculated based on Weapon properties like <code>bulletSpeed</code>.</p>
 <p>If you wish to fire multiple bullets in a single game update, then set <code>Weapon.multiFire = true</code>
@@ -5175,7 +5191,7 @@ only counts once towards the <code>shots</code> total, but you will still receiv
                 </td>
             
 
-            <td class="description param-description last"><p>Optionally fires the bullet <strong>from</strong> the <code>x</code> and <code>y</code> properties of this object. If set this overrides <code>Weapon.trackedSprite</code> or <code>trackedPointer</code>. Pass <code>null</code> to ignore it.</p></td>
+            <td class="description param-description last"><p>Optionally fires the bullet <strong>from</strong> the <code>x</code> and <code>y</code> properties of this object. If set this overrides #trackedSprite or <code>trackedPointer</code>. Pass <code>null</code> to ignore it.</p></td>
         </tr>
 
     
@@ -5374,7 +5390,7 @@ only counts once towards the <code>shots</code> total, but you will still receiv
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L817" title="fire on line 817 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 817</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L850" title="fire on line 850 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 850</a>
     
 
 	
@@ -5437,7 +5453,7 @@ only counts once towards the <code>shots</code> total, but you will still receiv
 
     
     <div class="description method-description">
-        <p>Fires a bullet <strong>at</strong> the given Pointer. The bullet will be launched from the <code>Weapon.fireFrom</code> position,
+        <p>Fires a bullet <strong>at</strong> the given Pointer. The bullet will be launched from the <a href="Phaser.Weapon.html#fireFrom">fireFrom</a> position,
 or from a Tracked Sprite or Pointer, if you have one set.</p>
     </div>
     
@@ -5545,7 +5561,7 @@ or from a Tracked Sprite or Pointer, if you have one set.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1092" title="fireAtPointer on line 1092 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1092</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1125" title="fireAtPointer on line 1125 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1125</a>
     
 
 	
@@ -5608,7 +5624,7 @@ or from a Tracked Sprite or Pointer, if you have one set.</p>
 
     
     <div class="description method-description">
-        <p>Fires a bullet <strong>at</strong> the given Sprite. The bullet will be launched from the <code>Weapon.fireFrom</code> position,
+        <p>Fires a bullet <strong>at</strong> the given Sprite. The bullet will be launched from the <a href="Phaser.Weapon.html#fireFrom">fireFrom</a> position,
 or from a Tracked Sprite or Pointer, if you have one set.</p>
     </div>
     
@@ -5716,7 +5732,7 @@ or from a Tracked Sprite or Pointer, if you have one set.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1108" title="fireAtSprite on line 1108 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1108</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1141" title="fireAtSprite on line 1141 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1141</a>
     
 
 	
@@ -5779,7 +5795,7 @@ or from a Tracked Sprite or Pointer, if you have one set.</p>
 
     
     <div class="description method-description">
-        <p>Fires a bullet <strong>at</strong> the given coordinates. The bullet will be launched from the <code>Weapon.fireFrom</code> position,
+        <p>Fires a bullet <strong>at</strong> the given coordinates. The bullet will be launched from the <a href="Phaser.Weapon.html#fireFrom">fireFrom</a> position,
 or from a Tracked Sprite or Pointer, if you have one set.</p>
     </div>
     
@@ -5921,7 +5937,7 @@ or from a Tracked Sprite or Pointer, if you have one set.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1122" title="fireAtXY on line 1122 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1122</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1155" title="fireAtXY on line 1155 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1155</a>
     
 
 	
@@ -5989,11 +6005,11 @@ or from a Tracked Sprite or Pointer, if you have one set.</p>
 the positions are treated as <strong>offsets</strong> from the given objects position.</p>
 <p>If <code>from</code> is undefined, and there is no tracked object, then the bullets are fired
 from the given positions, as they exist in the world.</p>
-<p>Calling this method sets <code>Weapon.multiFire = true</code>.</p>
+<p>Calling this method sets <a href="Phaser.Weapon.html#multiFire">multiFire</a> to <code>true</code>.</p>
 <p>If there are not enough bullets available in the pool, and the pool cannot be extended,
 then this method may not fire from all of the given positions.</p>
 <p>When the bullets are launched they have their texture and frame updated, as required.
-The velocity of the bullets are calculated based on Weapon properties like <code>bulletSpeed</code>.</p>
+The velocity of the bullets are calculated based on Weapon properties like <a href="Phaser.Weapon.html#bulletSpeed">bulletSpeed</a>.</p>
     </div>
     
 
@@ -6098,7 +6114,7 @@ The velocity of the bullets are calculated based on Weapon properties like <code
 
             
 
-            <td class="description param-description last"><p>Optionally fires the bullets <strong>from</strong> the <code>x</code> and <code>y</code> properties of this object, <em>instead</em> of any <code>Weapon.trackedSprite</code> or <code>trackedPointer</code> that is set.</p></td>
+            <td class="description param-description last"><p>Optionally fires the bullets <strong>from</strong> the <code>x</code> and <code>y</code> properties of this object, <em>instead</em> of any #trackedSprite or <code>trackedPointer</code> that is set.</p></td>
         </tr>
 
     
@@ -6141,7 +6157,7 @@ The velocity of the bullets are calculated based on Weapon properties like <code
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L736" title="fireMany on line 736 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 736</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L769" title="fireMany on line 769 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 769</a>
     
 
 	
@@ -6205,15 +6221,15 @@ The velocity of the bullets are calculated based on Weapon properties like <code
     
     <div class="description method-description">
         <p>Attempts to fire a single Bullet from a tracked Sprite or Pointer, but applies an offset
-to the position first. This is the same as calling <code>Weapon.fire</code> and passing in the offset arguments.</p>
+to the position first. This is the same as calling <a href="Phaser.Weapon.html#fire">fire</a> and passing in the offset arguments.</p>
 <p>If there are no more bullets available in the pool, and the pool cannot be extended,
 then this method returns <code>null</code>. It will also return <code>null</code> if not enough time has expired since the last time
-the Weapon was fired, as defined in the <code>Weapon.fireRate</code> property.</p>
+the Weapon was fired, as defined in the <a href="Phaser.Weapon.html#fireRate">fireRate</a> property.</p>
 <p>Otherwise the first available bullet is selected, launched, and returned.</p>
 <p>When the bullet is launched it has its texture and frame updated, as required. The velocity of the bullet is
-calculated based on Weapon properties like <code>bulletSpeed</code>.</p>
-<p>If you wish to fire multiple bullets in a single game update, then set <code>Weapon.multiFire = true</code>
-and you can call this method as many times as you like, per loop. See also <code>Weapon.fireMany</code>.</p>
+calculated based on Weapon properties like <a href="Phaser.Weapon.html#bulletSpeed">bulletSpeed</a>.</p>
+<p>If you wish to fire multiple bullets in a single game update, then set <a href="Phaser.Weapon.html#multiFire">multiFire</a> to <code>true</code>
+and you can call this method as many times as you like, per loop. See also <a href="Phaser.Weapon.html#fireMany">fireMany</a>.</p>
     </div>
     
 
@@ -6285,7 +6301,7 @@ and you can call this method as many times as you like, per loop. See also <code
                 </td>
             
 
-            <td class="description param-description last"><p>The horizontal offset from the position of the tracked Sprite or Pointer, as set with <code>Weapon.trackSprite</code>.</p></td>
+            <td class="description param-description last"><p>The horizontal offset from the position of the tracked Sprite or Pointer, as set with #trackSprite.</p></td>
         </tr>
 
     
@@ -6325,7 +6341,7 @@ and you can call this method as many times as you like, per loop. See also <code
                 </td>
             
 
-            <td class="description param-description last"><p>The vertical offset from the position of the tracked Sprite or Pointer, as set with <code>Weapon.trackSprite</code>.</p></td>
+            <td class="description param-description last"><p>The vertical offset from the position of the tracked Sprite or Pointer, as set with #trackSprite.</p></td>
         </tr>
 
     
@@ -6368,7 +6384,7 @@ and you can call this method as many times as you like, per loop. See also <code
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L787" title="fireOffset on line 787 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 787</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L820" title="fireOffset on line 820 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 820</a>
     
 
 	
@@ -6621,7 +6637,7 @@ and you can call this method as many times as you like, per loop. See also <code
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L516" title="forEach on line 516 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 516</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L549" title="forEach on line 549 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 549</a>
     
 
 	
@@ -6684,8 +6700,8 @@ and you can call this method as many times as you like, per loop. See also <code
 
     
     <div class="description method-description">
-        <p>Calls <code>Bullet.kill</code> on every in-flight bullet in this Weapon.
-Also re-enables their physics bodies, should they have been disabled via <code>pauseAll</code>.</p>
+        <p>Calls <a href="Phaser.Bullet.html#kill">Phaser.Bullet#kill</a> on every in-flight bullet in this Weapon.
+Also re-enables their physics bodies, should they have been disabled via <a href="Phaser.Weapon.html#pauseAll">pauseAll</a>.</p>
     </div>
     
 
@@ -6730,7 +6746,7 @@ Also re-enables their physics bodies, should they have been disabled via <code>p
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L567" title="killAll on line 567 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 567</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L600" title="killAll on line 600 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 600</a>
     
 
 	
@@ -6793,7 +6809,7 @@ Also re-enables their physics bodies, should they have been disabled via <code>p
 
     
     <div class="description method-description">
-        <p>Sets <code>Body.enable</code> to <code>false</code> on each bullet in this Weapon.
+        <p>Sets <a href="Phaser.Physics.Arcade.Body.html#enable">Phaser.Physics.Arcade.Body#enable</a> to <code>false</code> on each bullet in this Weapon.
 This has the effect of stopping them in-flight should they be moving.
 It also stops them being able to be checked for collision.</p>
     </div>
@@ -6840,7 +6856,7 @@ It also stops them being able to be checked for collision.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L535" title="pauseAll on line 535 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 535</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L568" title="pauseAll on line 568 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 568</a>
     
 
 	
@@ -6948,7 +6964,7 @@ It also stops them being able to be checked for collision.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L652" title="postRender on line 652 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 652</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L685" title="postRender on line 685 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 685</a>
     
 
 	
@@ -6987,8 +7003,8 @@ It also stops them being able to be checked for collision.</p>
 
     
     <div class="description method-description">
-        <p>Resets the <code>Weapon.shots</code> counter back to zero. This is used when you've set
-<code>Weapon.fireLimit</code>, and have hit (or just wish to reset) your limit.</p>
+        <p>Resets the <a href="Phaser.Weapon.html#shots">shots</a> counter back to zero. This is used when you've set
+<a href="Phaser.Weapon.html#fireLimit">fireLimit</a> and have hit (or just wish to reset) your limit.</p>
     </div>
     
 
@@ -7052,7 +7068,7 @@ It also stops them being able to be checked for collision.</p>
 
             
 
-            <td class="description param-description last"><p>Optionally set a new <code>Weapon.fireLimit</code>.</p></td>
+            <td class="description param-description last"><p>Optionally set a new #fireLimit.</p></td>
         </tr>
 
     
@@ -7095,7 +7111,7 @@ It also stops them being able to be checked for collision.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L584" title="resetShots on line 584 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 584</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L617" title="resetShots on line 617 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 617</a>
     
 
 	
@@ -7158,7 +7174,7 @@ It also stops them being able to be checked for collision.</p>
 
     
     <div class="description method-description">
-        <p>Sets <code>Body.enable</code> to <code>true</code> on each bullet in this Weapon.
+        <p>Sets <a href="Phaser.Physics.Arcade.Body.html#enable">Phaser.Physics.Arcade.Body#enable</a> to <code>true</code> on each bullet in this Weapon.
 This has the effect of resuming their motion should they be in-flight.
 It also enables them for collision checks again.</p>
     </div>
@@ -7205,7 +7221,7 @@ It also enables them for collision checks again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L551" title="resumeAll on line 551 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 551</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L584" title="resumeAll on line 584 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 584</a>
     
 
 	
@@ -7482,7 +7498,7 @@ is the vertical offset.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1137" title="setBulletBodyOffset on line 1137 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1137</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1170" title="setBulletBodyOffset on line 1170 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1170</a>
     
 
 	
@@ -7777,7 +7793,7 @@ when they're fired, or pick one at random.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L1178" title="setBulletFrames on line 1178 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1178</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L1211" title="setBulletFrames on line 1211 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 1211</a>
     
 
 	
@@ -7841,10 +7857,10 @@ when they're fired, or pick one at random.</p>
     
     <div class="description method-description">
         <p>Sets this Weapon to track the given Pointer.
-When a Weapon tracks a Pointer it will automatically update its <code>fireFrom</code> value to match the Pointers
+When a Weapon tracks a Pointer it will automatically update its <a href="Phaser.Weapon.html#fireFrom">fireFrom</a> value to match the Pointer's
 position within the Game World, adjusting the coordinates based on the offset arguments.</p>
 <p>This allows you to lock a Weapon to a Pointer, so that bullets are always launched from its location.</p>
-<p>Calling <code>trackPointer</code> will reset <code>Weapon.trackedSprite</code> to null, should it have been set, as you can
+<p>Calling <code>trackPointer</code> will reset <a href="Phaser.Weapon.html#trackedSprite">trackedSprite</a> to null, should it have been set, as you can
 only track <em>either</em> a Pointer, or a Sprite, at once, but not both.</p>
     </div>
     
@@ -8038,7 +8054,7 @@ only track <em>either</em> a Pointer, or a Sprite, at once, but not both.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L704" title="trackPointer on line 704 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 704</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L737" title="trackPointer on line 737 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 737</a>
     
 
 	
@@ -8101,11 +8117,11 @@ only track <em>either</em> a Pointer, or a Sprite, at once, but not both.</p>
 
     
     <div class="description method-description">
-        <p>Sets this Weapon to track the given Sprite, or any Object with a public <code>world</code> Point object.
-When a Weapon tracks a Sprite it will automatically update its <code>fireFrom</code> value to match the Sprites
+        <p>Sets this Weapon to track the given Sprite, or any Object with a public <a href="Phaser.Component.Core.html#world">world</a> Point object.
+When a Weapon tracks a Sprite it will automatically update its <a href="Phaser.Weapon.html#fireFrom">fireFrom</a> value to match the Sprite's
 position within the Game World, adjusting the coordinates based on the offset arguments.</p>
 <p>This allows you to lock a Weapon to a Sprite, so that bullets are always launched from its location.</p>
-<p>Calling <code>trackSprite</code> will reset <code>Weapon.trackedPointer</code> to null, should it have been set, as you can
+<p>Calling <code>trackSprite</code> will reset <a href="Phaser.Weapon.html#trackedPointer">trackedPointer</a> to null, should it have been set, as you can
 only track <em>either</em> a Sprite, or a Pointer, at once, but not both.</p>
     </div>
     
@@ -8340,7 +8356,7 @@ only track <em>either</em> a Sprite, or a Pointer, at once, but not both.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L671" title="trackSprite on line 671 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 671</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L704" title="trackSprite on line 704 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 704</a>
     
 
 	
@@ -8448,7 +8464,7 @@ only track <em>either</em> a Sprite, or a Pointer, at once, but not both.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/plugins/weapon/WeaponPlugin.js#L624" title="update on line 624 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 624</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/plugins/weapon/WeaponPlugin.js#L657" title="update on line 657 of src/plugins/weapon/WeaponPlugin.js">src/plugins/weapon/WeaponPlugin.js line 657</a>
     
 
 	
@@ -8491,9 +8507,9 @@ only track <em>either</em> a Sprite, or a Pointer, at once, but not both.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.9.2
+  phaser-ce@2.9.3
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.2">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.3">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -8510,7 +8526,7 @@ only track <em>either</em> a Sprite, or a Pointer, at once, but not both.</p>
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-11-09
+		on 2017-12-11
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -8539,7 +8555,7 @@ only track <em>either</em> a Sprite, or a Pointer, at once, but not both.</p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2017110918"></script>
+<script defer src="scripts/bundle.js?2017121111"></script>
 
 
 

@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: Device</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2017110918">
+	<link rel="stylesheet" href="styles/site.phaser.css?2017121111">
 </head>
 
 <body>
@@ -121,8 +121,15 @@
 (or, as a fallback, <code>Phaser.Device</code> when a game instance is not available) without the need to instantiate it.</p>
 <p>Unless otherwise noted the device capabilities are only guaranteed after initialization. Initialization
 occurs automatically and is guaranteed complete before <a href="Phaser.Game.html">Phaser.Game</a> begins its &quot;boot&quot; phase.
-Feature detection can be modified in the <a href="Phaser.Device.html#.onInitialized">onInitialized</a> signal.</p>
-<p>When checking features using the exposed properties only the <em>truth-iness</em> of the value should be relied upon
+Feature detection can be modified in the <a href="Phaser.Device.html#.onInitialized">onInitialized</a> signal, e.g.,</p>
+<pre class="prettyprint source lang-javascript"><code>Phaser.Device.onInitialized.add(function (device) {
+
+    device.canvasBitBltShift = true;
+    device.mspointer = false;
+
+});
+
+var game = new Phaser.Game();</code></pre><p>When checking features using the exposed properties only the <em>truth-iness</em> of the value should be relied upon
 unless the documentation states otherwise: properties may return <code>false</code>, <code>''</code>, <code>null</code>, or even <code>undefined</code>
 when indicating the lack of a feature.</p>
 <p>Uses elements from System.js by MrDoob and Modernizr</p></div>
@@ -191,7 +198,7 @@ when indicating the lack of a feature.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L30" title="Device on line 30 of src/utils/Device.js">src/utils/Device.js line 30</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L41" title="Device on line 41 of src/utils/Device.js">src/utils/Device.js line 41</a>
     
 
 	
@@ -300,7 +307,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L561" title="onInitialized on line 561 of src/utils/Device.js">src/utils/Device.js line 561</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L572" title="onInitialized on line 572 of src/utils/Device.js">src/utils/Device.js line 572</a>
     
 
 	
@@ -377,7 +384,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L118" title="android on line 118 of src/utils/Device.js">src/utils/Device.js line 118</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L129" title="android on line 129 of src/utils/Device.js">src/utils/Device.js line 129</a>
     
 
 	
@@ -454,7 +461,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L274" title="arora on line 274 of src/utils/Device.js">src/utils/Device.js line 274</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L285" title="arora on line 285 of src/utils/Device.js">src/utils/Device.js line 285</a>
     
 
 	
@@ -531,7 +538,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L384" title="audioData on line 384 of src/utils/Device.js">src/utils/Device.js line 384</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L395" title="audioData on line 395 of src/utils/Device.js">src/utils/Device.js line 395</a>
     
 
 	
@@ -608,7 +615,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L535" title="cancelFullscreen on line 535 of src/utils/Device.js">src/utils/Device.js line 535</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L546" title="cancelFullscreen on line 546 of src/utils/Device.js">src/utils/Device.js line 546</a>
     
 
 	
@@ -685,7 +692,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L169" title="canHandleAlpha on line 169 of src/utils/Device.js">src/utils/Device.js line 169</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L180" title="canHandleAlpha on line 180 of src/utils/Device.js">src/utils/Device.js line 180</a>
     
 
 	
@@ -763,7 +770,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L179" title="canUseMultiply on line 179 of src/utils/Device.js">src/utils/Device.js line 179</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L190" title="canUseMultiply on line 190 of src/utils/Device.js">src/utils/Device.js line 190</a>
     
 
 	
@@ -840,7 +847,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L156" title="canvas on line 156 of src/utils/Device.js">src/utils/Device.js line 156</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L167" title="canvas on line 167 of src/utils/Device.js">src/utils/Device.js line 167</a>
     
 
 	
@@ -917,7 +924,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L162" title="canvasBitBltShift on line 162 of src/utils/Device.js">src/utils/Device.js line 162</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L173" title="canvasBitBltShift on line 173 of src/utils/Device.js">src/utils/Device.js line 173</a>
     
 
 	
@@ -994,7 +1001,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L280" title="chrome on line 280 of src/utils/Device.js">src/utils/Device.js line 280</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L291" title="chrome on line 291 of src/utils/Device.js">src/utils/Device.js line 291</a>
     
 
 	
@@ -1071,7 +1078,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L124" title="chromeOS on line 124 of src/utils/Device.js">src/utils/Device.js line 124</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L135" title="chromeOS on line 135 of src/utils/Device.js">src/utils/Device.js line 135</a>
     
 
 	
@@ -1148,7 +1155,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L286" title="chromeVersion on line 286 of src/utils/Device.js">src/utils/Device.js line 286</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L297" title="chromeVersion on line 297 of src/utils/Device.js">src/utils/Device.js line 297</a>
     
 
 	
@@ -1225,7 +1232,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L70" title="cocoonJS on line 70 of src/utils/Device.js">src/utils/Device.js line 70</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L81" title="cocoonJS on line 81 of src/utils/Device.js">src/utils/Device.js line 81</a>
     
 
 	
@@ -1302,7 +1309,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L76" title="cocoonJSApp on line 76 of src/utils/Device.js">src/utils/Device.js line 76</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L87" title="cocoonJSApp on line 87 of src/utils/Device.js">src/utils/Device.js line 87</a>
     
 
 	
@@ -1379,7 +1386,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L82" title="cordova on line 82 of src/utils/Device.js">src/utils/Device.js line 82</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L93" title="cordova on line 93 of src/utils/Device.js">src/utils/Device.js line 93</a>
     
 
 	
@@ -1456,7 +1463,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L112" title="crosswalk on line 112 of src/utils/Device.js">src/utils/Device.js line 112</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L123" title="crosswalk on line 123 of src/utils/Device.js">src/utils/Device.js line 123</a>
     
 
 	
@@ -1533,7 +1540,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L215" title="css3D on line 215 of src/utils/Device.js">src/utils/Device.js line 215</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L226" title="css3D on line 226 of src/utils/Device.js">src/utils/Device.js line 226</a>
     
 
 	
@@ -1610,7 +1617,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L52" title="desktop on line 52 of src/utils/Device.js">src/utils/Device.js line 52</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L63" title="desktop on line 63 of src/utils/Device.js">src/utils/Device.js line 63</a>
     
 
 	
@@ -1687,7 +1694,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L37" title="deviceReadyAt on line 37 of src/utils/Device.js">src/utils/Device.js line 37</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L48" title="deviceReadyAt on line 48 of src/utils/Device.js">src/utils/Device.js line 48</a>
     
 
 	
@@ -1764,7 +1771,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L433" title="dolby on line 433 of src/utils/Device.js">src/utils/Device.js line 433</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L444" title="dolby on line 444 of src/utils/Device.js">src/utils/Device.js line 444</a>
     
 
 	
@@ -1841,7 +1848,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L334" title="edge on line 334 of src/utils/Device.js">src/utils/Device.js line 334</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L345" title="edge on line 345 of src/utils/Device.js">src/utils/Device.js line 345</a>
     
 
 	
@@ -1918,7 +1925,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L106" title="ejecta on line 106 of src/utils/Device.js">src/utils/Device.js line 106</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L117" title="ejecta on line 117 of src/utils/Device.js">src/utils/Device.js line 117</a>
     
 
 	
@@ -1995,7 +2002,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L100" title="electron on line 100 of src/utils/Device.js">src/utils/Device.js line 100</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L111" title="electron on line 111 of src/utils/Device.js">src/utils/Device.js line 111</a>
     
 
 	
@@ -2072,7 +2079,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L292" title="epiphany on line 292 of src/utils/Device.js">src/utils/Device.js line 292</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L303" title="epiphany on line 303 of src/utils/Device.js">src/utils/Device.js line 303</a>
     
 
 	
@@ -2149,7 +2156,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L191" title="file on line 191 of src/utils/Device.js">src/utils/Device.js line 191</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L202" title="file on line 202 of src/utils/Device.js">src/utils/Device.js line 202</a>
     
 
 	
@@ -2226,7 +2233,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L197" title="fileSystem on line 197 of src/utils/Device.js">src/utils/Device.js line 197</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L208" title="fileSystem on line 208 of src/utils/Device.js">src/utils/Device.js line 208</a>
     
 
 	
@@ -2303,7 +2310,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L298" title="firefox on line 298 of src/utils/Device.js">src/utils/Device.js line 298</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L309" title="firefox on line 309 of src/utils/Device.js">src/utils/Device.js line 309</a>
     
 
 	
@@ -2380,7 +2387,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L304" title="firefoxVersion on line 304 of src/utils/Device.js">src/utils/Device.js line 304</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L315" title="firefoxVersion on line 315 of src/utils/Device.js">src/utils/Device.js line 315</a>
     
 
 	
@@ -2457,7 +2464,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L523" title="fullscreen on line 523 of src/utils/Device.js">src/utils/Device.js line 523</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L534" title="fullscreen on line 534 of src/utils/Device.js">src/utils/Device.js line 534</a>
     
 
 	
@@ -2534,7 +2541,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L541" title="fullscreenKeyboard on line 541 of src/utils/Device.js">src/utils/Device.js line 541</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L552" title="fullscreenKeyboard on line 552 of src/utils/Device.js">src/utils/Device.js line 552</a>
     
 
 	
@@ -2618,7 +2625,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L239" title="getUserMedia on line 239 of src/utils/Device.js">src/utils/Device.js line 239</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L250" title="getUserMedia on line 250 of src/utils/Device.js">src/utils/Device.js line 250</a>
     
 
 	
@@ -2695,7 +2702,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L447" title="h264Video on line 447 of src/utils/Device.js">src/utils/Device.js line 447</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L458" title="h264Video on line 458 of src/utils/Device.js">src/utils/Device.js line 458</a>
     
 
 	
@@ -2772,7 +2779,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L471" title="hlsVideo on line 471 of src/utils/Device.js">src/utils/Device.js line 471</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L482" title="hlsVideo on line 482 of src/utils/Device.js">src/utils/Device.js line 482</a>
     
 
 	
@@ -2849,7 +2856,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L310" title="ie on line 310 of src/utils/Device.js">src/utils/Device.js line 310</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L321" title="ie on line 321 of src/utils/Device.js">src/utils/Device.js line 321</a>
     
 
 	
@@ -2926,7 +2933,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L316" title="ieVersion on line 316 of src/utils/Device.js">src/utils/Device.js line 316</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L327" title="ieVersion on line 327 of src/utils/Device.js">src/utils/Device.js line 327</a>
     
 
 	
@@ -3003,7 +3010,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L44" title="initialized on line 44 of src/utils/Device.js">src/utils/Device.js line 44</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L55" title="initialized on line 55 of src/utils/Device.js">src/utils/Device.js line 55</a>
     
 
 	
@@ -3080,7 +3087,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L58" title="iOS on line 58 of src/utils/Device.js">src/utils/Device.js line 58</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L69" title="iOS on line 69 of src/utils/Device.js">src/utils/Device.js line 69</a>
     
 
 	
@@ -3157,7 +3164,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L64" title="iOSVersion on line 64 of src/utils/Device.js">src/utils/Device.js line 64</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L75" title="iOSVersion on line 75 of src/utils/Device.js">src/utils/Device.js line 75</a>
     
 
 	
@@ -3234,7 +3241,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L491" title="iPad on line 491 of src/utils/Device.js">src/utils/Device.js line 491</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L502" title="iPad on line 502 of src/utils/Device.js">src/utils/Device.js line 502</a>
     
 
 	
@@ -3311,7 +3318,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L479" title="iPhone on line 479 of src/utils/Device.js">src/utils/Device.js line 479</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L490" title="iPhone on line 490 of src/utils/Device.js">src/utils/Device.js line 490</a>
     
 
 	
@@ -3388,7 +3395,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L485" title="iPhone4 on line 485 of src/utils/Device.js">src/utils/Device.js line 485</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L496" title="iPhone4 on line 496 of src/utils/Device.js">src/utils/Device.js line 496</a>
     
 
 	
@@ -3465,7 +3472,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L130" title="linux on line 130 of src/utils/Device.js">src/utils/Device.js line 130</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L141" title="linux on line 141 of src/utils/Device.js">src/utils/Device.js line 141</a>
     
 
 	
@@ -3542,7 +3549,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L511" title="LITTLE_ENDIAN on line 511 of src/utils/Device.js">src/utils/Device.js line 511</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L522" title="LITTLE_ENDIAN on line 522 of src/utils/Device.js">src/utils/Device.js line 522</a>
     
 
 	
@@ -3619,7 +3626,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L505" title="littleEndian on line 505 of src/utils/Device.js">src/utils/Device.js line 505</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L516" title="littleEndian on line 516 of src/utils/Device.js">src/utils/Device.js line 516</a>
     
 
 	
@@ -3696,7 +3703,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L203" title="localStorage on line 203 of src/utils/Device.js">src/utils/Device.js line 203</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L214" title="localStorage on line 214 of src/utils/Device.js">src/utils/Device.js line 214</a>
     
 
 	
@@ -3773,7 +3780,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L421" title="m4a on line 421 of src/utils/Device.js">src/utils/Device.js line 421</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L432" title="m4a on line 432 of src/utils/Device.js">src/utils/Device.js line 432</a>
     
 
 	
@@ -3850,7 +3857,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L136" title="macOS on line 136 of src/utils/Device.js">src/utils/Device.js line 136</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L147" title="macOS on line 147 of src/utils/Device.js">src/utils/Device.js line 147</a>
     
 
 	
@@ -3927,7 +3934,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L346" title="midori on line 346 of src/utils/Device.js">src/utils/Device.js line 346</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L357" title="midori on line 357 of src/utils/Device.js">src/utils/Device.js line 357</a>
     
 
 	
@@ -4004,7 +4011,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L340" title="mobileSafari on line 340 of src/utils/Device.js">src/utils/Device.js line 340</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L351" title="mobileSafari on line 351 of src/utils/Device.js">src/utils/Device.js line 351</a>
     
 
 	
@@ -4081,7 +4088,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L408" title="mp3 on line 408 of src/utils/Device.js">src/utils/Device.js line 408</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L419" title="mp3 on line 419 of src/utils/Device.js">src/utils/Device.js line 419</a>
     
 
 	
@@ -4158,7 +4165,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L453" title="mp4Video on line 453 of src/utils/Device.js">src/utils/Device.js line 453</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L464" title="mp4Video on line 464 of src/utils/Device.js">src/utils/Device.js line 464</a>
     
 
 	
@@ -4235,7 +4242,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L259" title="mspointer on line 259 of src/utils/Device.js">src/utils/Device.js line 259</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L270" title="mspointer on line 270 of src/utils/Device.js">src/utils/Device.js line 270</a>
     
 
 	
@@ -4312,7 +4319,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L88" title="node on line 88 of src/utils/Device.js">src/utils/Device.js line 88</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L99" title="node on line 99 of src/utils/Device.js">src/utils/Device.js line 99</a>
     
 
 	
@@ -4389,7 +4396,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L94" title="nodeWebkit on line 94 of src/utils/Device.js">src/utils/Device.js line 94</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L105" title="nodeWebkit on line 105 of src/utils/Device.js">src/utils/Device.js line 105</a>
     
 
 	
@@ -4466,7 +4473,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L396" title="ogg on line 396 of src/utils/Device.js">src/utils/Device.js line 396</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L407" title="ogg on line 407 of src/utils/Device.js">src/utils/Device.js line 407</a>
     
 
 	
@@ -4543,7 +4550,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L441" title="oggVideo on line 441 of src/utils/Device.js">src/utils/Device.js line 441</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L452" title="oggVideo on line 452 of src/utils/Device.js">src/utils/Device.js line 452</a>
     
 
 	
@@ -4620,7 +4627,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L352" title="opera on line 352 of src/utils/Device.js">src/utils/Device.js line 352</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L363" title="opera on line 363 of src/utils/Device.js">src/utils/Device.js line 363</a>
     
 
 	
@@ -4697,7 +4704,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L402" title="opus on line 402 of src/utils/Device.js">src/utils/Device.js line 402</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L413" title="opus on line 413 of src/utils/Device.js">src/utils/Device.js line 413</a>
     
 
 	
@@ -4774,7 +4781,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L499" title="pixelRatio on line 499 of src/utils/Device.js">src/utils/Device.js line 499</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L510" title="pixelRatio on line 510 of src/utils/Device.js">src/utils/Device.js line 510</a>
     
 
 	
@@ -4851,7 +4858,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L221" title="pointerLock on line 221 of src/utils/Device.js">src/utils/Device.js line 221</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L232" title="pointerLock on line 232 of src/utils/Device.js">src/utils/Device.js line 232</a>
     
 
 	
@@ -4928,7 +4935,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L245" title="quirksMode on line 245 of src/utils/Device.js">src/utils/Device.js line 245</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L256" title="quirksMode on line 256 of src/utils/Device.js">src/utils/Device.js line 256</a>
     
 
 	
@@ -5005,7 +5012,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L529" title="requestFullscreen on line 529 of src/utils/Device.js">src/utils/Device.js line 529</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L540" title="requestFullscreen on line 540 of src/utils/Device.js">src/utils/Device.js line 540</a>
     
 
 	
@@ -5082,7 +5089,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L358" title="safari on line 358 of src/utils/Device.js">src/utils/Device.js line 358</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L369" title="safari on line 369 of src/utils/Device.js">src/utils/Device.js line 369</a>
     
 
 	
@@ -5159,7 +5166,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L364" title="safariVersion on line 364 of src/utils/Device.js">src/utils/Device.js line 364</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L375" title="safariVersion on line 375 of src/utils/Device.js">src/utils/Device.js line 375</a>
     
 
 	
@@ -5236,7 +5243,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L376" title="silk on line 376 of src/utils/Device.js">src/utils/Device.js line 376</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L387" title="silk on line 387 of src/utils/Device.js">src/utils/Device.js line 387</a>
     
 
 	
@@ -5313,7 +5320,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L517" title="support32bit on line 517 of src/utils/Device.js">src/utils/Device.js line 517</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L528" title="support32bit on line 528 of src/utils/Device.js">src/utils/Device.js line 528</a>
     
 
 	
@@ -5390,7 +5397,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L253" title="touch on line 253 of src/utils/Device.js">src/utils/Device.js line 253</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L264" title="touch on line 264 of src/utils/Device.js">src/utils/Device.js line 264</a>
     
 
 	
@@ -5467,7 +5474,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L322" title="trident on line 322 of src/utils/Device.js">src/utils/Device.js line 322</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L333" title="trident on line 333 of src/utils/Device.js">src/utils/Device.js line 333</a>
     
 
 	
@@ -5544,7 +5551,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L328" title="tridentVersion on line 328 of src/utils/Device.js">src/utils/Device.js line 328</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L339" title="tridentVersion on line 339 of src/utils/Device.js">src/utils/Device.js line 339</a>
     
 
 	
@@ -5621,7 +5628,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L227" title="typedArray on line 227 of src/utils/Device.js">src/utils/Device.js line 227</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L238" title="typedArray on line 238 of src/utils/Device.js">src/utils/Device.js line 238</a>
     
 
 	
@@ -5698,7 +5705,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L233" title="vibration on line 233 of src/utils/Device.js">src/utils/Device.js line 233</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L244" title="vibration on line 244 of src/utils/Device.js">src/utils/Device.js line 244</a>
     
 
 	
@@ -5775,7 +5782,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L465" title="vp9Video on line 465 of src/utils/Device.js">src/utils/Device.js line 465</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L476" title="vp9Video on line 476 of src/utils/Device.js">src/utils/Device.js line 476</a>
     
 
 	
@@ -5852,7 +5859,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L414" title="wav on line 414 of src/utils/Device.js">src/utils/Device.js line 414</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L425" title="wav on line 425 of src/utils/Device.js">src/utils/Device.js line 425</a>
     
 
 	
@@ -5929,7 +5936,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L370" title="webApp on line 370 of src/utils/Device.js">src/utils/Device.js line 370</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L381" title="webApp on line 381 of src/utils/Device.js">src/utils/Device.js line 381</a>
     
 
 	
@@ -6006,7 +6013,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L390" title="webAudio on line 390 of src/utils/Device.js">src/utils/Device.js line 390</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L401" title="webAudio on line 401 of src/utils/Device.js">src/utils/Device.js line 401</a>
     
 
 	
@@ -6083,7 +6090,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L185" title="webGL on line 185 of src/utils/Device.js">src/utils/Device.js line 185</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L196" title="webGL on line 196 of src/utils/Device.js">src/utils/Device.js line 196</a>
     
 
 	
@@ -6160,7 +6167,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L427" title="webm on line 427 of src/utils/Device.js">src/utils/Device.js line 427</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L438" title="webm on line 438 of src/utils/Device.js">src/utils/Device.js line 438</a>
     
 
 	
@@ -6237,7 +6244,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L459" title="webmVideo on line 459 of src/utils/Device.js">src/utils/Device.js line 459</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L470" title="webmVideo on line 470 of src/utils/Device.js">src/utils/Device.js line 470</a>
     
 
 	
@@ -6362,7 +6369,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L266" title="wheelEvent on line 266 of src/utils/Device.js">src/utils/Device.js line 266</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L277" title="wheelEvent on line 277 of src/utils/Device.js">src/utils/Device.js line 277</a>
     
 
 	
@@ -6439,7 +6446,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L142" title="windows on line 142 of src/utils/Device.js">src/utils/Device.js line 142</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L153" title="windows on line 153 of src/utils/Device.js">src/utils/Device.js line 153</a>
     
 
 	
@@ -6516,7 +6523,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L148" title="windowsPhone on line 148 of src/utils/Device.js">src/utils/Device.js line 148</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L159" title="windowsPhone on line 159 of src/utils/Device.js">src/utils/Device.js line 159</a>
     
 
 	
@@ -6593,7 +6600,7 @@ added <em>before</em> <code>new Phaser.Game(..)</code> it is probably too late.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L209" title="worker on line 209 of src/utils/Device.js">src/utils/Device.js line 209</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L220" title="worker on line 220 of src/utils/Device.js">src/utils/Device.js line 220</a>
     
 
 	
@@ -6819,7 +6826,7 @@ if the device is already &quot;ready&quot;. See <a href="Phaser.Device.html#devi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L577" title="whenReady on line 577 of src/utils/Device.js">src/utils/Device.js line 577</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L588" title="whenReady on line 588 of src/utils/Device.js">src/utils/Device.js line 588</a>
     
 
 	
@@ -6953,7 +6960,7 @@ if the device is already &quot;ready&quot;. See <a href="Phaser.Device.html#devi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L1313" title="canPlayAudio on line 1313 of src/utils/Device.js">src/utils/Device.js line 1313</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L1324" title="canPlayAudio on line 1324 of src/utils/Device.js">src/utils/Device.js line 1324</a>
     
 
 	
@@ -7111,7 +7118,7 @@ if the device is already &quot;ready&quot;. See <a href="Phaser.Device.html#devi
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L1356" title="canPlayVideo on line 1356 of src/utils/Device.js">src/utils/Device.js line 1356</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L1367" title="canPlayVideo on line 1367 of src/utils/Device.js">src/utils/Device.js line 1367</a>
     
 
 	
@@ -7221,7 +7228,7 @@ This is available before the device &quot;ready&quot; event.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L1414" title="isAndroidStockBrowser on line 1414 of src/utils/Device.js">src/utils/Device.js line 1414</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L1425" title="isAndroidStockBrowser on line 1425 of src/utils/Device.js">src/utils/Device.js line 1425</a>
     
 
 	
@@ -7320,7 +7327,7 @@ This is available before the device &quot;ready&quot; event.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L1398" title="isConsoleOpen on line 1398 of src/utils/Device.js">src/utils/Device.js line 1398</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L1409" title="isConsoleOpen on line 1409 of src/utils/Device.js">src/utils/Device.js line 1409</a>
     
 
 	
@@ -7415,7 +7422,7 @@ This is available before the device &quot;ready&quot; event.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.2/src/utils/Device.js#L1387" title="needsTouchUnlock on line 1387 of src/utils/Device.js">src/utils/Device.js line 1387</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.3/src/utils/Device.js#L1398" title="needsTouchUnlock on line 1398 of src/utils/Device.js">src/utils/Device.js line 1398</a>
     
 
 	
@@ -7478,9 +7485,9 @@ This is available before the device &quot;ready&quot; event.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.9.2
+  phaser-ce@2.9.3
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.2">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.3">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -7497,7 +7504,7 @@ This is available before the device &quot;ready&quot; event.</p>
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-11-09
+		on 2017-12-11
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -7526,7 +7533,7 @@ This is available before the device &quot;ready&quot; event.</p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2017110918"></script>
+<script defer src="scripts/bundle.js?2017121111"></script>
 
 
 
