@@ -12,11 +12,11 @@ See [README: Change Log: Unreleased](README.md#unreleased).
 * [Phaser.Keyboard#removeCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#removeCallbacks) removes callbacks added by [Phaser.Keyboard#addCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#addCallbacks).
 * [Phaser.Line#fromPoints](https://photonstorm.github.io/phaser-ce/Phaser.Line.html#fromPoints)
 * [Phaser.Loader#imageFromGrid](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#imageFromGrid) and [Phaser.Loader#imageFromTexture](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#imageFromTexture) are image-loading counterparts of [Phaser.Create#grid](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#grid) and [Phaser.Create#texture](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#texture).
-* [Phaser.Point.sortClockwise](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#_sortClockwise) sorts points around a reference point.
+* [Phaser.Point.sortClockwise](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#sortClockwise) sorts points around a reference point.
 * [Phaser.Point#angleXY](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#angleXY)
 * [Phaser.Point#atan](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#atan) computes a point's arctangent.
 * [Phaser.Point#expand](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#expand) increases a point's magnitude to a minimum length.
-* [Phaser.World#wrapAll](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#wrapAll) wraps all members of a group.
+* [Phaser.World#wrapAll](https://photonstorm.github.io/phaser-ce/Phaser.World.html#wrapAll) wraps all members of a group.
 
 ### Updates
 
