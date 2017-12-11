@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.9.2 "2017-11-09" - Built: Thu Nov 09 2017 18:05:50
+* v2.9.3 "2017-12-11" - Built: Mon Dec 11 2017 11:02:47
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -7594,7 +7594,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.9.2',
+    VERSION: '2.9.3',
 
     /**
     * An array of Phaser game instances.
@@ -8345,36 +8345,30 @@ Phaser.Utils = {
     },
 
     /**
-     * Gets an object's property by string.
-     *
-     * @method Phaser.Utils.getProperty
-     * @param {object} obj - The object to traverse.
-     * @param {string} prop - The property whose value will be returned.
-     * @return {any} - The value of the property or `undefined` if the property isn't found.
-     */
-    getProperty: function(obj, prop) {
+    * Gets an object's property by string.
+    *
+    * @method Phaser.Utils.getProperty
+    * @param {object} obj - The object to traverse.
+    * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
+    * @return {any} - The value of the property or `undefined` if the property isn't found.
+    */
+    getProperty: function(obj, name) {
 
-        var parts = prop.split('.'),
-            len = parts.length,
-            i = 0,
-            val = obj;
+        var parts = name.split('.');
 
-        while (i < len)
+        switch (parts.length)
         {
-            var key = parts[i];
-
-            if (val != null)
-            {
-                val = val[key];
-                i++;
-            }
-            else
-            {
-                return undefined;
-            }
+            case 1:
+                return obj[name];
+            case 2:
+                return obj[parts[0]][parts[1]];
+            case 3:
+                return obj[parts[0]][parts[1]][parts[2]];
+            case 4:
+                return obj[parts[0]][parts[1]][parts[2]][parts[3]];
+            default:
+                return this._getProperty(obj, name);
         }
-
-        return val;
 
     },
 
@@ -8440,6 +8434,41 @@ Phaser.Utils = {
             default:
                 this._setProperty(obj, name, value);
         }
+    },
+
+    /**
+     * Gets an object's property by string.
+     *
+     * @private
+     * @method Phaser.Utils._getProperty
+     * @param {object} obj - The object to traverse.
+     * @param {string} name - The property whose value will be returned.
+     * @return {any} - The value of the property or `undefined` if the property isn't found.
+     */
+    _getProperty: function(obj, name) {
+
+        var parts = name.split('.'),
+            len = parts.length,
+            i = 0,
+            val = obj;
+
+        while (i < len)
+        {
+            var key = parts[i];
+
+            if (val != null)
+            {
+                val = val[key];
+                i++;
+            }
+            else
+            {
+                return undefined;
+            }
+        }
+
+        return val;
+
     },
 
     /**
@@ -9929,6 +9958,21 @@ Phaser.Line.prototype = {
     },
 
     /**
+    * Sets the line to match the x/y coordinates of the two given points.
+    *
+    * @param {any} start - A {@link Phaser.Point} or point-like object.
+    * @param {any} end - A {@link Phaser.Point} or point-like object.
+    * @return {Phaser.Line} - This line object.
+    */
+    fromPoints: function (start, end) {
+
+        this.setTo(start.x, start.y, end.x, end.y);
+
+        return this;
+
+    },
+
+    /**
     * Sets the line to match the x/y coordinates of the two given sprites.
     * Can optionally be calculated from their center coordinates.
     *
@@ -9947,7 +9991,7 @@ Phaser.Line.prototype = {
             return this.setTo(startSprite.centerX, startSprite.centerY, endSprite.centerX, endSprite.centerY);
         }
 
-        return this.setTo(startSprite.x, startSprite.y, endSprite.x, endSprite.y);
+        return this.fromPoints(startSprite, endSprite);
 
     },
 
@@ -10247,7 +10291,7 @@ Object.defineProperty(Phaser.Line.prototype, "length", {
 Object.defineProperty(Phaser.Line.prototype, "angle", {
 
     get: function () {
-        return Math.atan2(this.end.y - this.start.y, this.end.x - this.start.x);
+        return Phaser.Point.angle(this.end, this.start);
     }
 
 });
@@ -11405,20 +11449,57 @@ Phaser.Point.prototype = {
     *
     * @method Phaser.Point#angle
     * @param {Phaser.Point|any} a - The object to get the angle from this Point to.
-    * @param {boolean} [asDegrees=false] - Is the given angle in radians (false) or degrees (true)?
-    * @return {number} The angle between the two objects.
+    * @param {boolean} [asDegrees=false] - Return a value in radians (false) or degrees (true)?
+    * @return {number} The angle, where this Point is the vertex. Within [-pi, pi] or [-180deg, 180deg].
     */
     angle: function (a, asDegrees) {
 
-        if (asDegrees === undefined) { asDegrees = false; }
+        return this.angleXY(a.x, a.y, asDegrees);
+
+    },
+
+    /**
+    * Returns the angle between this Point object and an x-y coordinate pair.
+    *
+    * @method Phaser.Point#angleXY
+    * @param {number} x - The x-coordinate
+    * @param {number} y - The y-coordinate
+    * @param {boolean} [asDegrees=false] - Return a value in radians (false) or degrees (true)?
+    * @return {number} The angle, where this Point is the vertex. Within [-pi, pi] or [-180deg, 180deg].
+    */
+    angleXY: function (x, y, asDegrees) {
+
+        var angle = Math.atan2(y - this.y, x - this.x);
 
         if (asDegrees)
         {
-            return Phaser.Math.radToDeg(Math.atan2(a.y - this.y, a.x - this.x));
+            return Phaser.Math.radToDeg(angle);
         }
         else
         {
-            return Math.atan2(a.y - this.y, a.x - this.x);
+            return angle;
+        }
+
+    },
+
+    /**
+    * Returns the arctangent of this Point.
+    *
+    * @method Phaser.Point#atan
+    * @param {boolean} [asDegrees=false] - Return a value in radians (false) or degrees (true)?
+    * @return {number} The angle, where the vertex is (0, 0). Within [-pi, pi] or [-180deg, 180deg].
+    */
+    atan: function (asDegrees) {
+
+        var angle = Math.atan2(this.y, this.x);
+
+        if (asDegrees)
+        {
+            return Phaser.Math.radToDeg(angle);
+        }
+        else
+        {
+            return angle;
         }
 
     },
@@ -11497,17 +11578,37 @@ Phaser.Point.prototype = {
     },
 
     /**
-    * Alters the Point object so it's magnitude is at most the max value.
+    * Alters the Point object so its magnitude is at most the max value.
     *
     * @method Phaser.Point#limit
     * @param {number} max - The maximum magnitude for the Point.
     * @return {Phaser.Point} This Point object.
+    * @see Phaser.Point#expand
     */
     limit: function (max) {
 
         if (this.getMagnitudeSq() > max * max)
         {
             this.setMagnitude(max);
+        }
+
+        return this;
+
+    },
+
+    /**
+    * Alters the Point object so its magnitude is at least the min value.
+    *
+    * @method Phaser.Point#expand
+    * @param {number} min - The minimum magnitude for the Point.
+    * @return {Phaser.Point} This Point object.
+    * @see Phaser.Point#limit
+    */
+    expand: function (min) {
+
+        if (this.getMagnitudeSq() < min * min)
+        {
+            this.setMagnitude(min);
         }
 
         return this;
@@ -11748,11 +11849,10 @@ Phaser.Point.fuzzyEqualsXY = function (a, x, y, epsilon) {
 * @method Phaser.Point.angle
 * @param {Phaser.Point} a - The first Point object.
 * @param {Phaser.Point} b - The second Point object.
-* @return {number} The angle between the two Points.
+* @return {number} The angle, where b is the vertex. Within [-pi, pi].
 */
 Phaser.Point.angle = function (a, b) {
 
-    // return Math.atan2(a.x * b.y - a.y * b.x, a.x * b.x + a.y * b.y);
     return Math.atan2(a.y - b.y, a.x - b.x);
 
 };
@@ -12093,6 +12193,79 @@ Phaser.Point.set = function(obj, x, y) {
     return obj;
 
 };
+
+/**
+* Sorts an array of points in a clockwise direction, relative to a reference point.
+*
+* The sort is clockwise relative to the display, starting from a 12 o'clock position.
+* (In the Cartesian plane, it is anticlockwise, starting from the -y direction.)
+*
+* Example sequence: (0, -1), (1, 0), (0, 1), (-1, 0)
+*
+* @method Phaser.Point#sortClockwise
+* @static
+* @param {array} points - An array of Points or point-like objects (e.g., sprites).
+* @param {object|Phaser.Point} [center] - The reference point. If omitted, the {@link #centroid} (midpoint) of the points is used.
+* @return {array} The sorted array.
+*/
+Phaser.Point.sortClockwise = function(points, center) {
+
+    // Adapted from <https://stackoverflow.com/a/6989383/822138> (ciamej)
+
+    if (!center)
+    {
+        center = this.centroid(points);
+    }
+
+    var cx = center.x;
+    var cy = center.y;
+
+    var sort = function(a, b) {
+        if (a.x - cx >= 0 && b.x - cx < 0)
+        {
+            return -1;
+        }
+
+        if (a.x - cx < 0 && b.x - cx >= 0)
+        {
+            return 1;
+        }
+
+        if (a.x - cx === 0 && b.x - cx === 0)
+        {
+            if (a.y - cy >= 0 || b.y - cy >= 0)
+            {
+                return (a.y > b.y) ? 1 : -1;
+            }
+
+            return (b.y > a.y) ? 1 : -1;
+        }
+
+        // Compute the cross product of vectors (center -> a) * (center -> b)
+        var det = (a.x - cx) * -(b.y - cy) - (b.x - cx) * -(a.y - cy);
+
+        if (det < 0)
+        {
+            return -1;
+        }
+
+        if (det > 0)
+        {
+            return 1;
+        }
+
+        // Points a and b are on the same line from the center
+        // Check which point is closer to the center
+        var d1 = (a.x - cx) * (a.x - cx) + (a.y - cy) * (a.y - cy);
+        var d2 = (b.x - cx) * (b.x - cx) + (b.y - cy) * (b.y - cy);
+
+        return (d1 > d2) ? -1 : 1;
+    };
+
+    return points.sort(sort);
+
+};
+
 
 //   Because PIXI uses its own Point, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Point = Phaser.Point;
@@ -20904,7 +21077,7 @@ Phaser.World.prototype.boot = function () {
 
 /**
 * Called whenever the State changes or resets.
-* 
+*
 * It resets the world.x and world.y coordinates back to zero,
 * then resets the Camera.
 *
@@ -20952,7 +21125,10 @@ Phaser.World.prototype.setBounds = function (x, y, width, height) {
 };
 
 /**
-* Updates the size of this world. Note that this doesn't modify the world x/y coordinates, just the width and height.
+* Updates this world's width and height (but not smaller than any previous {@link #setBounds defined size}).
+*
+* Phaser uses this to adapt to {@link Phaser.ScaleManager#updateDimensions layout changes}.
+* You probably want to use {@link #setBounds} instead.
 *
 * @method Phaser.World#resize
 * @param {number} width - New width of the game world in pixels.
@@ -21066,6 +21242,21 @@ Phaser.World.prototype.wrap = function (sprite, padding, useBounds, horizontal, 
             }
         }
     }
+
+};
+
+/**
+* @method Phaser.World#wrapAll
+* @param {Phaser.Group} group - A group of sprites.
+* @param {boolean} [checkExists=false] - Wrap only sprites having `exists=true`.
+* @param {number} [padding=0] - Extra padding added equally to the sprite.x and y coordinates before checking if within the world bounds. Ignored if useBounds is true.
+* @param {boolean} [useBounds=false] - If useBounds is false wrap checks the object.x/y coordinates. If true it does a more accurate bounds check, which is more expensive.
+* @param {boolean} [horizontal=true] - If horizontal is false, wrap will not wrap the object.x coordinates horizontally.
+* @param {boolean} [vertical=true] - If vertical is false, wrap will not wrap the object.y coordinates vertically.
+*/
+Phaser.World.prototype.wrapAll = function (group, checkExists, padding, useBounds, horizontal, vertical) {
+
+    group.forEach(this.wrap, this, checkExists, padding, useBounds, horizontal, vertical);
 
 };
 
@@ -21255,7 +21446,7 @@ Object.defineProperty(Phaser.World.prototype, "randomY", {
 * @param {number|string|GameConfig} [width=800] - The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given.
 * @param {number|string} [height=600] - The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given.
 * @param {number} [renderer=Phaser.AUTO] - Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all).
-* @param {string|HTMLElement} [parent=''] - The DOM element into which this games canvas will be injected. Either a DOM ID (string) or the element itself.
+* @param {string|HTMLElement} [parent=''] - The DOM element into which this game canvas will be injected. Either a DOM `id` (string) or the element itself. If omitted (or no such element exists), the game canvas is appended to the document body.
 * @param {object} [state=null] - The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.
 * @param {boolean} [transparent=false] - Use a transparent canvas background or not.
 * @param {boolean} [antialias=true] - Draw all image textures anti-aliased or not. The default is for smooth textures, but disable if your game features pixel art.
@@ -21694,24 +21885,28 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * A configuration object for {@link Phaser.Game}.
 *
 * @typedef {object} GameConfig
-* @property {number|string} [GameConfig.antialias=true]
-* @property {string} [GameConfig.backgroundColor=0] - Sets {@link Phaser.Stage#backgroundColor}.
-* @property {boolean} [GameConfig.disableVisibilityChange=false] - Sets {@link Phaser.Stage#disableVisibilityChange}
-* @property {number|string} [GameConfig.height=600]
-* @property {boolean} [GameConfig.enableDebug=true] - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
-* @property {number} [GameConfig.fullScreenScaleMode] - The scaling method used by the ScaleManager when in fullscreen.
-* @property {DOMElement} [GameConfig.fullScreenTarget] - The DOM element on which the Fullscreen API enter request will be invoked.
-* @property {boolean} [GameConfig.multiTexture=false] - Enable support for multiple bound Textures in WebGL. Same as `{renderer: Phaser.WEBGL_MULTI}`.
-* @property {string|HTMLElement} [GameConfig.parent='']
-* @property {object} [GameConfig.physicsConfig=null]
-* @property {boolean} [GameConfig.preserveDrawingBuffer=false] - Whether or not the contents of the stencil buffer is retained after rendering.
-* @property {number} [GameConfig.renderer=Phaser.AUTO]
-* @property {number} [GameConfig.resolution=1] - The resolution of your game, as a ratio of canvas pixels to game pixels.
-* @property {number} [GameConfig.scaleMode] - The scaling method used by the ScaleManager when not in fullscreen.
-* @property {number} [GameConfig.seed] - Seed for {@link Phaser.RandomDataGenerator}.
-* @property {object} [GameConfig.state=null]
-* @property {boolean} [GameConfig.transparent=false]
-* @property {number|string} [GameConfig.width=800]
+* @property {number|string}      [GameConfig.antialias=true]
+* @property {string}             [GameConfig.backgroundColor=0]             - Sets {@link Phaser.Stage#backgroundColor}.
+* @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
+* @property {string}             [GameConfig.canvasId]                      - `id` attribute value to assign to the game canvas.
+* @property {string}             [GameConfig.canvasStyle]                   - `style` attribute value to assign to the game canvas.
+* @property {boolean}            [GameConfig.disableVisibilityChange=false] - Sets {@link Phaser.Stage#disableVisibilityChange}
+* @property {boolean}            [GameConfig.enableDebug=true]              - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
+* @property {boolean}            [GameConfig.forceSetTimeout]               - Use {@link https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout setTimeOut} for the game loop even if {@link https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame requestAnimationFrame} is available.
+* @property {number}             [GameConfig.fullScreenScaleMode]           - The scaling method used by the ScaleManager when in fullscreen.
+* @property {HTMLElement}        [GameConfig.fullScreenTarget]              - The DOM element on which the Fullscreen API enter request will be invoked.
+* @property {number|string}      [GameConfig.height=600]
+* @property {boolean}            [GameConfig.multiTexture=false]            - Enable support for multiple bound Textures in WebGL. Same as `{renderer: Phaser.WEBGL_MULTI}`.
+* @property {string|HTMLElement} [GameConfig.parent='']                     - The DOM element into which this games canvas will be injected.
+* @property {object}             [GameConfig.physicsConfig=null]
+* @property {boolean}            [GameConfig.preserveDrawingBuffer=false]   - Whether or not the contents of the stencil buffer is retained after rendering.
+* @property {number}             [GameConfig.renderer=Phaser.AUTO]
+* @property {number}             [GameConfig.resolution=1]                  - The resolution of your game, as a ratio of canvas pixels to game pixels.
+* @property {number}             [GameConfig.scaleMode]                     - The scaling method used by the ScaleManager when not in fullscreen.
+* @property {number}             [GameConfig.seed]                          - Seed for {@link Phaser.RandomDataGenerator}.
+* @property {object}             [GameConfig.state=null]
+* @property {boolean}            [GameConfig.transparent=false]
+* @property {number|string}      [GameConfig.width=800]
 */
 // Documentation stub for linking.
 
@@ -28206,8 +28401,17 @@ Phaser.InputHandler.prototype = {
         }
 
 		var pointerLocalCoord = this.globalToLocal(pointer);
-        var px = pointerLocalCoord.x + this._dragPoint.x + this.dragOffset.x;
-        var py = pointerLocalCoord.y + this._dragPoint.y + this.dragOffset.y;
+
+        if (this.sprite.fixedToCamera)
+        {
+            var px = this.game.camera.scale.x * pointerLocalCoord.x + this._dragPoint.x + this.dragOffset.x;
+            var py = this.game.camera.scale.y * pointerLocalCoord.y + this._dragPoint.y + this.dragOffset.y;
+        }
+        else
+        {
+            var px = pointerLocalCoord.x + this._dragPoint.x + this.dragOffset.x;
+            var py = pointerLocalCoord.y + this._dragPoint.y + this.dragOffset.y;
+        }
 
         if (this.sprite.fixedToCamera)
         {
@@ -34134,7 +34338,18 @@ Object.defineProperty(Phaser.CanvasPool, 'length', {
 *
 * Unless otherwise noted the device capabilities are only guaranteed after initialization. Initialization
 * occurs automatically and is guaranteed complete before {@link Phaser.Game} begins its "boot" phase.
-* Feature detection can be modified in the {@link Phaser.Device.onInitialized onInitialized} signal.
+* Feature detection can be modified in the {@link Phaser.Device.onInitialized onInitialized} signal, e.g.,
+*
+* ```javascript
+* Phaser.Device.onInitialized.add(function (device) {
+*
+*     device.canvasBitBltShift = true;
+*     device.mspointer = false;
+*
+* });
+*
+* var game = new Phaser.Game();
+* ```
 *
 * When checking features using the exposed properties only the *truth-iness* of the value should be relied upon
 * unless the documentation states otherwise: properties may return `false`, `''`, `null`, or even `undefined`
@@ -44975,6 +45190,30 @@ Phaser.Loader.prototype = {
     },
 
     /**
+    * Generate a grid image and add it to the current load queue.
+    *
+    * @method Phaser.Loader#imageFromGrid
+    * @see Phaser.Create#grid
+    */
+    imageFromGrid: function (key, width, height, cellWidth, cellHeight, color) {
+
+        return this.imageFromBitmapData(key, this.game.create.grid(key, width, height, cellWidth, cellHeight, color, false));
+
+    },
+
+    /**
+    * Generate a texture image and add it to the current load queue.
+    *
+    * @method Phaser.Loader#imageFromTexture
+    * @see Phaser.Create#texture
+    */
+    imageFromTexture: function (key, data, pixelWidth, pixelHeight, palette) {
+
+        return this.imageFromBitmapData(key, this.game.create.texture(key, data, pixelWidth, pixelHeight, palette, false));
+
+    },
+
+    /**
     * Adds a Compressed Texture Image to the current load queue.
     *
     * Compressed Textures are a WebGL only feature, and require 3rd party tools to create.
@@ -46258,7 +46497,11 @@ Phaser.Loader.prototype = {
 
         this.onLoadComplete.dispatch();
 
-        this.game.state.loadComplete();
+        // Check if the state still exists since destroy could have occurred while loading
+        if (this.game.state)
+        {
+            this.game.state.loadComplete();
+        }
 
     },
 
@@ -46764,7 +47007,7 @@ Phaser.Loader.prototype = {
     *
     * This is designed specifically to use with asset file processing.
     *
-    * @method Phaser.Loader#xhrLoad
+    * @method Phaser.Loader#xhrLoadWithXDR
     * @private
     * @param {object} file - The file/pack to load.
     * @param {string} url - The URL of the file.
@@ -48436,8 +48679,9 @@ Phaser.ScaleManager = function (game, width, height) {
     this._fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
 
     /**
-    * If the parent container of the Game canvas is the browser window itself (i.e. document.body),
-    * rather than another div, this should set to `true`.
+    * True if the the browser window (instead of the display canvas's DOM parent) should be used as the bounding parent.
+    *
+    * This is set automatically based on the `parent` argument passed to {@link Phaser.Game}.
     *
     * The {@link #parentNode} property is generally ignored while this is in effect.
     *
@@ -48448,6 +48692,8 @@ Phaser.ScaleManager = function (game, width, height) {
     /**
     * The _original_ DOM element for the parent of the Display canvas.
     * This may be different in fullscreen - see {@link #createFullScreenTarget}.
+    *
+    * This is set automatically based on the `parent` argument passed to {@link Phaser.Game}.
     *
     * This should only be changed after moving the Game canvas to a different DOM parent.
     *
@@ -51916,6 +52162,8 @@ Phaser.Create.prototype = {
      * The above will create a new texture called `bob`, which will look like a little man wearing a hat. You can then use it
      * for sprites the same way you use any other texture: `game.add.sprite(0, 0, 'bob');`
      *
+     * Use {@link Phaser.Loader#imageFromTexture} to preload an image of the same.
+     *
      * @method Phaser.Create#texture
      * @param {string} key - The key used to store this texture in the Phaser Cache.
      * @param {array} data - An array of pixel data.
@@ -51973,6 +52221,8 @@ Phaser.Create.prototype = {
 
     /**
      * Creates a grid texture based on the given dimensions.
+     *
+     * Use {@link Phaser.Loader#imageFromGrid} to preload an image of the same.
      *
      * @method Phaser.Create#grid
      * @param {string} key - The key used to store this texture in the Phaser Cache.

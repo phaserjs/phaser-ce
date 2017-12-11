@@ -4,6 +4,45 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.9.3 - 11th December 2017
+
+### New Features
+
+* [Phaser.BitmapData#polygon](https://photonstorm.github.io/phaser-ce/Phaser.BitmapData.html#polygon) draws a polygon.
+* [Phaser.Keyboard#removeCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#removeCallbacks) removes callbacks added by [Phaser.Keyboard#addCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#addCallbacks).
+* [Phaser.Line#fromPoints](https://photonstorm.github.io/phaser-ce/Phaser.Line.html#fromPoints)
+* [Phaser.Loader#imageFromGrid](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#imageFromGrid) and [Phaser.Loader#imageFromTexture](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#imageFromTexture) are image-loading counterparts of [Phaser.Create#grid](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#grid) and [Phaser.Create#texture](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#texture).
+* [Phaser.Point.sortClockwise](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#_sortClockwise) sorts points around a reference point.
+* [Phaser.Point#angleXY](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#angleXY)
+* [Phaser.Point#atan](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#atan) computes a point's arctangent.
+* [Phaser.Point#expand](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#expand) increases a point's magnitude to a minimum length.
+* [Phaser.World#wrapAll](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#wrapAll) wraps all members of a group.
+
+### Updates
+
+* Audio and video are now [touch-unlocked](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#needsTouchUnlock) only via the [touchend](https://developer.mozilla.org/en-US/docs/Web/Events/touchend) event (#92). Previously we used `touchend` for audio on newer Chrome and iOS clients and `touchstart` in all other cases.
+* [Tilemap#addTilesetImage](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#addTilesetImage), [Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects), and [Tilemap#createLayer](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createLayer) print the map's contents (following the usual warning) in the console if you pass a bad name or identifier, to help you correct it.
+* [Tileset#addTilesetImage](https://photonstorm.github.io/phaser-ce/Phaser.Tileset.html#addTilesetImage) gives a little more information when warning about image dimension mismatches.
+* Optimized [Phaser.Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#_getProperty).
+* Removed Phaser.TweenData#yoyoCounter, an extraneous property that Phaser never used.
+* p2 TypeScript definitions fixes and updates (#406).
+
+### Bug Fixes
+
+* [Phaser.Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) no longer tries to start a tween marked for deletion (such as by [Tween#stop](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#stop)). Instead it prints a warning to the console (#401).
+* Fixed drag movement of [fixedToCamera](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#fixedToCamera) sprites when the camera is scaled (#405).
+* Fixed tweens not repeating when [Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) is called after [Tween#repeat](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#repeat) (#408).
+* [StateManager#loadComplete](https://photonstorm.github.io/phaser-ce/Phaser.StateManager.html) is no longer called by the [Loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) if the state has been destroyed (#410).
+* Added TypeScript definitions for [Phaser.Sprite#outOfCameraBoundsKill](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#outOfCameraBoundsKill).
+
+### Documentation
+
+* `canvas`, `canvasId`, `canvasStyle`, and [forceSetTimeOut](https://photonstorm.github.io/phaser-ce/Phaser.RequestAnimationFrame.html#forceSetTimeOut) can be set in the [game configuration object](https://photonstorm.github.io/phaser-ce/global.html#GameConfig).
+
+### Thanks
+
+@clesquir, @GrindheadGames, @husengbatute29, @Nek-, @photonstorm, @samme
+
 ## Version 2.9.2 - 9th November 2017
 
 ### New Features
