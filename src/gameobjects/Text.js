@@ -193,7 +193,13 @@ Phaser.Text = function (game, x, y, text, style) {
 
     Phaser.Sprite.call(this, game, x, y, PIXI.Texture.fromCanvas(this.canvas));
 
-    this.setStyle(style);
+    /**
+    * @property {object} style
+    * @private
+     */
+    this.style = {};
+
+    this.setStyle(style || {});
 
     if (text !== '')
     {
