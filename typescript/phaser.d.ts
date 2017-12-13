@@ -5711,7 +5711,7 @@ declare module Phaser {
         add(tween: Phaser.Tween): Phaser.Tween;
         create(object: any): Phaser.Tween;
         getAll(): Phaser.Tween[];
-        isTweening(object: any): boolean;
+        isTweening(object: any, checkIsRunning?: boolean): boolean;
         remove(tween: Phaser.Tween): Phaser.Tween;
         removeAll(): void;
         removeFrom(obj: any, children?: boolean): void;

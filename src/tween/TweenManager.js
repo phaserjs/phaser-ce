@@ -12,7 +12,7 @@
 * The difference being that tweens belong to a games instance of TweenManager, rather than to a global TWEEN object.
 * It also has callbacks swapped for Signals and a few issues patched with regard to properties and completion errors.
 * Please see https://github.com/sole/tween.js for a full list of contributors.
-* 
+*
 * @class Phaser.TweenManager
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
@@ -28,7 +28,7 @@ Phaser.TweenManager = function (game) {
     * Are all newly created Tweens frame or time based? A frame based tween will use the physics elapsed timer when updating. This means
     * it will retain the same consistent frame rate, regardless of the speed of the device. The duration value given should
     * be given in frames.
-    * 
+    *
     * If the Tween uses a time based update (which is the default) then the duration is given in milliseconds.
     * In this situation a 2000ms tween will last exactly 2 seconds, regardless of the device and how many visual updates the tween
     * has actually been through. For very short tweens you may wish to experiment with a frame based update instead.
@@ -136,16 +136,16 @@ Phaser.TweenManager.prototype = {
         this._add = [];
 
     },
-    
+
     /**
     * Remove all tweens from a specific object, array of objects or Group.
-    * 
+    *
     * @method Phaser.TweenManager#removeFrom
     * @param {object|object[]|Phaser.Group} obj - The object you want to remove the tweens from.
     * @param {boolean} [children=true] - If passing a group, setting this to true will remove the tweens from all of its children instead of the group itself.
     */
     removeFrom: function (obj, children) {
-        
+
         if (children === undefined) { children = true; }
 
         var i;
@@ -183,7 +183,7 @@ Phaser.TweenManager.prototype = {
                 }
             }
         }
-        
+
     },
 
     /**
@@ -285,14 +285,19 @@ Phaser.TweenManager.prototype = {
     /**
     * Checks to see if a particular Sprite is currently being tweened.
     *
+    * The `checkIsRunning` parameter will exclude tweens that have **just** completed or been stopped but haven't yet been removed from the manager.
+    *
     * @method Phaser.TweenManager#isTweening
     * @param {object} object - The object to check for tweens against.
+    * @param {boolean} [checkIsRunning] - Also check that the tween is running and is not marked for deletion.
     * @returns {boolean} Returns true if the object is currently being tweened, false if not.
     */
-    isTweening: function(object) {
+    isTweening: function(object, checkIsRunning) {
+
+        if (!checkIsRunning) { checkIsRunning = false; }
 
         return this._tweens.some(function(tween) {
-            return tween.target === object;
+            return (tween.target === object) && !checkIsRunning || (tween.isRunning && !tween.pendingDelete);
         });
 
     },

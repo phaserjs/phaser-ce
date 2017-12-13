@@ -328,6 +328,10 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
+### New Features
+
+* TweenManager#isTweening has a `checkIsRunning` argument (#414).
+
 ### Bug Fixes
 
 * Fixed a TypeError when a [Text](https://photonstorm.github.io/phaser-ce/Phaser.Text.html) object is created without a `style` argument (#415).
