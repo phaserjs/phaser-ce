@@ -43,8 +43,7 @@
 */
 Phaser.Rope = function (game, x, y, key, frame, points) {
 
-    this.points = [];
-    this.points = points;
+    this.points = points || [];
     this._hasUpdateAnimation = false;
     this._updateAnimationCallback = null;
     x = x || 0;
@@ -57,8 +56,6 @@ Phaser.Rope = function (game, x, y, key, frame, points) {
     * @readonly
     */
     this.type = Phaser.ROPE;
-
-    this.points = points;
 
     PIXI.DisplayObjectContainer.call(this);
 
