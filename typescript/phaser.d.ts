@@ -4866,6 +4866,7 @@ declare module Phaser {
         static SHOW_ALL: number;
         static RESIZE: number;
         static USER_SCALE: number;
+        static MODES: string[];
 
         aspectRatio: number;
         bounds: Rectangle;
@@ -5800,6 +5801,7 @@ declare module Phaser {
             reset(): void;
             ropeSegments(rope: Phaser.Rope, color?: number, filled?: boolean): void;
             sound(x: number, y: number, color?: string): void;
+            scale(x: number, y: number, color?: string): void;
             soundInfo(sound: Phaser.Sound, x: number, y: number, color?: string): void;
             spriteBounds(sprite: any, color?: string, filled?: boolean): void;
             spriteCoords(sprite: any, x: number, y: number, color?: string): void;

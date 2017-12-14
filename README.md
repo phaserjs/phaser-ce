@@ -336,6 +336,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.Utils.Debug#sound displays information on the [Sound Manager](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html), including volume, mute, audio mode, and locked status.
 * Phaser.Point#round rounds a point's coordinates.
 * [Phaser.Color](https://photonstorm.github.io/phaser-ce/Phaser.Color.html) constants AQUA, BLACK, BLUE, GRAY, GREEN, ORANGE, RED, VIOLET, WHITE, and YELLOW.
+* Phaser.Utils.Debug#scale displays game/canvas dimensions and [game scale](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html) settings.
 
 ### Updates
 

@@ -1078,6 +1078,40 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
+    * Prints game/canvas dimensions and {@link Phaser.ScaleManager game scale} settings.
+    *
+    * @method Phaser.Utils.Debug#scale
+    * @param {number} x - The X value the debug info will start from.
+    * @param {number} y - The Y value the debug info will start from.
+    * @param {string} [color='rgb(255,255,255)'] - The color the debug text will drawn in.
+    */
+    scale: function (x, y, color) {
+
+        this.start(x, y, color);
+
+        var scale = this.game.scale;
+        var factor = scale.scaleFactorInversed;
+        var bounds = scale._parentBounds;
+        var x = ' x ';
+
+        this.line('Game: ' + this.game.width + x + this.game.height);
+        this.line('Canvas: ' + scale.width + x + scale.height +
+            ' (' + factor.x.toFixed(2) + x + factor.y.toFixed(2) + ')' +
+            ' [' + scale.aspectRatio.toFixed(2) + ']');
+        this.line('Mode: ' + Phaser.ScaleManager.MODES[scale.currentScaleMode] +
+            (scale.currentScaleMode === Phaser.ScaleManager.USER_SCALE ?
+            (' (' + scale._userScaleFactor.x + x + scale._userScaleFactor.y + ')') :
+            ''));
+        this.line('Parent: ' + (scale.parentIsWindow ? 'window' : scale.parentNode) +
+            (bounds.empty ? '' : (' (' + bounds.width + x + bounds.height + ')')));
+        this.line('Screen: ' + scale.classifyOrientation(scale.screenOrientation) +
+            (scale.incorrectOrientation ? ' (incorrect)' : ''));
+
+        this.stop();
+
+    },
+
+    /**
     * Destroy this object.
     *
     * @method Phaser.Utils.Debug#destroy
