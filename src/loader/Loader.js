@@ -132,7 +132,7 @@ Phaser.Loader = function (game) {
     };
 
     /**
-     * This event is dispatched when the loading process starts: before the first file has been requested,
+    * This event is dispatched when the loading process starts: before the first file has been requested,
     * but after all the initial packs have been loaded.
     *
     * @property {Phaser.Signal} onLoadStart

@@ -1112,6 +1112,52 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
+    * Prints the progress of a {@link Phaser.Loader}.
+    *
+    * Typically you would call this within a {@link State#loadRender} callback and pass `game.load` ({@link Phaser.Game#load}).
+    *
+    * You can enable {@link Phaser.Loader#resetLocked} to temporarily hold the loader in its 'complete' state.
+    * Just remember to disable it before restarting the loader (such as when changing states).
+    *
+    * @method Phaser.Utils.Debug#loader
+    * @param {Phaser.Loader} loader - The loader. Usually `game.load` ({@link Phaser.Game#load}).
+    * @param {number} x - The X value the debug info will start from.
+    * @param {number} y - The Y value the debug info will start from.
+    * @param {string} [color='rgb(255,255,255)'] - The color the debug text will drawn in.
+    */
+    loader: function (loader, x, y, color) {
+
+        var pad = Phaser.Utils.pad;
+
+        this.start(x, y, color);
+
+        if (loader.hasLoaded)
+        {
+            this.line('Complete' + (loader.resetLocked ? ' [locked]' : ''));
+        }
+        else if (loader.isLoading)
+        {
+            this.line('Loading');
+        }
+        else
+        {
+            this.line('Not started');
+        }
+
+        if (!loader.hasLoaded || loader.resetLocked)
+        {
+            this.line('Progress: ' + (pad(loader.progress, 3) + '%'));
+            this.line('Files: ' + loader._loadedFileCount + ' of '
+                                + loader._totalFileCount);
+            this.line('Packs: ' + loader._loadedPackCount + ' of '
+                                + loader._loadedPackCount);
+        }
+
+        this.stop();
+
+    },
+
+    /**
     * Destroy this object.
     *
     * @method Phaser.Utils.Debug#destroy

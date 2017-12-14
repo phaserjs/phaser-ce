@@ -5790,6 +5790,7 @@ declare module Phaser {
             lineInfo(line: Phaser.Line, x: number, y: number, color?: string): void;
             key(key: Phaser.Key, x?: number, y?: number, color?: string): void;
             line(...args: string[]): void;
+            loader(loader: Phaser.Loader, x: number, y: number, color?: string): void;
             phaser(x: number, y: number, color?: string): void;
             preUpdate(): void;
             physicsGroup(group: Phaser.Group, color?: string, filled?: boolean, checkExists?: boolean): void;

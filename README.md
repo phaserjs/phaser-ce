@@ -337,6 +337,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.Point#round rounds a point's coordinates.
 * [Phaser.Color](https://photonstorm.github.io/phaser-ce/Phaser.Color.html) constants AQUA, BLACK, BLUE, GRAY, GREEN, ORANGE, RED, VIOLET, WHITE, and YELLOW.
 * Phaser.Utils.Debug#scale displays game/canvas dimensions and [game scale](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html) settings.
+* Phaser.Utils.Debug#loader displays [loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) progress.
 
 ### Updates
 
