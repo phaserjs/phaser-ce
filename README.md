@@ -175,6 +175,8 @@ Then from your project:
 http-server . -c-1 -o
 ```
 
+There are [many other options](https://gist.github.com/willurd/5720255 "List of http static server one-liners") that you may already have installed as well.
+
 <a name="browserify"></a>
 
 ### Browserify / CommonJS
