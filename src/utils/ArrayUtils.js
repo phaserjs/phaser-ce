@@ -280,7 +280,7 @@ Phaser.ArrayUtils = {
     * See also Phaser.ArrayUtils.rotateRight
     *
     * @method Phaser.ArrayUtils.rotate
-    * @deprecated Please use Phaser.ArrayUtils.rotate instead.
+    * @deprecated Please use Phaser.ArrayUtils.rotateLeft instead.
     * @param {any[]} array - The array to rotate. The array is modified.
     * @return {any} The rotated value.
     */
