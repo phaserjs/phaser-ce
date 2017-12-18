@@ -85,10 +85,12 @@ Phaser.Loader = function (game) {
     /**
     * The value of `path`, if set, is placed before any _relative_ file path given. For example:
     *
-    * `load.path = "images/sprites/";
+    * ```javascript
+    * load.path = "images/sprites/";
     * load.image("ball", "ball.png");
     * load.image("tree", "level1/oaktree.png");
-    * load.image("boom", "http://server.com/explode.png");`
+    * load.image("boom", "http://server.com/explode.png");
+    * ```
     *
     * Would load the `ball` file from `images/sprites/ball.png` and the tree from
     * `images/sprites/level1/oaktree.png` but the file `boom` would load from the URL
@@ -110,11 +112,15 @@ Phaser.Loader = function (game) {
     * This object can also be used to set the `X-Requested-With` header to
     * `XMLHttpRequest` (or any other value you need). To enable this do:
     *
-    * `this.load.headers.requestedWith = 'XMLHttpRequest'`
+    * ```javascript
+    * this.load.headers.requestedWith = 'XMLHttpRequest'
+    * ```
     *
     * before adding anything to the Loader. The XHR loader will then call:
     *
-    * `setRequestHeader('X-Requested-With', this.headers['requestedWith'])`
+    * ```javascript
+    * setRequestHeader('X-Requested-With', this.headers['requestedWith'])
+    * ```
     *
     * @property {object} headers
     * @default
