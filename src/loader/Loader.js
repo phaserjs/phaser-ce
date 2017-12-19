@@ -3136,10 +3136,8 @@ Phaser.Loader.prototype = {
     /**
     * Update the loading sprite progress.
     *
-    * @method Phaser.Loader#nextFile
+    * @method Phaser.Loader#updateProgress
     * @private
-    * @param {object} previousFile
-    * @param {boolean} success - Whether the previous asset loaded successfully or not.
     */
     updateProgress: function () {
 
