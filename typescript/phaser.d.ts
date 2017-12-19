@@ -3108,15 +3108,15 @@ declare module Phaser {
             angleBetween(source: any, target: any, world?: boolean): number;
             angleToPointer(displayObject: any, pointer?: Phaser.Pointer, world?: boolean): number;
             angleToXY(displayObject: any, x: number, y: number, world?: boolean): number;
-            closest(source: any, targets: any[], world?: boolean): any;
+            closest(source: any, targets: any[], world?: boolean, useCenter?: boolean): any;
             collide(object1: any, object2?: any, collideCallback?: Function, processCallback?: Function, callbackContext?: any): boolean;
             computeVelocity(axis: number, body: Phaser.Physics.Arcade.Body, velocity: number, acceleration: number, drag: number, max?: number): number;
-            distanceBetween(source: any, target: any, world?: boolean): number;
+            distanceBetween(source: any, target: any, world?: boolean, useCenter?: boolean): number;
             distanceToPointer(displayObject: any, pointer?: Phaser.Pointer, world?: boolean): number;
             distanceToXY(displayObject: any, x: number, y: number, world?: boolean): number;
             enable(object: any, children?: Boolean): void;
             enableBody(object: any): void;
-            farthest(source: any, targets: any[], world?: boolean): any;
+            farthest(source: any, targets: any[], world?: boolean, useCenter?: boolean): any;
             getObjectsAtLocation(x: number, y: number, group: Phaser.Group, callback?: (callbackArg: any, object: any) => void, callbackContext?: any, callbackArg?: any): Sprite[];
             getOverlapX(body1: Phaser.Physics.Arcade.Body, body2: Phaser.Physics.Arcade.Body): number;
             getOverlapY(body1: Phaser.Physics.Arcade.Body, body2: Phaser.Physics.Arcade.Body): number;

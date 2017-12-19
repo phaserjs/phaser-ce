@@ -1954,18 +1954,41 @@ Phaser.Physics.Arcade.prototype = {
     * instead of its `x` and `y` values. This is useful of the object has been nested inside an offset Group,
     * or parent Game Object.
     *
+    * If you have nested objects and need to calculate the distance between their centers in World coordinates,
+    * set their anchors to (0.5, 0.5) and use the `world` argument.
+    *
+    * If objects aren't nested or they share a parent's offset, you can calculate the distance between their
+    * centers with the `useCenter` argument, regardless of their anchor values.
+    *
     * @method Phaser.Physics.Arcade#distanceBetween
     * @param {any} source - The Display Object to test from.
     * @param {any} target - The Display Object to test to.
-    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default)
+    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default). If `useCenter` is true, this value is ignored.
+    * @param {boolean} [useCenter=false] - Calculate the distance using the {@link Phaser.Sprite#centerX} and {@link Phaser.Sprite#centerY} coordinates. If true, this value overrides the `world` argument.
     * @return {number} The distance between the source and target objects.
     */
-    distanceBetween: function (source, target, world) {
+    distanceBetween: function (source, target, world, useCenter) {
 
         if (world === undefined) { world = false; }
 
-        var dx = (world) ? source.world.x - target.world.x : source.x - target.x;
-        var dy = (world) ? source.world.y - target.world.y : source.y - target.y;
+        var dx;
+        var dy;
+
+        if (useCenter)
+        {
+            dx = source.centerX - target.centerX;
+            dy = source.centerY - target.centerY;
+        }
+        else if (world)
+        {
+            dx = source.world.x - target.world.x;
+            dy = source.world.y - target.world.y;
+        }
+        else
+        {
+            dx = source.x - target.x;
+            dy = source.y - target.y;
+        }
 
         return Math.sqrt(dx * dx + dy * dy);
 
@@ -1974,7 +1997,7 @@ Phaser.Physics.Arcade.prototype = {
     /**
     * Find the distance between a display object (like a Sprite) and the given x/y coordinates.
     * The calculation is made from the display objects x/y coordinate. This may be the top-left if its anchor hasn't been changed.
-    * If you need to calculate from the center of a display object instead use the method distanceBetweenCenters()
+    * If you need to calculate from the center of a display object instead use {@link #distanceBetween} with the `useCenter` argument.
     *
     * The optional `world` argument allows you to return the result based on the Game Objects `world` property,
     * instead of its `x` and `y` values. This is useful of the object has been nested inside an offset Group,
@@ -2001,7 +2024,7 @@ Phaser.Physics.Arcade.prototype = {
     /**
     * Find the distance between a display object (like a Sprite) and a Pointer. If no Pointer is given the Input.activePointer is used.
     * The calculation is made from the display objects x/y coordinate. This may be the top-left if its anchor hasn't been changed.
-    * If you need to calculate from the center of a display object instead use the method distanceBetweenCenters()
+    * If you need to calculate from the center of a display object instead use {@link #distanceBetween} with the `useCenter` argument.
     *
     * The optional `world` argument allows you to return the result based on the Game Objects `world` property,
     * instead of its `x` and `y` values. This is useful of the object has been nested inside an offset Group,
@@ -2032,17 +2055,18 @@ Phaser.Physics.Arcade.prototype = {
     * @method Phaser.Physics.Arcade#closest
     * @param {any} source - The {@link Phaser.Point Point} or Display Object distances will be measured from.
     * @param {any[]} targets - The {@link Phaser.Point Points} or Display Objects whose distances to the source will be compared.
-    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default).
+    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default). If `useCenter` is true, this value is ignored.
+    * @param {boolean} [useCenter=false] - Calculate the distance using the {@link Phaser.Sprite#centerX} and {@link Phaser.Sprite#centerY} coordinates. If true, this value overrides the `world` argument.
     * @return {any} - The first target closest to the origin.
     */
-    closest: function (source, targets, world) {
+    closest: function (source, targets, world, useCenter) {
         var min = Infinity;
         var closest = null;
 
         for (var i = 0, len = targets.length; i < len; i++)
         {
             var target = targets[i];
-            var distance = this.distanceBetween(source, target, world);
+            var distance = this.distanceBetween(source, target, world, useCenter);
 
             if (distance < min)
             {
@@ -2060,17 +2084,18 @@ Phaser.Physics.Arcade.prototype = {
     * @method Phaser.Physics.Arcade#farthest
     * @param {any} source - The {@link Phaser.Point Point} or Display Object distances will be measured from.
     * @param {any[]} targets - The {@link Phaser.Point Points} or Display Objects whose distances to the source will be compared.
-    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default).
+    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default). If `useCenter` is true, this value is ignored.
+    * @param {boolean} [useCenter=false] - Calculate the distance using the {@link Phaser.Sprite#centerX} and {@link Phaser.Sprite#centerY} coordinates. If true, this value overrides the `world` argument.
     * @return {any} - The target closest to the origin.
     */
-    farthest: function (source, targets, world) {
+    farthest: function (source, targets, world, useCenter) {
         var max = -1;
         var farthest = null;
 
         for (var i = 0, len = targets.length; i < len; i++)
         {
             var target = targets[i];
-            var distance = this.distanceBetween(source, target, world);
+            var distance = this.distanceBetween(source, target, world, useCenter);
 
             if (distance > max)
             {
