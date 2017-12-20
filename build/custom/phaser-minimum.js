@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.9.3 "2017-12-11" - Built: Mon Dec 11 2017 11:02:47
+* v2.9.4 "2017-12-20" - Built: Wed Dec 20 2017 12:51:35
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -7594,7 +7594,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.9.3',
+    VERSION: '2.9.4',
 
     /**
     * An array of Phaser game instances.
@@ -17719,6 +17719,46 @@ Phaser.Stage.prototype.destroy = function () {
 };
 
 /**
+* Adds an existing object to the Stage.
+*
+* The child is automatically added to the front of the Stage, and is displayed above every previous child.
+* Or if the _optional_ `index` is specified, the child is added at the location specified by the index value,
+* this allows you to control child ordering.
+*
+* If the object was already on the Stage, it is simply returned, and nothing else happens to it.
+*
+* @method Phaser.Stage#add
+* @param {DisplayObject} child - The display object to add as a child.
+* @param {boolean} [silent] - Unused. Kept for compatibility with {@link Phaser.Group#add}.
+* @param {integer} [index] - The index to insert the object to.
+* @return {DisplayObject} The child that was added to the group.
+*/
+Phaser.Stage.prototype.add = function (child, silent, index) {
+
+    if (child.parent === this)
+    {
+        return child;
+    }
+
+    if (child.body && child.parent && child.parent.hash)
+    {
+        child.parent.removeFromHash(child);
+    }
+
+    if (index === undefined)
+    {
+        this.addChild(child);
+    }
+    else
+    {
+        this.addChildAt(child, index);
+    }
+
+    return child;
+
+};
+
+/**
 * @name Phaser.Stage#backgroundColor
 * @property {number|string} backgroundColor - Gets and sets the background color of the stage. The color can be given as a number: 0xff0000 or a hex string: '#ff0000'
 * @see Phaser.Stage#setBackgroundColor
@@ -18128,7 +18168,7 @@ Phaser.Group.SORT_DESCENDING = 1;
 *
 * If `Group.inputEnableChildren` is set, then an Input Handler will be created on the object, so long as one does not already exist.
 *
-* Use {@link #addAt} to control where a child is added. Use {@link #create} to create and add a new child.
+* Use {@link #create} to create and add a new child.
 *
 * @method Phaser.Group#add
 * @param {DisplayObject} child - The display object to add as a child.
@@ -29189,7 +29229,7 @@ Phaser.Component.Bounds.prototype = {
     },
 
     /**
-    * The center x coordinate of the Game Object.
+    * The local center x coordinate of the Game Object.
     * This is the same as `(x - offsetX) + (width / 2)`.
     *
     * @property {number} centerX
@@ -29211,7 +29251,7 @@ Phaser.Component.Bounds.prototype = {
     },
 
     /**
-    * The center y coordinate of the Game Object.
+    * The local center y coordinate of the Game Object.
     * This is the same as `(y - offsetY) + (height / 2)`.
     *
     * @property {number} centerY
@@ -29325,17 +29365,17 @@ Phaser.Component.Bounds.prototype = {
     * 'container', to one of 9 possible positions.
     *
     * The container must be a Game Object, or Phaser.Rectangle object. This can include properties
-    * such as `World.bounds` or `Camera.view`, for aligning Game Objects within the world 
+    * such as `World.bounds` or `Camera.view`, for aligning Game Objects within the world
     * and camera bounds. Or it can include other Sprites, Images, Text objects, BitmapText,
     * TileSprites or Buttons.
     *
     * Please note that aligning a Sprite to another Game Object does **not** make it a child of
     * the container. It simply modifies its position coordinates so it aligns with it.
-    * 
+    *
     * The position constants you can use are:
-    * 
-    * `Phaser.TOP_LEFT`, `Phaser.TOP_CENTER`, `Phaser.TOP_RIGHT`, `Phaser.LEFT_CENTER`, 
-    * `Phaser.CENTER`, `Phaser.RIGHT_CENTER`, `Phaser.BOTTOM_LEFT`, 
+    *
+    * `Phaser.TOP_LEFT`, `Phaser.TOP_CENTER`, `Phaser.TOP_RIGHT`, `Phaser.LEFT_CENTER`,
+    * `Phaser.CENTER`, `Phaser.RIGHT_CENTER`, `Phaser.BOTTOM_LEFT`,
     * `Phaser.BOTTOM_CENTER` and `Phaser.BOTTOM_RIGHT`.
     *
     * The Game Objects are placed in such a way that their _bounds_ align with the
@@ -29422,18 +29462,18 @@ Phaser.Component.Bounds.prototype = {
     * 'parent', in one of 11 possible positions.
     *
     * The parent must be a Game Object, or Phaser.Rectangle object. This can include properties
-    * such as `World.bounds` or `Camera.view`, for aligning Game Objects within the world 
+    * such as `World.bounds` or `Camera.view`, for aligning Game Objects within the world
     * and camera bounds. Or it can include other Sprites, Images, Text objects, BitmapText,
     * TileSprites or Buttons.
     *
     * Please note that aligning a Sprite to another Game Object does **not** make it a child of
     * the parent. It simply modifies its position coordinates so it aligns with it.
-    * 
+    *
     * The position constants you can use are:
-    * 
-    * `Phaser.TOP_LEFT` (default), `Phaser.TOP_CENTER`, `Phaser.TOP_RIGHT`, `Phaser.LEFT_TOP`, 
-    * `Phaser.LEFT_CENTER`, `Phaser.LEFT_BOTTOM`, `Phaser.RIGHT_TOP`, `Phaser.RIGHT_CENTER`, 
-    * `Phaser.RIGHT_BOTTOM`, `Phaser.BOTTOM_LEFT`, `Phaser.BOTTOM_CENTER` 
+    *
+    * `Phaser.TOP_LEFT` (default), `Phaser.TOP_CENTER`, `Phaser.TOP_RIGHT`, `Phaser.LEFT_TOP`,
+    * `Phaser.LEFT_CENTER`, `Phaser.LEFT_BOTTOM`, `Phaser.RIGHT_TOP`, `Phaser.RIGHT_CENTER`,
+    * `Phaser.RIGHT_BOTTOM`, `Phaser.BOTTOM_LEFT`, `Phaser.BOTTOM_CENTER`
     * and `Phaser.BOTTOM_RIGHT`.
     *
     * The Game Objects are placed in such a way that their _bounds_ align with the
@@ -32189,7 +32229,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [y=0] - The y coordinate of the Image. The coordinate is relative to any parent container this Image may be in.
     * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Image} The newly created Image object.
     */
     image: function (x, y, key, frame, group) {
@@ -32212,14 +32252,14 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [y=0] - The y coordinate of the sprite. The coordinate is relative to any parent container this sprite may be in.
     * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Sprite} The newly created Sprite object.
     */
     sprite: function (x, y, key, frame, group) {
 
         if (group === undefined) { group = this.world; }
 
-        return group.create(x, y, key, frame);
+        return group.add(new Phaser.Sprite(this.game, x, y, key, frame));
 
     },
 
@@ -32241,7 +32281,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [x=0] - The x coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
     * @param {number} [y=0] - The y coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
     * @param {string|PIXI.Texture} [key] - The image used as a texture by this creature object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a PIXI.Texture.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Creature} The newly created Creature object.
     */
     creature: function (x, y, key, mesh, group) {
@@ -32383,7 +32423,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} height - The height of the TileSprite.
     * @param {string|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.TileSprite} The newly created TileSprite object.
     */
     tileSprite: function (x, y, width, height, key, frame, group) {
@@ -32405,7 +32445,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
     * @param {Array} points - An array of {Phaser.Point}.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Rope} The newly created Rope object.
     */
     rope: function (x, y, key, frame, points, group) {
@@ -32424,7 +32464,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [y=0] - The y coordinate of the Text. The coordinate is relative to any parent container this text may be in.
     * @param {string} [text=''] - The text string that will be displayed.
     * @param {object} [style] - The style object containing style attributes like font, font size , etc.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Text} The newly created text object.
     */
     text: function (x, y, text, style, group) {
@@ -32448,7 +32488,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {string|number} [outFrame] - This is the frame or frameName that will be set when this button is in an out state. Give either a number to use a frame ID or a string for a frame name.
     * @param {string|number} [downFrame] - This is the frame or frameName that will be set when this button is in a down state. Give either a number to use a frame ID or a string for a frame name.
     * @param {string|number} [upFrame] - This is the frame or frameName that will be set when this button is in an up state. Give either a number to use a frame ID or a string for a frame name.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Button} The newly created Button object.
     */
     button: function (x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame, group) {
@@ -32465,7 +32505,7 @@ Phaser.GameObjectFactory.prototype = {
     * @method Phaser.GameObjectFactory#graphics
     * @param {number} [x=0] - The x coordinate of the Graphic. The coordinate is relative to any parent container this object may be in.
     * @param {number} [y=0] - The y coordinate of the Graphic. The coordinate is relative to any parent container this object may be in.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Graphics} The newly created graphics object.
     */
     graphics: function (x, y, group) {
@@ -32548,7 +32588,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {string} font - The key of the BitmapText as stored in Phaser.Cache.
     * @param {string} [text=''] - The text that will be rendered. This can also be set later via BitmapText.text.
     * @param {number} [size=32] - The size the font will be rendered at in pixels.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.BitmapText} The newly created bitmapText object.
     */
     bitmapText: function (x, y, font, text, size, group) {
@@ -34515,10 +34555,16 @@ Phaser.Device = function () {
     this.canUseMultiply = false;
 
     /**
-    * @property {boolean} webGL - Is webGL available?
+    * @property {boolean} webGL - Is webGL (and stencil support) available?
     * @default
     */
     this.webGL = false;
+
+    /**
+    * @property {?Error} webGLError - Any error raised while creating a test {@link #webGL} context.
+    * @default
+    */
+    this.webGLError = null;
 
     /**
     * @property {boolean} file - Is file available?
@@ -35136,8 +35182,30 @@ Phaser.Device._initialize = function () {
         device.file = !!window['File'] && !!window['FileReader'] && !!window['FileList'] && !!window['Blob'];
         device.fileSystem = !!window['requestFileSystem'];
 
-        device.webGL = ( function () { try { var canvas = document.createElement( 'canvas' ); /*Force screencanvas to false*/ canvas.screencanvas = false; return !! window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ); } catch( e ) { return false; } } )();
-        device.webGL = !!device.webGL;
+        device.webGL = !!(function () {
+            if (!window.WebGLRenderingContext)
+            {
+                return false;
+            }
+
+            try {
+                var canvas = document.createElement('canvas');
+
+                // Force screencanvas to false
+                canvas.screencanvas = false;
+
+                // See PIXI.WebGLRenderer#_contextOptions
+                var contextOptions = { stencil: true };
+
+                return canvas.getContext('webgl'             , contextOptions) ||
+                       canvas.getContext('experimental-webgl', contextOptions);
+
+            } catch (error) {
+                device.webGLError = error;
+
+                return false;
+            }
+        })();
 
         device.worker = !!window['Worker'];
 
@@ -44506,10 +44574,12 @@ Phaser.Loader = function (game) {
     /**
     * The value of `path`, if set, is placed before any _relative_ file path given. For example:
     *
-    * `load.path = "images/sprites/";
+    * ```javascript
+    * load.path = "images/sprites/";
     * load.image("ball", "ball.png");
     * load.image("tree", "level1/oaktree.png");
-    * load.image("boom", "http://server.com/explode.png");`
+    * load.image("boom", "http://server.com/explode.png");
+    * ```
     *
     * Would load the `ball` file from `images/sprites/ball.png` and the tree from
     * `images/sprites/level1/oaktree.png` but the file `boom` would load from the URL
@@ -44531,11 +44601,15 @@ Phaser.Loader = function (game) {
     * This object can also be used to set the `X-Requested-With` header to
     * `XMLHttpRequest` (or any other value you need). To enable this do:
     *
-    * `this.load.headers.requestedWith = 'XMLHttpRequest'`
+    * ```javascript
+    * this.load.headers.requestedWith = 'XMLHttpRequest'
+    * ```
     *
     * before adding anything to the Loader. The XHR loader will then call:
     *
-    * `setRequestHeader('X-Requested-With', this.headers['requestedWith'])`
+    * ```javascript
+    * setRequestHeader('X-Requested-With', this.headers['requestedWith'])
+    * ```
     *
     * @property {object} headers
     * @default
@@ -51750,7 +51824,7 @@ Phaser.ArrayUtils = {
     * See also Phaser.ArrayUtils.rotateRight
     *
     * @method Phaser.ArrayUtils.rotate
-    * @deprecated Please use Phaser.ArrayUtils.rotate instead.
+    * @deprecated Please use Phaser.ArrayUtils.rotateLeft instead.
     * @param {any[]} array - The array to rotate. The array is modified.
     * @return {any} The rotated value.
     */

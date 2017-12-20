@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
 
-The [current Phaser CE release is 2.9.3](https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.3).
+The [current Phaser CE release is 2.9.4](https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.4).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
@@ -128,16 +128,16 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.9.3/build/phaser.js"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.9.4/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.9.3"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.9.4"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.9.3/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.9.4/build/custom/) are available too.
 
 <a name="getting-started"></a>
 
@@ -328,17 +328,17 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.9.4 - 20th December 2017
 
 ### New Features
 
-* TweenManager#isTweening has a `checkIsRunning` argument (#414).
-* You can now pass `game.stage` as the `parent` parameter in many of the `game.add` methods.
-* Arcade#closest, Arcade#distanceBetween, and Arcade#farthest have a `useCenter` argument (#418).
+* [TweenManager#isTweening](https://photonstorm.github.io/phaser-ce/Phaser.TweenManager.html#isTweening) has a `checkIsRunning` argument (#414).
+* You can now pass `game.stage` as the `parent` parameter in the `game.add` [methods](https://photonstorm.github.io/phaser-ce/Phaser.GameObjectFactory.html).
+* [Arcade#closest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#closest), [Arcade#distanceBetween](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#distanceBetween), and [Arcade#farthest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#farthest) have a `useCenter` argument (#418).
 
 ### Updates
 
-* Phaser.Device tests for WebGL stencil buffer support (#402).
+* [Phaser.Device](https://photonstorm.github.io/phaser-ce/Phaser.Device.html) tests for WebGL stencil buffer support (#402).
 
 ### Bug Fixes
 
@@ -346,46 +346,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@bananatron, @mblais, @naglfar, @samme
-
-## Version 2.9.3 - 11th December 2017
-
-### New Features
-
-* [Phaser.BitmapData#polygon](https://photonstorm.github.io/phaser-ce/Phaser.BitmapData.html#polygon) draws a polygon.
-* [Phaser.Keyboard#removeCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#removeCallbacks) removes callbacks added by [Phaser.Keyboard#addCallbacks](https://photonstorm.github.io/phaser-ce/Phaser.Keyboard.html#addCallbacks).
-* [Phaser.Line#fromPoints](https://photonstorm.github.io/phaser-ce/Phaser.Line.html#fromPoints)
-* [Phaser.Loader#imageFromGrid](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#imageFromGrid) and [Phaser.Loader#imageFromTexture](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#imageFromTexture) are image-loading counterparts of [Phaser.Create#grid](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#grid) and [Phaser.Create#texture](https://photonstorm.github.io/phaser-ce/Phaser.Create.html#texture).
-* [Phaser.Point.sortClockwise](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#sortClockwise) sorts points around a reference point.
-* [Phaser.Point#angleXY](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#angleXY)
-* [Phaser.Point#atan](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#atan) computes a point's arctangent.
-* [Phaser.Point#expand](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#expand) increases a point's magnitude to a minimum length.
-* [Phaser.World#wrapAll](https://photonstorm.github.io/phaser-ce/Phaser.World.html#wrapAll) wraps all members of a group.
-
-### Updates
-
-* Audio and video are now [touch-unlocked](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#needsTouchUnlock) only via the [touchend](https://developer.mozilla.org/en-US/docs/Web/Events/touchend) event (#92). Previously we used `touchend` for audio on newer Chrome and iOS clients and `touchstart` in all other cases.
-* [Tilemap#addTilesetImage](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#addTilesetImage), [Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects), and [Tilemap#createLayer](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createLayer) print the map's contents (following the usual warning) in the console if you pass a bad name or identifier, to help you correct it.
-* [Tileset#addTilesetImage](https://photonstorm.github.io/phaser-ce/Phaser.Tileset.html#addTilesetImage) gives a little more information when warning about image dimension mismatches.
-* Optimized [Phaser.Utils.getProperty](https://photonstorm.github.io/phaser-ce/Phaser.Utils.html#_getProperty).
-* Removed Phaser.TweenData#yoyoCounter, an extraneous property that Phaser never used.
-* p2 TypeScript definitions fixes and updates (#406).
-
-### Bug Fixes
-
-* [Phaser.Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) no longer tries to start a tween marked for deletion (such as by [Tween#stop](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#stop)). Instead it prints a warning to the console (#401).
-* Fixed drag movement of [fixedToCamera](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#fixedToCamera) sprites when the camera is scaled (#405).
-* Fixed tweens not repeating when [Tween#start](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#start) is called after [Tween#repeat](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#repeat) (#408).
-* [StateManager#loadComplete](https://photonstorm.github.io/phaser-ce/Phaser.StateManager.html) is no longer called by the [Loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) if the state has been destroyed (#410).
-* Added TypeScript definitions for [Phaser.Sprite#outOfCameraBoundsKill](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#outOfCameraBoundsKill).
-
-### Documentation
-
-* `canvas`, `canvasId`, `canvasStyle`, and [forceSetTimeOut](https://photonstorm.github.io/phaser-ce/Phaser.RequestAnimationFrame.html#forceSetTimeOut) can be set in the [game configuration object](https://photonstorm.github.io/phaser-ce/global.html#GameConfig).
-
-### Thanks
-
-@clesquir, @GrindheadGames, @husengbatute29, @Nek-, @photonstorm, @samme
+@bananatron, @mblais, @mepsoid, @naglfar, @photonstorm, @samme
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
@@ -409,10 +370,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.9.3/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.9.3/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.9.3.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.9.3.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.9.4/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.9.4/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.9.4.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.9.4.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser

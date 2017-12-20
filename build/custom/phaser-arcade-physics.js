@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.9.3 "2017-12-11" - Built: Mon Dec 11 2017 11:02:35
+* v2.9.4 "2017-12-20" - Built: Wed Dec 20 2017 12:51:23
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -7594,7 +7594,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.9.3',
+    VERSION: '2.9.4',
 
     /**
     * An array of Phaser game instances.
@@ -17719,6 +17719,46 @@ Phaser.Stage.prototype.destroy = function () {
 };
 
 /**
+* Adds an existing object to the Stage.
+*
+* The child is automatically added to the front of the Stage, and is displayed above every previous child.
+* Or if the _optional_ `index` is specified, the child is added at the location specified by the index value,
+* this allows you to control child ordering.
+*
+* If the object was already on the Stage, it is simply returned, and nothing else happens to it.
+*
+* @method Phaser.Stage#add
+* @param {DisplayObject} child - The display object to add as a child.
+* @param {boolean} [silent] - Unused. Kept for compatibility with {@link Phaser.Group#add}.
+* @param {integer} [index] - The index to insert the object to.
+* @return {DisplayObject} The child that was added to the group.
+*/
+Phaser.Stage.prototype.add = function (child, silent, index) {
+
+    if (child.parent === this)
+    {
+        return child;
+    }
+
+    if (child.body && child.parent && child.parent.hash)
+    {
+        child.parent.removeFromHash(child);
+    }
+
+    if (index === undefined)
+    {
+        this.addChild(child);
+    }
+    else
+    {
+        this.addChildAt(child, index);
+    }
+
+    return child;
+
+};
+
+/**
 * @name Phaser.Stage#backgroundColor
 * @property {number|string} backgroundColor - Gets and sets the background color of the stage. The color can be given as a number: 0xff0000 or a hex string: '#ff0000'
 * @see Phaser.Stage#setBackgroundColor
@@ -18128,7 +18168,7 @@ Phaser.Group.SORT_DESCENDING = 1;
 *
 * If `Group.inputEnableChildren` is set, then an Input Handler will be created on the object, so long as one does not already exist.
 *
-* Use {@link #addAt} to control where a child is added. Use {@link #create} to create and add a new child.
+* Use {@link #create} to create and add a new child.
 *
 * @method Phaser.Group#add
 * @param {DisplayObject} child - The display object to add as a child.
@@ -31693,7 +31733,7 @@ Phaser.Component.Bounds.prototype = {
     },
 
     /**
-    * The center x coordinate of the Game Object.
+    * The local center x coordinate of the Game Object.
     * This is the same as `(x - offsetX) + (width / 2)`.
     *
     * @property {number} centerX
@@ -31715,7 +31755,7 @@ Phaser.Component.Bounds.prototype = {
     },
 
     /**
-    * The center y coordinate of the Game Object.
+    * The local center y coordinate of the Game Object.
     * This is the same as `(y - offsetY) + (height / 2)`.
     *
     * @property {number} centerY
@@ -31829,17 +31869,17 @@ Phaser.Component.Bounds.prototype = {
     * 'container', to one of 9 possible positions.
     *
     * The container must be a Game Object, or Phaser.Rectangle object. This can include properties
-    * such as `World.bounds` or `Camera.view`, for aligning Game Objects within the world 
+    * such as `World.bounds` or `Camera.view`, for aligning Game Objects within the world
     * and camera bounds. Or it can include other Sprites, Images, Text objects, BitmapText,
     * TileSprites or Buttons.
     *
     * Please note that aligning a Sprite to another Game Object does **not** make it a child of
     * the container. It simply modifies its position coordinates so it aligns with it.
-    * 
+    *
     * The position constants you can use are:
-    * 
-    * `Phaser.TOP_LEFT`, `Phaser.TOP_CENTER`, `Phaser.TOP_RIGHT`, `Phaser.LEFT_CENTER`, 
-    * `Phaser.CENTER`, `Phaser.RIGHT_CENTER`, `Phaser.BOTTOM_LEFT`, 
+    *
+    * `Phaser.TOP_LEFT`, `Phaser.TOP_CENTER`, `Phaser.TOP_RIGHT`, `Phaser.LEFT_CENTER`,
+    * `Phaser.CENTER`, `Phaser.RIGHT_CENTER`, `Phaser.BOTTOM_LEFT`,
     * `Phaser.BOTTOM_CENTER` and `Phaser.BOTTOM_RIGHT`.
     *
     * The Game Objects are placed in such a way that their _bounds_ align with the
@@ -31926,18 +31966,18 @@ Phaser.Component.Bounds.prototype = {
     * 'parent', in one of 11 possible positions.
     *
     * The parent must be a Game Object, or Phaser.Rectangle object. This can include properties
-    * such as `World.bounds` or `Camera.view`, for aligning Game Objects within the world 
+    * such as `World.bounds` or `Camera.view`, for aligning Game Objects within the world
     * and camera bounds. Or it can include other Sprites, Images, Text objects, BitmapText,
     * TileSprites or Buttons.
     *
     * Please note that aligning a Sprite to another Game Object does **not** make it a child of
     * the parent. It simply modifies its position coordinates so it aligns with it.
-    * 
+    *
     * The position constants you can use are:
-    * 
-    * `Phaser.TOP_LEFT` (default), `Phaser.TOP_CENTER`, `Phaser.TOP_RIGHT`, `Phaser.LEFT_TOP`, 
-    * `Phaser.LEFT_CENTER`, `Phaser.LEFT_BOTTOM`, `Phaser.RIGHT_TOP`, `Phaser.RIGHT_CENTER`, 
-    * `Phaser.RIGHT_BOTTOM`, `Phaser.BOTTOM_LEFT`, `Phaser.BOTTOM_CENTER` 
+    *
+    * `Phaser.TOP_LEFT` (default), `Phaser.TOP_CENTER`, `Phaser.TOP_RIGHT`, `Phaser.LEFT_TOP`,
+    * `Phaser.LEFT_CENTER`, `Phaser.LEFT_BOTTOM`, `Phaser.RIGHT_TOP`, `Phaser.RIGHT_CENTER`,
+    * `Phaser.RIGHT_BOTTOM`, `Phaser.BOTTOM_LEFT`, `Phaser.BOTTOM_CENTER`
     * and `Phaser.BOTTOM_RIGHT`.
     *
     * The Game Objects are placed in such a way that their _bounds_ align with the
@@ -34693,7 +34733,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [y=0] - The y coordinate of the Image. The coordinate is relative to any parent container this Image may be in.
     * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Image} The newly created Image object.
     */
     image: function (x, y, key, frame, group) {
@@ -34716,14 +34756,14 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [y=0] - The y coordinate of the sprite. The coordinate is relative to any parent container this sprite may be in.
     * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Sprite} The newly created Sprite object.
     */
     sprite: function (x, y, key, frame, group) {
 
         if (group === undefined) { group = this.world; }
 
-        return group.create(x, y, key, frame);
+        return group.add(new Phaser.Sprite(this.game, x, y, key, frame));
 
     },
 
@@ -34745,7 +34785,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [x=0] - The x coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
     * @param {number} [y=0] - The y coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
     * @param {string|PIXI.Texture} [key] - The image used as a texture by this creature object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a PIXI.Texture.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Creature} The newly created Creature object.
     */
     creature: function (x, y, key, mesh, group) {
@@ -34887,7 +34927,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} height - The height of the TileSprite.
     * @param {string|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.TileSprite} The newly created TileSprite object.
     */
     tileSprite: function (x, y, width, height, key, frame, group) {
@@ -34909,7 +34949,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
     * @param {Array} points - An array of {Phaser.Point}.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Rope} The newly created Rope object.
     */
     rope: function (x, y, key, frame, points, group) {
@@ -34928,7 +34968,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [y=0] - The y coordinate of the Text. The coordinate is relative to any parent container this text may be in.
     * @param {string} [text=''] - The text string that will be displayed.
     * @param {object} [style] - The style object containing style attributes like font, font size , etc.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Text} The newly created text object.
     */
     text: function (x, y, text, style, group) {
@@ -34952,7 +34992,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {string|number} [outFrame] - This is the frame or frameName that will be set when this button is in an out state. Give either a number to use a frame ID or a string for a frame name.
     * @param {string|number} [downFrame] - This is the frame or frameName that will be set when this button is in a down state. Give either a number to use a frame ID or a string for a frame name.
     * @param {string|number} [upFrame] - This is the frame or frameName that will be set when this button is in an up state. Give either a number to use a frame ID or a string for a frame name.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Button} The newly created Button object.
     */
     button: function (x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame, group) {
@@ -34969,7 +35009,7 @@ Phaser.GameObjectFactory.prototype = {
     * @method Phaser.GameObjectFactory#graphics
     * @param {number} [x=0] - The x coordinate of the Graphic. The coordinate is relative to any parent container this object may be in.
     * @param {number} [y=0] - The y coordinate of the Graphic. The coordinate is relative to any parent container this object may be in.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Graphics} The newly created graphics object.
     */
     graphics: function (x, y, group) {
@@ -35052,7 +35092,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {string} font - The key of the BitmapText as stored in Phaser.Cache.
     * @param {string} [text=''] - The text that will be rendered. This can also be set later via BitmapText.text.
     * @param {number} [size=32] - The size the font will be rendered at in pixels.
-    * @param {Phaser.Group} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.BitmapText} The newly created bitmapText object.
     */
     bitmapText: function (x, y, font, text, size, group) {
@@ -43250,11 +43290,11 @@ Phaser.Text = function (game, x, y, text, style) {
 
     /**
     * Will this Text object use Basic or Advanced Word Wrapping?
-    * 
+    *
     * Advanced wrapping breaks long words if they are the first of a line, and repeats the process as necessary.
     * White space is condensed (e.g., consecutive spaces are replaced with one).
     * Lines are trimmed of white space before processing.
-    * 
+    *
     * It throws an error if wordWrapWidth is less than a single character.
     * @property {boolean} useAdvancedWrap
     * @default
@@ -43325,7 +43365,13 @@ Phaser.Text = function (game, x, y, text, style) {
 
     Phaser.Sprite.call(this, game, x, y, PIXI.Texture.fromCanvas(this.canvas));
 
-    this.setStyle(style);
+    /**
+    * @property {object} style
+    * @private
+     */
+    this.style = {};
+
+    this.setStyle(style || {});
 
     if (text !== '')
     {
@@ -43339,7 +43385,7 @@ Phaser.Text.prototype.constructor = Phaser.Text;
 
 /**
 * Automatically called by World.preUpdate.
-* 
+*
 * @method Phaser.Text#preUpdate
 * @protected
 */
@@ -43383,7 +43429,7 @@ Phaser.Text.prototype.destroy = function (destroyChildren) {
 * The color controls the shade of the shadow (default is black) and can be either an `rgba` or `hex` value.
 * The blur is the strength of the shadow. A value of zero means a hard shadow, a value of 10 means a very soft shadow.
 * To remove a shadow already in place you can call this method with no parameters set.
-* 
+*
 * @method Phaser.Text#setShadow
 * @param {number} [x=0] - The shadowOffsetX value in pixels. This is how far offset horizontally the shadow effect will be.
 * @param {number} [y=0] - The shadowOffsetY value in pixels. This is how far offset vertically the shadow effect will be.
@@ -43536,7 +43582,7 @@ Phaser.Text.prototype.updateText = function () {
     var fontProperties = this.determineFontProperties(this.style.font);
 
     var drawnLines = lines.length;
-    
+
     if (this.style.maxLines > 0 && this.style.maxLines < lines.length)
     {
         drawnLines = this.style.maxLines;
@@ -43623,7 +43669,7 @@ Phaser.Text.prototype.updateText = function () {
     }
 
     this.canvas.width = maxLineWidth * this._res;
-    
+
     //  Calculate text height
     var lineHeight = fontProperties.fontSize + this.style.strokeThickness + this.padding.y;
     var height = lineHeight * drawnLines;
@@ -43654,7 +43700,7 @@ Phaser.Text.prototype.updateText = function () {
         this.context.fillStyle = this.style.backgroundColor;
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
-    
+
     this.context.fillStyle = this.style.fill;
     this.context.font = this.style.font;
     this.context.strokeStyle = this.style.stroke;
@@ -43910,12 +43956,12 @@ Phaser.Text.prototype.updateLine = function (line, x, y) {
             {
                 components.fontStyle = this.fontStyles[this._charCount];
             }
-        
+
             if (this.fontWeights[this._charCount])
             {
                 components.fontWeight = this.fontWeights[this._charCount];
             }
-      
+
             this.context.font = this.componentsToFont(components);
         }
 
@@ -44409,7 +44455,7 @@ Phaser.Text.prototype.componentsToFont = function (components) {
 * The text will be rendered with any style currently set.
 *
 * Use the optional `immediate` argument if you need the Text display to update immediately.
-* 
+*
 * If not it will re-create the texture of this Text object during the next time the render
 * loop is called.
 *
@@ -44516,7 +44562,7 @@ Phaser.Text.prototype.parseList = function (list) {
  * If `Text.wordWrapWidth` is greater than the width of the text bounds it is clamped to match the bounds width.
  *
  * Call this method with no arguments given to reset an existing textBounds.
- * 
+ *
  * It works by calculating the final position based on the Text.canvas size, which is modified as the text is updated. Some fonts
  * have additional padding around them which you can mitigate by tweaking the Text.padding property. It then adjusts the `pivot`
  * property based on the given bounds and canvas size. This means if you need to set the pivot property directly in your game then
@@ -44553,7 +44599,7 @@ Phaser.Text.prototype.setTextBounds = function (x, y, width, height) {
     }
 
     this.updateTexture();
-    
+
     return this;
 
 };
@@ -44658,7 +44704,7 @@ Phaser.Text.prototype._renderCanvas = function (renderSession) {
         this.updateText();
         this.dirty = false;
     }
-     
+
     PIXI.Sprite.prototype._renderCanvas.call(this, renderSession);
 
 };
@@ -44668,7 +44714,7 @@ Phaser.Text.prototype._renderCanvas = function (renderSession) {
 *
 * @method Phaser.Text#determineFontProperties
 * @private
-* @param {object} fontStyle 
+* @param {object} fontStyle
 */
 Phaser.Text.prototype.determineFontProperties = function (fontStyle) {
 
@@ -44677,7 +44723,7 @@ Phaser.Text.prototype.determineFontProperties = function (fontStyle) {
     if (!properties)
     {
         properties = {};
-        
+
         var canvas = Phaser.Text.fontPropertiesCanvas;
         var context = Phaser.Text.fontPropertiesContext;
 
@@ -44939,7 +44985,7 @@ Object.defineProperty(Phaser.Text.prototype, 'fontSize', {
     set: function(value) {
 
         value = value || '0';
-        
+
         if (typeof value === 'number')
         {
             value = value + 'px';
@@ -45088,11 +45134,11 @@ Object.defineProperty(Phaser.Text.prototype, 'resolution', {
 });
 
 /**
-* The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. 
+* The size (in pixels) of the tabs, for when text includes tab characters. 0 disables.
 * Can be an integer or an array of varying tab sizes, one tab per element.
 * For example if you set tabs to 100 then when Text encounters a tab it will jump ahead 100 pixels.
 * If you set tabs to be `[100,200]` then it will set the first tab at 100px and the second at 200px.
-* 
+*
 * @name Phaser.Text#tabs
 * @property {integer|array} tabs
 */
@@ -46830,8 +46876,7 @@ Object.defineProperty(Phaser.RetroFont.prototype, "smoothed", {
 */
 Phaser.Rope = function (game, x, y, key, frame, points) {
 
-    this.points = [];
-    this.points = points;
+    this.points = points || [];
     this._hasUpdateAnimation = false;
     this._updateAnimationCallback = null;
     x = x || 0;
@@ -46844,8 +46889,6 @@ Phaser.Rope = function (game, x, y, key, frame, points) {
     * @readonly
     */
     this.type = Phaser.ROPE;
-
-    this.points = points;
 
     PIXI.DisplayObjectContainer.call(this);
 
@@ -48771,10 +48814,16 @@ Phaser.Device = function () {
     this.canUseMultiply = false;
 
     /**
-    * @property {boolean} webGL - Is webGL available?
+    * @property {boolean} webGL - Is webGL (and stencil support) available?
     * @default
     */
     this.webGL = false;
+
+    /**
+    * @property {?Error} webGLError - Any error raised while creating a test {@link #webGL} context.
+    * @default
+    */
+    this.webGLError = null;
 
     /**
     * @property {boolean} file - Is file available?
@@ -49392,8 +49441,30 @@ Phaser.Device._initialize = function () {
         device.file = !!window['File'] && !!window['FileReader'] && !!window['FileList'] && !!window['Blob'];
         device.fileSystem = !!window['requestFileSystem'];
 
-        device.webGL = ( function () { try { var canvas = document.createElement( 'canvas' ); /*Force screencanvas to false*/ canvas.screencanvas = false; return !! window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ); } catch( e ) { return false; } } )();
-        device.webGL = !!device.webGL;
+        device.webGL = !!(function () {
+            if (!window.WebGLRenderingContext)
+            {
+                return false;
+            }
+
+            try {
+                var canvas = document.createElement('canvas');
+
+                // Force screencanvas to false
+                canvas.screencanvas = false;
+
+                // See PIXI.WebGLRenderer#_contextOptions
+                var contextOptions = { stencil: true };
+
+                return canvas.getContext('webgl'             , contextOptions) ||
+                       canvas.getContext('experimental-webgl', contextOptions);
+
+            } catch (error) {
+                device.webGLError = error;
+
+                return false;
+            }
+        })();
 
         device.worker = !!window['Worker'];
 
@@ -52722,7 +52793,7 @@ Phaser.Net.prototype.constructor = Phaser.Net;
 * The difference being that tweens belong to a games instance of TweenManager, rather than to a global TWEEN object.
 * It also has callbacks swapped for Signals and a few issues patched with regard to properties and completion errors.
 * Please see https://github.com/sole/tween.js for a full list of contributors.
-* 
+*
 * @class Phaser.TweenManager
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
@@ -52738,7 +52809,7 @@ Phaser.TweenManager = function (game) {
     * Are all newly created Tweens frame or time based? A frame based tween will use the physics elapsed timer when updating. This means
     * it will retain the same consistent frame rate, regardless of the speed of the device. The duration value given should
     * be given in frames.
-    * 
+    *
     * If the Tween uses a time based update (which is the default) then the duration is given in milliseconds.
     * In this situation a 2000ms tween will last exactly 2 seconds, regardless of the device and how many visual updates the tween
     * has actually been through. For very short tweens you may wish to experiment with a frame based update instead.
@@ -52846,16 +52917,16 @@ Phaser.TweenManager.prototype = {
         this._add = [];
 
     },
-    
+
     /**
     * Remove all tweens from a specific object, array of objects or Group.
-    * 
+    *
     * @method Phaser.TweenManager#removeFrom
     * @param {object|object[]|Phaser.Group} obj - The object you want to remove the tweens from.
     * @param {boolean} [children=true] - If passing a group, setting this to true will remove the tweens from all of its children instead of the group itself.
     */
     removeFrom: function (obj, children) {
-        
+
         if (children === undefined) { children = true; }
 
         var i;
@@ -52893,7 +52964,7 @@ Phaser.TweenManager.prototype = {
                 }
             }
         }
-        
+
     },
 
     /**
@@ -52995,14 +53066,19 @@ Phaser.TweenManager.prototype = {
     /**
     * Checks to see if a particular Sprite is currently being tweened.
     *
+    * The `checkIsRunning` parameter will exclude tweens that have **just** completed or been stopped but haven't yet been removed from the manager.
+    *
     * @method Phaser.TweenManager#isTweening
     * @param {object} object - The object to check for tweens against.
+    * @param {boolean} [checkIsRunning] - Also check that the tween is running and is not marked for deletion.
     * @returns {boolean} Returns true if the object is currently being tweened, false if not.
     */
-    isTweening: function(object) {
+    isTweening: function(object, checkIsRunning) {
+
+        if (!checkIsRunning) { checkIsRunning = false; }
 
         return this._tweens.some(function(tween) {
-            return tween.target === object;
+            return (tween.target === object) && !checkIsRunning || (tween.isRunning && !tween.pendingDelete);
         });
 
     },
@@ -61357,10 +61433,12 @@ Phaser.Loader = function (game) {
     /**
     * The value of `path`, if set, is placed before any _relative_ file path given. For example:
     *
-    * `load.path = "images/sprites/";
+    * ```javascript
+    * load.path = "images/sprites/";
     * load.image("ball", "ball.png");
     * load.image("tree", "level1/oaktree.png");
-    * load.image("boom", "http://server.com/explode.png");`
+    * load.image("boom", "http://server.com/explode.png");
+    * ```
     *
     * Would load the `ball` file from `images/sprites/ball.png` and the tree from
     * `images/sprites/level1/oaktree.png` but the file `boom` would load from the URL
@@ -61382,11 +61460,15 @@ Phaser.Loader = function (game) {
     * This object can also be used to set the `X-Requested-With` header to
     * `XMLHttpRequest` (or any other value you need). To enable this do:
     *
-    * `this.load.headers.requestedWith = 'XMLHttpRequest'`
+    * ```javascript
+    * this.load.headers.requestedWith = 'XMLHttpRequest'
+    * ```
     *
     * before adding anything to the Loader. The XHR loader will then call:
     *
-    * `setRequestHeader('X-Requested-With', this.headers['requestedWith'])`
+    * ```javascript
+    * setRequestHeader('X-Requested-With', this.headers['requestedWith'])
+    * ```
     *
     * @property {object} headers
     * @default
@@ -71833,7 +71915,7 @@ Phaser.ArrayUtils = {
     * See also Phaser.ArrayUtils.rotateRight
     *
     * @method Phaser.ArrayUtils.rotate
-    * @deprecated Please use Phaser.ArrayUtils.rotate instead.
+    * @deprecated Please use Phaser.ArrayUtils.rotateLeft instead.
     * @param {any[]} array - The array to rotate. The array is modified.
     * @return {any} The rotated value.
     */
@@ -76683,18 +76765,41 @@ Phaser.Physics.Arcade.prototype = {
     * instead of its `x` and `y` values. This is useful of the object has been nested inside an offset Group,
     * or parent Game Object.
     *
+    * If you have nested objects and need to calculate the distance between their centers in World coordinates,
+    * set their anchors to (0.5, 0.5) and use the `world` argument.
+    *
+    * If objects aren't nested or they share a parent's offset, you can calculate the distance between their
+    * centers with the `useCenter` argument, regardless of their anchor values.
+    *
     * @method Phaser.Physics.Arcade#distanceBetween
     * @param {any} source - The Display Object to test from.
     * @param {any} target - The Display Object to test to.
-    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default)
+    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default). If `useCenter` is true, this value is ignored.
+    * @param {boolean} [useCenter=false] - Calculate the distance using the {@link Phaser.Sprite#centerX} and {@link Phaser.Sprite#centerY} coordinates. If true, this value overrides the `world` argument.
     * @return {number} The distance between the source and target objects.
     */
-    distanceBetween: function (source, target, world) {
+    distanceBetween: function (source, target, world, useCenter) {
 
         if (world === undefined) { world = false; }
 
-        var dx = (world) ? source.world.x - target.world.x : source.x - target.x;
-        var dy = (world) ? source.world.y - target.world.y : source.y - target.y;
+        var dx;
+        var dy;
+
+        if (useCenter)
+        {
+            dx = source.centerX - target.centerX;
+            dy = source.centerY - target.centerY;
+        }
+        else if (world)
+        {
+            dx = source.world.x - target.world.x;
+            dy = source.world.y - target.world.y;
+        }
+        else
+        {
+            dx = source.x - target.x;
+            dy = source.y - target.y;
+        }
 
         return Math.sqrt(dx * dx + dy * dy);
 
@@ -76703,7 +76808,7 @@ Phaser.Physics.Arcade.prototype = {
     /**
     * Find the distance between a display object (like a Sprite) and the given x/y coordinates.
     * The calculation is made from the display objects x/y coordinate. This may be the top-left if its anchor hasn't been changed.
-    * If you need to calculate from the center of a display object instead use the method distanceBetweenCenters()
+    * If you need to calculate from the center of a display object instead use {@link #distanceBetween} with the `useCenter` argument.
     *
     * The optional `world` argument allows you to return the result based on the Game Objects `world` property,
     * instead of its `x` and `y` values. This is useful of the object has been nested inside an offset Group,
@@ -76730,7 +76835,7 @@ Phaser.Physics.Arcade.prototype = {
     /**
     * Find the distance between a display object (like a Sprite) and a Pointer. If no Pointer is given the Input.activePointer is used.
     * The calculation is made from the display objects x/y coordinate. This may be the top-left if its anchor hasn't been changed.
-    * If you need to calculate from the center of a display object instead use the method distanceBetweenCenters()
+    * If you need to calculate from the center of a display object instead use {@link #distanceBetween} with the `useCenter` argument.
     *
     * The optional `world` argument allows you to return the result based on the Game Objects `world` property,
     * instead of its `x` and `y` values. This is useful of the object has been nested inside an offset Group,
@@ -76761,17 +76866,18 @@ Phaser.Physics.Arcade.prototype = {
     * @method Phaser.Physics.Arcade#closest
     * @param {any} source - The {@link Phaser.Point Point} or Display Object distances will be measured from.
     * @param {any[]} targets - The {@link Phaser.Point Points} or Display Objects whose distances to the source will be compared.
-    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default).
+    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default). If `useCenter` is true, this value is ignored.
+    * @param {boolean} [useCenter=false] - Calculate the distance using the {@link Phaser.Sprite#centerX} and {@link Phaser.Sprite#centerY} coordinates. If true, this value overrides the `world` argument.
     * @return {any} - The first target closest to the origin.
     */
-    closest: function (source, targets, world) {
+    closest: function (source, targets, world, useCenter) {
         var min = Infinity;
         var closest = null;
 
         for (var i = 0, len = targets.length; i < len; i++)
         {
             var target = targets[i];
-            var distance = this.distanceBetween(source, target, world);
+            var distance = this.distanceBetween(source, target, world, useCenter);
 
             if (distance < min)
             {
@@ -76789,17 +76895,18 @@ Phaser.Physics.Arcade.prototype = {
     * @method Phaser.Physics.Arcade#farthest
     * @param {any} source - The {@link Phaser.Point Point} or Display Object distances will be measured from.
     * @param {any[]} targets - The {@link Phaser.Point Points} or Display Objects whose distances to the source will be compared.
-    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default).
+    * @param {boolean} [world=false] - Calculate the distance using World coordinates (true), or Object coordinates (false, the default). If `useCenter` is true, this value is ignored.
+    * @param {boolean} [useCenter=false] - Calculate the distance using the {@link Phaser.Sprite#centerX} and {@link Phaser.Sprite#centerY} coordinates. If true, this value overrides the `world` argument.
     * @return {any} - The target closest to the origin.
     */
-    farthest: function (source, targets, world) {
+    farthest: function (source, targets, world, useCenter) {
         var max = -1;
         var farthest = null;
 
         for (var i = 0, len = targets.length; i < len; i++)
         {
             var target = targets[i];
-            var distance = this.distanceBetween(source, target, world);
+            var distance = this.distanceBetween(source, target, world, useCenter);
 
             if (distance > max)
             {
@@ -85374,7 +85481,7 @@ Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, "remainder", {
 * ```javascript
 * var weapon = this.game.plugins.add(Phaser.Weapon);
 * // …
-* weapon.createBullets();
+* weapon.createBullets(10, 'bullet');
 * ```
 *
 * @class Phaser.Weapon
@@ -85863,6 +85970,11 @@ Phaser.Weapon.prototype.createBullets = function (quantity, key, frame, group) {
 
     if (quantity === undefined) { quantity = 1; }
     if (group === undefined) { group = this.game.world; }
+
+    if (this.bullets && !this.bullets.game)
+    {
+        this.bullets = null;
+    }
 
     if (!this.bullets)
     {

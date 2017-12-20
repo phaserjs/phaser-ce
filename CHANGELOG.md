@@ -4,6 +4,26 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.9.4 - 20th December 2017
+
+### New Features
+
+* [TweenManager#isTweening](https://photonstorm.github.io/phaser-ce/Phaser.TweenManager.html#isTweening) has a `checkIsRunning` argument (#414).
+* You can now pass `game.stage` as the `parent` parameter in the `game.add` [methods](https://photonstorm.github.io/phaser-ce/Phaser.GameObjectFactory.html).
+* [Arcade#closest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#closest), [Arcade#distanceBetween](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#distanceBetween), and [Arcade#farthest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#farthest) have a `useCenter` argument (#418).
+
+### Updates
+
+* [Phaser.Device](https://photonstorm.github.io/phaser-ce/Phaser.Device.html) tests for WebGL stencil buffer support (#402).
+
+### Bug Fixes
+
+* Fixed a TypeError when a [Text](https://photonstorm.github.io/phaser-ce/Phaser.Text.html) object is created without a `style` argument (#415).
+
+### Thanks
+
+@bananatron, @mblais, @mepsoid, @naglfar, @photonstorm, @samme
+
 ## Version 2.9.3 - 11th December 2017
 
 ### New Features

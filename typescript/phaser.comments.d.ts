@@ -5944,9 +5944,14 @@ declare module Phaser {
         webAudio: boolean;
 
         /**
-        * Is webGL available?
+        * Is webGL (and stencil support) available?
         */
         webGL: boolean;
+
+        /**
+        * Any error raised while creating a test {@link Phaser.Device#webGL webGL} context.
+        */
+        webGLError: Error;
 
         /**
         * Can this device play webm files?
@@ -8591,7 +8596,7 @@ declare module Phaser {
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
         * @return The newly created bitmapText object.
         */
-        bitmapText(x: number, y: number, font: string, text?: string, size?: number, group?: Phaser.Group): Phaser.BitmapText;
+        bitmapText(x: number, y: number, font: string, text?: string, size?: number, group?: Phaser.Group | Phaser.Stage): Phaser.BitmapText;
 
         /**
         * Creates a new Button object.
@@ -8608,7 +8613,7 @@ declare module Phaser {
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
         * @return The newly created Button object.
         */
-        button(x?: number, y?: number, key?: string, callback?: Function, callbackContext?: any, overFrame?: any, outFrame?: any, downFrame?: any, upFrame?: any, group?: Phaser.Group): Phaser.Button;
+        button(x?: number, y?: number, key?: string, callback?: Function, callbackContext?: any, overFrame?: any, outFrame?: any, downFrame?: any, upFrame?: any, group?: Phaser.Group | Phaser.Stage): Phaser.Button;
 
         /**
         * Create a new Emitter.
@@ -8649,7 +8654,7 @@ declare module Phaser {
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
         * @return The newly created graphics object.
         */
-        graphics(x?: number, y?: number, group?: Phaser.Group): Phaser.Graphics;
+        graphics(x?: number, y?: number, group?: Phaser.Group | Phaser.Stage): Phaser.Graphics;
 
         /**
         * A Group is a container for display objects that allows for fast pooling, recycling and collision checks.
@@ -8678,7 +8683,7 @@ declare module Phaser {
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
         * @return The newly created Image object.
         */
-        image(x?: number, y?: number, key?: any, frame?: any, group?: Phaser.Group): Phaser.Image;
+        image(x?: number, y?: number, key?: any, frame?: any, group?: Phaser.Group | Phaser.Stage): Phaser.Image;
 
         /**
         * A Group is a container for display objects that allows for fast pooling, recycling and collision checks.
@@ -8779,7 +8784,7 @@ declare module Phaser {
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
         * @return The newly created Sprite object.
         */
-        sprite(x?: number, y?: number, key?: any, frame?: any, group?: Phaser.Group): Phaser.Sprite;
+        sprite(x?: number, y?: number, key?: any, frame?: any, group?: Phaser.Group | Phaser.Stage): Phaser.Sprite;
 
         /**
         * A SpriteBatch is a really fast version of a Phaser Group built solely for speed.
@@ -8791,7 +8796,7 @@ declare module Phaser {
         * @param addToStage If set to true this Sprite Batch will be added directly to the Game.Stage instead of the parent.
         * @return The newly created Sprite Batch.
         */
-        spriteBatch(parent: any, name?: string, addToStage?: boolean): Phaser.Group;
+        spriteBatch(parent: any, name?: string, addToStage?: boolean): Phaser.Group | Phaser.Stage;
 
         /**
         * Creates a new Text object.
@@ -8803,7 +8808,7 @@ declare module Phaser {
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
         * @return The newly created text object.
         */
-        text(x?: number, y?: number, text?: string, style?: PhaserTextStyle, group?: Phaser.Group): Phaser.Text;
+        text(x?: number, y?: number, text?: string, style?: PhaserTextStyle, group?: Phaser.Group | Phaser.Stage): Phaser.Text;
 
         /**
         * Creates a new Phaser.Tilemap object.
@@ -8835,7 +8840,7 @@ declare module Phaser {
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
         * @return The newly created TileSprite object.
         */
-        tileSprite(x: number, y: number, width: number, height: number, key?: any, frame?: any, group?: Phaser.Group): Phaser.TileSprite;
+        tileSprite(x: number, y: number, width: number, height: number, key?: any, frame?: any, group?: Phaser.Group | Phaser.Stage): Phaser.TileSprite;
 
         /**
         * Create a tween on a specific object.
@@ -9259,13 +9264,13 @@ declare module Phaser {
         cameraOffset: Phaser.Point;
 
         /**
-        * The center x coordinate of the Game Object.
+        * The local center x coordinate of the Game Object.
         * This is the same as `(x - offsetX) + (width / 2)`.
         */
         centerX: number;
 
         /**
-        * The center y coordinate of the Game Object.
+        * The local center y coordinate of the Game Object.
         * This is the same as `(y - offsetY) + (height / 2)`.
         */
         centerY: number;
@@ -10292,7 +10297,7 @@ declare module Phaser {
         * 
         * If `Group.inputEnableChildren` is set, then an Input Handler will be created on the object, so long as one does not already exist.
         * 
-        * Use {@link Phaser.Group#addAt addAt} to control where a child is added. Use {@link Phaser.Group#create create} to create and add a new child.
+        * Use {@link Phaser.Group#create create} to create and add a new child.
         * 
         * @param child The display object to add as a child.
         * @param silent If true the child will not dispatch the `onAddedToGroup` event.
@@ -11334,13 +11339,13 @@ declare module Phaser {
         cameraOffset: Phaser.Point;
 
         /**
-        * The center x coordinate of the Game Object.
+        * The local center x coordinate of the Game Object.
         * This is the same as `(x - offsetX) + (width / 2)`.
         */
         centerX: number;
 
         /**
-        * The center y coordinate of the Game Object.
+        * The local center y coordinate of the Game Object.
         * This is the same as `(y - offsetY) + (height / 2)`.
         */
         centerY: number;
@@ -14132,11 +14137,15 @@ declare module Phaser {
         * This object can also be used to set the `X-Requested-With` header to
         * `XMLHttpRequest` (or any other value you need). To enable this do:
         * 
-        * `this.load.headers.requestedWith = 'XMLHttpRequest'`
+        * ```javascript
+        * this.load.headers.requestedWith = 'XMLHttpRequest'
+        * ```
         * 
         * before adding anything to the Loader. The XHR loader will then call:
         * 
-        * `setRequestHeader('X-Requested-With', this.headers['requestedWith'])`
+        * ```javascript
+        * setRequestHeader('X-Requested-With', this.headers['requestedWith'])
+        * ```
         * Default: {"undefined":"application/xml"}
         */
         headers: any;
@@ -14206,10 +14215,12 @@ declare module Phaser {
         /**
         * The value of `path`, if set, is placed before any _relative_ file path given. For example:
         * 
-        * `load.path = "images/sprites/";
+        * ```javascript
+        * load.path = "images/sprites/";
         * load.image("ball", "ball.png");
         * load.image("tree", "level1/oaktree.png");
-        * load.image("boom", "http://server.com/explode.png");`
+        * load.image("boom", "http://server.com/explode.png");
+        * ```
         * 
         * Would load the `ball` file from `images/sprites/ball.png` and the tree from
         * `images/sprites/level1/oaktree.png` but the file `boom` would load from the URL
@@ -17958,10 +17969,11 @@ declare module Phaser {
             * 
             * @param source The {@link Phaser.Point Point} or Display Object distances will be measured from.
             * @param targets The {@link Phaser.Point Points} or Display Objects whose distances to the source will be compared.
-            * @param world Calculate the distance using World coordinates (true), or Object coordinates (false, the default).
+            * @param world Calculate the distance using World coordinates (true), or Object coordinates (false, the default). If `useCenter` is true, this value is ignored.
+            * @param useCenter Calculate the distance using the {@link Phaser.Sprite#centerX} and {@link Phaser.Sprite#centerY} coordinates. If true, this value overrides the `world` argument.
             * @return - The first target closest to the origin.
             */
-            closest(source: any, targets: any[], world?: boolean): any;
+            closest(source: any, targets: any[], world?: boolean, useCenter?: boolean): any;
 
             /**
             * Checks for collision between two game objects and separates them if colliding ({@link https://gist.github.com/samme/cbb81dd19f564dcfe2232761e575063d details}). If you don't require separation then use {@link Phaser.Physics.Arcade#overlap overlap} instead.
@@ -18034,17 +18046,24 @@ declare module Phaser {
             * instead of its `x` and `y` values. This is useful of the object has been nested inside an offset Group,
             * or parent Game Object.
             * 
+            * If you have nested objects and need to calculate the distance between their centers in World coordinates,
+            * set their anchors to (0.5, 0.5) and use the `world` argument.
+            * 
+            * If objects aren't nested or they share a parent's offset, you can calculate the distance between their
+            * centers with the `useCenter` argument, regardless of their anchor values.
+            * 
             * @param source The Display Object to test from.
             * @param target The Display Object to test to.
-            * @param world Calculate the distance using World coordinates (true), or Object coordinates (false, the default)
+            * @param world Calculate the distance using World coordinates (true), or Object coordinates (false, the default). If `useCenter` is true, this value is ignored.
+            * @param useCenter Calculate the distance using the {@link Phaser.Sprite#centerX} and {@link Phaser.Sprite#centerY} coordinates. If true, this value overrides the `world` argument.
             * @return The distance between the source and target objects.
             */
-            distanceBetween(source: any, target: any, world?: boolean): number;
+            distanceBetween(source: any, target: any, world?: boolean, useCenter?: boolean): number;
 
             /**
             * Find the distance between a display object (like a Sprite) and a Pointer. If no Pointer is given the Input.activePointer is used.
             * The calculation is made from the display objects x/y coordinate. This may be the top-left if its anchor hasn't been changed.
-            * If you need to calculate from the center of a display object instead use the method distanceBetweenCenters()
+            * If you need to calculate from the center of a display object instead use {@link Phaser.Physics.Arcade#distanceBetween distanceBetween} with the `useCenter` argument.
             * 
             * The optional `world` argument allows you to return the result based on the Game Objects `world` property,
             * instead of its `x` and `y` values. This is useful of the object has been nested inside an offset Group,
@@ -18060,7 +18079,7 @@ declare module Phaser {
             /**
             * Find the distance between a display object (like a Sprite) and the given x/y coordinates.
             * The calculation is made from the display objects x/y coordinate. This may be the top-left if its anchor hasn't been changed.
-            * If you need to calculate from the center of a display object instead use the method distanceBetweenCenters()
+            * If you need to calculate from the center of a display object instead use {@link Phaser.Physics.Arcade#distanceBetween distanceBetween} with the `useCenter` argument.
             * 
             * The optional `world` argument allows you to return the result based on the Game Objects `world` property,
             * instead of its `x` and `y` values. This is useful of the object has been nested inside an offset Group,
@@ -18099,10 +18118,11 @@ declare module Phaser {
             * 
             * @param source The {@link Phaser.Point Point} or Display Object distances will be measured from.
             * @param targets The {@link Phaser.Point Points} or Display Objects whose distances to the source will be compared.
-            * @param world Calculate the distance using World coordinates (true), or Object coordinates (false, the default).
+            * @param world Calculate the distance using World coordinates (true), or Object coordinates (false, the default). If `useCenter` is true, this value is ignored.
+            * @param useCenter Calculate the distance using the {@link Phaser.Sprite#centerX} and {@link Phaser.Sprite#centerY} coordinates. If true, this value overrides the `world` argument.
             * @return - The target closest to the origin.
             */
-            farthest(source: any, targets: any[], world?: boolean): any;
+            farthest(source: any, targets: any[], world?: boolean, useCenter?: boolean): any;
 
             /**
             * Given a Group and a location this will check to see which Group children overlap with the coordinates.
@@ -26620,13 +26640,13 @@ declare module Phaser {
         cameraOffset: Phaser.Point;
 
         /**
-        * The center x coordinate of the Game Object.
+        * The local center x coordinate of the Game Object.
         * This is the same as `(x - offsetX) + (width / 2)`.
         */
         centerX: number;
 
         /**
-        * The center y coordinate of the Game Object.
+        * The local center y coordinate of the Game Object.
         * This is the same as `(y - offsetY) + (height / 2)`.
         */
         centerY: number;
@@ -27456,6 +27476,22 @@ declare module Phaser {
         */
         smoothed: boolean;
 
+
+        /**
+        * Adds an existing object to the Stage.
+        * 
+        * The child is automatically added to the front of the Stage, and is displayed above every previous child.
+        * Or if the _optional_ `index` is specified, the child is added at the location specified by the index value,
+        * this allows you to control child ordering.
+        * 
+        * If the object was already on the Stage, it is simply returned, and nothing else happens to it.
+        * 
+        * @param child The display object to add as a child.
+        * @param silent Unused. Kept for compatibility with {@link Phaser.Group#add}.
+        * @param index The index to insert the object to.
+        * @return The child that was added to the group.
+        */
+        add(child: any, silent?: boolean, index?: number): any;
 
         /**
         * Parses a Game configuration object.
@@ -33113,10 +33149,13 @@ declare module Phaser {
         /**
         * Checks to see if a particular Sprite is currently being tweened.
         * 
+        * The `checkIsRunning` parameter will exclude tweens that have **just** completed or been stopped but haven't yet been removed from the manager.
+        * 
         * @param object The object to check for tweens against.
+        * @param checkIsRunning Also check that the tween is running and is not marked for deletion.
         * @return Returns true if the object is currently being tweened, false if not.
         */
-        isTweening(object: any): boolean;
+        isTweening(object: any, checkIsRunning?: boolean): boolean;
 
         /**
         * Remove a tween from this manager.
@@ -33732,7 +33771,7 @@ declare module Phaser {
     * ```javascript
     * var weapon = this.game.plugins.add(Phaser.Weapon);
     * // …
-    * weapon.createBullets();
+    * weapon.createBullets(10, 'bullet');
     * ```
     */
     class Weapon extends Phaser.Plugin {
@@ -33764,7 +33803,7 @@ declare module Phaser {
         * ```javascript
         * var weapon = this.game.plugins.add(Phaser.Weapon);
         * // …
-        * weapon.createBullets();
+        * weapon.createBullets(10, 'bullet');
         * ```
         * 
         * @param game A reference to the current Phaser.Game instance.
