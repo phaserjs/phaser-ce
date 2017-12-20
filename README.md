@@ -332,13 +332,13 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### New Features
 
-* TweenManager#isTweening has a `checkIsRunning` argument (#414).
-* You can now pass `game.stage` as the `parent` parameter in many of the `game.add` methods.
-* Arcade#closest, Arcade#distanceBetween, and Arcade#farthest have a `useCenter` argument (#418).
+* [TweenManager#isTweening](https://photonstorm.github.io/phaser-ce/Phaser.TweenManager.html#isTweening) has a `checkIsRunning` argument (#414).
+* You can now pass `game.stage` as the `parent` parameter in the `game.add` [methods](https://photonstorm.github.io/phaser-ce/Phaser.GameObjectFactory.html).
+* [Arcade#closest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#closest), [Arcade#distanceBetween](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#distanceBetween), and [Arcade#farthest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#farthest) have a `useCenter` argument (#418).
 
 ### Updates
 
-* Phaser.Device tests for WebGL stencil buffer support (#402).
+* [Phaser.Device](https://photonstorm.github.io/phaser-ce/Phaser.Device.html) tests for WebGL stencil buffer support (#402).
 
 ### Bug Fixes
 
@@ -346,7 +346,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@bananatron, @mblais, @naglfar, @samme
+@bananatron, @mblais, @mepsoid, @naglfar, @photonstorm, @samme
 
 ## Version 2.9.3 - 11th December 2017
 
