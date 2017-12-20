@@ -289,7 +289,7 @@ Phaser.TweenManager.prototype = {
     *
     * @method Phaser.TweenManager#isTweening
     * @param {object} object - The object to check for tweens against.
-    * @param {boolean} [checkIsRunning] - Also check that the tween is running and is not marked for deletion.
+    * @param {boolean} [checkIsRunning=false] - Also check that the tween is running and is not marked for deletion.
     * @returns {boolean} Returns true if the object is currently being tweened, false if not.
     */
     isTweening: function(object, checkIsRunning) {
