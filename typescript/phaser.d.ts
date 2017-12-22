@@ -1701,7 +1701,7 @@ declare module Phaser {
         callbackContext: any;
         enabled: boolean;
         game: Phaser.Game;
-        onAxisCallBack: Function;
+        onAxisCallback: Function;
         onConnectCallback: Function;
         onDisconnectCallback: Function;
         onDownCallback: Function;
