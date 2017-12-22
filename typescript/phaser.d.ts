@@ -5179,6 +5179,7 @@ declare module Phaser {
         collisionCallbackContext: any;
         collides: boolean;
         collideUp: boolean;
+        debug: boolean;
         faceBottom: boolean;
         faceLeft: boolean;
         faceRight: boolean;

@@ -149,6 +149,12 @@ Phaser.Tile = function (layer, index, x, y, width, height) {
     */
     this.collisionCallbackContext = this;
 
+    /**
+    * @property {boolean} debug
+    * @default
+    */
+    this.debug = false;
+
 };
 
 Phaser.Tile.prototype = {
