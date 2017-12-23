@@ -715,6 +715,21 @@ Phaser.Input.prototype = {
     },
 
     /**
+     * Update method while paused.
+     *
+     * @method Phaser.Input#pauseUpdate
+     * @private
+     */
+    pauseUpdate: function () {
+
+        if (this.gamepad && this.gamepad.active)
+        {
+            this.gamepad.update();
+        }
+
+    },
+
+    /**
     * Reset all of the Pointers and Input states.
     *
     * The optional `hard` parameter will reset any events or callbacks that may be bound.
@@ -739,11 +754,6 @@ Phaser.Input.prototype = {
         if (this.keyboard)
         {
             this.keyboard.reset(hard);
-        }
-
-        if (this.gamepad)
-        {
-            this.gamepad.reset();
         }
 
         for (var i = 0; i < this.pointers.length; i++)

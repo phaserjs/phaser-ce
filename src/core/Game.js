@@ -1031,6 +1031,7 @@ Phaser.Game.prototype = {
             this.scale.pauseUpdate();
             this.state.pauseUpdate(timeStep);
             this.debug.preUpdate();
+            this.input.pauseUpdate();
         }
 
         this.stage.updateTransform();
