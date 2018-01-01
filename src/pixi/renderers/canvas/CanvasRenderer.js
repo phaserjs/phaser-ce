@@ -10,7 +10,7 @@
  * @constructor
  * @param game {Phaser.Game} A reference to the Phaser Game instance
  */
-PIXI.CanvasRenderer = function (game) {
+PIXI.CanvasRenderer = function (game, config) {
 
     /**
     * @property {Phaser.Game} game - A reference to the Phaser Game instance.
@@ -137,7 +137,7 @@ PIXI.CanvasRenderer = function (game) {
          * If true Pixi will Math.floor() x/y values when rendering, stopping pixel interpolation.
          * Handy for crisp pixel art and speed on legacy devices.
          */
-        roundPixels: false
+        roundPixels: config.roundPixels || false
     };
 
     this.mapBlendModes();

@@ -510,6 +510,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {string}             [GameConfig.canvasStyle]                   - `style` attribute value to assign to the game canvas.
 * @property {boolean}            [GameConfig.disableVisibilityChange=false] - Sets {@link Phaser.Stage#disableVisibilityChange}
 * @property {boolean}            [GameConfig.enableDebug=true]              - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
+* @property {boolean}            [GameConfig.failIfMajorPerformanceCaveat]  - Abort WebGL context creation if performance would be poor. You can use this with renderer AUTO.
 * @property {boolean}            [GameConfig.forceSetTimeout]               - Use {@link https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout setTimeOut} for the game loop even if {@link https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame requestAnimationFrame} is available.
 * @property {number}             [GameConfig.fullScreenScaleMode]           - The scaling method used by the ScaleManager when in fullscreen.
 * @property {HTMLElement}        [GameConfig.fullScreenTarget]              - The DOM element on which the Fullscreen API enter request will be invoked.
@@ -520,6 +521,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {boolean}            [GameConfig.preserveDrawingBuffer=false]   - Whether or not the contents of the stencil buffer is retained after rendering.
 * @property {number}             [GameConfig.renderer=Phaser.AUTO]
 * @property {number}             [GameConfig.resolution=1]                  - The resolution of your game, as a ratio of canvas pixels to game pixels.
+* @property {boolean}            [GameConfig.roundPixels=false]             - Round pixel coordinates for rendering (rather than interpolating). Handy for crisp pixel art and speed on legacy devices.
 * @property {number}             [GameConfig.scaleMode]                     - The scaling method used by the ScaleManager when not in fullscreen.
 * @property {number}             [GameConfig.seed]                          - Seed for {@link Phaser.RandomDataGenerator}.
 * @property {object}             [GameConfig.state=null]
@@ -810,7 +812,7 @@ Phaser.Game.prototype = {
         {
             if (this.device.canvas)
             {
-                this.renderer = new PIXI.CanvasRenderer(this);
+                this.renderer = new PIXI.CanvasRenderer(this, this.config);
 
                 this.context = this.renderer.context;
 
@@ -836,7 +838,7 @@ Phaser.Game.prototype = {
 
             this.renderType = Phaser.WEBGL;
 
-            this.renderer = new PIXI.WebGLRenderer(this);
+            this.renderer = new PIXI.WebGLRenderer(this, this.config);
 
             this.context = null;
 
