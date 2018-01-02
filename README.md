@@ -334,6 +334,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Updates
 
+* Added gain value smoothing in Phaser.Sound as well (#385).
+
 ### Bug Fixes
 
 ## Version 2.9.4 - 20th December 2017
