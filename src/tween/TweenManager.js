@@ -297,7 +297,7 @@ Phaser.TweenManager.prototype = {
         if (!checkIsRunning) { checkIsRunning = false; }
 
         return this._tweens.some(function(tween) {
-            return (tween.target === object) && !checkIsRunning || (tween.isRunning && !tween.pendingDelete);
+            return (tween.target === object) && (!checkIsRunning || (tween.isRunning && !tween.pendingDelete));
         });
 
     },

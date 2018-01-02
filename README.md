@@ -338,6 +338,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Bug Fixes
 
+* Fixed a false positive in [TweenManager#isTweening](https://photonstorm.github.io/phaser-ce/Phaser.TweenManager.html#isTweening) (#414).
+
 ## Version 2.9.4 - 20th December 2017
 
 ### New Features
