@@ -709,6 +709,20 @@ declare module p2 {
 
     }
 
+    export interface BoxOptions {
+
+        width?: number;
+        height?: number;
+
+    }
+  
+    export class Box extends Shape {
+        constructor(options?: BoxOptions);
+
+        width: number;
+        height: number;
+    }
+
     export class Rectangle extends Shape {
 
         static sameDimensions(a: Rectangle, b: Rectangle): boolean;
