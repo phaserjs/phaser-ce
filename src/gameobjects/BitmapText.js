@@ -707,6 +707,7 @@ Object.defineProperty(Phaser.BitmapText.prototype, 'smoothed', {
         {
             this._data.base.scaleMode = 1;
         }
+        this._data.base.dirty();
 
     }
 
