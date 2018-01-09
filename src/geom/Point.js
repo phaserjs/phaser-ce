@@ -610,6 +610,18 @@ Phaser.Point.prototype = {
     },
 
     /**
+    * Math.round() both the x and y properties of this Point.
+    *
+    * @method Phaser.Point#round
+    * @return {Phaser.Point} This Point object.
+    */
+    round: function () {
+
+        return this.setTo(Math.round(this.x), Math.round(this.y));
+
+    },
+
+    /**
     * Returns a string representation of this object.
     *
     * @method Phaser.Point#toString
