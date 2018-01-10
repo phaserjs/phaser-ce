@@ -332,6 +332,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### New Features
 
+* Phaser.SoundManager#removeAll destroys all sounds and removes them from the Manager.
+
 ### Updates
 
 * Added gain value smoothing in Phaser.Sound as well (#385).

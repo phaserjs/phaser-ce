@@ -4701,6 +4701,7 @@ declare module Phaser {
         pauseAll(): void;
         play(key: string, volume?: number, loop?: boolean): Phaser.Sound;
         remove(sound: Phaser.Sound): boolean;
+        removeAll(): void;
         removeByKey(key: string): number;
         resumeAll(): void;
         setDecodedCallback(files: string[] | Phaser.Sound[], callback: Function, callbackContext: any): void;

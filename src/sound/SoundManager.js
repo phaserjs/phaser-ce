@@ -601,6 +601,28 @@ Phaser.SoundManager.prototype = {
     },
 
     /**
+    * Removes all Sounds from the SoundManager.
+    * The removed Sounds are destroyed before removal.
+    *
+    * @method Phaser.SoundManager#removeAll
+    */
+    removeAll: function () {
+
+        this.stopAll();
+
+        for (var i = 0; i < this._sounds.length; i++)
+        {
+            if (this._sounds[i])
+            {
+                this._sounds[i].destroy();
+            }
+        }
+
+        this._sounds.length = 0;
+
+    },
+
+    /**
     * Removes all Sounds from the SoundManager that have an asset key matching the given value.
     * The removed Sounds are destroyed before removal.
     *
@@ -725,17 +747,7 @@ Phaser.SoundManager.prototype = {
     */
     destroy: function () {
 
-        this.stopAll();
-
-        for (var i = 0; i < this._sounds.length; i++)
-        {
-            if (this._sounds[i])
-            {
-                this._sounds[i].destroy();
-            }
-        }
-
-        this._sounds = [];
+        this.removeAll();
 
         this.onSoundDecode.dispose();
 
