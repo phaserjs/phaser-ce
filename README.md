@@ -341,7 +341,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Updates
 
-* Added gain value smoothing in Phaser.Sound as well (#385).
+* Removed gain smoothing for WebAudio volume changes (#385).
 
 ### Bug Fixes
 

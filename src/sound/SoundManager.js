@@ -253,7 +253,7 @@ Phaser.SoundManager.prototype = {
                 this.masterGain = this.context.createGain();
             }
 
-            this._setGain(1);
+            this.masterGain.gain.value = 1;
             this.masterGain.connect(this.context.destination);
         }
 
@@ -264,6 +264,11 @@ Phaser.SoundManager.prototype = {
             {
                 this.setTouchLock();
             }
+        }
+
+        if (this.usingWebAudio && this.game.device.chrome && this.game.device.chromeVersion <= 65)
+        {
+            console.info('A "GainNode.gain.value setter smoothing is deprecated" notice in Chrome is normal. <https://github.com/photonstorm/phaser-ce/issues/385>');
         }
 
     },
@@ -691,7 +696,7 @@ Phaser.SoundManager.prototype = {
         if (this.usingWebAudio)
         {
             this._muteVolume = this.masterGain.gain.value;
-            this._setGain(0);
+            this.masterGain.gain.value = 0;
         }
 
         //  Loop through sounds
@@ -724,7 +729,7 @@ Phaser.SoundManager.prototype = {
 
         if (this.usingWebAudio)
         {
-            this._setGain(this._muteVolume);
+            this.masterGain.gain.value = this._muteVolume;
         }
 
         //  Loop through sounds
@@ -766,12 +771,6 @@ Phaser.SoundManager.prototype = {
                 }
             }
         }
-
-    },
-
-    _setGain: function (value) {
-
-        this.masterGain.gain.setTargetAtTime(value, 0, 0.01);
 
     }
 
@@ -848,7 +847,7 @@ Object.defineProperty(Phaser.SoundManager.prototype, "volume", {
 
             if (this.usingWebAudio)
             {
-                this._setGain(value);
+                this.masterGain.gain.value = value;
             }
             else
             {

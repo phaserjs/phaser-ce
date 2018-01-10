@@ -209,8 +209,7 @@ Phaser.Sound = function (game, key, volume, loop, connect) {
             this.gainNode = this.context.createGain();
         }
 
-        // Smoothing seems unnecessary here, but without it Chrome will print a deprecation notice (#385)
-        this._setGain(volume * this.game.sound.volume);
+        this.gainNode.gain.value = volume * this.game.sound.volume;
 
         if (connect)
         {
@@ -1121,12 +1120,6 @@ Phaser.Sound.prototype = {
             this.onMute.dispose();
             this.onMarkerComplete.dispose();
         }
-    },
-
-    _setGain: function (value) {
-
-        this.gainNode.gain.setTargetAtTime(value, 0, 0.01);
-
     }
 
 };
@@ -1187,7 +1180,7 @@ Object.defineProperty(Phaser.Sound.prototype, "mute", {
 
             if (this.usingWebAudio)
             {
-                this._setGain(0);
+                this.gainNode.gain.value = 0;
             }
             else if (this.usingAudioTag && this._sound)
             {
@@ -1200,7 +1193,7 @@ Object.defineProperty(Phaser.Sound.prototype, "mute", {
 
             if (this.usingWebAudio)
             {
-                this._setGain(this._muteVolume);
+                this.gainNode.gain.value = this._muteVolume;
             }
             else if (this.usingAudioTag && this._sound)
             {
@@ -1243,7 +1236,7 @@ Object.defineProperty(Phaser.Sound.prototype, "volume", {
 
         if (this.usingWebAudio)
         {
-            this._setGain(value);
+            this.gainNode.gain.value = value;
         }
         else if (this.usingAudioTag && this._sound)
         {
