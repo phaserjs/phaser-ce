@@ -175,6 +175,7 @@ Phaser.SoundManager.prototype = {
     boot: function () {
 
         var device = this.game.device;
+        var PhaserGlobal = window.PhaserGlobal;
 
         if (device.iOS && device.webAudio === false)
         {
@@ -182,10 +183,10 @@ Phaser.SoundManager.prototype = {
         }
 
         //  PhaserGlobal overrides
-        if (window['PhaserGlobal'])
+        if (PhaserGlobal)
         {
             //  Check to see if all audio playback is disabled (i.e. handled by a 3rd party class)
-            if (window['PhaserGlobal'].disableAudio === true)
+            if (PhaserGlobal.disableAudio === true)
             {
                 this.noAudio = true;
                 this.touchLocked = false;
@@ -193,7 +194,7 @@ Phaser.SoundManager.prototype = {
             }
 
             //  Check if the Web Audio API is disabled (for testing Audio Tag playback during development)
-            if (window['PhaserGlobal'].disableWebAudio === true)
+            if (PhaserGlobal.disableWebAudio === true)
             {
                 this.usingAudioTag = true;
                 this.touchLocked = false;
@@ -201,9 +202,9 @@ Phaser.SoundManager.prototype = {
             }
         }
 
-        if (window['PhaserGlobal'] && window['PhaserGlobal'].audioContext)
+        if (PhaserGlobal && PhaserGlobal.audioContext)
         {
-            this.context = window['PhaserGlobal'].audioContext;
+            this.context = PhaserGlobal.audioContext;
         }
         else
         {
@@ -283,7 +284,7 @@ Phaser.SoundManager.prototype = {
     */
     setTouchLock: function () {
 
-        if (this.noAudio || (window['PhaserGlobal'] && window['PhaserGlobal'].disableAudio === true))
+        if (this.noAudio || (window.PhaserGlobal && window.PhaserGlobal.disableAudio === true))
         {
             return;
         }
@@ -760,10 +761,10 @@ Phaser.SoundManager.prototype = {
 
         if (this.context)
         {
-            if (window['PhaserGlobal'])
+            if (window.PhaserGlobal)
             {
                 //  Store this in the PhaserGlobal window var, if set, to allow for re-use if the game is created again without the page refreshing
-                window['PhaserGlobal'].audioContext = this.context;
+                window.PhaserGlobal.audioContext = this.context;
             }
             else
             {
