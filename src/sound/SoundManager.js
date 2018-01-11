@@ -174,7 +174,9 @@ Phaser.SoundManager.prototype = {
     */
     boot: function () {
 
-        if (this.game.device.iOS && this.game.device.webAudio === false)
+        var device = this.game.device;
+
+        if (device.iOS && device.webAudio === false)
         {
             this.channels = 1;
         }
@@ -260,13 +262,13 @@ Phaser.SoundManager.prototype = {
         if (!this.noAudio)
         {
             //  On mobile we need a native touch event before we can play anything, so capture it here
-            if (this.game.device.needsTouchUnlock())
+            if (device.needsTouchUnlock())
             {
                 this.setTouchLock();
             }
         }
 
-        if (this.usingWebAudio && this.game.device.chrome && this.game.device.chromeVersion <= 65)
+        if (this.usingWebAudio && device.chrome && device.chromeVersion <= 65)
         {
             console.info('A "GainNode.gain.value setter smoothing is deprecated" notice in Chrome is normal. <https://github.com/photonstorm/phaser-ce/issues/385>');
         }
