@@ -332,7 +332,7 @@ Phaser.Utils.Debug.prototype = {
         this.line('Sound: ' + sound.key + ' Touch locked: ' + sound.game.sound.touchLocked);
         this.line('Is Ready?: ' + this.game.cache.isSoundReady(sound.key) + ' Pending Playback: ' + sound.pendingPlayback);
         this.line('Decoded: ' + sound.isDecoded + ' Decoding: ' + sound.isDecoding);
-        this.line('Total Duration: ' + sound.totalDuration + ' Playing: ' + sound.isPlaying);
+        this.line('Total Duration: ' + sound.totalDuration + ' Playing: ' + sound.isPlaying + ' Loop: ' + sound.loop);
         this.line('Time: ' + sound.currentTime);
         this.line('Volume: ' + sound.volume.toFixed(2) + (sound.mute ? ' (Mute)' : ''));
         this.line('Using: ' + (sound.usingWebAudio ? 'Web Audio' : 'Audio Tag'));
