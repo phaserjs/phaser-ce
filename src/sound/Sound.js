@@ -209,7 +209,7 @@ Phaser.Sound = function (game, key, volume, loop, connect) {
             this.gainNode = this.context.createGain();
         }
 
-        this.gainNode.gain.value = volume * this.game.sound.volume;
+        this.gainNode.gain.value = volume;
 
         if (connect)
         {
