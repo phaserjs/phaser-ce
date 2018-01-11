@@ -1147,10 +1147,10 @@ Phaser.Utils.Debug.prototype = {
         if (!loader.hasLoaded || loader.resetLocked)
         {
             this.line('Progress: ' + (pad(loader.progress, 3) + '%'));
-            this.line('Files: ' + loader._loadedFileCount + ' of '
-                                + loader._totalFileCount);
-            this.line('Packs: ' + loader._loadedPackCount + ' of '
-                                + loader._loadedPackCount);
+            this.line('Files: ' + loader._loadedFileCount + ' of ' +
+                                  loader._totalFileCount);
+            this.line('Packs: ' + loader._loadedPackCount + ' of ' +
+                                  loader._loadedPackCount);
         }
 
         this.stop();
