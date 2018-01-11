@@ -2116,7 +2116,7 @@ declare module Phaser {
         pollLocked: boolean;
         pollRate: number;
         position: Phaser.Point;
-        pointer: Phaser.Pointer[];
+        pointers: Phaser.Pointer[];
         recordLimit: number;
         recordPointerHistory: boolean;
         recordRate: number;
