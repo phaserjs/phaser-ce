@@ -503,6 +503,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * A configuration object for {@link Phaser.Game}.
 *
 * @typedef {object} GameConfig
+* @property {boolean}            [GameConfig.alignH=false]                  - Sets {@link Phaser.ScaleManager#pageAlignHorizontally}.
+* @property {boolean}            [GameConfig.alignV=false]                  - Sets {@link Phaser.ScaleManager#pageAlignVertically}.
 * @property {number|string}      [GameConfig.antialias=true]
 * @property {string}             [GameConfig.backgroundColor=0]             - Sets {@link Phaser.Stage#backgroundColor}.
 * @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
@@ -522,10 +524,14 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {number}             [GameConfig.renderer=Phaser.AUTO]
 * @property {number}             [GameConfig.resolution=1]                  - The resolution of your game, as a ratio of canvas pixels to game pixels.
 * @property {boolean}            [GameConfig.roundPixels=false]             - Round pixel coordinates for rendering (rather than interpolating). Handy for crisp pixel art and speed on legacy devices.
+* @property {number}             [GameConfig.scaleH=1]                      - Horizontal scaling factor for USER_SCALE scale mode.
 * @property {number}             [GameConfig.scaleMode]                     - The scaling method used by the ScaleManager when not in fullscreen.
+* @property {number}             [GameConfig.scaleV=1]                      - Vertical scaling factor for USER_SCALE scale mode.
 * @property {number}             [GameConfig.seed]                          - Seed for {@link Phaser.RandomDataGenerator}.
 * @property {object}             [GameConfig.state=null]
 * @property {boolean}            [GameConfig.transparent=false]
+* @property {number}             [GameConfig.trimH=0]                       - Horizontal trim for USER_SCALE scale mode.
+* @property {number}             [GameConfig.trimV=0]                       - Vertical trim for USER_SCALE scale mode.
 * @property {number|string}      [GameConfig.width=800]
 */
 // Documentation stub for linking.

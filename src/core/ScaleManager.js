@@ -816,6 +816,14 @@ Phaser.ScaleManager.prototype = {
             this.fullScreenTarget = config['fullScreenTarget'];
         }
 
+        this.pageAlignHorizontally = config.alignH || false;
+        this.pageAlignVertically = config.alignV || false;
+
+        if (config.scaleH && config.scaleV)
+        {
+            this.setUserScale(config.scaleH, config.scaleV, config.trimH, config.trimV);
+        }
+
     },
 
     /**
