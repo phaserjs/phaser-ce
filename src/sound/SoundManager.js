@@ -54,6 +54,13 @@ Phaser.SoundManager = function (game) {
     this.onUnMute = new Phaser.Signal();
 
     /**
+     * This signal is dispatched when the SoundManager is touch-unlocked.
+     * If the device doesn't {@link Phaser.Device.needsTouchUnlock need touch-unlocking}, the signal won't be dispatched.
+     * @property {Phaser.Signal} onTouchUnlock
+     */
+    this.onTouchUnlock = new Phaser.Signal();
+
+    /**
     * @property {AudioContext} context - The AudioContext being used for playback.
     * @default
     */
@@ -296,6 +303,20 @@ Phaser.SoundManager.prototype = {
     },
 
     /**
+    * Turns off {@link #touchLocked} and dispatches {@link #onTouchUnlock}.
+    *
+    * @method Phaser.SoundManager#setTouchUnlock
+    * @private
+    */
+    setTouchUnlock: function () {
+
+        this.touchLocked = false;
+        this._unlockSource = null;
+        this.onTouchUnlock.dispatch();
+
+    },
+
+    /**
     * Enables the audio, usually after the first touch.
     *
     * @method Phaser.SoundManager#unlock
@@ -311,8 +332,7 @@ Phaser.SoundManager.prototype = {
         //  Global override (mostly for Audio Tag testing)
         if (this.usingAudioTag)
         {
-            this.touchLocked = false;
-            this._unlockSource = null;
+            this.setTouchUnlock();
         }
         else if (this.usingWebAudio)
         {
@@ -512,8 +532,7 @@ Phaser.SoundManager.prototype = {
 
         if (this.touchLocked && this._unlockSource !== null && (this._unlockSource.playbackState === this._unlockSource.PLAYING_STATE || this._unlockSource.playbackState === this._unlockSource.FINISHED_STATE))
         {
-            this.touchLocked = false;
-            this._unlockSource = null;
+            this.setTouchUnlock();
         }
 
         for (var i = 0; i < this._sounds.length; i++)
