@@ -1465,15 +1465,20 @@ declare module Phaser {
 
     interface IGameConfig {
 
-        backgroundColor?: string;
+        alignH?: boolean;
+        alignV?: boolean;
+        antialias?: boolean;
+        backgroundColor?: number | string;
         canvas?: HTMLCanvasElement;
         canvasId?: string;
         canvasStyle?: string;
+        crisp?: boolean;
         disableVisibilityChange?: boolean;
-        fullScreenScaleMode?: number;
-        antialias?: boolean;
         enableDebug?: boolean;
+        failIfMajorPerformanceCaveat?: boolean;
         forceSetTimeOut?: boolean;
+        fullScreenScaleMode?: number;
+        fullScreenTarget?: HTMLElement;
         height?: number | string;
         multiTexture?: boolean;
         parent?: HTMLElement | string;
@@ -1481,10 +1486,15 @@ declare module Phaser {
         preserveDrawingBuffer?: boolean;
         renderer?: number;
         resolution?: number;
+        roundPixels?: boolean;
+        scaleH?: number;
         scaleMode?: number;
+        scaleV?: number
         seed?: number;
-        state?: any; // Phaser.State | function | object
+        state?: any;
         transparent?: boolean;
+        trimH?: number;
+        trimV?: number;
         width?: number | string;
 
     }
