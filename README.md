@@ -369,7 +369,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@Mertank
+@Mertank, @Dreaded-Gnu
 
 ## Version 2.9.4 - 20th December 2017
 
