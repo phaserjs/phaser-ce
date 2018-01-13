@@ -258,16 +258,20 @@ Phaser.Canvas = {
     },
 
     /**
-    * Sets the CSS image-rendering property on the given canvas to be 'crisp' (aka 'optimize contrast' on webkit).
+    * Sets the CSS image-rendering property to `pixelated` or `crisp-edges`.
+    * This can remove blurring when the game canvas is scaled up.
+    * In some browsers this has no visible effect in WEBGL mode.
     * Note that if this doesn't given the desired result then see the setSmoothingEnabled.
     *
     * @method Phaser.Canvas.setImageRenderingCrisp
     * @param {HTMLCanvasElement} canvas - The canvas to set image-rendering crisp on.
     * @return {HTMLCanvasElement} Returns the source canvas.
+    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering
+    * @see https://caniuse.com/#feat=css-crisp-edges
     */
     setImageRenderingCrisp: function (canvas) {
 
-        var types = [ 'optimizeSpeed', 'crisp-edges', '-moz-crisp-edges', '-webkit-optimize-contrast', 'optimize-contrast', 'pixelated' ];
+        var types = [ '-webkit-optimize-contrast', '-moz-crisp-edges', 'crisp-edges', 'pixelated' ];
 
         for (var i = 0; i < types.length; i++)
         {
