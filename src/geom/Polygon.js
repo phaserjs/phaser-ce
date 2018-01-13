@@ -292,32 +292,18 @@ Phaser.Polygon.prototype = {
 Phaser.Polygon.prototype.constructor = Phaser.Polygon;
 
 /**
-* Sets and modifies the points of this polygon.
+* The points of this polygon.
 *
-* See {@link Phaser.Polygon#setTo setTo} for the different kinds of arrays formats that can be assigned.
+* You can modify these with {@link Phaser.Polygon#setTo setTo}.
 *
 * @name Phaser.Polygon#points
 * @property {Phaser.Point[]} points - The array of vertex points.
-* @deprecated Use `setTo`.
+* @readonly
 */
 Object.defineProperty(Phaser.Polygon.prototype, 'points', {
 
     get: function() {
         return this._points;
-    },
-
-    set: function(points) {
-
-        if (points != null)
-        {
-            this.setTo(points);
-        }
-        else
-        {
-            //  Clear the points
-            this.setTo();
-        }
-
     }
 
 });

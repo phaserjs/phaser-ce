@@ -172,22 +172,6 @@ Phaser.Touch.prototype = {
             }
         }
 
-        /**
-        * Adds a callback that is fired when a browser touchstart or touchend event is received.
-        *
-        * @method Phaser.Touch#addTouchLockCallback
-        * @deprecated Use {@link Phaser.Input#addTouchLockCallback} instead.
-        */
-        this.addTouchLockCallback = this.game.input.addTouchLockCallback.bind(this.game.input);
-
-        /**
-        * Removes the callback at the defined index from the touchLockCallbacks array.
-        *
-        * @method Phaser.Touch#removeTouchLockCallback
-        * @deprecated Use {@link Phaser.Input#removeTouchLockCallback} instead.
-        */
-        this.removeTouchLockCallback = this.game.input.removeTouchLockCallback.bind(this.game.input);
-
     },
 
     /**

@@ -348,6 +348,16 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Updates
 
 * Removed gain smoothing for WebAudio volume changes (#385).
+* Removed these deprecated items:
+    - Phaser.ArrayUtils.rotate             → Phaser.ArrayUtils.rotateLeft
+    - Phaser.Device.isConsoleOpen
+    - Phaser.Particles#update
+    - Phaser.Polygon#points (as a setter)  → Phaser.Polygon#setTo
+    - Phaser.Touch#addTouchLockCallback    → Phaser.Input#addTouchLockCallback
+    - Phaser.Touch#removeTouchLockCallback → Phaser.Input#removeTouchLockCallback
+    - PIXI.BaseTexture#updateSourceImage   → Phaser.Component.LoadTexture#loadTexture
+    - RevoluteConstraint#motorIsEnabled    → RevoluteConstraint#motorEnabled
+    - Shape.RECTANGLE                      → Shape.BOX
 
 ### Bug Fixes
 

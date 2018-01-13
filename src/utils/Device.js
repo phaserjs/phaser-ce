@@ -1435,22 +1435,6 @@ Phaser.Device.needsTouchUnlock = function () {
 };
 
 /**
-* Returns false.
-*
-* @deprecated
-* @method isConsoleOpen
-* @memberof Phaser.Device.prototype
-* @return false
-*/
-Phaser.Device.isConsoleOpen = function () {
-
-    console.warn('Phaser.Device.isConsoleOpen is deprecated and will be removed.');
-
-    return false;
-
-};
-
-/**
 * Detect if the host is a an Android Stock browser.
 * This is available before the device "ready" event.
 *
