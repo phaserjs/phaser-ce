@@ -358,6 +358,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
     - PIXI.BaseTexture#updateSourceImage   → Phaser.Component.LoadTexture#loadTexture
     - RevoluteConstraint#motorIsEnabled    → RevoluteConstraint#motorEnabled
     - Shape.RECTANGLE                      → Shape.BOX
+* Updated ionic example project (#381)
 
 ### Bug Fixes
 
