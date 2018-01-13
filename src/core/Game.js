@@ -814,6 +814,11 @@ Phaser.Game.prototype = {
             this.canvas.style['-webkit-full-screen'] = 'width: 100%; height: 100%';
         }
 
+        if (this.config['crisp'])
+        {
+            Phaser.Canvas.setImageRenderingCrisp(this.canvas);
+        }
+
         if (this.renderType === Phaser.HEADLESS || this.renderType === Phaser.CANVAS || (this.renderType === Phaser.AUTO && !this.device.webGL))
         {
             if (this.device.canvas)
