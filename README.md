@@ -347,6 +347,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Updates
 
+* [Gamepad](https://photonstorm.github.io/phaser-ce/Phaser.Gamepad.html) input is now enabled while the game is paused (#423).
 * Removed gain smoothing for WebAudio volume changes (#385).
 * Removed these deprecated items:
     - Phaser.ArrayUtils.rotate             → Phaser.ArrayUtils.rotateLeft
@@ -369,7 +370,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@Mertank, @Dreaded-Gnu
+@Mertank, @Dreaded-Gnu, @pavle-goloskokovic
 
 ## Version 2.9.4 - 20th December 2017
 
