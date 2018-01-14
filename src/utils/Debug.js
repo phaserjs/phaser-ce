@@ -309,7 +309,7 @@ Phaser.Utils.Debug.prototype = {
       {
         this.line('Volume: ' + sound.volume.toFixed(2) + (sound.mute ? ' (Mute)' : ''));
         this.line('Mute on pause: ' + sound.muteOnPause);
-        this.line('Using: ' + (sound.usingWebAudio ? 'Web Audio' : 'Audio Tag'));
+        this.line('Using: ' + (sound.usingWebAudio ? ('Web Audio State: ' + sound.context.state) : 'Audio Tag'));
         this.line('Touch locked: ' + sound.touchLocked);
       }
 
