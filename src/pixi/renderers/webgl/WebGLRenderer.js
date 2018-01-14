@@ -16,7 +16,7 @@ PIXI._enableMultiTextureToggle = false;
  * @constructor
  * @param game {Phaser.Game} A reference to the Phaser Game instance
  */
-PIXI.WebGLRenderer = function(game) {
+PIXI.WebGLRenderer = function(game, config) {
 
     /**
     * @property {Phaser.Game} game - A reference to the Phaser Game instance.
