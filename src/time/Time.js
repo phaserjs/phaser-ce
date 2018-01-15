@@ -76,6 +76,8 @@ Phaser.Time = function (game) {
     *
     * This value _may_ include time that the game is paused/inactive.
     *
+    * While the game is active, this will be similar to (1000 / {@link #fps}).
+    *
     * _Note:_ This is updated only once per game loop - even if multiple logic update steps are done.
     * Use {@link Phaser.Timer#physicsTime physicsTime} as a basis of game/logic calculations instead.
     *
@@ -170,13 +172,31 @@ Phaser.Time = function (game) {
     this.advancedTiming = false;
 
     /**
-    * Advanced timing result: The number of render frames record in the last second.
+    * Advanced timing result: The number of animation frames received from the browser in the last second.
     *
     * Only calculated if {@link Phaser.Time#advancedTiming advancedTiming} is enabled.
     * @property {integer} frames
     * @readonly
     */
     this.frames = 0;
+
+    /**
+    * Advanced timing result: The number of {@link Phaser.Game#updateLogic logic updates} made in the last second.
+    *
+    * Only calculated if {@link Phaser.Time#advancedTiming advancedTiming} is enabled.
+    * @property {integer} updates
+    * @readonly
+    */
+    this.updates = 0;
+
+    /**
+    * Advanced timing result: The number of {@link Phaser.Game#updateRender renders} made in the last second.
+    *
+    * Only calculated if {@link Phaser.Time#advancedTiming advancedTiming} is enabled.
+    * @property {integer} renders
+    * @readonly
+    */
+    this.renders = 0;
 
     /**
     * Advanced timing result: Frames per second.
@@ -186,6 +206,24 @@ Phaser.Time = function (game) {
     * @readonly
     */
     this.fps = 0;
+
+    /**
+    * Advanced timing result: Logic updates per second.
+    *
+    * Only calculated if {@link Phaser.Time#advancedTiming advancedTiming} is enabled.
+    * @property {number} ups
+    * @readonly
+    */
+    this.ups = 0;
+
+    /**
+    * Advanced timing result: Renders per second.
+    *
+    * Only calculated if {@link Phaser.Time#advancedTiming advancedTiming} is enabled.
+    * @property {number} rps
+    * @readonly
+    */
+    this.rps = 0;
 
     /**
     * Advanced timing result: The lowest rate the fps has dropped to.
@@ -498,11 +536,46 @@ Phaser.Time.prototype = {
 
         if (this.now > this._timeLastSecond + 1000)
         {
-            this.fps = Math.round((this.frames * 1000) / (this.now - this._timeLastSecond));
+            var interval = this.now - this._timeLastSecond;
+            this.fps = Math.round((this.frames  * 1000) / interval);
+            this.ups = Math.round((this.updates * 1000) / interval);
+            this.rps = Math.round((this.renders * 1000) / interval);
             this.fpsMin = Math.min(this.fpsMin, this.fps);
             this.fpsMax = Math.max(this.fpsMax, this.fps);
             this._timeLastSecond = this.now;
             this.frames = 0;
+            this.updates = 0;
+            this.renders = 0;
+        }
+
+    },
+
+    /**
+    * Counts one logic update (if advanced timing is enabled).
+    *
+    * @method Phaser.Time#countUpdate
+    * @private
+    */
+    countUpdate: function () {
+
+        if (this.advancedTiming)
+        {
+            this.updates++;
+        }
+
+    },
+
+    /**
+    * Counts one render (if advanced timing is enabled).
+    *
+    * @method Phaser.Time#countRender
+    * @private
+    */
+    countRender: function () {
+
+        if (this.advancedTiming)
+        {
+            this.renders++;
         }
 
     },
@@ -599,12 +672,15 @@ Phaser.Time.prototype = {
 };
 
 /**
-* The desired frame rate of the game.
+* The number of logic updates per second.
 *
 * This is used is used to calculate the physic / logic multiplier and how to apply catch-up logic updates.
 *
+* The render rate is unaffected unless you also turn off {@link Phaser.Game#forceSingleRender}.
+*
 * @name Phaser.Time#desiredFps
-* @property {integer} desiredFps - The desired frame rate of the game. Defaults to 60.
+* @type {integer}
+* @default 60
 */
 Object.defineProperty(Phaser.Time.prototype, "desiredFps", {
 

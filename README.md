@@ -348,6 +348,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.Video#onTouchUnlock signal
 * Phaser.Video#playWhenUnlocked
 * Phaser.Game#dropFrames skips renders when the game loop delta time is spiraling upwards (#314).
+* Phaser.Game#forceSingleRender can be set to `false` to reduce the render rate to match Phaser.Time#desiredFps (#313).
+* Phaser.Time#ups and Phaser.Time#rps track update and render rates when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time#advancedTiming) is enabled.
 
 ### Updates
 

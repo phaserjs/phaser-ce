@@ -5535,11 +5535,15 @@ declare module Phaser {
         physicsElapsed: number;
         physicsElapsedMS: number;
         prevTime: number;
+        renders: number;
+        rps: number;
         slowMotion: number;
         suggestedFps: number;
         time: number;
         timeExpected: number;
         timeToCall: number;
+        updates: number;
+        ups: number;
 
         add(timer: Phaser.Timer): Phaser.Timer;
         boot(): void;
