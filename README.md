@@ -347,6 +347,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.SoundManager#onTouchUnlock signal (#434)
 * Phaser.Video#onTouchUnlock signal
 * Phaser.Video#playWhenUnlocked
+* Phaser.Game#dropFrames skips renders when the game loop delta time is spiraling upwards (#314).
 
 ### Updates
 

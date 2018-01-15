@@ -444,6 +444,11 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.forceSingleUpdate = true;
 
     /**
+    * @property {boolean} dropFrames - When {@link #forceSingleUpdate} is off, skip {@link #updateRender render calls} if the logic time is spiraling upwards.
+    */
+    this.dropFrames = false;
+
+    /**
     * @property {number} _nextNotification - The soonest game.time.time value that the next fpsProblemNotifier can be dispatched.
     * @private
     */
@@ -940,12 +945,14 @@ Phaser.Game.prototype = {
                 this.fpsProblemNotifier.dispatch();
             }
 
-            // reset the _deltaTime accumulator which will cause all pending dropped frames to be permanently skipped
+            // reset the _deltaTime accumulator which will cause all pending late updates to be permanently skipped
             this._deltaTime = 0;
             this._spiraling = 0;
 
-            // call the game render update exactly once every frame
-            this.updateRender(this.time.slowMotion * this.time.desiredFps);
+            if (!this.dropFrames)
+            {
+                this.updateRender(this.time.slowMotion * this.time.desiredFps);
+            }
         }
         else
         {

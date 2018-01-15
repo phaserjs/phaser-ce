@@ -1516,6 +1516,7 @@ declare module Phaser {
         create: Phaser.Create;
         debug: Phaser.Utils.Debug;
         device: Phaser.Device;
+        dropFrames: boolean;
         forceSingleUpdate: boolean;
         fpsProblemNotifier: Phaser.Signal;
         height: number;
