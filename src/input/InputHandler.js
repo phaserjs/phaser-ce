@@ -866,6 +866,17 @@ Phaser.InputHandler.prototype = {
     },
 
     /**
+    * This is called by Mouse.onMouseOut.
+    *
+    * @method Phaser.InputHandler#mouseOutCanvas
+    */
+    mouseOutCanvas: function() {
+
+        this._pointerOutHandler(this.game.input.mousePointer);
+
+    },
+
+    /**
     * Internal Update method. This is called automatically and handles the Pointer
     * and drag update loops.
     *

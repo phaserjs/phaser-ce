@@ -217,6 +217,11 @@ Phaser.Button = function (game, x, y, key, callback, callbackContext, overFrame,
     this.events.onInputDown.add(this.onInputDownHandler, this);
     this.events.onInputUp.add(this.onInputUpHandler, this);
 
+    //  Add this input to Mouse for handling mouseout events
+    if (this.game.input.mouse) {
+        this.game.input.mouse.canvasOutInputHandlers.push(this.input);
+    }
+
 };
 
 Phaser.Button.prototype = Object.create(Phaser.Image.prototype);
