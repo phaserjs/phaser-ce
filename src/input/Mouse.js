@@ -476,6 +476,8 @@ Phaser.Mouse.prototype = {
             this.input.mousePointer.stop(event);
         }
 
+        this.input.interactiveItems.callAll('_pointerOutHandler', this.input.mousePointer);
+
     },
 
     /**
