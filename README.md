@@ -370,10 +370,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Changing a display object's [smoothed](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#smoothed) property now marks the WebGL texture as dirty (#432, #433).
 * TypeScript defintions: Input.pointer to Input.pointers
 * Fixed fleeting incorrect gain setting when adding a WebAudio sound.
+* Fixed sprites not receiving [onInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onInputOver) when the pointer leaves the game canvas (#429).
 
 ### Thanks
 
-@Mertank, @Dreaded-Gnu, @pavle-goloskokovic
+@Mertank, @Dreaded-Gnu, @pavle-goloskokovic, @ankush-badyal, @squaresun
 
 ## Version 2.9.4 - 20th December 2017
 
