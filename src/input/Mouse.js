@@ -115,13 +115,6 @@ Phaser.Mouse = function (game) {
     this.event = null;
 
     /**
-    * An array stores InputHandler objects.
-    * InputHandler.mouseOutsideCanvas of each object will be invoked by onMouseOut.
-    * @property {Phaser.InputHandler[]}
-    */
-    this.canvasOutInputHandlers = [];
-
-    /**
     * @property {function} _onMouseDown - Internal event handler reference.
     * @private
     */
@@ -483,11 +476,7 @@ Phaser.Mouse.prototype = {
             this.input.mousePointer.stop(event);
         }
 
-        // Notice all InputHandlers that mouseout event called
-        for (var i = 0; i < this.canvasOutInputHandlers.length; i++)
-        {
-            this.canvasOutInputHandlers[i].mouseOutCanvas();
-        }
+        this.input.interactiveItems.callAll('_pointerOutHandler', this.input.mousePointer);
 
     },
 
