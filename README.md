@@ -332,12 +332,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### New Features
 
-* Phaser.SoundManager#removeAll destroys all sounds and removes them from the Manager.
-* Phaser.Utils.Debug#sound displays information on the [Sound Manager](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html), including volume, mute, audio mode, and locked status.
-* Phaser.Point#round rounds a point's coordinates.
-* [Phaser.Color](https://photonstorm.github.io/phaser-ce/Phaser.Color.html) constants AQUA, BLACK, BLUE, GRAY, GREEN, ORANGE, RED, VIOLET, WHITE, and YELLOW.
-* Phaser.Utils.Debug#scale displays game/canvas dimensions and [game scale](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html) settings.
-* Phaser.Utils.Debug#loader displays [loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) progress.
 * New [game config](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) arguments:
     - `alignH`, `alignV`
     - `crisp`
@@ -345,18 +339,28 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
     - `failIfMajorPerformanceCaveat`
     - `roundPixels`
     - `scaleH`, `scaleV`, `trimH`, `trimV`
+* New game loop features:
+    - Phaser.Game#dropFrames skips renders when the game loop delta time is spiraling upwards (#314).
+    - Phaser.Game#forceSingleRender can be set to `false` to reduce the render rate to match Phaser.Time#desiredFps (#313).
+    - Phaser.Time#ups tracks updates per second when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time#advancedTiming) is enabled.
+    - Phaser.Time#rps tracks renders per second when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time#advancedTiming) is enabled.
+* [Phaser.Color](https://photonstorm.github.io/phaser-ce/Phaser.Color.html) constants AQUA, BLACK, BLUE, GRAY, GREEN, ORANGE, RED, VIOLET, WHITE, and YELLOW.
+* Phaser.Point#round rounds a point's coordinates.
 * Phaser.SoundManager#onTouchUnlock signal (#434)
-* Phaser.Video#onTouchUnlock signal
+* Phaser.SoundManager#removeAll destroys all sounds and removes them from the Manager.
+* Phaser.Utils.Debug methods:
+    - Debug#loader displays [loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) progress.
+    - Debug#scale displays game/canvas dimensions and [game scale](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html) settings.
+    - Debug#sound displays information on the [Sound Manager](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html), including volume, mute, audio mode, and locked status.
 * Phaser.Video#playWhenUnlocked
-* Phaser.Game#dropFrames skips renders when the game loop delta time is spiraling upwards (#314).
-* Phaser.Game#forceSingleRender can be set to `false` to reduce the render rate to match Phaser.Time#desiredFps (#313).
-* Phaser.Time#ups and Phaser.Time#rps track update and render rates when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time#advancedTiming) is enabled.
-* Phaser now falls back to the Canvas renderer if AUTO is selected and WebGL context creation fails (#402, #420). Phaser.Device#webGL is now a soft check and doesn't create a temporary WebGL context. Phaser.Device#webGLError was removed.
+* Phaser.Video#onTouchUnlock signal
 
 ### Updates
 
+* Phaser now falls back to the Canvas renderer if AUTO is selected and WebGL context creation fails (#402, #420). Phaser.Device#webGL is now a soft check and doesn't create a temporary WebGL context. Phaser.Device#webGLError was removed.
 * [Gamepad](https://photonstorm.github.io/phaser-ce/Phaser.Gamepad.html) input is now enabled while the game is paused (#423).
 * Removed gain smoothing for WebAudio volume changes (#385).
+* Updated ionic example project (#381)
 * Removed these deprecated items:
     - Phaser.ArrayUtils.rotate             → Phaser.ArrayUtils.rotateLeft
     - Phaser.Device.isConsoleOpen
@@ -367,15 +371,14 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
     - PIXI.BaseTexture#updateSourceImage   → Phaser.Component.LoadTexture#loadTexture
     - RevoluteConstraint#motorIsEnabled    → RevoluteConstraint#motorEnabled
     - Shape.RECTANGLE                      → Shape.BOX
-* Updated ionic example project (#381)
 
 ### Bug Fixes
 
 * Fixed a false positive in [TweenManager#isTweening](https://photonstorm.github.io/phaser-ce/Phaser.TweenManager.html#isTweening) (#414).
 * Changing a display object's [smoothed](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#smoothed) property now marks the WebGL texture as dirty (#432, #433).
-* TypeScript defintions: Input.pointer to Input.pointers
-* Fixed fleeting incorrect gain setting when adding a WebAudio sound.
+* Fixed Phaser.Sound having a temporary incorrect gain setting at creation time.
 * Fixed sprites not receiving [onInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onInputOver) when the pointer leaves the game canvas (#429).
+* Fixed some TypeScript definitions.
 
 ### Thanks
 
