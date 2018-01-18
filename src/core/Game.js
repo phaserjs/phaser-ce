@@ -339,6 +339,12 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.lockRender = false;
 
     /**
+    * @property {boolean} pendingDestroy - Destroy the game at the next update.
+    * @default
+    */
+    this.pendingDestroy = false;
+
+    /**
     * @property {boolean} stepping - Enable core loop stepping with Game.enableStep().
     * @default
     * @readonly
@@ -947,6 +953,12 @@ Phaser.Game.prototype = {
     */
     update: function (time) {
 
+        if (this.pendingDestroy)
+        {
+            this.destroy();
+            return;
+        }
+
         this.time.update(time);
 
         if (this._kickstart)
@@ -1191,6 +1203,8 @@ Phaser.Game.prototype = {
     *
     * Then sets all of those local handlers to null, destroys the renderer, removes the canvas from the DOM
     * and resets the PIXI default renderer.
+    *
+    * To destroy the game during an update callback, set {@link #pendingDestroy} instead.
     *
     * @method Phaser.Game#destroy
     */

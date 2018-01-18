@@ -1536,6 +1536,7 @@ declare module Phaser {
         parent: HTMLElement;
         particles: Phaser.Particles;
         paused: boolean;
+        pendingDestroy: boolean;
         pendingStep: boolean;
         physics: Phaser.Physics;
         physicsConfig: any;

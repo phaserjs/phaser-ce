@@ -345,6 +345,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
     - Phaser.Time#ups tracks updates per second when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time#advancedTiming) is enabled.
     - Phaser.Time#rps tracks renders per second when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time#advancedTiming) is enabled.
 * [Phaser.Color](https://photonstorm.github.io/phaser-ce/Phaser.Color.html) constants AQUA, BLACK, BLUE, GRAY, GREEN, ORANGE, RED, VIOLET, WHITE, and YELLOW.
+* Phaser.Game#pendingDestroy marks the game for destruction at the next update. It can be used safely within an update callback.
 * Phaser.Point#round rounds a point's coordinates.
 * Phaser.SoundManager#onTouchUnlock signal (#434)
 * Phaser.SoundManager#removeAll destroys all sounds and removes them from the Manager.
