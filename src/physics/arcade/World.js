@@ -47,6 +47,7 @@ Phaser.Physics.Arcade = function (game) {
 
     /**
     * @property {number} OVERLAP_BIAS - A value added to the delta values during collision checks.
+    * @default
     */
     this.OVERLAP_BIAS = 4;
 
