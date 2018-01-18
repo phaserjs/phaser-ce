@@ -278,7 +278,7 @@ Phaser.SoundManager.prototype = {
 
         if (this.usingWebAudio && device.chrome && device.chromeVersion <= 65)
         {
-            console.info('A "GainNode.gain.value setter smoothing is deprecated" notice in Chrome is normal. <https://github.com/photonstorm/phaser-ce/issues/385>');
+            console.log('A "GainNode.gain.value setter smoothing is deprecated" notice in Chrome is normal. <https://github.com/photonstorm/phaser-ce/issues/385>');
         }
 
     },
