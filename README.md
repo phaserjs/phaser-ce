@@ -362,9 +362,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * [Gamepad](https://photonstorm.github.io/phaser-ce/Phaser.Gamepad.html) input is now enabled while the game is paused (#423).
 * Removed gain smoothing for WebAudio volume changes (#385).
 * Updated ionic example project (#381)
-* Removed these deprecated items:
+* Removed these deprecated items (#403):
     - Phaser.ArrayUtils.rotate             → Phaser.ArrayUtils.rotateLeft
     - Phaser.Device.isConsoleOpen
+    - Phaser.Loader#useXDomainRequest      → See [xhrLoadWithXDR.js](resources/IE9/xhrLoadWithXDR.js)
+    - Phaser.Loader#xhrLoadWithXDR         → See [xhrLoadWithXDR.js](resources/IE9/xhrLoadWithXDR.js)
     - Phaser.Particles#update
     - Phaser.Polygon#points (as a setter)  → Phaser.Polygon#setTo
     - Phaser.Touch#addTouchLockCallback    → Phaser.Input#addTouchLockCallback

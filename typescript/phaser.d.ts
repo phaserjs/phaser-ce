@@ -2677,7 +2677,6 @@ declare module Phaser {
         withSyncPoint(callback: Function, callbackContext?: any): Phaser.Loader;
         xml(key: string, url?: string, overwrite?: boolean): Phaser.Loader;
         xhrLoad(file: any, url: string, type: string, onload: Function, onerror?: Function): void;
-        xhrLoadWithXDR(file: any, url: string, type: string, onload: Function, onerror?: Function): void;
         xmlLoadComplete(file: any, xhr: XMLHttpRequest): void;
 
     }
