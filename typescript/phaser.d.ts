@@ -1473,6 +1473,7 @@ declare module Phaser {
         canvasStyle?: string;
         crisp?: boolean;
         disableVisibilityChange?: boolean;
+        disableStart?: boolean;
         enableDebug?: boolean;
         failIfMajorPerformanceCaveat?: boolean;
         forceSetTimeOut?: boolean;

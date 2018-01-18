@@ -341,6 +341,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * New [game config](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) arguments:
     - `alignH`, `alignV`
     - `crisp`
+    - `disableStart`
     - `failIfMajorPerformanceCaveat`
     - `roundPixels`
     - `scaleH`, `scaleV`, `trimH`, `trimV`

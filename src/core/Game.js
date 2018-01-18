@@ -529,6 +529,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {string}             [GameConfig.canvasStyle]                   - `style` attribute value to assign to the game canvas.
 * @property {boolean}            [GameConfig.crisp=false]                   - Sets the canvas's `image-rendering` property to `pixelated` or `crisp-edges`. See {@link Phaser.Canvas.setImageRenderingCrisp}.
 * @property {boolean}            [GameConfig.disableVisibilityChange=false] - Sets {@link Phaser.Stage#disableVisibilityChange}
+* @property {boolean}            [GameConfig.disableStart=false]            - Prevents the game loop from starting, allowing you to call updates manually. Helpful for automated testing.
 * @property {boolean}            [GameConfig.enableDebug=true]              - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
 * @property {boolean}            [GameConfig.failIfMajorPerformanceCaveat]  - Abort WebGL context creation if performance would be poor. You can use this with renderer AUTO.
 * @property {boolean}            [GameConfig.forceSetTimeout]               - Use {@link https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout setTimeOut} for the game loop even if {@link https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame requestAnimationFrame} is available.
@@ -724,6 +725,11 @@ Phaser.Game.prototype = {
             {
                 window.focus();
             }
+        }
+
+        if (this.config['disableStart'])
+        {
+            return;
         }
 
         if (this.cache.isReady)
