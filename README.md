@@ -340,21 +340,21 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
     - `roundPixels`
     - `scaleH`, `scaleV`, `trimH`, `trimV`
 * New game loop features:
-    - Phaser.Game#dropFrames skips renders when the game loop delta time is spiraling upwards (#314).
-    - Phaser.Game#forceSingleRender can be set to `false` to reduce the render rate to match Phaser.Time#desiredFps (#313).
-    - Phaser.Time#ups tracks updates per second when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time#advancedTiming) is enabled.
-    - Phaser.Time#rps tracks renders per second when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time#advancedTiming) is enabled.
+    - [Phaser.Game#dropFrames](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#dropFrames) skips renders when the game loop delta time is spiraling upwards (#314).
+    - [Phaser.Game#forceSingleRender](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#forceSingleRender) can be set to `false` to reduce the render rate to match Phaser.Time#desiredFps (#313).
+    - [Phaser.Time#ups](https://photonstorm.github.io/phaser-ce/Phaser.Time.html#ups) tracks updates per second when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time.html#advancedTiming) is enabled.
+    - [Phaser.Time#rps](https://photonstorm.github.io/phaser-ce/Phaser.Time.html#rps) tracks renders per second when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time.html#advancedTiming) is enabled.
 * [Phaser.Color](https://photonstorm.github.io/phaser-ce/Phaser.Color.html) constants AQUA, BLACK, BLUE, GRAY, GREEN, ORANGE, RED, VIOLET, WHITE, and YELLOW. You can use these anywhere you use a numeric (hex) color value: [Graphics](https://photonstorm.github.io/phaser-ce/Phaser.Graphics.html), [Sprite#tint](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#tint), [Stage#backgroundColor](https://photonstorm.github.io/phaser-ce/Phaser.Stage.html#backgroundColor).
-* Phaser.Game#pendingDestroy marks the game for destruction at the next update. It can be used safely within an update callback.
-* Phaser.Point#round rounds a point's coordinates.
-* Phaser.SoundManager#onTouchUnlock signal (#434)
-* Phaser.SoundManager#removeAll destroys all sounds and removes them from the Manager.
+* [Phaser.Game#pendingDestroy](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#pendingDestroy) marks the game for destruction at the next update. It can be used safely within an update callback.
+* [Phaser.Point#round](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#round) rounds a point's coordinates.
+* [Phaser.SoundManager#onTouchUnlock](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#onTouchUnlock) signal (#434)
+* [Phaser.SoundManager#removeAll](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#removeAll) destroys all sounds and removes them from the Manager.
 * [Phaser.Utils.Debug](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html) methods:
-    - Debug#loader displays [loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) progress.
-    - Debug#scale displays game/canvas dimensions and [Scale Manager](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html) state.
-    - Debug#sound displays [Sound Manager](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html) state.
-* Phaser.Video#playWhenUnlocked
-* Phaser.Video#onTouchUnlock signal
+    - [Debug#loader](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#loader) displays [loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) progress.
+    - [Debug#scale](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#scale) displays game/canvas dimensions and [Scale Manager](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html) state.
+    - [Debug#sound](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#sound) displays [Sound Manager](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html) state.
+* [Phaser.Video#playWhenUnlocked](https://photonstorm.github.io/phaser-ce/Phaser.Video.html#playWhenUnlocked)
+* [Phaser.Video#onTouchUnlock](https://photonstorm.github.io/phaser-ce/Phaser.Video.html#onTouchUnlock) signal
 
 ### Updates
 
