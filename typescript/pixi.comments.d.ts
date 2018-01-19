@@ -1389,7 +1389,7 @@ declare module PIXI {
         texture: Texture;
 
         /**
-        * The tint applied to the sprite. This is a hex value. A value of 0xFFFFFF will remove any tint effect.
+        * The tint applied to the sprite. This is a hex value. A value of 0xFFFFFF (Phaser.Color.WHITE) will remove any tint effect.
         * Default: 0xFFFFFF
         */
         tint: number;
