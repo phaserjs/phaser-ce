@@ -5548,16 +5548,6 @@ RevoluteConstraint.prototype.disableMotor = function(){
 };
 
 /**
- * Check if the motor is enabled.
- * @method motorIsEnabled
- * @deprecated use property motorEnabled instead.
- * @return {Boolean}
- */
-RevoluteConstraint.prototype.motorIsEnabled = function(){
-    return !!this.motorEnabled;
-};
-
-/**
  * Set the speed of the rotational constraint motor
  * @method setMotorSpeed
  * @param  {Number} speed
@@ -10909,13 +10899,6 @@ Shape.LINE =        16;
  * @property {Number} BOX
  */
 Shape.BOX =   32;
-
-Object.defineProperty(Shape, 'RECTANGLE', {
-    get: function() {
-        console.warn('Shape.RECTANGLE is deprecated, use Shape.BOX instead.');
-        return Shape.BOX;
-    }
-});
 
 /**
  * @static

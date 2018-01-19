@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Global</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2017122012">
+	<link rel="stylesheet" href="styles/site.phaser.css?2018011816">
 </head>
 
 <body>
@@ -283,7 +283,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.4/src/core/Group.js#L3163" title="DisplayObject on line 3163 of src/core/Group.js">src/core/Group.js line 3163</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.10.0/src/core/Group.js#L3163" title="DisplayObject on line 3163 of src/core/Group.js">src/core/Group.js line 3163</a>
     
 
 	
@@ -360,6 +360,82 @@
 
         <tr>
             
+                <td class="name"><code>GameConfig.alignH</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description prop-description last"><p>Sets <a href="Phaser.ScaleManager.html#pageAlignHorizontally">Phaser.ScaleManager#pageAlignHorizontally</a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>GameConfig.alignV</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description prop-description last"><p>Sets <a href="Phaser.ScaleManager.html#pageAlignVertically">Phaser.ScaleManager#pageAlignVertically</a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>GameConfig.antialias</code></td>
             
 
@@ -407,6 +483,9 @@
             <td class="type">
             
                 
+<span class="param-type">number</span>
+|
+
 <span class="param-type">string</span>
 
 
@@ -547,6 +626,44 @@
 
         <tr>
             
+                <td class="name"><code>GameConfig.crisp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description prop-description last"><p>Sets the canvas's <code>image-rendering</code> property to <code>pixelated</code> or <code>crisp-edges</code>. See <a href="Phaser.Canvas.html#.setImageRenderingCrisp">Phaser.Canvas.setImageRenderingCrisp</a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>GameConfig.disableVisibilityChange</code></td>
             
 
@@ -585,6 +702,44 @@
 
         <tr>
             
+                <td class="name"><code>GameConfig.disableStart</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description prop-description last"><p>Prevents the game loop from starting, allowing you to call updates manually. Helpful for automated testing.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>GameConfig.enableDebug</code></td>
             
 
@@ -617,6 +772,42 @@
             
 
             <td class="description prop-description last"><p>Enable <a href="Phaser.Utils.Debug.html">Phaser.Utils.Debug</a>. You can gain a little performance by disabling this in production.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>GameConfig.failIfMajorPerformanceCaveat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description prop-description last"><p>Abort WebGL context creation if performance would be poor. You can use this with renderer AUTO.</p></td>
         </tr>
 
     
@@ -877,8 +1068,6 @@
             
                 <td class="default">
                 
-                    null
-                
                 </td>
             
 
@@ -1003,6 +1192,82 @@
 
         <tr>
             
+                <td class="name"><code>GameConfig.roundPixels</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description prop-description last"><p>Round pixel coordinates for rendering (rather than interpolating). Handy for crisp pixel art and speed on legacy devices.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>GameConfig.scaleH</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description prop-description last"><p>Horizontal scaling factor for USER_SCALE scale mode.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>GameConfig.scaleMode</code></td>
             
 
@@ -1033,6 +1298,44 @@
             
 
             <td class="description prop-description last"><p>The scaling method used by the ScaleManager when not in fullscreen.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>GameConfig.scaleV</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description prop-description last"><p>Vertical scaling factor for USER_SCALE scale mode.</p></td>
         </tr>
 
     
@@ -1101,8 +1404,6 @@
             
                 <td class="default">
                 
-                    null
-                
                 </td>
             
 
@@ -1145,6 +1446,82 @@
             
 
             <td class="description prop-description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>GameConfig.trimH</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description prop-description last"><p>Horizontal trim for USER_SCALE scale mode.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>GameConfig.trimV</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description prop-description last"><p>Vertical trim for USER_SCALE scale mode.</p></td>
         </tr>
 
     
@@ -1225,7 +1602,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.9.4/src/core/Game.js#L502" title="GameConfig on line 502 of src/core/Game.js">src/core/Game.js line 502</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.10.0/src/core/Game.js#L525" title="GameConfig on line 525 of src/core/Game.js">src/core/Game.js line 525</a>
     
 
 	
@@ -1254,9 +1631,9 @@
 
 
 <p class="package-signature">
-  phaser-ce@2.9.4
+  phaser-ce@2.10.0
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.9.4">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.10.0">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -1273,7 +1650,7 @@
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2017-12-20
+		on 2018-01-18
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -1302,7 +1679,7 @@
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2017122012"></script>
+<script defer src="scripts/bundle.js?2018011816"></script>
 
 
 

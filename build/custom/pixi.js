@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.9.4 "2017-12-20" - Built: Wed Dec 20 2017 12:51:50
+* v2.10.0 "2018-01-18" - Built: Thu Jan 18 2018 16:35:43
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -1572,7 +1572,7 @@ PIXI.Sprite = function (texture) {
     this._height = 0;
 
     /**
-     * The tint applied to the sprite. This is a hex value. A value of 0xFFFFFF will remove any tint effect.
+     * The tint applied to the sprite. This is a hex value. A value of 0xFFFFFF (Phaser.Color.WHITE) will remove any tint effect.
      *
      * @property tint
      * @type Number
@@ -3348,7 +3348,7 @@ PIXI._enableMultiTextureToggle = false;
  * @constructor
  * @param game {Phaser.Game} A reference to the Phaser Game instance
  */
-PIXI.WebGLRenderer = function(game) {
+PIXI.WebGLRenderer = function(game, config) {
 
     /**
     * @property {Phaser.Game} game - A reference to the Phaser Game instance.
@@ -3445,6 +3445,7 @@ PIXI.WebGLRenderer = function(game) {
     this._contextOptions = {
         alpha: this.transparent,
         antialias: game.antialias,
+        failIfMajorPerformanceCaveat: config.failIfMajorPerformanceCaveat,
         premultipliedAlpha: this.transparent && this.transparent !== 'notMultiplied',
         stencil: true,
         preserveDrawingBuffer: this.preserveDrawingBuffer
@@ -3530,7 +3531,7 @@ PIXI.WebGLRenderer = function(game) {
     this.renderSession.stencilManager = this.stencilManager;
     this.renderSession.renderer = this;
     this.renderSession.resolution = this.resolution;
-    this.renderSession.roundPixels = false;
+    this.renderSession.roundPixels = config.roundPixels || false;
     this.renderSession.maxTextureAvailableSpace = null; // filled in setTexturePriority()
 
     // time init the context..
@@ -6686,7 +6687,7 @@ PIXI.CanvasTinter.tintWithPerPixel = function(texture, color, canvas)
  * @constructor
  * @param game {Phaser.Game} A reference to the Phaser Game instance
  */
-PIXI.CanvasRenderer = function (game) {
+PIXI.CanvasRenderer = function (game, config) {
 
     /**
     * @property {Phaser.Game} game - A reference to the Phaser Game instance.
@@ -6813,7 +6814,7 @@ PIXI.CanvasRenderer = function (game) {
          * If true Pixi will Math.floor() x/y values when rendering, stopping pixel interpolation.
          * Handy for crisp pixel art and speed on legacy devices.
          */
-        roundPixels: false
+        roundPixels: config.roundPixels || false
     };
 
     this.mapBlendModes();
@@ -7153,18 +7154,6 @@ PIXI.BaseTexture.prototype.destroy = function()
     this.source = null;
 
     this.unloadFromGPU();
-};
-
-/**
- * Changes the source image of the texture
- *
- * @method PIXI.BaseTexture#updateSourceImage
- * @param newSrc {String} the path of the image
- * @deprecated This method is deprecated. Please use Phaser.Sprite.loadTexture instead.
- */
-PIXI.BaseTexture.prototype.updateSourceImage = function(newSrc)
-{
-    console.warn("PIXI.BaseTexture.updateSourceImage is deprecated. Use Phaser.Sprite.loadTexture instead.");
 };
 
 /**
