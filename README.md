@@ -328,7 +328,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.10.0 - 18 January 2018
 
 ### New Features
 
@@ -385,27 +385,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@ankush-badyal, @Dreaded-Gnu, @Mertank, @pavle-goloskokovic, @photonstorm, @samme, @squaresun
-
-## Version 2.9.4 - 20th December 2017
-
-### New Features
-
-* [TweenManager#isTweening](https://photonstorm.github.io/phaser-ce/Phaser.TweenManager.html#isTweening) has a `checkIsRunning` argument (#414).
-* You can now pass `game.stage` as the `parent` parameter in the `game.add` [methods](https://photonstorm.github.io/phaser-ce/Phaser.GameObjectFactory.html).
-* [Arcade#closest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#closest), [Arcade#distanceBetween](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#distanceBetween), and [Arcade#farthest](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.html#farthest) have a `useCenter` argument (#418).
-
-### Updates
-
-* [Phaser.Device](https://photonstorm.github.io/phaser-ce/Phaser.Device.html) tests for WebGL stencil buffer support (#402).
-
-### Bug Fixes
-
-* Fixed a TypeError when a [Text](https://photonstorm.github.io/phaser-ce/Phaser.Text.html) object is created without a `style` argument (#415).
-
-### Thanks
-
-@bananatron, @mblais, @mepsoid, @naglfar, @photonstorm, @samme
+@ankush-badyal, @Dreaded-Gnu, @Mertank, @pavle-goloskokovic, @photonstorm, @qdrj, @samme, @squaresun
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
