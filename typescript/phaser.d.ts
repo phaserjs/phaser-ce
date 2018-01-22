@@ -4673,6 +4673,7 @@ declare module Phaser {
         pausedPosition: number;
         pausedTime: number;
         pendingPlayback: boolean;
+        playOnce: boolean;
         position: number;
         startTime: number;
         stopTime: number;
