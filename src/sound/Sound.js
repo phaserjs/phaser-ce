@@ -425,6 +425,12 @@ Phaser.Sound.prototype = {
         this.currentTime = this.durationMS;
         this.stop();
 
+        if (this.playOnce)
+        {
+            this._markedToDelete = true;
+            this._removeFromSoundManager = true;
+        }
+
         if (this._markedToDelete)
         {
             if (this.externalNode)
@@ -794,12 +800,15 @@ Phaser.Sound.prototype = {
             }
         }
 
-        if (this.playOnce) {
-            if (this.loop) {
+        if (this.playOnce)
+        {
+            if (this.loop)
+            {
                 console.warn('Phaser.Sound.play: audio clip ' + this.name + ' cannot be deleted while looping.');
             }
-            
+
             this._markedToDelete = true;
+            this._removeFromSoundManager = true;
         }
 
         return this;
