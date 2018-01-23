@@ -800,6 +800,7 @@ Phaser.Sound.prototype = {
             }
             
             this._markedToDelete = true;
+            this._removeFromSoundManager = true;
         }
 
         return this;
