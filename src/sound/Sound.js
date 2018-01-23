@@ -144,6 +144,12 @@ Phaser.Sound = function (game, key, volume, loop, connect) {
     this.allowMultiple = false;
 
     /**
+    * @property {boolean} playOnce - Marks the Sound for deletion from SoundManager._sounds after playing once - useful for playing several identical sounds overlapping without flooding the sound channel
+    * @default
+    */
+    this.playOnce = false;
+
+    /**
     * @property {boolean} usingWebAudio - true if this sound is being played with Web Audio.
     * @readonly
     */
@@ -786,6 +792,14 @@ Phaser.Sound.prototype = {
                     this.pendingPlayback = true;
                 }
             }
+        }
+
+        if (this.playOnce) {
+            if (this.loop) {
+                console.warn('Phaser.Sound.play: audio clip ' + this.name + ' cannot be deleted while looping.');
+            }
+            
+            this._markedToDelete = true;
         }
 
         return this;
