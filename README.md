@@ -6,7 +6,7 @@ Phaser is a fast, free, and fun open source HTML5 game framework. It uses a cust
 
 Thousands of developers worldwide use Phaser. From indies and multi-national digital agencies, to schools and Universities. Each creating their own incredible [games](http://phaser.io/games/).
 
-Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](https://github.com/photonstorm/phaser/tree/master/v3) is in active development.
+Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](https://phaser.io/phaser3) is in active development.
 
 The [current Phaser CE release is 2.10.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.10.0).
 
