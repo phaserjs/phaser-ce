@@ -1270,12 +1270,12 @@ Phaser.Physics.Arcade.prototype = {
         // This is done to eliminate the vertical component of the velocity
         var v1 = {
             x: body1.velocity.x * Math.cos(angleCollision) + body1.velocity.y * Math.sin(angleCollision),
-            y: body1.velocity.x * Math.sin(angleCollision) - body1.velocity.y * Math.cos(angleCollision)
+            y: -body1.velocity.x * Math.sin(angleCollision) + body1.velocity.y * Math.cos(angleCollision)
         };
 
         var v2 = {
             x: body2.velocity.x * Math.cos(angleCollision) + body2.velocity.y * Math.sin(angleCollision),
-            y: body2.velocity.x * Math.sin(angleCollision) - body2.velocity.y * Math.cos(angleCollision)
+            y: -body2.velocity.x * Math.sin(angleCollision) + body2.velocity.y * Math.cos(angleCollision)
         };
 
         // We expect the new velocity after impact
