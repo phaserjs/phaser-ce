@@ -334,9 +334,13 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Phaser.Sound#playOnce flags a sound for deletion after it is played once. This is a simple method for avoiding [adding](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#add) new Sound objects for sounds that are intended to just be played once and done.
 
+### Bug Fixes
+
+* Fixes circles stick to each other using Arcade physics (#451).
+
 ### Thanks
 
-@samme, @wtravO
+@samme, @wtravO, @mmacvicar
 
 ## Version 2.10.0 - 18 January 2018
 
