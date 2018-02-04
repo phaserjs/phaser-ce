@@ -17,7 +17,7 @@
 * For example a Sprite has a `game` property, allowing you to talk to the various parts
 * of Phaser directly, without having to look after your own references.
 *
-* In it's most simplest form, a Phaser game can be created by providing the arguments
+* In its most simplest form, a Phaser game can be created by providing the arguments
 * to the constructor:
 *
 * ```javascript
