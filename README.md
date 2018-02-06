@@ -337,10 +337,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Bug Fixes
 
 * Fixes circles stick to each other using Arcade physics (#451).
+* Fixes TS definition for bitmapText in GameObjectCreator (#460).
 
 ### Thanks
 
-@samme, @wtravO, @mmacvicar
+@samme, @wtravO, @mmacvicar, @netdream
 
 ## Version 2.10.0 - 18 January 2018
 
