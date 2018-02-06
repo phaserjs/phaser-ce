@@ -215,24 +215,21 @@ Phaser.SoundManager.prototype = {
         }
         else
         {
-            if (!!window['AudioContext'])
+            var AudioContext = window.AudioContext || window.webkitAudioContext;
+
+            if (AudioContext)
             {
-                try {
-                    this.context = new window['AudioContext']();
-                } catch (error) {
-                    this.context = null;
-                    this.usingWebAudio = false;
-                    this.touchLocked = false;
+                try
+                {
+                    this.context = new AudioContext();
                 }
-            }
-            else if (!!window['webkitAudioContext'])
-            {
-                try {
-                    this.context = new window['webkitAudioContext']();
-                } catch (error) {
+                catch (error)
+                {
                     this.context = null;
                     this.usingWebAudio = false;
                     this.touchLocked = false;
+
+                    console.warn(error);
                 }
             }
         }
@@ -240,7 +237,7 @@ Phaser.SoundManager.prototype = {
         if (this.context === null)
         {
             //  No Web Audio support - how about legacy Audio?
-            if (window['Audio'] === undefined)
+            if (window.Audio === undefined)
             {
                 this.noAudio = true;
                 return;
@@ -265,6 +262,13 @@ Phaser.SoundManager.prototype = {
 
             this.masterGain.gain.value = 1;
             this.masterGain.connect(this.context.destination);
+
+            // A suspended context is actually normal (momentarily) in Firefox.
+            // In that case the input handler will do nothing, which is fine.
+            if (this.context.state === 'suspended')
+            {
+                this.game.input.onUp.addOnce(this.resumeWebAudio, this);
+            }
         }
 
         if (!this.noAudio)
@@ -317,6 +321,22 @@ Phaser.SoundManager.prototype = {
     },
 
     /**
+    * Try to resume a suspended WebAudio context.
+    *
+    * If the context isn't suspended, or if WebAudio isn't in use, nothing is done.
+    *
+    * @return {?Promise} - A Promise, if resume was called. See {@link https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/resume}.
+    */
+    resumeWebAudio: function () {
+
+        if (this.usingWebAudio && this.context.state === 'suspended')
+        {
+            return this.context.resume();
+        }
+
+    },
+
+    /**
     * Enables the audio, usually after the first touch.
     *
     * @method Phaser.SoundManager#unlock
@@ -353,10 +373,8 @@ Phaser.SoundManager.prototype = {
                 this._unlockSource.start(0);
             }
 
-            //This fixes locked audio in Chrome > 55 cross origin iframes
-            if (this._unlockSource.context.state === 'suspended') {
-                this._unlockSource.context.resume();
-            }
+            // This fixes locked audio in Chrome > 55 cross origin iframes?
+            this.resumeWebAudio();
         }
 
         //  We can remove the event because we've done what we needed (started the unlock sound playing)
@@ -533,6 +551,7 @@ Phaser.SoundManager.prototype = {
         if (this.touchLocked && this._unlockSource !== null && (this._unlockSource.playbackState === this._unlockSource.PLAYING_STATE || this._unlockSource.playbackState === this._unlockSource.FINISHED_STATE))
         {
             this.setTouchUnlock();
+            this.resumeWebAudio();
         }
 
         for (var i = 0; i < this._sounds.length; i++)
