@@ -334,15 +334,22 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Phaser.Sound#playOnce flags a sound for deletion after it is played once. This is a simple method for avoiding [adding](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#add) new Sound objects for sounds that are intended to just be played once and done.
 
+### Updates
+
+* Clarified `margin` and `spacing` arguments in Phaser.Loader#spritesheet (#448).
+
 ### Bug Fixes
 
-* Fixes circles stick to each other using Arcade physics (#451).
-* Fixes spelling error in API documentation.
-* Fixes TS definition for bitmapText in GameObjectCreator (#460).
+* Fixed audio sprites failing to loop after pause and resume (#323).
+* Fixed sounds not looping when using audio tags (#446).
+* Fixed circular Arcade bodies sticking to each other during some collisions (#451).
+* Fixed a sprite with `input.enabled=false` triggering its onInputOut signal when the mouse leaves the game canvas (#454).
+* Fixed spelling error in API documentation (#458).
+* Fixed some TypeScript definitions (#442, #460).
 
 ### Thanks
 
-@samme, @wtravO, @mmacvicar, @netdream
+@dhashvir, @Lucas-C, @mmacvicar, @Nek-, @netdreamer, @samme, @squaresun, @Tembac, @wtravO
 
 ## Version 2.10.0 - 18 January 2018
 
