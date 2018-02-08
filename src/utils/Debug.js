@@ -8,7 +8,7 @@
 * A collection of methods for displaying debug information about game objects.
 *
 * If your game is running in Canvas mode, then you should invoke all of the Debug methods from
-* your games `render` function. This is because they are drawn directly onto the game canvas
+* your game's `render` function. This is because they are drawn directly onto the game canvas
 * itself, so if you call any debug methods outside of `render` they are likely to be overwritten
 * by the game itself.
 *
