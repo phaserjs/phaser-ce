@@ -337,6 +337,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Updates
 
 * Clarified `margin` and `spacing` arguments in Phaser.Loader#spritesheet (#448).
+* Debug#text now uses Debug#font as its default.
 
 ### Bug Fixes
 

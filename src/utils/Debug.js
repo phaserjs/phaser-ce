@@ -800,7 +800,7 @@ Phaser.Utils.Debug.prototype = {
     text: function (text, x, y, color, font) {
 
         color = color || 'rgb(255,255,255)';
-        font = font || '16px Courier';
+        font = font || this.font;
 
         this.start();
         this.context.font = font;
