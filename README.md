@@ -337,6 +337,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Bug Fixes
 
 * Fixes circles stick to each other using Arcade physics (#451).
+* Fixes spelling error in API documentation.
 * Fixes TS definition for bitmapText in GameObjectCreator (#460).
 
 ### Thanks
