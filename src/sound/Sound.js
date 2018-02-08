@@ -879,14 +879,16 @@ Phaser.Sound.prototype = {
                     this._sound.connect(this.gainNode);
                 }
 
-                if (this.loop)
+                if (this.currentMarker === '')
                 {
-                    this._sound.loop = true;
-                }
-
-                if (!this.loop && this.currentMarker === '')
-                {
-                    this._sound.onended = this.onEndedHandler.bind(this);
+                    if (this.loop)
+                    {
+                        this._sound.loop = true;
+                    }
+                    else
+                    {
+                        this._sound.onended = this.onEndedHandler.bind(this);
+                    }
                 }
 
                 var duration = this.duration - (this.pausedPosition / 1000);
@@ -907,7 +909,14 @@ Phaser.Sound.prototype = {
                         }
                         else
                         {
-                            this._sound.start(0, p);
+                            if (this.currentMarker === '')
+                            {
+                                this._sound.start(0, p);
+                            }
+                            else
+                            {
+                                this._sound.start(0, p, duration);
+                            }
                         }
                     }
                     else
