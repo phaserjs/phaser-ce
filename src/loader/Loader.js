@@ -1103,14 +1103,32 @@ Phaser.Loader.prototype = {
     * and no URL is given then the Loader will set the URL to be "alien.png". It will always add `.png` as the extension.
     * If you do not desire this action then provide a URL.
     *
+    * An image with four sprites, `margin = 1`, and `spacing = 1` looks like this:
+    *
+    * ```
+    * .......
+    * .     .
+    * . # # .
+    * .     .
+    * . # # .
+    * .     .
+    * .......
+    *
+    * .  margin
+    *    spacing
+    * #  sprite frame
+    * ```
+    *
+    * The first sprite frame is found at (margin + spacing) px from the top-left of the image.
+    *
     * @method Phaser.Loader#spritesheet
     * @param {string} key - Unique asset key of the sheet file.
     * @param {string} url - URL of the sprite sheet file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png".
     * @param {number} frameWidth - Width in pixels of a single frame in the sprite sheet.
     * @param {number} frameHeight - Height in pixels of a single frame in the sprite sheet.
     * @param {number} [frameMax=-1] - How many frames in this sprite sheet. If not specified it will divide the whole image into frames.
-    * @param {number} [margin=0] - If the frames have been drawn with a margin, specify the amount here.
-    * @param {number} [spacing=0] - If the frames have been drawn with spacing between them, specify the amount here.
+    * @param {number} [margin=0] - Width of any empty space at the image edges, in addition to any `spacing`.
+    * @param {number} [spacing=0] - Width of any empty space between the frames, and between the frames and the `margin`. If there is space **only** between the frames, and nowhere else, use `margin` equal to `-spacing`.
     * @param {number} [skipFrames=0] - Skip a number of frames. Useful when there are multiple sprite sheets in one image.
     * @return {Phaser.Loader} This Loader instance.
     */

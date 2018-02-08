@@ -397,6 +397,7 @@ Phaser.Device = function () {
     /**
     * @property {boolean} webAudio - Is the WebAudio API available?
     * @default
+    * @see http://mohayonao.github.io/web-audio-test-api/
     */
     this.webAudio = false;
 
