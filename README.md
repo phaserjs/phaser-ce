@@ -329,6 +329,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 # Change Log
 
 ## Unreleased
+* Fix ScaleManager reference to the parent element. The canvas now correctly scales inside a container div if using relative values for width/height on Phaser.Game constructor.
 
 ### New Features
 

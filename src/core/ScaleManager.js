@@ -1433,7 +1433,7 @@ Phaser.ScaleManager.prototype = {
             }
             else if (scaleMode === Phaser.ScaleManager.SHOW_ALL)
             {
-                if (!this.isFullScreen && this.boundingParent &&
+                if (!this.isFullScreen && this.parentNode &&
                     this.compatibility.canExpandParent)
                 {
                     // Try to expand parent out, but choosing maximizing dimensions.
@@ -1495,7 +1495,7 @@ Phaser.ScaleManager.prototype = {
     getParentBounds: function (target) {
 
         var bounds = target || new Phaser.Rectangle();
-        var parentNode = this.boundingParent;
+        var parentNode = this.parentNode;
         var visualBounds = this.dom.visualBounds;
         var layoutBounds = this.dom.layoutBounds;
 
