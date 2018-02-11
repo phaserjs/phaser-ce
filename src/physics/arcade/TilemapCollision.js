@@ -7,6 +7,8 @@
 /**
 * The Arcade Physics Tile map collision methods.
 *
+* These are mixed into {@link Phaser.Physics.Arcade}.
+*
 * @class Phaser.Physics.Arcade.TilemapCollision
 * @constructor
 */
