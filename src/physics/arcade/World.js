@@ -46,7 +46,7 @@ Phaser.Physics.Arcade = function (game) {
     this.maxLevels = 4;
 
     /**
-    * @property {number} OVERLAP_BIAS - A value added to the delta values during collision checks.
+    * @property {number} OVERLAP_BIAS - A value added to the delta values during collision checks. Increase it to prevent sprite tunneling.
     * @default
     */
     this.OVERLAP_BIAS = 4;
