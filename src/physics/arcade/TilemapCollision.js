@@ -15,7 +15,7 @@ Phaser.Physics.Arcade.TilemapCollision = function () {};
 Phaser.Physics.Arcade.TilemapCollision.prototype = {
 
     /**
-    * @property {number} TILE_BIAS - A value added to the delta values during collision with tiles. Adjust this if you get tunneling.
+    * @property {number} TILE_BIAS - A value added to the delta values during collision with tiles. The best value probably depends on your tile size. Increase it if sprites are tunneling; decrease it if sprites are flipping across tile edges.
     */
     TILE_BIAS: 16,
 
@@ -128,7 +128,7 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
         {
             return false;
         }
-        
+
         var tilemapLayerOffsetX = tilemapLayer.getTileOffsetX();
         var tilemapLayerOffsetY = tilemapLayer.getTileOffsetY();
 
