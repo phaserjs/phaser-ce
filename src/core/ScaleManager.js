@@ -872,7 +872,7 @@ Phaser.ScaleManager.prototype = {
             this.parentNode = target;
             this.parentIsWindow = false;
 
-            this.getParentBounds(this._parentBounds);
+            this.getParentBounds(this._parentBounds, this.parentNode);
 
             rect.width = this._parentBounds.width;
             rect.height = this._parentBounds.height;
@@ -1490,12 +1490,13 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#getParentBounds
     * @protected
     * @param {Phaser.Rectangle} [target=(new Rectangle)] - The rectangle to update; a new one is created as needed.
+    * @param {HTMLElement} [parent] - Ignore {@link #boundingParent} and use this node instead.
     * @return {Phaser.Rectangle} The established parent bounds.
     */
-    getParentBounds: function (target) {
+    getParentBounds: function (target, parent) {
 
         var bounds = target || new Phaser.Rectangle();
-        var parentNode = this.boundingParent;
+        var parentNode = parent || this.boundingParent;
         var visualBounds = this.dom.visualBounds;
         var layoutBounds = this.dom.layoutBounds;
 

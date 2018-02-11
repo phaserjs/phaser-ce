@@ -4946,7 +4946,7 @@ declare module Phaser {
         createFullScreenTarget(): HTMLDivElement;
         destroy(): void;
         forceOrientation(forceLandscape: boolean, forcePortrait?: boolean): void;
-        getParentBounds(target?: Rectangle): Rectangle;
+        getParentBounds(target?: Rectangle, parent?: HTMLElement): Rectangle;
         parseConfig(config: any): void;
         preUpdate(): void;
         pauseUpdate(): void;
