@@ -3109,11 +3109,11 @@ declare module Phaser {
             static RIGHT_LEFT: number;
             static TOP_BOTTOM: number;
             static BOTTOM_TOP: number;
-            static OVERLAP_BIAS: number;
-            static TILE_BIAS: number;
 
             constructor(game: Phaser.Game);
 
+            OVERLAP_BIAS: number;
+            TILE_BIAS: number;
             bounds: Phaser.Rectangle;
             checkCollision: { up?: boolean; down?: boolean; left?: boolean; right?: boolean; };
             forceX: boolean;
