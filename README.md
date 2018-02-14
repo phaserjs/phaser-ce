@@ -346,7 +346,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Fixed circular Arcade bodies sticking to each other during some collisions (#451).
 * Fixed a sprite with `input.enabled=false` triggering its onInputOut signal when the mouse leaves the game canvas (#454).
 * Fixed spelling error in API documentation (#458).
-* Fixed some TypeScript definitions (#442, #447, #460, #469).
+* Fixed some TypeScript definitions (#442, #447, #460, #463, #469).
 * The canvas now correctly scales inside a container div if using relative values for `width`/`height` in the [Phaser.Game](https://photonstorm.github.io/phaser-ce/Phaser.Game.html) constructor (#367). Make sure you give the container a [height](https://developer.mozilla.org/en-US/docs/Web/CSS/height).
 
 ### Thanks
