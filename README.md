@@ -1,17 +1,17 @@
 # Phaser CE (Community Edition)
 
-<img src="http://phaser.io/images/github/arcade-cab.png" align="right" width="400" height="617">
+<img src="https://phaser.io/images/github/arcade-cab.png" align="right" width="400" height="617">
 
 Phaser is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development. Years after release, Phaser is still one of the [most starred game frameworks](https://github.com/showcases/javascript-game-engines) on GitHub.
 
-Thousands of developers worldwide use Phaser. From indies and multi-national digital agencies, to schools and Universities. Each creating their own incredible [games](http://phaser.io/games/).
+Thousands of developers worldwide use Phaser. From indies and multi-national digital agencies, to schools and Universities. Each creating their own incredible [games](http://phaser.io/games).
 
-Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](https://phaser.io/phaser3) is in active development.
+Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](http://phaser.io/phaser3) is in active development.
 
 The [current Phaser CE release is 2.10.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.10.0).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
-- **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](http://stackoverflow.com/questions/tagged/phaser-framework)
+- **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
 - **Code:** 700+ [Examples](http://phaser.io/examples) ([source][examples]), new [Phaser CE examples](https://codepen.io/collection/AMbZgY/)
 - **Read:** Weekly [Phaser World](#newsletter) Newsletter
 - **Chat:** [Slack](http://phaser.io/community/slack) and [Discord](http://phaser.io/community/discord)
@@ -68,7 +68,7 @@ Cheers,
 
 Rich - [@photonstorm](https://twitter.com/photonstorm)
 
-![boogie](http://www.phaser.io/images/spacedancer.gif)
+![boogie](https://www.phaser.io/images/spacedancer.gif)
 
 <a name="games"></a>
 
@@ -109,7 +109,7 @@ Phaser is [hosted on Github][phaser]. There are a number of ways to download it:
 
 ### Bower / NPM
 
-Install via [bower](http://bower.io):
+Install via [bower](https://bower.io):
 
 ```bash
 bower install phaser-ce
@@ -159,7 +159,7 @@ Browse [Phaser Examples](http://phaser.io/examples) or clone [phaser-examples-mi
 
 ### Web Templates
 
-If you'd like to try coding in Phaser right now, with nothing more than your web browser, open up the [Phaser CE Game Template](http://codepen.io/pen?template=vyKJvw). There are [CoffeeScript](http://codepen.io/pen?template=OWxELE) and [ES6](http://codepen.io/pen?template=pRGPKG) variants too.
+If you'd like to try coding in Phaser right now, with nothing more than your web browser, open up the [Phaser CE Game Template](https://codepen.io/pen?template=vyKJvw). There are [CoffeeScript](https://codepen.io/pen?template=OWxELE) and [ES6](https://codepen.io/pen?template=pRGPKG) variants too.
 
 ### http-server
 
@@ -245,7 +245,7 @@ As well as the [book](http://phaser.io/interphase) you get all the source code, 
 
 ### Game Mechanic Explorer
 
-The [Game Mechanic Explorer](http://gamemechanicexplorer.com) is a great interactive way to learn how to develop specific game mechanics in Phaser. Well worth exploring once you've got your dev environment set-up.
+The [Game Mechanic Explorer](https://gamemechanicexplorer.com) is a great interactive way to learn how to develop specific game mechanics in Phaser. Well worth exploring once you've got your dev environment set-up.
 
 ### Mighty Editor - Visual Game Editor
 
@@ -271,7 +271,7 @@ See the [Creating a Custom Phaser Build](http://phaser.io/tutorials/creating-cus
 
 ### Building from source
 
-Should you wish to build Phaser from source you can take advantage of the provided [Grunt](http://gruntjs.com/) scripts. Ensure you have the required packages by running `npm install` first.
+Should you wish to build Phaser from source you can take advantage of the provided [Grunt](https://gruntjs.com/) scripts. Ensure you have the required packages by running `npm install` first.
 
 Run `grunt` to perform a default build to the `dist` folder.
 
@@ -416,13 +416,13 @@ For changes in previous releases please see the extensive [Change Log](https://g
 
 # License
 
-Phaser is released under the [MIT License](http://opensource.org/licenses/MIT).
+Phaser is released under the [MIT License](https://opensource.org/licenses/MIT).
 
 # Created by
 
 Phaser is a [Photon Storm](http://www.photonstorm.com) production.
 
-![storm](http://www.phaser.io/images/github/photonstorm-x2.png)
+![storm](https://www.phaser.io/images/github/photonstorm-x2.png)
 
 Created by [Richard Davey](mailto:rich@photonstorm.com). Powered by coffee, anime, pixels and love.
 
