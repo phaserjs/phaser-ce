@@ -2033,6 +2033,8 @@ declare module Phaser {
         renderOrderID: number;
         right: number;
         scale: Phaser.Point;
+        scaleMax: Phaser.Point;
+        scaleMin: Phaser.Point;
         smoothed: boolean;
         top: number;
         type: number;
@@ -2058,6 +2060,7 @@ declare module Phaser {
         revive(health?: number): Phaser.Image;
         sendToBack(): Phaser.Image;
         setFrame(frame: Phaser.Frame): void;
+        setScaleMinMax(minX?: number, minY?: number, maxX?: number, maxY?: number): void; // minX: null | number
         update(): void;
         updateCrop(): void;
 
@@ -4537,7 +4540,7 @@ declare module Phaser {
         revive(health?: number): Phaser.Rope;
         sendToBack(): Phaser.Rope;
         setFrame(frame: Phaser.Frame): void;
-        setScaleMinMax(minX?: number, minY?: number, maxX?: number, maxY?: number): void;
+        setScaleMinMax(minX?: number, minY?: number, maxX?: number, maxY?: number): void; // minX: null | number
         updateCrop(): void;
         update(): void;
 
@@ -4828,7 +4831,7 @@ declare module Phaser {
         revive(health?: number): Phaser.Sprite;
         sendToBack(): Phaser.Sprite;
         setFrame(frame: Phaser.Frame): void;
-        setScaleMinMax(minX?: number, minY?: number, maxX?: number, maxY?: number): void;
+        setScaleMinMax(minX?: number, minY?: number, maxX?: number, maxY?: number): void; // minX: null | number
         update(): void;
         updateCrop(): void;
 
