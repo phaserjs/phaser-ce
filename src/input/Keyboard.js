@@ -33,7 +33,7 @@ Phaser.Keyboard = function (game) {
     this.enabled = true;
 
     /**
-    * @property {object} event - The most recent DOM event from keydown or keyup. This is updated every time a new key is pressed or released.
+    * @property {KeyboardEvent} event - The most recent DOM event from keydown or keyup. This is updated every time a new key is pressed or released.
     */
     this.event = null;
 
@@ -48,17 +48,17 @@ Phaser.Keyboard = function (game) {
     this.callbackContext = this;
 
     /**
-    * @property {function} onDownCallback - This callback is invoked every time a key is pressed down, including key repeats when a key is held down.
+    * @property {function} onDownCallback - This callback is invoked every time a key is pressed down, including key repeats when a key is held down. One argument is passed: {KeyboardEvent} event.
     */
     this.onDownCallback = null;
 
     /**
-    * @property {function} onPressCallback - This callback is invoked every time a DOM onkeypress event is raised, which is only for printable keys.
+    * @property {function} onPressCallback - This callback is invoked every time a DOM onkeypress event is raised, which is only for printable keys. Two arguments are passed: {string} `String.fromCharCode(event.charCode)` and {KeyboardEvent} event.
     */
     this.onPressCallback = null;
 
     /**
-    * @property {function} onUpCallback - This callback is invoked every time a key is released.
+    * @property {function} onUpCallback - This callback is invoked every time a key is released. One argument is passed: {KeyboardEvent} event.
     */
     this.onUpCallback = null;
 
