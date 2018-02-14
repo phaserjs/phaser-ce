@@ -2739,7 +2739,7 @@ declare module Phaser {
         static distanceSq(x1: number, y1: number, x2: number, y2: number): number;
         static distancePow(xy: number, y1: number, x2: number, y2: number, pow?: number): number;
         static factorial(value: number): number;
-        static floorTo(value: number, place: number, base: number): number;
+        static floorTo(value: number, place?: number, base?: number): number;
         static fuzzyCeil(val: number, epsilon?: number): number;
         static fuzzyEqual(a: number, b: number, epsilon?: number): boolean;
         static fuzzyLessThan(a: number, b: number, epsilon?: number): boolean;
