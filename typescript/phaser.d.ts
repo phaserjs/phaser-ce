@@ -377,8 +377,8 @@ declare module Phaser {
         moveH(distance: number, wrap?: boolean): Phaser.BitmapData;
         moveV(distance: number, wrap?: boolean): Phaser.BitmapData;
         polygon(points: any[], fillStyle?: string | CanvasGradient | CanvasPattern, lineWidth?: number, strokeStyle?: string | CanvasGradient | CanvasPattern): Phaser.BitmapData;
-        processPixel(callback: (color: number, x: number, y: number) => void, callbackContext: any, x?: number, y?: Number, width?: number, height?: number): Phaser.BitmapData;
-        processPixelRGB(callback: (color: ColorComponents, x: number, y: number) => void, callbackContext: any, x?: number, y?: Number, width?: number, height?: number): Phaser.BitmapData;
+        processPixel(callback: (color: number, x: number, y: number) => void, callbackContext?: any, x?: number, y?: Number, width?: number, height?: number): Phaser.BitmapData;
+        processPixelRGB(callback: (color: ColorComponents, x: number, y: number) => void, callbackContext?: any, x?: number, y?: Number, width?: number, height?: number): Phaser.BitmapData;
         rect(x: number, y: number, width: number, height: number, fillStyle?: string): Phaser.BitmapData;
         render(): Phaser.BitmapData;
         replaceRGB(r1: number, g1: number, b1: number, a1: number, r2: number, g2: number, b2: number, a2: number, region?: Phaser.Rectangle): Phaser.BitmapData;
@@ -1930,7 +1930,7 @@ declare module Phaser {
         customSort(sortHandler: Function, context?: any): void;
         destroy(destroyChildren?: boolean, soft?: boolean): void;
         divideAll(property: string, amount: number, checkAlive?: boolean, checkVisible?: boolean): void;
-        forEach(callback: Function, callbackContext: any, checkExists?: boolean, ...args: any[]): void;
+        forEach(callback: Function, callbackContext?: any, checkExists?: boolean, ...args: any[]): void;
         forEachAlive(callback: Function, callbackContext?: any, ...args: any[]): void;
         forEachDead(callback: Function, callbackContext?: any, ...args: any[]): void;
         forEachExists(callback: Function, callbackContext?: any): void;
@@ -3642,8 +3642,8 @@ declare module Phaser {
                 clearCollision(clearGroup?: boolean, cleanMask?: boolean, shape?: p2.Shape): void;
                 clearShapes(): void;
                 collides(group: any, callback?: Function, callbackContext?: any, shape?: p2.Shape): void;
-                createBodyCallback(object: any, callback: Function, callbackContext: any): void;
-                createGroupCallback(group: Phaser.Physics.P2.CollisionGroup, callback: Function, callbackContext: any): void;
+                createBodyCallback(object: any, callback: Function, callbackContext?: any): void;
+                createGroupCallback(group: Phaser.Physics.P2.CollisionGroup, callback: Function, callbackContext?: any): void;
                 destroy(): void;
                 getCollisionMask(): number;
                 getVelocityAtPoint(result: number[], relativePoint: number[]): number[];
@@ -4220,7 +4220,7 @@ declare module Phaser {
         x: number;
         y: number;
 
-        addClickTrampoline(name: string, callback: Function, callbackContext: any, ...callbackArgs: any[]): void;
+        addClickTrampoline(name: string, callback: Function, callbackContext?: any, ...callbackArgs: any[]): void;
         justPressed(duration?: number): boolean;
         justReleased(duration?: number): boolean;
         leave(event: any): void;
@@ -4733,7 +4733,7 @@ declare module Phaser {
         removeAll(): void;
         removeByKey(key: string): number;
         resumeAll(): void;
-        setDecodedCallback(files: string[] | Phaser.Sound[], callback: Function, callbackContext: any): void;
+        setDecodedCallback(files: string[] | Phaser.Sound[], callback: Function, callbackContext?: any): void;
         setTouchLock(): void;
         stopAll(): void;
         unlock(): boolean;
@@ -5318,8 +5318,8 @@ declare module Phaser {
         setCollisionByIndex(index: number, collides?: boolean, layer?: number, recalculate?: boolean): void;
         setLayer(layer: any): void;
         setPreventRecalculate(value: boolean): void;
-        setTileIndexCallback(indexes: any, callback: Function, callbackContext: any, layer?: any): void;
-        setTileLocationCallback(x: number, y: number, width: number, height: number, callback: Function, callbackContext: any, layer?: any): void;
+        setTileIndexCallback(indexes: any, callback: Function, callbackContext?: any, layer?: any): void;
+        setTileLocationCallback(x: number, y: number, width: number, height: number, callback: Function, callbackContext?: any, layer?: any): void;
         setTileSize(tileWidth: number, tileHeight: number): void;
         shuffle(x: number, y: number, width: number, height: number, layer: any): void;
         swap(tileA: number, tileB: number, x: number, y: number, width: number, height: number, layer?: any): void;
@@ -5603,7 +5603,7 @@ declare module Phaser {
 
     class TimerEvent {
 
-        constructor(timer: Phaser.Timer, delay: number, tick: number, repeatCount: number, loop: boolean, callback: Function, callbackContext: any, ...args: any[]);
+        constructor(timer: Phaser.Timer, delay: number, tick: number, repeatCount: number, loop: boolean, callback: Function, callbackContext?: any, ...args: any[]);
 
         args: any[];
         callback: Function;
@@ -5901,7 +5901,7 @@ declare module Phaser {
         fireAtXY(x: number, y: number): Phaser.Bullet;
         fireMany(positions: any[], from?: any): Phaser.Bullet[];
         fireOffset(offsetX?: number, offsetY?: number): Phaser.Bullet;
-        forEach(callback: any, callbackContext: any): Phaser.Weapon;
+        forEach(callback: any, callbackContext?: any): Phaser.Weapon;
         killAll(): Phaser.Weapon;
         pauseAll(): Phaser.Weapon;
         resetShots(newLimit?: number): Phaser.Weapon;
