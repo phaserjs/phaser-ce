@@ -334,6 +334,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Phaser.Sound#playOnce flags a sound for deletion after it is played once. This is a simple method for avoiding [adding](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#add) new Sound objects for sounds that are intended to just be played once and done.
 * A final State#loadUpdate call is made right before the loader is reset, when Loader#progress is 100, instead of after, when Loader#progress is 0 (#468).
+* Loader#onBeforeLoadComplete is a signal dispatched right before the Loader is reset (unlike Loader#onLoadComplete).
 
 ### Updates
 

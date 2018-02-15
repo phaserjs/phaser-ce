@@ -140,7 +140,16 @@ Phaser.Loader = function (game) {
     this.onLoadStart = new Phaser.Signal();
 
     /**
-    * This event is dispatched when the final file in the load queue has either loaded or failed.
+    * This event is dispatched when the final file in the load queue has either loaded or failed,
+    * before {@link #onLoadComplete} and before the loader is {@link #reset}.
+    *
+    * @property {Phaser.Signal} onBeforeLoadComplete
+    */
+    this.onBeforeLoadComplete = new Phaser.Signal();
+
+    /**
+    * This event is dispatched when the final file in the load queue has either loaded or failed,
+    * after the loader is {@link #reset}.
     *
     * @property {Phaser.Signal} onLoadComplete
     */
@@ -2081,6 +2090,7 @@ Phaser.Loader.prototype = {
         }
 
         this.game.state.loadUpdate();
+        this.onBeforeLoadComplete.dispatch();
 
         this.reset();
 

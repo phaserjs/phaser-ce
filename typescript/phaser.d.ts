@@ -2610,6 +2610,7 @@ declare module Phaser {
         headers: any;
         isLoading: boolean;
         maxParallelDownloads: number;
+        onBeforeLoadComplete: Phaser.Signal;
         onFileStart: Phaser.Signal;
         onFileComplete: Phaser.Signal;
         onFileError: Phaser.Signal;
