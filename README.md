@@ -351,6 +351,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Fixed some TypeScript definitions (#442, #447, #455, #460, #462, #463, #469).
 * The canvas now correctly scales inside a container div if using relative values for `width`/`height` in the [Phaser.Game](https://photonstorm.github.io/phaser-ce/Phaser.Game.html) constructor (#367). Make sure you give the container a [height](https://developer.mozilla.org/en-US/docs/Web/CSS/height).
 * Fixed State#loadUpdate being called once when no assets have been loaded (#468).
+* Fixed Debug#spriteInfo failing to show `sprite.name` as promised (#471).
 
 ### Thanks
 
