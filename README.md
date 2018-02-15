@@ -333,6 +333,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### New Features
 
 * Phaser.Sound#playOnce flags a sound for deletion after it is played once. This is a simple method for avoiding [adding](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#add) new Sound objects for sounds that are intended to just be played once and done.
+* A final State#loadUpdate call is made right before the loader is reset, when Loader#progress is 100, instead of after, when Loader#progress is 0 (#468).
 
 ### Updates
 
@@ -348,10 +349,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Fixed spelling error in API documentation (#458).
 * Fixed some TypeScript definitions (#442, #447, #455, #460, #462, #463, #469).
 * The canvas now correctly scales inside a container div if using relative values for `width`/`height` in the [Phaser.Game](https://photonstorm.github.io/phaser-ce/Phaser.Game.html) constructor (#367). Make sure you give the container a [height](https://developer.mozilla.org/en-US/docs/Web/CSS/height).
+* Fixed State#loadUpdate being called once when no assets have been loaded (#468).
 
 ### Thanks
 
-@bseiller, @dhashvir, @Lucas-C, @mmacvicar, @Nek-, @netdreamer, @pantoninho, @samme, @seiyria, @squaresun, @Tembac, @wtravO
+@bseiller, @dhashvir, @Lucas-C, @mmacvicar, @Nek-, @netdreamer, @omretterry, @pantoninho, @samme, @seiyria, @squaresun, @Tembac, @wtravO
 
 ## Version 2.10.0 - 18 January 2018
 

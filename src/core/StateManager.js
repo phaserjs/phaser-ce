@@ -595,14 +595,9 @@ Phaser.StateManager.prototype = {
     /**
     * @method Phaser.StateManager#loadComplete
     * @protected
+    * @see Phaser.StateManager#preUpdate
     */
     loadComplete: function () {
-
-        //  Make sure to do load-update one last time before state is set to _created
-        if (this._created === false && this.onLoadUpdateCallback)
-        {
-            this.onLoadUpdateCallback.call(this.callbackContext, this.game);
-        }
 
         if (this._created === false && this.onCreateCallback)
         {
@@ -612,6 +607,20 @@ Phaser.StateManager.prototype = {
         else
         {
             this._created = true;
+        }
+
+    },
+
+    /**
+    * @method Phaser.StateManager#loadUpdate
+    * @protected
+    * @see Phaser.Loader#finishedLoading
+    */
+    loadUpdate: function () {
+
+        if (this._created === false && this.onLoadUpdateCallback)
+        {
+            this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
 
     },

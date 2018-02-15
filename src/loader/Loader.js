@@ -2080,6 +2080,8 @@ Phaser.Loader.prototype = {
             this.onLoadStart.dispatch();
         }
 
+        this.game.state.loadUpdate();
+
         this.reset();
 
         this.onLoadComplete.dispatch();
