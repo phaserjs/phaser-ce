@@ -19,6 +19,7 @@
     "grunt": "grunt",
     "test": "NODE_ENV=test grunt jshint",
     "test:build": "node --check build/*.js build/custom/*.js",
+    "test:dist": "grunt test && node -c dist/phaser-test.js",
     "test:ts": "./node_modules/typescript/bin/tsc --noImplicitAny ./typescript/{p2,phaser,pixi}.d.ts && ./node_modules/typescript/bin/tsc --noImplicitAny ./typescript/{phaser,pixi}.comments.d.ts"
   },
   "keywords": [
