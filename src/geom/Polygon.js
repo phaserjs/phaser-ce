@@ -111,7 +111,7 @@ Phaser.Polygon.prototype = {
      * This is a deep clone, the resulting copy contains new Phaser.Point objects
      *
      * @method Phaser.Polygon#clone
-     * @param {Phaser.Polygon} [output=(new Polygon)] - The polygon to update. If not specified a new polygon will be created.
+     * @param {Phaser.Polygon} [output=(new Phaser.Polygon)] - The polygon to update. If not specified a new polygon will be created.
      * @return {Phaser.Polygon} The cloned (`output`) polygon object.
      */
     clone: function (output) {

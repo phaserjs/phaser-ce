@@ -353,7 +353,7 @@ Phaser.Line.prototype = {
     /**
      * Returns a new Line object with the same values for the start and end properties as this Line object.
      * @method Phaser.Line#clone
-     * @param {Phaser.Line} output - Optional Line object. If given the values will be set into the object, otherwise a brand new Line object will be created and returned.
+     * @param {Phaser.Line} [output] - Optional Line object. If given the values will be set into the object, otherwise a brand new Line object will be created and returned.
      * @return {Phaser.Line} The cloned Line object.
      */
     clone: function (output) {

@@ -768,7 +768,7 @@ declare module Phaser {
 
         circumference(): number;
         circumferencePoint(angle: number, asDegrees?: boolean, out?: Phaser.Point): Phaser.Point;
-        clone(output: Phaser.Circle): Phaser.Circle;
+        clone(output?: Phaser.Circle): Phaser.Circle;
         contains(x: number, y: number): boolean;
         copyFrom(source: any): Circle;
         copyTo(dest: any): any;
@@ -1129,7 +1129,7 @@ declare module Phaser {
 
         static constains(a: Phaser.Ellipse, x: number, y: number): boolean;
 
-        clone(output: Phaser.Ellipse): Phaser.Ellipse;
+        clone(output?: Phaser.Ellipse): Phaser.Ellipse;
         contains(x: number, y: number): boolean;
         copyFrom(source: any): Phaser.Ellipse;
         copyTo(dest: any): any;
@@ -2558,7 +2558,7 @@ declare module Phaser {
         static reflect(a: Phaser.Line, b: Phaser.Line): number;
 
         centerOn(x: number, y: number): Phaser.Line;
-        clone(output: Phaser.Line): Phaser.Line;
+        clone(output?: Phaser.Line): Phaser.Line;
         coordinatesOnLine(stepRate: number, results: any[]): any[];
         fromAngle(x: number, y: number, angle: number, length: number): Phaser.Line;
         fromPoints(start: any, end: any): Phaser.Line;
@@ -4248,7 +4248,7 @@ declare module Phaser {
         points: number[] | Phaser.Point[];
         type: number;
 
-        clone(output: Phaser.Polygon): Phaser.Polygon;
+        clone(output?: Phaser.Polygon): Phaser.Polygon;
         contains(x: number, y: number): boolean;
         flatten(): Phaser.Polygon;
         setTo(points: Phaser.Point[] | number[]): void;
@@ -4357,7 +4357,7 @@ declare module Phaser {
         ceil(): void;
         ceilAll(): void;
         centerOn(x: number, y: number): Phaser.Rectangle;
-        clone(output: Phaser.Rectangle): Phaser.Rectangle;
+        clone(output?: Phaser.Rectangle): Phaser.Rectangle;
         contains(x: number, y: number): boolean;
         containsRect(b: Phaser.Rectangle): boolean;
         copyFrom(source: any): Phaser.Rectangle;
