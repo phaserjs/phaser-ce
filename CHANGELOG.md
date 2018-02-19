@@ -4,7 +4,36 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
-## Version 2.10.0 - 18 January 2018
+## Version 2.10.1 - 18th February 2018
+
+### New Features
+
+* [Phaser.Sound#playOnce](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#playOnce) flags a sound for deletion after it is played once. This is a simple method for avoiding [adding](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#add) new Sound objects for sounds that are intended to just be played once and done.
+* A final [State#loadUpdate](https://photonstorm.github.io/phaser-ce/Phaser.State.html#loadUpdate) call is made right before the loader is reset, when [Loader#progress](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#progress) is 100, instead of after, when Loader#progress is 0 (#468).
+* [Loader#onBeforeLoadComplete](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#onBeforeLoadComplete) is a signal dispatched right before the Loader is reset (unlike [Loader#onLoadComplete](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#onLoadComplete)).
+
+### Updates
+
+* Clarified `margin` and `spacing` arguments in [Phaser.Loader#spritesheet](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#spritesheet) (#448).
+* [Debug#text](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#text) now uses [Debug#font](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#font) as its default.
+
+### Bug Fixes
+
+* Fixed audio sprites failing to loop after pause and resume (#323).
+* Fixed sounds not looping when using audio tags (#446).
+* Fixed circular Arcade bodies sticking to each other during some collisions (#451).
+* Fixed a sprite with [input.enabled](https://photonstorm.github.io/phaser-ce/Phaser.InputHandler.html#enabled) `false` triggering its [onInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onInputOut) signal when the mouse leaves the game canvas (#454).
+* Fixed spelling error in API documentation (#458).
+* Fixed some TypeScript definitions (#442, #447, #455, #460, #462, #463, #469, #475).
+* The canvas now correctly scales inside a [container](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#parentNode) if using relative values for `width` and `height` in the [Phaser.Game](https://photonstorm.github.io/phaser-ce/Phaser.Game.html) constructor (#367). Make sure you give the container a [height](https://developer.mozilla.org/en-US/docs/Web/CSS/height).
+* Fixed [State#loadUpdate](https://photonstorm.github.io/phaser-ce/Phaser.State.html#loadUpdate) being called once when no assets have been loaded (#468).
+* Fixed [Debug#spriteInfo](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#spriteInfo) failing to show `sprite.name` as promised (#471).
+
+### Thanks
+
+@bseiller, @dhashvir, @Lucas-C, @mmacvicar, @Nek-, @netdreamer, @omretterry, @pantoninho, @photonstorm, @samme, @seiyria, @squaresun, @Tembac, @wtravO
+
+## Version 2.10.0 - 18th January 2018
 
 ### New Features
 

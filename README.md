@@ -328,93 +328,34 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.10.1 - 18th February 2018
 
 ### New Features
 
-* Phaser.Sound#playOnce flags a sound for deletion after it is played once. This is a simple method for avoiding [adding](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#add) new Sound objects for sounds that are intended to just be played once and done.
-* A final State#loadUpdate call is made right before the loader is reset, when Loader#progress is 100, instead of after, when Loader#progress is 0 (#468).
-* Loader#onBeforeLoadComplete is a signal dispatched right before the Loader is reset (unlike Loader#onLoadComplete).
+* [Phaser.Sound#playOnce](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#playOnce) flags a sound for deletion after it is played once. This is a simple method for avoiding [adding](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#add) new Sound objects for sounds that are intended to just be played once and done.
+* A final [State#loadUpdate](https://photonstorm.github.io/phaser-ce/Phaser.State.html#loadUpdate) call is made right before the loader is reset, when [Loader#progress](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#progress) is 100, instead of after, when Loader#progress is 0 (#468).
+* [Loader#onBeforeLoadComplete](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#onBeforeLoadComplete) is a signal dispatched right before the Loader is reset (unlike [Loader#onLoadComplete](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#onLoadComplete)).
 
 ### Updates
 
-* Clarified `margin` and `spacing` arguments in Phaser.Loader#spritesheet (#448).
-* Debug#text now uses Debug#font as its default.
+* Clarified `margin` and `spacing` arguments in [Phaser.Loader#spritesheet](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#spritesheet) (#448).
+* [Debug#text](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#text) now uses [Debug#font](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#font) as its default.
 
 ### Bug Fixes
 
 * Fixed audio sprites failing to loop after pause and resume (#323).
 * Fixed sounds not looping when using audio tags (#446).
 * Fixed circular Arcade bodies sticking to each other during some collisions (#451).
-* Fixed a sprite with `input.enabled=false` triggering its onInputOut signal when the mouse leaves the game canvas (#454).
+* Fixed a sprite with [input.enabled](https://photonstorm.github.io/phaser-ce/Phaser.InputHandler.html#enabled) `false` triggering its [onInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onInputOut) signal when the mouse leaves the game canvas (#454).
 * Fixed spelling error in API documentation (#458).
 * Fixed some TypeScript definitions (#442, #447, #455, #460, #462, #463, #469, #475).
-* The canvas now correctly scales inside a container div if using relative values for `width`/`height` in the [Phaser.Game](https://photonstorm.github.io/phaser-ce/Phaser.Game.html) constructor (#367). Make sure you give the container a [height](https://developer.mozilla.org/en-US/docs/Web/CSS/height).
-* Fixed State#loadUpdate being called once when no assets have been loaded (#468).
-* Fixed Debug#spriteInfo failing to show `sprite.name` as promised (#471).
+* The canvas now correctly scales inside a [container](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#parentNode) if using relative values for `width` and `height` in the [Phaser.Game](https://photonstorm.github.io/phaser-ce/Phaser.Game.html) constructor (#367). Make sure you give the container a [height](https://developer.mozilla.org/en-US/docs/Web/CSS/height).
+* Fixed [State#loadUpdate](https://photonstorm.github.io/phaser-ce/Phaser.State.html#loadUpdate) being called once when no assets have been loaded (#468).
+* Fixed [Debug#spriteInfo](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#spriteInfo) failing to show `sprite.name` as promised (#471).
 
 ### Thanks
 
-@bseiller, @dhashvir, @Lucas-C, @mmacvicar, @Nek-, @netdreamer, @omretterry, @pantoninho, @samme, @seiyria, @squaresun, @Tembac, @wtravO
-
-## Version 2.10.0 - 18 January 2018
-
-### New Features
-
-* New [game config](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) arguments:
-    - `alignH`, `alignV`
-    - `crisp`
-    - `disableStart`
-    - `failIfMajorPerformanceCaveat`
-    - `roundPixels`
-    - `scaleH`, `scaleV`, `trimH`, `trimV`
-* New game loop features:
-    - [Phaser.Game#dropFrames](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#dropFrames) skips renders when the game loop delta time is spiraling upwards (#314).
-    - [Phaser.Game#forceSingleRender](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#forceSingleRender) can be set to `false` to reduce the render rate to match Phaser.Time#desiredFps (#313).
-    - [Phaser.Time#ups](https://photonstorm.github.io/phaser-ce/Phaser.Time.html#ups) tracks updates per second when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time.html#advancedTiming) is enabled.
-    - [Phaser.Time#rps](https://photonstorm.github.io/phaser-ce/Phaser.Time.html#rps) tracks renders per second when [advanced timing](https://photonstorm.github.io/phaser-ce/Phaser.Time.html#advancedTiming) is enabled.
-* [Phaser.Color](https://photonstorm.github.io/phaser-ce/Phaser.Color.html) constants AQUA, BLACK, BLUE, GRAY, GREEN, ORANGE, RED, VIOLET, WHITE, and YELLOW. You can use these anywhere you use a numeric (hex) color value: [Graphics](https://photonstorm.github.io/phaser-ce/Phaser.Graphics.html), [Sprite#tint](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#tint), [Stage#backgroundColor](https://photonstorm.github.io/phaser-ce/Phaser.Stage.html#backgroundColor).
-* [Phaser.Game#pendingDestroy](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#pendingDestroy) marks the game for destruction at the next update. It can be used safely within an update callback.
-* [Phaser.Point#round](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#round) rounds a point's coordinates.
-* [Phaser.SoundManager#onTouchUnlock](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#onTouchUnlock) signal (#434)
-* [Phaser.SoundManager#removeAll](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#removeAll) destroys all sounds and removes them from the Manager.
-* [Phaser.Utils.Debug](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html) methods:
-    - [Debug#loader](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#loader) displays [loader](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html) progress.
-    - [Debug#scale](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#scale) displays game/canvas dimensions and [Scale Manager](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html) state.
-    - [Debug#sound](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#sound) displays [Sound Manager](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html) state.
-* [Phaser.Video#playWhenUnlocked](https://photonstorm.github.io/phaser-ce/Phaser.Video.html#playWhenUnlocked)
-* [Phaser.Video#onTouchUnlock](https://photonstorm.github.io/phaser-ce/Phaser.Video.html#onTouchUnlock) signal
-
-### Updates
-
-* Phaser now falls back to the Canvas renderer if AUTO is selected and WebGL context creation fails. [Phaser.Device#webGL](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#webGL) is now a soft check and doesn't create a test WebGL context. This is slightly more accurate (#402) and slightly faster (#420). Phaser.Device#webGLError was removed.
-* [Gamepad](https://photonstorm.github.io/phaser-ce/Phaser.Gamepad.html) input is now enabled while the game is paused (#423).
-* Removed gain smoothing for WebAudio volume changes (#385).
-* Updated ionic example project (#381).
-* Removed these deprecated items (#403):
-    - Phaser.ArrayUtils.rotate             → [Phaser.ArrayUtils.rotateLeft](https://photonstorm.github.io/phaser-ce/Phaser.ArrayUtils.html#_rotateLeft)
-    - Phaser.Device.isConsoleOpen
-    - Phaser.Loader#useXDomainRequest      → [xhrLoadWithXDR.js](resources/IE9/xhrLoadWithXDR.js)
-    - Phaser.Loader#xhrLoadWithXDR         → [xhrLoadWithXDR.js](resources/IE9/xhrLoadWithXDR.js)
-    - Phaser.Particles#update
-    - Phaser.Polygon#points (as a setter)  → [Phaser.Polygon#setTo](https://photonstorm.github.io/phaser-ce/Phaser.Polygon.html#setTo)
-    - Phaser.Touch#addTouchLockCallback    → [Phaser.Input#addTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#addTouchLockCallback)
-    - Phaser.Touch#removeTouchLockCallback → [Phaser.Input#removeTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#removeTouchLockCallback)
-    - PIXI.BaseTexture#updateSourceImage   → [Phaser.Component.LoadTexture#loadTexture](https://photonstorm.github.io/phaser-ce/Phaser.Component.LoadTexture.html#loadTexture)
-    - RevoluteConstraint#motorIsEnabled    → RevoluteConstraint#motorEnabled
-    - Shape.RECTANGLE                      → Shape.BOX
-
-### Bug Fixes
-
-* Fixed a false positive in [TweenManager#isTweening](https://photonstorm.github.io/phaser-ce/Phaser.TweenManager.html#isTweening) (#414).
-* Changing a display object's [smoothed](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#smoothed) property now marks the WebGL texture as dirty (#432, #433).
-* Fixed Phaser.Sound temporarily having an incorrect gain setting at creation time.
-* Fixed sprites not receiving [onInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onInputOver) when the pointer leaves the game canvas (#429).
-* Fixed some TypeScript definitions.
-
-### Thanks
-
-@ankush-badyal, @Dreaded-Gnu, @Mertank, @pavle-goloskokovic, @photonstorm, @qdrj, @samme, @squaresun
+@bseiller, @dhashvir, @Lucas-C, @mmacvicar, @Nek-, @netdreamer, @omretterry, @pantoninho, @photonstorm, @samme, @seiyria, @squaresun, @Tembac, @wtravO
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
