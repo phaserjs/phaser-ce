@@ -5,14 +5,14 @@ A modified [DocStrap](https://github.com/docstrap/docstrap) template for [JSDoc3
 ## Command Line Example
 
 ```bash
-jsdoc -c path/to/conf.json -t ./node_modules/ink-docstrap/template -R README.md -r .
+jsdoc -c path/to/config.json -t path/to/tomorrow/template -R README.md -r .
 ```
 
-- The `-c` sets the config, and the docstrap README does talk about the options you can put in templates that docstrap is supposed to look for.
-- The `-t` sets the template. This is the option you need to set to get the docstrap template to be used.
-- The `-R` sets a markdown file to be the front page of the documentation.
-- The `-r` tells jsdoc to run recursively.
-- The `.` says from current directory.
+- `-c` config file
+- `-t` template directory
+- `-R` README page
+- `-r` recursive
+- `.` target (current directory)
 
 ## Configuring the template
 
@@ -64,6 +64,9 @@ npm install
 
 # List tasks
 grunt --help
+
+# Watch and build CSS & JS
+grunt watch
 
 # Build CSS from LESS
 grunt less
@@ -176,11 +179,11 @@ grunt examples
 - Bump to follow semver (initial development is well and truly over)
 - Corrected list of themes
 - Added Search
-- Remove highlightTutorialCode option - it didn't work
+- Remove highlightTutorialCode option - it didnt work
 
 ## 0.5.4
 
-- Fix layout glitch on the bottom of code samples
+- Fix layout glitch on hte bottom of code samples
 - Support for specifying the language for fenced code blocks in the normal way
 - Fix the active item in some themes, which was missing a background
 - Tables get marked as tables
@@ -265,7 +268,7 @@ grunt examples
 
 ##  0.2.0
 
-- Added jump to source linenumbers - still a problem scrolling with fixed header
+- Added jump to source linenumers - still a problem scrolling with fixed header
 - changed syntax highlighter to [sunlight](http://sunlightjs.com/)
 - Modify incoming bootswatch files to make font calls without protocol.
 
