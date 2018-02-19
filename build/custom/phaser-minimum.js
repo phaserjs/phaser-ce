@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.10.0 "2018-01-18" - Built: Thu Jan 18 2018 16:35:27
+* v2.10.1 "2018-02-18" - Built: Sun Feb 18 2018 16:36:18
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -7583,7 +7583,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.10.0',
+    VERSION: '2.10.1',
 
     /**
     * An array of Phaser game instances.
@@ -9021,7 +9021,7 @@ Phaser.Circle.prototype = {
     /**
     * Returns a new Circle object with the same values for the x, y, width, and height properties as this Circle object.
     * @method Phaser.Circle#clone
-    * @param {Phaser.Circle} output - Optional Circle object. If given the values will be set into the object, otherwise a brand new Circle object will be created and returned.
+    * @param {Phaser.Circle} [output] - Optional Circle object. If given the values will be set into the object, otherwise a brand new Circle object will be created and returned.
     * @return {Phaser.Circle} The cloned Circle object.
     */
     clone: function (output) {
@@ -9630,7 +9630,7 @@ Phaser.Ellipse.prototype = {
     /**
     * Returns a new Ellipse object with the same values for the x, y, width, and height properties as this Ellipse object.
     * @method Phaser.Ellipse#clone
-    * @param {Phaser.Ellipse} output - Optional Ellipse object. If given the values will be set into the object, otherwise a brand new Ellipse object will be created and returned.
+    * @param {Phaser.Ellipse} [output] - Optional Ellipse object. If given the values will be set into the object, otherwise a brand new Ellipse object will be created and returned.
     * @return {Phaser.Ellipse} The cloned Ellipse object.
     */
     clone: function(output) {
@@ -10239,7 +10239,7 @@ Phaser.Line.prototype = {
     /**
      * Returns a new Line object with the same values for the start and end properties as this Line object.
      * @method Phaser.Line#clone
-     * @param {Phaser.Line} output - Optional Line object. If given the values will be set into the object, otherwise a brand new Line object will be created and returned.
+     * @param {Phaser.Line} [output] - Optional Line object. If given the values will be set into the object, otherwise a brand new Line object will be created and returned.
      * @return {Phaser.Line} The cloned Line object.
      */
     clone: function (output) {
@@ -12384,7 +12384,7 @@ Phaser.Polygon.prototype = {
      * This is a deep clone, the resulting copy contains new Phaser.Point objects
      *
      * @method Phaser.Polygon#clone
-     * @param {Phaser.Polygon} [output=(new Polygon)] - The polygon to update. If not specified a new polygon will be created.
+     * @param {Phaser.Polygon} [output=(new Phaser.Polygon)] - The polygon to update. If not specified a new polygon will be created.
      * @return {Phaser.Polygon} The cloned (`output`) polygon object.
      */
     clone: function (output) {
@@ -15662,14 +15662,9 @@ Phaser.StateManager.prototype = {
     /**
     * @method Phaser.StateManager#loadComplete
     * @protected
+    * @see Phaser.StateManager#preUpdate
     */
     loadComplete: function () {
-
-        //  Make sure to do load-update one last time before state is set to _created
-        if (this._created === false && this.onLoadUpdateCallback)
-        {
-            this.onLoadUpdateCallback.call(this.callbackContext, this.game);
-        }
 
         if (this._created === false && this.onCreateCallback)
         {
@@ -15679,6 +15674,20 @@ Phaser.StateManager.prototype = {
         else
         {
             this._created = true;
+        }
+
+    },
+
+    /**
+    * @method Phaser.StateManager#loadUpdate
+    * @protected
+    * @see Phaser.Loader#finishedLoading
+    */
+    loadUpdate: function () {
+
+        if (this._created === false && this.onLoadUpdateCallback)
+        {
+            this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
 
     },
@@ -21432,7 +21441,7 @@ Object.defineProperty(Phaser.World.prototype, "randomY", {
 * For example a Sprite has a `game` property, allowing you to talk to the various parts
 * of Phaser directly, without having to look after your own references.
 *
-* In it's most simplest form, a Phaser game can be created by providing the arguments
+* In its most simplest form, a Phaser game can be created by providing the arguments
 * to the constructor:
 *
 * ```javascript
@@ -24562,7 +24571,13 @@ Phaser.Mouse.prototype = {
             this.input.mousePointer.stop(event);
         }
 
-        this.input.interactiveItems.callAll('_pointerOutHandler', this.input.mousePointer);
+        for (var i in this.input.interactiveItems.list)
+        {
+            if (this.input.interactiveItems.list[i].enabled === true)
+            {
+                this.input.interactiveItems.list[i]._pointerOutHandler(this.input.mousePointer);
+            }
+        }
 
     },
 
@@ -28514,7 +28529,7 @@ Phaser.InputHandler.prototype = {
             return false;
         }
 
-		var pointerLocalCoord = this.globalToLocal(pointer);
+        var pointerLocalCoord = this.globalToLocal(pointer);
 
         if (this.sprite.fixedToCamera)
         {
@@ -28794,7 +28809,7 @@ Phaser.InputHandler.prototype = {
 
         var x = this.sprite.x;
         var y = this.sprite.y;
-		var pointerLocalCoord = this.globalToLocal(pointer);
+        var pointerLocalCoord = this.globalToLocal(pointer);
 
         this.isDragged = true;
         this._draggedPointerID = pointer.id;
@@ -28809,7 +28824,7 @@ Phaser.InputHandler.prototype = {
             if (this.dragFromCenter)
             {
                 var bounds = this.sprite.getBounds();
-				var boundsCenterLocalCoord = this.globalToLocal(new Phaser.Point(bounds.centerX, bounds.centerY));
+                var boundsCenterLocalCoord = this.globalToLocal(new Phaser.Point(bounds.centerX, bounds.centerY));
 
                 this.sprite.cameraOffset.x = pointerLocalCoord.x + (this.sprite.cameraOffset.x - boundsCenterLocalCoord.x);
                 this.sprite.cameraOffset.y = pointerLocalCoord.y + (this.sprite.cameraOffset.y - boundsCenterLocalCoord.y);
@@ -28822,7 +28837,7 @@ Phaser.InputHandler.prototype = {
             if (this.dragFromCenter)
             {
                 var bounds = this.sprite.getBounds();
-				var boundsCenterLocalCoord = this.globalToLocal(new Phaser.Point(bounds.centerX, bounds.centerY));
+                var boundsCenterLocalCoord = this.globalToLocal(new Phaser.Point(bounds.centerX, bounds.centerY));
 
                 this.sprite.x = pointerLocalCoord.x + (this.sprite.x - boundsCenterLocalCoord.x);
                 this.sprite.y = pointerLocalCoord.y + (this.sprite.y - boundsCenterLocalCoord.y);
@@ -28892,14 +28907,14 @@ Phaser.InputHandler.prototype = {
     */
     globalToLocal: function (globalCoord) {
 
-		if (this.sprite.parent)
-		{
-			return this.game.input.getLocalPosition(this.sprite.parent, {x: globalCoord.x, y: globalCoord.y});
-		}
-		else
-		{
-			return globalCoord;
-		}
+        if (this.sprite.parent)
+        {
+            return this.game.input.getLocalPosition(this.sprite.parent, {x: globalCoord.x, y: globalCoord.y});
+        }
+        else
+        {
+            return globalCoord;
+        }
 
     },
 
@@ -33479,7 +33494,7 @@ Phaser.Image.prototype.preUpdate = function() {
 * @param {number} [x=0] - X position of the Button.
 * @param {number} [y=0] - Y position of the Button.
 * @param {string} [key] - The image key (in the Game.Cache) to use as the texture for this Button.
-* @param {function} [callback] - The function to call when this Button is pressed, receiving `this` (the Button), `pointer`, and `isOver` (see {@link Phaser.Events#onInputUp}.)
+* @param {function} [callback] - The function to call when this Button is pressed, receiving `this` (the Button), `pointer` (the Pointer causing the input), and `isOver` (whether the Pointer is still on the Button). See {@link Phaser.Events#onInputUp}.
 * @param {object} [callbackContext] - The context in which the callback will be called (usually 'this').
 * @param {string|integer} [overFrame] - The frame / frameName when the button is in the Over state.
 * @param {string|integer} [outFrame] - The frame / frameName when the button is in the Out state.
@@ -33596,24 +33611,28 @@ Phaser.Button = function (game, x, y, key, callback, callbackContext, overFrame,
     /**
     * The Signal (or event) dispatched when this Button is in an Over state.
     * @property {Phaser.Signal} onInputOver
+    * @see Phaser.Events#onInputOver
     */
     this.onInputOver = new Phaser.Signal();
 
     /**
     * The Signal (or event) dispatched when this Button is in an Out state.
     * @property {Phaser.Signal} onInputOut
+    * @see Phaser.Events#onInputOut
     */
     this.onInputOut = new Phaser.Signal();
 
     /**
     * The Signal (or event) dispatched when this Button is in an Down state.
     * @property {Phaser.Signal} onInputDown
+    * @see Phaser.Events#onInputDown
     */
     this.onInputDown = new Phaser.Signal();
 
     /**
     * The Signal (or event) dispatched when this Button is in an Up state.
     * @property {Phaser.Signal} onInputUp
+    * @see Phaser.Events#onInputUp
     */
     this.onInputUp = new Phaser.Signal();
 
@@ -33995,6 +34014,7 @@ Phaser.Button.prototype.onInputDownHandler = function (sprite, pointer) {
 * @protected
 * @param {Phaser.Button} sprite - The Button that the event occurred on.
 * @param {Phaser.Pointer} pointer - The Pointer that activated the Button.
+* @param {boolean} isOver - Is the Pointer still over the Game Object?
 */
 Phaser.Button.prototype.onInputUpHandler = function (sprite, pointer, isOver) {
 
@@ -34838,6 +34858,7 @@ Phaser.Device = function () {
     /**
     * @property {boolean} webAudio - Is the WebAudio API available?
     * @default
+    * @see http://mohayonao.github.io/web-audio-test-api/
     */
     this.webAudio = false;
 
@@ -44740,7 +44761,16 @@ Phaser.Loader = function (game) {
     this.onLoadStart = new Phaser.Signal();
 
     /**
-    * This event is dispatched when the final file in the load queue has either loaded or failed.
+    * This event is dispatched when the final file in the load queue has either loaded or failed,
+    * before {@link #onLoadComplete} and before the loader is {@link #reset}.
+    *
+    * @property {Phaser.Signal} onBeforeLoadComplete
+    */
+    this.onBeforeLoadComplete = new Phaser.Signal();
+
+    /**
+    * This event is dispatched when the final file in the load queue has either loaded or failed,
+    * after the loader is {@link #reset}.
     *
     * @property {Phaser.Signal} onLoadComplete
     */
@@ -45703,14 +45733,32 @@ Phaser.Loader.prototype = {
     * and no URL is given then the Loader will set the URL to be "alien.png". It will always add `.png` as the extension.
     * If you do not desire this action then provide a URL.
     *
+    * An image with four sprites, `margin = 1`, and `spacing = 1` looks like this:
+    *
+    * ```
+    * .......
+    * .     .
+    * . # # .
+    * .     .
+    * . # # .
+    * .     .
+    * .......
+    *
+    * .  margin
+    *    spacing
+    * #  sprite frame
+    * ```
+    *
+    * The first sprite frame is found at (margin + spacing) px from the top-left of the image.
+    *
     * @method Phaser.Loader#spritesheet
     * @param {string} key - Unique asset key of the sheet file.
     * @param {string} url - URL of the sprite sheet file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png".
     * @param {number} frameWidth - Width in pixels of a single frame in the sprite sheet.
     * @param {number} frameHeight - Height in pixels of a single frame in the sprite sheet.
     * @param {number} [frameMax=-1] - How many frames in this sprite sheet. If not specified it will divide the whole image into frames.
-    * @param {number} [margin=0] - If the frames have been drawn with a margin, specify the amount here.
-    * @param {number} [spacing=0] - If the frames have been drawn with spacing between them, specify the amount here.
+    * @param {number} [margin=0] - Width of any empty space at the image edges, in addition to any `spacing`.
+    * @param {number} [spacing=0] - Width of any empty space between the frames, and between the frames and the `margin`. If there is space **only** between the frames, and nowhere else, use `margin` equal to `-spacing`.
     * @param {number} [skipFrames=0] - Skip a number of frames. Useful when there are multiple sprite sheets in one image.
     * @return {Phaser.Loader} This Loader instance.
     */
@@ -46661,6 +46709,9 @@ Phaser.Loader.prototype = {
             this._fileLoadStarted = true;
             this.onLoadStart.dispatch();
         }
+
+        this.game.state.loadUpdate();
+        this.onBeforeLoadComplete.dispatch();
 
         this.reset();
 
@@ -49176,7 +49227,7 @@ Phaser.ScaleManager.prototype = {
             this.parentNode = target;
             this.parentIsWindow = false;
 
-            this.getParentBounds(this._parentBounds);
+            this.getParentBounds(this._parentBounds, this.parentNode);
 
             rect.width = this._parentBounds.width;
             rect.height = this._parentBounds.height;
@@ -49794,12 +49845,13 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#getParentBounds
     * @protected
     * @param {Phaser.Rectangle} [target=(new Rectangle)] - The rectangle to update; a new one is created as needed.
+    * @param {HTMLElement} [parent] - Ignore {@link #boundingParent} and use this node instead.
     * @return {Phaser.Rectangle} The established parent bounds.
     */
-    getParentBounds: function (target) {
+    getParentBounds: function (target, parent) {
 
         var bounds = target || new Phaser.Rectangle();
-        var parentNode = this.boundingParent;
+        var parentNode = parent || this.boundingParent;
         var visualBounds = this.dom.visualBounds;
         var layoutBounds = this.dom.layoutBounds;
 
