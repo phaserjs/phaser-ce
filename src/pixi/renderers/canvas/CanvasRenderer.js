@@ -99,6 +99,11 @@ PIXI.CanvasRenderer = function (game, config) {
      */
     this.context = this.view.getContext("2d", { alpha: this.transparent } );
 
+    if (!this.context)
+    {
+        throw new Error('Failed to create a Canvas 2d context.');
+    }
+
     /**
      * Boolean flag controlling canvas refresh.
      *
