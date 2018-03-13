@@ -408,19 +408,19 @@ Phaser.Signal.prototype = {
     */
     dispatch: function () {
 
-        if (!this.active || !this._bindings)
+        if (!this.active || (!this._bindings && !this.memorize))
         {
             return;
         }
 
         var paramsArr = Array.prototype.slice.call(arguments);
-        var n = this._bindings.length;
-        var bindings;
 
         if (this.memorize)
         {
             this._prevParams = paramsArr;
         }
+
+        var n = this._bindings ? this._bindings.length : 0;
 
         if (!n)
         {
@@ -428,7 +428,7 @@ Phaser.Signal.prototype = {
             return;
         }
 
-        bindings = this._bindings.slice(); //clone array in case add/remove items during dispatch
+        var bindings = this._bindings.slice(); //clone array in case add/remove items during dispatch
         this._shouldPropagate = true; //in case `halt` was called before dispatch or during the previous dispatch.
 
         //execute all callbacks until end of the list or until a callback returns `false` or stops propagation
