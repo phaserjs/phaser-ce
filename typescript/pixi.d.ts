@@ -527,10 +527,28 @@ declare module PIXI {
 
         constructor(x?: number, y?: number, width?: number, height?: number);
 
+        bottom: number;
+        bottomRight: Phaser.Point;
+        bottomLeft: Phaser.Point;
+        centerX: number;
+        centerY: number;
+        empty: boolean;
+        halfHeight: number;
+        halfWidth: number;
+        height: number;
+        left: number;
+        perimeter: number;
+        randomX: number;
+        randomY: number;
+        right: number;
+        top: number;
+        topLeft: Phaser.Point;
+        topRight: Phaser.Point;
+        type: number;
+        volume: number;
+        width: number;
         x: number;
         y: number;
-        width: number;
-        height: number;
 
         clone(): Rectangle;
         contains(x: number, y: number): boolean;

@@ -4313,7 +4313,7 @@ declare module Phaser {
 
     class Rectangle {
 
-        constructor(x: number, y: number, width: number, height: number);
+        constructor(x?: number, y?: number, width?: number, height?: number);
 
         bottom: number;
         bottomRight: Phaser.Point;
