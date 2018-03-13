@@ -52,6 +52,13 @@ Phaser.Text = function (game, x, y, text, style) {
     }
 
     /**
+     * @property {HTMLCanvasElement} canvas - The canvas element that the text is rendered.
+     */
+    this.canvas = Phaser.CanvasPool.create(this);
+
+    Phaser.Sprite.call(this, game, x, y, PIXI.Texture.fromCanvas(this.canvas));
+
+    /**
     * @property {number} type - The const type of this object.
     * @default
     */
@@ -77,11 +84,6 @@ Phaser.Text = function (game, x, y, text, style) {
     * @readOnly
     */
     this.textBounds = null;
-
-    /**
-     * @property {HTMLCanvasElement} canvas - The canvas element that the text is rendered.
-     */
-    this.canvas = Phaser.CanvasPool.create(this);
 
     /**
      * @property {HTMLCanvasElement} context - The context of the canvas element that the text is rendered to.
@@ -190,8 +192,6 @@ Phaser.Text = function (game, x, y, text, style) {
     * @private
     */
     this._height = 0;
-
-    Phaser.Sprite.call(this, game, x, y, PIXI.Texture.fromCanvas(this.canvas));
 
     /**
     * @property {object} style
