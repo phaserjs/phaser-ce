@@ -587,9 +587,9 @@ Phaser.GameObjectFactory.prototype = {
     * @param {...*} parameter - Additional parameters that will be passed to the Plugin.init method.
     * @return {Phaser.Plugin} The Plugin that was added to the manager.
     */
-    plugin: function (plugin) {
+    plugin: function () {
 
-        return this.game.plugins.add(plugin);
+        return this.game.plugins.add.apply(this.game.plugins, arguments);
 
     }
 
