@@ -74,12 +74,15 @@ PIXI.DisplayObject = function () {
 
     /**
     * The visibility of this DisplayObject. A value of `false` makes the object invisible.
-    * A value of `true` makes it visible. Please note that an object with a visible value of
-    * `false` is skipped during the render pass. Equally a DisplayObject with visible false will
-    * not render any of its children.
+    * A value of `true` makes it visible.
+    *
+    * An object with a visible value of `false` is skipped during the render pass.
+    * Equally a DisplayObject with visible `false` will not render any of its children.
     *
     * The value of this property does not reflect any visible values set further up the display list.
-    * To obtain that value please see the `worldVisible` property.
+    * To obtain that value please see the {@link #worldVisible} property.
+    *
+    * Objects that are not {@link #worldVisible} do not update their {@link #worldPosition}.
     *
     * @property {boolean} visible
     * @default
