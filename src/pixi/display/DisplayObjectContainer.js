@@ -571,7 +571,7 @@ PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession) {
 /**
  * The width of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
  *
- * @property PIXI.DisplayObjectContainer#width
+ * @name PIXI.DisplayObjectContainer#width
  * @type Number
  */
 Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
@@ -600,7 +600,7 @@ Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
 /**
  * The height of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
  *
- * @property PIXI.DisplayObjectContainer#height
+ * @name PIXI.DisplayObjectContainer#height
  * @type Number
  */
 Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'height', {
