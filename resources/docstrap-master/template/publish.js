@@ -34,7 +34,7 @@ var globalUrl = helper.getUniqueFilename('global');
 var indexUrl = helper.getUniqueFilename('index');
 
 if (conf.syntaxTheme) {
-  logger.warn('`template.syntaxTheme` is ignored. Import the Prism theme in template/styles/main.less.');
+  logger.warn('`template.syntaxTheme` is ignored. You can change the syntax theme by modifying template/styles/main.less.');
 }
 
 var navOptions = {
