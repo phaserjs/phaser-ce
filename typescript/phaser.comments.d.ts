@@ -2551,6 +2551,10 @@ declare module Phaser {
         * @return An object containing the parsed characters, total pixel width and x offsets.
         */
 
+                                                            /**
+                                                            * The width of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
+                                                            */
+
                                                                            /**
                                                                            * The text to be displayed by this BitmapText object.
                                                                            */
@@ -7900,6 +7904,8 @@ declare module Phaser {
         * Clear the Canvas each frame before rendering the display list.
         * You can set this to `false` to gain some performance if your game always contains a background that completely fills the display.
         * This must be `true` to show any {@link Phaser.Stage#backgroundColor} set on the Stage.
+        * This is effectively **read-only after the game has booted**.
+        * Use the {@link GameConfig} setting `clearBeforeRender` when creating the game, or set `game.renderer.clearBeforeRender` afterwards.
         * Default: true
         */
         clearBeforeRender: boolean;
@@ -9211,6 +9217,10 @@ declare module Phaser {
     * 
     * As you can tell, Graphics objects are a bit of a trade-off. While they are extremely useful, you need to be careful
     * in their complexity and quantity of them in your game.
+    * 
+    * You may have to modify {@link Phaser.Graphics#scale} rather than {@link Phaser.Graphics#width} or
+    * {@link Phaser.Graphics#height} to avoid an unusual race condition
+    * ({@link #489 https://github.com/photonstorm/phaser-ce/issues/489}).
     */
     class Graphics extends PIXI.DisplayObjectContainer {
 
@@ -9239,6 +9249,10 @@ declare module Phaser {
         * 
         * As you can tell, Graphics objects are a bit of a trade-off. While they are extremely useful, you need to be careful
         * in their complexity and quantity of them in your game.
+        * 
+        * You may have to modify {@link Phaser.Graphics#scale} rather than {@link Phaser.Graphics#width} or
+        * {@link Phaser.Graphics#height} to avoid an unusual race condition
+        * ({@link #489 https://github.com/photonstorm/phaser-ce/issues/489}).
         * 
         * @param game Current game instance.
         * @param x X position of the new graphics object.
@@ -9431,6 +9445,10 @@ declare module Phaser {
         * A reference to the currently running Game.
         */
         game: Phaser.Game;
+
+        /**
+        * The height of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
+        */
         height: number;
 
         /**
@@ -9597,6 +9615,10 @@ declare module Phaser {
         * The const type of this object.
         */
         type: number;
+
+        /**
+        * The width of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
+        */
         width: number;
 
         /**
@@ -23982,7 +24004,7 @@ declare module Phaser {
         * @param width The width of the Rectangle. Should always be either zero or a positive value.
         * @param height The height of the Rectangle. Should always be either zero or a positive value.
         */
-        constructor(x: number, y: number, width: number, height: number);
+        constructor(x?: number, y?: number, width?: number, height?: number);
 
 
         /**

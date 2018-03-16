@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.10.1 "2018-02-18" - Built: Sun Feb 18 2018 16:36:18
+* v2.10.2 "2018-03-15" - Built: Thu Mar 15 2018 17:35:27
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -121,12 +121,15 @@ PIXI.DisplayObject = function () {
 
     /**
     * The visibility of this DisplayObject. A value of `false` makes the object invisible.
-    * A value of `true` makes it visible. Please note that an object with a visible value of
-    * `false` is skipped during the render pass. Equally a DisplayObject with visible false will
-    * not render any of its children.
+    * A value of `true` makes it visible.
+    *
+    * An object with a visible value of `false` is skipped during the render pass.
+    * Equally a DisplayObject with visible `false` will not render any of its children.
     *
     * The value of this property does not reflect any visible values set further up the display list.
-    * To obtain that value please see the `worldVisible` property.
+    * To obtain that value please see the {@link #worldVisible} property.
+    *
+    * Objects that are not {@link #worldVisible} do not update their {@link #worldPosition}.
     *
     * @property {boolean} visible
     * @default
@@ -1460,7 +1463,7 @@ PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession) {
 /**
  * The width of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
  *
- * @property width
+ * @name PIXI.DisplayObjectContainer#width
  * @type Number
  */
 Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
@@ -1489,7 +1492,7 @@ Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
 /**
  * The height of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
  *
- * @property height
+ * @name PIXI.DisplayObjectContainer#height
  * @type Number
  */
 Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'height', {
@@ -6776,6 +6779,11 @@ PIXI.CanvasRenderer = function (game, config) {
      */
     this.context = this.view.getContext("2d", { alpha: this.transparent } );
 
+    if (!this.context)
+    {
+        throw new Error('Failed to create a Canvas 2d context.');
+    }
+
     /**
      * Boolean flag controlling canvas refresh.
      *
@@ -7583,7 +7591,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.10.1',
+    VERSION: '2.10.2',
 
     /**
     * An array of Phaser game instances.
@@ -16291,19 +16299,19 @@ Phaser.Signal.prototype = {
     */
     dispatch: function () {
 
-        if (!this.active || !this._bindings)
+        if (!this.active || (!this._bindings && !this.memorize))
         {
             return;
         }
 
         var paramsArr = Array.prototype.slice.call(arguments);
-        var n = this._bindings.length;
-        var bindings;
 
         if (this.memorize)
         {
             this._prevParams = paramsArr;
         }
+
+        var n = this._bindings ? this._bindings.length : 0;
 
         if (!n)
         {
@@ -16311,7 +16319,7 @@ Phaser.Signal.prototype = {
             return;
         }
 
-        bindings = this._bindings.slice(); //clone array in case add/remove items during dispatch
+        var bindings = this._bindings.slice(); //clone array in case add/remove items during dispatch
         this._shouldPropagate = true; //in case `halt` was called before dispatch or during the previous dispatch.
 
         //execute all callbacks until end of the list or until a callback returns `false` or stops propagation
@@ -17591,6 +17599,14 @@ Phaser.Stage.prototype.checkVisibility = function () {
         return _this.visibilityChange(event);
     };
 
+    this._onChangePause = function () {
+        return this._onChange({ type: 'pause' });
+    };
+
+    this._onChangeResume = function () {
+        return this._onChange({ type: 'resume' });
+    };
+
     this._onClick = function (event) {
         if ((document.hasFocus !== undefined) && !document.hasFocus())
         {
@@ -17612,15 +17628,23 @@ Phaser.Stage.prototype.checkVisibility = function () {
 
     window.addEventListener('click', this._onClick);
 
-    if (this.game.device.cocoonJSApp)
+    if (this.game.device.cocoonJSApp && CocoonJS.App)
     {
-        CocoonJS.App.onSuspended.addEventListener(function () {
-            Phaser.Stage.prototype.visibilityChange.call(_this, { type: "pause" });
-        });
+        if (CocoonJS.App.onSuspended)
+        {
+            CocoonJS.App.onSuspended.addEventListener(this._onChangePause);
+        }
 
-        CocoonJS.App.onActivated.addEventListener(function () {
-            Phaser.Stage.prototype.visibilityChange.call(_this, { type: "resume" });
-        });
+        if (CocoonJS.App.onActivated)
+        {
+            CocoonJS.App.onActivated.addEventListener(this._onChangeResume);
+        }
+
+        if (CocoonJS.App.on)
+        {
+            CocoonJS.App.on('activated', this._onChangeResume);
+            CocoonJS.App.on('suspended', this._onChangePause);
+        }
     }
 
 };
@@ -21598,6 +21622,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     * Clear the Canvas each frame before rendering the display list.
     * You can set this to `false` to gain some performance if your game always contains a background that completely fills the display.
     * This must be `true` to show any {@link Phaser.Stage#backgroundColor} set on the Stage.
+    * This is effectively **read-only after the game has booted**.
+    * Use the {@link GameConfig} setting `clearBeforeRender` when creating the game, or set `game.renderer.clearBeforeRender` afterwards.
     * @property {boolean} clearBeforeRender
     * @default
     */
@@ -21957,6 +21983,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
 * @property {string}             [GameConfig.canvasId]                      - `id` attribute value to assign to the game canvas.
 * @property {string}             [GameConfig.canvasStyle]                   - `style` attribute value to assign to the game canvas.
+* @property {boolean}            [GameConfig.clearBeforeRender=true]        - Sets {@link Phaser.Game#clearBeforeRender}.
 * @property {boolean}            [GameConfig.crisp=false]                   - Sets the canvas's `image-rendering` property to `pixelated` or `crisp-edges`. See {@link Phaser.Canvas.setImageRenderingCrisp}.
 * @property {boolean}            [GameConfig.disableVisibilityChange=false] - Sets {@link Phaser.Stage#disableVisibilityChange}
 * @property {boolean}            [GameConfig.disableStart=false]            - Prevents the game loop from starting, allowing you to call updates manually. Helpful for automated testing.
@@ -22030,6 +22057,11 @@ Phaser.Game.prototype = {
         if (config['antialias'] !== undefined)
         {
             this.antialias = config['antialias'];
+        }
+
+        if (config['clearBeforeRender'] !== undefined)
+        {
+            this.clearBeforeRender = config['clearBeforeRender'];
         }
 
         if (config['multiTexture'] !== undefined)
@@ -32813,9 +32845,9 @@ Phaser.GameObjectFactory.prototype = {
     * @param {...*} parameter - Additional parameters that will be passed to the Plugin.init method.
     * @return {Phaser.Plugin} The Plugin that was added to the manager.
     */
-    plugin: function (plugin) {
+    plugin: function () {
 
-        return this.game.plugins.add(plugin);
+        return this.game.plugins.add.apply(this.game.plugins, arguments);
 
     }
 

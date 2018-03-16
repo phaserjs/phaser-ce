@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.10.1 "2018-02-18" - Built: Sun Feb 18 2018 16:36:24
+* v2.10.2 "2018-03-15" - Built: Thu Mar 15 2018 17:35:34
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -53,7 +53,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.10.1',
+    VERSION: '2.10.2',
 
     /**
     * An array of Phaser game instances.
@@ -8761,19 +8761,19 @@ Phaser.Signal.prototype = {
     */
     dispatch: function () {
 
-        if (!this.active || !this._bindings)
+        if (!this.active || (!this._bindings && !this.memorize))
         {
             return;
         }
 
         var paramsArr = Array.prototype.slice.call(arguments);
-        var n = this._bindings.length;
-        var bindings;
 
         if (this.memorize)
         {
             this._prevParams = paramsArr;
         }
+
+        var n = this._bindings ? this._bindings.length : 0;
 
         if (!n)
         {
@@ -8781,7 +8781,7 @@ Phaser.Signal.prototype = {
             return;
         }
 
-        bindings = this._bindings.slice(); //clone array in case add/remove items during dispatch
+        var bindings = this._bindings.slice(); //clone array in case add/remove items during dispatch
         this._shouldPropagate = true; //in case `halt` was called before dispatch or during the previous dispatch.
 
         //execute all callbacks until end of the list or until a callback returns `false` or stops propagation
@@ -10061,6 +10061,14 @@ Phaser.Stage.prototype.checkVisibility = function () {
         return _this.visibilityChange(event);
     };
 
+    this._onChangePause = function () {
+        return this._onChange({ type: 'pause' });
+    };
+
+    this._onChangeResume = function () {
+        return this._onChange({ type: 'resume' });
+    };
+
     this._onClick = function (event) {
         if ((document.hasFocus !== undefined) && !document.hasFocus())
         {
@@ -10082,15 +10090,23 @@ Phaser.Stage.prototype.checkVisibility = function () {
 
     window.addEventListener('click', this._onClick);
 
-    if (this.game.device.cocoonJSApp)
+    if (this.game.device.cocoonJSApp && CocoonJS.App)
     {
-        CocoonJS.App.onSuspended.addEventListener(function () {
-            Phaser.Stage.prototype.visibilityChange.call(_this, { type: "pause" });
-        });
+        if (CocoonJS.App.onSuspended)
+        {
+            CocoonJS.App.onSuspended.addEventListener(this._onChangePause);
+        }
 
-        CocoonJS.App.onActivated.addEventListener(function () {
-            Phaser.Stage.prototype.visibilityChange.call(_this, { type: "resume" });
-        });
+        if (CocoonJS.App.onActivated)
+        {
+            CocoonJS.App.onActivated.addEventListener(this._onChangeResume);
+        }
+
+        if (CocoonJS.App.on)
+        {
+            CocoonJS.App.on('activated', this._onChangeResume);
+            CocoonJS.App.on('suspended', this._onChangePause);
+        }
     }
 
 };
@@ -14068,6 +14084,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     * Clear the Canvas each frame before rendering the display list.
     * You can set this to `false` to gain some performance if your game always contains a background that completely fills the display.
     * This must be `true` to show any {@link Phaser.Stage#backgroundColor} set on the Stage.
+    * This is effectively **read-only after the game has booted**.
+    * Use the {@link GameConfig} setting `clearBeforeRender` when creating the game, or set `game.renderer.clearBeforeRender` afterwards.
     * @property {boolean} clearBeforeRender
     * @default
     */
@@ -14427,6 +14445,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
 * @property {string}             [GameConfig.canvasId]                      - `id` attribute value to assign to the game canvas.
 * @property {string}             [GameConfig.canvasStyle]                   - `style` attribute value to assign to the game canvas.
+* @property {boolean}            [GameConfig.clearBeforeRender=true]        - Sets {@link Phaser.Game#clearBeforeRender}.
 * @property {boolean}            [GameConfig.crisp=false]                   - Sets the canvas's `image-rendering` property to `pixelated` or `crisp-edges`. See {@link Phaser.Canvas.setImageRenderingCrisp}.
 * @property {boolean}            [GameConfig.disableVisibilityChange=false] - Sets {@link Phaser.Stage#disableVisibilityChange}
 * @property {boolean}            [GameConfig.disableStart=false]            - Prevents the game loop from starting, allowing you to call updates manually. Helpful for automated testing.
@@ -14500,6 +14519,11 @@ Phaser.Game.prototype = {
         if (config['antialias'] !== undefined)
         {
             this.antialias = config['antialias'];
+        }
+
+        if (config['clearBeforeRender'] !== undefined)
+        {
+            this.clearBeforeRender = config['clearBeforeRender'];
         }
 
         if (config['multiTexture'] !== undefined)
@@ -27787,9 +27811,9 @@ Phaser.GameObjectFactory.prototype = {
     * @param {...*} parameter - Additional parameters that will be passed to the Plugin.init method.
     * @return {Phaser.Plugin} The Plugin that was added to the manager.
     */
-    plugin: function (plugin) {
+    plugin: function () {
 
-        return this.game.plugins.add(plugin);
+        return this.game.plugins.add.apply(this.game.plugins, arguments);
 
     }
 
@@ -33765,6 +33789,10 @@ Phaser.GraphicsData.prototype.clone = function () {
 * As you can tell, Graphics objects are a bit of a trade-off. While they are extremely useful, you need to be careful
 * in their complexity and quantity of them in your game.
 *
+* You may have to modify {@link Phaser.Graphics#scale} rather than {@link Phaser.Graphics#width} or
+* {@link Phaser.Graphics#height} to avoid an unusual race condition
+* ({@link #489 https://github.com/photonstorm/phaser-ce/issues/489}).
+*
 * @class Phaser.Graphics
 * @constructor
 * @extends PIXI.DisplayObjectContainer
@@ -35790,6 +35818,13 @@ Phaser.Text = function (game, x, y, text, style) {
     }
 
     /**
+     * @property {HTMLCanvasElement} canvas - The canvas element that the text is rendered.
+     */
+    this.canvas = Phaser.CanvasPool.create(this);
+
+    Phaser.Sprite.call(this, game, x, y, PIXI.Texture.fromCanvas(this.canvas));
+
+    /**
     * @property {number} type - The const type of this object.
     * @default
     */
@@ -35815,11 +35850,6 @@ Phaser.Text = function (game, x, y, text, style) {
     * @readOnly
     */
     this.textBounds = null;
-
-    /**
-     * @property {HTMLCanvasElement} canvas - The canvas element that the text is rendered.
-     */
-    this.canvas = Phaser.CanvasPool.create(this);
 
     /**
      * @property {HTMLCanvasElement} context - The context of the canvas element that the text is rendered to.
@@ -35928,8 +35958,6 @@ Phaser.Text = function (game, x, y, text, style) {
     * @private
     */
     this._height = 0;
-
-    Phaser.Sprite.call(this, game, x, y, PIXI.Texture.fromCanvas(this.canvas));
 
     /**
     * @property {object} style
@@ -59291,24 +59319,21 @@ Phaser.SoundManager.prototype = {
         }
         else
         {
-            if (!!window['AudioContext'])
+            var AudioContext = window.AudioContext || window.webkitAudioContext;
+
+            if (AudioContext)
             {
-                try {
-                    this.context = new window['AudioContext']();
-                } catch (error) {
-                    this.context = null;
-                    this.usingWebAudio = false;
-                    this.touchLocked = false;
+                try
+                {
+                    this.context = new AudioContext();
                 }
-            }
-            else if (!!window['webkitAudioContext'])
-            {
-                try {
-                    this.context = new window['webkitAudioContext']();
-                } catch (error) {
+                catch (error)
+                {
                     this.context = null;
                     this.usingWebAudio = false;
                     this.touchLocked = false;
+
+                    console.warn(error);
                 }
             }
         }
@@ -59316,7 +59341,7 @@ Phaser.SoundManager.prototype = {
         if (this.context === null)
         {
             //  No Web Audio support - how about legacy Audio?
-            if (window['Audio'] === undefined)
+            if (window.Audio === undefined)
             {
                 this.noAudio = true;
                 return;
@@ -59341,6 +59366,13 @@ Phaser.SoundManager.prototype = {
 
             this.masterGain.gain.value = 1;
             this.masterGain.connect(this.context.destination);
+
+            // A suspended context is actually normal (momentarily) in Firefox.
+            // In that case the input handler will do nothing, which is fine.
+            if (this.context.state === 'suspended')
+            {
+                this.game.input.onUp.addOnce(this.resumeWebAudio, this);
+            }
         }
 
         if (!this.noAudio)
@@ -59393,6 +59425,22 @@ Phaser.SoundManager.prototype = {
     },
 
     /**
+    * Try to resume a suspended WebAudio context.
+    *
+    * If the context isn't suspended, or if WebAudio isn't in use, nothing is done.
+    *
+    * @return {?Promise} - A Promise, if resume was called. See {@link https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/resume}.
+    */
+    resumeWebAudio: function () {
+
+        if (this.usingWebAudio && this.context.state === 'suspended')
+        {
+            return this.context.resume();
+        }
+
+    },
+
+    /**
     * Enables the audio, usually after the first touch.
     *
     * @method Phaser.SoundManager#unlock
@@ -59429,10 +59477,8 @@ Phaser.SoundManager.prototype = {
                 this._unlockSource.start(0);
             }
 
-            //This fixes locked audio in Chrome > 55 cross origin iframes
-            if (this._unlockSource.context.state === 'suspended') {
-                this._unlockSource.context.resume();
-            }
+            // This fixes locked audio in Chrome > 55 cross origin iframes?
+            this.resumeWebAudio();
         }
 
         //  We can remove the event because we've done what we needed (started the unlock sound playing)
@@ -59609,6 +59655,7 @@ Phaser.SoundManager.prototype = {
         if (this.touchLocked && this._unlockSource !== null && (this._unlockSource.playbackState === this._unlockSource.PLAYING_STATE || this._unlockSource.playbackState === this._unlockSource.FINISHED_STATE))
         {
             this.setTouchUnlock();
+            this.resumeWebAudio();
         }
 
         for (var i = 0; i < this._sounds.length; i++)

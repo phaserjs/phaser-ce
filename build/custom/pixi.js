@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.10.1 "2018-02-18" - Built: Sun Feb 18 2018 16:36:33
+* v2.10.2 "2018-03-15" - Built: Thu Mar 15 2018 17:35:43
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -121,12 +121,15 @@ PIXI.DisplayObject = function () {
 
     /**
     * The visibility of this DisplayObject. A value of `false` makes the object invisible.
-    * A value of `true` makes it visible. Please note that an object with a visible value of
-    * `false` is skipped during the render pass. Equally a DisplayObject with visible false will
-    * not render any of its children.
+    * A value of `true` makes it visible.
+    *
+    * An object with a visible value of `false` is skipped during the render pass.
+    * Equally a DisplayObject with visible `false` will not render any of its children.
     *
     * The value of this property does not reflect any visible values set further up the display list.
-    * To obtain that value please see the `worldVisible` property.
+    * To obtain that value please see the {@link #worldVisible} property.
+    *
+    * Objects that are not {@link #worldVisible} do not update their {@link #worldPosition}.
     *
     * @property {boolean} visible
     * @default
@@ -1460,7 +1463,7 @@ PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession) {
 /**
  * The width of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
  *
- * @property width
+ * @name PIXI.DisplayObjectContainer#width
  * @type Number
  */
 Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
@@ -1489,7 +1492,7 @@ Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
 /**
  * The height of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
  *
- * @property height
+ * @name PIXI.DisplayObjectContainer#height
  * @type Number
  */
 Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'height', {
@@ -6775,6 +6778,11 @@ PIXI.CanvasRenderer = function (game, config) {
      * @type CanvasRenderingContext2D
      */
     this.context = this.view.getContext("2d", { alpha: this.transparent } );
+
+    if (!this.context)
+    {
+        throw new Error('Failed to create a Canvas 2d context.');
+    }
 
     /**
      * Boolean flag controlling canvas refresh.
