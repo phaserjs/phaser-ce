@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](http://phaser.io/phaser3) is in active development.
 
-The [current Phaser CE release is 2.10.1](https://github.com/photonstorm/phaser-ce/releases/tag/v2.10.1).
+The [current Phaser CE release is 2.10.2](https://github.com/photonstorm/phaser-ce/releases/tag/v2.10.2).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
@@ -128,16 +128,16 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.1/build/phaser.js"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.2/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.1"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.2"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.10.1/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.10.2/build/custom/) are available too.
 
 <a name="getting-started"></a>
 
@@ -328,7 +328,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.10.2 - 15th March 2018
 
 ### New Features
 
@@ -356,35 +356,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 @KIVassilev, @koalaylj, @photonstorm, @RedPanduzer, @samme, @Siri0n
 
-## Version 2.10.1 - 18th February 2018
-
-### New Features
-
-* [Phaser.Sound#playOnce](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#playOnce) flags a sound for deletion after it is played once. This is a simple method for avoiding [adding](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#add) new Sound objects for sounds that are intended to just be played once and done.
-* A final [State#loadUpdate](https://photonstorm.github.io/phaser-ce/Phaser.State.html#loadUpdate) call is made right before the loader is reset, when [Loader#progress](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#progress) is 100, instead of after, when Loader#progress is 0 (#468).
-* [Loader#onBeforeLoadComplete](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#onBeforeLoadComplete) is a signal dispatched right before the Loader is reset (unlike [Loader#onLoadComplete](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#onLoadComplete)).
-
-### Updates
-
-* Clarified `margin` and `spacing` arguments in [Phaser.Loader#spritesheet](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#spritesheet) (#448).
-* [Debug#text](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#text) now uses [Debug#font](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#font) as its default.
-
-### Bug Fixes
-
-* Fixed audio sprites failing to loop after pause and resume (#323).
-* Fixed sounds not looping when using audio tags (#446).
-* Fixed circular Arcade bodies sticking to each other during some collisions (#451).
-* Fixed a sprite with [input.enabled](https://photonstorm.github.io/phaser-ce/Phaser.InputHandler.html#enabled) `false` triggering its [onInputOut](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onInputOut) signal when the mouse leaves the game canvas (#454).
-* Fixed spelling error in API documentation (#458).
-* Fixed some TypeScript definitions (#442, #447, #455, #460, #462, #463, #469, #475).
-* The canvas now correctly scales inside a [container](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#parentNode) if using relative values for `width` and `height` in the [Phaser.Game](https://photonstorm.github.io/phaser-ce/Phaser.Game.html) constructor (#367). Make sure you give the container a [height](https://developer.mozilla.org/en-US/docs/Web/CSS/height).
-* Fixed [State#loadUpdate](https://photonstorm.github.io/phaser-ce/Phaser.State.html#loadUpdate) being called once when no assets have been loaded (#468).
-* Fixed [Debug#spriteInfo](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#spriteInfo) failing to show `sprite.name` as promised (#471).
-
-### Thanks
-
-@bseiller, @dhashvir, @Lucas-C, @mmacvicar, @Nek-, @netdreamer, @omretterry, @pantoninho, @photonstorm, @samme, @seiyria, @squaresun, @Tembac, @wtravO
-
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
 # License
@@ -407,10 +378,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.1/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.1/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.10.1.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.10.1.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.2/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.2/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.10.2.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.10.2.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
