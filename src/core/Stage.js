@@ -263,11 +263,11 @@ Phaser.Stage.prototype.checkVisibility = function () {
     };
 
     this._onChangePause = function () {
-        return this._onChange({ type: 'pause' });
+        return _this._onChange({ type: 'pause' });
     };
 
     this._onChangeResume = function () {
-        return this._onChange({ type: 'resume' });
+        return _this._onChange({ type: 'resume' });
     };
 
     this._onClick = function (event) {
