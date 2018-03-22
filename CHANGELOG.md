@@ -4,6 +4,16 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.10.3 - 21st March 2018
+
+### Bug Fixes
+
+* Fixed an error when activating a Cocoon application (#506).
+
+### Thanks
+
+@KIVassilev, @photonstorm, @samme
+
 ## Version 2.10.2 - 15th March 2018
 
 ### New Features

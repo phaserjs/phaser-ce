@@ -328,33 +328,15 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Version 2.10.2 - 15th March 2018
-
-### New Features
-
-* You can set [clearBeforeRender](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) when creating the game (#481).
-
-### Updates
-
-* Phaser tries to resume a suspended WebAudio context after a user click/tap on any device (#437, #482).
+## Version 2.10.3 - 21st March 2018
 
 ### Bug Fixes
 
-* Phaser.Text objects show the correct [type](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#type) (#479).
-* [game.add.plugin](https://photonstorm.github.io/phaser-ce/Phaser.GameObjectFactory.html#plugin) forwards all arguments to [game.plugins.add](https://photonstorm.github.io/phaser-ce/Phaser.PluginManager.html#add) (#486).
-* [Phaser.Signal#memorized](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html#memorize) works correctly after only one listener is added (#495).
-
-### TypeScript
-
-* PIXI.Rectangle includes more of Phaser.Rectangle's properties (#491).
-
-### Documentation
-
-* Game Objects show [width](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObjectContainer.html#width) and [height](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObjectContainer.html#height) properties (#488).
+* Fixed an error when activating a Cocoon application (#506).
 
 ### Thanks
 
-@KIVassilev, @koalaylj, @photonstorm, @RedPanduzer, @samme, @Siri0n
+@KIVassilev, @photonstorm, @samme
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
