@@ -1070,7 +1070,7 @@ Phaser.Tilemap.prototype = {
 
             layer = this.getLayerIndex(layer);
 
-            if (!layer)
+            if (layer === null)
             {
                 console.warn('No such layer name: ' + layerArg);
             }
