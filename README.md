@@ -328,6 +328,12 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
+## Unreleased
+
+### TypeScript definitions
+
+* Corrected 2 TypeScript definitions of p2.
+
 ## Version 2.10.3 - 21st March 2018
 
 ### Bug Fixes
