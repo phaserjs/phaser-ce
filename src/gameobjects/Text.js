@@ -72,7 +72,7 @@ Phaser.Text = function (game, x, y, text, style) {
 
     /**
     * Specify a padding value which is added to the line width and height when calculating the Text size.
-    * ALlows you to add extra spacing if Phaser is unable to accurately determine the true font dimensions.
+    * Allows you to add extra spacing if Phaser is unable to accurately determine the true font dimensions.
     * @property {Phaser.Point} padding
     */
     this.padding = new Phaser.Point();
