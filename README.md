@@ -328,6 +328,10 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
+## Unreleased
+
+* Changes added to customize the character string that is used to calculate the text width and height. 
+
 ## Version 2.10.3 - 21st March 2018
 
 ### Bug Fixes
@@ -336,7 +340,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@KIVassilev, @photonstorm, @samme
+@KIVassilev, @photonstorm, @samme, @hardylr
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
