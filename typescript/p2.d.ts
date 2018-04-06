@@ -389,7 +389,7 @@ declare module p2 {
         restitution: number;
         stiffness: number;
         relaxation: number;
-        frictionStuffness: number;
+        frictionStiffness: number;
         frictionRelaxation: number;
         surfaceVelocity: number;
         contactSkinSize: number;
@@ -616,7 +616,10 @@ declare module p2 {
 
         static triangleArea(a: number[], b: number[], c: number[]): number;
 
-        constructor(vertices: number[][], axes: number[]);
+        constructor(options?: {
+          vertices?: number[][],
+          axes?: number[]
+        });
 
         vertices: number[][];
         axes: number[];
@@ -715,7 +718,7 @@ declare module p2 {
         height?: number;
 
     }
-  
+
     export class Box extends Shape {
         constructor(options?: BoxOptions);
 

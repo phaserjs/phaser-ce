@@ -309,6 +309,7 @@ declare module PIXI {
         touchstart(e: InteractionData): void;
         touchmove(e: InteractionData): void;
         updateTransform(parent?: DisplayObjectContainer): void;
+        updateCache(): void;
 
     }
 
