@@ -7,7 +7,8 @@ This Issue is about (pick one, ✏️ delete others)
   * What happens instead:
 * An error in the documentation
 * An error in the TypeScript definitions
-* A problem with my own code
+
+For problems with your own code, please post in the [Phaser 2 forum](http://www.html5gamedevs.com/forum/14-phaser-2/).
 
 API errors must include example code showing what happens, and why you don't believe this is the expected behavior. Issues posted without code take _far_ longer to get resolved, _if ever_.
 
