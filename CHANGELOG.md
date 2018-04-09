@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed Ellipse random point area calculation (#522).
+
 See [README: Change Log: Unreleased](README.md#unreleased).
 
 ## Version 2.10.3 - 21st March 2018
