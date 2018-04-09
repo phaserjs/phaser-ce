@@ -167,8 +167,8 @@ Phaser.Ellipse.prototype = {
         out.x = Math.sqrt(r) * Math.cos(p);
         out.y = Math.sqrt(r) * Math.sin(p);
 
-        out.x = this.x + (out.x * this.width / 2.0);
-        out.y = this.y + (out.y * this.height / 2.0);
+        out.x = this.x + (out.x * this.width);
+        out.y = this.y + (out.y * this.height);
 
         return out;
 
