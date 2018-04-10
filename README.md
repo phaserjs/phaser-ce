@@ -330,8 +330,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
-* Fixed Ellipse random point area calculation (#522).
-
 ### TypeScript definitions
 
 * Corrected 2 TypeScript definitions of p2.
@@ -344,7 +342,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@KIVassilev, @photonstorm, @samme, @budda
+@KIVassilev, @photonstorm, @samme
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
