@@ -166,7 +166,7 @@ Phaser.Animation.prototype = {
 
     /**
     * Plays this animation.
-    * 
+    *
     * If you need to jump to a specific frame of this animation, then call `play` and immediately after it,
     * set the frame you require (i.e. `animation.play(); animation.frame = 4`).
     *
@@ -657,6 +657,7 @@ Phaser.Animation.prototype = {
 
         this._frameIndex = this._frames.length - 1;
         this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
+        this.updateCurrentFrame(false);
 
         this.isPlaying = false;
         this.isFinished = true;

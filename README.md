@@ -334,9 +334,17 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Phaser.Text#testString is the character string that is used to calculate the text's width and height.
 
+### Bug Fixes
+
+* Fixed an Animation skipping the final frame in low-FPS situations (#524)
+
 ### TypeScript definitions
 
 * Corrected 2 TypeScript definitions of p2.
+
+### Thanks
+
+@joshlory, @mickeyren
 
 ## Version 2.10.3 - 21st March 2018
 
