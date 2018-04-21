@@ -5784,6 +5784,12 @@ declare module Phaser {
 
         class Debug {
 
+            static GEOM_AUTO: number;
+            static GEOM_RECTANGLE: number;
+            static GEOM_CIRCLE: number;
+            static GEOM_POINT: number;
+            static GEOM_ELLIPSE: number;
+
             constructor(game: Phaser.Game);
 
             bmd: Phaser.BitmapData;

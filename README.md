@@ -341,6 +341,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Fixed wrong position in Ellipse#random (#522)
 * Fixed an Animation skipping the final frame in low-FPS situations (#524)
 * Fixed wrong position in Debug#geom (#526)
+* Depending on the shape type, Debug#geom didn't always force a rendering type when `forceType` was used.
 
 ### TypeScript definitions
 
@@ -364,7 +365,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@KIVassilev, @photonstorm, @samme, @hardylr
+@KIVassilev, @photonstorm, @samme
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 

@@ -129,6 +129,42 @@ Phaser.Utils.Debug = function (game) {
 
 };
 
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_AUTO = 0;
+
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_RECTANGLE = 1;
+
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_CIRCLE = 2;
+
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_POINT = 3;
+
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_LINE = 4;
+
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_ELLIPSE = 5;
+
 Phaser.Utils.Debug.prototype = {
 
     /**
@@ -662,7 +698,7 @@ Phaser.Utils.Debug.prototype = {
     * @param {number} x - X position of the pixel to be rendered.
     * @param {number} y - Y position of the pixel to be rendered.
     * @param {string} [color] - Color of the pixel (format is css color string).
-    * @param {number} [size=2] - The 'size' to render the pixel at.
+    * @param {number} [size=2] - The width and height of the rendered pixel.
     */
     pixel: function (x, y, color, size) {
 
@@ -682,7 +718,7 @@ Phaser.Utils.Debug.prototype = {
     * @param {Phaser.Rectangle|Phaser.Circle|Phaser.Ellipse|Phaser.Point|Phaser.Line} object - The geometry object to render.
     * @param {string} [color] - Color of the debug info to be rendered (format is css color string).
     * @param {boolean} [filled=true] - Render the objected as a filled (default, true) or a stroked (false)
-    * @param {number} [forceType=0] - Force rendering of a specific type. If 0 no type will be forced, otherwise 1 = Rectangle, 2 = Circle,3 = Point, 4 = Line and 5 = Ellipse.
+    * @param {number} [forceType=Phaser.Utils.Debug.GEOM_AUTO] - Force rendering of a specific type: (0) GEOM_AUTO, 1 GEOM_RECTANGLE, (2) GEOM_CIRCLE, (3) GEOM_POINT, (4) GEOM_LINE, (5) GEOM_ELLIPSE.
      */
     geom: function (object, color, filled, forceType) {
 
@@ -697,7 +733,9 @@ Phaser.Utils.Debug.prototype = {
         this.context.strokeStyle = color;
         this.context.lineWidth = this.lineWidth;
 
-        if (object instanceof Phaser.Rectangle || forceType === 1)
+        var Debug = Phaser.Utils.Debug;
+
+        if (forceType === Debug.GEOM_RECTANGLE || object instanceof Phaser.Rectangle)
         {
             if (filled)
             {
@@ -708,7 +746,7 @@ Phaser.Utils.Debug.prototype = {
                 this.context.strokeRect(object.x - this.game.camera.x, object.y - this.game.camera.y, object.width, object.height);
             }
         }
-        else if (object instanceof Phaser.Circle || forceType === 2)
+        else if (forceType === Debug.GEOM_CIRCLE || object instanceof Phaser.Circle)
         {
             this.context.beginPath();
             this.context.arc(object.x - this.game.camera.x, object.y - this.game.camera.y, object.radius, 0, Math.PI * 2, false);
@@ -723,11 +761,11 @@ Phaser.Utils.Debug.prototype = {
                 this.context.stroke();
             }
         }
-        else if (object instanceof Phaser.Point || forceType === 3)
+        else if (forceType === Debug.GEOM_POINT || object instanceof Phaser.Point)
         {
             this.context.fillRect(object.x - this.game.camera.x, object.y - this.game.camera.y, 4, 4);
         }
-        else if (object instanceof Phaser.Line || forceType === 4)
+        else if (forceType === Debug.GEOM_LINE || object instanceof Phaser.Line)
         {
             this.context.beginPath();
             this.context.moveTo((object.start.x + 0.5) - this.game.camera.x, (object.start.y + 0.5) - this.game.camera.y);
@@ -735,7 +773,7 @@ Phaser.Utils.Debug.prototype = {
             this.context.closePath();
             this.context.stroke();
         }
-        else if (object instanceof Phaser.Ellipse || forceType === 5)
+        else if (forceType === Debug.GEOM_ELLIPSE || object instanceof Phaser.Ellipse)
         {
             this.context.beginPath();
             this.context.ellipse(object.centerX - this.game.camera.x, object.centerY - this.game.camera.y, object.width / 2, object.height / 2, 0, 2 * Math.PI, false);
