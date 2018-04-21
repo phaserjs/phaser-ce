@@ -151,10 +151,11 @@ Phaser.Text = function (game, x, y, text, style) {
     */
     this.characterLimitSuffix = '';
 
-    /** The text to use to measure the font width and height
-    * @property {string} _measureText
+    /** The text to use to measure the font width and height.
+    * @property {string} _testString
+    * @private
     */
-    this._measureText = '|MÉq';
+    this._testString = '|MÉq';
 
     /**
      * @property {number} _res - Internal canvas resolution var.
@@ -1552,7 +1553,7 @@ Phaser.Text.prototype._renderCanvas = function (renderSession) {
 Phaser.Text.prototype.determineFontProperties = function (fontStyle) {
 
     var properties = Phaser.Text.fontPropertiesCache[fontStyle];
-    var measureText = this.measureText || '|MÉq';
+    var measureText = this.testString || '|MÉq';
 
     if (!properties)
     {
@@ -1562,8 +1563,8 @@ Phaser.Text.prototype.determineFontProperties = function (fontStyle) {
         var context = Phaser.Text.fontPropertiesContext;
 
         context.font = fontStyle;
-        
-        var width = Math.ceil(context.measureText(measureText).width); 
+
+        var width = Math.ceil(context.measureText(measureText).width);
         var baseline = Math.ceil(context.measureText(measureText).width);
         var height = 2 * baseline;
 
@@ -1578,7 +1579,7 @@ Phaser.Text.prototype.determineFontProperties = function (fontStyle) {
         context.font = fontStyle;
 
         context.textBaseline = 'alphabetic';
-        context.fillStyle = '#000';        
+        context.fillStyle = '#000';
         context.fillText(measureText, 0, baseline);
 
         if (!context.getImageData(0, 0, width, height))
@@ -2343,20 +2344,23 @@ Object.defineProperty(Phaser.Text.prototype, 'height', {
 
 /**
 * The text used to measure the font's width and height
-* @name Phaser.Text#measureText
-* @property {string} measureText - Characters to use to measure the width and height of the font. default '|MÉq'
+* @name Phaser.Text#testString
+* @property {string} testString - Characters to use to measure the width and height of the font.
+* @default '|MÉq'
 */
-Object.defineProperty(Phaser.Text.prototype, 'measureText', {
+Object.defineProperty(Phaser.Text.prototype, 'testString', {
 
     get: function() {
 
-        return this._measureText;
+        return this._testString;
+
     },
 
     set: function(value) {
 
-        this._measureText = value;
-        this.updateText();        
+        this._testString = value;
+        this.updateText();
+
     }
 });
 
