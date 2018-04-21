@@ -333,10 +333,14 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### New Features
 
 * Phaser.Text#testString is the character string that is used to calculate the text's width and height.
+* Ellipse#centerX
+* Ellipse#centerY
 
 ### Bug Fixes
 
+* Fixed wrong position in Ellipse#random (#522)
 * Fixed an Animation skipping the final frame in low-FPS situations (#524)
+* Fixed wrong position in Debug#geom (#526)
 
 ### TypeScript definitions
 
@@ -344,7 +348,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@joshlory, @mickeyren
+@budda, @joshlory, @mickeyren
 
 ## Version 2.10.3 - 21st March 2018
 

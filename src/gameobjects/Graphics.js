@@ -837,15 +837,15 @@ Phaser.Graphics.prototype.drawCircle = function (x, y, diameter) {
  * Draws an ellipse.
  *
  * @method Phaser.Graphics#drawEllipse
- * @param x {Number} The X coordinate of the center of the ellipse
- * @param y {Number} The Y coordinate of the center of the ellipse
- * @param width {Number} The half width of the ellipse
- * @param height {Number} The half height of the ellipse
+ * @param centerX {Number} The X coordinate of the center of the ellipse
+ * @param centerY {Number} The Y coordinate of the center of the ellipse
+ * @param halfWidth {Number} The half width of the ellipse
+ * @param halfHeight {Number} The half height of the ellipse
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.drawEllipse = function (x, y, width, height) {
+Phaser.Graphics.prototype.drawEllipse = function (centerX, centerY, halfWidth, halfHeight) {
 
-    this.drawShape(new Phaser.Ellipse(x, y, width, height));
+    this.drawShape({x: centerX, y: centerY, width: halfWidth, height: halfHeight, type: Phaser.ELLIPSE});
 
     return this;
 

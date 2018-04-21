@@ -738,7 +738,7 @@ Phaser.Utils.Debug.prototype = {
         else if (object instanceof Phaser.Ellipse || forceType === 5)
         {
             this.context.beginPath();
-            this.context.ellipse(object.x - this.game.camera.x, object.y - this.game.camera.y, object.width/2, object.height/2, 0,2 * Math.PI,false);
+            this.context.ellipse(object.centerX - this.game.camera.x, object.centerY - this.game.camera.y, object.width / 2, object.height / 2, 0, 2 * Math.PI, false);
             this.context.closePath();
 
             if (filled)

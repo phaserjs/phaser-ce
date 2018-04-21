@@ -162,13 +162,10 @@ Phaser.Ellipse.prototype = {
         if (out === undefined) { out = new Phaser.Point(); }
 
         var p = Math.random() * Math.PI * 2;
-        var r = Math.random();
+        var r = Math.sqrt(Math.random());
 
-        out.x = Math.sqrt(r) * Math.cos(p);
-        out.y = Math.sqrt(r) * Math.sin(p);
-
-        out.x = this.x + (out.x * this.width / 2.0);
-        out.y = this.y + (out.y * this.height / 2.0);
+        out.x = this.centerX + 0.5 * r * Math.cos(p) * this.width;
+        out.y = this.centerY + 0.5 * r * Math.sin(p) * this.height;
 
         return out;
 
@@ -269,6 +266,30 @@ Object.defineProperty(Phaser.Ellipse.prototype, "bottom", {
         {
             this.height = value - this.y;
         }
+    }
+
+});
+
+/**
+* @property {number} centerX
+* @readonly
+*/
+Object.defineProperty(Phaser.Ellipse.prototype, "centerX", {
+
+    get: function () {
+        return this.x + 0.5 * this.width;
+    }
+
+});
+
+/**
+* @property {number} centerY
+* @readonly
+*/
+Object.defineProperty(Phaser.Ellipse.prototype, "centerY", {
+
+    get: function () {
+        return this.y + 0.5 * this.height;
     }
 
 });
