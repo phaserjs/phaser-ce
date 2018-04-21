@@ -344,11 +344,17 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### TypeScript definitions
 
-* Corrected 2 TypeScript definitions of p2.
+* Corrected definitions for ContactMaterial#frictionStiffness, Convex (#513)
+
+### Documentation
+
+* Fixed stage/state typo (#521)
+* Most Tilemap mutate methods modify the tile index only (#484)
+* GameConfig.transparent 'notMultiplied' disables the WebGL context attribute `premultipliedAlpha`
 
 ### Thanks
 
-@budda, @joshlory, @mickeyren
+@budda, @Hagisus, @hardylr, @intersrc, @jamesjsewell, @joshlory, @melissaelopez, @mickeyren
 
 ## Version 2.10.3 - 21st March 2018
 
