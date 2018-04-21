@@ -5155,6 +5155,7 @@ declare module Phaser {
         scale: Phaser.Point;
         tab: number;
         tabs: number | number[];
+        testString: string;
         text: string;
         textBounds: Phaser.Rectangle;
         type: number;
