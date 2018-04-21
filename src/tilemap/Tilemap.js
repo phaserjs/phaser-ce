@@ -1360,7 +1360,7 @@ Phaser.Tilemap.prototype = {
     * If you pass `null` as the tile it will pass your call over to Tilemap.removeTile instead.
     *
     * @method Phaser.Tilemap#putTile
-    * @param {Phaser.Tile|number|null} tile - The index of this tile to set or a Phaser.Tile object. If null the tile is removed from the map.
+    * @param {Phaser.Tile|number|null} tile - The index of this tile to set or a Phaser.Tile object. If a Tile object, all of its data will be copied. If null the tile is removed from the map.
     * @param {number} x - X position to place the tile (given in tile units, not pixels)
     * @param {number} y - Y position to place the tile (given in tile units, not pixels)
     * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to modify.
@@ -1682,6 +1682,7 @@ Phaser.Tilemap.prototype = {
 
     /**
     * Scans the given area for tiles with an index matching tileA and swaps them with tileB.
+    * Only the tile indexes are modified.
     *
     * @method Phaser.Tilemap#swap
     * @param {number} tileA - First tile index.
@@ -1800,6 +1801,7 @@ Phaser.Tilemap.prototype = {
 
     /**
     * Randomises a set of tiles in a given area.
+    * Only the tile indexes are modified.
     *
     * @method Phaser.Tilemap#random
     * @param {number} x - X position of the top left of the area to operate one, given in tiles, not pixels.
@@ -1845,6 +1847,7 @@ Phaser.Tilemap.prototype = {
 
     /**
     * Shuffles a set of tiles in a given area. It will only randomise the tiles in that area, so if they're all the same nothing will appear to have changed!
+    * Only the tile indexes are modified.
     *
     * @method Phaser.Tilemap#shuffle
     * @param {number} x - X position of the top left of the area to operate one, given in tiles, not pixels.
@@ -1887,6 +1890,7 @@ Phaser.Tilemap.prototype = {
 
     /**
     * Fills the given area with the specified tile.
+    * Only the tile indexes are modified.
     *
     * @method Phaser.Tilemap#fill
     * @param {number} index - The index of the tile that the area will be filled with.
