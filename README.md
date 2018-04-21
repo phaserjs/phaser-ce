@@ -330,7 +330,9 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
-* Changes added to customize the character string that is used to calculate the text width and height.
+### New Features
+
+* Phaser.Text#testString is the character string that is used to calculate the text's width and height.
 
 ### TypeScript definitions
 
