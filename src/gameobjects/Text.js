@@ -1302,7 +1302,14 @@ Phaser.Text.prototype.setText = function (text, immediate) {
 
     if (immediate === undefined) { immediate = false; }
 
-    this.text = text.toString() || '';
+    text = text.toString() || '';
+
+    if (text === this._text)
+    {
+        return this;
+    }
+
+    this.text = text;
 
     if (immediate)
     {
