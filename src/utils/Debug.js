@@ -376,18 +376,19 @@ Phaser.Utils.Debug.prototype = {
     {
 
         this.start(x, y, color);
-        this.line('Sound: ' + sound.key + ' Touch locked: ' + sound.game.sound.touchLocked);
-        this.line('Is Ready?: ' + this.game.cache.isSoundReady(sound.key) + ' Pending Playback: ' + sound.pendingPlayback);
-        this.line('Decoded: ' + sound.isDecoded + ' Decoding: ' + sound.isDecoding);
-        this.line('Playing: ' + sound.isPlaying + ' Loop: ' + sound.loop);
-        this.line('Time: ' + sound.currentTime + 'ms Total: ' + sound.totalDuration.toFixed(3) + 's');
+        this.line('Sound: ' + sound.key + '  Touch locked: ' + sound.game.sound.touchLocked);
+        this.line('Is Ready?: ' + this.game.cache.isSoundReady(sound.key) + '  Pending Playback: ' + sound.pendingPlayback);
+        this.line('Decoded: ' + sound.isDecoded + '  Decoding: ' + sound.isDecoding);
+        this.line('Playing: ' + sound.isPlaying + '  Loop: ' + sound.loop);
+        this.line('Time: ' + (sound.currentTime * 1e-3).toFixed(3) + 's  Total: ' + sound.totalDuration.toFixed(3) + 's');
         this.line('Volume: ' + sound.volume.toFixed(2) + (sound.mute ? ' (Mute)' : ''));
-        this.line('Using: ' + (sound.usingWebAudio ? 'Web Audio' : 'Audio Tag'));
+        this.line('Using: ' + (sound.usingWebAudio ? 'Web Audio' : 'Audio Tag') + '  ' +
+            (sound.usingWebAudio ? ('Source: ' + (sound.sourceId || 'none')) : ''));
 
         if (sound.currentMarker !== '')
         {
-            this.line('Marker: ' + sound.currentMarker + ' Duration: ' + sound.duration + ' (ms: ' + sound.durationMS + ')');
-            this.line('Start: ' + sound.markers[sound.currentMarker].start + ' Stop: ' + sound.markers[sound.currentMarker].stop);
+            this.line('Marker: ' + sound.currentMarker + '  Duration: ' + sound.duration.toFixed(3) + 's (' + sound.durationMS + 'ms)');
+            this.line('Start: ' + sound.markers[sound.currentMarker].start + '  Stop: ' + sound.markers[sound.currentMarker].stop);
             this.line('Position: ' + sound.position);
         }
 

@@ -369,12 +369,20 @@ Phaser.SoundManager.prototype = {
         else if (this.usingWebAudio)
         {
             // Create empty buffer and play it
-            // The SoundManager.update loop captures the state of it and then resets touchLocked to false
+            // The onended handler will set touchLocked to false
 
             var buffer = this.context.createBuffer(1, 1, 22050);
             this._unlockSource = this.context.createBufferSource();
             this._unlockSource.buffer = buffer;
             this._unlockSource.connect(this.context.destination);
+
+            var _this = this;
+
+            this._unlockSource.onended = function unlockSourceOnEndedHandler ()
+            {
+                _this.setTouchUnlock();
+                _this.resumeWebAudio();
+            };
 
             if (this._unlockSource.start === undefined)
             {
@@ -497,7 +505,7 @@ Phaser.SoundManager.prototype = {
                         }
                     });
                 }
-                catch (e) {}
+                catch (e) {} // eslint-disable-line no-empty
             }
         }
 
@@ -566,12 +574,6 @@ Phaser.SoundManager.prototype = {
         if (this.noAudio)
         {
             return;
-        }
-
-        if (this.touchLocked && this._unlockSource !== null && (this._unlockSource.playbackState === this._unlockSource.PLAYING_STATE || this._unlockSource.playbackState === this._unlockSource.FINISHED_STATE))
-        {
-            this.setTouchUnlock();
-            this.resumeWebAudio();
         }
 
         for (var i = 0; i < this._sounds.length; i++)

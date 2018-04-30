@@ -200,7 +200,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     */
     this._removeFromSoundManager = false;
 
-
+    this._sourceId = 0;
 
     if (this.usingWebAudio)
     {
@@ -424,8 +424,7 @@ Phaser.Sound.prototype = {
     */
     onEndedHandler: function ()
     {
-
-        this._sound.onended = null;
+        this._removeOnEndedHandler();
         this.isPlaying = false;
         this.currentTime = this.durationMS;
         this.stop();
@@ -438,14 +437,7 @@ Phaser.Sound.prototype = {
 
         if (this._markedToDelete)
         {
-            if (this.externalNode)
-            {
-                this._sound.disconnect(this.externalNode);
-            }
-            else if (this.gainNode)
-            {
-                this._sound.disconnect(this.gainNode);
-            }
+            this._disconnectSource();
 
             if (this._removeFromSoundManager)
             {
@@ -595,34 +587,9 @@ Phaser.Sound.prototype = {
 
         if (this._sound && this.isPlaying && !this.allowMultiple && (this.override || forceRestart))
         {
-            // Firefox calls onended() after _sound.stop(). Chrome and Safari do not. (#530)
-            this._sound.onended = null;
-
             if (this.usingWebAudio)
             {
-                if (this._sound.stop === undefined)
-                {
-                    this._sound.noteOff(0);
-                }
-                else
-                {
-                    try
-                    {
-                        this._sound.stop(0);
-                    }
-                    catch (e)
-                    {
-                    }
-                }
-
-                if (this.externalNode)
-                {
-                    this._sound.disconnect(this.externalNode);
-                }
-                else if (this.gainNode)
-                {
-                    this._sound.disconnect(this.gainNode);
-                }
+                this._stopSourceAndDisconnect();
             }
             else if (this.usingAudioTag)
             {
@@ -698,19 +665,7 @@ Phaser.Sound.prototype = {
             //  Does the sound need decoding?
             if (this.game.cache.isSoundDecoded(this.key))
             {
-                this._sound = this.context.createBufferSource();
-
-                if (this.externalNode)
-                {
-                    this._sound.connect(this.externalNode);
-                }
-                else
-                {
-                    this._sound.connect(this.gainNode);
-                }
-
-                this._buffer = this.game.cache.getSoundData(this.key);
-                this._sound.buffer = this._buffer;
+                this._createSourceAndConnect();
 
                 if (this.loop && marker === '')
                 {
@@ -719,7 +674,7 @@ Phaser.Sound.prototype = {
 
                 if (!this.loop && marker === '')
                 {
-                    this._sound.onended = this.onEndedHandler.bind(this);
+                    this._addOnEndedHandler();
                 }
 
                 this.totalDuration = this._sound.buffer.duration;
@@ -730,18 +685,13 @@ Phaser.Sound.prototype = {
                     this.durationMS = Math.ceil(this.totalDuration * 1000);
                 }
 
-                //  Useful to cache this somewhere perhaps?
-                if (this._sound.start === undefined)
+                if (this.loop && marker === '')
                 {
-                    this._sound.noteGrainOn(0, this.position, this.duration);
-                }
-                else if (this.loop && marker === '')
-                {
-                    this._sound.start(0, 0);
+                    this._startSource(0, 0);
                 }
                 else
                 {
-                    this._sound.start(0, this.position, this.duration);
+                    this._startSource(0, this.position, this.duration);
                 }
 
                 this.isPlaying = true;
@@ -876,17 +826,7 @@ Phaser.Sound.prototype = {
             {
                 var p = Math.max(0, this.position + (this.pausedPosition / 1000));
 
-                this._sound = this.context.createBufferSource();
-                this._sound.buffer = this._buffer;
-
-                if (this.externalNode)
-                {
-                    this._sound.connect(this.externalNode);
-                }
-                else
-                {
-                    this._sound.connect(this.gainNode);
-                }
+                this._createSourceAndConnect();
 
                 if (this.currentMarker === '')
                 {
@@ -896,37 +836,19 @@ Phaser.Sound.prototype = {
                     }
                     else
                     {
-                        this._sound.onended = this.onEndedHandler.bind(this);
+                        this._addOnEndedHandler();
                     }
                 }
 
                 var duration = this.duration - (this.pausedPosition / 1000);
 
-                if (this._sound.start === undefined)
+                if (this.loop && this.currentMarker === '')
                 {
-                    this._sound.noteGrainOn(0, p, duration);
-
-                    // this._sound.noteOn(0); // the zero is vitally important, crashes iOS6 without it
-                }
-                else if (this.loop && this.game.device.chrome)
-                {
-                    //  Handle chrome bug: https://code.google.com/p/chromium/issues/detail?id=457099
-                    if (this.game.device.chromeVersion === 42)
-                    {
-                        this._sound.start(0);
-                    }
-                    else if (this.currentMarker === '')
-                    {
-                        this._sound.start(0, p);
-                    }
-                    else
-                    {
-                        this._sound.start(0, p, duration);
-                    }
+                    this._startSource(0, p);
                 }
                 else
                 {
-                    this._sound.start(0, p, duration);
+                    this._startSource(0, p, duration);
                 }
             }
             else
@@ -955,30 +877,7 @@ Phaser.Sound.prototype = {
         {
             if (this.usingWebAudio)
             {
-                if (this._sound.stop === undefined)
-                {
-                    this._sound.noteOff(0);
-                }
-                else
-                {
-                    try
-                    {
-                        this._sound.stop(0);
-                    }
-                    catch (e)
-                    {
-                        //  Thanks Android 4.4
-                    }
-                }
-
-                if (this.externalNode)
-                {
-                    this._sound.disconnect(this.externalNode);
-                }
-                else if (this.gainNode)
-                {
-                    this._sound.disconnect(this.gainNode);
-                }
+                this._stopSourceAndDisconnect();
 
             }
             else if (this.usingAudioTag)
@@ -1164,6 +1063,106 @@ Phaser.Sound.prototype = {
             this.onMute.dispose();
             this.onMarkerComplete.dispose();
         }
+    },
+
+    _createSourceAndConnect: function ()
+    {
+
+        if (this._sound && !this.allowMultiple)
+        {
+            console.warn('Phaser.Sound: Audio source already exists');
+
+            // this._disconnectSource();
+        }
+
+        this._sound = this.context.createBufferSource();
+
+        this._sourceId++;
+
+        if (this.externalNode)
+        {
+            this._sound.connect(this.externalNode);
+        }
+        else
+        {
+            this._sound.connect(this.gainNode);
+        }
+
+        this._buffer = this.game.cache.getSoundData(this.key);
+        this._sound.buffer = this._buffer;
+
+    },
+
+    _disconnectSource: function ()
+    {
+
+        if (this.externalNode)
+        {
+            this._sound.disconnect(this.externalNode);
+        }
+        else if (this.gainNode)
+        {
+            this._sound.disconnect(this.gainNode);
+        }
+
+    },
+
+    _startSource: function (when, offset, duration)
+    {
+
+        if (!when) { when = 0; }
+
+        if (this._sound.start === undefined)
+        {
+            this._sound.noteGrainOn(when, offset, duration);
+        }
+        else
+        {
+            this._sound.start(when, offset, duration);
+        }
+
+    },
+
+    _stopSourceAndDisconnect: function ()
+    {
+
+        // Firefox calls onended() after _sound.stop(). Chrome and Safari do not. (#530)
+        this._removeOnEndedHandler();
+
+        if (this._sound.stop === undefined)
+        {
+            this._sound.noteOff(0);
+        }
+        else
+        {
+            try
+            {
+                this._sound.stop(0);
+            }
+            catch (e)
+            {
+                //  Thanks Android 4.4
+            }
+        }
+
+        this._disconnectSource();
+
+        this._sound = null;
+
+    },
+
+    _addOnEndedHandler: function ()
+    {
+
+        this._sound.onended = this.onEndedHandler.bind(this);
+
+    },
+
+    _removeOnEndedHandler: function ()
+    {
+
+        this._sound.onended = null;
+
     }
 
 };
@@ -1292,6 +1291,15 @@ Object.defineProperty(Phaser.Sound.prototype, 'volume', {
         {
             this._sound.volume = this._globalVolume * value;
         }
+    }
+
+});
+
+Object.defineProperty(Phaser.Sound.prototype, 'sourceId', {
+
+    get: function ()
+    {
+        return this._sound ? this._sourceId : null;
     }
 
 });
