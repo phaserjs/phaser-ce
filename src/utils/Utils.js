@@ -10,6 +10,23 @@
 */
 Phaser.Utils = {
 
+    defaults: function (target, defaults)
+    {
+        var keys = Object.keys(defaults);
+
+        for (var i = 0, len = keys.length; i < len; i++)
+        {
+            var key = keys[i];
+
+            if (target[key] === undefined)
+            {
+                target[key] = defaults[key];
+            }
+        }
+
+        return target;
+    },
+
     /**
     * Takes the given string and reverses it, returning the reversed string.
     * For example if given the string `Atari 520ST` it would return `TS025 iratA`.

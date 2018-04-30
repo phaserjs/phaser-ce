@@ -828,7 +828,19 @@ Phaser.Device._initialize = function ()
 
         device.worker = !!window['Worker'];
 
-        device.pointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
+        device.pointerLockElement = (('pointerLockElement' in document) && 'pointerLockElement') ||
+            (('mozPointerLockElement' in document) && 'mozPointerLockElement') ||
+            (('webkitPointerLockElement' in document) && 'webkitPointerLockElement');
+
+        device.pointerlockchange = (('onpointerlockchange' in document) && 'pointerlockchange') ||
+            (('onmozpointerlockchange' in document) && 'mozpointerlockchange') ||
+            (('onwebkitpointerlockchange' in document) && 'webkitpointerlockchange');
+
+        device.pointerlockerror = (('onpointerlockerror' in document) && 'pointerlockerror') ||
+            (('onmozpointerlockerror' in document) && 'mozpointerlockerror') ||
+            (('onwebkitpointerlockerror' in document) && 'webkitpointerlockerror');
+
+        device.pointerLock = !!device.pointerLockElement;
 
         device.quirksMode = (document.compatMode === 'CSS1Compat') ? false : true;
 

@@ -22,6 +22,13 @@ Phaser.Touch = function (game)
     this.game = game;
 
     /**
+    * Whether the input handler is active.
+    * @property {boolean} active
+    * @readOnly
+    */
+    this.active = false;
+
+    /**
     * Touch events will only be processed if enabled.
     * @property {boolean} enabled
     * @default
@@ -128,57 +135,63 @@ Phaser.Touch.prototype = {
     start: function ()
     {
 
+        if (!this.game.device.touch)
+        {
+            return false;
+        }
+
         if (this._onTouchStart !== null)
         {
             //  Avoid setting multiple listeners
-            return;
+            return false;
         }
 
         var _this = this;
 
-        if (this.game.device.touch)
+        this._onTouchStart = function (event)
         {
-            this._onTouchStart = function (event)
-            {
-                return _this.onTouchStart(event);
-            };
+            return _this.onTouchStart(event);
+        };
 
-            this._onTouchMove = function (event)
-            {
-                return _this.onTouchMove(event);
-            };
+        this._onTouchMove = function (event)
+        {
+            return _this.onTouchMove(event);
+        };
 
-            this._onTouchEnd = function (event)
-            {
-                return _this.onTouchEnd(event);
-            };
+        this._onTouchEnd = function (event)
+        {
+            return _this.onTouchEnd(event);
+        };
 
-            this._onTouchEnter = function (event)
-            {
-                return _this.onTouchEnter(event);
-            };
+        this._onTouchEnter = function (event)
+        {
+            return _this.onTouchEnter(event);
+        };
 
-            this._onTouchLeave = function (event)
-            {
-                return _this.onTouchLeave(event);
-            };
+        this._onTouchLeave = function (event)
+        {
+            return _this.onTouchLeave(event);
+        };
 
-            this._onTouchCancel = function (event)
-            {
-                return _this.onTouchCancel(event);
-            };
+        this._onTouchCancel = function (event)
+        {
+            return _this.onTouchCancel(event);
+        };
 
-            this.game.canvas.addEventListener('touchstart', this._onTouchStart, false);
-            this.game.canvas.addEventListener('touchmove', this._onTouchMove, false);
-            this.game.canvas.addEventListener('touchend', this._onTouchEnd, false);
-            this.game.canvas.addEventListener('touchcancel', this._onTouchCancel, false);
+        this.game.canvas.addEventListener('touchstart', this._onTouchStart, false);
+        this.game.canvas.addEventListener('touchmove', this._onTouchMove, false);
+        this.game.canvas.addEventListener('touchend', this._onTouchEnd, false);
+        this.game.canvas.addEventListener('touchcancel', this._onTouchCancel, false);
 
-            if (!this.game.device.cocoonJS)
-            {
-                this.game.canvas.addEventListener('touchenter', this._onTouchEnter, false);
-                this.game.canvas.addEventListener('touchleave', this._onTouchLeave, false);
-            }
+        if (!this.game.device.cocoonJS)
+        {
+            this.game.canvas.addEventListener('touchenter', this._onTouchEnter, false);
+            this.game.canvas.addEventListener('touchleave', this._onTouchLeave, false);
         }
+
+        this.active = true;
+
+        return true;
 
     },
 
@@ -387,15 +400,19 @@ Phaser.Touch.prototype = {
     stop: function ()
     {
 
-        if (this.game.device.touch)
+        if (!this.game.device.touch)
         {
-            this.game.canvas.removeEventListener('touchstart', this._onTouchStart);
-            this.game.canvas.removeEventListener('touchmove', this._onTouchMove);
-            this.game.canvas.removeEventListener('touchend', this._onTouchEnd);
-            this.game.canvas.removeEventListener('touchenter', this._onTouchEnter);
-            this.game.canvas.removeEventListener('touchleave', this._onTouchLeave);
-            this.game.canvas.removeEventListener('touchcancel', this._onTouchCancel);
+            return;
         }
+
+        this.game.canvas.removeEventListener('touchstart', this._onTouchStart);
+        this.game.canvas.removeEventListener('touchmove', this._onTouchMove);
+        this.game.canvas.removeEventListener('touchend', this._onTouchEnd);
+        this.game.canvas.removeEventListener('touchenter', this._onTouchEnter);
+        this.game.canvas.removeEventListener('touchleave', this._onTouchLeave);
+        this.game.canvas.removeEventListener('touchcancel', this._onTouchCancel);
+
+        this.active = false;
 
     }
 

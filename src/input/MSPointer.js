@@ -68,17 +68,16 @@ Phaser.MSPointer = function (game)
     this.pointerUpCallback = null;
 
     /**
-    * @property {boolean} capture - If true the Pointer events will have event.preventDefault applied to them, canceling the corresponding MouseEvent or TouchEvent.
+    * If true the Pointer events will have event.preventDefault applied to them, canceling the
+    * corresponding MouseEvent or TouchEvent.
+    *
+    * "Mouse events can only be prevented when the pointer is down. Hovering pointers (e.g. a mouse
+    * with no buttons pressed) cannot have their mouse events prevented. And, the `mouseover` and
+    * `mouseout` events are never prevented (even if the pointer is down)."
+    * @property {boolean} capture
+    * @see https://www.w3.org/Submission/pointer-events/#mapping-for-devices-that-support-hover
     */
     this.capture = true;
-
-    /**
-    * This property was removed in Phaser 2.4 and should no longer be used.
-    * Instead please see the Pointer button properties such as `Pointer.leftButton`, `Pointer.rightButton` and so on.
-    * Or Pointer.button holds the DOM event button value if you require that.
-    * @property {number} button
-    */
-    this.button = -1;
 
     /**
     * The most recent PointerEvent from the browser. Will be null if no event has ever been received.
@@ -87,6 +86,14 @@ Phaser.MSPointer = function (game)
     * @default
     */
     this.event = null;
+
+    /**
+    * Whether the input handler is active.
+    * @property {boolean} active
+    * @readOnly
+    * @default
+    */
+    this.active = false;
 
     /**
     * PointerEvent input will only be processed if enabled.
@@ -142,72 +149,78 @@ Phaser.MSPointer.prototype = {
     start: function ()
     {
 
+        if (!this.game.device.mspointer)
+        {
+            return false;
+        }
+
         if (this._onMSPointerDown !== null)
         {
             //  Avoid setting multiple listeners
-            return;
+            return false;
         }
 
         var _this = this;
 
-        if (this.game.device.mspointer)
+        this._onMSPointerDown = function (event)
         {
-            this._onMSPointerDown = function (event)
-            {
-                return _this.onPointerDown(event);
-            };
+            return _this.onPointerDown(event);
+        };
 
-            this._onMSPointerMove = function (event)
-            {
-                return _this.onPointerMove(event);
-            };
+        this._onMSPointerMove = function (event)
+        {
+            return _this.onPointerMove(event);
+        };
 
-            this._onMSPointerUp = function (event)
-            {
-                return _this.onPointerUp(event);
-            };
+        this._onMSPointerUp = function (event)
+        {
+            return _this.onPointerUp(event);
+        };
 
-            this._onMSPointerUpGlobal = function (event)
-            {
-                return _this.onPointerUpGlobal(event);
-            };
+        this._onMSPointerUpGlobal = function (event)
+        {
+            return _this.onPointerUpGlobal(event);
+        };
 
-            this._onMSPointerOut = function (event)
-            {
-                return _this.onPointerOut(event);
-            };
+        this._onMSPointerOut = function (event)
+        {
+            return _this.onPointerOut(event);
+        };
 
-            this._onMSPointerOver = function (event)
-            {
-                return _this.onPointerOver(event);
-            };
+        this._onMSPointerOver = function (event)
+        {
+            return _this.onPointerOver(event);
+        };
 
-            var canvas = this.game.canvas;
+        var canvas = this.game.canvas;
 
-            canvas.addEventListener('MSPointerDown', this._onMSPointerDown, false);
-            canvas.addEventListener('MSPointerMove', this._onMSPointerMove, false);
-            canvas.addEventListener('MSPointerUp', this._onMSPointerUp, false);
+        canvas.addEventListener('MSPointerDown', this._onMSPointerDown, false);
+        canvas.addEventListener('MSPointerMove', this._onMSPointerMove, false);
+        canvas.addEventListener('MSPointerUp', this._onMSPointerUp, false);
+
+        //  IE11+ uses non-prefix events
+        canvas.addEventListener('pointerdown', this._onMSPointerDown, false);
+        canvas.addEventListener('pointermove', this._onMSPointerMove, false);
+        canvas.addEventListener('pointerup', this._onMSPointerUp, false);
+
+        canvas.style['-ms-content-zooming'] = 'none';
+        canvas.style['-ms-touch-action'] = 'none';
+
+        if (!this.game.device.cocoonJS)
+        {
+            window.addEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
+            canvas.addEventListener('MSPointerOver', this._onMSPointerOver, true);
+            canvas.addEventListener('MSPointerOut', this._onMSPointerOut, true);
 
             //  IE11+ uses non-prefix events
-            canvas.addEventListener('pointerdown', this._onMSPointerDown, false);
-            canvas.addEventListener('pointermove', this._onMSPointerMove, false);
-            canvas.addEventListener('pointerup', this._onMSPointerUp, false);
-
-            canvas.style['-ms-content-zooming'] = 'none';
-            canvas.style['-ms-touch-action'] = 'none';
-
-            if (!this.game.device.cocoonJS)
-            {
-                window.addEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
-                canvas.addEventListener('MSPointerOver', this._onMSPointerOver, true);
-                canvas.addEventListener('MSPointerOut', this._onMSPointerOut, true);
-
-                //  IE11+ uses non-prefix events
-                window.addEventListener('pointerup', this._onMSPointerUpGlobal, true);
-                canvas.addEventListener('pointerover', this._onMSPointerOver, true);
-                canvas.addEventListener('pointerout', this._onMSPointerOut, true);
-            }
+            window.addEventListener('pointerup', this._onMSPointerUpGlobal, true);
+            canvas.addEventListener('pointerover', this._onMSPointerOver, true);
+            canvas.addEventListener('pointerout', this._onMSPointerOut, true);
         }
+
+        this.active = true;
+
+        return true;
 
     },
 
@@ -474,6 +487,8 @@ Phaser.MSPointer.prototype = {
         window.removeEventListener('pointerup', this._onMSPointerUpGlobal, true);
         canvas.removeEventListener('pointerover', this._onMSPointerOver, true);
         canvas.removeEventListener('pointerout', this._onMSPointerOut, true);
+
+        this.active = false;
 
     }
 

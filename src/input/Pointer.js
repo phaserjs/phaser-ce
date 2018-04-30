@@ -207,25 +207,27 @@ Phaser.Pointer = function (game, id, pointerMode)
     this.screenY = -1;
 
     /**
-    * @property {number} rawMovementX - The horizontal raw relative movement of the Pointer in pixels since last event.
+    * @property {number} rawMovementX - The horizontal raw relative movement of the Pointer in pixels at the last event, if this is a Mouse Pointer in a locked state.
     * @default
+    * @see https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/movementX
     */
     this.rawMovementX = 0;
 
     /**
-    * @property {number} rawMovementY - The vertical raw relative movement of the Pointer in pixels since last event.
+    * @property {number} rawMovementY - The vertical raw relative movement of the Pointer in pixels at the last event, if this is a Mouse Pointer in a locked state.
     * @default
+    * @see https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/movementY
     */
     this.rawMovementY = 0;
 
     /**
-    * @property {number} movementX - The horizontal processed relative movement of the Pointer in pixels since last event.
+    * @property {number} movementX - The cumulative horizontal relative movement of the Pointer in pixels since resetMovement() was called, if this is a Mouse Pointer in a locked state.
     * @default
     */
     this.movementX = 0;
 
     /**
-    * @property {number} movementY - The vertical processed relative movement of the Pointer in pixels since last event.
+    * @property {number} movementY - The cumulative vertical relative movement of the Pointer in pixels since resetMovement() was called, if this is a Mouse Pointer in a locked state..
     * @default
     */
     this.movementY = 0;
@@ -1014,16 +1016,9 @@ Phaser.Pointer.prototype = {
             if (this.duration >= 0 && this.duration <= input.tapRate)
             {
                 //  Was it a double-tap?
-                if (this.timeUp - this.previousTapTime < input.doubleTapRate)
-                {
-                    //  Yes, let's dispatch the signal then with the 2nd parameter set to true
-                    input.onTap.dispatch(this, true);
-                }
-                else
-                {
-                    //  Wasn't a double-tap, so dispatch a single tap signal
-                    input.onTap.dispatch(this, false);
-                }
+                var doubleTap = (this.timeUp - this.previousTapTime < input.doubleTapRate);
+
+                input.onTap.dispatch(this, doubleTap, event);
 
                 this.previousTapTime = this.timeUp;
             }
@@ -1313,3 +1308,9 @@ Phaser.PointerMode = {
     CONTACT: 1 << 1
 
 };
+
+Phaser.PointerModes = {};
+
+Phaser.PointerModes[Phaser.PointerMode.CURSOR] = 'CURSOR';
+
+Phaser.PointerModes[Phaser.PointerMode.CONTACT] = 'CONTACT';

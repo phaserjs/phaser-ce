@@ -215,7 +215,8 @@ Phaser.Input = function (game)
     this.pointer10 = null;
 
     /**
-    * An array of non-mouse pointers that have been added to the game.
+    * A pool of non-mouse (contact) pointers that have been added to the game.
+    * They're activated and updated by {@link Phaser.Input#mspointer} and {@link Phaser.Input#touch}.
     * The properties `pointer1..N` are aliases for `pointers[0..N-1]`.
     * @property {Phaser.Pointer[]} pointers
     * @public
@@ -234,6 +235,8 @@ Phaser.Input = function (game)
 
     /**
     * The mouse has its own unique Phaser.Pointer object which you can use if making a desktop specific game.
+    *
+    * The mouse pointer is updated by {@link Phaser.Input#mouse} and {@link Phaser.Input#mspointer}.
     *
     * @property {Pointer} mousePointer
     */
@@ -408,13 +411,30 @@ Phaser.Input.MAX_POINTERS = 10;
 Phaser.Input.prototype = {
 
     /**
+    * @typedef {object} InputConfig
+    * @property {boolean} [keyboard=true]
+    * @property {boolean} [maxPointers=-1]
+    * @property {boolean} [mouse=true]
+    * @property {boolean} [mouseWheel=true]
+    * @property {boolean} [mspointer=true]
+    * @property {boolean} [pointerLock=true]
+    * @property {boolean} [touch=true]
+    */
+
+    /**
     * Starts the Input Manager running.
     *
     * @method Phaser.Input#boot
     * @protected
+    * @param {InputConfig} config
     */
-    boot: function ()
+    boot: function (config)
     {
+
+        if ('maxPointers' in config)
+        {
+            this.maxPointers = config.maxPointers;
+        }
 
         this.mousePointer = new Phaser.Pointer(this.game, 0, Phaser.PointerMode.CURSOR);
         this.addPointer();
@@ -423,6 +443,8 @@ Phaser.Input.prototype = {
         this.mouse = new Phaser.Mouse(this.game);
         this.touch = new Phaser.Touch(this.game);
         this.mspointer = new Phaser.MSPointer(this.game);
+        this.mouseWheel = new Phaser.MouseWheel(this.game);
+        this.pointerLock = new Phaser.PointerLock(this.game);
 
         if (Phaser.Keyboard)
         {
@@ -451,17 +473,32 @@ Phaser.Input.prototype = {
         this.hitCanvas = Phaser.CanvasPool.create(this, 1, 1);
         this.hitContext = this.hitCanvas.getContext('2d');
 
-        this.mouse.start();
-        if (!this.game.device.mspointer)
+        if (this.game.device.mspointer && (config.mspointer !== false))
         {
-            // Chrome >= 55 fires both PointerEvent and TouchEvent.
-            // Pick only one.
+            this.mspointer.start();
+        }
+        else if (this.game.device.touch && (config.touch !== false))
+        {
             this.touch.start();
         }
-        this.mspointer.start();
+        else if (config.mouse !== false)
+        {
+            this.mouse.start();
+        }
+
         this.mousePointer.active = true;
 
-        if (this.keyboard)
+        if (config.mouseWheel !== false)
+        {
+            this.mouseWheel.start();
+        }
+
+        if (config.pointerLock !== false)
+        {
+            this.pointerLock.start();
+        }
+
+        if (this.keyboard && (config.keyboard !== false))
         {
             this.keyboard.start();
         }
@@ -486,8 +523,10 @@ Phaser.Input.prototype = {
     {
 
         this.mouse.stop();
+        this.mouseWheel.stop();
         this.touch.stop();
         this.mspointer.stop();
+        this.pointerLock.stop();
 
         if (this.keyboard)
         {
