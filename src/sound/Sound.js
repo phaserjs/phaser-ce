@@ -590,6 +590,9 @@ Phaser.Sound.prototype = {
 
         if (this._sound && this.isPlaying && !this.allowMultiple && (this.override || forceRestart))
         {
+            // Firefox calls onended() after _sound.stop(). Chrome and Safari do not. (#530)
+            this._sound.onended = null;
+
             if (this.usingWebAudio)
             {
                 if (this._sound.stop === undefined)
@@ -765,9 +768,9 @@ Phaser.Sound.prototype = {
                 if (this._sound && (this.game.device.cocoonJS || this._sound.readyState === 4))
                 {
                     this._sound.play();
-										
+
                     this._sound.loop = this.loop;
-										
+
                     //  This doesn't become available until you call play(), wonderful ...
                     this.totalDuration = this._sound.duration;
 
