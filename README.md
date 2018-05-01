@@ -336,6 +336,10 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Ellipse#centerX
 * Ellipse#centerY
 
+### Updates
+
+* An `event` parameter is passed to callbacks added with Phaser.Input#addMoveCallback.
+
 ### Bug Fixes
 
 * Fixed wrong position in Ellipse#random (#522)
