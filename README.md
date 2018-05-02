@@ -342,6 +342,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Bug Fixes
 
+* Fixed a bogus warning when selecting tilemap layer 0 (#511).
 * Fixed wrong position in Ellipse#random (#522)
 * Fixed an Animation skipping the final frame in low-FPS situations (#524)
 * Fixed wrong position in Debug#geom (#526)
@@ -361,7 +362,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@budda, @Hagisus, @hardylr, @intersrc, @jamesjsewell, @josalmi, @joshlory, @melissaelopez, @mickeyren, @samme, @tobspr
+@budda, @Hagisus, @HaoboZ, @hardylr, @intersrc, @jamesjsewell, @josalmi, @joshlory, @melissaelopez, @mickeyren, @samme, @tobspr
 
 ## Version 2.10.3 - 21st March 2018
 
