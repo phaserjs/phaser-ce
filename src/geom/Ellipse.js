@@ -271,6 +271,8 @@ Object.defineProperty(Phaser.Ellipse.prototype, "bottom", {
 });
 
 /**
+* The x coordinate of the center of the Ellipse.
+* @name Phaser.Ellipse#centerX
 * @property {number} centerX
 * @readonly
 */
@@ -283,6 +285,8 @@ Object.defineProperty(Phaser.Ellipse.prototype, "centerX", {
 });
 
 /**
+* The y coordinate of the center of the Ellipse.
+* @name Phaser.Ellipse#centerY
 * @property {number} centerY
 * @readonly
 */

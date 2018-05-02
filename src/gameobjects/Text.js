@@ -2352,7 +2352,6 @@ Object.defineProperty(Phaser.Text.prototype, 'height', {
 /**
 * The text used to measure the font's width and height
 * @name Phaser.Text#testString
-* @property {string} testString - Characters to use to measure the width and height of the font.
 * @default '|MÉq'
 */
 Object.defineProperty(Phaser.Text.prototype, 'testString', {
