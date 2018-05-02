@@ -432,7 +432,7 @@ PIXI.Sprite.prototype._renderWebGL = function(renderSession, matrix)
 PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
 {
     // If the sprite is not visible or the alpha is 0 then no need to render this element
-    if (!this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width <= 0 || this.texture.crop.height <= 0)
+    if (!this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width < 1 || this.texture.crop.height < 1)
     {
         return;
     }
@@ -533,6 +533,14 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     dx /= resolution;
     dy /= resolution;
 
+    cw |= 0;
+    ch |= 0;
+
+    if (!cw || !ch)
+    {
+        return;
+    }
+
     if (this.tint !== 0xFFFFFF)
     {
         if (this.texture.requiresReTint || this.cachedTint !== this.tint)
@@ -549,9 +557,6 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     {
         var cx = this.texture.crop.x;
         var cy = this.texture.crop.y;
-
-        cw = Math.floor(cw)
-        ch = Math.floor(ch)
 
         renderSession.context.drawImage(this.texture.baseTexture.source, cx, cy, cw, ch, dx, dy, cw / resolution, ch / resolution);
     }
