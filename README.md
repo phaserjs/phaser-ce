@@ -346,6 +346,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Fixed an Animation skipping the final frame in low-FPS situations (#524)
 * Fixed wrong position in Debug#geom (#526)
 * Depending on the shape type, Debug#geom didn't always force a rendering type when `forceType` was used.
+* Fixed unnecessary text updates when using Text#setText with `immediate=true` (#525).
 * Fixed issues restarting a Sound in Firefox, using Web Audio (#530).
 
 ### TypeScript definitions
@@ -360,7 +361,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@budda, @Hagisus, @hardylr, @intersrc, @jamesjsewell, @josalmi, @joshlory, @melissaelopez, @mickeyren, @samme
+@budda, @Hagisus, @hardylr, @intersrc, @jamesjsewell, @josalmi, @joshlory, @melissaelopez, @mickeyren, @samme, @tobspr
 
 ## Version 2.10.3 - 21st March 2018
 
