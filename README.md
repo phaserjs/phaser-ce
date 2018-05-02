@@ -349,6 +349,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Depending on the shape type, Debug#geom didn't always force a rendering type when `forceType` was used.
 * Fixed unnecessary text updates when using Text#setText with `immediate=true` (#525).
 * Fixed issues restarting a Sound in Firefox, using Web Audio (#530).
+* Fixed an IndexSizeError in Edge/Firefox when a very small texture crop rectangle is used (#532).
 
 ### TypeScript definitions
 
