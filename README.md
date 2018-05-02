@@ -356,7 +356,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Documentation
 
-* Fixed stage/state typo (#521)
+* Fixed typos (#517, #521)
 * Most Tilemap mutate methods modify the tile index only (#484)
 * GameConfig.transparent 'notMultiplied' disables the WebGL context attribute `premultipliedAlpha`
 
