@@ -332,38 +332,38 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### New Features
 
-* Phaser.Text#testString is the character string that is used to calculate the text's width and height.
+* Phaser.Text#testString is the character string used to calculate the text's width and height.
 * Ellipse#centerX
 * Ellipse#centerY
 
 ### Updates
 
-* An `event` parameter is passed to callbacks added with Phaser.Input#addMoveCallback.
+* Callbacks added with Phaser.Input#addMoveCallback receive an `event` parameter.
 
 ### Bug Fixes
 
 * Fixed a bogus warning when selecting tilemap layer 0 (#511).
-* Fixed wrong position in Ellipse#random (#522)
-* Fixed an Animation skipping the final frame in low-FPS situations (#524)
-* Fixed wrong position in Debug#geom (#526)
-* Depending on the shape type, Debug#geom didn't always force a rendering type when `forceType` was used.
+* Fixed wrong position in Ellipse#random (#522).
+* Fixed an Animation skipping the final frame in low-FPS situations (#524).
+* Fixed wrong ellipse position in Debug#geom (#526).
+* Fixed `forceType` failing to override some geometry types in Debug#geom.
 * Fixed unnecessary text updates when using Text#setText with `immediate=true` (#525).
-* Fixed issues restarting a Sound in Firefox, using Web Audio (#530).
+* Fixed issues restarting a Sound in Firefox (#530).
 * Fixed an IndexSizeError in Edge/Firefox when a very small texture crop rectangle is used (#532).
 
 ### TypeScript definitions
 
-* Corrected definitions for ContactMaterial#frictionStiffness, Convex (#513)
+* Corrected definitions for ContactMaterial#frictionStiffness, Convex (#513).
 
 ### Documentation
 
-* Fixed typos (#517, #521)
-* Most Tilemap mutate methods modify the tile index only (#484)
-* GameConfig.transparent 'notMultiplied' disables the WebGL context attribute `premultipliedAlpha`
+* Fixed typos (#517, #521).
+* The Tilemap methods fill, random, replace, shuffle, and swap modify the tile index only (#484).
+* The special GameConfig.transparent value 'notMultiplied' disables the WebGL context attribute `premultipliedAlpha`.
 
 ### Thanks
 
-@budda, @Hagisus, @HaoboZ, @hardylr, @intersrc, @jamesjsewell, @josalmi, @joshlory, @melissaelopez, @mickeyren, @samme, @tobspr
+@budda, @Hagisus, @HaoboZ, @hardylr, @intersrc, @jamesjsewell, @josalmi, @joshlory, @melissaelopez, @mickeyren, @photonstorm, @samme, @tobspr
 
 ## Version 2.10.3 - 21st March 2018
 
