@@ -1,7 +1,7 @@
 {
   "name": "phaser-ce",
-  "version": "2.10.3",
-  "release": "2018-03-22",
+  "version": "2.10.4",
+  "release": "2018-05-03",
   "description": "Phaser CE (Community Edition) is a fast, free and fun HTML5 Game Framework for Desktop and Mobile web browsers.",
   "author": "Richard Davey <rdavey@gmail.com> (http://www.photonstorm.com)",
   "logo": "https://raw.github.com/photonstorm/phaser-ce/master/phaser-logo-small.png",
