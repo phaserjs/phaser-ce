@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](http://phaser.io/phaser3) is in active development.
 
-The [current Phaser CE release is 2.10.3](https://github.com/photonstorm/phaser-ce/releases/tag/v2.10.3).
+The [current Phaser CE release is 2.10.4](https://github.com/photonstorm/phaser-ce/releases/tag/v2.10.4).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
@@ -128,16 +128,16 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.3/build/phaser.js"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.4/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.3"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.4"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.10.3/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.10.4/build/custom/) are available too.
 
 <a name="getting-started"></a>
 
@@ -328,7 +328,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.10.4 - 3rd May 2018
 
 ### New Features
 
@@ -365,16 +365,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 @budda, @Hagisus, @HaoboZ, @hardylr, @intersrc, @jamesjsewell, @josalmi, @joshlory, @melissaelopez, @mickeyren, @photonstorm, @samme, @tobspr
 
-## Version 2.10.3 - 21st March 2018
-
-### Bug Fixes
-
-* Fixed an error when activating a Cocoon application (#506).
-
-### Thanks
-
-@KIVassilev, @photonstorm, @samme
-
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
 # License
@@ -397,10 +387,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.3/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.3/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.10.3.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.10.3.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.4/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.4/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.10.4.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.10.4.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser

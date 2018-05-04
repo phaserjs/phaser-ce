@@ -6535,6 +6535,16 @@ declare module Phaser {
         bottom: number;
 
         /**
+        * The x coordinate of the center of the Ellipse.
+        */
+        centerX: number;
+
+        /**
+        * The y coordinate of the center of the Ellipse.
+        */
+        centerY: number;
+
+        /**
         * Determines whether or not this Ellipse object is empty. Will return a value of true if the Ellipse objects dimensions are less than or equal to 0; otherwise false.
         * If set to true it will reset all of the Ellipse objects properties to 0. An Ellipse object is empty if its width or height is less than or equal to 0. Gets or sets the empty state of the ellipse.
         */
@@ -9807,12 +9817,12 @@ declare module Phaser {
         /**
         * Draws an ellipse.
         * 
-        * @param x The X coordinate of the center of the ellipse
-        * @param y The Y coordinate of the center of the ellipse
-        * @param width The half width of the ellipse
-        * @param height The half height of the ellipse
+        * @param centerX The X coordinate of the center of the ellipse
+        * @param centerY The Y coordinate of the center of the ellipse
+        * @param halfWidth The half width of the ellipse
+        * @param halfHeight The half height of the ellipse
         */
-        drawEllipse(x: number, y: number, width: number, height: number): Phaser.Graphics;
+        drawEllipse(centerX: number, centerY: number, halfWidth: number, halfHeight: number): Phaser.Graphics;
 
         /**
         * Draws a polygon using the given path.
@@ -12485,12 +12495,13 @@ declare module Phaser {
         /**
         * Adds a callback that is fired every time the activePointer receives a DOM move event such as a mousemove or touchmove.
         * 
-        * The callback will be sent 4 parameters:
+        * The callback will be sent 5 parameters:
         * 
-        * A reference to the Phaser.Pointer object that moved,
-        * The x position of the pointer,
-        * The y position,
-        * A boolean indicating if the movement was the result of a 'click' event (such as a mouse click or touch down).
+        * - A reference to the Phaser.Pointer object that moved
+        * - The x position of the pointer
+        * - The y position
+        * - A boolean indicating if the movement was the result of a 'click' event (such as a mouse click or touch down)
+        * - The DOM move event
         * 
         * It will be called every time the activePointer moves, which in a multi-touch game can be a lot of times, so this is best
         * to only use if you've limited input to a single pointer (i.e. mouse or touch).
@@ -29340,7 +29351,7 @@ declare module Phaser {
 
         /**
         * Specify a padding value which is added to the line width and height when calculating the Text size.
-        * ALlows you to add extra spacing if Phaser is unable to accurately determine the true font dimensions.
+        * Allows you to add extra spacing if Phaser is unable to accurately determine the true font dimensions.
         */
         padding: Phaser.Point;
 
@@ -29457,6 +29468,12 @@ declare module Phaser {
         * If you set tabs to be `[100,200]` then it will set the first tab at 100px and the second at 200px.
         */
         tabs: number | number[];
+
+        /**
+        * The text used to measure the font's width and height
+        * Default: '|MÉq'
+        */
+        testString: string;
 
         /**
         * The text to be displayed by this Text object.
@@ -30395,6 +30412,7 @@ declare module Phaser {
 
         /**
         * Fills the given area with the specified tile.
+        * Only the tile indexes are modified.
         * 
         * @param index The index of the tile that the area will be filled with.
         * @param x X position of the top left of the area to operate one, given in tiles, not pixels.
@@ -30548,7 +30566,7 @@ declare module Phaser {
         * Puts a tile of the given index value at the coordinate specified.
         * If you pass `null` as the tile it will pass your call over to Tilemap.removeTile instead.
         * 
-        * @param tile The index of this tile to set or a Phaser.Tile object. If null the tile is removed from the map.
+        * @param tile The index of this tile to set or a Phaser.Tile object. If a Tile object, all of its data will be copied. If null the tile is removed from the map.
         * @param x X position to place the tile (given in tile units, not pixels)
         * @param y Y position to place the tile (given in tile units, not pixels)
         * @param layer The layer to modify.
@@ -30571,6 +30589,7 @@ declare module Phaser {
 
         /**
         * Randomises a set of tiles in a given area.
+        * Only the tile indexes are modified.
         * 
         * @param x X position of the top left of the area to operate one, given in tiles, not pixels.
         * @param y Y position of the top left of the area to operate one, given in tiles, not pixels.
@@ -30740,6 +30759,7 @@ declare module Phaser {
 
         /**
         * Shuffles a set of tiles in a given area. It will only randomise the tiles in that area, so if they're all the same nothing will appear to have changed!
+        * Only the tile indexes are modified.
         * 
         * @param x X position of the top left of the area to operate one, given in tiles, not pixels.
         * @param y Y position of the top left of the area to operate one, given in tiles, not pixels.
@@ -30751,6 +30771,7 @@ declare module Phaser {
 
         /**
         * Scans the given area for tiles with an index matching tileA and swaps them with tileB.
+        * Only the tile indexes are modified.
         * 
         * @param tileA First tile index.
         * @param tileB Second tile index.
@@ -33566,6 +33587,12 @@ declare module Phaser {
         */
         class Debug {
 
+            static GEOM_AUTO: number;
+            static GEOM_RECTANGLE: number;
+            static GEOM_CIRCLE: number;
+            static GEOM_POINT: number;
+            static GEOM_ELLIPSE: number;
+
 
             /**
             * A collection of methods for displaying debug information about game objects.
@@ -33734,7 +33761,7 @@ declare module Phaser {
             * @param object The geometry object to render.
             * @param color Color of the debug info to be rendered (format is css color string).
             * @param filled Render the objected as a filled (default, true) or a stroked (false) - Default: true
-            * @param forceType Force rendering of a specific type. If 0 no type will be forced, otherwise 1 = Rectangle, 2 = Circle,3 = Point, 4 = Line and 5 = Ellipse.
+            * @param forceType Force rendering of a specific type: (0) GEOM_AUTO, 1 GEOM_RECTANGLE, (2) GEOM_CIRCLE, (3) GEOM_POINT, (4) GEOM_LINE, (5) GEOM_ELLIPSE. - Default: Phaser.Utils.Debug.GEOM_AUTO
             */
             geom(object: any, color?: string, fiiled?: boolean, forceType?: number): void;
 
@@ -33817,7 +33844,7 @@ declare module Phaser {
             * @param x X position of the pixel to be rendered.
             * @param y Y position of the pixel to be rendered.
             * @param color Color of the pixel (format is css color string).
-            * @param size The 'size' to render the pixel at. - Default: 2
+            * @param size The width and height of the rendered pixel. - Default: 2
             */
             pixel(x: number, y: number, color?: string, size?: number): void;
 

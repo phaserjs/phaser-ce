@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.10.3 "2018-03-22" - Built: Thu Mar 22 2018 10:07:08
+* v2.10.4 "2018-05-03" - Built: Thu May 03 2018 15:47:52
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -1953,7 +1953,7 @@ PIXI.Sprite.prototype._renderWebGL = function(renderSession, matrix)
 PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
 {
     // If the sprite is not visible or the alpha is 0 then no need to render this element
-    if (!this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width <= 0 || this.texture.crop.height <= 0)
+    if (!this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width < 1 || this.texture.crop.height < 1)
     {
         return;
     }
@@ -2054,6 +2054,14 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     dx /= resolution;
     dy /= resolution;
 
+    cw |= 0;
+    ch |= 0;
+
+    if (!cw || !ch)
+    {
+        return;
+    }
+
     if (this.tint !== 0xFFFFFF)
     {
         if (this.texture.requiresReTint || this.cachedTint !== this.tint)
@@ -2070,9 +2078,6 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     {
         var cx = this.texture.crop.x;
         var cy = this.texture.crop.y;
-
-        cw = Math.floor(cw)
-        ch = Math.floor(ch)
 
         renderSession.context.drawImage(this.texture.baseTexture.source, cx, cy, cw, ch, dx, dy, cw / resolution, ch / resolution);
     }
@@ -7591,7 +7596,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.10.3',
+    VERSION: '2.10.4',
 
     /**
     * An array of Phaser game instances.
@@ -9683,13 +9688,10 @@ Phaser.Ellipse.prototype = {
         if (out === undefined) { out = new Phaser.Point(); }
 
         var p = Math.random() * Math.PI * 2;
-        var r = Math.random();
+        var r = Math.sqrt(Math.random());
 
-        out.x = Math.sqrt(r) * Math.cos(p);
-        out.y = Math.sqrt(r) * Math.sin(p);
-
-        out.x = this.x + (out.x * this.width / 2.0);
-        out.y = this.y + (out.y * this.height / 2.0);
+        out.x = this.centerX + 0.5 * r * Math.cos(p) * this.width;
+        out.y = this.centerY + 0.5 * r * Math.sin(p) * this.height;
 
         return out;
 
@@ -9790,6 +9792,34 @@ Object.defineProperty(Phaser.Ellipse.prototype, "bottom", {
         {
             this.height = value - this.y;
         }
+    }
+
+});
+
+/**
+* The x coordinate of the center of the Ellipse.
+* @name Phaser.Ellipse#centerX
+* @property {number} centerX
+* @readonly
+*/
+Object.defineProperty(Phaser.Ellipse.prototype, "centerX", {
+
+    get: function () {
+        return this.x + 0.5 * this.width;
+    }
+
+});
+
+/**
+* The y coordinate of the center of the Ellipse.
+* @name Phaser.Ellipse#centerY
+* @property {number} centerY
+* @readonly
+*/
+Object.defineProperty(Phaser.Ellipse.prototype, "centerY", {
+
+    get: function () {
+        return this.y + 0.5 * this.height;
     }
 
 });
@@ -14902,7 +14932,7 @@ Phaser.State = function () {
     this.stage = null;
 
     /**
-    * @property {Phaser.StateManager} stage - A reference to the State Manager, which controls state changes.
+    * @property {Phaser.StateManager} state - A reference to the State Manager, which controls state changes.
     */
     this.state = null;
 
@@ -22005,7 +22035,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {number}             [GameConfig.scaleV=1]                      - Vertical scaling factor for USER_SCALE scale mode.
 * @property {number}             [GameConfig.seed]                          - Seed for {@link Phaser.RandomDataGenerator}.
 * @property {object}             [GameConfig.state]
-* @property {boolean}            [GameConfig.transparent=false]
+* @property {boolean|string}     [GameConfig.transparent=false]             - Sets {@link Phaser.Game#transparent}. `'notMultiplied'` disables the WebGL context attribute `premultipliedAlpha`.
 * @property {number}             [GameConfig.trimH=0]                       - Horizontal trim for USER_SCALE scale mode.
 * @property {number}             [GameConfig.trimV=0]                       - Vertical trim for USER_SCALE scale mode.
 * @property {number|string}      [GameConfig.width=800]
@@ -23400,12 +23430,13 @@ Phaser.Input.prototype = {
     /**
     * Adds a callback that is fired every time the activePointer receives a DOM move event such as a mousemove or touchmove.
     *
-    * The callback will be sent 4 parameters:
+    * The callback will be sent 5 parameters:
     *
-    * A reference to the Phaser.Pointer object that moved,
-    * The x position of the pointer,
-    * The y position,
-    * A boolean indicating if the movement was the result of a 'click' event (such as a mouse click or touch down).
+    * - A reference to the Phaser.Pointer object that moved
+    * - The x position of the pointer
+    * - The y position
+    * - A boolean indicating if the movement was the result of a 'click' event (such as a mouse click or touch down)
+    * - The DOM move event
     *
     * It will be called every time the activePointer moves, which in a multi-touch game can be a lot of times, so this is best
     * to only use if you've limited input to a single pointer (i.e. mouse or touch).
@@ -26479,7 +26510,7 @@ Phaser.Pointer.prototype = {
 
         while (i--)
         {
-            input.moveCallbacks[i].callback.call(input.moveCallbacks[i].context, this, this.x, this.y, fromClick);
+            input.moveCallbacks[i].callback.call(input.moveCallbacks[i].context, this, this.x, this.y, fromClick, event);
         }
 
         //  Easy out if we're dragging something and it still exists
@@ -42135,15 +42166,15 @@ Phaser.Graphics.prototype.drawCircle = function (x, y, diameter) {
  * Draws an ellipse.
  *
  * @method Phaser.Graphics#drawEllipse
- * @param x {Number} The X coordinate of the center of the ellipse
- * @param y {Number} The Y coordinate of the center of the ellipse
- * @param width {Number} The half width of the ellipse
- * @param height {Number} The half height of the ellipse
+ * @param centerX {Number} The X coordinate of the center of the ellipse
+ * @param centerY {Number} The Y coordinate of the center of the ellipse
+ * @param halfWidth {Number} The half width of the ellipse
+ * @param halfHeight {Number} The half height of the ellipse
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.drawEllipse = function (x, y, width, height) {
+Phaser.Graphics.prototype.drawEllipse = function (centerX, centerY, halfWidth, halfHeight) {
 
-    this.drawShape(new Phaser.Ellipse(x, y, width, height));
+    this.drawShape({x: centerX, y: centerY, width: halfWidth, height: halfHeight, type: Phaser.ELLIPSE});
 
     return this;
 
@@ -43376,7 +43407,7 @@ Phaser.Text = function (game, x, y, text, style) {
 
     /**
     * Specify a padding value which is added to the line width and height when calculating the Text size.
-    * ALlows you to add extra spacing if Phaser is unable to accurately determine the true font dimensions.
+    * Allows you to add extra spacing if Phaser is unable to accurately determine the true font dimensions.
     * @property {Phaser.Point} padding
     */
     this.padding = new Phaser.Point();
@@ -43454,6 +43485,12 @@ Phaser.Text = function (game, x, y, text, style) {
     * @property {string} characterLimitSuffix
     */
     this.characterLimitSuffix = '';
+
+    /** The text to use to measure the font width and height.
+    * @property {string} _testString
+    * @private
+    */
+    this._testString = '|MÉq';
 
     /**
      * @property {number} _res - Internal canvas resolution var.
@@ -44600,7 +44637,14 @@ Phaser.Text.prototype.setText = function (text, immediate) {
 
     if (immediate === undefined) { immediate = false; }
 
-    this.text = text.toString() || '';
+    text = text.toString() || '';
+
+    if (text === this._text)
+    {
+        return this;
+    }
+
+    this.text = text;
 
     if (immediate)
     {
@@ -44851,6 +44895,7 @@ Phaser.Text.prototype._renderCanvas = function (renderSession) {
 Phaser.Text.prototype.determineFontProperties = function (fontStyle) {
 
     var properties = Phaser.Text.fontPropertiesCache[fontStyle];
+    var measureText = this.testString || '|MÉq';
 
     if (!properties)
     {
@@ -44861,8 +44906,8 @@ Phaser.Text.prototype.determineFontProperties = function (fontStyle) {
 
         context.font = fontStyle;
 
-        var width = Math.ceil(context.measureText('|MÉq').width);
-        var baseline = Math.ceil(context.measureText('|MÉq').width);
+        var width = Math.ceil(context.measureText(measureText).width);
+        var baseline = Math.ceil(context.measureText(measureText).width);
         var height = 2 * baseline;
 
         baseline = baseline * 1.4 | 0;
@@ -44877,7 +44922,7 @@ Phaser.Text.prototype.determineFontProperties = function (fontStyle) {
 
         context.textBaseline = 'alphabetic';
         context.fillStyle = '#000';
-        context.fillText('|MÉq', 0, baseline);
+        context.fillText(measureText, 0, baseline);
 
         if (!context.getImageData(0, 0, width, height))
         {
@@ -45638,6 +45683,28 @@ Object.defineProperty(Phaser.Text.prototype, 'height', {
     }
 
 });
+
+/**
+* The text used to measure the font's width and height
+* @name Phaser.Text#testString
+* @default '|MÉq'
+*/
+Object.defineProperty(Phaser.Text.prototype, 'testString', {
+
+    get: function() {
+
+        return this._testString;
+
+    },
+
+    set: function(value) {
+
+        this._testString = value;
+        this.updateText();
+
+    }
+});
+
 
 Phaser.Text.fontPropertiesCache = {};
 
@@ -57637,7 +57704,7 @@ Phaser.Animation.prototype = {
 
     /**
     * Plays this animation.
-    * 
+    *
     * If you need to jump to a specific frame of this animation, then call `play` and immediately after it,
     * set the frame you require (i.e. `animation.play(); animation.frame = 4`).
     *
@@ -58128,6 +58195,7 @@ Phaser.Animation.prototype = {
 
         this._frameIndex = this._frames.length - 1;
         this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
+        this.updateCurrentFrame(false);
 
         this.isPlaying = false;
         this.isFinished = true;
@@ -65949,6 +66017,9 @@ Phaser.Sound.prototype = {
 
         if (this._sound && this.isPlaying && !this.allowMultiple && (this.override || forceRestart))
         {
+            // Firefox calls onended() after _sound.stop(). Chrome and Safari do not. (#530)
+            this._sound.onended = null;
+
             if (this.usingWebAudio)
             {
                 if (this._sound.stop === undefined)
@@ -66124,9 +66195,9 @@ Phaser.Sound.prototype = {
                 if (this._sound && (this.game.device.cocoonJS || this._sound.readyState === 4))
                 {
                     this._sound.play();
-										
+
                     this._sound.loop = this.loop;
-										
+
                     //  This doesn't become available until you call play(), wonderful ...
                     this.totalDuration = this._sound.duration;
 
@@ -70183,6 +70254,42 @@ Phaser.Utils.Debug = function (game) {
 
 };
 
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_AUTO = 0;
+
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_RECTANGLE = 1;
+
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_CIRCLE = 2;
+
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_POINT = 3;
+
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_LINE = 4;
+
+/**
+* @constant
+* @type {integer}
+*/
+Phaser.Utils.Debug.GEOM_ELLIPSE = 5;
+
 Phaser.Utils.Debug.prototype = {
 
     /**
@@ -70716,7 +70823,7 @@ Phaser.Utils.Debug.prototype = {
     * @param {number} x - X position of the pixel to be rendered.
     * @param {number} y - Y position of the pixel to be rendered.
     * @param {string} [color] - Color of the pixel (format is css color string).
-    * @param {number} [size=2] - The 'size' to render the pixel at.
+    * @param {number} [size=2] - The width and height of the rendered pixel.
     */
     pixel: function (x, y, color, size) {
 
@@ -70736,7 +70843,7 @@ Phaser.Utils.Debug.prototype = {
     * @param {Phaser.Rectangle|Phaser.Circle|Phaser.Ellipse|Phaser.Point|Phaser.Line} object - The geometry object to render.
     * @param {string} [color] - Color of the debug info to be rendered (format is css color string).
     * @param {boolean} [filled=true] - Render the objected as a filled (default, true) or a stroked (false)
-    * @param {number} [forceType=0] - Force rendering of a specific type. If 0 no type will be forced, otherwise 1 = Rectangle, 2 = Circle,3 = Point, 4 = Line and 5 = Ellipse.
+    * @param {number} [forceType=Phaser.Utils.Debug.GEOM_AUTO] - Force rendering of a specific type: (0) GEOM_AUTO, 1 GEOM_RECTANGLE, (2) GEOM_CIRCLE, (3) GEOM_POINT, (4) GEOM_LINE, (5) GEOM_ELLIPSE.
      */
     geom: function (object, color, filled, forceType) {
 
@@ -70751,7 +70858,9 @@ Phaser.Utils.Debug.prototype = {
         this.context.strokeStyle = color;
         this.context.lineWidth = this.lineWidth;
 
-        if (object instanceof Phaser.Rectangle || forceType === 1)
+        var Debug = Phaser.Utils.Debug;
+
+        if (forceType === Debug.GEOM_RECTANGLE || object instanceof Phaser.Rectangle)
         {
             if (filled)
             {
@@ -70762,7 +70871,7 @@ Phaser.Utils.Debug.prototype = {
                 this.context.strokeRect(object.x - this.game.camera.x, object.y - this.game.camera.y, object.width, object.height);
             }
         }
-        else if (object instanceof Phaser.Circle || forceType === 2)
+        else if (forceType === Debug.GEOM_CIRCLE || object instanceof Phaser.Circle)
         {
             this.context.beginPath();
             this.context.arc(object.x - this.game.camera.x, object.y - this.game.camera.y, object.radius, 0, Math.PI * 2, false);
@@ -70777,11 +70886,11 @@ Phaser.Utils.Debug.prototype = {
                 this.context.stroke();
             }
         }
-        else if (object instanceof Phaser.Point || forceType === 3)
+        else if (forceType === Debug.GEOM_POINT || object instanceof Phaser.Point)
         {
             this.context.fillRect(object.x - this.game.camera.x, object.y - this.game.camera.y, 4, 4);
         }
-        else if (object instanceof Phaser.Line || forceType === 4)
+        else if (forceType === Debug.GEOM_LINE || object instanceof Phaser.Line)
         {
             this.context.beginPath();
             this.context.moveTo((object.start.x + 0.5) - this.game.camera.x, (object.start.y + 0.5) - this.game.camera.y);
@@ -70789,10 +70898,10 @@ Phaser.Utils.Debug.prototype = {
             this.context.closePath();
             this.context.stroke();
         }
-        else if (object instanceof Phaser.Ellipse || forceType === 5)
+        else if (forceType === Debug.GEOM_ELLIPSE || object instanceof Phaser.Ellipse)
         {
             this.context.beginPath();
-            this.context.ellipse(object.x - this.game.camera.x, object.y - this.game.camera.y, object.width/2, object.height/2, 0,2 * Math.PI,false);
+            this.context.ellipse(object.centerX - this.game.camera.x, object.centerY - this.game.camera.y, object.width / 2, object.height / 2, 0, 2 * Math.PI, false);
             this.context.closePath();
 
             if (filled)

@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.10.3 "2018-03-22" - Built: Thu Mar 22 2018 10:07:14
+* v2.10.4 "2018-05-03" - Built: Thu May 03 2018 15:47:58
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -1953,7 +1953,7 @@ PIXI.Sprite.prototype._renderWebGL = function(renderSession, matrix)
 PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
 {
     // If the sprite is not visible or the alpha is 0 then no need to render this element
-    if (!this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width <= 0 || this.texture.crop.height <= 0)
+    if (!this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width < 1 || this.texture.crop.height < 1)
     {
         return;
     }
@@ -2054,6 +2054,14 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     dx /= resolution;
     dy /= resolution;
 
+    cw |= 0;
+    ch |= 0;
+
+    if (!cw || !ch)
+    {
+        return;
+    }
+
     if (this.tint !== 0xFFFFFF)
     {
         if (this.texture.requiresReTint || this.cachedTint !== this.tint)
@@ -2070,9 +2078,6 @@ PIXI.Sprite.prototype._renderCanvas = function(renderSession, matrix)
     {
         var cx = this.texture.crop.x;
         var cy = this.texture.crop.y;
-
-        cw = Math.floor(cw)
-        ch = Math.floor(ch)
 
         renderSession.context.drawImage(this.texture.baseTexture.source, cx, cy, cw, ch, dx, dy, cw / resolution, ch / resolution);
     }
@@ -7591,7 +7596,7 @@ var Phaser = Phaser || {    // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.10.3',
+    VERSION: '2.10.4',
 
     /**
     * An array of Phaser game instances.
@@ -9683,13 +9688,10 @@ Phaser.Ellipse.prototype = {
         if (out === undefined) { out = new Phaser.Point(); }
 
         var p = Math.random() * Math.PI * 2;
-        var r = Math.random();
+        var r = Math.sqrt(Math.random());
 
-        out.x = Math.sqrt(r) * Math.cos(p);
-        out.y = Math.sqrt(r) * Math.sin(p);
-
-        out.x = this.x + (out.x * this.width / 2.0);
-        out.y = this.y + (out.y * this.height / 2.0);
+        out.x = this.centerX + 0.5 * r * Math.cos(p) * this.width;
+        out.y = this.centerY + 0.5 * r * Math.sin(p) * this.height;
 
         return out;
 
@@ -9790,6 +9792,34 @@ Object.defineProperty(Phaser.Ellipse.prototype, "bottom", {
         {
             this.height = value - this.y;
         }
+    }
+
+});
+
+/**
+* The x coordinate of the center of the Ellipse.
+* @name Phaser.Ellipse#centerX
+* @property {number} centerX
+* @readonly
+*/
+Object.defineProperty(Phaser.Ellipse.prototype, "centerX", {
+
+    get: function () {
+        return this.x + 0.5 * this.width;
+    }
+
+});
+
+/**
+* The y coordinate of the center of the Ellipse.
+* @name Phaser.Ellipse#centerY
+* @property {number} centerY
+* @readonly
+*/
+Object.defineProperty(Phaser.Ellipse.prototype, "centerY", {
+
+    get: function () {
+        return this.y + 0.5 * this.height;
     }
 
 });
@@ -14902,7 +14932,7 @@ Phaser.State = function () {
     this.stage = null;
 
     /**
-    * @property {Phaser.StateManager} stage - A reference to the State Manager, which controls state changes.
+    * @property {Phaser.StateManager} state - A reference to the State Manager, which controls state changes.
     */
     this.state = null;
 
@@ -22005,7 +22035,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {number}             [GameConfig.scaleV=1]                      - Vertical scaling factor for USER_SCALE scale mode.
 * @property {number}             [GameConfig.seed]                          - Seed for {@link Phaser.RandomDataGenerator}.
 * @property {object}             [GameConfig.state]
-* @property {boolean}            [GameConfig.transparent=false]
+* @property {boolean|string}     [GameConfig.transparent=false]             - Sets {@link Phaser.Game#transparent}. `'notMultiplied'` disables the WebGL context attribute `premultipliedAlpha`.
 * @property {number}             [GameConfig.trimH=0]                       - Horizontal trim for USER_SCALE scale mode.
 * @property {number}             [GameConfig.trimV=0]                       - Vertical trim for USER_SCALE scale mode.
 * @property {number|string}      [GameConfig.width=800]
@@ -23400,12 +23430,13 @@ Phaser.Input.prototype = {
     /**
     * Adds a callback that is fired every time the activePointer receives a DOM move event such as a mousemove or touchmove.
     *
-    * The callback will be sent 4 parameters:
+    * The callback will be sent 5 parameters:
     *
-    * A reference to the Phaser.Pointer object that moved,
-    * The x position of the pointer,
-    * The y position,
-    * A boolean indicating if the movement was the result of a 'click' event (such as a mouse click or touch down).
+    * - A reference to the Phaser.Pointer object that moved
+    * - The x position of the pointer
+    * - The y position
+    * - A boolean indicating if the movement was the result of a 'click' event (such as a mouse click or touch down)
+    * - The DOM move event
     *
     * It will be called every time the activePointer moves, which in a multi-touch game can be a lot of times, so this is best
     * to only use if you've limited input to a single pointer (i.e. mouse or touch).
@@ -26479,7 +26510,7 @@ Phaser.Pointer.prototype = {
 
         while (i--)
         {
-            input.moveCallbacks[i].callback.call(input.moveCallbacks[i].context, this, this.x, this.y, fromClick);
+            input.moveCallbacks[i].callback.call(input.moveCallbacks[i].context, this, this.x, this.y, fromClick, event);
         }
 
         //  Easy out if we're dragging something and it still exists
@@ -40773,7 +40804,7 @@ Phaser.Animation.prototype = {
 
     /**
     * Plays this animation.
-    * 
+    *
     * If you need to jump to a specific frame of this animation, then call `play` and immediately after it,
     * set the frame you require (i.e. `animation.play(); animation.frame = 4`).
     *
@@ -41264,6 +41295,7 @@ Phaser.Animation.prototype = {
 
         this._frameIndex = this._frames.length - 1;
         this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
+        this.updateCurrentFrame(false);
 
         this.isPlaying = false;
         this.isFinished = true;

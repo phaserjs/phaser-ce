@@ -4,6 +4,43 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.10.4 - 3rd May 2018
+
+### New Features
+
+* Phaser.Text#testString is the character string used to calculate the text's width and height.
+* Ellipse#centerX
+* Ellipse#centerY
+
+### Updates
+
+* Callbacks added with Phaser.Input#addMoveCallback receive an `event` parameter.
+
+### Bug Fixes
+
+* Fixed a bogus warning when selecting tilemap layer 0 (#511).
+* Fixed wrong position in Ellipse#random (#522).
+* Fixed an Animation skipping the final frame in low-FPS situations (#524).
+* Fixed wrong ellipse position in Debug#geom (#526).
+* Fixed `forceType` failing to override some geometry types in Debug#geom.
+* Fixed unnecessary text updates when using Text#setText with `immediate=true` (#525).
+* Fixed issues restarting a Sound in Firefox (#530).
+* Fixed an IndexSizeError in Edge/Firefox when a very small texture crop rectangle is used (#532).
+
+### TypeScript definitions
+
+* Corrected definitions for ContactMaterial#frictionStiffness, Convex (#513).
+
+### Documentation
+
+* Fixed typos (#517, #521).
+* The Tilemap methods fill, random, replace, shuffle, and swap modify the tile index only (#484).
+* The special GameConfig.transparent value 'notMultiplied' disables the WebGL context attribute `premultipliedAlpha`.
+
+### Thanks
+
+@budda, @Hagisus, @HaoboZ, @hardylr, @intersrc, @jamesjsewell, @josalmi, @joshlory, @melissaelopez, @mickeyren, @photonstorm, @samme, @tobspr
+
 ## Version 2.10.3 - 21st March 2018
 
 ### Bug Fixes

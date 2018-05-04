@@ -175,7 +175,7 @@ declare module PIXI {
 
         /**
         * Helper function that creates a base texture from the given canvas element.
-        *
+        * 
         * @param canvas The canvas element source of the texture
         * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
         * @param resolution the resolution of the texture (for HiDPI displays)
@@ -185,7 +185,7 @@ declare module PIXI {
 
         /**
         * A texture stores the information that represents an image. All textures have a base texture.
-        *
+        * 
         * @param source the source object (image or canvas)
         * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
         * @param resolution the resolution of the texture (for HiDPI displays)
@@ -194,7 +194,7 @@ declare module PIXI {
 
         /**
         * A texture stores the information that represents an image. All textures have a base texture.
-        *
+        * 
         * @param source the source object (image or canvas)
         * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
         * @param resolution the resolution of the texture (for HiDPI displays)
@@ -237,7 +237,7 @@ declare module PIXI {
 
         /**
         * A BaseTexture can be set to skip the rendering phase in the WebGL Sprite Batch.
-        *
+        * 
         * You may want to do this if you have a parent Sprite with no visible texture (i.e. uses the internal `__default` texture)
         * that has children that you do want to render, without causing a batch flush in the process.
         */
@@ -271,7 +271,7 @@ declare module PIXI {
         * Forces this BaseTexture to be set as loaded, with the given width and height.
         * Then calls BaseTexture.dirty.
         * Important for when you don't want to modify the source object by forcing in `complete` or dimension properties it may not have.
-        *
+        * 
         * @param width The new width to force the BaseTexture to be.
         * @param height The new height to force the BaseTexture to be.
         */
@@ -304,7 +304,7 @@ declare module PIXI {
 
         /**
         * Creates a Canvas element of the given size.
-        *
+        * 
         * @param width the width for the newly created canvas
         * @param height the height for the newly created canvas
         */
@@ -344,7 +344,7 @@ declare module PIXI {
 
         /**
         * Resizes the canvas to the specified width and height.
-        *
+        * 
         * @param width the new width of the canvas
         * @param height the new height of the canvas
         */
@@ -361,7 +361,7 @@ declare module PIXI {
 
         /**
         * This method adds it to the current stack of masks.
-        *
+        * 
         * @param maskData the maskData that will be pushed
         * @param renderSession The renderSession whose context will be used for this mask manager.
         */
@@ -369,7 +369,7 @@ declare module PIXI {
 
         /**
         * Restores the current drawing context to the state it was before the mask was applied.
-        *
+        * 
         * @param renderSession The renderSession whose context will be used for this mask manager.
         */
         popMask(renderSession: RenderSession): void;
@@ -387,7 +387,7 @@ declare module PIXI {
         /**
         * The CanvasRenderer draws the Stage and all its content onto a 2d canvas. This renderer should be used for browsers that do not support webGL.
         * Don't forget to add the CanvasRenderer.view to your DOM or you will not see anything :)
-        *
+        * 
         * @param game A reference to the Phaser Game instance
         */
         constructor(game: Phaser.Game);
@@ -471,14 +471,14 @@ declare module PIXI {
 
         /**
         * Renders the DisplayObjectContainer, usually the Phaser.Stage, to this canvas view.
-        *
+        * 
         * @param root The root element to be rendered.
         */
         render(stage: DisplayObjectContainer): void;
 
         /**
         * Resizes the canvas view to the specified width and height
-        *
+        * 
         * @param width the new width of the canvas view
         * @param height the new height of the canvas view
         */
@@ -487,7 +487,7 @@ declare module PIXI {
 
         /**
         * Removes everything from the renderer and optionally removes the Canvas DOM element.
-        *
+        * 
         * @param removeView Removes the Canvas element from the DOM. - Default: true
         */
         destroy(removeView?: boolean): void;
@@ -503,7 +503,7 @@ declare module PIXI {
 
         /**
         * Basically this method just needs a sprite and a color and tints the sprite with the given color.
-        *
+        * 
         * @param sprite the sprite to tint
         * @param color the color to use to tint the sprite with
         * @return The tinted canvas
@@ -512,7 +512,7 @@ declare module PIXI {
 
         /**
         * Tint a texture using the "multiply" operation.
-        *
+        * 
         * @param texture the texture to tint
         * @param color the color to use to tint the sprite with
         * @param canvas the current canvas
@@ -530,9 +530,9 @@ declare module PIXI {
     /**
     * The base class for all objects that are rendered. Contains properties for position, scaling,
     * rotation, masks and cache handling.
-    *
+    * 
     * This is an abstract class and should not be used on its own, rather it should be extended.
-    *
+    * 
     * It is used internally by the likes of PIXI.Sprite.
     */
     export class DisplayObject {
@@ -541,7 +541,7 @@ declare module PIXI {
         /**
         * The alpha value of this DisplayObject. A value of 1 is fully opaque. A value of 0 is transparent.
         * Please note that an object with an alpha value of 0 is skipped during the render pass.
-        *
+        * 
         * The value of this property does not reflect any alpha values set further up the display list.
         * To obtain that value please see the `worldAlpha` property.
         * Default: 1
@@ -551,16 +551,16 @@ declare module PIXI {
 
         /**
         * Sets if this DisplayObject should be cached as a bitmap.
-        *
+        * 
         * When invoked it will take a snapshot of the DisplayObject, as it is at that moment, and store it
         * in a RenderTexture. This is then used whenever this DisplayObject is rendered. It can provide a
         * performance benefit for complex, but static, DisplayObjects. I.e. those with lots of children.
-        *
+        * 
         * Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
-        *
+        * 
         * Cached Bitmaps do not track their parents. If you update a property of this DisplayObject, it will not
         * re-generate the cached bitmap automatically. To do that you need to call `DisplayObject.updateCache`.
-        *
+        * 
         * To remove a cached bitmap, set this property to `null`. Cache this DisplayObject as a Bitmap. Set to `null` to remove an existing cached bitmap.
         */
         cacheAsBitmap: boolean;
@@ -575,9 +575,9 @@ declare module PIXI {
         * Sets the filters for this DisplayObject. This is a WebGL only feature, and is ignored by the Canvas
         * Renderer. A filter is a shader applied to this DisplayObject. You can modify the placement of the filter
         * using `DisplayObject.filterArea`.
-        *
+        * 
         * To remove filters, set this property to `null`.
-        *
+        * 
         * Note: You cannot have a filter set, and a MULTIPLY Blend Mode active, at the same time. Setting a
         * filter will reset this DisplayObjects blend mode to NORMAL. An Array of Phaser.Filter objects, or objects that extend them.
         */
@@ -614,7 +614,7 @@ declare module PIXI {
 
         /**
         * The coordinates, in pixels, of this DisplayObject, relative to its parent container.
-        *
+        * 
         * The value of this property does not reflect any positioning happening further up the display list.
         * To obtain that value please see the `worldPosition` property.
         */
@@ -629,7 +629,7 @@ declare module PIXI {
         /**
         * The rotation of this DisplayObject. The value is given, and expressed, in radians, and is based on
         * a right-handed orientation.
-        *
+        * 
         * The value of this property does not reflect any rotation happening further up the display list.
         * To obtain that value please see the `worldRotation` property.
         */
@@ -638,7 +638,7 @@ declare module PIXI {
         /**
         * The scale of this DisplayObject. A scale of 1:1 represents the DisplayObject
         * at its default size. A value of 0.5 would scale this DisplayObject by half, and so on.
-        *
+        * 
         * The value of this property does not reflect any scaling happening further up the display list.
         * To obtain that value please see the `worldScale` property.
         */
@@ -648,13 +648,13 @@ declare module PIXI {
         /**
         * The visibility of this DisplayObject. A value of `false` makes the object invisible.
         * A value of `true` makes it visible.
-        *
+        * 
         * An object with a visible value of `false` is skipped during the render pass.
         * Equally a DisplayObject with visible `false` will not render any of its children.
-        *
+        * 
         * The value of this property does not reflect any visible values set further up the display list.
         * To obtain that value please see the {@link PIXI.DisplayObject#worldVisible worldVisible} property.
-        *
+        * 
         * Objects that are not {@link PIXI.DisplayObject#worldVisible worldVisible} do not update their {@link PIXI.DisplayObject#worldPosition worldPosition}.
         * Default: true
         */
@@ -664,9 +664,9 @@ declare module PIXI {
         * The multiplied alpha value of this DisplayObject. A value of 1 is fully opaque. A value of 0 is transparent.
         * This value is the calculated total, based on the alpha values of all parents of this DisplayObjects
         * in the display list.
-        *
+        * 
         * To obtain, and set, the local alpha value, see the `alpha` property.
-        *
+        * 
         * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
         * that happens this property will contain values based on the previous frame. Be mindful of this if
         * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
@@ -675,10 +675,10 @@ declare module PIXI {
 
         /**
         * The coordinates, in pixels, of this DisplayObject within the world.
-        *
+        * 
         * This property contains the calculated total, based on the positions of all parents of this
         * DisplayObject in the display list.
-        *
+        * 
         * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
         * that happens this property will contain values based on the previous frame. Be mindful of this if
         * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
@@ -687,10 +687,10 @@ declare module PIXI {
 
         /**
         * The global scale of this DisplayObject.
-        *
+        * 
         * This property contains the calculated total, based on the scales of all parents of this
         * DisplayObject in the display list.
-        *
+        * 
         * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
         * that happens this property will contain values based on the previous frame. Be mindful of this if
         * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
@@ -699,10 +699,10 @@ declare module PIXI {
 
         /**
         * The current transform of this DisplayObject.
-        *
+        * 
         * This property contains the calculated total, based on the transforms of all parents of this
         * DisplayObject in the display list.
-        *
+        * 
         * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
         * that happens this property will contain values based on the previous frame. Be mindful of this if
         * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
@@ -711,10 +711,10 @@ declare module PIXI {
 
         /**
         * The rotation, in radians, of this DisplayObject.
-        *
+        * 
         * This property contains the calculated total, based on the rotations of all parents of this
         * DisplayObject in the display list.
-        *
+        * 
         * Note: This property is only updated at the end of the `updateTransform` call, once per render. Until
         * that happens this property will contain values based on the previous frame. Be mindful of this if
         * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
@@ -744,10 +744,10 @@ declare module PIXI {
         /**
         * Generates a RenderTexture based on this DisplayObject, which can they be used to texture other Sprites.
         * This can be useful if your DisplayObject is static, or complicated, and needs to be reused multiple times.
-        *
+        * 
         * Please note that no garbage collection takes place on old textures. It is up to you to destroy old textures,
         * and references to them, so they don't linger in memory.
-        *
+        * 
         * @param resolution The resolution of the texture being generated. - Default: 1
         * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values. - Default: PIXI.scaleModes.DEFAULT
         * @param renderer The renderer used to generate the texture.
@@ -769,7 +769,7 @@ declare module PIXI {
 
         /**
         * Calculates the global position of this DisplayObject, based on the position given.
-        *
+        * 
         * @param position The global position to calculate from.
         * @return - A point object representing the position of this DisplayObject based on the global position given.
         */
@@ -777,7 +777,7 @@ declare module PIXI {
 
         /**
         * Calculates the local position of this DisplayObject, relative to another point.
-        *
+        * 
         * @param position The world origin to calculate from.
         * @param from An optional DisplayObject to calculate the global position from.
         * @return - A point object representing the position of this DisplayObject based on the global position given.
@@ -790,28 +790,30 @@ declare module PIXI {
 
         /**
         * Updates the transform matrix this DisplayObject uses for rendering.
-        *
+        * 
         * If the object has no parent, and no parent parameter is provided, it will default to
         * Phaser.Game.World as the parent transform to use. If that is unavailable the transform fails to take place.
-        *
+        * 
         * The `parent` parameter has priority over the actual parent. Use it as a parent override.
         * Setting it does **not** change the actual parent of this DisplayObject.
-        *
+        * 
         * Calling this method updates the `worldTransform`, `worldAlpha`, `worldPosition`, `worldScale`
         * and `worldRotation` properties.
-        *
+        * 
         * If a `transformCallback` has been specified, it is called at the end of this method, and is passed
         * the new, updated, worldTransform property, along with the parent transform used.
-        *
+        * 
         * @param parent Optional parent to calculate this DisplayObjects transform from.
         * @return - A reference to this DisplayObject.
         */
         updateTransform(parent?: DisplayObjectContainer): void;
 
         /**
-         * If this DisplayObject has a cached Sprite, this method generates and updates it.
-         */
+        * If this DisplayObject has a cached Sprite, this method generates and updates it.
+        * @return - A reference to this DisplayObject.
+        */
         updateCache(): void;
+
     }
 
 
@@ -846,9 +848,9 @@ declare module PIXI {
 
         /**
         * If `ignoreChildInput`  is `false` it will allow this objects _children_ to be considered as valid for Input events.
-        *
+        * 
         * If this property is `true` then the children will _not_ be considered as valid for Input events.
-        *
+        * 
         * Note that this property isn't recursive: only immediate children are influenced, it doesn't scan further down.
         */
         ignoreChildInput: boolean;
@@ -856,7 +858,7 @@ declare module PIXI {
 
         /**
         * Adds a child to the container.
-        *
+        * 
         * @param child The DisplayObject to add to the container
         * @return The child that was added.
         */
@@ -864,7 +866,7 @@ declare module PIXI {
 
         /**
         * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
-        *
+        * 
         * @param child The child to add
         * @param index The index to place the child in
         * @return The child that was added.
@@ -873,7 +875,7 @@ declare module PIXI {
 
         /**
         * Retrieves the global bounds of the displayObjectContainer as a rectangle. The bounds calculation takes all visible children into consideration.
-        *
+        * 
         * @param targetCoordinateSpace Returns a rectangle that defines the area of the display object relative to the coordinate system of the targetCoordinateSpace object.
         * @return The rectangular bounding area
         */
@@ -881,7 +883,7 @@ declare module PIXI {
 
         /**
         * Returns the child at the specified index
-        *
+        * 
         * @param index The index to get the child from
         * @return The child at the given index, if any.
         */
@@ -889,7 +891,7 @@ declare module PIXI {
 
         /**
         * Returns the index position of a child DisplayObject instance
-        *
+        * 
         * @param child The DisplayObject instance to identify
         * @return The index position of the child display object to identify
         */
@@ -903,7 +905,7 @@ declare module PIXI {
 
         /**
         * Removes a child from the container.
-        *
+        * 
         * @param child The DisplayObject to remove
         * @return The child that was removed.
         */
@@ -911,7 +913,7 @@ declare module PIXI {
 
         /**
         * Removes a child from the specified index position.
-        *
+        * 
         * @param index The index to get the child from
         * @return The child that was removed.
         */
@@ -919,7 +921,7 @@ declare module PIXI {
 
         /**
         * Removes all children from this container that are within the begin and end indexes.
-        *
+        * 
         * @param beginIndex The beginning position. Default value is 0.
         * @param endIndex The ending position. Default value is size of the container.
         */
@@ -928,7 +930,7 @@ declare module PIXI {
 
         /**
         * Changes the position of an existing child in the display object container
-        *
+        * 
         * @param child The child DisplayObject instance for which you want to change the index number
         * @param index The resulting index number for the child display object
         */
@@ -936,7 +938,7 @@ declare module PIXI {
 
         /**
         * Swaps the position of 2 Display Objects within this container.
-        *
+        * 
         * @param child
         * @param child2
         */
@@ -944,7 +946,7 @@ declare module PIXI {
 
         /**
         * Determines whether the specified display object is a child of the DisplayObjectContainer instance or the instance itself.
-        *
+        * 
         * @param child
         */
         contains(child: DisplayObject): boolean;
@@ -955,8 +957,8 @@ declare module PIXI {
 
 
         /**
-        *
-        *
+        * 
+        * 
         * @param gl the current WebGL drawing context
         * @param width the horizontal range of the filter
         * @param height the vertical range of the filter
@@ -979,7 +981,7 @@ declare module PIXI {
 
         /**
         * Resizes the texture to the specified width and height
-        *
+        * 
         * @param width the new width of the texture
         * @param height the new height of the texture
         */
@@ -1074,8 +1076,8 @@ declare module PIXI {
 
 
         /**
-        *
-        *
+        * 
+        * 
         * @param gl the current WebGL drawing context
         */
         constructor(gl: WebGLRenderingContext);
@@ -1126,7 +1128,7 @@ declare module PIXI {
 
         /**
         * Initialises the shader uniform values.
-        *
+        * 
         * Uniforms are specified in the GLSL_ES Specification: http://www.khronos.org/registry/webgl/specs/latest/1.0/
         * http://www.khronos.org/registry/gles/specs/2.0/GLSL_ES_Specification_1.0.17.pdf
         */
@@ -1154,8 +1156,8 @@ declare module PIXI {
 
 
         /**
-        *
-        *
+        * 
+        * 
         * @param gl the current WebGL drawing context
         */
         constructor(gl: WebGLRenderingContext);
@@ -1199,8 +1201,8 @@ declare module PIXI {
 
 
         /**
-        *
-        *
+        * 
+        * 
         * @param gl the current WebGL drawing context
         */
         constructor(gl: WebGLRenderingContext);
@@ -1238,8 +1240,8 @@ declare module PIXI {
 
 
         /**
-        *
-        *
+        * 
+        * 
         * @param gl the current WebGL drawing context
         */
         constructor(gl: WebGLRenderingContext);
@@ -1277,8 +1279,8 @@ declare module PIXI {
 
 
         /**
-        *
-        *
+        * 
+        * 
         * @param gl the current WebGL drawing context
         */
         constructor(gl: WebGLRenderingContext);
@@ -1379,7 +1381,7 @@ declare module PIXI {
 
         /**
         * The Sprite object is the base for all textured objects that are rendered to the screen
-        *
+        * 
         * @param texture The texture for this sprite
         */
         constructor(texture: Texture);
@@ -1390,14 +1392,14 @@ declare module PIXI {
         * The default (0, 0) is the top left.
         * (0.5, 0.5) is the center.
         * (1, 1) is the bottom right.
-        *
+        * 
         * You can modify the default values in PIXI.Sprite.defaultAnchor.
         */
         anchor: Point;
 
         /**
         * The blend mode to be applied to the sprite. Set to PIXI.blendModes.NORMAL to remove any blend mode.
-        *
+        * 
         * Warning: You cannot have a blend mode and a filter active on the same Sprite. Doing so will render the sprite invisible.
         * Default: PIXI.blendModes.NORMAL;
         */
@@ -1448,7 +1450,7 @@ declare module PIXI {
         /**
         * Sets the texture of the sprite. Be warned that this doesn't remove or destroy the previous
         * texture this Sprite was using.
-        *
+        * 
         * @param texture The PIXI texture that is displayed by the sprite
         * @param destroy Call Texture.destroy on the current texture before replacing it with the new one?
         */
@@ -1503,7 +1505,7 @@ declare module PIXI {
 
         /**
         * Helper function that creates a new a Texture based on the given canvas element.
-        *
+        * 
         * @param canvas The canvas element source of the texture
         * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
         */
@@ -1513,7 +1515,7 @@ declare module PIXI {
         /**
         * A texture stores the information that represents an image or part of an image. It cannot be added
         * to the display list directly. Instead use it as the texture for a PIXI.Sprite. If no frame is provided then the whole image is used.
-        *
+        * 
         * @param baseTexture The base texture source to create the texture from
         * @param frame The rectangle frame of the texture to show
         * @param crop The area of original texture
@@ -1588,14 +1590,14 @@ declare module PIXI {
 
         /**
         * Destroys this texture
-        *
+        * 
         * @param destroyBase Whether to destroy the base texture as well
         */
         destroy(destroyBase: boolean): void;
 
         /**
         * Specifies the region of the baseTexture that this texture will use.
-        *
+        * 
         * @param frame The frame of the texture to set it to
         */
         setFrame(frame: Rectangle): void;
@@ -1657,14 +1659,14 @@ declare module PIXI {
 
         /**
         * Sets-up the given blendMode from WebGL's point of view.
-        *
+        * 
         * @param blendMode the blendMode, should be a Pixi const, such as PIXI.BlendModes.ADD
         */
         setBlendMode(blendMode: number): boolean;
 
         /**
         * Sets the WebGL Context.
-        *
+        * 
         * @param gl the current WebGL drawing context
         */
         setContext(gl: WebGLRenderingContext): void;
@@ -1702,8 +1704,8 @@ declare module PIXI {
         end(): void;
 
         /**
-        *
-        *
+        * 
+        * 
         * @param spriteBatch
         * @param renderSession
         */
@@ -1712,22 +1714,22 @@ declare module PIXI {
         flush(): void;
 
         /**
-        *
-        *
+        * 
+        * 
         * @param spriteBatch
         */
         render(spriteBatch: SpriteBatch): void;
 
         /**
-        *
-        *
+        * 
+        * 
         * @param sprite
         */
         renderSprite(sprite: Sprite): void;
 
         /**
         * Sets the WebGL Context.
-        *
+        * 
         * @param gl the current WebGL drawing context
         */
         setContext(gl: WebGLRenderingContext): void;
@@ -1746,7 +1748,7 @@ declare module PIXI {
 
         /**
         * Applies the filter to the specified area.
-        *
+        * 
         * @param filter the filter that needs to be applied
         * @param filterArea TODO - might need an update
         * @param width the horizontal range of the filter
@@ -1755,8 +1757,8 @@ declare module PIXI {
         applyFilterPass(filter: AbstractFilter, filterArea: Texture, width: number, height: number): void;
 
         /**
-        *
-        *
+        * 
+        * 
         * @param renderSession
         * @param buffer
         */
@@ -1779,14 +1781,14 @@ declare module PIXI {
 
         /**
         * Applies the filter and adds it to the current filter stack.
-        *
+        * 
         * @param filterBlock the filter that will be pushed to the current filter stack
         */
         pushFilter(filterBlock: FilterBlock): void;
 
         /**
         * Initialises the context and the properties.
-        *
+        * 
         * @param gl the current WebGL drawing context
         */
         setContext(gl: WebGLRenderingContext): void;
@@ -1804,7 +1806,7 @@ declare module PIXI {
 
         /**
         * Renders the graphics object
-        *
+        * 
         * @param graphics
         * @param renderSession
         */
@@ -1812,15 +1814,15 @@ declare module PIXI {
 
         /**
         * Updates the graphics object
-        *
+        * 
         * @param graphicsData The graphics object to update
         * @param gl the current WebGL drawing context
         */
         static updateGraphics(graphics: Phaser.Graphics, gl: WebGLRenderingContext): void;
 
         /**
-        *
-        *
+        * 
+        * 
         * @param webGL
         * @param type
         */
@@ -1828,7 +1830,7 @@ declare module PIXI {
 
         /**
         * Builds a rectangle to draw
-        *
+        * 
         * @param graphicsData The graphics object containing all the necessary properties
         * @param webGLData
         */
@@ -1836,7 +1838,7 @@ declare module PIXI {
 
         /**
         * Builds a rounded rectangle to draw
-        *
+        * 
         * @param graphicsData The graphics object containing all the necessary properties
         * @param webGLData
         */
@@ -1845,7 +1847,7 @@ declare module PIXI {
         /**
         * Calculate the points for a quadratic bezier curve. (helper function..)
         * Based on: https://stackoverflow.com/questions/785097/how-do-i-implement-a-bezier-curve-in-c
-        *
+        * 
         * @param fromX Origin point x
         * @param fromY Origin point x
         * @param cpX Control point x
@@ -1857,7 +1859,7 @@ declare module PIXI {
 
         /**
         * Builds a circle to draw
-        *
+        * 
         * @param graphicsData The graphics object to draw
         * @param webGLData
         */
@@ -1865,7 +1867,7 @@ declare module PIXI {
 
         /**
         * Builds a line to draw
-        *
+        * 
         * @param graphicsData The graphics object containing all the necessary properties
         * @param webGLData
         */
@@ -1873,7 +1875,7 @@ declare module PIXI {
 
         /**
         * Builds a complex polygon to draw
-        *
+        * 
         * @param graphicsData The graphics object containing all the necessary properties
         * @param webGLData
         */
@@ -1881,7 +1883,7 @@ declare module PIXI {
 
         /**
         * Builds a polygon to draw
-        *
+        * 
         * @param graphicsData The graphics object containing all the necessary properties
         * @param webGLData
         */
@@ -1922,7 +1924,7 @@ declare module PIXI {
 
         /**
         * Removes the last filter from the filter stack and doesn't return it.
-        *
+        * 
         * @param maskData
         * @param renderSession an object containing all the useful parameters
         */
@@ -1930,7 +1932,7 @@ declare module PIXI {
 
         /**
         * Applies the Mask and adds it to the current filter stack.
-        *
+        * 
         * @param maskData
         * @param renderSession
         */
@@ -1938,7 +1940,7 @@ declare module PIXI {
 
         /**
         * Sets the drawing context to the one given in parameter.
-        *
+        * 
         * @param gl the current WebGL drawing context
         */
         setContext(gl: WebGLRenderingContext): void;
@@ -1962,7 +1964,7 @@ declare module PIXI {
         * should be used for browsers that support webGL. This Render works by automatically managing webGLBatchs.
         * So no need for Sprite Batches or Sprite Clouds.
         * Don't forget to add the view to your DOM or you will not see anything :)
-        *
+        * 
         * @param game A reference to the Phaser Game instance
         */
         constructor(game: Phaser.Game);
@@ -2056,14 +2058,14 @@ declare module PIXI {
 
         /**
         * Renders the stage to its webGL view
-        *
+        * 
         * @param stage the Stage element to be rendered
         */
         render(stage: DisplayObjectContainer): void;
 
         /**
         * Renders a Display Object.
-        *
+        * 
         * @param displayObject The DisplayObject to render
         * @param projection The projection
         * @param buffer a standard WebGL buffer
@@ -2072,7 +2074,7 @@ declare module PIXI {
 
         /**
         * Resizes the webGL view to the specified width and height.
-        *
+        * 
         * @param width the new width of the webGL view
         * @param height the new height of the webGL view
         */
@@ -2080,7 +2082,7 @@ declare module PIXI {
 
         /**
         * Updates and Creates a WebGL texture for the renderers context.
-        *
+        * 
         * @param texture the texture to update
         * @return True if the texture was successfully bound, otherwise false.
         */
@@ -2099,22 +2101,22 @@ declare module PIXI {
         /**
         * If Multi Texture support has been enabled, then calling this method will enable batching on the given
         * textures. The texture collection is an array of keys, that map to Phaser.Cache image entries.
-        *
+        * 
         * The number of textures that can be batched is dependent on hardware. If you provide more textures
         * than can be batched by the GPU, then only those at the start of the array will be used. Generally
         * you shouldn't provide more than 16 textures to this method. You can check the hardware limit via the
         * `maxTextures` property.
-        *
+        * 
         * You can also check the property `currentBatchedTextures` at any time, to see which textures are currently
         * being batched.
-        *
+        * 
         * To stop all textures from being batched, call this method again with an empty array.
-        *
+        * 
         * To change the textures being batched, call this method with a new array of image keys. The old ones
         * will all be purged out and no-longer batched, and the new ones enabled.
-        *
+        * 
         * Note: Throws a warning if you haven't enabled Multiple Texture batching support in the Phaser Game config.
-        *
+        * 
         * @param textureNameCollection An Array of Texture Cache keys to use for multi-texture batching.
         * @return An array containing the texture keys that were enabled for batching.
         */
@@ -2137,21 +2139,21 @@ declare module PIXI {
 
         /**
         * Takes the attributes given in parameters.
-        *
+        * 
         * @param attribs attribs
         */
         setAttribs(attribs: ShaderAttribute[]): void;
 
         /**
         * Initialises the context and the properties.
-        *
+        * 
         * @param gl the current WebGL drawing context
         */
         setContext(gl: WebGLRenderingContext): void;
 
         /**
         * Sets the current shader.
-        *
+        * 
         * @param shader
         */
         setShader(shader: IPixiShader): boolean;
@@ -2167,7 +2169,7 @@ declare module PIXI {
 
         /**
         * TODO this does not belong here!
-        *
+        * 
         * @param graphics
         * @param webGLData
         * @param renderSession
@@ -2180,8 +2182,8 @@ declare module PIXI {
         destroy(): void;
 
         /**
-        *
-        *
+        * 
+        * 
         * @param graphics
         * @param webGLData
         * @param renderSession
@@ -2191,7 +2193,7 @@ declare module PIXI {
 
         /**
         * Sets the drawing context to the one given in parameter.
-        *
+        * 
         * @param gl the current WebGL drawing context
         */
         setContext(gl: WebGLRenderingContext): void;
@@ -2239,8 +2241,8 @@ declare module PIXI {
 
 
         /**
-        *
-        *
+        * 
+        * 
         * @param renderSession The RenderSession object
         */
         begin(renderSession: RenderSession): void;
@@ -2257,16 +2259,16 @@ declare module PIXI {
         flush(shader?: IPixiShader): void;
 
         /**
-        *
-        *
+        * 
+        * 
         * @param sprite the sprite to render when using this spritebatch
         * @param matrix Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
         */
         render(sprite: Sprite): void;
 
         /**
-        *
-        *
+        * 
+        * 
         * @param texture
         * @param size
         * @param startIndex
@@ -2275,15 +2277,15 @@ declare module PIXI {
 
         /**
         * Renders a TilingSprite using the spriteBatch.
-        *
+        * 
         * @param sprite the sprite to render
         */
         renderTilingSprite(sprite: TilingSprite): void;
         setBlendMode(blendMode: blendModes): void;
 
         /**
-        *
-        *
+        * 
+        * 
         * @param gl the current WebGL drawing context
         */
         setContext(gl: WebGLRenderingContext): void;
