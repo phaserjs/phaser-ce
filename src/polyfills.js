@@ -115,7 +115,9 @@ if (typeof window.Uint32Array !== 'function' && typeof window.Uint32Array !== 'o
 {
     var CheapArray = function (type)
     {
-        var proto = new Array(); // jshint ignore:line
+        /* eslint-disable no-array-constructor */
+        var proto = new Array();
+        /* eslint-enable no-array-constructor */
 
         window[type] = function (arg)
         {
