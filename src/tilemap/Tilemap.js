@@ -376,8 +376,6 @@ Phaser.Tilemap.prototype = {
 
         }
 
-        return null;
-
     },
 
     /**
