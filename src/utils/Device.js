@@ -1,3 +1,4 @@
+/* eslint-env browser, node */
 /**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2016 Photon Storm Ltd.
