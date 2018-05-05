@@ -325,7 +325,7 @@ Phaser.EarCut.eliminateHoles = function (data, holeIndices, outerNode, dim)
         queue.push(Phaser.EarCut.getLeftmost(list));
     }
 
-    queue.sort(compareX);
+    queue.sort(Phaser.EarCut.compareX);
 
     // process holes from left to right
     for (i = 0; i < queue.length; i++)
