@@ -17,7 +17,7 @@
   },
   "scripts": {
     "grunt": "grunt",
-    "test": "NODE_ENV=test grunt jshint",
+    "test": "eslint src",
     "test:build": "node --check build/*.js build/custom/*.js",
     "test:dist": "grunt test && node -c dist/phaser-test.js",
     "test:ts": "./node_modules/typescript/bin/tsc --noImplicitAny ./typescript/{p2,phaser,pixi}.d.ts && ./node_modules/typescript/bin/tsc --noImplicitAny ./typescript/{phaser,pixi}.comments.d.ts"
@@ -42,9 +42,8 @@
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^3.0.1",
-    "grunt-eslint": "^20.0.0",
+    "grunt-eslint": "^20.1.0",
     "grunt-git": "^1.0.4",
     "grunt-jsdoc": "^2.1.0",
     "grunt-notify": "^0.4.5",
