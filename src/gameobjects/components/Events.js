@@ -27,7 +27,8 @@
 * @constructor
 * @param {Phaser.Sprite} sprite - A reference to the game object / Sprite that owns this Events object.
 */
-Phaser.Events = function (sprite) {
+Phaser.Events = function (sprite)
+{
 
     /**
     * @property {Phaser.Sprite} parent - The Sprite that owns these events.
@@ -45,29 +46,30 @@ Phaser.Events.prototype = {
      *
      * @method Phaser.Events#destroy
      */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this._parent = null;
 
-        if (this._onDestroy)           { this._onDestroy.dispose(); }
-        if (this._onAddedToGroup)      { this._onAddedToGroup.dispose(); }
-        if (this._onRemovedFromGroup)  { this._onRemovedFromGroup.dispose(); }
-        if (this._onKilled)            { this._onKilled.dispose(); }
-        if (this._onRevived)           { this._onRevived.dispose(); }
-        if (this._onEnterBounds)       { this._onEnterBounds.dispose(); }
-        if (this._onOutOfBounds)       { this._onOutOfBounds.dispose(); }
+        if (this._onDestroy) { this._onDestroy.dispose(); }
+        if (this._onAddedToGroup) { this._onAddedToGroup.dispose(); }
+        if (this._onRemovedFromGroup) { this._onRemovedFromGroup.dispose(); }
+        if (this._onKilled) { this._onKilled.dispose(); }
+        if (this._onRevived) { this._onRevived.dispose(); }
+        if (this._onEnterBounds) { this._onEnterBounds.dispose(); }
+        if (this._onOutOfBounds) { this._onOutOfBounds.dispose(); }
 
-        if (this._onInputOver)         { this._onInputOver.dispose(); }
-        if (this._onInputOut)          { this._onInputOut.dispose(); }
-        if (this._onInputDown)         { this._onInputDown.dispose(); }
-        if (this._onInputUp)           { this._onInputUp.dispose(); }
-        if (this._onDragStart)         { this._onDragStart.dispose(); }
-        if (this._onDragUpdate)        { this._onDragUpdate.dispose(); }
-        if (this._onDragStop)          { this._onDragStop.dispose(); }
+        if (this._onInputOver) { this._onInputOver.dispose(); }
+        if (this._onInputOut) { this._onInputOut.dispose(); }
+        if (this._onInputDown) { this._onInputDown.dispose(); }
+        if (this._onInputUp) { this._onInputUp.dispose(); }
+        if (this._onDragStart) { this._onDragStart.dispose(); }
+        if (this._onDragUpdate) { this._onDragUpdate.dispose(); }
+        if (this._onDragStop) { this._onDragStop.dispose(); }
 
-        if (this._onAnimationStart)    { this._onAnimationStart.dispose(); }
+        if (this._onAnimationStart) { this._onAnimationStart.dispose(); }
         if (this._onAnimationComplete) { this._onAnimationComplete.dispose(); }
-        if (this._onAnimationLoop)     { this._onAnimationLoop.dispose(); }
+        if (this._onAnimationLoop) { this._onAnimationLoop.dispose(); }
 
     },
 
@@ -301,18 +303,21 @@ for (var prop in Phaser.Events.prototype)
         continue;
     }
 
-    (function (prop, backing) {
+    (function (prop, backing)
+    {
         'use strict';
 
         // The accessor creates a new Signal; and so it should only be used from user-code.
         Object.defineProperty(Phaser.Events.prototype, prop, {
-            get: function () {
+            get: function ()
+            {
                 return this[backing] || (this[backing] = new Phaser.Signal());
             }
         });
 
         // The dispatcher will only broadcast on an already-created signal; call this internally.
-        Phaser.Events.prototype[prop + '$dispatch'] = function () {
+        Phaser.Events.prototype[prop + '$dispatch'] = function ()
+        {
             return this[backing] ? this[backing].dispatch.apply(this[backing], arguments) : null;
         };
 

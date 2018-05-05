@@ -23,7 +23,8 @@
 * @constructor
 * @param {Phaser.Game} game - Reference to the current game instance.
 */
-Phaser.SoundManager = function (game) {
+Phaser.SoundManager = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - Local reference to game.
@@ -185,7 +186,8 @@ Phaser.SoundManager.prototype = {
     * @method Phaser.SoundManager#boot
     * @protected
     */
-    boot: function () {
+    boot: function ()
+    {
 
         var device = this.game.device;
         var PhaserGlobal = window.PhaserGlobal;
@@ -299,7 +301,8 @@ Phaser.SoundManager.prototype = {
     *
     * @method Phaser.SoundManager#setTouchLock
     */
-    setTouchLock: function () {
+    setTouchLock: function ()
+    {
 
         if (this.noAudio || (window.PhaserGlobal && window.PhaserGlobal.disableAudio === true))
         {
@@ -318,7 +321,8 @@ Phaser.SoundManager.prototype = {
     * @method Phaser.SoundManager#setTouchUnlock
     * @private
     */
-    setTouchUnlock: function () {
+    setTouchUnlock: function ()
+    {
 
         this.touchLocked = false;
         this._unlockSource = null;
@@ -333,7 +337,8 @@ Phaser.SoundManager.prototype = {
     *
     * @return {?Promise} - A Promise, if resume was called. See {@link https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/resume}.
     */
-    resumeWebAudio: function () {
+    resumeWebAudio: function ()
+    {
 
         if (this.usingWebAudio && this.context.state === 'suspended')
         {
@@ -348,7 +353,8 @@ Phaser.SoundManager.prototype = {
     * @method Phaser.SoundManager#unlock
     * @return {boolean} True if the callback should be removed, otherwise false.
     */
-    unlock: function () {
+    unlock: function ()
+    {
 
         if (this.noAudio || !this.touchLocked || this._unlockSource !== null)
         {
@@ -393,7 +399,8 @@ Phaser.SoundManager.prototype = {
     *
     * @method Phaser.SoundManager#stopAll
     */
-    stopAll: function () {
+    stopAll: function ()
+    {
 
         if (this.noAudio)
         {
@@ -415,7 +422,8 @@ Phaser.SoundManager.prototype = {
     *
     * @method Phaser.SoundManager#pauseAll
     */
-    pauseAll: function () {
+    pauseAll: function ()
+    {
 
         if (this.noAudio)
         {
@@ -437,7 +445,8 @@ Phaser.SoundManager.prototype = {
     *
     * @method Phaser.SoundManager#resumeAll
     */
-    resumeAll: function () {
+    resumeAll: function ()
+    {
 
         if (this.noAudio)
         {
@@ -461,7 +470,8 @@ Phaser.SoundManager.prototype = {
     * @param {string} key - Assets key of the sound to be decoded.
     * @param {Phaser.Sound} [sound] - Its buffer will be set to decoded data.
     */
-    decode: function (key, sound) {
+    decode: function (key, sound)
+    {
 
         sound = sound || null;
 
@@ -475,8 +485,10 @@ Phaser.SoundManager.prototype = {
 
                 var _this = this;
 
-                try {
-                    this.context.decodeAudioData(soundData, function (buffer) {
+                try
+                {
+                    this.context.decodeAudioData(soundData, function (buffer)
+                    {
 
                         if (buffer)
                         {
@@ -502,7 +514,8 @@ Phaser.SoundManager.prototype = {
      * @param {Function} callback - The callback which will be invoked once all files have finished decoding.
      * @param {Object} callbackContext - The context in which the callback will run.
      */
-    setDecodedCallback: function (files, callback, callbackContext) {
+    setDecodedCallback: function (files, callback, callbackContext)
+    {
 
         if (typeof files === 'string')
         {
@@ -547,7 +560,8 @@ Phaser.SoundManager.prototype = {
     * @method Phaser.SoundManager#update
     * @protected
     */
-    update: function () {
+    update: function ()
+    {
 
         if (this.noAudio)
         {
@@ -598,7 +612,8 @@ Phaser.SoundManager.prototype = {
     * @param {boolean} [connect=true] - Controls if the created Sound object will connect to the master gainNode of the SoundManager when running under WebAudio.
     * @return {Phaser.Sound} The new sound instance.
     */
-    add: function (key, volume, loop, connect) {
+    add: function (key, volume, loop, connect)
+    {
 
         if (volume === undefined) { volume = 1; }
         if (loop === undefined) { loop = false; }
@@ -619,7 +634,8 @@ Phaser.SoundManager.prototype = {
      * @param {string} key - Asset key for the sound.
      * @return {Phaser.AudioSprite} The new AudioSprite instance.
      */
-    addSprite: function(key) {
+    addSprite: function (key)
+    {
 
         var audioSprite = new Phaser.AudioSprite(this.game, key);
 
@@ -634,7 +650,8 @@ Phaser.SoundManager.prototype = {
     * @param {Phaser.Sound} sound - The sound object to remove.
     * @return {boolean} True if the sound was removed successfully, otherwise false.
     */
-    remove: function (sound) {
+    remove: function (sound)
+    {
 
         var i = this._sounds.length;
 
@@ -658,7 +675,8 @@ Phaser.SoundManager.prototype = {
     *
     * @method Phaser.SoundManager#removeAll
     */
-    removeAll: function () {
+    removeAll: function ()
+    {
 
         this.stopAll();
 
@@ -682,7 +700,8 @@ Phaser.SoundManager.prototype = {
     * @param {string} key - The key to match when removing sound objects.
     * @return {number} The number of matching sound objects that were removed.
     */
-    removeByKey: function (key) {
+    removeByKey: function (key)
+    {
 
         var i = this._sounds.length;
         var removed = 0;
@@ -710,7 +729,8 @@ Phaser.SoundManager.prototype = {
     * @param {boolean} [loop=false] - Whether or not the sound will loop.
     * @return {Phaser.Sound} The new sound instance.
     */
-    play: function (key, volume, loop) {
+    play: function (key, volume, loop)
+    {
 
         if (this.noAudio)
         {
@@ -731,7 +751,8 @@ Phaser.SoundManager.prototype = {
     * @method Phaser.SoundManager#setMute
     * @private
     */
-    setMute: function () {
+    setMute: function ()
+    {
 
         if (this._muted)
         {
@@ -765,7 +786,8 @@ Phaser.SoundManager.prototype = {
     * @method Phaser.SoundManager#unsetMute
     * @private
     */
-    unsetMute: function () {
+    unsetMute: function ()
+    {
 
         if (!this._muted || this._codeMuted)
         {
@@ -797,7 +819,8 @@ Phaser.SoundManager.prototype = {
     *
     * @method Phaser.SoundManager#destroy
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this.removeAll();
 
@@ -813,11 +836,9 @@ Phaser.SoundManager.prototype = {
                 window.PhaserGlobal.audioContext = this.context;
             }
             else
+            if (this.context.close)
             {
-                if (this.context.close)
-                {
-                    this.context.close();
-                }
+                this.context.close();
             }
         }
 
@@ -837,15 +858,17 @@ Phaser.SoundManager.prototype.constructor = Phaser.SoundManager;
 * @name Phaser.SoundManager#mute
 * @property {boolean} mute - Gets or sets the muted state of the SoundManager. This effects all sounds in the game.
 */
-Object.defineProperty(Phaser.SoundManager.prototype, "mute", {
+Object.defineProperty(Phaser.SoundManager.prototype, 'mute', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._muted;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         value = value || false;
 
@@ -877,15 +900,17 @@ Object.defineProperty(Phaser.SoundManager.prototype, "mute", {
 * @name Phaser.SoundManager#volume
 * @property {number} volume - Gets or sets the global volume of the SoundManager, a value between 0 and 1. The value given is clamped to the range 0 to 1.
 */
-Object.defineProperty(Phaser.SoundManager.prototype, "volume", {
+Object.defineProperty(Phaser.SoundManager.prototype, 'volume', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._volume;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value < 0)
         {

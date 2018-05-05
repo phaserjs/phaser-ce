@@ -16,7 +16,8 @@
 * @param {number} [stiffness=100] - Stiffness of the spring. A number >= 0.
 * @param {number} [damping=1] - Damping of the spring. A number >= 0.
 */
-Phaser.Physics.P2.RotationalSpring = function (world, bodyA, bodyB, restAngle, stiffness, damping) {
+Phaser.Physics.P2.RotationalSpring = function (world, bodyA, bodyB, restAngle, stiffness, damping)
+{
 
     /**
     * @property {Phaser.Game} game - Local reference to game.

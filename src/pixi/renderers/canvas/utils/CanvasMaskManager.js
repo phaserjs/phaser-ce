@@ -8,7 +8,7 @@
  * @class PIXI.CanvasMaskManager
  * @constructor
  */
-PIXI.CanvasMaskManager = function()
+PIXI.CanvasMaskManager = function ()
 {
 };
 
@@ -21,9 +21,10 @@ PIXI.CanvasMaskManager.prototype.constructor = PIXI.CanvasMaskManager;
  * @param maskData {Object} the maskData that will be pushed
  * @param renderSession {Object} The renderSession whose context will be used for this mask manager.
  */
-PIXI.CanvasMaskManager.prototype.pushMask = function(maskData, renderSession) {
+PIXI.CanvasMaskManager.prototype.pushMask = function (maskData, renderSession)
+{
 
-	var context = renderSession.context;
+    var context = renderSession.context;
 
     context.save();
 
@@ -33,11 +34,11 @@ PIXI.CanvasMaskManager.prototype.pushMask = function(maskData, renderSession) {
     var resolution = renderSession.resolution;
 
     context.setTransform(transform.a * resolution,
-                         transform.b * resolution,
-                         transform.c * resolution,
-                         transform.d * resolution,
-                         transform.tx * resolution,
-                         transform.ty * resolution);
+        transform.b * resolution,
+        transform.c * resolution,
+        transform.d * resolution,
+        transform.tx * resolution,
+        transform.ty * resolution);
 
     PIXI.CanvasGraphics.renderGraphicsMask(maskData, context);
 
@@ -52,7 +53,7 @@ PIXI.CanvasMaskManager.prototype.pushMask = function(maskData, renderSession) {
  * @method PIXI.CanvasMaskManager#popMask
  * @param renderSession {Object} The renderSession whose context will be used for this mask manager.
  */
-PIXI.CanvasMaskManager.prototype.popMask = function(renderSession)
+PIXI.CanvasMaskManager.prototype.popMask = function (renderSession)
 {
     renderSession.context.restore();
 };

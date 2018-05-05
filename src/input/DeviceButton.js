@@ -28,7 +28,8 @@
 * @param {Phaser.Pointer|Phaser.SinglePad} parent - A reference to the parent of this button. Either a Pointer or a Gamepad.
 * @param {number} buttonCode - The button code this DeviceButton is responsible for.
 */
-Phaser.DeviceButton = function (parent, buttonCode) {
+Phaser.DeviceButton = function (parent, buttonCode)
+{
 
     /**
     * @property {Phaser.Pointer|Phaser.SinglePad} parent - A reference to the Pointer or Gamepad that owns this button.
@@ -150,7 +151,8 @@ Phaser.DeviceButton.prototype = {
     * @param {object} [event] - The DOM event that triggered the button change.
     * @param {number} [value] - The button value. Only get for Gamepads.
     */
-    start: function (event, value) {
+    start: function (event, value)
+    {
 
         if (this.isDown)
         {
@@ -185,7 +187,8 @@ Phaser.DeviceButton.prototype = {
     * @param {object} [event] - The DOM event that triggered the button change.
     * @param {number} [value] - The button value. Only get for Gamepads.
     */
-    stop: function (event, value) {
+    stop: function (event, value)
+    {
 
         if (this.isUp)
         {
@@ -220,7 +223,8 @@ Phaser.DeviceButton.prototype = {
     * @param {object} [event] - The DOM event that triggered the button change.
     * @param {number} [value] - The button value. Only get for Gamepads.
     */
-    startStop: function (condition, event, value) {
+    startStop: function (condition, event, value)
+    {
 
         if (condition)
         {
@@ -240,7 +244,8 @@ Phaser.DeviceButton.prototype = {
     * @protected
     * @param {number} value - Button value
     */
-    padFloat: function (value) {
+    padFloat: function (value)
+    {
 
         this.isDown = false;
         this.isUp = false;
@@ -259,7 +264,8 @@ Phaser.DeviceButton.prototype = {
     * @param {number} [duration=250] - The duration in ms below which the button is considered as being just pressed.
     * @return {boolean} True if the button is just pressed otherwise false.
     */
-    justPressed: function (duration) {
+    justPressed: function (duration)
+    {
 
         duration = duration || 250;
 
@@ -275,7 +281,8 @@ Phaser.DeviceButton.prototype = {
     * @param {number} [duration=250] - The duration in ms below which the button is considered as being just released.
     * @return {boolean} True if the button is just released otherwise false.
     */
-    justReleased: function (duration) {
+    justReleased: function (duration)
+    {
 
         duration = duration || 250;
 
@@ -288,7 +295,8 @@ Phaser.DeviceButton.prototype = {
     *
     * @method Phaser.DeviceButton#reset
     */
-    reset: function () {
+    reset: function ()
+    {
 
         this.isDown = false;
         this.isUp = true;
@@ -308,7 +316,8 @@ Phaser.DeviceButton.prototype = {
     *
     * @method Phaser.DeviceButton#destroy
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this.onDown.dispose();
         this.onUp.dispose();
@@ -331,9 +340,10 @@ Phaser.DeviceButton.prototype.constructor = Phaser.DeviceButton;
 * @property {number} duration
 * @readonly
 */
-Object.defineProperty(Phaser.DeviceButton.prototype, "duration", {
+Object.defineProperty(Phaser.DeviceButton.prototype, 'duration', {
 
-    get: function () {
+    get: function ()
+    {
 
         if (this.isUp)
         {

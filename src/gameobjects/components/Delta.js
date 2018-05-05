@@ -23,7 +23,8 @@ Phaser.Component.Delta.prototype = {
     */
     deltaX: {
 
-        get: function() {
+        get: function ()
+        {
 
             return this.world.x - this.previousPosition.x;
 
@@ -41,7 +42,8 @@ Phaser.Component.Delta.prototype = {
     */
     deltaY: {
 
-        get: function() {
+        get: function ()
+        {
 
             return this.world.y - this.previousPosition.y;
 
@@ -57,7 +59,8 @@ Phaser.Component.Delta.prototype = {
     */
     deltaZ: {
 
-        get: function() {
+        get: function ()
+        {
 
             return this.rotation - this.previousRotation;
 

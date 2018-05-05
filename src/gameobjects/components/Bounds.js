@@ -23,7 +23,8 @@ Phaser.Component.Bounds.prototype = {
     */
     offsetX: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this.anchor.x * this.width;
 
@@ -41,7 +42,8 @@ Phaser.Component.Bounds.prototype = {
     */
     offsetY: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this.anchor.y * this.height;
 
@@ -57,13 +59,15 @@ Phaser.Component.Bounds.prototype = {
     */
     centerX: {
 
-        get: function () {
+        get: function ()
+        {
 
             return (this.x - this.offsetX) + (this.width * 0.5);
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             this.x = (value + this.offsetX) - (this.width * 0.5);
 
@@ -79,13 +83,15 @@ Phaser.Component.Bounds.prototype = {
     */
     centerY: {
 
-        get: function () {
+        get: function ()
+        {
 
             return (this.y - this.offsetY) + (this.height * 0.5);
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             this.y = (value + this.offsetY) - (this.height * 0.5);
 
@@ -101,13 +107,15 @@ Phaser.Component.Bounds.prototype = {
     */
     left: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this.x - this.offsetX;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             this.x = value + this.offsetX;
 
@@ -123,13 +131,15 @@ Phaser.Component.Bounds.prototype = {
     */
     right: {
 
-        get: function () {
+        get: function ()
+        {
 
             return (this.x + this.width) - this.offsetX;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             this.x = value - (this.width) + this.offsetX;
 
@@ -145,13 +155,15 @@ Phaser.Component.Bounds.prototype = {
     */
     top: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this.y - this.offsetY;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             this.y = value + this.offsetY;
 
@@ -167,13 +179,15 @@ Phaser.Component.Bounds.prototype = {
     */
     bottom: {
 
-        get: function () {
+        get: function ()
+        {
 
             return (this.y + this.height) - this.offsetY;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             this.y = value - (this.height) + this.offsetY;
 
@@ -220,7 +234,8 @@ Phaser.Component.Bounds.prototype = {
     * @param {integer} [offsetY=0] - A vertical adjustment of the Containers bounds, applied to the aligned position of the Game Object. Use a negative value to shrink the bounds, positive to increase it.
     * @return {Object} This Game Object.
     */
-    alignIn: function (container, position, offsetX, offsetY) {
+    alignIn: function (container, position, offsetX, offsetY)
+    {
 
         if (offsetX === undefined) { offsetX = 0; }
         if (offsetY === undefined) { offsetY = 0; }
@@ -318,7 +333,8 @@ Phaser.Component.Bounds.prototype = {
     * @param {integer} [offsetY=0] - A vertical adjustment of the Containers bounds, applied to the aligned position of the Game Object. Use a negative value to shrink the bounds, positive to increase it.
     * @return {Object} This Game Object.
     */
-    alignTo: function (parent, position, offsetX, offsetY) {
+    alignTo: function (parent, position, offsetX, offsetY)
+    {
 
         if (offsetX === undefined) { offsetX = 0; }
         if (offsetY === undefined) { offsetY = 0; }

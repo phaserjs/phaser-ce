@@ -21,7 +21,8 @@
 * @param {Phaser.Physics.P2.Body} body - The P2 Body to display debug data for.
 * @param {object} settings - Settings object.
 */
-Phaser.Physics.P2.BodyDebug = function(game, body, settings) {
+Phaser.Physics.P2.BodyDebug = function (game, body, settings)
+{
 
     Phaser.Group.call(this, game);
 
@@ -74,7 +75,8 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     *
     * @method Phaser.Physics.P2.BodyDebug#updateSpriteTransform
     */
-    updateSpriteTransform: function() {
+    updateSpriteTransform: function ()
+    {
 
         this.position.x = this.body.position[0] * this.ppu;
         this.position.y = this.body.position[1] * this.ppu;
@@ -87,7 +89,8 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     *
     * @method Phaser.Physics.P2.BodyDebug#draw
     */
-    draw: function() {
+    draw: function ()
+    {
 
         var angle, child, color, i, j, lineColor, lw, obj, offset, sprite, v, verts, vrot, _j, _ref1;
 
@@ -135,14 +138,14 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
                     verts = [];
                     vrot = p2.vec2.create();
 
-                    for (j = _j = 0, _ref1 = child.vertices.length; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; j = 0 <= _ref1 ? ++_j : --_j)
+                    for (j = _j = 0, _ref1 = child.vertices.length; _ref1 >= 0 ? _j < _ref1 : _j > _ref1; j = _ref1 >= 0 ? ++_j : --_j)
                     {
                         v = child.vertices[j];
                         p2.vec2.rotate(vrot, v, angle);
-                        verts.push([(vrot[0] + offset[0]) * this.ppu, -(vrot[1] + offset[1]) * this.ppu]);
+                        verts.push([ (vrot[0] + offset[0]) * this.ppu, -(vrot[1] + offset[1]) * this.ppu ]);
                     }
 
-                    this.drawConvex(sprite, verts, child.triangles, lineColor, color, lw, this.settings.debugPolygons, [offset[0] * this.ppu, -offset[1] * this.ppu]);
+                    this.drawConvex(sprite, verts, child.triangles, lineColor, color, lw, this.settings.debugPolygons, [ offset[0] * this.ppu, -offset[1] * this.ppu ]);
                 }
 
                 i++;
@@ -157,7 +160,8 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     * @method Phaser.Physics.P2.BodyDebug#drawRectangle
     * @private
     */
-    drawRectangle: function(g, x, y, angle, w, h, color, fillColor, lineWidth) {
+    drawRectangle: function (g, x, y, angle, w, h, color, fillColor, lineWidth)
+    {
 
         if (lineWidth === undefined) { lineWidth = 1; }
         if (color === undefined) { color = 0x000000; }
@@ -174,13 +178,14 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     * @method Phaser.Physics.P2.BodyDebug#drawCircle
     * @private
     */
-    drawCircle: function(g, x, y, angle, radius, color, lineWidth) {
+    drawCircle: function (g, x, y, angle, radius, color, lineWidth)
+    {
 
         if (lineWidth === undefined) { lineWidth = 1; }
         if (color === undefined) { color = 0xffffff; }
         g.lineStyle(lineWidth, 0x000000, 1);
         g.beginFill(color, 1.0);
-        g.drawCircle(x, y, -radius*2);
+        g.drawCircle(x, y, -radius * 2);
         g.endFill();
         g.moveTo(x, y);
         g.lineTo(x + radius * Math.cos(-angle), y + radius * Math.sin(-angle));
@@ -193,7 +198,8 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     * @method Phaser.Physics.P2.BodyDebug#drawLine
     * @private
     */
-    drawLine: function(g, len, color, lineWidth) {
+    drawLine: function (g, len, color, lineWidth)
+    {
 
         if (lineWidth === undefined) { lineWidth = 1; }
         if (color === undefined) { color = 0x000000; }
@@ -210,7 +216,8 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     * @method Phaser.Physics.P2.BodyDebug#drawConvex
     * @private
     */
-    drawConvex: function(g, verts, triangles, color, fillColor, lineWidth, debug, offset) {
+    drawConvex: function (g, verts, triangles, color, fillColor, lineWidth, debug, offset)
+    {
 
         var colors, i, v, v0, v1, x, x0, x1, y, y0, y1;
 
@@ -251,7 +258,7 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
         }
         else
         {
-            colors = [0xff0000, 0x00ff00, 0x0000ff];
+            colors = [ 0xff0000, 0x00ff00, 0x0000ff ];
             i = 0;
 
             while (i !== verts.length + 1)
@@ -281,7 +288,8 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     * @method Phaser.Physics.P2.BodyDebug#drawPath
     * @private
     */
-    drawPath: function(g, path, color, fillColor, lineWidth) {
+    drawPath: function (g, path, color, fillColor, lineWidth)
+    {
 
         var area, i, lastx, lasty, p1x, p1y, p2x, p2y, p3x, p3y, v, x, y;
         if (lineWidth === undefined) { lineWidth = 1; }
@@ -289,7 +297,7 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
 
         g.lineStyle(lineWidth, color, 1);
 
-        if (typeof fillColor === "number")
+        if (typeof fillColor === 'number')
         {
             g.beginFill(fillColor);
         }
@@ -333,12 +341,12 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
 
         }
 
-        if (typeof fillColor === "number")
+        if (typeof fillColor === 'number')
         {
             g.endFill();
         }
 
-        if (path.length > 2 && typeof fillColor === "number")
+        if (path.length > 2 && typeof fillColor === 'number')
         {
             g.moveTo(path[path.length - 1][0], path[path.length - 1][1]);
             g.lineTo(path[0][0], path[0][1]);
@@ -352,7 +360,8 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     * @method Phaser.Physics.P2.BodyDebug#drawPlane
     * @private
     */
-    drawPlane: function(g, x0, x1, color, lineColor, lineWidth, diagMargin, diagSize, maxLength, angle) {
+    drawPlane: function (g, x0, x1, color, lineColor, lineWidth, diagMargin, diagSize, maxLength, angle)
+    {
 
         var max, xd, yd;
         if (lineWidth === undefined) { lineWidth = 1; }
@@ -380,10 +389,11 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     * @method Phaser.Physics.P2.BodyDebug#drawCapsule
     * @private
     */
-    drawCapsule: function(g, x, y, angle, len, radius, color, fillColor, lineWidth) {
+    drawCapsule: function (g, x, y, angle, len, radius, color, fillColor, lineWidth)
+    {
 
         if (lineWidth === undefined) { lineWidth = 1; }
-        if (color === undefined) { color =  0x000000; }
+        if (color === undefined) { color = 0x000000; }
 
         g.lineStyle(lineWidth, color, 1);
 
@@ -392,25 +402,25 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
         var s = Math.sin(angle);
 
         g.beginFill(fillColor, 1);
-        g.drawCircle(-len/2*c + x, -len/2*s + y, -radius * 2);
-        g.drawCircle( len/2*c + x,  len/2*s + y, -radius * 2);
+        g.drawCircle(-len / 2 * c + x, -len / 2 * s + y, -radius * 2);
+        g.drawCircle(len / 2 * c + x, len / 2 * s + y, -radius * 2);
         g.endFill();
 
         // Draw rectangle
         g.lineStyle(lineWidth, color, 0);
         g.beginFill(fillColor, 1);
-        g.moveTo(-len/2*c + radius*s + x, -len/2*s + radius*c + y);
-        g.lineTo( len/2*c + radius*s + x,  len/2*s + radius*c + y);
-        g.lineTo( len/2*c - radius*s + x,  len/2*s - radius*c + y);
-        g.lineTo(-len/2*c - radius*s + x, -len/2*s - radius*c + y);
+        g.moveTo(-len / 2 * c + radius * s + x, -len / 2 * s + radius * c + y);
+        g.lineTo(len / 2 * c + radius * s + x, len / 2 * s + radius * c + y);
+        g.lineTo(len / 2 * c - radius * s + x, len / 2 * s - radius * c + y);
+        g.lineTo(-len / 2 * c - radius * s + x, -len / 2 * s - radius * c + y);
         g.endFill();
 
         // Draw lines in between
         g.lineStyle(lineWidth, color, 1);
-        g.moveTo(-len/2*c + radius*s + x, -len/2*s + radius*c + y);
-        g.lineTo( len/2*c + radius*s + x,  len/2*s + radius*c + y);
-        g.moveTo(-len/2*c - radius*s + x, -len/2*s - radius*c + y);
-        g.lineTo( len/2*c - radius*s + x,  len/2*s - radius*c + y);
+        g.moveTo(-len / 2 * c + radius * s + x, -len / 2 * s + radius * c + y);
+        g.lineTo(len / 2 * c + radius * s + x, len / 2 * s + radius * c + y);
+        g.moveTo(-len / 2 * c - radius * s + x, -len / 2 * s - radius * c + y);
+        g.lineTo(len / 2 * c - radius * s + x, len / 2 * s - radius * c + y);
 
     },
 
@@ -420,10 +430,11 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     * @method Phaser.Physics.P2.BodyDebug#randomPastelHex
     * @private
     */
-    randomPastelHex: function() {
+    randomPastelHex: function ()
+    {
 
         var blue, green, mix, red;
-        mix = [255, 255, 255];
+        mix = [ 255, 255, 255 ];
 
         red = Math.floor(Math.random() * 256);
         green = Math.floor(Math.random() * 256);
@@ -443,7 +454,8 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     * @method Phaser.Physics.P2.BodyDebug#rgbToHex
     * @private
     */
-    rgbToHex: function(r, g, b) {
+    rgbToHex: function (r, g, b)
+    {
         return this.componentToHex(r) + this.componentToHex(g) + this.componentToHex(b);
     },
 
@@ -453,7 +465,8 @@ Object.assign(Phaser.Physics.P2.BodyDebug.prototype, {
     * @method Phaser.Physics.P2.BodyDebug#componentToHex
     * @private
     */
-    componentToHex: function(c) {
+    componentToHex: function (c)
+    {
 
         var hex;
         hex = c.toString(16);

@@ -8,7 +8,7 @@
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.PixiShader = function(gl)
+PIXI.PixiShader = function (gl)
 {
     /**
      * @property _UID
@@ -72,15 +72,16 @@ PIXI.PixiShader = function(gl)
 
 PIXI.PixiShader.prototype.constructor = PIXI.PixiShader;
 
-PIXI.PixiShader.prototype.initMultitexShader = function () {
+PIXI.PixiShader.prototype.initMultitexShader = function ()
+{
     var gl = this.gl;
     this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
-    var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n'
+    var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n';
     for (var index = 1; index < this.MAX_TEXTURES; ++index)
     {
         dynamicIfs += '\tif (vTextureIndex == ' +
                     index + '.0) {gl_FragColor = texture2D(uSamplerArray[' +
-                    index + '], vTextureCoord) * vColor;return;}\n'
+                    index + '], vTextureCoord) * vColor;return;}\n';
     }
     this.fragmentSrc = [
         '// PixiShader Fragment Shader.',
@@ -90,9 +91,11 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
         'varying vec4 vColor;',
         'varying float vTextureIndex;',
         'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
+
         // Blue color means that you are trying to bound
         // a texture out of the limits of the hardware.
         'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+
         // If you get a red color means you are out of memory
         // or in some way corrupted the vertex buffer.
         'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
@@ -108,7 +111,7 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
     gl.useProgram(program);
 
     // get and store the uniforms for the shader
-    //this.uSampler = gl.getUniformLocation(program, 'uSampler');
+    // this.uSampler = gl.getUniformLocation(program, 'uSampler');
     this.uSamplerArray = gl.getUniformLocation(program, 'uSamplerArray[0]');
     this.projectionVector = gl.getUniformLocation(program, 'projectionVector');
     this.offsetVector = gl.getUniformLocation(program, 'offsetVector');
@@ -121,12 +124,14 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
     this.aTextureIndex = gl.getAttribLocation(program, 'aTextureIndex');
 
     var indices = [];
+
     // HACK: we bind an empty texture to avoid WebGL warning spam.
     var tempTexture = gl.createTexture();
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, tempTexture);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, 1, 1, 0, gl.RGB, gl.UNSIGNED_BYTE, null);
-    for (var i = 0; i < this.MAX_TEXTURES; ++i) {
+    for (var i = 0; i < this.MAX_TEXTURES; ++i)
+    {
         gl.activeTexture(gl.TEXTURE0 + i);
         gl.bindTexture(gl.TEXTURE_2D, tempTexture);
         indices.push(i);
@@ -145,7 +150,7 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
         this.colorAttribute = 2;
     }
 
-    this.attributes = [this.aVertexPosition, this.aTextureCoord, this.colorAttribute, this.aTextureIndex];
+    this.attributes = [ this.aVertexPosition, this.aTextureCoord, this.colorAttribute, this.aTextureIndex ];
 
     // End worst hack eva //
 
@@ -161,9 +166,11 @@ PIXI.PixiShader.prototype.initMultitexShader = function () {
     this.program = program;
 };
 
-PIXI.PixiShader.prototype.initDefaultShader = function () {
+PIXI.PixiShader.prototype.initDefaultShader = function ()
+{
 
-    if (this.fragmentSrc === null) {
+    if (this.fragmentSrc === null)
+    {
         this.fragmentSrc = [
             'precision lowp float;',
             'varying vec2 vTextureCoord;',
@@ -206,7 +213,7 @@ PIXI.PixiShader.prototype.initDefaultShader = function () {
         this.colorAttribute = 2;
     }
 
-    this.attributes = [this.aVertexPosition, this.aTextureCoord, this.colorAttribute, this.aTextureIndex];
+    this.attributes = [ this.aVertexPosition, this.aTextureCoord, this.colorAttribute, this.aTextureIndex ];
 
     // End worst hack eva //
 
@@ -221,16 +228,20 @@ PIXI.PixiShader.prototype.initDefaultShader = function () {
 
     this.program = program;
 };
+
 /**
 * Initialises the shader.
 *
 * @method PIXI.PixiShader#init
 */
-PIXI.PixiShader.prototype.init = function(usingFilter)
+PIXI.PixiShader.prototype.init = function (usingFilter)
 {
-    if (PIXI._enableMultiTextureToggle && !usingFilter) {
+    if (PIXI._enableMultiTextureToggle && !usingFilter)
+    {
         this.initMultitexShader();
-    } else {
+    }
+    else
+    {
         this.initDefaultShader();
     }
 };
@@ -243,7 +254,7 @@ PIXI.PixiShader.prototype.init = function(usingFilter)
 *
 * @method PIXI.PixiShader#initUniforms
 */
-PIXI.PixiShader.prototype.initUniforms = function()
+PIXI.PixiShader.prototype.initUniforms = function ()
 {
     this.textureCount = 1;
     var gl = this.gl;
@@ -314,7 +325,7 @@ PIXI.PixiShader.prototype.initUniforms = function()
 *
 * @method PIXI.PixiShader#initSampler2D
 */
-PIXI.PixiShader.prototype.initSampler2D = function(uniform)
+PIXI.PixiShader.prototype.initSampler2D = function (uniform)
 {
     if (!uniform.value || !uniform.value.baseTexture || !uniform.value.baseTexture.hasLoaded)
     {
@@ -390,7 +401,7 @@ PIXI.PixiShader.prototype.initSampler2D = function(uniform)
 *
 * @method PIXI.PixiShader#syncUniforms
 */
-PIXI.PixiShader.prototype.syncUniforms = function()
+PIXI.PixiShader.prototype.syncUniforms = function ()
 {
     this.textureCount = 1;
     var uniform;
@@ -457,9 +468,9 @@ PIXI.PixiShader.prototype.syncUniforms = function()
 *
 * @method PIXI.PixiShader#destroy
 */
-PIXI.PixiShader.prototype.destroy = function()
+PIXI.PixiShader.prototype.destroy = function ()
 {
-    this.gl.deleteProgram( this.program );
+    this.gl.deleteProgram(this.program);
     this.uniforms = null;
     this.gl = null;
 

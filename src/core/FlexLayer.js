@@ -19,7 +19,8 @@
 * @param {Phaser.Rectangle} bounds - A reference to the Rectangle used for the layer bounds.
 * @param {Phaser.Point} scale - A reference to the Point object used for layer scaling.
 */
-Phaser.FlexLayer = function (manager, position, bounds, scale) {
+Phaser.FlexLayer = function (manager, position, bounds, scale)
+{
 
     Phaser.Group.call(this, manager.game, null, '__flexLayer' + manager.game.rnd.uuid(), false);
 
@@ -95,7 +96,8 @@ Phaser.FlexLayer.prototype.constructor = Phaser.FlexLayer;
  *
  * @method Phaser.FlexLayer#resize
  */
-Phaser.FlexLayer.prototype.resize = function () {
+Phaser.FlexLayer.prototype.resize = function ()
+{
 };
 
 /**
@@ -103,7 +105,8 @@ Phaser.FlexLayer.prototype.resize = function () {
  *
  * @method Phaser.FlexLayer#debug
  */
-Phaser.FlexLayer.prototype.debug = function () {
+Phaser.FlexLayer.prototype.debug = function ()
+{
 
     this.game.debug.text(this.bounds.width + ' x ' + this.bounds.height, this.bounds.x + 4, this.bounds.y + 16);
     this.game.debug.geom(this.bounds, 'rgba(0,0,255,0.9', false);

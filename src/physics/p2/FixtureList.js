@@ -20,11 +20,12 @@
 * @constructor
 * @param {Array} list - A list of fixtures (from Phaser.Physics.P2.Body#addPhaserPolygon)
 */
-Phaser.Physics.P2.FixtureList = function (list) {
+Phaser.Physics.P2.FixtureList = function (list)
+{
 
     if (!Array.isArray(list))
     {
-        list = [list];
+        list = [ list ];
     }
 
     this.rawList = list;
@@ -38,7 +39,8 @@ Phaser.Physics.P2.FixtureList.prototype = {
     /**
     * @method Phaser.Physics.P2.FixtureList#init
     */
-    init: function () {
+    init: function ()
+    {
 
         /**
         * @property {object} namedFixtures - Collect all fixtures with a key
@@ -65,9 +67,11 @@ Phaser.Physics.P2.FixtureList.prototype = {
     * @param {number} bit - The bit to set as the collision group.
     * @param {string} fixtureKey - Only apply to the fixture with the given key.
     */
-    setCategory: function (bit, fixtureKey) {
+    setCategory: function (bit, fixtureKey)
+    {
 
-        var setter = function(fixture) {
+        var setter = function (fixture)
+        {
             fixture.collisionGroup = bit;
         };
 
@@ -80,9 +84,11 @@ Phaser.Physics.P2.FixtureList.prototype = {
     * @param {number} bit - The bit to set as the collision mask
     * @param {string} fixtureKey - Only apply to the fixture with the given key
     */
-    setMask: function (bit, fixtureKey) {
+    setMask: function (bit, fixtureKey)
+    {
 
-        var setter = function(fixture) {
+        var setter = function (fixture)
+        {
             fixture.collisionMask = bit;
         };
 
@@ -95,9 +101,11 @@ Phaser.Physics.P2.FixtureList.prototype = {
     * @param {boolean} value - sensor true or false
     * @param {string} fixtureKey - Only apply to the fixture with the given key
     */
-    setSensor: function (value, fixtureKey) {
+    setSensor: function (value, fixtureKey)
+    {
 
-        var setter = function(fixture) {
+        var setter = function (fixture)
+        {
             fixture.sensor = value;
         };
 
@@ -110,9 +118,11 @@ Phaser.Physics.P2.FixtureList.prototype = {
     * @param {Object} material - The contact material for a fixture
     * @param {string} fixtureKey - Only apply to the fixture with the given key
     */
-    setMaterial: function (material, fixtureKey) {
+    setMaterial: function (material, fixtureKey)
+    {
 
-        var setter = function(fixture) {
+        var setter = function (fixture)
+        {
             fixture.material = material;
         };
 
@@ -126,7 +136,8 @@ Phaser.Physics.P2.FixtureList.prototype = {
     * @method Phaser.Physics.P2.FixtureList#getFixtures
     * @param {array} keys - A list of fixture keys
     */
-    getFixtures: function (keys) {
+    getFixtures: function (keys)
+    {
 
         var fixtures = [];
 
@@ -134,11 +145,12 @@ Phaser.Physics.P2.FixtureList.prototype = {
         {
             if (!(keys instanceof Array))
             {
-                keys = [keys];
+                keys = [ keys ];
             }
 
             var self = this;
-            keys.forEach(function(key) {
+            keys.forEach(function (key)
+            {
                 if (self.namedFixtures[key])
                 {
                     fixtures.push(self.namedFixtures[key]);
@@ -161,7 +173,8 @@ Phaser.Physics.P2.FixtureList.prototype = {
     * @method Phaser.Physics.P2.FixtureList#getFixtureByKey
     * @param {string} key - The key of the fixture.
     */
-    getFixtureByKey: function (key) {
+    getFixtureByKey: function (key)
+    {
 
         return this.namedFixtures[key];
 
@@ -173,7 +186,8 @@ Phaser.Physics.P2.FixtureList.prototype = {
     * @method Phaser.Physics.P2.FixtureList#getGroup
     * @param {number} groupID - The group index.
     */
-    getGroup: function (groupID) {
+    getGroup: function (groupID)
+    {
 
         return this.groupedFixtures[groupID];
 
@@ -184,7 +198,8 @@ Phaser.Physics.P2.FixtureList.prototype = {
     * 
     * @method Phaser.Physics.P2.FixtureList#parse
     */
-    parse: function () {
+    parse: function ()
+    {
 
         var key, value, _ref, _results;
         _ref = this.rawList;
@@ -215,14 +230,16 @@ Phaser.Physics.P2.FixtureList.prototype = {
     * @method Phaser.Physics.P2.FixtureList#flatten
     * @param {array} array - The array to flatten. Notice: This will happen recursive not shallow.
     */
-    flatten: function (array) {
+    flatten: function (array)
+    {
 
         var result, self;
         result = [];
         self = arguments.callee;
         
-        array.forEach(function(item) {
-            return Array.prototype.push.apply(result, (Array.isArray(item) ? self(item) : [item]));
+        array.forEach(function (item)
+        {
+            return Array.prototype.push.apply(result, (Array.isArray(item) ? self(item) : [ item ]));
         });
 
         return result;

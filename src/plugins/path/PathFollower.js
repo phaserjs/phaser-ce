@@ -22,7 +22,8 @@
 * @param {function} [callbackAtEnd] - A callback to be invoked when the follower reaches the end of a path.
 * @param {number} [physicsAdjustTime=0] - If non-zero then the follower expects to control a physics object using "arcade.moveToObject" to control velocity.
 */
-Phaser.PathFollower = function (path, follower, speed, rotationOffset, angularOffset, callbackAtEnd, physicsAdjustTime) {
+Phaser.PathFollower = function (path, follower, speed, rotationOffset, angularOffset, callbackAtEnd, physicsAdjustTime)
+{
 
     if (speed === undefined) { speed = 1; }
     if (rotationOffset === undefined) { rotationOffset = 0; }
@@ -128,7 +129,8 @@ Phaser.PathFollower = function (path, follower, speed, rotationOffset, angularOf
     follower.followerPathName = this.path.name;
 
     Object.defineProperty(this.speed, 'avg', {
-        get: function() {
+        get: function ()
+        {
             return (this.min + this.max) / 2;
         }
     });
@@ -136,12 +138,12 @@ Phaser.PathFollower = function (path, follower, speed, rotationOffset, angularOf
 };
 
 // events for PathFollower
-Phaser.PathFollower.EVENT_REACHED_POINT = "event_reached_point";   // "follower has reached a PathPoint on the path"
-Phaser.PathFollower.EVENT_BRANCH_CHOICE = "event_branch_choice";   // "follower has reached a branch and must choose a direction" (stay on this path or changePath to the branch)
-Phaser.PathFollower.EVENT_COUNT_FINISH = "event_count_finish";     // "follower passed a counted point the specified number of times"
-Phaser.PathFollower.EVENT_PATH_START = "event_path_start";         // NOTE: "a path started" but "follower moved backwards to the start of the path"
-Phaser.PathFollower.EVENT_PATH_END = "event_path_end";             // "follower moved to the end of the path" but NOT if the path is looped, that generates EVENT_PATH_LOOPED instead
-Phaser.PathFollower.EVENT_PATH_LOOPED = "event_path_looped";       // "follower reached the end of a looped path and has started at the beginning again"
+Phaser.PathFollower.EVENT_REACHED_POINT = 'event_reached_point'; // "follower has reached a PathPoint on the path"
+Phaser.PathFollower.EVENT_BRANCH_CHOICE = 'event_branch_choice'; // "follower has reached a branch and must choose a direction" (stay on this path or changePath to the branch)
+Phaser.PathFollower.EVENT_COUNT_FINISH = 'event_count_finish'; // "follower passed a counted point the specified number of times"
+Phaser.PathFollower.EVENT_PATH_START = 'event_path_start'; // NOTE: "a path started" but "follower moved backwards to the start of the path"
+Phaser.PathFollower.EVENT_PATH_END = 'event_path_end'; // "follower moved to the end of the path" but NOT if the path is looped, that generates EVENT_PATH_LOOPED instead
+Phaser.PathFollower.EVENT_PATH_LOOPED = 'event_path_looped'; // "follower reached the end of a looped path and has started at the beginning again"
 
 // reduce dynamic object allocations by using this temporary Point wherever possible
 Phaser.PathFollower.tempPoint = new Phaser.Point();
@@ -160,7 +162,8 @@ Phaser.PathFollower.Defaults = {
 };
 
 // remove all event listeners when this PathFollower is destroyed
-Phaser.PathFollower.prototype.destroy = function () {
+Phaser.PathFollower.prototype.destroy = function ()
+{
 
     this.follower.events.onPathPointReached.removeAll();
     this.follower.events.onPathBranchReached.removeAll();
@@ -173,7 +176,8 @@ Phaser.PathFollower.prototype.destroy = function () {
 
 // update this PathFollower and move the attached graphic or physics object
 // @return: false if this PathFollower should be removed from the Path's list of followers
-Phaser.PathFollower.prototype.update = function () {
+Phaser.PathFollower.prototype.update = function ()
+{
 
     // exit immediately if _pauseTime is non-zero and it's not that time yet
     if (this._pauseTime != 0)
@@ -241,22 +245,20 @@ Phaser.PathFollower.prototype.update = function () {
                     this._currentPoint = this.path.numPoints() - 1;
                 }
                 else
+                if (!this.yoyo)
                 {
-                    if (!this.yoyo)
-                    {
-                        this.follower.events.onPathEnd.dispatch();        
-                    }
-                    else
-                    {
-                        this.follower.events.onPathYoyo.dispatch();
-                        var speed = {min: this.speed.min, max: this.speed.max};
-                        this.speed.min = -speed.max;
-                        this.speed.max = -speed.min;
-                        this._currentPoint = 0;
-                        this._currentCurve = this.path.getCurve(this._currentPoint);
-                        this._currentDistance = 0;
-                        return true;
-                    }
+                    this.follower.events.onPathEnd.dispatch();
+                }
+                else
+                {
+                    this.follower.events.onPathYoyo.dispatch();
+                    var speed = {min: this.speed.min, max: this.speed.max};
+                    this.speed.min = -speed.max;
+                    this.speed.max = -speed.min;
+                    this._currentPoint = 0;
+                    this._currentCurve = this.path.getCurve(this._currentPoint);
+                    this._currentDistance = 0;
+                    return true;
                 }
             }
 
@@ -275,7 +277,7 @@ Phaser.PathFollower.prototype.update = function () {
                 this._currentDistance += this._currentCurve.length;
             }
         }
-        else        // forwards...
+        else // forwards...
         {
             this._currentPoint++;
             
@@ -295,7 +297,7 @@ Phaser.PathFollower.prototype.update = function () {
                     {
                         if (!this.yoyo)
                         {
-                            this.follower.events.onPathEnd.dispatch();        
+                            this.follower.events.onPathEnd.dispatch();
                         }
                         else
                         {
@@ -340,7 +342,8 @@ Phaser.PathFollower.prototype.update = function () {
 
 };
 
-Phaser.PathFollower.prototype._calculateDistance = function () {
+Phaser.PathFollower.prototype._calculateDistance = function ()
+{
 
     if (this.speed.min === this.speed.max)
     {
@@ -358,7 +361,7 @@ Phaser.PathFollower.prototype._calculateDistance = function () {
             this.speed._elapsed = 0;
         }
 
-        if (!this.speed._target )
+        if (!this.speed._target)
         {
             var min = Phaser.Math.clamp(this.speed._current - (this.speed._current * this.speed.lambda), this.speed.min, this.speed.max);
             var max = Phaser.Math.clamp(this.speed._current + (this.speed._current * this.speed.lambda), this.speed.min, this.speed.max);
@@ -368,14 +371,15 @@ Phaser.PathFollower.prototype._calculateDistance = function () {
 
         var step = Phaser.Math.smoothstep(this.speed._elapsed,0,this.speed.theta);
         
-        return Phaser.Math.linear(this.speed._current, this.speed._target, step) * this._pathSpeed;;
+        return Phaser.Math.linear(this.speed._current, this.speed._target, step) * this._pathSpeed;
     }
 
 };
 
 // move the attached graphic or physics object to match this PathFollower
 // @return: false if this PathFollower should be removed from the Path's list of followers
-Phaser.PathFollower.prototype.setPosition = function () {
+Phaser.PathFollower.prototype.setPosition = function ()
+{
 
     // if the follower object has been destroyed, kill this too
     if (!this.follower)
@@ -427,7 +431,8 @@ Phaser.PathFollower.prototype.setPosition = function () {
 
 // if we've reached the end of a path or a branch, take any branch that is available rather than die
 // @return: true if successful, false if no branch is available
-Phaser.PathFollower.prototype.takeBranchIfAvailable = function () {
+Phaser.PathFollower.prototype.takeBranchIfAvailable = function ()
+{
 
     var p = new Phaser.PathPoint();
 
@@ -443,7 +448,7 @@ Phaser.PathFollower.prototype.takeBranchIfAvailable = function () {
         
         this.changePath(p.branchPath, p.branchPointIndex);
 
-        return true;    
+        return true;
     }
 
     return false;
@@ -451,7 +456,8 @@ Phaser.PathFollower.prototype.takeBranchIfAvailable = function () {
 };
 
 // follow a different path
-Phaser.PathFollower.prototype.changePath = function (branchPath, branchPointIndex) {
+Phaser.PathFollower.prototype.changePath = function (branchPath, branchPointIndex)
+{
 
     // change to the new path
     this.path = branchPath;
@@ -477,7 +483,8 @@ Phaser.PathFollower.prototype.changePath = function (branchPath, branchPointInde
 };
 
 // change this follower's x,y offset values
-Phaser.PathFollower.prototype.setOffset = function (x, y) {
+Phaser.PathFollower.prototype.setOffset = function (x, y)
+{
 
     // remove any prior offset from the follower's position
     this.follower.x -= this.offset.x;
@@ -494,7 +501,8 @@ Phaser.PathFollower.prototype.setOffset = function (x, y) {
 };
 
 // set this follower's angular offset values
-Phaser.PathFollower.prototype.setAngularOffset = function (angle, distance) {
+Phaser.PathFollower.prototype.setAngularOffset = function (angle, distance)
+{
 
     this._angularOffset.angle = angle;
     this._angularOffset.distance = distance;
@@ -502,7 +510,8 @@ Phaser.PathFollower.prototype.setAngularOffset = function (angle, distance) {
 };
 
 // cause this follower to pause for 'delay' milliseconds
-Phaser.PathFollower.prototype.pause = function (delay) {
+Phaser.PathFollower.prototype.pause = function (delay)
+{
 
     this._pauseTime = game.time.now + delay;
 
@@ -518,14 +527,19 @@ Phaser.PathFollower.prototype.pause = function (delay) {
 
 Object.defineProperty(Phaser.PathFollower.prototype, 'paused', {
 
-    get: function() {
+    get: function ()
+    {
         return !!this._pauseTime;
     },
 
-    set: function(val) {
-        if(!!val) {
+    set: function (val)
+    {
+        if(val)
+        {
             this.pause(Number.MAX_VALUE);
-        } else {
+        }
+        else
+        {
             this._pauseTime = game.time.now - 1;
         }
     },

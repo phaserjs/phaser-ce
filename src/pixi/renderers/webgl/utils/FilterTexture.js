@@ -5,7 +5,8 @@
 /**
  * @private
  */
-function _CreateEmptyTexture(gl, width, height, scaleMode) {
+function _CreateEmptyTexture (gl, width, height, scaleMode)
+{
     var texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -29,7 +30,8 @@ var _fbErrors = {
 /**
  * @private
  */
-function _CreateFramebuffer(gl, width, height, scaleMode, textureUnit) {
+function _CreateFramebuffer (gl, width, height, scaleMode, textureUnit)
+{
     var framebuffer = gl.createFramebuffer();
     var depthStencilBuffer = gl.createRenderbuffer();
     var colorBuffer = null;
@@ -42,7 +44,8 @@ function _CreateFramebuffer(gl, width, height, scaleMode, textureUnit) {
     colorBuffer = _CreateEmptyTexture(gl, width, height, scaleMode);
     gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, colorBuffer, 0);
     fbStatus = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
-    if(fbStatus !== gl.FRAMEBUFFER_COMPLETE) {
+    if(fbStatus !== gl.FRAMEBUFFER_COMPLETE)
+    {
         console.error('Incomplete GL framebuffer. ', _fbErrors[fbStatus]);
     }
     framebuffer.width = width;
@@ -60,29 +63,32 @@ function _CreateFramebuffer(gl, width, height, scaleMode, textureUnit) {
 * @param height {Number} the vertical range of the filter
 * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
 */
-PIXI.FilterTexture = function(gl, width, height, scaleMode, textureUnit)
+PIXI.FilterTexture = function (gl, width, height, scaleMode, textureUnit)
 {
     textureUnit = typeof textureUnit === 'number' ? textureUnit : 0;
+
     /**
      * @property gl
      * @type WebGLContext
      */
     this.gl = gl;
+
     // next time to create a frame buffer and texture
 
     /**
      * @property frameBuffer
      * @type Any
      */
-     this.frameBuffer = _CreateFramebuffer(gl, width, height, scaleMode || PIXI.scaleModes.DEFAULT, textureUnit);
+    this.frameBuffer = _CreateFramebuffer(gl, width, height, scaleMode || PIXI.scaleModes.DEFAULT, textureUnit);
+
     /**
      * @property texture
      * @type Any
      */
-     this.texture = this.frameBuffer.targetTexture;
-     this.width = width;
-     this.height = height;
-     this.renderBuffer = this.frameBuffer.renderBuffer;
+    this.texture = this.frameBuffer.targetTexture;
+    this.width = width;
+    this.height = height;
+    this.renderBuffer = this.frameBuffer.renderBuffer;
 };
 
 PIXI.FilterTexture.prototype.constructor = PIXI.FilterTexture;
@@ -92,7 +98,7 @@ PIXI.FilterTexture.prototype.constructor = PIXI.FilterTexture;
 *
 * @method PIXI.FilterTexture#clear
 */
-PIXI.FilterTexture.prototype.clear = function()
+PIXI.FilterTexture.prototype.clear = function ()
 {
     var gl = this.gl;
 
@@ -107,19 +113,20 @@ PIXI.FilterTexture.prototype.clear = function()
  * @param width {Number} the new width of the texture
  * @param height {Number} the new height of the texture
  */
-PIXI.FilterTexture.prototype.resize = function(width, height)
+PIXI.FilterTexture.prototype.resize = function (width, height)
 {
-    if(this.width === width && this.height === height) return;
+    if(this.width === width && this.height === height) { return; }
 
     this.width = width;
     this.height = height;
 
     var gl = this.gl;
-    gl.bindTexture(gl.TEXTURE_2D,  this.texture);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA,  width , height , 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+    gl.bindTexture(gl.TEXTURE_2D, this.texture);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width , height , 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+
     // update the stencil buffer width and height
     gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);
-    gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_STENCIL, width , height );
+    gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_STENCIL, width , height);
 };
 
 /**
@@ -127,11 +134,11 @@ PIXI.FilterTexture.prototype.resize = function(width, height)
 *
 * @method PIXI.FilterTexture#destroy
 */
-PIXI.FilterTexture.prototype.destroy = function()
+PIXI.FilterTexture.prototype.destroy = function ()
 {
     var gl = this.gl;
-    gl.deleteFramebuffer( this.frameBuffer );
-    gl.deleteTexture( this.texture );
+    gl.deleteFramebuffer(this.frameBuffer);
+    gl.deleteTexture(this.texture);
 
     this.frameBuffer = null;
     this.texture = null;

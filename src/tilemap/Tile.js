@@ -16,7 +16,8 @@
 * @param {number} width - Width of the tile.
 * @param {number} height - Height of the tile.
 */
-Phaser.Tile = function (layer, index, x, y, width, height) {
+Phaser.Tile = function (layer, index, x, y, width, height)
+{
 
     /**
     * @property {object} layer - The layer in the Tilemap data that this tile belongs to.
@@ -167,7 +168,8 @@ Phaser.Tile.prototype = {
     * @param {number} y - The y coordinate to test.
     * @return {boolean} True if the coordinates are within this Tile, otherwise false.
     */
-    containsPoint: function (x, y) {
+    containsPoint: function (x, y)
+    {
 
         return !(x < this.worldX || y < this.worldY || x > this.right || y > this.bottom);
 
@@ -182,7 +184,8 @@ Phaser.Tile.prototype = {
     * @param {number} right - The right point.
     * @param {number} bottom - The bottom point.
     */
-    intersects: function (x, y, right, bottom) {
+    intersects: function (x, y, right, bottom)
+    {
 
         if (right <= this.worldX)
         {
@@ -216,7 +219,8 @@ Phaser.Tile.prototype = {
     * @param {function} callback - Callback function.
     * @param {object} context - Callback will be called within this context.
     */
-    setCollisionCallback: function (callback, context) {
+    setCollisionCallback: function (callback, context)
+    {
 
         this.collisionCallback = callback;
         this.collisionCallbackContext = context;
@@ -228,7 +232,8 @@ Phaser.Tile.prototype = {
     *
     * @method Phaser.Tile#destroy
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this.collisionCallback = null;
         this.collisionCallbackContext = null;
@@ -245,7 +250,8 @@ Phaser.Tile.prototype = {
     * @param {boolean} up - Indicating collide with any object on the top.
     * @param {boolean} down - Indicating collide with any object on the bottom.
     */
-    setCollision: function (left, right, up, down) {
+    setCollision: function (left, right, up, down)
+    {
 
         this.collideLeft = left;
         this.collideRight = right;
@@ -264,7 +270,8 @@ Phaser.Tile.prototype = {
     *
     * @method Phaser.Tile#resetCollision
     */
-    resetCollision: function () {
+    resetCollision: function ()
+    {
 
         this.collideLeft = false;
         this.collideRight = false;
@@ -286,7 +293,8 @@ Phaser.Tile.prototype = {
     * @param {boolean} faces - If true will check any face value.
     * @return {boolean} True if the Tile is interesting, otherwise false.
     */
-    isInteresting: function (collides, faces) {
+    isInteresting: function (collides, faces)
+    {
 
         if (collides && faces)
         {
@@ -314,7 +322,8 @@ Phaser.Tile.prototype = {
     * @method Phaser.Tile#copy
     * @param {Phaser.Tile} tile - The tile to copy from.
     */
-    copy: function (tile) {
+    copy: function (tile)
+    {
 
         this.index = tile.index;
         this.alpha = tile.alpha;
@@ -339,9 +348,10 @@ Phaser.Tile.prototype.constructor = Phaser.Tile;
 * @property {boolean} collides - True if this tile can collide on any of its faces.
 * @readonly
 */
-Object.defineProperty(Phaser.Tile.prototype, "collides", {
+Object.defineProperty(Phaser.Tile.prototype, 'collides', {
 
-    get: function () {
+    get: function ()
+    {
         return (this.collideLeft || this.collideRight || this.collideUp || this.collideDown);
     }
 
@@ -352,9 +362,10 @@ Object.defineProperty(Phaser.Tile.prototype, "collides", {
 * @property {boolean} canCollide - True if this tile can collide on any of its faces or has a collision callback set.
 * @readonly
 */
-Object.defineProperty(Phaser.Tile.prototype, "canCollide", {
+Object.defineProperty(Phaser.Tile.prototype, 'canCollide', {
 
-    get: function () {
+    get: function ()
+    {
         return (this.collideLeft || this.collideRight || this.collideUp || this.collideDown || this.collisionCallback);
     }
 
@@ -365,9 +376,10 @@ Object.defineProperty(Phaser.Tile.prototype, "canCollide", {
 * @property {number} left - The x value in pixels.
 * @readonly
 */
-Object.defineProperty(Phaser.Tile.prototype, "left", {
+Object.defineProperty(Phaser.Tile.prototype, 'left', {
 
-    get: function () {
+    get: function ()
+    {
         return this.worldX;
     }
 
@@ -378,9 +390,10 @@ Object.defineProperty(Phaser.Tile.prototype, "left", {
 * @property {number} right - The sum of the x and width properties.
 * @readonly
 */
-Object.defineProperty(Phaser.Tile.prototype, "right", {
+Object.defineProperty(Phaser.Tile.prototype, 'right', {
 
-    get: function () {
+    get: function ()
+    {
         return this.worldX + this.width;
     }
 
@@ -391,9 +404,10 @@ Object.defineProperty(Phaser.Tile.prototype, "right", {
 * @property {number} top - The y value.
 * @readonly
 */
-Object.defineProperty(Phaser.Tile.prototype, "top", {
+Object.defineProperty(Phaser.Tile.prototype, 'top', {
 
-    get: function () {
+    get: function ()
+    {
         return this.worldY;
     }
 
@@ -404,9 +418,10 @@ Object.defineProperty(Phaser.Tile.prototype, "top", {
 * @property {number} bottom - The sum of the y and height properties.
 * @readonly
 */
-Object.defineProperty(Phaser.Tile.prototype, "bottom", {
+Object.defineProperty(Phaser.Tile.prototype, 'bottom', {
 
-    get: function () {
+    get: function ()
+    {
         return this.worldY + this.height;
     }
 

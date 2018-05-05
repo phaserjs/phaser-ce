@@ -11,7 +11,7 @@
  * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
  * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
  */
-PIXI.BaseTexture = function(source, scaleMode, resolution)
+PIXI.BaseTexture = function (source, scaleMode, resolution)
 {
     /**
      * The Resolution of the texture.
@@ -92,7 +92,7 @@ PIXI.BaseTexture = function(source, scaleMode, resolution)
      */
     this.mipmap = false;
 
-     /**
+    /**
      * The multi texture batching index number.
      * @property textureIndex
      * @type Number
@@ -104,7 +104,7 @@ PIXI.BaseTexture = function(source, scaleMode, resolution)
      * @type Array
      * @private
      */
-    this._dirty = [true, true, true, true];
+    this._dirty = [ true, true, true, true ];
 
     if (!source)
     {
@@ -150,7 +150,7 @@ PIXI.BaseTexture.prototype.constructor = PIXI.BaseTexture;
  * @param {number} width - The new width to force the BaseTexture to be.
  * @param {number} height - The new height to force the BaseTexture to be.
  */
-PIXI.BaseTexture.prototype.forceLoaded = function(width, height)
+PIXI.BaseTexture.prototype.forceLoaded = function (width, height)
 {
     this.hasLoaded = true;
     this.width = width;
@@ -163,7 +163,7 @@ PIXI.BaseTexture.prototype.forceLoaded = function(width, height)
  *
  * @method PIXI.BaseTexture#destroy
  */
-PIXI.BaseTexture.prototype.destroy = function()
+PIXI.BaseTexture.prototype.destroy = function ()
 {
     if (this.source)
     {
@@ -180,7 +180,7 @@ PIXI.BaseTexture.prototype.destroy = function()
  *
  * @method PIXI.BaseTexture#dirty
  */
-PIXI.BaseTexture.prototype.dirty = function()
+PIXI.BaseTexture.prototype.dirty = function ()
 {
     for (var i = 0; i < this._glTextures.length; i++)
     {
@@ -194,7 +194,7 @@ PIXI.BaseTexture.prototype.dirty = function()
  *
  * @method PIXI.BaseTexture#unloadFromGPU
  */
-PIXI.BaseTexture.prototype.unloadFromGPU = function()
+PIXI.BaseTexture.prototype.unloadFromGPU = function ()
 {
     this.dirty();
 
@@ -226,7 +226,7 @@ PIXI.BaseTexture.prototype.unloadFromGPU = function()
  * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
  * @return {BaseTexture}
  */
-PIXI.BaseTexture.fromCanvas = function(canvas, scaleMode, resolution)
+PIXI.BaseTexture.fromCanvas = function (canvas, scaleMode, resolution)
 {
     if (canvas.width === 0)
     {

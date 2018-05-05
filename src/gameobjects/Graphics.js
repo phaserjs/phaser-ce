@@ -51,7 +51,8 @@
 * @param {number} [x=0] - X position of the new graphics object.
 * @param {number} [y=0] - Y position of the new graphics object.
 */
-Phaser.Graphics = function (game, x, y) {
+Phaser.Graphics = function (game, x, y)
+{
 
     if (x === undefined) { x = 0; }
     if (y === undefined) { y = 0; }
@@ -233,7 +234,8 @@ Phaser.Graphics.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 *
 * @method Phaser.Graphics#preUpdate
 */
-Phaser.Graphics.prototype.preUpdate = function () {
+Phaser.Graphics.prototype.preUpdate = function ()
+{
 
     if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
     {
@@ -249,7 +251,8 @@ Phaser.Graphics.prototype.preUpdate = function () {
 *
 * @method Phaser.Graphics#postUpdate
 */
-Phaser.Graphics.prototype.postUpdate = function () {
+Phaser.Graphics.prototype.postUpdate = function ()
+{
 
     Phaser.Component.PhysicsBody.postUpdate.call(this);
     Phaser.Component.FixedToCamera.postUpdate.call(this);
@@ -273,7 +276,8 @@ Phaser.Graphics.prototype.postUpdate = function () {
 * @method Phaser.Graphics#destroy
 * @param {boolean} [destroyChildren=true] - Should every child of this object have its destroy method called?
 */
-Phaser.Graphics.prototype.destroy = function (destroyChildren) {
+Phaser.Graphics.prototype.destroy = function (destroyChildren)
+{
 
     this.clear();
 
@@ -288,7 +292,8 @@ Phaser.Graphics.prototype.destroy = function (destroyChildren) {
 * @param {Array<Phaser.Point>} points - An array of Phaser.Points that make up the three vertices of this triangle
 * @param {boolean} [cull=false] - Should we check if the triangle is back-facing
 */
-Phaser.Graphics.prototype.drawTriangle = function (points, cull) {
+Phaser.Graphics.prototype.drawTriangle = function (points, cull)
+{
 
     if (cull === undefined) { cull = false; }
 
@@ -321,7 +326,8 @@ Phaser.Graphics.prototype.drawTriangle = function (points, cull) {
 * @param {Array<number>} [indices=null] - An array of numbers that describe what order to draw the vertices in
 * @param {boolean} [cull=false] - Should we check if the triangle is back-facing
 */
-Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull) {
+Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull)
+{
 
     if (cull === undefined) { cull = false; }
 
@@ -337,7 +343,7 @@ Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull) {
         {
             for (i = 0; i < vertices.length / 3; i++)
             {
-                this.drawTriangle([vertices[i * 3], vertices[i * 3 + 1], vertices[i * 3 + 2]], cull);
+                this.drawTriangle([ vertices[i * 3], vertices[i * 3 + 1], vertices[i * 3 + 2] ], cull);
             }
         }
         else
@@ -350,40 +356,38 @@ Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull) {
                 point2.y = vertices[i * 6 + 3];
                 point3.x = vertices[i * 6 + 4];
                 point3.y = vertices[i * 6 + 5];
-                this.drawTriangle([point1, point2, point3], cull);
+                this.drawTriangle([ point1, point2, point3 ], cull);
+            }
+        }
+    }
+    else
+    if (vertices[0] instanceof Phaser.Point)
+    {
+        for (i = 0; i < indices.length / 3; i++)
+        {
+            points.push(vertices[indices[i * 3]]);
+            points.push(vertices[indices[i * 3 + 1]]);
+            points.push(vertices[indices[i * 3 + 2]]);
+
+            if (points.length === 3)
+            {
+                this.drawTriangle(points, cull);
+                points = [];
             }
         }
     }
     else
     {
-        if (vertices[0] instanceof Phaser.Point)
+        for (i = 0; i < indices.length; i++)
         {
-            for (i = 0; i < indices.length /3; i++)
-            {
-                points.push(vertices[indices[i * 3 ]]);
-                points.push(vertices[indices[i * 3 + 1]]);
-                points.push(vertices[indices[i * 3 + 2]]);
+            point1.x = vertices[indices[i] * 2];
+            point1.y = vertices[indices[i] * 2 + 1];
+            points.push(point1.copyTo({}));
 
-                if (points.length === 3)
-                {
-                    this.drawTriangle(points, cull);
-                    points = [];
-                }
-            }
-        }
-        else
-        {
-            for (i = 0; i < indices.length; i++)
+            if (points.length === 3)
             {
-                point1.x = vertices[indices[i] * 2];
-                point1.y = vertices[indices[i] * 2 + 1];
-                points.push(point1.copyTo({}));
-
-                if (points.length === 3)
-                {
-                    this.drawTriangle(points, cull);
-                    points = [];
-                }
+                this.drawTriangle(points, cull);
+                points = [];
             }
         }
     }
@@ -398,7 +402,8 @@ Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull) {
  * @param alpha {Number} alpha of the line to draw, will update the objects stored style
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.lineStyle = function (lineWidth, color, alpha) {
+Phaser.Graphics.prototype.lineStyle = function (lineWidth, color, alpha)
+{
 
     this.lineWidth = lineWidth || 0;
     this.lineColor = color || 0;
@@ -432,7 +437,8 @@ Phaser.Graphics.prototype.lineStyle = function (lineWidth, color, alpha) {
  * @param y {Number} the Y coordinate to move to
  * @return {Graphics}
   */
-Phaser.Graphics.prototype.moveTo = function (x, y) {
+Phaser.Graphics.prototype.moveTo = function (x, y)
+{
 
     this.drawShape(new Phaser.Polygon([ x, y ]));
 
@@ -449,7 +455,8 @@ Phaser.Graphics.prototype.moveTo = function (x, y) {
  * @param y {Number} the Y coordinate to draw to
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.lineTo = function (x, y) {
+Phaser.Graphics.prototype.lineTo = function (x, y)
+{
 
     if (!this.currentPath)
     {
@@ -475,7 +482,8 @@ Phaser.Graphics.prototype.lineTo = function (x, y) {
  * @param toY {Number} Destination point y
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.quadraticCurveTo = function (cpX, cpY, toX, toY) {
+Phaser.Graphics.prototype.quadraticCurveTo = function (cpX, cpY, toX, toY)
+{
 
     if (this.currentPath)
     {
@@ -509,8 +517,8 @@ Phaser.Graphics.prototype.quadraticCurveTo = function (cpX, cpY, toX, toY) {
         xa = fromX + ((cpX - fromX) * j);
         ya = fromY + ((cpY - fromY) * j);
 
-        points.push( xa + ( ((cpX + ( (toX - cpX) * j )) - xa) * j ),
-                     ya + ( ((cpY + ( (toY - cpY) * j )) - ya) * j ) );
+        points.push(xa + (((cpX + ((toX - cpX) * j)) - xa) * j),
+            ya + (((cpY + ((toY - cpY) * j)) - ya) * j));
     }
 
     this.dirty = true;
@@ -532,13 +540,14 @@ Phaser.Graphics.prototype.quadraticCurveTo = function (cpX, cpY, toX, toY) {
  * @param toY {Number} Destination point y
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.bezierCurveTo = function (cpX, cpY, cpX2, cpY2, toX, toY) {
+Phaser.Graphics.prototype.bezierCurveTo = function (cpX, cpY, cpX2, cpY2, toX, toY)
+{
 
     if (this.currentPath)
     {
         if (this.currentPath.shape.points.length === 0)
         {
-            this.currentPath.shape.points = [0, 0];
+            this.currentPath.shape.points = [ 0, 0 ];
         }
     }
     else
@@ -554,8 +563,8 @@ Phaser.Graphics.prototype.bezierCurveTo = function (cpX, cpY, cpX2, cpY2, toX, t
         t3,
         points = this.currentPath.shape.points;
 
-    var fromX = points[points.length-2];
-    var fromY = points[points.length-1];
+    var fromX = points[points.length - 2];
+    var fromY = points[points.length - 1];
     var j = 0;
 
     for (var i = 1; i <= n; ++i)
@@ -569,8 +578,8 @@ Phaser.Graphics.prototype.bezierCurveTo = function (cpX, cpY, cpX2, cpY2, toX, t
         t2 = j * j;
         t3 = t2 * j;
 
-        points.push( dt3 * fromX + 3 * dt2 * j * cpX + 3 * dt * t2 * cpX2 + t3 * toX,
-                     dt3 * fromY + 3 * dt2 * j * cpY + 3 * dt * t2 * cpY2 + t3 * toY);
+        points.push(dt3 * fromX + 3 * dt2 * j * cpX + 3 * dt * t2 * cpX2 + t3 * toX,
+            dt3 * fromY + 3 * dt2 * j * cpY + 3 * dt * t2 * cpY2 + t3 * toY);
     }
 
     this.dirty = true;
@@ -593,7 +602,8 @@ Phaser.Graphics.prototype.bezierCurveTo = function (cpX, cpY, cpX2, cpY2, toX, t
  * @param radius {Number} The radius of the arc
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.arcTo = function (x1, y1, x2, y2, radius) {
+Phaser.Graphics.prototype.arcTo = function (x1, y1, x2, y2, radius)
+{
 
     if (this.currentPath)
     {
@@ -608,17 +618,17 @@ Phaser.Graphics.prototype.arcTo = function (x1, y1, x2, y2, radius) {
     }
 
     var points = this.currentPath.shape.points,
-        fromX = points[points.length-2],
-        fromY = points[points.length-1],
+        fromX = points[points.length - 2],
+        fromY = points[points.length - 1],
         a1 = fromY - y1,
         b1 = fromX - x1,
-        a2 = y2   - y1,
-        b2 = x2   - x1,
+        a2 = y2 - y1,
+        b2 = x2 - x1,
         mm = Math.abs(a1 * b2 - b1 * a2);
 
     if (mm < 1.0e-8 || radius === 0)
     {
-        if (points[points.length-2] !== x1 || points[points.length-1] !== y1)
+        if (points[points.length - 2] !== x1 || points[points.length - 1] !== y1)
         {
             points.push(x1, y1);
         }
@@ -639,7 +649,7 @@ Phaser.Graphics.prototype.arcTo = function (x1, y1, x2, y2, radius) {
             qx = b2 * (k1 + j2),
             qy = a2 * (k1 + j2),
             startAngle = Math.atan2(py - cy, px - cx),
-            endAngle   = Math.atan2(qy - cy, qx - cx);
+            endAngle = Math.atan2(qy - cy, qx - cx);
 
         this.arc(cx + x1, cy + y1, radius, startAngle, endAngle, b1 * a2 > b2 * a1);
     }
@@ -664,7 +674,8 @@ Phaser.Graphics.prototype.arcTo = function (x1, y1, x2, y2, radius) {
  * @param segments {Number} Optional. The number of segments to use when calculating the arc. The default is 40. If you need more fidelity use a higher number.
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, anticlockwise, segments) {
+Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, anticlockwise, segments)
+{
 
     //  If we do this we can never draw a full circle
     if (startAngle === endAngle)
@@ -685,7 +696,7 @@ Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, 
     }
 
     var sweep = anticlockwise ? (startAngle - endAngle) * -1 : (endAngle - startAngle);
-    var segs =  Math.ceil(Math.abs(sweep) / (Math.PI * 2)) * segments;
+    var segs = Math.ceil(Math.abs(sweep) / (Math.PI * 2)) * segments;
 
     //  Sweep check - moved here because we don't want to do the moveTo below if the arc fails
     if (sweep === 0)
@@ -727,8 +738,8 @@ Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, 
         var c = Math.cos(angle);
         var s = -Math.sin(angle);
 
-        points.push(( (cTheta *  c) + (sTheta * s) ) * radius + cx,
-                    ( (cTheta * -s) + (sTheta * c) ) * radius + cy);
+        points.push(((cTheta * c) + (sTheta * s)) * radius + cx,
+            ((cTheta * -s) + (sTheta * c)) * radius + cy);
     }
 
     this.dirty = true;
@@ -747,7 +758,8 @@ Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, 
  * @param alpha {Number} the alpha of the fill
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.beginFill = function (color, alpha) {
+Phaser.Graphics.prototype.beginFill = function (color, alpha)
+{
 
     this.filling = true;
     this.fillColor = color || 0;
@@ -773,7 +785,8 @@ Phaser.Graphics.prototype.beginFill = function (color, alpha) {
  * @method Phaser.Graphics#endFill
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.endFill = function () {
+Phaser.Graphics.prototype.endFill = function ()
+{
 
     this.filling = false;
     this.fillColor = null;
@@ -792,7 +805,8 @@ Phaser.Graphics.prototype.endFill = function () {
  * @param height {Number} The height of the rectangle
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.drawRect = function (x, y, width, height) {
+Phaser.Graphics.prototype.drawRect = function (x, y, width, height)
+{
 
     this.drawShape(new Phaser.Rectangle(x, y, width, height));
 
@@ -808,7 +822,8 @@ Phaser.Graphics.prototype.drawRect = function (x, y, width, height) {
  * @param height {Number} The height of the rectangle
  * @param radius {Number} Radius of the rectangle corners. In WebGL this must be a value between 0 and 9.
  */
-Phaser.Graphics.prototype.drawRoundedRect = function (x, y, width, height, radius) {
+Phaser.Graphics.prototype.drawRoundedRect = function (x, y, width, height, radius)
+{
 
     this.drawShape(new Phaser.RoundedRectangle(x, y, width, height, radius));
 
@@ -825,7 +840,8 @@ Phaser.Graphics.prototype.drawRoundedRect = function (x, y, width, height, radiu
  * @param diameter {Number} The diameter of the circle
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.drawCircle = function (x, y, diameter) {
+Phaser.Graphics.prototype.drawCircle = function (x, y, diameter)
+{
 
     this.drawShape(new Phaser.Circle(x, y, diameter));
 
@@ -843,7 +859,8 @@ Phaser.Graphics.prototype.drawCircle = function (x, y, diameter) {
  * @param halfHeight {Number} The half height of the ellipse
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.drawEllipse = function (centerX, centerY, halfWidth, halfHeight) {
+Phaser.Graphics.prototype.drawEllipse = function (centerX, centerY, halfWidth, halfHeight)
+{
 
     this.drawShape({x: centerX, y: centerY, width: halfWidth, height: halfHeight, type: Phaser.ELLIPSE});
 
@@ -858,7 +875,8 @@ Phaser.Graphics.prototype.drawEllipse = function (centerX, centerY, halfWidth, h
  * @param path {Array|Phaser.Polygon} The path data used to construct the polygon. Can either be an array of points or a Phaser.Polygon object.
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.drawPolygon = function (path) {
+Phaser.Graphics.prototype.drawPolygon = function (path)
+{
 
     if (path instanceof Phaser.Polygon)
     {
@@ -893,7 +911,8 @@ Phaser.Graphics.prototype.drawPolygon = function (path) {
  * @method Phaser.Graphics#clear
  * @return {Graphics}
  */
-Phaser.Graphics.prototype.clear = function () {
+Phaser.Graphics.prototype.clear = function ()
+{
 
     this.lineWidth = 0;
     this.filling = false;
@@ -921,7 +940,8 @@ Phaser.Graphics.prototype.clear = function () {
  * @param [padding=0] {Number} Add optional extra padding to the generated texture (default 0)
  * @return {Texture} a texture of the graphics object
  */
-Phaser.Graphics.prototype.generateTexture = function (resolution, scaleMode, padding) {
+Phaser.Graphics.prototype.generateTexture = function (resolution, scaleMode, padding)
+{
 
     if (resolution === undefined) { resolution = 1; }
     if (scaleMode === undefined) { scaleMode = PIXI.scaleModes.DEFAULT; }
@@ -955,7 +975,8 @@ Phaser.Graphics.prototype.generateTexture = function (resolution, scaleMode, pad
 * @param renderSession {RenderSession}
 * @private
 */
-Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
+Phaser.Graphics.prototype._renderWebGL = function (renderSession)
+{
 
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (this.visible === false || this.alpha === 0 || this.isMask === true)
@@ -1052,7 +1073,8 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession) {
 * @param renderSession {RenderSession}
 * @private
 */
-Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
+Phaser.Graphics.prototype._renderCanvas = function (renderSession)
+{
 
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (this.visible === false || this.alpha === 0 || this.isMask === true)
@@ -1107,15 +1129,15 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
         var ty = (transform.ty * renderSession.resolution) + renderSession.shakeY;
 
         context.setTransform(transform.a * resolution,
-                             transform.b * resolution,
-                             transform.c * resolution,
-                             transform.d * resolution,
-                             tx,
-                             ty);
+            transform.b * resolution,
+            transform.c * resolution,
+            transform.d * resolution,
+            tx,
+            ty);
 
         PIXI.CanvasGraphics.renderGraphics(this, context);
 
-         // simple render children!
+        // simple render children!
         for (var i = 0; i < this.children.length; i++)
         {
             this.children[i]._renderCanvas(renderSession);
@@ -1135,7 +1157,8 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession) {
  * @method Phaser.Graphics#getBounds
  * @return {Rectangle} the rectangular bounding area
  */
-Phaser.Graphics.prototype.getBounds = function (matrix) {
+Phaser.Graphics.prototype.getBounds = function (matrix)
+{
 
     if (this._currentBounds)
     {
@@ -1182,8 +1205,8 @@ Phaser.Graphics.prototype.getBounds = function (matrix) {
     var x3 = a * w0 + c * h0 + tx;
     var y3 = d * h0 + b * w0 + ty;
 
-    var x4 =  a * w1 + c * h0 + tx;
-    var y4 =  d * h0 + b * w1 + ty;
+    var x4 = a * w1 + c * h0 + tx;
+    var y4 = d * h0 + b * w1 + ty;
 
     var maxX = x1;
     var maxY = y1;
@@ -1225,7 +1248,8 @@ Phaser.Graphics.prototype.getBounds = function (matrix) {
  * @method Phaser.Graphics#getLocalBounds
  * @return {Rectangle} The rectangular bounding area
  */
-Phaser.Graphics.prototype.getLocalBounds = function () {
+Phaser.Graphics.prototype.getLocalBounds = function ()
+{
 
     var matrixCache = this.worldTransform;
 
@@ -1255,7 +1279,8 @@ Phaser.Graphics.prototype.getLocalBounds = function () {
 * @param point {Point} the point to test
 * @return {boolean} the result of the test
 */
-Phaser.Graphics.prototype.containsPoint = function (point, tempPoint) {
+Phaser.Graphics.prototype.containsPoint = function (point, tempPoint)
+{
 
     if (tempPoint === undefined) { tempPoint = new Phaser.Point(); }
 
@@ -1291,7 +1316,8 @@ Phaser.Graphics.prototype.containsPoint = function (point, tempPoint) {
  *
  * @method Phaser.Graphics#updateLocalBounds
  */
-Phaser.Graphics.prototype.updateLocalBounds = function () {
+Phaser.Graphics.prototype.updateLocalBounds = function ()
+{
 
     var minX = Infinity;
     var maxX = -Infinity;
@@ -1405,7 +1431,8 @@ Phaser.Graphics.prototype.updateLocalBounds = function () {
  * @method Phaser.Graphics#_generateCachedSprite
  * @private
  */
-Phaser.Graphics.prototype._generateCachedSprite = function () {
+Phaser.Graphics.prototype._generateCachedSprite = function ()
+{
 
     var bounds = this.getLocalBounds();
 
@@ -1446,7 +1473,8 @@ Phaser.Graphics.prototype._generateCachedSprite = function () {
  * @method Phaser.Graphics#updateCachedSpriteTexture
  * @private
  */
-Phaser.Graphics.prototype.updateCachedSpriteTexture = function () {
+Phaser.Graphics.prototype.updateCachedSpriteTexture = function ()
+{
 
     var cachedSprite = this._cachedSprite;
     var texture = cachedSprite.texture;
@@ -1470,7 +1498,8 @@ Phaser.Graphics.prototype.updateCachedSpriteTexture = function () {
  *
  * @method Phaser.Graphics#destroyCachedSprite
  */
-Phaser.Graphics.prototype.destroyCachedSprite = function () {
+Phaser.Graphics.prototype.destroyCachedSprite = function ()
+{
 
     this._cachedSprite.texture.destroy(true);
     this._cachedSprite = null;
@@ -1484,7 +1513,8 @@ Phaser.Graphics.prototype.destroyCachedSprite = function () {
  * @param {Circle|Rectangle|Ellipse|Line|Polygon} shape The Shape object to draw.
  * @return {GraphicsData} The generated GraphicsData object.
  */
-Phaser.Graphics.prototype.drawShape = function (shape) {
+Phaser.Graphics.prototype.drawShape = function (shape)
+{
 
     if (this.currentPath)
     {
@@ -1534,13 +1564,15 @@ Phaser.Graphics.prototype.drawShape = function (shape) {
  */
 Object.defineProperty(Phaser.Graphics.prototype, 'cacheAsBitmap', {
 
-    get: function () {
+    get: function ()
+    {
 
-        return  this._cacheAsBitmap;
+        return this._cacheAsBitmap;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         this._cacheAsBitmap = value;
 

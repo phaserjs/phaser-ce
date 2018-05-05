@@ -13,77 +13,78 @@
  * @constructor
  * @param gl {WebGLContext} the current WebGL drawing context
  */
-PIXI.CreatureShader = function(gl)
+PIXI.CreatureShader = function (gl)
 {
-  /**
+    /**
    * @property _UID
    * @type Number
    * @private
    */
-  this._UID = Phaser._UID++;
+    this._UID = Phaser._UID++;
 
-  /**
+    /**
    * @property gl
    * @type WebGLContext
    */
-  this.gl = gl;
+    this.gl = gl;
 
-  /**
+    /**
    * The WebGL program.
    * @property program
    * @type Any
    */
-  this.program = null;
+    this.program = null;
 
-  /**
+    /**
    * The fragment shader.
    * @property fragmentSrc
    * @type Array
    */
-  this.fragmentSrc = [
-    '//CreatureShader Fragment Shader.',
-    'precision mediump float;',
-    'varying vec2 vTextureCoord;',
-    'varying float vTextureIndex;',
-    'varying vec4 vColor;',
-    //'uniform float alpha;',
-    //'uniform vec3 tint;',
-    'uniform sampler2D uSampler;',
-    'void main(void) {',
-    '   gl_FragColor = texture2D(uSampler, vTextureCoord) * vColor;',
-    '}'
-  ];
+    this.fragmentSrc = [
+        '//CreatureShader Fragment Shader.',
+        'precision mediump float;',
+        'varying vec2 vTextureCoord;',
+        'varying float vTextureIndex;',
+        'varying vec4 vColor;',
 
-  /**
+        // 'uniform float alpha;',
+        // 'uniform vec3 tint;',
+        'uniform sampler2D uSampler;',
+        'void main(void) {',
+        '   gl_FragColor = texture2D(uSampler, vTextureCoord) * vColor;',
+        '}'
+    ];
+
+    /**
    * The vertex shader.
    * @property vertexSrc
    * @type Array
    */
-  this.vertexSrc  = [
-    '//CreatureShader Vertex Shader.',
-    'attribute vec2 aVertexPosition;',
-    'attribute vec2 aTextureCoord;',
-    'attribute float aTextureIndex;',
-    'uniform mat3 translationMatrix;',
-    'uniform vec2 projectionVector;',
-    'uniform vec2 offsetVector;',
-    'uniform float alpha;',
-    'uniform vec3 tint;',
-    'varying vec2 vTextureCoord;',
-    'varying float vTextureIndex;',
-    'varying vec4 vColor;',
+    this.vertexSrc = [
+        '//CreatureShader Vertex Shader.',
+        'attribute vec2 aVertexPosition;',
+        'attribute vec2 aTextureCoord;',
+        'attribute float aTextureIndex;',
+        'uniform mat3 translationMatrix;',
+        'uniform vec2 projectionVector;',
+        'uniform vec2 offsetVector;',
+        'uniform float alpha;',
+        'uniform vec3 tint;',
+        'varying vec2 vTextureCoord;',
+        'varying float vTextureIndex;',
+        'varying vec4 vColor;',
 
-    'void main(void) {',
-    '   vec3 v = translationMatrix * vec3(aVertexPosition , 1.0);',
-    '   v -= offsetVector.xyx;',
-    '   gl_Position = vec4( v.x / projectionVector.x -1.0, v.y / -projectionVector.y + 1.0 , 0.0, 1.0);',
-    '   vTextureCoord = aTextureCoord;',
-    '   vTextureIndex = aTextureIndex;',
-    '   vColor = vec4(tint[0], tint[1], tint[2], 1.0) * alpha;',
-    '}'
-  ];
+        'void main(void) {',
+        '   vec3 v = translationMatrix * vec3(aVertexPosition , 1.0);',
+        '   v -= offsetVector.xyx;',
+        '   gl_Position = vec4( v.x / projectionVector.x -1.0, v.y / -projectionVector.y + 1.0 , 0.0, 1.0);',
+        '   vTextureCoord = aTextureCoord;',
+        '   vTextureIndex = aTextureIndex;',
+        '   vColor = vec4(tint[0], tint[1], tint[2], 1.0) * alpha;',
+        '}'
+    ];
 
-  this.init();
+    this.init();
 };
 
 PIXI.CreatureShader.prototype.constructor = PIXI.CreatureShader;
@@ -93,35 +94,36 @@ PIXI.CreatureShader.prototype.constructor = PIXI.CreatureShader;
  *
  * @method PIXI.CreatureShader#init
  */
-PIXI.CreatureShader.prototype.init = function()
+PIXI.CreatureShader.prototype.init = function ()
 {
-  var gl = this.gl;
-  var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
-  gl.useProgram(program);
+    var gl = this.gl;
+    var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    gl.useProgram(program);
 
-  // get and store the uniforms for the shader
-  this.uSampler = PIXI._enableMultiTextureToggle ?
-    gl.getUniformLocation(program, 'uSamplerArray[0]') :
-    gl.getUniformLocation(program, 'uSampler');
+    // get and store the uniforms for the shader
+    this.uSampler = PIXI._enableMultiTextureToggle ?
+        gl.getUniformLocation(program, 'uSamplerArray[0]') :
+        gl.getUniformLocation(program, 'uSampler');
 
 
-  this.projectionVector = gl.getUniformLocation(program, 'projectionVector');
-  this.offsetVector = gl.getUniformLocation(program, 'offsetVector');
-  this.colorAttribute = gl.getAttribLocation(program, 'aColor');
-  this.aTextureIndex = gl.getAttribLocation(program, 'aTextureIndex');
-  //this.dimensions = gl.getUniformLocation(this.program, 'dimensions');
+    this.projectionVector = gl.getUniformLocation(program, 'projectionVector');
+    this.offsetVector = gl.getUniformLocation(program, 'offsetVector');
+    this.colorAttribute = gl.getAttribLocation(program, 'aColor');
+    this.aTextureIndex = gl.getAttribLocation(program, 'aTextureIndex');
 
-  // get and store the attributes
-  this.aVertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
-  this.aTextureCoord = gl.getAttribLocation(program, 'aTextureCoord');
+    // this.dimensions = gl.getUniformLocation(this.program, 'dimensions');
 
-  this.attributes = [this.aVertexPosition, this.aTextureCoord, this.aTextureIndex];
+    // get and store the attributes
+    this.aVertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
+    this.aTextureCoord = gl.getAttribLocation(program, 'aTextureCoord');
 
-  this.translationMatrix = gl.getUniformLocation(program, 'translationMatrix');
-  this.alpha = gl.getUniformLocation(program, 'alpha');
-  this.tintColor = gl.getUniformLocation(program, 'tint');
+    this.attributes = [ this.aVertexPosition, this.aTextureCoord, this.aTextureIndex ];
 
-  this.program = program;
+    this.translationMatrix = gl.getUniformLocation(program, 'translationMatrix');
+    this.alpha = gl.getUniformLocation(program, 'alpha');
+    this.tintColor = gl.getUniformLocation(program, 'tint');
+
+    this.program = program;
 };
 
 /**
@@ -129,12 +131,13 @@ PIXI.CreatureShader.prototype.init = function()
  *
  * @method PIXI.CreatureShader#destroy
  */
-PIXI.CreatureShader.prototype.destroy = function() {
-  this.gl.deleteProgram(this.program);
-  this.uniforms = null;
-  this.gl = null;
+PIXI.CreatureShader.prototype.destroy = function ()
+{
+    this.gl.deleteProgram(this.program);
+    this.uniforms = null;
+    this.gl = null;
 
-  this.attribute = null;
+    this.attribute = null;
 };
 
 
@@ -173,7 +176,8 @@ PIXI.CreatureShader.prototype.destroy = function() {
 * @param {string} mesh - The mesh data for the Creature Object. It should be a string which is a reference to the Cache JSON entry.
 * @param {string} [animation='default'] - The animation within the mesh data  to play.
 */
-Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
+Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors)
+{
 
     /**
      * @property {Phaser.Game} game - A reference to the currently running game.
@@ -278,7 +282,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors) {
     * @property {Uint16Array} colors - The vertices colors
     * @protected
     */
-    this.colors = new Float32Array([1, 1, 1, 1]);
+    this.colors = new Float32Array([ 1, 1, 1, 1 ]);
 
 
     this.updateRenderData(target.global_pts, target.global_uvs);
@@ -326,7 +330,8 @@ Phaser.Creature.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 * @method Phaser.Creature#preUpdate
 * @memberof Phaser.Creature
 */
-Phaser.Creature.prototype.preUpdate = function () {
+Phaser.Creature.prototype.preUpdate = function ()
+{
 
     if (!this.preUpdateInWorld())
     {
@@ -348,7 +353,8 @@ Phaser.Creature.prototype.preUpdate = function () {
 * @memberof Phaser.Creature
 * @private
 */
-Phaser.Creature.prototype._initWebGL = function (renderSession) {
+Phaser.Creature.prototype._initWebGL = function (renderSession)
+{
 
     // build the strip!
     var gl = renderSession.gl;
@@ -362,7 +368,7 @@ Phaser.Creature.prototype._initWebGL = function (renderSession) {
     gl.bufferData(gl.ARRAY_BUFFER, this.vertices, gl.DYNAMIC_DRAW);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this._uvBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER,  this.uvs, gl.DYNAMIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, this.uvs, gl.DYNAMIC_DRAW);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this._colorBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, this.colors, gl.STATIC_DRAW);
@@ -377,7 +383,8 @@ Phaser.Creature.prototype._initWebGL = function (renderSession) {
 * @memberof Phaser.Creature
 * @private
 */
-Phaser.Creature.prototype._renderWebGL = function (renderSession) {
+Phaser.Creature.prototype._renderWebGL = function (renderSession)
+{
 
     //  If the sprite is not visible or the alpha is 0 then no need to render this element
     if (!this.visible || this.alpha <= 0)
@@ -406,7 +413,8 @@ Phaser.Creature.prototype._renderWebGL = function (renderSession) {
 * @memberof Phaser.Creature
 * @private
 */
-Phaser.Creature.prototype._renderCreature = function (renderSession) {
+Phaser.Creature.prototype._renderCreature = function (renderSession)
+{
 
     var gl = renderSession.gl;
 
@@ -489,7 +497,8 @@ Phaser.Creature.prototype._renderCreature = function (renderSession) {
 * @memberof Phaser.Creature
 * @private
 */
-Phaser.Creature.prototype.updateCreatureBounds = function () {
+Phaser.Creature.prototype.updateCreatureBounds = function ()
+{
 
     //  Update bounds based off world transform matrix
     var target = this.manager.target_creature;
@@ -509,7 +518,8 @@ Phaser.Creature.prototype.updateCreatureBounds = function () {
 * @memberof Phaser.Creature
 * @private
 */
-Phaser.Creature.prototype.updateData = function () {
+Phaser.Creature.prototype.updateData = function ()
+{
 
     var target = this.manager.target_creature;
 
@@ -528,7 +538,8 @@ Phaser.Creature.prototype.updateData = function () {
 * @memberof Phaser.Creature
 * @private
 */
-Phaser.Creature.prototype.updateRenderData = function (verts, uvs) {
+Phaser.Creature.prototype.updateRenderData = function (verts, uvs)
+{
 
     var target = this.manager.target_creature;
 
@@ -560,7 +571,8 @@ Phaser.Creature.prototype.updateRenderData = function (verts, uvs) {
 * @memberof Phaser.Creature
 * @param {string} key - The key of the animation to set, as defined in the mesh data.
 */
-Phaser.Creature.prototype.setAnimation = function (key) {
+Phaser.Creature.prototype.setAnimation = function (key)
+{
 
     this.data.anchorY = null;
     this.data.anchorX = null;
@@ -576,11 +588,13 @@ Phaser.Creature.prototype.setAnimation = function (key) {
  * @memberof Phaser.Creature
  * @param {number} speed - Sets the playback speed
  */
-Phaser.Creature.prototype.setAnimationPlaySpeed = function (speed) {
+Phaser.Creature.prototype.setAnimationPlaySpeed = function (speed)
+{
 
-  if (speed) {
-    this.timeDelta = speed;
-  }
+    if (speed)
+    {
+        this.timeDelta = speed;
+    }
 
 };
 
@@ -591,7 +605,8 @@ Phaser.Creature.prototype.setAnimationPlaySpeed = function (speed) {
 * @memberof Phaser.Creature
 * @param {boolean} [loop=false] - Should the animation loop?
 */
-Phaser.Creature.prototype.play = function (loop) {
+Phaser.Creature.prototype.play = function (loop)
+{
 
     if (loop === undefined) { loop = false; }
 
@@ -608,7 +623,8 @@ Phaser.Creature.prototype.play = function (loop) {
 * @method Phaser.Creature#stop
 * @memberof Phaser.Creature
 */
-Phaser.Creature.prototype.stop = function () {
+Phaser.Creature.prototype.stop = function ()
+{
 
     this.manager.SetIsPlaying(false);
 
@@ -620,13 +636,15 @@ Phaser.Creature.prototype.stop = function () {
 */
 Object.defineProperty(Phaser.Creature.prototype, 'isPlaying', {
 
-    get: function() {
+    get: function ()
+    {
 
         return this.manager.GetIsPlaying();
 
     },
 
-    set: function(value) {
+    set: function (value)
+    {
 
         this.manager.SetIsPlaying(value);
 
@@ -640,13 +658,15 @@ Object.defineProperty(Phaser.Creature.prototype, 'isPlaying', {
 */
 Object.defineProperty(Phaser.Creature.prototype, 'loop', {
 
-    get: function() {
+    get: function ()
+    {
 
         return this.manager.should_loop;
 
     },
 
-    set: function(value) {
+    set: function (value)
+    {
 
         this.manager.SetShouldLoop(value);
 
@@ -660,23 +680,25 @@ Object.defineProperty(Phaser.Creature.prototype, 'loop', {
  */
 Object.defineProperty(Phaser.Creature.prototype, 'height', {
 
-  get: function() {
+    get: function ()
+    {
 
-    return this.data.height;
+        return this.data.height;
 
-  },
+    },
 
-  set: function(value) {
+    set: function (value)
+    {
 
-    var target = this.manager.target_creature;
+        var target = this.manager.target_creature;
 
-    var width = this.data.width ? this.data.width : 0;
+        var width = this.data.width ? this.data.width : 0;
 
-    var values = target.GetPixelScaling(width, value);
-    this.scale.set(values[0], values[1]);
-    this.data.height = value;
+        var values = target.GetPixelScaling(width, value);
+        this.scale.set(values[0], values[1]);
+        this.data.height = value;
 
-  }
+    }
 
 });
 
@@ -686,23 +708,25 @@ Object.defineProperty(Phaser.Creature.prototype, 'height', {
  */
 Object.defineProperty(Phaser.Creature.prototype, 'width', {
 
-  get: function() {
+    get: function ()
+    {
 
-    return this.data.width;
+        return this.data.width;
 
-  },
+    },
 
-  set: function(value) {
+    set: function (value)
+    {
 
-    var target = this.manager.target_creature;
+        var target = this.manager.target_creature;
 
-    var height = this.data.height ? this.data.height : 0;
+        var height = this.data.height ? this.data.height : 0;
 
-    var values = target.GetPixelScaling(value, height);
-    this.scale.set(values[0], values[1]);
-    this.data.width = value;
+        var values = target.GetPixelScaling(value, height);
+        this.scale.set(values[0], values[1]);
+        this.data.width = value;
 
-  }
+    }
 
 });
 
@@ -713,44 +737,50 @@ Object.defineProperty(Phaser.Creature.prototype, 'width', {
  */
 Object.defineProperty(Phaser.Creature.prototype, 'anchorX', {
 
-  get: function() {
+    get: function ()
+    {
 
-    return this.data.anchorX;
+        return this.data.anchorX;
 
-  },
+    },
 
-  set: function(value) {
+    set: function (value)
+    {
 
-    if (value === 0) {
-        value = 0.01;
-    }
+        if (value === 0)
+        {
+            value = 0.01;
+        }
 
-    if (value === 1) {
-        value = 0.99;
-    }
+        if (value === 1)
+        {
+            value = 0.99;
+        }
 
-    if (value === this.data.anchorX) {
-        return;
-    }
+        if (value === this.data.anchorX)
+        {
+            return;
+        }
 
-    var target = this.manager.target_creature;
+        var target = this.manager.target_creature;
 
-    this.stop();
-    this.manager.RunAtTime(0);
-
-    if (this.data.anchorX) {
-      target.SetAnchorPoint(-this.data.anchorX, null, this.data.animation);
-
-        this.play(true);
         this.stop();
         this.manager.RunAtTime(0);
+
+        if (this.data.anchorX)
+        {
+            target.SetAnchorPoint(-this.data.anchorX, null, this.data.animation);
+
+            this.play(true);
+            this.stop();
+            this.manager.RunAtTime(0);
+        }
+
+        target.SetAnchorPoint(value, null, this.data.animation);
+        this.play(true);
+
+        this.data.anchorX = value;
     }
-
-    target.SetAnchorPoint(value, null, this.data.animation);
-    this.play(true);
-
-    this.data.anchorX = value;
-  }
 
 });
 
@@ -760,44 +790,50 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorX', {
  */
 Object.defineProperty(Phaser.Creature.prototype, 'anchorY', {
 
-  get: function() {
+    get: function ()
+    {
 
-    return this.data.anchorY;
+        return this.data.anchorY;
 
-  },
+    },
 
-  set: function(value) {
+    set: function (value)
+    {
 
-    if (value === 0) {
-        value = 0.01;
-    }
+        if (value === 0)
+        {
+            value = 0.01;
+        }
 
-    if (value === 1) {
-        value = 0.99;
-    }
+        if (value === 1)
+        {
+            value = 0.99;
+        }
 
-    if (value === this.data.anchorY) {
-        return;
-    }
+        if (value === this.data.anchorY)
+        {
+            return;
+        }
 
-    var target = this.manager.target_creature;
+        var target = this.manager.target_creature;
 
-    this.stop();
-    this.manager.RunAtTime(0);
-
-    if (this.data.anchorY) {
-        target.SetAnchorPoint(null, -this.data.anchorY, this.data.animation);
-
-        this.play(true);
         this.stop();
         this.manager.RunAtTime(0);
+
+        if (this.data.anchorY)
+        {
+            target.SetAnchorPoint(null, -this.data.anchorY, this.data.animation);
+
+            this.play(true);
+            this.stop();
+            this.manager.RunAtTime(0);
+        }
+
+        target.SetAnchorPoint(null, value, this.data.animation);
+        this.play(true);
+
+        this.data.anchorY = value;
     }
-
-    target.SetAnchorPoint(null, value, this.data.animation);
-    this.play(true);
-
-    this.data.anchorY = value;
-  }
 
 });
 
@@ -807,16 +843,18 @@ Object.defineProperty(Phaser.Creature.prototype, 'anchorY', {
  */
 Object.defineProperty(Phaser.Creature.prototype, 'tint', {
 
-  get: function() {
+    get: function ()
+    {
 
-    return this.data.tint;
+        return this.data.tint;
 
-  },
+    },
 
-  set: function(value) {
+    set: function (value)
+    {
 
-    this.data.tint = value;
-  }
+        this.data.tint = value;
+    }
 
 });
 
@@ -826,16 +864,18 @@ Object.defineProperty(Phaser.Creature.prototype, 'tint', {
  */
 Object.defineProperty(Phaser.Creature.prototype, 'alpha', {
 
-  get: function() {
+    get: function ()
+    {
 
-    return this.data.alpha;
+        return this.data.alpha;
 
-  },
+    },
 
-  set: function(value) {
+    set: function (value)
+    {
 
-    this.data.alpha = value;
-  }
+        this.data.alpha = value;
+    }
 
 });
 
@@ -845,16 +885,18 @@ Object.defineProperty(Phaser.Creature.prototype, 'alpha', {
 * @method Phaser.Creature#setAnchorPointEnabled
 * @memberof Phaser.Creature
 */
-Phaser.Creature.prototype.setAnchorPointEnabled = function(value) {
-  var target = this.manager.target_creature;
-  target.SetAnchorPointEnabled(value);
+Phaser.Creature.prototype.setAnchorPointEnabled = function (value)
+{
+    var target = this.manager.target_creature;
+    target.SetAnchorPointEnabled(value);
 };
 
 /**
 * @method Phaser.Creature#createAllAnimations
 * @memberof Phaser.Creature
 */
-Phaser.Creature.prototype.createAllAnimations = function (mesh) {
+Phaser.Creature.prototype.createAllAnimations = function (mesh)
+{
 
     if (!this.game.cache.checkJSONKey(mesh))
     {

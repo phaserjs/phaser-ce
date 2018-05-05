@@ -33,7 +33,8 @@
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 */
-Phaser.MSPointer = function (game) {
+Phaser.MSPointer = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running game.
@@ -138,7 +139,8 @@ Phaser.MSPointer.prototype = {
     * Starts the event listeners running.
     * @method Phaser.MSPointer#start
     */
-    start: function () {
+    start: function ()
+    {
 
         if (this._onMSPointerDown !== null)
         {
@@ -150,27 +152,33 @@ Phaser.MSPointer.prototype = {
 
         if (this.game.device.mspointer)
         {
-            this._onMSPointerDown = function (event) {
+            this._onMSPointerDown = function (event)
+            {
                 return _this.onPointerDown(event);
             };
 
-            this._onMSPointerMove = function (event) {
+            this._onMSPointerMove = function (event)
+            {
                 return _this.onPointerMove(event);
             };
 
-            this._onMSPointerUp = function (event) {
+            this._onMSPointerUp = function (event)
+            {
                 return _this.onPointerUp(event);
             };
 
-            this._onMSPointerUpGlobal = function (event) {
+            this._onMSPointerUpGlobal = function (event)
+            {
                 return _this.onPointerUpGlobal(event);
             };
 
-            this._onMSPointerOut = function (event) {
+            this._onMSPointerOut = function (event)
+            {
                 return _this.onPointerOut(event);
             };
 
-            this._onMSPointerOver = function (event) {
+            this._onMSPointerOver = function (event)
+            {
                 return _this.onPointerOver(event);
             };
 
@@ -209,7 +217,8 @@ Phaser.MSPointer.prototype = {
     * @method Phaser.MSPointer#onPointerDown
     * @param {PointerEvent} event - The native DOM event.
     */
-    onPointerDown: function (event) {
+    onPointerDown: function (event)
+    {
 
         this.game.input.executeTouchLockCallbacks(false, event);
 
@@ -248,7 +257,8 @@ Phaser.MSPointer.prototype = {
     * @method Phaser.MSPointer#onPointerMove
     * @param {PointerEvent} event - The native DOM event.
     */
-    onPointerMove: function (event) {
+    onPointerMove: function (event)
+    {
 
         this.event = event;
 
@@ -285,7 +295,8 @@ Phaser.MSPointer.prototype = {
     * @method Phaser.MSPointer#onPointerUp
     * @param {PointerEvent} event - The native DOM event.
     */
-    onPointerUp: function (event) {
+    onPointerUp: function (event)
+    {
 
         this.game.input.executeTouchLockCallbacks(true, event);
 
@@ -325,7 +336,8 @@ Phaser.MSPointer.prototype = {
     * @method Phaser.MSPointer#onPointerUpGlobal
     * @param {PointerEvent} event - The native event from the browser. This gets stored in MSPointer.event.
     */
-    onPointerUpGlobal: function (event) {
+    onPointerUpGlobal: function (event)
+    {
 
         if ((event.pointerType === 'mouse' || event.pointerType === 0x00000004) && !this.input.mousePointer.withinGame)
         {
@@ -349,7 +361,8 @@ Phaser.MSPointer.prototype = {
     * @method Phaser.MSPointer#onPointerOut
     * @param {PointerEvent} event - The native event from the browser. This gets stored in MSPointer.event.
     */
-    onPointerOut: function (event) {
+    onPointerOut: function (event)
+    {
 
         this.event = event;
 
@@ -404,7 +417,8 @@ Phaser.MSPointer.prototype = {
     * @method Phaser.MSPointer#onPointerOut
     * @param {PointerEvent} event - The native event from the browser. This gets stored in MSPointer.event.
     */
-    onPointerOver: function (event) {
+    onPointerOver: function (event)
+    {
 
         this.event = event;
 
@@ -438,7 +452,8 @@ Phaser.MSPointer.prototype = {
     * Stop the event listeners.
     * @method Phaser.MSPointer#stop
     */
-    stop: function () {
+    stop: function ()
+    {
 
         var canvas = this.game.canvas;
 

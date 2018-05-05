@@ -7,7 +7,7 @@
 /**
 * @namespace Phaser
 */
-var Phaser = Phaser || {    // jshint ignore:line
+var Phaser = Phaser || { // jshint ignore:line
 
     /**
     * The Phaser version number.

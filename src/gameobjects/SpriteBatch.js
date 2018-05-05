@@ -20,7 +20,8 @@
 * @param {string} [name=group] - A name for this Group. Not used internally but useful for debugging.
 * @param {boolean} [addToStage=false] - If set to true this Group will be added directly to the Game.Stage instead of Game.World.
 */
-Phaser.SpriteBatch = function (game, parent, name, addToStage) {
+Phaser.SpriteBatch = function (game, parent, name, addToStage)
+{
 
     if (parent === undefined || parent === null) { parent = game.world; }
 
@@ -58,7 +59,8 @@ Phaser.SpriteBatch.prototype.constructor = Phaser.SpriteBatch;
 * @memberof Phaser.SpriteBatch
 * @param {RenderSession} renderSession
 */
-Phaser.SpriteBatch.prototype._renderWebGL = function (renderSession) {
+Phaser.SpriteBatch.prototype._renderWebGL = function (renderSession)
+{
 
     if (!this.visible || this.alpha <= 0 || !this.children.length)
     {
@@ -96,7 +98,8 @@ Phaser.SpriteBatch.prototype._renderWebGL = function (renderSession) {
 * @memberof Phaser.SpriteBatch
 * @param {RenderSession} renderSession
 */
-Phaser.SpriteBatch.prototype._renderCanvas = function (renderSession) {
+Phaser.SpriteBatch.prototype._renderCanvas = function (renderSession)
+{
 
     if (!this.visible || this.alpha <= 0 || !this.children.length)
     {

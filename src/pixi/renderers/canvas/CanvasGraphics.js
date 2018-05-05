@@ -9,7 +9,7 @@
  * @class PIXI.CanvasGraphics
  * @static
  */
-PIXI.CanvasGraphics = function()
+PIXI.CanvasGraphics = function ()
 {
 };
 
@@ -21,7 +21,7 @@ PIXI.CanvasGraphics = function()
  * @param graphics {Graphics} the actual graphics object to render
  * @param context {CanvasRenderingContext2D} the 2d drawing method of the canvas
  */
-PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
+PIXI.CanvasGraphics.renderGraphics = function (graphics, context)
 {
     var worldAlpha = graphics.worldAlpha;
 
@@ -49,7 +49,7 @@ PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
 
             context.moveTo(points[0], points[1]);
 
-            for (var j=1; j < points.length/2; j++)
+            for (var j = 1; j < points.length / 2; j++)
             {
                 context.lineTo(points[j * 2], points[j * 2 + 1]);
             }
@@ -60,7 +60,7 @@ PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
             }
 
             // if the first and last point are the same close the path - much neater :)
-            if (points[0] === points[points.length-2] && points[1] === points[points.length-1])
+            if (points[0] === points[points.length - 2] && points[1] === points[points.length - 1])
             {
                 context.closePath();
             }
@@ -68,14 +68,14 @@ PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
             if (data.fill)
             {
                 context.globalAlpha = data.fillAlpha * worldAlpha;
-                context.fillStyle = '#' + ('00000' + ( fillColor | 0).toString(16)).substr(-6);
+                context.fillStyle = '#' + ('00000' + (fillColor | 0).toString(16)).substr(-6);
                 context.fill();
             }
 
             if (data.lineWidth)
             {
                 context.globalAlpha = data.lineAlpha * worldAlpha;
-                context.strokeStyle = '#' + ('00000' + ( lineColor | 0).toString(16)).substr(-6);
+                context.strokeStyle = '#' + ('00000' + (lineColor | 0).toString(16)).substr(-6);
                 context.stroke();
             }
         }
@@ -84,14 +84,14 @@ PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
             if (data.fillColor || data.fillColor === 0)
             {
                 context.globalAlpha = data.fillAlpha * worldAlpha;
-                context.fillStyle = '#' + ('00000' + ( fillColor | 0).toString(16)).substr(-6);
+                context.fillStyle = '#' + ('00000' + (fillColor | 0).toString(16)).substr(-6);
                 context.fillRect(shape.x, shape.y, shape.width, shape.height);
             }
 
             if (data.lineWidth)
             {
                 context.globalAlpha = data.lineAlpha * worldAlpha;
-                context.strokeStyle = '#' + ('00000' + ( lineColor | 0).toString(16)).substr(-6);
+                context.strokeStyle = '#' + ('00000' + (lineColor | 0).toString(16)).substr(-6);
                 context.strokeRect(shape.x, shape.y, shape.width, shape.height);
             }
         }
@@ -99,20 +99,20 @@ PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
         {
             // TODO - need to be Undefined!
             context.beginPath();
-            context.arc(shape.x, shape.y, shape.radius,0,2*Math.PI);
+            context.arc(shape.x, shape.y, shape.radius,0,2 * Math.PI);
             context.closePath();
 
             if (data.fill)
             {
                 context.globalAlpha = data.fillAlpha * worldAlpha;
-                context.fillStyle = '#' + ('00000' + ( fillColor | 0).toString(16)).substr(-6);
+                context.fillStyle = '#' + ('00000' + (fillColor | 0).toString(16)).substr(-6);
                 context.fill();
             }
 
             if (data.lineWidth)
             {
                 context.globalAlpha = data.lineAlpha * worldAlpha;
-                context.strokeStyle = '#' + ('00000' + ( lineColor | 0).toString(16)).substr(-6);
+                context.strokeStyle = '#' + ('00000' + (lineColor | 0).toString(16)).substr(-6);
                 context.stroke();
             }
         }
@@ -123,18 +123,18 @@ PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
             var w = shape.width * 2;
             var h = shape.height * 2;
 
-            var x = shape.x - w/2;
-            var y = shape.y - h/2;
+            var x = shape.x - w / 2;
+            var y = shape.y - h / 2;
 
             context.beginPath();
 
             var kappa = 0.5522848,
                 ox = (w / 2) * kappa, // control point offset horizontal
                 oy = (h / 2) * kappa, // control point offset vertical
-                xe = x + w,           // x-end
-                ye = y + h,           // y-end
-                xm = x + w / 2,       // x-middle
-                ym = y + h / 2;       // y-middle
+                xe = x + w, // x-end
+                ye = y + h, // y-end
+                xm = x + w / 2, // x-middle
+                ym = y + h / 2; // y-middle
 
             context.moveTo(x, ym);
             context.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
@@ -147,14 +147,14 @@ PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
             if (data.fill)
             {
                 context.globalAlpha = data.fillAlpha * worldAlpha;
-                context.fillStyle = '#' + ('00000' + ( fillColor | 0).toString(16)).substr(-6);
+                context.fillStyle = '#' + ('00000' + (fillColor | 0).toString(16)).substr(-6);
                 context.fill();
             }
 
             if (data.lineWidth)
             {
                 context.globalAlpha = data.lineAlpha * worldAlpha;
-                context.strokeStyle = '#' + ('00000' + ( lineColor | 0).toString(16)).substr(-6);
+                context.strokeStyle = '#' + ('00000' + (lineColor | 0).toString(16)).substr(-6);
                 context.stroke();
             }
         }
@@ -184,14 +184,14 @@ PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
             if (data.fillColor || data.fillColor === 0)
             {
                 context.globalAlpha = data.fillAlpha * worldAlpha;
-                context.fillStyle = '#' + ('00000' + ( fillColor | 0).toString(16)).substr(-6);
+                context.fillStyle = '#' + ('00000' + (fillColor | 0).toString(16)).substr(-6);
                 context.fill();
             }
 
             if (data.lineWidth)
             {
                 context.globalAlpha = data.lineAlpha * worldAlpha;
-                context.strokeStyle = '#' + ('00000' + ( lineColor | 0).toString(16)).substr(-6);
+                context.strokeStyle = '#' + ('00000' + (lineColor | 0).toString(16)).substr(-6);
                 context.stroke();
             }
         }
@@ -208,7 +208,7 @@ PIXI.CanvasGraphics.renderGraphics = function(graphics, context)
  * @param graphics {Graphics} the graphics which will be used as a mask
  * @param context {CanvasRenderingContext2D} the context 2d method of the canvas
  */
-PIXI.CanvasGraphics.renderGraphicsMask = function(graphics, context)
+PIXI.CanvasGraphics.renderGraphicsMask = function (graphics, context)
 {
     var len = graphics.graphicsData.length;
 
@@ -231,13 +231,13 @@ PIXI.CanvasGraphics.renderGraphicsMask = function(graphics, context)
 
             context.moveTo(points[0], points[1]);
 
-            for (var j=1; j < points.length/2; j++)
+            for (var j = 1; j < points.length / 2; j++)
             {
                 context.lineTo(points[j * 2], points[j * 2 + 1]);
             }
 
             // if the first and last point are the same close the path - much neater :)
-            if (points[0] === points[points.length-2] && points[1] === points[points.length-1])
+            if (points[0] === points[points.length - 2] && points[1] === points[points.length - 1])
             {
                 context.closePath();
             }
@@ -262,16 +262,16 @@ PIXI.CanvasGraphics.renderGraphicsMask = function(graphics, context)
             var w = shape.width * 2;
             var h = shape.height * 2;
 
-            var x = shape.x - w/2;
-            var y = shape.y - h/2;
+            var x = shape.x - w / 2;
+            var y = shape.y - h / 2;
 
             var kappa = 0.5522848,
                 ox = (w / 2) * kappa, // control point offset horizontal
                 oy = (h / 2) * kappa, // control point offset vertical
-                xe = x + w,           // x-end
-                ye = y + h,           // y-end
-                xm = x + w / 2,       // x-middle
-                ym = y + h / 2;       // y-middle
+                xe = x + w, // x-end
+                ye = y + h, // y-end
+                xm = x + w / 2, // x-middle
+                ym = y + h / 2; // y-middle
 
             context.moveTo(x, ym);
             context.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
@@ -306,7 +306,7 @@ PIXI.CanvasGraphics.renderGraphicsMask = function(graphics, context)
     }
 };
 
-PIXI.CanvasGraphics.updateGraphicsTint = function(graphics)
+PIXI.CanvasGraphics.updateGraphicsTint = function (graphics)
 {
     if (graphics.tint === 0xFFFFFF)
     {
@@ -315,7 +315,7 @@ PIXI.CanvasGraphics.updateGraphicsTint = function(graphics)
 
     var tintR = (graphics.tint >> 16 & 0xFF) / 255;
     var tintG = (graphics.tint >> 8 & 0xFF) / 255;
-    var tintB = (graphics.tint & 0xFF)/ 255;
+    var tintB = (graphics.tint & 0xFF) / 255;
 
     for (var i = 0; i < graphics.graphicsData.length; i++)
     {
@@ -324,8 +324,8 @@ PIXI.CanvasGraphics.updateGraphicsTint = function(graphics)
         var fillColor = data.fillColor | 0;
         var lineColor = data.lineColor | 0;
 
-        data._fillTint = (((fillColor >> 16 & 0xFF) / 255 * tintR*255 << 16) + ((fillColor >> 8 & 0xFF) / 255 * tintG*255 << 8) +  (fillColor & 0xFF) / 255 * tintB*255);
-        data._lineTint = (((lineColor >> 16 & 0xFF) / 255 * tintR*255 << 16) + ((lineColor >> 8 & 0xFF) / 255 * tintG*255 << 8) +  (lineColor & 0xFF) / 255 * tintB*255);
+        data._fillTint = (((fillColor >> 16 & 0xFF) / 255 * tintR * 255 << 16) + ((fillColor >> 8 & 0xFF) / 255 * tintG * 255 << 8) + (fillColor & 0xFF) / 255 * tintB * 255);
+        data._lineTint = (((lineColor >> 16 & 0xFF) / 255 * tintR * 255 << 16) + ((lineColor >> 8 & 0xFF) / 255 * tintG * 255 << 8) + (lineColor & 0xFF) / 255 * tintB * 255);
 
     }
 

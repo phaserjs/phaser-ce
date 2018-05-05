@@ -26,7 +26,8 @@ Phaser.Component.Core.skipTypeChecks = false;
 * @method
 * @protected
 */
-Phaser.Component.Core.install = function (components) {
+Phaser.Component.Core.install = function (components)
+{
 
     // Always install 'Core' first
     Phaser.Utils.mixinPrototype(this, Phaser.Component.Core.prototype);
@@ -58,7 +59,8 @@ Phaser.Component.Core.install = function (components) {
 * @method
 * @protected
 */
-Phaser.Component.Core.init = function (game, x, y, key, frame) {
+Phaser.Component.Core.init = function (game, x, y, key, frame)
+{
 
     if (!Phaser.Component.Core.skipTypeChecks)
     {
@@ -115,7 +117,8 @@ Phaser.Component.Core.init = function (game, x, y, key, frame) {
 
 };
 
-Phaser.Component.Core.preUpdate = function () {
+Phaser.Component.Core.preUpdate = function ()
+{
 
     if (this.pendingDestroy)
     {
@@ -305,13 +308,15 @@ Phaser.Component.Core.prototype = {
     */
     exists: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._exists;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value)
             {
@@ -346,7 +351,8 @@ Phaser.Component.Core.prototype = {
     * @method
     * @protected
     */
-    preUpdateChildren: function() {
+    preUpdateChildren: function ()
+    {
 
         // This can't loop in reverse, we need the renderOrderID to be in sequence
         var i = 0;
@@ -372,7 +378,8 @@ Phaser.Component.Core.prototype = {
     *
     * @method
     */
-    update: function() {
+    update: function ()
+    {
 
     },
 
@@ -382,7 +389,8 @@ Phaser.Component.Core.prototype = {
     * @method
     * @protected
     */
-    postUpdate: function() {
+    postUpdate: function ()
+    {
 
         if (this.customRender)
         {

@@ -22,7 +22,8 @@
 * @param {number} height - The height of this AABB.
 * @param {number} [type=1] - The type of Ninja shape to create. 1 = AABB, 2 = Circle or 3 = Tile.
 */
-Phaser.Physics.Ninja.Tile = function (body, x, y, width, height, type) {
+Phaser.Physics.Ninja.Tile = function (body, x, y, width, height, type)
+{
 
     if (type === undefined) { type = Phaser.Physics.Ninja.Tile.EMPTY; }
 
@@ -137,7 +138,8 @@ Phaser.Physics.Ninja.Tile.prototype = {
     *
     * @method Phaser.Physics.Ninja.Tile#integrate
     */
-    integrate: function () {
+    integrate: function ()
+    {
 
         var px = this.pos.x;
         var py = this.pos.y;
@@ -155,11 +157,12 @@ Phaser.Physics.Ninja.Tile.prototype = {
     *
     * @method Phaser.Physics.Ninja.Tile#collideWorldBounds
     */
-    collideWorldBounds: function () {
+    collideWorldBounds: function ()
+    {
 
         var dx = this.system.bounds.x - (this.pos.x - this.xw);
 
-        if (0 < dx)
+        if (dx > 0)
         {
             this.reportCollisionVsWorld(dx, 0, 1, 0, null);
         }
@@ -167,7 +170,7 @@ Phaser.Physics.Ninja.Tile.prototype = {
         {
             dx = (this.pos.x + this.xw) - this.system.bounds.right;
 
-            if (0 < dx)
+            if (dx > 0)
             {
                 this.reportCollisionVsWorld(-dx, 0, -1, 0, null);
             }
@@ -175,7 +178,7 @@ Phaser.Physics.Ninja.Tile.prototype = {
 
         var dy = this.system.bounds.y - (this.pos.y - this.yw);
 
-        if (0 < dy)
+        if (dy > 0)
         {
             this.reportCollisionVsWorld(0, dy, 0, 1, null);
         }
@@ -183,7 +186,7 @@ Phaser.Physics.Ninja.Tile.prototype = {
         {
             dy = (this.pos.y + this.yw) - this.system.bounds.bottom;
 
-            if (0 < dy)
+            if (dy > 0)
             {
                 this.reportCollisionVsWorld(0, -dy, 0, -1, null);
             }
@@ -201,7 +204,8 @@ Phaser.Physics.Ninja.Tile.prototype = {
     * @param {number} dy - Collision normal
     * @param {number} obj - Object this Tile collided with
     */
-    reportCollisionVsWorld: function (px, py, dx, dy) {
+    reportCollisionVsWorld: function (px, py, dx, dy)
+    {
         var p = this.pos;
         var o = this.oldpos;
 
@@ -211,11 +215,11 @@ Phaser.Physics.Ninja.Tile.prototype = {
 
         //  Find component of velocity parallel to collision normal
         var dp = (vx * dx + vy * dy);
-        var nx = dp * dx;   //project velocity onto collision normal
+        var nx = dp * dx; // project velocity onto collision normal
 
-        var ny = dp * dy;   //nx,ny is normal velocity
+        var ny = dp * dy; // nx,ny is normal velocity
 
-        var tx = vx - nx;   //px,py is tangent velocity
+        var tx = vx - nx; // px,py is tangent velocity
         var ty = vy - ny;
 
         //  We only want to apply collision response forces if the object is travelling into, and not out of, the collision
@@ -271,7 +275,8 @@ Phaser.Physics.Ninja.Tile.prototype = {
     * @method Phaser.Physics.Ninja.Tile#setType
     * @param {number} id - The type of Tile this will use, i.e. Phaser.Physics.Ninja.Tile.SLOPE_45DEGpn, Phaser.Physics.Ninja.Tile.CONVEXpp, etc.
     */
-    setType: function (id) {
+    setType: function (id)
+    {
 
         if (id === Phaser.Physics.Ninja.Tile.EMPTY)
         {
@@ -292,7 +297,8 @@ Phaser.Physics.Ninja.Tile.prototype = {
     *
     * @method Phaser.Physics.Ninja.Tile#clear
     */
-    clear: function () {
+    clear: function ()
+    {
 
         this.id = Phaser.Physics.Ninja.Tile.EMPTY;
         this.updateType();
@@ -304,7 +310,8 @@ Phaser.Physics.Ninja.Tile.prototype = {
     *
     * @method Phaser.Physics.Ninja.Tile#destroy
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this.body = null;
         this.system = null;
@@ -318,11 +325,12 @@ Phaser.Physics.Ninja.Tile.prototype = {
     * @method Phaser.Physics.Ninja.Tile#updateType
     * @private
     */
-    updateType: function () {
+    updateType: function ()
+    {
 
         if (this.id === 0)
         {
-            //EMPTY
+            // EMPTY
             this.type = Phaser.Physics.Ninja.Tile.TYPE_EMPTY;
             this.signx = 0;
             this.signy = 0;
@@ -332,10 +340,10 @@ Phaser.Physics.Ninja.Tile.prototype = {
             return true;
         }
 
-        //tile is non-empty; collide
+        // tile is non-empty; collide
         if (this.id < Phaser.Physics.Ninja.Tile.TYPE_45DEG)
         {
-            //FULL
+            // FULL
             this.type = Phaser.Physics.Ninja.Tile.TYPE_FULL;
             this.signx = 0;
             this.signy = 0;
@@ -351,29 +359,29 @@ Phaser.Physics.Ninja.Tile.prototype = {
             {
                 this.signx = 1;
                 this.signy = -1;
-                this.sx = this.signx / Math.SQRT2;//get slope _unit_ normal
-                this.sy = this.signy / Math.SQRT2;//since normal is (1,-1), length is sqrt(1*1 + -1*-1) = sqrt(2)
+                this.sx = this.signx / Math.SQRT2;// get slope _unit_ normal
+                this.sy = this.signy / Math.SQRT2;// since normal is (1,-1), length is sqrt(1*1 + -1*-1) = sqrt(2)
             }
             else if (this.id === Phaser.Physics.Ninja.Tile.SLOPE_45DEGnn)
             {
                 this.signx = -1;
                 this.signy = -1;
-                this.sx = this.signx / Math.SQRT2;//get slope _unit_ normal
-                this.sy = this.signy / Math.SQRT2;//since normal is (1,-1), length is sqrt(1*1 + -1*-1) = sqrt(2)
+                this.sx = this.signx / Math.SQRT2;// get slope _unit_ normal
+                this.sy = this.signy / Math.SQRT2;// since normal is (1,-1), length is sqrt(1*1 + -1*-1) = sqrt(2)
             }
             else if (this.id === Phaser.Physics.Ninja.Tile.SLOPE_45DEGnp)
             {
                 this.signx = -1;
                 this.signy = 1;
-                this.sx = this.signx / Math.SQRT2;//get slope _unit_ normal
-                this.sy = this.signy / Math.SQRT2;//since normal is (1,-1), length is sqrt(1*1 + -1*-1) = sqrt(2)
+                this.sx = this.signx / Math.SQRT2;// get slope _unit_ normal
+                this.sy = this.signy / Math.SQRT2;// since normal is (1,-1), length is sqrt(1*1 + -1*-1) = sqrt(2)
             }
             else if (this.id === Phaser.Physics.Ninja.Tile.SLOPE_45DEGpp)
             {
                 this.signx = 1;
                 this.signy = 1;
-                this.sx = this.signx / Math.SQRT2;//get slope _unit_ normal
-                this.sy = this.signy / Math.SQRT2;//since normal is (1,-1), length is sqrt(1*1 + -1*-1) = sqrt(2)
+                this.sx = this.signx / Math.SQRT2;// get slope _unit_ normal
+                this.sy = this.signy / Math.SQRT2;// since normal is (1,-1), length is sqrt(1*1 + -1*-1) = sqrt(2)
             }
             else
             {
@@ -670,13 +678,15 @@ Phaser.Physics.Ninja.Tile.prototype = {
 * @name Phaser.Physics.Ninja.Tile#x
 * @property {number} x - The x position.
 */
-Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, "x", {
+Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, 'x', {
 
-    get: function () {
+    get: function ()
+    {
         return this.pos.x - this.xw;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
         this.pos.x = value;
     }
 
@@ -686,13 +696,15 @@ Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, "x", {
 * @name Phaser.Physics.Ninja.Tile#y
 * @property {number} y - The y position.
 */
-Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, "y", {
+Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, 'y', {
 
-    get: function () {
+    get: function ()
+    {
         return this.pos.y - this.yw;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
         this.pos.y = value;
     }
 
@@ -703,9 +715,10 @@ Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, "y", {
 * @property {number} bottom - The bottom value of this Body (same as Body.y + Body.height)
 * @readonly
 */
-Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, "bottom", {
+Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, 'bottom', {
 
-    get: function () {
+    get: function ()
+    {
         return this.pos.y + this.yw;
     }
 
@@ -716,29 +729,30 @@ Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, "bottom", {
 * @property {number} right - The right value of this Body (same as Body.x + Body.width)
 * @readonly
 */
-Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, "right", {
+Object.defineProperty(Phaser.Physics.Ninja.Tile.prototype, 'right', {
 
-    get: function () {
+    get: function ()
+    {
         return this.pos.x + this.xw;
     }
 
 });
 
 Phaser.Physics.Ninja.Tile.EMPTY = 0;
-Phaser.Physics.Ninja.Tile.FULL = 1;//fullAABB tile
-Phaser.Physics.Ninja.Tile.SLOPE_45DEGpn = 2;//45-degree triangle, whose normal is (+ve,-ve)
-Phaser.Physics.Ninja.Tile.SLOPE_45DEGnn = 3;//(+ve,+ve)
-Phaser.Physics.Ninja.Tile.SLOPE_45DEGnp = 4;//(-ve,+ve)
-Phaser.Physics.Ninja.Tile.SLOPE_45DEGpp = 5;//(-ve,-ve)
-Phaser.Physics.Ninja.Tile.CONCAVEpn = 6;//1/4-circle cutout
+Phaser.Physics.Ninja.Tile.FULL = 1;// fullAABB tile
+Phaser.Physics.Ninja.Tile.SLOPE_45DEGpn = 2;// 45-degree triangle, whose normal is (+ve,-ve)
+Phaser.Physics.Ninja.Tile.SLOPE_45DEGnn = 3;// (+ve,+ve)
+Phaser.Physics.Ninja.Tile.SLOPE_45DEGnp = 4;// (-ve,+ve)
+Phaser.Physics.Ninja.Tile.SLOPE_45DEGpp = 5;// (-ve,-ve)
+Phaser.Physics.Ninja.Tile.CONCAVEpn = 6;// 1/4-circle cutout
 Phaser.Physics.Ninja.Tile.CONCAVEnn = 7;
 Phaser.Physics.Ninja.Tile.CONCAVEnp = 8;
 Phaser.Physics.Ninja.Tile.CONCAVEpp = 9;
-Phaser.Physics.Ninja.Tile.CONVEXpn = 10;//1/4/circle
+Phaser.Physics.Ninja.Tile.CONVEXpn = 10;// 1/4/circle
 Phaser.Physics.Ninja.Tile.CONVEXnn = 11;
 Phaser.Physics.Ninja.Tile.CONVEXnp = 12;
 Phaser.Physics.Ninja.Tile.CONVEXpp = 13;
-Phaser.Physics.Ninja.Tile.SLOPE_22DEGpnS = 14;//22.5 degree slope
+Phaser.Physics.Ninja.Tile.SLOPE_22DEGpnS = 14;// 22.5 degree slope
 Phaser.Physics.Ninja.Tile.SLOPE_22DEGnnS = 15;
 Phaser.Physics.Ninja.Tile.SLOPE_22DEGnpS = 16;
 Phaser.Physics.Ninja.Tile.SLOPE_22DEGppS = 17;
@@ -746,7 +760,7 @@ Phaser.Physics.Ninja.Tile.SLOPE_22DEGpnB = 18;
 Phaser.Physics.Ninja.Tile.SLOPE_22DEGnnB = 19;
 Phaser.Physics.Ninja.Tile.SLOPE_22DEGnpB = 20;
 Phaser.Physics.Ninja.Tile.SLOPE_22DEGppB = 21;
-Phaser.Physics.Ninja.Tile.SLOPE_67DEGpnS = 22;//67.5 degree slope
+Phaser.Physics.Ninja.Tile.SLOPE_67DEGpnS = 22;// 67.5 degree slope
 Phaser.Physics.Ninja.Tile.SLOPE_67DEGnnS = 23;
 Phaser.Physics.Ninja.Tile.SLOPE_67DEGnpS = 24;
 Phaser.Physics.Ninja.Tile.SLOPE_67DEGppS = 25;
@@ -754,7 +768,7 @@ Phaser.Physics.Ninja.Tile.SLOPE_67DEGpnB = 26;
 Phaser.Physics.Ninja.Tile.SLOPE_67DEGnnB = 27;
 Phaser.Physics.Ninja.Tile.SLOPE_67DEGnpB = 28;
 Phaser.Physics.Ninja.Tile.SLOPE_67DEGppB = 29;
-Phaser.Physics.Ninja.Tile.HALFd = 30;//half-full tiles
+Phaser.Physics.Ninja.Tile.HALFd = 30;// half-full tiles
 Phaser.Physics.Ninja.Tile.HALFr = 31;
 Phaser.Physics.Ninja.Tile.HALFu = 32;
 Phaser.Physics.Ninja.Tile.HALFl = 33;

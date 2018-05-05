@@ -27,7 +27,8 @@
 * @class Phaser.State
 * @constructor
 */
-Phaser.State = function () {
+Phaser.State = function ()
+{
 
     /**
     * @property {Phaser.Game} game - This is a reference to the currently running Game.
@@ -136,7 +137,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#init
     * @param {...any} args - Any extra arguments passed to {@link Phaser.StateManager#start} or {@link Phaser.StateManager#restart}.
     */
-    init: function () {
+    init: function ()
+    {
     },
 
     /**
@@ -147,7 +149,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#preload
     * @param {Phaser.Game} game
     */
-    preload: function () {
+    preload: function ()
+    {
     },
 
     /**
@@ -156,7 +159,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#loadUpdate
     * @param {Phaser.Game} game
     */
-    loadUpdate: function () {
+    loadUpdate: function ()
+    {
     },
 
     /**
@@ -166,7 +170,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#loadRender
     * @param {Phaser.Game} game
     */
-    loadRender: function () {
+    loadRender: function ()
+    {
     },
 
     /**
@@ -176,7 +181,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#create
     * @param {Phaser.Game} game
     */
-    create: function () {
+    create: function ()
+    {
     },
 
     /**
@@ -187,7 +193,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#update
     * @param {Phaser.Game} game
     */
-    update: function () {
+    update: function ()
+    {
     },
 
     /**
@@ -197,7 +204,8 @@ Phaser.State.prototype = {
     * @param {Phaser.Game} game
     * @param {number} elapsedTime
     */
-    preRender: function () {
+    preRender: function ()
+    {
     },
 
     /**
@@ -208,7 +216,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#render
     * @param {Phaser.Game} game
     */
-    render: function () {
+    render: function ()
+    {
     },
 
     /**
@@ -218,7 +227,8 @@ Phaser.State.prototype = {
     * @param {number} width
     * @param {number} height
     */
-    resize: function () {
+    resize: function ()
+    {
     },
 
     /**
@@ -227,7 +237,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#paused
     * @param {Phaser.Game} game
     */
-    paused: function () {
+    paused: function ()
+    {
     },
 
     /**
@@ -236,7 +247,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#resumed
     * @param {Phaser.Game} game
     */
-    resumed: function () {
+    resumed: function ()
+    {
     },
 
     /**
@@ -245,7 +257,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#pauseUpdate
     * @param {Phaser.Game} game
     */
-    pauseUpdate: function () {
+    pauseUpdate: function ()
+    {
     },
 
     /**
@@ -254,7 +267,8 @@ Phaser.State.prototype = {
     * @method Phaser.State#shutdown
     * @param {Phaser.Game} game
     */
-    shutdown: function () {
+    shutdown: function ()
+    {
     }
 
 };

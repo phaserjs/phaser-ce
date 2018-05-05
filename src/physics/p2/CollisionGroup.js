@@ -11,7 +11,8 @@
 * @constructor
 * @param {number} bitmask - The CollisionGroup bitmask.
 */
-Phaser.Physics.P2.CollisionGroup = function (bitmask) {
+Phaser.Physics.P2.CollisionGroup = function (bitmask)
+{
 
     /**
     * @property {number} mask - The CollisionGroup bitmask.

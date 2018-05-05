@@ -26,7 +26,8 @@
 * @constructor
 * @param {Phaser.Game} game - reference to the current game instance.
 */
-Phaser.Physics.Ninja = function (game) {
+Phaser.Physics.Ninja = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - Local reference to game.
@@ -80,7 +81,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {object|array|Phaser.Group} object - The game object to create the physics body on. Can also be an array or Group of objects, a body will be created on every child that has a `body` property.
     * @param {boolean} [children=true] - Should a body be created on all children of this object? If true it will recurse down the display list as far as it can go.
     */
-    enableAABB: function (object, children) {
+    enableAABB: function (object, children)
+    {
 
         this.enable(object, 1, 0, 0, children);
 
@@ -95,7 +97,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {number} radius - The radius of the Circle.
     * @param {boolean} [children=true] - Should a body be created on all children of this object? If true it will recurse down the display list as far as it can go.
     */
-    enableCircle: function (object, radius, children) {
+    enableCircle: function (object, radius, children)
+    {
 
         this.enable(object, 2, 0, radius, children);
 
@@ -112,7 +115,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {number} [id=1] - The type of Tile this will use, i.e. Phaser.Physics.Ninja.Tile.SLOPE_45DEGpn, Phaser.Physics.Ninja.Tile.CONVEXpp, etc.
     * @param {boolean} [children=true] - Should a body be created on all children of this object? If true it will recurse down the display list as far as it can go.
     */
-    enableTile: function (object, id, children) {
+    enableTile: function (object, id, children)
+    {
 
         this.enable(object, 3, id, 0, children);
 
@@ -129,7 +133,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {number} [radius=0] - If this body is using a Circle shape this controls the radius.
     * @param {boolean} [children=true] - Should a body be created on all children of this object? If true it will recurse down the display list as far as it can go.
     */
-    enable: function (object, type, id, radius, children) {
+    enable: function (object, type, id, radius, children)
+    {
 
         if (type === undefined) { type = 1; }
         if (id === undefined) { id = 1; }
@@ -159,20 +164,18 @@ Phaser.Physics.Ninja.prototype = {
             }
         }
         else
+        if (object instanceof Phaser.Group)
         {
-            if (object instanceof Phaser.Group)
-            {
-                //  If it's a Group then we do it on the children regardless
-                this.enable(object.children, type, id, radius, children);
-            }
-            else
-            {
-                this.enableBody(object, type, id, radius);
+            //  If it's a Group then we do it on the children regardless
+            this.enable(object.children, type, id, radius, children);
+        }
+        else
+        {
+            this.enableBody(object, type, id, radius);
 
-                if (children && object.hasOwnProperty('children') && object.children.length > 0)
-                {
-                    this.enable(object.children, type, id, radius, true);
-                }
+            if (children && object.hasOwnProperty('children') && object.children.length > 0)
+            {
+                this.enable(object.children, type, id, radius, true);
             }
         }
 
@@ -185,7 +188,8 @@ Phaser.Physics.Ninja.prototype = {
     * @method Phaser.Physics.Ninja#enableBody
     * @param {object} object - The game object to create the physics body on. A body will only be created if this object has a null `body` property.
     */
-    enableBody: function (object, type, id, radius) {
+    enableBody: function (object, type, id, radius)
+    {
 
         if (object.hasOwnProperty('body') && object.body === null)
         {
@@ -204,7 +208,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {number} width - New width of the world. Can never be smaller than the Game.width.
     * @param {number} height - New height of the world. Can never be smaller than the Game.height.
     */
-    setBounds: function (x, y, width, height) {
+    setBounds: function (x, y, width, height)
+    {
 
         this.bounds.setTo(x, y, width, height);
 
@@ -215,7 +220,8 @@ Phaser.Physics.Ninja.prototype = {
     *
     * @method Phaser.Physics.Ninja#setBoundsToWorld
     */
-    setBoundsToWorld: function () {
+    setBoundsToWorld: function ()
+    {
 
         this.bounds.setTo(this.game.world.bounds.x, this.game.world.bounds.y, this.game.world.bounds.width, this.game.world.bounds.height);
 
@@ -228,7 +234,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {Phaser.Tilemap} map - The Tilemap to get the map data from.
     * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to operate on. If not given will default to map.currentLayer.
     */
-    clearTilemapLayerBodies: function (map, layer) {
+    clearTilemapLayerBodies: function (map, layer)
+    {
 
         layer = map.getLayer(layer);
 
@@ -262,7 +269,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {object} slopeMap - The tilemap index to Tile ID map.
     * @return {array} An array of the Phaser.Physics.Ninja.Tile objects that were created.
     */
-    convertTilemap: function (map, layer, slopeMap) {
+    convertTilemap: function (map, layer, slopeMap)
+    {
 
         layer = map.getLayer(layer);
 
@@ -302,7 +310,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {object} [callbackContext] - The context in which to run the callbacks.
     * @returns {boolean} True if an overlap occurred, otherwise false.
     */
-    overlap: function (object1, object2, overlapCallback, processCallback, callbackContext) {
+    overlap: function (object1, object2, overlapCallback, processCallback, callbackContext)
+    {
 
         overlapCallback = overlapCallback || null;
         processCallback = processCallback || null;
@@ -313,7 +322,7 @@ Phaser.Physics.Ninja.prototype = {
 
         if (Array.isArray(object2))
         {
-            for (var i = 0,  len = object2.length; i < len; i++)
+            for (var i = 0, len = object2.length; i < len; i++)
             {
                 this.collideHandler(object1, object2[i], overlapCallback, processCallback, callbackContext, true);
             }
@@ -343,7 +352,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {object} [callbackContext] - The context in which to run the callbacks.
     * @returns {boolean} True if a collision occurred, otherwise false.
     */
-    collide: function (object1, object2, collideCallback, processCallback, callbackContext) {
+    collide: function (object1, object2, collideCallback, processCallback, callbackContext)
+    {
 
         collideCallback = collideCallback || null;
         processCallback = processCallback || null;
@@ -354,7 +364,7 @@ Phaser.Physics.Ninja.prototype = {
 
         if (Array.isArray(object2))
         {
-            for (var i = 0,  len = object2.length; i < len; i++)
+            for (var i = 0, len = object2.length; i < len; i++)
             {
                 this.collideHandler(object1, object2[i], collideCallback, processCallback, callbackContext, false);
             }
@@ -380,7 +390,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {object} callbackContext - The context in which to run the callbacks.
     * @param {boolean} overlapOnly - Just run an overlap or a full collision.
     */
-    collideHandler: function (object1, object2, collideCallback, processCallback, callbackContext, overlapOnly) {
+    collideHandler: function (object1, object2, collideCallback, processCallback, callbackContext, overlapOnly)
+    {
 
         //  Only collide valid objects
         if (object2 === undefined && (object1.type === Phaser.GROUP || object1.type === Phaser.EMITTER))
@@ -407,6 +418,7 @@ Phaser.Physics.Ninja.prototype = {
                     this.collideSpriteVsTilemapLayer(object1, object2, collideCallback, processCallback, callbackContext);
                 }
             }
+
             //  GROUPS
             else if (object1.type === Phaser.GROUP)
             {
@@ -423,6 +435,7 @@ Phaser.Physics.Ninja.prototype = {
                     this.collideGroupVsTilemapLayer(object1, object2, collideCallback, processCallback, callbackContext);
                 }
             }
+
             //  TILEMAP LAYERS
             else if (object1.type === Phaser.TILEMAPLAYER)
             {
@@ -435,6 +448,7 @@ Phaser.Physics.Ninja.prototype = {
                     this.collideGroupVsTilemapLayer(object2, object1, collideCallback, processCallback, callbackContext);
                 }
             }
+
             //  EMITTER
             else if (object1.type === Phaser.EMITTER)
             {
@@ -461,7 +475,8 @@ Phaser.Physics.Ninja.prototype = {
     * @method Phaser.Physics.Ninja#collideSpriteVsSprite
     * @private
     */
-    collideSpriteVsSprite: function (sprite1, sprite2, collideCallback, processCallback, callbackContext, overlapOnly) {
+    collideSpriteVsSprite: function (sprite1, sprite2, collideCallback, processCallback, callbackContext, overlapOnly)
+    {
 
         if (this.separate(sprite1.body, sprite2.body, processCallback, callbackContext, overlapOnly))
         {
@@ -481,7 +496,8 @@ Phaser.Physics.Ninja.prototype = {
     * @method Phaser.Physics.Ninja#collideSpriteVsGroup
     * @private
     */
-    collideSpriteVsGroup: function (sprite, group, collideCallback, processCallback, callbackContext, overlapOnly) {
+    collideSpriteVsGroup: function (sprite, group, collideCallback, processCallback, callbackContext, overlapOnly)
+    {
 
         if (group.length === 0)
         {
@@ -519,7 +535,8 @@ Phaser.Physics.Ninja.prototype = {
     * @method Phaser.Physics.Ninja#collideGroupVsSelf
     * @private
     */
-    collideGroupVsSelf: function (group, collideCallback, processCallback, callbackContext, overlapOnly) {
+    collideGroupVsSelf: function (group, collideCallback, processCallback, callbackContext, overlapOnly)
+    {
 
         if (group.length === 0)
         {
@@ -547,7 +564,8 @@ Phaser.Physics.Ninja.prototype = {
     * @method Phaser.Physics.Ninja#collideGroupVsGroup
     * @private
     */
-    collideGroupVsGroup: function (group1, group2, collideCallback, processCallback, callbackContext, overlapOnly) {
+    collideGroupVsGroup: function (group1, group2, collideCallback, processCallback, callbackContext, overlapOnly)
+    {
 
         if (group1.length === 0 || group2.length === 0)
         {
@@ -571,7 +589,8 @@ Phaser.Physics.Ninja.prototype = {
     * @param {Phaser.Physics.Ninja.Body} body2 - The Body object to separate.
     * @returns {boolean} Returns true if the bodies collided, otherwise false.
     */
-    separate: function (body1, body2) {
+    separate: function (body1, body2)
+    {
 
         if (body1.type !== Phaser.Physics.NINJA || body2.type !== Phaser.Physics.NINJA)
         {

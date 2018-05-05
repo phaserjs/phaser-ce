@@ -18,12 +18,13 @@
 * @param {Array} [axis] - An axis, defined in body A frame, that body B's anchor point may slide along. The value is an array with 2 elements matching x and y, i.e: [32, 32].
 * @param {number} [maxForce] - The maximum force that should be applied to constrain the bodies.
 */
-Phaser.Physics.P2.PrismaticConstraint = function (world, bodyA, bodyB, lockRotation, anchorA, anchorB, axis, maxForce) {
+Phaser.Physics.P2.PrismaticConstraint = function (world, bodyA, bodyB, lockRotation, anchorA, anchorB, axis, maxForce)
+{
 
     if (lockRotation === undefined) { lockRotation = true; }
-    if (anchorA === undefined) { anchorA = [0, 0]; }
-    if (anchorB === undefined) { anchorB = [0, 0]; }
-    if (axis === undefined) { axis = [0, 0]; }
+    if (anchorA === undefined) { anchorA = [ 0, 0 ]; }
+    if (anchorB === undefined) { anchorB = [ 0, 0 ]; }
+    if (axis === undefined) { axis = [ 0, 0 ]; }
     if (maxForce === undefined) { maxForce = Number.MAX_VALUE; }
 
     /**

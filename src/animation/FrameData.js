@@ -10,7 +10,8 @@
 * @class Phaser.FrameData
 * @constructor
 */
-Phaser.FrameData = function () {
+Phaser.FrameData = function ()
+{
 
     /**
     * @property {Array} _frames - Local array of frames.
@@ -35,7 +36,8 @@ Phaser.FrameData.prototype = {
     * @param {Phaser.Frame} frame - The frame to add to this FrameData set.
     * @return {Phaser.Frame} The frame that was just added.
     */
-    addFrame: function (frame) {
+    addFrame: function (frame)
+    {
 
         frame.index = this._frames.length;
 
@@ -57,7 +59,8 @@ Phaser.FrameData.prototype = {
     * @param {number} index - The index of the frame you want to get.
     * @return {Phaser.Frame} The frame, if found, or undefined.
     */
-    getFrame: function (index) {
+    getFrame: function (index)
+    {
 
         if (index >= this._frames.length)
         {
@@ -75,7 +78,8 @@ Phaser.FrameData.prototype = {
     * @param {string} name - The name of the frame you want to get.
     * @return {Phaser.Frame} The frame, if found, or null.
     */
-    getFrameByName: function (name) {
+    getFrameByName: function (name)
+    {
 
         if (typeof this._frameNames[name] === 'number')
         {
@@ -93,7 +97,8 @@ Phaser.FrameData.prototype = {
     * @param {string} name - The name of the frame you want to check.
     * @return {boolean} True if the frame is found, otherwise false.
     */
-    checkFrameName: function (name) {
+    checkFrameName: function (name)
+    {
 
         if (this._frameNames[name] == null)
         {
@@ -110,7 +115,8 @@ Phaser.FrameData.prototype = {
      * @method Phaser.FrameData#clone
      * @return {Phaser.FrameData} A clone of this object, including clones of the Frame objects it contains.
      */
-    clone: function () {
+    clone: function ()
+    {
 
         var output = new Phaser.FrameData();
 
@@ -141,7 +147,8 @@ Phaser.FrameData.prototype = {
     * @param {Array} [output] - If given the results will be appended to the end of this array otherwise a new array will be created.
     * @return {Array} An array of Frames between the start and end index values, or an empty array if none were found.
     */
-    getFrameRange: function (start, end, output) {
+    getFrameRange: function (start, end, output)
+    {
 
         if (output === undefined) { output = []; }
 
@@ -164,7 +171,8 @@ Phaser.FrameData.prototype = {
     * @param {Array} [output] - If given the results will be appended to the end of this array otherwise a new array will be created.
     * @return {Array} An array of all Frames in this FrameData set matching the given names or IDs.
     */
-    getFrames: function (frames, useNumericIndex, output) {
+    getFrames: function (frames, useNumericIndex, output)
+    {
 
         if (useNumericIndex === undefined) { useNumericIndex = true; }
         if (output === undefined) { output = []; }
@@ -211,7 +219,8 @@ Phaser.FrameData.prototype = {
     * @param {Array} [output] - If given the results will be appended to the end of this array otherwise a new array will be created.
     * @return {Array} An array of all Frame indexes matching the given names or IDs.
     */
-    getFrameIndexes: function (frames, useNumericIndex, output) {
+    getFrameIndexes: function (frames, useNumericIndex, output)
+    {
 
         if (useNumericIndex === undefined) { useNumericIndex = true; }
         if (output === undefined) { output = []; }
@@ -235,11 +244,9 @@ Phaser.FrameData.prototype = {
                     output.push(this._frames[frames[i]].index);
                 }
                 else
+                if (this.getFrameByName(frames[i]))
                 {
-                    if (this.getFrameByName(frames[i]))
-                    {
-                        output.push(this.getFrameByName(frames[i]).index);
-                    }
+                    output.push(this.getFrameByName(frames[i]).index);
                 }
             }
         }
@@ -253,7 +260,8 @@ Phaser.FrameData.prototype = {
     *
     * @method Phaser.FrameData#destroy
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this._frames = null;
         this._frameNames = null;
@@ -269,9 +277,10 @@ Phaser.FrameData.prototype.constructor = Phaser.FrameData;
 * @property {number} total - The total number of frames in this FrameData set.
 * @readonly
 */
-Object.defineProperty(Phaser.FrameData.prototype, "total", {
+Object.defineProperty(Phaser.FrameData.prototype, 'total', {
 
-    get: function () {
+    get: function ()
+    {
         return this._frames.length;
     }
 

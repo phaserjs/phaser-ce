@@ -16,7 +16,8 @@ PIXI._enableMultiTextureToggle = false;
  * @constructor
  * @param game {Phaser.Game} A reference to the Phaser Game instance
  */
-PIXI.WebGLRenderer = function(game, config) {
+PIXI.WebGLRenderer = function (game, config)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the Phaser Game instance.
@@ -216,13 +217,14 @@ PIXI.WebGLRenderer.prototype.constructor = PIXI.WebGLRenderer;
 /**
 * @method PIXI.WebGLRenderer#initContext
 */
-PIXI.WebGLRenderer.prototype.initContext = function()
+PIXI.WebGLRenderer.prototype.initContext = function ()
 {
     var gl = this.view.getContext('webgl', this._contextOptions) || this.view.getContext('experimental-webgl', this._contextOptions);
 
     this.gl = gl;
 
-    if (!gl) {
+    if (!gl)
+    {
         // fail, not able to get a context
         throw new Error('This browser does not support webGL. Try using the canvas renderer');
     }
@@ -289,14 +291,16 @@ PIXI.WebGLRenderer.prototype.initContext = function()
 * @param textureNameCollection {Array} An Array of Texture Cache keys to use for multi-texture batching.
 * @return {Array} An array containing the texture keys that were enabled for batching.
 */
-PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollection) {
+PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollection)
+{
 
     if (!PIXI._enableMultiTextureToggle)
     {
         console.warn('setTexturePriority error: Multi Texture support hasn\'t been enabled in the Phaser Game Config.');
         return;
     }
-    var clampPot = function (potSize) {
+    var clampPot = function (potSize)
+    {
         --potSize;
         potSize |= potSize >> 1;
         potSize |= potSize >> 2;
@@ -328,6 +332,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
     }
     var maxTextureAvailableSpace = (maxTextureSize) - clampPot(Math.max(this.width, this.height));
     this.currentBatchedTextures.length = 0;
+
     // We start from 1 because framebuffer texture uses unit 0.
     for (var j = 0; j < textureNameCollection.length; ++j)
     {
@@ -338,14 +343,18 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
             console.warn('setTexturePriority: There is no image "%s" in the image cache.', imageName);
             continue;
         }
+
         // Unit 0 is reserved for Pixi's framebuffer
         var base = imageCache[imageName].base;
         maxTextureAvailableSpace -= clampPot(Math.max(base.width, base.height));
-        if (maxTextureAvailableSpace <= 0) {
+        if (maxTextureAvailableSpace <= 0)
+        {
             base.textureIndex = 0;
             console.warn('setTexturePriority: Image "%s" was given textureIndex=0 because there is no available texture space (%s).',
                 imageName, maxTextureAvailableSpace);
-        } else {
+        }
+        else
+        {
             base.textureIndex = (1 + (j % (maxTextures - 1)));
         }
         this.currentBatchedTextures.push(imageName);
@@ -363,7 +372,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
  * @method PIXI.WebGLRenderer#render
  * @param stage {Stage} the Stage element to be rendered
  */
-PIXI.WebGLRenderer.prototype.render = function(stage)
+PIXI.WebGLRenderer.prototype.render = function (stage)
 {
     // no point rendering if our context has been blown up!
     if (this.contextLost)
@@ -400,7 +409,7 @@ PIXI.WebGLRenderer.prototype.render = function(stage)
  * @param projection {Point} The projection
  * @param buffer {Array} a standard WebGL buffer
  */
-PIXI.WebGLRenderer.prototype.renderDisplayObject = function(displayObject, projection, buffer, matrix)
+PIXI.WebGLRenderer.prototype.renderDisplayObject = function (displayObject, projection, buffer, matrix)
 {
     this.renderSession.blendModeManager.setBlendMode(PIXI.blendModes.NORMAL);
 
@@ -413,7 +422,7 @@ PIXI.WebGLRenderer.prototype.renderDisplayObject = function(displayObject, proje
     // set the default projection
     this.renderSession.projection = projection;
 
-    //set the default offset
+    // set the default offset
     this.renderSession.offset = this.offset;
 
     // start the sprite batch
@@ -436,7 +445,7 @@ PIXI.WebGLRenderer.prototype.renderDisplayObject = function(displayObject, proje
  * @param width {Number} the new width of the webGL view
  * @param height {Number} the new height of the webGL view
  */
-PIXI.WebGLRenderer.prototype.resize = function(width, height)
+PIXI.WebGLRenderer.prototype.resize = function (width, height)
 {
     this.width = width * this.resolution;
     this.height = height * this.resolution;
@@ -444,15 +453,16 @@ PIXI.WebGLRenderer.prototype.resize = function(width, height)
     this.view.width = this.width;
     this.view.height = this.height;
 
-    if (this.autoResize) {
+    if (this.autoResize)
+    {
         this.view.style.width = this.width / this.resolution + 'px';
         this.view.style.height = this.height / this.resolution + 'px';
     }
 
     this.gl.viewport(0, 0, this.width, this.height);
 
-    this.projection.x =  this.width / 2 / this.resolution;
-    this.projection.y =  -this.height / 2 / this.resolution;
+    this.projection.x = this.width / 2 / this.resolution;
+    this.projection.y = -this.height / 2 / this.resolution;
 };
 
 /**
@@ -462,7 +472,8 @@ PIXI.WebGLRenderer.prototype.resize = function(width, height)
  * @param texture {Texture} the texture to update
  * @return {boolean} True if the texture was successfully bound, otherwise false.
  */
-PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture) {
+PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
+{
     if (!texture.hasLoaded)
     {
         return false;
@@ -521,13 +532,14 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture) {
  * @param texture {Texture} the texture to update
  * @return {boolean} True if the texture was successfully bound, otherwise false.
  */
-PIXI.WebGLRenderer.prototype.updateTexture = function(texture)
+PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
 {
     if (!texture.hasLoaded)
     {
         return false;
     }
-    if (texture.source.compressionAlgorithm) {
+    if (texture.source.compressionAlgorithm)
+    {
         return this.updateCompressedTexture(texture);
     }
 
@@ -580,7 +592,7 @@ PIXI.WebGLRenderer.prototype.updateTexture = function(texture)
  *
  * @method PIXI.WebGLRenderer#destroy
  */
-PIXI.WebGLRenderer.prototype.destroy = function()
+PIXI.WebGLRenderer.prototype.destroy = function ()
 {
     PIXI.glContexts[this.glContextId] = null;
 
@@ -612,7 +624,7 @@ PIXI.WebGLRenderer.prototype.destroy = function()
  *
  * @method PIXI.WebGLRenderer#mapBlendModes
  */
-PIXI.WebGLRenderer.prototype.mapBlendModes = function()
+PIXI.WebGLRenderer.prototype.mapBlendModes = function ()
 {
     var gl = this.gl;
 
@@ -621,34 +633,36 @@ PIXI.WebGLRenderer.prototype.mapBlendModes = function()
         var b = [];
         var modes = PIXI.blendModes;
 
-        b[modes.NORMAL]        = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.ADD]           = [gl.SRC_ALPHA, gl.DST_ALPHA];
-        b[modes.MULTIPLY]      = [gl.DST_COLOR, gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.SCREEN]        = [gl.SRC_ALPHA, gl.ONE];
-        b[modes.OVERLAY]       = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.DARKEN]        = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.LIGHTEN]       = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.COLOR_DODGE]   = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.COLOR_BURN]    = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.HARD_LIGHT]    = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.SOFT_LIGHT]    = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.DIFFERENCE]    = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.EXCLUSION]     = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.HUE]           = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.SATURATION]    = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.COLOR]         = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
-        b[modes.LUMINOSITY]    = [gl.ONE,       gl.ONE_MINUS_SRC_ALPHA];
+        b[modes.NORMAL] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.ADD] = [ gl.SRC_ALPHA, gl.DST_ALPHA ];
+        b[modes.MULTIPLY] = [ gl.DST_COLOR, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.SCREEN] = [ gl.SRC_ALPHA, gl.ONE ];
+        b[modes.OVERLAY] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.DARKEN] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.LIGHTEN] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.COLOR_DODGE] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.COLOR_BURN] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.HARD_LIGHT] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.SOFT_LIGHT] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.DIFFERENCE] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.EXCLUSION] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.HUE] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.SATURATION] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.COLOR] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
+        b[modes.LUMINOSITY] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
 
         PIXI.blendModesWebGL = b;
     }
 };
 
-PIXI.WebGLRenderer.prototype.getMaxTextureUnit = function() {
+PIXI.WebGLRenderer.prototype.getMaxTextureUnit = function ()
+{
     var gl = this.gl;
     return gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
 };
 
-PIXI.enableMultiTexture = function() {
+PIXI.enableMultiTexture = function ()
+{
     PIXI._enableMultiTextureToggle = true;
 };
 

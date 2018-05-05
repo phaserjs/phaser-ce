@@ -65,7 +65,8 @@
 * @param {number|string} width - The width of the game. See above.
 * @param {number|string} height - The height of the game. See above.
 */
-Phaser.ScaleManager = function (game, width, height) {
+Phaser.ScaleManager = function (game, width, height)
+{
 
     /**
     * A reference to the currently running game.
@@ -688,7 +689,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#boot
     * @protected
     */
-    boot: function () {
+    boot: function ()
+    {
 
         // Configure device-dependent compatibility
 
@@ -724,11 +726,13 @@ Phaser.ScaleManager.prototype = {
 
         var _this = this;
 
-        this._orientationChange = function(event) {
+        this._orientationChange = function (event)
+        {
             return _this.orientationChange(event);
         };
 
-        this._windowResize = function(event) {
+        this._windowResize = function (event)
+        {
             return _this.windowResize(event);
         };
 
@@ -738,11 +742,13 @@ Phaser.ScaleManager.prototype = {
 
         if (this.compatibility.supportsFullScreen)
         {
-            this._fullScreenChange = function(event) {
+            this._fullScreenChange = function (event)
+            {
                 return _this.fullScreenChange(event);
             };
 
-            this._fullScreenError = function(event) {
+            this._fullScreenError = function (event)
+            {
                 return _this.fullScreenError(event);
             };
 
@@ -792,7 +798,8 @@ Phaser.ScaleManager.prototype = {
     * @protected
     * @param {object} config - The game configuration object.
     */
-    parseConfig: function (config) {
+    parseConfig: function (config)
+    {
 
         if (config['scaleMode'] !== undefined)
         {
@@ -836,7 +843,8 @@ Phaser.ScaleManager.prototype = {
     * @param {number|string} width - The width of the game.
     * @param {number|string} height - The height of the game.
     */
-    setupScale: function (width, height) {
+    setupScale: function (width, height)
+    {
 
         var target;
         var rect = new Phaser.Rectangle();
@@ -920,7 +928,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#_gameResumed
     * @private
     */
-    _gameResumed: function () {
+    _gameResumed: function ()
+    {
 
         this.queueUpdate(true);
 
@@ -941,7 +950,8 @@ Phaser.ScaleManager.prototype = {
     * @param {integer} width - _Game width_, in pixels.
     * @param {integer} height - _Game height_, in pixels.
     */
-    setGameSize: function (width, height) {
+    setGameSize: function (width, height)
+    {
 
         this._gameSize.setTo(0, 0, width, height);
 
@@ -972,7 +982,8 @@ Phaser.ScaleManager.prototype = {
     * @param {boolean} [queueUpdate=true] - Queue a size/bounds check at next preUpdate
     * @param {boolean} [force=true] - Force a resize during the next preUpdate
     */
-    setUserScale: function (hScale, vScale, hTrim, vTrim, queueUpdate, force) {
+    setUserScale: function (hScale, vScale, hTrim, vTrim, queueUpdate, force)
+    {
 
         this._userScaleFactor.setTo(hScale, vScale);
         this._userScaleTrim.setTo(hTrim | 0, vTrim | 0);
@@ -1013,7 +1024,8 @@ Phaser.ScaleManager.prototype = {
     * @param {function} callback - The callback that will be called each time a window.resize event happens or if set, the parent container resizes.
     * @param {object} context - The context in which the callback will be called.
     */
-    setResizeCallback: function (callback, context) {
+    setResizeCallback: function (callback, context)
+    {
 
         this.onResize = callback;
         this.onResizeContext = context;
@@ -1030,7 +1042,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#signalSizeChange
     * @private
     */
-    signalSizeChange: function () {
+    signalSizeChange: function ()
+    {
 
         if (!Phaser.Rectangle.sameDimensions(this, this._lastReportedCanvasSize) ||
             !Phaser.Rectangle.sameDimensions(this.game, this._lastReportedGameSize))
@@ -1073,7 +1086,8 @@ Phaser.ScaleManager.prototype = {
     * @param {number} [maxHeight] - The maximum height the game is allowed to scale up to; only changed if specified.
     * @todo These values are only sometimes honored.
     */
-    setMinMax: function (minWidth, minHeight, maxWidth, maxHeight) {
+    setMinMax: function (minWidth, minHeight, maxWidth, maxHeight)
+    {
 
         this.minWidth = minWidth;
         this.minHeight = minHeight;
@@ -1096,7 +1110,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#preUpdate
     * @protected
     */
-    preUpdate: function () {
+    preUpdate: function ()
+    {
 
         if (this.game.time.time < (this._lastUpdate + this._updateThrottle))
         {
@@ -1149,7 +1164,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#pauseUpdate
     * @private
     */
-    pauseUpdate: function () {
+    pauseUpdate: function ()
+    {
 
         this.preUpdate();
 
@@ -1167,7 +1183,8 @@ Phaser.ScaleManager.prototype = {
     * @param {number} height - The new height of the parent container.
     * @param {boolean} resize - True if the renderer should be resized, otherwise false to just update the internal vars.
     */
-    updateDimensions: function (width, height, resize) {
+    updateDimensions: function (width, height, resize)
+    {
 
         this.width = width * this.parentScaleFactor.x;
         this.height = height * this.parentScaleFactor.y;
@@ -1199,7 +1216,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#updateScalingAndBounds
     * @private
     */
-    updateScalingAndBounds: function () {
+    updateScalingAndBounds: function ()
+    {
 
         this.scaleFactor.x = this.game.width / this.width;
         this.scaleFactor.y = this.game.height / this.height;
@@ -1239,7 +1257,8 @@ Phaser.ScaleManager.prototype = {
     * @param {boolean} forceLandscape - true if the game should run in landscape mode only.
     * @param {boolean} [forcePortrait=false] - true if the game should run in portrait mode only.
     */
-    forceOrientation: function (forceLandscape, forcePortrait) {
+    forceOrientation: function (forceLandscape, forcePortrait)
+    {
 
         if (forcePortrait === undefined) { forcePortrait = false; }
 
@@ -1264,7 +1283,8 @@ Phaser.ScaleManager.prototype = {
     * @param {string} orientation - The orientation string, e.g. 'portrait-primary'.
     * @return {?string} The classified orientation: 'portrait', 'landscape`, or null.
     */
-    classifyOrientation: function (orientation) {
+    classifyOrientation: function (orientation)
+    {
 
         if (orientation === 'portrait-primary' || orientation === 'portrait-secondary')
         {
@@ -1288,7 +1308,8 @@ Phaser.ScaleManager.prototype = {
     * @private
     * @return {boolean} True if the orientation state changed which means a forced update is likely required.
     */
-    updateOrientationState: function () {
+    updateOrientationState: function ()
+    {
 
         var previousOrientation = this.screenOrientation;
         var previouslyIncorrect = this.incorrectOrientation;
@@ -1329,7 +1350,8 @@ Phaser.ScaleManager.prototype = {
     * @private
     * @param {Event} event - The orientationchange event data.
     */
-    orientationChange: function (event) {
+    orientationChange: function (event)
+    {
 
         this.event = event;
 
@@ -1344,7 +1366,8 @@ Phaser.ScaleManager.prototype = {
     * @private
     * @param {Event} event - The resize event data.
     */
-    windowResize: function (event) {
+    windowResize: function (event)
+    {
 
         this.event = event;
 
@@ -1358,7 +1381,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#scrollTop
     * @private
     */
-    scrollTop: function () {
+    scrollTop: function ()
+    {
 
         var scrollTo = this.compatibility.scrollTo;
 
@@ -1389,7 +1413,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#refresh
     * @public
     */
-    refresh: function () {
+    refresh: function ()
+    {
 
         this.scrollTop();
         this.queueUpdate(true);
@@ -1402,7 +1427,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#updateLayout
     * @private
     */
-    updateLayout: function () {
+    updateLayout: function ()
+    {
 
         var scaleMode = this.currentScaleMode;
 
@@ -1426,38 +1452,36 @@ Phaser.ScaleManager.prototype = {
             this.setMaximum();
         }
         else
+        if (scaleMode === Phaser.ScaleManager.EXACT_FIT)
         {
-            if (scaleMode === Phaser.ScaleManager.EXACT_FIT)
-            {
-                this.setExactFit();
-            }
-            else if (scaleMode === Phaser.ScaleManager.SHOW_ALL)
-            {
-                if (!this.isFullScreen && this.boundingParent &&
+            this.setExactFit();
+        }
+        else if (scaleMode === Phaser.ScaleManager.SHOW_ALL)
+        {
+            if (!this.isFullScreen && this.boundingParent &&
                     this.compatibility.canExpandParent)
-                {
-                    // Try to expand parent out, but choosing maximizing dimensions.
-                    // Then select minimize dimensions which should then honor parent
-                    // maximum bound applications.
-                    this.setShowAll(true);
-                    this.resetCanvas();
-                    this.setShowAll();
-                }
-                else
-                {
-                    this.setShowAll();
-                }
-            }
-            else if (scaleMode === Phaser.ScaleManager.NO_SCALE)
             {
-                this.width = this.game.width;
-                this.height = this.game.height;
+                // Try to expand parent out, but choosing maximizing dimensions.
+                // Then select minimize dimensions which should then honor parent
+                // maximum bound applications.
+                this.setShowAll(true);
+                this.resetCanvas();
+                this.setShowAll();
             }
-            else if (scaleMode === Phaser.ScaleManager.USER_SCALE)
+            else
             {
-                this.width = (this.game.width * this._userScaleFactor.x) - this._userScaleTrim.x;
-                this.height = (this.game.height * this._userScaleFactor.y) - this._userScaleTrim.y;
+                this.setShowAll();
             }
+        }
+        else if (scaleMode === Phaser.ScaleManager.NO_SCALE)
+        {
+            this.width = this.game.width;
+            this.height = this.game.height;
+        }
+        else if (scaleMode === Phaser.ScaleManager.USER_SCALE)
+        {
+            this.width = (this.game.width * this._userScaleFactor.x) - this._userScaleTrim.x;
+            this.height = (this.game.height * this._userScaleFactor.y) - this._userScaleTrim.y;
         }
 
         if (!this.compatibility.canExpandParent &&
@@ -1493,7 +1517,8 @@ Phaser.ScaleManager.prototype = {
     * @param {HTMLElement} [parent] - Ignore {@link #boundingParent} and use this node instead.
     * @return {Phaser.Rectangle} The established parent bounds.
     */
-    getParentBounds: function (target, parent) {
+    getParentBounds: function (target, parent)
+    {
 
         var bounds = target || new Phaser.Rectangle();
         var parentNode = parent || this.boundingParent;
@@ -1543,7 +1568,8 @@ Phaser.ScaleManager.prototype = {
      * @param {boolean} [horizontal] - Value for {@link #pageAlignHorizontally}. Pass `null` to leave unchanged.
      * @param {boolean} [vertical] - Value for {@link #pageAlignVertically}. Omit or pass `null` to leave unchanged.
      */
-    align: function (horizontal, vertical) {
+    align: function (horizontal, vertical)
+    {
 
         if (horizontal != null)
         {
@@ -1567,7 +1593,8 @@ Phaser.ScaleManager.prototype = {
     * @param {boolean} horizontal - Align horizontally?
     * @param {boolean} vertical - Align vertically?
     */
-    alignCanvas: function (horizontal, vertical) {
+    alignCanvas: function (horizontal, vertical)
+    {
 
         var parentBounds = this.getParentBounds(this._tempBounds);
         var canvas = this.game.canvas;
@@ -1640,7 +1667,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#reflowGame
     * @private
     */
-    reflowGame: function () {
+    reflowGame: function ()
+    {
 
         this.resetCanvas('', '');
 
@@ -1657,7 +1685,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#reflowCanvas
     * @private
     */
-    reflowCanvas: function () {
+    reflowCanvas: function ()
+    {
 
         if (!this.incorrectOrientation)
         {
@@ -1691,7 +1720,8 @@ Phaser.ScaleManager.prototype = {
     * @param {string} [cssWidth=(current width)] - The css width to set.
     * @param {string} [cssHeight=(current height)] - The css height to set.
     */
-    resetCanvas: function (cssWidth, cssHeight) {
+    resetCanvas: function (cssWidth, cssHeight)
+    {
 
         if (cssWidth === undefined) { cssWidth = this.width + 'px'; }
         if (cssHeight === undefined) { cssHeight = this.height + 'px'; }
@@ -1718,7 +1748,8 @@ Phaser.ScaleManager.prototype = {
     * @private
     * @param {boolean} force - If true resets the parent bounds to ensure the check is dirty.
     */
-    queueUpdate: function (force) {
+    queueUpdate: function (force)
+    {
 
         if (force)
         {
@@ -1736,7 +1767,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#reset
     * @private
     */
-    reset: function (clearWorld) {
+    reset: function (clearWorld)
+    {
 
         if (clearWorld && this.grid)
         {
@@ -1751,7 +1783,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#setMaximum
     * @private
     */
-    setMaximum: function () {
+    setMaximum: function ()
+    {
 
         this.width = this.dom.visualBounds.width;
         this.height = this.dom.visualBounds.height;
@@ -1765,7 +1798,8 @@ Phaser.ScaleManager.prototype = {
     * @private
     * @param {boolean} expanding - If true then the maximizing dimension is chosen.
     */
-    setShowAll: function (expanding) {
+    setShowAll: function (expanding)
+    {
 
         var bounds = this.getParentBounds(this._tempBounds);
         var width = bounds.width;
@@ -1794,7 +1828,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#setExactFit
     * @private
     */
-    setExactFit: function () {
+    setExactFit: function ()
+    {
 
         var bounds = this.getParentBounds(this._tempBounds);
 
@@ -1828,7 +1863,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#createFullScreenTarget
     * @protected
     */
-    createFullScreenTarget: function () {
+    createFullScreenTarget: function ()
+    {
 
         var fsTarget = document.createElement('div');
 
@@ -1865,7 +1901,8 @@ Phaser.ScaleManager.prototype = {
     * @param {boolean} [allowTrampoline=undefined] - Internal argument. If `false` click trampolining is suppressed.
     * @return {boolean} Returns true if the device supports fullscreen mode and fullscreen mode was attempted to be started. (It might not actually start, wait for the signals.)
     */
-    startFullScreen: function (antialias, allowTrampoline) {
+    startFullScreen: function (antialias, allowTrampoline)
+    {
 
         if (this.isFullScreen)
         {
@@ -1877,7 +1914,8 @@ Phaser.ScaleManager.prototype = {
             // Error is called in timeout to emulate the real fullscreenerror event better
             var _this = this;
 
-            setTimeout(function () {
+            setTimeout(function ()
+            {
                 _this.fullScreenError();
             }, 10);
 
@@ -1892,7 +1930,7 @@ Phaser.ScaleManager.prototype = {
                 input.activePointer !== input.mousePointer &&
                 (allowTrampoline || allowTrampoline !== false))
             {
-                input.activePointer.addClickTrampoline("startFullScreen", this.startFullScreen, this, [antialias, false]);
+                input.activePointer.addClickTrampoline('startFullScreen', this.startFullScreen, this, [ antialias, false ]);
                 return;
             }
         }
@@ -1912,9 +1950,7 @@ Phaser.ScaleManager.prototype = {
             fsTarget = this._createdFullScreenTarget;
         }
 
-        var initData = {
-            targetElement: fsTarget
-        };
+        var initData = {targetElement: fsTarget};
 
         this.hasPhaserSetFullScreen = true;
 
@@ -1950,7 +1986,8 @@ Phaser.ScaleManager.prototype = {
     * @public
     * @return {boolean} Returns true if the browser supports fullscreen mode and fullscreen mode will be exited.
     */
-    stopFullScreen: function () {
+    stopFullScreen: function ()
+    {
 
         if (!this.isFullScreen || !this.compatibility.supportsFullScreen)
         {
@@ -1972,7 +2009,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#cleanupCreatedTarget
     * @private
     */
-    cleanupCreatedTarget: function () {
+    cleanupCreatedTarget: function ()
+    {
 
         var fsTarget = this._createdFullScreenTarget;
 
@@ -1997,7 +2035,8 @@ Phaser.ScaleManager.prototype = {
     * @private
     * @param {boolean} enteringFullscreen - True if _entering_ fullscreen, false if _leaving_.
     */
-    prepScreenMode: function (enteringFullscreen) {
+    prepScreenMode: function (enteringFullscreen)
+    {
 
         var createdTarget = !!this._createdFullScreenTarget;
         var fsTarget = this._createdFullScreenTarget || this.fullScreenTarget;
@@ -2044,7 +2083,8 @@ Phaser.ScaleManager.prototype = {
     * @private
     * @param {Event} [event=undefined] - The fullscreenchange event
     */
-    fullScreenChange: function (event) {
+    fullScreenChange: function (event)
+    {
 
         this.event = event;
 
@@ -2077,7 +2117,8 @@ Phaser.ScaleManager.prototype = {
     * @private
     * @param {Event} [event=undefined] - The fullscreenerror event; undefined if invoked on a device that does not support the Fullscreen API.
     */
-    fullScreenError: function (event) {
+    fullScreenError: function (event)
+    {
 
         this.event = event;
 
@@ -2104,7 +2145,8 @@ Phaser.ScaleManager.prototype = {
     * @param {boolean} [letterBox=false] - True if we want the `fitted` mode. Otherwise, the function uses the `zoom` mode.
     * @return {Phaser.Sprite|Phaser.Image} The scaled sprite.
     */
-    scaleSprite: function (sprite, width, height, letterBox) {
+    scaleSprite: function (sprite, width, height, letterBox)
+    {
 
         if (width === undefined) { width = this.width; }
         if (height === undefined) { height = this.height; }
@@ -2166,7 +2208,8 @@ Phaser.ScaleManager.prototype = {
     * @method Phaser.ScaleManager#destroy
     * @protected
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this.game.onResume.remove(this._gameResumed, this);
 
@@ -2202,9 +2245,10 @@ Phaser.ScaleManager.prototype.constructor = Phaser.ScaleManager;
 * @property {?DOMElement} boundingParent
 * @readonly
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "boundingParent", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'boundingParent', {
 
-    get: function () {
+    get: function ()
+    {
 
         if (this.parentIsWindow ||
             (this.isFullScreen && this.hasPhaserSetFullScreen && !this._createdFullScreenTarget))
@@ -2257,15 +2301,17 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "boundingParent", {
 * @name Phaser.ScaleManager#scaleMode
 * @property {integer} scaleMode
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "scaleMode", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'scaleMode', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._scaleMode;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value !== this._scaleMode)
         {
@@ -2292,15 +2338,17 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "scaleMode", {
 * @name Phaser.ScaleManager#fullScreenScaleMode
 * @property {integer} fullScreenScaleMode
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "fullScreenScaleMode", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'fullScreenScaleMode', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._fullScreenScaleMode;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value !== this._fullScreenScaleMode)
         {
@@ -2335,9 +2383,10 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "fullScreenScaleMode", {
 * @protected
 * @readonly
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "currentScaleMode", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'currentScaleMode', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this.isFullScreen ? this._fullScreenScaleMode : this._scaleMode;
 
@@ -2357,15 +2406,17 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "currentScaleMode", {
 * @property {boolean} pageAlignHorizontally
 * @default false
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "pageAlignHorizontally", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'pageAlignHorizontally', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._pageAlignHorizontally;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value !== this._pageAlignHorizontally)
         {
@@ -2396,15 +2447,17 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "pageAlignHorizontally", {
 * @property {boolean} pageAlignVertically
 * @default false
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "pageAlignVertically", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'pageAlignVertically', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._pageAlignVertically;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value !== this._pageAlignVertically)
         {
@@ -2422,9 +2475,10 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "pageAlignVertically", {
 * @property {boolean} isFullScreen
 * @readonly
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "isFullScreen", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'isFullScreen', {
 
-    get: function () {
+    get: function ()
+    {
         return !!(document['fullscreenElement'] ||
             document['webkitFullscreenElement'] ||
             document['mozFullScreenElement'] ||
@@ -2440,9 +2494,10 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "isFullScreen", {
 * @property {boolean} isPortrait
 * @readonly
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "isPortrait", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'isPortrait', {
 
-    get: function () {
+    get: function ()
+    {
         return this.classifyOrientation(this.screenOrientation) === 'portrait';
     }
 
@@ -2455,9 +2510,10 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "isPortrait", {
 * @property {boolean} isLandscape
 * @readonly
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "isLandscape", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'isLandscape', {
 
-    get: function () {
+    get: function ()
+    {
         return this.classifyOrientation(this.screenOrientation) === 'landscape';
     }
 
@@ -2473,9 +2529,10 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "isLandscape", {
 * @property {boolean} isGamePortrait
 * @readonly
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "isGamePortrait", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'isGamePortrait', {
 
-    get: function () {
+    get: function ()
+    {
         return (this.height > this.width);
     }
 
@@ -2491,9 +2548,10 @@ Object.defineProperty(Phaser.ScaleManager.prototype, "isGamePortrait", {
 * @property {boolean} isGameLandscape
 * @readonly
 */
-Object.defineProperty(Phaser.ScaleManager.prototype, "isGameLandscape", {
+Object.defineProperty(Phaser.ScaleManager.prototype, 'isGameLandscape', {
 
-    get: function () {
+    get: function ()
+    {
         return (this.width > this.height);
     }
 

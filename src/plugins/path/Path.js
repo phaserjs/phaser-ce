@@ -15,7 +15,8 @@
 * @param {number} [type=Phaser.Path.CoordinateSystems.WORLD] - The coordinate system used by the Path.
 * @param {boolean} [loops=false] - Should this Path loop or not when a PathFollower reaches the end of it?
 */
-Phaser.Path = function (game, type, loops) {
+Phaser.Path = function (game, type, loops)
+{
 
     if (type === undefined) { type = Phaser.Path.CoordinateSystems.WORLD; }
     if (loops === undefined) { loops = false; }
@@ -153,7 +154,8 @@ Phaser.Path.prototype = {
     * @param {boolean} [loops=false] - Should this Path loop or not when a PathFollower reaches the end of it?
     * @return {Phaser.Path} This Path object.
     */
-    create: function (coordinateSystem, loops) {
+    create: function (coordinateSystem, loops)
+    {
 
         if (loops === undefined) { loops = false; }
 
@@ -188,13 +190,15 @@ Phaser.Path.prototype = {
     * @method Phaser.Path#clone
     * @return {Phaser.Path} The cloned Path.
     */
-    clone: function () {
+    clone: function ()
+    {
 
         var clone = new Phaser.Path(this.coordinateSystem, this.loops);
 
         this.origin.clone(clone.origin);
 
-        this.points.forEach(function(p) {
+        this.points.forEach(function (p)
+        {
             clone._points.push(p.clone());
         });
 
@@ -215,7 +219,8 @@ Phaser.Path.prototype = {
     * @param {number} [index=null] - The index of the new path point. If not given, will add point to end of point list.
     * @return {Phaser.PathPoint} The PathPoint object that was created.
     */
-    addPathPoint: function (x, y, vx, vy, speed, data, index) {
+    addPathPoint: function (x, y, vx, vy, speed, data, index)
+    {
 
         if (x === undefined) { x = 0; }
         if (y === undefined) { y = 0; }
@@ -244,7 +249,8 @@ Phaser.Path.prototype = {
     * @param {number} [index] - The index of the PathPoint to remove.
     * @return {Phaser.PathPoint} The removed PathPoint object.
     */
-    removePathPoint: function (index) {
+    removePathPoint: function (index)
+    {
 
         var p = this.getPathPointReference(index);
 
@@ -268,7 +274,8 @@ Phaser.Path.prototype = {
     * @param {number} [vy] - The y coordinate of the tangent vector to create the curve from.
     * @return {Phaser.PathPoint} A reference to the PathPoint object that was updated.
     */
-    setPathPoint: function (index, x, y, vx, vy) {
+    setPathPoint: function (index, x, y, vx, vy)
+    {
 
         var p = this.getPathPointReference(index);
 
@@ -288,9 +295,11 @@ Phaser.Path.prototype = {
     * @param {Phaser.Point|object} point - A Phaser.Point, or a Point-like Object with public `x` and `y` properties, that will be used to modify all points in this paths point list.
     * @return {Phaser.Path} This Path object.
     */
-    translatePoints: function (point) {
+    translatePoints: function (point)
+    {
 
-        this._points.forEach(function(pnt) {
+        this._points.forEach(function (pnt)
+        {
             pnt.x += point.x;
             pnt.y += point.y;
         });
@@ -307,7 +316,8 @@ Phaser.Path.prototype = {
     * @param {number} y - The y offset.
     * @return {Phaser.Path} This Path object.
     */
-    setOffset: function (x, y) {
+    setOffset: function (x, y)
+    {
 
         this._offset.x = x;
         this._offset.y = y;
@@ -324,7 +334,8 @@ Phaser.Path.prototype = {
     * @param {number} [t=0 .. 1.0] - The distance on the curve to get the point from. Where 0 is the start of the curve, and 1 is the end.
     * @return {Phaser.Point} A point containing the x and y values at the specified distance (t) value in the curve.
     */
-    getPointOnThisCurve: function (curve, t) {
+    getPointOnThisCurve: function (curve, t)
+    {
 
         if (!curve)
         {
@@ -347,9 +358,11 @@ Phaser.Path.prototype = {
     * @param {Phaser.Hermite} curve - A Phaser.Hermite curve.
     * @return {array} An array of points representing the end points of 10 line segments that make up the curve.
     */
-    getControlPointsOnThisCurve: function (curve) {
+    getControlPointsOnThisCurve: function (curve)
+    {
 
-        var pnts = Phaser.ArrayUtils.numberArrayStep(0, 1.1, 0.1).map(function(num) {
+        var pnts = Phaser.ArrayUtils.numberArrayStep(0, 1.1, 0.1).map(function (num)
+        {
             return this.getPointOnThisCurve(curve, num);
         }, this);
 
@@ -368,7 +381,8 @@ Phaser.Path.prototype = {
     * @param {Phaser.PathPoint} point - A PathPoint object into which the found point object is cloned.
     * @return {boolean} false if the index is past the end of the path and it doesn't loop, otherwise true.
     */
-    getPathPoint: function (index, point) {
+    getPathPoint: function (index, point)
+    {
 
         var i = this.loops ? index % this._points.length : index;
 
@@ -411,7 +425,8 @@ Phaser.Path.prototype = {
     * @param {number} index - The index of the point in this path to get.
     * @return {Phaser.PathPoint} A reference to the PathPoint object in this Path, or null if index is out of range.
     */
-    getPathPointReference: function (index) {
+    getPathPointReference: function (index)
+    {
 
         var i = this.loops ? index % this._points.length : index;
 
@@ -435,7 +450,8 @@ Phaser.Path.prototype = {
     * @param {number} [index=0] - The index of the point in this path to get the curve from.
     * @return {Phaser.Hermite} A new Hermite object representing the curve starting at the 'index' path point.
     */
-    getCurve: function (index) {
+    getCurve: function (index)
+    {
 
         if (index === undefined) { index = 0; }
 
@@ -487,7 +503,8 @@ Phaser.Path.prototype = {
     * @param {Phaser.PathPoint} pathPoint - The PathPoint object that will have its values compared to all the points in this Path.
     * @return {number} The index of the PathPoint in this Path if an equal match is found, or -1 if no match is found.
     */
-    pointIndex: function (pathPoint) {
+    pointIndex: function (pathPoint)
+    {
 
         var l = this._points.length;
 
@@ -501,11 +518,9 @@ Phaser.Path.prototype = {
                 }
             }
             else
+            if (pathPoint.equals(this._points[i]))
             {
-                if (pathPoint.equals(this._points[i]))
-                {
-                    return i;
-                }
+                return i;
             }
         }
 
@@ -520,7 +535,8 @@ Phaser.Path.prototype = {
     * @param {number} index - The index of the PathPoint to test.
     * @return {boolean} true if index is the last point in this path.
     */
-    atEnd: function (index) {
+    atEnd: function (index)
+    {
 
         //  If the path loops, the end of the path is the end of the last curve
         if (this.loops)
@@ -539,7 +555,8 @@ Phaser.Path.prototype = {
     * @method Phaser.Path#numPoints
     * @return {number} The total number of PathPoints in this Path.
     */
-    numPoints: function () {
+    numPoints: function ()
+    {
 
         return this._points.length;
 
@@ -559,7 +576,8 @@ Phaser.Path.prototype = {
     * @param {boolean} reversing - Whether or not the follower is traversing the path in reverse.
     * @return {Phaser.PathPoint} The PathPoint that has been processed.
     */
-    processData: function (follower, pathPointIndex, reversing) {
+    processData: function (follower, pathPointIndex, reversing)
+    {
 
         if (this.getPathPoint(pathPointIndex, this._p1))
         {
@@ -632,7 +650,8 @@ Phaser.Path.prototype = {
     * @method Phaser.Path#smooth
     * @return {Phaser.Path} This Path object.
     */
-    smooth: function () {
+    smooth: function ()
+    {
 
         if (this._points.length === 0)
         {
@@ -698,7 +717,8 @@ Phaser.Path.prototype = {
     * @param {boolean} [active=false] - Whether or not to highlight the active segments of this Path or not.
     * @return {Phaser.Path} This Path object.
     */
-    debug: function (ctx, active) {
+    debug: function (ctx, active)
+    {
 
         var lineColor = '#333333';
 
@@ -742,9 +762,10 @@ Phaser.Path.prototype = {
             //  Draw lines
             ctx.beginPath();
 
-            controlPoints.forEach(function(pnt, index) {
+            controlPoints.forEach(function (pnt, index)
+            {
 
-                if (!!pnt)
+                if (pnt)
                 {
                     if (index === 0)
                     {
@@ -770,7 +791,8 @@ Phaser.Path.prototype = {
                 //  Copy control points to the point object
                 this.getPathPointReference(i).controlPoints = controlPoints;
 
-                controlPoints.forEach(function(pnt) {
+                controlPoints.forEach(function (pnt)
+                {
 
                     ctx.beginPath();
 
@@ -796,7 +818,8 @@ Phaser.Path.prototype = {
     * @methods Phaser.Path#toJSON
     * @return {Object} A JSON object representing this Path.
     */
-    toJSON: function () {
+    toJSON: function ()
+    {
 
         return {
             name: this.name,
@@ -805,7 +828,8 @@ Phaser.Path.prototype = {
             coordinateSystem: this.coordinateSystem,
             loops: this.loops,
             speed: 1,
-            pointList: this._points.map(function(p) {
+            pointList: this._points.map(function (p)
+            {
                 return p.toJSON();
             })
         };
@@ -820,7 +844,8 @@ Phaser.Path.prototype = {
 */
 Object.defineProperty(Phaser.Path.prototype, 'points', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._points;
 
@@ -834,7 +859,8 @@ Object.defineProperty(Phaser.Path.prototype, 'points', {
 */
 Object.defineProperty(Phaser.Path.prototype, 'length', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._points.length;
 
@@ -847,13 +873,15 @@ Object.defineProperty(Phaser.Path.prototype, 'length', {
 */
 Object.defineProperty(Phaser.Path.prototype, 'origin', {
 
-    get: function() {
+    get: function ()
+    {
 
         return this._origin;
 
     },
 
-    set: function (val) {
+    set: function (val)
+    {
 
         this._origin.setTo(val.x, val.y);
 

@@ -18,7 +18,8 @@
 * @param {number} [scaleMode=Phaser.scaleModes.DEFAULT] - One of the Phaser.scaleModes consts.
 * @param {number} [resolution=1] - The resolution of the texture being generated.
 */
-Phaser.RenderTexture = function (game, width, height, key, scaleMode, resolution, renderer, textureUnit) {
+Phaser.RenderTexture = function (game, width, height, key, scaleMode, resolution, renderer, textureUnit)
+{
 
     if (width === undefined) { width = 100; }
     if (height === undefined) { height = 100; }
@@ -128,7 +129,8 @@ Phaser.RenderTexture.prototype.constructor = Phaser.RenderTexture;
 * @param {number} y - The y position to render the object at.
 * @param {boolean} [clear=false] - If true the texture will be cleared before the display object is drawn.
 */
-Phaser.RenderTexture.prototype.renderXY = function (displayObject, x, y, clear) {
+Phaser.RenderTexture.prototype.renderXY = function (displayObject, x, y, clear)
+{
 
     displayObject.updateTransform();
 
@@ -160,7 +162,8 @@ Phaser.RenderTexture.prototype.renderXY = function (displayObject, x, y, clear) 
 * @param {number} y - The y position to render the object at.
 * @param {boolean} [clear=false] - If true the texture will be cleared before the display object is drawn.
 */
-Phaser.RenderTexture.prototype.renderRawXY = function (displayObject, x, y, clear) {
+Phaser.RenderTexture.prototype.renderRawXY = function (displayObject, x, y, clear)
+{
 
     this._tempMatrix.identity().translate(x, y);
 
@@ -190,7 +193,8 @@ Phaser.RenderTexture.prototype.renderRawXY = function (displayObject, x, y, clea
 * @param {Phaser.Matrix} [matrix] - Optional matrix to apply to the display object before rendering. If null or undefined it will use the worldTransform matrix of the given display object.
 * @param {boolean} [clear=false] - If true the texture will be cleared before the display object is drawn.
 */
-Phaser.RenderTexture.prototype.render = function (displayObject, matrix, clear) {
+Phaser.RenderTexture.prototype.render = function (displayObject, matrix, clear)
+{
 
     if (matrix === undefined || matrix === null)
     {
@@ -220,7 +224,8 @@ Phaser.RenderTexture.prototype.render = function (displayObject, matrix, clear) 
 * @param {number} height - The height to resize to.
 * @param {boolean} updateBase - Should the baseTexture.width and height values be resized as well?
 */
-Phaser.RenderTexture.prototype.resize = function (width, height, updateBase) {
+Phaser.RenderTexture.prototype.resize = function (width, height, updateBase)
+{
 
     if (width === this.width && height === this.height)
     {
@@ -260,7 +265,8 @@ Phaser.RenderTexture.prototype.resize = function (width, height, updateBase) {
 *
 * @method Phaser.RenderTexture.prototype.clear
 */
-Phaser.RenderTexture.prototype.clear = function () {
+Phaser.RenderTexture.prototype.clear = function ()
+{
 
     if (!this.valid)
     {
@@ -286,7 +292,8 @@ Phaser.RenderTexture.prototype.clear = function () {
 * @param [clear] {Boolean} If true the texture will be cleared before the displayObject is drawn
 * @private
 */
-Phaser.RenderTexture.prototype._renderWebGL = function (displayObject, matrix, clear) {
+Phaser.RenderTexture.prototype._renderWebGL = function (displayObject, matrix, clear)
+{
 
     if (!this.valid || displayObject.alpha === 0)
     {
@@ -343,7 +350,8 @@ Phaser.RenderTexture.prototype._renderWebGL = function (displayObject, matrix, c
 * @param [matrix] {Matrix} Optional matrix to apply to the display object before rendering.
 * @param [clear] {Boolean} If true the texture will be cleared before the displayObject is drawn
 */
-Phaser.RenderTexture.prototype._renderCanvas = function (displayObject, matrix, clear) {
+Phaser.RenderTexture.prototype._renderCanvas = function (displayObject, matrix, clear)
+{
 
     if (!this.valid || displayObject.alpha === 0)
     {
@@ -387,7 +395,8 @@ Phaser.RenderTexture.prototype._renderCanvas = function (displayObject, matrix, 
 * @method Phaser.RenderTexture.prototype.getImage
 * @return {Image}
 */
-Phaser.RenderTexture.prototype.getImage = function () {
+Phaser.RenderTexture.prototype.getImage = function ()
+{
 
     var image = new Image();
     image.src = this.getBase64();
@@ -402,7 +411,8 @@ Phaser.RenderTexture.prototype.getImage = function () {
 * @method Phaser.RenderTexture.prototype.getBase64
 * @return {String} A base64 encoded string of the texture.
 */
-Phaser.RenderTexture.prototype.getBase64 = function () {
+Phaser.RenderTexture.prototype.getBase64 = function ()
+{
 
     return this.getCanvas().toDataURL();
 
@@ -414,7 +424,8 @@ Phaser.RenderTexture.prototype.getBase64 = function () {
 * @method Phaser.RenderTexture.prototype.getCanvas
 * @return {HTMLCanvasElement} A Canvas element with the texture rendered on.
 */
-Phaser.RenderTexture.prototype.getCanvas = function () {
+Phaser.RenderTexture.prototype.getCanvas = function ()
+{
 
     if (this.renderer.type === Phaser.WEBGL)
     {

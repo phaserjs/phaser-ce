@@ -46,7 +46,8 @@ Phaser.Component.Crop.prototype = {
     * @param {Phaser.Rectangle} rect - The Rectangle used during cropping. Pass null or no parameters to clear a previously set crop rectangle.
     * @param {boolean} [copy=false] - If false `cropRect` will be stored as a reference to the given rect. If true it will copy the rect values into a local Phaser Rectangle object stored in cropRect.
     */
-    crop: function (rect, copy) {
+    crop: function (rect, copy)
+    {
 
         if (copy === undefined) { copy = false; }
 
@@ -83,7 +84,8 @@ Phaser.Component.Crop.prototype = {
     *
     * @method
     */
-    updateCrop: function () {
+    updateCrop: function ()
+    {
 
         if (!this.cropRect)
         {

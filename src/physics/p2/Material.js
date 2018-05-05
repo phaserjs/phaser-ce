@@ -13,7 +13,8 @@
 * @constructor
 * @param {string} name - The user defined name given to this Material.
 */
-Phaser.Physics.P2.Material = function (name) {
+Phaser.Physics.P2.Material = function (name)
+{
 
     /**
     * @property {string} name - The user defined name given to this Material.

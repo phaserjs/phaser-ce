@@ -43,7 +43,8 @@ Phaser.Component.Health.prototype = {
     * @param {number} amount - The amount to subtract from the current `health` value.
     * @return {Phaser.Sprite} This instance.
     */
-    damage: function (amount) {
+    damage: function (amount)
+    {
 
         if (this.alive)
         {
@@ -67,7 +68,8 @@ Phaser.Component.Health.prototype = {
     * @param {number} amount - The amount to set the `health` value to. The total will never exceed `maxHealth`.
     * @return {Phaser.Sprite} This instance.
     */
-    setHealth: function (amount) {
+    setHealth: function (amount)
+    {
 
         this.health = amount;
 
@@ -87,7 +89,8 @@ Phaser.Component.Health.prototype = {
     * @param {number} amount - The amount to add to the current `health` value. The total will never exceed `maxHealth`.
     * @return {Phaser.Sprite} This instance.
     */
-    heal: function (amount) {
+    heal: function (amount)
+    {
 
         if (this.alive)
         {

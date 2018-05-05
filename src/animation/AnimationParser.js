@@ -26,7 +26,8 @@ Phaser.AnimationParser = {
     * @param {number} [skipFrames=0] - Skip a number of frames. Useful when there are multiple sprite sheets in one image.
     * @return {Phaser.FrameData} A FrameData object containing the parsed frames.
     */
-    spriteSheet: function (game, key, frameWidth, frameHeight, frameMax, margin, spacing, skipFrames) {
+    spriteSheet: function (game, key, frameWidth, frameHeight, frameMax, margin, spacing, skipFrames)
+    {
 
         if (frameMax === undefined) { frameMax = -1; }
         if (margin === undefined) { margin = 0; }
@@ -128,12 +129,13 @@ Phaser.AnimationParser = {
     * @param {object} json - The JSON data from the Texture Atlas. Must be in Array format.
     * @return {Phaser.FrameData} A FrameData object containing the parsed frames.
     */
-    JSONData: function (game, json) {
+    JSONData: function (game, json)
+    {
 
         //  Malformed?
         if (!json['frames'])
         {
-            console.warn("Phaser.AnimationParser.JSONData: Invalid Texture Atlas JSON given, missing 'frames' array");
+            console.warn('Phaser.AnimationParser.JSONData: Invalid Texture Atlas JSON given, missing \'frames\' array');
             console.log(json);
             return;
         }
@@ -187,12 +189,14 @@ Phaser.AnimationParser = {
     * @param {object} json - The JSON data from the Texture Atlas. Must be in Pyxel JSON format.
     * @return {Phaser.FrameData} A FrameData object containing the parsed frames.
     */
-    JSONDataPyxel: function (game, json) {
+    JSONDataPyxel: function (game, json)
+    {
 
         //  Malformed? There are a few keys to check here.
-        var signature = ['layers', 'tilewidth','tileheight','tileswide', 'tileshigh'];
+        var signature = [ 'layers', 'tilewidth','tileheight','tileswide', 'tileshigh' ];
 
-        signature.forEach( function(key) {
+        signature.forEach(function (key)
+        {
             if (!json[key])
             {
                 console.warn('Phaser.AnimationParser.JSONDataPyxel: Invalid Pyxel Tilemap JSON given, missing "' + key + '" key.');
@@ -225,7 +229,7 @@ Phaser.AnimationParser = {
                 frames[i].y,
                 tilewidth,
                 tileheight,
-                "frame_" + i  // No names are included in pyxel tilemap data.
+                'frame_' + i // No names are included in pyxel tilemap data.
             ));
 
             // No trim data is included.
@@ -244,12 +248,13 @@ Phaser.AnimationParser = {
     * @param {object} json - The JSON data from the Texture Atlas. Must be in JSON Hash format.
     * @return {Phaser.FrameData} A FrameData object containing the parsed frames.
     */
-    JSONDataHash: function (game, json) {
+    JSONDataHash: function (game, json)
+    {
 
         //  Malformed?
         if (!json['frames'])
         {
-            console.warn("Phaser.AnimationParser.JSONDataHash: Invalid Texture Atlas JSON given, missing 'frames' object");
+            console.warn('Phaser.AnimationParser.JSONDataHash: Invalid Texture Atlas JSON given, missing \'frames\' object');
             console.log(json);
             return;
         }
@@ -306,12 +311,13 @@ Phaser.AnimationParser = {
     * @param {object} xml - The XML data from the Texture Atlas. Must be in Starling XML format.
     * @return {Phaser.FrameData} A FrameData object containing the parsed frames.
     */
-    XMLData: function (game, xml) {
+    XMLData: function (game, xml)
+    {
 
         //  Malformed?
         if (!xml.getElementsByTagName('TextureAtlas'))
         {
-            console.warn("Phaser.AnimationParser.XMLData: Invalid Texture Atlas XML given, missing <TextureAtlas> tag");
+            console.warn('Phaser.AnimationParser.XMLData: Invalid Texture Atlas XML given, missing <TextureAtlas> tag');
             return;
         }
 

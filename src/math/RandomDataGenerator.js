@@ -20,7 +20,8 @@
 * @constructor
 * @param {any[]|string} [seeds] - An array of values to use as the seed, or a generator state (from {#state}).
 */
-Phaser.RandomDataGenerator = function (seeds) {
+Phaser.RandomDataGenerator = function (seeds)
+{
 
     if (seeds === undefined) { seeds = []; }
 
@@ -68,7 +69,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @private
     * @return {number}
     */
-    rnd: function () {
+    rnd: function ()
+    {
 
         var t = 2091639 * this.s0 + this.c * 2.3283064365386963e-10; // 2^-32
 
@@ -88,7 +90,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @method Phaser.RandomDataGenerator#sow
     * @param {any[]} seeds - The array of seeds: the `toString()` of each value is used.
     */
-    sow: function (seeds) {
+    sow: function (seeds)
+    {
 
         // Always reset to default seed
         this.s0 = this.hash(' ');
@@ -124,13 +127,15 @@ Phaser.RandomDataGenerator.prototype = {
     * @param {any} data
     * @return {number} hashed value.
     */
-    hash: function (data) {
+    hash: function (data)
+    {
 
         var h, i, n;
         n = 0xefc8249d;
         data = data.toString();
 
-        for (i = 0; i < data.length; i++) {
+        for (i = 0; i < data.length; i++)
+        {
             n += data.charCodeAt(i);
             h = 0.02519603282416938 * n;
             n = h >>> 0;
@@ -151,7 +156,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @method Phaser.RandomDataGenerator#integer
     * @return {number} A random integer between 0 and 2^32.
     */
-    integer: function() {
+    integer: function ()
+    {
 
         return this.rnd.apply(this) * 0x100000000;// 2^32
 
@@ -163,9 +169,10 @@ Phaser.RandomDataGenerator.prototype = {
     * @method Phaser.RandomDataGenerator#frac
     * @return {number} A random real number between 0 and 1.
     */
-    frac: function() {
+    frac: function ()
+    {
 
-        return this.rnd.apply(this) + (this.rnd.apply(this) * 0x200000 | 0) * 1.1102230246251565e-16;   // 2^-53
+        return this.rnd.apply(this) + (this.rnd.apply(this) * 0x200000 | 0) * 1.1102230246251565e-16; // 2^-53
 
     },
 
@@ -175,7 +182,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @method Phaser.RandomDataGenerator#real
     * @return {number} A random real number between 0 and 2^32.
     */
-    real: function() {
+    real: function ()
+    {
 
         return this.integer() + this.frac();
 
@@ -189,7 +197,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @param {number} max - The maximum value in the range.
     * @return {number} A random number between min and max.
     */
-    integerInRange: function (min, max) {
+    integerInRange: function (min, max)
+    {
 
         return Math.floor(this.realInRange(0, max - min + 1) + min);
 
@@ -204,7 +213,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @param {number} max - The maximum value in the range.
     * @return {number} A random number between min and max.
     */
-    between: function (min, max) {
+    between: function (min, max)
+    {
 
         return this.integerInRange(min, max);
 
@@ -218,7 +228,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @param {number} max - The maximum value in the range.
     * @return {number} A random number between min and max.
     */
-    realInRange: function (min, max) {
+    realInRange: function (min, max)
+    {
 
         return this.frac() * (max - min) + min;
 
@@ -230,7 +241,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @method Phaser.RandomDataGenerator#normal
     * @return {number} A random real number between -1 and 1.
     */
-    normal: function () {
+    normal: function ()
+    {
 
         return 1 - 2 * this.frac();
 
@@ -242,12 +254,13 @@ Phaser.RandomDataGenerator.prototype = {
     * @method Phaser.RandomDataGenerator#uuid
     * @return {string} A valid RFC4122 version4 ID hex string
     */
-    uuid: function () {
+    uuid: function ()
+    {
 
         var a = '';
         var b = '';
 
-        for (b = a = ''; a++ < 36; b +=~a % 5 | a * 3&4 ? (a^15 ? 8^this.frac() * (a^20 ? 16 : 4) : 4).toString(16) : '-')
+        for (b = a = ''; a++ < 36; b += ~a % 5 | a * 3 & 4 ? (a ^ 15 ? 8 ^ this.frac() * (a ^ 20 ? 16 : 4) : 4).toString(16) : '-')
         {
         }
 
@@ -262,7 +275,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @param {Array} ary - An Array to pick a random member of.
     * @return {any} A random member of the array.
     */
-    pick: function (ary) {
+    pick: function (ary)
+    {
 
         return ary[this.integerInRange(0, ary.length - 1)];
 
@@ -274,9 +288,10 @@ Phaser.RandomDataGenerator.prototype = {
     * @method Phaser.RandomDataGenerator#sign
     * @return {number} -1 or +1.
     */
-    sign: function () {
+    sign: function ()
+    {
 
-        return this.pick([-1, 1]);
+        return this.pick([ -1, 1 ]);
 
     },
 
@@ -287,7 +302,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @param {Array} ary - An Array to pick a random member of.
     * @return {any} A random member of the array.
     */
-    weightedPick: function (ary) {
+    weightedPick: function (ary)
+    {
 
         return ary[~~(Math.pow(this.frac(), 2) * (ary.length - 1) + 0.5)];
 
@@ -301,7 +317,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @param {number} max - The maximum value in the range.
     * @return {number} A random timestamp between min and max.
     */
-    timestamp: function (min, max) {
+    timestamp: function (min, max)
+    {
 
         return this.realInRange(min || 946684800000, max || 1577862000000);
 
@@ -313,7 +330,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @method Phaser.RandomDataGenerator#angle
     * @return {number} A random number between -180 and 180.
     */
-    angle: function() {
+    angle: function ()
+    {
 
         return this.integerInRange(-180, 180);
 
@@ -336,7 +354,8 @@ Phaser.RandomDataGenerator.prototype = {
     * @param {string} [state] - Generator state to be set.
     * @return {string} The current state of the generator.
     */
-    state: function (state) {
+    state: function (state)
+    {
 
         if (typeof state === 'string' && state.match(/^!rnd/))
         {
@@ -348,7 +367,7 @@ Phaser.RandomDataGenerator.prototype = {
             this.s2 = parseFloat(state[4]);
         }
 
-        return ['!rnd', this.c, this.s0, this.s1, this.s2].join(',');
+        return [ '!rnd', this.c, this.s0, this.s1, this.s2 ].join(',');
 
     }
 

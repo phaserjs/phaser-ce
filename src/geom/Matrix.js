@@ -23,7 +23,8 @@
 * @param {number} [tx=0] - Horizontal translation
 * @param {number} [ty=0] - Vertical translation
 */
-Phaser.Matrix = function (a, b, c, d, tx, ty) {
+Phaser.Matrix = function (a, b, c, d, tx, ty)
+{
 
     if (a === undefined || a === null) { a = 1; }
     if (b === undefined || b === null) { b = 0; }
@@ -94,7 +95,8 @@ Phaser.Matrix.prototype = {
     * @param {Array} array - The array to copy from.
     * @return {Phaser.Matrix} This Matrix object.
     */
-    fromArray: function (array) {
+    fromArray: function (array)
+    {
 
         return this.setTo(array[0], array[1], array[3], array[4], array[2], array[5]);
 
@@ -112,7 +114,8 @@ Phaser.Matrix.prototype = {
     * @param {number} ty - Vertical translation
     * @return {Phaser.Matrix} This Matrix object.
     */
-    setTo: function (a, b, c, d, tx, ty) {
+    setTo: function (a, b, c, d, tx, ty)
+    {
 
         this.a = a;
         this.b = b;
@@ -134,7 +137,8 @@ Phaser.Matrix.prototype = {
      * @param {Phaser.Matrix} [output] - If provided the values of this Matrix will be copied to it, otherwise a new Matrix object is created.
      * @return {Phaser.Matrix} A clone of this Matrix.
      */
-    clone: function (output) {
+    clone: function (output)
+    {
 
         if (output === undefined || output === null)
         {
@@ -161,7 +165,8 @@ Phaser.Matrix.prototype = {
     * @param {Phaser.Matrix} matrix - The Matrix to copy from.
     * @return {Phaser.Matrix} The destination Matrix object.
     */
-    copyTo: function (matrix) {
+    copyTo: function (matrix)
+    {
 
         matrix.copyFrom(this);
 
@@ -176,7 +181,8 @@ Phaser.Matrix.prototype = {
     * @param {Phaser.Matrix} matrix - The Matrix to copy from.
     * @return {Phaser.Matrix} This Matrix object.
     */
-    copyFrom: function (matrix) {
+    copyFrom: function (matrix)
+    {
 
         this.a = matrix.a;
         this.b = matrix.b;
@@ -197,7 +203,8 @@ Phaser.Matrix.prototype = {
     * @param {Float32Array} [array] - If provided the values will be set into this array, otherwise a new Float32Array is created.
     * @return {Float32Array} The newly created array which contains the matrix.
     */
-    toArray: function (transpose, array) {
+    toArray: function (transpose, array)
+    {
 
         if (array === undefined) { array = new Float32Array(9); }
 
@@ -240,7 +247,8 @@ Phaser.Matrix.prototype = {
     * @param {Phaser.Point} [newPos] - The point that the new position is assigned to. This can be same as input point.
     * @return {Phaser.Point} The new point, transformed through this matrix.
     */
-    apply: function (pos, newPos) {
+    apply: function (pos, newPos)
+    {
 
         if (newPos === undefined) { newPos = new Phaser.Point(); }
 
@@ -261,7 +269,8 @@ Phaser.Matrix.prototype = {
     * @param {Phaser.Point} [newPos] - The point that the new position is assigned to. This can be same as input point.
     * @return {Phaser.Point} The new point, inverse transformed through this matrix.
     */
-    applyInverse: function (pos, newPos) {
+    applyInverse: function (pos, newPos)
+    {
 
         if (newPos === undefined) { newPos = new Phaser.Point(); }
 
@@ -285,7 +294,8 @@ Phaser.Matrix.prototype = {
     * @param {number} y - The y value to translate on.
     * @return {Phaser.Matrix} This Matrix object.
     */
-    translate: function (x, y) {
+    translate: function (x, y)
+    {
 
         this.tx += x;
         this.ty += y;
@@ -302,7 +312,8 @@ Phaser.Matrix.prototype = {
     * @param {number} y - The amount to scale vertically.
     * @return {Phaser.Matrix} This Matrix object.
     */
-    scale: function (x, y) {
+    scale: function (x, y)
+    {
 
         this.a *= x;
         this.d *= y;
@@ -322,7 +333,8 @@ Phaser.Matrix.prototype = {
     * @param {number} angle - The angle to rotate by, given in radians.
     * @return {Phaser.Matrix} This Matrix object.
     */
-    rotate: function (angle) {
+    rotate: function (angle)
+    {
 
         var cos = Math.cos(angle);
         var sin = Math.sin(angle);
@@ -331,10 +343,10 @@ Phaser.Matrix.prototype = {
         var c1 = this.c;
         var tx1 = this.tx;
 
-        this.a = a1 * cos-this.b * sin;
-        this.b = a1 * sin+this.b * cos;
-        this.c = c1 * cos-this.d * sin;
-        this.d = c1 * sin+this.d * cos;
+        this.a = a1 * cos - this.b * sin;
+        this.b = a1 * sin + this.b * cos;
+        this.c = c1 * cos - this.d * sin;
+        this.d = c1 * sin + this.d * cos;
         this.tx = tx1 * cos - this.ty * sin;
         this.ty = tx1 * sin + this.ty * cos;
 
@@ -349,17 +361,18 @@ Phaser.Matrix.prototype = {
     * @param {Phaser.Matrix} matrix - The matrix to append to this one.
     * @return {Phaser.Matrix} This Matrix object.
     */
-    append: function (matrix) {
+    append: function (matrix)
+    {
 
         var a1 = this.a;
         var b1 = this.b;
         var c1 = this.c;
         var d1 = this.d;
 
-        this.a  = matrix.a * a1 + matrix.b * c1;
-        this.b  = matrix.a * b1 + matrix.b * d1;
-        this.c  = matrix.c * a1 + matrix.d * c1;
-        this.d  = matrix.c * b1 + matrix.d * d1;
+        this.a = matrix.a * a1 + matrix.b * c1;
+        this.b = matrix.a * b1 + matrix.b * d1;
+        this.c = matrix.c * a1 + matrix.d * c1;
+        this.d = matrix.c * b1 + matrix.d * d1;
 
         this.tx = matrix.tx * a1 + matrix.ty * c1 + this.tx;
         this.ty = matrix.tx * b1 + matrix.ty * d1 + this.ty;
@@ -374,7 +387,8 @@ Phaser.Matrix.prototype = {
     * @method Phaser.Matrix#identity
     * @return {Phaser.Matrix} This Matrix object.
     */
-    identity: function () {
+    identity: function ()
+    {
 
         return this.setTo(1, 0, 0, 1, 0, 0);
 

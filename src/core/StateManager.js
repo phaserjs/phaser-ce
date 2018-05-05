@@ -14,7 +14,8 @@
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {Phaser.State|Object} [pendingState=null] - A State object to seed the manager with.
 */
-Phaser.StateManager = function (game, pendingState) {
+Phaser.StateManager = function (game, pendingState)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running game.
@@ -168,7 +169,8 @@ Phaser.StateManager.prototype = {
     * @method Phaser.StateManager#boot
     * @private
     */
-    boot: function () {
+    boot: function ()
+    {
 
         this.game.onPause.add(this.pause, this);
         this.game.onResume.add(this.resume, this);
@@ -197,7 +199,8 @@ Phaser.StateManager.prototype = {
     * @param {Phaser.State|object|function} state  - The state you want to switch to.
     * @param {boolean} [autoStart=false]  - If true the State will be started immediately after adding it.
     */
-    add: function (key, state, autoStart) {
+    add: function (key, state, autoStart)
+    {
 
         if (autoStart === undefined) { autoStart = false; }
 
@@ -240,7 +243,8 @@ Phaser.StateManager.prototype = {
     * @method Phaser.StateManager#remove
     * @param {string} key - A unique key you use to reference this state, i.e. "MainMenu", "Level1".
     */
-    remove: function (key) {
+    remove: function (key)
+    {
 
         if (this.current === key)
         {
@@ -275,7 +279,8 @@ Phaser.StateManager.prototype = {
     * @param {boolean} [clearCache=false] - Clear the Game.Cache? This purges out all loaded assets. The default is false and you must have clearWorld=true if you want to clearCache as well.
     * @param {...*} parameter - Additional parameters that will be passed to the State.init function (if it has one).
     */
-    start: function (key, clearWorld, clearCache) {
+    start: function (key, clearWorld, clearCache)
+    {
 
         if (clearWorld === undefined) { clearWorld = true; }
         if (clearCache === undefined) { clearCache = false; }
@@ -303,7 +308,8 @@ Phaser.StateManager.prototype = {
     * @param {boolean} [clearCache=false] - Clear the Game.Cache? This purges out all loaded assets. The default is false and you must have clearWorld=true if you want to clearCache as well.
     * @param {...*} parameter - Additional parameters that will be passed to the State.init function if it has one.
     */
-    restart: function (clearWorld, clearCache) {
+    restart: function (clearWorld, clearCache)
+    {
 
         if (clearWorld === undefined) { clearWorld = true; }
         if (clearCache === undefined) { clearCache = false; }
@@ -325,7 +331,8 @@ Phaser.StateManager.prototype = {
     * @method Phaser.StateManager#dummy
     * @private
     */
-    dummy: function () {
+    dummy: function ()
+    {
     },
 
     /**
@@ -333,7 +340,8 @@ Phaser.StateManager.prototype = {
     *
     * @method Phaser.StateManager#preUpdate
     */
-    preUpdate: function () {
+    preUpdate: function ()
+    {
 
         if (this._pendingState && this.game.isBooted)
         {
@@ -388,7 +396,8 @@ Phaser.StateManager.prototype = {
     *
     * @method Phaser.StateManager#clearCurrentState
     */
-    clearCurrentState: function () {
+    clearCurrentState: function ()
+    {
 
         if (this.current)
         {
@@ -434,7 +443,8 @@ Phaser.StateManager.prototype = {
     * @param {string} key - The key of the state you want to check.
     * @return {boolean} true if the State has the required functions, otherwise false.
     */
-    checkState: function (key) {
+    checkState: function (key)
+    {
 
         var state = this.states[key];
 
@@ -446,13 +456,13 @@ Phaser.StateManager.prototype = {
             }
             else
             {
-                console.warn("Invalid Phaser State object given. Must contain at least one of the required functions: preload, create, update or render");
+                console.warn('Invalid Phaser State object given. Must contain at least one of the required functions: preload, create, update or render');
                 return false;
             }
         }
         else
         {
-            console.warn("Phaser.StateManager - No state found with the key: " + key);
+            console.warn('Phaser.StateManager - No state found with the key: ' + key);
             return false;
         }
 
@@ -465,7 +475,8 @@ Phaser.StateManager.prototype = {
     * @param {string} key - State key.
     * @protected
     */
-    link: function (key) {
+    link: function (key)
+    {
 
         var state = this.states[key];
 
@@ -498,7 +509,8 @@ Phaser.StateManager.prototype = {
     * @param {string} key - State key.
     * @protected
     */
-    unlink: function (key) {
+    unlink: function (key)
+    {
 
         var state = this.states[key];
 
@@ -533,7 +545,8 @@ Phaser.StateManager.prototype = {
     * @param {string} key - State key.
     * @private
     */
-    setCurrentState: function (key) {
+    setCurrentState: function (key)
+    {
 
         var state = this.states[key];
 
@@ -588,7 +601,8 @@ Phaser.StateManager.prototype = {
      * @return {Phaser.State}
      * @public
      */
-    getCurrentState: function() {
+    getCurrentState: function ()
+    {
         return this.states[this.current];
     },
 
@@ -597,7 +611,8 @@ Phaser.StateManager.prototype = {
     * @protected
     * @see Phaser.StateManager#preUpdate
     */
-    loadComplete: function () {
+    loadComplete: function ()
+    {
 
         if (this._created === false && this.onCreateCallback)
         {
@@ -616,7 +631,8 @@ Phaser.StateManager.prototype = {
     * @protected
     * @see Phaser.Loader#finishedLoading
     */
-    loadUpdate: function () {
+    loadUpdate: function ()
+    {
 
         if (this._created === false && this.onLoadUpdateCallback)
         {
@@ -629,7 +645,8 @@ Phaser.StateManager.prototype = {
     * @method Phaser.StateManager#pause
     * @protected
     */
-    pause: function () {
+    pause: function ()
+    {
 
         if (this._created && this.onPausedCallback)
         {
@@ -642,7 +659,8 @@ Phaser.StateManager.prototype = {
     * @method Phaser.StateManager#resume
     * @protected
     */
-    resume: function () {
+    resume: function ()
+    {
 
         if (this._created && this.onResumedCallback)
         {
@@ -655,7 +673,8 @@ Phaser.StateManager.prototype = {
     * @method Phaser.StateManager#update
     * @protected
     */
-    update: function () {
+    update: function ()
+    {
 
         if (this._created)
         {
@@ -665,11 +684,9 @@ Phaser.StateManager.prototype = {
             }
         }
         else
+        if (this.onLoadUpdateCallback)
         {
-            if (this.onLoadUpdateCallback)
-            {
-                this.onLoadUpdateCallback.call(this.callbackContext, this.game);
-            }
+            this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
 
     },
@@ -678,7 +695,8 @@ Phaser.StateManager.prototype = {
     * @method Phaser.StateManager#pauseUpdate
     * @protected
     */
-    pauseUpdate: function () {
+    pauseUpdate: function ()
+    {
 
         if (this._created)
         {
@@ -688,11 +706,9 @@ Phaser.StateManager.prototype = {
             }
         }
         else
+        if (this.onLoadUpdateCallback)
         {
-            if (this.onLoadUpdateCallback)
-            {
-                this.onLoadUpdateCallback.call(this.callbackContext, this.game);
-            }
+            this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
 
     },
@@ -702,7 +718,8 @@ Phaser.StateManager.prototype = {
     * @protected
     * @param {number} elapsedTime - The time elapsed since the last update.
     */
-    preRender: function (elapsedTime) {
+    preRender: function (elapsedTime)
+    {
 
         if (this._created && this.onPreRenderCallback)
         {
@@ -715,7 +732,8 @@ Phaser.StateManager.prototype = {
     * @method Phaser.StateManager#resize
     * @protected
     */
-    resize: function (width, height) {
+    resize: function (width, height)
+    {
 
         if (this.onResizeCallback)
         {
@@ -728,7 +746,8 @@ Phaser.StateManager.prototype = {
     * @method Phaser.StateManager#render
     * @protected
     */
-    render: function () {
+    render: function ()
+    {
 
         if (this._created)
         {
@@ -748,11 +767,9 @@ Phaser.StateManager.prototype = {
             }
         }
         else
+        if (this.onLoadRenderCallback)
         {
-            if (this.onLoadRenderCallback)
-            {
-                this.onLoadRenderCallback.call(this.callbackContext, this.game);
-            }
+            this.onLoadRenderCallback.call(this.callbackContext, this.game);
         }
 
     },
@@ -762,7 +779,8 @@ Phaser.StateManager.prototype = {
     * You don't recover from this without rebuilding the Phaser instance again.
     * @method Phaser.StateManager#destroy
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this._clearWorld = true;
         this._clearCache = true;
@@ -800,9 +818,10 @@ Phaser.StateManager.prototype.constructor = Phaser.StateManager;
 * @property {boolean} created - True if the current state has had its `create` method run (if it has one, if not this is true by default).
 * @readOnly
 */
-Object.defineProperty(Phaser.StateManager.prototype, "created", {
+Object.defineProperty(Phaser.StateManager.prototype, 'created', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._created;
 

@@ -37,7 +37,8 @@ Phaser.TilemapParser = {
     * @param {number} [height=10] - The height of the map in tiles. If this map is created from Tiled or CSV data you don't need to specify this.
     * @return {object} The parsed map object.
     */
-    parse: function (game, key, tileWidth, tileHeight, width, height) {
+    parse: function (game, key, tileWidth, tileHeight, width, height)
+    {
 
         if (tileWidth === undefined) { tileWidth = 32; }
         if (tileHeight === undefined) { tileHeight = 32; }
@@ -84,7 +85,8 @@ Phaser.TilemapParser = {
     * @param {number} [tileHeight=32] - The pixel height of a single map tile. If using CSV data you must specify this. Not required if using Tiled map data.
     * @return {object} Generated map data.
     */
-    parseCSV: function (key, data, tileWidth, tileHeight) {
+    parseCSV: function (key, data, tileWidth, tileHeight)
+    {
 
         var map = this.getEmptyData();
 
@@ -92,7 +94,7 @@ Phaser.TilemapParser = {
         data = data.trim();
 
         var output = [];
-        var rows = data.split("\n");
+        var rows = data.split('\n');
         var height = rows.length;
         var width = 0;
 
@@ -100,7 +102,7 @@ Phaser.TilemapParser = {
         {
             output[y] = [];
 
-            var column = rows[y].split(",");
+            var column = rows[y].split(',');
 
             for (var x = 0; x < column.length; x++)
             {
@@ -138,7 +140,8 @@ Phaser.TilemapParser = {
     * @method Phaser.TilemapParser.getEmptyData
     * @return {object} Generated map data.
     */
-    getEmptyData: function (tileWidth, tileHeight, width, height) {
+    getEmptyData: function (tileWidth, tileHeight, width, height)
+    {
 
         return {
             width: (width !== undefined && width !== null) ? width : 0,
@@ -177,7 +180,8 @@ Phaser.TilemapParser = {
 
     },
 
-    _slice: function(obj, fields) {
+    _slice: function (obj, fields)
+    {
         var sliced = {};
 
         for (var k in fields)
@@ -203,7 +207,8 @@ Phaser.TilemapParser = {
     * @param {object} [relativePosition={x: 0, y: 0}] - Coordinates the object group's position is relative to.
     * @return {object} A object literal containing the objectsCollection and collisionCollection
     */
-    parseObjectGroup: function(objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition) {
+    parseObjectGroup: function (objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition)
+    {
 
         var nameKey = nameKey || objectGroup.name;
         var relativePosition = relativePosition || {x: 0, y: 0};
@@ -271,16 +276,17 @@ Phaser.TilemapParser = {
                 //  Parse the polyline into an array
                 for (var p = 0; p < o.polyline.length; p++)
                 {
-                    object.polyline.push([o.polyline[p].x, o.polyline[p].y]);
+                    object.polyline.push([ o.polyline[p].x, o.polyline[p].y ]);
                 }
 
                 collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
             }
+
             // polygon
             else if (o.polygon)
             {
-                var object = slice(o, ['name', 'type', 'x', 'y', 'visible', 'rotation', 'properties']);
+                var object = slice(o, [ 'name', 'type', 'x', 'y', 'visible', 'rotation', 'properties' ]);
 
                 object.x += relativePosition.x;
                 object.y += relativePosition.y;
@@ -290,26 +296,28 @@ Phaser.TilemapParser = {
 
                 for (var p = 0; p < o.polygon.length; p++)
                 {
-                    object.polygon.push([o.polygon[p].x, o.polygon[p].y]);
+                    object.polygon.push([ o.polygon[p].x, o.polygon[p].y ]);
                 }
 
                 collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
             }
+
             // ellipse
             else if (o.ellipse)
             {
-                var object = slice(o, ['name', 'type', 'ellipse', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
+                var object = slice(o, [ 'name', 'type', 'ellipse', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties' ]);
                 object.x += relativePosition.x;
                 object.y += relativePosition.y;
 
                 collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
             }
+
             // otherwise it's a rectangle
             else
             {
-                var object = slice(o, ['name', 'type', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties']);
+                var object = slice(o, [ 'name', 'type', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties' ]);
                 object.x += relativePosition.x;
                 object.y += relativePosition.y;
 
@@ -331,7 +339,8 @@ Phaser.TilemapParser = {
     * @param {object} json - The JSON map data.
     * @return {object} Generated and parsed map data.
     */
-    parseTiledJSON: function (json) {
+    parseTiledJSON: function (json)
+    {
 
         if (json.orientation !== 'orthogonal')
         {
@@ -376,7 +385,7 @@ Phaser.TilemapParser = {
 
                 // Interpret binaryString as an array of bytes representing
                 // little-endian encoded uint32 values.
-                for (var j = 0; j < len; j+=4)
+                for (var j = 0; j < len; j += 4)
                 {
                     bytes[j / 4] = (
                         binaryString.charCodeAt(j) |
@@ -516,15 +525,13 @@ Phaser.TilemapParser = {
                     row.push(tile);
                 }
                 else
+                if (Phaser.TilemapParser.INSERT_NULL)
                 {
-                    if (Phaser.TilemapParser.INSERT_NULL)
-                    {
-                        row.push(null);
-                    }
-                    else
-                    {
-                        row.push(new Phaser.Tile(layer, -1, x, output.length, json.tilewidth, json.tileheight));
-                    }
+                    row.push(null);
+                }
+                else
+                {
+                    row.push(new Phaser.Tile(layer, -1, x, output.length, json.tilewidth, json.tileheight));
                 }
 
                 x++;
@@ -692,7 +699,7 @@ Phaser.TilemapParser = {
             for (var t = set.firstgid; t < set.firstgid + set.total; t++)
             {
                 //  Can add extra properties here as needed
-                map.tiles[t] = [x, y, i];
+                map.tiles[t] = [ x, y, i ];
 
                 x += set.tileWidth + set.tileSpacing;
 

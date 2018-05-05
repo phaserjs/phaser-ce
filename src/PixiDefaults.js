@@ -30,6 +30,7 @@ if (PIXI.DisplayObject._tempMatrix === undefined)
 PIXI.TextureSilentFail = true;
 
 // Required by Particle Storm
-PIXI.canUseNewCanvasBlendModes = function () {
+PIXI.canUseNewCanvasBlendModes = function ()
+{
     return Phaser.Device.canUseMultiply;
 };

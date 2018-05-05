@@ -18,7 +18,8 @@ Phaser.Utils = {
     * @param {string} string - The string to be reversed.
     * @return {string} The reversed string.
     */
-    reverseString: function (string) {
+    reverseString: function (string)
+    {
 
         return string.split('').reverse().join('');
 
@@ -32,7 +33,8 @@ Phaser.Utils = {
     * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
     * @return {any} - The value of the property or `undefined` if the property isn't found.
     */
-    getProperty: function(obj, name) {
+    getProperty: function (obj, name)
+    {
 
         var parts = name.split('.');
 
@@ -68,7 +70,8 @@ Phaser.Utils = {
      * @param  {object} props - The property names and values to set on the object (see {@link #setProperty}).
      * @return {object} The modified object.
      */
-    setProperties: function(obj, props) {
+    setProperties: function (obj, props)
+    {
 
         for (var name in props)
         {
@@ -93,7 +96,8 @@ Phaser.Utils = {
      * @return {object} The modified object.
      */
 
-    setProperty: function(obj, name, value) {
+    setProperty: function (obj, name, value)
+    {
 
         var parts = name.split('.');
 
@@ -125,7 +129,8 @@ Phaser.Utils = {
      * @param {string} name - The property whose value will be returned.
      * @return {any} - The value of the property or `undefined` if the property isn't found.
      */
-    _getProperty: function(obj, name) {
+    _getProperty: function (obj, name)
+    {
 
         var parts = name.split('.'),
             len = parts.length,
@@ -161,7 +166,8 @@ Phaser.Utils = {
      * @param {any} value - The value.
      * @return {object} The modified object.
      */
-    _setProperty: function(obj, name, value) {
+    _setProperty: function (obj, name, value)
+    {
 
         var parts = name.split('.'),
             len = parts.length,
@@ -199,7 +205,8 @@ Phaser.Utils = {
     * @param {number} chance - The chance of receiving the value. A number between 0 and 100 (effectively 0% to 100%).
     * @return {boolean} True if the roll passed, or false otherwise.
     */
-    chanceRoll: function (chance) {
+    chanceRoll: function (chance)
+    {
         if (chance === undefined) { chance = 50; }
         return chance > 0 && (Math.random() * 100 <= chance);
     },
@@ -212,7 +219,8 @@ Phaser.Utils = {
     * @param {any} choice2
     * @return {any} The randomly selected choice
     */
-    randomChoice: function (choice1, choice2) {
+    randomChoice: function (choice1, choice2)
+    {
         return (Math.random() < 0.5) ? choice1 : choice2;
     },
 
@@ -224,7 +232,8 @@ Phaser.Utils = {
     * @param {number} dimension - The window dimension to check.
     * @return {number} The parsed dimension.
     */
-    parseDimension: function (size, dimension) {
+    parseDimension: function (size, dimension)
+    {
 
         var f = 0;
         var px = 0;
@@ -286,7 +295,8 @@ Phaser.Utils = {
     * @param {integer} [dir=3] - The direction dir = 1 (left), 2 (right), 3 (both).
     * @return {string} The padded string.
     */
-    pad: function (str, len, pad, dir) {
+    pad: function (str, len, pad, dir)
+    {
 
         if (len === undefined) { var len = 0; }
         if (pad === undefined) { var pad = ' '; }
@@ -307,7 +317,7 @@ Phaser.Utils = {
                 case 3:
                     var right = Math.ceil((padlen = len - str.length) / 2);
                     var left = padlen - right;
-                    str = new Array(left+1).join(pad) + str + new Array(right+1).join(pad);
+                    str = new Array(left + 1).join(pad) + str + new Array(right + 1).join(pad);
                     break;
 
                 default:
@@ -327,13 +337,14 @@ Phaser.Utils = {
     * @param {object} obj - The object to inspect.
     * @return {boolean} - true if the object is plain, otherwise false.
     */
-    isPlainObject: function (obj) {
+    isPlainObject: function (obj)
+    {
 
         // Not plain objects:
         // - Any object or value whose internal [[Class]] property is not "[object Object]"
         // - DOM nodes
         // - window
-        if (typeof(obj) !== "object" || obj.nodeType || obj === obj.window)
+        if (typeof(obj) !== 'object' || obj.nodeType || obj === obj.window)
         {
             return false;
         }
@@ -342,12 +353,15 @@ Phaser.Utils = {
         // The try/catch suppresses exceptions thrown when attempting to access
         // the "constructor" property of certain host objects, ie. |window.location|
         // https://bugzilla.mozilla.org/show_bug.cgi?id=814622
-        try {
-            if (obj.constructor && !({}).hasOwnProperty.call(obj.constructor.prototype, "isPrototypeOf"))
+        try
+        {
+            if (obj.constructor && !({}).hasOwnProperty.call(obj.constructor.prototype, 'isPrototypeOf'))
             {
                 return false;
             }
-        } catch (e) {
+        }
+        catch (e)
+        {
             return false;
         }
 
@@ -364,7 +378,8 @@ Phaser.Utils = {
     * @param {object} target - The target object to copy to.
     * @return {object} The extended object.
     */
-    extend: function () {
+    extend: function ()
+    {
 
         var options, name, src, copy, copyIsArray, clone,
             target = arguments[0] || {},
@@ -373,10 +388,11 @@ Phaser.Utils = {
             deep = false;
 
         // Handle a deep copy situation
-        if (typeof target === "boolean")
+        if (typeof target === 'boolean')
         {
             deep = target;
             target = arguments[1] || {};
+
             // skip the boolean and the target
             i = 2;
         }
@@ -448,7 +464,8 @@ Phaser.Utils = {
     * @param {object} mixin - The object to copy the functions from.
     * @param {boolean} [replace=false] - If the target object already has a matching function should it be overwritten or not?
     */
-    mixinPrototype: function (target, mixin, replace) {
+    mixinPrototype: function (target, mixin, replace)
+    {
 
         if (replace === undefined) { replace = false; }
 
@@ -465,24 +482,22 @@ Phaser.Utils = {
                 continue;
             }
             else
-            {
-                if (value &&
+            if (value &&
                     (typeof value.get === 'function' || typeof value.set === 'function'))
+            {
+                //  Special case for classes like Phaser.Point which has a 'set' function!
+                if (typeof value.clone === 'function')
                 {
-                    //  Special case for classes like Phaser.Point which has a 'set' function!
-                    if (typeof value.clone === 'function')
-                    {
-                        target[key] = value.clone();
-                    }
-                    else
-                    {
-                        Object.defineProperty(target, key, value);
-                    }
+                    target[key] = value.clone();
                 }
                 else
                 {
-                    target[key] = value;
+                    Object.defineProperty(target, key, value);
                 }
+            }
+            else
+            {
+                target[key] = value;
             }
         }
 
@@ -497,9 +512,10 @@ Phaser.Utils = {
     * @param {object} to - The object to copy to (the destination object).
     * @return {object} The modified destination object.
     */
-    mixin: function (from, to) {
+    mixin: function (from, to)
+    {
 
-        if (!from || typeof (from) !== "object")
+        if (!from || typeof (from) !== 'object')
         {
             return to;
         }
@@ -515,7 +531,7 @@ Phaser.Utils = {
 
             var type = typeof (from[key]);
 
-            if (!from[key] || type !== "object")
+            if (!from[key] || type !== 'object')
             {
                 to[key] = from[key];
             }

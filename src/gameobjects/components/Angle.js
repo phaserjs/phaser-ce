@@ -28,13 +28,15 @@ Phaser.Component.Angle.prototype = {
     */
     angle: {
 
-        get: function() {
+        get: function ()
+        {
 
             return Phaser.Math.wrapAngle(Phaser.Math.radToDeg(this.rotation));
 
         },
 
-        set: function(value) {
+        set: function (value)
+        {
 
             this.rotation = Phaser.Math.degToRad(Phaser.Math.wrapAngle(value));
 

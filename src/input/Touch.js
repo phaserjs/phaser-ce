@@ -13,7 +13,8 @@
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 */
-Phaser.Touch = function (game) {
+Phaser.Touch = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running game.
@@ -124,7 +125,8 @@ Phaser.Touch.prototype = {
     * Starts the event listeners running.
     * @method Phaser.Touch#start
     */
-    start: function () {
+    start: function ()
+    {
 
         if (this._onTouchStart !== null)
         {
@@ -136,27 +138,33 @@ Phaser.Touch.prototype = {
 
         if (this.game.device.touch)
         {
-            this._onTouchStart = function (event) {
+            this._onTouchStart = function (event)
+            {
                 return _this.onTouchStart(event);
             };
 
-            this._onTouchMove = function (event) {
+            this._onTouchMove = function (event)
+            {
                 return _this.onTouchMove(event);
             };
 
-            this._onTouchEnd = function (event) {
+            this._onTouchEnd = function (event)
+            {
                 return _this.onTouchEnd(event);
             };
 
-            this._onTouchEnter = function (event) {
+            this._onTouchEnter = function (event)
+            {
                 return _this.onTouchEnter(event);
             };
 
-            this._onTouchLeave = function (event) {
+            this._onTouchLeave = function (event)
+            {
                 return _this.onTouchLeave(event);
             };
 
-            this._onTouchCancel = function (event) {
+            this._onTouchCancel = function (event)
+            {
                 return _this.onTouchCancel(event);
             };
 
@@ -178,9 +186,11 @@ Phaser.Touch.prototype = {
     * Consumes all touchmove events on the document (only enable this if you know you need it!).
     * @method Phaser.Touch#consumeTouchMove
     */
-    consumeDocumentTouches: function () {
+    consumeDocumentTouches: function ()
+    {
 
-        this._documentTouchMove = function (event) {
+        this._documentTouchMove = function (event)
+        {
             event.preventDefault();
         };
 
@@ -193,7 +203,8 @@ Phaser.Touch.prototype = {
     * @method Phaser.Touch#onTouchStart
     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
     */
-    onTouchStart: function (event) {
+    onTouchStart: function (event)
+    {
 
         this.game.input.executeTouchLockCallbacks(false, event);
 
@@ -230,7 +241,8 @@ Phaser.Touch.prototype = {
     * @method Phaser.Touch#onTouchCancel
     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
     */
-    onTouchCancel: function (event) {
+    onTouchCancel: function (event)
+    {
 
         this.event = event;
 
@@ -264,7 +276,8 @@ Phaser.Touch.prototype = {
     * @method Phaser.Touch#onTouchEnter
     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
     */
-    onTouchEnter: function (event) {
+    onTouchEnter: function (event)
+    {
 
         this.event = event;
 
@@ -291,7 +304,8 @@ Phaser.Touch.prototype = {
     * @method Phaser.Touch#onTouchLeave
     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
     */
-    onTouchLeave: function (event) {
+    onTouchLeave: function (event)
+    {
 
         this.event = event;
 
@@ -312,7 +326,8 @@ Phaser.Touch.prototype = {
     * @method Phaser.Touch#onTouchMove
     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
     */
-    onTouchMove: function (event) {
+    onTouchMove: function (event)
+    {
 
         this.event = event;
 
@@ -338,7 +353,8 @@ Phaser.Touch.prototype = {
     * @method Phaser.Touch#onTouchEnd
     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
     */
-    onTouchEnd: function (event) {
+    onTouchEnd: function (event)
+    {
 
         this.game.input.executeTouchLockCallbacks(true, event);
 
@@ -368,7 +384,8 @@ Phaser.Touch.prototype = {
     * Stop the event listeners.
     * @method Phaser.Touch#stop
     */
-    stop: function () {
+    stop: function ()
+    {
 
         if (this.game.device.touch)
         {

@@ -24,13 +24,15 @@ Phaser.Component.Smoothed.prototype = {
     */
     smoothed: {
 
-        get: function () {
+        get: function ()
+        {
 
             return !this.texture.baseTexture.scaleMode;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value)
             {
@@ -41,12 +43,10 @@ Phaser.Component.Smoothed.prototype = {
                 }
             }
             else
+            if (this.texture)
             {
-                if (this.texture)
-                {
-                    this.texture.baseTexture.scaleMode = 1;
-                    this.texture.baseTexture.dirty();
-                }
+                this.texture.baseTexture.scaleMode = 1;
+                this.texture.baseTexture.dirty();
             }
         }
 

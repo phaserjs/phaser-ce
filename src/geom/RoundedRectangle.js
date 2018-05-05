@@ -17,7 +17,7 @@
 * @param {number} [height=0] - The height of the Rectangle. Should always be either zero or a positive value.
 * @param {number} [radius=20] - Controls the radius of the rounded corners.
 */
-Phaser.RoundedRectangle = function(x, y, width, height, radius)
+Phaser.RoundedRectangle = function (x, y, width, height, radius)
 {
     if (x === undefined) { x = 0; }
     if (y === undefined) { y = 0; }
@@ -66,7 +66,8 @@ Phaser.RoundedRectangle.prototype = {
     * @method Phaser.RoundedRectangle#clone
     * @return {Phaser.RoundedRectangle}
     */
-    clone: function () {
+    clone: function ()
+    {
 
         return new Phaser.RoundedRectangle(this.x, this.y, this.width, this.height, this.radius);
 
@@ -80,7 +81,8 @@ Phaser.RoundedRectangle.prototype = {
     * @param {number} y - The y coordinate of the point to test.
     * @return {boolean} A value of true if the RoundedRectangle Rectangle object contains the specified point; otherwise false.
     */
-    contains: function (x, y) {
+    contains: function (x, y)
+    {
 
         if (this.width <= 0 || this.height <= 0)
         {

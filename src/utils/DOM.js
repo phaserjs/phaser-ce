@@ -27,7 +27,8 @@ Phaser.DOM = {
     * @param {Phaser.Point} [point] - The point we want to take the x/y values of the offset.
     * @return {Phaser.Point} - A point objet with the offsetX and Y as its properties.
     */
-    getOffset: function (element, point) {
+    getOffset: function (element, point)
+    {
 
         point = point || new Phaser.Point();
 
@@ -58,7 +59,8 @@ Phaser.DOM = {
     * @param {number} [cushion] - A +/- pixel adjustment amount.
     * @return {Object|boolean} A plain object containing the properties `top/bottom/left/right/width/height` or `false` if a non-valid element is given.
     */
-    getBounds: function (element, cushion) {
+    getBounds: function (element, cushion)
+    {
 
         if (cushion === undefined) { cushion = 0; }
 
@@ -84,7 +86,8 @@ Phaser.DOM = {
     * @param {number} [cushion] - A value to adjust the coordinates by.
     * @return {object} The calibrated element coordinates
     */
-    calibrate: function (coords, cushion) {
+    calibrate: function (coords, cushion)
+    {
 
         cushion = +cushion || 0;
 
@@ -104,9 +107,10 @@ Phaser.DOM = {
     * @param {(DOMElement|Object)} [object=(visualViewport)] - The object to determine the aspect ratio for. Must have public `width` and `height` properties or methods.
     * @return {number} The aspect ratio.
     */
-    getAspectRatio: function (object) {
+    getAspectRatio: function (object)
+    {
 
-        object = null == object ? this.visualBounds : 1 === object.nodeType ? this.getBounds(object) : object;
+        object = object == null ? this.visualBounds : object.nodeType === 1 ? this.getBounds(object) : object;
 
         var w = object['width'];
         var h = object['height'];
@@ -138,7 +142,8 @@ Phaser.DOM = {
     * @param {number} [cushion] - The cushion allows you to specify a distance within which the element must be within the viewport.
     * @return {boolean} True if the element is within the viewport, or within `cushion` distance from it.
     */
-    inLayoutViewport: function (element, cushion) {
+    inLayoutViewport: function (element, cushion)
+    {
 
         var r = this.getBounds(element, cushion);
 
@@ -171,7 +176,8 @@ Phaser.DOM = {
     * @protected
     * @param {string} [primaryFallback=(none)] - Specify 'screen', 'viewport', or 'window.orientation'.
     */
-    getScreenOrientation: function (primaryFallback) {
+    getScreenOrientation: function (primaryFallback)
+    {
 
         var screen = window.screen;
         var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
@@ -205,11 +211,11 @@ Phaser.DOM = {
         }
         else if (window.matchMedia)
         {
-            if (window.matchMedia("(orientation: portrait)").matches)
+            if (window.matchMedia('(orientation: portrait)').matches)
             {
                 return PORTRAIT;
             }
-            else if (window.matchMedia("(orientation: landscape)").matches)
+            else if (window.matchMedia('(orientation: landscape)').matches)
             {
                 return LANDSCAPE;
             }
@@ -275,7 +281,8 @@ Phaser.DOM = {
 
 };
 
-Phaser.Device.whenReady(function (device) {
+Phaser.Device.whenReady(function (device)
+{
 
     // All target browsers should support page[XY]Offset.
     var scrollX = window && ('pageXOffset' in window) ?
@@ -294,9 +301,7 @@ Phaser.Device.whenReady(function (device) {
     * @readonly
     * @protected
     */
-    Object.defineProperty(Phaser.DOM, "scrollX", {
-        get: scrollX
-    });
+    Object.defineProperty(Phaser.DOM, 'scrollX', {get: scrollX});
 
     /**
     * A cross-browser window.scrollY.
@@ -306,25 +311,15 @@ Phaser.Device.whenReady(function (device) {
     * @readonly
     * @protected
     */
-    Object.defineProperty(Phaser.DOM, "scrollY", {
-        get: scrollY
-    });
+    Object.defineProperty(Phaser.DOM, 'scrollY', {get: scrollY});
 
-    Object.defineProperty(Phaser.DOM.visualBounds, "x", {
-        get: scrollX
-    });
+    Object.defineProperty(Phaser.DOM.visualBounds, 'x', {get: scrollX});
 
-    Object.defineProperty(Phaser.DOM.visualBounds, "y", {
-        get: scrollY
-    });
+    Object.defineProperty(Phaser.DOM.visualBounds, 'y', {get: scrollY});
 
-    Object.defineProperty(Phaser.DOM.layoutBounds, "x", {
-        value: 0
-    });
+    Object.defineProperty(Phaser.DOM.layoutBounds, 'x', {value: 0});
 
-    Object.defineProperty(Phaser.DOM.layoutBounds, "y", {
-        value: 0
-    });
+    Object.defineProperty(Phaser.DOM.layoutBounds, 'y', {value: 0});
 
     var treatAsDesktop = device.desktop &&
         (document.documentElement.clientWidth <= window.innerWidth) &&
@@ -338,47 +333,46 @@ Phaser.Device.whenReady(function (device) {
 
         // PST- When scrollbars are not included this causes upstream issues in ScaleManager.
         // So reverted to the old "include scrollbars."
-        var clientWidth = function () {
+        var clientWidth = function ()
+        {
             return Math.max(window.innerWidth, document.documentElement.clientWidth);
         };
-        var clientHeight = function () {
+        var clientHeight = function ()
+        {
             return Math.max(window.innerHeight, document.documentElement.clientHeight);
         };
 
         // Interested in area sans-scrollbar
-        Object.defineProperty(Phaser.DOM.visualBounds, "width", {
-            get: clientWidth
-        });
+        Object.defineProperty(Phaser.DOM.visualBounds, 'width', {get: clientWidth});
 
-        Object.defineProperty(Phaser.DOM.visualBounds, "height", {
-            get: clientHeight
-        });
+        Object.defineProperty(Phaser.DOM.visualBounds, 'height', {get: clientHeight});
 
-        Object.defineProperty(Phaser.DOM.layoutBounds, "width", {
-            get: clientWidth
-        });
+        Object.defineProperty(Phaser.DOM.layoutBounds, 'width', {get: clientWidth});
 
-        Object.defineProperty(Phaser.DOM.layoutBounds, "height", {
-            get: clientHeight
-        });
+        Object.defineProperty(Phaser.DOM.layoutBounds, 'height', {get: clientHeight});
 
-    } else {
+    }
+    else
+    {
 
-        Object.defineProperty(Phaser.DOM.visualBounds, "width", {
-            get: function () {
+        Object.defineProperty(Phaser.DOM.visualBounds, 'width', {
+            get: function ()
+            {
                 return window.innerWidth;
             }
         });
 
-        Object.defineProperty(Phaser.DOM.visualBounds, "height", {
-            get: function () {
+        Object.defineProperty(Phaser.DOM.visualBounds, 'height', {
+            get: function ()
+            {
                 return window.innerHeight;
             }
         });
 
-        Object.defineProperty(Phaser.DOM.layoutBounds, "width", {
+        Object.defineProperty(Phaser.DOM.layoutBounds, 'width', {
 
-            get: function () {
+            get: function ()
+            {
                 var a = document.documentElement.clientWidth;
                 var b = window.innerWidth;
 
@@ -387,9 +381,10 @@ Phaser.Device.whenReady(function (device) {
 
         });
 
-        Object.defineProperty(Phaser.DOM.layoutBounds, "height", {
+        Object.defineProperty(Phaser.DOM.layoutBounds, 'height', {
 
-            get: function () {
+            get: function ()
+            {
                 var a = document.documentElement.clientHeight;
                 var b = window.innerHeight;
 
@@ -403,26 +398,24 @@ Phaser.Device.whenReady(function (device) {
     // For Phaser.DOM.documentBounds
     // Ref. http://www.quirksmode.org/mobile/tableViewport_desktop.html
 
-    Object.defineProperty(Phaser.DOM.documentBounds, "x", {
-        value: 0
-    });
+    Object.defineProperty(Phaser.DOM.documentBounds, 'x', {value: 0});
 
-    Object.defineProperty(Phaser.DOM.documentBounds, "y", {
-        value: 0
-    });
+    Object.defineProperty(Phaser.DOM.documentBounds, 'y', {value: 0});
 
-    Object.defineProperty(Phaser.DOM.documentBounds, "width", {
+    Object.defineProperty(Phaser.DOM.documentBounds, 'width', {
 
-        get: function () {
+        get: function ()
+        {
             var d = document.documentElement;
             return Math.max(d.clientWidth, d.offsetWidth, d.scrollWidth);
         }
 
     });
 
-    Object.defineProperty(Phaser.DOM.documentBounds, "height", {
+    Object.defineProperty(Phaser.DOM.documentBounds, 'height', {
 
-        get: function () {
+        get: function ()
+        {
             var d = document.documentElement;
             return Math.max(d.clientHeight, d.offsetHeight, d.scrollHeight);
         }

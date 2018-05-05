@@ -22,7 +22,7 @@ PIXI.TextureSilentFail = false;
  * @param [crop] {Rectangle} The area of original texture
  * @param [trim] {Rectangle} Trimmed texture rectangle
  */
-PIXI.Texture = function(baseTexture, frame, crop, trim)
+PIXI.Texture = function (baseTexture, frame, crop, trim)
 {
     /**
      * Does this Texture have any frame data assigned to it?
@@ -145,7 +145,7 @@ PIXI.Texture = function(baseTexture, frame, crop, trim)
 
     if (baseTexture.hasLoaded)
     {
-        if (this.noFrame) frame = new PIXI.Rectangle(0, 0, baseTexture.width, baseTexture.height);
+        if (this.noFrame) { frame = new PIXI.Rectangle(0, 0, baseTexture.width, baseTexture.height); }
         this.setFrame(frame);
     }
 
@@ -159,7 +159,7 @@ PIXI.Texture.prototype.constructor = PIXI.Texture;
  * @method PIXI.Texture#onBaseTextureLoaded
  * @private
  */
-PIXI.Texture.prototype.onBaseTextureLoaded = function()
+PIXI.Texture.prototype.onBaseTextureLoaded = function ()
 {
     var baseTexture = this.baseTexture;
 
@@ -177,9 +177,9 @@ PIXI.Texture.prototype.onBaseTextureLoaded = function()
  * @method PIXI.Texture#destroy
  * @param destroyBase {Boolean} Whether to destroy the base texture as well
  */
-PIXI.Texture.prototype.destroy = function(destroyBase)
+PIXI.Texture.prototype.destroy = function (destroyBase)
 {
-    if (destroyBase) this.baseTexture.destroy();
+    if (destroyBase) { this.baseTexture.destroy(); }
 
     this.valid = false;
 };
@@ -190,7 +190,7 @@ PIXI.Texture.prototype.destroy = function(destroyBase)
  * @method PIXI.Texture#setFrame
  * @param frame {Rectangle} The frame of the texture to set it to
  */
-PIXI.Texture.prototype.setFrame = function(frame)
+PIXI.Texture.prototype.setFrame = function (frame)
 {
     this.noFrame = false;
 
@@ -224,7 +224,7 @@ PIXI.Texture.prototype.setFrame = function(frame)
         this.frame.height = this.trim.height;
     }
 
-    if (this.valid) this._updateUvs();
+    if (this.valid) { this._updateUvs(); }
 
 };
 
@@ -234,9 +234,9 @@ PIXI.Texture.prototype.setFrame = function(frame)
  * @method PIXI.Texture#_updateUvs
  * @private
  */
-PIXI.Texture.prototype._updateUvs = function()
+PIXI.Texture.prototype._updateUvs = function ()
 {
-    if(!this._uvs)this._uvs = new PIXI.TextureUvs();
+    if(!this._uvs) { this._uvs = new PIXI.TextureUvs(); }
 
     var frame = this.crop;
     var tw = this.baseTexture.width;
@@ -261,7 +261,8 @@ PIXI.Texture.prototype._updateUvs = function()
  * @method PIXI.Texture#_updateUvsInverted
  * @private
  */
-PIXI.Texture.prototype._updateUvsInverted = function () {
+PIXI.Texture.prototype._updateUvsInverted = function ()
+{
 
     if (!this._uvs) { this._uvs = new PIXI.TextureUvs(); }
 
@@ -292,14 +293,14 @@ PIXI.Texture.prototype._updateUvsInverted = function () {
  * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
  * @return {Texture}
  */
-PIXI.Texture.fromCanvas = function(canvas, scaleMode)
+PIXI.Texture.fromCanvas = function (canvas, scaleMode)
 {
     var baseTexture = PIXI.BaseTexture.fromCanvas(canvas, scaleMode);
 
     return new PIXI.Texture(baseTexture);
 };
 
-PIXI.TextureUvs = function()
+PIXI.TextureUvs = function ()
 {
     this.x0 = 0;
     this.y0 = 0;

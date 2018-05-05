@@ -15,7 +15,8 @@
 * @param {number} [angle=0] - The relative angle
 * @param {number} [ratio=1] - The gear ratio.
 */
-Phaser.Physics.P2.GearConstraint = function (world, bodyA, bodyB, angle, ratio) {
+Phaser.Physics.P2.GearConstraint = function (world, bodyA, bodyB, angle, ratio)
+{
 
     if (angle === undefined) { angle = 0; }
     if (ratio === undefined) { ratio = 1; }

@@ -115,7 +115,8 @@ Phaser.Signal.prototype = {
     * @param {string} fnName - Function name.
     * @private
     */
-    validateListener: function (listener, fnName) {
+    validateListener: function (listener, fnName)
+    {
 
         if (typeof listener !== 'function')
         {
@@ -133,7 +134,8 @@ Phaser.Signal.prototype = {
     * @param {number} [priority] - The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0).
     * @return {Phaser.SignalBinding} An Object representing the binding between the Signal and listener.
     */
-    _registerListener: function (listener, isOnce, listenerContext, priority, args) {
+    _registerListener: function (listener, isOnce, listenerContext, priority, args)
+    {
 
         var prevIndex = this._indexOfListener(listener, listenerContext);
         var binding;
@@ -167,7 +169,8 @@ Phaser.Signal.prototype = {
     * @private
     * @param {Phaser.SignalBinding} binding - An Object representing the binding between the Signal and listener.
     */
-    _addBinding: function (binding) {
+    _addBinding: function (binding)
+    {
 
         if (!this._bindings)
         {
@@ -177,7 +180,8 @@ Phaser.Signal.prototype = {
         //  Simplified insertion sort
         var n = this._bindings.length;
 
-        do {
+        do
+        {
             n--;
         }
         while (this._bindings[n] && binding._priority <= this._bindings[n]._priority);
@@ -193,7 +197,8 @@ Phaser.Signal.prototype = {
     * @param {object} [context=null] - Signal handler function.
     * @return {number} The index of the listener within the private bindings array.
     */
-    _indexOfListener: function (listener, context) {
+    _indexOfListener: function (listener, context)
+    {
 
         if (!this._bindings)
         {
@@ -227,7 +232,8 @@ Phaser.Signal.prototype = {
     * @param {object} [context] - Context on which listener will be executed (object that should represent the `this` variable inside listener function).
     * @return {boolean} If Signal has the specified listener.
     */
-    has: function (listener, context) {
+    has: function (listener, context)
+    {
 
         return this._indexOfListener(listener, context) !== -1;
 
@@ -259,7 +265,8 @@ Phaser.Signal.prototype = {
     * @param {...any} [args=(none)] - Additional arguments to pass to the callback (listener) function. They will be appended after any arguments usually dispatched.
     * @return {Phaser.SignalBinding} An Object representing the binding between the Signal and listener.
     */
-    add: function (listener, listenerContext, priority) {
+    add: function (listener, listenerContext, priority)
+    {
 
         this.validateListener(listener, 'add');
 
@@ -290,7 +297,8 @@ Phaser.Signal.prototype = {
     * @param {...any} [args=(none)] - Additional arguments to pass to the callback (listener) function. They will be appended after any arguments usually dispatched.
     * @return {Phaser.SignalBinding} An Object representing the binding between the Signal and listener.
     */
-    addOnce: function (listener, listenerContext, priority) {
+    addOnce: function (listener, listenerContext, priority)
+    {
 
         this.validateListener(listener, 'addOnce');
 
@@ -316,7 +324,8 @@ Phaser.Signal.prototype = {
     * @param {object} [context=null] - Execution context (since you can add the same handler multiple times if executing in a different context).
     * @return {function} Listener handler function.
     */
-    remove: function (listener, context) {
+    remove: function (listener, context)
+    {
 
         this.validateListener(listener, 'remove');
 
@@ -324,7 +333,7 @@ Phaser.Signal.prototype = {
 
         if (i !== -1)
         {
-            this._bindings[i]._destroy(); //no reason to a Phaser.SignalBinding exist if it isn't attached to a signal
+            this._bindings[i]._destroy(); // no reason to a Phaser.SignalBinding exist if it isn't attached to a signal
             this._bindings.splice(i, 1);
         }
 
@@ -338,7 +347,8 @@ Phaser.Signal.prototype = {
     * @method Phaser.Signal#removeAll
     * @param {object} [context=null] - If specified only listeners for the given context will be removed.
     */
-    removeAll: function (context) {
+    removeAll: function (context)
+    {
 
         if (context === undefined) { context = null; }
 
@@ -378,7 +388,8 @@ Phaser.Signal.prototype = {
     * @method Phaser.Signal#getNumListeners
     * @return {integer} Number of listeners attached to the Signal.
     */
-    getNumListeners: function () {
+    getNumListeners: function ()
+    {
 
         return this._bindings ? this._bindings.length : 0;
 
@@ -392,7 +403,8 @@ Phaser.Signal.prototype = {
     *
     * @method Phaser.Signal#halt
     */
-    halt: function () {
+    halt: function ()
+    {
 
         this._shouldPropagate = false;
 
@@ -406,7 +418,8 @@ Phaser.Signal.prototype = {
     * @method Phaser.Signal#dispatch
     * @param {any} [params] - Parameters that should be passed to each handler.
     */
-    dispatch: function () {
+    dispatch: function ()
+    {
 
         if (!this.active || (!this._bindings && !this.memorize))
         {
@@ -428,12 +441,13 @@ Phaser.Signal.prototype = {
             return;
         }
 
-        var bindings = this._bindings.slice(); //clone array in case add/remove items during dispatch
-        this._shouldPropagate = true; //in case `halt` was called before dispatch or during the previous dispatch.
+        var bindings = this._bindings.slice(); // clone array in case add/remove items during dispatch
+        this._shouldPropagate = true; // in case `halt` was called before dispatch or during the previous dispatch.
 
-        //execute all callbacks until end of the list or until a callback returns `false` or stops propagation
-        //reverse loop since listeners with higher priority will be added at the end of the list
-        do {
+        // execute all callbacks until end of the list or until a callback returns `false` or stops propagation
+        // reverse loop since listeners with higher priority will be added at the end of the list
+        do
+        {
             n--;
         }
         while (bindings[n] && this._shouldPropagate && bindings[n].execute(paramsArr) !== false);
@@ -445,7 +459,8 @@ Phaser.Signal.prototype = {
     *
     * @method Phaser.Signal#forget
     */
-    forget: function() {
+    forget: function ()
+    {
 
         if (this._prevParams)
         {
@@ -462,7 +477,8 @@ Phaser.Signal.prototype = {
     *
     * @method Phaser.Signal#dispose
     */
-    dispose: function () {
+    dispose: function ()
+    {
 
         this.removeAll();
 
@@ -480,9 +496,10 @@ Phaser.Signal.prototype = {
     * @method Phaser.Signal#toString
     * @return {string} String representation of the object.
     */
-    toString: function () {
+    toString: function ()
+    {
 
-        return '[Phaser.Signal active:'+ this.active +' numListeners:'+ this.getNumListeners() +']';
+        return '[Phaser.Signal active:' + this.active + ' numListeners:' + this.getNumListeners() + ']';
 
     }
 
@@ -497,11 +514,13 @@ Phaser.Signal.prototype = {
 * @memberof Phaser.Signal
 * @property {function} boundDispatch
 */
-Object.defineProperty(Phaser.Signal.prototype, "boundDispatch", {
+Object.defineProperty(Phaser.Signal.prototype, 'boundDispatch', {
 
-    get: function () {
+    get: function ()
+    {
         var _this = this;
-        return this._boundDispatch || (this._boundDispatch = function () {
+        return this._boundDispatch || (this._boundDispatch = function ()
+        {
             return _this.dispatch.apply(_this, arguments);
         });
     }

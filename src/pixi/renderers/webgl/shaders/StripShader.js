@@ -7,7 +7,7 @@
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.StripShader = function(gl)
+PIXI.StripShader = function (gl)
 {
     /**
      * @property _UID
@@ -29,15 +29,16 @@ PIXI.StripShader = function(gl)
      */
     this.program = null;
 
-    if (PIXI._enableMultiTextureToggle) {
+    if (PIXI._enableMultiTextureToggle)
+    {
         var gl = this.gl;
         this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
-        var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord);return;}\n'
+        var dynamicIfs = '\tif (vTextureIndex == 0.0) { gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord);return;}\n';
         for (var index = 1; index < this.MAX_TEXTURES; ++index)
         {
             dynamicIfs += '\tif (vTextureIndex == ' +
                         index + '.0) { gl_FragColor = texture2D(uSamplerArray[' +
-                        index + '], vTextureCoord) ;return;}\n'
+                        index + '], vTextureCoord) ;return;}\n';
         }
 
 
@@ -52,12 +53,15 @@ PIXI.StripShader = function(gl)
             'bool isnan( float val ) {  return ( val < 0.0 || 0.0 < val || val == 0.0 ) ? false : true; }',
             'varying vec2 vTextureCoord;',
             'varying float vTextureIndex;',
-         //   'varying float vColor;',
+
+            //   'varying float vColor;',
             'uniform float alpha;',
             'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
+
             // Blue color means that you are trying to bound
             // a texture out of the limits of the hardware.
             'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
+
             // If you get a red color means you are out of memory
             // or in some way corrupted the vertex buffer.
             'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
@@ -67,7 +71,9 @@ PIXI.StripShader = function(gl)
             '   if(isnan(vTextureIndex)) {gl_FragColor = RED;return;}',
             '}'
         ];
-    } else {
+    }
+    else
+    {
         /**
          * The fragment shader.
          * @property fragmentSrc
@@ -78,7 +84,8 @@ PIXI.StripShader = function(gl)
             'precision mediump float;',
             'varying vec2 vTextureCoord;',
             'varying float vTextureIndex;',
-         //   'varying float vColor;',
+
+            //   'varying float vColor;',
             'uniform float alpha;',
             'uniform sampler2D uSampler;',
             'void main(void) {',
@@ -92,7 +99,7 @@ PIXI.StripShader = function(gl)
      * @property vertexSrc
      * @type Array
      */
-    this.vertexSrc  = [
+    this.vertexSrc = [
         '//StripShader Vertex Shader.',
         'attribute vec2 aVertexPosition;',
         'attribute vec2 aTextureCoord;',
@@ -100,11 +107,13 @@ PIXI.StripShader = function(gl)
         'uniform mat3 translationMatrix;',
         'uniform vec2 projectionVector;',
         'uniform vec2 offsetVector;',
-      //  'uniform float alpha;',
-       // 'uniform vec3 tint;',
+
+        //  'uniform float alpha;',
+        // 'uniform vec3 tint;',
         'varying vec2 vTextureCoord;',
         'varying float vTextureIndex;',
-      //  'varying vec4 vColor;',
+
+        //  'varying vec4 vColor;',
 
         'void main(void) {',
         '   vec3 v = translationMatrix * vec3(aVertexPosition , 1.0);',
@@ -112,7 +121,8 @@ PIXI.StripShader = function(gl)
         '   gl_Position = vec4( v.x / projectionVector.x -1.0, v.y / -projectionVector.y + 1.0 , 0.0, 1.0);',
         '   vTextureCoord = aTextureCoord;',
         '   vTextureIndex = aTextureIndex;',
-       // '   vColor = aColor * vec4(tint * alpha, alpha);',
+
+        // '   vColor = aColor * vec4(tint * alpha, alpha);',
         '}'
     ];
 
@@ -126,7 +136,7 @@ PIXI.StripShader.prototype.constructor = PIXI.StripShader;
 *
 * @method PIXI.StripShader#init
 */
-PIXI.StripShader.prototype.init = function()
+PIXI.StripShader.prototype.init = function ()
 {
     var gl = this.gl;
     var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
@@ -134,18 +144,21 @@ PIXI.StripShader.prototype.init = function()
 
     // get and store the uniforms for the shader
     this.uSampler = PIXI._enableMultiTextureToggle ?
-                         gl.getUniformLocation(program, 'uSamplerArray[0]') :
-                         gl.getUniformLocation(program, 'uSampler');
+        gl.getUniformLocation(program, 'uSamplerArray[0]') :
+        gl.getUniformLocation(program, 'uSampler');
 
 
-    if (PIXI._enableMultiTextureToggle) {
+    if (PIXI._enableMultiTextureToggle)
+    {
         var indices = [];
+
         // HACK: we bind an empty texture to avoid WebGL warning spam.
         var tempTexture = gl.createTexture();
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, tempTexture);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, 1, 1, 0, gl.RGB, gl.UNSIGNED_BYTE, null);
-        for (var i = 0; i < this.MAX_TEXTURES; ++i) {
+        for (var i = 0; i < this.MAX_TEXTURES; ++i)
+        {
             gl.activeTexture(gl.TEXTURE0 + i);
             gl.bindTexture(gl.TEXTURE_2D, tempTexture);
             indices.push(i);
@@ -158,13 +171,14 @@ PIXI.StripShader.prototype.init = function()
     this.offsetVector = gl.getUniformLocation(program, 'offsetVector');
     this.colorAttribute = gl.getAttribLocation(program, 'aColor');
     this.aTextureIndex = gl.getAttribLocation(program, 'aTextureIndex');
-    //this.dimensions = gl.getUniformLocation(this.program, 'dimensions');
+
+    // this.dimensions = gl.getUniformLocation(this.program, 'dimensions');
 
     // get and store the attributes
     this.aVertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
     this.aTextureCoord = gl.getAttribLocation(program, 'aTextureCoord');
 
-    this.attributes = [this.aVertexPosition, this.aTextureCoord, this.aTextureIndex];
+    this.attributes = [ this.aVertexPosition, this.aTextureCoord, this.aTextureIndex ];
 
     this.translationMatrix = gl.getUniformLocation(program, 'translationMatrix');
     this.alpha = gl.getUniformLocation(program, 'alpha');
@@ -177,9 +191,9 @@ PIXI.StripShader.prototype.init = function()
 *
 * @method PIXI.StripShader#destroy
 */
-PIXI.StripShader.prototype.destroy = function()
+PIXI.StripShader.prototype.destroy = function ()
 {
-    this.gl.deleteProgram( this.program );
+    this.gl.deleteProgram(this.program);
     this.uniforms = null;
     this.gl = null;
 

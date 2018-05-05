@@ -14,7 +14,8 @@
 * @param {number} [y=0] - The y coordinate of the center of the circle.
 * @param {number} [diameter=0] - The diameter of the circle.
 */
-Phaser.Circle = function (x, y, diameter) {
+Phaser.Circle = function (x, y, diameter)
+{
 
     x = x || 0;
     y = y || 0;
@@ -63,7 +64,8 @@ Phaser.Circle.prototype = {
     * @method Phaser.Circle#circumference
     * @return {number} The circumference of the circle.
     */
-    circumference: function () {
+    circumference: function ()
+    {
 
         return 2 * (Math.PI * this._radius);
 
@@ -77,7 +79,8 @@ Phaser.Circle.prototype = {
     *     If no object is provided a new Phaser.Point object will be created. In high performance areas avoid this by re-using an existing object.
     * @return {Phaser.Point} An object containing the random point in its `x` and `y` properties.
     */
-    random: function (out) {
+    random: function (out)
+    {
 
         if (out === undefined) { out = new Phaser.Point(); }
 
@@ -100,7 +103,8 @@ Phaser.Circle.prototype = {
     * @method Phaser.Circle#getBounds
     * @return {Phaser.Rectangle} The bounds of the Circle.
     */
-    getBounds: function () {
+    getBounds: function ()
+    {
 
         return new Phaser.Rectangle(this.x - this.radius, this.y - this.radius, this.diameter, this.diameter);
 
@@ -114,7 +118,8 @@ Phaser.Circle.prototype = {
     * @param {number} diameter - The diameter of the circle.
     * @return {Circle} This circle object.
     */
-    setTo: function (x, y, diameter) {
+    setTo: function (x, y, diameter)
+    {
 
         this.x = x;
         this.y = y;
@@ -131,7 +136,8 @@ Phaser.Circle.prototype = {
     * @param {any} source - The object to copy from.
     * @return {Circle} This Circle object.
     */
-    copyFrom: function (source) {
+    copyFrom: function (source)
+    {
 
         return this.setTo(source.x, source.y, source.diameter);
 
@@ -143,7 +149,8 @@ Phaser.Circle.prototype = {
     * @param {any} dest - The object to copy to.
     * @return {object} This dest object.
     */
-    copyTo: function (dest) {
+    copyTo: function (dest)
+    {
 
         dest.x = this.x;
         dest.y = this.y;
@@ -161,7 +168,8 @@ Phaser.Circle.prototype = {
     * @param {boolean} [round=false] - Round the distance to the nearest integer.
     * @return {number} The distance between this Point object and the destination Point object.
     */
-    distance: function (dest, round) {
+    distance: function (dest, round)
+    {
 
         var distance = Phaser.Math.distance(this.x, this.y, dest.x, dest.y);
         return round ? Math.round(distance) : distance;
@@ -174,7 +182,8 @@ Phaser.Circle.prototype = {
     * @param {Phaser.Circle} [output] - Optional Circle object. If given the values will be set into the object, otherwise a brand new Circle object will be created and returned.
     * @return {Phaser.Circle} The cloned Circle object.
     */
-    clone: function (output) {
+    clone: function (output)
+    {
 
         if (output === undefined || output === null)
         {
@@ -196,7 +205,8 @@ Phaser.Circle.prototype = {
     * @param {number} y - The Y value of the coordinate to test.
     * @return {boolean} True if the coordinates are within this circle, otherwise false.
     */
-    contains: function (x, y) {
+    contains: function (x, y)
+    {
 
         return Phaser.Circle.contains(this, x, y);
 
@@ -210,7 +220,8 @@ Phaser.Circle.prototype = {
     * @param {Phaser.Point} [out] - An optional Point object to put the result in to. If none specified a new Point object will be created.
     * @return {Phaser.Point} The Point object holding the result.
     */
-    circumferencePoint: function (angle, asDegrees, out) {
+    circumferencePoint: function (angle, asDegrees, out)
+    {
 
         return Phaser.Circle.circumferencePoint(this, angle, asDegrees, out);
 
@@ -231,7 +242,8 @@ Phaser.Circle.prototype = {
      * @param {any[]} [out] - An array of points or point-like objects (e.g., sprites). It should start at index 0 and its length should be equal to or greater than `steps`.
      * @return {any[]} - The modified `out` argument or a new array of points.
      */
-    sample: function (steps, startAngle, endAngle, asDegrees, out) {
+    sample: function (steps, startAngle, endAngle, asDegrees, out)
+    {
 
         if (!steps) { steps = 60; }
         if (startAngle == null) { startAngle = 0; }
@@ -262,7 +274,8 @@ Phaser.Circle.prototype = {
     * @param {number} dy - Moves the y value of the Circle object by this amount.
     * @return {Circle} This Circle object.
     */
-    offset: function (dx, dy) {
+    offset: function (dx, dy)
+    {
 
         this.x += dx;
         this.y += dy;
@@ -277,7 +290,8 @@ Phaser.Circle.prototype = {
     * @param {Point} point A Point object to use to offset this Circle object (or any valid object with exposed x and y properties).
     * @return {Circle} This Circle object.
     */
-    offsetPoint: function (point) {
+    offsetPoint: function (point)
+    {
         return this.offset(point.x, point.y);
     },
 
@@ -286,8 +300,9 @@ Phaser.Circle.prototype = {
     * @method Phaser.Circle#toString
     * @return {string} a string representation of the instance.
     */
-    toString: function () {
-        return "[{Phaser.Circle (x=" + this.x + " y=" + this.y + " diameter=" + this.diameter + " radius=" + this.radius + ")}]";
+    toString: function ()
+    {
+        return '[{Phaser.Circle (x=' + this.x + ' y=' + this.y + ' diameter=' + this.diameter + ' radius=' + this.radius + ')}]';
     }
 
 };
@@ -300,13 +315,15 @@ Phaser.Circle.prototype.constructor = Phaser.Circle;
 * @name Phaser.Circle#diameter
 * @property {number} diameter - Gets or sets the diameter of the circle.
 */
-Object.defineProperty(Phaser.Circle.prototype, "diameter", {
+Object.defineProperty(Phaser.Circle.prototype, 'diameter', {
 
-    get: function () {
+    get: function ()
+    {
         return this._diameter;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value > 0)
         {
@@ -322,13 +339,15 @@ Object.defineProperty(Phaser.Circle.prototype, "diameter", {
 * @name Phaser.Circle#radius
 * @property {number} radius - Gets or sets the radius of the circle.
 */
-Object.defineProperty(Phaser.Circle.prototype, "radius", {
+Object.defineProperty(Phaser.Circle.prototype, 'radius', {
 
-    get: function () {
+    get: function ()
+    {
         return this._radius;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value > 0)
         {
@@ -345,13 +364,15 @@ Object.defineProperty(Phaser.Circle.prototype, "radius", {
 * @name Phaser.Circle#left
 * @propety {number} left - Gets or sets the value of the leftmost point of the circle.
 */
-Object.defineProperty(Phaser.Circle.prototype, "left", {
+Object.defineProperty(Phaser.Circle.prototype, 'left', {
 
-    get: function () {
+    get: function ()
+    {
         return this.x - this._radius;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value > this.x)
         {
@@ -372,13 +393,15 @@ Object.defineProperty(Phaser.Circle.prototype, "left", {
 * @name Phaser.Circle#right
 * @property {number} right - Gets or sets the value of the rightmost point of the circle.
 */
-Object.defineProperty(Phaser.Circle.prototype, "right", {
+Object.defineProperty(Phaser.Circle.prototype, 'right', {
 
-    get: function () {
+    get: function ()
+    {
         return this.x + this._radius;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value < this.x)
         {
@@ -399,13 +422,15 @@ Object.defineProperty(Phaser.Circle.prototype, "right", {
 * @name Phaser.Circle#top
 * @property {number} top - Gets or sets the top of the circle.
 */
-Object.defineProperty(Phaser.Circle.prototype, "top", {
+Object.defineProperty(Phaser.Circle.prototype, 'top', {
 
-    get: function () {
+    get: function ()
+    {
         return this.y - this._radius;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value > this.y)
         {
@@ -426,13 +451,15 @@ Object.defineProperty(Phaser.Circle.prototype, "top", {
 * @name Phaser.Circle#bottom
 * @property {number} bottom - Gets or sets the bottom of the circle.
 */
-Object.defineProperty(Phaser.Circle.prototype, "bottom", {
+Object.defineProperty(Phaser.Circle.prototype, 'bottom', {
 
-    get: function () {
+    get: function ()
+    {
         return this.y + this._radius;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value < this.y)
         {
@@ -454,9 +481,10 @@ Object.defineProperty(Phaser.Circle.prototype, "bottom", {
 * @property {number} area - The area of this circle.
 * @readonly
 */
-Object.defineProperty(Phaser.Circle.prototype, "area", {
+Object.defineProperty(Phaser.Circle.prototype, 'area', {
 
-    get: function () {
+    get: function ()
+    {
 
         if (this._radius > 0)
         {
@@ -477,13 +505,15 @@ Object.defineProperty(Phaser.Circle.prototype, "area", {
 * @name Phaser.Circle#empty
 * @property {boolean} empty - Gets or sets the empty state of the circle.
 */
-Object.defineProperty(Phaser.Circle.prototype, "empty", {
+Object.defineProperty(Phaser.Circle.prototype, 'empty', {
 
-    get: function () {
+    get: function ()
+    {
         return (this._diameter === 0);
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value === true)
         {
@@ -502,7 +532,8 @@ Object.defineProperty(Phaser.Circle.prototype, "empty", {
 * @param {number} y - The Y value of the coordinate to test.
 * @return {boolean} True if the coordinates are within this circle, otherwise false.
 */
-Phaser.Circle.contains = function (a, x, y) {
+Phaser.Circle.contains = function (a, x, y)
+{
 
     //  Check if x/y are within the bounds first
     if (a.radius > 0 && x >= a.left && x <= a.right && y >= a.top && y <= a.bottom)
@@ -526,7 +557,8 @@ Phaser.Circle.contains = function (a, x, y) {
 * @param {Phaser.Circle} b - The second Circle object.
 * @return {boolean} A value of true if the object has exactly the same values for the x, y and diameter properties as this Circle object; otherwise false.
 */
-Phaser.Circle.equals = function (a, b) {
+Phaser.Circle.equals = function (a, b)
+{
 
     return (a.x === b.x && a.y === b.y && a.diameter === b.diameter);
 
@@ -540,7 +572,8 @@ Phaser.Circle.equals = function (a, b) {
 * @param {Phaser.Circle} b - The second Circle object.
 * @return {boolean} A value of true if the specified object intersects with this Circle object; otherwise false.
 */
-Phaser.Circle.intersects = function (a, b) {
+Phaser.Circle.intersects = function (a, b)
+{
 
     return (Phaser.Math.distance(a.x, a.y, b.x, b.y) <= (a.radius + b.radius));
 
@@ -555,7 +588,8 @@ Phaser.Circle.intersects = function (a, b) {
 * @param {Phaser.Point} [out] - An optional Point object to put the result in to. If none specified a new Point object will be created.
 * @return {Phaser.Point} The Point object holding the result.
 */
-Phaser.Circle.circumferencePoint = function (a, angle, asDegrees, out) {
+Phaser.Circle.circumferencePoint = function (a, angle, asDegrees, out)
+{
 
     if (asDegrees === undefined) { asDegrees = false; }
     if (out === undefined) { out = new Phaser.Point(); }
@@ -579,7 +613,8 @@ Phaser.Circle.circumferencePoint = function (a, angle, asDegrees, out) {
 * @param {Phaser.Rectangle} r - The Rectangle object to test.
 * @return {boolean} True if the two objects intersect, otherwise false.
 */
-Phaser.Circle.intersectsRectangle = function (c, r) {
+Phaser.Circle.intersectsRectangle = function (c, r)
+{
 
     var cx = Math.abs(c.x - r.x - r.halfWidth);
     var xDist = r.halfWidth + c.radius;
@@ -620,7 +655,8 @@ Phaser.Circle.intersectsRectangle = function (c, r) {
 * @param {boolean} [returnpoints] - optional Array Object, Return an array of intersection points if true, otherwise return boolean.
 * @return {boolean} True if the two objects intersect, otherwise false.
 */
-Phaser.Circle.intersectsLine = function (c, l, returnPoints) {
+Phaser.Circle.intersectsLine = function (c, l, returnPoints)
+{
     var h = c.x;
     var k = c.y;
     var m = ((l.end.y - l.start.y) / (l.end.x - l.start.x));
@@ -641,15 +677,15 @@ Phaser.Circle.intersectsLine = function (c, l, returnPoints) {
 
     if (p0Exists && p1Exists)
     {
-        return returnPoints ? [p0, p1] : true;
+        return returnPoints ? [ p0, p1 ] : true;
     }
     else if (p0Exists)
     {
-        return returnPoints ? [p0] : true;
+        return returnPoints ? [ p0 ] : true;
     }
     else if (p1Exists)
     {
-        return returnPoints ? [p1] : true;
+        return returnPoints ? [ p1 ] : true;
     }
     else
     {

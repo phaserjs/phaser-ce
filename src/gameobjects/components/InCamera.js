@@ -25,7 +25,8 @@ Phaser.Component.InCamera.prototype = {
     */
     inCamera: {
 
-        get: function() {
+        get: function ()
+        {
 
             return this.game.world.camera.view.intersects(this._bounds);
 

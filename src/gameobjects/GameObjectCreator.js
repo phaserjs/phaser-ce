@@ -12,7 +12,8 @@
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 */
-Phaser.GameObjectCreator = function (game) {
+Phaser.GameObjectCreator = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running Game.
@@ -43,7 +44,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {string|number} [frame] - If the sprite uses an image from a texture atlas or sprite sheet you can pass the frame here. Either a number for a frame ID or a string for a frame name.
     * @returns {Phaser.Image} the newly created sprite object.
     */
-    image: function (x, y, key, frame) {
+    image: function (x, y, key, frame)
+    {
 
         return new Phaser.Image(this.game, x, y, key, frame);
 
@@ -59,7 +61,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {string|number} [frame] - If the sprite uses an image from a texture atlas or sprite sheet you can pass the frame here. Either a number for a frame ID or a string for a frame name.
     * @returns {Phaser.Sprite} the newly created sprite object.
     */
-    sprite: function (x, y, key, frame) {
+    sprite: function (x, y, key, frame)
+    {
 
         return new Phaser.Sprite(this.game, x, y, key, frame);
 
@@ -74,7 +77,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {object} obj - Object the tween will be run on.
     * @return {Phaser.Tween} The Tween object.
     */
-    tween: function (obj) {
+    tween: function (obj)
+    {
 
         return new Phaser.Tween(obj, this.game, this.game.tweens);
 
@@ -91,7 +95,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {number} [physicsBodyType=0] - If enableBody is true this is the type of physics body that is created on new Sprites. Phaser.Physics.ARCADE, Phaser.Physics.P2, Phaser.Physics.NINJA, etc.
     * @return {Phaser.Group} The newly created Group.
     */
-    group: function (parent, name, addToStage, enableBody, physicsBodyType) {
+    group: function (parent, name, addToStage, enableBody, physicsBodyType)
+    {
 
         return new Phaser.Group(this.game, parent, name, addToStage, enableBody, physicsBodyType);
 
@@ -106,7 +111,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {boolean} [addToStage=false] - If set to true this Group will be added directly to the Game.Stage instead of Game.World.
     * @return {Phaser.SpriteBatch} The newly created group.
     */
-    spriteBatch: function (parent, name, addToStage) {
+    spriteBatch: function (parent, name, addToStage)
+    {
 
         if (name === undefined) { name = 'group'; }
         if (addToStage === undefined) { addToStage = false; }
@@ -125,7 +131,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {boolean} [connect=true] - Controls if the created Sound object will connect to the master gainNode of the SoundManager when running under WebAudio.
     * @return {Phaser.Sound} The newly created text object.
     */
-    audio: function (key, volume, loop, connect) {
+    audio: function (key, volume, loop, connect)
+    {
 
         return this.game.sound.add(key, volume, loop, connect);
 
@@ -138,7 +145,8 @@ Phaser.GameObjectCreator.prototype = {
      * @param {string} key - The Game.cache key of the sound that this object will use.
      * @return {Phaser.AudioSprite} The newly created AudioSprite object.
      */
-    audioSprite: function (key) {
+    audioSprite: function (key)
+    {
 
         return this.game.sound.addSprite(key);
 
@@ -154,7 +162,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {boolean} [connect=true] - Controls if the created Sound object will connect to the master gainNode of the SoundManager when running under WebAudio.
     * @return {Phaser.Sound} The newly created text object.
     */
-    sound: function (key, volume, loop, connect) {
+    sound: function (key, volume, loop, connect)
+    {
 
         return this.game.sound.add(key, volume, loop, connect);
 
@@ -172,7 +181,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {string|number} frame - If this TileSprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
     * @return {Phaser.TileSprite} The newly created tileSprite object.
     */
-    tileSprite: function (x, y, width, height, key, frame) {
+    tileSprite: function (x, y, width, height, key, frame)
+    {
 
         return new Phaser.TileSprite(this.game, x, y, width, height, key, frame);
 
@@ -190,7 +200,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {string|number} frame - If this Rope is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
     * @return {Phaser.Rope} The newly created rope object.
     */
-    rope: function (x, y, key, frame, points) {
+    rope: function (x, y, key, frame, points)
+    {
 
         return new Phaser.Rope(this.game, x, y, key, frame, points);
 
@@ -206,7 +217,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {object} style - The style object containing style attributes like font, font size , etc.
     * @return {Phaser.Text} The newly created text object.
     */
-    text: function (x, y, text, style) {
+    text: function (x, y, text, style)
+    {
 
         return new Phaser.Text(this.game, x, y, text, style);
 
@@ -227,7 +239,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {string|number} [upFrame] This is the frame or frameName that will be set when this button is in an up state. Give either a number to use a frame ID or a string for a frame name.
     * @return {Phaser.Button} The newly created button object.
     */
-    button: function (x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame) {
+    button: function (x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame)
+    {
 
         return new Phaser.Button(this.game, x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame);
 
@@ -241,7 +254,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {number} [y=0] - Y position of the new graphics object.
     * @return {Phaser.Graphics} The newly created graphics object.
     */
-    graphics: function (x, y) {
+    graphics: function (x, y)
+    {
 
         return new Phaser.Graphics(this.game, x, y);
 
@@ -260,7 +274,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {number} [maxParticles=50] - The total number of particles in this emitter.
     * @return {Phaser.Emitter} The newly created emitter object.
     */
-    emitter: function (x, y, maxParticles) {
+    emitter: function (x, y, maxParticles)
+    {
 
         return new Phaser.Particles.Arcade.Emitter(this.game, x, y, maxParticles);
 
@@ -288,7 +303,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {number} [yOffset=0] - If the font set doesn't start at the top left of the given image, specify the Y coordinate offset here.
     * @return {Phaser.RetroFont} The newly created RetroFont texture which can be applied to an Image or Sprite.
     */
-    retroFont: function (font, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset) {
+    retroFont: function (font, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset)
+    {
 
         return new Phaser.RetroFont(this.game, font, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset);
 
@@ -322,7 +338,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {string} [align='left'] - The alignment of multi-line text. Has no effect if there is only one line of text.
     * @return {Phaser.BitmapText} The newly created bitmapText object.
     */
-    bitmapText: function (x, y, font, text, size, align) {
+    bitmapText: function (x, y, font, text, size, align)
+    {
 
         return new Phaser.BitmapText(this.game, x, y, font, text, size, align);
 
@@ -344,7 +361,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {number} [width=10] - The width of the map in tiles. If this map is created from Tiled or CSV data you don't need to specify this.
     * @param {number} [height=10] - The height of the map in tiles. If this map is created from Tiled or CSV data you don't need to specify this.
     */
-    tilemap: function (key, tileWidth, tileHeight, width, height) {
+    tilemap: function (key, tileWidth, tileHeight, width, height)
+    {
 
         return new Phaser.Tilemap(this.game, key, tileWidth, tileHeight, width, height);
 
@@ -360,7 +378,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {boolean} [addToCache=false] - Should this RenderTexture be added to the Game.Cache? If so you can retrieve it with Cache.getTexture(key)
     * @return {Phaser.RenderTexture} The newly created RenderTexture object.
     */
-    renderTexture: function (width, height, key, addToCache) {
+    renderTexture: function (width, height, key, addToCache)
+    {
 
         if (key === undefined || key === '') { key = this.game.rnd.uuid(); }
         if (addToCache === undefined) { addToCache = false; }
@@ -388,7 +407,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {boolean} [addToCache=false] - Should this BitmapData be added to the Game.Cache? If so you can retrieve it with Cache.getBitmapData(key)
     * @return {Phaser.BitmapData} The newly created BitmapData object.
     */
-    bitmapData: function (width, height, key, addToCache) {
+    bitmapData: function (width, height, key, addToCache)
+    {
 
         if (addToCache === undefined) { addToCache = false; }
         if (key === undefined || key === '') { key = this.game.rnd.uuid(); }
@@ -412,7 +432,8 @@ Phaser.GameObjectCreator.prototype = {
     * @param {any} - Whatever parameters are needed to be passed to the filter init function.
     * @return {Phaser.Filter} The newly created Phaser.Filter object.
     */
-    filter: function (filter) {
+    filter: function (filter)
+    {
 
         var args = Array.prototype.slice.call(arguments, 1);
 

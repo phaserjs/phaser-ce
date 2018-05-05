@@ -21,7 +21,8 @@
 * @param {number} [height=256] - The height of the BitmapData in pixels. If undefined or zero it's set to a default value.
 * @param {boolean} [skipPool=false] - When this BitmapData generates its internal canvas to use for rendering, it will get the canvas from the CanvasPool if false, or create its own if true.
 */
-Phaser.BitmapData = function (game, key, width, height, skipPool) {
+Phaser.BitmapData = function (game, key, width, height, skipPool)
+{
 
     if (width === undefined || width === 0) { width = 256; }
     if (height === undefined || height === 0) { height = 256; }
@@ -104,16 +105,14 @@ Phaser.BitmapData = function (game, key, width, height, skipPool) {
             this.pixels = new Uint32Array(this.buffer);
         }
         else
+        if (window['ArrayBuffer'])
         {
-            if (window['ArrayBuffer'])
-            {
-                this.buffer = new ArrayBuffer(this.imageData.data.length);
-                this.pixels = new Uint32Array(this.buffer);
-            }
-            else
-            {
-                this.pixels = this.imageData.data;
-            }
+            this.buffer = new ArrayBuffer(this.imageData.data.length);
+            this.pixels = new Uint32Array(this.buffer);
+        }
+        else
+        {
+            this.pixels = this.imageData.data;
         }
     }
 
@@ -248,7 +247,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [wrap=true] - Wrap the content of the BitmapData.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    move: function (x, y, wrap) {
+    move: function (x, y, wrap)
+    {
 
         if (x !== 0)
         {
@@ -274,7 +274,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [wrap=true] - Wrap the content of the BitmapData.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    moveH: function (distance, wrap) {
+    moveH: function (distance, wrap)
+    {
 
         if (wrap === undefined) { wrap = true; }
 
@@ -337,7 +338,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [wrap=true] - Wrap the content of the BitmapData.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    moveV: function (distance, wrap) {
+    moveV: function (distance, wrap)
+    {
 
         if (wrap === undefined) { wrap = true; }
 
@@ -398,7 +400,8 @@ Phaser.BitmapData.prototype = {
     * @param {Phaser.Sprite|Phaser.Sprite[]|Phaser.Image|Phaser.Image[]} object - Either a single Sprite/Image or an Array of Sprites/Images.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    add: function (object) {
+    add: function (object)
+    {
 
         if (Array.isArray(object))
         {
@@ -429,7 +432,8 @@ Phaser.BitmapData.prototype = {
     * @param {Phaser.Sprite|Phaser.Image|Phaser.Text|Phaser.BitmapData|Image|HTMLCanvasElement|string} source - The object that will be used to populate this BitmapData. If you give a string it will try and find the Image in the Game.Cache first.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    load: function (source) {
+    load: function (source)
+    {
 
         if (typeof source === 'string')
         {
@@ -476,7 +480,8 @@ Phaser.BitmapData.prototype = {
     * @param {number} [height] - The height of the area to clear. If undefined it will use BitmapData.height.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    clear: function (x, y, width, height) {
+    clear: function (x, y, width, height)
+    {
 
         if (x === undefined) { x = 0; }
         if (y === undefined) { y = 0; }
@@ -501,7 +506,8 @@ Phaser.BitmapData.prototype = {
     * @param {number} [a=1] - The alpha color value, between 0 and 1.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    fill: function (r, g, b, a) {
+    fill: function (r, g, b, a)
+    {
 
         if (a === undefined) { a = 1; }
 
@@ -557,14 +563,16 @@ Phaser.BitmapData.prototype = {
     * @param {any} [callbackContext] - The context in which to invoke the callback.
     * @return {PIXI.Texture|null} The newly generated texture, or `null` if a callback was passed and the texture isn't available yet.
     */
-    generateTexture: function (key, callback, callbackContext) {
+    generateTexture: function (key, callback, callbackContext)
+    {
 
         var cache = this.game.cache;
         var image = new Image();
 
         if (callback)
         {
-            image.onload = function () {
+            image.onload = function ()
+            {
                 var obj = cache.addImage(key, '', image);
                 var texture = new PIXI.Texture(obj.base);
 
@@ -574,7 +582,7 @@ Phaser.BitmapData.prototype = {
             };
         }
 
-        image.src = this.canvas.toDataURL("image/png");
+        image.src = this.canvas.toDataURL('image/png');
 
         if (!callback)
         {
@@ -595,7 +603,8 @@ Phaser.BitmapData.prototype = {
     * @param {integer} height - The new height of the BitmapData.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    resize: function (width, height) {
+    resize: function (width, height)
+    {
 
         if (width !== this.width || height !== this.height)
         {
@@ -645,7 +654,8 @@ Phaser.BitmapData.prototype = {
     * @param {number} [height=1] - The height of the image data area.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    update: function (x, y, width, height) {
+    update: function (x, y, width, height)
+    {
 
         if (x === undefined) { x = 0; }
         if (y === undefined) { y = 0; }
@@ -661,16 +671,14 @@ Phaser.BitmapData.prototype = {
             this.pixels = new Uint32Array(this.buffer);
         }
         else
+        if (window['ArrayBuffer'])
         {
-            if (window['ArrayBuffer'])
-            {
-                this.buffer = new ArrayBuffer(this.imageData.data.length);
-                this.pixels = new Uint32Array(this.buffer);
-            }
-            else
-            {
-                this.pixels = this.imageData.data;
-            }
+            this.buffer = new ArrayBuffer(this.imageData.data.length);
+            this.pixels = new Uint32Array(this.buffer);
+        }
+        else
+        {
+            this.pixels = this.imageData.data;
         }
 
         return this;
@@ -696,7 +704,8 @@ Phaser.BitmapData.prototype = {
     * @param {number} [height] - The height of the region to process.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    processPixelRGB: function (callback, callbackContext, x, y, width, height) {
+    processPixelRGB: function (callback, callbackContext, x, y, width, height)
+    {
 
         if (x === undefined) { x = 0; }
         if (y === undefined) { y = 0; }
@@ -751,7 +760,8 @@ Phaser.BitmapData.prototype = {
     * @param {number} [height] - The height of the region to process.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    processPixel: function (callback, callbackContext, x, y, width, height) {
+    processPixel: function (callback, callbackContext, x, y, width, height)
+    {
 
         if (x === undefined) { x = 0; }
         if (y === undefined) { y = 0; }
@@ -805,7 +815,8 @@ Phaser.BitmapData.prototype = {
     * @param {Phaser.Rectangle} [region] - The area to perform the search over. If not given it will replace over the whole BitmapData.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    replaceRGB: function (r1, g1, b1, a1, r2, g2, b2, a2, region) {
+    replaceRGB: function (r1, g1, b1, a1, r2, g2, b2, a2, region)
+    {
 
         var sx = 0;
         var sy = 0;
@@ -849,7 +860,8 @@ Phaser.BitmapData.prototype = {
     * @param {Phaser.Rectangle} [region] - The area to perform the operation on. If not given it will run over the whole BitmapData.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    setHSL: function (h, s, l, region) {
+    setHSL: function (h, s, l, region)
+    {
 
         var bHaveH = h || h === 0;
         var bHaveS = s || s === 0;
@@ -912,7 +924,8 @@ Phaser.BitmapData.prototype = {
     * @param {Phaser.Rectangle} [region] - The area to perform the operation on. If not given it will run over the whole BitmapData.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    shiftHSL: function (h, s, l, region) {
+    shiftHSL: function (h, s, l, region)
+    {
 
         if (h === undefined || h === null) { h = false; }
         if (s === undefined || s === null) { s = false; }
@@ -976,7 +989,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [immediate=true] - If `true` the context.putImageData will be called and the dirty flag set.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    setPixel32: function (x, y, red, green, blue, alpha, immediate) {
+    setPixel32: function (x, y, red, green, blue, alpha, immediate)
+    {
 
         if (immediate === undefined) { immediate = true; }
 
@@ -1014,7 +1028,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [immediate=true] - If `true` the context.putImageData will be called and the dirty flag set.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    setPixel: function (x, y, red, green, blue, immediate) {
+    setPixel: function (x, y, red, green, blue, immediate)
+    {
 
         return this.setPixel32(x, y, red, green, blue, 255, immediate);
 
@@ -1031,7 +1046,8 @@ Phaser.BitmapData.prototype = {
     * @param {object} [out] - An object into which 4 properties will be created: r, g, b and a. If not provided a new object will be created.
     * @return {object} An object with the red, green, blue and alpha values set in the r, g, b and a properties.
     */
-    getPixel: function (x, y, out) {
+    getPixel: function (x, y, out)
+    {
 
         if (!out)
         {
@@ -1062,7 +1078,8 @@ Phaser.BitmapData.prototype = {
     * @param {integer} y - The y coordinate of the pixel to be set. Must lay within the dimensions of this BitmapData and be an integer, not a float.
     * @return {number} A native color value integer (format: 0xAARRGGBB)
     */
-    getPixel32: function (x, y) {
+    getPixel32: function (x, y)
+    {
 
         if (x >= 0 && x <= this.width && y >= 0 && y <= this.height)
         {
@@ -1084,7 +1101,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [hsv=false] - Also convert the rgb values into hsv?
     * @return {object} An object with the red, green and blue values set in the r, g and b properties.
     */
-    getPixelRGB: function (x, y, out, hsl, hsv) {
+    getPixelRGB: function (x, y, out, hsl, hsv)
+    {
 
         return Phaser.Color.unpackPixel(this.getPixel32(x, y), out, hsl, hsv);
 
@@ -1097,7 +1115,8 @@ Phaser.BitmapData.prototype = {
     * @param {Phaser.Rectangle} rect - The Rectangle region to get.
     * @return {ImageData} Returns a ImageData object containing a Uint8ClampedArray data property.
     */
-    getPixels: function (rect) {
+    getPixels: function (rect)
+    {
 
         return this.context.getImageData(rect.x, rect.y, rect.width, rect.height);
 
@@ -1118,7 +1137,8 @@ Phaser.BitmapData.prototype = {
     * @param {number} [direction=0] - The direction in which to scan for the first pixel. 0 = top to bottom, 1 = bottom to top, 2 = left to right and 3 = right to left.
     * @return {object} Returns an object containing the color of the pixel in the `r`, `g` and `b` properties and the location in the `x` and `y` properties.
     */
-    getFirstPixel: function (direction) {
+    getFirstPixel: function (direction)
+    {
 
         if (direction === undefined) { direction = 0; }
 
@@ -1140,7 +1160,8 @@ Phaser.BitmapData.prototype = {
             x = this.width;
         }
 
-        do {
+        do
+        {
 
             Phaser.Color.unpackPixel(this.getPixel32(x, y), pixel);
 
@@ -1194,7 +1215,8 @@ Phaser.BitmapData.prototype = {
     * @param {Phaser.Rectangle} [rect] - If provided this Rectangle object will be populated with the bounds, otherwise a new object will be created.
     * @return {Phaser.Rectangle} A Rectangle whose dimensions encompass the full extent of non-transparent pixels in this BitmapData.
     */
-    getBounds: function (rect) {
+    getBounds: function (rect)
+    {
 
         if (rect === undefined) { rect = new Phaser.Rectangle(); }
 
@@ -1226,7 +1248,8 @@ Phaser.BitmapData.prototype = {
     * @param {number} [scaleY=1] - The vertical scale factor of the Image. A value of 1 means no scaling. 2 would be twice the size, and so on.
     * @return {Phaser.Image} The newly added Image object.
     */
-    addToWorld: function (x, y, anchorX, anchorY, scaleX, scaleY) {
+    addToWorld: function (x, y, anchorX, anchorY, scaleX, scaleY)
+    {
 
         scaleX = scaleX || 1;
         scaleY = scaleY || 1;
@@ -1275,7 +1298,8 @@ Phaser.BitmapData.prototype = {
      * @param {boolean} [roundPx=false] - Should the x and y values be rounded to integers before drawing? This prevents anti-aliasing in some instances.
      * @return {Phaser.BitmapData} This BitmapData object for method chaining.
      */
-    copy: function (source, x, y, width, height, tx, ty, newWidth, newHeight, rotate, anchorX, anchorY, scaleX, scaleY, alpha, blendMode, roundPx) {
+    copy: function (source, x, y, width, height, tx, ty, newWidth, newHeight, rotate, anchorX, anchorY, scaleX, scaleY, alpha, blendMode, roundPx)
+    {
 
         if (source === undefined || source === null) { source = this; }
 
@@ -1474,7 +1498,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [roundPx=false] - Should the x and y values be rounded to integers before drawing? This prevents anti-aliasing in some instances.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    copyTransform: function (source, blendMode, roundPx) {
+    copyTransform: function (source, blendMode, roundPx)
+    {
 
         if (blendMode === undefined) { blendMode = null; }
         if (roundPx === undefined) { roundPx = false; }
@@ -1491,7 +1516,7 @@ Phaser.BitmapData.prototype = {
 
         if (wt.a === 0 || wt.d === 0 || this._size.x === 0 || this._size.y === 0)
         {
-             // Why bother wasting CPU cycles drawing something you can't see?
+            // Why bother wasting CPU cycles drawing something you can't see?
             return this;
         }
 
@@ -1582,7 +1607,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [roundPx=false] - Should the x and y values be rounded to integers before drawing? This prevents anti-aliasing in some instances.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    copyRect: function (source, area, x, y, alpha, blendMode, roundPx) {
+    copyRect: function (source, area, x, y, alpha, blendMode, roundPx)
+    {
 
         return this.copy(source, area.x, area.y, area.width, area.height, x, y, area.width, area.height, 0, 0, 0, 1, 1, alpha, blendMode, roundPx);
 
@@ -1609,7 +1635,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [roundPx=false] - Should the x and y values be rounded to integers before drawing? This prevents anti-aliasing in some instances.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    draw: function (source, x, y, width, height, blendMode, roundPx) {
+    draw: function (source, x, y, width, height, blendMode, roundPx)
+    {
 
         //  By specifying null for most parameters it will tell `copy` to use the Sprite values instead, which is what we want here
         return this.copy(source, null, null, null, null, x, y, width, height, null, null, null, null, null, null, blendMode, roundPx);
@@ -1636,7 +1663,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [roundPx=false] - Should the x and y values be rounded to integers before drawing? This prevents anti-aliasing in some instances.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    drawGroup: function (group, blendMode, roundPx) {
+    drawGroup: function (group, blendMode, roundPx)
+    {
 
         if (group.total > 0)
         {
@@ -1656,7 +1684,8 @@ Phaser.BitmapData.prototype = {
     * @param {string} [blendMode=null] - The composite blend mode that will be used when drawing. The default is no blend mode at all. This is a Canvas globalCompositeOperation value such as 'lighter' or 'xor'.
     * @param {boolean} [roundPx=false] - Should the x and y values be rounded to integers before drawing? This prevents anti-aliasing in some instances.
     */
-    drawGroupProxy: function (child, blendMode, roundPx) {
+    drawGroupProxy: function (child, blendMode, roundPx)
+    {
 
         if (child.hasOwnProperty('texture'))
         {
@@ -1668,15 +1697,13 @@ Phaser.BitmapData.prototype = {
             this.drawGroup(child, blendMode, roundPx);
         }
         else
+        if (child.hasOwnProperty('children') && child.children.length > 0)
         {
-            if (child.hasOwnProperty('children') && child.children.length > 0)
+            for (var i = 0; i < child.children.length; i++)
             {
-                for (var i = 0; i < child.children.length; i++)
+                if (child.children[i].exists)
                 {
-                    if (child.children[i].exists)
-                    {
-                        this.copyTransform(child.children[i], blendMode, roundPx);
-                    }
+                    this.copyTransform(child.children[i], blendMode, roundPx);
                 }
             }
         }
@@ -1706,7 +1733,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [roundPx=false] - Should the x and y values be rounded to integers before drawing? This prevents anti-aliasing in some instances.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    drawFull: function (parent, blendMode, roundPx) {
+    drawFull: function (parent, blendMode, roundPx)
+    {
 
         if (parent.worldVisible === false || parent.worldAlpha === 0 || (parent.hasOwnProperty('exists') && parent.exists === false))
         {
@@ -1753,7 +1781,8 @@ Phaser.BitmapData.prototype = {
     * @param {number} [y=10] - The vertical offset of the shadow in pixels.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    shadow: function (color, blur, x, y) {
+    shadow: function (color, blur, x, y)
+    {
 
         var ctx = this.context;
 
@@ -1783,7 +1812,8 @@ Phaser.BitmapData.prototype = {
     * @param {Phaser.Rectangle} [maskRect] - A Rectangle where x/y define the coordinates to draw the Mask image to and width/height define the size.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    alphaMask: function (source, mask, sourceRect, maskRect) {
+    alphaMask: function (source, mask, sourceRect, maskRect)
+    {
 
         if (maskRect === undefined || maskRect === null)
         {
@@ -1829,7 +1859,8 @@ Phaser.BitmapData.prototype = {
     * @param {number} [b2] - An alternative blue color component to be written to the destination, in the range 0 - 255.
     * @returns {Phaser.BitmapData} The BitmapData that the extract pixels were drawn on.
     */
-    extract: function (destination, r, g, b, a, resize, r2, g2, b2) {
+    extract: function (destination, r, g, b, a, resize, r2, g2, b2)
+    {
 
         if (a === undefined) { a = 255; }
         if (resize === undefined) { resize = false; }
@@ -1871,7 +1902,8 @@ Phaser.BitmapData.prototype = {
     * @param {string} [fillStyle] - If set the context fillStyle will be set to this value before the rect is drawn.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    rect: function (x, y, width, height, fillStyle) {
+    rect: function (x, y, width, height, fillStyle)
+    {
 
         if (typeof fillStyle !== 'undefined')
         {
@@ -1898,7 +1930,8 @@ Phaser.BitmapData.prototype = {
     * @param {boolean} [shadow=true] - Draw a single pixel black shadow below the text (offset by text.x/y + 1)
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    text: function (text, x, y, font, color, shadow) {
+    text: function (text, x, y, font, color, shadow)
+    {
 
         if (x === undefined) { x = 0; }
         if (y === undefined) { y = 0; }
@@ -1936,7 +1969,8 @@ Phaser.BitmapData.prototype = {
     * @param {string} [fillStyle] - If set the context fillStyle will be set to this value before the circle is drawn.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    circle: function (x, y, radius, fillStyle) {
+    circle: function (x, y, radius, fillStyle)
+    {
 
         var ctx = this.context;
 
@@ -1967,7 +2001,8 @@ Phaser.BitmapData.prototype = {
     * @param {number} [width=1] - The line thickness.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    line: function (x1, y1, x2, y2, color, width) {
+    line: function (x1, y1, x2, y2, color, width)
+    {
 
         if (color === undefined) { color = '#fff'; }
         if (width === undefined) { width = 1; }
@@ -1999,7 +2034,8 @@ Phaser.BitmapData.prototype = {
     * @param {CanvasGradient|CanvasPattern|string} [strokeStyle='#fff'] - The line color, gradient, or pattern (when `lineWidth` > 0).
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    polygon: function (points, fillStyle, lineWidth, strokeStyle) {
+    polygon: function (points, fillStyle, lineWidth, strokeStyle)
+    {
 
         // Could reject points.length < 3
 
@@ -2047,7 +2083,8 @@ Phaser.BitmapData.prototype = {
     * @param {string} [repeat='repeat-x'] - The pattern repeat mode to use when drawing the line. Either `repeat`, `repeat-x` or `no-repeat`.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    textureLine: function (line, image, repeat) {
+    textureLine: function (line, image, repeat)
+    {
 
         if (repeat === undefined) { repeat = 'repeat-x'; }
 
@@ -2096,7 +2133,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#render
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    render: function () {
+    render: function ()
+    {
 
         if (!this.disableTextureUpload && this.dirty)
         {
@@ -2113,7 +2151,8 @@ Phaser.BitmapData.prototype = {
     *
     * @method Phaser.BitmapData#destroy
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this.frameData.destroy();
 
@@ -2129,7 +2168,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendReset
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendReset: function () {
+    blendReset: function ()
+    {
 
         this.op = 'source-over';
         return this;
@@ -2142,7 +2182,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendSourceOver
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendSourceOver: function () {
+    blendSourceOver: function ()
+    {
 
         this.op = 'source-over';
         return this;
@@ -2155,7 +2196,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendSourceIn
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendSourceIn: function () {
+    blendSourceIn: function ()
+    {
 
         this.op = 'source-in';
         return this;
@@ -2168,7 +2210,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendSourceOut
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendSourceOut: function () {
+    blendSourceOut: function ()
+    {
 
         this.op = 'source-out';
         return this;
@@ -2181,7 +2224,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendSourceAtop
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendSourceAtop: function () {
+    blendSourceAtop: function ()
+    {
 
         this.op = 'source-atop';
         return this;
@@ -2194,7 +2238,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendDestinationOver
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendDestinationOver: function () {
+    blendDestinationOver: function ()
+    {
 
         this.op = 'destination-over';
         return this;
@@ -2207,7 +2252,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendDestinationIn
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendDestinationIn: function () {
+    blendDestinationIn: function ()
+    {
 
         this.op = 'destination-in';
         return this;
@@ -2220,7 +2266,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendDestinationOut
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendDestinationOut: function () {
+    blendDestinationOut: function ()
+    {
 
         this.op = 'destination-out';
         return this;
@@ -2233,7 +2280,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendDestinationAtop
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendDestinationAtop: function () {
+    blendDestinationAtop: function ()
+    {
 
         this.op = 'destination-atop';
         return this;
@@ -2246,7 +2294,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendXor
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendXor: function () {
+    blendXor: function ()
+    {
 
         this.op = 'xor';
         return this;
@@ -2259,7 +2308,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendAdd
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendAdd: function () {
+    blendAdd: function ()
+    {
 
         this.op = 'lighter';
         return this;
@@ -2272,7 +2322,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendMultiply
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendMultiply: function () {
+    blendMultiply: function ()
+    {
 
         this.op = 'multiply';
         return this;
@@ -2285,7 +2336,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendScreen
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendScreen: function () {
+    blendScreen: function ()
+    {
 
         this.op = 'screen';
         return this;
@@ -2298,7 +2350,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendOverlay
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendOverlay: function () {
+    blendOverlay: function ()
+    {
 
         this.op = 'overlay';
         return this;
@@ -2311,7 +2364,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendDarken
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendDarken: function () {
+    blendDarken: function ()
+    {
 
         this.op = 'darken';
         return this;
@@ -2324,7 +2378,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendLighten
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendLighten: function () {
+    blendLighten: function ()
+    {
 
         this.op = 'lighten';
         return this;
@@ -2337,7 +2392,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendColorDodge
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendColorDodge: function () {
+    blendColorDodge: function ()
+    {
 
         this.op = 'color-dodge';
         return this;
@@ -2350,7 +2406,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendColorBurn
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendColorBurn: function () {
+    blendColorBurn: function ()
+    {
 
         this.op = 'color-burn';
         return this;
@@ -2363,7 +2420,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendHardLight
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendHardLight: function () {
+    blendHardLight: function ()
+    {
 
         this.op = 'hard-light';
         return this;
@@ -2376,7 +2434,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendSoftLight
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendSoftLight: function () {
+    blendSoftLight: function ()
+    {
 
         this.op = 'soft-light';
         return this;
@@ -2389,7 +2448,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendDifference
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendDifference: function () {
+    blendDifference: function ()
+    {
 
         this.op = 'difference';
         return this;
@@ -2402,7 +2462,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendExclusion
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendExclusion: function () {
+    blendExclusion: function ()
+    {
 
         this.op = 'exclusion';
         return this;
@@ -2415,7 +2476,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendHue
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendHue: function () {
+    blendHue: function ()
+    {
 
         this.op = 'hue';
         return this;
@@ -2428,7 +2490,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendSaturation
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendSaturation: function () {
+    blendSaturation: function ()
+    {
 
         this.op = 'saturation';
         return this;
@@ -2441,7 +2504,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendColor
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendColor: function () {
+    blendColor: function ()
+    {
 
         this.op = 'color';
         return this;
@@ -2454,7 +2518,8 @@ Phaser.BitmapData.prototype = {
     * @method Phaser.BitmapData#blendLuminosity
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    blendLuminosity: function () {
+    blendLuminosity: function ()
+    {
 
         this.op = 'luminosity';
         return this;
@@ -2473,12 +2538,15 @@ Phaser.BitmapData.prototype = {
     * @param {number} [y] - The y coordinate of the top-left of the area to copy.
     * @return {Phaser.BitmapData} This BitmapData object for method chaining.
     */
-    copyBitmapData: function(source, x, y) {
+    copyBitmapData: function (source, x, y)
+    {
 
         source.update();
-        for (var i = 0, destRowStart; i < source.height; i++) {
+        for (var i = 0, destRowStart; i < source.height; i++)
+        {
             destRowStart = (y + i) * this.width + x;
-            for (var j = 0; j < source.width; j++) {
+            for (var j = 0; j < source.width; j++)
+            {
                 this.pixels[destRowStart + j] = source.pixels[i * source.width + j];
             }
         }
@@ -2492,15 +2560,17 @@ Phaser.BitmapData.prototype = {
 * @memberof Phaser.BitmapData
 * @property {boolean} smoothed - Gets or sets this BitmapData.contexts smoothing enabled value.
 */
-Object.defineProperty(Phaser.BitmapData.prototype, "smoothed", {
+Object.defineProperty(Phaser.BitmapData.prototype, 'smoothed', {
 
-    get: function () {
+    get: function ()
+    {
 
         Phaser.Canvas.getSmoothingEnabled(this.context);
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         Phaser.Canvas.setSmoothingEnabled(this.context, value);
 
@@ -2512,15 +2582,17 @@ Object.defineProperty(Phaser.BitmapData.prototype, "smoothed", {
 * @memberof Phaser.BitmapData
 * @property {string} op - A short-hand code to get or set the global composite operation of the BitmapDatas canvas.
 */
-Object.defineProperty(Phaser.BitmapData.prototype, "op", {
+Object.defineProperty(Phaser.BitmapData.prototype, 'op', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this.context.globalCompositeOperation;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         this.context.globalCompositeOperation = value;
 
@@ -2540,7 +2612,8 @@ Object.defineProperty(Phaser.BitmapData.prototype, "op", {
  * @param {number} skewY - The skew y value.
  * @return {object} A JavaScript object containing all of the properties BitmapData needs for transforms.
  */
-Phaser.BitmapData.getTransform = function (translateX, translateY, scaleX, scaleY, skewX, skewY) {
+Phaser.BitmapData.getTransform = function (translateX, translateY, scaleX, scaleY, skewX, skewY)
+{
 
     if (typeof translateX !== 'number') { translateX = 0; }
     if (typeof translateY !== 'number') { translateY = 0; }

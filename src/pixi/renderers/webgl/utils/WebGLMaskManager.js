@@ -7,7 +7,7 @@
 * @constructor
 * @private
 */
-PIXI.WebGLMaskManager = function()
+PIXI.WebGLMaskManager = function ()
 {
 };
 
@@ -19,7 +19,7 @@ PIXI.WebGLMaskManager.prototype.constructor = PIXI.WebGLMaskManager;
 * @method PIXI.WebGLMaskManager#setContext
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.WebGLMaskManager.prototype.setContext = function(gl)
+PIXI.WebGLMaskManager.prototype.setContext = function (gl)
 {
     this.gl = gl;
 };
@@ -31,7 +31,7 @@ PIXI.WebGLMaskManager.prototype.setContext = function(gl)
 * @param maskData {Array}
 * @param renderSession {Object}
 */
-PIXI.WebGLMaskManager.prototype.pushMask = function(maskData, renderSession)
+PIXI.WebGLMaskManager.prototype.pushMask = function (maskData, renderSession)
 {
     var gl = renderSession.gl;
 
@@ -55,7 +55,7 @@ PIXI.WebGLMaskManager.prototype.pushMask = function(maskData, renderSession)
 * @param maskData {Array}
 * @param renderSession {Object} an object containing all the useful parameters
 */
-PIXI.WebGLMaskManager.prototype.popMask = function(maskData, renderSession)
+PIXI.WebGLMaskManager.prototype.popMask = function (maskData, renderSession)
 {
     var gl = this.gl;
 
@@ -73,7 +73,7 @@ PIXI.WebGLMaskManager.prototype.popMask = function(maskData, renderSession)
 *
 * @method PIXI.WebGLMaskManager#destroy
 */
-PIXI.WebGLMaskManager.prototype.destroy = function()
+PIXI.WebGLMaskManager.prototype.destroy = function ()
 {
     this.gl = null;
 };

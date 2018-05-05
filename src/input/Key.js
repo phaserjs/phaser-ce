@@ -12,7 +12,8 @@
 * @param {Phaser.Game} game - Current game instance.
 * @param {integer} keycode - The key code this Key is responsible for. See {@link Phaser.KeyCode}.
 */
-Phaser.Key = function (game, keycode) {
+Phaser.Key = function (game, keycode)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running game.
@@ -142,7 +143,8 @@ Phaser.Key.prototype = {
     * @method Phaser.Key#update
     * @protected
     */
-    update: function () {
+    update: function ()
+    {
 
         if (!this._enabled) { return; }
 
@@ -170,7 +172,8 @@ Phaser.Key.prototype = {
     * @param {KeyboardEvent} event - The DOM event that triggered this.
     * @protected
     */
-    processKeyDown: function (event) {
+    processKeyDown: function (event)
+    {
 
         if (!this._enabled) { return; }
 
@@ -208,7 +211,8 @@ Phaser.Key.prototype = {
     * @param {KeyboardEvent} event - The DOM event that triggered this.
     * @protected
     */
-    processKeyUp: function (event) {
+    processKeyUp: function (event)
+    {
 
         if (!this._enabled) { return; }
 
@@ -242,7 +246,8 @@ Phaser.Key.prototype = {
     * @method Phaser.Key#reset
     * @param {boolean} [hard=true] - A soft reset won't reset any events or callbacks; a hard reset will.
     */
-    reset: function (hard) {
+    reset: function (hard)
+    {
 
         if (hard === undefined) { hard = true; }
 
@@ -273,7 +278,8 @@ Phaser.Key.prototype = {
     * @param {number} [duration=50] - The duration within which the key is considered as being just pressed. Given in ms.
     * @return {boolean} True if the key was pressed down within the given duration.
     */
-    downDuration: function (duration) {
+    downDuration: function (duration)
+    {
 
         if (duration === undefined) { duration = 50; }
 
@@ -289,7 +295,8 @@ Phaser.Key.prototype = {
     * @param {number} [duration=50] - The duration within which the key is considered as being just released. Given in ms.
     * @return {boolean} True if the key was released within the given duration.
     */
-    upDuration: function (duration) {
+    upDuration: function (duration)
+    {
 
         if (duration === undefined) { duration = 50; }
 
@@ -304,7 +311,8 @@ Phaser.Key.prototype = {
     * @method Phaser.Key#justPressed
     * @return {boolean} True if the key was just pressed down this update tick.
     */
-    justPressed: function () {
+    justPressed: function ()
+    {
 
         return (this.isDown && this.duration === 0);
 
@@ -317,7 +325,8 @@ Phaser.Key.prototype = {
     * @method Phaser.Key#justReleased
     * @return {boolean} True if the key was just released this update tick.
     */
-    justReleased: function () {
+    justReleased: function ()
+    {
 
         return (!this.isDown && this.durationUp === 0);
 
@@ -336,9 +345,10 @@ Phaser.Key.prototype = {
 * @memberof Phaser.Key
 * @default false
 */
-Object.defineProperty(Phaser.Key.prototype, "justDown", {
+Object.defineProperty(Phaser.Key.prototype, 'justDown', {
 
-    get: function () {
+    get: function ()
+    {
 
         var current = this._justDown;
         this._justDown = false;
@@ -359,9 +369,10 @@ Object.defineProperty(Phaser.Key.prototype, "justDown", {
 * @memberof Phaser.Key
 * @default false
 */
-Object.defineProperty(Phaser.Key.prototype, "justUp", {
+Object.defineProperty(Phaser.Key.prototype, 'justUp', {
 
-    get: function () {
+    get: function ()
+    {
 
         var current = this._justUp;
         this._justUp = false;
@@ -379,15 +390,17 @@ Object.defineProperty(Phaser.Key.prototype, "justUp", {
 * @memberof Phaser.Key
 * @default true
 */
-Object.defineProperty(Phaser.Key.prototype, "enabled", {
+Object.defineProperty(Phaser.Key.prototype, 'enabled', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._enabled;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         value = !!value;
 

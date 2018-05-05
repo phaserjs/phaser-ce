@@ -27,7 +27,8 @@ Phaser.DOM = {
     * @param {Phaser.Point} [point] - The point we want to take the x/y values of the offset.
     * @return {Phaser.Point} - A point objet with the offsetX and Y as its properties.
     */
-    getOffset: function (element, point) {
+    getOffset: function (element, point)
+    {
 
         point = point || new Phaser.Point();
 
@@ -47,7 +48,8 @@ Phaser.DOM = {
 
 };
 
-Phaser.Device.whenReady(function (device) {
+Phaser.Device.whenReady(function (device)
+{
 
     // All target browsers should support page[XY]Offset.
     var scrollX = window && ('pageXOffset' in window) ?
@@ -66,9 +68,7 @@ Phaser.Device.whenReady(function (device) {
     * @readonly
     * @protected
     */
-    Object.defineProperty(Phaser.DOM, "scrollX", {
-        get: scrollX
-    });
+    Object.defineProperty(Phaser.DOM, 'scrollX', {get: scrollX});
 
     /**
     * A cross-browser window.scrollY.
@@ -78,8 +78,6 @@ Phaser.Device.whenReady(function (device) {
     * @readonly
     * @protected
     */
-    Object.defineProperty(Phaser.DOM, "scrollY", {
-        get: scrollY
-    });
+    Object.defineProperty(Phaser.DOM, 'scrollY', {get: scrollY});
 
 }, null, true);

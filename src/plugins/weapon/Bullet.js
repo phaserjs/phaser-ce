@@ -17,7 +17,8 @@
 * @param {string|Phaser.RenderTexture|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the Particle during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
 * @param {string|number} frame - If this Particle is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 */
-Phaser.Bullet = function (game, x, y, key, frame) {
+Phaser.Bullet = function (game, x, y, key, frame)
+{
 
     Phaser.Sprite.call(this, game, x, y, key, frame);
 
@@ -45,7 +46,8 @@ Phaser.Bullet.prototype.constructor = Phaser.Bullet;
 * @method Phaser.Bullet#kill
 * @memberof Phaser.Bullet
 */
-Phaser.Bullet.prototype.kill = function () {
+Phaser.Bullet.prototype.kill = function ()
+{
 
     this.alive = false;
     this.exists = false;
@@ -63,7 +65,8 @@ Phaser.Bullet.prototype.kill = function () {
 * @method Phaser.Bullet#update
 * @memberof Phaser.Bullet
 */
-Phaser.Bullet.prototype.update = function () {
+Phaser.Bullet.prototype.update = function ()
+{
 
     if (!this.exists)
     {
@@ -80,11 +83,9 @@ Phaser.Bullet.prototype.update = function () {
             }
         }
         else
+        if (!this.data.bulletManager.bulletBounds.intersects(this))
         {
-            if (!this.data.bulletManager.bulletBounds.intersects(this))
-            {
-                this.kill();
-            }
+            this.kill();
         }
     }
 

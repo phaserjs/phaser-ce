@@ -34,7 +34,8 @@
 * @param {string|Phaser.RenderTexture|Phaser.BitmapData|PIXI.Texture} [key] - The texture used by the Image during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture, BitmapData or PIXI.Texture. If this argument is omitted, the image will receive {@link Phaser.Cache.DEFAULT the default texture} (as if you had passed '__default'), but its `key` will remain empty.
 * @param {string|number} [frame] - If this Image is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 */
-Phaser.Image = function (game, x, y, key, frame) {
+Phaser.Image = function (game, x, y, key, frame)
+{
 
     x = x || 0;
     y = y || 0;
@@ -84,7 +85,8 @@ Phaser.Image.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 * @method Phaser.Image#preUpdate
 * @memberof Phaser.Image
 */
-Phaser.Image.prototype.preUpdate = function() {
+Phaser.Image.prototype.preUpdate = function ()
+{
 
     if (!this.preUpdateInWorld() || !this.preUpdateLifeSpan())
     {

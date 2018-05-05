@@ -24,7 +24,8 @@ Phaser.Canvas = {
     * @param {boolean} [skipPool=false] - If `true` the canvas will not be placed in the CanvasPool global.
     * @return {HTMLCanvasElement} The newly created canvas element.
     */
-    create: function (parent, width, height, id, skipPool) {
+    create: function (parent, width, height, id, skipPool)
+    {
 
         width = width || 256;
         height = height || 256;
@@ -52,7 +53,8 @@ Phaser.Canvas = {
     * @param {string} [color='rgb(0,0,0)'] - The color to set. Can be in the format 'rgb(r,g,b)', or '#RRGGBB' or any valid CSS color.
     * @return {HTMLCanvasElement} Returns the source canvas.
     */
-    setBackgroundColor: function (canvas, color) {
+    setBackgroundColor: function (canvas, color)
+    {
 
         color = color || 'rgb(0,0,0)';
 
@@ -70,7 +72,8 @@ Phaser.Canvas = {
     * @param {string} [value] - The touch action to set. Defaults to 'none'.
     * @return {HTMLCanvasElement} The source canvas.
     */
-    setTouchAction: function (canvas, value) {
+    setTouchAction: function (canvas, value)
+    {
 
         value = value || 'none';
 
@@ -90,7 +93,8 @@ Phaser.Canvas = {
     * @param {string} [value] - The touch action to set. Defaults to 'none'.
     * @return {HTMLCanvasElement} The source canvas.
     */
-    setUserSelect: function (canvas, value) {
+    setUserSelect: function (canvas, value)
+    {
 
         value = value || 'none';
 
@@ -116,7 +120,8 @@ Phaser.Canvas = {
     * @param {boolean} [overflowHidden=true] - If set to true it will add the overflow='hidden' style to the parent DOM element.
     * @return {HTMLCanvasElement} Returns the source canvas.
     */
-    addToDOM: function (canvas, parent, overflowHidden) {
+    addToDOM: function (canvas, parent, overflowHidden)
+    {
 
         var target;
 
@@ -159,7 +164,8 @@ Phaser.Canvas = {
     * @method Phaser.Canvas.removeFromDOM
     * @param {HTMLCanvasElement} canvas - The canvas to be removed from the DOM.
     */
-    removeFromDOM: function (canvas) {
+    removeFromDOM: function (canvas)
+    {
 
         if (canvas.parentNode)
         {
@@ -181,7 +187,8 @@ Phaser.Canvas = {
     * @param {number} skewY - The value to skew vertically by.
     * @return {CanvasRenderingContext2D} Returns the source context.
     */
-    setTransform: function (context, translateX, translateY, scaleX, scaleY, skewX, skewY) {
+    setTransform: function (context, translateX, translateY, scaleX, scaleY, skewX, skewY)
+    {
 
         context.setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY);
 
@@ -201,7 +208,8 @@ Phaser.Canvas = {
     * @param {boolean} value - If set to true it will enable image smoothing, false will disable it.
     * @return {CanvasRenderingContext2D} Returns the source context.
     */
-    setSmoothingEnabled: function (context, value) {
+    setSmoothingEnabled: function (context, value)
+    {
 
         var s = Phaser.Canvas.getSmoothingPrefix(context);
 
@@ -221,7 +229,8 @@ Phaser.Canvas = {
     * @param {CanvasRenderingContext2D} context - The context to enable or disable the image smoothing on.
     * @return {string|null} Returns the smoothingEnabled vendor prefix, or null if not set on the context.
     */
-    getSmoothingPrefix: function (context) {
+    getSmoothingPrefix: function (context)
+    {
 
         var vendor = [ 'i', 'webkitI', 'msI', 'mozI', 'oI' ];
 
@@ -246,7 +255,8 @@ Phaser.Canvas = {
      * @param {CanvasRenderingContext2D} context - The context to check for smoothing on.
      * @return {boolean} True if the given context has image smoothing enabled, otherwise false.
      */
-    getSmoothingEnabled: function (context) {
+    getSmoothingEnabled: function (context)
+    {
 
         var s = Phaser.Canvas.getSmoothingPrefix(context);
 
@@ -269,7 +279,8 @@ Phaser.Canvas = {
     * @see https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering
     * @see https://caniuse.com/#feat=css-crisp-edges
     */
-    setImageRenderingCrisp: function (canvas) {
+    setImageRenderingCrisp: function (canvas)
+    {
 
         var types = [ '-webkit-optimize-contrast', '-moz-crisp-edges', 'crisp-edges', 'pixelated' ];
 
@@ -292,7 +303,8 @@ Phaser.Canvas = {
     * @param {HTMLCanvasElement} canvas The canvas to set image-rendering bicubic on.
     * @return {HTMLCanvasElement} Returns the source canvas.
     */
-    setImageRenderingBicubic: function (canvas) {
+    setImageRenderingBicubic: function (canvas)
+    {
 
         canvas.style['image-rendering'] = 'auto';
         canvas.style.msInterpolationMode = 'bicubic';

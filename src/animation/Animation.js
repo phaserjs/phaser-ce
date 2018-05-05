@@ -19,7 +19,8 @@
 * @param {number} [frameRate=60] - The speed at which the animation should play. The speed is given in frames per second.
 * @param {boolean} [loop=false] - Whether or not the animation is looped or just plays once.
 */
-Phaser.Animation = function (game, parent, name, frameData, frames, frameRate, loop) {
+Phaser.Animation = function (game, parent, name, frameData, frames, frameRate, loop)
+{
 
     if (loop === undefined) { loop = false; }
 
@@ -176,7 +177,8 @@ Phaser.Animation.prototype = {
     * @param {boolean} [killOnComplete=false] - If set to true when the animation completes (only happens if loop=false) the parent Sprite will be killed.
     * @return {Phaser.Animation} - A reference to this Animation instance.
     */
-    play: function (frameRate, loop, killOnComplete) {
+    play: function (frameRate, loop, killOnComplete)
+    {
 
         if (typeof frameRate === 'number')
         {
@@ -223,7 +225,8 @@ Phaser.Animation.prototype = {
     *
     * @method Phaser.Animation#restart
     */
-    restart: function () {
+    restart: function ()
+    {
 
         this.isPlaying = true;
         this.isFinished = false;
@@ -252,7 +255,8 @@ Phaser.Animation.prototype = {
     * @method Phaser.Animation#reverse
     * @return {Phaser.Animation} The animation instance.
     */
-    reverse: function () {
+    reverse: function ()
+    {
 
         this.reversed = !this.reversed;
 
@@ -268,7 +272,8 @@ Phaser.Animation.prototype = {
     * @method Phaser.Animation#reverseOnce
     * @return {Phaser.Animation} The animation instance.
     */
-    reverseOnce: function () {
+    reverseOnce: function ()
+    {
 
         this.onComplete.addOnce(this.reverse, this);
 
@@ -283,7 +288,8 @@ Phaser.Animation.prototype = {
     * @param {string|number} [frameId] - The identifier of the frame to set. Can be the name of the frame, the sprite index of the frame, or the animation-local frame index.
     * @param {boolean} [useLocalFrameIndex=false] - If you provide a number for frameId, should it use the numeric indexes of the frameData, or the 0-indexed frame index local to the animation.
     */
-    setFrame: function(frameId, useLocalFrameIndex) {
+    setFrame: function (frameId, useLocalFrameIndex)
+    {
 
         var frameIndex;
 
@@ -293,7 +299,7 @@ Phaser.Animation.prototype = {
         }
 
         //  Find the index to the desired frame.
-        if (typeof frameId === "string")
+        if (typeof frameId === 'string')
         {
             for (var i = 0; i < this._frames.length; i++)
             {
@@ -303,7 +309,7 @@ Phaser.Animation.prototype = {
                 }
             }
         }
-        else if (typeof frameId === "number")
+        else if (typeof frameId === 'number')
         {
             if (useLocalFrameIndex)
             {
@@ -343,7 +349,8 @@ Phaser.Animation.prototype = {
     * @param {boolean} [resetFrame=false] - If true after the animation stops the currentFrame value will be set to the first frame in this animation.
     * @param {boolean} [dispatchComplete=false] - Dispatch the Animation.onComplete and parent.onAnimationComplete events?
     */
-    stop: function (resetFrame, dispatchComplete) {
+    stop: function (resetFrame, dispatchComplete)
+    {
 
         if (resetFrame === undefined) { resetFrame = false; }
         if (dispatchComplete === undefined) { dispatchComplete = false; }
@@ -371,7 +378,8 @@ Phaser.Animation.prototype = {
     *
     * @method Phaser.Animation#onPause
     */
-    onPause: function () {
+    onPause: function ()
+    {
 
         if (this.isPlaying)
         {
@@ -385,7 +393,8 @@ Phaser.Animation.prototype = {
     *
     * @method Phaser.Animation#onResume
     */
-    onResume: function () {
+    onResume: function ()
+    {
 
         if (this.isPlaying)
         {
@@ -399,7 +408,8 @@ Phaser.Animation.prototype = {
     *
     * @method Phaser.Animation#update
     */
-    update: function () {
+    update: function ()
+    {
 
         if (this.isPaused)
         {
@@ -421,10 +431,10 @@ Phaser.Animation.prototype = {
                 this._frameSkip = Math.floor(this._frameDiff / this.delay);
                 this._frameDiff -= (this._frameSkip * this.delay);
             }
-			else
-			{
-				this._frameDiff = 0;
-			}
+            else
+            {
+                this._frameDiff = 0;
+            }
 
             //  And what's left now?
             this._timeNextFrame = this.game.time.time + (this.delay - this._frameDiff);
@@ -502,7 +512,8 @@ Phaser.Animation.prototype = {
     * @param {boolean} fromPlay - Was this call made from the playing of a new animation?
     * @return {boolean} True if the current frame was updated, otherwise false.
     */
-    updateCurrentFrame: function (signalUpdate, fromPlay) {
+    updateCurrentFrame: function (signalUpdate, fromPlay)
+    {
 
         if (fromPlay === undefined) { fromPlay = false; }
 
@@ -542,7 +553,8 @@ Phaser.Animation.prototype = {
     * @method Phaser.Animation#next
     * @param {number} [quantity=1] - The number of frames to advance.
     */
-    next: function (quantity) {
+    next: function (quantity)
+    {
 
         if (quantity === undefined) { quantity = 1; }
 
@@ -574,7 +586,8 @@ Phaser.Animation.prototype = {
     * @method Phaser.Animation#previous
     * @param {number} [quantity=1] - The number of frames to move back.
     */
-    previous: function (quantity) {
+    previous: function (quantity)
+    {
 
         if (quantity === undefined) { quantity = 1; }
 
@@ -606,7 +619,8 @@ Phaser.Animation.prototype = {
     * @method Phaser.Animation#updateFrameData
     * @param {Phaser.FrameData} frameData - The FrameData object that contains all frames used by this Animation.
     */
-    updateFrameData: function (frameData) {
+    updateFrameData: function (frameData)
+    {
 
         this._frameData = frameData;
         this.currentFrame = this._frameData ? this._frameData.getFrame(this._frames[this._frameIndex % this._frames.length]) : null;
@@ -618,7 +632,8 @@ Phaser.Animation.prototype = {
     *
     * @method Phaser.Animation#destroy
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         if (!this._frameData)
         {
@@ -653,7 +668,8 @@ Phaser.Animation.prototype = {
     *
     * @method Phaser.Animation#complete
     */
-    complete: function () {
+    complete: function ()
+    {
 
         this._frameIndex = this._frames.length - 1;
         this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
@@ -684,13 +700,15 @@ Phaser.Animation.prototype.constructor = Phaser.Animation;
 */
 Object.defineProperty(Phaser.Animation.prototype, 'paused', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this.isPaused;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         this.isPaused = value;
 
@@ -718,13 +736,15 @@ Object.defineProperty(Phaser.Animation.prototype, 'paused', {
 */
 Object.defineProperty(Phaser.Animation.prototype, 'reversed', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this.isReversed;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         this.isReversed = value;
 
@@ -739,7 +759,8 @@ Object.defineProperty(Phaser.Animation.prototype, 'reversed', {
 */
 Object.defineProperty(Phaser.Animation.prototype, 'frameTotal', {
 
-    get: function () {
+    get: function ()
+    {
         return this._frames.length;
     }
 
@@ -751,7 +772,8 @@ Object.defineProperty(Phaser.Animation.prototype, 'frameTotal', {
 */
 Object.defineProperty(Phaser.Animation.prototype, 'frame', {
 
-    get: function () {
+    get: function ()
+    {
 
         if (this.currentFrame !== null)
         {
@@ -764,7 +786,8 @@ Object.defineProperty(Phaser.Animation.prototype, 'frame', {
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         this.currentFrame = this._frameData.getFrame(this._frames[value]);
 
@@ -789,13 +812,15 @@ Object.defineProperty(Phaser.Animation.prototype, 'frame', {
 */
 Object.defineProperty(Phaser.Animation.prototype, 'speed', {
 
-    get: function () {
+    get: function ()
+    {
 
         return 1000 / this.delay;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value > 0)
         {
@@ -812,13 +837,15 @@ Object.defineProperty(Phaser.Animation.prototype, 'speed', {
 */
 Object.defineProperty(Phaser.Animation.prototype, 'enableUpdate', {
 
-    get: function () {
+    get: function ()
+    {
 
         return (this.onUpdate !== null);
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value && this.onUpdate === null)
         {
@@ -848,7 +875,8 @@ Object.defineProperty(Phaser.Animation.prototype, 'enableUpdate', {
 * @param {number} [zeroPad=0] - The number of zeros to pad the min and max values with. If your frames are named 'explosion_0001' to 'explosion_0034' then the zeroPad is 4.
 * @return {string[]} An array of framenames.
 */
-Phaser.Animation.generateFrameNames = function (prefix, start, stop, suffix, zeroPad) {
+Phaser.Animation.generateFrameNames = function (prefix, start, stop, suffix, zeroPad)
+{
 
     if (suffix === undefined) { suffix = ''; }
 

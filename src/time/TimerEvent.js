@@ -25,7 +25,8 @@
 * @param {object} callbackContext - The context in which the callback will be called.
 * @param {any[]} arguments - Additional arguments to be passed to the callback.
 */
-Phaser.TimerEvent = function (timer, delay, tick, repeatCount, loop, callback, callbackContext, args) {
+Phaser.TimerEvent = function (timer, delay, tick, repeatCount, loop, callback, callbackContext, args)
+{
 
     /**
     * @property {Phaser.Timer} timer - The Timer object that this TimerEvent belongs to.

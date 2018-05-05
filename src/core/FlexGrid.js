@@ -8,7 +8,7 @@
 * WARNING: This is an EXPERIMENTAL class. The API will change significantly in the coming versions and is incomplete.
 * Please try to avoid using in production games with a long time to build.
 * This is also why the documentation is incomplete.
-* 
+*
 * FlexGrid is a a responsive grid manager that works in conjunction with the ScaleManager RESIZE scaling mode and FlexLayers
 * to provide for game object positioning in a responsive manner.
 *
@@ -18,7 +18,8 @@
 * @param {number} width - The width of the game.
 * @param {number} height - The height of the game.
 */
-Phaser.FlexGrid = function (manager, width, height) {
+Phaser.FlexGrid = function (manager, width, height)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running Game.
@@ -40,7 +41,7 @@ Phaser.FlexGrid = function (manager, width, height) {
     this.boundsNone = new Phaser.Rectangle(0, 0, width, height);
 
     /**
-    * @property {Phaser.Point} position - 
+    * @property {Phaser.Point} position -
     * @readonly
     */
     this.positionCustom = new Phaser.Point(0, 0);
@@ -81,7 +82,8 @@ Phaser.FlexGrid.prototype = {
      * @param {number} width - The new dimensions.
      * @param {number} height - The new dimensions.
      */
-    setSize: function (width, height) {
+    setSize: function (width, height)
+    {
 
         //  These are locked and don't change until setSize is called again
         this.width = width;
@@ -110,7 +112,8 @@ Phaser.FlexGrid.prototype = {
      * @param {PIXI.DisplayObject[]} [children] - An array of children that are used to populate the FlexLayer.
      * @return {Phaser.FlexLayer} The Layer object.
      */
-    createCustomLayer: function (width, height, children, addToWorld) {
+    createCustomLayer: function (width, height, children, addToWorld)
+    {
 
         if (addToWorld === undefined) { addToWorld = true; }
 
@@ -145,7 +148,8 @@ Phaser.FlexGrid.prototype = {
      * @param {array} [children] - An array of children that are used to populate the FlexLayer.
      * @return {Phaser.FlexLayer} The Layer object.
      */
-    createFluidLayer: function (children, addToWorld) {
+    createFluidLayer: function (children, addToWorld)
+    {
 
         if (addToWorld === undefined) { addToWorld = true; }
 
@@ -174,7 +178,8 @@ Phaser.FlexGrid.prototype = {
      * @param {array} [children] - An array of children that are used to populate the FlexLayer.
      * @return {Phaser.FlexLayer} The Layer object.
      */
-    createFullLayer: function (children) {
+    createFullLayer: function (children)
+    {
 
         var layer = new Phaser.FlexLayer(this, this.positionFull, this.boundsFull, this.scaleFluid);
 
@@ -198,7 +203,8 @@ Phaser.FlexGrid.prototype = {
      * @param {PIXI.DisplayObject[]} [children] - An array of children that are used to populate the FlexLayer.
      * @return {Phaser.FlexLayer} The Layer object.
      */
-    createFixedLayer: function (children) {
+    createFixedLayer: function (children)
+    {
 
         var layer = new Phaser.FlexLayer(this, this.positionNone, this.boundsNone, this.scaleNone);
 
@@ -220,7 +226,8 @@ Phaser.FlexGrid.prototype = {
      *
      * @method Phaser.FlexGrid#reset
      */
-    reset: function () {
+    reset: function ()
+    {
 
         var i = this.layers.length;
 
@@ -244,7 +251,8 @@ Phaser.FlexGrid.prototype = {
      * @param {number} width - The new width of the game container.
      * @param {number} height - The new height of the game container.
      */
-    onResize: function (width, height) {
+    onResize: function (width, height)
+    {
 
         this.ratioH = width / height;
         this.ratioV = height / width;
@@ -258,7 +266,8 @@ Phaser.FlexGrid.prototype = {
      *
      * @method Phaser.FlexGrid#refresh
      */
-    refresh: function () {
+    refresh: function ()
+    {
 
         this.multiplier = Math.min((this.manager.height / this.height), (this.manager.width / this.width));
 
@@ -287,7 +296,8 @@ Phaser.FlexGrid.prototype = {
      * @method Phaser.FlexGrid#fitSprite
      * @param {Phaser.Sprite} sprite - The Sprite to fit.
      */
-    fitSprite: function (sprite) {
+    fitSprite: function (sprite)
+    {
 
         this.manager.scaleSprite(sprite);
 
@@ -301,7 +311,8 @@ Phaser.FlexGrid.prototype = {
      *
      * @method Phaser.FlexGrid#debug
      */
-    debug: function () {
+    debug: function ()
+    {
 
         // for (var i = 0; i < this.layers.length; i++)
         // {

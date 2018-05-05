@@ -16,7 +16,8 @@
 * @param {string|Phaser.RenderTexture|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the Particle during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
 * @param {string|number} frame - If this Particle is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 */
-Phaser.Particle = function (game, x, y, key, frame) {
+Phaser.Particle = function (game, x, y, key, frame)
+{
 
     Phaser.Sprite.call(this, game, x, y, key, frame);
 
@@ -67,7 +68,8 @@ Phaser.Particle.prototype.constructor = Phaser.Particle;
 * @method Phaser.Particle#update
 * @memberof Phaser.Particle
 */
-Phaser.Particle.prototype.update = function() {
+Phaser.Particle.prototype.update = function ()
+{
 
     if (this.autoScale)
     {
@@ -105,7 +107,8 @@ Phaser.Particle.prototype.update = function() {
 * @method Phaser.Particle#onEmit
 * @memberof Phaser.Particle
 */
-Phaser.Particle.prototype.onEmit = function() {
+Phaser.Particle.prototype.onEmit = function ()
+{
 };
 
 /**
@@ -114,7 +117,8 @@ Phaser.Particle.prototype.onEmit = function() {
 * @method Phaser.Particle#setAlphaData
 * @memberof Phaser.Particle
 */
-Phaser.Particle.prototype.setAlphaData = function(data) {
+Phaser.Particle.prototype.setAlphaData = function (data)
+{
 
     this.alphaData = data;
     this._a = data.length - 1;
@@ -129,7 +133,8 @@ Phaser.Particle.prototype.setAlphaData = function(data) {
 * @method Phaser.Particle#setScaleData
 * @memberof Phaser.Particle
 */
-Phaser.Particle.prototype.setScaleData = function(data) {
+Phaser.Particle.prototype.setScaleData = function (data)
+{
 
     this.scaleData = data;
     this._s = data.length - 1;
@@ -150,7 +155,8 @@ Phaser.Particle.prototype.setScaleData = function(data) {
 * @param {number} [health=1] - The health to give the Particle.
 * @return {Phaser.Particle} This instance.
 */
-Phaser.Particle.prototype.reset = function(x, y, health) {
+Phaser.Particle.prototype.reset = function (x, y, health)
+{
 
     Phaser.Component.Reset.prototype.reset.call(this, x, y, health);
 

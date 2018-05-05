@@ -28,7 +28,8 @@ Phaser.Component.Animation.prototype = {
     * @param {boolean} [killOnComplete=false] - If set to true when the animation completes (only happens if loop=false) the parent Sprite will be killed.
     * @return {Phaser.Animation} A reference to playing Animation.
     */
-    play: function (name, frameRate, loop, killOnComplete) {
+    play: function (name, frameRate, loop, killOnComplete)
+    {
 
         if (this.animations)
         {

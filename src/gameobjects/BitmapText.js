@@ -51,7 +51,8 @@
 * @param {number} [size=32] - The size the font will be rendered at in pixels.
 * @param {string} [align='left'] - The alignment of multi-line text. Has no effect if there is only one line of text.
 */
-Phaser.BitmapText = function (game, x, y, font, text, size, align) {
+Phaser.BitmapText = function (game, x, y, font, text, size, align)
+{
 
     x = x || 0;
     y = y || 0;
@@ -184,7 +185,8 @@ Phaser.BitmapText.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 * @memberof Phaser.BitmapText
 * @return {boolean} True if the BitmapText was rendered, otherwise false.
 */
-Phaser.BitmapText.prototype.preUpdate = function () {
+Phaser.BitmapText.prototype.preUpdate = function ()
+{
 
     if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
     {
@@ -199,7 +201,8 @@ Phaser.BitmapText.prototype.preUpdate = function () {
 * Automatically called by World.preUpdate.
 * @method Phaser.BitmapText.prototype.postUpdate
 */
-Phaser.BitmapText.prototype.postUpdate = function () {
+Phaser.BitmapText.prototype.postUpdate = function ()
+{
 
     Phaser.Component.PhysicsBody.postUpdate.call(this);
     Phaser.Component.FixedToCamera.postUpdate.call(this);
@@ -222,7 +225,8 @@ Phaser.BitmapText.prototype.postUpdate = function () {
 * @method Phaser.BitmapText.prototype.setText
 * @param {string} text - The text to be displayed by this BitmapText object.
 */
-Phaser.BitmapText.prototype.setText = function (text) {
+Phaser.BitmapText.prototype.setText = function (text)
+{
 
     this.text = text;
 
@@ -239,7 +243,8 @@ Phaser.BitmapText.prototype.setText = function (text) {
 * @param {string} text - The text to parse.
 * @return {object} An object containing the parsed characters, total pixel width and x offsets.
 */
-Phaser.BitmapText.prototype.scanLine = function (data, scale, text) {
+Phaser.BitmapText.prototype.scanLine = function (data, scale, text)
+{
 
     var x = 0;
     var w = 0;
@@ -320,7 +325,8 @@ Phaser.BitmapText.prototype.scanLine = function (data, scale, text) {
 * @param {string} [replace=''] - The replacement string for any missing characters.
 * @return {string} The cleaned text string.
 */
-Phaser.BitmapText.prototype.cleanText = function (text, replace) {
+Phaser.BitmapText.prototype.cleanText = function (text, replace)
+{
 
     if (replace === undefined)
     {
@@ -335,7 +341,7 @@ Phaser.BitmapText.prototype.cleanText = function (text, replace) {
     }
 
     var re = /\r\n|\n\r|\n|\r/g;
-    var lines = text.replace(re, "\n").split("\n");
+    var lines = text.replace(re, '\n').split('\n');
 
     for (var i = 0; i < lines.length; i++)
     {
@@ -357,7 +363,7 @@ Phaser.BitmapText.prototype.cleanText = function (text, replace) {
         lines[i] = output;
     }
 
-    return lines.join("\n");
+    return lines.join('\n');
 
 };
 
@@ -367,7 +373,8 @@ Phaser.BitmapText.prototype.cleanText = function (text, replace) {
 * @method Phaser.BitmapText.prototype.updateText
 * @private
 */
-Phaser.BitmapText.prototype.updateText = function () {
+Phaser.BitmapText.prototype.updateText = function ()
+{
 
     var data = this._data.font;
 
@@ -488,7 +495,8 @@ Phaser.BitmapText.prototype.updateText = function () {
 * @method Phaser.BitmapText.prototype.purgeGlyphs
 * @return {integer} The amount of glyphs removed from the pool.
 */
-Phaser.BitmapText.prototype.purgeGlyphs = function () {
+Phaser.BitmapText.prototype.purgeGlyphs = function ()
+{
 
     var len = this._glyphs.length;
     var kept = [];
@@ -520,7 +528,8 @@ Phaser.BitmapText.prototype.purgeGlyphs = function () {
 * @method Phaser.BitmapText.prototype.updateTransform
 * @private
 */
-Phaser.BitmapText.prototype.updateTransform = function () {
+Phaser.BitmapText.prototype.updateTransform = function ()
+{
 
     if (this.dirty || !this.anchor.equals(this._prevAnchor))
     {
@@ -539,11 +548,13 @@ Phaser.BitmapText.prototype.updateTransform = function () {
 */
 Object.defineProperty(Phaser.BitmapText.prototype, 'align', {
 
-    get: function() {
+    get: function ()
+    {
         return this._align;
     },
 
-    set: function(value) {
+    set: function (value)
+    {
 
         if (value !== this._align && (value === 'left' || value === 'center' || value === 'right'))
         {
@@ -561,11 +572,13 @@ Object.defineProperty(Phaser.BitmapText.prototype, 'align', {
 */
 Object.defineProperty(Phaser.BitmapText.prototype, 'tint', {
 
-    get: function() {
+    get: function ()
+    {
         return this._tint;
     },
 
-    set: function(value) {
+    set: function (value)
+    {
 
         if (value !== this._tint)
         {
@@ -583,11 +596,13 @@ Object.defineProperty(Phaser.BitmapText.prototype, 'tint', {
 */
 Object.defineProperty(Phaser.BitmapText.prototype, 'font', {
 
-    get: function() {
+    get: function ()
+    {
         return this._font;
     },
 
-    set: function(value) {
+    set: function (value)
+    {
 
         if (value !== this._font)
         {
@@ -606,11 +621,13 @@ Object.defineProperty(Phaser.BitmapText.prototype, 'font', {
 */
 Object.defineProperty(Phaser.BitmapText.prototype, 'fontSize', {
 
-    get: function() {
+    get: function ()
+    {
         return this._fontSize;
     },
 
-    set: function(value) {
+    set: function (value)
+    {
 
         value = parseInt(value, 10);
 
@@ -630,11 +647,13 @@ Object.defineProperty(Phaser.BitmapText.prototype, 'fontSize', {
 */
 Object.defineProperty(Phaser.BitmapText.prototype, 'text', {
 
-    get: function() {
+    get: function ()
+    {
         return this._text;
     },
 
-    set: function(value) {
+    set: function (value)
+    {
 
         if (value !== this._text)
         {
@@ -661,13 +680,15 @@ Object.defineProperty(Phaser.BitmapText.prototype, 'text', {
 */
 Object.defineProperty(Phaser.BitmapText.prototype, 'maxWidth', {
 
-    get: function() {
+    get: function ()
+    {
 
         return this._maxWidth;
 
     },
 
-    set: function(value) {
+    set: function (value)
+    {
 
         if (value !== this._maxWidth)
         {
@@ -691,13 +712,15 @@ Object.defineProperty(Phaser.BitmapText.prototype, 'maxWidth', {
 */
 Object.defineProperty(Phaser.BitmapText.prototype, 'smoothed', {
 
-    get: function() {
+    get: function ()
+    {
 
         return !this._data.base.scaleMode;
 
     },
 
-    set: function(value) {
+    set: function (value)
+    {
 
         if (value)
         {

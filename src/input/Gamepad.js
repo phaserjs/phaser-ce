@@ -18,7 +18,8 @@
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 */
-Phaser.Gamepad = function (game) {
+Phaser.Gamepad = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - Local reference to game.
@@ -144,7 +145,8 @@ Phaser.Gamepad.prototype = {
     * @param {object} callbacks - Object that takes six different callback methods:
     * onConnectCallback, onDisconnectCallback, onDownCallback, onUpCallback, onAxisCallback, onFloatCallback
     */
-    addCallbacks: function (context, callbacks) {
+    addCallbacks: function (context, callbacks)
+    {
 
         if (typeof callbacks !== 'undefined')
         {
@@ -165,7 +167,8 @@ Phaser.Gamepad.prototype = {
     *
     * @method Phaser.Gamepad#start
     */
-    start: function () {
+    start: function ()
+    {
 
         if (this._active)
         {
@@ -177,11 +180,13 @@ Phaser.Gamepad.prototype = {
 
         var _this = this;
 
-        this._onGamepadConnected = function (event) {
+        this._onGamepadConnected = function (event)
+        {
             return _this.onGamepadConnected(event);
         };
 
-        this._onGamepadDisconnected = function (event) {
+        this._onGamepadDisconnected = function (event)
+        {
             return _this.onGamepadDisconnected(event);
         };
 
@@ -197,7 +202,8 @@ Phaser.Gamepad.prototype = {
      * @private
      * @param {object} event - The DOM event.
      */
-    onGamepadConnected: function (event) {
+    onGamepadConnected: function (event)
+    {
 
         var newPad = event.gamepad;
         this._rawPads.push(newPad);
@@ -212,7 +218,8 @@ Phaser.Gamepad.prototype = {
      * @private
      * @param {object} event - The DOM event.
      */
-    onGamepadDisconnected: function (event) {
+    onGamepadDisconnected: function (event)
+    {
 
         var removedPad = event.gamepad;
 
@@ -233,7 +240,8 @@ Phaser.Gamepad.prototype = {
     * @method Phaser.Gamepad#update
     * @protected
     */
-    update: function () {
+    update: function ()
+    {
 
         this._pollGamepads();
 
@@ -250,7 +258,8 @@ Phaser.Gamepad.prototype = {
     * @method Phaser.Gamepad#_pollGamepads
     * @private
     */
-    _pollGamepads: function () {
+    _pollGamepads: function ()
+    {
 
         if (!this._active)
         {
@@ -374,7 +383,8 @@ Phaser.Gamepad.prototype = {
     * Sets the deadZone variable for all four gamepads
     * @method Phaser.Gamepad#setDeadZones
     */
-    setDeadZones: function (value) {
+    setDeadZones: function (value)
+    {
 
         for (var i = 0; i < this._gamepads.length; i++)
         {
@@ -388,7 +398,8 @@ Phaser.Gamepad.prototype = {
     *
     * @method Phaser.Gamepad#stop
     */
-    stop: function () {
+    stop: function ()
+    {
 
         this._active = false;
 
@@ -401,7 +412,8 @@ Phaser.Gamepad.prototype = {
     * Reset all buttons/axes of all gamepads
     * @method Phaser.Gamepad#reset
     */
-    reset: function () {
+    reset: function ()
+    {
 
         this.update();
 
@@ -419,7 +431,8 @@ Phaser.Gamepad.prototype = {
     * @param {number} [duration=250] - The duration below which the button is considered as being just pressed.
     * @return {boolean} True if the button is just pressed otherwise false.
     */
-    justPressed: function (buttonCode, duration) {
+    justPressed: function (buttonCode, duration)
+    {
 
         for (var i = 0; i < this._gamepads.length; i++)
         {
@@ -440,7 +453,8 @@ Phaser.Gamepad.prototype = {
     * @param {number} [duration=250] - The duration below which the button is considered as being just released.
     * @return {boolean} True if the button is just released otherwise false.
     */
-    justReleased: function (buttonCode, duration) {
+    justReleased: function (buttonCode, duration)
+    {
 
         for (var i = 0; i < this._gamepads.length; i++)
         {
@@ -460,7 +474,8 @@ Phaser.Gamepad.prototype = {
     * @param {number} buttonCode - The buttonCode of the button to check for.
     * @return {boolean} True if a button is currently down.
     */
-    isDown: function (buttonCode) {
+    isDown: function (buttonCode)
+    {
 
         for (var i = 0; i < this._gamepads.length; i++)
         {
@@ -478,7 +493,8 @@ Phaser.Gamepad.prototype = {
      *
      * @method Phaser.Gamepad#destroy
      */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this.stop();
 
@@ -499,9 +515,10 @@ Phaser.Gamepad.prototype.constructor = Phaser.Gamepad;
 * @property {boolean} active - If the gamepad input is active or not.
 * @readonly
 */
-Object.defineProperty(Phaser.Gamepad.prototype, "active", {
+Object.defineProperty(Phaser.Gamepad.prototype, 'active', {
 
-    get: function () {
+    get: function ()
+    {
         return this._active;
     }
 
@@ -513,9 +530,10 @@ Object.defineProperty(Phaser.Gamepad.prototype, "active", {
 * @property {boolean} supported - Whether or not gamepads are supported in current browser.
 * @readonly
 */
-Object.defineProperty(Phaser.Gamepad.prototype, "supported", {
+Object.defineProperty(Phaser.Gamepad.prototype, 'supported', {
 
-    get: function () {
+    get: function ()
+    {
         return this._gamepadSupportAvailable;
     }
 
@@ -527,9 +545,10 @@ Object.defineProperty(Phaser.Gamepad.prototype, "supported", {
 * @property {number} padsConnected - How many live gamepads are currently connected.
 * @readonly
 */
-Object.defineProperty(Phaser.Gamepad.prototype, "padsConnected", {
+Object.defineProperty(Phaser.Gamepad.prototype, 'padsConnected', {
 
-    get: function () {
+    get: function ()
+    {
         return this._rawPads.length;
     }
 
@@ -541,9 +560,10 @@ Object.defineProperty(Phaser.Gamepad.prototype, "padsConnected", {
 * @property {Phaser.SinglePad} pad1 - Gamepad #1;
 * @readonly
 */
-Object.defineProperty(Phaser.Gamepad.prototype, "pad1", {
+Object.defineProperty(Phaser.Gamepad.prototype, 'pad1', {
 
-    get: function () {
+    get: function ()
+    {
         return this._gamepads[0];
     }
 
@@ -555,9 +575,10 @@ Object.defineProperty(Phaser.Gamepad.prototype, "pad1", {
 * @property {Phaser.SinglePad} pad2 - Gamepad #2
 * @readonly
 */
-Object.defineProperty(Phaser.Gamepad.prototype, "pad2", {
+Object.defineProperty(Phaser.Gamepad.prototype, 'pad2', {
 
-    get: function () {
+    get: function ()
+    {
         return this._gamepads[1];
     }
 
@@ -569,9 +590,10 @@ Object.defineProperty(Phaser.Gamepad.prototype, "pad2", {
 * @property {Phaser.SinglePad} pad3 - Gamepad #3
 * @readonly
 */
-Object.defineProperty(Phaser.Gamepad.prototype, "pad3", {
+Object.defineProperty(Phaser.Gamepad.prototype, 'pad3', {
 
-    get: function () {
+    get: function ()
+    {
         return this._gamepads[2];
     }
 
@@ -583,9 +605,10 @@ Object.defineProperty(Phaser.Gamepad.prototype, "pad3", {
 * @property {Phaser.SinglePad} pad4 - Gamepad #4
 * @readonly
 */
-Object.defineProperty(Phaser.Gamepad.prototype, "pad4", {
+Object.defineProperty(Phaser.Gamepad.prototype, 'pad4', {
 
-    get: function () {
+    get: function ()
+    {
         return this._gamepads[3];
     }
 

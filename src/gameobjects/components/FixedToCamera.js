@@ -18,7 +18,8 @@ Phaser.Component.FixedToCamera = function () {};
  *
  * @method
  */
-Phaser.Component.FixedToCamera.postUpdate = function () {
+Phaser.Component.FixedToCamera.postUpdate = function ()
+{
 
     if (this.fixedToCamera)
     {
@@ -54,13 +55,15 @@ Phaser.Component.FixedToCamera.prototype = {
     */
     fixedToCamera: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._fixedToCamera;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value)
             {

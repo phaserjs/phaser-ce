@@ -11,7 +11,8 @@
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 */
-Phaser.Particles = function (game) {
+Phaser.Particles = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running Game.
@@ -39,7 +40,8 @@ Phaser.Particles.prototype = {
     * @param {Phaser.Emitter} emitter - The emitter to be added to the particle manager.
     * @return {Phaser.Emitter} The emitter that was added.
     */
-    add: function (emitter) {
+    add: function (emitter)
+    {
         this.emitters[emitter.id] = emitter;
         return emitter;
     },
@@ -49,7 +51,8 @@ Phaser.Particles.prototype = {
     * @method Phaser.Particles#remove
     * @param {Phaser.Emitter} emitter - The emitter to remove.
     */
-    remove: function (emitter) {
+    remove: function (emitter)
+    {
         delete this.emitters[emitter.id];
     }
 

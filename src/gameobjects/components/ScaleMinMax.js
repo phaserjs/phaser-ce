@@ -52,7 +52,8 @@ Phaser.Component.ScaleMinMax.prototype = {
      * @private
      * @param {Phaser.Matrix} wt - The updated worldTransform matrix.
      */
-    checkTransform: function (wt) {
+    checkTransform: function (wt)
+    {
 
         if (this.scaleMin)
         {
@@ -107,7 +108,8 @@ Phaser.Component.ScaleMinMax.prototype = {
      * @param {number|null} maxX - The maximum horizontal scale value this Game Object can scale up to.
      * @param {number|null} maxY - The maximum vertical scale value this Game Object can scale up to.
      */
-    setScaleMinMax: function (minX, minY, maxX, maxY) {
+    setScaleMinMax: function (minX, minY, maxX, maxY)
+    {
 
         if (minY === undefined)
         {
@@ -126,15 +128,13 @@ Phaser.Component.ScaleMinMax.prototype = {
             this.scaleMin = null;
         }
         else
+        if (this.scaleMin)
         {
-            if (this.scaleMin)
-            {
-                this.scaleMin.set(minX, minY);
-            }
-            else
-            {
-                this.scaleMin = new Phaser.Point(minX, minY);
-            }
+            this.scaleMin.set(minX, minY);
+        }
+        else
+        {
+            this.scaleMin = new Phaser.Point(minX, minY);
         }
 
         if (maxX === null)
@@ -142,15 +142,13 @@ Phaser.Component.ScaleMinMax.prototype = {
             this.scaleMax = null;
         }
         else
+        if (this.scaleMax)
         {
-            if (this.scaleMax)
-            {
-                this.scaleMax.set(maxX, maxY);
-            }
-            else
-            {
-                this.scaleMax = new Phaser.Point(maxX, maxY);
-            }
+            this.scaleMax.set(maxX, maxY);
+        }
+        else
+        {
+            this.scaleMax = new Phaser.Point(maxX, maxY);
         }
 
         if (this.scaleMin === null)

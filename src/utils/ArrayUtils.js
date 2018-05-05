@@ -24,7 +24,8 @@ Phaser.ArrayUtils = {
     * @param {integer} length - Optional restriction on the number of values you want to randomly select from.
     * @return {object} The random object that was selected.
     */
-    getRandomItem: function (objects, startIndex, length) {
+    getRandomItem: function (objects, startIndex, length)
+    {
 
         if (objects === null) { return null; }
         if (startIndex === undefined) { startIndex = 0; }
@@ -48,9 +49,11 @@ Phaser.ArrayUtils = {
     * @param {integer} length - Optional restriction on the number of values you want to randomly select from.
     * @return {object} The random object that was removed.
     */
-    removeRandomItem: function (objects, startIndex, length) {
+    removeRandomItem: function (objects, startIndex, length)
+    {
 
-        if (objects == null) { // undefined or null
+        if (objects == null)
+        { // undefined or null
             return null;
         }
 
@@ -111,7 +114,8 @@ Phaser.ArrayUtils = {
     * @param {any[]} array - The array to shuffle.
     * @return {any[]} The original array, now shuffled.
     */
-    shuffle: function (array) {
+    shuffle: function (array)
+    {
 
         for (var i = array.length - 1; i > 0; i--)
         {
@@ -132,7 +136,8 @@ Phaser.ArrayUtils = {
     * @param {Array<any[]>} array - The matrix to transpose.
     * @return {Array<any[]>} A new transposed matrix
     */
-    transposeMatrix: function (array) {
+    transposeMatrix: function (array)
+    {
 
         var sourceRowCount = array.length;
         var sourceColCount = array[0].length;
@@ -163,7 +168,8 @@ Phaser.ArrayUtils = {
     * @param {number|string} direction - The amount to rotate: the rotation in degrees (90, -90, 270, -270, 180) or a string command ('rotateLeft', 'rotateRight' or 'rotate180').
     * @return {Array<any[]>} The rotated matrix. The source matrix should be discarded for the returned matrix.
     */
-    rotateMatrix: function (matrix, direction) {
+    rotateMatrix: function (matrix, direction)
+    {
 
         if (typeof direction !== 'string')
         {
@@ -203,7 +209,8 @@ Phaser.ArrayUtils = {
     * @param {number[]} arr - The input array which _must_ be sorted.
     * @return {number} The nearest value found.
     */
-    findClosest: function (value, arr) {
+    findClosest: function (value, arr)
+    {
 
         if (!arr.length)
         {
@@ -215,7 +222,8 @@ Phaser.ArrayUtils = {
         }
 
         var i = 1;
-        while (arr[i] < value) {
+        while (arr[i] < value)
+        {
             i++;
         }
 
@@ -239,7 +247,8 @@ Phaser.ArrayUtils = {
     * @param {any[]} array - The array to rotate. The array is modified.
     * @return {any} The shifted value.
     */
-    rotateRight: function (array) {
+    rotateRight: function (array)
+    {
 
         var s = array.pop();
         array.unshift(s);
@@ -261,7 +270,8 @@ Phaser.ArrayUtils = {
     * @param {any[]} array - The array to rotate. The array is modified.
     * @return {any} The rotated value.
     */
-    rotateLeft: function (array) {
+    rotateLeft: function (array)
+    {
 
         var s = array.shift();
         array.push(s);
@@ -289,7 +299,8 @@ Phaser.ArrayUtils = {
     * @param {number} [end] - The maximum value the array contains.
     * @return {number[]} The array of number values.
     */
-    numberArray: function (start, end) {
+    numberArray: function (start, end)
+    {
 
         if (end === undefined || end === null)
         {
@@ -341,7 +352,8 @@ Phaser.ArrayUtils = {
     * Phaser.ArrayUtils.numberArrayStep(0);
     * // => []
     */
-    numberArrayStep: function (start, end, step) {
+    numberArrayStep: function (start, end, step)
+    {
 
         if (start === undefined || start === null) { start = 0; }
 

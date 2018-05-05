@@ -12,7 +12,8 @@
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {boolean} [forceSetTimeOut=false] - Tell Phaser to use setTimeOut even if raf is available.
 */
-Phaser.RequestAnimationFrame = function(game, forceSetTimeOut) {
+Phaser.RequestAnimationFrame = function (game, forceSetTimeOut)
+{
 
     if (forceSetTimeOut === undefined) { forceSetTimeOut = false; }
 
@@ -71,7 +72,8 @@ Phaser.RequestAnimationFrame.prototype = {
     * Starts the requestAnimationFrame running or setTimeout if unavailable in browser
     * @method Phaser.RequestAnimationFrame#start
     */
-    start: function () {
+    start: function ()
+    {
 
         this.isRunning = true;
 
@@ -81,7 +83,8 @@ Phaser.RequestAnimationFrame.prototype = {
         {
             this._isSetTimeOut = true;
 
-            this._onLoop = function () {
+            this._onLoop = function ()
+            {
                 return _this.updateSetTimeout();
             };
 
@@ -91,7 +94,8 @@ Phaser.RequestAnimationFrame.prototype = {
         {
             this._isSetTimeOut = false;
 
-            this._onLoop = function (time) {
+            this._onLoop = function (time)
+            {
                 return _this.updateRAF(time);
             };
 
@@ -104,7 +108,8 @@ Phaser.RequestAnimationFrame.prototype = {
     * The update method for the requestAnimationFrame
     * @method Phaser.RequestAnimationFrame#updateRAF
     */
-    updateRAF: function (rafTime) {
+    updateRAF: function (rafTime)
+    {
 
         if (this.isRunning)
         {
@@ -120,7 +125,8 @@ Phaser.RequestAnimationFrame.prototype = {
     * The update method for the setTimeout.
     * @method Phaser.RequestAnimationFrame#updateSetTimeout
     */
-    updateSetTimeout: function () {
+    updateSetTimeout: function ()
+    {
 
         if (this.isRunning)
         {
@@ -135,7 +141,8 @@ Phaser.RequestAnimationFrame.prototype = {
     * Stops the requestAnimationFrame from running.
     * @method Phaser.RequestAnimationFrame#stop
     */
-    stop: function () {
+    stop: function ()
+    {
 
         if (this._isSetTimeOut)
         {
@@ -155,7 +162,8 @@ Phaser.RequestAnimationFrame.prototype = {
     * @method Phaser.RequestAnimationFrame#isSetTimeOut
     * @return {boolean}
     */
-    isSetTimeOut: function () {
+    isSetTimeOut: function ()
+    {
         return this._isSetTimeOut;
     },
 
@@ -164,7 +172,8 @@ Phaser.RequestAnimationFrame.prototype = {
     * @method Phaser.RequestAnimationFrame#isRAF
     * @return {boolean}
     */
-    isRAF: function () {
+    isRAF: function ()
+    {
         return (this._isSetTimeOut === false);
     }
 

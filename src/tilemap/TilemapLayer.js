@@ -20,7 +20,8 @@
 * @param {integer} width - Width of the renderable area of the layer (in pixels).
 * @param {integer} height - Height of the renderable area of the layer (in pixels).
 */
-Phaser.TilemapLayer = function (game, tilemap, index, width, height) {
+Phaser.TilemapLayer = function (game, tilemap, index, width, height)
+{
 
     width |= 0;
     height |= 0;
@@ -265,7 +266,8 @@ Phaser.TilemapLayer.sharedCopyCanvas = null;
 * @protected
 * @static
 */
-Phaser.TilemapLayer.ensureSharedCopyCanvas = function () {
+Phaser.TilemapLayer.ensureSharedCopyCanvas = function ()
+{
 
     if (!this.sharedCopyCanvas)
     {
@@ -281,7 +283,8 @@ Phaser.TilemapLayer.ensureSharedCopyCanvas = function () {
 *
 * @method Phaser.TilemapLayer#preUpdate
 */
-Phaser.TilemapLayer.prototype.preUpdate = function() {
+Phaser.TilemapLayer.prototype.preUpdate = function ()
+{
 
     return this.preUpdateCore();
 
@@ -293,7 +296,8 @@ Phaser.TilemapLayer.prototype.preUpdate = function() {
 * @method Phaser.TilemapLayer#postUpdate
 * @protected
 */
-Phaser.TilemapLayer.prototype.postUpdate = function () {
+Phaser.TilemapLayer.prototype.postUpdate = function ()
+{
 
     if (this.fixedToCamera)
     {
@@ -313,7 +317,8 @@ Phaser.TilemapLayer.prototype.postUpdate = function () {
 * @method Phaser.TilemapLayer#_renderCanvas
 * @private
 */
-Phaser.TilemapLayer.prototype._renderCanvas = function (renderSession) {
+Phaser.TilemapLayer.prototype._renderCanvas = function (renderSession)
+{
 
     if (this.fixedToCamera)
     {
@@ -337,7 +342,8 @@ Phaser.TilemapLayer.prototype._renderCanvas = function (renderSession) {
 * @method Phaser.TilemapLayer#_renderWebGL
 * @private
 */
-Phaser.TilemapLayer.prototype._renderWebGL = function (renderSession) {
+Phaser.TilemapLayer.prototype._renderWebGL = function (renderSession)
+{
 
     if (this.fixedToCamera)
     {
@@ -359,7 +365,8 @@ Phaser.TilemapLayer.prototype._renderWebGL = function (renderSession) {
 *
 * @method Phaser.TilemapLayer#destroy
 */
-Phaser.TilemapLayer.prototype.destroy = function() {
+Phaser.TilemapLayer.prototype.destroy = function ()
+{
 
     Phaser.CanvasPool.remove(this);
 
@@ -380,7 +387,8 @@ Phaser.TilemapLayer.prototype.destroy = function() {
 * @param {number} width - The new width of the TilemapLayer
 * @param {number} height - The new height of the TilemapLayer
 */
-Phaser.TilemapLayer.prototype.resize = function (width, height) {
+Phaser.TilemapLayer.prototype.resize = function (width, height)
+{
 
     this.canvas.width = width;
     this.canvas.height = height;
@@ -411,7 +419,8 @@ Phaser.TilemapLayer.prototype.resize = function (width, height) {
 * @method Phaser.TilemapLayer#resizeWorld
 * @public
 */
-Phaser.TilemapLayer.prototype.resizeWorld = function () {
+Phaser.TilemapLayer.prototype.resizeWorld = function ()
+{
 
     this.game.world.setBounds(0, 0, this.layer.widthInPixels * this.scale.x, this.layer.heightInPixels * this.scale.y);
 
@@ -424,7 +433,8 @@ Phaser.TilemapLayer.prototype.resizeWorld = function () {
  * @public
  * @return {number}
  */
-Phaser.TilemapLayer.prototype.getTileOffsetX = function () {
+Phaser.TilemapLayer.prototype.getTileOffsetX = function ()
+{
 
     return this.tileOffset.x || ((!this.fixedToCamera) ? this.position.x : 0);
 
@@ -437,7 +447,8 @@ Phaser.TilemapLayer.prototype.getTileOffsetX = function () {
  * @public
  * @return {number}
  */
-Phaser.TilemapLayer.prototype.getTileOffsetY = function () {
+Phaser.TilemapLayer.prototype.getTileOffsetY = function ()
+{
 
     return this.tileOffset.y || ((!this.fixedToCamera) ? this.position.y : 0);
 
@@ -451,7 +462,8 @@ Phaser.TilemapLayer.prototype.getTileOffsetY = function () {
 * @param {number} x - x coordinate in camera space
 * @return {number} x coordinate in scrollFactor-adjusted dimensions
 */
-Phaser.TilemapLayer.prototype._fixX = function (x) {
+Phaser.TilemapLayer.prototype._fixX = function (x)
+{
 
     if (this.scrollFactorX === 1 || (this.scrollFactorX === 0 && this.position.x === 0))
     {
@@ -476,7 +488,8 @@ Phaser.TilemapLayer.prototype._fixX = function (x) {
 * @param {number} x - x coordinate in scrollFactor-adjusted dimensions
 * @return {number} x coordinate in camera space
 */
-Phaser.TilemapLayer.prototype._unfixX = function (x) {
+Phaser.TilemapLayer.prototype._unfixX = function (x)
+{
 
     if (this.scrollFactorX === 1)
     {
@@ -495,7 +508,8 @@ Phaser.TilemapLayer.prototype._unfixX = function (x) {
 * @param {number} y - y coordinate in camera space
 * @return {number} y coordinate in scrollFactor-adjusted dimensions
 */
-Phaser.TilemapLayer.prototype._fixY = function (y) {
+Phaser.TilemapLayer.prototype._fixY = function (y)
+{
 
     if (this.scrollFactorY === 1 || (this.scrollFactorY === 0 && this.position.y === 0))
     {
@@ -520,7 +534,8 @@ Phaser.TilemapLayer.prototype._fixY = function (y) {
 * @param {number} y - y coordinate in scrollFactor-adjusted dimensions
 * @return {number} y coordinate in camera space
 */
-Phaser.TilemapLayer.prototype._unfixY = function (y) {
+Phaser.TilemapLayer.prototype._unfixY = function (y)
+{
 
     if (this.scrollFactorY === 1)
     {
@@ -539,7 +554,8 @@ Phaser.TilemapLayer.prototype._unfixY = function (y) {
 * @param {number} x - X position of the point in target tile (in pixels).
 * @return {integer} The X map location of the tile.
 */
-Phaser.TilemapLayer.prototype.getTileX = function (x) {
+Phaser.TilemapLayer.prototype.getTileX = function (x)
+{
 
     // var tileWidth = this.tileWidth * this.scale.x;
     return Math.floor(this._fixX(x) / this._mc.tileWidth);
@@ -554,7 +570,8 @@ Phaser.TilemapLayer.prototype.getTileX = function (x) {
 * @param {number} y - Y position of the point in target tile (in pixels).
 * @return {integer} The Y map location of the tile.
 */
-Phaser.TilemapLayer.prototype.getTileY = function (y) {
+Phaser.TilemapLayer.prototype.getTileY = function (y)
+{
 
     // var tileHeight = this.tileHeight * this.scale.y;
     return Math.floor(this._fixY(y) / this._mc.tileHeight);
@@ -571,7 +588,8 @@ Phaser.TilemapLayer.prototype.getTileY = function (y) {
 * @param {(Phaser.Point|object)} point - The Point/object to update.
 * @return {(Phaser.Point|object)} A Point/object with its `x` and `y` properties set.
 */
-Phaser.TilemapLayer.prototype.getTileXY = function (x, y, point) {
+Phaser.TilemapLayer.prototype.getTileXY = function (x, y, point)
+{
 
     point.x = this.getTileX(x);
     point.y = this.getTileY(y);
@@ -591,7 +609,8 @@ Phaser.TilemapLayer.prototype.getTileXY = function (x, y, point) {
 * @param {boolean} [interestingFace=false] - If true, _only_ return tiles that have interesting faces.
 * @return {Phaser.Tile[]} An array of Phaser.Tiles.
 */
-Phaser.TilemapLayer.prototype.getRayCastTiles = function (line, stepRate, collides, interestingFace) {
+Phaser.TilemapLayer.prototype.getRayCastTiles = function (line, stepRate, collides, interestingFace)
+{
 
     if (!stepRate) { stepRate = this.rayStepRate; }
     if (collides === undefined) { collides = false; }
@@ -640,7 +659,8 @@ Phaser.TilemapLayer.prototype.getRayCastTiles = function (line, stepRate, collid
 * @param {boolean} [interestingFace=false] - If true, _only_ return tiles that have interesting faces.
 * @return {array<Phaser.Tile>} An array of Tiles.
 */
-Phaser.TilemapLayer.prototype.getTiles = function (x, y, width, height, collides, interestingFace) {
+Phaser.TilemapLayer.prototype.getTiles = function (x, y, width, height, collides, interestingFace)
+{
 
     //  Should we only get tiles that have at least one of their collision flags set? (true = yes, false = no just get them all)
     if (collides === undefined) { collides = false; }
@@ -655,6 +675,7 @@ Phaser.TilemapLayer.prototype.getTiles = function (x, y, width, height, collides
     //  Convert the pixel values into tile coordinates
     var tx = Math.floor(x / (this._mc.cw * this.scale.x));
     var ty = Math.floor(y / (this._mc.ch * this.scale.y));
+
     //  Don't just use ceil(width/cw) to allow account for x/y diff within cell
     var tw = Math.ceil((x + width) / (this._mc.cw * this.scale.x)) - tx;
     var th = Math.ceil((y + height) / (this._mc.ch * this.scale.y)) - ty;
@@ -693,7 +714,8 @@ Phaser.TilemapLayer.prototype.getTiles = function (x, y, width, height, collides
 * @param {integer} Tile index
 * @return {Phaser.Tileset|null} Returns the associated tileset or null if there is no such mapping.
 */
-Phaser.TilemapLayer.prototype.resolveTileset = function (tileIndex) {
+Phaser.TilemapLayer.prototype.resolveTileset = function (tileIndex)
+{
 
     var tilesets = this._mc.tilesets;
 
@@ -730,7 +752,8 @@ Phaser.TilemapLayer.prototype.resolveTileset = function (tileIndex) {
 * @method Phaser.TilemapLayer#resetTilesetCache
 * @public
 */
-Phaser.TilemapLayer.prototype.resetTilesetCache = function () {
+Phaser.TilemapLayer.prototype.resetTilesetCache = function ()
+{
 
     var tilesets = this._mc.tilesets;
 
@@ -748,7 +771,8 @@ Phaser.TilemapLayer.prototype.resetTilesetCache = function () {
  * @param {number} [xScale=1] - The scale factor along the X-plane 
  * @param {number} [yScale] - The scale factor along the Y-plane
  */
-Phaser.TilemapLayer.prototype.setScale = function (xScale, yScale) {
+Phaser.TilemapLayer.prototype.setScale = function (xScale, yScale)
+{
 
     xScale = xScale || 1;
     yScale = yScale || xScale;
@@ -784,7 +808,8 @@ Phaser.TilemapLayer.prototype.setScale = function (xScale, yScale) {
 * @param {integer} x
 * @param {integer} y
 */
-Phaser.TilemapLayer.prototype.shiftCanvas = function (context, x, y) {
+Phaser.TilemapLayer.prototype.shiftCanvas = function (context, x, y)
+{
 
     var canvas = context.canvas;
     var copyW = canvas.width - Math.abs(x);
@@ -823,6 +848,7 @@ Phaser.TilemapLayer.prototype.shiftCanvas = function (context, x, y) {
         var copyContext = copyCanvas.getContext('2d');
         copyContext.clearRect(0, 0, copyW, copyH);
         copyContext.drawImage(canvas, dx, dy, copyW, copyH, 0, 0, copyW, copyH);
+
         // clear allows default 'source-over' semantics
         context.clearRect(sx, sy, copyW, copyH);
         context.drawImage(copyCanvas, 0, 0, copyW, copyH, sx, sy, copyW, copyH);
@@ -852,7 +878,8 @@ Phaser.TilemapLayer.prototype.shiftCanvas = function (context, x, y) {
 * @param {integer} right - Rightmost column to render.
 * @param {integer} bottom - Bottommost row to render.
 */
-Phaser.TilemapLayer.prototype.renderRegion = function (scrollX, scrollY, left, top, right, bottom) {
+Phaser.TilemapLayer.prototype.renderRegion = function (scrollX, scrollY, left, top, right, bottom)
+{
 
     var context = this.context;
 
@@ -975,7 +1002,8 @@ Phaser.TilemapLayer.prototype.renderRegion = function (scrollX, scrollY, left, t
 * @method Phaser.TilemapLayer#renderDeltaScroll
 * @private
 */
-Phaser.TilemapLayer.prototype.renderDeltaScroll = function (shiftX, shiftY) {
+Phaser.TilemapLayer.prototype.renderDeltaScroll = function (shiftX, shiftY)
+{
 
     var scrollX = this._mc.scrollX;
     var scrollY = this._mc.scrollY;
@@ -1052,7 +1080,8 @@ Phaser.TilemapLayer.prototype.renderDeltaScroll = function (shiftX, shiftY) {
 * @method Phaser.TilemapLayer#renderFull
 * @private
 */
-Phaser.TilemapLayer.prototype.renderFull = function () {
+Phaser.TilemapLayer.prototype.renderFull = function ()
+{
     
     var scrollX = this._mc.scrollX;
     var scrollY = this._mc.scrollY;
@@ -1080,7 +1109,8 @@ Phaser.TilemapLayer.prototype.renderFull = function () {
 * @method Phaser.TilemapLayer#render
 * @protected
 */
-Phaser.TilemapLayer.prototype.render = function () {
+Phaser.TilemapLayer.prototype.render = function ()
+{
 
     var redrawAll = false;
 
@@ -1172,7 +1202,8 @@ Phaser.TilemapLayer.prototype.render = function () {
 * @method Phaser.TilemapLayer#renderDebug
 * @private
 */
-Phaser.TilemapLayer.prototype.renderDebug = function () {
+Phaser.TilemapLayer.prototype.renderDebug = function ()
+{
 
     var scrollX = this._mc.scrollX;
     var scrollY = this._mc.scrollY;
@@ -1276,13 +1307,15 @@ Phaser.TilemapLayer.prototype.renderDebug = function () {
 * @public
 * @default false
 */
-Object.defineProperty(Phaser.TilemapLayer.prototype, "wrap", {
+Object.defineProperty(Phaser.TilemapLayer.prototype, 'wrap', {
 
-    get: function () {
+    get: function ()
+    {
         return this._wrap;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
         this._wrap = value;
         this.dirty = true;
     }
@@ -1296,13 +1329,15 @@ Object.defineProperty(Phaser.TilemapLayer.prototype, "wrap", {
 * @memberof Phaser.TilemapLayer
 * @public
 */
-Object.defineProperty(Phaser.TilemapLayer.prototype, "scrollX", {
+Object.defineProperty(Phaser.TilemapLayer.prototype, 'scrollX', {
 
-    get: function () {
+    get: function ()
+    {
         return this._scrollX;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
         this._scrollX = value;
     }
 
@@ -1315,13 +1350,15 @@ Object.defineProperty(Phaser.TilemapLayer.prototype, "scrollX", {
 * @memberof Phaser.TilemapLayer
 * @public
 */
-Object.defineProperty(Phaser.TilemapLayer.prototype, "scrollY", {
+Object.defineProperty(Phaser.TilemapLayer.prototype, 'scrollY', {
 
-    get: function () {
+    get: function ()
+    {
         return this._scrollY;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
         this._scrollY = value;
     }
 
@@ -1334,13 +1371,15 @@ Object.defineProperty(Phaser.TilemapLayer.prototype, "scrollY", {
 * @memberof Phaser.TilemapLayer
 * @public
 */
-Object.defineProperty(Phaser.TilemapLayer.prototype, "collisionWidth", {
+Object.defineProperty(Phaser.TilemapLayer.prototype, 'collisionWidth', {
 
-    get: function () {
+    get: function ()
+    {
         return this._mc.cw;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
         this._mc.cw = value | 0;
         this.dirty = true;
     }
@@ -1354,13 +1393,15 @@ Object.defineProperty(Phaser.TilemapLayer.prototype, "collisionWidth", {
 * @memberof Phaser.TilemapLayer
 * @public
 */
-Object.defineProperty(Phaser.TilemapLayer.prototype, "collisionHeight", {
+Object.defineProperty(Phaser.TilemapLayer.prototype, 'collisionHeight', {
 
-    get: function () {
+    get: function ()
+    {
         return this._mc.ch;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
         this._mc.ch = value | 0;
         this.dirty = true;
     }

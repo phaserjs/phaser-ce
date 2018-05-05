@@ -12,7 +12,8 @@
  * @param shape     {Circle|Rectangle|Ellipse|Line|Polygon} The shape object to draw.
  */
 
-Phaser.GraphicsData = function (lineWidth, lineColor, lineAlpha, fillColor, fillAlpha, fill, shape) {
+Phaser.GraphicsData = function (lineWidth, lineColor, lineAlpha, fillColor, fillAlpha, fill, shape)
+{
 
     /*
      * @member {number} the width of the line to draw
@@ -73,7 +74,8 @@ Phaser.GraphicsData.prototype.constructor = Phaser.GraphicsData;
  *
  * @return {GraphicsData}
  */
-Phaser.GraphicsData.prototype.clone = function () {
+Phaser.GraphicsData.prototype.clone = function ()
+{
 
     return new Phaser.GraphicsData(
         this.lineWidth,

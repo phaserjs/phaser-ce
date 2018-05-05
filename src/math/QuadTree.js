@@ -20,7 +20,8 @@
 * @param {number} [maxLevels=4] - The maximum number of levels to iterate to.
 * @param {number} [level=0] - Which level is this?
 */
-Phaser.QuadTree = function(x, y, width, height, maxObjects, maxLevels, level) {
+Phaser.QuadTree = function (x, y, width, height, maxObjects, maxLevels, level)
+{
 
     /**
     * @property {number} maxObjects - The maximum number of objects per node.
@@ -78,7 +79,8 @@ Phaser.QuadTree.prototype = {
     * @param {number} [maxLevels=4] - The maximum number of levels to iterate to.
     * @param {number} [level=0] - Which level is this?
     */
-    reset: function (x, y, width, height, maxObjects, maxLevels, level) {
+    reset: function (x, y, width, height, maxObjects, maxLevels, level)
+    {
 
         this.maxObjects = maxObjects || 10;
         this.maxLevels = maxLevels || 4;
@@ -106,7 +108,8 @@ Phaser.QuadTree.prototype = {
     * @method Phaser.QuadTree#populate
     * @param {Phaser.Group} group - The Group to add to the quadtree.
     */
-    populate: function (group) {
+    populate: function (group)
+    {
 
         group.forEach(this.populateHandler, this, true);
 
@@ -118,7 +121,8 @@ Phaser.QuadTree.prototype = {
     * @method Phaser.QuadTree#populateHandler
     * @param {Phaser.Sprite|object} sprite - The Sprite to check.
     */
-    populateHandler: function (sprite) {
+    populateHandler: function (sprite)
+    {
 
         if (sprite.body && sprite.exists)
         {
@@ -132,7 +136,8 @@ Phaser.QuadTree.prototype = {
     *
     * @method Phaser.QuadTree#split
     */
-    split: function () {
+    split: function ()
+    {
 
         //  top right node
         this.nodes[0] = new Phaser.QuadTree(this.bounds.right, this.bounds.y, this.bounds.subWidth, this.bounds.subHeight, this.maxObjects, this.maxLevels, (this.level + 1));
@@ -154,7 +159,8 @@ Phaser.QuadTree.prototype = {
     * @method Phaser.QuadTree#insert
     * @param {Phaser.Physics.Arcade.Body|object} body - The Body object to insert into the quadtree. Can be any object so long as it exposes x, y, right and bottom properties.
     */
-    insert: function (body) {
+    insert: function (body)
+    {
 
         var i = 0;
         var index;
@@ -207,7 +213,8 @@ Phaser.QuadTree.prototype = {
     * @param {Phaser.Rectangle|object} rect - The bounds in which to check.
     * @return {number} index - Index of the subnode (0-3), or -1 if rect cannot completely fit within a subnode and is part of the parent node.
     */
-    getIndex: function (rect) {
+    getIndex: function (rect)
+    {
 
         //  default is that rect doesn't fit, i.e. it straddles the internal quadrants
         var index = -1;
@@ -251,7 +258,8 @@ Phaser.QuadTree.prototype = {
     * @param {Phaser.Sprite|Phaser.Rectangle} source - The source object to check the QuadTree against. Either a Sprite or Rectangle.
     * @return {array} - Array with all detected objects.
     */
-    retrieve: function (source) {
+    retrieve: function (source)
+    {
 
         if (source instanceof Phaser.Rectangle)
         {
@@ -296,7 +304,8 @@ Phaser.QuadTree.prototype = {
     * Clear the quadtree.
     * @method Phaser.QuadTree#clear
     */
-    clear: function () {
+    clear: function ()
+    {
 
         this.objects.length = 0;
 

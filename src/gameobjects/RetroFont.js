@@ -22,7 +22,8 @@
 * @param {number} [xOffset=0] - If the font set doesn't start at the top left of the given image, specify the X coordinate offset here.
 * @param {number} [yOffset=0] - If the font set doesn't start at the top left of the given image, specify the Y coordinate offset here.
 */
-Phaser.RetroFont = function (game, key, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset) {
+Phaser.RetroFont = function (game, key, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset)
+{
 
     if (!game.cache.checkImageKey(key))
     {
@@ -74,7 +75,7 @@ Phaser.RetroFont = function (game, key, characterWidth, characterHeight, chars, 
     /**
     * @property {string} align - Alignment of the text when multiLine = true or a fixedWidth is set. Set to RetroFont.ALIGN_LEFT (default), RetroFont.ALIGN_RIGHT or RetroFont.ALIGN_CENTER.
     */
-    this.align = "left";
+    this.align = 'left';
 
     /**
     * @property {boolean} multiLine - If set to true all carriage-returns in text will form new lines (see align). If false the font will only contain one single line of text (the default)
@@ -179,98 +180,98 @@ Phaser.RetroFont.prototype.constructor = Phaser.RetroFont;
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.ALIGN_LEFT = "left";
+Phaser.RetroFont.ALIGN_LEFT = 'left';
 
 /**
 * Align each line of multi-line text to the right.
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.ALIGN_RIGHT = "right";
+Phaser.RetroFont.ALIGN_RIGHT = 'right';
 
 /**
 * Align each line of multi-line text in the center.
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.ALIGN_CENTER = "center";
+Phaser.RetroFont.ALIGN_CENTER = 'center';
 
 /**
 * Text Set 1 =  !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET1 = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+Phaser.RetroFont.TEXT_SET1 = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
 /**
 * Text Set 2 =  !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET2 = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+Phaser.RetroFont.TEXT_SET2 = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 /**
 * Text Set 3 = ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
+Phaser.RetroFont.TEXT_SET3 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ';
 
 /**
 * Text Set 4 = ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET4 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789";
+Phaser.RetroFont.TEXT_SET4 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789';
 
 /**
 * Text Set 5 = ABCDEFGHIJKLMNOPQRSTUVWXYZ.,/() '!?-*:0123456789
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET5 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,/() '!?-*:0123456789";
+Phaser.RetroFont.TEXT_SET5 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ.,/() \'!?-*:0123456789';
 
 /**
 * Text Set 6 = ABCDEFGHIJKLMNOPQRSTUVWXYZ!?:;0123456789"(),-.' 
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET6 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!?:;0123456789\"(),-.' ";
+Phaser.RetroFont.TEXT_SET6 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!?:;0123456789"(),-.\' ';
 
 /**
 * Text Set 7 = AGMSY+:4BHNTZ!;5CIOU.?06DJPV,(17EKQW")28FLRX-'39
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET7 = "AGMSY+:4BHNTZ!;5CIOU.?06DJPV,(17EKQW\")28FLRX-'39";
+Phaser.RetroFont.TEXT_SET7 = 'AGMSY+:4BHNTZ!;5CIOU.?06DJPV,(17EKQW")28FLRX-\'39';
 
 /**
 * Text Set 8 = 0123456789 .ABCDEFGHIJKLMNOPQRSTUVWXYZ
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET8 = "0123456789 .ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+Phaser.RetroFont.TEXT_SET8 = '0123456789 .ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 /**
 * Text Set 9 = ABCDEFGHIJKLMNOPQRSTUVWXYZ()-0123456789.:,'"?!
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET9 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ()-0123456789.:,'\"?!";
+Phaser.RetroFont.TEXT_SET9 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ()-0123456789.:,\'"?!';
 
 /**
 * Text Set 10 = ABCDEFGHIJKLMNOPQRSTUVWXYZ
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET10 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+Phaser.RetroFont.TEXT_SET10 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 /**
 * Text Set 11 = ABCDEFGHIJKLMNOPQRSTUVWXYZ.,"-+!?()':;0123456789
 * @constant
 * @type {string}
 */
-Phaser.RetroFont.TEXT_SET11 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,\"-+!?()':;0123456789";
+Phaser.RetroFont.TEXT_SET11 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ.,"-+!?()\':;0123456789';
 
 /**
 * If you need this RetroFont to have a fixed width and custom alignment you can set the width here.
@@ -281,7 +282,8 @@ Phaser.RetroFont.TEXT_SET11 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.,\"-+!?()':;0123456789
 * @param {number} width - Width in pixels of this RetroFont. Set to zero to disable and re-enable automatic resizing.
 * @param {string} [lineAlignment='left'] - Align the text within this width. Set to RetroFont.ALIGN_LEFT (default), RetroFont.ALIGN_RIGHT or RetroFont.ALIGN_CENTER.
 */
-Phaser.RetroFont.prototype.setFixedWidth = function (width, lineAlignment) {
+Phaser.RetroFont.prototype.setFixedWidth = function (width, lineAlignment)
+{
 
     if (lineAlignment === undefined) { lineAlignment = 'left'; }
 
@@ -302,7 +304,8 @@ Phaser.RetroFont.prototype.setFixedWidth = function (width, lineAlignment) {
 * @param {string} [lineAlignment='left'] - Align each line of multi-line text. Set to RetroFont.ALIGN_LEFT, RetroFont.ALIGN_RIGHT or RetroFont.ALIGN_CENTER.
 * @param {boolean} [allowLowerCase=false] - Lots of bitmap font sets only include upper-case characters, if yours needs to support lower case then set this to true.
 */
-Phaser.RetroFont.prototype.setText = function (content, multiLine, characterSpacing, lineSpacing, lineAlignment, allowLowerCase) {
+Phaser.RetroFont.prototype.setText = function (content, multiLine, characterSpacing, lineSpacing, lineAlignment, allowLowerCase)
+{
 
     this.multiLine = multiLine || false;
     this.customSpacingX = characterSpacing || 0;
@@ -331,7 +334,8 @@ Phaser.RetroFont.prototype.setText = function (content, multiLine, characterSpac
 * @method Phaser.RetroFont#buildRetroFontText
 * @memberof Phaser.RetroFont
 */
-Phaser.RetroFont.prototype.buildRetroFontText = function () {
+Phaser.RetroFont.prototype.buildRetroFontText = function ()
+{
 
     var cx = 0;
     var cy = 0;
@@ -341,7 +345,7 @@ Phaser.RetroFont.prototype.buildRetroFontText = function () {
 
     if (this.multiLine)
     {
-        var lines = this._text.split("\n");
+        var lines = this._text.split('\n');
 
         if (this.fixedWidth > 0)
         {
@@ -428,12 +432,13 @@ Phaser.RetroFont.prototype.buildRetroFontText = function () {
 * @param {number} y - The y coordinate.
 * @param {number} customSpacingX - Custom X spacing.
 */
-Phaser.RetroFont.prototype.pasteLine = function (line, x, y, customSpacingX) {
+Phaser.RetroFont.prototype.pasteLine = function (line, x, y, customSpacingX)
+{
 
     for (var c = 0; c < line.length; c++)
     {
         //  If it's a space then there is no point copying, so leave a blank space
-        if (line.charAt(c) === " ")
+        if (line.charAt(c) === ' ')
         {
             x += this.characterWidth + customSpacingX;
         }
@@ -463,13 +468,14 @@ Phaser.RetroFont.prototype.pasteLine = function (line, x, y, customSpacingX) {
 * @memberof Phaser.RetroFont
 * @return {number} The length of the longest line of text.
 */
-Phaser.RetroFont.prototype.getLongestLine = function () {
+Phaser.RetroFont.prototype.getLongestLine = function ()
+{
 
     var longestLine = 0;
 
     if (this._text.length > 0)
     {
-        var lines = this._text.split("\n");
+        var lines = this._text.split('\n');
 
         for (var i = 0; i < lines.length; i++)
         {
@@ -492,16 +498,17 @@ Phaser.RetroFont.prototype.getLongestLine = function () {
 * @param {boolean} [stripCR=true] - Should it strip carriage returns as well?
 * @return {string}  A clean version of the string.
 */
-Phaser.RetroFont.prototype.removeUnsupportedCharacters = function (stripCR) {
+Phaser.RetroFont.prototype.removeUnsupportedCharacters = function (stripCR)
+{
 
-    var newString = "";
+    var newString = '';
 
     for (var c = 0; c < this._text.length; c++)
     {
         var aChar = this._text[c];
         var code = aChar.charCodeAt(0);
 
-        if (this.grabData[code] >= 0 || (!stripCR && aChar === "\n"))
+        if (this.grabData[code] >= 0 || (!stripCR && aChar === '\n'))
         {
             newString = newString.concat(aChar);
         }
@@ -521,7 +528,8 @@ Phaser.RetroFont.prototype.removeUnsupportedCharacters = function (stripCR) {
 * @param {number} [xOffset=0] - If the font set doesn't start at the top left of the given image, specify the X coordinate offset here.
 * @param {number} [yOffset=0] - If the font set doesn't start at the top left of the given image, specify the Y coordinate offset here.
 */
-Phaser.RetroFont.prototype.updateOffset = function (x, y) {
+Phaser.RetroFont.prototype.updateOffset = function (x, y)
+{
 
     if (this.offsetX === x && this.offsetY === y)
     {
@@ -548,15 +556,17 @@ Phaser.RetroFont.prototype.updateOffset = function (x, y) {
 * @name Phaser.RetroFont#text
 * @property {string} text - Set this value to update the text in this sprite. Carriage returns are automatically stripped out if multiLine is false. Text is converted to upper case if autoUpperCase is true.
 */
-Object.defineProperty(Phaser.RetroFont.prototype, "text", {
+Object.defineProperty(Phaser.RetroFont.prototype, 'text', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._text;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         var newText;
 
@@ -586,15 +596,17 @@ Object.defineProperty(Phaser.RetroFont.prototype, "text", {
 * @name Phaser.RetroFont#smoothed
 * @property {boolean} smoothed - Sets if the stamp is smoothed or not.
 */
-Object.defineProperty(Phaser.RetroFont.prototype, "smoothed", {
+Object.defineProperty(Phaser.RetroFont.prototype, 'smoothed', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this.stamp.smoothed;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         this.stamp.smoothed = value;
         this.buildRetroFontText();

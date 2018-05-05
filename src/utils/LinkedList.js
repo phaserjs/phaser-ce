@@ -15,7 +15,8 @@
 * @class Phaser.LinkedList
 * @constructor
 */
-Phaser.LinkedList = function () {
+Phaser.LinkedList = function ()
+{
 
     /**
     * Next element in the list.
@@ -63,7 +64,8 @@ Phaser.LinkedList.prototype = {
     * @param {object} item - The element to add to this list. Can be a Phaser.Sprite or any other object you need to quickly iterate through.
     * @return {object} The item that was added.
     */
-    add: function (item) {
+    add: function (item)
+    {
 
         //  If the list is empty
         if (this.total === 0 && this.first === null && this.last === null)
@@ -94,7 +96,8 @@ Phaser.LinkedList.prototype = {
     *
     * @method Phaser.LinkedList#reset
     */
-    reset: function () {
+    reset: function ()
+    {
 
         this.first = null;
         this.last = null;
@@ -110,7 +113,8 @@ Phaser.LinkedList.prototype = {
     * @method Phaser.LinkedList#remove
     * @param {object} item - The item to be removed from the list.
     */
-    remove: function (item) {
+    remove: function (item)
+    {
 
         if (this.total === 1)
         {
@@ -144,7 +148,7 @@ Phaser.LinkedList.prototype = {
 
         item.next = item.prev = null;
 
-        if (this.first === null )
+        if (this.first === null)
         {
             this.last = null;
         }
@@ -160,7 +164,8 @@ Phaser.LinkedList.prototype = {
     * @method Phaser.LinkedList#callAll
     * @param {function} callback - The function to call.
     */
-    callAll: function (callback) {
+    callAll: function (callback)
+    {
 
         if (!this.first || !this.last)
         {

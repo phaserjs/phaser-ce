@@ -17,7 +17,8 @@ Phaser.Component.LifeSpan = function () {};
  *
  * @method
  */
-Phaser.Component.LifeSpan.preUpdate = function () {
+Phaser.Component.LifeSpan.preUpdate = function ()
+{
 
     if (this.pendingDestroy)
     {
@@ -81,7 +82,8 @@ Phaser.Component.LifeSpan.prototype = {
     * @param {number} [health=100] - The health to give the Game Object. Only set if the GameObject has the Health component.
     * @return {PIXI.DisplayObject} This instance.
     */
-    revive: function (health) {
+    revive: function (health)
+    {
 
         if (health === undefined) { health = 100; }
 
@@ -116,7 +118,8 @@ Phaser.Component.LifeSpan.prototype = {
     * @method
     * @return {PIXI.DisplayObject} This instance.
     */
-    kill: function () {
+    kill: function ()
+    {
 
         this.alive = false;
         this.exists = false;

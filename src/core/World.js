@@ -16,7 +16,8 @@
 * @constructor
 * @param {Phaser.Game} game - Reference to the current game instance.
 */
-Phaser.World = function (game) {
+Phaser.World = function (game)
+{
 
     Phaser.Group.call(this, game, null, '__world', false);
 
@@ -63,7 +64,8 @@ Phaser.World.prototype.constructor = Phaser.World;
 * @method Phaser.World#boot
 * @protected
 */
-Phaser.World.prototype.boot = function () {
+Phaser.World.prototype.boot = function ()
+{
 
     this.camera = new Phaser.Camera(this.game, 0, 0, 0, this.game.width, this.game.height);
 
@@ -82,7 +84,8 @@ Phaser.World.prototype.boot = function () {
 * @method Phaser.World#stateChange
 * @protected
 */
-Phaser.World.prototype.stateChange = function () {
+Phaser.World.prototype.stateChange = function ()
+{
 
     this.x = 0;
     this.y = 0;
@@ -101,7 +104,8 @@ Phaser.World.prototype.stateChange = function () {
 * @param {number} width - New width of the game world in pixels.
 * @param {number} height - New height of the game world in pixels.
 */
-Phaser.World.prototype.setBounds = function (x, y, width, height) {
+Phaser.World.prototype.setBounds = function (x, y, width, height)
+{
 
     this._definedSize = true;
     this._width = width;
@@ -132,7 +136,8 @@ Phaser.World.prototype.setBounds = function (x, y, width, height) {
 * @param {number} width - New width of the game world in pixels.
 * @param {number} height - New height of the game world in pixels.
 */
-Phaser.World.prototype.resize = function (width, height) {
+Phaser.World.prototype.resize = function (width, height)
+{
 
     //  Don't ever scale the World bounds lower than the original requested dimensions if it's a defined world size
 
@@ -163,7 +168,8 @@ Phaser.World.prototype.resize = function (width, height) {
 *
 * @method Phaser.World#shutdown
 */
-Phaser.World.prototype.shutdown = function () {
+Phaser.World.prototype.shutdown = function ()
+{
 
     //  World is a Group, so run a soft destruction on this and all children.
     this.destroy(true, true);
@@ -185,7 +191,8 @@ Phaser.World.prototype.shutdown = function () {
 * @param {boolean} [horizontal=true] - If horizontal is false, wrap will not wrap the object.x coordinates horizontally.
 * @param {boolean} [vertical=true] - If vertical is false, wrap will not wrap the object.y coordinates vertically.
 */
-Phaser.World.prototype.wrap = function (sprite, padding, useBounds, horizontal, vertical) {
+Phaser.World.prototype.wrap = function (sprite, padding, useBounds, horizontal, vertical)
+{
 
     if (padding === undefined) { padding = 0; }
     if (useBounds === undefined) { useBounds = false; }
@@ -252,7 +259,8 @@ Phaser.World.prototype.wrap = function (sprite, padding, useBounds, horizontal, 
 * @param {boolean} [horizontal=true] - If horizontal is false, wrap will not wrap the object.x coordinates horizontally.
 * @param {boolean} [vertical=true] - If vertical is false, wrap will not wrap the object.y coordinates vertically.
 */
-Phaser.World.prototype.wrapAll = function (group, checkExists, padding, useBounds, horizontal, vertical) {
+Phaser.World.prototype.wrapAll = function (group, checkExists, padding, useBounds, horizontal, vertical)
+{
 
     group.forEach(this.wrap, this, checkExists, padding, useBounds, horizontal, vertical);
 
@@ -262,13 +270,15 @@ Phaser.World.prototype.wrapAll = function (group, checkExists, padding, useBound
 * @name Phaser.World#width
 * @property {number} width - Gets or sets the current width of the game world. The world can never be smaller than the game (canvas) dimensions.
 */
-Object.defineProperty(Phaser.World.prototype, "width", {
+Object.defineProperty(Phaser.World.prototype, 'width', {
 
-    get: function () {
+    get: function ()
+    {
         return this.bounds.width;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value < this.game.width)
         {
@@ -287,13 +297,15 @@ Object.defineProperty(Phaser.World.prototype, "width", {
 * @name Phaser.World#height
 * @property {number} height - Gets or sets the current height of the game world. The world can never be smaller than the game (canvas) dimensions.
 */
-Object.defineProperty(Phaser.World.prototype, "height", {
+Object.defineProperty(Phaser.World.prototype, 'height', {
 
-    get: function () {
+    get: function ()
+    {
         return this.bounds.height;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value < this.game.height)
         {
@@ -313,9 +325,10 @@ Object.defineProperty(Phaser.World.prototype, "height", {
 * @property {number} centerX - Gets the X position corresponding to the center point of the world.
 * @readonly
 */
-Object.defineProperty(Phaser.World.prototype, "centerX", {
+Object.defineProperty(Phaser.World.prototype, 'centerX', {
 
-    get: function () {
+    get: function ()
+    {
         return this.bounds.halfWidth + this.bounds.x;
     }
 
@@ -326,9 +339,10 @@ Object.defineProperty(Phaser.World.prototype, "centerX", {
 * @property {number} centerY - Gets the Y position corresponding to the center point of the world.
 * @readonly
 */
-Object.defineProperty(Phaser.World.prototype, "centerY", {
+Object.defineProperty(Phaser.World.prototype, 'centerY', {
 
-    get: function () {
+    get: function ()
+    {
         return this.bounds.halfHeight + this.bounds.y;
     }
 
@@ -339,9 +353,10 @@ Object.defineProperty(Phaser.World.prototype, "centerY", {
 * @property {number} randomX - Gets a random integer which is lesser than or equal to the current width of the game world.
 * @readonly
 */
-Object.defineProperty(Phaser.World.prototype, "randomX", {
+Object.defineProperty(Phaser.World.prototype, 'randomX', {
 
-    get: function () {
+    get: function ()
+    {
 
         if (this.bounds.x < 0)
         {
@@ -361,9 +376,10 @@ Object.defineProperty(Phaser.World.prototype, "randomX", {
 * @property {number} randomY - Gets a random integer which is lesser than or equal to the current height of the game world.
 * @readonly
 */
-Object.defineProperty(Phaser.World.prototype, "randomY", {
+Object.defineProperty(Phaser.World.prototype, 'randomY', {
 
-    get: function () {
+    get: function ()
+    {
 
         if (this.bounds.y < 0)
         {

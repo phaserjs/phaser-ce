@@ -18,7 +18,8 @@
 * @param {number} [maxForce=0] - The maximum force that should be applied to constrain the bodies.
 * @param {Float32Array} [worldPivot=null] - A pivot point given in world coordinates. If specified, localPivotA and localPivotB are automatically computed from this value.
 */
-Phaser.Physics.P2.RevoluteConstraint = function (world, bodyA, pivotA, bodyB, pivotB, maxForce, worldPivot) {
+Phaser.Physics.P2.RevoluteConstraint = function (world, bodyA, pivotA, bodyB, pivotB, maxForce, worldPivot)
+{
 
     if (maxForce === undefined) { maxForce = Number.MAX_VALUE; }
     if (worldPivot === undefined) { worldPivot = null; }

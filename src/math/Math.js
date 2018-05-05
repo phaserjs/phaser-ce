@@ -49,7 +49,8 @@ Phaser.Math = {
     * @param {number} degrees - Angle in degrees.
     * @return {number} Angle in radians.
     */
-    degToRad: function (degrees) {
+    degToRad: function (degrees)
+    {
 
         return degrees * Phaser.Math.DEG_TO_RAD;
 
@@ -62,7 +63,8 @@ Phaser.Math = {
     * @param {number} radians - Angle in radians.
     * @return {number} Angle in degrees
     */
-    radToDeg: function (radians) {
+    radToDeg: function (radians)
+    {
 
         return radians * Phaser.Math.RAD_TO_DEG;
 
@@ -76,7 +78,8 @@ Phaser.Math = {
     * @param {number} value - The value to get the closest power of two from.
     * @return {number} The closest number that is a power of two.
     */
-    getNextPowerOfTwo: function (value) {
+    getNextPowerOfTwo: function (value)
+    {
 
         if (value > 0 && (value & (value - 1)) === 0)
         {
@@ -105,7 +108,8 @@ Phaser.Math = {
     * @param {number} height - The height to check.
     * @return {boolean} True if the width and height are a power of two.
     */
-    isPowerOfTwo: function (width, height) {
+    isPowerOfTwo: function (width, height)
+    {
 
         return (width > 0 && (width & (width - 1)) === 0 && height > 0 && (height & (height - 1)) === 0);
 
@@ -120,7 +124,8 @@ Phaser.Math = {
     * @param {number} max - The maximum value. Must be a Number.
     * @return {number} A floating point number between min (inclusive) and max (exclusive).
     */
-    random: function (min, max) {
+    random: function (min, max)
+    {
 
         if (min === undefined) { min = 0; }
         if (max === undefined) { max = 1; }
@@ -150,7 +155,8 @@ Phaser.Math = {
     * @param {number} max - The maximum value. Must be a Number.
     * @return {number} An integer between min (inclusive) and max (inclusive).
     */
-    between: function (min, max) {
+    between: function (min, max)
+    {
 
         if (min === undefined) { min = 0; }
         if (max === undefined) { max = 1; }
@@ -183,7 +189,8 @@ Phaser.Math = {
     * @param {number} [epsilon=0.0001] - The epsilon (a small value used in the calculation)
     * @return {boolean} True if |a-b|<epsilon
     */
-    fuzzyEqual: function (a, b, epsilon) {
+    fuzzyEqual: function (a, b, epsilon)
+    {
 
         if (epsilon === undefined) { epsilon = 0.0001; }
 
@@ -200,7 +207,8 @@ Phaser.Math = {
     * @param {number} [epsilon=0.0001] - The epsilon (a small value used in the calculation)
     * @return {boolean} True if a<b+epsilon
     */
-    fuzzyLessThan: function (a, b, epsilon) {
+    fuzzyLessThan: function (a, b, epsilon)
+    {
 
         if (epsilon === undefined) { epsilon = 0.0001; }
 
@@ -217,7 +225,8 @@ Phaser.Math = {
     * @param {number} [epsilon=0.0001] - The epsilon (a small value used in the calculation)
     * @return {boolean} True if a>b+epsilon
     */
-    fuzzyGreaterThan: function (a, b, epsilon) {
+    fuzzyGreaterThan: function (a, b, epsilon)
+    {
 
         if (epsilon === undefined) { epsilon = 0.0001; }
 
@@ -233,7 +242,8 @@ Phaser.Math = {
     * @param {number} [epsilon=0.0001] - The epsilon (a small value used in the calculation)
     * @return {number} ceiling(val-epsilon)
     */
-    fuzzyCeil: function (val, epsilon) {
+    fuzzyCeil: function (val, epsilon)
+    {
 
         if (epsilon === undefined) { epsilon = 0.0001; }
 
@@ -249,7 +259,8 @@ Phaser.Math = {
     * @param {number} [epsilon=0.0001] - The epsilon (a small value used in the calculation)
     * @return {number} floor(val+epsilon)
     */
-    fuzzyFloor: function (val, epsilon) {
+    fuzzyFloor: function (val, epsilon)
+    {
 
         if (epsilon === undefined) { epsilon = 0.0001; }
 
@@ -264,7 +275,8 @@ Phaser.Math = {
     * @params {...number} The numbers to average
     * @return {number} The average of all given values.
     */
-    average: function () {
+    average: function ()
+    {
 
         var sum = 0;
         var len = arguments.length;
@@ -283,7 +295,8 @@ Phaser.Math = {
     * @param {number} n
     * @return {number} n mod 1
     */
-    shear: function (n) {
+    shear: function (n)
+    {
 
         return n % 1;
 
@@ -300,11 +313,13 @@ Phaser.Math = {
     * @param {number} [start=0] - Optional starting offset for gap.
     * @return {number} The snapped value.
     */
-    snapTo: function (input, gap, start) {
+    snapTo: function (input, gap, start)
+    {
 
         if (start === undefined) { start = 0; }
 
-        if (gap === 0) {
+        if (gap === 0)
+        {
             return input;
         }
 
@@ -327,11 +342,13 @@ Phaser.Math = {
     * @param {number} [start=0] - Optional starting offset for gap.
     * @return {number} The snapped value.
     */
-    snapToFloor: function (input, gap, start) {
+    snapToFloor: function (input, gap, start)
+    {
 
         if (start === undefined) { start = 0; }
 
-        if (gap === 0) {
+        if (gap === 0)
+        {
             return input;
         }
 
@@ -354,11 +371,13 @@ Phaser.Math = {
     * @param {number} [start=0] - Optional starting offset for gap.
     * @return {number} The snapped value.
     */
-    snapToCeil: function (input, gap, start) {
+    snapToCeil: function (input, gap, start)
+    {
 
         if (start === undefined) { start = 0; }
 
-        if (gap === 0) {
+        if (gap === 0)
+        {
             return input;
         }
 
@@ -404,7 +423,8 @@ Phaser.Math = {
     * @param {number} [base=10] - The base to round in. Default is 10 for decimal.
     * @return {number} The rounded value.
     */
-    roundTo: function (value, place, base) {
+    roundTo: function (value, place, base)
+    {
 
         if (place === undefined) { place = 0; }
         if (base === undefined) { base = 10; }
@@ -425,7 +445,8 @@ Phaser.Math = {
     * @param {number} [base=10] - The base to round in. Default is 10 for decimal.
     * @return {number} The rounded value.
     */
-    floorTo: function (value, place, base) {
+    floorTo: function (value, place, base)
+    {
 
         if (place === undefined) { place = 0; }
         if (base === undefined) { base = 10; }
@@ -446,7 +467,8 @@ Phaser.Math = {
     * @param {number} [base=10] - The base to round in. Default is 10 for decimal.
     * @return {number} The rounded value.
     */
-    ceilTo: function (value, place, base) {
+    ceilTo: function (value, place, base)
+    {
 
         if (place === undefined) { place = 0; }
         if (base === undefined) { base = 10; }
@@ -467,7 +489,8 @@ Phaser.Math = {
     * @param {number} [lerp=0.05] - The lerp value to add to the current angle.
     * @return {number} The adjusted angle.
     */
-    rotateToAngle: function (currentAngle, targetAngle, lerp) {
+    rotateToAngle: function (currentAngle, targetAngle, lerp)
+    {
 
         if (lerp === undefined) { lerp = 0.05; }
 
@@ -523,7 +546,8 @@ Phaser.Math = {
     * @param {number} angle2 - The second angle. In the range -180 to 180.
     * @return {number} The shortest angle, in degrees. If greater than zero it's a counter-clockwise rotation.
     */
-    getShortestAngle: function (angle1, angle2) {
+    getShortestAngle: function (angle1, angle2)
+    {
 
         var difference = angle2 - angle1;
 
@@ -548,7 +572,8 @@ Phaser.Math = {
     * @param {number} y2 - The y coordinate of the second value.
     * @return {number} The angle, in radians.
     */
-    angleBetween: function (x1, y1, x2, y2) {
+    angleBetween: function (x1, y1, x2, y2)
+    {
 
         return Math.atan2(y2 - y1, x2 - x1);
 
@@ -567,7 +592,8 @@ Phaser.Math = {
     * @param {number} y2 - The y coordinate of the second value.
     * @return {number} The angle, in radians.
     */
-    angleBetweenY: function (x1, y1, x2, y2) {
+    angleBetweenY: function (x1, y1, x2, y2)
+    {
 
         return Math.atan2(x2 - x1, y2 - y1);
 
@@ -581,7 +607,8 @@ Phaser.Math = {
     * @param {Phaser.Point} point2 - The second point.
     * @return {number} The angle between the two points, in radians.
     */
-    angleBetweenPoints: function (point1, point2) {
+    angleBetweenPoints: function (point1, point2)
+    {
 
         return Math.atan2(point2.y - point1.y, point2.x - point1.x);
 
@@ -594,7 +621,8 @@ Phaser.Math = {
     * @param {Phaser.Point} point2
     * @return {number} The angle, in radians.
     */
-    angleBetweenPointsY: function (point1, point2) {
+    angleBetweenPointsY: function (point1, point2)
+    {
 
         return Math.atan2(point2.x - point1.x, point2.y - point1.y);
 
@@ -606,7 +634,8 @@ Phaser.Math = {
     * @param {number} angleRad - The angle to reverse, in radians.
     * @return {number} The reverse angle, in radians.
     */
-    reverseAngle: function (angleRad) {
+    reverseAngle: function (angleRad)
+    {
 
         return this.normalizeAngle(angleRad + Math.PI, true);
 
@@ -618,7 +647,8 @@ Phaser.Math = {
     * @param {number} angleRad - The angle to normalize, in radians.
     * @return {number} The angle, fit within the [0,2pi] range, in radians.
     */
-    normalizeAngle: function (angleRad) {
+    normalizeAngle: function (angleRad)
+    {
 
         angleRad = angleRad % (2 * Math.PI);
         return angleRad >= 0 ? angleRad : angleRad + 2 * Math.PI;
@@ -634,7 +664,8 @@ Phaser.Math = {
     * @param {number} max - The maximum the value is allowed to be.
     * @return {number} The new value.
     */
-    maxAdd: function (value, amount, max) {
+    maxAdd: function (value, amount, max)
+    {
 
         return Math.min(value + amount, max);
 
@@ -649,7 +680,8 @@ Phaser.Math = {
     * @param {number} min - The minimum the value is allowed to be.
     * @return {number} The new value.
     */
-    minSub: function (value, amount, min) {
+    minSub: function (value, amount, min)
+    {
 
         return Math.max(value - amount, min);
 
@@ -666,7 +698,8 @@ Phaser.Math = {
     * @param {number} max - The maximum the value is allowed to be, should be larger than `min`.
     * @return {number} The wrapped value.
     */
-    wrap: function (value, min, max) {
+    wrap: function (value, min, max)
+    {
 
         var range = max - min;
 
@@ -697,7 +730,8 @@ Phaser.Math = {
     * @param {number} max - The maximum the value is allowed to be.
     * @return {number} The wrapped value.
     */
-    wrapValue: function (value, amount, max) {
+    wrapValue: function (value, amount, max)
+    {
 
         var diff;
         value = Math.abs(value);
@@ -716,7 +750,8 @@ Phaser.Math = {
     * @param {integer} n - The number to check.
     * @return {boolean} True if the given number is odd. False if the given number is even.
     */
-    isOdd: function (n) {
+    isOdd: function (n)
+    {
 
         // Does not work with extremely large values
         return !!(n & 1);
@@ -730,7 +765,8 @@ Phaser.Math = {
     * @param {integer} n - The number to check.
     * @return {boolean} True if the given number is even. False if the given number is odd.
     */
-    isEven: function (n) {
+    isEven: function (n)
+    {
 
         // Does not work with extremely large values
         return !(n & 1);
@@ -746,7 +782,8 @@ Phaser.Math = {
     * @return {number} The lowest value from those given.
     * @see {@link http://jsperf.com/math-s-min-max-vs-homemade}
     */
-    min: function () {
+    min: function ()
+    {
 
         if (arguments.length === 1 && typeof arguments[0] === 'object')
         {
@@ -778,7 +815,8 @@ Phaser.Math = {
     * @return {number} The largest value from those given.
     * @see {@link http://jsperf.com/math-s-min-max-vs-homemade}
     */
-    max: function () {
+    max: function ()
+    {
 
         if (arguments.length === 1 && typeof arguments[0] === 'object')
         {
@@ -808,7 +846,8 @@ Phaser.Math = {
     * @method Phaser.Math#minProperty
     * @return {number} The lowest value from those given.
     */
-    minProperty: function (property) {
+    minProperty: function (property)
+    {
 
         if (arguments.length === 2 && typeof arguments[1] === 'object')
         {
@@ -838,7 +877,8 @@ Phaser.Math = {
     * @method Phaser.Math#maxProperty
     * @return {number} The largest value from those given.
     */
-    maxProperty: function (property) {
+    maxProperty: function (property)
+    {
 
         if (arguments.length === 2 && typeof arguments[1] === 'object')
         {
@@ -869,7 +909,8 @@ Phaser.Math = {
     * @param {boolean} [radians=false] - Set to `true` if the angle is given in radians, otherwise degrees is expected.
     * @return {number} The new angle value; will be the same as the input angle if it was within bounds.
     */
-    wrapAngle: function (angle, radians) {
+    wrapAngle: function (angle, radians)
+    {
 
         return radians ? this.wrap(angle, -Math.PI, Math.PI) : this.wrap(angle, -180, 180);
 
@@ -883,7 +924,8 @@ Phaser.Math = {
     * @param {number} k - The percentage of interpolation, between 0 and 1.
     * @return {number} The interpolated value
     */
-    linearInterpolation: function (v, k) {
+    linearInterpolation: function (v, k)
+    {
 
         var m = v.length - 1;
         var f = m * k;
@@ -911,7 +953,8 @@ Phaser.Math = {
     * @param {number} k - The percentage of interpolation, between 0 and 1.
     * @return {number} The interpolated value
     */
-    bezierInterpolation: function (v, k) {
+    bezierInterpolation: function (v, k)
+    {
 
         var b = 0;
         var n = v.length - 1;
@@ -933,7 +976,8 @@ Phaser.Math = {
     * @param {number} k - The percentage of interpolation, between 0 and 1.
     * @return {number} The interpolated value
     */
-    catmullRomInterpolation: function (v, k) {
+    catmullRomInterpolation: function (v, k)
+    {
 
         var m = v.length - 1;
         var f = m * k;
@@ -974,7 +1018,8 @@ Phaser.Math = {
     * @param {number} t - A value between 0 and 1.
     * @return {number}
     */
-    linear: function (p0, p1, t) {
+    linear: function (p0, p1, t)
+    {
 
         return (p1 - p0) * t + p0;
 
@@ -987,7 +1032,8 @@ Phaser.Math = {
     * @param {number} i
     * @return {number}
     */
-    bernstein: function (n, i) {
+    bernstein: function (n, i)
+    {
 
         return this.factorial(n) / this.factorial(i) / this.factorial(n - i);
 
@@ -998,7 +1044,8 @@ Phaser.Math = {
     * @param {number} value - the number you want to evaluate
     * @return {number}
     */
-    factorial: function (value) {
+    factorial: function (value)
+    {
 
         if (value === 0)
         {
@@ -1028,9 +1075,13 @@ Phaser.Math = {
     * @param {number} t
     * @return {number}
     */
-    catmullRom: function (p0, p1, p2, p3, t) {
+    catmullRom: function (p0, p1, p2, p3, t)
+    {
 
-        var v0 = (p2 - p0) * 0.5, v1 = (p3 - p1) * 0.5, t2 = t * t, t3 = t * t2;
+        var v0 = (p2 - p0) * 0.5,
+            v1 = (p3 - p1) * 0.5,
+            t2 = t * t,
+            t3 = t * t2;
 
         return (2 * p1 - 2 * p2 + v0 + v1) * t3 + (-3 * p1 + 3 * p2 - 2 * v0 - v1) * t2 + v0 * t + p1;
 
@@ -1044,7 +1095,8 @@ Phaser.Math = {
     * @param {number} b - The second value to check.
     * @return {number} The absolute difference between the two values.
     */
-    difference: function (a, b) {
+    difference: function (a, b)
+    {
 
         return Math.abs(a - b);
 
@@ -1057,7 +1109,8 @@ Phaser.Math = {
     * @param {number} value - Any number.
     * @return {integer} The rounded value of that number.
     */
-    roundAwayFromZero: function (value) {
+    roundAwayFromZero: function (value)
+    {
 
         // "Opposite" of truncate.
         return (value > 0) ? Math.ceil(value) : Math.floor(value);
@@ -1077,7 +1130,8 @@ Phaser.Math = {
     * @param {number} frequency  - The frequency of the sine and cosine table data
     * @return {{sin:number[], cos:number[]}} Returns the table data.
     */
-    sinCosGenerator: function (length, sinAmplitude, cosAmplitude, frequency) {
+    sinCosGenerator: function (length, sinAmplitude, cosAmplitude, frequency)
+    {
 
         if (sinAmplitude === undefined) { sinAmplitude = 1.0; }
         if (cosAmplitude === undefined) { cosAmplitude = 1.0; }
@@ -1090,7 +1144,8 @@ Phaser.Math = {
         var cosTable = [];
         var sinTable = [];
 
-        for (var c = 0; c < length; c++) {
+        for (var c = 0; c < length; c++)
+        {
 
             cos -= sin * frq;
             sin += cos * frq;
@@ -1112,7 +1167,8 @@ Phaser.Math = {
     * @param {number} b
     * @return {number} The length of the hypotenuse connecting the given lengths.
     */
-    hypot: function (a, b) {
+    hypot: function (a, b)
+    {
 
         return Math.sqrt(a * a + b * b);
 
@@ -1128,7 +1184,8 @@ Phaser.Math = {
     * @param {number} y2
     * @return {number} The distance between the two sets of coordinates.
     */
-    distance: function (x1, y1, x2, y2) {
+    distance: function (x1, y1, x2, y2)
+    {
 
         var dx = x1 - x2;
         var dy = y1 - y2;
@@ -1148,7 +1205,8 @@ Phaser.Math = {
     * @param {number} y2
     * @return {number} The distance squared between the two sets of coordinates.
     */
-    distanceSq: function (x1, y1, x2, y2) {
+    distanceSq: function (x1, y1, x2, y2)
+    {
 
         var dx = x1 - x2;
         var dy = y1 - y2;
@@ -1168,7 +1226,8 @@ Phaser.Math = {
     * @param {number} [pow=2]
     * @return {number} The distance between the two sets of coordinates.
     */
-    distancePow: function (x1, y1, x2, y2, pow) {
+    distancePow: function (x1, y1, x2, y2, pow)
+    {
 
         if (pow === undefined) { pow = 2; }
 
@@ -1185,7 +1244,8 @@ Phaser.Math = {
     * @param {float} max - The maximum bounds.
     * @return {number} The clamped value.
     */
-    clamp: function (v, min, max) {
+    clamp: function (v, min, max)
+    {
 
         if (v < min)
         {
@@ -1211,7 +1271,8 @@ Phaser.Math = {
     * @param {number} a
     * @return {number}
     */
-    clampBottom: function (x, a) {
+    clampBottom: function (x, a)
+    {
 
         return x < a ? a : x;
 
@@ -1227,7 +1288,8 @@ Phaser.Math = {
     * @return {boolean} True if a is <= tolerance of b.
     * @see {@link Phaser.Math.fuzzyEqual}
     */
-    within: function (a, b, tolerance) {
+    within: function (a, b, tolerance)
+    {
 
         return (Math.abs(a - b) <= tolerance);
 
@@ -1244,9 +1306,10 @@ Phaser.Math = {
     * @param {number} b2 - Final endpoint of the range  <b1, b2>
     * @return {number}
     */
-    mapLinear: function (x, a1, a2, b1, b2) {
+    mapLinear: function (x, a1, a2, b1, b2)
+    {
 
-        return b1 + ( x - a1 ) * ( b2 - b1 ) / ( a2 - a1 );
+        return b1 + (x - a1) * (b2 - b1) / (a2 - a1);
 
     },
 
@@ -1259,7 +1322,8 @@ Phaser.Math = {
     * @param {float} max - The right edge.
     * @return {float} A value between 0 and 1.
     */
-    smoothstep: function (x, min, max) {
+    smoothstep: function (x, min, max)
+    {
 
         // Scale, bias and saturate x to 0..1 range
         x = Math.max(0, Math.min(1, (x - min) / (max - min)));
@@ -1278,7 +1342,8 @@ Phaser.Math = {
     * @param {float} max - The right edge.
     * @return {float} A value between 0 and 1.
     */
-    smootherstep: function (x, min, max) {
+    smootherstep: function (x, min, max)
+    {
 
         x = Math.max(0, Math.min(1, (x - min) / (max - min)));
 
@@ -1295,9 +1360,10 @@ Phaser.Math = {
     * @param {number} x
     * @return {integer} An integer in {-1, 0, 1}
     */
-    sign: function (x) {
+    sign: function (x)
+    {
 
-        return ( x < 0 ) ? -1 : ( ( x > 0 ) ? 1 : 0 );
+        return (x < 0) ? -1 : ((x > 0) ? 1 : 0);
 
     },
 
@@ -1310,7 +1376,8 @@ Phaser.Math = {
     * @param {number} [base=0] - The base value.
     * @return {number} The percentage a is of b, between 0 and 1.
     */
-    percent: function (a, b, base) {
+    percent: function (a, b, base)
+    {
 
         if (base === undefined) { base = 0; }
 

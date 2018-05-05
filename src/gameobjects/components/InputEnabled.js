@@ -41,13 +41,15 @@ Phaser.Component.InputEnabled.prototype = {
     */
     inputEnabled: {
 
-        get: function () {
+        get: function ()
+        {
 
             return (this.input && this.input.enabled);
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value)
             {
@@ -62,11 +64,9 @@ Phaser.Component.InputEnabled.prototype = {
                 }
             }
             else
+            if (this.input && this.input.enabled)
             {
-                if (this.input && this.input.enabled)
-                {
-                    this.input.stop();
-                }
+                this.input.stop();
             }
 
         }

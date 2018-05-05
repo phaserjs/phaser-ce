@@ -14,7 +14,8 @@
  * @param {Phaser.Game} game - Reference to the current game instance.
  * @param {string} key - Asset key for the sound.
  */
-Phaser.AudioSprite = function (game, key) {
+Phaser.AudioSprite = function (game, key)
+{
 
     /**
     * A reference to the currently running Game.
@@ -82,7 +83,8 @@ Phaser.AudioSprite.prototype = {
      * @param {number} [volume=1] - Volume of the sound you want to play. If none is given it will use the volume given to the Sound when it was created (which defaults to 1 if none was specified).
      * @return {Phaser.Sound} This sound instance.
      */
-    play: function (marker, volume) {
+    play: function (marker, volume)
+    {
 
         if (volume === undefined) { volume = 1; }
 
@@ -96,7 +98,8 @@ Phaser.AudioSprite.prototype = {
      * @method Phaser.AudioSprite#stop
      * @param {string} [marker=''] - The name of sound to stop. If none is given it will stop all sounds in the audio sprite.
      */
-    stop: function (marker) {
+    stop: function (marker)
+    {
 
         if (!marker)
         {
@@ -119,7 +122,8 @@ Phaser.AudioSprite.prototype = {
      * @param {string} marker - The name of sound to get.
      * @return {Phaser.Sound} The sound instance.
      */
-    get: function(marker) {
+    get: function (marker)
+    {
 
         return this.sounds[marker];
 

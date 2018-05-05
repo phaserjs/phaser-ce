@@ -23,7 +23,8 @@ Phaser.LoaderParser = {
     * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
-    bitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution) {
+    bitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution)
+    {
 
         return this.xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing, frame, resolution);
 
@@ -41,7 +42,8 @@ Phaser.LoaderParser = {
     * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
-    xmlBitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution) {
+    xmlBitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution)
+    {
 
         if (resolution == null)
         {
@@ -105,7 +107,8 @@ Phaser.LoaderParser = {
     * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
     * @return {object} The parsed Bitmap Font data.
     */
-    jsonBitmapFont: function (json, baseTexture, xSpacing, ySpacing, frame, resolution) {
+    jsonBitmapFont: function (json, baseTexture, xSpacing, ySpacing, frame, resolution)
+    {
 
         if (resolution == null)
         {
@@ -122,9 +125,10 @@ Phaser.LoaderParser = {
         var x = (frame) ? frame.x : 0;
         var y = (frame) ? frame.y : 0;
 
-        json.font.chars["char"].forEach(
+        json.font.chars['char'].forEach(
 
-            function parseChar(letter) {
+            function parseChar (letter)
+            {
 
                 var charCode = parseInt(letter._id, 10);
 
@@ -146,7 +150,8 @@ Phaser.LoaderParser = {
         {
             json.font.kernings.kerning.forEach(
 
-                function parseKerning(kerning) {
+                function parseKerning (kerning)
+                {
 
                     data.chars[kerning._second].kerning[kerning._first] = parseInt(kerning._amount, 10) / resolution;
 
@@ -168,11 +173,13 @@ Phaser.LoaderParser = {
     * @param {object} bitmapFontData - Pre-parsed bitmap font data.
     * @return {object} The parsed Bitmap Font data.
     */
-    finalizeBitmapFont: function (baseTexture, bitmapFontData) {
+    finalizeBitmapFont: function (baseTexture, bitmapFontData)
+    {
 
         Object.keys(bitmapFontData.chars).forEach(
 
-            function addTexture(charCode) {
+            function addTexture (charCode)
+            {
 
                 var letter = bitmapFontData.chars[charCode];
 
@@ -193,7 +200,8 @@ Phaser.LoaderParser = {
     * @param {ArrayBuffer} arrayBuffer
     * @return {object} The parsed PVR file including texture data.
     */
-    pvr: function (arrayBuffer) {
+    pvr: function (arrayBuffer)
+    {
 
         // Reference: http://cdn.imgtec.com/sdk-documentation/PVR+File+Format.Specification.pdf
         // PVR 3 header structure
@@ -223,16 +231,23 @@ Phaser.LoaderParser = {
                 0, 1, 2, 3,
                 6, 7, 9, 11
             ].indexOf(pixelFormat) >= 0
-        ) {
-            if (pixelFormat >= 0 && pixelFormat <= 3) {
+        )
+        {
+            if (pixelFormat >= 0 && pixelFormat <= 3)
+            {
                 compressionAlgorithm = 'PVRTC';
-            } else if (pixelFormat >= 7 && pixelFormat <= 11) {
+            }
+            else if (pixelFormat >= 7 && pixelFormat <= 11)
+            {
                 compressionAlgorithm = 'S3TC';
-            } else if (pixelFormat === 6) {
+            }
+            else if (pixelFormat === 6)
+            {
                 compressionAlgorithm = 'ETC1';
             }
 
-            switch (pixelFormat) {
+            switch (pixelFormat)
+            {
                 case 0:
                     glExtensionFormat = 0x8C01;
                     break;
@@ -292,7 +307,8 @@ Phaser.LoaderParser = {
     * @param {ArrayBuffer} arrayBuffer
     * @return {object} The parsed DDS file including texture data.
     */
-    dds: function (arrayBuffer) {
+    dds: function (arrayBuffer)
+    {
 
         // Reference at: https://msdn.microsoft.com/en-us/library/windows/desktop/bb943982(v=vs.85).aspx
         // DDS header structure
@@ -333,7 +349,8 @@ Phaser.LoaderParser = {
         if (byteArray[0] === 0x44 &&
             byteArray[1] === 0x44 &&
             byteArray[2] === 0x53 &&
-            byteArray[3] === 0x20) {
+            byteArray[3] === 0x20)
+        {
             ddsHeader = {
                 complete: true,
                 fileFormat: 'DDS',
@@ -369,7 +386,8 @@ Phaser.LoaderParser = {
                 arraySize: null,
                 textureData: byteArray.subarray(uintArray[1] + 4, byteArray.byteLength)
             };
-            if (ddsHeader.formatFourCC === 'DX10') {
+            if (ddsHeader.formatFourCC === 'DX10')
+            {
                 ddsHeader.DXGIFormat = uintArray[31];
                 ddsHeader.resourceDimension = uintArray[32];
                 ddsHeader.miscFlag = uintArray[33];
@@ -389,7 +407,8 @@ Phaser.LoaderParser = {
     * @param {ArrayBuffer} arrayBuffer
     * @return {object} The parsed KTX file including texture data.
     */
-    ktx: function (arrayBuffer) {
+    ktx: function (arrayBuffer)
+    {
 
         // Reference: https://www.khronos.org/opengles/sdk/tools/KTX/file_format_spec/
         // KTX header structure
@@ -427,16 +446,21 @@ Phaser.LoaderParser = {
             byteArray[6] === 0x31 && byteArray[7] === 0xBB &&
             byteArray[8] === 0x0D && byteArray[9] === 0x0A &&
             byteArray[10] === 0x1A && byteArray[11] === 0x0A &&
-            //Check if internal GL format is supported by WebGL
+
+            // Check if internal GL format is supported by WebGL
             [
                 // ETC1
                 0x8D64,
+
                 // PVRTC
                 0x8C00, 0x8C01, 0x8C02, 0x8C03,
+
                 // DXTC | S3TC
                 0x83F0, 0x83F1, 0x83F2, 0x83F3
-            ].indexOf(glInternalFormat) >= 0) {
-            switch (glInternalFormat) {
+            ].indexOf(glInternalFormat) >= 0)
+        {
+            switch (glInternalFormat)
+            {
                 case 0x8D64:
                     compressionAlgorithm = 'ETC1';
                     break;
@@ -488,7 +512,8 @@ Phaser.LoaderParser = {
     * @param {ArrayBuffer} arrayBuffer
     * @return {object} The parsed PKM file including texture data.
     */
-    pkm: function (arrayBuffer) {
+    pkm: function (arrayBuffer)
+    {
 
         // PKM header structure
         // ---------------------------------------
@@ -507,7 +532,8 @@ Phaser.LoaderParser = {
         if (byteArray[0] === 0x50 &&
             byteArray[1] === 0x4B &&
             byteArray[2] === 0x4D &&
-            byteArray[3] === 0x20) {
+            byteArray[3] === 0x20)
+        {
 
             pkmHeader = {
                 complete: true,

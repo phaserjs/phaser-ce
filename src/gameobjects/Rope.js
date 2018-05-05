@@ -41,7 +41,8 @@
 * @param {string|number} frame - If this Rope is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 * @param {Array} points - An array of {Phaser.Point}.
 */
-Phaser.Rope = function (game, x, y, key, frame, points) {
+Phaser.Rope = function (game, x, y, key, frame, points)
+{
 
     this.points = points || [];
     this._hasUpdateAnimation = false;
@@ -62,19 +63,19 @@ Phaser.Rope = function (game, x, y, key, frame, points) {
     this.texture = Phaser.Cache.DEFAULT;
 
     // set up the main bits..
-    this.uvs = new Float32Array([0, 1,
-                                      1, 1,
-                                      1, 0,
-                                      0, 1]);
+    this.uvs = new Float32Array([ 0, 1,
+        1, 1,
+        1, 0,
+        0, 1 ]);
 
-    this.vertices = new Float32Array([0, 0,
-                                            100, 0,
-                                            100, 100,
-                                            0, 100]);
+    this.vertices = new Float32Array([ 0, 0,
+        100, 0,
+        100, 100,
+        0, 100 ]);
 
-    this.colors = new Float32Array([1, 1, 1, 1]);
+    this.colors = new Float32Array([ 1, 1, 1, 1 ]);
 
-    this.indices = new Uint16Array([0, 1, 2, 3]);
+    this.indices = new Uint16Array([ 0, 1, 2, 3 ]);
 
     if (points)
     {
@@ -145,7 +146,8 @@ Phaser.Rope.TRIANGLES = 1;
 * @method Phaser.Rope#preUpdate
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype.preUpdate = function () {
+Phaser.Rope.prototype.preUpdate = function ()
+{
 
     if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
     {
@@ -162,7 +164,8 @@ Phaser.Rope.prototype.preUpdate = function () {
 * @method Phaser.Rope#update
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype.update = function() {
+Phaser.Rope.prototype.update = function ()
+{
 
     if (this._hasUpdateAnimation)
     {
@@ -182,7 +185,8 @@ Phaser.Rope.prototype.update = function() {
 * @param {number} y - The y coordinate (in world space) to position the Sprite at.
 * @return {Phaser.Rope} This instance.
 */
-Phaser.Rope.prototype.reset = function (x, y) {
+Phaser.Rope.prototype.reset = function (x, y)
+{
 
     Phaser.Component.Reset.prototype.reset.call(this, x, y);
 
@@ -196,7 +200,8 @@ Phaser.Rope.prototype.reset = function (x, y) {
 * @method Phaser.Rope#refresh
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype.refresh = function () {
+Phaser.Rope.prototype.refresh = function ()
+{
 
     var points = this.points;
 
@@ -268,7 +273,8 @@ Phaser.Rope.prototype.refresh = function () {
 * @method Phaser.Rope#updateTransform
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype.updateTransform = function () {
+Phaser.Rope.prototype.updateTransform = function ()
+{
 
     var points = this.points;
 
@@ -279,7 +285,7 @@ Phaser.Rope.prototype.updateTransform = function () {
 
     var lastPoint = points[0];
     var nextPoint;
-    var perp = { x:0, y:0 };
+    var perp = { x: 0, y: 0 };
 
     this.count -= 0.2;
 
@@ -342,7 +348,8 @@ Phaser.Rope.prototype.updateTransform = function () {
 * @memberof Phaser.Rope
 * @param {Texture} texture - The texture that will be used.
 */
-Phaser.Rope.prototype.setTexture = function (texture) {
+Phaser.Rope.prototype.setTexture = function (texture)
+{
 
     this.texture = texture;
 
@@ -355,7 +362,8 @@ Phaser.Rope.prototype.setTexture = function (texture) {
 * @method Phaser.Rope#_renderWebGL
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype._renderWebGL = function (renderSession) {
+Phaser.Rope.prototype._renderWebGL = function (renderSession)
+{
 
     if (!this.visible || this.alpha <= 0)
     {
@@ -384,7 +392,8 @@ Phaser.Rope.prototype._renderWebGL = function (renderSession) {
 * @method Phaser.Rope#_initWebGL
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype._initWebGL = function (renderSession) {
+Phaser.Rope.prototype._initWebGL = function (renderSession)
+{
 
     // build the strip!
     var gl = renderSession.gl;
@@ -415,7 +424,8 @@ Phaser.Rope.prototype._initWebGL = function (renderSession) {
 * @method Phaser.Rope#_renderStrip
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype._renderStrip = function (renderSession) {
+Phaser.Rope.prototype._renderStrip = function (renderSession)
+{
 
     var gl = renderSession.gl;
     var projection = renderSession.projection;
@@ -497,7 +507,8 @@ Phaser.Rope.prototype._renderStrip = function (renderSession) {
 * @method Phaser.Rope#_renderCanvas
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype._renderCanvas = function (renderSession) {
+Phaser.Rope.prototype._renderCanvas = function (renderSession)
+{
 
     var context = renderSession.context;
 
@@ -533,7 +544,8 @@ Phaser.Rope.prototype._renderCanvas = function (renderSession) {
 * @method Phaser.Rope#_renderCanvasTriangleStrip
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype._renderCanvasTriangleStrip = function (context) {
+Phaser.Rope.prototype._renderCanvasTriangleStrip = function (context)
+{
 
     // draw triangles!!
     var vertices = this.vertices;
@@ -558,7 +570,8 @@ Phaser.Rope.prototype._renderCanvasTriangleStrip = function (context) {
 * @method Phaser.Rope#_renderCanvasTriangles
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype._renderCanvasTriangles = function (context) {
+Phaser.Rope.prototype._renderCanvasTriangles = function (context)
+{
 
     var vertices = this.vertices;
     var uvs = this.uvs;
@@ -586,7 +599,8 @@ Phaser.Rope.prototype._renderCanvasTriangles = function (context) {
 * @method Phaser.Rope#_renderCanvasDrawTriangle
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype._renderCanvasDrawTriangle = function (context, vertices, uvs, index0, index1, index2) {
+Phaser.Rope.prototype._renderCanvasDrawTriangle = function (context, vertices, uvs, index0, index1, index2)
+{
 
     var textureSource = this.texture.baseTexture.source;
     var textureWidth = this.texture.width;
@@ -647,12 +661,12 @@ Phaser.Rope.prototype._renderCanvasDrawTriangle = function (context, vertices, u
     context.clip();
 
     // Compute matrix transform
-    var delta =  (u0 * v1)      + (v0 * u2)      + (u1 * v2)      - (v1 * u2)      - (v0 * u1)      - (u0 * v2);
-    var deltaA = (x0 * v1)      + (v0 * x2)      + (x1 * v2)      - (v1 * x2)      - (v0 * x1)      - (x0 * v2);
-    var deltaB = (u0 * x1)      + (x0 * u2)      + (u1 * x2)      - (x1 * u2)      - (x0 * u1)      - (u0 * x2);
+    var delta = (u0 * v1) + (v0 * u2) + (u1 * v2) - (v1 * u2) - (v0 * u1) - (u0 * v2);
+    var deltaA = (x0 * v1) + (v0 * x2) + (x1 * v2) - (v1 * x2) - (v0 * x1) - (x0 * v2);
+    var deltaB = (u0 * x1) + (x0 * u2) + (u1 * x2) - (x1 * u2) - (x0 * u1) - (u0 * x2);
     var deltaC = (u0 * v1 * x2) + (v0 * x1 * u2) + (x0 * u1 * v2) - (x0 * v1 * u2) - (v0 * u1 * x2) - (u0 * x1 * v2);
-    var deltaD = (y0 * v1)      + (v0 * y2)      + (y1 * v2)      - (v1 * y2)      - (v0 * y1)      - (y0 * v2);
-    var deltaE = (u0 * y1)      + (y0 * u2)      + (u1 * y2)      - (y1 * u2)      - (y0 * u1)      - (u0 * y2);
+    var deltaD = (y0 * v1) + (v0 * y2) + (y1 * v2) - (v1 * y2) - (v0 * y1) - (y0 * v2);
+    var deltaE = (u0 * y1) + (y0 * u2) + (u1 * y2) - (y1 * u2) - (y0 * u1) - (u0 * y2);
     var deltaF = (u0 * v1 * y2) + (v0 * y1 * u2) + (y0 * u1 * v2) - (y0 * v1 * u2) - (v0 * u1 * y2) - (u0 * y1 * v2);
 
     context.transform(
@@ -674,7 +688,8 @@ Phaser.Rope.prototype._renderCanvasDrawTriangle = function (context, vertices, u
 * @method Phaser.Rope#renderStripFlat
 * @memberof Phaser.Rope
 */
-Phaser.Rope.prototype.renderStripFlat = function (strip) {
+Phaser.Rope.prototype.renderStripFlat = function (strip)
+{
 
     var context = this.context;
     var vertices = strip.vertices;
@@ -716,7 +731,8 @@ Phaser.Rope.prototype.renderStripFlat = function (strip) {
 * @param {Matrix} matrix - The transformation matrix of the Sprite.
 * @return {Rectangle} The framing rectangle.
 */
-Phaser.Rope.prototype.getBounds = function (matrix) {
+Phaser.Rope.prototype.getBounds = function (matrix)
+{
 
     var worldTransform = matrix || this.worldTransform;
 
@@ -775,15 +791,17 @@ Phaser.Rope.prototype.getBounds = function (matrix) {
 * @name Phaser.Rope#updateAnimation
 * @property {function} updateAnimation - Set to a function if you'd like the rope to animate during the update phase. Set to false or null to remove it.
 */
-Object.defineProperty(Phaser.Rope.prototype, "updateAnimation", {
+Object.defineProperty(Phaser.Rope.prototype, 'updateAnimation', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._updateAnimation;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value && typeof value === 'function')
         {
@@ -806,9 +824,10 @@ Object.defineProperty(Phaser.Rope.prototype, "updateAnimation", {
 * @name Phaser.Rope#segments
 * @property {Phaser.Rectangles[]} updateAnimation - Returns an array of Phaser.Rectangles that represent the segments of the given rope
 */
-Object.defineProperty(Phaser.Rope.prototype, "segments", {
+Object.defineProperty(Phaser.Rope.prototype, 'segments', {
 
-    get: function () {
+    get: function ()
+    {
 
         var segments = [];
         var index, x1, y1, x2, y2, width, height, rect;

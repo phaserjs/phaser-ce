@@ -11,7 +11,8 @@
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 */
-Phaser.Net = function (game) {
+Phaser.Net = function (game)
+{
 
     this.game = game;
 
@@ -25,9 +26,11 @@ Phaser.Net.prototype = {
     * @method Phaser.Net#getHostName
     * @return {string}
     */
-    getHostName: function () {
+    getHostName: function ()
+    {
 
-        if (window.location && window.location.hostname) {
+        if (window.location && window.location.hostname)
+        {
             return window.location.hostname;
         }
 
@@ -45,7 +48,8 @@ Phaser.Net.prototype = {
     * @param {string} domain
     * @return {boolean} true if the given domain fragment can be found in the window.location.hostname
     */
-    checkDomainName: function (domain) {
+    checkDomainName: function (domain)
+    {
         return window.location.hostname.indexOf(domain) !== -1;
     },
 
@@ -62,19 +66,20 @@ Phaser.Net.prototype = {
     * @param {string} url - The URL to modify. If none is given it uses window.location.href.
     * @return {string} If redirect is false then the modified url and query string is returned.
     */
-    updateQueryString: function (key, value, redirect, url) {
+    updateQueryString: function (key, value, redirect, url)
+    {
 
         if (redirect === undefined) { redirect = false; }
         if (url === undefined || url === '') { url = window.location.href; }
 
         var output = '';
-        var re = new RegExp("([?|&])" + key + "=.*?(&|#|$)(.*)", "gi");
+        var re = new RegExp('([?|&])' + key + '=.*?(&|#|$)(.*)', 'gi');
 
         if (re.test(url))
         {
             if (typeof value !== 'undefined' && value !== null)
             {
-                output = url.replace(re, '$1' + key + "=" + value + '$2$3');
+                output = url.replace(re, '$1' + key + '=' + value + '$2$3');
             }
             else
             {
@@ -82,24 +87,23 @@ Phaser.Net.prototype = {
             }
         }
         else
+        if (typeof value !== 'undefined' && value !== null)
         {
-            if (typeof value !== 'undefined' && value !== null)
+            var separator = url.indexOf('?') !== -1 ? '&' : '?';
+            var hash = url.split('#');
+            url = hash[0] + separator + key + '=' + value;
+
+            if (hash[1])
             {
-                var separator = url.indexOf('?') !== -1 ? '&' : '?';
-                var hash = url.split('#');
-                url = hash[0] + separator + key + '=' + value;
-
-                if (hash[1]) {
-                    url += '#' + hash[1];
-                }
-
-                output = url;
-
+                url += '#' + hash[1];
             }
-            else
-            {
-                output = url;
-            }
+
+            output = url;
+
+        }
+        else
+        {
+            output = url;
         }
 
         if (redirect)
@@ -121,7 +125,8 @@ Phaser.Net.prototype = {
     * @param {string} [parameter=''] - If specified this will return just the value for that key.
     * @return {string|object} An object containing the key value pairs found in the query string or just the value if a parameter was given.
     */
-    getQueryString: function (parameter) {
+    getQueryString: function (parameter)
+    {
 
         if (parameter === undefined) { parameter = ''; }
 
@@ -157,8 +162,9 @@ Phaser.Net.prototype = {
     * @param {string} value - The URI component to be decoded.
     * @return {string} The decoded value.
     */
-    decodeURI: function (value) {
-        return decodeURIComponent(value.replace(/\+/g, " "));
+    decodeURI: function (value)
+    {
+        return decodeURIComponent(value.replace(/\+/g, ' '));
     }
 
 };

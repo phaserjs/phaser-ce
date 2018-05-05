@@ -14,7 +14,8 @@
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 */
-Phaser.GameObjectFactory = function (game) {
+Phaser.GameObjectFactory = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running Game.
@@ -39,7 +40,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {any} object - An instance of Phaser.Sprite, Phaser.Button or any other display object.
     * @return {any} The child that was added to the World.
     */
-    existing: function (object) {
+    existing: function (object)
+    {
 
         return this.world.add(object);
 
@@ -66,7 +68,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {function} [bulletClass] - The Class of the bullets that are launched by this Weapon. See {@link Phaser.Weapon#bulletClass}
     * @returns {Phaser.Weapon} A Weapon instance.
     */
-    weapon: function (quantity, key, frame, group, bulletClass) {
+    weapon: function (quantity, key, frame, group, bulletClass)
+    {
 
         var weapon = this.game.plugins.add(Phaser.Weapon);
 
@@ -97,7 +100,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Image} The newly created Image object.
     */
-    image: function (x, y, key, frame, group) {
+    image: function (x, y, key, frame, group)
+    {
 
         if (group === undefined) { group = this.world; }
 
@@ -120,7 +124,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Sprite} The newly created Sprite object.
     */
-    sprite: function (x, y, key, frame, group) {
+    sprite: function (x, y, key, frame, group)
+    {
 
         if (group === undefined) { group = this.world; }
 
@@ -149,7 +154,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Creature} The newly created Creature object.
     */
-    creature: function (x, y, key, mesh, group) {
+    creature: function (x, y, key, mesh, group)
+    {
 
         if (group === undefined) { group = this.world; }
 
@@ -170,7 +176,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {object} object - Object the tween will be run on.
     * @return {Phaser.Tween} The newly created Phaser.Tween object.
     */
-    tween: function (object) {
+    tween: function (object)
+    {
 
         return this.game.tweens.create(object);
 
@@ -187,7 +194,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [physicsBodyType=0] - If enableBody is true this is the type of physics body that is created on new Sprites. Phaser.Physics.ARCADE, Phaser.Physics.P2, Phaser.Physics.NINJA, etc.
     * @return {Phaser.Group} The newly created Group.
     */
-    group: function (parent, name, addToStage, enableBody, physicsBodyType) {
+    group: function (parent, name, addToStage, enableBody, physicsBodyType)
+    {
 
         return new Phaser.Group(this.game, parent, name, addToStage, enableBody, physicsBodyType);
 
@@ -206,7 +214,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {boolean} [addToStage=false] - If set to true this Group will be added directly to the Game.Stage instead of Game.World.
     * @return {Phaser.Group} The newly created Group.
     */
-    physicsGroup: function (physicsBodyType, parent, name, addToStage) {
+    physicsGroup: function (physicsBodyType, parent, name, addToStage)
+    {
 
         return new Phaser.Group(this.game, parent, name, addToStage, true, physicsBodyType);
 
@@ -223,7 +232,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {boolean} [addToStage=false] - If set to true this Sprite Batch will be added directly to the Game.Stage instead of the parent.
     * @return {Phaser.SpriteBatch} The newly created Sprite Batch.
     */
-    spriteBatch: function (parent, name, addToStage) {
+    spriteBatch: function (parent, name, addToStage)
+    {
 
         if (parent === undefined) { parent = null; }
         if (name === undefined) { name = 'group'; }
@@ -243,7 +253,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {boolean} [connect=true] - Controls if the created Sound object will connect to the master gainNode of the SoundManager when running under WebAudio.
     * @return {Phaser.Sound} The newly created sound object.
     */
-    audio: function (key, volume, loop, connect) {
+    audio: function (key, volume, loop, connect)
+    {
 
         return this.game.sound.add(key, volume, loop, connect);
 
@@ -259,7 +270,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {boolean} [connect=true] - Controls if the created Sound object will connect to the master gainNode of the SoundManager when running under WebAudio.
     * @return {Phaser.Sound} The newly created sound object.
     */
-    sound: function (key, volume, loop, connect) {
+    sound: function (key, volume, loop, connect)
+    {
 
         return this.game.sound.add(key, volume, loop, connect);
 
@@ -272,7 +284,8 @@ Phaser.GameObjectFactory.prototype = {
      * @param {string} key - The Game.cache key of the sound that this object will use.
      * @return {Phaser.AudioSprite} The newly created AudioSprite object.
      */
-    audioSprite: function (key) {
+    audioSprite: function (key)
+    {
 
         return this.game.sound.addSprite(key);
 
@@ -291,7 +304,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.TileSprite} The newly created TileSprite object.
     */
-    tileSprite: function (x, y, width, height, key, frame, group) {
+    tileSprite: function (x, y, width, height, key, frame, group)
+    {
 
         if (group === undefined) { group = this.world; }
 
@@ -313,7 +327,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Rope} The newly created Rope object.
     */
-    rope: function (x, y, key, frame, points, group) {
+    rope: function (x, y, key, frame, points, group)
+    {
 
         if (group === undefined) { group = this.world; }
 
@@ -332,7 +347,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Text} The newly created text object.
     */
-    text: function (x, y, text, style, group) {
+    text: function (x, y, text, style, group)
+    {
 
         if (group === undefined) { group = this.world; }
 
@@ -356,7 +372,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Button} The newly created Button object.
     */
-    button: function (x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame, group) {
+    button: function (x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame, group)
+    {
 
         if (group === undefined) { group = this.world; }
 
@@ -373,7 +390,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.Graphics} The newly created graphics object.
     */
-    graphics: function (x, y, group) {
+    graphics: function (x, y, group)
+    {
 
         if (group === undefined) { group = this.world; }
 
@@ -394,7 +412,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [maxParticles=50] - The total number of particles in this emitter.
     * @return {Phaser.Particles.Arcade.Emitter} The newly created emitter object.
     */
-    emitter: function (x, y, maxParticles) {
+    emitter: function (x, y, maxParticles)
+    {
 
         return this.game.particles.add(new Phaser.Particles.Arcade.Emitter(this.game, x, y, maxParticles));
 
@@ -422,7 +441,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [yOffset=0] - If the font set doesn't start at the top left of the given image, specify the Y coordinate offset here.
     * @return {Phaser.RetroFont} The newly created RetroFont texture which can be applied to an Image or Sprite.
     */
-    retroFont: function (font, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset) {
+    retroFont: function (font, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset)
+    {
 
         return new Phaser.RetroFont(this.game, font, characterWidth, characterHeight, chars, charsPerRow, xSpacing, ySpacing, xOffset, yOffset);
 
@@ -456,7 +476,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.BitmapText} The newly created bitmapText object.
     */
-    bitmapText: function (x, y, font, text, size, group) {
+    bitmapText: function (x, y, font, text, size, group)
+    {
 
         if (group === undefined) { group = this.world; }
 
@@ -481,7 +502,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} [height=10] - The height of the map in tiles. If this map is created from Tiled or CSV data you don't need to specify this.
     * @return {Phaser.Tilemap} The newly created tilemap object.
     */
-    tilemap: function (key, tileWidth, tileHeight, width, height) {
+    tilemap: function (key, tileWidth, tileHeight, width, height)
+    {
 
         return new Phaser.Tilemap(this.game, key, tileWidth, tileHeight, width, height);
 
@@ -497,7 +519,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {boolean} [addToCache=false] - Should this RenderTexture be added to the Game.Cache? If so you can retrieve it with Cache.getTexture(key)
     * @return {Phaser.RenderTexture} The newly created RenderTexture object.
     */
-    renderTexture: function (width, height, key, addToCache) {
+    renderTexture: function (width, height, key, addToCache)
+    {
 
         if (key === undefined || key === '') { key = this.game.rnd.uuid(); }
         if (addToCache === undefined) { addToCache = false; }
@@ -523,7 +546,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {string|null} [url=null] - If the video hasn't been loaded then you can provide a full URL to the file here (make sure to set key to null)
     * @return {Phaser.Video} The newly created Video object.
     */
-    video: function (key, url) {
+    video: function (key, url)
+    {
 
         return new Phaser.Video(this.game, key, url);
 
@@ -541,7 +565,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {boolean} [addToCache=false] - Should this BitmapData be added to the Game.Cache? If so you can retrieve it with Cache.getBitmapData(key)
     * @return {Phaser.BitmapData} The newly created BitmapData object.
     */
-    bitmapData: function (width, height, key, addToCache) {
+    bitmapData: function (width, height, key, addToCache)
+    {
 
         if (addToCache === undefined) { addToCache = false; }
         if (key === undefined || key === '') { key = this.game.rnd.uuid(); }
@@ -565,7 +590,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {any} - Whatever parameters are needed to be passed to the filter init function.
     * @return {Phaser.Filter} The newly created Phaser.Filter object.
     */
-    filter: function (filter) {
+    filter: function (filter)
+    {
 
         var args = Array.prototype.slice.call(arguments, 1);
 
@@ -587,7 +613,8 @@ Phaser.GameObjectFactory.prototype = {
     * @param {...*} parameter - Additional parameters that will be passed to the Plugin.init method.
     * @return {Phaser.Plugin} The Plugin that was added to the manager.
     */
-    plugin: function () {
+    plugin: function ()
+    {
 
         return this.game.plugins.add.apply(this.game.plugins, arguments);
 

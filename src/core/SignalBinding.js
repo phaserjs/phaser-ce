@@ -19,7 +19,8 @@
 * @param {number} [priority] - The priority level of the event listener. (default = 0).
 * @param {...any} [args=(none)] - Additional arguments to pass to the callback (listener) function. They will be appended after any arguments usually dispatched.
 */
-Phaser.SignalBinding = function (signal, listener, isOnce, listenerContext, priority, args) {
+Phaser.SignalBinding = function (signal, listener, isOnce, listenerContext, priority, args)
+{
 
     /**
     * @property {Phaser.Game} _listener - Handler function bound to the signal.
@@ -106,7 +107,8 @@ Phaser.SignalBinding.prototype = {
     * @param {any[]} [paramsArr] - Array of parameters that should be passed to the listener.
     * @return {any} Value returned by the listener.
     */
-    execute: function(paramsArr) {
+    execute: function (paramsArr)
+    {
 
         var handlerReturn, params;
 
@@ -139,7 +141,8 @@ Phaser.SignalBinding.prototype = {
     * @method Phaser.SignalBinding#detach
     * @return {function|null} Handler function bound to the signal or `null` if binding was previously detached.
     */
-    detach: function () {
+    detach: function ()
+    {
         return this.isBound() ? this._signal.remove(this._listener, this.context) : null;
     },
 
@@ -147,7 +150,8 @@ Phaser.SignalBinding.prototype = {
     * @method Phaser.SignalBinding#isBound
     * @return {boolean} True if binding is still bound to the signal and has a listener.
     */
-    isBound: function () {
+    isBound: function ()
+    {
         return (!!this._signal && !!this._listener);
     },
 
@@ -155,7 +159,8 @@ Phaser.SignalBinding.prototype = {
     * @method Phaser.SignalBinding#isOnce
     * @return {boolean} If SignalBinding will only be executed once.
     */
-    isOnce: function () {
+    isOnce: function ()
+    {
         return this._isOnce;
     },
 
@@ -163,7 +168,8 @@ Phaser.SignalBinding.prototype = {
     * @method Phaser.SignalBinding#getListener
     * @return {function} Handler function bound to the signal.
     */
-    getListener: function () {
+    getListener: function ()
+    {
         return this._listener;
     },
 
@@ -171,7 +177,8 @@ Phaser.SignalBinding.prototype = {
     * @method Phaser.SignalBinding#getSignal
     * @return {Phaser.Signal} Signal that listener is currently bound to.
     */
-    getSignal: function () {
+    getSignal: function ()
+    {
         return this._signal;
     },
 
@@ -180,7 +187,8 @@ Phaser.SignalBinding.prototype = {
     * @method Phaser.SignalBinding#_destroy
     * @private
     */
-    _destroy: function () {
+    _destroy: function ()
+    {
         delete this._signal;
         delete this._listener;
         delete this.context;
@@ -190,8 +198,9 @@ Phaser.SignalBinding.prototype = {
     * @method Phaser.SignalBinding#toString
     * @return {string} String representation of the object.
     */
-    toString: function () {
-        return '[Phaser.SignalBinding isOnce:' + this._isOnce +', isBound:'+ this.isBound() +', active:' + this.active + ']';
+    toString: function ()
+    {
+        return '[Phaser.SignalBinding isOnce:' + this._isOnce + ', isBound:' + this.isBound() + ', active:' + this.active + ']';
     }
 
 };

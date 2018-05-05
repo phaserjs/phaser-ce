@@ -34,7 +34,8 @@ Phaser.Component.Destroy.prototype = {
     * @param {boolean} [destroyChildren=true] - Should every child of this object have its destroy method called as well?
     * @param {boolean} [destroyTexture=false] - Destroy the BaseTexture this Game Object is using? Note that if another Game Object is sharing the same BaseTexture it will invalidate it.
     */
-    destroy: function (destroyChildren, destroyTexture) {
+    destroy: function (destroyChildren, destroyTexture)
+    {
 
         if (this.game === null || this.destroyPhase) { return; }
 

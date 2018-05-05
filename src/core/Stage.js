@@ -13,7 +13,8 @@
 * @constructor
 * @param {Phaser.Game} game - Game reference to the currently running game.
  */
-Phaser.Stage = function (game) {
+Phaser.Stage = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running Game.
@@ -105,7 +106,8 @@ Phaser.Stage.prototype.constructor = Phaser.Stage;
 * @protected
 * @param {object} config -The configuration object to parse.
 */
-Phaser.Stage.prototype.parseConfig = function (config) {
+Phaser.Stage.prototype.parseConfig = function (config)
+{
 
     if (config['disableVisibilityChange'])
     {
@@ -124,7 +126,8 @@ Phaser.Stage.prototype.parseConfig = function (config) {
 * @method Phaser.Stage#boot
 * @private
 */
-Phaser.Stage.prototype.boot = function () {
+Phaser.Stage.prototype.boot = function ()
+{
 
     Phaser.DOM.getOffset(this.game.canvas, this.offset);
 
@@ -141,7 +144,8 @@ Phaser.Stage.prototype.boot = function () {
 *
 * @method Phaser.Stage#preUpdate
 */
-Phaser.Stage.prototype.preUpdate = function () {
+Phaser.Stage.prototype.preUpdate = function ()
+{
 
     this.currentRenderOrderID = 0;
 
@@ -167,7 +171,8 @@ Phaser.Stage.prototype.preUpdate = function () {
 *
 * @method Phaser.Stage#update
 */
-Phaser.Stage.prototype.update = function () {
+Phaser.Stage.prototype.update = function ()
+{
 
     //  Goes in reverse, because it's highly likely the child will destroy itself in `update`
     var i = this.children.length;
@@ -186,7 +191,8 @@ Phaser.Stage.prototype.update = function () {
 *
 * @method Phaser.Stage#postUpdate
 */
-Phaser.Stage.prototype.postUpdate = function () {
+Phaser.Stage.prototype.postUpdate = function ()
+{
 
     //  Apply the camera shake, fade, bounds, etc
     this.game.camera.update();
@@ -216,7 +222,8 @@ Phaser.Stage.prototype.postUpdate = function () {
 *
 * @method Phaser.Stage#updateTransform
 */
-Phaser.Stage.prototype.updateTransform = function () {
+Phaser.Stage.prototype.updateTransform = function ()
+{
 
     this.worldAlpha = 1;
 
@@ -233,7 +240,8 @@ Phaser.Stage.prototype.updateTransform = function () {
 *
 * @method Phaser.Stage#checkVisibility
 */
-Phaser.Stage.prototype.checkVisibility = function () {
+Phaser.Stage.prototype.checkVisibility = function ()
+{
 
     if (document.hidden !== undefined)
     {
@@ -258,19 +266,23 @@ Phaser.Stage.prototype.checkVisibility = function () {
 
     var _this = this;
 
-    this._onChange = function (event) {
+    this._onChange = function (event)
+    {
         return _this.visibilityChange(event);
     };
 
-    this._onChangePause = function () {
+    this._onChangePause = function ()
+    {
         return _this._onChange({ type: 'pause' });
     };
 
-    this._onChangeResume = function () {
+    this._onChangeResume = function ()
+    {
         return _this._onChange({ type: 'resume' });
     };
 
-    this._onClick = function (event) {
+    this._onClick = function (event)
+    {
         if ((document.hasFocus !== undefined) && !document.hasFocus())
         {
             _this.visibilityChange(event);
@@ -323,7 +335,8 @@ Phaser.Stage.prototype.checkVisibility = function () {
 * @method Phaser.Stage#visibilityChange
 * @param {Event} event - Its type will be used to decide whether the game should be paused or not.
 */
-Phaser.Stage.prototype.visibilityChange = function (event) {
+Phaser.Stage.prototype.visibilityChange = function (event)
+{
 
     // These events always trigger the Game#onBlur or Game#onFocus signals.
 
@@ -345,7 +358,7 @@ Phaser.Stage.prototype.visibilityChange = function (event) {
         return;
     }
 
-    if (document.hidden || document.mozHidden || document.msHidden || document.webkitHidden || event.type === "pause")
+    if (document.hidden || document.mozHidden || document.msHidden || document.webkitHidden || event.type === 'pause')
     {
         this.game.gamePaused(event);
     }
@@ -370,7 +383,8 @@ Phaser.Stage.prototype.visibilityChange = function (event) {
 * @method Phaser.Stage#setBackgroundColor
 * @param {number|string} color - The color of the background.
 */
-Phaser.Stage.prototype.setBackgroundColor = function (color) {
+Phaser.Stage.prototype.setBackgroundColor = function (color)
+{
 
     if (this.game.transparent) { return; }
 
@@ -390,7 +404,8 @@ Phaser.Stage.prototype.setBackgroundColor = function (color) {
 *
 * @method Phaser.Stage#destroy
 */
-Phaser.Stage.prototype.destroy = function () {
+Phaser.Stage.prototype.destroy = function ()
+{
 
     if (this._hiddenVar)
     {
@@ -422,7 +437,8 @@ Phaser.Stage.prototype.destroy = function () {
 * @param {integer} [index] - The index to insert the object to.
 * @return {DisplayObject} The child that was added to the group.
 */
-Phaser.Stage.prototype.add = function (child, silent, index) {
+Phaser.Stage.prototype.add = function (child, silent, index)
+{
 
     if (child.parent === this)
     {
@@ -452,15 +468,17 @@ Phaser.Stage.prototype.add = function (child, silent, index) {
 * @property {number|string} backgroundColor - Gets and sets the background color of the stage. The color can be given as a number: 0xff0000 or a hex string: '#ff0000'
 * @see Phaser.Stage#setBackgroundColor
 */
-Object.defineProperty(Phaser.Stage.prototype, "backgroundColor", {
+Object.defineProperty(Phaser.Stage.prototype, 'backgroundColor', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._bgColor.color;
 
     },
 
-    set: function (color) {
+    set: function (color)
+    {
 
         this.setBackgroundColor(color);
 
@@ -474,15 +492,17 @@ Object.defineProperty(Phaser.Stage.prototype, "backgroundColor", {
 * @name Phaser.Stage#smoothed
 * @property {boolean} smoothed - Set to true to smooth all sprites rendered on this Stage, or false to disable smoothing (great for pixel art)
 */
-Object.defineProperty(Phaser.Stage.prototype, "smoothed", {
+Object.defineProperty(Phaser.Stage.prototype, 'smoothed', {
 
-    get: function () {
+    get: function ()
+    {
 
         return PIXI.scaleModes.DEFAULT === PIXI.scaleModes.LINEAR;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         if (value)
         {

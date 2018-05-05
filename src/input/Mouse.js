@@ -18,7 +18,8 @@
 * @constructor
 * @param {Phaser.Game} game - A reference to the currently running game.
 */
-Phaser.Mouse = function (game) {
+Phaser.Mouse = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running game.
@@ -213,7 +214,8 @@ Phaser.Mouse.prototype = {
     * Starts the event listeners running.
     * @method Phaser.Mouse#start
     */
-    start: function () {
+    start: function ()
+    {
 
         if (this.game.device.android && this.game.device.chrome === false)
         {
@@ -229,35 +231,43 @@ Phaser.Mouse.prototype = {
 
         var _this = this;
 
-        this._onMouseDown = function (event) {
+        this._onMouseDown = function (event)
+        {
             return _this.onMouseDown(event);
         };
 
-        this._onMouseMove = function (event) {
+        this._onMouseMove = function (event)
+        {
             return _this.onMouseMove(event);
         };
 
-        this._onMouseUp = function (event) {
+        this._onMouseUp = function (event)
+        {
             return _this.onMouseUp(event);
         };
 
-        this._onMouseUpGlobal = function (event) {
+        this._onMouseUpGlobal = function (event)
+        {
             return _this.onMouseUpGlobal(event);
         };
 
-        this._onMouseOutGlobal = function (event) {
+        this._onMouseOutGlobal = function (event)
+        {
             return _this.onMouseOutGlobal(event);
         };
 
-        this._onMouseOut = function (event) {
+        this._onMouseOut = function (event)
+        {
             return _this.onMouseOut(event);
         };
 
-        this._onMouseOver = function (event) {
+        this._onMouseOver = function (event)
+        {
             return _this.onMouseOver(event);
         };
 
-        this._onMouseWheel = function (event) {
+        this._onMouseWheel = function (event)
+        {
             return _this.onMouseWheel(event);
         };
 
@@ -283,7 +293,7 @@ Phaser.Mouse.prototype = {
 
             if (wheelEvent === 'mousewheel')
             {
-                this._wheelEvent = new WheelEventProxy(-1/40, 1);
+                this._wheelEvent = new WheelEventProxy(-1 / 40, 1);
             }
             else if (wheelEvent === 'DOMMouseScroll')
             {
@@ -298,7 +308,8 @@ Phaser.Mouse.prototype = {
     * @method Phaser.Mouse#onMouseDown
     * @param {MouseEvent} event - The native event from the browser. This gets stored in Mouse.event.
     */
-    onMouseDown: function (event) {
+    onMouseDown: function (event)
+    {
 
         this.event = event;
 
@@ -328,7 +339,8 @@ Phaser.Mouse.prototype = {
     * @method Phaser.Mouse#onMouseMove
     * @param {MouseEvent} event - The native event from the browser. This gets stored in Mouse.event.
     */
-    onMouseMove: function (event) {
+    onMouseMove: function (event)
+    {
 
         this.event = event;
 
@@ -358,7 +370,8 @@ Phaser.Mouse.prototype = {
     * @method Phaser.Mouse#onMouseUp
     * @param {MouseEvent} event - The native event from the browser. This gets stored in Mouse.event.
     */
-    onMouseUp: function (event) {
+    onMouseUp: function (event)
+    {
 
         this.event = event;
 
@@ -389,7 +402,8 @@ Phaser.Mouse.prototype = {
     * @method Phaser.Mouse#onMouseUpGlobal
     * @param {MouseEvent} event - The native event from the browser. This gets stored in Mouse.event.
     */
-    onMouseUpGlobal: function (event) {
+    onMouseUpGlobal: function (event)
+    {
 
         if (!this.input.mousePointer.withinGame)
         {
@@ -411,7 +425,8 @@ Phaser.Mouse.prototype = {
     * @method Phaser.Mouse#onMouseOutGlobal
     * @param {MouseEvent} event - The native event from the browser. This gets stored in Mouse.event.
     */
-    onMouseOutGlobal: function (event) {
+    onMouseOutGlobal: function (event)
+    {
 
         this.event = event;
 
@@ -448,7 +463,8 @@ Phaser.Mouse.prototype = {
     * @method Phaser.Mouse#onMouseOut
     * @param {MouseEvent} event - The native event from the browser. This gets stored in Mouse.event.
     */
-    onMouseOut: function (event) {
+    onMouseOut: function (event)
+    {
 
         this.event = event;
 
@@ -492,7 +508,8 @@ Phaser.Mouse.prototype = {
     * @method Phaser.Mouse#onMouseOver
     * @param {MouseEvent} event - The native event from the browser. This gets stored in Mouse.event.
     */
-    onMouseOver: function (event) {
+    onMouseOver: function (event)
+    {
 
         this.event = event;
 
@@ -516,9 +533,11 @@ Phaser.Mouse.prototype = {
      * @method Phaser.Mouse#onMouseWheel
      * @param {MouseEvent} event - The native event from the browser.
      */
-    onMouseWheel: function (event) {
+    onMouseWheel: function (event)
+    {
 
-        if (this._wheelEvent) {
+        if (this._wheelEvent)
+        {
             event = this._wheelEvent.bindEvent(event);
         }
 
@@ -545,7 +564,8 @@ Phaser.Mouse.prototype = {
     * If the browser successfully enters a locked state the event Phaser.Mouse.pointerLock will be dispatched and the first parameter will be 'true'.
     * @method Phaser.Mouse#requestPointerLock
     */
-    requestPointerLock: function () {
+    requestPointerLock: function ()
+    {
 
         if (this.game.device.pointerLock)
         {
@@ -557,7 +577,8 @@ Phaser.Mouse.prototype = {
 
             var _this = this;
 
-            this._pointerLockChange = function (event) {
+            this._pointerLockChange = function (event)
+            {
                 return _this.pointerLockChange(event);
             };
 
@@ -574,7 +595,8 @@ Phaser.Mouse.prototype = {
     * @method Phaser.Mouse#pointerLockChange
     * @param {Event} event - The native event from the browser. This gets stored in Mouse.event.
     */
-    pointerLockChange: function (event) {
+    pointerLockChange: function (event)
+    {
 
         var element = this.game.canvas;
 
@@ -597,7 +619,8 @@ Phaser.Mouse.prototype = {
     * Internal release pointer lock handler.
     * @method Phaser.Mouse#releasePointerLock
     */
-    releasePointerLock: function () {
+    releasePointerLock: function ()
+    {
 
         document.exitPointerLock = document.exitPointerLock || document.mozExitPointerLock || document.webkitExitPointerLock;
 
@@ -613,7 +636,8 @@ Phaser.Mouse.prototype = {
     * Stop the event listeners.
     * @method Phaser.Mouse#stop
     */
-    stop: function () {
+    stop: function ()
+    {
 
         var canvas = this.game.canvas;
 
@@ -655,7 +679,8 @@ Phaser.Mouse.prototype.constructor = Phaser.Mouse;
 * @param {number} scaleFactor - Scale factor as applied to wheelDelta/wheelDeltaX or details.
 * @param {integer} deltaMode - The reported delta mode.
 */
-function WheelEventProxy (scaleFactor, deltaMode) {
+function WheelEventProxy (scaleFactor, deltaMode)
+{
 
     /**
     * @property {number} _scaleFactor - Scale factor as applied to wheelDelta/wheelDeltaX or details.
@@ -680,14 +705,17 @@ function WheelEventProxy (scaleFactor, deltaMode) {
 WheelEventProxy.prototype = {};
 WheelEventProxy.prototype.constructor = WheelEventProxy;
 
-WheelEventProxy.prototype.bindEvent = function (event) {
+WheelEventProxy.prototype.bindEvent = function (event)
+{
 
     // Generate stubs automatically
     if (!WheelEventProxy._stubsGenerated && event)
     {
-        var makeBinder = function (name) {
+        var makeBinder = function (name)
+        {
 
-            return function () {
+            return function ()
+            {
                 var v = this.originalEvent[name];
                 return typeof v !== 'function' ? v : v.bind(this.originalEvent);
             };
@@ -698,9 +726,7 @@ WheelEventProxy.prototype.bindEvent = function (event) {
         {
             if (!(prop in WheelEventProxy.prototype))
             {
-                Object.defineProperty(WheelEventProxy.prototype, prop, {
-                    get: makeBinder(prop)
-                });
+                Object.defineProperty(WheelEventProxy.prototype, prop, {get: makeBinder(prop)});
             }
         }
         WheelEventProxy._stubsGenerated = true;
@@ -712,17 +738,19 @@ WheelEventProxy.prototype.bindEvent = function (event) {
 };
 
 Object.defineProperties(WheelEventProxy.prototype, {
-    "type": { value: "wheel" },
-    "deltaMode": { get: function () { return this._deltaMode; } },
-    "deltaY": {
-        get: function () {
+    type: { value: 'wheel' },
+    deltaMode: { get: function () { return this._deltaMode; } },
+    deltaY: {
+        get: function ()
+        {
             return (this._scaleFactor * (this.originalEvent.wheelDelta || this.originalEvent.detail)) || 0;
         }
     },
-    "deltaX": {
-        get: function () {
+    deltaX: {
+        get: function ()
+        {
             return (this._scaleFactor * this.originalEvent.wheelDeltaX) || 0;
         }
     },
-    "deltaZ": { value: 0 }
+    deltaZ: { value: 0 }
 });

@@ -20,7 +20,8 @@
 * @param {number} [width=0] - The width of this Body. This is only used if a sprite is not provided.
 * @param {number} [height=0] - The height of this Body. This is only used if a sprite is not provided.
 */
-Phaser.Physics.Ninja.Body = function (system, sprite, type, id, radius, x, y, width, height) {
+Phaser.Physics.Ninja.Body = function (system, sprite, type, id, radius, x, y, width, height)
+{
 
     sprite = sprite || null;
 
@@ -187,7 +188,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @method Phaser.Physics.Ninja.Body#preUpdate
     * @protected
     */
-    preUpdate: function () {
+    preUpdate: function ()
+    {
 
         //  Store and reset collision flags
         this.wasTouching.none = this.touching.none;
@@ -217,7 +219,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @method Phaser.Physics.Ninja.Body#postUpdate
     * @protected
     */
-    postUpdate: function () {
+    postUpdate: function ()
+    {
 
         if (this.sprite)
         {
@@ -259,7 +262,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     *
     * @method Phaser.Physics.Ninja.Body#setZeroVelocity
     */
-    setZeroVelocity: function () {
+    setZeroVelocity: function ()
+    {
 
         this.shape.oldpos.x = this.shape.pos.x;
         this.shape.oldpos.y = this.shape.pos.y;
@@ -274,7 +278,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @param {number} speed - The speed at which it should move forwards.
     * @param {number} angle - The angle in which it should move, given in degrees.
     */
-    moveTo: function (speed, angle) {
+    moveTo: function (speed, angle)
+    {
 
         var magnitude = speed * this.game.time.physicsElapsed;
         var angle = this.game.math.degToRad(angle);
@@ -292,7 +297,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @param {number} speed - The speed at which it should move backwards.
     * @param {number} angle - The angle in which it should move, given in degrees.
     */
-    moveFrom: function (speed, angle) {
+    moveFrom: function (speed, angle)
+    {
 
         var magnitude = -speed * this.game.time.physicsElapsed;
         var angle = this.game.math.degToRad(angle);
@@ -309,7 +315,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @method Phaser.Physics.Body#moveLeft
     * @param {number} speed - The speed at which it should move to the left, in pixels per second.
     */
-    moveLeft: function (speed) {
+    moveLeft: function (speed)
+    {
 
         var fx = -speed * this.game.time.physicsElapsed;
 
@@ -324,7 +331,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @method Phaser.Physics.Body#moveRight
     * @param {number} speed - The speed at which it should move to the right, in pixels per second.
     */
-    moveRight: function (speed) {
+    moveRight: function (speed)
+    {
 
         var fx = speed * this.game.time.physicsElapsed;
 
@@ -339,7 +347,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @method Phaser.Physics.Body#moveUp
     * @param {number} speed - The speed at which it should move up, in pixels per second.
     */
-    moveUp: function (speed) {
+    moveUp: function (speed)
+    {
 
         var fx = -speed * this.game.time.physicsElapsed;
 
@@ -354,7 +363,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @method Phaser.Physics.Body#moveDown
     * @param {number} speed - The speed at which it should move down, in pixels per second.
     */
-    moveDown: function (speed) {
+    moveDown: function (speed)
+    {
 
         var fx = speed * this.game.time.physicsElapsed;
 
@@ -367,7 +377,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     *
     * @method Phaser.Physics.Ninja.Body#reset
     */
-    reset: function () {
+    reset: function ()
+    {
 
         this.velocity.set(0);
 
@@ -384,7 +395,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @method Phaser.Physics.Ninja.Body#deltaAbsX
     * @return {number} The absolute delta value.
     */
-    deltaAbsX: function () {
+    deltaAbsX: function ()
+    {
         return (this.deltaX() > 0 ? this.deltaX() : -this.deltaX());
     },
 
@@ -394,7 +406,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @method Phaser.Physics.Ninja.Body#deltaAbsY
     * @return {number} The absolute delta value.
     */
-    deltaAbsY: function () {
+    deltaAbsY: function ()
+    {
         return (this.deltaY() > 0 ? this.deltaY() : -this.deltaY());
     },
 
@@ -404,7 +417,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @method Phaser.Physics.Ninja.Body#deltaX
     * @return {number} The delta value. Positive if the motion was to the right, negative if to the left.
     */
-    deltaX: function () {
+    deltaX: function ()
+    {
         return this.shape.pos.x - this.shape.oldpos.x;
     },
 
@@ -414,7 +428,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     * @method Phaser.Physics.Ninja.Body#deltaY
     * @return {number} The delta value. Positive if the motion was downwards, negative if upwards.
     */
-    deltaY: function () {
+    deltaY: function ()
+    {
         return this.shape.pos.y - this.shape.oldpos.y;
     },
 
@@ -423,7 +438,8 @@ Phaser.Physics.Ninja.Body.prototype = {
     *
     * @method Phaser.Physics.Ninja.Body#destroy
     */
-    destroy: function() {
+    destroy: function ()
+    {
         this.sprite = null;
         this.system = null;
         this.aabb = null;
@@ -439,13 +455,15 @@ Phaser.Physics.Ninja.Body.prototype = {
 * @name Phaser.Physics.Ninja.Body#x
 * @property {number} x - The x position.
 */
-Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "x", {
+Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, 'x', {
 
-    get: function () {
+    get: function ()
+    {
         return this.shape.pos.x;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
         this.shape.pos.x = value;
     }
 
@@ -455,13 +473,15 @@ Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "x", {
 * @name Phaser.Physics.Ninja.Body#y
 * @property {number} y - The y position.
 */
-Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "y", {
+Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, 'y', {
 
-    get: function () {
+    get: function ()
+    {
         return this.shape.pos.y;
     },
 
-    set: function (value) {
+    set: function (value)
+    {
         this.shape.pos.y = value;
     }
 
@@ -472,9 +492,10 @@ Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "y", {
 * @property {number} width - The width of this Body
 * @readonly
 */
-Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "width", {
+Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, 'width', {
 
-    get: function () {
+    get: function ()
+    {
         return this.shape.width;
     }
 
@@ -485,9 +506,10 @@ Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "width", {
 * @property {number} height - The height of this Body
 * @readonly
 */
-Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "height", {
+Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, 'height', {
 
-    get: function () {
+    get: function ()
+    {
         return this.shape.height;
     }
 
@@ -498,9 +520,10 @@ Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "height", {
 * @property {number} bottom - The bottom value of this Body (same as Body.y + Body.height)
 * @readonly
 */
-Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "bottom", {
+Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, 'bottom', {
 
-    get: function () {
+    get: function ()
+    {
         return this.shape.pos.y + this.shape.yw;
     }
 
@@ -511,9 +534,10 @@ Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "bottom", {
 * @property {number} right - The right value of this Body (same as Body.x + Body.width)
 * @readonly
 */
-Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "right", {
+Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, 'right', {
 
-    get: function () {
+    get: function ()
+    {
         return this.shape.pos.x + this.shape.xw;
     }
 
@@ -524,9 +548,10 @@ Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "right", {
 * @property {number} speed - The speed of this Body
 * @readonly
 */
-Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "speed", {
+Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, 'speed', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.sqrt(this.shape.velocity.x * this.shape.velocity.x + this.shape.velocity.y * this.shape.velocity.y);
     }
 
@@ -537,9 +562,10 @@ Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "speed", {
 * @property {number} angle - The angle of this Body
 * @readonly
 */
-Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "angle", {
+Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, 'angle', {
 
-    get: function () {
+    get: function ()
+    {
         return this.shape.velocity.atan();
     }
 
@@ -554,7 +580,8 @@ Object.defineProperty(Phaser.Physics.Ninja.Body.prototype, "angle", {
 * @param {string} [color='rgba(0,255,0,0.4)'] - color of the debug shape to be rendered. (format is css color string).
 * @param {boolean} [filled=true] - Render the shape as a filled (default, true) or a stroked (false)
 */
-Phaser.Physics.Ninja.Body.render = function(context, body, color, filled) {
+Phaser.Physics.Ninja.Body.render = function (context, body, color, filled)
+{
     color = color || 'rgba(0,255,0,0.4)';
 
     if (filled === undefined)

@@ -21,7 +21,8 @@
 * @constructor
 * @param {Phaser.Point[]|number[]|...Phaser.Point|...number} points - The points to set.
 */
-Phaser.Polygon = function () {
+Phaser.Polygon = function ()
+{
 
     /**
     * @property {number} area - The area of this Polygon.
@@ -65,7 +66,8 @@ Phaser.Polygon.prototype = {
      * @param {array} [output] - The array to append the points to. If not specified a new array will be created.
      * @return {array} The flattened array.
      */
-    toNumberArray: function (output) {
+    toNumberArray: function (output)
+    {
 
         if (output === undefined) { output = []; }
 
@@ -96,7 +98,8 @@ Phaser.Polygon.prototype = {
      * @method Phaser.Polygon#flatten
      * @return {Phaser.Polygon} This Polygon object
      */
-    flatten: function () {
+    flatten: function ()
+    {
 
         this._points = this.toNumberArray();
 
@@ -114,7 +117,8 @@ Phaser.Polygon.prototype = {
      * @param {Phaser.Polygon} [output=(new Phaser.Polygon)] - The polygon to update. If not specified a new polygon will be created.
      * @return {Phaser.Polygon} The cloned (`output`) polygon object.
      */
-    clone: function (output) {
+    clone: function (output)
+    {
 
         var points = this._points.slice();
 
@@ -139,7 +143,8 @@ Phaser.Polygon.prototype = {
     * @param {number} y - The Y value of the coordinate to test.
     * @return {boolean} True if the coordinates are within this polygon, otherwise false.
     */
-    contains: function (x, y) {
+    contains: function (x, y)
+    {
 
         //  Adapted from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html by Jonas Raoni Soares Silva
 
@@ -202,7 +207,8 @@ Phaser.Polygon.prototype = {
      * @param {Phaser.Point[]|number[]|...Phaser.Point|...number} points - The points to set.
      * @return {Phaser.Polygon} This Polygon object
      */
-    setTo: function (points) {
+    setTo: function (points)
+    {
 
         this.area = 0;
         this._points = [];
@@ -258,7 +264,8 @@ Phaser.Polygon.prototype = {
      * @param {number} y0 - The lowest boundary
      * @return {number} The area of the Polygon.
      */
-    calculateArea: function (y0) {
+    calculateArea: function (y0)
+    {
 
         var p1;
         var p2;
@@ -302,7 +309,8 @@ Phaser.Polygon.prototype.constructor = Phaser.Polygon;
 */
 Object.defineProperty(Phaser.Polygon.prototype, 'points', {
 
-    get: function() {
+    get: function ()
+    {
         return this._points;
     }
 

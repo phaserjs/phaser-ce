@@ -35,7 +35,8 @@
 * @constructor
 * @param {Phaser.Game} game A reference to the currently running game.
 */
-Phaser.Time = function (game) {
+Phaser.Time = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - Local reference to game.
@@ -339,7 +340,8 @@ Phaser.Time.prototype = {
     * @method Phaser.Time#boot
     * @protected
     */
-    boot: function () {
+    boot: function ()
+    {
 
         this._started = Date.now();
         this.time = Date.now();
@@ -355,7 +357,8 @@ Phaser.Time.prototype = {
     * @param {Phaser.Timer} timer - An existing Phaser.Timer object.
     * @return {Phaser.Timer} The given Phaser.Timer object.
     */
-    add: function (timer) {
+    add: function (timer)
+    {
 
         this._timers.push(timer);
 
@@ -370,7 +373,8 @@ Phaser.Time.prototype = {
     * @param {boolean} [autoDestroy=true] - A Timer that is set to automatically destroy itself will do so after all of its events have been dispatched (assuming no looping events).
     * @return {Phaser.Timer} The Timer object that was created.
     */
-    create: function (autoDestroy) {
+    create: function (autoDestroy)
+    {
 
         if (autoDestroy === undefined) { autoDestroy = true; }
 
@@ -387,7 +391,8 @@ Phaser.Time.prototype = {
     *
     * @method Phaser.Time#removeAll
     */
-    removeAll: function () {
+    removeAll: function ()
+    {
 
         for (var i = 0; i < this._timers.length; i++)
         {
@@ -405,7 +410,8 @@ Phaser.Time.prototype = {
     *
     * @method Phaser.Time#refresh
     */
-    refresh: function () {
+    refresh: function ()
+    {
 
         //  Set to the old Date.now value
         var previousDateNow = this.time;
@@ -425,7 +431,8 @@ Phaser.Time.prototype = {
     * @protected
     * @param {number} time - The current relative timestamp; see {@link Phaser.Time#now now}.
     */
-    update: function (time) {
+    update: function (time)
+    {
 
         //  Set to the old Date.now value
         var previousDateNow = this.time;
@@ -485,7 +492,8 @@ Phaser.Time.prototype = {
     * @method Phaser.Time#updateTimers
     * @private
     */
-    updateTimers: function () {
+    updateTimers: function ()
+    {
 
         //  Any game level timers
         var i = 0;
@@ -514,7 +522,8 @@ Phaser.Time.prototype = {
     * @method Phaser.Time#updateAdvancedTiming
     * @private
     */
-    updateAdvancedTiming: function () {
+    updateAdvancedTiming: function ()
+    {
 
         // count the number of time.update calls
         this._frameCount++;
@@ -537,7 +546,7 @@ Phaser.Time.prototype = {
         if (this.now > this._timeLastSecond + 1000)
         {
             var interval = this.now - this._timeLastSecond;
-            this.fps = Math.round((this.frames  * 1000) / interval);
+            this.fps = Math.round((this.frames * 1000) / interval);
             this.ups = Math.round((this.updates * 1000) / interval);
             this.rps = Math.round((this.renders * 1000) / interval);
             this.fpsMin = Math.min(this.fpsMin, this.fps);
@@ -556,7 +565,8 @@ Phaser.Time.prototype = {
     * @method Phaser.Time#countUpdate
     * @private
     */
-    countUpdate: function () {
+    countUpdate: function ()
+    {
 
         if (this.advancedTiming)
         {
@@ -571,7 +581,8 @@ Phaser.Time.prototype = {
     * @method Phaser.Time#countRender
     * @private
     */
-    countRender: function () {
+    countRender: function ()
+    {
 
         if (this.advancedTiming)
         {
@@ -586,7 +597,8 @@ Phaser.Time.prototype = {
     * @method Phaser.Time#gamePaused
     * @private
     */
-    gamePaused: function () {
+    gamePaused: function ()
+    {
 
         this._pauseStarted = Date.now();
 
@@ -607,7 +619,8 @@ Phaser.Time.prototype = {
     * @method Phaser.Time#gameResumed
     * @private
     */
-    gameResumed: function () {
+    gameResumed: function ()
+    {
 
         // Set the parameter which stores Date.now() to make sure it's correct on resume
         this.time = Date.now();
@@ -631,7 +644,8 @@ Phaser.Time.prototype = {
     * @method Phaser.Time#totalElapsedSeconds
     * @return {number} The number of seconds that have elapsed since the game was started.
     */
-    totalElapsedSeconds: function() {
+    totalElapsedSeconds: function ()
+    {
         return (this.time - this._started) * 0.001;
     },
 
@@ -642,7 +656,8 @@ Phaser.Time.prototype = {
     * @param {number} since - The time you want to measure against.
     * @return {number} The difference between the given time and now.
     */
-    elapsedSince: function (since) {
+    elapsedSince: function (since)
+    {
         return this.time - since;
     },
 
@@ -653,7 +668,8 @@ Phaser.Time.prototype = {
     * @param {number} since - The time you want to measure (in seconds).
     * @return {number} Duration between given time and now (in seconds).
     */
-    elapsedSecondsSince: function (since) {
+    elapsedSecondsSince: function (since)
+    {
         return (this.time - since) * 0.001;
     },
 
@@ -662,7 +678,8 @@ Phaser.Time.prototype = {
     *
     * @method Phaser.Time#reset
     */
-    reset: function () {
+    reset: function ()
+    {
 
         this._started = this.time;
         this.removeAll();
@@ -682,15 +699,17 @@ Phaser.Time.prototype = {
 * @type {integer}
 * @default 60
 */
-Object.defineProperty(Phaser.Time.prototype, "desiredFps", {
+Object.defineProperty(Phaser.Time.prototype, 'desiredFps', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this._desiredFps;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         this._desiredFps = value;
 

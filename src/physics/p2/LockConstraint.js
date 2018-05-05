@@ -16,9 +16,10 @@
 * @param {number} [angle=0] - The angle of bodyB in bodyA's frame.
 * @param {number} [maxForce] - The maximum force that should be applied to constrain the bodies.
 */
-Phaser.Physics.P2.LockConstraint = function (world, bodyA, bodyB, offset, angle, maxForce) {
+Phaser.Physics.P2.LockConstraint = function (world, bodyA, bodyB, offset, angle, maxForce)
+{
 
-    if (offset === undefined) { offset = [0, 0]; }
+    if (offset === undefined) { offset = [ 0, 0 ]; }
     if (angle === undefined) { angle = 0; }
     if (maxForce === undefined) { maxForce = Number.MAX_VALUE; }
 

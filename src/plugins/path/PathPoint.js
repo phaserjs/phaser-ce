@@ -19,7 +19,8 @@
 * @param {Phaser.Path} [branchPath] - A branched path which is attached to this point.
 * @param {number} [branchPointIndex] - The index where the branch is attached to on the new path.
 */
-Phaser.PathPoint = function (x, y, vx, vy, speed, data, branchPath, branchPointIndex) {
+Phaser.PathPoint = function (x, y, vx, vy, speed, data, branchPath, branchPointIndex)
+{
 
     if (speed === undefined) { speed = 1; }
     if (data === undefined) { data = { type: 0, value: 0 }; }
@@ -129,7 +130,8 @@ Phaser.PathPoint.prototype = {
     * @param {number} [vy] - The y coordinate of the tangent vector to create the curve from.
     * @return {Phaser.PathPoint} This object.
     */
-    setTo: function (x, y, vx, vy) {
+    setTo: function (x, y, vx, vy)
+    {
 
         this.x = x;
         this.y = y;
@@ -159,7 +161,8 @@ Phaser.PathPoint.prototype = {
     * @param {number} vy - The y coordinate of the tangent vector to create the curve from.
     * @return {Phaser.PathPoint} This object.
     */
-    setTangent: function (vx, vy) {
+    setTangent: function (vx, vy)
+    {
 
         this.vx = vx;
         this.vy = vy;
@@ -178,7 +181,8 @@ Phaser.PathPoint.prototype = {
     * @param {Phaser.PathPoint} [out] - An optional PathPoint object into which this object is cloned. If no object is provided a new PathPoint is created.
     * @return {Phaser.PathPoint} A clone of this PathPoint.
     */
-    clone: function (out) {
+    clone: function (out)
+    {
 
         if (out === undefined) { out = new Phaser.PathPoint(); }
 
@@ -194,7 +198,8 @@ Phaser.PathPoint.prototype = {
     * @param {Phaser.PathPoint} source - The PathPoint object to copy the values from.
     * @return {Phaser.PathPoint} This PathPoint object.
     */
-    copy: function (source) {
+    copy: function (source)
+    {
 
         this.x = source.x;
         this.y = source.y;
@@ -222,13 +227,14 @@ Phaser.PathPoint.prototype = {
     * @param {number} [offsetY=0] - A value to apply to the y coordinate before comparison.
     * @return {boolean} True if the two PathPoint objects match, after the offsets are applied, or false if they don't.
     */
-    equals: function (pathPoint, offsetX, offsetY) {
+    equals: function (pathPoint, offsetX, offsetY)
+    {
 
         if (offsetX === undefined) { offsetX = 0; }
         if (offsetY === undefined) { offsetY = 0; }
 
-        return (this.x === pathPoint.x + offsetX && 
-                this.y === pathPoint.y + offsetY && 
+        return (this.x === pathPoint.x + offsetX &&
+                this.y === pathPoint.y + offsetY &&
                 this.speed === pathPoint.speed);
 
     },
@@ -239,7 +245,8 @@ Phaser.PathPoint.prototype = {
     * @method Phaser.PathPoint#toJSON
     * @return {Object} A JSON object representing this PathPoint.
     */
-    toJSON: function () {
+    toJSON: function ()
+    {
 
         return {
             x: this.x,
@@ -248,7 +255,7 @@ Phaser.PathPoint.prototype = {
             vy: this.vy,
             speed: this.speed,
             data: this.data,
-            branchPath: !!this.branchPath ? this.branchPath.name : null,
+            branchPath: this.branchPath ? this.branchPath.name : null,
             branchPointIndex: this.branchPointIndex,
             branchType: this.branchType
         };

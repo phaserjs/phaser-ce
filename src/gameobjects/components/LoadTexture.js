@@ -48,7 +48,8 @@ Phaser.Component.LoadTexture.prototype = {
     * @param {string|number} [frame] - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
     * @param {boolean} [stopAnimation=true] - If an animation is already playing on this Sprite you can choose to stop it or let it carry on playing.
     */
-    loadTexture: function (key, frame, stopAnimation) {
+    loadTexture: function (key, frame, stopAnimation)
+    {
 
         if (key === Phaser.PENDING_ATLAS)
         {
@@ -152,7 +153,8 @@ Phaser.Component.LoadTexture.prototype = {
     * @method
     * @param {Phaser.Frame} frame - The Frame to be used by the texture.
     */
-    setFrame: function (frame) {
+    setFrame: function (frame)
+    {
 
         this._frame = frame;
 
@@ -222,7 +224,8 @@ Phaser.Component.LoadTexture.prototype = {
     * @param {integer} width - The new width of the texture.
     * @param {integer} height - The new height of the texture.
     */
-    resizeFrame: function (parent, width, height) {
+    resizeFrame: function (parent, width, height)
+    {
 
         this.texture.frame.resize(width, height);
         this.texture.setFrame(this.texture.frame);
@@ -234,7 +237,8 @@ Phaser.Component.LoadTexture.prototype = {
     *
     * @method
     */
-    resetFrame: function () {
+    resetFrame: function ()
+    {
 
         if (this._frame)
         {
@@ -258,11 +262,13 @@ Phaser.Component.LoadTexture.prototype = {
     */
     frame: {
 
-        get: function () {
+        get: function ()
+        {
             return this.animations.frame;
         },
 
-        set: function (value) {
+        set: function (value)
+        {
             this.animations.frame = value;
         }
 
@@ -283,11 +289,13 @@ Phaser.Component.LoadTexture.prototype = {
     */
     frameName: {
 
-        get: function () {
+        get: function ()
+        {
             return this.animations.frameName;
         },
 
-        set: function (value) {
+        set: function (value)
+        {
             this.animations.frameName = value;
         }
 

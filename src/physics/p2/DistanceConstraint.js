@@ -17,11 +17,12 @@
 * @param {Array} [localAnchorB] - The anchor point for bodyB, defined locally in bodyB frame. Defaults to [0,0].
 * @param {object} [maxForce=Number.MAX_VALUE] - Maximum force to apply.
 */
-Phaser.Physics.P2.DistanceConstraint = function (world, bodyA, bodyB, distance, localAnchorA, localAnchorB, maxForce) {
+Phaser.Physics.P2.DistanceConstraint = function (world, bodyA, bodyB, distance, localAnchorA, localAnchorB, maxForce)
+{
 
     if (distance === undefined) { distance = 100; }
-    if (localAnchorA === undefined) { localAnchorA = [0, 0]; }
-    if (localAnchorB === undefined) { localAnchorB = [0, 0]; }
+    if (localAnchorA === undefined) { localAnchorA = [ 0, 0 ]; }
+    if (localAnchorB === undefined) { localAnchorB = [ 0, 0 ]; }
     if (maxForce === undefined) { maxForce = Number.MAX_VALUE; }
 
     /**

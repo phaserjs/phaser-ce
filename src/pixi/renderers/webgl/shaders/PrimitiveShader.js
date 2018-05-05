@@ -7,7 +7,7 @@
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.PrimitiveShader = function(gl)
+PIXI.PrimitiveShader = function (gl)
 {
     /**
      * @property _UID
@@ -48,7 +48,7 @@ PIXI.PrimitiveShader = function(gl)
      * @property vertexSrc
      * @type Array
      */
-    this.vertexSrc  = [
+    this.vertexSrc = [
         'attribute vec2 aVertexPosition;',
         'attribute vec4 aColor;',
         'uniform mat3 translationMatrix;',
@@ -77,7 +77,7 @@ PIXI.PrimitiveShader.prototype.constructor = PIXI.PrimitiveShader;
 *
 * @method PIXI.PrimitiveShader#init
 */
-PIXI.PrimitiveShader.prototype.init = function()
+PIXI.PrimitiveShader.prototype.init = function ()
 {
     var gl = this.gl;
 
@@ -94,7 +94,7 @@ PIXI.PrimitiveShader.prototype.init = function()
     this.aVertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
     this.colorAttribute = gl.getAttribLocation(program, 'aColor');
 
-    this.attributes = [this.aVertexPosition, this.colorAttribute];
+    this.attributes = [ this.aVertexPosition, this.colorAttribute ];
 
     this.translationMatrix = gl.getUniformLocation(program, 'translationMatrix');
     this.alpha = gl.getUniformLocation(program, 'alpha');
@@ -107,9 +107,9 @@ PIXI.PrimitiveShader.prototype.init = function()
 *
 * @method PIXI.PrimitiveShader#destroy
 */
-PIXI.PrimitiveShader.prototype.destroy = function()
+PIXI.PrimitiveShader.prototype.destroy = function ()
 {
-    this.gl.deleteProgram( this.program );
+    this.gl.deleteProgram(this.program);
     this.uniforms = null;
     this.gl = null;
 

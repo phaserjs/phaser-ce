@@ -15,7 +15,8 @@
 * @param {number} [x=0] - The horizontal position of this Point.
 * @param {number} [y=0] - The vertical position of this Point.
 */
-Phaser.Point = function (x, y) {
+Phaser.Point = function (x, y)
+{
 
     x = x || 0;
     y = y || 0;
@@ -47,7 +48,8 @@ Phaser.Point.prototype = {
     * @param {any} source - The object to copy from.
     * @return {Phaser.Point} This Point object.
     */
-    copyFrom: function (source) {
+    copyFrom: function (source)
+    {
 
         return this.setTo(source.x, source.y);
 
@@ -59,7 +61,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#invert
     * @return {Phaser.Point} This Point object.
     */
-    invert: function () {
+    invert: function ()
+    {
 
         return this.setTo(this.y, this.x);
 
@@ -77,7 +80,8 @@ Phaser.Point.prototype = {
     * @param {number} [y] - The vertical value of this point. If not given the x value will be used in its place.
     * @return {Phaser.Point} This Point object. Useful for chaining method calls.
     */
-    setTo: function (x, y) {
+    setTo: function (x, y)
+    {
 
         return Phaser.Point.set(this, x, y);
 
@@ -95,7 +99,8 @@ Phaser.Point.prototype = {
     * @param {number} [y] - The vertical value of this point. If not given the x value will be used in its place.
     * @return {Phaser.Point} This Point object. Useful for chaining method calls.
     */
-    set: function (x, y) {
+    set: function (x, y)
+    {
 
         return Phaser.Point.set(this, x, y);
 
@@ -110,12 +115,13 @@ Phaser.Point.prototype = {
      * @param {boolean} [asDegrees=false] - True if `azimuth` is in degrees.
      * @return {Phaser.Point} This Point object. Useful for chaining method calls.
      */
-    setToPolar: function(azimuth, radius, asDegrees) {
+    setToPolar: function (azimuth, radius, asDegrees)
+    {
 
-      if (radius == null) { radius = 1; }
-      if (asDegrees) { azimuth = Phaser.Math.degToRad(azimuth); }
+        if (radius == null) { radius = 1; }
+        if (asDegrees) { azimuth = Phaser.Math.degToRad(azimuth); }
 
-      return this.setTo(Math.cos(azimuth) * radius, Math.sin(azimuth) * radius);
+        return this.setTo(Math.cos(azimuth) * radius, Math.sin(azimuth) * radius);
 
     },
 
@@ -127,7 +133,8 @@ Phaser.Point.prototype = {
     * @param {number} y - The value to add to Point.y.
     * @return {Phaser.Point} This Point object. Useful for chaining method calls.
     */
-    add: function (x, y) {
+    add: function (x, y)
+    {
 
         this.x += x;
         this.y += y;
@@ -143,7 +150,8 @@ Phaser.Point.prototype = {
     * @param {number} y - The value to subtract from Point.y.
     * @return {Phaser.Point} This Point object. Useful for chaining method calls.
     */
-    subtract: function (x, y) {
+    subtract: function (x, y)
+    {
 
         this.x -= x;
         this.y -= y;
@@ -159,7 +167,8 @@ Phaser.Point.prototype = {
     * @param {number} y - The value to multiply Point.x by.
     * @return {Phaser.Point} This Point object. Useful for chaining method calls.
     */
-    multiply: function (x, y) {
+    multiply: function (x, y)
+    {
 
         this.x *= x;
         this.y *= y;
@@ -175,7 +184,8 @@ Phaser.Point.prototype = {
     * @param {number} y - The value to divide Point.x by.
     * @return {Phaser.Point} This Point object. Useful for chaining method calls.
     */
-    divide: function (x, y) {
+    divide: function (x, y)
+    {
 
         this.x /= x;
         this.y /= y;
@@ -191,7 +201,8 @@ Phaser.Point.prototype = {
     * @param {number} max - The maximum value to clamp this Point to.
     * @return {Phaser.Point} This Point object.
     */
-    clampX: function (min, max) {
+    clampX: function (min, max)
+    {
 
         this.x = Phaser.Math.clamp(this.x, min, max);
         return this;
@@ -206,7 +217,8 @@ Phaser.Point.prototype = {
     * @param {number} max - The maximum value to clamp this Point to.
     * @return {Phaser.Point} This Point object.
     */
-    clampY: function (min, max) {
+    clampY: function (min, max)
+    {
 
         this.y = Phaser.Math.clamp(this.y, min, max);
         return this;
@@ -221,7 +233,8 @@ Phaser.Point.prototype = {
     * @param {number} max - The maximum value to clamp this Point to.
     * @return {Phaser.Point} This Point object.
     */
-    clamp: function (min, max) {
+    clamp: function (min, max)
+    {
 
         this.x = Phaser.Math.clamp(this.x, min, max);
         this.y = Phaser.Math.clamp(this.y, min, max);
@@ -236,13 +249,17 @@ Phaser.Point.prototype = {
     * @param {any} rect - A {@link Phaser.Rectangle} or any object with left, top, right, and bottom properties.
     * @return {Phaser.Point} This Point object.
     */
-    clip: function (rect) {
+    clip: function (rect)
+    {
 
-        var left = rect.left, top = rect.top, right = rect.right, bottom = rect.bottom;
+        var left = rect.left,
+            top = rect.top,
+            right = rect.right,
+            bottom = rect.bottom;
 
-        if      (this.x < left )  { this.x = left; }
-        else if (this.x > right)  { this.x = right; }
-        if      (this.y < top)    { this.y = top; }
+        if (this.x < left) { this.x = left; }
+        else if (this.x > right) { this.x = right; }
+        if (this.y < top) { this.y = top; }
         else if (this.y > bottom) { this.y = bottom; }
 
         return this;
@@ -256,7 +273,8 @@ Phaser.Point.prototype = {
     * @param {Phaser.Point} [output] Optional Point object. If given the values will be set into this object, otherwise a brand new Point object will be created and returned.
     * @return {Phaser.Point} The new Point object.
     */
-    clone: function (output) {
+    clone: function (output)
+    {
 
         if (output === undefined || output === null)
         {
@@ -278,7 +296,8 @@ Phaser.Point.prototype = {
     * @param {any} dest - The object to copy to.
     * @return {object} The dest object.
     */
-    copyTo: function (dest) {
+    copyTo: function (dest)
+    {
 
         dest.x = this.x;
         dest.y = this.y;
@@ -295,7 +314,8 @@ Phaser.Point.prototype = {
     * @param {boolean} [round] - Round the distance to the nearest integer (default false).
     * @return {number} The distance between this Point object and the destination Point object.
     */
-    distance: function (dest, round) {
+    distance: function (dest, round)
+    {
 
         return Phaser.Point.distance(this, dest, round);
 
@@ -308,7 +328,8 @@ Phaser.Point.prototype = {
     * @param {Phaser.Point|any} a - The object to compare with this Point.
     * @return {boolean} A value of true if the x and y points are equal, otherwise false.
     */
-    equals: function (a) {
+    equals: function (a)
+    {
 
         return a.x === this.x && a.y === this.y;
 
@@ -322,19 +343,22 @@ Phaser.Point.prototype = {
     * @param {number} y - The y-coordinate to compare with this Point.
     * @return {boolean} A value of true if the Point's coordinates are identical to the arguments, otherwise false.
     */
-    equalsXY: function (x, y) {
+    equalsXY: function (x, y)
+    {
 
         return this.x === x && this.y === y;
 
     },
 
-    fuzzyEquals: function (a, epsilon) {
+    fuzzyEquals: function (a, epsilon)
+    {
 
         return Phaser.Point.fuzzyEquals(this, a, epsilon);
 
     },
 
-    fuzzyEqualsXY: function (x, y, epsilon) {
+    fuzzyEqualsXY: function (x, y, epsilon)
+    {
 
         return Phaser.Point.fuzzyEqualsXY(this, x, y, epsilon);
 
@@ -348,7 +372,8 @@ Phaser.Point.prototype = {
     * @param {boolean} [asDegrees=false] - Return a value in radians (false) or degrees (true)?
     * @return {number} The angle, where this Point is the vertex. Within [-pi, pi] or [-180deg, 180deg].
     */
-    angle: function (a, asDegrees) {
+    angle: function (a, asDegrees)
+    {
 
         return this.angleXY(a.x, a.y, asDegrees);
 
@@ -363,7 +388,8 @@ Phaser.Point.prototype = {
     * @param {boolean} [asDegrees=false] - Return a value in radians (false) or degrees (true)?
     * @return {number} The angle, where this Point is the vertex. Within [-pi, pi] or [-180deg, 180deg].
     */
-    angleXY: function (x, y, asDegrees) {
+    angleXY: function (x, y, asDegrees)
+    {
 
         var angle = Math.atan2(y - this.y, x - this.x);
 
@@ -385,7 +411,8 @@ Phaser.Point.prototype = {
     * @param {boolean} [asDegrees=false] - Return a value in radians (false) or degrees (true)?
     * @return {number} The angle, where the vertex is (0, 0). Within [-pi, pi] or [-180deg, 180deg].
     */
-    atan: function (asDegrees) {
+    atan: function (asDegrees)
+    {
 
         var angle = Math.atan2(this.y, this.x);
 
@@ -411,7 +438,8 @@ Phaser.Point.prototype = {
     * @param {number} [distance] - An optional distance constraint between the Point and the anchor.
     * @return {Phaser.Point} The modified point object.
     */
-    rotate: function (x, y, angle, asDegrees, distance) {
+    rotate: function (x, y, angle, asDegrees, distance)
+    {
 
         return Phaser.Point.rotate(this, x, y, angle, asDegrees, distance);
 
@@ -423,7 +451,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#getMagnitude
     * @return {number} The length of the Point.
     */
-    getMagnitude: function () {
+    getMagnitude: function ()
+    {
 
         return Math.sqrt((this.x * this.x) + (this.y * this.y));
 
@@ -435,7 +464,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#getMagnitudeSq
     * @return {number} The length ^ 2 of the Point.
     */
-    getMagnitudeSq: function () {
+    getMagnitudeSq: function ()
+    {
 
         return (this.x * this.x) + (this.y * this.y);
 
@@ -448,7 +478,8 @@ Phaser.Point.prototype = {
     * @param {number} magnitude - The desired magnitude of the resulting Point.
     * @return {Phaser.Point} This Point object.
     */
-    setMagnitude: function (magnitude) {
+    setMagnitude: function (magnitude)
+    {
 
         return this.normalize().multiply(magnitude, magnitude);
 
@@ -460,7 +491,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#normalize
     * @return {Phaser.Point} This Point object.
     */
-    normalize: function () {
+    normalize: function ()
+    {
 
         if (!this.isZero())
         {
@@ -481,7 +513,8 @@ Phaser.Point.prototype = {
     * @return {Phaser.Point} This Point object.
     * @see Phaser.Point#expand
     */
-    limit: function (max) {
+    limit: function (max)
+    {
 
         if (this.getMagnitudeSq() > max * max)
         {
@@ -500,7 +533,8 @@ Phaser.Point.prototype = {
     * @return {Phaser.Point} This Point object.
     * @see Phaser.Point#limit
     */
-    expand: function (min) {
+    expand: function (min)
+    {
 
         if (this.getMagnitudeSq() < min * min)
         {
@@ -517,7 +551,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#isZero
     * @return {boolean} True if this Point is 0,0, otherwise false.
     */
-    isZero: function () {
+    isZero: function ()
+    {
 
         return (this.x === 0 && this.y === 0);
 
@@ -530,7 +565,8 @@ Phaser.Point.prototype = {
     * @param {Phaser.Point} a - The Point object to get the dot product combined with this Point.
     * @return {number} The result.
     */
-    dot: function (a) {
+    dot: function (a)
+    {
 
         return ((this.x * a.x) + (this.y * a.y));
 
@@ -543,7 +579,8 @@ Phaser.Point.prototype = {
     * @param {Phaser.Point} a - The Point object to get the cross product combined with this Point.
     * @return {number} The result.
     */
-    cross: function (a) {
+    cross: function (a)
+    {
 
         return ((this.x * a.y) - (this.y * a.x));
 
@@ -555,7 +592,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#perp
     * @return {Phaser.Point} This Point object.
     */
-    perp: function () {
+    perp: function ()
+    {
 
         return this.setTo(-this.y, this.x);
 
@@ -567,7 +605,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#rperp
     * @return {Phaser.Point} This Point object.
     */
-    rperp: function () {
+    rperp: function ()
+    {
 
         return this.setTo(this.y, -this.x);
 
@@ -579,7 +618,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#normalRightHand
     * @return {Phaser.Point} This Point object.
     */
-    normalRightHand: function () {
+    normalRightHand: function ()
+    {
 
         return this.setTo(this.y * -1, this.x);
 
@@ -591,7 +631,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#floor
     * @return {Phaser.Point} This Point object.
     */
-    floor: function () {
+    floor: function ()
+    {
 
         return this.setTo(Math.floor(this.x), Math.floor(this.y));
 
@@ -603,7 +644,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#ceil
     * @return {Phaser.Point} This Point object.
     */
-    ceil: function () {
+    ceil: function ()
+    {
 
         return this.setTo(Math.ceil(this.x), Math.ceil(this.y));
 
@@ -615,7 +657,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#round
     * @return {Phaser.Point} This Point object.
     */
-    round: function () {
+    round: function ()
+    {
 
         return this.setTo(Math.round(this.x), Math.round(this.y));
 
@@ -627,7 +670,8 @@ Phaser.Point.prototype = {
     * @method Phaser.Point#toString
     * @return {string} A string representation of the instance.
     */
-    toString: function () {
+    toString: function ()
+    {
 
         return '[{Point (x=' + this.x + ' y=' + this.y + ')}]';
 
@@ -646,7 +690,8 @@ Phaser.Point.prototype.constructor = Phaser.Point;
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.add = function (a, b, out) {
+Phaser.Point.add = function (a, b, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -666,7 +711,8 @@ Phaser.Point.add = function (a, b, out) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.subtract = function (a, b, out) {
+Phaser.Point.subtract = function (a, b, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -686,7 +732,8 @@ Phaser.Point.subtract = function (a, b, out) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.multiply = function (a, b, out) {
+Phaser.Point.multiply = function (a, b, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -706,7 +753,8 @@ Phaser.Point.multiply = function (a, b, out) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.divide = function (a, b, out) {
+Phaser.Point.divide = function (a, b, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -725,26 +773,30 @@ Phaser.Point.divide = function (a, b, out) {
 * @param {Phaser.Point} b - The second Point object.
 * @return {boolean} A value of true if the Points are equal, otherwise false.
 */
-Phaser.Point.equals = function (a, b) {
+Phaser.Point.equals = function (a, b)
+{
 
     return a.x === b.x && a.y === b.y;
 
 };
 
-Phaser.Point.equalsXY = function (a, x, y) {
+Phaser.Point.equalsXY = function (a, x, y)
+{
 
     return a.x === x && a.y === y;
 
 };
 
-Phaser.Point.fuzzyEquals = function (a, b, epsilon) {
+Phaser.Point.fuzzyEquals = function (a, b, epsilon)
+{
 
     return Phaser.Math.fuzzyEquals(a.x, b.x, epsilon) &&
            Phaser.Math.fuzzyEquals(a.y, b.y, epsilon);
 
 };
 
-Phaser.Point.fuzzyEqualsXY = function (a, x, y, epsilon) {
+Phaser.Point.fuzzyEqualsXY = function (a, x, y, epsilon)
+{
 
     return Phaser.Math.fuzzyEquals(a.x, x, epsilon) &&
            Phaser.Math.fuzzyEquals(a.y, y, epsilon);
@@ -759,7 +811,8 @@ Phaser.Point.fuzzyEqualsXY = function (a, x, y, epsilon) {
 * @param {Phaser.Point} b - The second Point object.
 * @return {number} The angle, where b is the vertex. Within [-pi, pi].
 */
-Phaser.Point.angle = function (a, b) {
+Phaser.Point.angle = function (a, b)
+{
 
     return Math.atan2(a.y - b.y, a.x - b.x);
 
@@ -773,7 +826,8 @@ Phaser.Point.angle = function (a, b) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.negative = function (a, out) {
+Phaser.Point.negative = function (a, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -791,7 +845,8 @@ Phaser.Point.negative = function (a, out) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.multiplyAdd = function (a, b, s, out) {
+Phaser.Point.multiplyAdd = function (a, b, s, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -809,7 +864,8 @@ Phaser.Point.multiplyAdd = function (a, b, s, out) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.interpolate = function (a, b, f, out) {
+Phaser.Point.interpolate = function (a, b, f, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -825,7 +881,8 @@ Phaser.Point.interpolate = function (a, b, f, out) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.perp = function (a, out) {
+Phaser.Point.perp = function (a, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -841,7 +898,8 @@ Phaser.Point.perp = function (a, out) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.rperp = function (a, out) {
+Phaser.Point.rperp = function (a, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -858,7 +916,8 @@ Phaser.Point.rperp = function (a, out) {
 * @param {boolean} [round=false] - Round the distance to the nearest integer.
 * @return {number} The distance between this Point object and the destination Point object.
 */
-Phaser.Point.distance = function (a, b, round) {
+Phaser.Point.distance = function (a, b, round)
+{
 
     var distance = Phaser.Math.distance(a.x, a.y, b.x, b.y);
     return round ? Math.round(distance) : distance;
@@ -874,7 +933,8 @@ Phaser.Point.distance = function (a, b, round) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.project = function (a, b, out) {
+Phaser.Point.project = function (a, b, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -898,7 +958,8 @@ Phaser.Point.project = function (a, b, out) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.projectUnit = function (a, b, out) {
+Phaser.Point.projectUnit = function (a, b, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -921,7 +982,8 @@ Phaser.Point.projectUnit = function (a, b, out) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.normalRightHand = function (a, out) {
+Phaser.Point.normalRightHand = function (a, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -937,7 +999,8 @@ Phaser.Point.normalRightHand = function (a, out) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.normalize = function (a, out) {
+Phaser.Point.normalize = function (a, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
@@ -969,7 +1032,8 @@ Phaser.Point.normalize = function (a, out) {
 * @param {number} [distance] - An optional distance constraint between the Point and the anchor.
 * @return {Phaser.Point} The modified point object.
 */
-Phaser.Point.rotate = function (a, x, y, angle, asDegrees, distance) {
+Phaser.Point.rotate = function (a, x, y, angle, asDegrees, distance)
+{
 
     if (asDegrees) { angle = Phaser.Math.degToRad(angle); }
 
@@ -1005,20 +1069,21 @@ Phaser.Point.rotate = function (a, x, y, angle, asDegrees, distance) {
 * @param {Phaser.Point} [out] - Optional Point to store the value in, if not supplied a new Point object will be created.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.centroid = function (points, out) {
+Phaser.Point.centroid = function (points, out)
+{
 
     if (out === undefined) { out = new Phaser.Point(); }
 
     if (Object.prototype.toString.call(points) !== '[object Array]')
     {
-        throw new Error("Phaser.Point. Parameter 'points' must be an array");
+        throw new Error('Phaser.Point. Parameter \'points\' must be an array');
     }
 
     var pointslength = points.length;
 
     if (pointslength < 1)
     {
-        throw new Error("Phaser.Point. Parameter 'points' array must not be empty");
+        throw new Error('Phaser.Point. Parameter \'points\' array must not be empty');
     }
 
     if (pointslength === 1)
@@ -1049,7 +1114,8 @@ Phaser.Point.centroid = function (points, out) {
 * @param {string} [yProp='y'] - The property used to set the Point.y value.
 * @return {Phaser.Point} The new Point object.
 */
-Phaser.Point.parse = function(obj, xProp, yProp) {
+Phaser.Point.parse = function (obj, xProp, yProp)
+{
 
     xProp = xProp || 'x';
     yProp = yProp || 'y';
@@ -1077,7 +1143,8 @@ Phaser.Point.parse = function(obj, xProp, yProp) {
  * @static
  * @return {boolean} - True if the object has numeric x and y properties.
  */
-Phaser.Point.isPoint = function(obj) {
+Phaser.Point.isPoint = function (obj)
+{
 
     return (obj != null) && (typeof obj.x === 'number') && (typeof obj.y === 'number');
 
@@ -1093,10 +1160,11 @@ Phaser.Point.isPoint = function(obj) {
 * @param {number} [y] - The y value. If not given the x value will be used in its place.
 * @return {object} The object. Useful for chaining method calls.
 */
-Phaser.Point.set = function(obj, x, y) {
+Phaser.Point.set = function (obj, x, y)
+{
 
     obj.x = x || 0;
-    obj.y = y || ( (y !== 0) ? obj.x : 0 );
+    obj.y = y || ((y !== 0) ? obj.x : 0);
 
     return obj;
 
@@ -1116,7 +1184,8 @@ Phaser.Point.set = function(obj, x, y) {
 * @param {object|Phaser.Point} [center] - The reference point. If omitted, the {@link #centroid} (midpoint) of the points is used.
 * @return {array} The sorted array.
 */
-Phaser.Point.sortClockwise = function(points, center) {
+Phaser.Point.sortClockwise = function (points, center)
+{
 
     // Adapted from <https://stackoverflow.com/a/6989383/822138> (ciamej)
 
@@ -1128,7 +1197,8 @@ Phaser.Point.sortClockwise = function(points, center) {
     var cx = center.x;
     var cy = center.y;
 
-    var sort = function(a, b) {
+    var sort = function (a, b)
+    {
         if (a.x - cx >= 0 && b.x - cx < 0)
         {
             return -1;

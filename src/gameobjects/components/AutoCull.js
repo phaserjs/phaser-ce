@@ -36,7 +36,8 @@ Phaser.Component.AutoCull.prototype = {
     */
     inCamera: {
 
-        get: function() {
+        get: function ()
+        {
 
             if (!this.autoCull && !this.checkWorldBounds)
             {

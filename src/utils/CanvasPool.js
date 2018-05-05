@@ -22,7 +22,8 @@ Phaser.CanvasPool = {
     * @param {number} height - The height of the canvas element.
     * @return {HTMLCanvasElement} The canvas element.
     */
-    create: function (parent, width, height) {
+    create: function (parent, width, height)
+    {
 
         var idx = Phaser.CanvasPool.getFirst();
         var canvas;
@@ -62,7 +63,8 @@ Phaser.CanvasPool = {
     * @method Phaser.CanvasPool.getFirst
     * @return {number}
     */
-    getFirst: function () {
+    getFirst: function ()
+    {
 
         var pool = Phaser.CanvasPool.pool;
 
@@ -86,7 +88,8 @@ Phaser.CanvasPool = {
     * @method Phaser.CanvasPool.remove
     * @param {any} parent - The parent of the canvas element.
     */
-    remove: function (parent) {
+    remove: function (parent)
+    {
 
         var pool = Phaser.CanvasPool.pool;
 
@@ -110,7 +113,8 @@ Phaser.CanvasPool = {
     * @method Phaser.CanvasPool.removeByCanvas
     * @param {HTMLCanvasElement} canvas - The canvas element to remove.
     */
-    removeByCanvas: function (canvas) {
+    removeByCanvas: function (canvas)
+    {
 
         var pool = Phaser.CanvasPool.pool;
 
@@ -133,7 +137,8 @@ Phaser.CanvasPool = {
     * @method Phaser.CanvasPool.getTotal
     * @return {number} The number of in-use (parented) canvas elements in the pool.
     */
-    getTotal: function () {
+    getTotal: function ()
+    {
 
         var pool = Phaser.CanvasPool.pool;
         var c = 0;
@@ -157,7 +162,8 @@ Phaser.CanvasPool = {
     * @method Phaser.CanvasPool.getFree
     * @return {number} The number of free (un-parented) canvas elements in the pool.
     */
-    getFree: function () {
+    getFree: function ()
+    {
 
         var pool = Phaser.CanvasPool.pool;
         var c = 0;
@@ -181,7 +187,8 @@ Phaser.CanvasPool = {
     * @static
     * @method Phaser.CanvasPool.log
     */
-    log: function () {
+    log: function ()
+    {
 
         console.log('CanvasPool: %s used, %s free, %s total', this.getTotal(), this.getFree(), this.pool.length);
 
@@ -208,7 +215,8 @@ Phaser.CanvasPool.pool = [];
  * @readonly
  */
 Object.defineProperty(Phaser.CanvasPool, 'length', {
-    get: function () {
+    get: function ()
+    {
         return this.pool.length;
     }
 });

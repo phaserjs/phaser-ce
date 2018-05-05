@@ -15,7 +15,8 @@
 * @constructor
 * @param {Phaser.Game} game - Game reference to the currently running game.
  */
-Phaser.Create = function (game) {
+Phaser.Create = function (game)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running Game.
@@ -123,7 +124,8 @@ Phaser.Create.prototype = {
      * @param {any} [callbackContext] - The context in which to invoke the callback.
      * @return {?PIXI.Texture|Phaser.BitmapData} The newly generated texture, or a new BitmapData object if `generateTexture` is false, or `null` if a callback was passed and the texture isn't available yet.
      */
-    texture: function (key, data, pixelWidth, pixelHeight, palette, generateTexture, callback, callbackContext) {
+    texture: function (key, data, pixelWidth, pixelHeight, palette, generateTexture, callback, callbackContext)
+    {
 
         if (pixelWidth === undefined) { pixelWidth = 8; }
         if (pixelHeight === undefined) { pixelHeight = pixelWidth; }
@@ -184,7 +186,8 @@ Phaser.Create.prototype = {
      * @param {any} [callbackContext] - The context in which to invoke the callback.
      * @return {?PIXI.Texture|Phaser.BitmapData} The newly generated texture, or a new BitmapData object if `generateTexture` is false, or `null` if a callback was passed and the texture isn't available yet.
      */
-    grid: function (key, width, height, cellWidth, cellHeight, color, generateTexture, callback, callbackContext) {
+    grid: function (key, width, height, cellWidth, cellHeight, color, generateTexture, callback, callbackContext)
+    {
 
         if (generateTexture === undefined) { generateTexture = true; }
 
@@ -228,7 +231,8 @@ Phaser.Create.prototype = {
      * @param {boolean} [roundPx=false] - Should the x and y values be rounded to integers before drawing? This prevents anti-aliasing in some instances.
      * @return {Phaser.BitmapData} - The `dest` argument (if passed), or a new BitmapData object
      */
-    copy: function (dest, x, y, width, height, blendMode, roundPx) {
+    copy: function (dest, x, y, width, height, blendMode, roundPx)
+    {
 
         if (dest == null) { dest = this.game.make.bitmapData(); }
 

@@ -14,7 +14,8 @@
 * @param {number} [x2=0] - The x coordinate of the end of the line.
 * @param {number} [y2=0] - The y coordinate of the end of the line.
 */
-Phaser.Line = function (x1, y1, x2, y2) {
+Phaser.Line = function (x1, y1, x2, y2)
+{
 
     x1 = x1 || 0;
     y1 = y1 || 0;
@@ -51,7 +52,8 @@ Phaser.Line.prototype = {
     * @param {number} [y2=0] - The y coordinate of the end of the line.
     * @return {Phaser.Line} This line object
     */
-    setTo: function (x1, y1, x2, y2) {
+    setTo: function (x1, y1, x2, y2)
+    {
 
         this.start.setTo(x1, y1);
         this.end.setTo(x2, y2);
@@ -67,7 +69,8 @@ Phaser.Line.prototype = {
     * @param {any} end - A {@link Phaser.Point} or point-like object.
     * @return {Phaser.Line} - This line object.
     */
-    fromPoints: function (start, end) {
+    fromPoints: function (start, end)
+    {
 
         this.setTo(start.x, start.y, end.x, end.y);
 
@@ -85,7 +88,8 @@ Phaser.Line.prototype = {
     * @param {boolean} [useCenter=false] - If true it will use startSprite.centerX, if false startSprite.x.
     * @return {Phaser.Line} This line object
     */
-    fromSprite: function (startSprite, endSprite, useCenter) {
+    fromSprite: function (startSprite, endSprite, useCenter)
+    {
 
         if (useCenter === undefined) { useCenter = false; }
 
@@ -108,7 +112,8 @@ Phaser.Line.prototype = {
     * @param {number} length - The length of the line in pixels.
     * @return {Phaser.Line} This line object
     */
-    fromAngle: function (x, y, angle, length) {
+    fromAngle: function (x, y, angle, length)
+    {
 
         this.start.setTo(x, y);
         this.end.setTo(x + (Math.cos(angle) * length), y + (Math.sin(angle) * length));
@@ -130,7 +135,8 @@ Phaser.Line.prototype = {
     * @param {boolean} [asDegrees=false] - Is the given angle in radians (false) or degrees (true)?
     * @return {Phaser.Line} This line object
     */
-    rotate: function (angle, asDegrees) {
+    rotate: function (angle, asDegrees)
+    {
 
         var cx = (this.start.x + this.end.x) / 2;
         var cy = (this.start.y + this.end.y) / 2;
@@ -154,7 +160,8 @@ Phaser.Line.prototype = {
     * @param {boolean} [asDegrees=false] - Is the given angle in radians (false) or degrees (true)?
     * @return {Phaser.Line} This line object
     */
-    rotateAround: function (x, y, angle, asDegrees) {
+    rotateAround: function (x, y, angle, asDegrees)
+    {
 
         this.start.rotate(x, y, angle, asDegrees);
         this.end.rotate(x, y, angle, asDegrees);
@@ -174,7 +181,8 @@ Phaser.Line.prototype = {
     * @param {Phaser.Point} [result] - A Point object to store the result in, if not given a new one will be created.
     * @return {Phaser.Point} The intersection segment of the two lines as a Point, or null if there is no intersection.
     */
-    intersects: function (line, asSegment, result) {
+    intersects: function (line, asSegment, result)
+    {
 
         return Phaser.Line.intersectsPoints(this.start, this.end, line.start, line.end, asSegment, result);
 
@@ -188,7 +196,8 @@ Phaser.Line.prototype = {
     * @param {Phaser.Line} line - The line to reflect off this line.
     * @return {number} The reflected angle in radians.
     */
-    reflect: function (line) {
+    reflect: function (line)
+    {
 
         return Phaser.Line.reflect(this, line);
 
@@ -201,7 +210,8 @@ Phaser.Line.prototype = {
     * @param {Phaser.Point} [out] - A Phaser.Point object into which the result will be populated. If not given a new Point object is created.
     * @return {Phaser.Point} A Phaser.Point object with the x and y values set to the center of the line segment.
     */
-    midPoint: function (out) {
+    midPoint: function (out)
+    {
 
         if (out === undefined) { out = new Phaser.Point(); }
 
@@ -223,7 +233,8 @@ Phaser.Line.prototype = {
     * @param {number} y - The y position to center the line on.
     * @return {Phaser.Line} This line object
     */
-    centerOn: function (x, y) {
+    centerOn: function (x, y)
+    {
 
         var cx = (this.start.x + this.end.x) / 2;
         var cy = (this.start.y + this.end.y) / 2;
@@ -245,7 +256,8 @@ Phaser.Line.prototype = {
     * @param {number} [epsilon=0] - Range for a fuzzy comparison, e.g., 0.0001.
     * @return {boolean} True if the point is on the line, false if not.
     */
-    pointOnLine: function (x, y, epsilon) {
+    pointOnLine: function (x, y, epsilon)
+    {
 
         return Phaser.Math.fuzzyEqual((x - this.start.x) * (this.end.y - this.start.y), (this.end.x - this.start.x) * (y - this.start.y), epsilon || 0);
 
@@ -260,7 +272,8 @@ Phaser.Line.prototype = {
     * @param {number} [epsilon=0] - Range for a fuzzy comparison, e.g., 0.0001.
     * @return {boolean} True if the point is on the line and segment, false if not.
     */
-    pointOnSegment: function (x, y, epsilon) {
+    pointOnSegment: function (x, y, epsilon)
+    {
 
         var xMin = Math.min(this.start.x, this.end.x);
         var xMax = Math.max(this.start.x, this.end.x);
@@ -279,7 +292,8 @@ Phaser.Line.prototype = {
     *     If no object is provided a new Phaser.Point object will be created. In high performance areas avoid this by re-using an object.
     * @return {Phaser.Point} An object containing the random point in its `x` and `y` properties.
     */
-    random: function (out) {
+    random: function (out)
+    {
 
         if (out === undefined) { out = new Phaser.Point(); }
 
@@ -301,7 +315,8 @@ Phaser.Line.prototype = {
     * @param {array} [results] - The array to store the results in. If not provided a new one will be generated.
     * @return {array} An array of coordinates.
     */
-    coordinatesOnLine: function (stepRate, results) {
+    coordinatesOnLine: function (stepRate, results)
+    {
 
         if (stepRate === undefined) { stepRate = 1; }
         if (results === undefined) { results = []; }
@@ -317,7 +332,7 @@ Phaser.Line.prototype = {
         var sy = (y1 < y2) ? 1 : -1;
         var err = dx - dy;
 
-        results.push([x1, y1]);
+        results.push([ x1, y1 ]);
 
         var i = 1;
 
@@ -339,7 +354,7 @@ Phaser.Line.prototype = {
 
             if (i % stepRate === 0)
             {
-                results.push([x1, y1]);
+                results.push([ x1, y1 ]);
             }
 
             i++;
@@ -356,7 +371,8 @@ Phaser.Line.prototype = {
      * @param {Phaser.Line} [output] - Optional Line object. If given the values will be set into the object, otherwise a brand new Line object will be created and returned.
      * @return {Phaser.Line} The cloned Line object.
      */
-    clone: function (output) {
+    clone: function (output)
+    {
 
         if (output === undefined || output === null)
         {
@@ -378,9 +394,10 @@ Phaser.Line.prototype = {
 * @property {number} length - Gets the length of the line segment.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "length", {
+Object.defineProperty(Phaser.Line.prototype, 'length', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.sqrt((this.end.x - this.start.x) * (this.end.x - this.start.x) + (this.end.y - this.start.y) * (this.end.y - this.start.y));
     }
 
@@ -391,9 +408,10 @@ Object.defineProperty(Phaser.Line.prototype, "length", {
 * @property {number} angle - Gets the angle of the line in radians.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "angle", {
+Object.defineProperty(Phaser.Line.prototype, 'angle', {
 
-    get: function () {
+    get: function ()
+    {
         return Phaser.Point.angle(this.end, this.start);
     }
 
@@ -404,9 +422,10 @@ Object.defineProperty(Phaser.Line.prototype, "angle", {
 * @property {number} slope - Gets the slope of the line (y/x).
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "slope", {
+Object.defineProperty(Phaser.Line.prototype, 'slope', {
 
-    get: function () {
+    get: function ()
+    {
         return (this.end.y - this.start.y) / (this.end.x - this.start.x);
     }
 
@@ -417,9 +436,10 @@ Object.defineProperty(Phaser.Line.prototype, "slope", {
 * @property {number} perpSlope - Gets the perpendicular slope of the line (x/y).
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "perpSlope", {
+Object.defineProperty(Phaser.Line.prototype, 'perpSlope', {
 
-    get: function () {
+    get: function ()
+    {
         return -((this.end.x - this.start.x) / (this.end.y - this.start.y));
     }
 
@@ -430,9 +450,10 @@ Object.defineProperty(Phaser.Line.prototype, "perpSlope", {
 * @property {number} x - Gets the x coordinate of the top left of the bounds around this line.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "x", {
+Object.defineProperty(Phaser.Line.prototype, 'x', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.min(this.start.x, this.end.x);
     }
 
@@ -443,9 +464,10 @@ Object.defineProperty(Phaser.Line.prototype, "x", {
 * @property {number} y - Gets the y coordinate of the top left of the bounds around this line.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "y", {
+Object.defineProperty(Phaser.Line.prototype, 'y', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.min(this.start.y, this.end.y);
     }
 
@@ -456,9 +478,10 @@ Object.defineProperty(Phaser.Line.prototype, "y", {
 * @property {number} left - Gets the left-most point of this line.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "left", {
+Object.defineProperty(Phaser.Line.prototype, 'left', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.min(this.start.x, this.end.x);
     }
 
@@ -469,9 +492,10 @@ Object.defineProperty(Phaser.Line.prototype, "left", {
 * @property {number} right - Gets the right-most point of this line.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "right", {
+Object.defineProperty(Phaser.Line.prototype, 'right', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.max(this.start.x, this.end.x);
     }
 
@@ -482,9 +506,10 @@ Object.defineProperty(Phaser.Line.prototype, "right", {
 * @property {number} top - Gets the top-most point of this line.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "top", {
+Object.defineProperty(Phaser.Line.prototype, 'top', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.min(this.start.y, this.end.y);
     }
 
@@ -495,9 +520,10 @@ Object.defineProperty(Phaser.Line.prototype, "top", {
 * @property {number} bottom - Gets the bottom-most point of this line.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "bottom", {
+Object.defineProperty(Phaser.Line.prototype, 'bottom', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.max(this.start.y, this.end.y);
     }
 
@@ -508,9 +534,10 @@ Object.defineProperty(Phaser.Line.prototype, "bottom", {
 * @property {number} width - Gets the width of this bounds of this line.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "width", {
+Object.defineProperty(Phaser.Line.prototype, 'width', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.abs(this.start.x - this.end.x);
     }
 
@@ -521,9 +548,10 @@ Object.defineProperty(Phaser.Line.prototype, "width", {
 * @property {number} height - Gets the height of this bounds of this line.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "height", {
+Object.defineProperty(Phaser.Line.prototype, 'height', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.abs(this.start.y - this.end.y);
     }
 
@@ -534,9 +562,10 @@ Object.defineProperty(Phaser.Line.prototype, "height", {
 * @property {number} normalX - Gets the x component of the left-hand normal of this line.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "normalX", {
+Object.defineProperty(Phaser.Line.prototype, 'normalX', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.cos(this.angle - 1.5707963267948966);
     }
 
@@ -547,9 +576,10 @@ Object.defineProperty(Phaser.Line.prototype, "normalX", {
 * @property {number} normalY - Gets the y component of the left-hand normal of this line.
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "normalY", {
+Object.defineProperty(Phaser.Line.prototype, 'normalY', {
 
-    get: function () {
+    get: function ()
+    {
         return Math.sin(this.angle - 1.5707963267948966);
     }
 
@@ -560,9 +590,10 @@ Object.defineProperty(Phaser.Line.prototype, "normalY", {
 * @property {number} normalAngle - Gets the angle in radians of the normal of this line (line.angle - 90 degrees.)
 * @readonly
 */
-Object.defineProperty(Phaser.Line.prototype, "normalAngle", {
+Object.defineProperty(Phaser.Line.prototype, 'normalAngle', {
 
-    get: function () {
+    get: function ()
+    {
         return Phaser.Math.wrap(this.angle - 1.5707963267948966, -Math.PI, Math.PI);
     }
 
@@ -583,7 +614,8 @@ Object.defineProperty(Phaser.Line.prototype, "normalAngle", {
 * @param {Phaser.Point|object} [result] - A Point object to store the result in, if not given a new one will be created.
 * @return {Phaser.Point} The intersection segment of the two lines as a Point, or null if there is no intersection.
 */
-Phaser.Line.intersectsPoints = function (a, b, e, f, asSegment, result) {
+Phaser.Line.intersectsPoints = function (a, b, e, f, asSegment, result)
+{
 
     if (asSegment === undefined) { asSegment = true; }
     if (result === undefined) { result = new Phaser.Point(); }
@@ -638,7 +670,8 @@ Phaser.Line.intersectsPoints = function (a, b, e, f, asSegment, result) {
 * @param {Phaser.Point} [result] - A Point object to store the result in, if not given a new one will be created.
 * @return {Phaser.Point} The intersection segment of the two lines as a Point, or null if there is no intersection.
 */
-Phaser.Line.intersects = function (a, b, asSegment, result) {
+Phaser.Line.intersects = function (a, b, asSegment, result)
+{
 
     return Phaser.Line.intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);
 
@@ -662,7 +695,8 @@ Phaser.Line.intersects = function (a, b, asSegment, result) {
 * @param {Phaser.Rectangle|object} rect - The rectangle, or rectangle-like object, to check for intersection with.
 * @return {boolean} True if the line intersects with the rectangle edges, or starts or ends within the rectangle.
 */
-Phaser.Line.intersectsRectangle = function (line, rect) {
+Phaser.Line.intersectsRectangle = function (line, rect)
+{
 
     //  Quick bail out
     if (line.length === 0 || rect.empty)
@@ -748,7 +782,8 @@ Phaser.Line.intersectsRectangle = function (line, rect) {
 * @param {Phaser.Point} [result] - A Point object to store the result in.
 * @return {?Phaser.Point} - The intersection closest to the Line's start, or null if there is no intersection.
 */
-Phaser.Line.intersectionWithRectangle = function (line, rect, result) {
+Phaser.Line.intersectionWithRectangle = function (line, rect, result)
+{
 
     var self = Phaser.Line.intersectionWithRectangle;
 
@@ -759,7 +794,7 @@ Phaser.Line.intersectionWithRectangle = function (line, rect, result) {
 
     if (!self.edges)
     {
-        self.edges = [new Phaser.Line(), new Phaser.Line(), new Phaser.Line(), new Phaser.Line()];
+        self.edges = [ new Phaser.Line(), new Phaser.Line(), new Phaser.Line(), new Phaser.Line() ];
     }
 
     if (!self.edgeIntersection)
@@ -813,7 +848,8 @@ Phaser.Line.intersectionWithRectangle = function (line, rect, result) {
 * @param {Phaser.Line} b - The line to be reflected from the base line.
 * @return {number} The reflected angle in radians.
 */
-Phaser.Line.reflect = function (a, b) {
+Phaser.Line.reflect = function (a, b)
+{
 
     return 2 * b.normalAngle - 3.141592653589793 - a.angle;
 

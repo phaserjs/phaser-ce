@@ -24,7 +24,8 @@ Phaser.Color = {
     * @param {object} [out] - The object to use for the output. If not provided a new object will be created.
     * @return {object} The (`out`) object with the red, green, blue, and alpha values set as the r/g/b/a properties.
     */
-    valueToColor: function (value, out) {
+    valueToColor: function (value, out)
+    {
 
         if (typeof value === 'string')
         {
@@ -67,7 +68,8 @@ Phaser.Color = {
     * @param {number} color - Color in RGB (0xRRGGBB) or ARGB format (0xAARRGGBB).
     * @returns {object} An Object with properties: alpha, red, green, blue (also r, g, b and a). Alpha will only be present if a color value > 16777215 was given.
     */
-    getRGB: function (color) {
+    getRGB: function (color)
+    {
 
         if (color > 16777215)
         {
@@ -110,9 +112,10 @@ Phaser.Color = {
     * @param {object} [out] - An object into which 4 properties will be created: r, g, b and a. If not provided a new object will be created.
     * @return {object} An object with the red, green, blue and alpha values set in the r, g, b and a properties.
     */
-    webToColor: function (web, out) {
+    webToColor: function (web, out)
+    {
 
-        var result = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+(?:\.\d+)?))?\s*\)$/.exec(web);
+        var result = (/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+(?:\.\d+)?))?\s*\)$/).exec(web);
 
         if (result)
         {
@@ -140,14 +143,16 @@ Phaser.Color = {
     * @param {object} [out] - An object into which 3 properties will be created or set: r, g and b. If not provided a new object will be created.
     * @return {object} An object with the red, green and blue values set in the r, g and b properties.
     */
-    hexToColor: function (hex, out) {
+    hexToColor: function (hex, out)
+    {
 
         // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-        hex = hex.replace(/^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i, function(m, r, g, b) {
+        hex = hex.replace(/^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i, function (m, r, g, b)
+        {
             return r + r + g + g + b + b;
         });
 
-        var result = /^(?:#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        var result = (/^(?:#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i).exec(hex);
 
         if (result)
         {
@@ -172,7 +177,8 @@ Phaser.Color = {
     * @param {object} out - The color object to update.
     * @returns {number} A native color value integer (format: 0xAARRGGBB).
     */
-    updateColor: function (out) {
+    updateColor: function (out)
+    {
 
         out.rgba = 'rgba(' + out.r.toString() + ',' + out.g.toString() + ',' + out.b.toString() + ',' + out.a.toString() + ')';
         out.color = Phaser.Color.getColor(out.r, out.g, out.b);
@@ -193,7 +199,8 @@ Phaser.Color = {
     * @param {number} b - The blue color component, in the range 0 - 255.
     * @returns {number} A native color value integer (format: 0xAARRGGBB).
     */
-    getColor32: function (a, r, g, b) {
+    getColor32: function (a, r, g, b)
+    {
 
         return a << 24 | r << 16 | g << 8 | b;
 
@@ -209,7 +216,8 @@ Phaser.Color = {
     * @param {number} b - The blue color component, in the range 0 - 255.
     * @returns {number} A native color value integer (format: 0xRRGGBB).
     */
-    getColor: function (r, g, b) {
+    getColor: function (r, g, b)
+    {
 
         return r << 16 | g << 8 | b;
 

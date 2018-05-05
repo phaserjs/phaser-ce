@@ -19,7 +19,8 @@
 * @param {integer} [spacing=0] - The spacing between each image in the collection (in pixels).
 * @param {object} [properties={}] - Custom Image Collection properties.
 */
-Phaser.ImageCollection = function (name, firstgid, width, height, margin, spacing, properties) {
+Phaser.ImageCollection = function (name, firstgid, width, height, margin, spacing, properties)
+{
 
     if (width === undefined || width <= 0) { width = 32; }
     if (height === undefined || height <= 0) { height = 32; }
@@ -102,7 +103,8 @@ Phaser.ImageCollection.prototype = {
     * @param {integer} imageIndex - The image index to search for.
     * @return {boolean} True if this Image Collection contains the given index.
     */
-    containsImageIndex: function (imageIndex) {
+    containsImageIndex: function (imageIndex)
+    {
 
         return (
             imageIndex >= this.firstgid &&
@@ -118,7 +120,8 @@ Phaser.ImageCollection.prototype = {
     * @param {integer} gid - The gid of the image in the Image Collection.
     * @param {string} image - The the key of the image in the Image Collection and in the cache.
     */
-    addImage: function (gid, image) {
+    addImage: function (gid, image)
+    {
 
         this.images.push({ gid: gid, image: image });
         this.total++;

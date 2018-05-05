@@ -26,7 +26,8 @@ Phaser.Component.Overlap.prototype = {
     * @param {Phaser.Sprite|Phaser.Image|Phaser.TileSprite|Phaser.Button|PIXI.DisplayObject} displayObject - The display object to check against.
     * @return {boolean} True if the bounds of this Game Object intersects at any point with the bounds of the given display object.
     */
-    overlap: function (displayObject) {
+    overlap: function (displayObject)
+    {
 
         return Phaser.Rectangle.intersects(this.getBounds(), displayObject.getBounds());
 

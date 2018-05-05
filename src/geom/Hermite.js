@@ -36,7 +36,8 @@
 * @param {number} v2y - The y component of the tangent vector for the end of the curve.
 * @param {number} [accuracy=10] The amount of points to pre-calculate on the curve.
 */
-Phaser.Hermite = function (p1x, p1y, p2x, p2y, v1x, v1y, v2x, v2y, accuracy) {
+Phaser.Hermite = function (p1x, p1y, p2x, p2y, v1x, v1y, v2x, v2y, accuracy)
+{
 
     if (accuracy === undefined) { accuracy = 10; }
 
@@ -130,7 +131,8 @@ Phaser.Hermite.prototype = {
     * @method Phaser.Hermite#recalculate
     * @return {Phaser.Hermite} This object.
     */
-    recalculate: function () {
+    recalculate: function ()
+    {
 
         this._ax = (2 * this._p1x - 2 * this._p2x + this._v1x + this._v2x);
         this._ay = (2 * this._p1y - 2 * this._p2y + this._v1y + this._v2y);
@@ -149,12 +151,13 @@ Phaser.Hermite.prototype = {
     * @method Phaser.Hermite#calculateEvenPoints
     * @return {number} The total length of the curve approximated as straight line distances between the points.
     */
-    calculateEvenPoints: function () {
+    calculateEvenPoints: function ()
+    {
 
         var totalLength = 0;
 
-        this._temp1.setTo(0, 0);                    //  pnt
-        this._temp2.setTo(this._p1x, this._p1y);    //  lastPnt
+        this._temp1.setTo(0, 0); //  pnt
+        this._temp2.setTo(this._p1x, this._p1y); //  lastPnt
 
         this._points[0] = 0;
 
@@ -179,7 +182,8 @@ Phaser.Hermite.prototype = {
     * @param {integer} distance - The distance into the curve in pixels. Should be a positive integer.
     * @return {number} The time (`t`) value, a float between 0 and 1.
     */
-    findT: function (distance) {
+    findT: function (distance)
+    {
 
         if (distance <= 0)
         {
@@ -214,7 +218,8 @@ Phaser.Hermite.prototype = {
     * @param {number} [t=0] - The time value along the curve from which to extract a point. This is a value between 0 and 1, where 0 represents the start of the curve and 1 the end.
     * @return {number} The X component of a point on the curve based on the `t` (time) value.
     */
-    getX: function (t) {
+    getX: function (t)
+    {
 
         if (t === undefined)
         {
@@ -247,7 +252,8 @@ Phaser.Hermite.prototype = {
     * @param {number} [t=0] - The time value along the curve from which to extract a point. This is a value between 0 and 1, where 0 represents the start of the curve and 1 the end.
     * @return {number} The Y component of a point on the curve based on the `t` (time) value.
     */
-    getY: function (t) {
+    getY: function (t)
+    {
 
         if (t === undefined)
         {
@@ -281,7 +287,8 @@ Phaser.Hermite.prototype = {
     * @param {Phaser.Point|Object} [point] - An optional Phaser.Point, or Object containing public `x` and `y` properties. If given the resulting values will be stored in the Objects `x` and `y` properties. If omitted a new Phaser.Point object is created.
     * @return {Phaser.Point} An Object with the x, y coordinate of the curve at the specified `t` value set in its `x` and `y` properties.
     */
-    getPoint: function (t, point) {
+    getPoint: function (t, point)
+    {
 
         if (t === undefined) { t = 0; }
         if (point === undefined) { point = new Phaser.Point(); }
@@ -314,7 +321,8 @@ Phaser.Hermite.prototype = {
     * @param {Phaser.Point|Object} [point] - An optional Phaser.Point, or Object containing public `x` and `y` properties. If given the resulting values will be stored in the Objects `x` and `y` properties. If omitted a new Phaser.Point object is created.
     * @return {Phaser.Point} The point on the line at the specified 'distance' along the curve.
     */
-    getPointWithDistance: function (distance, point) {
+    getPointWithDistance: function (distance, point)
+    {
 
         if (distance === undefined) { distance = 0; }
         if (point === undefined) { point = new Phaser.Point(); }
@@ -340,7 +348,8 @@ Phaser.Hermite.prototype = {
     * @param {number} [t=0] - The `t` (time) value at which to find the angle. Must be between 0 and 1.
     * @return {number} The angle of the line at the specified `t` time value along the curve. The value is in radians.
     */
-    getAngle: function (t) {
+    getAngle: function (t)
+    {
 
         if (t === undefined) { t = 0; }
 
@@ -358,7 +367,8 @@ Phaser.Hermite.prototype = {
     * @param {number} [distance=0] - The distance along the curve to get the angle from, in pixels.
     * @return {number} The angle of the line at the specified distance along the curve. The value is in radians.
     */
-    getAngleWithDistance: function (distance) {
+    getAngleWithDistance: function (distance)
+    {
 
         if (distance === undefined) { distance = 0; }
 
@@ -380,7 +390,8 @@ Phaser.Hermite.prototype = {
     * @param {Phaser.Point|Object} point - The Phaser.Point object, or an Object with public `x` and `y` properties, in which the tangent vector values will be stored.
     * @return {Phaser.Point} A Point object containing the tangent vector of this Hermite curve.
     */
-    getEntryTangent: function (point) {
+    getEntryTangent: function (point)
+    {
 
         point.x = this._v1x;
         point.y = this._v1y;
@@ -399,13 +410,15 @@ Object.defineProperties(Phaser.Hermite.prototype, {
     */
     accuracy: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._accuracy;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value !== this._accuracy)
             {
@@ -423,13 +436,15 @@ Object.defineProperties(Phaser.Hermite.prototype, {
     */
     p1x: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._p1x;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value !== this._p1x)
             {
@@ -447,13 +462,15 @@ Object.defineProperties(Phaser.Hermite.prototype, {
     */
     p1y: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._p1y;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value !== this._p1y)
             {
@@ -471,13 +488,15 @@ Object.defineProperties(Phaser.Hermite.prototype, {
     */
     p2x: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._p2x;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value !== this._p2x)
             {
@@ -495,13 +514,15 @@ Object.defineProperties(Phaser.Hermite.prototype, {
     */
     p2y: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._p2y;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value !== this._p2y)
             {
@@ -519,13 +540,15 @@ Object.defineProperties(Phaser.Hermite.prototype, {
     */
     v1x: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._v1x;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value !== this._v1x)
             {
@@ -543,13 +566,15 @@ Object.defineProperties(Phaser.Hermite.prototype, {
     */
     v1y: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._v1y;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value !== this._v1y)
             {
@@ -567,13 +592,15 @@ Object.defineProperties(Phaser.Hermite.prototype, {
     */
     v2x: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._v2x;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value !== this._v2x)
             {
@@ -591,13 +618,15 @@ Object.defineProperties(Phaser.Hermite.prototype, {
     */
     v2y: {
 
-        get: function () {
+        get: function ()
+        {
 
             return this._v2y;
 
         },
 
-        set: function (value) {
+        set: function (value)
+        {
 
             if (value !== this._v2y)
             {

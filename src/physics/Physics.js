@@ -18,7 +18,8 @@
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {object} [physicsConfig=null] - A physics configuration object to pass to the Physics world on creation.
 */
-Phaser.Physics = function (game, config) {
+Phaser.Physics = function (game, config)
+{
 
     config = config || {};
 
@@ -109,7 +110,8 @@ Phaser.Physics.prototype = {
     *
     * @method Phaser.Physics#parseConfig
     */
-    parseConfig: function () {
+    parseConfig: function ()
+    {
 
         if ((!this.config.hasOwnProperty('arcade') || this.config['arcade'] === true) && Phaser.Physics.hasOwnProperty('Arcade'))
         {
@@ -159,7 +161,8 @@ Phaser.Physics.prototype = {
     * @method Phaser.Physics#startSystem
     * @param {number} system - The physics system to start: Phaser.Physics.ARCADE, Phaser.Physics.P2JS, Phaser.Physics.NINJA or Phaser.Physics.BOX2D.
     */
-    startSystem: function (system) {
+    startSystem: function (system)
+    {
 
         if (system === Phaser.Physics.ARCADE)
         {
@@ -225,7 +228,8 @@ Phaser.Physics.prototype = {
     * @param {number} [system=Phaser.Physics.ARCADE] - The physics system that will be used to create the body. Defaults to Arcade Physics.
     * @param {boolean} [debug=false] - Enable the debug drawing for this body. Defaults to false.
     */
-    enable: function (object, system, debug) {
+    enable: function (object, system, debug)
+    {
 
         if (system === undefined) { system = Phaser.Physics.ARCADE; }
         if (debug === undefined) { debug = false; }
@@ -263,7 +267,8 @@ Phaser.Physics.prototype = {
     * @method Phaser.Physics#preUpdate
     * @protected
     */
-    preUpdate: function () {
+    preUpdate: function ()
+    {
 
         //  ArcadePhysics / Ninja don't have a core to preUpdate
 
@@ -290,7 +295,8 @@ Phaser.Physics.prototype = {
     * @method Phaser.Physics#update
     * @protected
     */
-    update: function () {
+    update: function ()
+    {
 
         //  ArcadePhysics / Ninja don't have a core to update
 
@@ -317,7 +323,8 @@ Phaser.Physics.prototype = {
     * @method Phaser.Physics#setBoundsToWorld
     * @protected
     */
-    setBoundsToWorld: function () {
+    setBoundsToWorld: function ()
+    {
 
         if (this.arcade)
         {
@@ -352,7 +359,8 @@ Phaser.Physics.prototype = {
     * @method Phaser.Physics#clear
     * @protected
     */
-    clear: function () {
+    clear: function ()
+    {
 
         if (this.p2)
         {
@@ -377,7 +385,8 @@ Phaser.Physics.prototype = {
     * @method Phaser.Physics#reset
     * @protected
     */
-    reset: function () {
+    reset: function ()
+    {
 
         if (this.p2)
         {
@@ -401,7 +410,8 @@ Phaser.Physics.prototype = {
     *
     * @method Phaser.Physics#destroy
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         if (this.p2)
         {

@@ -32,7 +32,8 @@
 * @param {object} [uniforms] - Uniform mappings object. The uniforms are added on the default uniforms, or replace them if the keys are the same.
 * @param {Array|string} [fragmentSrc] - The fragment shader code. Either an array, one element per line of code, or a string.
 */
-Phaser.Filter = function (game, uniforms, fragmentSrc) {
+Phaser.Filter = function (game, uniforms, fragmentSrc)
+{
 
     /**
     * @property {Phaser.Game} game - A reference to the currently running game.
@@ -90,7 +91,7 @@ Phaser.Filter = function (game, uniforms, fragmentSrc) {
         resolution: { type: '2f', value: { x: 256, y: 256 }},
         time: { type: '1f', value: 0 },
         mouse: { type: '2f', value: { x: 0.0, y: 0.0 } },
-        date: { type: '4fv', value: [ d.getFullYear(),  d.getMonth(),  d.getDate(), d.getHours() *60 * 60 + d.getMinutes() * 60 + d.getSeconds() ] },
+        date: { type: '4fv', value: [ d.getFullYear(), d.getMonth(), d.getDate(), d.getHours() * 60 * 60 + d.getMinutes() * 60 + d.getSeconds() ] },
         sampleRate: { type: '1f', value: 44100.0 },
         iChannel0: { type: 'sampler2D', value: null, textureData: { repeat: true } },
         iChannel1: { type: 'sampler2D', value: null, textureData: { repeat: true } },
@@ -128,7 +129,8 @@ Phaser.Filter.prototype = {
     *
     * @method Phaser.Filter#init
     */
-    init: function () {
+    init: function ()
+    {
 
         //  This should be over-ridden. Will receive a variable number of arguments.
 
@@ -141,7 +143,8 @@ Phaser.Filter.prototype = {
     * @param {number} width - The width of the display.
     * @param {number} height - The height of the display.
     */
-    setResolution: function (width, height) {
+    setResolution: function (width, height)
+    {
 
         this.uniforms.resolution.value.x = width;
         this.uniforms.resolution.value.y = height;
@@ -154,7 +157,8 @@ Phaser.Filter.prototype = {
     * @method Phaser.Filter#update
     * @param {Phaser.Pointer} [pointer] - A Pointer object to use for the filter. The coordinates are mapped to the mouse uniform.
     */
-    update: function (pointer) {
+    update: function (pointer)
+    {
 
         if (pointer)
         {
@@ -191,7 +195,8 @@ Phaser.Filter.prototype = {
     * @param {number} [anchorY=0] - Set the y anchor point of the Image. A value between 0 and 1, where 0 is the top-left and 1 is bottom-right.
     * @return {Phaser.Image} The newly added Image object.
     */
-    addToWorld: function (x, y, width, height, anchorX, anchorY) {
+    addToWorld: function (x, y, width, height, anchorX, anchorY)
+    {
 
         if (anchorX === undefined) { anchorX = 0; }
         if (anchorY === undefined) { anchorY = 0; }
@@ -232,7 +237,8 @@ Phaser.Filter.prototype = {
     *
     * @method Phaser.Filter#syncUniforms
     */
-    syncUniforms: function () {
+    syncUniforms: function ()
+    {
 
         for (var i = 0; i < this.shaders.length; i++)
         {
@@ -246,7 +252,8 @@ Phaser.Filter.prototype = {
     *
     * @method Phaser.Filter#destroy
     */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this.passes.length = 0;
         this.shaders.length = 0;
@@ -268,13 +275,15 @@ Phaser.Filter.prototype.constructor = Phaser.Filter;
 */
 Object.defineProperty(Phaser.Filter.prototype, 'width', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this.uniforms.resolution.value.x;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         this.uniforms.resolution.value.x = value;
 
@@ -288,13 +297,15 @@ Object.defineProperty(Phaser.Filter.prototype, 'width', {
 */
 Object.defineProperty(Phaser.Filter.prototype, 'height', {
 
-    get: function () {
+    get: function ()
+    {
 
         return this.uniforms.resolution.value.y;
 
     },
 
-    set: function (value) {
+    set: function (value)
+    {
 
         this.uniforms.resolution.value.y = value;
 

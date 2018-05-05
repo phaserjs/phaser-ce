@@ -16,7 +16,8 @@
 * @constructor
 * @param {any[]} [list=(new array)] - The backing array: if specified the items in the list _must_ be unique, per `Array.indexOf`, and the ownership of the array _should_ be relinquished to the ArraySet.
 */
-Phaser.ArraySet = function (list) {
+Phaser.ArraySet = function (list)
+{
 
     /**
     * Current cursor position as established by `first` and `next`.
@@ -43,7 +44,8 @@ Phaser.ArraySet.prototype = {
     * @param {any} item - The element to add to this list.
     * @return {any} The item that was added.
     */
-    add: function (item) {
+    add: function (item)
+    {
 
         if (!this.exists(item))
         {
@@ -61,7 +63,8 @@ Phaser.ArraySet.prototype = {
     * @param {any} item - The element to get the list index for.
     * @return {integer} The index of the item or -1 if not found.
     */
-    getIndex: function (item) {
+    getIndex: function (item)
+    {
 
         return this.list.indexOf(item);
 
@@ -76,7 +79,8 @@ Phaser.ArraySet.prototype = {
     * @param {any} value - The value to check if the property strictly equals.
     * @return {any} The item that was found, or null if nothing matched.
     */
-    getByKey: function (property, value) {
+    getByKey: function (property, value)
+    {
 
         var i = this.list.length;
 
@@ -99,7 +103,8 @@ Phaser.ArraySet.prototype = {
     * @param {any} item - The element to get the list index for.
     * @return {boolean} True if the item is found in the list, otherwise false.
     */
-    exists: function (item) {
+    exists: function (item)
+    {
 
         return (this.list.indexOf(item) > -1);
 
@@ -110,7 +115,8 @@ Phaser.ArraySet.prototype = {
     *
     * @method Phaser.ArraySet#reset
     */
-    reset: function () {
+    reset: function ()
+    {
 
         this.list.length = 0;
 
@@ -123,7 +129,8 @@ Phaser.ArraySet.prototype = {
     * @param {any} item - The item to be removed from the list.
     * @return {any} item - The item that was removed.
     */
-    remove: function (item) {
+    remove: function (item)
+    {
 
         var idx = this.list.indexOf(item);
 
@@ -142,7 +149,8 @@ Phaser.ArraySet.prototype = {
     * @param {any} key - The property of the item to set.
     * @param {any} value - The value to set the property to.
     */
-    setAll: function (key, value) {
+    setAll: function (key, value)
+    {
 
         var i = this.list.length;
 
@@ -166,7 +174,8 @@ Phaser.ArraySet.prototype = {
     * @param {string} key - The name of the property with the function to call.
     * @param {...*} parameter - Additional parameters that will be passed to the callback.
     */
-    callAll: function (key) {
+    callAll: function (key)
+    {
 
         var args = Array.prototype.slice.call(arguments, 1);
 
@@ -188,7 +197,8 @@ Phaser.ArraySet.prototype = {
     * @method Phaser.ArraySet#removeAll
     * @param {boolean} [destroy=false] - Call `destroy` on each member as it's removed from this set.
     */
-    removeAll: function (destroy) {
+    removeAll: function (destroy)
+    {
 
         if (destroy === undefined) { destroy = false; }
 
@@ -220,9 +230,10 @@ Phaser.ArraySet.prototype = {
 * @name Phaser.ArraySet#total
 * @property {integer} total
 */
-Object.defineProperty(Phaser.ArraySet.prototype, "total", {
+Object.defineProperty(Phaser.ArraySet.prototype, 'total', {
 
-    get: function () {
+    get: function ()
+    {
         return this.list.length;
     }
 
@@ -234,9 +245,10 @@ Object.defineProperty(Phaser.ArraySet.prototype, "total", {
 * @name Phaser.ArraySet#first
 * @property {any} first
 */
-Object.defineProperty(Phaser.ArraySet.prototype, "first", {
+Object.defineProperty(Phaser.ArraySet.prototype, 'first', {
 
-    get: function () {
+    get: function ()
+    {
 
         this.position = 0;
 
@@ -259,9 +271,10 @@ Object.defineProperty(Phaser.ArraySet.prototype, "first", {
 * @name Phaser.ArraySet#next
 * @property {any} next
 */
-Object.defineProperty(Phaser.ArraySet.prototype, "next", {
+Object.defineProperty(Phaser.ArraySet.prototype, 'next', {
 
-    get: function () {
+    get: function ()
+    {
 
         if (this.position < this.list.length)
         {

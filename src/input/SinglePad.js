@@ -13,7 +13,8 @@
 * @param {Phaser.Game} game - Current game instance.
 * @param {object} padParent - The parent Phaser.Gamepad object (all gamepads reside under this)
 */
-Phaser.SinglePad = function (game, padParent) {
+Phaser.SinglePad = function (game, padParent)
+{
 
     /**
     * @property {Phaser.Game} game - Local reference to game.
@@ -126,7 +127,8 @@ Phaser.SinglePad.prototype = {
     * @param {object} callbacks - Object that takes six different callbak methods:
     * onConnectCallback, onDisconnectCallback, onDownCallback, onUpCallback, onAxisCallback, onFloatCallback
     */
-    addCallbacks: function (context, callbacks) {
+    addCallbacks: function (context, callbacks)
+    {
 
         if (typeof callbacks !== 'undefined')
         {
@@ -149,7 +151,8 @@ Phaser.SinglePad.prototype = {
     * @param {number} buttonCode - The buttonCode of the button, i.e. Phaser.Gamepad.BUTTON_0, Phaser.Gamepad.XBOX360_A, etc.
     * @return {Phaser.DeviceButton} The DeviceButton object which you can store locally and reference directly.
     */
-    getButton: function (buttonCode) {
+    getButton: function (buttonCode)
+    {
 
         if (this._buttons[buttonCode])
         {
@@ -167,7 +170,8 @@ Phaser.SinglePad.prototype = {
     * 
     * @method Phaser.SinglePad#pollStatus
     */
-    pollStatus: function () {
+    pollStatus: function ()
+    {
 
         if (!this.connected || !this.game.input.enabled || !this.game.input.gamepad.enabled || (this._rawPad.timestamp && (this._rawPad.timestamp === this._prevTimestamp)))
         {
@@ -219,7 +223,8 @@ Phaser.SinglePad.prototype = {
     * @method Phaser.SinglePad#connect
     * @param {object} rawPad - The raw gamepad object
     */
-    connect: function (rawPad) {
+    connect: function (rawPad)
+    {
 
         var triggerCallback = !this.connected;
 
@@ -262,7 +267,8 @@ Phaser.SinglePad.prototype = {
     * 
     * @method Phaser.SinglePad#disconnect
     */
-    disconnect: function () {
+    disconnect: function ()
+    {
 
         var triggerCallback = this.connected;
         var disconnectingIndex = this.index;
@@ -300,7 +306,8 @@ Phaser.SinglePad.prototype = {
      *
      * @method Phaser.SinglePad#destroy
      */
-    destroy: function () {
+    destroy: function ()
+    {
 
         this._rawPad = undefined;
 
@@ -330,7 +337,8 @@ Phaser.SinglePad.prototype = {
     * @method Phaser.SinglePad#processAxisChange
     * @param {object} axisState - State of the relevant axis
     */
-    processAxisChange: function (index, value) {
+    processAxisChange: function (index, value)
+    {
 
         if (this._axes[index] === value)
         {
@@ -358,7 +366,8 @@ Phaser.SinglePad.prototype = {
     * @param {number} buttonCode - Which buttonCode of this button
     * @param {object} value - Button value
     */
-    processButtonDown: function (buttonCode, value) {
+    processButtonDown: function (buttonCode, value)
+    {
 
         if (this._buttons[buttonCode])
         {
@@ -384,7 +393,8 @@ Phaser.SinglePad.prototype = {
     * @param {number} buttonCode - Which buttonCode of this button
     * @param {object} value - Button value
     */
-    processButtonUp: function (buttonCode, value) {
+    processButtonUp: function (buttonCode, value)
+    {
 
         if (this._padParent.onUpCallback)
         {
@@ -410,7 +420,8 @@ Phaser.SinglePad.prototype = {
     * @param {number} buttonCode - Which buttonCode of this button
     * @param {object} value - Button value (will range somewhere between 0 and 1, but not specifically 0 or 1.
     */
-    processButtonFloat: function (buttonCode, value) {
+    processButtonFloat: function (buttonCode, value)
+    {
 
         if (this._padParent.onFloatCallback)
         {
@@ -436,7 +447,8 @@ Phaser.SinglePad.prototype = {
     * @param {number} axisCode - The index of the axis to check
     * @return {number} Axis value if available otherwise false
     */
-    axis: function (axisCode) {
+    axis: function (axisCode)
+    {
 
         if (this._axes[axisCode])
         {
@@ -454,7 +466,8 @@ Phaser.SinglePad.prototype = {
     * @param {number} buttonCode - The buttonCode of the button to check.
     * @return {boolean} True if the button is pressed down.
     */
-    isDown: function (buttonCode) {
+    isDown: function (buttonCode)
+    {
 
         if (this._buttons[buttonCode])
         {
@@ -472,7 +485,8 @@ Phaser.SinglePad.prototype = {
     * @param {number} buttonCode - The buttonCode of the button to check.
     * @return {boolean} True if the button is not currently pressed down.
     */
-    isUp: function (buttonCode) {
+    isUp: function (buttonCode)
+    {
 
         if (this._buttons[buttonCode])
         {
@@ -491,7 +505,8 @@ Phaser.SinglePad.prototype = {
     * @param {number} [duration=250] - The duration below which the button is considered as being just released.
     * @return {boolean} True if the button is just released otherwise false.
     */
-    justReleased: function (buttonCode, duration) {
+    justReleased: function (buttonCode, duration)
+    {
 
         if (this._buttons[buttonCode])
         {
@@ -508,7 +523,8 @@ Phaser.SinglePad.prototype = {
     * @param {number} [duration=250] - The duration below which the button is considered as being just pressed.
     * @return {boolean} True if the button is just pressed otherwise false.
     */
-    justPressed: function (buttonCode, duration) {
+    justPressed: function (buttonCode, duration)
+    {
 
         if (this._buttons[buttonCode])
         {
@@ -525,7 +541,8 @@ Phaser.SinglePad.prototype = {
     * @param {number} buttonCode - The buttonCode of the button to check.
     * @return {number} Button value if available otherwise null. Be careful as this can incorrectly evaluate to 0.
     */
-    buttonValue: function (buttonCode) {
+    buttonValue: function (buttonCode)
+    {
 
         if (this._buttons[buttonCode])
         {
@@ -541,7 +558,8 @@ Phaser.SinglePad.prototype = {
     * 
     * @method Phaser.SinglePad#reset
     */
-    reset: function () {
+    reset: function ()
+    {
 
         for (var j = 0; j < this._axes.length; j++)
         {

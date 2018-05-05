@@ -7,7 +7,7 @@
 * @constructor
 * @private
 */
-PIXI.WebGLShaderManager = function()
+PIXI.WebGLShaderManager = function ()
 {
     /**
      * @property maxAttibs
@@ -48,7 +48,7 @@ PIXI.WebGLShaderManager.prototype.constructor = PIXI.WebGLShaderManager;
 * @method PIXI.WebGLShaderManager#setContext
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.WebGLShaderManager.prototype.setContext = function(gl)
+PIXI.WebGLShaderManager.prototype.setContext = function (gl)
 {
     this.gl = gl;
 
@@ -79,7 +79,7 @@ PIXI.WebGLShaderManager.prototype.setContext = function(gl)
 * @method PIXI.WebGLShaderManager#setAttribs
 * @param attribs {Array} attribs
 */
-PIXI.WebGLShaderManager.prototype.setAttribs = function(attribs)
+PIXI.WebGLShaderManager.prototype.setAttribs = function (attribs)
 {
     // reset temp state
     var i;
@@ -122,9 +122,9 @@ PIXI.WebGLShaderManager.prototype.setAttribs = function(attribs)
 * @method PIXI.WebGLShaderManager#setShader
 * @param shader {Any}
 */
-PIXI.WebGLShaderManager.prototype.setShader = function(shader)
+PIXI.WebGLShaderManager.prototype.setShader = function (shader)
 {
-    if(this._currentId === shader._UID)return false;
+    if(this._currentId === shader._UID) { return false; }
 
     this._currentId = shader._UID;
 
@@ -141,7 +141,7 @@ PIXI.WebGLShaderManager.prototype.setShader = function(shader)
 *
 * @method PIXI.WebGLShaderManager#destroy
 */
-PIXI.WebGLShaderManager.prototype.destroy = function()
+PIXI.WebGLShaderManager.prototype.destroy = function ()
 {
     this.attribState = null;
 
@@ -157,8 +157,9 @@ PIXI.WebGLShaderManager.prototype.destroy = function()
 
     this.stripShader.destroy();
 
-    if (this.creatureShader) {
-      this.creatureShader.destroy();
+    if (this.creatureShader)
+    {
+        this.creatureShader.destroy();
     }
 
     this.gl = null;

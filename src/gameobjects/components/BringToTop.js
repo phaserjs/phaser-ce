@@ -21,7 +21,8 @@ Phaser.Component.BringToTop = function () {};
 * @method
 * @return {PIXI.DisplayObject} This instance.
 */
-Phaser.Component.BringToTop.prototype.bringToTop = function() {
+Phaser.Component.BringToTop.prototype.bringToTop = function ()
+{
 
     if (this.parent)
     {
@@ -42,7 +43,8 @@ Phaser.Component.BringToTop.prototype.bringToTop = function() {
 * @method
 * @return {PIXI.DisplayObject} This instance.
 */
-Phaser.Component.BringToTop.prototype.sendToBack = function() {
+Phaser.Component.BringToTop.prototype.sendToBack = function ()
+{
 
     if (this.parent)
     {
@@ -63,7 +65,8 @@ Phaser.Component.BringToTop.prototype.sendToBack = function() {
 * @method
 * @return {PIXI.DisplayObject} This instance.
 */
-Phaser.Component.BringToTop.prototype.moveUp = function () {
+Phaser.Component.BringToTop.prototype.moveUp = function ()
+{
 
     if (this.parent)
     {
@@ -84,7 +87,8 @@ Phaser.Component.BringToTop.prototype.moveUp = function () {
 * @method
 * @return {PIXI.DisplayObject} This instance.
 */
-Phaser.Component.BringToTop.prototype.moveDown = function () {
+Phaser.Component.BringToTop.prototype.moveDown = function ()
+{
 
     if (this.parent)
     {

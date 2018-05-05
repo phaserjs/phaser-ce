@@ -9,7 +9,8 @@
 * It allows you to exclude the default Scale Manager from your build, without making Game crash.
 */
 
-Phaser.ScaleManager = function () {
+Phaser.ScaleManager = function ()
+{
 
     /**
     * The bounds of the scaled game. The x/y will match the offset of the canvas element and the width/height the scaled width and height.
