@@ -171,7 +171,7 @@ Phaser.SoundManager = function (game) {
     this._watchContext = null;
 
     /**
-    * @property {function} _resumeWebAudioOnClick - Bounds 'click' handler. Added in boot(), if necessary.
+    * @property {function} _resumeWebAudioOnClick - Bound 'click' handler. Added in boot(), if necessary.
     * @private
     */
     this._resumeWebAudioOnClick = this._resumeWebAudioOnClick.bind(this);
