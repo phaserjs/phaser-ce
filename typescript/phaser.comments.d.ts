@@ -16899,6 +16899,11 @@ declare module Phaser {
                 constructor(game: Phaser.Game, x?: number, y?: number, maxParticles?: number);
 
 
+                /** 
+                * The area of the emitter. Particles can be randomly generated from anywhere within this rectangle. 
+                */
+                area: Phaser.Rectangle;
+
                 /**
                 * An array of the calculated alpha easing data applied to particles with alphaRates > 0.
                 */
