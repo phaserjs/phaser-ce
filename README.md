@@ -328,6 +328,16 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
+## Unreleased
+
+### TypeScript
+
+* Updated the Typescript definitions to include the property 'area' within the Emitter class.
+
+### Thanks
+
+@GrindheadGames
+
 ## Version 2.10.5 - 8th May 2018
 
 ### Bug Fixes
