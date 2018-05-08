@@ -2939,6 +2939,7 @@ declare module Phaser {
 
                 constructor(game: Phaser.Game, x?: number, y?: number, maxParticles?: number);
 
+                area: Phaser.Rectangle;
                 alphaData: any[];
                 autoAlpha: boolean;
                 autoScale: boolean;
