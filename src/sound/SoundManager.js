@@ -170,6 +170,12 @@ Phaser.SoundManager = function (game) {
     */
     this._watchContext = null;
 
+    /**
+    * @property {function} _resumeWebAudioOnClick - Bounds 'click' handler. Added in boot(), if necessary.
+    * @private
+    */
+    this._resumeWebAudioOnClick = this._resumeWebAudioOnClick.bind(this);
+
 };
 
 Phaser.SoundManager.prototype = {
@@ -267,7 +273,7 @@ Phaser.SoundManager.prototype = {
             // In that case the input handler will do nothing, which is fine.
             if (this.context.state === 'suspended')
             {
-                this.game.input.onUp.addOnce(this.resumeWebAudio, this);
+                this.game.canvas.addEventListener('click', this._resumeWebAudioOnClick);
             }
         }
 
@@ -797,6 +803,8 @@ Phaser.SoundManager.prototype = {
 
         this.onSoundDecode.dispose();
 
+        this.game.canvas.removeEventListener('click', this._resumeWebAudioOnClick);
+
         if (this.context)
         {
             if (window.PhaserGlobal)
@@ -813,6 +821,12 @@ Phaser.SoundManager.prototype = {
             }
         }
 
+    },
+
+    _resumeWebAudioOnClick: function () {
+        this.resumeWebAudio();
+
+        this.game.canvas.removeEventListener('click', this._resumeWebAudioOnClick);
     }
 
 };
