@@ -328,42 +328,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Version 2.10.4 - 3rd May 2018
-
-### New Features
-
-* Phaser.Text#testString is the character string used to calculate the text's width and height.
-* Ellipse#centerX
-* Ellipse#centerY
-
-### Updates
-
-* Callbacks added with Phaser.Input#addMoveCallback receive an `event` parameter.
+## Version 2.10.5 - 8th May 2018
 
 ### Bug Fixes
 
-* Fixed a bogus warning when selecting tilemap layer 0 (#511).
-* Fixed wrong position in Ellipse#random (#522).
-* Fixed an Animation skipping the final frame in low-FPS situations (#524).
-* Fixed wrong ellipse position in Debug#geom (#526).
-* Fixed `forceType` failing to override some geometry types in Debug#geom.
-* Fixed unnecessary text updates when using Text#setText with `immediate=true` (#525).
-* Fixed issues restarting a Sound in Firefox (#530).
-* Fixed an IndexSizeError in Edge/Firefox when a very small texture crop rectangle is used (#532).
-
-### TypeScript definitions
-
-* Corrected definitions for ContactMaterial#frictionStiffness, Convex (#513).
-
-### Documentation
-
-* Fixed typos (#517, #521).
-* The Tilemap methods fill, random, replace, shuffle, and swap modify the tile index only (#484).
-* The special GameConfig.transparent value 'notMultiplied' disables the WebGL context attribute `premultipliedAlpha`.
-
-### Thanks
-
-@budda, @Hagisus, @HaoboZ, @hardylr, @intersrc, @jamesjsewell, @josalmi, @joshlory, @melissaelopez, @mickeyren, @photonstorm, @samme, @tobspr
+* Phaser could fail to resume a suspended Web Audio context if the mouse cursor left the browser window before clicking on the game canvas (#437).
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 

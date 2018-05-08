@@ -4,6 +4,12 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.10.5 - 8th May 2018
+
+### Bug Fixes
+
+* Phaser could fail to resume a suspended Web Audio context if the mouse cursor left the browser window before clicking on the game canvas (#437).
+
 ## Version 2.10.4 - 3rd May 2018
 
 ### New Features
