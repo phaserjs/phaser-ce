@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](http://phaser.io/phaser3) is in active development.
 
-The [current Phaser CE release is 2.10.4](https://github.com/photonstorm/phaser-ce/releases/tag/v2.10.4).
+The [current Phaser CE release is 2.10.5](https://github.com/photonstorm/phaser-ce/releases/tag/v2.10.5).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
@@ -128,16 +128,16 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.4/build/phaser.js"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.5/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.4"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.10.5"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.10.4/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.10.5/build/custom/) are available too.
 
 <a name="getting-started"></a>
 
@@ -328,42 +328,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Version 2.10.4 - 3rd May 2018
-
-### New Features
-
-* Phaser.Text#testString is the character string used to calculate the text's width and height.
-* Ellipse#centerX
-* Ellipse#centerY
-
-### Updates
-
-* Callbacks added with Phaser.Input#addMoveCallback receive an `event` parameter.
+## Version 2.10.5 - 8th May 2018
 
 ### Bug Fixes
 
-* Fixed a bogus warning when selecting tilemap layer 0 (#511).
-* Fixed wrong position in Ellipse#random (#522).
-* Fixed an Animation skipping the final frame in low-FPS situations (#524).
-* Fixed wrong ellipse position in Debug#geom (#526).
-* Fixed `forceType` failing to override some geometry types in Debug#geom.
-* Fixed unnecessary text updates when using Text#setText with `immediate=true` (#525).
-* Fixed issues restarting a Sound in Firefox (#530).
-* Fixed an IndexSizeError in Edge/Firefox when a very small texture crop rectangle is used (#532).
-
-### TypeScript definitions
-
-* Corrected definitions for ContactMaterial#frictionStiffness, Convex (#513).
-
-### Documentation
-
-* Fixed typos (#517, #521).
-* The Tilemap methods fill, random, replace, shuffle, and swap modify the tile index only (#484).
-* The special GameConfig.transparent value 'notMultiplied' disables the WebGL context attribute `premultipliedAlpha`.
-
-### Thanks
-
-@budda, @Hagisus, @HaoboZ, @hardylr, @intersrc, @jamesjsewell, @josalmi, @joshlory, @melissaelopez, @mickeyren, @photonstorm, @samme, @tobspr
+* Phaser could fail to resume a suspended Web Audio context if the mouse cursor left the browser window before clicking on the game canvas (#437).
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
@@ -387,10 +356,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.4/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.4/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.10.4.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.10.4.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.5/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.10.5/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.10.5.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.10.5.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
