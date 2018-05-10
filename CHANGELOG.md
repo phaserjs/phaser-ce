@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### TypeScript definitions
+Updated the Typescript definitions to include the property 'area' within the Emitter class.
+
+### Thanks
+
+@GrindheadGames
+
 See [README: Change Log: Unreleased](README.md#unreleased).
 
 ## Version 2.10.5 - 8th May 2018
