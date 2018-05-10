@@ -844,7 +844,8 @@ Phaser.SoundManager.prototype = {
 
     },
 
-    _resumeWebAudioOnClick: function () {
+    _resumeWebAudioOnClick: function ()
+    {
         this.resumeWebAudio();
 
         this.game.canvas.removeEventListener('click', this._resumeWebAudioOnClick);
