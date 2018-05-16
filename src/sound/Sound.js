@@ -741,6 +741,7 @@ Phaser.Sound.prototype = {
                 }
 
                 this.isPlaying = true;
+                this.paused = false;
                 this.startTime = this.game.time.time;
                 this.currentTime = 0;
                 this.stopTime = this.startTime + this.durationMS;
@@ -793,6 +794,7 @@ Phaser.Sound.prototype = {
                     }
 
                     this.isPlaying = true;
+                    this.paused = false;
                     this.startTime = this.game.time.time;
                     this.currentTime = 0;
                     this.stopTime = this.startTime + this.durationMS;
@@ -848,7 +850,7 @@ Phaser.Sound.prototype = {
     */
     pause: function () {
 
-        if (this.isPlaying && this._sound)
+        if (this.isPlaying)
         {
             this.paused = true;
             this.pausedPosition = this.currentTime;
@@ -867,7 +869,7 @@ Phaser.Sound.prototype = {
     */
     resume: function () {
 
-        if (this.paused && this._sound)
+        if (this.paused)
         {
             if (this.usingWebAudio)
             {
