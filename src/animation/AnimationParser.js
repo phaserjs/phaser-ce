@@ -48,6 +48,12 @@ Phaser.AnimationParser = {
         var width = img.width;
         var height = img.height;
 
+        if (width === 0 || height === 0)
+        {
+            console.warn("Phaser.AnimationParser.spriteSheet: '%s' width (%f) or height (%f) is zero", key, width, height);
+            return null;
+        }
+
         if (frameWidth <= 0)
         {
             frameWidth = Math.floor(-width / Math.min(-1, frameWidth));
@@ -58,16 +64,20 @@ Phaser.AnimationParser = {
             frameHeight = Math.floor(-height / Math.min(-1, frameHeight));
         }
 
+        if (width < frameWidth || height < frameHeight)
+        {
+            console.warn("Phaser.AnimationParser.spriteSheet: '%s' width (%f) or height (%f) is less than the given frameWidth (%f) or frameHeight (%f)",
+                key, width, height, frameWidth, frameHeight);
+            return null;
+        }
+
         var row = Math.floor((width - margin) / (frameWidth + spacing));
         var column = Math.floor((height - margin) / (frameHeight + spacing));
         var total = row * column;
 
         if (skipFrames > total || skipFrames < -total)
         {
-            console.warn(
-                "Phaser.AnimationParser.spriteSheet: skipFrames = " +
-                skipFrames.toString() + " is larger than total sprite number " +
-                total.toString());
+            console.warn("Phaser.AnimationParser.spriteSheet: '%s' skipFrames = %f is larger than the frame total %f", key, skipFrames, total);
             return null;
         }
 
@@ -82,10 +92,9 @@ Phaser.AnimationParser = {
             total = skipFrames + frameMax;
         }
 
-        //  Zero or smaller than frame sizes?
-        if (width === 0 || height === 0 || width < frameWidth || height < frameHeight || total === 0)
+        if (total === 0)
         {
-            console.warn("Phaser.AnimationParser.spriteSheet: '" + key + "'s width/height zero or width/height < given frameWidth/frameHeight");
+            console.warn("Phaser.AnimationParser.spriteSheet: '%s' zero frames were produced", key);
             return null;
         }
 
