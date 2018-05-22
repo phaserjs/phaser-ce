@@ -51,7 +51,7 @@ Phaser.AnimationParser = {
 
         if (width === 0 || height === 0)
         {
-            console.warn("Phaser.AnimationParser.spriteSheet: '%s' width (%f) or height (%f) is zero", key, width, height);
+            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' width (%f) or height (%f) is zero', key, width, height);
             return null;
         }
 
@@ -67,7 +67,7 @@ Phaser.AnimationParser = {
 
         if (width < frameWidth || height < frameHeight)
         {
-            console.warn("Phaser.AnimationParser.spriteSheet: '%s' width (%f) or height (%f) is less than the given frameWidth (%f) or frameHeight (%f)",
+            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' width (%f) or height (%f) is less than the given frameWidth (%f) or frameHeight (%f)',
                 key, width, height, frameWidth, frameHeight);
             return null;
         }
@@ -78,7 +78,7 @@ Phaser.AnimationParser = {
 
         if (skipFrames > total || skipFrames < -total)
         {
-            console.warn("Phaser.AnimationParser.spriteSheet: '%s' skipFrames = %f is larger than the frame total %f", key, skipFrames, total);
+            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' skipFrames = %f is larger than the frame total %f', key, skipFrames, total);
             return null;
         }
 
@@ -95,7 +95,7 @@ Phaser.AnimationParser = {
 
         if (total === 0)
         {
-            console.warn("Phaser.AnimationParser.spriteSheet: '%s' zero frames were produced", key);
+            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' zero frames were produced', key);
             return null;
         }
 
