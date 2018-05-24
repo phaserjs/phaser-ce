@@ -533,8 +533,7 @@ Phaser.Sound.prototype = {
                         }
                     }
                 }
-                else
-                if (this.loop)
+                else if (this.loop)
                 {
                     this.onLoop.dispatch(this);
 
@@ -736,8 +735,7 @@ Phaser.Sound.prototype = {
                 {
                     this._sound.noteGrainOn(0, this.position, this.duration);
                 }
-                else
-                if (this.loop && marker === '')
+                else if (this.loop && marker === '')
                 {
                     this._sound.start(0, 0);
                 }
@@ -763,14 +761,12 @@ Phaser.Sound.prototype = {
                 }
             }
         }
-        else
-        if (this.game.cache.getSound(this.key) && this.game.cache.getSound(this.key).locked)
+        else if (this.game.cache.getSound(this.key) && this.game.cache.getSound(this.key).locked)
         {
             this.game.cache.reloadSound(this.key);
             this.pendingPlayback = true;
         }
-        else
-        if (this._sound && (this.game.device.cocoonJS || this._sound.readyState === 4))
+        else if (this._sound && (this.game.device.cocoonJS || this._sound.readyState === 4))
         {
             this._sound.play();
 
@@ -912,16 +908,14 @@ Phaser.Sound.prototype = {
 
                     // this._sound.noteOn(0); // the zero is vitally important, crashes iOS6 without it
                 }
-                else
-                if (this.loop && this.game.device.chrome)
+                else if (this.loop && this.game.device.chrome)
                 {
                     //  Handle chrome bug: https://code.google.com/p/chromium/issues/detail?id=457099
                     if (this.game.device.chromeVersion === 42)
                     {
                         this._sound.start(0);
                     }
-                    else
-                    if (this.currentMarker === '')
+                    else if (this.currentMarker === '')
                     {
                         this._sound.start(0, p);
                     }
