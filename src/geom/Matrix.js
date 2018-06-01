@@ -10,8 +10,8 @@
 *
 * It is represented like so:
 *
-* | a | b | tx |
-* | c | d | ty |
+* | a | c | tx |
+* | b | d | ty |
 * | 0 | 0 | 1 |
 *
 * @class Phaser.Matrix
