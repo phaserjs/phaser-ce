@@ -330,13 +330,12 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
-### TypeScript
-
-* Updated the Typescript definitions to include the property 'area' within the Emitter class.
+* Fixed audio playback when restarting a paused sound (#538).
+* TypeScript and documentation fixes (#537, #540, #544, #545).
 
 ### Thanks
 
-@GrindheadGames
+@bseiller, @GrindheadGames, @josalmi, @photonstorm, @qdrj, @samme, @Siri0n, @zhanghuanchong
 
 ## Version 2.10.5 - 8th May 2018
 
