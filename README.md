@@ -328,7 +328,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.10.6 - 1st June 2018
 
 * Fixed audio playback when restarting a paused sound (#538).
 * TypeScript and documentation fixes (#537, #540, #544, #545).
@@ -336,12 +336,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Thanks
 
 @bseiller, @GrindheadGames, @josalmi, @photonstorm, @qdrj, @samme, @Siri0n, @zhanghuanchong
-
-## Version 2.10.5 - 8th May 2018
-
-### Bug Fixes
-
-* Phaser could fail to resume a suspended Web Audio context if the mouse cursor left the browser window before clicking on the game canvas (#437).
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
