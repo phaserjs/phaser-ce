@@ -13112,7 +13112,7 @@ declare module Phaser {
         * @param useHandCursor If true the Sprite will show the hand cursor on mouse-over (doesn't apply to mobile browsers)
         * @return The Sprite object to which the Input Handler is bound.
         */
-        start(priority: number, useHandCursor: boolean): Phaser.Sprite;
+        start(priority?: number, useHandCursor?: boolean): Phaser.Sprite;
 
         /**
         * Called by Pointer when drag starts on this Sprite. Should not usually be called directly.
@@ -14295,7 +14295,7 @@ declare module Phaser {
         * ```javascript
         * setRequestHeader('X-Requested-With', this.headers['requestedWith'])
         * ```
-        * Default: {"undefined":"application/xml"}
+        * Default: {"requestedWith":false,"json":"application/json","xml":"application/xml"}
         */
         headers: any;
 
@@ -15467,8 +15467,8 @@ declare module Phaser {
     * 
     * It is represented like so:
     * 
-    * | a | b | tx |
-    * | c | d | ty |
+    * | a | c | tx |
+    * | b | d | ty |
     * | 0 | 0 | 1 |
     */
     class Matrix {
@@ -15521,8 +15521,8 @@ declare module Phaser {
         * 
         * It is represented like so:
         * 
-        * | a | b | tx |
-        * | c | d | ty |
+        * | a | c | tx |
+        * | b | d | ty |
         * | 0 | 0 | 1 |
         * 
         * @param a Horizontal scaling - Default: 1
@@ -16898,6 +16898,11 @@ declare module Phaser {
                 */
                 constructor(game: Phaser.Game, x?: number, y?: number, maxParticles?: number);
 
+
+                /**
+                * The {@link #setSize size} of the emitter's emit area. The **actual** emit area is a rectangle of this size centered on (emitX, emitY): `{x: this.left, y: this.top, width: this.area.width, height: this.area.height}`. Particles are generated at a random position within this area.
+                */
+                area: Phaser.Rectangle;
 
                 /**
                 * An array of the calculated alpha easing data applied to particles with alphaRates > 0.
