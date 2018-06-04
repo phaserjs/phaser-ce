@@ -4,6 +4,15 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.10.6 - 1st June 2018
+
+* Fixed audio playback when restarting a paused sound (#538).
+* TypeScript and documentation fixes (#537, #540, #544, #545).
+
+### Thanks
+
+@bseiller, @GrindheadGames, @josalmi, @photonstorm, @qdrj, @samme, @Siri0n, @zhanghuanchong
+
 ## Version 2.10.5 - 8th May 2018
 
 ### Bug Fixes
