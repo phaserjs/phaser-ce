@@ -953,6 +953,12 @@ Phaser.Group.prototype.bringToTop = function (child)
 };
 
 /**
+* Alias for {@link Phaser.Group#bringToTop}.
+* @private
+*/
+Phaser.Group.prototype.bringChildToTop = Phaser.Group.prototype.bringToTop;
+
+/**
 * Sends the given child to the bottom of this group so it renders below all other children.
 *
 * @method Phaser.Group#sendToBack
@@ -971,6 +977,12 @@ Phaser.Group.prototype.sendToBack = function (child)
     return child;
 
 };
+
+/**
+* Alias for {@link Phaser.Group#sendToBack}.
+* @private
+*/
+Phaser.Group.prototype.sendChildToBack = Phaser.Group.prototype.sendToBack;
 
 /**
 * Moves the given child up one place in this group unless it's already at the top.

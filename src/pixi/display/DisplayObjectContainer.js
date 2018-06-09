@@ -219,6 +219,30 @@ PIXI.DisplayObjectContainer.prototype.removeChildAt = function (index)
 
 };
 
+PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
+{
+
+    if (child.parent !== this)
+    {
+        return;
+    }
+
+    return this.setChildIndex(child, this.children.length - 1);
+
+};
+
+PIXI.DisplayObjectContainer.prototype.sendChildToBack = function (child)
+{
+
+    if (child.parent !== this)
+    {
+        return;
+    }
+
+    return this.setChildIndex(child, 0);
+
+};
+
 /**
 * Removes all children from this container that are within the begin and end indexes.
 *
