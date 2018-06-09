@@ -52,7 +52,7 @@ Phaser.Utils.Debug = function (game)
     * @property {string} font - The font that the debug information is rendered in.
     * @default
     */
-    this.font = '14px Courier';
+    this.font = '14px monospace';
 
     /**
     * @property {number} columnWidth - The spacing between columns.
