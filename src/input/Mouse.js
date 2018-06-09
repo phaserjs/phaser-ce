@@ -492,11 +492,16 @@ Phaser.Mouse.prototype = {
             this.input.mousePointer.stop(event);
         }
 
-        for (var i in this.input.interactiveItems.list)
+        var list = this.input.interactiveItems.list;
+        var i = list.length;
+
+        while (i--)
         {
-            if (this.input.interactiveItems.list[i].enabled === true)
+            var item = list[i];
+
+            if (item.enabled)
             {
-                this.input.interactiveItems.list[i]._pointerOutHandler(this.input.mousePointer);
+                item._pointerOutHandler(this.input.mousePointer);
             }
         }
 
