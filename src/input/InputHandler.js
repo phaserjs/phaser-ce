@@ -1223,6 +1223,13 @@ Phaser.InputHandler.prototype = {
     updateDrag: function (pointer, fromStart)
     {
 
+        var camera = this.game.camera;
+        var dragOffset = this.dragOffset;
+        var dragPoint = this._dragPoint;
+        var pointerData = this._pointerData[pointer.id];
+        var snapPoint = this.snapPoint;
+        var sprite = this.sprite;
+
         if (fromStart === undefined) { fromStart = false; }
 
         if (pointer.isUp)
@@ -1233,27 +1240,31 @@ Phaser.InputHandler.prototype = {
 
         var pointerLocalCoord = this.globalToLocal(pointer);
 
-        if (this.sprite.fixedToCamera)
+        if (sprite.fixedToCamera)
         {
-            var px = this.game.camera.scale.x * pointerLocalCoord.x + this._dragPoint.x + this.dragOffset.x;
-            var py = this.game.camera.scale.y * pointerLocalCoord.y + this._dragPoint.y + this.dragOffset.y;
+            var px = camera.scale.x * pointerLocalCoord.x + dragPoint.x + dragOffset.x;
+            var py = camera.scale.y * pointerLocalCoord.y + dragPoint.y + dragOffset.y;
         }
         else
         {
-            var px = pointerLocalCoord.x + this._dragPoint.x + this.dragOffset.x;
-            var py = pointerLocalCoord.y + this._dragPoint.y + this.dragOffset.y;
+            var px = pointerLocalCoord.x + dragPoint.x + dragOffset.x;
+            var py = pointerLocalCoord.y + dragPoint.y + dragOffset.y;
         }
 
-        if (this.sprite.fixedToCamera)
+        if (sprite.fixedToCamera)
         {
+            var cameraOffset = sprite.cameraOffset;
+            var prevX = cameraOffset.x;
+            var prevY = cameraOffset.y;
+
             if (this.allowHorizontalDrag)
             {
-                this.sprite.cameraOffset.x = px - this.game.camera.x;
+                cameraOffset.x = px - camera.x;
             }
 
             if (this.allowVerticalDrag)
             {
-                this.sprite.cameraOffset.y = py - this.game.camera.y;
+                cameraOffset.y = py - camera.y;
             }
 
             if (this.boundsRect)
@@ -1268,24 +1279,29 @@ Phaser.InputHandler.prototype = {
 
             if (this.snapOnDrag)
             {
-                this.sprite.cameraOffset.x = Math.round((this.sprite.cameraOffset.x - (this.snapOffsetX % this.snapX)) / this.snapX) * this.snapX + (this.snapOffsetX % this.snapX);
-                this.sprite.cameraOffset.y = Math.round((this.sprite.cameraOffset.y - (this.snapOffsetY % this.snapY)) / this.snapY) * this.snapY + (this.snapOffsetY % this.snapY);
-                this.snapPoint.set(this.sprite.cameraOffset.x, this.sprite.cameraOffset.y);
+                cameraOffset.x = Math.round((cameraOffset.x - (this.snapOffsetX % this.snapX)) / this.snapX) * this.snapX + (this.snapOffsetX % this.snapX);
+                cameraOffset.y = Math.round((cameraOffset.y - (this.snapOffsetY % this.snapY)) / this.snapY) * this.snapY + (this.snapOffsetY % this.snapY);
+                snapPoint.set(cameraOffset.x, cameraOffset.y);
             }
+
+            var dx = cameraOffset.x - prevX;
+            var dy = cameraOffset.y - prevY;
         }
         else
         {
-            var cx = this.game.camera.x - this._pointerData[pointer.id].camX;
-            var cy = this.game.camera.y - this._pointerData[pointer.id].camY;
+            var cx = camera.x - pointerData.camX;
+            var cy = camera.y - pointerData.camY;
+            var prevX = sprite.x;
+            var prevY = sprite.y;
 
             if (this.allowHorizontalDrag)
             {
-                this.sprite.x = px + cx;
+                sprite.x = px + cx;
             }
 
             if (this.allowVerticalDrag)
             {
-                this.sprite.y = py + cy;
+                sprite.y = py + cy;
             }
 
             if (this.boundsRect)
@@ -1300,13 +1316,16 @@ Phaser.InputHandler.prototype = {
 
             if (this.snapOnDrag)
             {
-                this.sprite.x = Math.round((this.sprite.x - (this.snapOffsetX % this.snapX)) / this.snapX) * this.snapX + (this.snapOffsetX % this.snapX);
-                this.sprite.y = Math.round((this.sprite.y - (this.snapOffsetY % this.snapY)) / this.snapY) * this.snapY + (this.snapOffsetY % this.snapY);
-                this.snapPoint.set(this.sprite.x, this.sprite.y);
+                sprite.x = Math.round((sprite.x - (this.snapOffsetX % this.snapX)) / this.snapX) * this.snapX + (this.snapOffsetX % this.snapX);
+                sprite.y = Math.round((sprite.y - (this.snapOffsetY % this.snapY)) / this.snapY) * this.snapY + (this.snapOffsetY % this.snapY);
+                snapPoint.set(sprite.x, sprite.y);
             }
+
+            var dx = sprite.x - prevX;
+            var dy = sprite.y - prevY;
         }
 
-        this.sprite.events.onDragUpdate.dispatch(this.sprite, pointer, px, py, this.snapPoint, fromStart);
+        this.sprite.events.onDragUpdate.dispatch(sprite, pointer, px, py, snapPoint, fromStart, dx, dy);
 
         return true;
 
@@ -1444,7 +1463,7 @@ Phaser.InputHandler.prototype = {
     * You can set either (or both) of these properties after enabling a Sprite for drag.
     *
     * For the duration of the drag the Sprite.events.onDragUpdate event is dispatched. This event is only dispatched when the pointer actually
-    * changes position and moves. The event sends 5 parameters: `sprite`, `pointer`, `dragX`, `dragY` and `snapPoint`.
+    * changes position and moves. The event sends 8 parameters: `sprite`, `pointer`, `dragX`, `dragY`, `snapPoint`, `fromStart`, `deltaX`, and `deltaY`.
     *
     * @method Phaser.InputHandler#enableDrag
     * @param {boolean} [lockCenter=false] - If false the Sprite will drag from where you click it minus the dragOffset. If true it will center itself to the tip of the mouse pointer.
