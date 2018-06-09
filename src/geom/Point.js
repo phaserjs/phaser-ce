@@ -1141,6 +1141,7 @@ Phaser.Point.parse = function (obj, xProp, yProp)
  *
  * @method Phaser.Point.isPoint
  * @static
+ * @param {object} obj - The object to test.
  * @return {boolean} - True if the object has numeric x and y properties.
  */
 Phaser.Point.isPoint = function (obj)
