@@ -40,9 +40,21 @@ Phaser.AnimationParser = {
         {
             img = game.cache.getImage(key);
         }
+        else
+        {
+            key = img.name;
+        }
 
         if (img === null)
         {
+            return null;
+        }
+
+        if (frameWidth <= 0 || frameHeight <= 0)
+        {
+            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' frameWidth (%s) or frameHeight (%s) must be positive',
+                key, frameWidth, frameHeight);
+
             return null;
         }
 
@@ -51,51 +63,74 @@ Phaser.AnimationParser = {
 
         if (width === 0 || height === 0)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' width (%f) or height (%f) is zero', key, width, height);
+            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' width (%s) or height (%s) is zero', key, width, height);
+
             return null;
-        }
-
-        if (frameWidth <= 0)
-        {
-            frameWidth = Math.floor(-width / Math.min(-1, frameWidth));
-        }
-
-        if (frameHeight <= 0)
-        {
-            frameHeight = Math.floor(-height / Math.min(-1, frameHeight));
         }
 
         if (width < frameWidth || height < frameHeight)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' width (%f) or height (%f) is less than the given frameWidth (%f) or frameHeight (%f)',
+            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' width (%s) or height (%s) is less than the given frameWidth (%s) or frameHeight (%s)',
                 key, width, height, frameWidth, frameHeight);
+
             return null;
         }
 
         var row = Math.floor((width - margin) / (frameWidth + spacing));
         var column = Math.floor((height - margin) / (frameHeight + spacing));
         var total = row * column;
+        var totalAvailable = total;
+        var lastAvailable = total - 1;
+        var firstFrame = 0;
+        var lastFrame = lastAvailable;
 
         if (skipFrames > total || skipFrames < -total)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' skipFrames = %f is larger than the frame total %f', key, skipFrames, total);
+            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' skipFrames = %s is larger than the frame total %s',
+                key, skipFrames, total);
+
             return null;
         }
 
-        if (skipFrames < 0)
+        if (frameMax > -1)
         {
-            // Allow negative skipframes.
-            skipFrames = total + skipFrames;
-        }
-
-        if (frameMax !== -1)
-        {
-            total = skipFrames + frameMax;
+            total = frameMax;
+            lastFrame = total - 1;
         }
 
         if (total === 0)
         {
             console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' zero frames were produced', key);
+
+            return null;
+        }
+
+        if (skipFrames > 0)
+        {
+            // Offset from start
+            firstFrame = skipFrames;
+            total = Math.min(total, totalAvailable - skipFrames);
+            lastFrame = firstFrame + total - 1;
+        }
+        else if (skipFrames < 0)
+        {
+            // Offset from end
+            lastFrame = lastAvailable + skipFrames;
+            total = Math.min(total, totalAvailable + skipFrames);
+            firstFrame = lastFrame - total + 1;
+        }
+
+        if (firstFrame < 0)
+        {
+            console.warn('First frame index %s is outside of range [0, %d]', firstFrame, lastAvailable);
+
+            return null;
+        }
+
+        if (lastFrame > lastAvailable)
+        {
+            console.warn('Last frame index %s is outside of range [0, %d]', lastFrame, lastAvailable);
+
             return null;
         }
 
@@ -103,10 +138,19 @@ Phaser.AnimationParser = {
         var data = new Phaser.FrameData();
         var x = margin;
         var y = margin;
+        var frameIndex = 0;
 
-        for (var i = 0; i < total; i++)
+        for (var i = 0; i < totalAvailable; i++)
         {
-            data.addFrame(new Phaser.Frame(i, x, y, frameWidth, frameHeight, ''));
+            if (i > lastFrame)
+            {
+                break;
+            }
+
+            if (i >= firstFrame)
+            {
+                data.addFrame(new Phaser.Frame(frameIndex++, x, y, frameWidth, frameHeight, ''));
+            }
 
             x += frameWidth + spacing;
 
