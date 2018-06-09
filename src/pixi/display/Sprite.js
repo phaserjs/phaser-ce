@@ -214,12 +214,11 @@ PIXI.Sprite.prototype.onTextureUpdate = function ()
 * Returns the bounds of the Sprite as a rectangle.
 * The bounds calculation takes the worldTransform into account.
 *
-* It is important to note that the transform is not updated when you call this method.
-* So if this Sprite is the child of a Display Object which has had its transform
-* updated since the last render pass, those changes will not yet have been applied
-* to this Sprites worldTransform. If you need to ensure that all parent transforms
-* are factored into this getBounds operation then you should call `updateTransform`
-* on the root most object in this Sprites display list first.
+* The worldTransform was calculated during the last render pass and is not updated when you call this method.
+* If this Sprite was just created and has never been rendered, you can call `updateTransform` on the Sprite itself.
+* If any of the Sprite's ancestors have been positioned, scaled, or rotated since the last render pass,
+* those changes have not yet have been applied to this Sprite's worldTransform. Call `updateTransform`
+* on the root-most (highest) ancestor that was changed.
 *
 * @method PIXI.Sprite#getBounds
 * @param matrix {Matrix} the transformation matrix of the sprite
