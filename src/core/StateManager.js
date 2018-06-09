@@ -562,6 +562,7 @@ Phaser.StateManager.prototype = {
         this.onLoadUpdateCallback = state['loadUpdate'] || null;
         this.onCreateCallback = state['create'] || null;
         this.onUpdateCallback = state['update'] || null;
+        this.onPostUpdateCallback = state['postUpdate'] || null;
         this.onPreRenderCallback = state['preRender'] || null;
         this.onRenderCallback = state['render'] || null;
         this.onResizeCallback = state['resize'] || null;
@@ -691,6 +692,16 @@ Phaser.StateManager.prototype = {
 
     },
 
+    postUpdate: function ()
+    {
+
+        if (this._created && this.onPostUpdateCallback)
+        {
+            this.onPostUpdateCallback.call(this.callbackContext, this.game);
+        }
+
+    },
+
     /**
     * @method Phaser.StateManager#pauseUpdate
     * @protected
@@ -797,6 +808,7 @@ Phaser.StateManager.prototype = {
         this.onLoadUpdateCallback = null;
         this.onCreateCallback = null;
         this.onUpdateCallback = null;
+        this.onPostUpdateCallback = null;
         this.onRenderCallback = null;
         this.onPausedCallback = null;
         this.onResumedCallback = null;

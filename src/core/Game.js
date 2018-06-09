@@ -1121,6 +1121,7 @@ Phaser.Game.prototype = {
             this.plugins.update();
 
             this.stage.postUpdate();
+            this.state.postUpdate();
             this.plugins.postUpdate();
         }
         else
