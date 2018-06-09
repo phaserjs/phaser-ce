@@ -88,6 +88,8 @@ declare class Phaser {
     static BOTTOM_CENTER: number;
     static BOTTOM_RIGHT: number;
 
+    static EmptyRectangle: Phaser.Rectangle;
+
 }
 
 declare module Phaser {

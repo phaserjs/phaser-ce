@@ -1211,4 +1211,10 @@ Phaser.Rectangle.aabb = function (points, out)
 
 //   Because PIXI uses its own Rectangle, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Rectangle = Phaser.Rectangle;
-PIXI.EmptyRectangle = new Phaser.Rectangle(0, 0, 0, 0);
+
+/**
+* A Rectangle with width and height zero.
+* @constant Phaser.EmptyRectangle
+* @type {Phaser.Rectangle}
+*/
+Phaser.EmptyRectangle = new Phaser.Rectangle(0, 0, 0, 0);
