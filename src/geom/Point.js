@@ -1124,16 +1124,32 @@ Phaser.Point.parse = function (obj, xProp, yProp)
 
     if (obj[xProp])
     {
-        point.x = parseInt(obj[xProp], 10);
+        point.x = parseFloat(obj[xProp], 10);
     }
 
     if (obj[yProp])
     {
-        point.y = parseInt(obj[yProp], 10);
+        point.y = parseFloat(obj[yProp], 10);
     }
 
     return point;
 
+};
+
+/**
+* Truncates the x and y values.
+*
+* @method Phaser.Point.trunc
+* @static
+* @param {object} obj - The Point.
+* @return {object} The modified Point.
+*/
+Phaser.Point.trunc = function (obj)
+{
+    obj.x = Phaser.Math.trunc(obj.x);
+    obj.y = Phaser.Math.trunc(obj.y);
+
+    return obj;
 };
 
 /**

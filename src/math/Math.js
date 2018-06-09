@@ -480,6 +480,26 @@ Phaser.Math = {
     },
 
     /**
+    * Truncates a number, removing any fractional part.
+    * Same as round-towards-zero.
+    *
+    * @method Phaser.Math#trunc
+    * @param {number} value - The value to truncate.
+    * @return {number} The truncated value.
+    */
+    trunc: function (value)
+    {
+
+        if (!isFinite(value))
+        {
+            return value;
+        }
+
+        return (value - value % 1) || (value < 0 ? -0 : value === 0 ? value : 0);
+
+    },
+
+    /**
     * Rotates currentAngle towards targetAngle, taking the shortest rotation distance.
     * The lerp argument is the amount to rotate by in this call.
     * 
