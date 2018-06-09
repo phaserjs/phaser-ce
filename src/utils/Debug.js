@@ -663,6 +663,7 @@ Phaser.Utils.Debug.prototype = {
         this.line('angle: ' + sprite.angle.toFixed(1) + ' rotation: ' + sprite.rotation.toFixed(1));
         this.line('visible: ' + sprite.visible + ' in camera: ' + sprite.inCamera);
         this.line('bounds x: ' + sprite._bounds.x.toFixed(1) + ' y: ' + sprite._bounds.y.toFixed(1) + ' w: ' + sprite._bounds.width.toFixed(1) + ' h: ' + sprite._bounds.height.toFixed(1));
+        this.line('parent: ' + (sprite.parent ? (sprite.parent.name || '(DisplayObject)') : '(none)'));
 
         this.stop();
 
