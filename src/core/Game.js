@@ -189,7 +189,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.renderer = null;
 
     /**
-    * @property {number} renderType - The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType reflects the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. HEADLESS skips `render` hooks but not `preRender` or `postRender`; set {@link lockRender} to skip those as well.
+    * @property {number} renderType - The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType reflects the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. HEADLESS skips `preRender`, `render, and `postRender` hooks, just like {@link #lockRender}.
     * @readonly
     */
     this.renderType = Phaser.AUTO;
@@ -973,6 +973,7 @@ Phaser.Game.prototype = {
         if (this.pendingDestroy)
         {
             this.destroy();
+
             return;
         }
 
@@ -1155,7 +1156,7 @@ Phaser.Game.prototype = {
     updateRender: function (elapsedTime)
     {
 
-        if (this.lockRender)
+        if (this.lockRender || this.renderType === Phaser.HEADLESS)
         {
             return;
         }
@@ -1164,14 +1165,11 @@ Phaser.Game.prototype = {
 
         this.state.preRender(elapsedTime);
 
-        if (this.renderType !== Phaser.HEADLESS)
-        {
-            this.renderer.render(this.stage);
+        this.renderer.render(this.stage);
 
-            this.plugins.render(elapsedTime);
+        this.plugins.render(elapsedTime);
 
-            this.state.render(elapsedTime);
-        }
+        this.state.render(elapsedTime);
 
         this.plugins.postRender(elapsedTime);
 
