@@ -328,6 +328,29 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
+## Version 2.11.0 (in development)
+
+### API Changes
+
+* The `skipFrames` argument in AnimationParser#spritesheet now works as an offset (#514). When positive, it's an offset from the start of the parsed frame list; when negative, it's an offset from the end. Negative `frameWidth` and `frameHeight` arguments are no longer allowed.
+* preRender() and postRender() hooks are no longer called for the HEADLESS renderer.
+* game.make.group() no longer assigns a default parent. This is more consistent with the rest of the game.make methods (#525). Use game.add.group() instead to add the Group to the game world.
+* Point.parse() no longer converts coordinates to integers. Use the new method Point.trunc() as well if you want the previous behavior.
+* The default Debug#font is now '14px monospace'. Set it to '14px Courier' if you want the previous value.
+
+### New Features
+
+* States have a new `postUpdate` method hook.
+* Debug#spriteInfo now shows the sprite's parent, if any.
+* onDragUpdate now passes the sprite's change in position (as `deltaX`, `deltaY`).
+* Phaser.Math.trunc()
+* Phaser.Point.trunc()
+* Phaser.EmptyRectangle
+
+### Bug Fixes
+
+* Sprites' bringToTop() and sendToBack() methods now work as expected for all parent types, not just Groups (#549).
+
 ## Version 2.10.6 - 1st June 2018
 
 * Fixed audio playback when restarting a paused sound (#538).
