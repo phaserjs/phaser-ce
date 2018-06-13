@@ -743,13 +743,7 @@ Phaser.Game.prototype = {
 
         this._kickstart = true;
 
-        if (window['focus'])
-        {
-            if (!window['PhaserGlobal'] || (window['PhaserGlobal'] && !window['PhaserGlobal'].stopFocus))
-            {
-                window.focus();
-            }
-        }
+        this.focusWindow();
 
         if (this.config['disableStart'])
         {
@@ -1377,11 +1371,31 @@ Phaser.Game.prototype = {
     focusGain: function (event)
     {
 
+        this.focusWindow();
+
         this.onFocus.dispatch(event);
 
         if (!this.stage.disableVisibilityChange)
         {
             this.gameResumed(event);
+        }
+
+    },
+
+    /**
+    * Try to focus the browsing context, unless prohibited by PhaserGlobal.stopFocus.
+    *
+    * @private
+    */
+    focusWindow: function ()
+    {
+
+        if (window['focus'])
+        {
+            if (!window['PhaserGlobal'] || (window['PhaserGlobal'] && !window['PhaserGlobal'].stopFocus))
+            {
+                window.focus();
+            }
         }
 
     }
