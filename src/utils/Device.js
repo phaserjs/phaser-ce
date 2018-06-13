@@ -1100,11 +1100,10 @@ Phaser.Device._initialize = function ()
     {
 
         var videoElement = document.createElement('video');
-        var result = false;
 
         try
         {
-            if (result = !!videoElement.canPlayType)
+            if (videoElement.canPlayType)
             {
                 if (videoElement.canPlayType('video/ogg; codecs="theora"').replace(/^no$/, ''))
                 {
@@ -1134,7 +1133,7 @@ Phaser.Device._initialize = function ()
                 }
             }
         }
-        catch (e) {}
+        catch (e) {} // eslint-disable-line no-empty
     }
 
     /**
@@ -1146,11 +1145,10 @@ Phaser.Device._initialize = function ()
         device.audioData = !!(window.Audio);
         device.webAudio = !!(window.AudioContext || window.webkitAudioContext);
         var audioElement = document.createElement('audio');
-        var result = false;
 
         try
         {
-            if (result = !!audioElement.canPlayType)
+            if (audioElement.canPlayType)
             {
                 if (audioElement.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ''))
                 {
@@ -1208,8 +1206,7 @@ Phaser.Device._initialize = function ()
             }
         }
         catch (e)
-        {
-        }
+        {} // eslint-disable-line no-empty
 
     }
 

@@ -2899,7 +2899,7 @@ Phaser.Loader.prototype = {
                             // Try to parse as JSON, if it fails, then it's hopefully XML
                             json = JSON.parse(xhr.responseText);
                         }
-                        catch (e) {}
+                        catch (e) {} // eslint-disable-line no-empty
 
                         if (json)
                         {

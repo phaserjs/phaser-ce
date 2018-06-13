@@ -1,4 +1,4 @@
-/* jshint camelcase:false */
+/* eslint-disable camelcase */
 /* globals Creature,CreatureAnimation,CreatureManager */
 /**
 * @author       Richard Davey <rich@photonstorm.com>

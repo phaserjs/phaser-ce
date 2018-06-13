@@ -197,7 +197,7 @@ PIXI.CanvasRenderer.prototype.render = function (root)
 
 };
 
-PIXI.CanvasRenderer.prototype.setTexturePriority = function (textureNameCollection)
+PIXI.CanvasRenderer.prototype.setTexturePriority = function ()
 {
 
     //  Does nothing on Canvas, but here to allow you to simply set

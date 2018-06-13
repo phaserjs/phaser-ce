@@ -217,7 +217,7 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
 
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture &&
+    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture && // eslint-disable-line eqeqeq
         baseTexture._glTextures[gl.id] && !sprite.texture.baseTexture.skipRender)
     {
         this.flush();
@@ -253,11 +253,11 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     }
     else
     {
-        w0 = (sprite.texture.frame.width) * (1 - sprite.anchor.x);
-        w1 = (sprite.texture.frame.width) * -sprite.anchor.x;
+        w0 = width * (1 - sprite.anchor.x);
+        w1 = width * -sprite.anchor.x;
 
-        h0 = sprite.texture.frame.height * (1 - sprite.anchor.y);
-        h1 = sprite.texture.frame.height * -sprite.anchor.y;
+        h0 = height * (1 - sprite.anchor.y);
+        h1 = height * -sprite.anchor.y;
     }
 
     index = this.currentBatchSize * 4 * this.vertSize;

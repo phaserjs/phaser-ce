@@ -75,7 +75,7 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
     filterBlock._filterArea = filterBlock.target.filterArea || filterBlock.target.getBounds();
 
     // >>> modify by nextht
-    filterBlock._previous_stencil_mgr = this.renderSession.stencilManager;
+    filterBlock._previous_stencil_mgr = this.renderSession.stencilManager; // eslint-disable-line camelcase
     this.renderSession.stencilManager = new PIXI.WebGLStencilManager();
     this.renderSession.stencilManager.setContext(gl);
     gl.disable(gl.STENCIL_TEST);
@@ -312,8 +312,8 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
     {
         this.renderSession.stencilManager.destroy();
     }
-    this.renderSession.stencilManager = filterBlock._previous_stencil_mgr;
-    filterBlock._previous_stencil_mgr = null;
+    this.renderSession.stencilManager = filterBlock._previous_stencil_mgr; // eslint-disable-line camelcase
+    filterBlock._previous_stencil_mgr = null; // eslint-disable-line camelcase
     if (this.renderSession.stencilManager.count > 0)
     {
         gl.enable(gl.STENCIL_TEST);

@@ -172,11 +172,9 @@ if (!window.console)
 
 if (!Object.assign)
 {
-    /* jshint -W098 */
     // We include `varArgs` (unused) to ensure Object.assign.length === 2
-    Object.assign = function (target, varArgs)
+    Object.assign = function (target, varArgs) // eslint-disable-line no-unused-vars
     {
-    /* jshint +W098 */
         'use strict';
         if (target == null)
         { // TypeError if undefined or null
