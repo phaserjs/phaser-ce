@@ -97,8 +97,11 @@ Phaser.Input = function (game)
     this.scale = null;
 
     /**
-    * @property {integer} maxPointers - The maximum number of Pointers allowed to be active at any one time. A value of -1 is only limited by the total number of pointers. For lots of games it's useful to set this to 1.
+    * The maximum number of Pointers allowed to be active at any one time.
+    * A value of -1 is only limited by the total number of pointers (MAX_POINTERS). For lots of games it's useful to set this to 1.
+    * @property {integer} maxPointers
     * @default -1 (Limited by total pointers.)
+    * @see Phaser.Input.MAX_POINTERS
     */
     this.maxPointers = -1;
 
@@ -217,7 +220,7 @@ Phaser.Input = function (game)
     /**
     * A pool of non-mouse (contact) pointers that have been added to the game.
     * They're activated and updated by {@link Phaser.Input#mspointer} and {@link Phaser.Input#touch}.
-    * The properties `pointer1..N` are aliases for `pointers[0..N-1]`.
+    * The properties `pointer1..10` are aliases for `pointers[0..9]`.
     * @property {Phaser.Pointer[]} pointers
     * @public
     * @readonly

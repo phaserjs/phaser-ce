@@ -5,17 +5,20 @@
 */
 
 /**
-* The MSPointer class handles {@link https://developers.google.com/web/updates/2016/10/pointer-events Pointer-event} interactions with the game via a dedicated {@link Phaser.Pointer}. (It's named after the nonstandard {@link https://msdn.microsoft.com/library/hh673557(v=vs.85).aspx MSPointerEvent} since that was the first browser implementation.)
+* The MSPointer class handles pointer interactions with the game via the {@link https://developers.google.com/web/updates/2016/10/pointer-events Pointer Events API}. (It's named after the nonstandard {@link https://msdn.microsoft.com/library/hh673557(v=vs.85).aspx MSPointerEvent}, ancestor of the current API.)
 *
 * It's {@link http://caniuse.com/#feat=pointer currently supported  in IE 10+, Edge, Chrome (including Android), and Opera}.
 *
 * You should not normally access this class directly, but instead use a {@link Phaser.Pointer} object which
 * normalises all game input for you including accurate button handling.
 *
-* Please note that at the current time of writing Phaser does not yet support chorded button interactions:
-* http://www.w3.org/TR/pointerevents/#chorded-button-interactions
+* Phaser does not yet support {@link http://www.w3.org/TR/pointerevents/#chorded-button-interactions chorded button interactions}.
 *
-* You can disable Phaser's use of Pointer Events by either of two ways:
+* You can disable Phaser's use of Pointer Events by any of three ways:
+*
+* ```javascript
+* new Phaser.Game({ mspointer: false });
+* ```
 *
 * ```javascript
 * // **Before** `new Phaser.Game(…)`:
@@ -68,7 +71,7 @@ Phaser.MSPointer = function (game)
     this.pointerUpCallback = null;
 
     /**
-    * If true the Pointer events will have event.preventDefault applied to them, canceling the
+    * If true the PointerEvent will call preventDefault(), canceling the
     * corresponding MouseEvent or TouchEvent.
     *
     * "Mouse events can only be prevented when the pointer is down. Hovering pointers (e.g. a mouse
