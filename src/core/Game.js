@@ -546,9 +546,15 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {number}             [GameConfig.fullScreenScaleMode]           - The scaling method used by the ScaleManager when in fullscreen.
 * @property {HTMLElement}        [GameConfig.fullScreenTarget]              - The DOM element on which the Fullscreen API enter request will be invoked.
 * @property {number|string}      [GameConfig.height=600]
+* @property {boolean}            [GameConfig.keyboard=true]                 - Starts the keyboard input handler.
+* @property {number}             [GameConfig.maxPointers=-1]                - Sets {@link Phaser.Input#maxPointers}.
+* @property {boolean}            [GameConfig.mouse=true]                    - Starts the mouse input handler, if the mspointer and touch handlers were not started.
+* @property {boolean}            [GameConfig.mouseWheel=true]               - Starts the {@link Phaser.MouseWheel mouse wheel} handler, if supported by the device.
+* @property {boolean}            [GameConfig.mspointer=true]                - Starts the {@link Phaser.MSPointer Pointer Events} handler (mspointer), if supported by the device.
 * @property {boolean}            [GameConfig.multiTexture=false]            - Enable support for multiple bound Textures in WebGL. Same as `{renderer: Phaser.WEBGL_MULTI}`.
 * @property {string|HTMLElement} [GameConfig.parent='']                     - The DOM element into which this games canvas will be injected.
 * @property {object}             [GameConfig.physicsConfig]
+* @property {boolean}            [GameConfig.pointerLock=true]              - Starts the {@link Phaser.PointerLock Pointer Lock} handler, if supported by the device.
 * @property {boolean}            [GameConfig.preserveDrawingBuffer=false]   - Whether or not the contents of the stencil buffer is retained after rendering.
 * @property {number}             [GameConfig.renderer=Phaser.AUTO]
 * @property {number}             [GameConfig.resolution=1]                  - The resolution of your game, as a ratio of canvas pixels to game pixels.
@@ -558,6 +564,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {number}             [GameConfig.scaleV=1]                      - Vertical scaling factor for USER_SCALE scale mode.
 * @property {number}             [GameConfig.seed]                          - Seed for {@link Phaser.RandomDataGenerator}.
 * @property {object}             [GameConfig.state]
+* @property {boolean}            [GameConfig.touch=true]                    - Starts the {@link Phaser.Touch touch} handler, if supported by the device and the Pointer Events handler (mspointer) was not started.
 * @property {boolean|string}     [GameConfig.transparent=false]             - Sets {@link Phaser.Game#transparent}. `'notMultiplied'` disables the WebGL context attribute `premultipliedAlpha`.
 * @property {number}             [GameConfig.trimH=0]                       - Horizontal trim for USER_SCALE scale mode.
 * @property {number}             [GameConfig.trimV=0]                       - Vertical trim for USER_SCALE scale mode.
@@ -707,7 +714,7 @@ Phaser.Game.prototype = {
         this.stage.boot();
         this.world.boot();
         this.scale.boot();
-        this.input.boot();
+        this.input.boot(this.config);
         this.sound.boot();
         this.state.boot();
 

@@ -380,7 +380,7 @@ Phaser.Utils.Debug.prototype = {
         this.line('Is Ready?: ' + this.game.cache.isSoundReady(sound.key) + '  Pending Playback: ' + sound.pendingPlayback);
         this.line('Decoded: ' + sound.isDecoded + '  Decoding: ' + sound.isDecoding);
         this.line('Playing: ' + sound.isPlaying + '  Loop: ' + sound.loop);
-        this.line('Time: ' + (sound.currentTime * 1e-3).toFixed(3) + 's  Total: ' + sound.totalDuration.toFixed(3) + 's');
+        this.line('Time: ' + (sound.currentTime / 1000).toFixed(3) + 's  Total: ' + sound.totalDuration.toFixed(3) + 's');
         this.line('Volume: ' + sound.volume.toFixed(2) + (sound.mute ? ' (Mute)' : ''));
         this.line('Using: ' + (sound.usingWebAudio ? 'Web Audio' : 'Audio Tag') + '  ' +
             (sound.usingWebAudio ? ('Source: ' + (sound.sourceId || 'none')) : ''));
@@ -477,16 +477,17 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
-    * Renders the Pointer.circle object onto the stage in green if down or red if up along with debug text.
+    * Renders the Pointer.circle object onto the stage in green if down or yellow if up along with debug text.
     *
     * @method Phaser.Utils.Debug#pointer
     * @param {Phaser.Pointer} pointer - The Pointer you wish to display.
     * @param {boolean} [hideIfUp=false] - Doesn't render the circle if the pointer is up.
-    * @param {string} [downColor='rgba(0,255,0,0.5)'] - The color the circle is rendered in if down.
-    * @param {string} [upColor='rgba(255,0,0,0.5)'] - The color the circle is rendered in if up (and hideIfUp is false).
+    * @param {string} [downColor='rgba(0,255,0,0.5)'] - The color the circle is rendered in if the Pointer is down.
+    * @param {string} [upColor='rgba(255,255,0,0.5)'] - The color the circle is rendered in if the Pointer is up (and hideIfUp is false).
     * @param {string} [color='rgb(255,255,255)'] - color of the debug info to be rendered. (format is css color string).
+    * @param {string} [inactiveColor='rgb(255,0,0,0.5)'] - The color the circle is rendered in if the Pointer is inactive.
     */
-    pointer: function (pointer, hideIfUp, downColor, upColor, color)
+    pointer: function (pointer, hideIfUp, downColor, upColor, color, inactiveColor)
     {
 
         if (pointer == null)
@@ -495,25 +496,27 @@ Phaser.Utils.Debug.prototype = {
         }
 
         if (hideIfUp === undefined) { hideIfUp = false; }
+
         downColor = downColor || 'rgba(0,255,0,0.5)';
-        upColor = upColor || 'rgba(255,0,0,0.5)';
+        upColor = upColor || 'rgba(255,255,0,0.5)';
+        inactiveColor = inactiveColor || 'rgba(255,0,0,0.5)';
 
         if (hideIfUp === true && pointer.isUp === true)
         {
             return;
         }
 
-        this.start(pointer.x, pointer.y - 100, color);
+        this.start(pointer.x, pointer.y - 150, color);
         this.context.beginPath();
         this.context.arc(pointer.x, pointer.y, pointer.circle.radius, 0, Math.PI * 2);
 
         if (pointer.active)
         {
-            this.context.fillStyle = downColor;
+            this.context.fillStyle = pointer.isDown ? downColor : upColor;
         }
         else
         {
-            this.context.fillStyle = upColor;
+            this.context.fillStyle = inactiveColor;
         }
 
         this.context.fill();
@@ -527,14 +530,40 @@ Phaser.Utils.Debug.prototype = {
         this.context.stroke();
         this.context.closePath();
 
+        var mx = pointer.movementX;
+        var my = pointer.movementY;
+
+        if (mx || my)
+        {
+            this.context.beginPath();
+            this.context.moveTo(mx + pointer.position.x, my + pointer.position.y);
+            this.context.lineTo(pointer.position.x, pointer.position.y);
+            this.context.lineWidth = 2;
+            this.context.stroke();
+            this.context.closePath();
+        }
+
         //  Render the text
         this.line('ID: ' + pointer.id + ' Active: ' + pointer.active);
-        this.line('World X: ' + pointer.worldX + ' World Y: ' + pointer.worldY);
-        this.line('Screen X: ' + pointer.x + ' Screen Y: ' + pointer.y + ' In: ' + pointer.withinGame);
+        this.line('World X: ' + pointer.worldX.toFixed(1) + ' World Y: ' + pointer.worldY.toFixed(1));
+        this.line('Screen X: ' + pointer.x.toFixed(1) + ' Screen Y: ' + pointer.y.toFixed(1) + ' In: ' + pointer.withinGame);
+        this.line('Movement: X: ' + mx + ' Y: ' + my);
         this.line('Duration: ' + pointer.duration + ' ms');
         this.line('is Down: ' + pointer.isDown + ' is Up: ' + pointer.isUp);
+        this.line('Buttons: ' + this._pointerButtonIcon(pointer.leftButton) + ' ' +
+                                this._pointerButtonIcon(pointer.middleButton) + ' ' +
+                                this._pointerButtonIcon(pointer.rightButton));
+
         this.stop();
 
+    },
+
+    _pointerButtonIcon: function (btn)
+    {
+        if (btn.isDown) { return 'x'; }
+        else if (btn.isUp) { return 'o'; }
+
+        return '-';
     },
 
     /**
@@ -588,17 +617,81 @@ Phaser.Utils.Debug.prototype = {
     * @param {number} x - X position of the debug info to be rendered.
     * @param {number} y - Y position of the debug info to be rendered.
     * @param {string} [color='rgb(255,255,255)'] - color of the debug info to be rendered. (format is css color string).
+    * @param {boolean} [showDetails=true] - Also describe input sources and pointers.
     */
-    inputInfo: function (x, y, color)
+    inputInfo: function (x, y, color, showDetails)
     {
 
+        var input = this.game.input;
+
+        if (showDetails === undefined)
+        {
+            showDetails = true;
+        }
+
         this.start(x, y, color);
+
         this.line('Input');
-        this.line('X: ' + this.game.input.x + ' Y: ' + this.game.input.y);
-        this.line('World X: ' + this.game.input.worldX + ' World Y: ' + this.game.input.worldY);
-        this.line('Scale X: ' + this.game.input.scale.x.toFixed(1) + ' Scale Y: ' + this.game.input.scale.x.toFixed(1));
-        this.line('Screen X: ' + this.game.input.activePointer.screenX + ' Screen Y: ' + this.game.input.activePointer.screenY);
+        this.line('X: ' + input.x + ' Y: ' + input.y);
+        this.line('World X: ' + input.worldX + ' World Y: ' + input.worldY);
+        this.line('Scale X: ' + input.scale.x.toFixed(2) + ' Scale Y: ' + input.scale.x.toFixed(2));
+        this.line('Screen X: ' + input.activePointer.screenX.toFixed(1) + ' Screen Y: ' + input.activePointer.screenY.toFixed(1));
+
+        if (!showDetails)
+        {
+            this.stop();
+
+            return;
+        }
+
+        this.line('Sources:');
+        this.line('  ' + this._inputHandler(input.mouse, 'mouse'));
+        this.line('  ' + this._inputHandler(input.mspointer, 'mspointer'));
+        this.line('  ' + this._inputHandler(input.touch, 'touch'));
+
+        var pointers = input.pointers;
+        var mousePointer = input.mousePointer;
+        var modes = Phaser.PointerModes;
+
+        this.line('Pointers:');
+        this.line('  ' + (mousePointer.isDown ? 'x' : 'o') + ' ' + modes[mousePointer.pointerMode]);
+
+        for (var i = 0; i < pointers.length; i++)
+        {
+            var p = pointers[i];
+            this.line('  ' + (p.active ? '+' : '-') + ' ' + modes[p.pointerMode]);
+        }
+
         this.stop();
+
+    },
+
+    _inputHandler: function (handler, name)
+    {
+        return this._inputHandlerStatusIcon(handler) + ' ' + name + ' ' + this._inputHandlerCaptureIcon(handler);
+    },
+
+    _inputHandlerStatusIcon: function (handler)
+    {
+
+        if (!handler.active)
+        {
+            return ' ';
+        }
+
+        return handler.enabled ? '+' : '-';
+
+    },
+
+    _inputHandlerCaptureIcon: function (handler)
+    {
+
+        if (!handler.active)
+        {
+            return ' ';
+        }
+
+        return (handler.capture || handler.preventDefault) ? '*' : ' ';
 
     },
 
@@ -1232,6 +1325,30 @@ Phaser.Utils.Debug.prototype = {
             this.line('Packs: ' + loader._loadedPackCount + ' of ' +
                                   loader._loadedPackCount);
         }
+
+        this.stop();
+
+    },
+
+    /**
+    * Shows device capabilities: Pointer Events, Touch Events, Web Audio, WebGL.
+    *
+    * @method Phaser.Utils.Debug#device
+    * @param {number} x
+    * @param {number} y
+    * @param {string} [color]
+    */
+    device: function (x, y, color)
+    {
+        var device = this.game.device;
+
+        this.start(x, y, color);
+
+        this.line('Device');
+        this.line('Pointer Events: ' + device.mspointer);
+        this.line('Touch: ' + device.touch);
+        this.line('Web Audio: ' + device.webAudio);
+        this.line('WebGL: ' + device.webGL);
 
         this.stop();
 
