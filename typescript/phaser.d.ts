@@ -4293,7 +4293,7 @@ declare module Phaser {
         onChange: Phaser.Signal;
         onError: Phaser.Signal;
 
-        release(): void;
+        exit(): void;
         request(): void;
         start(): boolean;
         stop(): void;

@@ -488,6 +488,21 @@ Phaser.Mouse.prototype = {
     },
 
     /**
+    * Exit a pointer-locked state.
+    * @method Phaser.Mouse#releasePointerLock
+    * @deprecated
+    * @see Phaser.PointerLock#exit
+    */
+    releasePointerLock: function ()
+    {
+
+        console.warn('Deprecated. Please use `input.pointerLock.exit()` instead.');
+
+        return this.input.pointerLock.exit();
+
+    },
+
+    /**
     * If the browser supports it you can request that the pointer be locked to the browser window.
     * This is classically known as 'FPS controls', where the pointer can't leave the browser until the user presses an exit key.
     * If the browser successfully enters a locked state the event Phaser.Mouse.pointerLock will be dispatched and the first parameter will be 'true'.

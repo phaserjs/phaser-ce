@@ -143,9 +143,9 @@ Phaser.PointerLock.prototype.request = function ()
 /**
 * Releases the locked pointer.
 * Use onChange and onError to track the result of the request.
-* @method Phaser.PointerLock#release
+* @method Phaser.PointerLock#exit
 */
-Phaser.PointerLock.prototype.release = function ()
+Phaser.PointerLock.prototype.exit = function ()
 {
     document.exitPointerLock();
 };
