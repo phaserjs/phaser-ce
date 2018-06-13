@@ -555,23 +555,23 @@ Phaser.StateManager.prototype = {
         this.link(key);
 
         //  Used when the state is set as being the current active state
-        this.onInitCallback = state['init'] || this.dummy;
+        this.onInitCallback = state.init || this.dummy;
 
-        this.onPreloadCallback = state['preload'] || null;
-        this.onLoadRenderCallback = state['loadRender'] || null;
-        this.onLoadUpdateCallback = state['loadUpdate'] || null;
-        this.onCreateCallback = state['create'] || null;
-        this.onUpdateCallback = state['update'] || null;
-        this.onPostUpdateCallback = state['postUpdate'] || null;
-        this.onPreRenderCallback = state['preRender'] || null;
-        this.onRenderCallback = state['render'] || null;
-        this.onResizeCallback = state['resize'] || null;
-        this.onPausedCallback = state['paused'] || null;
-        this.onResumedCallback = state['resumed'] || null;
-        this.onPauseUpdateCallback = state['pauseUpdate'] || null;
+        this.onPreloadCallback = state.preload || null;
+        this.onLoadRenderCallback = state.loadRender || null;
+        this.onLoadUpdateCallback = state.loadUpdate || null;
+        this.onCreateCallback = state.create || null;
+        this.onUpdateCallback = state.update || null;
+        this.onPostUpdateCallback = state.postUpdate || null;
+        this.onPreRenderCallback = state.preRender || null;
+        this.onRenderCallback = state.render || null;
+        this.onResizeCallback = state.resize || null;
+        this.onPausedCallback = state.paused || null;
+        this.onResumedCallback = state.resumed || null;
+        this.onPauseUpdateCallback = state.pauseUpdate || null;
 
         //  Used when the state is no longer the current active state
-        this.onShutDownCallback = state['shutdown'] || this.dummy;
+        this.onShutDownCallback = state.shutdown || this.dummy;
 
         //  Reset the physics system, but not on the first state start
         if (this.current !== '')

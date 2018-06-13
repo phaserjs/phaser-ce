@@ -105,7 +105,7 @@ Phaser.BitmapData = function (game, key, width, height, skipPool)
             this.pixels = new Uint32Array(this.buffer);
         }
         else
-        if (window['ArrayBuffer'])
+        if (window.ArrayBuffer)
         {
             this.buffer = new ArrayBuffer(this.imageData.data.length);
             this.pixels = new Uint32Array(this.buffer);
@@ -407,7 +407,7 @@ Phaser.BitmapData.prototype = {
         {
             for (var i = 0; i < object.length; i++)
             {
-                if (object[i]['loadTexture'])
+                if (object[i].loadTexture)
                 {
                     object[i].loadTexture(this);
                 }
@@ -671,7 +671,7 @@ Phaser.BitmapData.prototype = {
             this.pixels = new Uint32Array(this.buffer);
         }
         else
-        if (window['ArrayBuffer'])
+        if (window.ArrayBuffer)
         {
             this.buffer = new ArrayBuffer(this.imageData.data.length);
             this.pixels = new Uint32Array(this.buffer);

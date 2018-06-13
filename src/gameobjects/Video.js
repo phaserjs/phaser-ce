@@ -388,7 +388,7 @@ Phaser.Video.prototype = {
 
         if (this.videoStream !== null)
         {
-            if (this.videoStream['active'])
+            if (this.videoStream.active)
             {
                 this.videoStream.active = false;
             }
@@ -799,7 +799,7 @@ Phaser.Video.prototype = {
             {
                 this.video.src = '';
 
-                if (this.videoStream['active'])
+                if (this.videoStream.active)
                 {
                     this.videoStream.active = false;
                 }
@@ -855,7 +855,7 @@ Phaser.Video.prototype = {
         {
             for (var i = 0; i < object.length; i++)
             {
-                if (object[i]['loadTexture'])
+                if (object[i].loadTexture)
                 {
                     object[i].loadTexture(this);
                 }

@@ -112,8 +112,8 @@ Phaser.DOM = {
 
         object = object == null ? this.visualBounds : object.nodeType === 1 ? this.getBounds(object) : object;
 
-        var w = object['width'];
-        var h = object['height'];
+        var w = object.width;
+        var h = object.height;
 
         if (typeof w === 'function')
         {

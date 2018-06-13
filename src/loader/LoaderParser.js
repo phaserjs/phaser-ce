@@ -125,7 +125,7 @@ Phaser.LoaderParser = {
         var x = (frame) ? frame.x : 0;
         var y = (frame) ? frame.y : 0;
 
-        json.font.chars['char'].forEach(
+        json.font.chars.char.forEach(
 
             function parseChar (letter)
             {

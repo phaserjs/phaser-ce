@@ -773,7 +773,7 @@ Phaser.Group.prototype.align = function (width, height, cellWidth, cellHeight, p
     {
         var child = this.children[i];
 
-        if (child['alignIn'])
+        if (child.alignIn)
         {
             child.alignIn(r, position);
         }

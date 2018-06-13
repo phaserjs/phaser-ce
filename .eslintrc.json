@@ -44,6 +44,7 @@
         "comma-style": [ "error", "last" ],
         "computed-property-spacing": [ "error", "never" ],
         "consistent-this": "off",
+        "dot-notation": [ "error" ],
         "eol-last": [ "error" ],
         "func-call-spacing": [ "warn", "never" ],
         "indent": [ "error", 4, { "SwitchCase": 1 } ],

@@ -283,7 +283,7 @@ Phaser.Mouse.prototype = {
             return;
         }
 
-        event['identifier'] = 0;
+        event.identifier = 0;
 
         this.input.mousePointer.start(event);
 
@@ -314,7 +314,7 @@ Phaser.Mouse.prototype = {
             return;
         }
 
-        event['identifier'] = 0;
+        event.identifier = 0;
 
         this.input.mousePointer.move(event);
 
@@ -345,7 +345,7 @@ Phaser.Mouse.prototype = {
             return;
         }
 
-        event['identifier'] = 0;
+        event.identifier = 0;
 
         this.input.mousePointer.stop(event);
 
@@ -367,7 +367,7 @@ Phaser.Mouse.prototype = {
                 this.mouseUpCallback.call(this.callbackContext, event);
             }
 
-            event['identifier'] = 0;
+            event.identifier = 0;
 
             this.input.mousePointer.stop(event);
         }
@@ -442,7 +442,7 @@ Phaser.Mouse.prototype = {
 
         if (this.stopOnGameOut)
         {
-            event['identifier'] = 0;
+            event.identifier = 0;
 
             this.input.mousePointer.stop(event);
         }

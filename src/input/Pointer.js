@@ -628,7 +628,7 @@ Phaser.Pointer.prototype = {
 
         var input = this.game.input;
 
-        if (event['pointerId'])
+        if (event.pointerId)
         {
             this.pointerId = event.pointerId;
         }

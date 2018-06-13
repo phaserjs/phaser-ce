@@ -869,9 +869,9 @@ Phaser.Loader.prototype = {
         // Check if we have a truecolor texture to fallback.
         // Also catches calls to this function that are from a Canvas renderer
 
-        if (object['truecolor'])
+        if (object.truecolor)
         {
-            this.addToFileList('image', key, object['truecolor'], undefined, overwrite, '.png');
+            this.addToFileList('image', key, object.truecolor, undefined, overwrite, '.png');
         }
 
         return this;
@@ -2585,9 +2585,9 @@ Phaser.Loader.prototype = {
         xhr.open('GET', url, true);
         xhr.responseType = type;
 
-        if (this.headers['requestedWith'] !== false)
+        if (this.headers.requestedWith !== false)
         {
-            xhr.setRequestHeader('X-Requested-With', this.headers['requestedWith']);
+            xhr.setRequestHeader('X-Requested-With', this.headers.requestedWith);
         }
 
         if (this.headers[file.type])
@@ -2624,7 +2624,7 @@ Phaser.Loader.prototype = {
                     _this.asyncComplete(file, e.message || 'Exception');
                 }
                 else
-                if (window['console'])
+                if (window.console)
                 {
                     console.error(e);
                 }
@@ -2648,7 +2648,7 @@ Phaser.Loader.prototype = {
                     _this.asyncComplete(file, e.message || 'Exception');
                 }
                 else
-                if (window['console'])
+                if (window.console)
                 {
                     console.error(e);
                 }
@@ -3108,7 +3108,7 @@ Phaser.Loader.prototype = {
 
         try
         {
-            if (window['DOMParser'])
+            if (window.DOMParser)
             {
                 var domparser = new DOMParser();
                 xml = domparser.parseFromString(data, 'text/xml');

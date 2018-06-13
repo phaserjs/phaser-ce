@@ -585,80 +585,80 @@ Phaser.Game.prototype = {
 
         this.config = config;
 
-        if (config['enableDebug'] === undefined)
+        if (config.enableDebug === undefined)
         {
             this.config.enableDebug = true;
         }
 
-        if (config['width'])
+        if (config.width)
         {
-            this._width = config['width'];
+            this._width = config.width;
         }
 
-        if (config['height'])
+        if (config.height)
         {
-            this._height = config['height'];
+            this._height = config.height;
         }
 
-        if (config['renderer'])
+        if (config.renderer)
         {
-            this.renderType = config['renderer'];
+            this.renderType = config.renderer;
         }
 
-        if (config['parent'])
+        if (config.parent)
         {
-            this.parent = config['parent'];
+            this.parent = config.parent;
         }
 
-        if (config['transparent'] !== undefined)
+        if (config.transparent !== undefined)
         {
-            this.transparent = config['transparent'];
+            this.transparent = config.transparent;
         }
 
-        if (config['antialias'] !== undefined)
+        if (config.antialias !== undefined)
         {
-            this.antialias = config['antialias'];
+            this.antialias = config.antialias;
         }
 
-        if (config['clearBeforeRender'] !== undefined)
+        if (config.clearBeforeRender !== undefined)
         {
-            this.clearBeforeRender = config['clearBeforeRender'];
+            this.clearBeforeRender = config.clearBeforeRender;
         }
 
-        if (config['multiTexture'] !== undefined)
+        if (config.multiTexture !== undefined)
         {
-            this.multiTexture = config['multiTexture'];
+            this.multiTexture = config.multiTexture;
         }
 
-        if (config['resolution'])
+        if (config.resolution)
         {
-            this.resolution = config['resolution'];
+            this.resolution = config.resolution;
         }
 
-        if (config['preserveDrawingBuffer'] !== undefined)
+        if (config.preserveDrawingBuffer !== undefined)
         {
-            this.preserveDrawingBuffer = config['preserveDrawingBuffer'];
+            this.preserveDrawingBuffer = config.preserveDrawingBuffer;
         }
 
-        if (config['physicsConfig'])
+        if (config.physicsConfig)
         {
-            this.physicsConfig = config['physicsConfig'];
+            this.physicsConfig = config.physicsConfig;
         }
 
         var seed = [ (Date.now() * Math.random()).toString() ];
 
-        if (config['seed'])
+        if (config.seed)
         {
-            seed = config['seed'];
+            seed = config.seed;
         }
 
         this.rnd = new Phaser.RandomDataGenerator(seed);
 
         var state = null;
 
-        if (config['state'])
+        if (config.state)
         {
-            state = config['state'];
+            state = config.state;
         }
 
         this.state = new Phaser.StateManager(this, state);
@@ -718,7 +718,7 @@ Phaser.Game.prototype = {
         this.sound.boot();
         this.state.boot();
 
-        if (this.config['enableDebug'])
+        if (this.config.enableDebug)
         {
             this.debug = new Phaser.Utils.Debug(this);
             this.debug.boot();
@@ -732,9 +732,9 @@ Phaser.Game.prototype = {
 
         this.isRunning = true;
 
-        if (this.config && this.config['forceSetTimeOut'])
+        if (this.config && this.config.forceSetTimeOut)
         {
-            this.raf = new Phaser.RequestAnimationFrame(this, this.config['forceSetTimeOut']);
+            this.raf = new Phaser.RequestAnimationFrame(this, this.config.forceSetTimeOut);
         }
         else
         {
@@ -745,7 +745,7 @@ Phaser.Game.prototype = {
 
         this.focusWindow();
 
-        if (this.config['disableStart'])
+        if (this.config.disableStart)
         {
             return;
         }
@@ -773,7 +773,7 @@ Phaser.Game.prototype = {
     showDebugHeader: function ()
     {
 
-        if (window['PhaserGlobal'] && window['PhaserGlobal'].hideBanner)
+        if (window.PhaserGlobal && window.PhaserGlobal.hideBanner)
         {
             return;
         }
@@ -825,7 +825,7 @@ Phaser.Game.prototype = {
 
             console.log.apply(console, args);
         }
-        else if (window['console'])
+        else if (window.console)
         {
             console.log('Phaser v' + v + ' | Pixi.js | ' + r + ' | ' + a + ' | http://phaser.io');
         }
@@ -847,25 +847,25 @@ Phaser.Game.prototype = {
             throw new Error('Phaser.Game - Cannot create Canvas 2d context, aborting.');
         }
 
-        if (this.config['canvas'])
+        if (this.config.canvas)
         {
-            this.canvas = this.config['canvas'];
+            this.canvas = this.config.canvas;
         }
         else
         {
-            this.canvas = Phaser.Canvas.create(this, this.width, this.height, this.config['canvasID'], true);
+            this.canvas = Phaser.Canvas.create(this, this.width, this.height, this.config.canvasID, true);
         }
 
-        if (this.config['canvasStyle'])
+        if (this.config.canvasStyle)
         {
-            this.canvas.style = this.config['canvasStyle'];
+            this.canvas.style = this.config.canvasStyle;
         }
         else
         {
             this.canvas.style['-webkit-full-screen'] = 'width: 100%; height: 100%';
         }
 
-        if (this.config['crisp'])
+        if (this.config.crisp)
         {
             Phaser.Canvas.setImageRenderingCrisp(this.canvas);
         }
@@ -1390,9 +1390,9 @@ Phaser.Game.prototype = {
     focusWindow: function ()
     {
 
-        if (window['focus'])
+        if (window.focus)
         {
-            if (!window['PhaserGlobal'] || (window['PhaserGlobal'] && !window['PhaserGlobal'].stopFocus))
+            if (!window.PhaserGlobal || (window.PhaserGlobal && !window.PhaserGlobal.stopFocus))
             {
                 window.focus();
             }

@@ -413,7 +413,7 @@ Phaser.MSPointer.prototype = {
 
         if (this.input.mouse.stopOnGameOut)
         {
-            event['identifier'] = 0;
+            event.identifier = 0;
 
             if (pointer)
             {

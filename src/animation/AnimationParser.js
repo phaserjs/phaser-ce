@@ -177,7 +177,7 @@ Phaser.AnimationParser = {
     {
 
         //  Malformed?
-        if (!json['frames'])
+        if (!json.frames)
         {
             console.warn('Phaser.AnimationParser.JSONData: Invalid Texture Atlas JSON given, missing \'frames\' array');
             console.log(json);
@@ -188,7 +188,7 @@ Phaser.AnimationParser = {
         var data = new Phaser.FrameData();
 
         //  By this stage frames is a fully parsed array
-        var frames = json['frames'];
+        var frames = json.frames;
         var newFrame;
 
         for (var i = 0; i < frames.length; i++)
@@ -250,7 +250,7 @@ Phaser.AnimationParser = {
         });
 
         // For this purpose, I only care about parsing tilemaps with a single layer.
-        if (json['layers'].length !== 1)
+        if (json.layers.length !== 1)
         {
             console.warn('Phaser.AnimationParser.JSONDataPyxel: Too many layers, this parser only supports flat Tilemaps.');
             console.log(json);
@@ -259,10 +259,10 @@ Phaser.AnimationParser = {
 
         var data = new Phaser.FrameData();
 
-        var tileheight = json['tileheight'];
-        var tilewidth = json['tilewidth'];
+        var tileheight = json.tileheight;
+        var tilewidth = json.tilewidth;
 
-        var frames = json['layers'][0]['tiles'];
+        var frames = json.layers[0].tiles;
         var newFrame;
 
         for (var i = 0; i < frames.length; i++)
@@ -296,7 +296,7 @@ Phaser.AnimationParser = {
     {
 
         //  Malformed?
-        if (!json['frames'])
+        if (!json.frames)
         {
             console.warn('Phaser.AnimationParser.JSONDataHash: Invalid Texture Atlas JSON given, missing \'frames\' object');
             console.log(json);
@@ -307,7 +307,7 @@ Phaser.AnimationParser = {
         var data = new Phaser.FrameData();
 
         //  By this stage frames is a fully parsed array
-        var frames = json['frames'];
+        var frames = json.frames;
         var newFrame;
         var i = 0;
 

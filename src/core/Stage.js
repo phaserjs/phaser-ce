@@ -109,14 +109,14 @@ Phaser.Stage.prototype.constructor = Phaser.Stage;
 Phaser.Stage.prototype.parseConfig = function (config)
 {
 
-    if (config['disableVisibilityChange'])
+    if (config.disableVisibilityChange)
     {
-        this.disableVisibilityChange = config['disableVisibilityChange'];
+        this.disableVisibilityChange = config.disableVisibilityChange;
     }
 
-    if (config['backgroundColor'])
+    if (config.backgroundColor)
     {
-        this.setBackgroundColor(config['backgroundColor']);
+        this.setBackgroundColor(config.backgroundColor);
     }
 
 };

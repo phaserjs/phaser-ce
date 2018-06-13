@@ -801,26 +801,26 @@ Phaser.ScaleManager.prototype = {
     parseConfig: function (config)
     {
 
-        if (config['scaleMode'] !== undefined)
+        if (config.scaleMode !== undefined)
         {
             if (this._booted)
             {
-                this.scaleMode = config['scaleMode'];
+                this.scaleMode = config.scaleMode;
             }
             else
             {
-                this._pendingScaleMode = config['scaleMode'];
+                this._pendingScaleMode = config.scaleMode;
             }
         }
 
-        if (config['fullScreenScaleMode'] !== undefined)
+        if (config.fullScreenScaleMode !== undefined)
         {
-            this.fullScreenScaleMode = config['fullScreenScaleMode'];
+            this.fullScreenScaleMode = config.fullScreenScaleMode;
         }
 
-        if (config['fullScreenTarget'])
+        if (config.fullScreenTarget)
         {
-            this.fullScreenTarget = config['fullScreenTarget'];
+            this.fullScreenTarget = config.fullScreenTarget;
         }
 
         this.pageAlignHorizontally = config.alignH || false;
@@ -2152,7 +2152,7 @@ Phaser.ScaleManager.prototype = {
         if (height === undefined) { height = this.height; }
         if (letterBox === undefined) { letterBox = false; }
 
-        if (!sprite || !sprite['scale'])
+        if (!sprite || !sprite.scale)
         {
             return sprite;
         }
@@ -2479,10 +2479,10 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'isFullScreen', {
 
     get: function ()
     {
-        return !!(document['fullscreenElement'] ||
-            document['webkitFullscreenElement'] ||
-            document['mozFullScreenElement'] ||
-            document['msFullscreenElement']);
+        return !!(document.fullscreenElement ||
+            document.webkitFullscreenElement ||
+            document.mozFullScreenElement ||
+            document.msFullscreenElement);
     }
 
 });

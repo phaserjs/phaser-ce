@@ -69,31 +69,31 @@ Phaser.PluginManager.prototype = {
         }
 
         //  Check for methods now to avoid having to do this every loop
-        if (typeof plugin['preUpdate'] === 'function')
+        if (typeof plugin.preUpdate === 'function')
         {
             plugin.hasPreUpdate = true;
             result = true;
         }
 
-        if (typeof plugin['update'] === 'function')
+        if (typeof plugin.update === 'function')
         {
             plugin.hasUpdate = true;
             result = true;
         }
 
-        if (typeof plugin['postUpdate'] === 'function')
+        if (typeof plugin.postUpdate === 'function')
         {
             plugin.hasPostUpdate = true;
             result = true;
         }
 
-        if (typeof plugin['render'] === 'function')
+        if (typeof plugin.render === 'function')
         {
             plugin.hasRender = true;
             result = true;
         }
 
-        if (typeof plugin['postRender'] === 'function')
+        if (typeof plugin.postRender === 'function')
         {
             plugin.hasPostRender = true;
             result = true;
@@ -115,7 +115,7 @@ Phaser.PluginManager.prototype = {
             this._len = this.plugins.push(plugin);
 
             // Allows plugins to run potentially destructive code outside of the constructor, and only if being added to the PluginManager
-            if (typeof plugin['init'] === 'function')
+            if (typeof plugin.init === 'function')
             {
                 plugin.init.apply(plugin, args);
             }

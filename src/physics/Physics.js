@@ -113,28 +113,28 @@ Phaser.Physics.prototype = {
     parseConfig: function ()
     {
 
-        if ((!this.config.hasOwnProperty('arcade') || this.config['arcade'] === true) && Phaser.Physics.hasOwnProperty('Arcade'))
+        if ((!this.config.hasOwnProperty('arcade') || this.config.arcade === true) && Phaser.Physics.hasOwnProperty('Arcade'))
         {
             //  If Arcade isn't specified, we create it automatically if we can
             this.arcade = new Phaser.Physics.Arcade(this.game);
         }
 
-        if (this.config.hasOwnProperty('ninja') && this.config['ninja'] === true && Phaser.Physics.hasOwnProperty('Ninja'))
+        if (this.config.hasOwnProperty('ninja') && this.config.ninja === true && Phaser.Physics.hasOwnProperty('Ninja'))
         {
             this.ninja = new Phaser.Physics.Ninja(this.game);
         }
 
-        if (this.config.hasOwnProperty('p2') && this.config['p2'] === true && Phaser.Physics.hasOwnProperty('P2'))
+        if (this.config.hasOwnProperty('p2') && this.config.p2 === true && Phaser.Physics.hasOwnProperty('P2'))
         {
             this.p2 = new Phaser.Physics.P2(this.game, this.config);
         }
 
-        if (this.config.hasOwnProperty('box2d') && this.config['box2d'] === true && Phaser.Physics.hasOwnProperty('BOX2D'))
+        if (this.config.hasOwnProperty('box2d') && this.config.box2d === true && Phaser.Physics.hasOwnProperty('BOX2D'))
         {
             this.box2d = new Phaser.Physics.BOX2D(this.game, this.config);
         }
 
-        if (this.config.hasOwnProperty('matter') && this.config['matter'] === true && Phaser.Physics.hasOwnProperty('Matter'))
+        if (this.config.hasOwnProperty('matter') && this.config.matter === true && Phaser.Physics.hasOwnProperty('Matter'))
         {
             this.matter = new Phaser.Physics.Matter(this.game, this.config);
         }
