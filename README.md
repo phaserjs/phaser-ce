@@ -332,11 +332,16 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### API Changes
 
+* Phaser starts only one of `input.mspointer`, `input.touch`, or `input.mouse`, as available
+* `input.mouseWheel` (Phaser.MouseWheel)
+* `input.pointerLock` (Phaser.PointerLock)
+* All the input handlers have an `active` property
 * The `skipFrames` argument in AnimationParser#spritesheet now works as an offset (#514). When positive, it's an offset from the start of the parsed frame list; when negative, it's an offset from the end. Negative `frameWidth` and `frameHeight` arguments are no longer allowed.
 * preRender() and postRender() hooks are no longer called for the HEADLESS renderer.
 * game.make.group() no longer assigns a default parent. This is more consistent with the rest of the game.make methods (#525). Use game.add.group() instead to add the Group to the game world.
 * Point.parse() no longer converts coordinates to integers. Use the new method Point.trunc() as well if you want the previous behavior.
 * The default Debug#font is now '14px monospace'. Set it to '14px Courier' if you want the previous value.
+* Removed MSPointer#button (deprecated)
 
 ### New Features
 
@@ -346,6 +351,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Phaser.Math.trunc()
 * Phaser.Point.trunc()
 * Phaser.EmptyRectangle
+* Added `inactiveColor` argument in Debug#pointer
+* Debug#inputInfo shows input sources and pointers (with `showDetails` argument)
+* Debug#device shows device capabilities
+* Debug#pointer shows movementX/movementY and mouse button states
+* New GameConfig properties: keyboard, maxPointers, mouse, mouseWheel, mspointer, pointerLock, touch
 
 ### Bug Fixes
 
