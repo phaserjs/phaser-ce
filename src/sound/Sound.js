@@ -1069,34 +1069,17 @@ Phaser.Sound.prototype = {
     {
 
         this._sound = this.context.createBufferSource();
-
-        this._sourceId++;
-
-        if (this.externalNode)
-        {
-            this._sound.connect(this.externalNode);
-        }
-        else
-        {
-            this._sound.connect(this.gainNode);
-        }
-
+        this._sound.connect(this.externalNode || this.gainNode);
         this._buffer = this.game.cache.getSoundData(this.key);
         this._sound.buffer = this._buffer;
+        this._sourceId++;
 
     },
 
     _disconnectSource: function ()
     {
 
-        if (this.externalNode)
-        {
-            this._sound.disconnect(this.externalNode);
-        }
-        else if (this.gainNode)
-        {
-            this._sound.disconnect(this.gainNode);
-        }
+        this._sound.disconnect(this.externalNode || this.gainNode);
 
     },
 
