@@ -1068,13 +1068,6 @@ Phaser.Sound.prototype = {
     _createSourceAndConnect: function ()
     {
 
-        if (this._sound && !this.allowMultiple)
-        {
-            console.warn('Phaser.Sound: Audio source already exists');
-
-            // this._disconnectSource();
-        }
-
         this._sound = this.context.createBufferSource();
 
         this._sourceId++;
