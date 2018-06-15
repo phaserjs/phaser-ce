@@ -1086,16 +1086,7 @@ Phaser.Sound.prototype = {
     _startSource: function (when, offset, duration)
     {
 
-        if (!when) { when = 0; }
-
-        if (this._sound.start === undefined)
-        {
-            this._sound.noteGrainOn(when, offset, duration);
-        }
-        else
-        {
-            this._sound.start(when, offset, duration);
-        }
+        this._sound.start(when || 0, offset, duration);
 
     },
 
@@ -1105,20 +1096,13 @@ Phaser.Sound.prototype = {
         // Firefox calls onended() after _sound.stop(). Chrome and Safari do not. (#530)
         this._removeOnEndedHandler();
 
-        if (this._sound.stop === undefined)
+        try
         {
-            this._sound.noteOff(0);
+            this._sound.stop(0);
         }
-        else
+        catch (e)
         {
-            try
-            {
-                this._sound.stop(0);
-            }
-            catch (e)
-            {
-                //  Thanks Android 4.4
-            }
+            //  Thanks Android 4.4
         }
 
         this._disconnectSource();

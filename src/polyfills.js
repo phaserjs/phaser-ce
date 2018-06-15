@@ -3,6 +3,18 @@
 * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
 */
 
+if (typeof AudioBufferSourceNode !== 'undefined')
+{
+    if (!AudioBufferSourceNode.prototype.start)
+    {
+        AudioBufferSourceNode.prototype.start = AudioBufferSourceNode.prototype.noteGrainOn;
+    }
+    if (!AudioBufferSourceNode.prototype.stop)
+    {
+        AudioBufferSourceNode.prototype.stop = AudioBufferSourceNode.prototype.noteOff;
+    }
+}
+
 // ES6 Math.trunc - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
 if (!Math.trunc)
 {
