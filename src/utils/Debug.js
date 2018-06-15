@@ -550,9 +550,13 @@ Phaser.Utils.Debug.prototype = {
         this.line('Movement: X: ' + mx + ' Y: ' + my);
         this.line('Duration: ' + pointer.duration + ' ms');
         this.line('is Down: ' + pointer.isDown + ' is Up: ' + pointer.isUp);
-        this.line('Buttons: ' + this._pointerButtonIcon(pointer.leftButton) + ' ' +
-                                this._pointerButtonIcon(pointer.middleButton) + ' ' +
-                                this._pointerButtonIcon(pointer.rightButton));
+
+        if (pointer.isMouse)
+        {
+            this.line('Buttons: ' + this._pointerButtonIcon(pointer.leftButton) + ' ' +
+                                    this._pointerButtonIcon(pointer.middleButton) + ' ' +
+                                    this._pointerButtonIcon(pointer.rightButton));
+        }
 
         this.stop();
 
