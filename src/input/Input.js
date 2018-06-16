@@ -484,7 +484,8 @@ Phaser.Input.prototype = {
         {
             this.touch.start();
         }
-        else if (config.mouse !== false)
+
+        if (!this.mspointer.active && (config.mouse !== false))
         {
             this.mouse.start();
         }

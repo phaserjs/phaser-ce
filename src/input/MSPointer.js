@@ -71,16 +71,20 @@ Phaser.MSPointer = function (game)
     this.pointerUpCallback = null;
 
     /**
-    * If true the PointerEvent will call preventDefault(), canceling the
-    * corresponding MouseEvent or TouchEvent.
+    * If true the PointerEvent will call preventDefault(), canceling the corresponding MouseEvent or
+    * TouchEvent.
     *
-    * "Mouse events can only be prevented when the pointer is down. Hovering pointers (e.g. a mouse
-    * with no buttons pressed) cannot have their mouse events prevented. And, the `mouseover` and
-    * `mouseout` events are never prevented (even if the pointer is down)."
+    * If the {@link Phaser.Mouse Mouse} handler is active as well, you should set this to true to avoid
+    * duplicate events.
+    *
+    * "Mouse events can only be prevented when the pointer is down. Hovering pointers (e.g. a mouse with
+    * no buttons pressed) cannot have their mouse events prevented. And, the `mouseover` and `mouseout`
+    * events are never prevented (even if the pointer is down)."
+    *
     * @property {boolean} capture
     * @see https://www.w3.org/Submission/pointer-events/#mapping-for-devices-that-support-hover
     */
-    this.capture = true;
+    this.capture = false;
 
     /**
     * The most recent PointerEvent from the browser. Will be null if no event has ever been received.
