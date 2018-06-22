@@ -2411,6 +2411,7 @@ declare module Phaser {
         static PLUS: number;
         static MINUS: number;
 
+        active: boolean;
         callbackContext: any;
         enabled: boolean;
         event: any;

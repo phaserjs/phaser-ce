@@ -27,6 +27,13 @@ Phaser.Keyboard = function (game)
     this.game = game;
 
     /**
+    * Whether the handler has started.
+    * @property {boolean} active
+    * @default
+    */
+    this.active = false;
+
+    /**
     * Keyboard input will only be processed if enabled.
     * @property {boolean} enabled
     * @default
@@ -244,19 +251,20 @@ Phaser.Keyboard.prototype = {
     *
     * @method Phaser.Keyboard#start
     * @protected
+    * @return {boolean}
     */
     start: function ()
     {
 
         if (this.game.device.cocoonJS)
         {
-            return;
+            return false;
         }
 
-        if (this._onKeyDown !== null)
+        if (this.active)
         {
             //  Avoid setting multiple listeners
-            return;
+            return false;
         }
 
         var _this = this;
@@ -280,6 +288,10 @@ Phaser.Keyboard.prototype = {
         window.addEventListener('keyup', this._onKeyUp, false);
         window.addEventListener('keypress', this._onKeyPress, false);
 
+        this.active = true;
+
+        return true;
+
     },
 
     /**
@@ -297,6 +309,8 @@ Phaser.Keyboard.prototype = {
         this._onKeyDown = null;
         this._onKeyUp = null;
         this._onKeyPress = null;
+
+        this.active = false;
 
     },
 
