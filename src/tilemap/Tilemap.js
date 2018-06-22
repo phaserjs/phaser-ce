@@ -488,7 +488,7 @@ Phaser.Tilemap.prototype = {
     *
     * @method Phaser.Tilemap#createFromTiles
     * @param {integer|Array} tiles - The tile index, or array of indexes, to create Sprites from.
-    * @param {integer|Array} replacements - The tile index, or array of indexes, to change a converted tile to. Set to `null` to not change.
+    * @param {integer|Array} replacements - The tile index, or array of indexes, to change a converted tile to. Set to -1 to remove the tile. Set to `null` to make no change (leave the tile as is).
     * @param {string} key - The Game.cache key of the image that this Sprite will use.
     * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to operate on.
     * @param {Phaser.Group} [group=Phaser.World] - Group to add the Sprite to. If not specified it will be added to the World group.
@@ -1803,6 +1803,7 @@ Phaser.Tilemap.prototype = {
 
     /**
     * Scans the given area for tiles with an index matching `source` and updates their index to match `dest`.
+    * Only the tile indexes are modified.
     *
     * @method Phaser.Tilemap#replace
     * @param {number} source - The tile index value to scan for.
