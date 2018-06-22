@@ -330,35 +330,75 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Version 2.11.0 (in development)
 
-### API Changes
+If you're starting or stopping input handlers manually, you'll have to make some simple changes to your code.
 
-* Phaser starts only one of `input.mspointer`, `input.touch`, or `input.mouse`, as available
-* `input.mouseWheel` (Phaser.MouseWheel)
-* `input.pointerLock` (Phaser.PointerLock)
-* All the input handlers have an `active` property
+### API Changes / New Features
+
+* Phaser now starts the Pointer Events handler (with capture off) or the Mouse handler (with capture off), but not both. This makes input behavior more consistent and avoids some rare conflicts between the two when running simultaneously.
+
+  If you want to disable the Pointer Events handler, pass `{ mspointer: false }` in your game config. The Mouse handler will be used instead.
+
+  If you want to run the Mouse handler as well, you can start it manually. You should also turn on capture for the Pointer Events handler to avoid duplicate events:
+
+  ```javascript
+  game.input.mouse.start();
+  game.input.mspointer.capture = true;
+  ```
+
+* Mouse wheel input was moved to `input.mouseWheel`. The changed properties are
+
+  - `input.mouse.wheelDelta` -> `input.mouseWheel.delta`
+  - `input.mouse.mouseWheelCallback` -> `input.mouseWheel.callback`
+
+  The old properties will keep working for now.
+
+* Pointer lock input was moved to `input.pointerLock`. The changed properties are
+
+  - `input.mouse.pointerLock` -> `input.pointerLock.onChange`
+  - `input.mouse.requestPointerLock()` -> `input.pointerLock.request()`
+  - `input.mouse.locked` -> `input.pointerLock.locked`
+  - `input.mouse.releasePointerLock()` -> `input.pointerLock.exit()`
+
+  The old properties will keep working for now.
+
+  There is a new Signal, `input.pointerLock.onError`, dispatched when a request fails.
+
+  Beware that Chrome < 68 doesn't pass movement values when using Pointer Events with pointer lock, so you should use the Mouse handler instead for that.
+
+* `game.debug.inputInfo()` now shows which input handlers and pointers are active.
+
+* All the input handlers have an `active` property that shows whether they've been started. Their `start` methods return true if they've been started or false otherwise.
+
 * The `skipFrames` argument in AnimationParser#spritesheet now works as an offset (#514). When positive, it's an offset from the start of the parsed frame list; when negative, it's an offset from the end. Negative `frameWidth` and `frameHeight` arguments are no longer allowed.
+
 * preRender() and postRender() hooks are no longer called for the HEADLESS renderer.
-* game.make.group() no longer assigns a default parent. This is more consistent with the rest of the game.make methods (#525). Use game.add.group() instead to add the Group to the game world.
-* Point.parse() no longer converts coordinates to integers. Use the new method Point.trunc() as well if you want the previous behavior.
-* The default Debug#font is now '14px monospace'. Set it to '14px Courier' if you want the previous value.
-* Removed MSPointer#button (deprecated)
+
+* `game.make.group()` no longer assigns a default parent. This is more consistent with the rest of the game.make methods (#525). Use `game.add.group()` instead to add the Group to the game world.
+
+* Point.parse() no longer converts coordinates to integers (#502). Use the new method Point.trunc() as well if you want the previous behavior.
+
+* The default Debug#font is now '14px monospace'.
+
+* The unused and deprecated property MSPointer#button was removed.
 
 ### New Features
 
-* States have a new `postUpdate` method hook.
-* Debug#spriteInfo now shows the sprite's parent, if any.
-* onDragUpdate now passes the sprite's change in position (as `deltaX`, `deltaY`).
-* Phaser.Math.trunc()
-* Phaser.Point.trunc()
-* Phaser.EmptyRectangle
-* Added `inactiveColor` argument in Debug#pointer
-* Debug#inputInfo shows input sources and pointers (with `showDetails` argument)
-* Debug#device shows device capabilities
-* Debug#pointer shows movementX/movementY and mouse button states
-* New GameConfig properties: keyboard, maxPointers, mouse, mouseWheel, mspointer, pointerLock, touch
+* States have a new postUpdate method hook. It's called after game objects have received all their own updates (including physics), but before the Stage has calculated the final transformations.
+* Debug#spriteInfo shows the sprite's parent, if any.
+* When a sprite is being dragged you can read its change in position (as `deltaX`, `deltaY`) in the onDragUpdate handler.
+* Phaser.Math.trunc() truncates a number.
+* Phaser.EmptyRectangle replaces PIXI.EmptyRectangle.
+* Debug#device shows device graphics, audio, and input support. It may be helpful on devices where you can't see `console` output easily.
+* Debug#pointer shows the pointer's movementX/movementY values and button states (for mouse pointers).
+* maxPointers can be passed in the game config, setting Input#maxPointers.
+
+### Updates
+
+* Removed the unnecessary 'Audio source already exists' warning.
 
 ### Bug Fixes
 
+* Masks are no longer disabled by getBounds() and are excluded from bounds calculations (#334).
 * Sprites' bringToTop() and sendToBack() methods now work as expected for all parent types, not just Groups (#549).
 
 ## Version 2.10.6 - 1st June 2018
