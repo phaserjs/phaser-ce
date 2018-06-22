@@ -1137,7 +1137,7 @@ Phaser.Point.parse = function (obj, xProp, yProp)
 };
 
 /**
-* Truncates the x and y values.
+* Truncates the x and y values, removing any fractional parts.
 *
 * @method Phaser.Point.trunc
 * @static
