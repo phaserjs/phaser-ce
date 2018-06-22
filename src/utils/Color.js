@@ -1053,7 +1053,7 @@ Phaser.Color = {
     *
     * @method Phaser.Color.linearInterpolation
     * @param {number[]} colors - The input array of color values to interpolate between.
-    * @param {number} t - A value between 0 and 1.
+    * @param {number} t - The amount of interpolation, between 0 (start) and 1 (end).
     * @return {number} The interpolated color value.
     */
     linearInterpolation: function (colors, t)
