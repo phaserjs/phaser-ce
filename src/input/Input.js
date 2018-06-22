@@ -97,8 +97,9 @@ Phaser.Input = function (game)
     this.scale = null;
 
     /**
-    * The maximum number of Pointers allowed to be active at any one time.
+    * The maximum number of Pointers allowed to be *active* at any one time.
     * A value of -1 is only limited by the total number of pointers (MAX_POINTERS). For lots of games it's useful to set this to 1.
+    * At least 2 Pointers will always be *created*, unless MAX_POINTERS is smaller.
     * @property {integer} maxPointers
     * @default -1 (Limited by total pointers.)
     * @see Phaser.Input.MAX_POINTERS
