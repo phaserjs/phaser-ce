@@ -202,6 +202,7 @@ Phaser.State.prototype = {
     * The postUpdate method is left empty for your own use.
     * It is called during the core game loop AFTER the Stage has had its postUpdate method called (including updateTransform).
     * It is called BEFORE Plugins have had their postUpdate methods called.
+    * You don't need to call updateTransform yourself here unless Plugins need it.
     *
     * @method Phaser.State#postUpdate
     * @param {Phaser.Game} game
