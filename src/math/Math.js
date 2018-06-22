@@ -941,7 +941,7 @@ Phaser.Math = {
     *
     * @method Phaser.Math#linearInterpolation
     * @param {Array} v - The input array of values to interpolate between.
-    * @param {number} k - The percentage of interpolation, between 0 and 1.
+    * @param {number} k - The amount of interpolation, between 0 (start) and 1 (end).
     * @return {number} The interpolated value
     */
     linearInterpolation: function (v, k)
