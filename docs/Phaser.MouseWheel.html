@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Phaser CE Class: CanvasBuffer</title>
+	<title>Phaser CE Class: MouseWheel</title>
 	<link rel="stylesheet" href="styles/site.phaser.css?2018062610">
 </head>
 
@@ -105,15 +105,15 @@
 		
 			<div id="main">
 
-	<h1 class="page-title">Class: CanvasBuffer</h1>
+	<h1 class="page-title">Class: MouseWheel</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="PIXI.html">PIXI</a>.</span>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
         
-        CanvasBuffer
+        MouseWheel
         </h2>
         
     
@@ -125,8 +125,8 @@
     
         
 <dt>
-    <h4 class="name" id="CanvasBuffer" data-name="CanvasBuffer">
-      <span class="type-signature"></span>new CanvasBuffer(width, height)
+    <h4 class="name" id="MouseWheel" data-name="MouseWheel">
+      <span class="type-signature"></span>new MouseWheel(game)
       
     </h4>
     
@@ -135,7 +135,7 @@
 
     
     <div class="description method-description">
-        <p>Creates a Canvas element of the given size.</p>
+        <p>The mouse wheel input handler.</p>
     </div>
     
 
@@ -170,13 +170,13 @@
 
         <tr>
             
-                <td class="name"><code>width</code></td>
+                <td class="name"><code>game</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
 
 
 
@@ -187,31 +187,7 @@
 
             
 
-            <td class="description param-description last"><p>the width for the newly created canvas</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description param-description last"><p>the height for the newly created canvas</p></td>
+            <td class="description param-description last"></td>
         </tr>
 
     
@@ -254,7 +230,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/pixi/renderers/canvas/utils/CanvasBuffer.js#L13" title="CanvasBuffer on line 13 of src/pixi/renderers/canvas/utils/CanvasBuffer.js">src/pixi/renderers/canvas/utils/CanvasBuffer.js line 13</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L7" title="MouseWheel on line 7 of src/input/MouseWheel.js">src/input/MouseWheel.js line 7</a>
     
 
 	
@@ -299,17 +275,13 @@
         <dl>
             
 <dt>
-    <h4 id="canvas" data-name="canvas">
-      <span class="type-signature"></span>canvas<span class="type-signature"> : HTMLCanvasElement</span>
+    <h4 id=".DOWN" data-name="DOWN">
+      <span class="type-signature">&lt;static, constant> </span>DOWN<span class="type-signature"> : number</span>
       
     </h4>
     
 </dt>
 <dd>
-    
-    <div class="description members-description">
-        <p>The Canvas object that belongs to this CanvasBuffer.</p>
-    </div>
     
 
     
@@ -317,7 +289,7 @@
         <ul>
             <li>
                 
-<span class="param-type">HTMLCanvasElement</span>
+<span class="param-type">number</span>
 
 
 
@@ -359,7 +331,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/pixi/renderers/canvas/utils/CanvasBuffer.js#L37" title="canvas on line 37 of src/pixi/renderers/canvas/utils/CanvasBuffer.js">src/pixi/renderers/canvas/utils/CanvasBuffer.js line 37</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L105" title="DOWN on line 105 of src/input/MouseWheel.js">src/input/MouseWheel.js line 105</a>
     
 
 	
@@ -376,17 +348,13 @@
         
             
 <dt>
-    <h4 id="context" data-name="context">
-      <span class="type-signature"></span>context<span class="type-signature"> : CanvasRenderingContext2D</span>
+    <h4 id=".UP" data-name="UP">
+      <span class="type-signature">&lt;static, constant> </span>UP<span class="type-signature"> : number</span>
       
     </h4>
     
 </dt>
 <dd>
-    
-    <div class="description members-description">
-        <p>A CanvasRenderingContext2D object representing a two-dimensional rendering context.</p>
-    </div>
     
 
     
@@ -394,7 +362,7 @@
         <ul>
             <li>
                 
-<span class="param-type">CanvasRenderingContext2D</span>
+<span class="param-type">number</span>
 
 
 
@@ -436,7 +404,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/pixi/renderers/canvas/utils/CanvasBuffer.js#L45" title="context on line 45 of src/pixi/renderers/canvas/utils/CanvasBuffer.js">src/pixi/renderers/canvas/utils/CanvasBuffer.js line 45</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L99" title="UP on line 99 of src/input/MouseWheel.js">src/input/MouseWheel.js line 99</a>
     
 
 	
@@ -453,8 +421,8 @@
         
             
 <dt>
-    <h4 id="height" data-name="height">
-      <span class="type-signature"></span>height<span class="type-signature"> : Number</span>
+    <h4 id="active" data-name="active">
+      <span class="type-signature">&lt;readonly> </span>active<span class="type-signature"> : boolean</span>
       
     </h4>
     
@@ -462,7 +430,7 @@
 <dd>
     
     <div class="description members-description">
-        <p>The height of the Canvas in pixels.</p>
+        <p>Whether the handler is active.</p>
     </div>
     
 
@@ -471,7 +439,7 @@
         <ul>
             <li>
                 
-<span class="param-type">Number</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -513,7 +481,94 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/pixi/renderers/canvas/utils/CanvasBuffer.js#L29" title="height on line 29 of src/pixi/renderers/canvas/utils/CanvasBuffer.js">src/pixi/renderers/canvas/utils/CanvasBuffer.js line 29</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L42" title="active on line 42 of src/input/MouseWheel.js">src/input/MouseWheel.js line 42</a>
+    
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="Phaser.MouseWheel.html#start">Phaser.MouseWheel#start</a></li>
+			
+			<li><a href="Phaser.MouseWheel.html#stop">Phaser.MouseWheel#stop</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="callback" data-name="callback">
+      <span class="type-signature"></span>callback<span class="type-signature"> : function</span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>A callback to call for each wheel event.
+It receives an <code>event</code> parameter.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">function</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L49" title="callback on line 49 of src/input/MouseWheel.js">src/input/MouseWheel.js line 49</a>
     
 
 	
@@ -530,8 +585,8 @@
         
             
 <dt>
-    <h4 id="width" data-name="width">
-      <span class="type-signature"></span>width<span class="type-signature"> : Number</span>
+    <h4 id="callbackContext" data-name="callbackContext">
+      <span class="type-signature"></span>callbackContext<span class="type-signature"> : any</span>
       
     </h4>
     
@@ -539,7 +594,8 @@
 <dd>
     
     <div class="description members-description">
-        <p>The width of the Canvas in pixels.</p>
+        <p>The context for <a href="Phaser.MouseWheel.html#callback">Phaser.MouseWheel#callback</a>.
+The default is <a href="Phaser.MouseWheel.html#game">Phaser.MouseWheel#game</a>.</p>
     </div>
     
 
@@ -548,7 +604,7 @@
         <ul>
             <li>
                 
-<span class="param-type">Number</span>
+<span class="param-type">any</span>
 
 
 
@@ -590,7 +646,400 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/pixi/renderers/canvas/utils/CanvasBuffer.js#L21" title="width on line 21 of src/pixi/renderers/canvas/utils/CanvasBuffer.js">src/pixi/renderers/canvas/utils/CanvasBuffer.js line 21</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L56" title="callbackContext on line 56 of src/input/MouseWheel.js">src/input/MouseWheel.js line 56</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="delta" data-name="delta">
+      <span class="type-signature">&lt;readonly> </span>delta<span class="type-signature"> : number</span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>The direction of the last wheel event.
+Between -1 (down) and 1 (up).</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L65" title="delta on line 65 of src/input/MouseWheel.js">src/input/MouseWheel.js line 65</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="element" data-name="element">
+      <span class="type-signature"></span>element<span class="type-signature"> : HTMLElement</span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>The element where event listeners are added (the game canvas).</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">HTMLElement</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L26" title="element on line 26 of src/input/MouseWheel.js">src/input/MouseWheel.js line 26</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="game" data-name="game">
+      <span class="type-signature"></span>game<span class="type-signature"> : <a href="Phaser.Game.html">Phaser.Game</a></span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>The currently running game.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L14" title="game on line 14 of src/input/MouseWheel.js">src/input/MouseWheel.js line 14</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="input" data-name="input">
+      <span class="type-signature"></span>input<span class="type-signature"> : <a href="Phaser.Input.html">Phaser.Input</a></span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>The Input Manager.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Input.html">Phaser.Input</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L20" title="input on line 20 of src/input/MouseWheel.js">src/input/MouseWheel.js line 20</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="preventDefault" data-name="preventDefault">
+      <span class="type-signature"></span>preventDefault<span class="type-signature"> : boolean</span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>Whether the default mouse wheel actions (usually zoom or pan) are cancelled.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>true</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L33" title="preventDefault on line 33 of src/input/MouseWheel.js">src/input/MouseWheel.js line 33</a>
     
 
 	
@@ -613,8 +1062,8 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="destroy" data-name="destroy">
-      <span class="type-signature"></span>destroy()
+    <h4 class="name" id="start" data-name="start">
+      <span class="type-signature"></span>start()
       
     </h4>
     
@@ -623,7 +1072,7 @@
 
     
     <div class="description method-description">
-        <p>Frees the canvas up for use again.</p>
+        <p>Activates the handler, unless unsupported or already activate.</p>
     </div>
     
 
@@ -668,7 +1117,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/pixi/renderers/canvas/utils/CanvasBuffer.js#L78" title="destroy on line 78 of src/pixi/renderers/canvas/utils/CanvasBuffer.js">src/pixi/renderers/canvas/utils/CanvasBuffer.js line 78</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L107" title="start on line 107 of src/input/MouseWheel.js">src/input/MouseWheel.js line 107</a>
     
 
 	
@@ -690,6 +1139,32 @@
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <ul>
+<li>True if the handler was started, otherwise false.</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -697,8 +1172,8 @@
         
             
 <dt>
-    <h4 class="name" id="resize" data-name="resize">
-      <span class="type-signature"></span>resize(width, height)
+    <h4 class="name" id="stop" data-name="stop">
+      <span class="type-signature"></span>stop()
       
     </h4>
     
@@ -707,7 +1182,7 @@
 
     
     <div class="description method-description">
-        <p>Resizes the canvas to the specified width and height.</p>
+        <p>Deactivates the handler.</p>
     </div>
     
 
@@ -716,80 +1191,6 @@
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>width</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description param-description last"><p>the new width of the canvas</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description param-description last"><p>the new height of the canvas</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -826,7 +1227,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/pixi/renderers/canvas/utils/CanvasBuffer.js#L65" title="resize on line 65 of src/pixi/renderers/canvas/utils/CanvasBuffer.js">src/pixi/renderers/canvas/utils/CanvasBuffer.js line 65</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/MouseWheel.js#L137" title="stop on line 137 of src/input/MouseWheel.js">src/input/MouseWheel.js line 137</a>
     
 
 	
