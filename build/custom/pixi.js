@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.10.6 "2018-06-01" - Built: Fri Jun 01 2018 17:45:01
+* v2.11.0 "2018-06-26" - Built: Tue Jun 26 2018 10:57:16
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -1133,6 +1133,30 @@ PIXI.DisplayObjectContainer.prototype.removeChildAt = function (index)
 
 };
 
+PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
+{
+
+    if (child.parent !== this)
+    {
+        return;
+    }
+
+    return this.setChildIndex(child, this.children.length - 1);
+
+};
+
+PIXI.DisplayObjectContainer.prototype.sendChildToBack = function (child)
+{
+
+    if (child.parent !== this)
+    {
+        return;
+    }
+
+    return this.setChildIndex(child, 0);
+
+};
+
 /**
 * Removes all children from this container that are within the begin and end indexes.
 *
@@ -1777,12 +1801,11 @@ PIXI.Sprite.prototype.onTextureUpdate = function ()
 * Returns the bounds of the Sprite as a rectangle.
 * The bounds calculation takes the worldTransform into account.
 *
-* It is important to note that the transform is not updated when you call this method.
-* So if this Sprite is the child of a Display Object which has had its transform
-* updated since the last render pass, those changes will not yet have been applied
-* to this Sprites worldTransform. If you need to ensure that all parent transforms
-* are factored into this getBounds operation then you should call `updateTransform`
-* on the root most object in this Sprites display list first.
+* The worldTransform was calculated during the last render pass and is not updated when you call this method.
+* If this Sprite was just created and has never been rendered, you can call `updateTransform` on the Sprite itself.
+* If any of the Sprite's ancestors have been positioned, scaled, or rotated since the last render pass,
+* those changes have not yet have been applied to this Sprite's worldTransform. Call `updateTransform`
+* on the root-most (highest) ancestor that was changed.
 *
 * @method PIXI.Sprite#getBounds
 * @param matrix {Matrix} the transformation matrix of the sprite
@@ -4962,7 +4985,7 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
     var texture = sprite.texture;
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
-    if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture)
+    if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
     {
         this.flush();
         gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
@@ -5020,7 +5043,6 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
     }
 
     var i = this.currentBatchSize * this.vertexSize; // 4 * this.vertSize;
-    var tiOffset = this.currentBatchSize * 4;
     var resolution = texture.baseTexture.resolution;
     var textureIndex = texture.baseTexture.textureIndex;
 
@@ -5031,7 +5053,6 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
     var tx = wt.tx;
     var ty = wt.ty;
 
-    var cw = texture.crop.width;
     var ch = texture.crop.height;
 
     if (texture.rotated)
@@ -5146,7 +5167,7 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture)
+    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
     {
         this.flush();
         gl.activeTexture(gl.TEXTURE0 + textureIndex);
@@ -5355,7 +5376,6 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
     var blendSwap = false;
     var shaderSwap = false;
     var sprite;
-    var textureIndex = 0;
 
     for (var i = 0, j = this.currentBatchSize; i < j; i++)
     {
@@ -5737,7 +5757,7 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
 
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture &&
+    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture && // eslint-disable-line eqeqeq
         baseTexture._glTextures[gl.id] && !sprite.texture.baseTexture.skipRender)
     {
         this.flush();
@@ -5773,11 +5793,11 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     }
     else
     {
-        w0 = (sprite.texture.frame.width) * (1 - sprite.anchor.x);
-        w1 = (sprite.texture.frame.width) * -sprite.anchor.x;
+        w0 = width * (1 - sprite.anchor.x);
+        w1 = width * -sprite.anchor.x;
 
-        h0 = sprite.texture.frame.height * (1 - sprite.anchor.y);
-        h1 = sprite.texture.frame.height * -sprite.anchor.y;
+        h0 = height * (1 - sprite.anchor.y);
+        h1 = height * -sprite.anchor.y;
     }
 
     index = this.currentBatchSize * 4 * this.vertSize;
@@ -6054,7 +6074,7 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
     filterBlock._filterArea = filterBlock.target.filterArea || filterBlock.target.getBounds();
 
     // >>> modify by nextht
-    filterBlock._previous_stencil_mgr = this.renderSession.stencilManager;
+    filterBlock._previous_stencil_mgr = this.renderSession.stencilManager; // eslint-disable-line camelcase
     this.renderSession.stencilManager = new PIXI.WebGLStencilManager();
     this.renderSession.stencilManager.setContext(gl);
     gl.disable(gl.STENCIL_TEST);
@@ -6291,8 +6311,8 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
     {
         this.renderSession.stencilManager.destroy();
     }
-    this.renderSession.stencilManager = filterBlock._previous_stencil_mgr;
-    filterBlock._previous_stencil_mgr = null;
+    this.renderSession.stencilManager = filterBlock._previous_stencil_mgr; // eslint-disable-line camelcase
+    filterBlock._previous_stencil_mgr = null; // eslint-disable-line camelcase
     if (this.renderSession.stencilManager.count > 0)
     {
         gl.enable(gl.STENCIL_TEST);
@@ -7081,7 +7101,7 @@ PIXI.CanvasRenderer.prototype.render = function (root)
 
 };
 
-PIXI.CanvasRenderer.prototype.setTexturePriority = function (textureNameCollection)
+PIXI.CanvasRenderer.prototype.setTexturePriority = function ()
 {
 
     //  Does nothing on Canvas, but here to allow you to simply set
