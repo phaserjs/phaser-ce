@@ -247,9 +247,11 @@ Ninja Physics is not bundled in Phaser by default. Please see the README custom 
 | [DeviceButton](./Phaser.DeviceButton.html) | `pointer.leftButton`, … | Represents a button on a mouse or pen/stylus. |
 | [Keyboard](./Phaser.Keyboard.html) | `input.keyboard` | The Keyboard input handler. Listens for device related events. Can also create Key objects. |
 | [Key](./Phaser.Key.html) | - | A Key object is responsible for listening to a specific Key. Created by the Keyboard class. |
-| [KeyCode](./Phaser.KeyCode.html) | - | The KeyCode consts are used when creating new Key objects. |
+| [KeyCode](./Phaser.KeyCode.html) | - | The KeyCode constants are used when creating new Key objects. |
 | [Mouse](./Phaser.Mouse.html) | `input.mouse` | A Mouse event handler. Listens for device related events and passes them on to the active Pointer. |
-| [MSPointer](./Phaser.MSPointer.html) | `input.mspointer` | An MSPointer event handler. Listens for device related events and passes them on to the active Pointer. |
+| [MouseLock](./Phaser.MouseWheel.html) | `input.mouseWheel` | A Mouse Wheel event handler. |
+| [MSPointer](./Phaser.MSPointer.html) | `input.mspointer` | An event handler for the Pointer Events API. Listens for device related events and passes them on to the active Pointer. |
+| [MouseLock](./Phaser.PointerLock.html) | `input.pointerLock` | An event handler for the Pointer Lock API. |
 | [Touch](./Phaser.Touch.html) | `input.touch` | A Touch event handler. Listens for device related events and passes them on to the active Pointer. |
 
 <a name="gamepads"></a>
