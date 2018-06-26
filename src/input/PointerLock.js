@@ -1,3 +1,9 @@
+/**
+* The pointer lock input handler.
+* @class
+* @constructor
+* @param {Phaser.Game} game
+*/
 Phaser.PointerLock = function (game)
 {
     /**
