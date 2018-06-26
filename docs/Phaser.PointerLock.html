@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Phaser CE Class: Quadratic</title>
+	<title>Phaser CE Class: PointerLock</title>
 	<link rel="stylesheet" href="styles/site.phaser.css?2018062611">
 </head>
 
@@ -105,15 +105,15 @@
 		
 			<div id="main">
 
-	<h1 class="page-title">Class: Quadratic</h1>
+	<h1 class="page-title">Class: PointerLock</h1>
 <section>
 
 <header>
     
         <h2>
-            <span class="ancestors"><a href="Phaser.html">Phaser</a><a href="Phaser.Easing.html">.Easing</a>.</span>
+            <span class="ancestors"><a href="Phaser.html">Phaser</a>.</span>
         
-        Quadratic
+        PointerLock
         </h2>
         
     
@@ -125,8 +125,8 @@
     
         
 <dt>
-    <h4 class="name" id="Quadratic" data-name="Quadratic">
-      <span class="type-signature"></span>new Quadratic()
+    <h4 class="name" id="PointerLock" data-name="PointerLock">
+      <span class="type-signature"></span>new PointerLock(game)
       
     </h4>
     
@@ -135,7 +135,7 @@
 
     
     <div class="description method-description">
-        <p>Quadratic easing.</p>
+        <p>The pointer lock input handler.</p>
     </div>
     
 
@@ -144,6 +144,56 @@
     
 
     
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>game</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description param-description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -180,7 +230,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/tween/Easing.js#L44" title="Quadratic on line 44 of src/tween/Easing.js">src/tween/Easing.js line 44</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L7" title="PointerLock on line 7 of src/input/PointerLock.js">src/input/PointerLock.js line 7</a>
     
 
 	
@@ -219,6 +269,551 @@
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<dt>
+    <h4 id="active" data-name="active">
+      <span class="type-signature">&lt;readonly> </span>active<span class="type-signature"> : boolean</span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>Whether the input handler is active.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L32" title="active on line 32 of src/input/PointerLock.js">src/input/PointerLock.js line 32</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="element" data-name="element">
+      <span class="type-signature"></span>element<span class="type-signature"> : HTMLElement</span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>The element where event listeners are added.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">HTMLElement</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L25" title="element on line 25 of src/input/PointerLock.js">src/input/PointerLock.js line 25</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="game" data-name="game">
+      <span class="type-signature"></span>game<span class="type-signature"> : <a href="Phaser.Game.html">Phaser.Game</a></span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>The currently running game.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Game.html">Phaser.Game</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L13" title="game on line 13 of src/input/PointerLock.js">src/input/PointerLock.js line 13</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="input" data-name="input">
+      <span class="type-signature"></span>input<span class="type-signature"> : <a href="Phaser.Input.html">Phaser.Input</a></span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>The Input Manager.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Input.html">Phaser.Input</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L19" title="input on line 19 of src/input/PointerLock.js">src/input/PointerLock.js line 19</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="locked" data-name="locked">
+      <span class="type-signature"></span>locked<span class="type-signature"> : boolean</span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>Whether the pointer is locked to the game canvas.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L38" title="locked on line 38 of src/input/PointerLock.js">src/input/PointerLock.js line 38</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="onChange" data-name="onChange">
+      <span class="type-signature"></span>onChange<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>A signal dispatched when the pointer is locked or unlocked.
+Its arguments are <a href="Phaser.PointerLock.html#locked">Phaser.PointerLock#locked</a> and the original event from the browser.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L45" title="onChange on line 45 of src/input/PointerLock.js">src/input/PointerLock.js line 45</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="onError" data-name="onError">
+      <span class="type-signature"></span>onError<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>A signal dispatched when a request to lock or unlock the pointer fails.
+Its argument is the original event from the browser.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L52" title="onError on line 52 of src/input/PointerLock.js">src/input/PointerLock.js line 52</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
     
 
     
@@ -227,8 +822,8 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="In" data-name="In">
-      <span class="type-signature"></span>In(k)
+    <h4 class="name" id="exit" data-name="exit">
+      <span class="type-signature"></span>exit()
       
     </h4>
     
@@ -237,7 +832,8 @@
 
     
     <div class="description method-description">
-        <p>Ease-in.</p>
+        <p>Releases the locked pointer.
+Use onChange and onError to track the result of the request.</p>
     </div>
     
 
@@ -246,56 +842,6 @@
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>k</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description param-description last"><p>The value to be tweened.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -332,7 +878,176 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/tween/Easing.js#L46" title="In on line 46 of src/tween/Easing.js">src/tween/Easing.js line 46</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L149" title="exit on line 149 of src/input/PointerLock.js">src/input/PointerLock.js line 149</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="request" data-name="request">
+      <span class="type-signature"></span>request()
+      
+    </h4>
+    
+</dt>
+<dd>
+
+    
+    <div class="description method-description">
+        <p>Requests the browser to lock the pointer to the game canvas.
+Use onChange and onError to track the result of the request.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L134" title="request on line 134 of src/input/PointerLock.js">src/input/PointerLock.js line 134</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="start" data-name="start">
+      <span class="type-signature"></span>start()
+      
+    </h4>
+    
+</dt>
+<dd>
+
+    
+    <div class="description method-description">
+        <p>Activates the handler, unless already active or Pointer Lock is unsupported on this device.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L92" title="start on line 92 of src/input/PointerLock.js">src/input/PointerLock.js line 92</a>
     
 
 	
@@ -358,7 +1073,9 @@
     
             
 <div class="param-desc">
-    <p>k^2.</p>
+    <ul>
+<li>True if the handler was started, otherwise false.</li>
+</ul>
 </div>
 
 
@@ -369,7 +1086,7 @@
     </dt>
     <dd>
         
-<span class="param-type">number</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -385,8 +1102,8 @@
         
             
 <dt>
-    <h4 class="name" id="InOut" data-name="InOut">
-      <span class="type-signature"></span>InOut(k)
+    <h4 class="name" id="stop" data-name="stop">
+      <span class="type-signature"></span>stop()
       
     </h4>
     
@@ -395,7 +1112,7 @@
 
     
     <div class="description method-description">
-        <p>Ease-in/out.</p>
+        <p>Deactivates the handler.</p>
     </div>
     
 
@@ -404,56 +1121,6 @@
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>k</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description param-description last"><p>The value to be tweened.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -490,7 +1157,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/tween/Easing.js#L74" title="InOut on line 74 of src/tween/Easing.js">src/tween/Easing.js line 74</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/input/PointerLock.js#L122" title="stop on line 122 of src/input/PointerLock.js">src/input/PointerLock.js line 122</a>
     
 
 	
@@ -512,188 +1179,6 @@
     
 
     
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>The tweened value.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="Out" data-name="Out">
-      <span class="type-signature"></span>Out(k)
-      
-    </h4>
-    
-</dt>
-<dd>
-
-    
-    <div class="description method-description">
-        <p>Ease-out.</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>k</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description param-description last"><p>The value to be tweened.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-    
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.11.0/src/tween/Easing.js#L60" title="Out on line 60 of src/tween/Easing.js">src/tween/Easing.js line 60</a>
-    
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>k* (2-k).</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
 
     
 </dd>
