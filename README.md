@@ -328,7 +328,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Version 2.11.0 (in development)
+## Version 2.11.0 - 26 June 2018
 
 If you're starting or stopping input handlers manually, you'll have to make some simple changes to your code.
 
@@ -404,15 +404,6 @@ If you're starting or stopping input handlers manually, you'll have to make some
 ### Thanks
 
 @giniwren, @griever989, @mindcity, @omretterry, @photonstorm, @samme, @Siri0n, @tobspr
-
-## Version 2.10.6 - 1st June 2018
-
-* Fixed audio playback when restarting a paused sound (#538).
-* TypeScript and documentation fixes (#537, #540, #544, #545).
-
-### Thanks
-
-@bseiller, @GrindheadGames, @josalmi, @photonstorm, @qdrj, @samme, @Siri0n, @zhanghuanchong
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 

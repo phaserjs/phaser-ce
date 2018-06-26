@@ -4,6 +4,83 @@
 
 See [README: Change Log: Unreleased](README.md#unreleased).
 
+## Version 2.11.0 - 26 June 2018
+
+If you're starting or stopping input handlers manually, you'll have to make some simple changes to your code.
+
+### API Changes / New Features
+
+* Phaser now starts the [Pointer Events handler](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html) (with capture off) or the [Mouse handler](https://photonstorm.github.io/phaser-ce/Phaser.Mouse.html) (with capture off), but not both. This makes input behavior more consistent and avoids some rare conflicts between the two when running simultaneously.
+
+  If you want to disable the Pointer Events handler, pass `{ mspointer: false }` in your game config. The Mouse handler will be used instead.
+
+  If you want to run both handlers together, you can start the Mouse handler manually. You should also turn on capture for the Pointer Events handler to avoid duplicate events:
+
+  ```javascript
+  game.input.mouse.start();
+  game.input.mspointer.capture = true;
+  ```
+
+* [Mouse wheel input](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html) was moved to `input.mouseWheel`. The changed properties are
+
+  - `input.mouse.wheelDelta`         → `input.mouseWheel.delta`
+  - `input.mouse.mouseWheelCallback` → `input.mouseWheel.callback`
+
+  The old properties will keep working for now.
+
+* [Pointer lock input](https://photonstorm.github.io/phaser-ce/Phaser.PointerLock.html) was moved to `input.pointerLock`. The changed properties are
+
+  - `input.mouse.pointerLock`          → `input.pointerLock.onChange`
+  - `input.mouse.requestPointerLock()` → `input.pointerLock.request()`
+  - `input.mouse.locked`               → `input.pointerLock.locked`
+  - `input.mouse.releasePointerLock()` → `input.pointerLock.exit()`
+
+  The old properties will keep working for now.
+
+  There is a new Signal, `input.pointerLock.onError`, dispatched when a request fails.
+
+  Beware that [Chrome < 68 doesn't pass movement values when using Pointer Events with pointer lock](https://bugs.chromium.org/p/chromium/issues/detail?id=836995), so you should use the Mouse handler instead for that.
+
+* `game.debug.inputInfo()` now shows which input handlers and pointers are active.
+
+* All the input handlers have an `active` property that shows whether they've been started. Their `start` methods return true if they've been started or false otherwise.
+
+* The `skipFrames` argument in [AnimationParser#spriteSheet](https://photonstorm.github.io/phaser-ce/Phaser.AnimationParser.html#_spriteSheet) now works as an offset (#514). When positive, it's an offset from the start of the parsed frame list; when negative, it's an offset from the end. Negative `frameWidth` and `frameHeight` arguments are no longer allowed.
+
+* preRender() and postRender() hooks are no longer called for the HEADLESS renderer.
+
+* `game.make.group()` no longer assigns a default parent. This is more consistent with the rest of the [game.make](https://photonstorm.github.io/phaser-ce/Phaser.GameObjectCreator.html) methods (#525). Use `game.add.group()` instead to add the Group to the game world.
+
+* [Point.parse()](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#_parse) no longer converts coordinates to integers (#502). Use the new method [Point.trunc()](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#_trunc) as well if you want the previous behavior.
+
+* The default [Debug#font](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#font) is now '14px monospace'.
+
+* The unused and deprecated property MSPointer#button was removed.
+
+### New Features
+
+* States have a new [postUpdate](https://photonstorm.github.io/phaser-ce/Phaser.State.html#postUpdate) method hook. It's called after game objects have received all their own updates (including physics), but before the Stage has calculated the final transformations.
+* [Debug#spriteInfo](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#spriteInfo) shows the sprite's parent, if any.
+* When a sprite is being dragged you can read its change in position (as `deltaX`, `deltaY`) in the [onDragUpdate](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onDragUpdate) handler.
+* [Phaser.Math.trunc()](https://photonstorm.github.io/phaser-ce/Phaser.Math.html#trunc) truncates a number.
+* Phaser.EmptyRectangle replaces PIXI.EmptyRectangle.
+* [Debug#device](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#device) shows device graphics, audio, and input support. It may be helpful on devices where you can't see `console` output easily.
+* [Debug#pointer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#pointer) shows the pointer's movementX/movementY values and button states (for mouse pointers).
+* `maxPointers` can be passed in the [game config](https://photonstorm.github.io/phaser-ce/global.html#GameConfig), setting [Input#maxPointers](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#maxPointers).
+
+### Updates
+
+* Removed the unnecessary 'Audio source already exists' warning.
+
+### Bug Fixes
+
+* Masks are no longer disabled by getBounds() and are excluded from bounds calculations (#334).
+* Sprites' [bringToTop()](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#bringToTop) and [sendToBack()](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#sendToBack) methods now work as expected for all parent types, not just Groups (#549).
+
+### Thanks
+
+@giniwren, @griever989, @mindcity, @omretterry, @photonstorm, @samme, @Siri0n, @tobspr
+
 ## Version 2.10.6 - 1st June 2018
 
 * Fixed audio playback when restarting a paused sound (#538).
