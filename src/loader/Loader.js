@@ -1134,23 +1134,25 @@ Phaser.Loader.prototype = {
     * and no URL is given then the Loader will set the URL to be "alien.png". It will always add `.png` as the extension.
     * If you do not desire this action then provide a URL.
     *
-    * An image with four sprites, `margin = 1`, and `spacing = 1` looks like this:
+    * An image with four frames, `margin = 1`, and `spacing = 2` looks like this:
     *
     * ```
-    * .......
-    * .     .
-    * . # # .
-    * .     .
-    * . # # .
-    * .     .
-    * .......
+    * ........
+    * .#  #  .
+    * .      .
+    * .      .
+    * .#  #  .
+    * .      .
+    * .      .
+    * ........
     *
     * .  margin
     *    spacing
     * #  sprite frame
     * ```
     *
-    * The first sprite frame is found at (margin + spacing) px from the top-left of the image.
+    * The first sprite frame is found at (margin) px from the left of the image.
+    * The second sprite frame is found at (margin + frameWidth + spacing) px from the left of the image, and so on.
     *
     * @method Phaser.Loader#spritesheet
     * @param {string} key - Unique asset key of the sheet file.
@@ -1158,8 +1160,8 @@ Phaser.Loader.prototype = {
     * @param {number} frameWidth - Width in pixels of a single frame in the sprite sheet.
     * @param {number} frameHeight - Height in pixels of a single frame in the sprite sheet.
     * @param {number} [frameMax=-1] - How many frames in this sprite sheet. If not specified it will divide the whole image into frames.
-    * @param {number} [margin=0] - Width of any empty space at the image edges, in addition to any `spacing`.
-    * @param {number} [spacing=0] - Width of any empty space between the frames, and between the frames and the `margin`. If there is space **only** between the frames, and nowhere else, use `margin` equal to `-spacing`.
+    * @param {number} [margin=0] - The distance from the top-left of the image to the top-left of the first frame, if any.
+    * @param {number} [spacing=0] - The distance from the right edge of a frame to the left edge of the next frame on the same row; or the distance from the bottom edge of a frame to the top edge of the next frame on the same column.
     * @param {number} [skipFrames=0] - Skip a number of frames. Useful when there are multiple sprite sheets in one image.
     * @return {Phaser.Loader} This Loader instance.
     */
