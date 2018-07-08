@@ -328,6 +328,12 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
+## Unreleased
+
+### TypeScript definitions
+
+* Fixed TS definition for bitmapText in GameObjectFactory.
+
 ## Version 2.11.0 - 26 June 2018
 
 If you're starting or stopping input handlers manually, you'll have to make some simple changes to your code.
@@ -403,7 +409,7 @@ If you're starting or stopping input handlers manually, you'll have to make some
 
 ### Thanks
 
-@giniwren, @griever989, @mindcity, @omretterry, @photonstorm, @samme, @Siri0n, @tobspr
+@giniwren, @griever989, @mindcity, @omretterry, @photonstorm, @samme, @Siri0n, @tobspr, @B10215029
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
