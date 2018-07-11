@@ -330,6 +330,10 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
+### TypeScript definitions
+
+* Fixed TS definition for bitmapText in GameObjectFactory.
+
 ### Documentation
 
 * Changed [the game configuration object's](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) `canvasID` property name - the previous value, `canvasId`, was not used.
@@ -413,7 +417,7 @@ If you're starting or stopping input handlers manually, you'll have to make some
 
 ### Thanks
 
-@giniwren, @griever989, @mindcity, @omretterry, @photonstorm, @samme, @Siri0n, @tobspr
+@giniwren, @griever989, @mindcity, @omretterry, @photonstorm, @samme, @Siri0n, @tobspr, @B10215029
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
