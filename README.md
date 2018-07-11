@@ -328,6 +328,16 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
+## Unreleased
+
+### Documentation
+
+* Changed [the game configuration object's](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) `canvasID` property name - the previous value, `canvasId`, was not used.
+
+### Thanks
+
+@rydash
+
 ## Version 2.11.0 - 26 June 2018
 
 If you're starting or stopping input handlers manually, you'll have to make some simple changes to your code.
