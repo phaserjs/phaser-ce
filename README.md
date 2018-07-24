@@ -333,6 +333,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### TypeScript definitions
 
 * Fixed TS definition for bitmapText in GameObjectFactory.
+* Fixed TS definition for clear in RenderTexture.
 
 ### Documentation
 
@@ -340,7 +341,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@rydash
+@rydash @tiagokeller
 
 ## Version 2.11.0 - 26 June 2018
 

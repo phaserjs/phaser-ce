@@ -4457,6 +4457,7 @@ declare module Phaser {
         key: string;
         type: number;
 
+        clear(): void;
         render(displayObject: PIXI.DisplayObject, matrix?: Phaser.Matrix, clear?: boolean): void;
         renderXY(displayObject: PIXI.DisplayObject, x: number, y: number, clear?: boolean): void;
         renderRawXY(displayObject: PIXI.DisplayObject, x: number, y: number, clear?: boolean): void;
