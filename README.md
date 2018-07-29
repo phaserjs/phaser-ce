@@ -341,7 +341,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@rydash @tiagokeller
+@rydash @tiagokeller @Mertank
 
 ## Version 2.11.0 - 26 June 2018
 
