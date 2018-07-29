@@ -330,6 +330,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
+Fixes an issue where if the WebGL renderer failed to initialize that RenderTexture's would still try to use it if no renderer was provided.
+
 ### TypeScript definitions
 
 * Fixed TS definition for bitmapText in GameObjectFactory.
