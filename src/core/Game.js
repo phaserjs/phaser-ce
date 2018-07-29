@@ -890,6 +890,7 @@ Phaser.Game.prototype = {
             }
             catch (webGLRendererError)
             {
+                PIXI.defaultRenderer = null;
                 this.renderer = null;
                 this.multiTexture = false;
                 PIXI._enableMultiTextureToggle = false;
