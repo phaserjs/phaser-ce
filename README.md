@@ -332,6 +332,8 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 Fixes an issue where if the WebGL renderer failed to initialize that RenderTexture's would still try to use it if no renderer was provided.
 
+Game now checks SoundManager's `muteOnPause` property whenever the game's `paused` property is set so one can control whether sounds play when the game is manually paused. Previously, the property was only used when the game focus was lost in the DOM.
+
 ### TypeScript definitions
 
 * Fixed TS definition for bitmapText in GameObjectFactory.
@@ -343,7 +345,7 @@ Fixes an issue where if the WebGL renderer failed to initialize that RenderTextu
 
 ### Thanks
 
-@rydash @tiagokeller @Mertank
+@rydash @tiagokeller @Mertank @giniwren
 
 ## Version 2.11.0 - 26 June 2018
 
