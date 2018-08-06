@@ -1370,7 +1370,7 @@ Phaser.BitmapData.prototype = {
 
                 if (source === null)
                 {
-                    return;
+                    return this;
                 }
                 else
                 {
@@ -1442,7 +1442,7 @@ Phaser.BitmapData.prototype = {
         if (this._alpha.current <= 0 || this._scale.x === 0 || this._scale.y === 0 || this._size.x === 0 || this._size.y === 0)
         {
             //  Why bother wasting CPU cycles drawing something you can't see?
-            return;
+            return this;
         }
 
         var ctx = this.context;
