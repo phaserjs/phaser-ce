@@ -334,6 +334,8 @@ Fixes an issue where if the WebGL renderer failed to initialize that RenderTextu
 
 Game now checks SoundManager's `muteOnPause` property whenever the game's `paused` property is set so one can control whether sounds play when the game is manually paused. Previously, the property was only used when the game focus was lost in the DOM.
 
+Game now nulls a reference to itself from PIXI after destroy.
+
 ### TypeScript definitions
 
 * Fixed TS definition for bitmapText in GameObjectFactory.
@@ -345,7 +347,7 @@ Game now checks SoundManager's `muteOnPause` property whenever the game's `pause
 
 ### Thanks
 
-@rydash @tiagokeller @Mertank @giniwren
+@rydash @tiagokeller @Mertank @giniwren @josalmi
 
 ## Version 2.11.0 - 26 June 2018
 
