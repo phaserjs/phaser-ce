@@ -1269,6 +1269,10 @@ Phaser.Game.prototype = {
 
         Phaser.Canvas.removeFromDOM(this.canvas);
 
+        if (PIXI.game === this)
+        {
+            PIXI.game = null;
+        }
         PIXI.defaultRenderer = null;
 
         Phaser.GAMES[this.id] = null;
