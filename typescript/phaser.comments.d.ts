@@ -17693,7 +17693,7 @@ declare module Phaser {
         /**
         * Gets or sets the volume of the Video, a value between 0 and 1. The value given is clamped to the range 0 to 1.
         */
-        volume: boolean;
+        volume: number;
 
         /**
         * Gets or sets the playback rate of the Video. This is the speed at which the video is playing.
