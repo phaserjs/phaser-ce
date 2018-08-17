@@ -345,9 +345,13 @@ Game now nulls a reference to itself from PIXI after destroy.
 
 * Changed [the game configuration object's](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) `canvasID` property name - the previous value, `canvasId`, was not used.
 
+### Bug Fixes
+
+* Fixed a BitmapFont frame error when using trim frame in atlas.
+
 ### Thanks
 
-@rydash @tiagokeller @Mertank @giniwren @josalmi
+@rydash @tiagokeller @Mertank @giniwren @josalmi, @B10215029
 
 ## Version 2.11.0 - 26 June 2018
 
@@ -424,7 +428,7 @@ If you're starting or stopping input handlers manually, you'll have to make some
 
 ### Thanks
 
-@giniwren, @griever989, @mindcity, @omretterry, @photonstorm, @samme, @Siri0n, @tobspr, @B10215029
+@giniwren, @griever989, @mindcity, @omretterry, @photonstorm, @samme, @Siri0n, @tobspr
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 

@@ -68,9 +68,9 @@ Phaser.LoaderParser = {
         {
             var charCode = parseInt(letters[i].getAttribute('id'), 10);
 
-            data.chars[charCode] = {
-                x: x + parseInt(letters[i].getAttribute('x'), 10),
-                y: y + parseInt(letters[i].getAttribute('y'), 10),
+            var char = data.chars[charCode] = {
+                x: parseInt(letters[i].getAttribute('x'), 10),
+                y: parseInt(letters[i].getAttribute('y'), 10),
                 width: parseInt(letters[i].getAttribute('width'), 10),
                 height: parseInt(letters[i].getAttribute('height'), 10),
                 xOffset: parseInt(letters[i].getAttribute('xoffset'), 10) / resolution,
@@ -78,6 +78,33 @@ Phaser.LoaderParser = {
                 xAdvance: (parseInt(letters[i].getAttribute('xadvance'), 10) + xSpacing) / resolution,
                 kerning: {}
             };
+            if (frame && frame.trimmed)
+            {
+                if (char.x + char.width > frame.spriteSourceSizeX + frame.spriteSourceSizeW)
+                {
+                    char.width -= char.x + char.width - frame.spriteSourceSizeX - frame.spriteSourceSizeW;
+                }
+                if (char.y + char.height > frame.spriteSourceSizeY + frame.spriteSourceSizeH)
+                {
+                    char.height -= char.y + char.height - frame.spriteSourceSizeY - frame.spriteSourceSizeH;
+                }
+                if (char.x < frame.spriteSourceSizeX)
+                {
+                    var diff = frame.spriteSourceSizeX - char.x;
+                    char.x = 0;
+                    char.width -= diff;
+                    char.xOffset += diff;
+                }
+                if (char.y < frame.spriteSourceSizeY)
+                {
+                    var diff = frame.spriteSourceSizeY - char.y;
+                    char.y = 0;
+                    char.height -= diff;
+                    char.yOffset += diff;
+                }
+            }
+            char.x += x;
+            char.y += y;
         }
 
         var kernings = xml.getElementsByTagName('kerning');
@@ -132,9 +159,9 @@ Phaser.LoaderParser = {
 
                 var charCode = parseInt(letter._id, 10);
 
-                data.chars[charCode] = {
-                    x: x + parseInt(letter._x, 10),
-                    y: y + parseInt(letter._y, 10),
+                var char = data.chars[charCode] = {
+                    x: parseInt(letter._x, 10),
+                    y: parseInt(letter._y, 10),
                     width: parseInt(letter._width, 10),
                     height: parseInt(letter._height, 10),
                     xOffset: parseInt(letter._xoffset, 10) / resolution,
@@ -142,6 +169,33 @@ Phaser.LoaderParser = {
                     xAdvance: (parseInt(letter._xadvance, 10) + xSpacing) / resolution,
                     kerning: {}
                 };
+                if (frame && frame.trimmed)
+                {
+                    if (char.x + char.width > frame.spriteSourceSizeX + frame.spriteSourceSizeW)
+                    {
+                        char.width -= char.x + char.width - frame.spriteSourceSizeX - frame.spriteSourceSizeW;
+                    }
+                    if (char.y + char.height > frame.spriteSourceSizeY + frame.spriteSourceSizeH)
+                    {
+                        char.height -= char.y + char.height - frame.spriteSourceSizeY - frame.spriteSourceSizeH;
+                    }
+                    if (char.x < frame.spriteSourceSizeX)
+                    {
+                        var diff = frame.spriteSourceSizeX - char.x;
+                        char.x = 0;
+                        char.width -= diff;
+                        char.xOffset += diff;
+                    }
+                    if (char.y < frame.spriteSourceSizeY)
+                    {
+                        var diff = frame.spriteSourceSizeY - char.y;
+                        char.y = 0;
+                        char.height -= diff;
+                        char.yOffset += diff;
+                    }
+                }
+                char.x += x;
+                char.y += y;
             }
 
         );
