@@ -1793,9 +1793,9 @@ Phaser.BitmapData.prototype = {
         else
         {
             ctx.shadowColor = color;
-            ctx.shadowBlur = blur || 5;
-            ctx.shadowOffsetX = x || 10;
-            ctx.shadowOffsetY = y || 10;
+            ctx.shadowBlur = (blur === 0) ? 0 : blur || 5;
+            ctx.shadowOffsetX = (x === 0) ? 0 : x || 10;
+            ctx.shadowOffsetY = (y === 0) ? 0 : y || 10;
         }
 
         return this;
