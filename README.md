@@ -348,10 +348,11 @@ Game now nulls a reference to itself from PIXI after destroy.
 ### Bug Fixes
 
 * Fixed a BitmapFont frame error when using trim frame in atlas.
+* Fixed BitmapData.shadow ignoring blur or x/y offset when set to 0
 
 ### Thanks
 
-@rydash @tiagokeller @Mertank @giniwren @josalmi, @B10215029
+@rydash @tiagokeller @Mertank @giniwren @josalmi, @B10215029, @Jazcash
 
 ## Version 2.11.0 - 26 June 2018
 
