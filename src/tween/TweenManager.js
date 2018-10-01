@@ -372,6 +372,23 @@ Phaser.TweenManager.prototype = {
             this._tweens[i].resume(true);
         }
 
+    },
+
+    /**
+    * Removes all tweens and deletes queues.
+    *
+    * @method Phaser.TweenManager#destroy
+    */
+    destroy: function ()
+    {
+
+        this.game.onPause.remove(this._pauseAll, this);
+        this.game.onResume.remove(this._resumeAll, this);
+
+        this.game = null;
+        this._add = null;
+        this._tweens = null;
+
     }
 
 };
