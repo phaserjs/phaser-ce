@@ -557,8 +557,8 @@ Phaser.Keyboard.prototype = {
     },
 
     /**
-    * Returns `true` if the Key was pressed down within the `duration` value given, or `false` if it either isn't down,
-    * or was pressed down longer ago than then given duration.
+    * Returns `true` if the Key has been up *only* within the `duration` value given, or `false` if it either isn't up,
+    * or was has been up longer than the given duration.
     *
     * @method Phaser.Keyboard#upDuration
     * @param {Phaser.KeyCode|integer} keycode - The keycode of the key to check, i.e. Phaser.KeyCode.UP or Phaser.KeyCode.SPACEBAR.

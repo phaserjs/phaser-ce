@@ -288,8 +288,8 @@ Phaser.Key.prototype = {
     },
 
     /**
-    * Returns `true` if the Key was pressed down within the `duration` value given, or `false` if it either isn't down,
-    * or was pressed down longer ago than then given duration.
+    * Returns `true` if the Key has been up *only* within the `duration` value given, or `false` if it either isn't up,
+    * or was has been up longer than the given duration.
     *
     * @method Phaser.Key#upDuration
     * @param {number} [duration=50] - The duration within which the key is considered as being just released. Given in ms.
@@ -303,11 +303,11 @@ Phaser.Key.prototype = {
         return (!this.isDown && ((this.game.time.time - this.timeUp) < duration));
 
     },
-    
+
     /**
     * Returns `true` if the Key was just pressed down this update tick, or `false` if it either isn't down,
     * or was pressed down on a previous update tick.
-    * 
+    *
     * @method Phaser.Key#justPressed
     * @return {boolean} True if the key was just pressed down this update tick.
     */
@@ -321,7 +321,7 @@ Phaser.Key.prototype = {
     /**
     * Returns `true` if the Key was just released this update tick, or `false` if it either isn't up,
     * or was released on a previous update tick.
-    * 
+    *
     * @method Phaser.Key#justReleased
     * @return {boolean} True if the key was just released this update tick.
     */
