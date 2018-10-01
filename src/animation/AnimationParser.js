@@ -98,7 +98,19 @@ Phaser.AnimationParser = {
             lastFrame = total - 1;
         }
 
-        if (total === 0)
+        if (row < 1)
+        {
+            console.warn('Phaser.AnimationParser.spriteSheet: image \'%s\' has width %d, but it should be at least %d (frameWidth=%s, margin=%s, spacing=%s)',
+                key, width, frameWidth + margin + spacing, frameWidth, margin, spacing);
+        }
+
+        if (column < 1)
+        {
+            console.warn('Phaser.AnimationParser.spriteSheet: image \'%s\' has height %d, but it should be at least %d (frameHeight=%s, margin=%s, spacing=%s)',
+                key, height, frameHeight + margin + spacing, frameHeight, margin, spacing);
+        }
+
+        if (totalAvailable === 0)
         {
             console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' zero frames were produced', key);
 
