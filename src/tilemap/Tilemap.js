@@ -1619,10 +1619,10 @@ Phaser.Tilemap.prototype = {
     * Copies all of the tiles in the given rectangular block into the tilemap data buffer.
     *
     * @method Phaser.Tilemap#copy
-    * @param {integer} x - X position of the top left of the area to copy (given in tiles, not pixels)
-    * @param {integer} y - Y position of the top left of the area to copy (given in tiles, not pixels)
-    * @param {integer} width - The width of the area to copy (given in tiles, not pixels)
-    * @param {integer} height - The height of the area to copy (given in tiles, not pixels)
+    * @param {integer} [x=0] - X position of the top left of the area to copy (given in tiles, not pixels)
+    * @param {integer} [y=0] - Y position of the top left of the area to copy (given in tiles, not pixels)
+    * @param {integer} [width] - The width of the area to copy (given in tiles, not pixels)
+    * @param {integer} [height] - The height of the area to copy (given in tiles, not pixels)
     * @param {integer|string|Phaser.TilemapLayer} [layer] - The layer to copy the tiles from.
     * @return {array} An array of the tiles that were copied.
     */
@@ -1808,10 +1808,10 @@ Phaser.Tilemap.prototype = {
     * @method Phaser.Tilemap#replace
     * @param {number} source - The tile index value to scan for.
     * @param {number} dest - The tile index value to replace found tiles with.
-    * @param {number} x - X position of the top left of the area to operate one, given in tiles, not pixels.
-    * @param {number} y - Y position of the top left of the area to operate one, given in tiles, not pixels.
-    * @param {number} width - The width in tiles of the area to operate on.
-    * @param {number} height - The height in tiles of the area to operate on.
+    * @param {number} [x=0] - X position of the top left of the area to operate one, given in tiles, not pixels.
+    * @param {number} [y=0] - Y position of the top left of the area to operate one, given in tiles, not pixels.
+    * @param {number} [width] - The width in tiles of the area to operate on.
+    * @param {number} [height] - The height in tiles of the area to operate on.
     * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to operate on.
     */
     replace: function (source, dest, x, y, width, height, layer)
