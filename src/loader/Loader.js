@@ -1151,6 +1151,8 @@ Phaser.Loader.prototype = {
     * #  sprite frame
     * ```
     *
+    * `spacing` must be on only the right and bottom edges of each frame, including the last row and column.
+    *
     * The first sprite frame is found at (margin) px from the left of the image.
     * The second sprite frame is found at (margin + frameWidth + spacing) px from the left of the image, and so on.
     *
@@ -1161,7 +1163,7 @@ Phaser.Loader.prototype = {
     * @param {number} frameHeight - Height in pixels of a single frame in the sprite sheet.
     * @param {number} [frameMax=-1] - How many frames in this sprite sheet. If not specified it will divide the whole image into frames.
     * @param {number} [margin=0] - The distance from the top-left of the image to the top-left of the first frame, if any.
-    * @param {number} [spacing=0] - The distance from the right edge of a frame to the left edge of the next frame on the same row; or the distance from the bottom edge of a frame to the top edge of the next frame on the same column.
+    * @param {number} [spacing=0] - The distance from the right edge of a frame to the left edge of the next frame on the same row, from the right edge of the last frame of a row to the margin, from the bottom edge of a frame to the top edge of the next frame on the same column, and from the bottom edge of the last frame of a column to the margin.
     * @param {number} [skipFrames=0] - Skip a number of frames. Useful when there are multiple sprite sheets in one image.
     * @return {Phaser.Loader} This Loader instance.
     */
