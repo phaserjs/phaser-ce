@@ -3102,7 +3102,7 @@ declare module Phaser {
         progress: number;
         mute: boolean;
         paused: boolean;
-        volume: boolean;
+        volume: number;
         playbackRate: boolean;
         playing: boolean;
         playWhenUnlocked: boolean;
