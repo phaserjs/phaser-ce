@@ -1,6 +1,7 @@
 module.exports = {
 
     options: {
+        newLine: "lf",
         noImplicitAny: true
     },
 
