@@ -8,17 +8,20 @@
  
 var path = require('path');
  
-function expandLinks (text, parent) {
+function expandLinks (text, parent)
+{
  
-    return text.replace(/\{\s*@link\s+([#.])([\w$.]+)\s*\}/g, function (m, mod, name) {
-        var expanded = "{@link " + parent + mod + name + " " + name + "}";
+    return text.replace(/\{\s*@link\s+([#.])([\w$.]+)\s*\}/g, function (m, mod, name)
+    {
+        var expanded = '{@link ' + parent + mod + name + ' ' + name + '}';
         return expanded;
     });
  
 }
  
 exports.handlers = {};
-exports.handlers.newDoclet = function (e) {
+exports.handlers.newDoclet = function (e)
+{
  
     var doclet = e.doclet;
     var parent;
@@ -32,7 +35,8 @@ exports.handlers.newDoclet = function (e) {
         parent = doclet.memberof;
     }
  
-    ['description', 'classdesc'].forEach(function (p) {
+    [ 'description', 'classdesc' ].forEach(function (p)
+    {
         if (doclet[p])
         {
             doclet[p] = expandLinks(doclet[p], parent);

@@ -9,7 +9,7 @@ module.exports = {
             banner: '/* Phaser v<%= package.version %> - http://phaser.io - @photonstorm - (c) 2016 Photon Storm Ltd. */\n'
         },
 
-        src: ['<%= concat.custom.dest %>'],
+        src: [ '<%= concat.custom.dest %>' ],
         dest: '<%= compile_dir %>/<%= filename %>.min.js'
 
     },
@@ -22,7 +22,7 @@ module.exports = {
             banner: '/* Phaser v<%= package.version %> PIXI Build - http://phaser.io - @photonstorm - (c) 2016 Photon Storm Ltd. */\n'
         },
 
-        src: ['<%= concat.pixi.dest %>'],
+        src: [ '<%= concat.pixi.dest %>' ],
         dest: '<%= compile_dir %>/pixi.min.js'
 
     },
@@ -35,7 +35,7 @@ module.exports = {
             banner: '/* Phaser v<%= package.version %> Creature Build - http://phaser.io - @photonstorm - (c) 2016 Photon Storm Ltd. */\n'
         },
 
-        src: ['<%= concat.creatureGlobalSplit.dest %>'],
+        src: [ '<%= concat.creatureGlobalSplit.dest %>' ],
         dest: '<%= compile_dir %>/creature.min.js'
 
     },
@@ -48,7 +48,7 @@ module.exports = {
             banner: '/* Phaser v<%= package.version %> P2.JS Build - http://phaser.io - @photonstorm - (c) 2016 Photon Storm Ltd. */\n'
         },
 
-        src: ['<%= concat.p2GlobalSplit.dest %>'],
+        src: [ '<%= concat.p2GlobalSplit.dest %>' ],
         dest: '<%= compile_dir %>/p2.min.js'
 
     }

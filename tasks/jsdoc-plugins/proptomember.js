@@ -12,7 +12,8 @@
 
 var path = require('path');
 
-function looksLikeItMightContain (haystack, needle) {
+function looksLikeItMightContain (haystack, needle)
+{
 
     haystack = haystack || '';
     needle = needle || '';
@@ -25,7 +26,8 @@ function looksLikeItMightContain (haystack, needle) {
 }
 
 exports.handlers = {};
-exports.handlers.newDoclet = function (e) {
+exports.handlers.newDoclet = function (e)
+{
 
     var doclet = e.doclet;
     var props = e.doclet.properties;
@@ -57,7 +59,7 @@ exports.handlers.newDoclet = function (e) {
         {
             // Tack it on..
             console.log('[%s] Appending description from @property (%s)', name);
-            doclet.description += " " + prop.description;
+            doclet.description += ' ' + prop.description;
         }
 
         // And no more prop

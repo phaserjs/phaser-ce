@@ -305,23 +305,19 @@ module.exports = {
         dest: '<%= modules_dir %>/outro.js'
     },
 
-    ////////////////////
+    // //////////////////
     //  Custom Builds //
-    ////////////////////
+    // //////////////////
 
     custom: {
-        options: {
-            banner: '<%= banner %>',
-        },
-        src: ['<%= filelist %>'],
+        options: {banner: '<%= banner %>'},
+        src: [ '<%= filelist %>' ],
         dest: '<%= compile_dir %>/<%= filename %>.js'
     },
 
     pixi: {
-        options: {
-            banner: '<%= banner %>',
-        },
-        src: ['<%= pixiFilelist %>'],
+        options: {banner: '<%= banner %>'},
+        src: [ '<%= pixiFilelist %>' ],
         dest: '<%= compile_dir %>/pixi.js'
     }
 

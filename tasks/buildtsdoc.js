@@ -6,9 +6,10 @@
 var ts = require('typescript');
 var fs = require('fs');
 
-var TypeScriptDocGenerator = (function () {
+var TypeScriptDocGenerator = (function ()
+{
 
-    function TypeScriptDocGenerator(tsDefFileName, jsdocJsonFileName)
+    function TypeScriptDocGenerator (tsDefFileName, jsdocJsonFileName)
     {
         this.nbCharsAdded = 0;
         this.tsDefFileName = ts.normalizePath(tsDefFileName);
@@ -21,7 +22,7 @@ var TypeScriptDocGenerator = (function () {
 
         var options = { target: ts.ScriptTarget.ES5, module: ts.ModuleKind.AMD };
         var host = ts.createCompilerHost(options);
-        var program = ts.createProgram([this.tsDefFileName], options, host);
+        var program = ts.createProgram([ this.tsDefFileName ], options, host);
 
         this.sourceFile = program.getSourceFile(this.tsDefFileName);
     }
@@ -35,10 +36,11 @@ var TypeScriptDocGenerator = (function () {
 
     TypeScriptDocGenerator.prototype.repeatSpaces = function (nb)
     {
-        var res = "";
+        var res = '';
 
-        for (var i = 0; i < nb; i++) {
-            res += " ";
+        for (var i = 0; i < nb; i++)
+        {
+            res += ' ';
         }
 
         return res;
@@ -50,7 +52,8 @@ var TypeScriptDocGenerator = (function () {
         {
             var nbChars = 0;
 
-            for (var i = 0; i < commentLines.length; i++) {
+            for (var i = 0; i < commentLines.length; i++)
+            {
                 nbChars += commentLines[i].trim().length;
             }
 
@@ -59,14 +62,14 @@ var TypeScriptDocGenerator = (function () {
                 var lc = this.sourceFile.getLineAndCharacterFromPosition(position);
                 var nbSpaces = lc.character - 1;
                 var startLinePosition = this.sourceFile.getLineStarts()[lc.line - 1];
-                var comment = "\r\n" + this.repeatSpaces(nbSpaces) + "/**\r\n";
+                var comment = '\r\n' + this.repeatSpaces(nbSpaces) + '/**\r\n';
 
                 for (var j = 0; j < commentLines.length; j++)
                 {
-                    comment += this.repeatSpaces(nbSpaces) + "* " + commentLines[j].trimRight() + "\r\n";
+                    comment += this.repeatSpaces(nbSpaces) + '* ' + commentLines[j].trimRight() + '\r\n';
                 }
 
-                comment += this.repeatSpaces(nbSpaces) + "*/\r\n";
+                comment += this.repeatSpaces(nbSpaces) + '*/\r\n';
                 this.tsDefFileContent = this.tsDefFileContent.substr(0, startLinePosition + this.nbCharsAdded) + comment + this.tsDefFileContent.substr(startLinePosition + this.nbCharsAdded);
                 this.nbCharsAdded += comment.length;
             }
@@ -75,17 +78,18 @@ var TypeScriptDocGenerator = (function () {
 
     TypeScriptDocGenerator.prototype.cleanEndLine = function (str)
     {
-        return str.replace(new RegExp('[' + "\r\n" + ']', 'g'), "\n").replace(new RegExp('[' + "\r" + ']', 'g'), "\n");
+        return str.replace(new RegExp('[' + '\r\n' + ']', 'g'), '\n').replace(new RegExp('[' + '\r' + ']', 'g'), '\n');
     };
 
     TypeScriptDocGenerator.prototype.findClass = function (className)
     {
-        if (className.indexOf("p2.") === 0)
+        if (className.indexOf('p2.') === 0)
         {
-            className = className.replace("p2.", "Phaser.Physics.P2.");
+            className = className.replace('p2.', 'Phaser.Physics.P2.');
         }
 
-        var elements = this.docs.classes.filter(function (element) {
+        var elements = this.docs.classes.filter(function (element)
+        {
             return (element.name === className);
         });
 
@@ -100,7 +104,7 @@ var TypeScriptDocGenerator = (function () {
         {
             var comments = [];
 
-            comments = comments.concat(this.cleanEndLine(c.description).split("\n"));
+            comments = comments.concat(this.cleanEndLine(c.description).split('\n'));
 
             return comments;
         }
@@ -123,11 +127,11 @@ var TypeScriptDocGenerator = (function () {
                     var m = c.members[i];
                     var comments = [];
 
-                    comments = comments.concat(this.cleanEndLine(m.description).split("\n"));
+                    comments = comments.concat(this.cleanEndLine(m.description).split('\n'));
 
-                    if ((m.default != null) && (m.default !== ""))
+                    if ((m.default != null) && (m.default !== ''))
                     {
-                        comments.push("Default: " + m.default);
+                        comments.push('Default: ' + m.default);
                     }
 
                     return comments;
@@ -153,57 +157,57 @@ var TypeScriptDocGenerator = (function () {
                     var f = c.functions[i];
                     var comments = [];
 
-                    comments = comments.concat(this.cleanEndLine(f.description).split("\n"));
+                    comments = comments.concat(this.cleanEndLine(f.description).split('\n'));
 
                     if (f.parameters.length > 0)
                     {
-                        comments.push("");
+                        comments.push('');
                     }
 
                     for (var j = 0; j < f.parameters.length; j++)
                     {
                         var p = f.parameters[j];
 
-                        if (p.type === "*")
+                        if (p.type === '*')
                         {
-                            p.name = "args";
+                            p.name = 'args';
                         }
 
-                        var def = "";
+                        var def = '';
 
-                        if ((p.default != null) && (p.default !== ""))
+                        if ((p.default != null) && (p.default !== ''))
                         {
-                            def = " - Default: " + p.default;
+                            def = ' - Default: ' + p.default;
                         }
 
-                        var paramComments = this.cleanEndLine(p.description).split("\n");
+                        var paramComments = this.cleanEndLine(p.description).split('\n');
 
                         for (var k = 0; k < paramComments.length; k++)
                         {
                             if (k === 0)
                             {
-                                comments.push("@param " + p.name + " " + paramComments[k].trim() + ((k === paramComments.length - 1) ? def : ""));
+                                comments.push('@param ' + p.name + ' ' + paramComments[k].trim() + ((k === paramComments.length - 1) ? def : ''));
                             }
                             else
                             {
-                                comments.push(this.repeatSpaces(("@param " + p.name + " ").length) + paramComments[k].trim() + ((k === paramComments.length - 1) ? def : ""));
+                                comments.push(this.repeatSpaces(('@param ' + p.name + ' ').length) + paramComments[k].trim() + ((k === paramComments.length - 1) ? def : ''));
                             }
                         }
                     }
 
                     if ((f.returns != null) && (f.returns.description.trim().length > 0))
                     {
-                        var returnComments = this.cleanEndLine(f.returns.description).split("\n");
+                        var returnComments = this.cleanEndLine(f.returns.description).split('\n');
 
                         for (var l = 0; l < returnComments.length; l++)
                         {
                             if (l === 0)
                             {
-                                comments.push("@return " + returnComments[l].trim());
+                                comments.push('@return ' + returnComments[l].trim());
                             }
                             else
                             {
-                                comments.push(this.repeatSpaces(("@return ").length) + returnComments[l].trim());
+                                comments.push(this.repeatSpaces(('@return ').length) + returnComments[l].trim());
                             }
                         }
                     }
@@ -227,40 +231,40 @@ var TypeScriptDocGenerator = (function () {
             var con = c.constructor;
             var comments = [];
 
-            comments = comments.concat(this.cleanEndLine(con.description).split("\n"));
+            comments = comments.concat(this.cleanEndLine(con.description).split('\n'));
 
             if (con.parameters.length > 0)
             {
-                comments.push("");
+                comments.push('');
             }
 
             for (var j = 0; j < con.parameters.length; j++)
             {
                 var p = con.parameters[j];
 
-                if (p.type === "*")
+                if (p.type === '*')
                 {
-                    p.name = "args";
+                    p.name = 'args';
                 }
 
-                var def = "";
+                var def = '';
 
-                if ((p.default != null) && (p.default !== ""))
+                if ((p.default != null) && (p.default !== ''))
                 {
-                    def = " - Default: " + p.default;
+                    def = ' - Default: ' + p.default;
                 }
 
-                var paramComments = this.cleanEndLine(p.description).split("\n");
+                var paramComments = this.cleanEndLine(p.description).split('\n');
 
                 for (var k = 0; k < paramComments.length; k++)
                 {
                     if (k === 0)
                     {
-                        comments.push("@param " + p.name + " " + paramComments[k].trim() + ((k === paramComments.length - 1) ? def : ""));
+                        comments.push('@param ' + p.name + ' ' + paramComments[k].trim() + ((k === paramComments.length - 1) ? def : ''));
                     }
                     else
                     {
-                        comments.push(this.repeatSpaces(("@param " + p.name + " ").length) + paramComments[k].trim() + ((k === paramComments.length - 1) ? def : ""));
+                        comments.push(this.repeatSpaces(('@param ' + p.name + ' ').length) + paramComments[k].trim() + ((k === paramComments.length - 1) ? def : ''));
                     }
                 }
             }
@@ -282,7 +286,8 @@ var TypeScriptDocGenerator = (function () {
     {
         var fullName = '';
 
-        if (node.kind === ts.SyntaxKind.ClassDeclaration) {
+        if (node.kind === ts.SyntaxKind.ClassDeclaration)
+        {
             fullName = node.name.getText();
         }
 
@@ -292,7 +297,7 @@ var TypeScriptDocGenerator = (function () {
         {
             if (parent.kind === ts.SyntaxKind.ModuleDeclaration || parent.kind === ts.SyntaxKind.ClassDeclaration)
             {
-                fullName = parent.name.getText() + ((fullName !== '') ? "." + fullName : fullName);
+                fullName = parent.name.getText() + ((fullName !== '') ? '.' + fullName : fullName);
             }
 
             parent = parent.parent;
@@ -328,8 +333,10 @@ var TypeScriptDocGenerator = (function () {
     return TypeScriptDocGenerator;
 })();
 
-module.exports = function (grunt) {
-    grunt.registerMultiTask('buildtsdoc', 'Generate a TypeScript def with comments', function () {
+module.exports = function (grunt)
+{
+    grunt.registerMultiTask('buildtsdoc', 'Generate a TypeScript def with comments', function ()
+    {
         var tsdg = new TypeScriptDocGenerator(this.data.tsDefFileName, this.data.jsdocJsonFileName);
         fs.writeFileSync(this.data.dest, tsdg.getTsDefCommentedFileContent(), 'utf8');
     });

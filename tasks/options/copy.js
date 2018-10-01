@@ -4,7 +4,7 @@ module.exports = {
         expand: true,
         flatten: true,
         cwd: '<%= compile_dir %>/',
-        src: ['*.js', '*.map'],
+        src: [ '*.js', '*.map' ],
         dest: '<%= target_dir %>/'
     }
    

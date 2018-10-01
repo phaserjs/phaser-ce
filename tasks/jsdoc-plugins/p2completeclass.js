@@ -4,12 +4,13 @@
 var path = require('path');
 
 exports.handlers = {};
-exports.handlers.newDoclet = function (e) {
+exports.handlers.newDoclet = function (e)
+{
     var doclet = e.doclet;
 
-    if ((doclet.meta.filename === "p2.js") && (doclet.kind === 'class' || doclet.kind === 'interface'))
+    if ((doclet.meta.filename === 'p2.js') && (doclet.kind === 'class' || doclet.kind === 'interface'))
     {
-        doclet.longname = "Phaser.Physics.P2." + doclet.longname;
+        doclet.longname = 'Phaser.Physics.P2.' + doclet.longname;
         console.log('Changed `longname` to %s', doclet.longname);
     }
 };

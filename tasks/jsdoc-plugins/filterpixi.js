@@ -4,11 +4,15 @@
 
 var path = require('path');
 
-function docletParamsAcceptInteractionData (doclet) {
+function docletParamsAcceptInteractionData (doclet)
+{
 
-    if (Array.isArray(doclet.params)) {
-        return doclet.params.some(function (p) {
-            return p.type && p.type.names.some(function (n) {
+    if (Array.isArray(doclet.params))
+    {
+        return doclet.params.some(function (p)
+        {
+            return p.type && p.type.names.some(function (n)
+            {
                 return n === 'PIXI.InteractionData';
             });
         });
@@ -18,10 +22,11 @@ function docletParamsAcceptInteractionData (doclet) {
 
 var unwantedNames = {
     'PIXI.DisplayObject#defaultCursor': 1,
-    'PIXI.DisplayObject#interactive' : 1
+    'PIXI.DisplayObject#interactive': 1
 };
 
-function hasUnwantedName (doclet) {
+function hasUnwantedName (doclet)
+{
 
     var longname = doclet.longname;
     return unwantedNames[longname];
@@ -29,7 +34,8 @@ function hasUnwantedName (doclet) {
 }
 
 exports.handlers = {};
-exports.handlers.newDoclet = function (e) {
+exports.handlers.newDoclet = function (e)
+{
 
     var doclet = e.doclet;
 

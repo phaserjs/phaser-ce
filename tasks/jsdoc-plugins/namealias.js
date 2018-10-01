@@ -18,24 +18,31 @@
 var extract = /^(\s*(?:\/\*{2,}|\*{1,})\s*)(@\w+)\s*?([^\r\n]*)/mg;
 
 exports.handlers = {};
-exports.handlers.jsdocCommentFound = function (e) {
+exports.handlers.jsdocCommentFound = function (e)
+{
 
     var raw = e.comment;
 
-    var classdoc = /@class\b/.exec(raw);
-    var sourcefile = /@sourcefile\b/.exec(raw);
+    var classdoc = (/@class\b/).exec(raw);
+    var sourcefile = (/@sourcefile\b/).exec(raw);
 
     // PIXI docs generated from YUIDocs have @sourcefile (but no code) and need to be excluded
     if (classdoc && !sourcefile)
     {
-        raw = raw.replace(extract, function (m, pre, doclet, extra) {
-            if (doclet === '@class' && extra.trim()) {
+        raw = raw.replace(extract, function (m, pre, doclet, extra)
+        {
+            if (doclet === '@class' && extra.trim())
+            {
                 console.log('[%s:%s] Changing @class to @alias', e.filename, e.lineno);
                 var output = pre + '@alias ' + extra.trim() + '\n' + pre + '@class';
                 return output;
-            } else if (doclet === '@constructor') {
+            }
+            else if (doclet === '@constructor')
+            {
                 return '';
-            } else {
+            }
+            else
+            {
                 return m;
             }
         });

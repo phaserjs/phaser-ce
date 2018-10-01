@@ -1,5 +1,1 @@
-module.exports = {
-
-    target: 'src'
-
-};
+module.exports = {target: 'src'};
