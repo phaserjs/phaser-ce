@@ -273,7 +273,7 @@ declare module Phaser {
         * @param prefix The start of the filename. If the filename was 'explosion_0001-large' the prefix would be 'explosion_'.
         * @param start The number to start sequentially counting from. If your frames are named 'explosion_0001' to 'explosion_0034' the start is 1.
         * @param stop The number to count to. If your frames are named 'explosion_0001' to 'explosion_0034' the stop value is 34.
-        * @param suffix The end of the filename. If the filename was 'explosion_0001-large' the prefix would be '-large'. - Default: ''
+        * @param suffix The end of the filename. If the filename was 'explosion_0001-large' the suffix would be '-large'. - Default: ''
         * @param zeroPad The number of zeros to pad the min and max values with. If your frames are named 'explosion_0001' to 'explosion_0034' then the zeroPad is 4.
         * @return An array of framenames.
         */
@@ -13364,8 +13364,8 @@ declare module Phaser {
         update(): void;
 
         /**
-        * Returns `true` if the Key was pressed down within the `duration` value given, or `false` if it either isn't down,
-        * or was pressed down longer ago than then given duration.
+        * Returns `true` if the Key has been up *only* within the `duration` value given, or `false` if it either isn't up,
+        * or was has been up longer than the given duration.
         * 
         * @param duration The duration within which the key is considered as being just released. Given in ms. - Default: 50
         * @return True if the key was released within the given duration.
@@ -13708,8 +13708,8 @@ declare module Phaser {
         update(): void;
 
         /**
-        * Returns `true` if the Key was pressed down within the `duration` value given, or `false` if it either isn't down,
-        * or was pressed down longer ago than then given duration.
+        * Returns `true` if the Key has been up *only* within the `duration` value given, or `false` if it either isn't up,
+        * or was has been up longer than the given duration.
         * 
         * @param keycode The keycode of the key to check, i.e. Phaser.KeyCode.UP or Phaser.KeyCode.SPACEBAR.
         * @param duration The duration within which the key is considered as being just released. Given in ms. - Default: 50
@@ -15181,31 +15181,35 @@ declare module Phaser {
         * and no URL is given then the Loader will set the URL to be "alien.png". It will always add `.png` as the extension.
         * If you do not desire this action then provide a URL.
         * 
-        * An image with four sprites, `margin = 1`, and `spacing = 1` looks like this:
+        * An image with four frames, `margin = 1`, and `spacing = 2` looks like this:
         * 
         * ```
-        * .......
-        * .     .
-        * . # # .
-        * .     .
-        * . # # .
-        * .     .
-        * .......
+        * ........
+        * .#  #  .
+        * .      .
+        * .      .
+        * .#  #  .
+        * .      .
+        * .      .
+        * ........
         * 
         * .  margin
         *    spacing
         * #  sprite frame
         * ```
         * 
-        * The first sprite frame is found at (margin + spacing) px from the top-left of the image.
+        * `spacing` must be on only the right and bottom edges of each frame, including the last row and column.
+        * 
+        * The first sprite frame is found at (margin) px from the left of the image.
+        * The second sprite frame is found at (margin + frameWidth + spacing) px from the left of the image, and so on.
         * 
         * @param key Unique asset key of the sheet file.
         * @param url URL of the sprite sheet file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png".
         * @param frameWidth Width in pixels of a single frame in the sprite sheet.
         * @param frameHeight Height in pixels of a single frame in the sprite sheet.
         * @param frameMax How many frames in this sprite sheet. If not specified it will divide the whole image into frames. - Default: -1
-        * @param margin Width of any empty space at the image edges, in addition to any `spacing`.
-        * @param spacing Width of any empty space between the frames, and between the frames and the `margin`. If there is space **only** between the frames, and nowhere else, use `margin` equal to `-spacing`.
+        * @param margin The distance from the top-left of the image to the top-left of the first frame, if any.
+        * @param spacing The distance from the right edge of a frame to the left edge of the next frame on the same row, from the right edge of the last frame of a row to the margin, from the bottom edge of a frame to the top edge of the next frame on the same column, and from the bottom edge of the last frame of a column to the margin.
         * @param skipFrames Skip a number of frames. Useful when there are multiple sprite sheets in one image.
         * @return This Loader instance.
         */
@@ -17693,7 +17697,7 @@ declare module Phaser {
         /**
         * Gets or sets the volume of the Video, a value between 0 and 1. The value given is clamped to the range 0 to 1.
         */
-        volume: boolean;
+        volume: number;
 
         /**
         * Gets or sets the playback rate of the Video. This is the speed at which the video is playing.
@@ -20582,7 +20586,7 @@ declare module Phaser {
             createDistanceConstraint(bodyA: any, bodyB: any, distance: number, localAnchorA?: number[], localAnchorB?: number[], maxForce?: number): Phaser.Physics.P2.DistanceConstraint;
 
             /**
-            * Creates a constraint that tries to keep the distance between two bodies constant.
+            * Creates a constraint that tries to keep the relative angle between two bodies constant.
             * 
             * @param bodyA First connected body.
             * @param bodyB Second connected body.
@@ -23633,19 +23637,72 @@ declare module Phaser {
 
     }
 
+
+    /**
+    * The pointer lock input handler.
+    */
     class PointerLock {
 
+
+        /**
+        * The currently running game.
+        */
         game: Phaser.Game;
+
+        /**
+        * The Input Manager.
+        */
         input: Phaser.Input;
+
+        /**
+        * The element where event listeners are added.
+        */
         element: HTMLElement;
+
+        /**
+        * Whether the input handler is active.
+        */
         active: boolean;
+
+        /**
+        * Whether the pointer is locked to the game canvas.
+        */
         locked: boolean;
+
+        /**
+        * A signal dispatched when the pointer is locked or unlocked.
+        * Its arguments are {@link Phaser.PointerLock#locked} and the original event from the browser.
+        */
         onChange: Phaser.Signal;
+
+        /**
+        * A signal dispatched when a request to lock or unlock the pointer fails.
+        * Its argument is the original event from the browser.
+        */
         onError: Phaser.Signal;
 
+
+        /**
+        * Releases the locked pointer.
+        * Use onChange and onError to track the result of the request.
+        */
         exit(): void;
+
+        /**
+        * Requests the browser to lock the pointer to the game canvas.
+        * Use onChange and onError to track the result of the request.
+        */
         request(): void;
+
+        /**
+        * Activates the handler, unless already active or Pointer Lock is unsupported on this device.
+        * @return - True if the handler was started, otherwise false.
+        */
         start(): boolean;
+
+        /**
+        * Deactivates the handler.
+        */
         stop(): void;
 
     }
@@ -24666,6 +24723,11 @@ declare module Phaser {
         */
         type: number;
 
+
+        /**
+        * Clears the RenderTexture.
+        */
+        clear(): void;
 
         /**
         * This function will draw the display object to the RenderTexture.
