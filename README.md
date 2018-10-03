@@ -8,7 +8,7 @@ Thousands of developers worldwide use Phaser. From indies and multi-national dig
 
 Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](http://phaser.io/phaser3) is in active development.
 
-The [current Phaser CE release is 2.11.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.11.0).
+The [current Phaser CE release is 2.11.1](https://github.com/photonstorm/phaser-ce/releases/tag/v2.11.1).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
@@ -128,16 +128,16 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.11.0/build/phaser.js"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.11.1/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.11.0"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.11.1"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.11.0/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.11.1/build/custom/) are available too.
 
 <a name="getting-started"></a>
 
@@ -328,7 +328,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Version 2.11.1 - 2 October 2018
 
 ### Bug Fixes
 
@@ -365,83 +365,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 @B10215029, @CorayThan, @FostUK, @Jazcash, @Lucas-C, @Mertank, @Nek-, @aeonwilliams, @dywedir, @foreverip, @giniwren, @josalmi, @joshlory, @rydash, @samme, @tiagokeller, @zhaxiu3
 
-## Version 2.11.0 - 26 June 2018
-
-If you're starting or stopping input handlers manually, you'll have to make some simple changes to your code.
-
-### API Changes / New Features
-
-* Phaser now starts the [Pointer Events handler](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html) (with capture off) or the [Mouse handler](https://photonstorm.github.io/phaser-ce/Phaser.Mouse.html) (with capture off), but not both. This makes input behavior more consistent and avoids some rare conflicts between the two when running simultaneously.
-
-  If you want to disable the Pointer Events handler, pass `{ mspointer: false }` in your game config. The Mouse handler will be used instead.
-
-  If you want to run both handlers together, you can start the Mouse handler manually. You should also turn on capture for the Pointer Events handler to avoid duplicate events:
-
-  ```javascript
-  game.input.mouse.start();
-  game.input.mspointer.capture = true;
-  ```
-
-* [Mouse wheel input](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html) was moved to `input.mouseWheel`. The changed properties are
-
-  - `input.mouse.wheelDelta`         → `input.mouseWheel.delta`
-  - `input.mouse.mouseWheelCallback` → `input.mouseWheel.callback`
-
-  The old properties will keep working for now.
-
-* [Pointer lock input](https://photonstorm.github.io/phaser-ce/Phaser.PointerLock.html) was moved to `input.pointerLock`. The changed properties are
-
-  - `input.mouse.pointerLock`          → `input.pointerLock.onChange`
-  - `input.mouse.requestPointerLock()` → `input.pointerLock.request()`
-  - `input.mouse.locked`               → `input.pointerLock.locked`
-  - `input.mouse.releasePointerLock()` → `input.pointerLock.exit()`
-
-  The old properties will keep working for now.
-
-  There is a new Signal, `input.pointerLock.onError`, dispatched when a request fails.
-
-  Beware that [Chrome < 68 doesn't pass movement values when using Pointer Events with pointer lock](https://bugs.chromium.org/p/chromium/issues/detail?id=836995), so you should use the Mouse handler instead for that.
-
-* `game.debug.inputInfo()` now shows which input handlers and pointers are active.
-
-* All the input handlers have an `active` property that shows whether they've been started. Their `start` methods return true if they've been started or false otherwise.
-
-* The `skipFrames` argument in [AnimationParser#spriteSheet](https://photonstorm.github.io/phaser-ce/Phaser.AnimationParser.html#_spriteSheet) now works as an offset (#514). When positive, it's an offset from the start of the parsed frame list; when negative, it's an offset from the end. Negative `frameWidth` and `frameHeight` arguments are no longer allowed.
-
-* preRender() and postRender() hooks are no longer called for the HEADLESS renderer.
-
-* `game.make.group()` no longer assigns a default parent. This is more consistent with the rest of the [game.make](https://photonstorm.github.io/phaser-ce/Phaser.GameObjectCreator.html) methods (#525). Use `game.add.group()` instead to add the Group to the game world.
-
-* [Point.parse()](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#_parse) no longer converts coordinates to integers (#502). Use the new method [Point.trunc()](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#_trunc) as well if you want the previous behavior.
-
-* The default [Debug#font](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#font) is now '14px monospace'.
-
-* The unused and deprecated property MSPointer#button was removed.
-
-### New Features
-
-* States have a new [postUpdate](https://photonstorm.github.io/phaser-ce/Phaser.State.html#postUpdate) method hook. It's called after game objects have received all their own updates (including physics), but before the Stage has calculated the final transformations.
-* [Debug#spriteInfo](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#spriteInfo) shows the sprite's parent, if any.
-* When a sprite is being dragged you can read its change in position (as `deltaX`, `deltaY`) in the [onDragUpdate](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onDragUpdate) handler.
-* [Phaser.Math.trunc()](https://photonstorm.github.io/phaser-ce/Phaser.Math.html#trunc) truncates a number.
-* Phaser.EmptyRectangle replaces PIXI.EmptyRectangle.
-* [Debug#device](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#device) shows device graphics, audio, and input support. It may be helpful on devices where you can't see `console` output easily.
-* [Debug#pointer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#pointer) shows the pointer's movementX/movementY values and button states (for mouse pointers).
-* `maxPointers` can be passed in the [game config](https://photonstorm.github.io/phaser-ce/global.html#GameConfig), setting [Input#maxPointers](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#maxPointers).
-
-### Updates
-
-* Removed the unnecessary 'Audio source already exists' warning.
-
-### Bug Fixes
-
-* Masks are no longer disabled by getBounds() and are excluded from bounds calculations (#334).
-* Sprites' [bringToTop()](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#bringToTop) and [sendToBack()](https://photonstorm.github.io/phaser-ce/Phaser.Sprite.html#sendToBack) methods now work as expected for all parent types, not just Groups (#549).
-
-### Thanks
-
-@giniwren, @griever989, @mindcity, @omretterry, @photonstorm, @samme, @Siri0n, @tobspr
-
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
 # License
@@ -464,10 +387,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.11.0/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.11.0/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.11.0.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.11.0.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.11.1/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.11.1/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.11.1.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.11.1.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
