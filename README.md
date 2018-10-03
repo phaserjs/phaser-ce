@@ -334,12 +334,12 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 * Fixed an error passing `box2d` options in the game configuration settings (#553).
 * Fixed some compressed texture formats failing to load (#562).
-* Fixes an issue where if the WebGL renderer failed to initialize that RenderTexture's would still try to use it if no renderer was provided (#575).
+* Fixed an issue where if the WebGL renderer failed to initialize that RenderTexture's would still try to use it if no renderer was provided (#575).
 * Fixed an inconsistent return value in BitmapData#copy (#580).
 * Tweens are now cleaned up completely when destroying the game (#581).
 * Game now nulls a reference to itself from PIXI after destroy (#583).
 * Fixed a BitmapFont frame error when using trim frame in atlas (#587).
-* Fixed BitmapData.shadow ignoring blur or x/y offset when set to 0 (#591).
+* Fixed BitmapData#shadow ignoring blur or x/y offset when set to 0 (#591).
 
 ### Updates
 
@@ -363,7 +363,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@rydash, @tiagokeller, @Mertank, @giniwren, @josalmi, @B10215029, @Jazcash, @Nek-, @Lucas-C, @FostUK, @zhaxiu3, @dywedir, @CorayThan, @joshlory, @aeonwilliams, @foreverip, @samme
+@B10215029, @CorayThan, @FostUK, @Jazcash, @Lucas-C, @Mertank, @Nek-, @aeonwilliams, @dywedir, @foreverip, @giniwren, @josalmi, @joshlory, @rydash, @samme, @tiagokeller, @zhaxiu3
 
 ## Version 2.11.0 - 26 June 2018
 
