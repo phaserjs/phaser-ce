@@ -448,10 +448,12 @@ Phaser.LoaderParser = {
                 ddsHeader.arraySize = uintArray[34];
                 ddsHeader.miscFlag = uintArray[35];
             }
-            else if(ddsHeader.formatFourCC === 'DXT5'){
+            else if(ddsHeader.formatFourCC === 'DXT5')
+            {
                 ddsHeader.glExtensionFormat = 0x83F3;
             }
-            else if(ddsHeader.formatFourCC === 'DXT3'){
+            else if(ddsHeader.formatFourCC === 'DXT3')
+            {
                 ddsHeader.glExtensionFormat = 0x83F2;
             }
         }
