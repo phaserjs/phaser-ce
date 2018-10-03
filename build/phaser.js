@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.11.0 "2018-06-26" - Built: Tue Jun 26 2018 10:56:52
+* v2.11.1 "2018-10-02" - Built: Tue Oct 02 2018 18:19:07
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -22651,7 +22651,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.11.0',
+    VERSION: '2.11.1',
 
     /**
     * An array of Phaser game instances.
@@ -37720,7 +37720,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {number|string}      [GameConfig.antialias=true]
 * @property {number|string}      [GameConfig.backgroundColor=0]             - Sets {@link Phaser.Stage#backgroundColor}.
 * @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
-* @property {string}             [GameConfig.canvasId]                      - `id` attribute value to assign to the game canvas.
+* @property {string}             [GameConfig.canvasID]                      - `id` attribute value to assign to the game canvas.
 * @property {string}             [GameConfig.canvasStyle]                   - `style` attribute value to assign to the game canvas.
 * @property {boolean}            [GameConfig.clearBeforeRender=true]        - Sets {@link Phaser.Game#clearBeforeRender}.
 * @property {boolean}            [GameConfig.crisp=false]                   - Sets the canvas's `image-rendering` property to `pixelated` or `crisp-edges`. See {@link Phaser.Canvas.setImageRenderingCrisp}.
@@ -38076,6 +38076,7 @@ Phaser.Game.prototype = {
             }
             catch (webGLRendererError)
             {
+                PIXI.defaultRenderer = null;
                 this.renderer = null;
                 this.multiTexture = false;
                 PIXI._enableMultiTextureToggle = false;
@@ -38433,6 +38434,7 @@ Phaser.Game.prototype = {
         this.input.destroy();
         this.physics.destroy();
         this.plugins.destroy();
+        this.tweens.destroy();
 
         this.debug = null;
         this.state = null;
@@ -38442,6 +38444,7 @@ Phaser.Game.prototype = {
         this.input = null;
         this.physics = null;
         this.plugins = null;
+        this.tweens = null;
 
         this.cache = null;
         this.load = null;
@@ -38454,6 +38457,10 @@ Phaser.Game.prototype = {
 
         Phaser.Canvas.removeFromDOM(this.canvas);
 
+        if (PIXI.game === this)
+        {
+            PIXI.game = null;
+        }
         PIXI.defaultRenderer = null;
 
         Phaser.GAMES[this.id] = null;
@@ -38611,7 +38618,10 @@ Object.defineProperty(Phaser.Game.prototype, 'paused', {
             if (this._paused === false)
             {
                 this._paused = true;
-                this.sound.setMute();
+                if (this.sound.muteOnPause)
+                {
+                    this.sound.setMute();
+                }
                 this.time.gamePaused();
                 this.onPause.dispatch(this);
             }
@@ -45241,6 +45251,12 @@ Phaser.InputHandler.prototype = {
 
 Phaser.InputHandler.prototype.constructor = Phaser.InputHandler;
 
+/**
+* The pointer lock input handler.
+* @class
+* @constructor
+* @param {Phaser.Game} game
+*/
 Phaser.PointerLock = function (game)
 {
     /**
@@ -46978,8 +46994,8 @@ Phaser.Key.prototype = {
     },
 
     /**
-    * Returns `true` if the Key was pressed down within the `duration` value given, or `false` if it either isn't down,
-    * or was pressed down longer ago than then given duration.
+    * Returns `true` if the Key has been up *only* within the `duration` value given, or `false` if it either isn't up,
+    * or was has been up longer than the given duration.
     *
     * @method Phaser.Key#upDuration
     * @param {number} [duration=50] - The duration within which the key is considered as being just released. Given in ms.
@@ -46993,11 +47009,11 @@ Phaser.Key.prototype = {
         return (!this.isDown && ((this.game.time.time - this.timeUp) < duration));
 
     },
-    
+
     /**
     * Returns `true` if the Key was just pressed down this update tick, or `false` if it either isn't down,
     * or was pressed down on a previous update tick.
-    * 
+    *
     * @method Phaser.Key#justPressed
     * @return {boolean} True if the key was just pressed down this update tick.
     */
@@ -47011,7 +47027,7 @@ Phaser.Key.prototype = {
     /**
     * Returns `true` if the Key was just released this update tick, or `false` if it either isn't up,
     * or was released on a previous update tick.
-    * 
+    *
     * @method Phaser.Key#justReleased
     * @return {boolean} True if the key was just released this update tick.
     */
@@ -47668,8 +47684,8 @@ Phaser.Keyboard.prototype = {
     },
 
     /**
-    * Returns `true` if the Key was pressed down within the `duration` value given, or `false` if it either isn't down,
-    * or was pressed down longer ago than then given duration.
+    * Returns `true` if the Key has been up *only* within the `duration` value given, or `false` if it either isn't up,
+    * or was has been up longer than the given duration.
     *
     * @method Phaser.Keyboard#upDuration
     * @param {Phaser.KeyCode|integer} keycode - The keycode of the key to check, i.e. Phaser.KeyCode.UP or Phaser.KeyCode.SPACEBAR.
@@ -54758,7 +54774,7 @@ Phaser.BitmapData.prototype = {
 
                 if (source === null)
                 {
-                    return;
+                    return this;
                 }
                 else
                 {
@@ -54830,7 +54846,7 @@ Phaser.BitmapData.prototype = {
         if (this._alpha.current <= 0 || this._scale.x === 0 || this._scale.y === 0 || this._size.x === 0 || this._size.y === 0)
         {
             //  Why bother wasting CPU cycles drawing something you can't see?
-            return;
+            return this;
         }
 
         var ctx = this.context;
@@ -55181,9 +55197,9 @@ Phaser.BitmapData.prototype = {
         else
         {
             ctx.shadowColor = color;
-            ctx.shadowBlur = blur || 5;
-            ctx.shadowOffsetX = x || 10;
-            ctx.shadowOffsetY = y || 10;
+            ctx.shadowBlur = (blur === 0) ? 0 : blur || 5;
+            ctx.shadowOffsetX = (x === 0) ? 0 : x || 10;
+            ctx.shadowOffsetY = (y === 0) ? 0 : y || 10;
         }
 
         return this;
@@ -70442,6 +70458,23 @@ Phaser.TweenManager.prototype = {
             this._tweens[i].resume(true);
         }
 
+    },
+
+    /**
+    * Removes all tweens and deletes queues.
+    *
+    * @method Phaser.TweenManager#destroy
+    */
+    destroy: function ()
+    {
+
+        this.game.onPause.remove(this._pauseAll, this);
+        this.game.onResume.remove(this._resumeAll, this);
+
+        this.game = null;
+        this._add = null;
+        this._tweens = null;
+
     }
 
 };
@@ -75687,7 +75720,7 @@ Object.defineProperty(Phaser.Animation.prototype, 'enableUpdate', {
 * @param {string} prefix - The start of the filename. If the filename was 'explosion_0001-large' the prefix would be 'explosion_'.
 * @param {number} start - The number to start sequentially counting from. If your frames are named 'explosion_0001' to 'explosion_0034' the start is 1.
 * @param {number} stop - The number to count to. If your frames are named 'explosion_0001' to 'explosion_0034' the stop value is 34.
-* @param {string} [suffix=''] - The end of the filename. If the filename was 'explosion_0001-large' the prefix would be '-large'.
+* @param {string} [suffix=''] - The end of the filename. If the filename was 'explosion_0001-large' the suffix would be '-large'.
 * @param {number} [zeroPad=0] - The number of zeros to pad the min and max values with. If your frames are named 'explosion_0001' to 'explosion_0034' then the zeroPad is 4.
 * @return {string[]} An array of framenames.
 */
@@ -76292,6 +76325,8 @@ Phaser.AnimationParser = {
     * @param {number} [spacing=0] - If the frames have been drawn with spacing between them, specify the amount here.
     * @param {number} [skipFrames=0] - Skip a number of frames. Useful when there are multiple sprite sheets in one image.
     * @return {Phaser.FrameData} A FrameData object containing the parsed frames.
+    *
+    * @see Phaser.Loader#spritesheet
     */
     spriteSheet: function (game, key, frameWidth, frameHeight, frameMax, margin, spacing, skipFrames)
     {
@@ -76365,7 +76400,19 @@ Phaser.AnimationParser = {
             lastFrame = total - 1;
         }
 
-        if (total === 0)
+        if (row < 1)
+        {
+            console.warn('Phaser.AnimationParser.spriteSheet: image \'%s\' has width %d, but it should be at least %d (frameWidth=%s, margin=%s, spacing=%s)',
+                key, width, frameWidth + margin + spacing, frameWidth, margin, spacing);
+        }
+
+        if (column < 1)
+        {
+            console.warn('Phaser.AnimationParser.spriteSheet: image \'%s\' has height %d, but it should be at least %d (frameHeight=%s, margin=%s, spacing=%s)',
+                key, height, frameHeight + margin + spacing, frameHeight, margin, spacing);
+        }
+
+        if (totalAvailable === 0)
         {
             console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' zero frames were produced', key);
 
@@ -80197,23 +80244,27 @@ Phaser.Loader.prototype = {
     * and no URL is given then the Loader will set the URL to be "alien.png". It will always add `.png` as the extension.
     * If you do not desire this action then provide a URL.
     *
-    * An image with four sprites, `margin = 1`, and `spacing = 1` looks like this:
+    * An image with four frames, `margin = 1`, and `spacing = 2` looks like this:
     *
     * ```
-    * .......
-    * .     .
-    * . # # .
-    * .     .
-    * . # # .
-    * .     .
-    * .......
+    * ........
+    * .#  #  .
+    * .      .
+    * .      .
+    * .#  #  .
+    * .      .
+    * .      .
+    * ........
     *
     * .  margin
     *    spacing
     * #  sprite frame
     * ```
     *
-    * The first sprite frame is found at (margin + spacing) px from the top-left of the image.
+    * `spacing` must be on only the right and bottom edges of each frame, including the last row and column.
+    *
+    * The first sprite frame is found at (margin) px from the left of the image.
+    * The second sprite frame is found at (margin + frameWidth + spacing) px from the left of the image, and so on.
     *
     * @method Phaser.Loader#spritesheet
     * @param {string} key - Unique asset key of the sheet file.
@@ -80221,8 +80272,8 @@ Phaser.Loader.prototype = {
     * @param {number} frameWidth - Width in pixels of a single frame in the sprite sheet.
     * @param {number} frameHeight - Height in pixels of a single frame in the sprite sheet.
     * @param {number} [frameMax=-1] - How many frames in this sprite sheet. If not specified it will divide the whole image into frames.
-    * @param {number} [margin=0] - Width of any empty space at the image edges, in addition to any `spacing`.
-    * @param {number} [spacing=0] - Width of any empty space between the frames, and between the frames and the `margin`. If there is space **only** between the frames, and nowhere else, use `margin` equal to `-spacing`.
+    * @param {number} [margin=0] - The distance from the top-left of the image to the top-left of the first frame, if any.
+    * @param {number} [spacing=0] - The distance from the right edge of a frame to the left edge of the next frame on the same row, from the right edge of the last frame of a row to the margin, from the bottom edge of a frame to the top edge of the next frame on the same column, and from the bottom edge of the last frame of a column to the margin.
     * @param {number} [skipFrames=0] - Skip a number of frames. Useful when there are multiple sprite sheets in one image.
     * @return {Phaser.Loader} This Loader instance.
     */
@@ -82398,9 +82449,9 @@ Phaser.LoaderParser = {
         {
             var charCode = parseInt(letters[i].getAttribute('id'), 10);
 
-            data.chars[charCode] = {
-                x: x + parseInt(letters[i].getAttribute('x'), 10),
-                y: y + parseInt(letters[i].getAttribute('y'), 10),
+            var char = data.chars[charCode] = {
+                x: parseInt(letters[i].getAttribute('x'), 10),
+                y: parseInt(letters[i].getAttribute('y'), 10),
                 width: parseInt(letters[i].getAttribute('width'), 10),
                 height: parseInt(letters[i].getAttribute('height'), 10),
                 xOffset: parseInt(letters[i].getAttribute('xoffset'), 10) / resolution,
@@ -82408,6 +82459,33 @@ Phaser.LoaderParser = {
                 xAdvance: (parseInt(letters[i].getAttribute('xadvance'), 10) + xSpacing) / resolution,
                 kerning: {}
             };
+            if (frame && frame.trimmed)
+            {
+                if (char.x + char.width > frame.spriteSourceSizeX + frame.spriteSourceSizeW)
+                {
+                    char.width -= char.x + char.width - frame.spriteSourceSizeX - frame.spriteSourceSizeW;
+                }
+                if (char.y + char.height > frame.spriteSourceSizeY + frame.spriteSourceSizeH)
+                {
+                    char.height -= char.y + char.height - frame.spriteSourceSizeY - frame.spriteSourceSizeH;
+                }
+                if (char.x < frame.spriteSourceSizeX)
+                {
+                    var diff = frame.spriteSourceSizeX - char.x;
+                    char.x = 0;
+                    char.width -= diff;
+                    char.xOffset += diff;
+                }
+                if (char.y < frame.spriteSourceSizeY)
+                {
+                    var diff = frame.spriteSourceSizeY - char.y;
+                    char.y = 0;
+                    char.height -= diff;
+                    char.yOffset += diff;
+                }
+            }
+            char.x += x;
+            char.y += y;
         }
 
         var kernings = xml.getElementsByTagName('kerning');
@@ -82462,9 +82540,9 @@ Phaser.LoaderParser = {
 
                 var charCode = parseInt(letter._id, 10);
 
-                data.chars[charCode] = {
-                    x: x + parseInt(letter._x, 10),
-                    y: y + parseInt(letter._y, 10),
+                var char = data.chars[charCode] = {
+                    x: parseInt(letter._x, 10),
+                    y: parseInt(letter._y, 10),
                     width: parseInt(letter._width, 10),
                     height: parseInt(letter._height, 10),
                     xOffset: parseInt(letter._xoffset, 10) / resolution,
@@ -82472,6 +82550,33 @@ Phaser.LoaderParser = {
                     xAdvance: (parseInt(letter._xadvance, 10) + xSpacing) / resolution,
                     kerning: {}
                 };
+                if (frame && frame.trimmed)
+                {
+                    if (char.x + char.width > frame.spriteSourceSizeX + frame.spriteSourceSizeW)
+                    {
+                        char.width -= char.x + char.width - frame.spriteSourceSizeX - frame.spriteSourceSizeW;
+                    }
+                    if (char.y + char.height > frame.spriteSourceSizeY + frame.spriteSourceSizeH)
+                    {
+                        char.height -= char.y + char.height - frame.spriteSourceSizeY - frame.spriteSourceSizeH;
+                    }
+                    if (char.x < frame.spriteSourceSizeX)
+                    {
+                        var diff = frame.spriteSourceSizeX - char.x;
+                        char.x = 0;
+                        char.width -= diff;
+                        char.xOffset += diff;
+                    }
+                    if (char.y < frame.spriteSourceSizeY)
+                    {
+                        var diff = frame.spriteSourceSizeY - char.y;
+                        char.y = 0;
+                        char.height -= diff;
+                        char.yOffset += diff;
+                    }
+                }
+                char.x += x;
+                char.y += y;
             }
 
         );
@@ -82723,6 +82828,14 @@ Phaser.LoaderParser = {
                 ddsHeader.miscFlag = uintArray[33];
                 ddsHeader.arraySize = uintArray[34];
                 ddsHeader.miscFlag = uintArray[35];
+            }
+            else if(ddsHeader.formatFourCC === 'DXT5')
+            {
+                ddsHeader.glExtensionFormat = 0x83F3;
+            }
+            else if(ddsHeader.formatFourCC === 'DXT3')
+            {
+                ddsHeader.glExtensionFormat = 0x83F2;
             }
         }
 
@@ -92812,7 +92925,7 @@ Phaser.Color = {
 /**
 * The Physics Manager is responsible for looking after all of the running physics systems.
 * Phaser supports 4 physics systems: Arcade Physics, P2, Ninja Physics and Box2D via a commercial plugin.
-* 
+*
 * Game Objects (such as Sprites) can only belong to 1 physics system, but you can have multiple systems active in a single game.
 *
 * For example you could have P2 managing a polygon-built terrain landscape that an vehicle drives over, while it could be firing bullets that use the
@@ -92936,7 +93049,7 @@ Phaser.Physics.prototype = {
 
         if (this.config.hasOwnProperty('box2d') && this.config.box2d === true && Phaser.Physics.hasOwnProperty('BOX2D'))
         {
-            this.box2d = new Phaser.Physics.BOX2D(this.game, this.config);
+            this.box2d = new Phaser.Physics.Box2D(this.game, this.config);
         }
 
         if (this.config.hasOwnProperty('matter') && this.config.matter === true && Phaser.Physics.hasOwnProperty('Matter'))
@@ -92949,9 +93062,9 @@ Phaser.Physics.prototype = {
     /**
     * This will create an instance of the requested physics simulation.
     * Phaser.Physics.Arcade is running by default, but all others need activating directly.
-    * 
+    *
     * You can start the following physics systems:
-    * 
+    *
     * Phaser.Physics.P2JS - A full-body advanced physics system by Stefan Hedman.
     * Phaser.Physics.NINJA - A port of Metanet Softwares N+ physics system.
     * Phaser.Physics.BOX2D - A commercial Phaser Plugin (see http://phaser.io)
@@ -92959,8 +93072,8 @@ Phaser.Physics.prototype = {
     * Both Ninja Physics and Box2D require their respective plugins to be loaded before you can start them.
     * They are not bundled into the core Phaser library.
     *
-    * If the physics world has already been created (i.e. in another state in your game) then 
-    * calling startSystem will reset the physics world, not re-create it. If you need to start them again from their constructors 
+    * If the physics world has already been created (i.e. in another state in your game) then
+    * calling startSystem will reset the physics world, not re-create it. If you need to start them again from their constructors
     * then set Phaser.Physics.p2 (or whichever system you want to recreate) to `null` before calling `startSystem`.
     *
     * @method Phaser.Physics#startSystem
@@ -97499,7 +97612,7 @@ p2.Spring.prototype.parent = null;
 /**
 * This is your main access to the P2 Physics World.
 * From here you can create materials, listen for events and add bodies into the physics simulation.
-* 
+*
 * @class Phaser.Physics.P2
 * @constructor
 * @param {Phaser.Game} game - Reference to the current game instance.
@@ -97580,7 +97693,7 @@ Phaser.Physics.P2 = function (game, config)
     * This signal is dispatched when a new Body is added to the World.
     *
     * It sends 1 argument: `body` which is the `Phaser.Physics.P2.Body` that was added to the world.
-    * 
+    *
     * @property {Phaser.Signal} onBodyAdded
     */
     this.onBodyAdded = new Phaser.Signal();
@@ -97589,7 +97702,7 @@ Phaser.Physics.P2 = function (game, config)
     * This signal is dispatched when a Body is removed to the World.
     *
     * It sends 1 argument: `body` which is the `Phaser.Physics.P2.Body` that was removed from the world.
-    * 
+    *
     * @property {Phaser.Signal} onBodyRemoved
     */
     this.onBodyRemoved = new Phaser.Signal();
@@ -97598,7 +97711,7 @@ Phaser.Physics.P2 = function (game, config)
     * This signal is dispatched when a Spring is added to the World.
     *
     * It sends 1 argument: `spring` which is either a `Phaser.Physics.P2.Spring`, `p2.LinearSpring` or `p2.RotationalSpring` that was added to the world.
-    * 
+    *
     * @property {Phaser.Signal} onSpringAdded
     */
     this.onSpringAdded = new Phaser.Signal();
@@ -97607,7 +97720,7 @@ Phaser.Physics.P2 = function (game, config)
     * This signal is dispatched when a Spring is removed from the World.
     *
     * It sends 1 argument: `spring` which is either a `Phaser.Physics.P2.Spring`, `p2.LinearSpring` or `p2.RotationalSpring` that was removed from the world.
-    * 
+    *
     * @property {Phaser.Signal} onSpringRemoved
     */
     this.onSpringRemoved = new Phaser.Signal();
@@ -97616,7 +97729,7 @@ Phaser.Physics.P2 = function (game, config)
     * This signal is dispatched when a Constraint is added to the World.
     *
     * It sends 1 argument: `constraint` which is the `Phaser.Physics.P2.Constraint` that was added to the world.
-    * 
+    *
     * @property {Phaser.Signal} onConstraintAdded
     */
     this.onConstraintAdded = new Phaser.Signal();
@@ -97625,7 +97738,7 @@ Phaser.Physics.P2 = function (game, config)
     * This signal is dispatched when a Constraint is removed from the World.
     *
     * It sends 1 argument: `constraint` which is the `Phaser.Physics.P2.Constraint` that was removed from the world.
-    * 
+    *
     * @property {Phaser.Signal} onConstraintRemoved
     */
     this.onConstraintRemoved = new Phaser.Signal();
@@ -97634,7 +97747,7 @@ Phaser.Physics.P2 = function (game, config)
     * This signal is dispatched when a Contact Material is added to the World.
     *
     * It sends 1 argument: `material` which is the `Phaser.Physics.P2.ContactMaterial` that was added to the world.
-    * 
+    *
     * @property {Phaser.Signal} onContactMaterialAdded
     */
     this.onContactMaterialAdded = new Phaser.Signal();
@@ -97643,7 +97756,7 @@ Phaser.Physics.P2 = function (game, config)
     * This signal is dispatched when a Contact Material is removed from the World.
     *
     * It sends 1 argument: `material` which is the `Phaser.Physics.P2.ContactMaterial` that was removed from the world.
-    * 
+    *
     * @property {Phaser.Signal} onContactMaterialRemoved
     */
     this.onContactMaterialRemoved = new Phaser.Signal();
@@ -97660,24 +97773,24 @@ Phaser.Physics.P2 = function (game, config)
 
     /**
     * This Signal is dispatched when a first contact is created between two bodies. This happens *before* the step has been done.
-    * 
+    *
     * It sends 5 arguments: `bodyA`, `bodyB`, `shapeA`, `shapeB` and `contactEquations`.
-    * 
+    *
     * It is possible that in certain situations the `bodyA` or `bodyB` values are `null`. You should check for this
     * in your own code to avoid processing potentially null physics bodies.
-    * 
+    *
     * @property {Phaser.Signal} onBeginContact
     */
     this.onBeginContact = new Phaser.Signal();
 
     /**
     * This Signal is dispatched when final contact occurs between two bodies. This happens *before* the step has been done.
-    * 
+    *
     * It sends 4 arguments: `bodyA`, `bodyB`, `shapeA` and `shapeB`.
-    * 
+    *
     * It is possible that in certain situations the `bodyA` or `bodyB` values are `null`. You should check for this
     * in your own code to avoid processing potentially null physics bodies.
-    * 
+    *
     * @property {Phaser.Signal} onEndContact
     */
     this.onEndContact = new Phaser.Signal();
@@ -98187,7 +98300,7 @@ Phaser.Physics.P2.prototype = {
     },
 
     /**
-    * Internal method called by setBounds. Responsible for creating, updating or 
+    * Internal method called by setBounds. Responsible for creating, updating or
     * removing the wall body shapes.
     *
     * @method Phaser.Physics.P2#setupWall
@@ -98242,7 +98355,7 @@ Phaser.Physics.P2.prototype = {
         this.paused = true;
 
     },
-    
+
     /**
     * Resumes a paused P2 World.
     *
@@ -98304,15 +98417,15 @@ Phaser.Physics.P2.prototype = {
 
     /**
     * Clears all bodies from the simulation, resets callbacks and resets the collision bitmask.
-    * 
+    *
     * The P2 world is also cleared:
-    * 
+    *
     * * Removes all solver equations
     * * Removes all constraints
     * * Removes all bodies
     * * Removes all springs
     * * Removes all contact materials
-    * 
+    *
     * This is called automatically when you switch state.
     *
     * @method Phaser.Physics.P2#clear
@@ -98517,7 +98630,7 @@ Phaser.Physics.P2.prototype = {
     },
 
     /**
-    * Creates a constraint that tries to keep the distance between two bodies constant.
+    * Creates a constraint that tries to keep the relative angle between two bodies constant.
     *
     * @method Phaser.Physics.P2#createGearConstraint
     * @param {Phaser.Sprite|Phaser.Physics.P2.Body|p2.Body} bodyA - First connected body.
@@ -105354,10 +105467,10 @@ Phaser.Tilemap.prototype = {
     * Copies all of the tiles in the given rectangular block into the tilemap data buffer.
     *
     * @method Phaser.Tilemap#copy
-    * @param {integer} x - X position of the top left of the area to copy (given in tiles, not pixels)
-    * @param {integer} y - Y position of the top left of the area to copy (given in tiles, not pixels)
-    * @param {integer} width - The width of the area to copy (given in tiles, not pixels)
-    * @param {integer} height - The height of the area to copy (given in tiles, not pixels)
+    * @param {integer} [x=0] - X position of the top left of the area to copy (given in tiles, not pixels)
+    * @param {integer} [y=0] - Y position of the top left of the area to copy (given in tiles, not pixels)
+    * @param {integer} [width] - The width of the area to copy (given in tiles, not pixels)
+    * @param {integer} [height] - The height of the area to copy (given in tiles, not pixels)
     * @param {integer|string|Phaser.TilemapLayer} [layer] - The layer to copy the tiles from.
     * @return {array} An array of the tiles that were copied.
     */
@@ -105543,10 +105656,10 @@ Phaser.Tilemap.prototype = {
     * @method Phaser.Tilemap#replace
     * @param {number} source - The tile index value to scan for.
     * @param {number} dest - The tile index value to replace found tiles with.
-    * @param {number} x - X position of the top left of the area to operate one, given in tiles, not pixels.
-    * @param {number} y - Y position of the top left of the area to operate one, given in tiles, not pixels.
-    * @param {number} width - The width in tiles of the area to operate on.
-    * @param {number} height - The height in tiles of the area to operate on.
+    * @param {number} [x=0] - X position of the top left of the area to operate one, given in tiles, not pixels.
+    * @param {number} [y=0] - Y position of the top left of the area to operate one, given in tiles, not pixels.
+    * @param {number} [width] - The width in tiles of the area to operate on.
+    * @param {number} [height] - The height in tiles of the area to operate on.
     * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to operate on.
     */
     replace: function (source, dest, x, y, width, height, layer)

@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.11.0 "2018-06-26" - Built: Tue Jun 26 2018 10:57:07
+* v2.11.1 "2018-10-02" - Built: Tue Oct 02 2018 18:19:22
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -7823,7 +7823,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.11.0',
+    VERSION: '2.11.1',
 
     /**
     * An array of Phaser game instances.
@@ -22892,7 +22892,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {number|string}      [GameConfig.antialias=true]
 * @property {number|string}      [GameConfig.backgroundColor=0]             - Sets {@link Phaser.Stage#backgroundColor}.
 * @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
-* @property {string}             [GameConfig.canvasId]                      - `id` attribute value to assign to the game canvas.
+* @property {string}             [GameConfig.canvasID]                      - `id` attribute value to assign to the game canvas.
 * @property {string}             [GameConfig.canvasStyle]                   - `style` attribute value to assign to the game canvas.
 * @property {boolean}            [GameConfig.clearBeforeRender=true]        - Sets {@link Phaser.Game#clearBeforeRender}.
 * @property {boolean}            [GameConfig.crisp=false]                   - Sets the canvas's `image-rendering` property to `pixelated` or `crisp-edges`. See {@link Phaser.Canvas.setImageRenderingCrisp}.
@@ -23248,6 +23248,7 @@ Phaser.Game.prototype = {
             }
             catch (webGLRendererError)
             {
+                PIXI.defaultRenderer = null;
                 this.renderer = null;
                 this.multiTexture = false;
                 PIXI._enableMultiTextureToggle = false;
@@ -23605,6 +23606,7 @@ Phaser.Game.prototype = {
         this.input.destroy();
         this.physics.destroy();
         this.plugins.destroy();
+        this.tweens.destroy();
 
         this.debug = null;
         this.state = null;
@@ -23614,6 +23616,7 @@ Phaser.Game.prototype = {
         this.input = null;
         this.physics = null;
         this.plugins = null;
+        this.tweens = null;
 
         this.cache = null;
         this.load = null;
@@ -23626,6 +23629,10 @@ Phaser.Game.prototype = {
 
         Phaser.Canvas.removeFromDOM(this.canvas);
 
+        if (PIXI.game === this)
+        {
+            PIXI.game = null;
+        }
         PIXI.defaultRenderer = null;
 
         Phaser.GAMES[this.id] = null;
@@ -23783,7 +23790,10 @@ Object.defineProperty(Phaser.Game.prototype, 'paused', {
             if (this._paused === false)
             {
                 this._paused = true;
-                this.sound.setMute();
+                if (this.sound.muteOnPause)
+                {
+                    this.sound.setMute();
+                }
                 this.time.gamePaused();
                 this.onPause.dispatch(this);
             }
@@ -30413,6 +30423,12 @@ Phaser.InputHandler.prototype = {
 
 Phaser.InputHandler.prototype.constructor = Phaser.InputHandler;
 
+/**
+* The pointer lock input handler.
+* @class
+* @constructor
+* @param {Phaser.Game} game
+*/
 Phaser.PointerLock = function (game)
 {
     /**
@@ -40253,6 +40269,7 @@ Phaser.TweenManager = function () {};
 Phaser.TweenManager.prototype.update = function () {};
 Phaser.TweenManager.prototype.removeAll = function () {};
 Phaser.TweenManager.prototype.removeFrom = function () {};
+Phaser.TweenManager.prototype.destroy = function () {};
 
 Phaser.TweenManager.prototype.constructor = Phaser.TweenManager;
 
@@ -43304,7 +43321,7 @@ Object.defineProperty(Phaser.Animation.prototype, 'enableUpdate', {
 * @param {string} prefix - The start of the filename. If the filename was 'explosion_0001-large' the prefix would be 'explosion_'.
 * @param {number} start - The number to start sequentially counting from. If your frames are named 'explosion_0001' to 'explosion_0034' the start is 1.
 * @param {number} stop - The number to count to. If your frames are named 'explosion_0001' to 'explosion_0034' the stop value is 34.
-* @param {string} [suffix=''] - The end of the filename. If the filename was 'explosion_0001-large' the prefix would be '-large'.
+* @param {string} [suffix=''] - The end of the filename. If the filename was 'explosion_0001-large' the suffix would be '-large'.
 * @param {number} [zeroPad=0] - The number of zeros to pad the min and max values with. If your frames are named 'explosion_0001' to 'explosion_0034' then the zeroPad is 4.
 * @return {string[]} An array of framenames.
 */
@@ -43909,6 +43926,8 @@ Phaser.AnimationParser = {
     * @param {number} [spacing=0] - If the frames have been drawn with spacing between them, specify the amount here.
     * @param {number} [skipFrames=0] - Skip a number of frames. Useful when there are multiple sprite sheets in one image.
     * @return {Phaser.FrameData} A FrameData object containing the parsed frames.
+    *
+    * @see Phaser.Loader#spritesheet
     */
     spriteSheet: function (game, key, frameWidth, frameHeight, frameMax, margin, spacing, skipFrames)
     {
@@ -43982,7 +44001,19 @@ Phaser.AnimationParser = {
             lastFrame = total - 1;
         }
 
-        if (total === 0)
+        if (row < 1)
+        {
+            console.warn('Phaser.AnimationParser.spriteSheet: image \'%s\' has width %d, but it should be at least %d (frameWidth=%s, margin=%s, spacing=%s)',
+                key, width, frameWidth + margin + spacing, frameWidth, margin, spacing);
+        }
+
+        if (column < 1)
+        {
+            console.warn('Phaser.AnimationParser.spriteSheet: image \'%s\' has height %d, but it should be at least %d (frameHeight=%s, margin=%s, spacing=%s)',
+                key, height, frameHeight + margin + spacing, frameHeight, margin, spacing);
+        }
+
+        if (totalAvailable === 0)
         {
             console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' zero frames were produced', key);
 
@@ -47814,23 +47845,27 @@ Phaser.Loader.prototype = {
     * and no URL is given then the Loader will set the URL to be "alien.png". It will always add `.png` as the extension.
     * If you do not desire this action then provide a URL.
     *
-    * An image with four sprites, `margin = 1`, and `spacing = 1` looks like this:
+    * An image with four frames, `margin = 1`, and `spacing = 2` looks like this:
     *
     * ```
-    * .......
-    * .     .
-    * . # # .
-    * .     .
-    * . # # .
-    * .     .
-    * .......
+    * ........
+    * .#  #  .
+    * .      .
+    * .      .
+    * .#  #  .
+    * .      .
+    * .      .
+    * ........
     *
     * .  margin
     *    spacing
     * #  sprite frame
     * ```
     *
-    * The first sprite frame is found at (margin + spacing) px from the top-left of the image.
+    * `spacing` must be on only the right and bottom edges of each frame, including the last row and column.
+    *
+    * The first sprite frame is found at (margin) px from the left of the image.
+    * The second sprite frame is found at (margin + frameWidth + spacing) px from the left of the image, and so on.
     *
     * @method Phaser.Loader#spritesheet
     * @param {string} key - Unique asset key of the sheet file.
@@ -47838,8 +47873,8 @@ Phaser.Loader.prototype = {
     * @param {number} frameWidth - Width in pixels of a single frame in the sprite sheet.
     * @param {number} frameHeight - Height in pixels of a single frame in the sprite sheet.
     * @param {number} [frameMax=-1] - How many frames in this sprite sheet. If not specified it will divide the whole image into frames.
-    * @param {number} [margin=0] - Width of any empty space at the image edges, in addition to any `spacing`.
-    * @param {number} [spacing=0] - Width of any empty space between the frames, and between the frames and the `margin`. If there is space **only** between the frames, and nowhere else, use `margin` equal to `-spacing`.
+    * @param {number} [margin=0] - The distance from the top-left of the image to the top-left of the first frame, if any.
+    * @param {number} [spacing=0] - The distance from the right edge of a frame to the left edge of the next frame on the same row, from the right edge of the last frame of a row to the margin, from the bottom edge of a frame to the top edge of the next frame on the same column, and from the bottom edge of the last frame of a column to the margin.
     * @param {number} [skipFrames=0] - Skip a number of frames. Useful when there are multiple sprite sheets in one image.
     * @return {Phaser.Loader} This Loader instance.
     */
@@ -50015,9 +50050,9 @@ Phaser.LoaderParser = {
         {
             var charCode = parseInt(letters[i].getAttribute('id'), 10);
 
-            data.chars[charCode] = {
-                x: x + parseInt(letters[i].getAttribute('x'), 10),
-                y: y + parseInt(letters[i].getAttribute('y'), 10),
+            var char = data.chars[charCode] = {
+                x: parseInt(letters[i].getAttribute('x'), 10),
+                y: parseInt(letters[i].getAttribute('y'), 10),
                 width: parseInt(letters[i].getAttribute('width'), 10),
                 height: parseInt(letters[i].getAttribute('height'), 10),
                 xOffset: parseInt(letters[i].getAttribute('xoffset'), 10) / resolution,
@@ -50025,6 +50060,33 @@ Phaser.LoaderParser = {
                 xAdvance: (parseInt(letters[i].getAttribute('xadvance'), 10) + xSpacing) / resolution,
                 kerning: {}
             };
+            if (frame && frame.trimmed)
+            {
+                if (char.x + char.width > frame.spriteSourceSizeX + frame.spriteSourceSizeW)
+                {
+                    char.width -= char.x + char.width - frame.spriteSourceSizeX - frame.spriteSourceSizeW;
+                }
+                if (char.y + char.height > frame.spriteSourceSizeY + frame.spriteSourceSizeH)
+                {
+                    char.height -= char.y + char.height - frame.spriteSourceSizeY - frame.spriteSourceSizeH;
+                }
+                if (char.x < frame.spriteSourceSizeX)
+                {
+                    var diff = frame.spriteSourceSizeX - char.x;
+                    char.x = 0;
+                    char.width -= diff;
+                    char.xOffset += diff;
+                }
+                if (char.y < frame.spriteSourceSizeY)
+                {
+                    var diff = frame.spriteSourceSizeY - char.y;
+                    char.y = 0;
+                    char.height -= diff;
+                    char.yOffset += diff;
+                }
+            }
+            char.x += x;
+            char.y += y;
         }
 
         var kernings = xml.getElementsByTagName('kerning');
@@ -50079,9 +50141,9 @@ Phaser.LoaderParser = {
 
                 var charCode = parseInt(letter._id, 10);
 
-                data.chars[charCode] = {
-                    x: x + parseInt(letter._x, 10),
-                    y: y + parseInt(letter._y, 10),
+                var char = data.chars[charCode] = {
+                    x: parseInt(letter._x, 10),
+                    y: parseInt(letter._y, 10),
                     width: parseInt(letter._width, 10),
                     height: parseInt(letter._height, 10),
                     xOffset: parseInt(letter._xoffset, 10) / resolution,
@@ -50089,6 +50151,33 @@ Phaser.LoaderParser = {
                     xAdvance: (parseInt(letter._xadvance, 10) + xSpacing) / resolution,
                     kerning: {}
                 };
+                if (frame && frame.trimmed)
+                {
+                    if (char.x + char.width > frame.spriteSourceSizeX + frame.spriteSourceSizeW)
+                    {
+                        char.width -= char.x + char.width - frame.spriteSourceSizeX - frame.spriteSourceSizeW;
+                    }
+                    if (char.y + char.height > frame.spriteSourceSizeY + frame.spriteSourceSizeH)
+                    {
+                        char.height -= char.y + char.height - frame.spriteSourceSizeY - frame.spriteSourceSizeH;
+                    }
+                    if (char.x < frame.spriteSourceSizeX)
+                    {
+                        var diff = frame.spriteSourceSizeX - char.x;
+                        char.x = 0;
+                        char.width -= diff;
+                        char.xOffset += diff;
+                    }
+                    if (char.y < frame.spriteSourceSizeY)
+                    {
+                        var diff = frame.spriteSourceSizeY - char.y;
+                        char.y = 0;
+                        char.height -= diff;
+                        char.yOffset += diff;
+                    }
+                }
+                char.x += x;
+                char.y += y;
             }
 
         );
@@ -50340,6 +50429,14 @@ Phaser.LoaderParser = {
                 ddsHeader.miscFlag = uintArray[33];
                 ddsHeader.arraySize = uintArray[34];
                 ddsHeader.miscFlag = uintArray[35];
+            }
+            else if(ddsHeader.formatFourCC === 'DXT5')
+            {
+                ddsHeader.glExtensionFormat = 0x83F3;
+            }
+            else if(ddsHeader.formatFourCC === 'DXT3')
+            {
+                ddsHeader.glExtensionFormat = 0x83F2;
             }
         }
 
@@ -56775,7 +56872,7 @@ Phaser.Color = {
 /**
 * The Physics Manager is responsible for looking after all of the running physics systems.
 * Phaser supports 4 physics systems: Arcade Physics, P2, Ninja Physics and Box2D via a commercial plugin.
-* 
+*
 * Game Objects (such as Sprites) can only belong to 1 physics system, but you can have multiple systems active in a single game.
 *
 * For example you could have P2 managing a polygon-built terrain landscape that an vehicle drives over, while it could be firing bullets that use the
@@ -56899,7 +56996,7 @@ Phaser.Physics.prototype = {
 
         if (this.config.hasOwnProperty('box2d') && this.config.box2d === true && Phaser.Physics.hasOwnProperty('BOX2D'))
         {
-            this.box2d = new Phaser.Physics.BOX2D(this.game, this.config);
+            this.box2d = new Phaser.Physics.Box2D(this.game, this.config);
         }
 
         if (this.config.hasOwnProperty('matter') && this.config.matter === true && Phaser.Physics.hasOwnProperty('Matter'))
@@ -56912,9 +57009,9 @@ Phaser.Physics.prototype = {
     /**
     * This will create an instance of the requested physics simulation.
     * Phaser.Physics.Arcade is running by default, but all others need activating directly.
-    * 
+    *
     * You can start the following physics systems:
-    * 
+    *
     * Phaser.Physics.P2JS - A full-body advanced physics system by Stefan Hedman.
     * Phaser.Physics.NINJA - A port of Metanet Softwares N+ physics system.
     * Phaser.Physics.BOX2D - A commercial Phaser Plugin (see http://phaser.io)
@@ -56922,8 +57019,8 @@ Phaser.Physics.prototype = {
     * Both Ninja Physics and Box2D require their respective plugins to be loaded before you can start them.
     * They are not bundled into the core Phaser library.
     *
-    * If the physics world has already been created (i.e. in another state in your game) then 
-    * calling startSystem will reset the physics world, not re-create it. If you need to start them again from their constructors 
+    * If the physics world has already been created (i.e. in another state in your game) then
+    * calling startSystem will reset the physics world, not re-create it. If you need to start them again from their constructors
     * then set Phaser.Physics.p2 (or whichever system you want to recreate) to `null` before calling `startSystem`.
     *
     * @method Phaser.Physics#startSystem
