@@ -330,6 +330,9 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ## Unreleased
 
+### Bug Fixes
+* Fixed issue causing BitmapFont to fail loading if a kerning value for a character that doesn't exist in the font is defined in the xml/json.
+
 ### Updates
 * BitmapText has a new property `letterSpacing` which accepts a positive or negative number to add / reduce spacing between characters
 
