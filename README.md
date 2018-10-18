@@ -328,6 +328,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
+## Unreleased
+
+### Updates
+* BitmapText has a new property `letterSpacing` which accepts a positive or negative number to add / reduce spacing between characters
+
 ## Version 2.11.1 - 2 October 2018
 
 ### Bug Fixes
@@ -363,7 +368,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@B10215029, @CorayThan, @FostUK, @Jazcash, @Lucas-C, @Mertank, @Nek-, @aeonwilliams, @dywedir, @foreverip, @giniwren, @josalmi, @joshlory, @rydash, @samme, @tiagokeller, @zhaxiu3
+@B10215029, @CorayThan, @FostUK, @Jazcash, @Lucas-C, @Mertank, @Nek-, @aeonwilliams, @dywedir, @foreverip, @giniwren, @josalmi, @joshlory, @rydash, @samme, @tiagokeller, @zhaxiu3, @wtravO, @rroylance
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
