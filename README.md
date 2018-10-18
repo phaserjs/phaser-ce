@@ -328,6 +328,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+* Fixed issue causing BitmapFont to fail loading if a kerning value for a character that doesn't exist in the font is defined in the xml/json.
+
 ## Version 2.11.1 - 2 October 2018
 
 ### Bug Fixes
@@ -363,7 +368,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 ### Thanks
 
-@B10215029, @CorayThan, @FostUK, @Jazcash, @Lucas-C, @Mertank, @Nek-, @aeonwilliams, @dywedir, @foreverip, @giniwren, @josalmi, @joshlory, @rydash, @samme, @tiagokeller, @zhaxiu3
+@B10215029, @CorayThan, @FostUK, @Jazcash, @Lucas-C, @Mertank, @Nek-, @aeonwilliams, @dywedir, @foreverip, @giniwren, @josalmi, @joshlory, @rydash, @samme, @tiagokeller, @zhaxiu3, @rroylance
 
 For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
 
