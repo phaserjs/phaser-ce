@@ -115,7 +115,10 @@ Phaser.LoaderParser = {
             var second = parseInt(kernings[i].getAttribute('second'), 10);
             var amount = parseInt(kernings[i].getAttribute('amount'), 10) / resolution;
 
-            data.chars[second].kerning[first] = amount;
+            if (data.chars[second])
+            {
+                data.chars[second].kerning[first] = amount;
+            }
         }
 
         return this.finalizeBitmapFont(baseTexture, data);
@@ -206,9 +209,10 @@ Phaser.LoaderParser = {
 
                 function parseKerning (kerning)
                 {
-
-                    data.chars[kerning._second].kerning[kerning._first] = parseInt(kerning._amount, 10) / resolution;
-
+                    if (data.chars[kerning._second])
+                    {
+                        data.chars[kerning._second].kerning[kerning._first] = parseInt(kerning._amount, 10) / resolution;
+                    }
                 }
 
             );
