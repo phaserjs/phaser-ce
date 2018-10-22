@@ -337,10 +337,11 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Updates
 
 * BitmapText has a new property `letterSpacing` which accepts a positive or negative number to add / reduce spacing between characters
+* Camera now has new properties `centerX` and `centerY` to get the center of the camera's current viewport
 
 ### Thanks
 
-@wtravO, @rroylance
+@wtravO, @rroylance, @samme
 
 ## Version 2.11.1 - 2 October 2018
 
