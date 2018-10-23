@@ -1010,3 +1010,37 @@ Object.defineProperty(Phaser.Camera.prototype, 'fixedView', {
     }
 
 });
+
+/**
+ * The x position of the center of the Camera's viewport, relative to the top-left of the game canvas.
+ * @name Phaser.Camera#centerX
+ * @property {number} centerX
+ * @readonly
+ */
+Object.defineProperty(Phaser.Camera.prototype, 'centerX', {
+
+    get: function ()
+    {
+
+        return (this.x + (0.5 * this.width));
+
+    }
+
+});
+
+/**
+ * The y position of the center of the Camera's viewport, relative to the top-left of the game canvas.
+ * @name Phaser.Camera#centerY
+ * @property {number} centerY
+ * @readonly
+ */
+Object.defineProperty(Phaser.Camera.prototype, 'centerY', {
+
+    get: function ()
+    {
+
+        return (this.y + (0.5 * this.height));
+
+    }
+
+});
