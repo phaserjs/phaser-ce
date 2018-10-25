@@ -339,7 +339,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * BitmapText has a new property `letterSpacing` which accepts a positive or negative number to add / reduce spacing between characters
 * Camera now has new properties `centerX` and `centerY` to get the center of the camera's current viewport
 * Updated Creature runtime (CreatureMeshBone.js and gl-matrix.js). **There were a couple changes to the Phaser.Creature constructor and GameObjectFactory parameters, so you will need to update your game.add.creature call if you use the group parameter.**
-* Phaser.Creature now has new functions `setMetaData`, `enableSkinSwap`, and `disableSkinSwap` adding Skin Swapping supoprt for Creature animations
+* Phaser.Creature now has new functions `setMetaData`, `enableSkinSwap`, `disableSkinSwap`, `setActiveItemSwap`, and `removeActiveItemSwap` adding Skin and Item Swapping support for Creature animations
 
 ### Thanks
 
