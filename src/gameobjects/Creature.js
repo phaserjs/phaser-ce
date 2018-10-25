@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-/* globals Creature,CreatureAnimation,CreatureManager */
+/* globals Creature,CreatureAnimation,CreatureManager,CreatureModuleUtils */
 /**
 * @author       Richard Davey <rich@photonstorm.com>
 * @author       Kestrel Moon Studios <creature@kestrelmoon.com>
@@ -175,8 +175,9 @@ PIXI.CreatureShader.prototype.destroy = function ()
 * @param {string|PIXI.Texture} key - The texture used by the Creature Object during rendering. It can be a string which is a reference to the Cache entry, or an instance of a PIXI.Texture.
 * @param {string} mesh - The mesh data for the Creature Object. It should be a string which is a reference to the Cache JSON entry.
 * @param {string} [animation='default'] - The animation within the mesh data  to play.
+* @param {string} [useFlatData=false] - Use flat data
 */
-Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors)
+Phaser.Creature = function (game, x, y, key, mesh, animation, useFlatData)
 {
 
     /**
@@ -185,6 +186,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors)
     this.game = game;
 
     if (animation === undefined) { animation = 'default'; }
+    if (useFlatData === undefined) { useFlatData = false; }
 
     /**
     * @property {number} type - The const type of this object.
@@ -204,12 +206,12 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, loadAnchors)
     * @property {Creature} _creature - The Creature instance.
     * @private
     */
-    this._creature = new Creature(meshData, loadAnchors);
+    this._creature = new Creature(meshData, useFlatData);
 
     /**
     * @property {CreatureAnimation} animation - The CreatureAnimation instance.
     */
-    this.animation = new CreatureAnimation(meshData, animation, this._creature);
+    this.animation = new CreatureAnimation(meshData, animation, useFlatData);
 
     /**
     * @property {CreatureManager} manager - The CreatureManager instance for this object.
@@ -907,4 +909,83 @@ Phaser.Creature.prototype.createAllAnimations = function (mesh)
     var meshData = this.game.cache.getJSON(mesh);
 
     this.manager.CreateAllAnimations(meshData);
+};
+
+/**
+* @method Phaser.Creature#setMetaData
+* @memberof Phaser.Creature
+*/
+Phaser.Creature.prototype.setMetaData = function (meta)
+{
+    if (!this.game.cache.checkJSONKey(meta))
+    {
+
+        console.warn('Phaser.Creature: Invalid meta key given. Not found in Phaser.Cache');
+        return;
+
+    }
+
+    var metaJson = this.game.cache.getJSON(meta);
+    var metaData = CreatureModuleUtils.BuildCreatureMetaData(metaJson);
+
+    this._creature.SetMetaData(metaData);
+
+};
+
+/**
+* @method Phaser.Creature#enableSkinSwap
+* @memberof Phaser.Creature
+*/
+Phaser.Creature.prototype.enableSkinSwap = function (swapNameIn, active)
+{
+
+    var target = this.manager.target_creature;
+
+    if (target.creature_meta_data === null)
+    {
+
+        console.warn('Phaser.Creature: Attempting to use skin swapping before setting the meta data. You must use {@link #setMetaData} before using skin swapping functionality.');
+        return;
+
+    }
+
+    target.EnableSkinSwap(swapNameIn, active);
+
+    this.indices = new Uint16Array(target.final_skin_swap_indices.length);
+    for(var i = 0; i < this.indices.length; i++)
+    {
+
+        this.indices[i] = target.final_skin_swap_indices[i];
+
+    }
+
+};
+
+/**
+* @method Phaser.Creature#disableSkinSwap
+* @memberof Phaser.Creature
+*/
+Phaser.Creature.prototype.disableSkinSwap = function ()
+{
+
+    var target = this.manager.target_creature;
+
+    if (target.creature_meta_data === null)
+    {
+
+        console.warn('Phaser.Creature: Attempting to use skin swapping before setting the meta data. You must use {@link #setMetaData} before using skin swapping functionality.');
+        return;
+
+    }
+
+    target.DisableSkinSwap();
+
+    this.indices = new Uint16Array(target.global_indices.length);
+    for(var i = 0; i < this.indices.length; i++)
+    {
+
+        this.indices[i] = target.global_indices[i];
+
+    }
+
 };
