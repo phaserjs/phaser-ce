@@ -989,3 +989,25 @@ Phaser.Creature.prototype.disableSkinSwap = function ()
     }
 
 };
+
+/**
+* @method Phaser.Creature#setActiveItemSwap
+* @memberof Phaser.Creature
+*/
+Phaser.Creature.prototype.setActiveItemSwap = function(regionName, swapIdx)
+{
+
+	this.active_uv_swap_actions[regionName] = swapIdx;
+
+};
+
+/**
+* @method Phaser.Creature#removeActiveItemSwap
+* @memberof Phaser.Creature
+*/
+Phaser.Creature.prototype.removeActiveItemSwap = function(regionName)
+{
+
+	delete this.active_uv_swap_actions[regionName];
+
+};
