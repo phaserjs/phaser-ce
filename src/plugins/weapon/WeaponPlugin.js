@@ -456,7 +456,7 @@ Phaser.Weapon.KILL_LIFESPAN = 1;
 
 /**
 * A {@link #bulletKillType} constant that automatically kills the bullets after they
-* exceed the {@link #bulletDistance} from their original firing position.
+* exceed the {@link #bulletKillDistance} from their original firing position.
 * @constant
 * @type {integer}
 */
@@ -1371,10 +1371,10 @@ Object.defineProperty(Phaser.Weapon.prototype, 'bulletClass', {
 * The bullets are never destroyed by the Weapon. It's up to you to destroy them via your own code.
 *
 * * `Phaser.Weapon.KILL_LIFESPAN`
-* The bullets are automatically killed when their `bulletLifespan` amount expires.
+* The bullets are automatically killed when their {@link #bulletLifespan} amount expires.
 *
 * * `Phaser.Weapon.KILL_DISTANCE`
-* The bullets are automatically killed when they exceed `bulletDistance` pixels away from their original launch position.
+* The bullets are automatically killed when they exceed {@link #bulletKillDistance} pixels away from their original launch position.
 *
 * * `Phaser.Weapon.KILL_WEAPON_BOUNDS`
 * The bullets are automatically killed when they no longer intersect with the {@link #bounds} rectangle.
