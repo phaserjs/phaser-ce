@@ -6855,8 +6855,12 @@ PIXI.CanvasTinter.tintWithPerPixel = function (texture, color, canvas)
     var context = canvas.getContext('2d');
 
     var crop = texture.crop;
-    var w = crop.width;
-    var h = crop.height;
+    /**
+     * Round the values down as IE11 has an unexpected error when the texture.crop
+     * width and height could differ with each other.
+     */
+    var w = Math.floor(crop.width);
+    var h = Math.floor(crop.height);
 
     if (texture.rotated)
     {
