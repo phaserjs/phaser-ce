@@ -200,7 +200,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, useFlatData)
         return;
     }
 
-    var meshData = game.cache.getJSON(mesh);
+    var meshData = game.cache.getJSON(mesh, true);
 
     /**
     * @property {Creature} _creature - The Creature instance.
@@ -906,7 +906,7 @@ Phaser.Creature.prototype.createAllAnimations = function (mesh)
         return;
     }
 
-    var meshData = this.game.cache.getJSON(mesh);
+    var meshData = this.game.cache.getJSON(mesh, true);
 
     this.manager.CreateAllAnimations(meshData);
 };
@@ -925,7 +925,7 @@ Phaser.Creature.prototype.setMetaData = function (meta)
 
     }
 
-    var metaJson = this.game.cache.getJSON(meta);
+    var metaJson = this.game.cache.getJSON(meta, true);
     var metaData = CreatureModuleUtils.BuildCreatureMetaData(metaJson);
 
     this._creature.SetMetaData(metaData);
