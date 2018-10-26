@@ -333,6 +333,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 ### Bug Fixes
 
 * Fixed issue causing BitmapFont to fail loading if a kerning value for a character that doesn't exist in the font is defined in the xml/json.
+* Fix for Creature runtime modifying the JSON object you give it from the Phaser.Cache making subsequent uses of that JSON not behave in various ways, depending on how you use the runtime (when having multiple Creature objects of the same character for example)
 
 ### Updates
 
