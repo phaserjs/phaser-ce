@@ -994,12 +994,12 @@ Phaser.Creature.prototype.disableSkinSwap = function ()
 * @method Phaser.Creature#setActiveItemSwap
 * @memberof Phaser.Creature
 */
-Phaser.Creature.prototype.setActiveItemSwap = function(regionName, swapIdx)
+Phaser.Creature.prototype.setActiveItemSwap = function (regionName, swapIdx)
 {
 
     var target = this.manager.target_creature;
 
-	target.active_uv_swap_actions[regionName] = swapIdx;
+    target.active_uv_swap_actions[regionName] = swapIdx;
 
 };
 
@@ -1007,11 +1007,11 @@ Phaser.Creature.prototype.setActiveItemSwap = function(regionName, swapIdx)
 * @method Phaser.Creature#removeActiveItemSwap
 * @memberof Phaser.Creature
 */
-Phaser.Creature.prototype.removeActiveItemSwap = function(regionName)
+Phaser.Creature.prototype.removeActiveItemSwap = function (regionName)
 {
 
     var target = this.manager.target_creature;
 
-	delete target.active_uv_swap_actions[regionName];
+    delete target.active_uv_swap_actions[regionName];
 
 };
