@@ -2,9 +2,7 @@
 
 <img src="https://phaser.io/images/github/arcade-cab.png" align="right" width="400" height="617">
 
-Phaser is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development. Years after release, Phaser is still one of the [most starred game frameworks](https://github.com/showcases/javascript-game-engines) on GitHub.
-
-Thousands of developers worldwide use Phaser. From indies and multi-national digital agencies, to schools and Universities. Each creating their own incredible [games](http://phaser.io/games).
+Phaser CE is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development.
 
 Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](http://phaser.io/phaser3) is in active development.
 
@@ -22,7 +20,6 @@ Grab the source and join in the fun!
 
 ## Contents
 
-- [What's New?](#whats-new)
 - [Games made with Phaser](#games)
 - [Requirements](#requirements)
 - [Download Phaser](#download)
@@ -32,43 +29,6 @@ Grab the source and join in the fun!
 - [Phaser World Newsletter](#newsletter)
 - [Contributing](#contributing)
 - [Change Log](#change-log)
-
-<a name="whats-new"></a>
-
-## What's New
-
-### 23rd March 2017
-
-[Phaser CE](https://github.com/photonstorm/phaser-ce) is the Community Edition of [Phaser](https://github.com/photonstorm/phaser). In short, it's a version of Phaser that you, the community, have direct control over.
-
-It was started with the 2.7.0 release and since then the community has worked to continue updating it, fixing bugs and adding new features.
-
-Phaser 2 was a massive milestone for us, and we're still constantly amazed at all the cool things you created, and continue to create with it. Thank you to everyone who has submitted an issue or pull request over the years, or helped the framework grow in any shape or capacity.
-
-As of today all of our in-house resources are spent on building Phaser 3 and beyond. However we fully recognize that lots of you still use Phaser 2, and have a lot to contribute to its future. So this is what we've done:
-
-* [Phaser 2.6.2](https://github.com/photonstorm/phaser/releases/tag/v2.6.2) is the last 'official' release, published on npm as [phaser](https://www.npmjs.com/package/phaser)
-* [Phaser 2.7.0 and all future versions](https://github.com/photonstorm/phaser-ce/releases) have been given to the community to maintain, published on npm as [phaser-ce](https://www.npmjs.com/package/phaser-ce)
-
-**All Pull Requests made against this repo will be unconditionally approved**.
-
-We'll give GitHub permissions to a select few individuals to help with this process if they request them. And when you, the community, request it, we will publish new versions to npm.
-
-We believe this set-up will give us the best of both worlds. It will allow us to continue focusing our efforts on Phaser 3. And it will allow the community to enhance Phaser 2 for as long as they wish.
-
-As always, check the [Change Log](#change-log) to see what was added recently.
-
-Keep your eyes on the web site, and subscribe to the weekly Phaser World [newsletter](#newsletter). You can also follow on [Twitter](https://twitter.com/photonstorm), or chat in the Phaser [Slack](http://phaser.io/community/slack) and [Discord](http://phaser.io/community/discord) channels.
-
-There are also now more ways than before to help [support](#support) the development of Phaser. The uptake so far has been fantastic, but this is an on-going mission. Thank you to everyone who supports our development. Who shares our belief in the future of HTML5 gaming, and Phasers role in that.
-
-Happy coding everyone!
-
-Cheers,
-
-Rich - [@photonstorm](https://twitter.com/photonstorm)
-
-![boogie](https://www.phaser.io/images/spacedancer.gif)
 
 <a name="games"></a>
 
@@ -205,15 +165,15 @@ See [our webpack project template](https://github.com/photonstorm/phaser-ce/tree
 
 For using phaser-ce with [ionic](https://ionicframework.com), have a look at the [ionic example](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) within project templates. To get phaser-ce working with ionic in general, you've to extend "only" the webpack config used by ionic. To get this done are a few steps are necessary.
 
-- Install dependencies [webpack-merge](https://www.npmjs.com/package/webpack-merge) and [expose-loader](https://www.npmjs.com/package/expose-loader):
+1. Install dependencies [webpack-merge](https://www.npmjs.com/package/webpack-merge) and [expose-loader](https://www.npmjs.com/package/expose-loader):
 
   ```bash
   npm install webpack-merge expose-loader --save-dev
   ```
 
-- Create a [new webpack config](https://github.com/photonstorm/phaser-ce/blob/master/resources/Project%20Templates/ionic-example/webpack.config.js) setting up expose-loader and merging it with the ionic webpack script.
+2. Create a [new webpack config](https://github.com/photonstorm/phaser-ce/blob/master/resources/Project%20Templates/ionic-example/webpack.config.js) setting up expose-loader and merging it with the ionic webpack script.
 
-- Add own webpack config at package.json, so that ionic will use it:
+3. Add own webpack config at package.json, so that ionic will use it:
 
   ```json
   {
@@ -223,7 +183,7 @@ For using phaser-ce with [ionic](https://ionicframework.com), have a look at the
   }
   ```
 
-- Import **pixi**, **p2** and **phaser-ce** within your project:
+4. Import **pixi**, **p2** and **phaser-ce** within your project:
 
   ```javascript
   import "pixi";
