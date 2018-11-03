@@ -3,6 +3,7 @@ This Issue is about (pick one, ✏️ delete others)
 * A bug in the API:
   * Phaser version(s):
   * Live example:
+  * What steps produce the bug:
   * What should happen:
   * What happens instead:
 * An error in the documentation
