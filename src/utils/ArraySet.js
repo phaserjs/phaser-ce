@@ -291,4 +291,30 @@ Object.defineProperty(Phaser.ArraySet.prototype, 'next', {
 
 });
 
+/**
+* Returns the the previous item (based on the cursor) and advances the cursor.
+*
+* @name Phaser.ArraySet#prev
+* @property {any} prev
+*/
+Object.defineProperty(Phaser.ArraySet.prototype, 'prev', {
+
+    get: function ()
+    {
+
+        if (this.position > 0)
+        {
+            this.position--;
+
+            return this.list[this.position];
+        }
+        else
+        {
+            return null;
+        }
+
+    }
+
+});
+
 Phaser.ArraySet.prototype.constructor = Phaser.ArraySet;
