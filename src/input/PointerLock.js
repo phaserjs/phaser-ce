@@ -125,10 +125,13 @@ Phaser.PointerLock.prototype.start = function ()
 */
 Phaser.PointerLock.prototype.stop = function ()
 {
-    document.removeEventListener(this.pointerlockchange, this.boundOnChangeHandler, true);
-    document.removeEventListener(this.pointerlockerror, this.boundOnErrorHandler, true);
-
-    this.active = false;
+    if (this.active)
+    {
+        document.removeEventListener(this.pointerlockchange, this.boundOnChangeHandler, true);
+        document.removeEventListener(this.pointerlockerror, this.boundOnErrorHandler, true);
+    
+        this.active = false;
+    }
 };
 
 /**
