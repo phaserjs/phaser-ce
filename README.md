@@ -295,6 +295,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * Fixed issue causing BitmapFont to fail loading if a kerning value for a character that doesn't exist in the font is defined in the xml/json.
 * Fix for Creature runtime modifying the JSON object you give it from the Phaser.Cache making subsequent uses of that JSON not behave in various ways, depending on how you use the runtime (when having multiple Creature objects of the same character for example)
 * `PointerLock.stop` will now only stop the event listener if they were started in the first place. This avoids issues where a 3rd party lib, such as Ionic, intercepts event functions and parses them itself (thanks @photonstorm and manuelhe)
+* Fixed an error when destroying a touch-locked Video (#616).
 
 ### Updates
 
