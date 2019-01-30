@@ -165,6 +165,14 @@ Phaser.Graphics = function (game, x, y)
      */
     this.boundsPadding = 0;
 
+
+    /**
+     * Actually the visual bounds.
+     *
+     * @property _localBounds
+     * @type Phaser.Rectangle
+     * @private
+     */
     this._localBounds = new Phaser.Rectangle(0, 0, 1, 1);
 
     /**
@@ -1152,10 +1160,15 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession)
 };
 
 /**
- * Retrieves the bounds of the graphic shape as a rectangle object
+ * Retrieves the bounds of the graphic shape as a rectangle object.
+ *
+ * If this graphic is being used as a mask, the bounds will be an empty rectangle.
+ * Use {@link Phaser.Graphics#getBounds} instead if you need to mask's own dimensions.
+ *
+ * The returned value is a direct reference, so you shouldn't modify it (modify a copy instead).
  *
  * @method Phaser.Graphics#getBounds
- * @return {Rectangle} the rectangular bounding area
+ * @return {Rectangle} the rectangular bounding area.
  */
 Phaser.Graphics.prototype.getBounds = function (matrix)
 {
@@ -1311,8 +1324,31 @@ Phaser.Graphics.prototype.containsPoint = function (point, tempPoint)
 
 };
 
+
 /**
- * Update the bounds of the object
+ * Copy and return the visual bounds of the object, based on the drawn data.
+ *
+ * This is a rectangle with origin (0, 0) encompassing all the shapes drawn on this object.
+ *
+ * @method Phaser.Graphics#getVisualBounds
+ * @param {Phaser.Rectangle} [output] - An existing rectangle to copy the bounds into.
+ * @return {Phaser.Rectangle}
+ */
+Phaser.Graphics.prototype.getVisualBounds = function (output)
+{
+
+    if (this._boundsDirty)
+    {
+        this.updateLocalBounds();
+        this._boundsDirty = false;
+    }
+
+    return this._localBounds.clone(output);
+
+};
+
+/**
+ * Update the visual bounds of the object, based on the drawn data.
  *
  * @method Phaser.Graphics#updateLocalBounds
  */
