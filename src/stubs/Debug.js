@@ -20,6 +20,7 @@ Phaser.Utils.Debug.prototype = {
     isDisabled: true,
 
     boot: debugNoop,
+    destroy: debugNoop,
     preUpdate: debugNoop,
     reset: debugNoop,
     start: debugNoop,
