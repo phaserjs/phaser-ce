@@ -288,7 +288,14 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
+## Unreleased (Version 2.12.0)
+
+### New Features / API Changes
+
+* BitmapText has a new property `letterSpacing` which accepts a positive or negative number to add / reduce spacing between characters
+* Camera now has new properties `centerX` and `centerY` to get the center of the camera's current viewport
+* Updated Creature runtime (CreatureMeshBone.js and gl-matrix.js). **The Phaser.Creature constructor arguments have changed.**
+* Phaser.Creature now has new functions `setMetaData`, `enableSkinSwap`, `disableSkinSwap`, `setActiveItemSwap`, and `removeActiveItemSwap` adding Skin and Item Swapping support for Creature animations
 
 ### Bug Fixes
 
@@ -297,16 +304,9 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 * `PointerLock.stop` will now only stop the event listener if they were started in the first place. This avoids issues where a 3rd party lib, such as Ionic, intercepts event functions and parses them itself (thanks @photonstorm and manuelhe)
 * Fixed an error when destroying a touch-locked Video (#616).
 
-### Updates
-
-* BitmapText has a new property `letterSpacing` which accepts a positive or negative number to add / reduce spacing between characters
-* Camera now has new properties `centerX` and `centerY` to get the center of the camera's current viewport
-* Updated Creature runtime (CreatureMeshBone.js and gl-matrix.js). **The Phaser.Creature constructor arguments have changed.**
-* Phaser.Creature now has new functions `setMetaData`, `enableSkinSwap`, `disableSkinSwap`, `setActiveItemSwap`, and `removeActiveItemSwap` adding Skin and Item Swapping support for Creature animations
-
 ### Thanks
 
-@wtravO, @rroylance, @samme
+@wtravO, @rroylance, @samme, @Aram19, @photonstorm, manuelhe
 
 ## Version 2.11.1 - 2 October 2018
 
