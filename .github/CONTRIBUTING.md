@@ -69,5 +69,5 @@ Thanks to Chad for creating the original Pixi.js Contributing file which we adap
 [1]: http://jsfiddle.net
 [2]: http://jsbin.com/
 [3]: http://nodejs.org
-[4]: http://www.html5gamedevs.com/forum/14-phaser/
+[4]: https://phaser.discourse.group/c/phaser2
 [5]: http://codepen.io/pen?template=vyKJvw
