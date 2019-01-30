@@ -74,12 +74,26 @@ If you're starting or stopping input handlers manually, you'll have to make some
   game.input.mspointer.capture = true;
   ```
 
+  The [Touch handler](https://photonstorm.github.io/phaser-ce/Phaser.Touch.html) is started (with capture on) only if the device supports touch and the Pointer Events handler was not started. This is the same as in previous versions.
+
+  #### Which input handlers are running, depending on device capabilities
+
+  Device has                  | mspointer | touch   | mouse
+  ----------------------------|-----------|---------|-------
+  Pointer Events              | active    |         |
+  no Pointer Events; Touch    |           | active† | active
+  no Pointer Events; no Touch |           |         | active
+
+  (†) capture on
+
 * [Mouse wheel input](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html) was moved to `input.mouseWheel`. The changed properties are
 
   - `input.mouse.wheelDelta`         → `input.mouseWheel.delta`
   - `input.mouse.mouseWheelCallback` → `input.mouseWheel.callback`
 
   The old properties will keep working for now.
+
+  The mouse wheel input handler uses `input.mouseWheel.preventDefault`, not `input.mouse.capture`.
 
 * [Pointer lock input](https://photonstorm.github.io/phaser-ce/Phaser.PointerLock.html) was moved to `input.pointerLock`. The changed properties are
 
