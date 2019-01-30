@@ -6,6 +6,9 @@ This Issue is about (pick one, ✏️ delete others)
   * What steps produce the bug:
   * What should happen:
   * What happens instead:
+  * If there's an error:
+    * What's the error message?
+    * What's the error trace (expand the error message)?
 * An error in the documentation
 * An error in the TypeScript definitions
 
