@@ -9,6 +9,7 @@
 * Updated Creature runtime (CreatureMeshBone.js and gl-matrix.js). **The Phaser.Creature constructor arguments have changed.**
 * Phaser.Creature now has new functions `setMetaData`, `enableSkinSwap`, `disableSkinSwap`, `setActiveItemSwap`, and `removeActiveItemSwap` adding Skin and Item Swapping support for Creature animations
 * Phaser.Graphics#getVisualBounds is a new method that gets the bounds (extent) of the shapes drawn on a graphics object (#578). Unlike Phaser.Graphics#getBounds, it doesn't treat masked graphics differently.
+* Phaser.SoundManager#baseLatency is a new property representing the processing latency of the underlying Web Audio context, in seconds.
 
 ### Bug Fixes
 
