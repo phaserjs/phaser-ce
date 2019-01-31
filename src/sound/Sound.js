@@ -731,6 +731,8 @@ Phaser.Sound.prototype = {
                 this.durationMS = this.totalDuration * 1000;
             }
 
+            this._globalVolume = this.game.sound.volume;
+
             this._sound.currentTime = this.position;
             this._sound.muted = this._muted;
 
@@ -740,7 +742,7 @@ Phaser.Sound.prototype = {
             }
             else
             {
-                this._sound.volume = this._volume;
+                this._sound.volume = this._volume * this._globalVolume;
             }
 
             this.isPlaying = true;
