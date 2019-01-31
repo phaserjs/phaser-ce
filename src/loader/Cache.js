@@ -357,7 +357,7 @@ Phaser.Cache.prototype = {
 
         if (data.complete === false)
         {
-            console.warn('Phaser.Cache.addImage: Image "' + key + '" hasn\'t been retrieved yet');
+            console.warn('Phaser.Cache.addImage: Image "%s" is not complete', key);
         }
 
         var img = {
