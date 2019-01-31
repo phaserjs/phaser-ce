@@ -2,25 +2,29 @@
 
 ## Unreleased (Version 2.12.0)
 
+If you're using the `loadAnchors` argument in the Phaser.Creature constructor, you'll have to change your code.
+
 ### New Features / API Changes
 
-* BitmapText has a new property `letterSpacing` which accepts a positive or negative number to add / reduce spacing between characters
-* Camera now has new properties `centerX` and `centerY` to get the center of the camera's current viewport
-* Updated Creature runtime (CreatureMeshBone.js and gl-matrix.js). **The Phaser.Creature constructor arguments have changed.**
-* Phaser.Creature now has new functions `setMetaData`, `enableSkinSwap`, `disableSkinSwap`, `setActiveItemSwap`, and `removeActiveItemSwap` adding Skin and Item Swapping support for Creature animations
-* Phaser.Graphics#getVisualBounds is a new method that gets the bounds (extent) of the shapes drawn on a graphics object (#578). Unlike Phaser.Graphics#getBounds, it doesn't treat masked graphics differently.
-* Phaser.SoundManager#baseLatency is a new property representing the processing latency of the underlying Web Audio context, in seconds.
+* BitmapText has a new property [letterSpacing](https://photonstorm.github.io/phaser-ce/Phaser.BitmapText.html#letterSpacing) which accepts a positive or negative number to add or reduce spacing between characters.
+* Camera now has new properties [centerX](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#centerX) and [centerY](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#centerY) to get the center of the camera's current viewport.
+* Updated Creature runtime. **The [Phaser.Creature](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html) constructor arguments have changed:** the `loadAnchors` argument was removed and a `useFlatData` argument was added. [Phaser.GameObjectFactory#creature](https://photonstorm.github.io/phaser-ce/Phaser.GameObjectFactory.html#creature) also added arguments (`mesh`, `animation`, `useFlatData`) but its existing arguments weren't changed.
+* [Phaser.Creature](https://photonstorm.github.io/phaser-ce/Phaser.Creature.html) now has new functions `setMetaData`, `enableSkinSwap`, `disableSkinSwap`, `setActiveItemSwap`, and `removeActiveItemSwap` adding Skin and Item Swapping support for Creature animations.
+* [Phaser.Graphics#getVisualBounds](https://photonstorm.github.io/phaser-ce/Phaser.Graphics.html#getVisualBounds) is a new method that gets the bounds (extent) of the shapes drawn on a graphics object (#578). Unlike [Phaser.Graphics#getBounds](https://photonstorm.github.io/phaser-ce/Phaser.Graphics.html#getBounds), it gives the same result whether or not a graphics object is being used as a mask.
+* [Phaser.SoundManager#baseLatency](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#baseLatency) is a new property representing the processing latency of the underlying Web Audio context, in seconds.
 
 ### Bug Fixes
 
-* Fixed issue causing BitmapFont to fail loading if a kerning value for a character that doesn't exist in the font is defined in the xml/json.
-* Fix for Creature runtime modifying the JSON object you give it from the Phaser.Cache making subsequent uses of that JSON not behave in various ways, depending on how you use the runtime (when having multiple Creature objects of the same character for example)
-* `PointerLock.stop` will now only stop the event listener if they were started in the first place. This avoids issues where a 3rd party lib, such as Ionic, intercepts event functions and parses them itself (thanks @photonstorm and manuelhe)
-* Fixed an error when destroying a touch-locked Video (#616).
+* Fixed issue causing BitmapFont to fail loading if a kerning value for a character that doesn't exist in the font is defined in the xml/json (#598).
+* Fix for Creature runtime modifying the JSON object you give it from the Phaser.Cache making subsequent uses of that JSON not behave in various ways, depending on how you use the runtime (when having multiple Creature objects of the same character for example).
+* [Phaser.PointerLock#stop](https://photonstorm.github.io/phaser-ce/Phaser.PointerLock.html#stop) will now only stop its event listeners if they were started in the first place. This avoids issues where a 3rd party lib, such as Ionic, intercepts event functions and parses them itself (thanks @photonstorm and manuelhe).
+* Fixed an error when destroying a [touch-locked Video](https://photonstorm.github.io/phaser-ce/Phaser.Video.html#touchLocked) (#616).
+* Fixed an error when unplugging a gamepad (#610).
+* Fixed streaming video in Firefox (#607).
 
 ### Thanks
 
-@wtravO, @rroylance, @samme, @Aram19, @photonstorm, manuelhe
+@Aram19, manuelhe, @photonstorm, @rroylance, @samme, @Weedshaker, @wtravO
 
 ## Version 2.11.1 - 2 October 2018
 
