@@ -725,7 +725,9 @@ Phaser.Game.prototype = {
         }
         else
         {
-            this.debug = { preUpdate: function () {}, update: function () {}, reset: function () {}, isDisabled: true };
+            var noop = function () {};
+
+            this.debug = { preUpdate: noop, update: noop, reset: noop, destroy: noop, isDisabled: true };
         }
 
         this.showDebugHeader();
@@ -1236,11 +1238,7 @@ Phaser.Game.prototype = {
 
         this.raf.stop();
 
-        if (this.debug.destroy)
-        {
-            this.debug.destroy();
-        }
-
+        this.debug.destroy();
         this.state.destroy();
         this.sound.destroy();
         this.scale.destroy();

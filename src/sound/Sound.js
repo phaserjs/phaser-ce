@@ -1088,7 +1088,7 @@ Phaser.Sound.prototype = {
     _startSource: function (when, offset, duration)
     {
 
-        this._sound.start(when || 0, offset, duration);
+        this._sound.start(when || 0, offset || 0, duration);
 
     },
 

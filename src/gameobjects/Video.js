@@ -1223,7 +1223,7 @@ Phaser.Video.prototype = {
 
         if (this.touchLocked)
         {
-            this.game.input.touch.removeTouchLockCallback(this.unlock, this);
+            this.game.input.removeTouchLockCallback(this.unlock, this);
         }
 
         if (this._retryID)

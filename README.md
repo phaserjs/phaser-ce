@@ -288,24 +288,7 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 # Change Log
 
-## Unreleased
-
-### Bug Fixes
-
-* Fixed issue causing BitmapFont to fail loading if a kerning value for a character that doesn't exist in the font is defined in the xml/json.
-* Fix for Creature runtime modifying the JSON object you give it from the Phaser.Cache making subsequent uses of that JSON not behave in various ways, depending on how you use the runtime (when having multiple Creature objects of the same character for example)
-* `PointerLock.stop` will now only stop the event listener if they were started in the first place. This avoids issues where a 3rd party lib, such as Ionic, intercepts event functions and parses them itself (thanks @photonstorm and manuelhe)
-
-### Updates
-
-* BitmapText has a new property `letterSpacing` which accepts a positive or negative number to add / reduce spacing between characters
-* Camera now has new properties `centerX` and `centerY` to get the center of the camera's current viewport
-* Updated Creature runtime (CreatureMeshBone.js and gl-matrix.js). **The Phaser.Creature constructor arguments have changed.**
-* Phaser.Creature now has new functions `setMetaData`, `enableSkinSwap`, `disableSkinSwap`, `setActiveItemSwap`, and `removeActiveItemSwap` adding Skin and Item Swapping support for Creature animations
-
-### Thanks
-
-@wtravO, @rroylance, @samme
+See [Change Log](CHANGELOG.md).
 
 ## Version 2.11.1 - 2 October 2018
 

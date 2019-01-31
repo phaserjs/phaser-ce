@@ -451,31 +451,27 @@ Phaser.Pointer.prototype = {
     processButtonsDown: function (button, event)
     {
 
-        //  Note: These are bitwise checks, not booleans
-
-        if (button === Phaser.Mouse.LEFT_BUTTON)
+        switch (button)
         {
-            this.leftButton.start(event);
-        }
+            case (Phaser.Mouse.LEFT_BUTTON):
+                this.leftButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.RIGHT_BUTTON)
-        {
-            this.rightButton.start(event);
-        }
+            case (Phaser.Mouse.RIGHT_BUTTON):
+                this.rightButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.MIDDLE_BUTTON)
-        {
-            this.middleButton.start(event);
-        }
+            case (Phaser.Mouse.MIDDLE_BUTTON):
+                this.middleButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.BACK_BUTTON)
-        {
-            this.backButton.start(event);
-        }
+            case (Phaser.Mouse.BACK_BUTTON):
+                this.backButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.FORWARD_BUTTON)
-        {
-            this.forwardButton.start(event);
+            case (Phaser.Mouse.FORWARD_BUTTON):
+                this.forwardButton.start(event);
+                break;
         }
 
     },
@@ -491,31 +487,27 @@ Phaser.Pointer.prototype = {
     processButtonsUp: function (button, event)
     {
 
-        //  Note: These are bitwise checks, not booleans
-
-        if (button === Phaser.Mouse.LEFT_BUTTON)
+        switch (button)
         {
-            this.leftButton.stop(event);
-        }
+            case (Phaser.Mouse.LEFT_BUTTON):
+                this.leftButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.RIGHT_BUTTON)
-        {
-            this.rightButton.stop(event);
-        }
+            case (Phaser.Mouse.RIGHT_BUTTON):
+                this.rightButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.MIDDLE_BUTTON)
-        {
-            this.middleButton.stop(event);
-        }
+            case (Phaser.Mouse.MIDDLE_BUTTON):
+                this.middleButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.BACK_BUTTON)
-        {
-            this.backButton.stop(event);
-        }
+            case (Phaser.Mouse.BACK_BUTTON):
+                this.backButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.FORWARD_BUTTON)
-        {
-            this.forwardButton.stop(event);
+            case (Phaser.Mouse.FORWARD_BUTTON):
+                this.forwardButton.stop(event);
+                break;
         }
 
     },
@@ -531,8 +523,9 @@ Phaser.Pointer.prototype = {
     processButtonsUpDown: function (buttons, event)
     {
 
-        var down = (event.type.toLowerCase().substr(-4) === 'down');
-        var move = (event.type.toLowerCase().substr(-4) === 'move');
+        var type = event.type.toLowerCase().substr(-4);
+        var down = (type === 'down');
+        var move = (type === 'move');
 
         if (buttons !== undefined)
         {

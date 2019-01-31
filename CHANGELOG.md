@@ -1,8 +1,26 @@
 # Change Log
 
-## Unreleased
+## Unreleased (Version 2.12.0)
 
-See [README: Change Log: Unreleased](README.md#unreleased).
+### New Features / API Changes
+
+* BitmapText has a new property `letterSpacing` which accepts a positive or negative number to add / reduce spacing between characters
+* Camera now has new properties `centerX` and `centerY` to get the center of the camera's current viewport
+* Updated Creature runtime (CreatureMeshBone.js and gl-matrix.js). **The Phaser.Creature constructor arguments have changed.**
+* Phaser.Creature now has new functions `setMetaData`, `enableSkinSwap`, `disableSkinSwap`, `setActiveItemSwap`, and `removeActiveItemSwap` adding Skin and Item Swapping support for Creature animations
+* Phaser.Graphics#getVisualBounds is a new method that gets the bounds (extent) of the shapes drawn on a graphics object (#578). Unlike Phaser.Graphics#getBounds, it doesn't treat masked graphics differently.
+* Phaser.SoundManager#baseLatency is a new property representing the processing latency of the underlying Web Audio context, in seconds.
+
+### Bug Fixes
+
+* Fixed issue causing BitmapFont to fail loading if a kerning value for a character that doesn't exist in the font is defined in the xml/json.
+* Fix for Creature runtime modifying the JSON object you give it from the Phaser.Cache making subsequent uses of that JSON not behave in various ways, depending on how you use the runtime (when having multiple Creature objects of the same character for example)
+* `PointerLock.stop` will now only stop the event listener if they were started in the first place. This avoids issues where a 3rd party lib, such as Ionic, intercepts event functions and parses them itself (thanks @photonstorm and manuelhe)
+* Fixed an error when destroying a touch-locked Video (#616).
+
+### Thanks
+
+@wtravO, @rroylance, @samme, @Aram19, @photonstorm, manuelhe
 
 ## Version 2.11.1 - 2 October 2018
 
@@ -58,12 +76,26 @@ If you're starting or stopping input handlers manually, you'll have to make some
   game.input.mspointer.capture = true;
   ```
 
+  The [Touch handler](https://photonstorm.github.io/phaser-ce/Phaser.Touch.html) is started (with capture on) only if the device supports touch and the Pointer Events handler was not started. This is the same as in previous versions.
+
+  #### Which input handlers are running, depending on device capabilities
+
+  Device has                  | mspointer | touch   | mouse
+  ----------------------------|-----------|---------|-------
+  Pointer Events              | active    |         |
+  no Pointer Events; Touch    |           | active† | active
+  no Pointer Events; no Touch |           |         | active
+
+  (†) capture on
+
 * [Mouse wheel input](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html) was moved to `input.mouseWheel`. The changed properties are
 
   - `input.mouse.wheelDelta`         → `input.mouseWheel.delta`
   - `input.mouse.mouseWheelCallback` → `input.mouseWheel.callback`
 
   The old properties will keep working for now.
+
+  The mouse wheel input handler uses `input.mouseWheel.preventDefault`, not `input.mouse.capture`.
 
 * [Pointer lock input](https://photonstorm.github.io/phaser-ce/Phaser.PointerLock.html) was moved to `input.pointerLock`. The changed properties are
 

@@ -34,14 +34,27 @@ You can download node.js from [nodejs.org][3]. After it has been installed open 
 
 After that you can clone the repository and run `npm i` inside the cloned folder. This will install dependencies necessary for building the project. Once that is ready, make your changes and submit a Pull Request:
 
-- **Send Pull Requests to the `master` branch.** We _used_ to insist PRs went to `dev` but have removed this policy since the release of Phaser CE.
+### Send Pull Requests to the `master` branch
 
-- **Ensure changes pass ESLint.** Run `npm run test` or use an ESLint plugin in your editor.
+We _used_ to insist PRs went to `dev` but have removed this policy since the release of Phaser CE.
 
-- **Never commit new builds.** When making a code change you should always run `grunt` which will rebuild the project so you can test, *however* please do not commit these new builds or your PR will be closed. Builds by default are placed in the `dist` folder, to keep them separate from the `build` folder releases.
+### Ensure changes pass ESLint
 
-- **Only commit relevant changes.** Don't include changes that are not directly relevant to the fix you are making. The more focused a PR is, the faster it will get attention and be merged. Extra files changing only whitespace or trash files will likely get your PR closed.
+Run `npm run test` or use an ESLint plugin in your editor.
 
+### Testing changes
+
+When making a code change you should always run `grunt test` and test the generated script, `dist/phaser-test.js`. Please do not commit these test builds or your PR will be closed. Builds by default are placed in the `dist` folder, to keep them separate from the `build` folder releases.
+
+### TypeScript
+
+Don't edit the `*.comments.d.ts` files. Those will be generated later when a new release is built.
+
+Run `npm run test:ts`.
+
+### Only commit relevant changes
+
+Don't include changes that are not directly relevant to the fix you are making. The more focused a PR is, the faster it will get attention and be merged. Extra files changing only whitespace or trash files will likely get your PR closed.
 
 ## Coding style preferences are not contributions
 
@@ -69,5 +82,5 @@ Thanks to Chad for creating the original Pixi.js Contributing file which we adap
 [1]: http://jsfiddle.net
 [2]: http://jsbin.com/
 [3]: http://nodejs.org
-[4]: http://www.html5gamedevs.com/forum/14-phaser/
+[4]: https://phaser.discourse.group/c/phaser2
 [5]: http://codepen.io/pen?template=vyKJvw

@@ -68,6 +68,16 @@ Phaser.SoundManager = function (game)
     this.context = null;
 
     /**
+     * The AudioContext's processing latency (or an estimate thereof), in seconds.
+     * This could be useful for scheduling playback very precisely.
+     * If not using Web Audio, this will be null.
+     * @property {number} baseLatency
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/baseLatency
+     */
+    this.baseLatency = null;
+
+    /**
     * @property {boolean} usingWebAudio - True the SoundManager and device are both using Web Audio.
     * @readonly
     */
@@ -258,6 +268,8 @@ Phaser.SoundManager.prototype = {
         else
         {
             this.usingWebAudio = true;
+
+            this.baseLatency = this.context.baseLatency || (256 / (this.context.sampleRate || 44100));
 
             if (this.context.createGain === undefined)
             {
