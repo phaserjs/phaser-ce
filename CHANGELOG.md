@@ -21,10 +21,11 @@ If you're using the `loadAnchors` argument in the Phaser.Creature constructor, y
 * Fixed an error when destroying a [touch-locked Video](https://photonstorm.github.io/phaser-ce/Phaser.Video.html#touchLocked) (#616).
 * Fixed an error when unplugging a gamepad (#610).
 * Fixed streaming video in Firefox (#607).
+* Fixed [global volume](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#volume) not affecting sounds not currently playing, when [using HTML audio](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#usingAudioTag) (as in IE11) (#617).
 
 ### Thanks
 
-@Aram19, manuelhe, @photonstorm, @rroylance, @samme, @Weedshaker, @wtravO
+@Aram19, manuelhe, @micsun-al, @photonstorm, @rroylance, @samme, @Weedshaker, @wtravO
 
 ## Version 2.11.1 - 2 October 2018
 
