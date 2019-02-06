@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.11.1 "2018-10-02" - Built: Tue Oct 02 2018 18:19:07
+* v2.12.0 "2019-02-06" - Built: Tue Feb 05 2019 17:24:44
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -22651,7 +22651,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.11.1',
+    VERSION: '2.12.0',
 
     /**
     * An array of Phaser game instances.
@@ -30292,6 +30292,40 @@ Object.defineProperty(Phaser.Camera.prototype, 'fixedView', {
 });
 
 /**
+ * The x position of the center of the Camera's viewport, relative to the top-left of the game canvas.
+ * @name Phaser.Camera#centerX
+ * @property {number} centerX
+ * @readonly
+ */
+Object.defineProperty(Phaser.Camera.prototype, 'centerX', {
+
+    get: function ()
+    {
+
+        return (this.x + (0.5 * this.width));
+
+    }
+
+});
+
+/**
+ * The y position of the center of the Camera's viewport, relative to the top-left of the game canvas.
+ * @name Phaser.Camera#centerY
+ * @property {number} centerY
+ * @readonly
+ */
+Object.defineProperty(Phaser.Camera.prototype, 'centerY', {
+
+    get: function ()
+    {
+
+        return (this.y + (0.5 * this.height));
+
+    }
+
+});
+
+/**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2016 Photon Storm Ltd.
 * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
@@ -37911,7 +37945,9 @@ Phaser.Game.prototype = {
         }
         else
         {
-            this.debug = { preUpdate: function () {}, update: function () {}, reset: function () {}, isDisabled: true };
+            var noop = function () {};
+
+            this.debug = { preUpdate: noop, update: noop, reset: noop, destroy: noop, isDisabled: true };
         }
 
         this.showDebugHeader();
@@ -38422,11 +38458,7 @@ Phaser.Game.prototype = {
 
         this.raf.stop();
 
-        if (this.debug.destroy)
-        {
-            this.debug.destroy();
-        }
-
+        this.debug.destroy();
         this.state.destroy();
         this.sound.destroy();
         this.scale.destroy();
@@ -42108,31 +42140,27 @@ Phaser.Pointer.prototype = {
     processButtonsDown: function (button, event)
     {
 
-        //  Note: These are bitwise checks, not booleans
-
-        if (button === Phaser.Mouse.LEFT_BUTTON)
+        switch (button)
         {
-            this.leftButton.start(event);
-        }
+            case (Phaser.Mouse.LEFT_BUTTON):
+                this.leftButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.RIGHT_BUTTON)
-        {
-            this.rightButton.start(event);
-        }
+            case (Phaser.Mouse.RIGHT_BUTTON):
+                this.rightButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.MIDDLE_BUTTON)
-        {
-            this.middleButton.start(event);
-        }
+            case (Phaser.Mouse.MIDDLE_BUTTON):
+                this.middleButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.BACK_BUTTON)
-        {
-            this.backButton.start(event);
-        }
+            case (Phaser.Mouse.BACK_BUTTON):
+                this.backButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.FORWARD_BUTTON)
-        {
-            this.forwardButton.start(event);
+            case (Phaser.Mouse.FORWARD_BUTTON):
+                this.forwardButton.start(event);
+                break;
         }
 
     },
@@ -42148,31 +42176,27 @@ Phaser.Pointer.prototype = {
     processButtonsUp: function (button, event)
     {
 
-        //  Note: These are bitwise checks, not booleans
-
-        if (button === Phaser.Mouse.LEFT_BUTTON)
+        switch (button)
         {
-            this.leftButton.stop(event);
-        }
+            case (Phaser.Mouse.LEFT_BUTTON):
+                this.leftButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.RIGHT_BUTTON)
-        {
-            this.rightButton.stop(event);
-        }
+            case (Phaser.Mouse.RIGHT_BUTTON):
+                this.rightButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.MIDDLE_BUTTON)
-        {
-            this.middleButton.stop(event);
-        }
+            case (Phaser.Mouse.MIDDLE_BUTTON):
+                this.middleButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.BACK_BUTTON)
-        {
-            this.backButton.stop(event);
-        }
+            case (Phaser.Mouse.BACK_BUTTON):
+                this.backButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.FORWARD_BUTTON)
-        {
-            this.forwardButton.stop(event);
+            case (Phaser.Mouse.FORWARD_BUTTON):
+                this.forwardButton.stop(event);
+                break;
         }
 
     },
@@ -42188,8 +42212,9 @@ Phaser.Pointer.prototype = {
     processButtonsUpDown: function (buttons, event)
     {
 
-        var down = (event.type.toLowerCase().substr(-4) === 'down');
-        var move = (event.type.toLowerCase().substr(-4) === 'move');
+        var type = event.type.toLowerCase().substr(-4);
+        var down = (type === 'down');
+        var move = (type === 'move');
 
         if (buttons !== undefined)
         {
@@ -45378,10 +45403,13 @@ Phaser.PointerLock.prototype.start = function ()
 */
 Phaser.PointerLock.prototype.stop = function ()
 {
-    document.removeEventListener(this.pointerlockchange, this.boundOnChangeHandler, true);
-    document.removeEventListener(this.pointerlockerror, this.boundOnErrorHandler, true);
-
-    this.active = false;
+    if (this.active)
+    {
+        document.removeEventListener(this.pointerlockchange, this.boundOnChangeHandler, true);
+        document.removeEventListener(this.pointerlockerror, this.boundOnErrorHandler, true);
+    
+        this.active = false;
+    }
 };
 
 /**
@@ -46305,7 +46333,7 @@ Phaser.SinglePad.prototype = {
     pollStatus: function ()
     {
 
-        if (!this.connected || !this.game.input.enabled || !this.game.input.gamepad.enabled || (this._rawPad.timestamp && (this._rawPad.timestamp === this._prevTimestamp)))
+        if (!this.connected || !this.game.input.enabled || !this.game.input.gamepad.enabled || (this._rawPad && this._rawPad.timestamp && (this._rawPad.timestamp === this._prevTimestamp)))
         {
             return;
         }
@@ -51463,18 +51491,21 @@ Phaser.GameObjectFactory.prototype = {
     * See the Phaser custom build process for more details.
     *
     * @method Phaser.GameObjectFactory#creature
-    * @param {number} [x=0] - The x coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
-    * @param {number} [y=0] - The y coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
-    * @param {string|PIXI.Texture} [key] - The image used as a texture by this creature object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a PIXI.Texture.
-    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {number} x - The x coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
+    * @param {number} y - The y coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
+    * @param {string|PIXI.Texture} key - The creature's image texture. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a PIXI.Texture.
+    * @param {string} mesh - The creature's mesh data. It should be a string which is a reference to the Cache JSON entry.
+    * @param {Phaser.Group|Phaser.Stage} [group=this.world] - Optional Group to add the creature to. If omitted (or `undefined`), the creature will be added to the World group.
+    * @param {string} [animation='default'] - The animation within the mesh data to play.
+    * @param {string} [useFlatData=false] - Use flat data.
     * @returns {Phaser.Creature} The newly created Creature object.
     */
-    creature: function (x, y, key, mesh, group)
+    creature: function (x, y, key, mesh, group, animation, useFlatData)
     {
 
         if (group === undefined) { group = this.world; }
 
-        var obj = new Phaser.Creature(this.game, x, y, key, mesh);
+        var obj = new Phaser.Creature(this.game, x, y, key, mesh, animation, useFlatData);
 
         group.add(obj);
 
@@ -58250,6 +58281,14 @@ Phaser.Graphics = function (game, x, y)
      */
     this.boundsPadding = 0;
 
+
+    /**
+     * Actually the visual bounds.
+     *
+     * @property _localBounds
+     * @type Phaser.Rectangle
+     * @private
+     */
     this._localBounds = new Phaser.Rectangle(0, 0, 1, 1);
 
     /**
@@ -59237,10 +59276,15 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession)
 };
 
 /**
- * Retrieves the bounds of the graphic shape as a rectangle object
+ * Retrieves the bounds of the graphic shape as a rectangle object.
+ *
+ * If this graphic is being used as a mask, the bounds will be an empty rectangle.
+ * Use {@link Phaser.Graphics#getBounds} instead if you need to mask's own dimensions.
+ *
+ * The returned value is a direct reference, so you shouldn't modify it (modify a copy instead).
  *
  * @method Phaser.Graphics#getBounds
- * @return {Rectangle} the rectangular bounding area
+ * @return {Rectangle} the rectangular bounding area.
  */
 Phaser.Graphics.prototype.getBounds = function (matrix)
 {
@@ -59396,8 +59440,31 @@ Phaser.Graphics.prototype.containsPoint = function (point, tempPoint)
 
 };
 
+
 /**
- * Update the bounds of the object
+ * Copy and return the visual bounds of the object, based on the drawn data.
+ *
+ * This is a rectangle with origin (0, 0) encompassing all the shapes drawn on this object.
+ *
+ * @method Phaser.Graphics#getVisualBounds
+ * @param {Phaser.Rectangle} [output] - An existing rectangle to copy the bounds into.
+ * @return {Phaser.Rectangle}
+ */
+Phaser.Graphics.prototype.getVisualBounds = function (output)
+{
+
+    if (this._boundsDirty)
+    {
+        this.updateLocalBounds();
+        this._boundsDirty = false;
+    }
+
+    return this._localBounds.clone(output);
+
+};
+
+/**
+ * Update the visual bounds of the object, based on the drawn data.
  *
  * @method Phaser.Graphics#updateLocalBounds
  */
@@ -62738,6 +62805,12 @@ Phaser.BitmapText = function (game, x, y, font, text, size, align)
     * @private
     */
     this._align = align;
+    
+    /**
+    * @property {number} _letterSpacing - Internal cache var.
+    * @private
+    */
+    this._letterSpacing = 0;
 
     /**
     * @property {number} _tint - Internal cache var.
@@ -62898,11 +62971,11 @@ Phaser.BitmapText.prototype.scanLine = function (data, scale, text)
             }
             else
             {
-                w += (charData.xAdvance + kerning) * scale;
+                w += (charData.xAdvance + kerning + this.letterSpacing) * scale;
 
-                chars.push(x + (charData.xOffset + kerning) * scale);
+                chars.push(x + (charData.xOffset + kerning + this.letterSpacing) * scale);
 
-                x += (charData.xAdvance + kerning) * scale;
+                x += (charData.xAdvance + kerning + this.letterSpacing) * scale;
 
                 prevCharCode = charCode;
             }
@@ -63140,6 +63213,30 @@ Phaser.BitmapText.prototype.updateTransform = function ()
     PIXI.DisplayObjectContainer.prototype.updateTransform.call(this);
 
 };
+
+/**
+* @name Phaser.BitmapText#letterSpacing
+* @property {string} letterSpacing - Sets the letter spacing between each character of this Bitmap Text. Can be a positive value to increase the space, or negative to reduce it. Spacing is applied after the kerning values have been set.
+*/
+Object.defineProperty(Phaser.BitmapText.prototype, 'letterSpacing', {
+
+    get: function ()
+    {
+        return this._letterSpacing;
+    },
+
+    set: function (value)
+    {
+
+        if (typeof(value) === 'number')
+        {
+            this._letterSpacing = value;
+            this.updateText();
+        }
+
+    }
+
+});
 
 /**
 * @name Phaser.BitmapText#align
@@ -77090,7 +77187,7 @@ Phaser.Cache.prototype = {
 
         if (data.complete === false)
         {
-            console.warn('Phaser.Cache.addImage: Image "' + key + '" hasn\'t been retrieved yet');
+            console.warn('Phaser.Cache.addImage: Image "%s" is not complete', key);
         }
 
         var img = {
@@ -82496,7 +82593,10 @@ Phaser.LoaderParser = {
             var second = parseInt(kernings[i].getAttribute('second'), 10);
             var amount = parseInt(kernings[i].getAttribute('amount'), 10) / resolution;
 
-            data.chars[second].kerning[first] = amount;
+            if (data.chars[second])
+            {
+                data.chars[second].kerning[first] = amount;
+            }
         }
 
         return this.finalizeBitmapFont(baseTexture, data);
@@ -82587,9 +82687,10 @@ Phaser.LoaderParser = {
 
                 function parseKerning (kerning)
                 {
-
-                    data.chars[kerning._second].kerning[kerning._first] = parseInt(kerning._amount, 10) / resolution;
-
+                    if (data.chars[kerning._second])
+                    {
+                        data.chars[kerning._second].kerning[kerning._first] = parseInt(kerning._amount, 10) / resolution;
+                    }
                 }
 
             );
@@ -83865,6 +83966,8 @@ Phaser.Sound.prototype = {
                 this.durationMS = this.totalDuration * 1000;
             }
 
+            this._globalVolume = this.game.sound.volume;
+
             this._sound.currentTime = this.position;
             this._sound.muted = this._muted;
 
@@ -83874,7 +83977,7 @@ Phaser.Sound.prototype = {
             }
             else
             {
-                this._sound.volume = this._volume;
+                this._sound.volume = this._volume * this._globalVolume;
             }
 
             this.isPlaying = true;
@@ -84220,7 +84323,7 @@ Phaser.Sound.prototype = {
     _startSource: function (when, offset, duration)
     {
 
-        this._sound.start(when || 0, offset, duration);
+        this._sound.start(when || 0, offset || 0, duration);
 
     },
 
@@ -84468,6 +84571,16 @@ Phaser.SoundManager = function (game)
     this.context = null;
 
     /**
+     * The AudioContext's processing latency (or an estimate thereof), in seconds.
+     * This could be useful for scheduling playback very precisely.
+     * If not using Web Audio, this will be null.
+     * @property {number} baseLatency
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/baseLatency
+     */
+    this.baseLatency = null;
+
+    /**
     * @property {boolean} usingWebAudio - True the SoundManager and device are both using Web Audio.
     * @readonly
     */
@@ -84658,6 +84771,8 @@ Phaser.SoundManager.prototype = {
         else
         {
             this.usingWebAudio = true;
+
+            this.baseLatency = this.context.baseLatency || (256 / (this.context.sampleRate || 44100));
 
             if (this.context.createGain === undefined)
             {
@@ -88360,6 +88475,7 @@ Phaser.Utils.Debug.prototype = {
         this.line('x: ' + camera.x + ' y: ' + camera.y);
         this.line('Bounds: ' + (bounds ? ('x: ' + bounds.x + ' y: ' + bounds.y + ' w: ' + bounds.width + ' h: ' + bounds.height) : 'none'));
         this.line('View: x: ' + view.x + ' y: ' + view.y + ' w: ' + view.width + ' h: ' + view.height);
+        this.line('Center: x: ' + camera.centerX + ' y: ' + camera.centerY);
         this.line('Deadzone: ' + (deadzone ? ('x: ' + deadzone.x + ' y: ' + deadzone.y + ' w: ' + deadzone.width + ' h: ' + deadzone.height) : deadzone));
         this.line('Total in view: ' + camera.totalInView);
         this.line('At limit: x: ' + camera.atLimit.x + ' y: ' + camera.atLimit.y);
@@ -110380,7 +110496,7 @@ Phaser.Weapon.KILL_LIFESPAN = 1;
 
 /**
 * A {@link #bulletKillType} constant that automatically kills the bullets after they
-* exceed the {@link #bulletDistance} from their original firing position.
+* exceed the {@link #bulletKillDistance} from their original firing position.
 * @constant
 * @type {integer}
 */
@@ -111295,10 +111411,10 @@ Object.defineProperty(Phaser.Weapon.prototype, 'bulletClass', {
 * The bullets are never destroyed by the Weapon. It's up to you to destroy them via your own code.
 *
 * * `Phaser.Weapon.KILL_LIFESPAN`
-* The bullets are automatically killed when their `bulletLifespan` amount expires.
+* The bullets are automatically killed when their {@link #bulletLifespan} amount expires.
 *
 * * `Phaser.Weapon.KILL_DISTANCE`
-* The bullets are automatically killed when they exceed `bulletDistance` pixels away from their original launch position.
+* The bullets are automatically killed when they exceed {@link #bulletKillDistance} pixels away from their original launch position.
 *
 * * `Phaser.Weapon.KILL_WEAPON_BOUNDS`
 * The bullets are automatically killed when they no longer intersect with the {@link #bounds} rectangle.
@@ -112008,6 +112124,10 @@ Phaser.Video.prototype = {
         {
             this.video.mozSrcObject = stream;
         }
+        else if (this.video.srcObject !== undefined)
+        {
+            this.video.srcObject = stream;
+        }
         else
         {
             this.video.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
@@ -112324,6 +112444,11 @@ Phaser.Video.prototype = {
             if (this.video.mozSrcObject)
             {
                 this.video.mozSrcObject.stop();
+                this.video.src = null;
+            }
+            else if (this.video.srcObject)
+            {
+                this.video.srcObject.stop();
                 this.video.src = null;
             }
             else
@@ -112745,7 +112870,7 @@ Phaser.Video.prototype = {
 
         if (this.touchLocked)
         {
-            this.game.input.touch.removeTouchLockCallback(this.unlock, this);
+            this.game.input.removeTouchLockCallback(this.unlock, this);
         }
 
         if (this._retryID)

@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.11.1 "2018-10-02" - Built: Tue Oct 02 2018 18:19:22
+* v2.12.0 "2019-02-06" - Built: Tue Feb 05 2019 17:24:59
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -7823,7 +7823,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.11.1',
+    VERSION: '2.12.0',
 
     /**
     * An array of Phaser game instances.
@@ -15464,6 +15464,40 @@ Object.defineProperty(Phaser.Camera.prototype, 'fixedView', {
 });
 
 /**
+ * The x position of the center of the Camera's viewport, relative to the top-left of the game canvas.
+ * @name Phaser.Camera#centerX
+ * @property {number} centerX
+ * @readonly
+ */
+Object.defineProperty(Phaser.Camera.prototype, 'centerX', {
+
+    get: function ()
+    {
+
+        return (this.x + (0.5 * this.width));
+
+    }
+
+});
+
+/**
+ * The y position of the center of the Camera's viewport, relative to the top-left of the game canvas.
+ * @name Phaser.Camera#centerY
+ * @property {number} centerY
+ * @readonly
+ */
+Object.defineProperty(Phaser.Camera.prototype, 'centerY', {
+
+    get: function ()
+    {
+
+        return (this.y + (0.5 * this.height));
+
+    }
+
+});
+
+/**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2016 Photon Storm Ltd.
 * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
@@ -23083,7 +23117,9 @@ Phaser.Game.prototype = {
         }
         else
         {
-            this.debug = { preUpdate: function () {}, update: function () {}, reset: function () {}, isDisabled: true };
+            var noop = function () {};
+
+            this.debug = { preUpdate: noop, update: noop, reset: noop, destroy: noop, isDisabled: true };
         }
 
         this.showDebugHeader();
@@ -23594,11 +23630,7 @@ Phaser.Game.prototype = {
 
         this.raf.stop();
 
-        if (this.debug.destroy)
-        {
-            this.debug.destroy();
-        }
-
+        this.debug.destroy();
         this.state.destroy();
         this.sound.destroy();
         this.scale.destroy();
@@ -27280,31 +27312,27 @@ Phaser.Pointer.prototype = {
     processButtonsDown: function (button, event)
     {
 
-        //  Note: These are bitwise checks, not booleans
-
-        if (button === Phaser.Mouse.LEFT_BUTTON)
+        switch (button)
         {
-            this.leftButton.start(event);
-        }
+            case (Phaser.Mouse.LEFT_BUTTON):
+                this.leftButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.RIGHT_BUTTON)
-        {
-            this.rightButton.start(event);
-        }
+            case (Phaser.Mouse.RIGHT_BUTTON):
+                this.rightButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.MIDDLE_BUTTON)
-        {
-            this.middleButton.start(event);
-        }
+            case (Phaser.Mouse.MIDDLE_BUTTON):
+                this.middleButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.BACK_BUTTON)
-        {
-            this.backButton.start(event);
-        }
+            case (Phaser.Mouse.BACK_BUTTON):
+                this.backButton.start(event);
+                break;
 
-        if (button === Phaser.Mouse.FORWARD_BUTTON)
-        {
-            this.forwardButton.start(event);
+            case (Phaser.Mouse.FORWARD_BUTTON):
+                this.forwardButton.start(event);
+                break;
         }
 
     },
@@ -27320,31 +27348,27 @@ Phaser.Pointer.prototype = {
     processButtonsUp: function (button, event)
     {
 
-        //  Note: These are bitwise checks, not booleans
-
-        if (button === Phaser.Mouse.LEFT_BUTTON)
+        switch (button)
         {
-            this.leftButton.stop(event);
-        }
+            case (Phaser.Mouse.LEFT_BUTTON):
+                this.leftButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.RIGHT_BUTTON)
-        {
-            this.rightButton.stop(event);
-        }
+            case (Phaser.Mouse.RIGHT_BUTTON):
+                this.rightButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.MIDDLE_BUTTON)
-        {
-            this.middleButton.stop(event);
-        }
+            case (Phaser.Mouse.MIDDLE_BUTTON):
+                this.middleButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.BACK_BUTTON)
-        {
-            this.backButton.stop(event);
-        }
+            case (Phaser.Mouse.BACK_BUTTON):
+                this.backButton.stop(event);
+                break;
 
-        if (button === Phaser.Mouse.FORWARD_BUTTON)
-        {
-            this.forwardButton.stop(event);
+            case (Phaser.Mouse.FORWARD_BUTTON):
+                this.forwardButton.stop(event);
+                break;
         }
 
     },
@@ -27360,8 +27384,9 @@ Phaser.Pointer.prototype = {
     processButtonsUpDown: function (buttons, event)
     {
 
-        var down = (event.type.toLowerCase().substr(-4) === 'down');
-        var move = (event.type.toLowerCase().substr(-4) === 'move');
+        var type = event.type.toLowerCase().substr(-4);
+        var down = (type === 'down');
+        var move = (type === 'move');
 
         if (buttons !== undefined)
         {
@@ -30550,10 +30575,13 @@ Phaser.PointerLock.prototype.start = function ()
 */
 Phaser.PointerLock.prototype.stop = function ()
 {
-    document.removeEventListener(this.pointerlockchange, this.boundOnChangeHandler, true);
-    document.removeEventListener(this.pointerlockerror, this.boundOnErrorHandler, true);
-
-    this.active = false;
+    if (this.active)
+    {
+        document.removeEventListener(this.pointerlockchange, this.boundOnChangeHandler, true);
+        document.removeEventListener(this.pointerlockerror, this.boundOnErrorHandler, true);
+    
+        this.active = false;
+    }
 };
 
 /**
@@ -33934,18 +33962,21 @@ Phaser.GameObjectFactory.prototype = {
     * See the Phaser custom build process for more details.
     *
     * @method Phaser.GameObjectFactory#creature
-    * @param {number} [x=0] - The x coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
-    * @param {number} [y=0] - The y coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
-    * @param {string|PIXI.Texture} [key] - The image used as a texture by this creature object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a PIXI.Texture.
-    * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
+    * @param {number} x - The x coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
+    * @param {number} y - The y coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
+    * @param {string|PIXI.Texture} key - The creature's image texture. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a PIXI.Texture.
+    * @param {string} mesh - The creature's mesh data. It should be a string which is a reference to the Cache JSON entry.
+    * @param {Phaser.Group|Phaser.Stage} [group=this.world] - Optional Group to add the creature to. If omitted (or `undefined`), the creature will be added to the World group.
+    * @param {string} [animation='default'] - The animation within the mesh data to play.
+    * @param {string} [useFlatData=false] - Use flat data.
     * @returns {Phaser.Creature} The newly created Creature object.
     */
-    creature: function (x, y, key, mesh, group)
+    creature: function (x, y, key, mesh, group, animation, useFlatData)
     {
 
         if (group === undefined) { group = this.world; }
 
-        var obj = new Phaser.Creature(this.game, x, y, key, mesh);
+        var obj = new Phaser.Creature(this.game, x, y, key, mesh, animation, useFlatData);
 
         group.add(obj);
 
@@ -44691,7 +44722,7 @@ Phaser.Cache.prototype = {
 
         if (data.complete === false)
         {
-            console.warn('Phaser.Cache.addImage: Image "' + key + '" hasn\'t been retrieved yet');
+            console.warn('Phaser.Cache.addImage: Image "%s" is not complete', key);
         }
 
         var img = {
@@ -50097,7 +50128,10 @@ Phaser.LoaderParser = {
             var second = parseInt(kernings[i].getAttribute('second'), 10);
             var amount = parseInt(kernings[i].getAttribute('amount'), 10) / resolution;
 
-            data.chars[second].kerning[first] = amount;
+            if (data.chars[second])
+            {
+                data.chars[second].kerning[first] = amount;
+            }
         }
 
         return this.finalizeBitmapFont(baseTexture, data);
@@ -50188,9 +50222,10 @@ Phaser.LoaderParser = {
 
                 function parseKerning (kerning)
                 {
-
-                    data.chars[kerning._second].kerning[kerning._first] = parseInt(kerning._amount, 10) / resolution;
-
+                    if (data.chars[kerning._second])
+                    {
+                        data.chars[kerning._second].kerning[kerning._first] = parseInt(kerning._amount, 10) / resolution;
+                    }
                 }
 
             );
@@ -53203,6 +53238,7 @@ Phaser.Utils.Debug.prototype = {
     isDisabled: true,
 
     boot: debugNoop,
+    destroy: debugNoop,
     preUpdate: debugNoop,
     reset: debugNoop,
     start: debugNoop,

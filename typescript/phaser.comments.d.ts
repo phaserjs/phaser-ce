@@ -34284,7 +34284,7 @@ declare module Phaser {
 
         /**
         * A {@link Phaser.Weapon#bulletKillType bulletKillType} constant that automatically kills the bullets after they
-        * exceed the {@link Phaser.Weapon#bulletDistance bulletDistance} from their original firing position.
+        * exceed the {@link Phaser.Weapon#bulletKillDistance bulletKillDistance} from their original firing position.
         */
         static KILL_DISTANCE: number;
 
@@ -34422,10 +34422,10 @@ declare module Phaser {
         * The bullets are never destroyed by the Weapon. It's up to you to destroy them via your own code.
         * 
         * * `Phaser.Weapon.KILL_LIFESPAN`
-        * The bullets are automatically killed when their `bulletLifespan` amount expires.
+        * The bullets are automatically killed when their {@link Phaser.Weapon#bulletLifespan bulletLifespan} amount expires.
         * 
         * * `Phaser.Weapon.KILL_DISTANCE`
-        * The bullets are automatically killed when they exceed `bulletDistance` pixels away from their original launch position.
+        * The bullets are automatically killed when they exceed {@link Phaser.Weapon#bulletKillDistance bulletKillDistance} pixels away from their original launch position.
         * 
         * * `Phaser.Weapon.KILL_WEAPON_BOUNDS`
         * The bullets are automatically killed when they no longer intersect with the {@link Phaser.Weapon#bounds bounds} rectangle.
