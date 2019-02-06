@@ -290,45 +290,6 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 See [Change Log](CHANGELOG.md).
 
-## Version 2.11.1 - 2 October 2018
-
-### Bug Fixes
-
-* Fixed an error passing `box2d` options in the game configuration settings (#553).
-* Fixed some compressed texture formats failing to load (#562).
-* Fixed an issue where if the WebGL renderer failed to initialize that RenderTexture's would still try to use it if no renderer was provided (#575).
-* Fixed an inconsistent return value in BitmapData#copy (#580).
-* Tweens are now cleaned up completely when destroying the game (#581).
-* Game now nulls a reference to itself from PIXI after destroy (#583).
-* Fixed a BitmapFont frame error when using trim frame in atlas (#587).
-* Fixed BitmapData#shadow ignoring blur or x/y offset when set to 0 (#591).
-
-### Updates
-
-* AnimationParser.spriteSheet now tells you the minimum image dimensions it expects if it fails to produce at least one complete frame from the spritesheet (#559).
-* Game now checks SoundManager's `muteOnPause` property whenever the game's `paused` property is set so one can control whether sounds play when the game is manually paused. Previously, the property was only used when the game focus was lost in the DOM (#572).
-
-### TypeScript definitions
-
-* Fixed the definition for bitmapText() in GameObjectFactory (#561).
-* Fixed the definition for clear() in RenderTexture (#573).
-* Fixed the definition for Video volume.
-
-### Documentation
-
-* Changed [the game configuration object's](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) `canvasID` property name. The previous name, `canvasId`, was incorrect and would be ignored.
-* Clarified the `spacing` argument in Loader#spritesheet (#448, #559).
-* Corrected P2#createGearConstraint (#566).
-* Corrected Tilemap#copy, Tilemap#replace (#586).
-* Typo (#594).
-* Corrected Key#upDuration, Keyboard#upDuration (#595).
-
-### Thanks
-
-@B10215029, @CorayThan, @FostUK, @Jazcash, @Lucas-C, @Mertank, @Nek-, @aeonwilliams, @dywedir, @foreverip, @giniwren, @josalmi, @joshlory, @rydash, @samme, @tiagokeller, @zhaxiu3
-
-For changes in previous releases please see the extensive [Change Log](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md).
-
 # License
 
 Phaser is released under the [MIT License](https://opensource.org/licenses/MIT).
