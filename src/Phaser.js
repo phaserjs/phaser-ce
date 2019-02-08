@@ -14,7 +14,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.12.0',
+    VERSION: '2.12.1-dev',
 
     /**
     * An array of Phaser game instances.
