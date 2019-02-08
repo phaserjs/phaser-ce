@@ -947,6 +947,7 @@ declare module Phaser {
         css3D: boolean;
         desktop: boolean;
         deviceReadyAt: number;
+        edge: boolean;
         electron: boolean;
         ejecta: boolean;
         epiphany: boolean;
