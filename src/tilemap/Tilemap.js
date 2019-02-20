@@ -439,7 +439,7 @@ Phaser.Tilemap.prototype = {
 
             if (found)
             {
-                var sprite = new CustomClass(this.game, parseFloat(obj.x, 10), parseFloat(obj.y, 10), key, frame);
+                var sprite = new CustomClass(this.game, parseFloat(obj.x), parseFloat(obj.y), key, frame);
 
                 sprite.name = obj.name;
                 sprite.autoCull = autoCull;

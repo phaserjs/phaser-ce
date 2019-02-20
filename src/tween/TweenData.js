@@ -323,7 +323,7 @@ Phaser.TweenData.prototype = {
                 if (typeof this.vEnd[property] === 'string')
                 {
                     //  Parses relative end values with start as base (e.g.: +10, -3)
-                    this.vEnd[property] = this.vStart[property] + parseFloat(this.vEnd[property], 10);
+                    this.vEnd[property] = this.vStart[property] + parseFloat(this.vEnd[property]);
                 }
 
                 this.parent.properties[property] = this.vEnd[property];

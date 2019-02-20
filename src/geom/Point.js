@@ -1124,12 +1124,12 @@ Phaser.Point.parse = function (obj, xProp, yProp)
 
     if (obj[xProp])
     {
-        point.x = parseFloat(obj[xProp], 10);
+        point.x = parseFloat(obj[xProp]);
     }
 
     if (obj[yProp])
     {
-        point.y = parseFloat(obj[yProp], 10);
+        point.y = parseFloat(obj[yProp]);
     }
 
     return point;
