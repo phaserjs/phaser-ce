@@ -1098,15 +1098,7 @@ Phaser.Group.prototype.getIndex = function (child)
 Phaser.Group.prototype.getByName = function (name)
 {
 
-    for (var i = 0; i < this.children.length; i++)
-    {
-        if (this.children[i].name === name)
-        {
-            return this.children[i];
-        }
-    }
-
-    return null;
+    return this.getFirst('name', name);
 
 };
 
