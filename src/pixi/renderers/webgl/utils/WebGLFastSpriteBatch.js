@@ -12,8 +12,12 @@
 * @class PIXI.WebGLFastSpriteBatch
 * @constructor
 */
-PIXI.WebGLFastSpriteBatch = function (gl)
+PIXI.WebGLFastSpriteBatch = function (game, gl)
 {
+    /**
+    * @property {Phaser.Game} game - A reference to the currently running game.
+    */
+   this.game = game;
 
     /**
      * @property vertSize
@@ -196,6 +200,15 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
     {
         this.flush();
         this.renderSession.blendModeManager.setBlendMode(sprite.blendMode);
+    }
+
+    if(this.game.config.batchRender) {
+        var textureIndex = this.currentBaseTexture.textureIndex;
+        var gl = this.gl;
+        
+        gl.activeTexture(gl.TEXTURE0 + textureIndex);
+        gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
+        PIXI.WebGLRenderer.textureArray[textureIndex] = this.currentBaseTexture;
     }
 
     for(var i = 0,j = children.length; i < j; i++)

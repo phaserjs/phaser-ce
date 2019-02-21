@@ -7662,6 +7662,7 @@ declare module Phaser {
         alignH?: boolean;
         alignV?: boolean;
         antialias?: boolean;
+        batchRender?: boolean;
         backgroundColor?: number | string;
         canvas?: HTMLCanvasElement;
         canvasId?: string;

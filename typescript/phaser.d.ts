@@ -1473,6 +1473,7 @@ declare module Phaser {
         alignV?: boolean;
         antialias?: boolean;
         backgroundColor?: number | string;
+        batchRender?: boolean;
         canvas?: HTMLCanvasElement;
         canvasId?: string;
         canvasStyle?: string;

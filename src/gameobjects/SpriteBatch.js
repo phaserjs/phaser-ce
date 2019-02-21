@@ -28,6 +28,11 @@ Phaser.SpriteBatch = function (game, parent, name, addToStage)
     Phaser.Group.call(this, game, parent, name, addToStage);
 
     /**
+    * @property {Phaser.Game} game - A reference to the currently running game.
+    */
+    this.game = game;
+    
+    /**
     * @property {number} type - Internal Phaser Type value.
     * @protected
     */
@@ -69,7 +74,7 @@ Phaser.SpriteBatch.prototype._renderWebGL = function (renderSession)
 
     if (!this.ready)
     {
-        this.fastSpriteBatch = new PIXI.WebGLFastSpriteBatch(renderSession.gl);
+        this.fastSpriteBatch = new PIXI.WebGLFastSpriteBatch(this.game, renderSession.gl);
 
         this.ready = true;
     }
