@@ -528,7 +528,7 @@ Phaser.Animation.prototype = {
 
         this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
 
-        if (this.currentFrame && (fromPlay || (!fromPlay && idx !== this.currentFrame.index)))
+        if (this.currentFrame && (fromPlay || (idx !== this.currentFrame.index)))
         {
             this._parent.setFrame(this.currentFrame);
         }
