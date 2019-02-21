@@ -81,7 +81,6 @@
                 else {
                     return onload.call(_this, file, xhr);
                 }
-                return onload.call(_this, file, xhr);
             } catch (e) {
                 _this.asyncComplete(file, e.message || 'Exception');
             }
