@@ -2565,7 +2565,7 @@ Object.defineProperty(Phaser.BitmapData.prototype, 'smoothed', {
     get: function ()
     {
 
-        Phaser.Canvas.getSmoothingEnabled(this.context);
+        return Phaser.Canvas.getSmoothingEnabled(this.context);
 
     },
 
