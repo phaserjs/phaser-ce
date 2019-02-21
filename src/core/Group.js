@@ -1354,11 +1354,15 @@ Phaser.Group.prototype.setAll = function (key, value, checkAlive, checkVisible, 
     key = key.split('.');
     operation = operation || 0;
 
-    for (var i = 0; i < this.children.length; i++)
+    var len = this.children.length;
+
+    for (var i = 0; i < len; i++)
     {
-        if ((!checkAlive || this.children[i].alive) && (!checkVisible || this.children[i].visible))
+        var child = this.children[i];
+
+        if ((!checkAlive || child.alive) && (!checkVisible || child.visible))
         {
-            this.setProperty(this.children[i], key, value, operation, force);
+            this.setProperty(child, key, value, operation, force);
         }
     }
 
@@ -1389,17 +1393,21 @@ Phaser.Group.prototype.setAllChildren = function (key, value, checkAlive, checkV
 
     operation = operation || 0;
 
-    for (var i = 0; i < this.children.length; i++)
+    var len = this.children.length;
+
+    for (var i = 0; i < len; i++)
     {
-        if ((!checkAlive || this.children[i].alive) && (!checkVisible || this.children[i].visible))
+        var child = this.children[i];
+
+        if ((!checkAlive || child.alive) && (!checkVisible || child.visible))
         {
-            if (this.children[i] instanceof Phaser.Group)
+            if (child instanceof Phaser.Group)
             {
-                this.children[i].setAllChildren(key, value, checkAlive, checkVisible, operation, force);
+                child.setAllChildren(key, value, checkAlive, checkVisible, operation, force);
             }
             else
             {
-                this.setProperty(this.children[i], key.split('.'), value, operation, force);
+                this.setProperty(child, key.split('.'), value, operation, force);
             }
         }
     }
@@ -1646,9 +1654,11 @@ Phaser.Group.prototype.callAllExists = function (callback, existsValue)
 
     for (var i = 0; i < this.children.length; i++)
     {
-        if (this.children[i].exists === existsValue && this.children[i][callback])
+        var child = this.children[i];
+
+        if (child.exists === existsValue && child[callback])
         {
-            this.children[i][callback].apply(this.children[i], args);
+            child[callback].apply(child, args);
         }
     }
 
@@ -1760,17 +1770,19 @@ Phaser.Group.prototype.callAll = function (method, context)
 
     for (var i = 0; i < this.children.length; i++)
     {
-        callback = this.callbackFromArray(this.children[i], method, methodLength);
+        var child = this.children[i];
+
+        callback = this.callbackFromArray(child, method, methodLength);
 
         if (context && callback)
         {
-            callbackContext = this.callbackFromArray(this.children[i], context, contextLength);
+            callbackContext = this.callbackFromArray(child, context, contextLength);
 
             callback.apply(callbackContext, args);
         }
         else if (callback)
         {
-            callback.apply(this.children[i], args);
+            callback.apply(child, args);
         }
     }
 
@@ -1935,9 +1947,11 @@ Phaser.Group.prototype.forEach = function (callback, callbackContext, checkExist
     {
         for (var i = 0; i < this.children.length; i++)
         {
-            if (!checkExists || this.children[i].exists)
+            var child = this.children[i];
+
+            if (!checkExists || child.exists)
             {
-                callback.call(callbackContext, this.children[i]);
+                callback.call(callbackContext, child);
             }
         }
     }
@@ -1954,9 +1968,11 @@ Phaser.Group.prototype.forEach = function (callback, callbackContext, checkExist
 
         for (var i = 0; i < this.children.length; i++)
         {
-            if (!checkExists || this.children[i].exists)
+            var child = this.children[i];
+
+            if (!checkExists || child.exists)
             {
-                args[0] = this.children[i];
+                args[0] = child;
                 callback.apply(callbackContext, args);
             }
         }
