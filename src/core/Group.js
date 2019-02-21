@@ -1356,7 +1356,7 @@ Phaser.Group.prototype.setAll = function (key, value, checkAlive, checkVisible, 
 
     for (var i = 0; i < this.children.length; i++)
     {
-        if ((!checkAlive || (checkAlive && this.children[i].alive)) && (!checkVisible || (checkVisible && this.children[i].visible)))
+        if ((!checkAlive || this.children[i].alive) && (!checkVisible || this.children[i].visible))
         {
             this.setProperty(this.children[i], key, value, operation, force);
         }
@@ -1391,7 +1391,7 @@ Phaser.Group.prototype.setAllChildren = function (key, value, checkAlive, checkV
 
     for (var i = 0; i < this.children.length; i++)
     {
-        if ((!checkAlive || (checkAlive && this.children[i].alive)) && (!checkVisible || (checkVisible && this.children[i].visible)))
+        if ((!checkAlive || this.children[i].alive) && (!checkVisible || this.children[i].visible))
         {
             if (this.children[i] instanceof Phaser.Group)
             {
@@ -1430,7 +1430,7 @@ Phaser.Group.prototype.checkAll = function (key, value, checkAlive, checkVisible
     {
         var child = this.children[i];
 
-        if ((!checkAlive || (checkAlive && child.alive)) && (!checkVisible || (checkVisible && child.visible)))
+        if ((!checkAlive || child.alive) && (!checkVisible || child.visible))
         {
             if (!this.checkProperty(child, key, value, force))
             {
@@ -1465,7 +1465,7 @@ Phaser.Group.prototype.checkAny = function (key, value, checkAlive, checkVisible
     {
         var child = this.children[i];
 
-        if ((!checkAlive || (checkAlive && child.alive)) && (!checkVisible || (checkVisible && child.visible)))
+        if ((!checkAlive || child.alive) && (!checkVisible || child.visible))
         {
             if (this.checkProperty(child, key, value))
             {
@@ -1766,10 +1766,7 @@ Phaser.Group.prototype.callAll = function (method, context)
         {
             callbackContext = this.callbackFromArray(this.children[i], context, contextLength);
 
-            if (callback)
-            {
-                callback.apply(callbackContext, args);
-            }
+            callback.apply(callbackContext, args);
         }
         else if (callback)
         {
@@ -1938,7 +1935,7 @@ Phaser.Group.prototype.forEach = function (callback, callbackContext, checkExist
     {
         for (var i = 0; i < this.children.length; i++)
         {
-            if (!checkExists || (checkExists && this.children[i].exists))
+            if (!checkExists || this.children[i].exists)
             {
                 callback.call(callbackContext, this.children[i]);
             }
@@ -1957,7 +1954,7 @@ Phaser.Group.prototype.forEach = function (callback, callbackContext, checkExist
 
         for (var i = 0; i < this.children.length; i++)
         {
-            if (!checkExists || (checkExists && this.children[i].exists))
+            if (!checkExists || this.children[i].exists)
             {
                 args[0] = this.children[i];
                 callback.apply(callbackContext, args);
