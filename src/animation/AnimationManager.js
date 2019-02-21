@@ -28,7 +28,7 @@ Phaser.AnimationManager = function (sprite)
     /**
     * The currently displayed Frame of animation, if any.
     * This property is only set once an Animation starts playing. Until that point it remains set as `null`.
-    * 
+    *
     * @property {Phaser.Frame} currentFrame
     * @default
     */
@@ -251,10 +251,10 @@ Phaser.AnimationManager.prototype = {
 
     /**
     * Play an animation based on the given key. The animation should previously have been added via `animations.add`
-    * 
-    * If the requested animation is already playing this request will be ignored. 
+    *
+    * If the requested animation is already playing this request will be ignored.
     * If you need to reset an already running animation do so directly on the Animation object itself.
-    * 
+    *
     * If you need to jump to a specific frame of this animation, then call `play` and immediately after it,
     * set the frame you require (i.e. `animation.play(); animation.frame = 4`).
     *
