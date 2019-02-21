@@ -696,45 +696,45 @@ Phaser.Device._initialize = function ()
 
         var ua = navigator.userAgent;
 
-        if (/Playstation Vita/.test(ua))
+        if ((/Playstation Vita/).test(ua))
         {
             device.vita = true;
         }
-        else if (/Kindle/.test(ua) || (/\bKF[A-Z][A-Z]+/).test(ua) || (/Silk.*Mobile Safari/).test(ua))
+        else if ((/Kindle/).test(ua) || (/\bKF[A-Z][A-Z]+/).test(ua) || (/Silk.*Mobile Safari/).test(ua))
         {
             device.kindle = true;
 
             // This will NOT detect early generations of Kindle Fire, I think there is no reliable way...
             // E.g. "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us; Silk/1.1.0-80) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16 Silk-Accelerated=true"
         }
-        else if (/Android/.test(ua))
+        else if ((/Android/).test(ua))
         {
             device.android = true;
         }
-        else if (/CrOS/.test(ua))
+        else if ((/CrOS/).test(ua))
         {
             device.chromeOS = true;
         }
-        else if (/iP[ao]d|iPhone/i.test(ua))
+        else if ((/iP[ao]d|iPhone/i).test(ua))
         {
             device.iOS = true;
             (navigator.appVersion).match(/OS (\d+)/);
             device.iOSVersion = parseInt(RegExp.$1, 10);
         }
-        else if (/Linux/.test(ua))
+        else if ((/Linux/).test(ua))
         {
             device.linux = true;
         }
-        else if (/Mac OS/.test(ua))
+        else if ((/Mac OS/).test(ua))
         {
             device.macOS = true;
         }
-        else if (/Windows/.test(ua))
+        else if ((/Windows/).test(ua))
         {
             device.windows = true;
         }
 
-        if (/Windows Phone/i.test(ua) || (/IEMobile/i).test(ua))
+        if ((/Windows Phone/i).test(ua) || (/IEMobile/i).test(ua))
         {
             device.android = false;
             device.iOS = false;
@@ -751,7 +751,7 @@ Phaser.Device._initialize = function ()
         }
 
         //  Windows Phone / Table reset
-        if (device.windowsPhone || ((/Windows NT/i.test(ua)) && (/Touch/i.test(ua))))
+        if (device.windowsPhone || (((/Windows NT/i).test(ua)) && ((/Touch/i).test(ua))))
         {
             device.desktop = false;
         }
@@ -979,55 +979,55 @@ Phaser.Device._initialize = function ()
 
         var ua = navigator.userAgent;
 
-        if (/Arora/.test(ua))
+        if ((/Arora/).test(ua))
         {
             device.arora = true;
         }
-        else if (/Edge\/\d+/.test(ua))
+        else if ((/Edge\/\d+/).test(ua))
         {
             device.edge = true;
         }
-        else if (/Chrome\/(\d+)/.test(ua) && !device.windowsPhone)
+        else if ((/Chrome\/(\d+)/).test(ua) && !device.windowsPhone)
         {
             device.chrome = true;
             device.chromeVersion = parseInt(RegExp.$1, 10);
         }
-        else if (/Epiphany/.test(ua))
+        else if ((/Epiphany/).test(ua))
         {
             device.epiphany = true;
         }
-        else if (/Firefox\D+(\d+)/.test(ua))
+        else if ((/Firefox\D+(\d+)/).test(ua))
         {
             device.firefox = true;
             device.firefoxVersion = parseInt(RegExp.$1, 10);
         }
-        else if (/AppleWebKit/.test(ua) && device.iOS)
+        else if ((/AppleWebKit/).test(ua) && device.iOS)
         {
             device.mobileSafari = true;
         }
-        else if (/MSIE (\d+\.\d+);/.test(ua))
+        else if ((/MSIE (\d+\.\d+);/).test(ua))
         {
             device.ie = true;
             device.ieVersion = parseInt(RegExp.$1, 10);
         }
-        else if (/Midori/.test(ua))
+        else if ((/Midori/).test(ua))
         {
             device.midori = true;
         }
-        else if (/Opera/.test(ua))
+        else if ((/Opera/).test(ua))
         {
             device.opera = true;
         }
-        else if (/Safari\/(\d+)/.test(ua) && !device.windowsPhone)
+        else if ((/Safari\/(\d+)/).test(ua) && !device.windowsPhone)
         {
             device.safari = true;
 
-            if (/Version\/(\d+)\./.test(ua))
+            if ((/Version\/(\d+)\./).test(ua))
             {
                 device.safariVersion = parseInt(RegExp.$1, 10);
             }
         }
-        else if (/Trident\/(\d+\.\d+)(.*)rv:(\d+\.\d+)/.test(ua))
+        else if ((/Trident\/(\d+\.\d+)(.*)rv:(\d+\.\d+)/).test(ua))
         {
             device.ie = true;
             device.trident = true;
@@ -1036,7 +1036,7 @@ Phaser.Device._initialize = function ()
         }
 
         //  Silk gets its own if clause because its ua also contains 'Safari'
-        if (/Silk/.test(ua))
+        if ((/Silk/).test(ua))
         {
             device.silk = true;
         }
@@ -1086,7 +1086,7 @@ Phaser.Device._initialize = function ()
             device.ejecta = true;
         }
 
-        if (/Crosswalk/.test(ua))
+        if ((/Crosswalk/).test(ua))
         {
             device.crosswalk = true;
         }
@@ -1191,7 +1191,7 @@ Phaser.Device._initialize = function ()
                     }
                     else if (device.safari && device.safariVersion >= 9)
                     {
-                        if (/Mac OS X (\d+)_(\d+)/.test(navigator.userAgent))
+                        if ((/Mac OS X (\d+)_(\d+)/).test(navigator.userAgent))
                         {
                             var major = parseInt(RegExp.$1, 10);
                             var minor = parseInt(RegExp.$2, 10);
