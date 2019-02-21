@@ -503,10 +503,7 @@ Object.defineProperty(Phaser.AnimationManager.prototype, 'name', {
     get: function ()
     {
 
-        if (this.currentAnim)
-        {
-            return this.currentAnim.name;
-        }
+        return (this.currentAnim) ? this.currentAnim.name : undefined;
 
     }
 
@@ -521,10 +518,7 @@ Object.defineProperty(Phaser.AnimationManager.prototype, 'frame', {
     get: function ()
     {
 
-        if (this.currentFrame)
-        {
-            return this.currentFrame.index;
-        }
+        return (this.currentFrame) ? this.currentFrame.index : undefined;
 
     },
 
@@ -552,10 +546,7 @@ Object.defineProperty(Phaser.AnimationManager.prototype, 'frameName', {
     get: function ()
     {
 
-        if (this.currentFrame)
-        {
-            return this.currentFrame.name;
-        }
+        return (this.currentFrame) ? this.currentFrame.name : undefined;
 
     },
 
