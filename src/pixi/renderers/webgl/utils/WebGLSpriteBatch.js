@@ -255,7 +255,7 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
     var texture = sprite.texture;
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
-    if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    if (!this.game.config.batchRender && PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
     {
         this.flush();
         gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
@@ -437,7 +437,7 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    if (!this.game.config.batchRender && PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
     {
         this.flush();
         gl.activeTexture(gl.TEXTURE0 + textureIndex);
@@ -675,7 +675,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         }
 
         //
-        if (/* (currentBaseTexture != nextTexture && !skip) || */
+        if ((this.game.config.batchRender && currentBaseTexture != nextTexture && !skip) ||
             blendSwap ||
             shaderSwap)
         {
