@@ -533,7 +533,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {boolean}            [GameConfig.alignV=false]                  - Sets {@link Phaser.ScaleManager#pageAlignVertically}.
 * @property {number|string}      [GameConfig.antialias=true]
 * @property {number|string}      [GameConfig.backgroundColor=0]             - Sets {@link Phaser.Stage#backgroundColor}.
-* @property {boolean}            [GameConfig.batchRender=false]             - Set to true if you want to flush the sprites until end of frame, to improve performance, especially on mobile.
+* @property {boolean}            [GameConfig.batchRender=false]             - Used by WebGL and if set to true then waits to flush the draw calls until end of frame, which should improve performance, especially on mobile.
 * @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
 * @property {string}             [GameConfig.canvasID]                      - `id` attribute value to assign to the game canvas.
 * @property {string}             [GameConfig.canvasStyle]                   - `style` attribute value to assign to the game canvas.
