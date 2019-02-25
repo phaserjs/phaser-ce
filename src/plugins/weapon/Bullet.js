@@ -68,7 +68,7 @@ Phaser.Bullet.prototype.kill = function ()
 Phaser.Bullet.prototype.update = function ()
 {
 
-    if (!this.exists)
+    if (!this.active || !this.exists)
     {
         return;
     }

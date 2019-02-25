@@ -185,6 +185,9 @@ Phaser.TileSprite.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.TileSprite.prototype.preUpdate = function ()
 {
+    if (!this.active) {
+        return;
+    }
 
     if (this._scroll.x !== 0)
     {
@@ -332,7 +335,7 @@ Phaser.TileSprite.prototype.setTexture = function (texture)
 Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
 {
 
-    if (!this.visible || !this.renderable || this.alpha === 0)
+    if (!this.active || !this.visible || !this.renderable || this.alpha === 0)
     {
         return;
     }
@@ -413,7 +416,7 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
 Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
 {
 
-    if (!this.visible || !this.renderable || this.alpha === 0)
+    if (!this.active || !this.visible || !this.renderable || this.alpha === 0)
     {
         return;
     }

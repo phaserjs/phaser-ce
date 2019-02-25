@@ -244,6 +244,9 @@ Phaser.Graphics.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.Graphics.prototype.preUpdate = function ()
 {
+    if (!this.active) {
+        return;
+    }
 
     if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
     {
@@ -261,6 +264,9 @@ Phaser.Graphics.prototype.preUpdate = function ()
 */
 Phaser.Graphics.prototype.postUpdate = function ()
 {
+    if (!this.active) {
+        return;
+    }
 
     Phaser.Component.PhysicsBody.postUpdate.call(this);
     Phaser.Component.FixedToCamera.postUpdate.call(this);
@@ -987,7 +993,7 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession)
 {
 
     // if the sprite is not visible or the alpha is 0 then no need to render this element
-    if (this.visible === false || this.alpha === 0 || this.isMask === true)
+    if (this.active == false || this.visible === false || this.alpha === 0 || this.isMask === true)
     {
         return;
     }
@@ -1085,7 +1091,7 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession)
 {
 
     // if the sprite is not visible or the alpha is 0 then no need to render this element
-    if (this.visible === false || this.alpha === 0 || this.isMask === true)
+    if (!this.active || this.visible === false || this.alpha === 0 || this.isMask === true)
     {
         return;
     }

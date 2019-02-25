@@ -27,7 +27,7 @@ Phaser.Component.PhysicsBody.preUpdate = function ()
         return false;
     }
 
-    if (this.fresh && this.exists)
+    if (this.fresh && this.active && this.exists)
     {
         this.world.setTo(this.parent.position.x + this.position.x, this.parent.position.y + this.position.y);
         this.worldTransform.tx = this.world.x;
@@ -69,11 +69,11 @@ Phaser.Component.PhysicsBody.preUpdate = function ()
  */
 Phaser.Component.PhysicsBody.postUpdate = function ()
 {
-
-    if (this.exists && this.body)
-    {
-        this.body.postUpdate();
+    if (!this.active || !this.exists || !this.body) {
+        return;
     }
+
+    this.body.postUpdate();
 
 };
 

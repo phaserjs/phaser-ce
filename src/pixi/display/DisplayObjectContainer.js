@@ -517,7 +517,7 @@ PIXI.DisplayObjectContainer.prototype.contains = function (child)
 PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
 {
 
-    if (!this.visible || this.alpha <= 0)
+    if (!this.active || !this.visible || this.alpha <= 0)
     {
         return;
     }
@@ -580,7 +580,7 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
 PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession)
 {
 
-    if (this.visible === false || this.alpha === 0)
+    if (!this.active || this.visible === false || this.alpha === 0)
     {
         return;
     }

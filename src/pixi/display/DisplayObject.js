@@ -17,6 +17,13 @@
 */
 PIXI.DisplayObject = function ()
 {
+    /**
+    * This is used to turn off or on a DisplayObjects rendering and updates, as
+    * well as the rendering and updates of its children.
+    * @property {boolean} active
+    * @default
+    */
+    this.active = true; 
 
     /**
     * The coordinates, in pixels, of this DisplayObject, relative to its parent container.

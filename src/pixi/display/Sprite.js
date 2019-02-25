@@ -367,7 +367,7 @@ PIXI.Sprite.prototype.getLocalBounds = function ()
 PIXI.Sprite.prototype._renderWebGL = function (renderSession, matrix)
 {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
-    if (!this.visible || this.alpha <= 0 || !this.renderable) { return; }
+    if (!this.active || !this.visible || this.alpha <= 0 || !this.renderable) { return; }
 
     //  They provided an alternative rendering matrix, so use it
     var wt = this.worldTransform;
@@ -437,7 +437,7 @@ PIXI.Sprite.prototype._renderWebGL = function (renderSession, matrix)
 PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
 {
     // If the sprite is not visible or the alpha is 0 then no need to render this element
-    if (!this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width < 1 || this.texture.crop.height < 1)
+    if (!this.active || !this.active || !this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width < 1 || this.texture.crop.height < 1)
     {
         return;
     }

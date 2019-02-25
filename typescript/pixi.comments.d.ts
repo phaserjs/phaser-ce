@@ -537,6 +537,11 @@ declare module PIXI {
     */
     export class DisplayObject {
 
+        /**
+         * This is used to turn off or on a DisplayObjects rendering and updates, as
+         * well as the rendering and updates of its children.
+         */
+        active: boolean;
 
         /**
         * The alpha value of this DisplayObject. A value of 1 is fully opaque. A value of 0 is transparent.

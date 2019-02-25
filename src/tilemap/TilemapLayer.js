@@ -285,6 +285,9 @@ Phaser.TilemapLayer.ensureSharedCopyCanvas = function ()
 */
 Phaser.TilemapLayer.prototype.preUpdate = function ()
 {
+    if (!this.active) {
+        return false;
+    }
 
     return this.preUpdateCore();
 
@@ -298,6 +301,9 @@ Phaser.TilemapLayer.prototype.preUpdate = function ()
 */
 Phaser.TilemapLayer.prototype.postUpdate = function ()
 {
+    if (!this.active) {
+        return;
+    }
 
     if (this.fixedToCamera)
     {
@@ -319,7 +325,11 @@ Phaser.TilemapLayer.prototype.postUpdate = function ()
 */
 Phaser.TilemapLayer.prototype._renderCanvas = function (renderSession)
 {
-
+    if (!this.active) 
+    {
+        return;
+    }
+    
     if (this.fixedToCamera)
     {
         this.position.x = (this.game.camera.view.x + this.cameraOffset.x) / this.game.camera.scale.x;
@@ -344,6 +354,9 @@ Phaser.TilemapLayer.prototype._renderCanvas = function (renderSession)
 */
 Phaser.TilemapLayer.prototype._renderWebGL = function (renderSession)
 {
+    if (!this.active) {
+        return;
+    }
 
     if (this.fixedToCamera)
     {

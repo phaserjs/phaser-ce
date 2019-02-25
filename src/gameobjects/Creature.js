@@ -334,8 +334,7 @@ Phaser.Creature.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.Creature.prototype.preUpdate = function ()
 {
-
-    if (!this.preUpdateInWorld())
+    if (!this.active || !this.preUpdateInWorld())
     {
         return false;
     }
@@ -389,7 +388,7 @@ Phaser.Creature.prototype._renderWebGL = function (renderSession)
 {
 
     //  If the sprite is not visible or the alpha is 0 then no need to render this element
-    if (!this.visible || this.alpha <= 0)
+    if (!this.active || !this.visible || this.alpha <= 0)
     {
         return;
     }
