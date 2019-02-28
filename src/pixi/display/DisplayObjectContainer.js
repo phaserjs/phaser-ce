@@ -290,7 +290,7 @@ PIXI.DisplayObjectContainer.prototype.removeChildren = function (beginIndex, end
 PIXI.DisplayObjectContainer.prototype.updateTransform = function ()
 {
 
-    if (!this.visible)
+    if (!this.active || !this.visible)
     {
         return;
     }
