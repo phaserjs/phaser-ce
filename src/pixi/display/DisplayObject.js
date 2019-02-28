@@ -325,7 +325,7 @@ PIXI.DisplayObject.prototype = {
            return this;
        }
 
-       var p;
+       var p = this.parent;
 
        if (parent)
        {
@@ -334,10 +334,6 @@ PIXI.DisplayObject.prototype = {
        else if (!this.parent)
        {
            p = this.game.world;
-       }
-       else
-       {
-           p = this.parent;
        }
 
        // create some matrix refs for easy access
@@ -406,32 +402,19 @@ PIXI.DisplayObject.prototype = {
 
        if (a || b)
        {
-            if (a === 1 && b === 0)
-            {
-                // common case that avoids the expensive math
-                this.worldRotation = 0;
-                this.worldScale.x = 1;
-                this.worldScale.y = 1;
-            }
-            else if (this.a === a && this.b === b && this.c === c && this.d === d)
-            {
-                // no changes from last frame so avoid expensive math
-            }
-            else 
-            {
-                // cache values
-                this.a = a;
-                this.b = b;
-                this.c = c;
-                this.d = d;
+           if (a === 1 && b === 0)
+           {
+               this.worldRotation = 0;
+               this.worldScale.x = 1;
+               this.worldScale.y = 1;
+           } else {
+               var r = Math.sqrt((a * a) + (b * b));
+               var y = ((a * d) - (b * c)) / r;
 
-                var r = Math.sqrt((a * a) + (b * b));
-                var y = ((a * d) - (b * c)) / r;
-
-                this.worldRotation = (b > 0) ? Math.acos(a / r) : -Math.acos(a / r);
-                this.worldScale.x = r;
-                this.worldScale.y = y;
-            }
+               this.worldRotation = (b > 0) ? Math.acos(a / r) : -Math.acos(a / r);
+               this.worldScale.x = r;
+               this.worldScale.y = y;
+           }
        }
        else if (c || d)
        {
