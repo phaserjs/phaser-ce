@@ -248,11 +248,11 @@ PIXI.Texture.prototype._updateUvs = function ()
     this._uvs.x1 = (frame.x + frame.width) / tw;
     this._uvs.y1 = frame.y / th;
 
-    this._uvs.x2 = (frame.x + frame.width) / tw;
+    this._uvs.x2 = this._uvs.x1;
     this._uvs.y2 = (frame.y + frame.height) / th;
 
-    this._uvs.x3 = frame.x / tw;
-    this._uvs.y3 = (frame.y + frame.height) / th;
+    this._uvs.x3 = this._uvs.x0;
+    this._uvs.y3 = this._uvs.y2;
 };
 
 /**

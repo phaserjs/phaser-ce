@@ -80,10 +80,10 @@ Phaser.FrameData.prototype = {
     */
     getFrameByName: function (name)
     {
-
-        if (typeof this._frameNames[name] === 'number')
+        var frame = this._frameNames[name];
+        if (typeof frame === 'number')
         {
-            return this._frames[this._frameNames[name]];
+            return this._frames[frame];
         }
 
         return null;
