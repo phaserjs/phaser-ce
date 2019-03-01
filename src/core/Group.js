@@ -1806,6 +1806,7 @@ Phaser.Group.prototype.preUpdate = function ()
     while (i < this.children.length)
     {
         var child = this.children[i];
+        
         child.preUpdate();
 
         if (this === child.parent)

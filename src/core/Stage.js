@@ -153,7 +153,9 @@ Phaser.Stage.prototype.preUpdate = function ()
 
     while (i < this.children.length)
     {
-        this.children[i].preUpdate();
+        var child = this.children[i];
+        
+        child.preUpdate();
 
         if (this === child.parent)
         {
