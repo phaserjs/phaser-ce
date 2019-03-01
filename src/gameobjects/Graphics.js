@@ -244,14 +244,12 @@ Phaser.Graphics.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.Graphics.prototype.preUpdate = function ()
 {
-    if (!this.active)
+    if (this.active && this.parent.active)
     {
-        return;
-    }
-
-    if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
-    {
-        return false;
+        if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+        {
+            return false;
+        }
     }
 
     return this.preUpdateCore();
@@ -1059,7 +1057,11 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession)
             // simple render children!
             for (var i = 0; i < this.children.length; i++)
             {
-                this.children[i]._renderWebGL(renderSession);
+                var child = this.children[i];
+                if (child.active)
+                {
+                    child._renderWebGL(renderSession);
+                }
             }
 
             renderSession.spriteBatch.stop();
@@ -1276,6 +1278,10 @@ Phaser.Graphics.prototype.getBounds = function (matrix)
  */
 Phaser.Graphics.prototype.getLocalBounds = function ()
 {
+    if (!this.active)
+    {
+        return this.getBounds();
+    }
 
     var matrixCache = this.worldTransform;
 

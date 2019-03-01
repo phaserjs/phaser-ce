@@ -373,9 +373,10 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function ()
 
     while (i--)
     {
-        if (this.children[i].exists)
+        var child = this.children[i];
+        if (child.active && child.exists)
         {
-            this.children[i].update();
+            child.update();
         }
     }
 

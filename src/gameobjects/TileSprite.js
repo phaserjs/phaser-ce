@@ -185,24 +185,22 @@ Phaser.TileSprite.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.TileSprite.prototype.preUpdate = function ()
 {
-    if (!this.active)
+    if (this.active && this.parent.active)
     {
-        return;
-    }
+        if (this._scroll.x !== 0)
+        {
+            this.tilePosition.x += this._scroll.x * this.game.time.physicsElapsed;
+        }
 
-    if (this._scroll.x !== 0)
-    {
-        this.tilePosition.x += this._scroll.x * this.game.time.physicsElapsed;
-    }
+        if (this._scroll.y !== 0)
+        {
+            this.tilePosition.y += this._scroll.y * this.game.time.physicsElapsed;
+        }
 
-    if (this._scroll.y !== 0)
-    {
-        this.tilePosition.y += this._scroll.y * this.game.time.physicsElapsed;
-    }
-
-    if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
-    {
-        return false;
+        if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+        {
+            return false;
+        }
     }
 
     return this.preUpdateCore();

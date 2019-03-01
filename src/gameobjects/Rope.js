@@ -148,14 +148,12 @@ Phaser.Rope.TRIANGLES = 1;
 */
 Phaser.Rope.prototype.preUpdate = function ()
 {
-    if (!this.active)
+    if (this.active && this.parent.active)
     {
-        return;
-    }
-
-    if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
-    {
-        return false;
+        if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+        {
+            return false;
+        }
     }
 
     return this.preUpdateCore();

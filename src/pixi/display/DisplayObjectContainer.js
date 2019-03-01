@@ -368,7 +368,7 @@ PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpac
     {
         var child = this.children[i];
 
-        if (!child.visible)
+        if (!child.active || !child.visible)
         {
             continue;
         }
@@ -550,7 +550,6 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
         for (i = 0; i < this.children.length; i++)
         {
             var child = this.children[i];
-
             if (child.active)
             {
                 child._renderWebGL(renderSession);
@@ -570,10 +569,9 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
         for (i = 0; i < this.children.length; i++)
         {
             var child = this.children[i];
-
             if (child.active)
             {
-                this.children[i]._renderWebGL(renderSession);
+                child._renderWebGL(renderSession);
             }
         }
     }

@@ -1793,7 +1793,7 @@ Phaser.Group.prototype.preUpdate = function ()
         return false;
     }
 
-    if (!this.active || !this.exists || !this.parent.exists)
+    if (!this.active || !this.exists || !this.parent.active || !this.parent.exists)
     {
         this.renderOrderID = -1;
         return false;
@@ -1805,12 +1805,7 @@ Phaser.Group.prototype.preUpdate = function ()
 
     while (i < this.children.length)
     {
-        var child = this.children[i];
-
-        if (child.active)
-        {
-            child.preUpdate();
-        }
+        this.children[i].preUpdate();
 
         if (this === child.parent)
         {

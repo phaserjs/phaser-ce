@@ -285,11 +285,6 @@ Phaser.TilemapLayer.ensureSharedCopyCanvas = function ()
 */
 Phaser.TilemapLayer.prototype.preUpdate = function ()
 {
-    if (!this.active)
-    {
-        return false;
-    }
-
     return this.preUpdateCore();
 
 };

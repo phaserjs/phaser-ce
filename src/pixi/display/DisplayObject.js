@@ -319,8 +319,7 @@ PIXI.DisplayObject.prototype = {
     */
    updateTransform: function (parent)
    {
-
-       if (!parent && !this.parent && !this.game)
+       if (!this.active || (!parent && !this.parent && !this.game))
        {
            return this;
        }
