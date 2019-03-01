@@ -395,41 +395,37 @@ PIXI.DisplayObject.prototype = {
            wt.ty = tx * pt.b + ty * pt.d + pt.ty;
        }
 
-       a = wt.a;
-       b = wt.b;
-       c = wt.c;
-       d = wt.d;
-
-       if (a || b)
+       if (this.game.config.decomposeMatrix)
        {
-           if (a === 1 && b === 0)
-           {
-               this.worldRotation = 0;
-               this.worldScale.x = 1;
-               this.worldScale.y = 1;
-           } else {
-               var r = Math.sqrt((a * a) + (b * b));
-               var y = ((a * d) - (b * c)) / r;
+            a = wt.a;
+            b = wt.b;
+            c = wt.c;
+            d = wt.d;
 
-               this.worldRotation = (b > 0) ? Math.acos(a / r) : -Math.acos(a / r);
-               this.worldScale.x = r;
-               this.worldScale.y = y;
-           }
-       }
-       else if (c || d)
-       {
-           var s = Math.sqrt((c * c) + (d * d));
-           var x = ((a * d) - (b * c)) / s;
+            if (a || b)
+            {
+                var r = Math.sqrt((a * a) + (b * b));
+                var y = ((a * d) - (b * c)) / r;
 
-           this.worldRotation = Phaser.Math.HALF_PI - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
-           this.worldScale.x = x;
-           this.worldScale.y = s;
-       }
-       else
-       {
-           this.worldScale.x = 0;
-           this.worldScale.y = 0;
-       }
+                this.worldRotation = (b > 0) ? Math.acos(a / r) : -Math.acos(a / r);
+                this.worldScale.x = r;
+                this.worldScale.y = y;
+            }
+            else if (c || d)
+            {
+                var s = Math.sqrt((c * c) + (d * d));
+                var x = ((a * d) - (b * c)) / s;
+
+                this.worldRotation = Phaser.Math.HALF_PI - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
+                this.worldScale.x = x;
+                this.worldScale.y = s;
+            }
+            else
+            {
+                this.worldScale.x = 0;
+                this.worldScale.y = 0;
+            }
+        }
 
        //  Set the World values
        this.worldAlpha = this.alpha * p.worldAlpha;
