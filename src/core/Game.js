@@ -539,7 +539,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {string}             [GameConfig.canvasStyle]                   - `style` attribute value to assign to the game canvas.
 * @property {boolean}            [GameConfig.clearBeforeRender=true]        - Sets {@link Phaser.Game#clearBeforeRender}.
 * @property {boolean}            [GameConfig.crisp=false]                   - Sets the canvas's `image-rendering` property to `pixelated` or `crisp-edges`. See {@link Phaser.Canvas.setImageRenderingCrisp}.
-* @property {boolean}            [GameConfig.decomposeMatrix=true]         - Used by WebGL and if set to true then the updateTransform of DisplayObject's will decompose the matrix. Set this to false for performance improvements.
+* @property {boolean}            [GameConfig.decomposeMatrix=true]          - Used by WebGL and if set to true then the updateTransform of DisplayObject's will decompose the matrix. Set this to false for performance improvements.
 * @property {boolean}            [GameConfig.disableVisibilityChange=false] - Sets {@link Phaser.Stage#disableVisibilityChange}
 * @property {boolean}            [GameConfig.disableStart=false]            - Prevents the game loop from starting, allowing you to call updates manually. Helpful for automated testing.
 * @property {boolean}            [GameConfig.enableDebug=true]              - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
