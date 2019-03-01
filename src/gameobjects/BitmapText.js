@@ -193,7 +193,8 @@ Phaser.BitmapText.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.BitmapText.prototype.preUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
     
@@ -212,7 +213,8 @@ Phaser.BitmapText.prototype.preUpdate = function ()
 */
 Phaser.BitmapText.prototype.postUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 

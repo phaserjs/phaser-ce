@@ -226,7 +226,8 @@ Phaser.Text.prototype.constructor = Phaser.Text;
 */
 Phaser.Text.prototype.preUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
     
@@ -1552,7 +1553,8 @@ Phaser.Text.prototype.updateTexture = function ()
 */
 Phaser.Text.prototype._renderWebGL = function (renderSession)
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -1575,7 +1577,8 @@ Phaser.Text.prototype._renderWebGL = function (renderSession)
 */
 Phaser.Text.prototype._renderCanvas = function (renderSession)
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
     

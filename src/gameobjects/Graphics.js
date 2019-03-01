@@ -244,7 +244,8 @@ Phaser.Graphics.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.Graphics.prototype.preUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -264,7 +265,8 @@ Phaser.Graphics.prototype.preUpdate = function ()
 */
 Phaser.Graphics.prototype.postUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -993,7 +995,7 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession)
 {
 
     // if the sprite is not visible or the alpha is 0 then no need to render this element
-    if (this.active == false || this.visible === false || this.alpha === 0 || this.isMask === true)
+    if (this.active === false || this.visible === false || this.alpha === 0 || this.isMask === true)
     {
         return;
     }
@@ -1154,7 +1156,12 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession)
         // simple render children!
         for (var i = 0; i < this.children.length; i++)
         {
-            this.children[i]._renderCanvas(renderSession);
+            var child = this.children[i];
+
+            if (child.active)
+            {
+                child._renderCanvas(renderSession);
+            }
         }
 
         if (this._mask)

@@ -1807,7 +1807,8 @@ Phaser.Group.prototype.preUpdate = function ()
     {
         var child = this.children[i];
 
-        if (child.active) {
+        if (child.active)
+        {
             child.preUpdate();
         }
 
@@ -1831,7 +1832,8 @@ Phaser.Group.prototype.preUpdate = function ()
 */
 Phaser.Group.prototype.update = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -1861,7 +1863,8 @@ Phaser.Group.prototype.update = function ()
 */
 Phaser.Group.prototype.postUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -1874,7 +1877,12 @@ Phaser.Group.prototype.postUpdate = function ()
 
     for (var i = 0; i < this.children.length; i++)
     {
-        this.children[i].postUpdate();
+        var child = this.children[i];
+
+        if (child.active)
+        {
+            this.children[i].postUpdate();
+        }
     }
 
 };

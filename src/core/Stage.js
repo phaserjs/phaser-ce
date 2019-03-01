@@ -146,7 +146,8 @@ Phaser.Stage.prototype.boot = function ()
 */
 Phaser.Stage.prototype.preUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -159,7 +160,8 @@ Phaser.Stage.prototype.preUpdate = function ()
     {
         var child = this.children[i];
 
-        if (child.active) {
+        if (child.active)
+        {
             child.preUpdate();
         }
 
@@ -178,7 +180,8 @@ Phaser.Stage.prototype.preUpdate = function ()
 */
 Phaser.Stage.prototype.update = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -201,7 +204,8 @@ Phaser.Stage.prototype.update = function ()
 */
 Phaser.Stage.prototype.postUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -235,7 +239,8 @@ Phaser.Stage.prototype.postUpdate = function ()
 */
 Phaser.Stage.prototype.updateTransform = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 

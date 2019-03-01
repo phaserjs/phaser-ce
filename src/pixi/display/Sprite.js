@@ -402,7 +402,12 @@ PIXI.Sprite.prototype._renderWebGL = function (renderSession, matrix)
         // now loop through the children and make sure they get rendered
         for (var i = 0; i < this.children.length; i++)
         {
-            this.children[i]._renderWebGL(renderSession);
+            var child = this.children[i];
+
+            if (child.active)
+            {
+                child._renderWebGL(renderSession);
+            }
         }
 
         // time to stop the sprite batch as either a mask element or a filter draw will happen next
@@ -420,7 +425,12 @@ PIXI.Sprite.prototype._renderWebGL = function (renderSession, matrix)
         //  Render children!
         for (var i = 0; i < this.children.length; i++)
         {
-            this.children[i]._renderWebGL(renderSession, wt);
+            var child = this.children[i];
+
+            if (child.active)
+            {
+                child._renderWebGL(renderSession, wt);
+            }
         }
 
     }
@@ -437,7 +447,7 @@ PIXI.Sprite.prototype._renderWebGL = function (renderSession, matrix)
 PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
 {
     // If the sprite is not visible or the alpha is 0 then no need to render this element
-    if (!this.active || !this.active || !this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width < 1 || this.texture.crop.height < 1)
+    if (!this.active || !this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width < 1 || this.texture.crop.height < 1)
     {
         return;
     }
@@ -467,7 +477,12 @@ PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
         //  Update the children and leave
         for (var i = 0; i < this.children.length; i++)
         {
-            this.children[i]._renderCanvas(renderSession);
+            var child = this.children[i];
+
+            if (child.active)
+            {
+                child._renderCanvas(renderSession);
+            }
         }
 
         if (this._mask)
@@ -568,7 +583,12 @@ PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
 
     for (var i = 0; i < this.children.length; i++)
     {
-        this.children[i]._renderCanvas(renderSession);
+        var child = this.children[i];
+
+        if (child.active)
+        {
+            child._renderCanvas(renderSession);
+        }
     }
 
     if (this._mask)

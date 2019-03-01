@@ -315,7 +315,8 @@ Phaser.Particles.Arcade.Emitter.prototype.constructor = Phaser.Particles.Arcade.
 */
 Phaser.Particles.Arcade.Emitter.prototype.update = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 

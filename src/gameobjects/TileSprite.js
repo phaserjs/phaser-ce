@@ -185,7 +185,8 @@ Phaser.TileSprite.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.TileSprite.prototype.preUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -376,7 +377,11 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
 
     for (var i = 0; i < this.children.length; i++)
     {
-        this.children[i]._renderWebGL(renderSession);
+        var child = this.children[i];
+        if (child.active)
+        {
+            child._renderWebGL(renderSession);
+        }
     }
 
     var restartBatch = false;
@@ -509,7 +514,12 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
 
     for (var i = 0; i < this.children.length; i++)
     {
-        this.children[i]._renderCanvas(renderSession);
+        var child = this.children[i];
+
+        if (child.active)
+        {
+            child._renderCanvas(renderSession);
+        }
     }
 
     //  Reset blend mode

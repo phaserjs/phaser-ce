@@ -125,7 +125,7 @@ Phaser.SpriteBatch.prototype._renderCanvas = function (renderSession)
     {
         var child = this.children[i];
 
-        if (!child.visible)
+        if (!child.active || !child.visible)
         {
             continue;
         }

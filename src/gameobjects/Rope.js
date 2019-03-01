@@ -148,7 +148,8 @@ Phaser.Rope.TRIANGLES = 1;
 */
 Phaser.Rope.prototype.preUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -169,7 +170,8 @@ Phaser.Rope.prototype.preUpdate = function ()
 */
 Phaser.Rope.prototype.update = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -515,7 +517,8 @@ Phaser.Rope.prototype._renderStrip = function (renderSession)
 */
 Phaser.Rope.prototype._renderCanvas = function (renderSession)
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
     

@@ -285,7 +285,8 @@ Phaser.TilemapLayer.ensureSharedCopyCanvas = function ()
 */
 Phaser.TilemapLayer.prototype.preUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return false;
     }
 
@@ -301,7 +302,8 @@ Phaser.TilemapLayer.prototype.preUpdate = function ()
 */
 Phaser.TilemapLayer.prototype.postUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 
@@ -354,7 +356,8 @@ Phaser.TilemapLayer.prototype._renderCanvas = function (renderSession)
 */
 Phaser.TilemapLayer.prototype._renderWebGL = function (renderSession)
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
 

@@ -107,7 +107,8 @@ Phaser.Sprite.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.Sprite.prototype.preUpdate = function ()
 {
-    if (!this.active) {
+    if (!this.active)
+    {
         return;
     }
     

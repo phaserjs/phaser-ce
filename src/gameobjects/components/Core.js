@@ -361,7 +361,8 @@ Phaser.Component.Core.prototype = {
         {
             var child = this.children[i];
 
-            if (child.active) {
+            if (child.active)
+            {
                 child.preUpdate();
             }
 
@@ -393,7 +394,8 @@ Phaser.Component.Core.prototype = {
     */
     postUpdate: function ()
     {
-        if (!this.active) {
+        if (!this.active)
+        {
             return;
         }
         
