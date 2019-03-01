@@ -513,7 +513,6 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
     for (var i = 0; i < this.children.length; i++)
     {
         var child = this.children[i];
-
         if (child.active)
         {
             child._renderCanvas(renderSession);

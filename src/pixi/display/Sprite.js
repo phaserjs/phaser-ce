@@ -337,7 +337,7 @@ PIXI.Sprite.prototype.getLocalBounds = function ()
     {
         return this.getBounds();
     }
-    
+
     var matrixCache = this.worldTransform;
 
     this.worldTransform = Phaser.identityMatrix;
@@ -480,7 +480,6 @@ PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
         for (var i = 0; i < this.children.length; i++)
         {
             var child = this.children[i];
-
             if (child.active)
             {
                 child._renderCanvas(renderSession);
@@ -586,7 +585,6 @@ PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
     for (var i = 0; i < this.children.length; i++)
     {
         var child = this.children[i];
-
         if (child.active)
         {
             child._renderCanvas(renderSession);

@@ -412,7 +412,6 @@ Phaser.Component.Core.prototype = {
         for (var i = 0; i < this.children.length; i++)
         {
             var child = this.children[i];
-
             if (child.active)
             {
                 this.children[i].postUpdate();
