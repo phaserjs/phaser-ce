@@ -334,14 +334,17 @@ Phaser.Creature.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.Creature.prototype.preUpdate = function ()
 {
-    if (!this.active || !this.preUpdateInWorld())
+    if (this.active && this.parent.active)
     {
-        return false;
+        if (!this.preUpdateInWorld())
+        {
+            return false;
+        }
+
+        this.manager.Update(this.timeDelta);
+
+        this.updateData();
     }
-
-    this.manager.Update(this.timeDelta);
-
-    this.updateData();
 
     return this.preUpdateCore();
 
