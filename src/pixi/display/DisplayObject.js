@@ -401,22 +401,22 @@ PIXI.DisplayObject.prototype = {
             c = wt.c;
             d = wt.d;
 
+            var determ = (a * d) - (b * c);
+
             if (a || b)
             {
                 var r = Math.sqrt((a * a) + (b * b));
-                var y = ((a * d) - (b * c)) / r;
 
                 this.worldRotation = (b > 0) ? Math.acos(a / r) : -Math.acos(a / r);
                 this.worldScale.x = r;
-                this.worldScale.y = y;
+                this.worldScale.y = determ / r;
             }
             else if (c || d)
             {
                 var s = Math.sqrt((c * c) + (d * d));
-                var x = ((a * d) - (b * c)) / s;
 
                 this.worldRotation = Phaser.Math.HALF_PI - ((d > 0) ? Math.acos(-c / s) : -Math.acos(c / s));
-                this.worldScale.x = x;
+                this.worldScale.x = determ / s;
                 this.worldScale.y = s;
             }
             else
