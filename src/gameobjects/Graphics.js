@@ -1193,7 +1193,7 @@ Phaser.Graphics.prototype.getBounds = function (matrix)
     }
 
     //  Return an empty object if the item is a mask!
-    if (this.isMask)
+    if (!this.renderable)
     {
         return Phaser.EmptyRectangle;
     }
