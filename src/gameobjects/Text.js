@@ -226,10 +226,12 @@ Phaser.Text.prototype.constructor = Phaser.Text;
 */
 Phaser.Text.prototype.preUpdate = function ()
 {
-
-    if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+    if (this.active && this.parent.active)
     {
-        return false;
+        if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+        {
+            return false;
+        }
     }
 
     return this.preUpdateCore();
@@ -1549,6 +1551,10 @@ Phaser.Text.prototype.updateTexture = function ()
 */
 Phaser.Text.prototype._renderWebGL = function (renderSession)
 {
+    if (!this.active)
+    {
+        return;
+    }
 
     if (this.dirty)
     {
@@ -1569,7 +1575,11 @@ Phaser.Text.prototype._renderWebGL = function (renderSession)
 */
 Phaser.Text.prototype._renderCanvas = function (renderSession)
 {
-
+    if (!this.active)
+    {
+        return;
+    }
+    
     if (this.dirty)
     {
         this.updateText();

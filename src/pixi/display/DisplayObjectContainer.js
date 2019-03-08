@@ -290,7 +290,7 @@ PIXI.DisplayObjectContainer.prototype.removeChildren = function (beginIndex, end
 PIXI.DisplayObjectContainer.prototype.updateTransform = function ()
 {
 
-    if (!this.visible)
+    if (!this.active || !this.visible)
     {
         return;
     }
@@ -368,7 +368,7 @@ PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpac
     {
         var child = this.children[i];
 
-        if (!child.visible)
+        if (!child.active || !child.visible)
         {
             continue;
         }
@@ -517,7 +517,7 @@ PIXI.DisplayObjectContainer.prototype.contains = function (child)
 PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
 {
 
-    if (!this.visible || this.alpha <= 0)
+    if (!this.active || !this.visible || this.alpha <= 0)
     {
         return;
     }
@@ -549,7 +549,11 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
         // simple render children!
         for (i = 0; i < this.children.length; i++)
         {
-            this.children[i]._renderWebGL(renderSession);
+            var child = this.children[i];
+            if (child.active)
+            {
+                child._renderWebGL(renderSession);
+            }
         }
 
         renderSession.spriteBatch.stop();
@@ -564,7 +568,11 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
         // simple render children!
         for (i = 0; i < this.children.length; i++)
         {
-            this.children[i]._renderWebGL(renderSession);
+            var child = this.children[i];
+            if (child.active)
+            {
+                child._renderWebGL(renderSession);
+            }
         }
     }
 
@@ -580,7 +588,7 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
 PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession)
 {
 
-    if (this.visible === false || this.alpha === 0)
+    if (this.active === false || this.visible === false || this.alpha === 0)
     {
         return;
     }
@@ -598,7 +606,11 @@ PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession)
 
     for (var i = 0; i < this.children.length; i++)
     {
-        this.children[i]._renderCanvas(renderSession);
+        var child = this.children[i];
+        if (child.active)
+        {
+            child._renderCanvas(renderSession);
+        }
     }
 
     if (this._mask)

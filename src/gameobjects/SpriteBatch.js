@@ -67,7 +67,7 @@ Phaser.SpriteBatch.prototype.constructor = Phaser.SpriteBatch;
 Phaser.SpriteBatch.prototype._renderWebGL = function (renderSession)
 {
 
-    if (!this.visible || this.alpha <= 0 || !this.children.length)
+    if (!this.active || !this.visible || this.alpha <= 0 || !this.children.length)
     {
         return;
     }
@@ -106,7 +106,7 @@ Phaser.SpriteBatch.prototype._renderWebGL = function (renderSession)
 Phaser.SpriteBatch.prototype._renderCanvas = function (renderSession)
 {
 
-    if (!this.visible || this.alpha <= 0 || !this.children.length)
+    if (!this.active || !this.visible || this.alpha <= 0 || !this.children.length)
     {
         return;
     }
@@ -125,7 +125,7 @@ Phaser.SpriteBatch.prototype._renderCanvas = function (renderSession)
     {
         var child = this.children[i];
 
-        if (!child.visible)
+        if (!child.active || !child.visible)
         {
             continue;
         }

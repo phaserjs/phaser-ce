@@ -185,20 +185,22 @@ Phaser.TileSprite.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.TileSprite.prototype.preUpdate = function ()
 {
-
-    if (this._scroll.x !== 0)
+    if (this.active && this.parent.active)
     {
-        this.tilePosition.x += this._scroll.x * this.game.time.physicsElapsed;
-    }
+        if (this._scroll.x !== 0)
+        {
+            this.tilePosition.x += this._scroll.x * this.game.time.physicsElapsed;
+        }
 
-    if (this._scroll.y !== 0)
-    {
-        this.tilePosition.y += this._scroll.y * this.game.time.physicsElapsed;
-    }
+        if (this._scroll.y !== 0)
+        {
+            this.tilePosition.y += this._scroll.y * this.game.time.physicsElapsed;
+        }
 
-    if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
-    {
-        return false;
+        if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+        {
+            return false;
+        }
     }
 
     return this.preUpdateCore();
@@ -332,7 +334,7 @@ Phaser.TileSprite.prototype.setTexture = function (texture)
 Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
 {
 
-    if (!this.visible || !this.renderable || this.alpha === 0)
+    if (!this.active || !this.visible || !this.renderable || this.alpha === 0)
     {
         return;
     }
@@ -373,7 +375,11 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
 
     for (var i = 0; i < this.children.length; i++)
     {
-        this.children[i]._renderWebGL(renderSession);
+        var child = this.children[i];
+        if (child.active)
+        {
+            child._renderWebGL(renderSession);
+        }
     }
 
     var restartBatch = false;
@@ -413,7 +419,7 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
 Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
 {
 
-    if (!this.visible || !this.renderable || this.alpha === 0)
+    if (!this.active || !this.visible || !this.renderable || this.alpha === 0)
     {
         return;
     }
@@ -506,7 +512,11 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
 
     for (var i = 0; i < this.children.length; i++)
     {
-        this.children[i]._renderCanvas(renderSession);
+        var child = this.children[i];
+        if (child.active)
+        {
+            child._renderCanvas(renderSession);
+        }
     }
 
     //  Reset blend mode

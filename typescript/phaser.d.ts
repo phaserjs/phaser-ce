@@ -1478,6 +1478,7 @@ declare module Phaser {
         canvasId?: string;
         canvasStyle?: string;
         crisp?: boolean;
+        decomposeMatrix?: boolean;
         disableVisibilityChange?: boolean;
         disableStart?: boolean;
         enableDebug?: boolean;

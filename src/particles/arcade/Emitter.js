@@ -315,6 +315,10 @@ Phaser.Particles.Arcade.Emitter.prototype.constructor = Phaser.Particles.Arcade.
 */
 Phaser.Particles.Arcade.Emitter.prototype.update = function ()
 {
+    if (!this.active)
+    {
+        return;
+    }
 
     this.counts.emitted = 0;
     this.counts.failed = 0;
@@ -369,9 +373,10 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function ()
 
     while (i--)
     {
-        if (this.children[i].exists)
+        var child = this.children[i];
+        if (child.active && child.exists)
         {
-            this.children[i].update();
+            child.update();
         }
     }
 

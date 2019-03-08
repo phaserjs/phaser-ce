@@ -1793,7 +1793,7 @@ Phaser.Group.prototype.preUpdate = function ()
         return false;
     }
 
-    if (!this.exists || !this.parent.exists)
+    if (!this.active || !this.exists || !this.parent.active || !this.parent.exists)
     {
         this.renderOrderID = -1;
         return false;
@@ -1806,7 +1806,7 @@ Phaser.Group.prototype.preUpdate = function ()
     while (i < this.children.length)
     {
         var child = this.children[i];
-
+        
         child.preUpdate();
 
         if (this === child.parent)
@@ -1829,6 +1829,10 @@ Phaser.Group.prototype.preUpdate = function ()
 */
 Phaser.Group.prototype.update = function ()
 {
+    if (!this.active)
+    {
+        return;
+    }
 
     //  Goes in reverse, because it's highly likely the child will destroy itself in `update`
     var i = this.children.length;
@@ -1841,7 +1845,7 @@ Phaser.Group.prototype.update = function ()
 
         var child = this.children[i];
 
-        if (!this.updateOnlyExistingChildren || child.exists)
+        if (child.active && (!this.updateOnlyExistingChildren || child.exists))
         {
             child.update();
         }
@@ -1856,6 +1860,10 @@ Phaser.Group.prototype.update = function ()
 */
 Phaser.Group.prototype.postUpdate = function ()
 {
+    if (!this.active)
+    {
+        return;
+    }
 
     //  Fixed to Camera?
     if (this.fixedToCamera)
@@ -1866,7 +1874,11 @@ Phaser.Group.prototype.postUpdate = function ()
 
     for (var i = 0; i < this.children.length; i++)
     {
-        this.children[i].postUpdate();
+        var child = this.children[i];
+        if (child.active)
+        {
+            this.children[i].postUpdate();
+        }
     }
 
 };

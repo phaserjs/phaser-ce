@@ -129,7 +129,7 @@ Phaser.Component.Core.preUpdate = function ()
     this.previousPosition.set(this.world.x, this.world.y);
     this.previousRotation = this.rotation;
 
-    if (!this.exists || !this.parent.exists)
+    if (!this.active || !this.exists || !this.parent.active || !this.parent.exists)
     {
         this.renderOrderID = -1;
         return false;
@@ -360,7 +360,7 @@ Phaser.Component.Core.prototype = {
         while (i < this.children.length)
         {
             var child = this.children[i];
-
+            
             child.preUpdate();
 
             if (this === child.parent)
@@ -391,7 +391,11 @@ Phaser.Component.Core.prototype = {
     */
     postUpdate: function ()
     {
-
+        if (!this.active)
+        {
+            return;
+        }
+        
         if (this.customRender)
         {
             this.key.render();
@@ -409,7 +413,11 @@ Phaser.Component.Core.prototype = {
 
         for (var i = 0; i < this.children.length; i++)
         {
-            this.children[i].postUpdate();
+            var child = this.children[i];
+            if (child.active)
+            {
+                this.children[i].postUpdate();
+            }
         }
 
     }

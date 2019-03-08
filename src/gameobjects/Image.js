@@ -87,10 +87,12 @@ Phaser.Image.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.Image.prototype.preUpdate = function ()
 {
-
-    if (!this.preUpdateInWorld() || !this.preUpdateLifeSpan())
+    if (this.active && this.parent.active)
     {
-        return false;
+        if (!this.preUpdateInWorld() || !this.preUpdateLifeSpan())
+        {
+            return false;
+        }
     }
 
     return this.preUpdateCore();

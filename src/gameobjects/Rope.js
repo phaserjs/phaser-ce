@@ -148,10 +148,12 @@ Phaser.Rope.TRIANGLES = 1;
 */
 Phaser.Rope.prototype.preUpdate = function ()
 {
-
-    if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+    if (this.active && this.parent.active)
     {
-        return false;
+        if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+        {
+            return false;
+        }
     }
 
     return this.preUpdateCore();
@@ -166,6 +168,10 @@ Phaser.Rope.prototype.preUpdate = function ()
 */
 Phaser.Rope.prototype.update = function ()
 {
+    if (!this.active)
+    {
+        return;
+    }
 
     if (this._hasUpdateAnimation)
     {
@@ -365,7 +371,7 @@ Phaser.Rope.prototype.setTexture = function (texture)
 Phaser.Rope.prototype._renderWebGL = function (renderSession)
 {
 
-    if (!this.visible || this.alpha <= 0)
+    if (!this.active || !this.visible || this.alpha <= 0)
     {
         return;
     }
@@ -509,7 +515,11 @@ Phaser.Rope.prototype._renderStrip = function (renderSession)
 */
 Phaser.Rope.prototype._renderCanvas = function (renderSession)
 {
-
+    if (!this.active)
+    {
+        return;
+    }
+    
     var context = renderSession.context;
 
     var transform = this.worldTransform;

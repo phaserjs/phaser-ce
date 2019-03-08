@@ -244,10 +244,12 @@ Phaser.Graphics.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.Graphics.prototype.preUpdate = function ()
 {
-
-    if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+    if (this.active && this.parent.active)
     {
-        return false;
+        if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+        {
+            return false;
+        }
     }
 
     return this.preUpdateCore();
@@ -261,6 +263,10 @@ Phaser.Graphics.prototype.preUpdate = function ()
 */
 Phaser.Graphics.prototype.postUpdate = function ()
 {
+    if (!this.active)
+    {
+        return;
+    }
 
     Phaser.Component.PhysicsBody.postUpdate.call(this);
     Phaser.Component.FixedToCamera.postUpdate.call(this);
@@ -987,7 +993,7 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession)
 {
 
     // if the sprite is not visible or the alpha is 0 then no need to render this element
-    if (this.visible === false || this.alpha === 0 || this.isMask === true)
+    if (this.active === false || this.visible === false || this.alpha === 0 || this.isMask === true)
     {
         return;
     }
@@ -1051,7 +1057,11 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession)
             // simple render children!
             for (var i = 0; i < this.children.length; i++)
             {
-                this.children[i]._renderWebGL(renderSession);
+                var child = this.children[i];
+                if (child.active)
+                {
+                    child._renderWebGL(renderSession);
+                }
             }
 
             renderSession.spriteBatch.stop();
@@ -1085,7 +1095,7 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession)
 {
 
     // if the sprite is not visible or the alpha is 0 then no need to render this element
-    if (this.visible === false || this.alpha === 0 || this.isMask === true)
+    if (this.active === false || this.visible === false || this.alpha === 0 || this.isMask === true)
     {
         return;
     }
@@ -1148,7 +1158,11 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession)
         // simple render children!
         for (var i = 0; i < this.children.length; i++)
         {
-            this.children[i]._renderCanvas(renderSession);
+            var child = this.children[i];
+            if (child.active)
+            {
+                child._renderCanvas(renderSession);
+            }
         }
 
         if (this._mask)
@@ -1179,7 +1193,7 @@ Phaser.Graphics.prototype.getBounds = function (matrix)
     }
 
     //  Return an empty object if the item is a mask!
-    if (this.isMask)
+    if (!this.renderable)
     {
         return Phaser.EmptyRectangle;
     }
@@ -1263,6 +1277,10 @@ Phaser.Graphics.prototype.getBounds = function (matrix)
  */
 Phaser.Graphics.prototype.getLocalBounds = function ()
 {
+    if (!this.active)
+    {
+        return this.getBounds();
+    }
 
     var matrixCache = this.worldTransform;
 

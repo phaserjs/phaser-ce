@@ -70,7 +70,11 @@ Phaser.Particle.prototype.constructor = Phaser.Particle;
 */
 Phaser.Particle.prototype.update = function ()
 {
-
+    if (!this.active)
+    {
+        return;
+    }
+    
     if (this.autoScale)
     {
         this._s--;

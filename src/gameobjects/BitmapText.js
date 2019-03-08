@@ -193,10 +193,12 @@ Phaser.BitmapText.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 */
 Phaser.BitmapText.prototype.preUpdate = function ()
 {
-
-    if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+    if (this.active && this.parent.active)
     {
-        return false;
+        if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+        {
+            return false;
+        }
     }
 
     return this.preUpdateCore();
@@ -209,6 +211,10 @@ Phaser.BitmapText.prototype.preUpdate = function ()
 */
 Phaser.BitmapText.prototype.postUpdate = function ()
 {
+    if (!this.active)
+    {
+        return;
+    }
 
     Phaser.Component.PhysicsBody.postUpdate.call(this);
     Phaser.Component.FixedToCamera.postUpdate.call(this);
