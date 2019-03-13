@@ -394,7 +394,7 @@ PIXI.DisplayObject.prototype = {
            wt.ty = tx * pt.b + ty * pt.d + pt.ty;
        }
 
-       if (this.game.config.decomposeMatrix)
+       if (this.game && this.game.config.decomposeMatrix)
        {
             a = wt.a;
             b = wt.b;
