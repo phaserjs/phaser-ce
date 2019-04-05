@@ -624,15 +624,31 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
     }
 
     // upload the verts to the buffer
-    if (this.currentBatchSize > (this.size * 0.5))
+    if (this.game.config.batchRender)
     {
-        gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices);
+        if (this.currentBatchSize > (this.size * 0.5))
+        {
+            gl.bufferData(gl.ARRAY_BUFFER, this.vertices, gl.DYNAMIC_DRAW);
+        }
+        else
+        {
+            gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
+            var view = this.positions.subarray(0, this.currentBatchSize * this.vertexSize);
+            gl.bufferData(gl.ARRAY_BUFFER, view, gl.DYNAMIC_DRAW);
+        }
     }
     else
     {
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
-        var view = this.positions.subarray(0, this.currentBatchSize * this.vertexSize);
-        gl.bufferSubData(gl.ARRAY_BUFFER, 0, view);
+        if (this.currentBatchSize > (this.size * 0.5))
+        {
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices);
+        }
+        else
+        {
+            gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
+            var view = this.positions.subarray(0, this.currentBatchSize * this.vertexSize);
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, view);
+        }
     }
 
     var nextTexture, nextBlendMode, nextShader;

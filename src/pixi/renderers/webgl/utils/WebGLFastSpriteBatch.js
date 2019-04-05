@@ -202,7 +202,8 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
         this.renderSession.blendModeManager.setBlendMode(sprite.blendMode);
     }
 
-    if(this.game.config.batchRender) {
+    if(this.game.config.batchRender)
+    {
         var textureIndex = this.currentBaseTexture.textureIndex;
         var gl = this.gl;
         
@@ -404,16 +405,30 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function ()
     // gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
 
     // upload the verts to the buffer
-
-    if(this.currentBatchSize > (this.size * 0.5))
+    if (this.game.config.batchRender)
     {
-        gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices);
+        if(this.currentBatchSize > (this.size * 0.5))
+        {
+            gl.bufferData(gl.ARRAY_BUFFER, this.vertices, gl.DYNAMIC_DRAW);
+        }
+        else
+        {
+            var view = this.vertices.subarray(0, this.currentBatchSize * 4 * this.vertSize);
+            gl.bufferData(gl.ARRAY_BUFFER, view, gl.DYNAMIC_DRAW);
+        }
     }
     else
     {
-        var view = this.vertices.subarray(0, this.currentBatchSize * 4 * this.vertSize);
+        if(this.currentBatchSize > (this.size * 0.5))
+        {
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices);
+        }
+        else
+        {
+            var view = this.vertices.subarray(0, this.currentBatchSize * 4 * this.vertSize);
 
-        gl.bufferSubData(gl.ARRAY_BUFFER, 0, view);
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, view);
+        }
     }
 
     // now draw those suckas!
