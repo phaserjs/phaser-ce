@@ -30,28 +30,49 @@ var _fbErrors = {
 /**
  * @private
  */
-function _CreateFramebuffer (gl, width, height, scaleMode, textureUnit)
+function _CreateFramebuffer (gl, width, height, scaleMode, textureUnit, useStencil)
 {
     var framebuffer = gl.createFramebuffer();
-    var depthStencilBuffer = gl.createRenderbuffer();
+    var depthStencilBuffer;
     var colorBuffer = null;
     var fbStatus = 0;
 
+    if (useStencil)
+    {
+        depthStencilBuffer = gl.createRenderbuffer();
+    }
+
     gl.activeTexture(gl.TEXTURE0 + textureUnit);
     gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
-    gl.bindRenderbuffer(gl.RENDERBUFFER, depthStencilBuffer);
-    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);
+
+    if (useStencil)
+    {
+        gl.bindRenderbuffer(gl.RENDERBUFFER, depthStencilBuffer);
+        gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);
+    }
+
     colorBuffer = _CreateEmptyTexture(gl, width, height, scaleMode);
     gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, colorBuffer, 0);
     fbStatus = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
     if(fbStatus !== gl.FRAMEBUFFER_COMPLETE)
     {
-        console.error('Incomplete GL framebuffer. ', _fbErrors[fbStatus]);
+        var status = _fbErrors[fbStatus];
+        if (!status)
+        {
+            status = fbStatus;
+        }
+
+        console.error('Incomplete GL framebuffer:', status);
     }
     framebuffer.width = width;
     framebuffer.height = height;
     framebuffer.targetTexture = colorBuffer;
-    framebuffer.renderBuffer = depthStencilBuffer;
+
+    if (useStencil)
+    {
+        framebuffer.renderBuffer = depthStencilBuffer;
+    }
+    
     return framebuffer;
 }
 
@@ -62,9 +83,12 @@ function _CreateFramebuffer (gl, width, height, scaleMode, textureUnit)
 * @param width {Number} the horizontal range of the filter
 * @param height {Number} the vertical range of the filter
 * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+* @param useStencil {boolean} Wether to use stencils or not. Defaults to true.
 */
-PIXI.FilterTexture = function (gl, width, height, scaleMode, textureUnit)
+PIXI.FilterTexture = function (gl, width, height, scaleMode, textureUnit, useStencil)
 {
+    if (useStencil === undefined) { useStencil = true; }
+    
     textureUnit = typeof textureUnit === 'number' ? textureUnit : 0;
 
     /**
@@ -73,13 +97,18 @@ PIXI.FilterTexture = function (gl, width, height, scaleMode, textureUnit)
      */
     this.gl = gl;
 
+    /**
+     * Whether to use stencils or not.
+     */
+    this.useStencil = useStencil;
+
     // next time to create a frame buffer and texture
 
     /**
      * @property frameBuffer
      * @type Any
      */
-    this.frameBuffer = _CreateFramebuffer(gl, width, height, scaleMode || PIXI.scaleModes.DEFAULT, textureUnit);
+    this.frameBuffer = _CreateFramebuffer(gl, width, height, scaleMode || PIXI.scaleModes.DEFAULT, textureUnit, useStencil);
 
     /**
      * @property texture
@@ -124,9 +153,12 @@ PIXI.FilterTexture.prototype.resize = function (width, height)
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width , height , 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
 
-    // update the stencil buffer width and height
-    gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);
-    gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_STENCIL, width , height);
+    if (this.useStencil)
+    {
+        // update the stencil buffer width and height
+        gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);
+        gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_STENCIL, width , height);
+    }
 };
 
 /**

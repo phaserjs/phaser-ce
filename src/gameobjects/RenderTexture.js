@@ -90,7 +90,7 @@ Phaser.RenderTexture = function (game, width, height, key, scaleMode, resolution
         this.baseTexture.textureIndex = textureUnit;
         this.baseTexture._dirty[gl.id] = false;
 
-        this.textureBuffer = new PIXI.FilterTexture(gl, this.width, this.height, this.baseTexture.scaleMode, textureUnit);
+        this.textureBuffer = new PIXI.FilterTexture(gl, this.width, this.height, this.baseTexture.scaleMode, textureUnit, !this.game.config.batchRender);
         this.baseTexture._glTextures[gl.id] = this.textureBuffer.texture;
 
         this.projection = new Phaser.Point(this.width * 0.5, -this.height * 0.5);
