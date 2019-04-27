@@ -348,6 +348,11 @@ Phaser.TilemapParser = {
             return null;
         }
 
+        if (json.version > 1.1)
+        {
+            console.warn('Some features in this Tiled JSON map (version %s) may not work in Phaser CE. Enable the json1 plugin and reexport the map in "Tiled 1.1" format. https://github.com/photonstorm/phaser-ce/issues/623', json.version);
+        }
+
         //  Map data will consist of: layers, objects, images, tilesets, sizes
         var map = {
             width: json.width,
