@@ -659,12 +659,13 @@ Phaser.Utils.Debug.prototype = {
         var modes = Phaser.PointerModes;
 
         this.line('Pointers: (Max: ' + input.maxPointers + ')');
-        this.line('  ' + (mousePointer.isDown ? 'x' : 'o') + ' ' + modes[mousePointer.pointerMode]);
+        this.line('  ' + (mousePointer.isDown ? 'x' : 'o') + ' ' + modes[mousePointer.pointerMode] + ' ' + mousePointer.identifier);
 
         for (var i = 0; i < pointers.length; i++)
         {
             var p = pointers[i];
-            this.line('  ' + (p.active ? '+' : '-') + ' ' + modes[p.pointerMode]);
+
+            this.line('  ' + (p.active ? '+' : '-') + ' ' + modes[p.pointerMode] + ' ' + p.identifier);
         }
 
         this.stop();
