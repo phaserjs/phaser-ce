@@ -432,7 +432,7 @@ Phaser.MSPointer.prototype = {
     },
 
     /**
-    * The internal method that handles the pointer out event from the browser.
+    * The internal method that handles the pointer over event from the browser.
     *
     * @method Phaser.MSPointer#onPointerOut
     * @param {PointerEvent} event - The native event from the browser. This gets stored in MSPointer.event.
