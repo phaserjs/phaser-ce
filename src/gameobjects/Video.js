@@ -402,6 +402,7 @@ Phaser.Video.prototype = {
 
         this.video = document.createElement('video');
         this.video.setAttribute('autoplay', 'autoplay');
+        this.video.setAttribute('playsinline', 'playsinline');
 
         if (width !== null)
         {
@@ -551,6 +552,7 @@ Phaser.Video.prototype = {
         this.video = document.createElement('video');
         this.video.controls = false;
         this.video.setAttribute('autoplay', 'autoplay');
+        this.video.setAttribute('playsinline', 'playsinline');
         this.video.addEventListener('loadeddata', function (event) { _this.updateTexture(event); }, true);
         this.video.src = window.URL.createObjectURL(blob);
         this.video.canplay = true;
@@ -585,6 +587,8 @@ Phaser.Video.prototype = {
         {
             this.video.setAttribute('autoplay', 'autoplay');
         }
+
+        this.video.setAttribute('playsinline', 'playsinline');
 
         this.video.src = url;
 

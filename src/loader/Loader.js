@@ -2497,6 +2497,7 @@ Phaser.Loader.prototype = {
         file.data.name = file.key;
         file.data.controls = false;
         file.data.autoplay = false;
+        file.data.playsInline = true;
 
         var videoLoadEvent = function ()
         {
