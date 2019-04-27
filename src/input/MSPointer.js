@@ -359,6 +359,8 @@ Phaser.MSPointer.prototype = {
     onPointerUpGlobal: function (event)
     {
 
+        event.identifier = event.pointerId;
+
         if ((event.pointerType === 'mouse' || event.pointerType === 0x00000004) && !this.input.mousePointer.withinGame)
         {
             this.onPointerUp(event);
@@ -390,6 +392,8 @@ Phaser.MSPointer.prototype = {
         {
             event.preventDefault();
         }
+
+        event.identifier = event.pointerId;
 
         if (event.pointerType === 'mouse' || event.pointerType === 0x00000004)
         {
@@ -446,6 +450,8 @@ Phaser.MSPointer.prototype = {
         {
             event.preventDefault();
         }
+
+        event.identifier = event.pointerId;
 
         if (event.pointerType === 'mouse' || event.pointerType === 0x00000004)
         {
