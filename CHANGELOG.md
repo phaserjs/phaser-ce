@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Updates
+
+* Videos now have their `playsinline` attribute set.
+* Better tracking of pointer out events.
+* Added a warning for Tiled JSON maps version > 1.1.
+
 ### Bug Fixes
 
 * Fixed undefined value in Phaser.BitmapData#smoothed.
