@@ -285,7 +285,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, useFlatData)
     * @property {Uint16Array} colors - The vertices colors
     * @protected
     */
-    this.colors = new Float32Array(target.total_num_pts*4);
+    this.colors = new Float32Array(target.total_num_pts * 4);
     for(var j = 0; j < this.colors.length; j++)
     {
         this.colors[j] = 1.0;
@@ -586,10 +586,10 @@ Phaser.Creature.prototype.updateRenderData = function (verts, uvs)
     {
         var cur_region = regions_map[region_name];
         var start_pt_idx = cur_region.getStartPtIndex();
-        var end_pt_idx = cur_region.getEndPtIndex()+1;
+        var end_pt_idx = cur_region.getEndPtIndex() + 1;
         var cur_opacity = cur_region.opacity * 0.01;
 
-        for(var i = (start_pt_idx*4); i <= (end_pt_idx*4); i++)
+        for(var i = (start_pt_idx * 4); i <= (end_pt_idx * 4); i++)
         {
             this.colors[i] = cur_opacity;
         }
