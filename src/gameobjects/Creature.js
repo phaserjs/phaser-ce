@@ -65,6 +65,7 @@ PIXI.CreatureShader = function (gl)
         'attribute vec2 aVertexPosition;',
         'attribute vec2 aTextureCoord;',
         'attribute float aTextureIndex;',
+        'attribute vec4 aColor;',
         'uniform mat3 translationMatrix;',
         'uniform vec2 projectionVector;',
         'uniform vec2 offsetVector;',
@@ -80,7 +81,7 @@ PIXI.CreatureShader = function (gl)
         '   gl_Position = vec4( v.x / projectionVector.x -1.0, v.y / -projectionVector.y + 1.0 , 0.0, 1.0);',
         '   vTextureCoord = aTextureCoord;',
         '   vTextureIndex = aTextureIndex;',
-        '   vColor = vec4(tint[0], tint[1], tint[2], 1.0) * alpha;',
+        '   vColor = vec4(tint[0], tint[1], tint[2], 1.0) * aColor.a * alpha;',
         '}'
     ];
 
@@ -117,7 +118,7 @@ PIXI.CreatureShader.prototype.init = function ()
     this.aVertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
     this.aTextureCoord = gl.getAttribLocation(program, 'aTextureCoord');
 
-    this.attributes = [ this.aVertexPosition, this.aTextureCoord, this.aTextureIndex ];
+    this.attributes = [ this.aVertexPosition, this.aTextureCoord, this.colorAttribute ];
 
     this.translationMatrix = gl.getUniformLocation(program, 'translationMatrix');
     this.alpha = gl.getUniformLocation(program, 'alpha');
@@ -284,8 +285,11 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, useFlatData)
     * @property {Uint16Array} colors - The vertices colors
     * @protected
     */
-    this.colors = new Float32Array([ 1, 1, 1, 1 ]);
-
+    this.colors = new Float32Array(target.total_num_pts*4);
+    for(var j = 0; j < this.colors.length; j++)
+    {
+        this.colors[j] = 1.0;
+    }
 
     this.updateRenderData(target.global_pts, target.global_uvs);
 
@@ -444,6 +448,10 @@ Phaser.Creature.prototype._renderCreature = function (renderSession)
         gl.bindBuffer(gl.ARRAY_BUFFER, this._uvBuffer);
         gl.vertexAttribPointer(shader.aTextureCoord, 2, gl.FLOAT, false, 0, 0);
 
+        // Update the colors
+        gl.bindBuffer(gl.ARRAY_BUFFER, this._colorBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, this.colors, gl.STATIC_DRAW);
+
         gl.activeTexture(gl.TEXTURE0);
 
         //  Check if a texture is dirty..
@@ -472,6 +480,11 @@ Phaser.Creature.prototype._renderCreature = function (renderSession)
         gl.bindBuffer(gl.ARRAY_BUFFER, this._uvBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, this.uvs, gl.DYNAMIC_DRAW);
         gl.vertexAttribPointer(shader.aTextureCoord, 2, gl.FLOAT, false, 0, 0);
+
+        // Update the colors
+        gl.bindBuffer(gl.ARRAY_BUFFER, this._colorBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, this.colors, gl.STATIC_DRAW);
+        gl.vertexAttribPointer(shader.colorAttribute, 4, gl.FLOAT, false, 0, 0);
 
         gl.activeTexture(gl.TEXTURE0);
 
@@ -562,6 +575,24 @@ Phaser.Creature.prototype.updateRenderData = function (verts, uvs)
         uv_index += 2;
 
         write_pt_index += 2;
+    }
+
+    // Update color/opacity region values
+    var render_composition =
+        target.render_composition;
+    var regions_map =
+        render_composition.getRegionsMap();
+    for(var region_name in regions_map)
+    {
+        var cur_region = regions_map[region_name];
+        var start_pt_idx = cur_region.getStartPtIndex();
+        var end_pt_idx = cur_region.getEndPtIndex()+1;
+        var cur_opacity = cur_region.opacity * 0.01;
+
+        for(var i = (start_pt_idx*4); i <= (end_pt_idx*4); i++)
+        {
+            this.colors[i] = cur_opacity;
+        }
     }
 
 };
