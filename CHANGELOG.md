@@ -5,12 +5,17 @@
 ### Updates
 
 * Videos now have their `playsinline` attribute set.
-* Better tracking of pointer out events.
+* Better tracking of pointer out events (#624).
 * Added a warning for Tiled JSON maps version > 1.1.
 
 ### Bug Fixes
 
 * Fixed undefined value in Phaser.BitmapData#smoothed.
+* Fixed alpha for different Creature regions (#625).
+
+### Thanks
+
+@highlyinteractive, @mikeks, @ndee85, @samme
 
 ## Version 2.12.0 - 6 February 2019
 
