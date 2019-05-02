@@ -1972,7 +1972,7 @@ Phaser.ScaleManager.prototype = {
         }
         else
         {
-            fsTarget[this.game.device.requestFullscreen]();
+            fsTarget[this.game.device.requestFullscreen]({ navigationUI: 'hide' });
         }
 
         return true;

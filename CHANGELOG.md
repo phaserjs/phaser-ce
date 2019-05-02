@@ -7,6 +7,7 @@
 * Videos now have their `playsinline` attribute set.
 * Better tracking of pointer out events (#624).
 * Added a warning for Tiled JSON maps version > 1.1.
+* Hide navigation UI in fullscreen mode in Chrome/Android (#626)
 
 ### Bug Fixes
 
@@ -15,7 +16,7 @@
 
 ### Thanks
 
-@highlyinteractive, @mikeks, @ndee85, @samme
+@highlyinteractive, @mikeks, @ndee85, @samme, @daniel-nth 
 
 ## Version 2.12.0 - 6 February 2019
 
