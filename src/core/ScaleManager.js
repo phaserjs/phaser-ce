@@ -1899,9 +1899,12 @@ Phaser.ScaleManager.prototype = {
     * @public
     * @param {boolean} [antialias] - Changes the anti-alias feature of the canvas before jumping in to fullscreen (false = retain pixel art, true = smooth art). If not specified then no change is made. Only works in CANVAS mode.
     * @param {boolean} [allowTrampoline=undefined] - Internal argument. If `false` click trampolining is suppressed.
+    * @param {object} [options={navigationUI: 'hide'}] - Options passed to requestFullscreen().
     * @return {boolean} Returns true if the device supports fullscreen mode and fullscreen mode was attempted to be started. (It might not actually start, wait for the signals.)
+    *
+    * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen
     */
-    startFullScreen: function (antialias, allowTrampoline)
+    startFullScreen: function (antialias, allowTrampoline, options)
     {
 
         if (this.isFullScreen)
@@ -1966,13 +1969,18 @@ Phaser.ScaleManager.prototype = {
             fsTarget.appendChild(canvas);
         }
 
+        if (options === undefined)
+        {
+            options = { navigationUI: 'hide' };
+        }
+
         if (this.game.device.fullscreenKeyboard)
         {
             fsTarget[this.game.device.requestFullscreen](Element.ALLOW_KEYBOARD_INPUT);
         }
         else
         {
-            fsTarget[this.game.device.requestFullscreen]({ navigationUI: 'hide' });
+            fsTarget[this.game.device.requestFullscreen](options);
         }
 
         return true;

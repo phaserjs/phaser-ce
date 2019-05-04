@@ -5,6 +5,7 @@
 ### New Features
 
 * MSPointer#pointerOutCallback and MSPointer#stopOnGameOut. MSPointer's behavior has been controlled by Mouse#mouseOutCallback and Mouse#stopOnGameOut but in v2.13.0 it will use only the new properties, MSPointer#pointerOutCallback and MSPointer#stopOnGameOut. If you're using Mouse#mouseOutCallback or Mouse#stopOnGameOut you should set the corresponding properties on MSPointer as well. (The input handlers are in `game.input.mouse` and `game.input.mspointer`.)
+* ScaleManager#startFullScreen has an `options` argument.
 
 ### Bug Fixes
 
