@@ -2,21 +2,25 @@
 
 ## Unreleased
 
-### Updates
+### New Features
 
-* Videos now have their `playsinline` attribute set.
-* Better tracking of pointer out events (#624).
-* Added a warning for Tiled JSON maps version > 1.1.
-* Hide navigation UI in fullscreen mode in Chrome/Android (#626)
+* MSPointer#pointerOutCallback and MSPointer#stopOnGameOut. MSPointer's behavior has been controlled by Mouse#mouseOutCallback and Mouse#stopOnGameOut but in v2.13.0 it will use only the new properties, MSPointer#pointerOutCallback and MSPointer#stopOnGameOut. If you're using Mouse#mouseOutCallback or Mouse#stopOnGameOut you should set the corresponding properties on MSPointer as well. (The input handlers are in `game.input.mouse` and `game.input.mspointer`.)
 
 ### Bug Fixes
 
 * Fixed undefined value in Phaser.BitmapData#smoothed.
+* Better tracking of pointer out events (#624).
 * Fixed alpha for different Creature regions (#625).
+
+### Updates
+
+* Videos now have their `playsinline` attribute set.
+* Added a warning for Tiled JSON maps version > 1.1. Object properties and tile properties in these maps may not work in Phaser CE. You can enable the json1 plugin and reexport the map in _Tiled 1.1_ format to use these features in Phaser CE (#623).
+* Hide navigation UI in fullscreen mode in Chrome/Android (#626)
 
 ### Thanks
 
-@highlyinteractive, @mikeks, @ndee85, @samme, @daniel-nth 
+@daniel-nth, @highlyinteractive, @mikeks, @ndee85, @samme, @thomasMeynckens
 
 ## Version 2.12.0 - 6 February 2019
 
