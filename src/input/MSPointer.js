@@ -56,17 +56,17 @@ Phaser.MSPointer = function (game)
     this.callbackContext = this.game;
 
     /**
-    * @property {function} pointerDownCallback - A callback that can be fired on a MSPointerDown event.
+    * @property {function} pointerDownCallback - A callback that can be fired on a pointerdown (MSPointerDown) event.
     */
     this.pointerDownCallback = null;
 
     /**
-    * @property {function} pointerMoveCallback - A callback that can be fired on a MSPointerMove event.
+    * @property {function} pointerMoveCallback - A callback that can be fired on a pointermove (MSPointerMove) event.
     */
     this.pointerMoveCallback = null;
 
     /**
-    * @property {function} pointerUpCallback - A callback that can be fired on a MSPointerUp event.
+    * @property {function} pointerUpCallback - A callback that can be fired on a pointerup (MSPointerUp) event.
     */
     this.pointerUpCallback = null;
 
