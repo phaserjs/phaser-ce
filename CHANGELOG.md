@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.12.1 - 4 May 2019
 
 ### New Features
 
