@@ -421,12 +421,6 @@ Phaser.MSPointer.prototype = {
             }
         }
 
-        // Deprecated. Use `this.pointerOutCallback` instead.
-        if (this.input.mouse.mouseOutCallback)
-        {
-            this.input.mouse.mouseOutCallback.call(this.input.mouse.callbackContext, event);
-        }
-
         if (this.pointerOutCallback)
         {
             this.pointerOutCallback.call(this.callbackContext, event);
@@ -437,7 +431,7 @@ Phaser.MSPointer.prototype = {
             return;
         }
 
-        if (this.stopOnGameOut || this.input.mouse.stopOnGameOut)
+        if (this.stopOnGameOut)
         {
             event.identifier = 0;
 

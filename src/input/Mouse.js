@@ -49,7 +49,6 @@ Phaser.Mouse = function (game)
 
     /**
     * A callback that can be fired when the mouse is no longer over the game canvas.
-    * This also affects {@link Phaser.Input.MSPointer} but in Phaser v2.13.0 it no longer will.
     * You should set both this and {@link Phaser.Input.MSPointer#pointerOutCallback}.
     *
     * @property {function} mouseOutCallback
@@ -85,7 +84,6 @@ Phaser.Mouse = function (game)
 
     /**
     * If true Pointer.stop will be called if the mouse leaves the game canvas.
-    * This also affects {@link Phaser.Input.MSPointer} but in Phaser v2.13.0 it no longer will.
     * You should set both this and {@link Phaser.Input.MSPointer#stopOnGameOut}.
     * @property {boolean} stopOnGameOut
     * @default
