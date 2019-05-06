@@ -1,10 +1,9 @@
 # Change Log
 
-## Version 2.12.1 - 4 May 2019
+## Version 2.12.1 - 6 May 2019
 
 ### New Features
 
-* [MSPointer#pointerOutCallback](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html#pointerOutCallback) and [MSPointer#stopOnGameOut](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html#stopOnGameOut). MSPointer's behavior has been controlled by [Mouse#mouseOutCallback](https://photonstorm.github.io/phaser-ce/Phaser.Mouse.html#mouseOutCallback) and [Mouse#stopOnGameOut](https://photonstorm.github.io/phaser-ce/Phaser.Mouse.html#stopOnGameOut) but in v2.13.0 it will use only the new properties, MSPointer#pointerOutCallback and MSPointer#stopOnGameOut. If you're using Mouse#mouseOutCallback or Mouse#stopOnGameOut you should set the corresponding properties on MSPointer as well. (The input handlers are in `game.input.mouse` and `game.input.mspointer`.)
 * [ScaleManager#startFullScreen](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#startFullScreen) has an `options` argument.
 
 ### Bug Fixes
