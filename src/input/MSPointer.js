@@ -76,6 +76,11 @@ Phaser.MSPointer = function (game)
     this.pointerOutCallback = null;
 
     /**
+    * @property {function} pointerOverCallback - A callback that can be fired on a pointerover (MSPointerOver) event.
+    */
+    this.pointerOverCallback = null;
+
+    /**
     * If true the PointerEvent will call preventDefault(), canceling the corresponding MouseEvent or
     * TouchEvent.
     *
@@ -479,9 +484,9 @@ Phaser.MSPointer.prototype = {
             }
         }
 
-        if (this.input.mouse.mouseOverCallback)
+        if (this.pointerOverCallback)
         {
-            this.input.mouse.mouseOverCallback.call(this.input.mouse.callbackContext, event);
+            this.pointerOverCallback.call(this.callbackContext, event);
         }
 
     },

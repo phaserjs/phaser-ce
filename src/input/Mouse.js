@@ -56,7 +56,9 @@ Phaser.Mouse = function (game)
     this.mouseOutCallback = null;
 
     /**
-    * @property {function} mouseOverCallback - A callback that can be fired when the mouse enters the game canvas (usually after a mouseout).
+    * A callback that can be fired when the mouse enters the game canvas (usually after a mouseout).
+    * You should set both this and {@link Phaser.Input.MSPointer#pointerOverCallback}.
+    * @property {function} mouseOverCallback
     */
     this.mouseOverCallback = null;
 
