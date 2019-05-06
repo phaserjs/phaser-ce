@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: Gamepad</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2019050410">
+	<link rel="stylesheet" href="styles/site.phaser.css?2019050608">
 </head>
 
 <body>
@@ -1936,220 +1936,6 @@ onConnectCallback, onDisconnectCallback, onDownCallback, onUpCallback, onAxisCal
 
     
     <div class="description method-description">
-        <p>Returns the &quot;just pressed&quot; state of a button from ANY gamepad connected. Just pressed is considered true if the button was pressed down within the duration given (default 250ms).</p>
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Argument</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>buttonCode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description param-description last"><p>The buttonCode of the button to check for.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    250
-                
-                </td>
-            
-
-            <td class="description param-description last"><p>The duration below which the button is considered as being just pressed.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-    
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.12.1/src/input/Gamepad.js#L427" title="justPressed on line 427 of src/input/Gamepad.js">src/input/Gamepad.js line 427</a>
-    
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <p>True if the button is just pressed otherwise false.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<dt>
-    <h4 class="name" id="justPressed" data-name="justPressed">
-      <span class="type-signature"></span>justPressed(buttonCode [, duration])
-      
-    </h4>
-    
-</dt>
-<dd>
-
-    
-    <div class="description method-description">
         <p>Returns the &quot;just released&quot; state of a button from ANY gamepad connected. Just released is considered as being true if the button was released within the duration given (default 250ms).</p>
     </div>
     
@@ -2328,6 +2114,220 @@ onConnectCallback, onDisconnectCallback, onDownCallback, onUpCallback, onAxisCal
             
 <div class="param-desc">
     <p>True if the button is just released otherwise false.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="justPressed" data-name="justPressed">
+      <span class="type-signature"></span>justPressed(buttonCode [, duration])
+      
+    </h4>
+    
+</dt>
+<dd>
+
+    
+    <div class="description method-description">
+        <p>Returns the &quot;just pressed&quot; state of a button from ANY gamepad connected. Just pressed is considered true if the button was pressed down within the duration given (default 250ms).</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>buttonCode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>The buttonCode of the button to check for.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>duration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    250
+                
+                </td>
+            
+
+            <td class="description param-description last"><p>The duration below which the button is considered as being just pressed.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.12.1/src/input/Gamepad.js#L427" title="justPressed on line 427 of src/input/Gamepad.js">src/input/Gamepad.js line 427</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>True if the button is just pressed otherwise false.</p>
 </div>
 
 
@@ -2808,7 +2808,7 @@ This MUST be called manually before Phaser will start polling the Gamepad API.</
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
 	
-		on 2019-05-04
+		on 2019-05-06
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -2837,7 +2837,7 @@ This MUST be called manually before Phaser will start polling the Gamepad API.</
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2019050410"></script>
+<script defer src="scripts/bundle.js?2019050608"></script>
 
 
 

@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.12.1 "2019-05-04" - Built: Sat May 04 2019 10:54:39
+* v2.12.1 "2019-05-06" - Built: Mon May 06 2019 08:13:35
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -17483,11 +17483,7 @@ Phaser.Mouse = function (game)
     this.mouseUpCallback = null;
 
     /**
-    * A callback that can be fired when the mouse is no longer over the game canvas.
-    * This also affects {@link Phaser.Input.MSPointer} but in Phaser v2.13.0 it no longer will.
-    * You should set both this and {@link Phaser.Input.MSPointer#pointerOutCallback}.
-    *
-    * @property {function} mouseOutCallback
+    * @property {function} mouseOutCallback - A callback that can be fired when the mouse is no longer over the game canvas.
     */
     this.mouseOutCallback = null;
 
@@ -17519,10 +17515,7 @@ Phaser.Mouse = function (game)
     this.enabled = true;
 
     /**
-    * If true Pointer.stop will be called if the mouse leaves the game canvas.
-    * This also affects {@link Phaser.Input.MSPointer} but in Phaser v2.13.0 it no longer will.
-    * You should set both this and {@link Phaser.Input.MSPointer#stopOnGameOut}.
-    * @property {boolean} stopOnGameOut
+    * @property {boolean} stopOnGameOut - If true Pointer.stop will be called if the mouse leaves the game canvas.
     * @default
     */
     this.stopOnGameOut = false;
@@ -18311,11 +18304,6 @@ Phaser.MSPointer = function (game)
     this.pointerUpCallback = null;
 
     /**
-    * @property {function} pointerOutCallback - A callback that can be fired on a pointerout (MSPointerOut) event.
-    */
-    this.pointerOutCallback = null;
-
-    /**
     * If true the PointerEvent will call preventDefault(), canceling the corresponding MouseEvent or
     * TouchEvent.
     *
@@ -18353,13 +18341,6 @@ Phaser.MSPointer = function (game)
     * @default
     */
     this.enabled = true;
-
-    /**
-    * If true Pointer.stop() will be called if a pointer leaves the game canvas.
-    * @property {boolean} stopOnGameOut
-    * @default
-    */
-    this.stopOnGameOut = false;
 
     /**
     * @property {function} _onMSPointerDown - Internal function to handle MSPointer events.
@@ -18661,15 +18642,9 @@ Phaser.MSPointer.prototype = {
             }
         }
 
-        // Deprecated. Use `this.pointerOutCallback` instead.
         if (this.input.mouse.mouseOutCallback)
         {
             this.input.mouse.mouseOutCallback.call(this.input.mouse.callbackContext, event);
-        }
-
-        if (this.pointerOutCallback)
-        {
-            this.pointerOutCallback.call(this.callbackContext, event);
         }
 
         if (!this.input.enabled || !this.enabled)
@@ -18677,7 +18652,7 @@ Phaser.MSPointer.prototype = {
             return;
         }
 
-        if (this.stopOnGameOut || this.input.mouse.stopOnGameOut)
+        if (this.input.mouse.stopOnGameOut)
         {
             event.identifier = 0;
 

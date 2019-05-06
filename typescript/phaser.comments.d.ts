@@ -16465,8 +16465,6 @@ declare module Phaser {
 
         /**
         * A callback that can be fired when the mouse is no longer over the game canvas.
-        * This also affects {@link Phaser.Input.MSPointer} but in Phaser v2.13.0 it no longer will.
-        * You should set both this and {@link Phaser.Input.MSPointer#pointerOutCallback}.
         */
         mouseOutCallback: (event: MouseEvent) => void;
 
@@ -16515,8 +16513,6 @@ declare module Phaser {
 
         /**
         * If true Pointer.stop will be called if the mouse leaves the game canvas.
-        * This also affects {@link Phaser.Input.MSPointer} but in Phaser v2.13.0 it no longer will.
-        * You should set both this and {@link Phaser.Input.MSPointer#stopOnGameOut}.
         */
         stopOnGameOut: boolean;
         wheelDelta: number;
