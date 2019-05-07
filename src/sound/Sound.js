@@ -53,7 +53,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.context = null;
 
     /**
-    * @property {boolean} autoplay - Boolean indicating whether the sound should start automatically.
+    * @property {boolean} autoplay - Whether the sound should start automatically.
     */
     this.autoplay = false;
 
@@ -63,7 +63,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.totalDuration = 0;
 
     /**
-    * @property {number} startTime - The time the sound starts at in ms (typically 0 unless starting from a marker).
+    * @property {number} startTime - The time the sound starts playing, in game-time coordinates (ms).
     * @default
     */
     this.startTime = 0;
@@ -84,7 +84,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.durationMS = 0;
 
     /**
-    * @property {number} position - The position of the current sound marker in ms.
+    * @property {number} position - The position of the current sound marker in seconds.
     */
     this.position = 0;
 
@@ -94,7 +94,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.stopTime = 0;
 
     /**
-    * @property {boolean} paused - true if the sound is paused, otherwise false.
+    * @property {boolean} paused - Whether the sound is paused.
     * @default
     */
     this.paused = false;
@@ -110,7 +110,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.pausedTime = 0;
 
     /**
-    * @property {boolean} isPlaying - true if the sound is currently playing, otherwise false.
+    * @property {boolean} isPlaying - Whether the sound is currently playing.
     * @default
     */
     this.isPlaying = false;
@@ -127,13 +127,13 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.fadeTween = null;
 
     /**
-    * @property {boolean} pendingPlayback - true if the sound file is pending playback
+    * @property {boolean} pendingPlayback - Playback is pending (delayed) because the audio isn't decoded or is touch-locked.
     * @readonly
     */
     this.pendingPlayback = false;
 
     /**
-    * @property {boolean} override - if true when you play this sound it will always start from the beginning.
+    * @property {boolean} override - When playing this sound, always start from the beginning.
     * @default
     */
     this.override = false;
@@ -145,19 +145,20 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.allowMultiple = false;
 
     /**
-    * @property {boolean} playOnce - Marks the Sound for deletion from SoundManager._sounds after playing once - useful for playing several identical sounds overlapping without flooding the sound channel
+    * @property {boolean} playOnce - Marks the Sound for deletion from SoundManager after playing once. Useful for playing several identical sounds overlapping without flooding the sound channel
     * @default
     */
     this.playOnce = false;
 
     /**
-    * @property {boolean} usingWebAudio - true if this sound is being played with Web Audio.
+    * @property {boolean} usingWebAudio - Whether this sound is being played with Web Audio.
     * @readonly
     */
     this.usingWebAudio = this.game.sound.usingWebAudio;
 
     /**
-    * @property {boolean} usingAudioTag - true if the sound is being played via the Audio tag.
+    * @property {boolean} usingAudioTag - Whether this sound is being played via the Audio tag.
+    * @readonly
     */
     this.usingAudioTag = this.game.sound.usingAudioTag;
 
@@ -177,7 +178,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.gainNode = null;
 
     /**
-    * @property {object} _sound - Internal var.
+    * @property {AudioBufferSourceNode|HTMLAudioElement} _sound - The audio source.
     * @private
     */
     this._sound = null;
@@ -200,6 +201,10 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     */
     this._removeFromSoundManager = false;
 
+    /**
+    * @property {number} _sourceId - For debugging Web Audio sources.
+    * @private
+    */
     this._sourceId = 0;
 
     if (this.usingWebAudio)
