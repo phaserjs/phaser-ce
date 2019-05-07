@@ -431,10 +431,6 @@ Phaser.Animation.prototype = {
                 this._frameSkip = Math.floor(this._frameDiff / this.delay);
                 this._frameDiff -= (this._frameSkip * this.delay);
             }
-            else
-            {
-                this._frameDiff = 0;
-            }
 
             //  And what's left now?
             this._timeNextFrame = now + (this.delay - this._frameDiff);
