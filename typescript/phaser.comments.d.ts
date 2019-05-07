@@ -1086,12 +1086,20 @@ declare module Phaser {
         * The key of the BitmapData in the Cache, if stored there.
         */
         key: string;
+
+        /**
+        * A short-hand code to get or set the global composite operation of the BitmapDatas canvas.
+        */
         op: string;
 
         /**
         * An Uint32Array view into BitmapData.buffer.
         */
         pixels: Uint32Array;
+
+        /**
+        * Gets or sets this BitmapData.contexts smoothing enabled value.
+        */
         smoothed: boolean;
 
         /**
@@ -5746,6 +5754,11 @@ declare module Phaser {
         * The time the device became ready.
         */
         deviceReadyAt: number;
+
+        /**
+        * Set to true if running in Microsoft Edge browser.
+        */
+        edge: boolean;
 
         /**
         * Is the game running under GitHub Electron?
@@ -16761,17 +16774,17 @@ declare module Phaser {
         mouseUpCallback: (event: MSPointerEvent) => void;
 
         /**
-        * A callback that can be fired on a MSPointerDown event.
+        * A callback that can be fired on a pointerdown (MSPointerDown) event.
         */
         pointerDownCallback: (event: MSPointerEvent) => void;
 
         /**
-        * A callback that can be fired on a MSPointerMove event.
+        * A callback that can be fired on a pointermove (MSPointerMove) event.
         */
         pointerMoveCallback: (event: MSPointerEvent) => void;
 
         /**
-        * A callback that can be fired on a MSPointerUp event.
+        * A callback that can be fired on a pointerup (MSPointerUp) event.
         */
         pointerUpCallback: (event: MSPointerEvent) => void;
 
@@ -28672,6 +28685,7 @@ declare module Phaser {
         * 
         * @param antialias Changes the anti-alias feature of the canvas before jumping in to fullscreen (false = retain pixel art, true = smooth art). If not specified then no change is made. Only works in CANVAS mode.
         * @param allowTrampoline Internal argument. If `false` click trampolining is suppressed.
+        * @param options Options passed to requestFullscreen(). - Default: {navigationUI: 'hide'}
         * @return Returns true if the device supports fullscreen mode and fullscreen mode was attempted to be started. (It might not actually start, wait for the signals.)
         */
         startFullScreen(antialias?: boolean, allowTrampoline?: boolean): boolean;

@@ -2557,7 +2557,7 @@ Phaser.BitmapData.prototype = {
 };
 
 /**
-* @memberof Phaser.BitmapData
+* @name Phaser.BitmapData#smoothed
 * @property {boolean} smoothed - Gets or sets this BitmapData.contexts smoothing enabled value.
 */
 Object.defineProperty(Phaser.BitmapData.prototype, 'smoothed', {
@@ -2579,7 +2579,7 @@ Object.defineProperty(Phaser.BitmapData.prototype, 'smoothed', {
 });
 
 /**
-* @memberof Phaser.BitmapData
+* @name Phaser.BitmapData#op
 * @property {string} op - A short-hand code to get or set the global composite operation of the BitmapDatas canvas.
 */
 Object.defineProperty(Phaser.BitmapData.prototype, 'op', {
