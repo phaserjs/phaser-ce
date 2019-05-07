@@ -196,6 +196,12 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this._markedToDelete = false;
 
     /**
+    * @property {boolean} _pendingStart - play() was called but waiting for playback. Audio Tag only. Cleared in update() once playback starts.
+    * @private
+    */
+    this._pendingStart = false;
+
+    /**
     * @property {boolean} _removeFromSoundManager - When audio stops, remove it from the Sound Manager and destroy it.
     * @private
     */
@@ -493,9 +499,29 @@ Phaser.Sound.prototype = {
             this.play(this._tempMarker, this._tempPosition, this._tempVolume, this._tempLoop);
         }
 
+        var now = this.game.time.time;
+
         if (this.isPlaying)
         {
-            this.currentTime = this.game.time.time - this.startTime;
+            if (this._pendingStart)
+            {
+                var currentTime = this._sound.currentTime;
+
+                if (currentTime > (this._tempPause || this.position || 0))
+                {
+                    this._pendingStart = false;
+                    this.startTime = now - (1000 * currentTime);
+                    this.stopTime = this.startTime + this.durationMS;
+                }
+                else
+                {
+                    // Still pending.
+
+                    return;
+                }
+            }
+
+            this.currentTime = now - this.startTime;
 
             if (this.currentTime >= this.durationMS)
             {
@@ -512,7 +538,7 @@ Phaser.Sound.prototype = {
                         if (this.currentMarker === '')
                         {
                             this.currentTime = 0;
-                            this.startTime = this.game.time.time;
+                            this.startTime = now;
                             this.isPlaying = true; // play not called again in this case
                         }
                         else
@@ -537,7 +563,7 @@ Phaser.Sound.prototype = {
                     if (this.currentMarker === '')
                     {
                         this.currentTime = 0;
-                        this.startTime = this.game.time.time;
+                        this.startTime = now;
                     }
 
                     //  Gets reset by the play function
@@ -750,6 +776,7 @@ Phaser.Sound.prototype = {
                 this._sound.volume = this._volume * this._globalVolume;
             }
 
+            this._pendingStart = true;
             this.isPlaying = true;
             this.paused = false;
             this.startTime = this.game.time.time;
@@ -860,6 +887,7 @@ Phaser.Sound.prototype = {
             }
             else
             {
+                this._pendingStart = true;
                 this._sound.currentTime = this._tempPause;
                 this._sound.play();
             }
