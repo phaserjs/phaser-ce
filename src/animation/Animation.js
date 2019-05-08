@@ -416,14 +416,14 @@ Phaser.Animation.prototype = {
             return false;
         }
 
-        if (this.isPlaying && this.game.time.time >= this._timeNextFrame)
+        var now = this.game.time.time;
+        var diff = now - this._timeNextFrame;
+
+        if (this.isPlaying && diff >= 0)
         {
             this._frameSkip = 1;
-
-            //  Lagging?
-            this._frameDiff = this.game.time.time - this._timeNextFrame;
-
-            this._timeLastFrame = this.game.time.time;
+            this._frameDiff = diff;
+            this._timeLastFrame = now;
 
             if (this._frameDiff > this.delay)
             {
@@ -431,13 +431,9 @@ Phaser.Animation.prototype = {
                 this._frameSkip = Math.floor(this._frameDiff / this.delay);
                 this._frameDiff -= (this._frameSkip * this.delay);
             }
-            else
-            {
-                this._frameDiff = 0;
-            }
 
             //  And what's left now?
-            this._timeNextFrame = this.game.time.time + (this.delay - this._frameDiff);
+            this._timeNextFrame = now + (this.delay - this._frameDiff);
 
             if (this.isReversed)
             {
