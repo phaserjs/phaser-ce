@@ -1,5 +1,24 @@
 # Change Log
 
+## Unreleased
+
+### API Changes
+
+* When using audio tags, Sound#currentTime is now always synced to the audio source. This should prevent timing errors from playback latency (#585). After Sound#play() is called, Sound#isPlaying and Sound#onPlay are still triggered immediately (this is consistent with Sounds using Web Audio), but Sound#currentTime will not advance until playback does.
+
+### New Features
+
+* Loader#tilemapCSV is a shortcut method for loading CSV maps.
+* Loader#tilemapTiledJSON is shortcut method for loading Tiled JSON maps.
+
+### Bug Fixes
+
+* Animation speeds are more accurate (#606).
+
+### Thanks
+
+@jf-m, @josalmi, @samme
+
 ## Version 2.12.1 - 6 May 2019
 
 ### New Features
