@@ -38,18 +38,22 @@ Phaser.Mouse = function (game)
     this.callbackContext = this.game;
 
     /**
-    * @property {function} mouseDownCallback - A callback that can be fired when the mouse is pressed down.
+    * A callback that can be fired when the mouse is pressed down.
+    * You should set {@link Phaser.Input.MSPointer#pointerDownCallback} as well.
+    * @property {function} mouseDownCallback
     */
     this.mouseDownCallback = null;
 
     /**
-    * @property {function} mouseUpCallback - A callback that can be fired when the mouse is released from a pressed down state.
+    * A callback that can be fired when the mouse is released from a pressed down state.
+    * You should set {@link Phaser.Input.MSPointer#pointerUpCallback} as well.
+    * @property {function} mouseUpCallback
     */
     this.mouseUpCallback = null;
 
     /**
     * A callback that can be fired when the mouse is no longer over the game canvas.
-    * You should set both this and {@link Phaser.Input.MSPointer#pointerOutCallback}.
+    * You should set {@link Phaser.Input.MSPointer#pointerOutCallback} as well.
     *
     * @property {function} mouseOutCallback
     */
@@ -57,7 +61,7 @@ Phaser.Mouse = function (game)
 
     /**
     * A callback that can be fired when the mouse enters the game canvas (usually after a mouseout).
-    * You should set both this and {@link Phaser.Input.MSPointer#pointerOverCallback}.
+    * You should set {@link Phaser.Input.MSPointer#pointerOverCallback} as well.
     * @property {function} mouseOverCallback
     */
     this.mouseOverCallback = null;
@@ -86,7 +90,7 @@ Phaser.Mouse = function (game)
 
     /**
     * If true Pointer.stop will be called if the mouse leaves the game canvas.
-    * You should set both this and {@link Phaser.Input.MSPointer#stopOnGameOut}.
+    * You should set {@link Phaser.Input.MSPointer#stopOnGameOut} as well.
     * @property {boolean} stopOnGameOut
     * @default
     */
