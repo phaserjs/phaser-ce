@@ -440,14 +440,14 @@ Phaser.MSPointer.prototype = {
         {
             event.identifier = 0;
 
-            if (pointer)
+            if (!pointer)
             {
-                pointer.stop(event);
+                pointer = this.input.mousePointer;
             }
-            else
-            {
-                this.input.mousePointer.stop(event);
-            }
+
+            pointer.stop(event);
+
+            this.input.callAll('_pointerOutHandler', pointer);
         }
 
     },

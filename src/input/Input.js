@@ -1219,6 +1219,30 @@ Phaser.Input.prototype = {
         // Desktop browsers (read: IE) with Mouse or MSPointer input.
         this.activePointer.processClickTrampolines();
 
+    },
+
+    /**
+    * Call a handler on all enabled interactive items, for a given pointer.
+    *
+    * @method Phaser.Input#callAll
+    * @param {string} handler - Exact method name.
+    * @param {Phaser.Pointer} - The pointer triggering the handler.
+    * @private
+    */
+    callAll: function (handler, pointer)
+    {
+        var list = this.interactiveItems.list;
+        var i = list.length;
+
+        while (i--)
+        {
+            var item = list[i];
+
+            if (item.enabled)
+            {
+                item[handler](pointer);
+            }
+        }
     }
 
 };
