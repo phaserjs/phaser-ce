@@ -120,6 +120,13 @@ Phaser.MSPointer = function (game)
     this.enabled = true;
 
     /**
+    * If true Pointer.stop() will be called if the pointer leaves the game canvas.
+    * @property {boolean} stopOnGameOut
+    * @default
+    */
+    this.stopOnGameOut = false;
+
+    /**
     * @property {function} _onMSPointerDown - Internal function to handle MSPointer events.
     * @private
     */
