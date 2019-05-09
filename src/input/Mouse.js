@@ -38,22 +38,31 @@ Phaser.Mouse = function (game)
     this.callbackContext = this.game;
 
     /**
-    * @property {function} mouseDownCallback - A callback that can be fired when the mouse is pressed down.
+    * A callback that can be fired when the mouse is pressed down.
+    * You should set {@link Phaser.Input.MSPointer#pointerDownCallback} as well.
+    * @property {function} mouseDownCallback
     */
     this.mouseDownCallback = null;
 
     /**
-    * @property {function} mouseUpCallback - A callback that can be fired when the mouse is released from a pressed down state.
+    * A callback that can be fired when the mouse is released from a pressed down state.
+    * You should set {@link Phaser.Input.MSPointer#pointerUpCallback} as well.
+    * @property {function} mouseUpCallback
     */
     this.mouseUpCallback = null;
 
     /**
-    * @property {function} mouseOutCallback - A callback that can be fired when the mouse is no longer over the game canvas.
+    * A callback that can be fired when the mouse is no longer over the game canvas.
+    * You should set {@link Phaser.Input.MSPointer#pointerOutCallback} as well.
+    *
+    * @property {function} mouseOutCallback
     */
     this.mouseOutCallback = null;
 
     /**
-    * @property {function} mouseOverCallback - A callback that can be fired when the mouse enters the game canvas (usually after a mouseout).
+    * A callback that can be fired when the mouse enters the game canvas (usually after a mouseout).
+    * You should set {@link Phaser.Input.MSPointer#pointerOverCallback} as well.
+    * @property {function} mouseOverCallback
     */
     this.mouseOverCallback = null;
 
@@ -80,7 +89,9 @@ Phaser.Mouse = function (game)
     this.enabled = true;
 
     /**
-    * @property {boolean} stopOnGameOut - If true Pointer.stop will be called if the mouse leaves the game canvas.
+    * If true Pointer.stop will be called if the mouse leaves the game canvas.
+    * You should set {@link Phaser.Input.MSPointer#stopOnGameOut} as well.
+    * @property {boolean} stopOnGameOut
     * @default
     */
     this.stopOnGameOut = false;
@@ -445,19 +456,8 @@ Phaser.Mouse.prototype = {
             event.identifier = 0;
 
             this.input.mousePointer.stop(event);
-        }
 
-        var list = this.input.interactiveItems.list;
-        var i = list.length;
-
-        while (i--)
-        {
-            var item = list[i];
-
-            if (item.enabled)
-            {
-                item._pointerOutHandler(this.input.mousePointer);
-            }
+            this.input.callAll('_pointerOutHandler', this.input.mousePointer);
         }
 
     },

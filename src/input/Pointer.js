@@ -1044,7 +1044,7 @@ Phaser.Pointer.prototype = {
             input.currentPointers--;
         }
 
-        input.interactiveItems.callAll('_releasedHandler', this);
+        input.callAll('_releasedHandler', this);
 
         if (this._clickTrampolines)
         {
