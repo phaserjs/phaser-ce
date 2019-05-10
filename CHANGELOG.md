@@ -5,6 +5,12 @@
 ### API Changes
 
 * When using audio tags, Sound#currentTime is now always synced to the audio source. This should prevent timing errors from playback latency (#585). After Sound#play() is called, Sound#isPlaying and Sound#onPlay are still triggered immediately (this is consistent with Sounds using Web Audio), but Sound#currentTime will not advance until playback does.
+* When the mouse cursor leaves the game canvas, input out will be triggered only if Mouse#stopOnGameOut is true or MSPointer#stopOnGameOut is true (#429). They are false by default.
+* MSPointer#pointerOverCallback replaces MSPointer's use of Mouse#mouseOverCallback.
+* MSPointer#pointerOutCallback replaces MSPointer's use of Mouse#mouseOutCallback.
+* MSPointer#stopOnGameOut replaces MSPointer's use of Mouse#stopOnGameOut.
+
+If you don't want to worry about managing both input handlers, you can disable MSPointer by passing `{ mspointer: false }` in your game config.
 
 ### New Features
 
