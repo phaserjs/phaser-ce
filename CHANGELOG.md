@@ -9,6 +9,10 @@
 * MSPointer#pointerOverCallback replaces MSPointer's use of Mouse#mouseOverCallback.
 * MSPointer#pointerOutCallback replaces MSPointer's use of Mouse#mouseOutCallback.
 * MSPointer#stopOnGameOut replaces MSPointer's use of Mouse#stopOnGameOut.
+* Removed Phaser.Mouse.WHEEL_UP. Use Phaser.MouseWheel.UP instead.
+* Removed Phaser.Mouse.WHEEL_DOWN. Use Phaser.MouseWheel.DOWN instead.
+* Removed Phaser.Mouse#releasePointerLock. Use Phaser.PointerLock#exit instead.
+* Removed Phaser.Mouse#requestPointerLock. Use Phaser.PointerLock#request instead.
 
 If you don't want to worry about managing both input handlers, you can disable MSPointer by passing `{ mspointer: false }` in your game config.
 
