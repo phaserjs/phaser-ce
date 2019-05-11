@@ -15,7 +15,7 @@ If you don't want to worry about managing both input handlers, you can disable M
 ### New Features
 
 * Loader#tilemapCSV is a shortcut method for loading CSV maps.
-* Loader#tilemapTiledJSON is shortcut method for loading Tiled JSON maps.
+* Loader#tilemapTiledJSON is a shortcut method for loading Tiled JSON maps.
 
 ### Bug Fixes
 
