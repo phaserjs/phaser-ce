@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.13.0 - 11 May 2019
 
 ### API Changes
 
