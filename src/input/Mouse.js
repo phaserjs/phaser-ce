@@ -451,6 +451,7 @@ Phaser.Mouse.prototype = {
             return;
         }
 
+        this.input.mousePointer.updateButtons(event);
         if (this.stopOnGameOut)
         {
             event.identifier = 0;
@@ -484,6 +485,13 @@ Phaser.Mouse.prototype = {
         {
             this.mouseOverCallback.call(this.callbackContext, event);
         }
+
+        if (!this.input.enabled || !this.enabled)
+        {
+            return;
+        }
+
+        this.input.mousePointer.updateButtons(event);
 
     },
 
