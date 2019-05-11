@@ -452,6 +452,7 @@ Phaser.Mouse.prototype = {
         }
 
         this.input.mousePointer.updateButtons(event);
+
         if (this.stopOnGameOut)
         {
             event.identifier = 0;
