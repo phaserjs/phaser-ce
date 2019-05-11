@@ -16452,29 +16452,29 @@ declare module Phaser {
         * A reference to the Phaser Input Manager.
         */
         input: Phaser.Input;
-
-        /**
-        * If the mouse has been Pointer Locked successfully this will be set to true.
-        */
         locked: boolean;
 
         /**
         * A callback that can be fired when the mouse is pressed down.
+        * You should set {@link Phaser.Input.MSPointer#pointerDownCallback} as well.
         */
         mouseDownCallback: (event: MouseEvent) => void;
 
         /**
         * A callback that can be fired when the mouse is no longer over the game canvas.
+        * You should set {@link Phaser.Input.MSPointer#pointerOutCallback} as well.
         */
         mouseOutCallback: (event: MouseEvent) => void;
 
         /**
         * A callback that can be fired when the mouse enters the game canvas (usually after a mouseout).
+        * You should set {@link Phaser.Input.MSPointer#pointerOverCallback} as well.
         */
         mouseOverCallback: (event: MouseEvent) => void;
 
         /**
         * A callback that can be fired when the mouse is released from a pressed down state.
+        * You should set {@link Phaser.Input.MSPointer#pointerUpCallback} as well.
         */
         mouseUpCallback: (event: MouseEvent) => void;
         mouseWheelCallback: (event: MouseEvent) => void;
@@ -16505,14 +16505,11 @@ declare module Phaser {
         _onMouseOver: (event: MouseEvent) => void;
         _onMouseWheel: (event: MouseEvent) => void;
         _wheelEvent: WheelEventProxy;
-
-        /**
-        * This event is dispatched when the browser enters or leaves pointer lock state.
-        */
         pointerLock: Phaser.Signal;
 
         /**
         * If true Pointer.stop will be called if the mouse leaves the game canvas.
+        * You should set {@link Phaser.Input.MSPointer#stopOnGameOut} as well.
         */
         stopOnGameOut: boolean;
         wheelDelta: number;
@@ -16561,17 +16558,7 @@ declare module Phaser {
         onMouseUpGlobal(event: MouseEvent): void;
         onMouseWheel(event: MouseEvent): void;
         pointerLockChange(event: MouseEvent): void;
-
-        /**
-        * Exit a pointer-locked state.
-        */
         releasePointerLock(): void;
-
-        /**
-        * If the browser supports it you can request that the pointer be locked to the browser window.
-        * This is classically known as 'FPS controls', where the pointer can't leave the browser until the user presses an exit key.
-        * If the browser successfully enters a locked state the event Phaser.Mouse.pointerLock will be dispatched and the first parameter will be 'true'.
-        */
         requestPointerLock(): void;
 
         /**
@@ -26333,7 +26320,7 @@ declare module Phaser {
 
 
         /**
-        * Boolean indicating whether the sound should start automatically.
+        * Whether the sound should start automatically.
         */
         autoplay: boolean;
 
@@ -26405,7 +26392,7 @@ declare module Phaser {
         isDecoding: boolean;
 
         /**
-        * true if the sound is currently playing, otherwise false.
+        * Whether the sound is currently playing.
         */
         isPlaying: boolean;
 
@@ -26486,12 +26473,12 @@ declare module Phaser {
         onStop: Phaser.Signal;
 
         /**
-        * if true when you play this sound it will always start from the beginning.
+        * When playing this sound, always start from the beginning.
         */
         override: boolean;
 
         /**
-        * true if the sound is paused, otherwise false.
+        * Whether the sound is paused.
         */
         paused: boolean;
 
@@ -26506,22 +26493,22 @@ declare module Phaser {
         pausedTime: number;
 
         /**
-        * true if the sound file is pending playback
+        * Playback is pending (delayed) because the audio isn't decoded or is touch-locked.
         */
         pendingPlayback: boolean;
 
         /**
-        * Marks the Sound for deletion from SoundManager._sounds after playing once - useful for playing several identical sounds overlapping without flooding the sound channel
+        * Marks the Sound for deletion from SoundManager after playing once. Useful for playing several identical sounds overlapping without flooding the sound channel
         */
         playOnce: boolean;
 
         /**
-        * The position of the current sound marker in ms.
+        * The position of the current sound marker in seconds.
         */
         position: number;
 
         /**
-        * The time the sound starts at in ms (typically 0 unless starting from a marker).
+        * The time the sound starts playing, in game-time coordinates (ms).
         */
         startTime: number;
 
@@ -26536,12 +26523,12 @@ declare module Phaser {
         totalDuration: number;
 
         /**
-        * true if the sound is being played via the Audio tag.
+        * Whether this sound is being played via the Audio tag.
         */
         usingAudioTag: boolean;
 
         /**
-        * true if this sound is being played with Web Audio.
+        * Whether this sound is being played with Web Audio.
         */
         usingWebAudio: boolean;
 
