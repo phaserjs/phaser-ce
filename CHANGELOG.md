@@ -4,22 +4,22 @@
 
 ### API Changes
 
-* When using audio tags, Sound#currentTime is now always synced to the audio source. This should prevent timing errors from playback latency (#585). After Sound#play() is called, Sound#isPlaying and Sound#onPlay are still triggered immediately (this is consistent with Sounds using Web Audio), but Sound#currentTime will not advance until playback does.
-* When the mouse cursor leaves the game canvas, input out will be triggered only if Mouse#stopOnGameOut is true or MSPointer#stopOnGameOut is true (#429). They are false by default.
-* MSPointer#pointerOverCallback replaces MSPointer's use of Mouse#mouseOverCallback.
-* MSPointer#pointerOutCallback replaces MSPointer's use of Mouse#mouseOutCallback.
-* MSPointer#stopOnGameOut replaces MSPointer's use of Mouse#stopOnGameOut.
-* Removed Phaser.Mouse.WHEEL_UP. Use Phaser.MouseWheel.UP instead.
-* Removed Phaser.Mouse.WHEEL_DOWN. Use Phaser.MouseWheel.DOWN instead.
-* Removed Phaser.Mouse#releasePointerLock. Use Phaser.PointerLock#exit instead.
-* Removed Phaser.Mouse#requestPointerLock. Use Phaser.PointerLock#request instead.
+* When using audio tags, [Sound#currentTime](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#currentTime) is now always synced to the audio source. This should prevent timing errors from playback latency (#585). After [Sound#play()](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#play) is called, [Sound#isPlaying](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#isPlaying) and [Sound#onPlay](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#onPlay) are still triggered immediately (this is consistent with Sounds using Web Audio), but Sound#currentTime will not advance until playback does.
+* When the mouse cursor leaves the game canvas, input out will be triggered only if [Mouse#stopOnGameOut](https://photonstorm.github.io/phaser-ce/Phaser.Mouse.html#stopOnGameOut) is true or [MSPointer#stopOnGameOut](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html#stopOnGameOut) is true (#429). They are false by default.
+* [MSPointer#pointerOverCallback](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html#pointerOverCallback) replaces MSPointer's use of Mouse#mouseOverCallback.
+* [MSPointer#pointerOutCallback](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html#pointerOutCallback) replaces MSPointer's use of Mouse#mouseOutCallback.
+* [MSPointer#stopOnGameOut](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html#stopOnGameOut) replaces MSPointer's use of Mouse#stopOnGameOut.
+* Removed Phaser.Mouse.WHEEL_UP. Use [Phaser.MouseWheel.UP](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html#_UP) instead.
+* Removed Phaser.Mouse.WHEEL_DOWN. [Use Phaser.MouseWheel.DOWN](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html#_DOWN) instead.
+* Removed Phaser.Mouse#releasePointerLock. Use [Phaser.PointerLock#exit](https://photonstorm.github.io/phaser-ce/Phaser.PointerLock.html#exit) instead.
+* Removed Phaser.Mouse#requestPointerLock. Use [Phaser.PointerLock#request](https://photonstorm.github.io/phaser-ce/Phaser.PointerLock.html#request) instead.
 
-If you don't want to worry about managing both input handlers, you can disable MSPointer by passing `{ mspointer: false }` in your game config.
+If you don't want to worry about managing both input handlers, you can disable [MSPointer](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html) by passing `{ mspointer: false }` in your game config.
 
 ### New Features
 
-* Loader#tilemapCSV is a shortcut method for loading CSV maps.
-* Loader#tilemapTiledJSON is a shortcut method for loading Tiled JSON maps.
+* [Loader#tilemapCSV](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#tilemapCSV) is a shortcut method for loading CSV maps.
+* [Loader#tilemapTiledJSON](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#tilemapTiledJSON) is a shortcut method for loading Tiled JSON maps.
 
 ### Bug Fixes
 
