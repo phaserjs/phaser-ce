@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.13.0 - 11 May 2019
 
 ### API Changes
 
@@ -27,7 +27,7 @@ If you don't want to worry about managing both input handlers, you can disable [
 
 ### Thanks
 
-@jf-m, @josalmi, @samme
+@jf-m, @josalmi, @photonstorm, @samme
 
 ## Version 2.12.1 - 6 May 2019
 

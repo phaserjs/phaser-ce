@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.12.1 "2019-05-06" - Built: Mon May 06 2019 08:13:41
+* v2.13.0 "2019-05-11" - Built: Sat May 11 2019 14:52:42
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -53,7 +53,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.12.1',
+    VERSION: '2.13.0',
 
     /**
     * An array of Phaser game instances.
@@ -17312,6 +17312,30 @@ Phaser.Input.prototype = {
         // Desktop browsers (read: IE) with Mouse or MSPointer input.
         this.activePointer.processClickTrampolines();
 
+    },
+
+    /**
+    * Call a handler on all enabled interactive items, for a given pointer.
+    *
+    * @method Phaser.Input#callAll
+    * @param {string} handler - Exact method name.
+    * @param {Phaser.Pointer} - The pointer triggering the handler.
+    * @private
+    */
+    callAll: function (handler, pointer)
+    {
+        var list = this.interactiveItems.list;
+        var i = list.length;
+
+        while (i--)
+        {
+            var item = list[i];
+
+            if (item.enabled)
+            {
+                item[handler](pointer);
+            }
+        }
     }
 
 };
@@ -17473,22 +17497,31 @@ Phaser.Mouse = function (game)
     this.callbackContext = this.game;
 
     /**
-    * @property {function} mouseDownCallback - A callback that can be fired when the mouse is pressed down.
+    * A callback that can be fired when the mouse is pressed down.
+    * You should set {@link Phaser.Input.MSPointer#pointerDownCallback} as well.
+    * @property {function} mouseDownCallback
     */
     this.mouseDownCallback = null;
 
     /**
-    * @property {function} mouseUpCallback - A callback that can be fired when the mouse is released from a pressed down state.
+    * A callback that can be fired when the mouse is released from a pressed down state.
+    * You should set {@link Phaser.Input.MSPointer#pointerUpCallback} as well.
+    * @property {function} mouseUpCallback
     */
     this.mouseUpCallback = null;
 
     /**
-    * @property {function} mouseOutCallback - A callback that can be fired when the mouse is no longer over the game canvas.
+    * A callback that can be fired when the mouse is no longer over the game canvas.
+    * You should set {@link Phaser.Input.MSPointer#pointerOutCallback} as well.
+    *
+    * @property {function} mouseOutCallback
     */
     this.mouseOutCallback = null;
 
     /**
-    * @property {function} mouseOverCallback - A callback that can be fired when the mouse enters the game canvas (usually after a mouseout).
+    * A callback that can be fired when the mouse enters the game canvas (usually after a mouseout).
+    * You should set {@link Phaser.Input.MSPointer#pointerOverCallback} as well.
+    * @property {function} mouseOverCallback
     */
     this.mouseOverCallback = null;
 
@@ -17515,7 +17548,9 @@ Phaser.Mouse = function (game)
     this.enabled = true;
 
     /**
-    * @property {boolean} stopOnGameOut - If true Pointer.stop will be called if the mouse leaves the game canvas.
+    * If true Pointer.stop will be called if the mouse leaves the game canvas.
+    * You should set {@link Phaser.Input.MSPointer#stopOnGameOut} as well.
+    * @property {boolean} stopOnGameOut
     * @default
     */
     this.stopOnGameOut = false;
@@ -17595,22 +17630,6 @@ Phaser.Mouse.BACK_BUTTON = 3;
 * @type {number}
 */
 Phaser.Mouse.FORWARD_BUTTON = 4;
-
-/**
- * @constant
- * @type {number}
- * @deprecated
- * @see Phaser.MouseWheel.UP
- */
-Phaser.Mouse.WHEEL_UP = 1;
-
-/**
- * @constant
- * @type {number}
- * @deprecated
- * @see Phaser.MouseWheel.DOWN
- */
-Phaser.Mouse.WHEEL_DOWN = -1;
 
 Phaser.Mouse.prototype = {
 
@@ -17875,24 +17894,15 @@ Phaser.Mouse.prototype = {
             return;
         }
 
+        this.input.mousePointer.updateButtons(event);
+
         if (this.stopOnGameOut)
         {
             event.identifier = 0;
 
             this.input.mousePointer.stop(event);
-        }
 
-        var list = this.input.interactiveItems.list;
-        var i = list.length;
-
-        while (i--)
-        {
-            var item = list[i];
-
-            if (item.enabled)
-            {
-                item._pointerOutHandler(this.input.mousePointer);
-            }
+            this.input.callAll('_pointerOutHandler', this.input.mousePointer);
         }
 
     },
@@ -17920,37 +17930,12 @@ Phaser.Mouse.prototype = {
             this.mouseOverCallback.call(this.callbackContext, event);
         }
 
-    },
+        if (!this.input.enabled || !this.enabled)
+        {
+            return;
+        }
 
-    /**
-    * Exit a pointer-locked state.
-    * @method Phaser.Mouse#releasePointerLock
-    * @deprecated
-    * @see Phaser.PointerLock#exit
-    */
-    releasePointerLock: function ()
-    {
-
-        console.warn('Deprecated. Please use `input.pointerLock.exit()` instead.');
-
-        return this.input.pointerLock.exit();
-
-    },
-
-    /**
-    * If the browser supports it you can request that the pointer be locked to the browser window.
-    * This is classically known as 'FPS controls', where the pointer can't leave the browser until the user presses an exit key.
-    * If the browser successfully enters a locked state the event Phaser.Mouse.pointerLock will be dispatched and the first parameter will be 'true'.
-    * @method Phaser.Mouse#requestPointerLock
-    * @deprecated
-    * @see Phaser.PointerLock#request
-    */
-    requestPointerLock: function ()
-    {
-
-        console.warn('Deprecated. Please use `input.pointerLock.request()` instead.');
-
-        return this.input.pointerLock.request();
+        this.input.mousePointer.updateButtons(event);
 
     },
 
@@ -17979,74 +17964,6 @@ Phaser.Mouse.prototype = {
 };
 
 Phaser.Mouse.prototype.constructor = Phaser.Mouse;
-
-/**
-* If the mouse has been Pointer Locked successfully this will be set to true.
-*
-* @name Phaser.Mouse#locked
-* @property {boolean} locked
-* @default
-* @deprecated
-* @see Phaser.PointerLock#locked
-*/
-Object.defineProperty(Phaser.Mouse.prototype, 'locked', {
-
-    get: function ()
-    {
-        return this.input.pointerLock.locked;
-    }
-
-});
-
-/**
-* This event is dispatched when the browser enters or leaves pointer lock state.
-*
-* @name Phaser.Mouse#pointerLock
-* @property {Phaser.Signal} pointerLock
-* @default
-* @deprecated
-* @see Phaser.PointerLock#onChange
-*/
-Object.defineProperty(Phaser.Mouse.prototype, 'pointerLock', {
-
-    get: function ()
-    {
-        return this.input.pointerLock.onChange;
-    }
-
-});
-
-/**
- * @property {function} mouseWheelCallback - A callback that can be fired when the mousewheel is used.
- * @deprecated
- * @see Phaser.MouseWheel#callback
- */
-Object.defineProperty(Phaser.Mouse.prototype, 'mouseWheelCallback', {
-
-    get: function ()
-    {
-        return this.input.mouseWheel.callback;
-    },
-
-    set: function (val)
-    {
-        this.input.mouseWheel.callback = val;
-    }
-
-});
-
-/**
- * The direction of the _last_ mousewheel usage. 1 for up; -1 for down.
- * @property {number} wheelDelta
- * @deprecated
- * @see Phaser.MouseWheel#delta
- */
-Object.defineProperty(Phaser.Mouse.prototype, 'wheelDelta', {
-    get: function ()
-    {
-        return this.input.mouseWheel.delta;
-    }
-});
 
 /**
 * The mouse wheel input handler.
@@ -18304,6 +18221,16 @@ Phaser.MSPointer = function (game)
     this.pointerUpCallback = null;
 
     /**
+    * @property {function} pointerOutCallback - A callback that can be fired on a pointerout (MSPointerOut) event.
+    */
+    this.pointerOutCallback = null;
+
+    /**
+    * @property {function} pointerOverCallback - A callback that can be fired on a pointerover (MSPointerOver) event.
+    */
+    this.pointerOverCallback = null;
+
+    /**
     * If true the PointerEvent will call preventDefault(), canceling the corresponding MouseEvent or
     * TouchEvent.
     *
@@ -18341,6 +18268,13 @@ Phaser.MSPointer = function (game)
     * @default
     */
     this.enabled = true;
+
+    /**
+    * If true Pointer.stop() will be called if the pointer leaves the game canvas.
+    * @property {boolean} stopOnGameOut
+    * @default
+    */
+    this.stopOnGameOut = false;
 
     /**
     * @property {function} _onMSPointerDown - Internal function to handle MSPointer events.
@@ -18642,9 +18576,9 @@ Phaser.MSPointer.prototype = {
             }
         }
 
-        if (this.input.mouse.mouseOutCallback)
+        if (this.pointerOutCallback)
         {
-            this.input.mouse.mouseOutCallback.call(this.input.mouse.callbackContext, event);
+            this.pointerOutCallback.call(this.callbackContext, event);
         }
 
         if (!this.input.enabled || !this.enabled)
@@ -18652,18 +18586,18 @@ Phaser.MSPointer.prototype = {
             return;
         }
 
-        if (this.input.mouse.stopOnGameOut)
+        if (this.stopOnGameOut)
         {
             event.identifier = 0;
 
-            if (pointer)
+            if (!pointer)
             {
-                pointer.stop(event);
+                pointer = this.input.mousePointer;
             }
-            else
-            {
-                this.input.mousePointer.stop(event);
-            }
+
+            pointer.stop(event);
+
+            this.input.callAll('_pointerOutHandler', pointer);
         }
 
     },
@@ -18700,9 +18634,9 @@ Phaser.MSPointer.prototype = {
             }
         }
 
-        if (this.input.mouse.mouseOverCallback)
+        if (this.pointerOverCallback)
         {
-            this.input.mouse.mouseOverCallback.call(this.input.mouse.callbackContext, event);
+            this.pointerOverCallback.call(this.callbackContext, event);
         }
 
     },
@@ -20146,7 +20080,7 @@ Phaser.Pointer.prototype = {
             input.currentPointers--;
         }
 
-        input.interactiveItems.callAll('_releasedHandler', this);
+        input.callAll('_releasedHandler', this);
 
         if (this._clickTrampolines)
         {
@@ -52763,14 +52697,14 @@ Phaser.Animation.prototype = {
             return false;
         }
 
-        if (this.isPlaying && this.game.time.time >= this._timeNextFrame)
+        var now = this.game.time.time;
+        var diff = now - this._timeNextFrame;
+
+        if (this.isPlaying && diff >= 0)
         {
             this._frameSkip = 1;
-
-            //  Lagging?
-            this._frameDiff = this.game.time.time - this._timeNextFrame;
-
-            this._timeLastFrame = this.game.time.time;
+            this._frameDiff = diff;
+            this._timeLastFrame = now;
 
             if (this._frameDiff > this.delay)
             {
@@ -52778,13 +52712,9 @@ Phaser.Animation.prototype = {
                 this._frameSkip = Math.floor(this._frameDiff / this.delay);
                 this._frameDiff -= (this._frameSkip * this.delay);
             }
-            else
-            {
-                this._frameDiff = 0;
-            }
 
             //  And what's left now?
-            this._timeNextFrame = this.game.time.time + (this.delay - this._frameDiff);
+            this._timeNextFrame = now + (this.delay - this._frameDiff);
 
             if (this.isReversed)
             {
@@ -58049,6 +57979,42 @@ Phaser.Loader.prototype = {
     },
 
     /**
+    * Adds a CSV Map data file to the current load queue.
+    *
+    * @method Phaser.Loader#tilemapCSV
+    * @param {string} key - Unique asset key of the tilemap data.
+    * @param {string} [url] - URL of the tile map file. If undefined or `null` and no data is given the url will be set to `<key>.csv`, i.e. if `key` was "level1" then the URL will be "level1.csv".
+    * @param {string} [data] - A CSV data string. If given then the url is ignored and this is used for map data instead.
+    * @return {Phaser.Loader} This Loader instance.
+    *
+    * @see Phaser.Loader#tilemap
+    */
+    tilemapCSV: function (key, url, data)
+    {
+
+        return this.tilemap(key, url, data, Phaser.Tilemap.CSV);
+
+    },
+
+    /**
+    * Adds a Tiled JSON Map data file to the current load queue.
+    *
+    * @method Phaser.Loader#tilemapTiledJSON
+    * @param {string} key - Unique asset key of the tilemap data.
+    * @param {string} [url] - URL of the tile map file. If undefined or `null` and no data is given the url will be set to `<key>.json`, i.e. if `key` was "level1" then the URL will be "level1.json".
+    * @param {object|string} [data] - A JSON data object or string. If given then the url is ignored and this is used for map data instead.
+    * @return {Phaser.Loader} This Loader instance.
+    *
+    * @see Phaser.Loader#tilemap
+    */
+    tilemapTiledJSON: function (key, url, data)
+    {
+
+        return this.tilemap(key, url, data, Phaser.Tilemap.TILED_JSON);
+
+    },
+
+    /**
     * Adds a physics data file to the current load queue.
     *
     * The data must be in `Lime + Corona` JSON format. [Physics Editor](https://www.codeandweb.com) by code'n'web exports in this format natively.
@@ -60690,7 +60656,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.context = null;
 
     /**
-    * @property {boolean} autoplay - Boolean indicating whether the sound should start automatically.
+    * @property {boolean} autoplay - Whether the sound should start automatically.
     */
     this.autoplay = false;
 
@@ -60700,7 +60666,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.totalDuration = 0;
 
     /**
-    * @property {number} startTime - The time the sound starts at in ms (typically 0 unless starting from a marker).
+    * @property {number} startTime - The time the sound starts playing, in game-time coordinates (ms).
     * @default
     */
     this.startTime = 0;
@@ -60721,7 +60687,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.durationMS = 0;
 
     /**
-    * @property {number} position - The position of the current sound marker in ms.
+    * @property {number} position - The position of the current sound marker in seconds.
     */
     this.position = 0;
 
@@ -60731,7 +60697,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.stopTime = 0;
 
     /**
-    * @property {boolean} paused - true if the sound is paused, otherwise false.
+    * @property {boolean} paused - Whether the sound is paused.
     * @default
     */
     this.paused = false;
@@ -60747,7 +60713,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.pausedTime = 0;
 
     /**
-    * @property {boolean} isPlaying - true if the sound is currently playing, otherwise false.
+    * @property {boolean} isPlaying - Whether the sound is currently playing.
     * @default
     */
     this.isPlaying = false;
@@ -60764,13 +60730,13 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.fadeTween = null;
 
     /**
-    * @property {boolean} pendingPlayback - true if the sound file is pending playback
+    * @property {boolean} pendingPlayback - Playback is pending (delayed) because the audio isn't decoded or is touch-locked.
     * @readonly
     */
     this.pendingPlayback = false;
 
     /**
-    * @property {boolean} override - if true when you play this sound it will always start from the beginning.
+    * @property {boolean} override - When playing this sound, always start from the beginning.
     * @default
     */
     this.override = false;
@@ -60782,19 +60748,20 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.allowMultiple = false;
 
     /**
-    * @property {boolean} playOnce - Marks the Sound for deletion from SoundManager._sounds after playing once - useful for playing several identical sounds overlapping without flooding the sound channel
+    * @property {boolean} playOnce - Marks the Sound for deletion from SoundManager after playing once. Useful for playing several identical sounds overlapping without flooding the sound channel
     * @default
     */
     this.playOnce = false;
 
     /**
-    * @property {boolean} usingWebAudio - true if this sound is being played with Web Audio.
+    * @property {boolean} usingWebAudio - Whether this sound is being played with Web Audio.
     * @readonly
     */
     this.usingWebAudio = this.game.sound.usingWebAudio;
 
     /**
-    * @property {boolean} usingAudioTag - true if the sound is being played via the Audio tag.
+    * @property {boolean} usingAudioTag - Whether this sound is being played via the Audio tag.
+    * @readonly
     */
     this.usingAudioTag = this.game.sound.usingAudioTag;
 
@@ -60814,7 +60781,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.gainNode = null;
 
     /**
-    * @property {object} _sound - Internal var.
+    * @property {AudioBufferSourceNode|HTMLAudioElement} _sound - The audio source.
     * @private
     */
     this._sound = null;
@@ -60832,11 +60799,21 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this._markedToDelete = false;
 
     /**
+    * @property {boolean} _pendingStart - play() was called but waiting for playback. Audio Tag only. Cleared in update() once playback starts.
+    * @private
+    */
+    this._pendingStart = false;
+
+    /**
     * @property {boolean} _removeFromSoundManager - When audio stops, remove it from the Sound Manager and destroy it.
     * @private
     */
     this._removeFromSoundManager = false;
 
+    /**
+    * @property {number} _sourceId - For debugging Web Audio sources.
+    * @private
+    */
     this._sourceId = 0;
 
     if (this.usingWebAudio)
@@ -61125,9 +61102,29 @@ Phaser.Sound.prototype = {
             this.play(this._tempMarker, this._tempPosition, this._tempVolume, this._tempLoop);
         }
 
+        var now = this.game.time.time;
+
         if (this.isPlaying)
         {
-            this.currentTime = this.game.time.time - this.startTime;
+            if (this._pendingStart)
+            {
+                var currentTime = this._sound.currentTime;
+
+                if (currentTime > (this._tempPause || this.position || 0))
+                {
+                    this._pendingStart = false;
+                    this.startTime = now - (1000 * currentTime);
+                    this.stopTime = this.startTime + this.durationMS;
+                }
+                else
+                {
+                    // Still pending.
+
+                    return;
+                }
+            }
+
+            this.currentTime = now - this.startTime;
 
             if (this.currentTime >= this.durationMS)
             {
@@ -61144,7 +61141,7 @@ Phaser.Sound.prototype = {
                         if (this.currentMarker === '')
                         {
                             this.currentTime = 0;
-                            this.startTime = this.game.time.time;
+                            this.startTime = now;
                             this.isPlaying = true; // play not called again in this case
                         }
                         else
@@ -61169,7 +61166,7 @@ Phaser.Sound.prototype = {
                     if (this.currentMarker === '')
                     {
                         this.currentTime = 0;
-                        this.startTime = this.game.time.time;
+                        this.startTime = now;
                     }
 
                     //  Gets reset by the play function
@@ -61382,6 +61379,7 @@ Phaser.Sound.prototype = {
                 this._sound.volume = this._volume * this._globalVolume;
             }
 
+            this._pendingStart = true;
             this.isPlaying = true;
             this.paused = false;
             this.startTime = this.game.time.time;
@@ -61492,6 +61490,7 @@ Phaser.Sound.prototype = {
             }
             else
             {
+                this._pendingStart = true;
                 this._sound.currentTime = this._tempPause;
                 this._sound.play();
             }
