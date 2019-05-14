@@ -507,7 +507,7 @@ Phaser.Sound.prototype = {
             {
                 var currentTime = this._sound.currentTime;
 
-                if (currentTime > (this._tempPause || this.position || 0))
+                if (currentTime > ((this.paused ? this._tempPause : 0) || this.position || 0))
                 {
                     this._pendingStart = false;
                     this.startTime = now - (1000 * currentTime);
@@ -779,6 +779,7 @@ Phaser.Sound.prototype = {
             this._pendingStart = true;
             this.isPlaying = true;
             this.paused = false;
+            this._tempPause = 0;
             this.startTime = this.game.time.time;
             this.currentTime = 0;
             this.stopTime = this.startTime + this.durationMS;
@@ -889,6 +890,7 @@ Phaser.Sound.prototype = {
             {
                 this._pendingStart = true;
                 this._sound.currentTime = this._tempPause;
+                this._tempPause = 0;
                 this._sound.play();
             }
 
