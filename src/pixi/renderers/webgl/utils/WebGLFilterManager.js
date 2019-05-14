@@ -390,7 +390,11 @@ PIXI.WebGLFilterManager.prototype.applyFilterPass = function (filter, filterArea
     gl.vertexAttribPointer(shader.aTextureCoord, 2, gl.FLOAT, false, 0, 0);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this.colorBuffer);
-    gl.vertexAttribPointer(shader.colorAttribute, 2, gl.FLOAT, false, 0, 0);
+
+    // if added for https://github.com/photonstorm/phaser-ce/issues/194
+    if (shader.colorAttribute > -1) {
+        gl.vertexAttribPointer(shader.colorAttribute, 2, gl.FLOAT, false, 0, 0);
+    }
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
 

@@ -183,7 +183,11 @@ PIXI.WebGLStencilManager.prototype.bindGraphics = function (graphics, webGLData,
         gl.bindBuffer(gl.ARRAY_BUFFER, webGLData.buffer);
 
         gl.vertexAttribPointer(shader.aVertexPosition, 2, gl.FLOAT, false, 4 * 6, 0);
-        gl.vertexAttribPointer(shader.colorAttribute, 4, gl.FLOAT, false,4 * 6, 2 * 4);
+
+        // if added for https://github.com/photonstorm/phaser-ce/issues/194
+        if (shader.colorAttribute > -1) {
+            gl.vertexAttribPointer(shader.colorAttribute, 4, gl.FLOAT, false,4 * 6, 2 * 4);
+        }
 
         // set the index buffer!
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, webGLData.indexBuffer);

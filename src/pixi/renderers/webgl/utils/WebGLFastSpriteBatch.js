@@ -480,7 +480,14 @@ PIXI.WebGLFastSpriteBatch.prototype.start = function ()
     gl.vertexAttribPointer(this.shader.aScale, 2, gl.FLOAT, false, stride, 4 * 4);
     gl.vertexAttribPointer(this.shader.aRotation, 1, gl.FLOAT, false, stride, 6 * 4);
     gl.vertexAttribPointer(this.shader.aTextureCoord, 2, gl.FLOAT, false, stride, 7 * 4);
-    gl.vertexAttribPointer(this.shader.colorAttribute, 1, gl.FLOAT, false, stride, 9 * 4);
-    gl.vertexAttribPointer(this.shader.aTextureIndex, 1, gl.FLOAT, false, stride, 10 * 4);
+    
+    // if added for https://github.com/photonstorm/phaser-ce/issues/194
+    if (this.shader.colorAttribute > -1) {
+        gl.vertexAttribPointer(this.shader.colorAttribute, 1, gl.FLOAT, false, stride, 9 * 4);
+    }
 
+    // if added for https://github.com/photonstorm/phaser-ce/issues/194
+    if (this.shader.aTextureIndex > -1) {
+        gl.vertexAttribPointer(this.shader.aTextureIndex, 1, gl.FLOAT, false, stride, 10 * 4);
+    }
 };

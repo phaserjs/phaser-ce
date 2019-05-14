@@ -139,20 +139,7 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
     gl.activeTexture(gl.TEXTURE0);
     gl.uniform1iv(this.uSamplerArray, indices);
 
-    // Begin worst hack eva //
-
-    // WHY??? ONLY on my chrome pixel the line above returns -1 when using filters?
-    // maybe its something to do with the current state of the gl context.
-    // I'm convinced this is a bug in the chrome browser as there is NO reason why this should be returning -1 especially as it only manifests on my chrome pixel
-    // If theres any webGL people that know why could happen please help :)
-    if(this.colorAttribute === -1)
-    {
-        this.colorAttribute = 2;
-    }
-
     this.attributes = [ this.aVertexPosition, this.aTextureCoord, this.colorAttribute, this.aTextureIndex ];
-
-    // End worst hack eva //
 
     // add those custom shaders!
     for (var key in this.uniforms)
@@ -201,21 +188,7 @@ PIXI.PixiShader.prototype.initDefaultShader = function ()
     this.colorAttribute = gl.getAttribLocation(program, 'aColor');
     this.aTextureIndex = gl.getAttribLocation(program, 'aTextureIndex');
 
-
-    // Begin worst hack eva //
-
-    // WHY??? ONLY on my chrome pixel the line above returns -1 when using filters?
-    // maybe its something to do with the current state of the gl context.
-    // I'm convinced this is a bug in the chrome browser as there is NO reason why this should be returning -1 especially as it only manifests on my chrome pixel
-    // If theres any webGL people that know why could happen please help :)
-    if(this.colorAttribute === -1)
-    {
-        this.colorAttribute = 2;
-    }
-
     this.attributes = [ this.aVertexPosition, this.aTextureCoord, this.colorAttribute, this.aTextureIndex ];
-
-    // End worst hack eva //
 
     // add those custom shaders!
     for (var key in this.uniforms)
