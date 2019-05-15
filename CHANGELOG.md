@@ -8,6 +8,10 @@
 * Fixed missing mouse movement values when the pointer is locked.
 * Fixed elastic easing functions.
 
+### Thanks
+
+@micsun-al, @photonstorm, @samme
+
 ## Version 2.13.0 - 11 May 2019
 
 ### API Changes
