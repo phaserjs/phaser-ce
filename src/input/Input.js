@@ -1238,7 +1238,7 @@ Phaser.Input.prototype = {
         {
             var item = list[i];
 
-            if (item && item.enabled)
+            if (item.enabled)
             {
                 item[handler](pointer);
             }
