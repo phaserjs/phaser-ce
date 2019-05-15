@@ -17,7 +17,7 @@
 * [MSPointer#pointerOutCallback](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html#pointerOutCallback) replaces MSPointer's use of Mouse#mouseOutCallback.
 * [MSPointer#stopOnGameOut](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html#stopOnGameOut) replaces MSPointer's use of Mouse#stopOnGameOut.
 * Removed Phaser.Mouse.WHEEL_UP. Use [Phaser.MouseWheel.UP](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html#_UP) instead.
-* Removed Phaser.Mouse.WHEEL_DOWN. [Use Phaser.MouseWheel.DOWN](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html#_DOWN) instead.
+* Removed Phaser.Mouse.WHEEL_DOWN. Use [Phaser.MouseWheel.DOWN](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html#_DOWN) instead.
 * Removed Phaser.Mouse#releasePointerLock. Use [Phaser.PointerLock#exit](https://photonstorm.github.io/phaser-ce/Phaser.PointerLock.html#exit) instead.
 * Removed Phaser.Mouse#requestPointerLock. Use [Phaser.PointerLock#request](https://photonstorm.github.io/phaser-ce/Phaser.PointerLock.html#request) instead.
 
