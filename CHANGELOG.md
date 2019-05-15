@@ -6,6 +6,7 @@
 
 * Fixed incorrect [Sound#currentTime](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#currentTime) after pause/resume, when using audio tags.
 * Fixed missing mouse movement values when the pointer is locked.
+* Fixed elastic easing functions.
 
 ## Version 2.13.0 - 11 May 2019
 
