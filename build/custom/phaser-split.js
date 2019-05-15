@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.13.0 "2019-05-11" - Built: Sat May 11 2019 14:52:36
+* v2.13.1 "2019-05-15" - Built: Wed May 15 2019 11:27:02
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -53,7 +53,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.13.0',
+    VERSION: '2.13.1',
 
     /**
     * An array of Phaser game instances.
@@ -19809,7 +19809,7 @@ Phaser.Pointer.prototype = {
         this.screenX = event.screenX;
         this.screenY = event.screenY;
 
-        if (this.isMouse && input.mouse.locked && !fromClick)
+        if (this.isMouse && input.pointerLock.locked && !fromClick)
         {
             this.rawMovementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
             this.rawMovementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
@@ -61110,7 +61110,7 @@ Phaser.Sound.prototype = {
             {
                 var currentTime = this._sound.currentTime;
 
-                if (currentTime > (this._tempPause || this.position || 0))
+                if (currentTime > ((this.paused ? this._tempPause : 0) || this.position || 0))
                 {
                     this._pendingStart = false;
                     this.startTime = now - (1000 * currentTime);
@@ -61382,6 +61382,7 @@ Phaser.Sound.prototype = {
             this._pendingStart = true;
             this.isPlaying = true;
             this.paused = false;
+            this._tempPause = 0;
             this.startTime = this.game.time.time;
             this.currentTime = 0;
             this.stopTime = this.startTime + this.durationMS;
@@ -61492,6 +61493,7 @@ Phaser.Sound.prototype = {
             {
                 this._pendingStart = true;
                 this._sound.currentTime = this._tempPause;
+                this._tempPause = 0;
                 this._sound.play();
             }
 
