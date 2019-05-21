@@ -12612,6 +12612,16 @@ declare module Phaser {
         hitTest(displayObject: PIXI.DisplayObject, pointer: Phaser.Pointer, localPoint: Phaser.Point): void;
 
         /**
+        * Releases the active state of the matching Pointer object, passing in the event data.
+        *
+        * @method Phaser.Input#releaseActivePointer
+        * @protected
+        * @param {any} event - The event data from the Touch event.
+        * @return {Phaser.Pointer} The Pointer object that was stopped or null if no Pointer object is available.
+        */
+        releaseActivePointer(event: any): Phaser.Pointer;
+
+        /**
         * Reset all of the Pointers and Input states.
         * 
         * The optional `hard` parameter will reset any events or callbacks that may be bound.
@@ -23581,6 +23591,14 @@ declare module Phaser {
         * @param fromClick Was this called from the click event?
         */
         move(event: any, fromClick?: boolean): void;
+
+        /**
+        * Called when a touch input ends but Phaser.Input is disabled. This function is similar to #stop, but doesn't send input events.
+        *
+        * @method Phaser.Pointer#releaseActive
+        * @param {MouseEvent|PointerEvent|TouchEvent} event - The event passed up from the input handler.
+        */
+        releaseActive(event: any) : void;
 
         /**
         * Resets the Pointer properties. Called by InputManager.reset when you perform a State change.
