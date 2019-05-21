@@ -1058,6 +1058,54 @@ Phaser.Pointer.prototype = {
     },
 
     /**
+    * Called when a touch input ends but Phaser.Input is disabled. This function is similar to #stop, but doesn't send input events.
+    *
+    * @method Phaser.Pointer#releaseActive
+    * @param {MouseEvent|PointerEvent|TouchEvent} event - The event passed up from the input handler.
+    */
+    releaseActive: function (event)
+    {
+        var input = this.game.input;
+
+        if (this._stateReset && this.withinGame)
+        {
+            event.preventDefault();
+            return;
+        }
+
+        if (this.isMouse)
+        {
+            this.updateButtons(event);
+        }
+        else
+        {
+            this.isDown = false;
+            this.isUp = true;
+        }
+
+        //  Mouse is always active
+        if (this.id > 0)
+        {
+            this.active = false;
+        }
+
+        this.withinGame = this.game.scale.bounds.contains(event.pageX, event.pageY);
+        this.pointerId = null;
+        this.identifier = null;
+
+        this.positionUp.setTo(this.x, this.y);
+
+        if (this.isMouse === false)
+        {
+            input.currentPointers--;
+        }
+
+        this.targetObject = null;
+
+        return this;
+    },
+
+    /**
     * The Pointer is considered justPressed if the time it was pressed onto the touchscreen or clicked is less than justPressedRate.
     * Note that calling justPressed doesn't reset the pressed status of the Pointer, it will return `true` for as long as the duration is valid.
     * If you wish to check if the Pointer was pressed down just once then see the Sprite.events.onInputDown event.

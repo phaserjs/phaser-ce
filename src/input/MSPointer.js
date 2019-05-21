@@ -332,20 +332,29 @@ Phaser.MSPointer.prototype = {
             this.pointerUpCallback.call(this.callbackContext, event);
         }
 
-        if (!this.input.enabled || !this.enabled)
-        {
-            return;
-        }
-
         event.identifier = event.pointerId;
 
         if (event.pointerType === 'mouse' || event.pointerType === 0x00000004)
         {
-            this.input.mousePointer.stop(event);
+            if (this.input.enabled && this.enabled)
+            {
+                this.input.mousePointer.stop(event);
+            }
+            else
+            {
+                this.input.mousePointer.releaseActive(event);
+            }
         }
         else
         {
-            this.input.stopPointer(event);
+            if (this.input.enabled && this.enabled)
+            {
+                this.input.stopPointer(event);
+            }
+            else
+            {
+                this.input.releaseActivePointer(event);
+            }
         }
 
     },
