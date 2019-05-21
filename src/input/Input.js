@@ -940,19 +940,22 @@ Phaser.Input.prototype = {
     * @method Phaser.Input#stopPointer
     * @protected
     * @param {any} event - The event data from the Touch event.
+    * @param {boolean} [noCallbacks=false] - Prevent callbacks from being fired. Used to clean up input state when input has been disabled.
     * @return {Phaser.Pointer} The Pointer object that was stopped or null if no Pointer object is available.
     */
-    stopPointer: function (event)
+    stopPointer: function (event, noCallbacks)
     {
+
+        if (noCallbacks === undefined) { noCallbacks = false; }
 
         if (this.pointer1.active && this.pointer1.identifier === event.identifier)
         {
-            return this.pointer1.stop(event);
+            return this.pointer1.stop(event, noCallbacks);
         }
 
         if (this.pointer2.active && this.pointer2.identifier === event.identifier)
         {
-            return this.pointer2.stop(event);
+            return this.pointer2.stop(event, noCallbacks);
         }
 
         for (var i = 2; i < this.pointers.length; i++)
@@ -961,42 +964,7 @@ Phaser.Input.prototype = {
 
             if (pointer.active && pointer.identifier === event.identifier)
             {
-                return pointer.stop(event);
-            }
-        }
-
-        return null;
-
-    },
-
-    /**
-    * Releases the active state of the matching Pointer object, passing in the event data.
-    *
-    * @method Phaser.Input#releaseActivePointer
-    * @protected
-    * @param {any} event - The event data from the Touch event.
-    * @return {Phaser.Pointer} The Pointer object that was stopped or null if no Pointer object is available.
-    */
-    releaseActivePointer: function (event)
-    {
-
-        if (this.pointer1.active && this.pointer1.identifier === event.identifier)
-        {
-            return this.pointer1.releaseActive(event);
-        }
-
-        if (this.pointer2.active && this.pointer2.identifier === event.identifier)
-        {
-            return this.pointer2.releaseActive(event);
-        }
-
-        for (var i = 2; i < this.pointers.length; i++)
-        {
-            var pointer = this.pointers[i];
-
-            if (pointer.active && pointer.identifier === event.identifier)
-            {
-                return pointer.releaseActive(event);
+                return pointer.stop(event, noCallbacks);
             }
         }
 

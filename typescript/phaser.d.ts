@@ -2184,12 +2184,11 @@ declare module Phaser {
         getPointerFromId(pointerID: number): Phaser.Pointer;
         getPointerFromIdentifier(identifier: number): Phaser.Pointer;
         hitTest(displayObject: PIXI.DisplayObject, pointer: Phaser.Pointer, localPoint: Phaser.Point): void;
-        releaseActivePointer(event: any): Phaser.Pointer;
         reset(hard?: boolean): void;
         resetSpeed(x: number, y: number): void;
         setInteractiveCandidateHandler(callback: Function, context?: any): void;
         startPointer(event: any): Phaser.Pointer;
-        stopPointer(event: any): Phaser.Pointer;
+        stopPointer(event: any, noCallbacks?: boolean): Phaser.Pointer;
         update(): void;
         updatePointer(event: any): Phaser.Pointer;
 
@@ -4277,12 +4276,11 @@ declare module Phaser {
         justReleased(duration?: number): boolean;
         leave(event: any): void;
         move(event: any, fromClick?: boolean): void;
-        releaseActive(event: any) : void;
         reset(): void;
         resetButtons(): void;
         resetMovement(): void;
         start(event: any): void;
-        stop(event: any): void;
+        stop(event: any, noCallbacks?: boolean): void;
         swapTarget(newTarget: Phaser.InputHandler, silent?: boolean): void;
         update(): void;
         updateButtons(event: MouseEvent): void;

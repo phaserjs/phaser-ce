@@ -12612,16 +12612,6 @@ declare module Phaser {
         hitTest(displayObject: PIXI.DisplayObject, pointer: Phaser.Pointer, localPoint: Phaser.Point): void;
 
         /**
-        * Releases the active state of the matching Pointer object, passing in the event data.
-        *
-        * @method Phaser.Input#releaseActivePointer
-        * @protected
-        * @param {any} event - The event data from the Touch event.
-        * @return {Phaser.Pointer} The Pointer object that was stopped or null if no Pointer object is available.
-        */
-        releaseActivePointer(event: any): Phaser.Pointer;
-
-        /**
         * Reset all of the Pointers and Input states.
         * 
         * The optional `hard` parameter will reset any events or callbacks that may be bound.
@@ -12676,9 +12666,10 @@ declare module Phaser {
         * Stops the matching Pointer object, passing in the event data.
         * 
         * @param event The event data from the Touch event.
+        * @param noCallbacks Prevent callbacks from being fired. Used to clean up input state when input has been disabled.
         * @return The Pointer object that was stopped or null if no Pointer object is available.
         */
-        stopPointer(event: any): Phaser.Pointer;
+        stopPointer(event: any, noCallbacks?: boolean): Phaser.Pointer;
 
         /**
         * Updates the Input Manager. Called by the core Game loop.
@@ -23593,14 +23584,6 @@ declare module Phaser {
         move(event: any, fromClick?: boolean): void;
 
         /**
-        * Called when a touch input ends but Phaser.Input is disabled. This function is similar to #stop, but doesn't send input events.
-        *
-        * @method Phaser.Pointer#releaseActive
-        * @param {MouseEvent|PointerEvent|TouchEvent} event - The event passed up from the input handler.
-        */
-        releaseActive(event: any) : void;
-
-        /**
         * Resets the Pointer properties. Called by InputManager.reset when you perform a State change.
         */
         reset(): void;
@@ -23626,8 +23609,9 @@ declare module Phaser {
         * Called when the Pointer leaves the touchscreen.
         * 
         * @param event The event passed up from the input handler.
+        * @param noCallbacks Prevent callbacks from being fired. Used to clean up input state when input has been disabled.
         */
-        stop(event: any): void;
+        stop(event: any, noCallbacks?: boolean): void;
 
         /**
         * This will change the `Pointer.targetObject` object to be the one provided.

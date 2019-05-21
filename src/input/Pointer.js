@@ -985,9 +985,12 @@ Phaser.Pointer.prototype = {
     *
     * @method Phaser.Pointer#stop
     * @param {MouseEvent|PointerEvent|TouchEvent} event - The event passed up from the input handler.
+    * @param {boolean} [noCallbacks=false] - Prevent callbacks from being fired. Used to clean up input state when input has been disabled.
     */
-    stop: function (event)
+    stop: function (event, noCallbacks)
     {
+
+        if (noCallbacks === undefined) { noCallbacks = false; }
 
         var input = this.game.input;
 
@@ -997,23 +1000,26 @@ Phaser.Pointer.prototype = {
             return;
         }
 
-        this.timeUp = this.game.time.time;
-
-        if (input.multiInputOverride === Phaser.Input.MOUSE_OVERRIDES_TOUCH ||
-            input.multiInputOverride === Phaser.Input.MOUSE_TOUCH_COMBINE ||
-            (input.multiInputOverride === Phaser.Input.TOUCH_OVERRIDES_MOUSE && input.totalActivePointers === 0))
+        if (!noCallbacks)
         {
-            input.onUp.dispatch(this, event);
+            this.timeUp = this.game.time.time;
 
-            //  Was it a tap?
-            if (this.duration >= 0 && this.duration <= input.tapRate)
+            if (input.multiInputOverride === Phaser.Input.MOUSE_OVERRIDES_TOUCH ||
+                input.multiInputOverride === Phaser.Input.MOUSE_TOUCH_COMBINE ||
+                (input.multiInputOverride === Phaser.Input.TOUCH_OVERRIDES_MOUSE && input.totalActivePointers === 0))
             {
-                //  Was it a double-tap?
-                var doubleTap = (this.timeUp - this.previousTapTime < input.doubleTapRate);
+                input.onUp.dispatch(this, event);
 
-                input.onTap.dispatch(this, doubleTap, event);
+                //  Was it a tap?
+                if (this.duration >= 0 && this.duration <= input.tapRate)
+                {
+                    //  Was it a double-tap?
+                    var doubleTap = (this.timeUp - this.previousTapTime < input.doubleTapRate);
 
-                this.previousTapTime = this.timeUp;
+                    input.onTap.dispatch(this, doubleTap, event);
+
+                    this.previousTapTime = this.timeUp;
+                }
             }
         }
 
@@ -1044,65 +1050,20 @@ Phaser.Pointer.prototype = {
             input.currentPointers--;
         }
 
-        input.interactiveItems.callAll('_releasedHandler', this);
-
-        if (this._clickTrampolines)
+        if (!noCallbacks)
         {
-            this._trampolineTargetObject = this.targetObject;
+            input.interactiveItems.callAll('_releasedHandler', this);
+
+            if (this._clickTrampolines)
+            {
+                this._trampolineTargetObject = this.targetObject;
+            }
         }
 
         this.targetObject = null;
 
         return this;
 
-    },
-
-    /**
-    * Called when a touch input ends but Phaser.Input is disabled. This function is similar to #stop, but doesn't send input events.
-    *
-    * @method Phaser.Pointer#releaseActive
-    * @param {MouseEvent|PointerEvent|TouchEvent} event - The event passed up from the input handler.
-    */
-    releaseActive: function (event)
-    {
-        var input = this.game.input;
-
-        if (this._stateReset && this.withinGame)
-        {
-            event.preventDefault();
-            return;
-        }
-
-        if (this.isMouse)
-        {
-            this.updateButtons(event);
-        }
-        else
-        {
-            this.isDown = false;
-            this.isUp = true;
-        }
-
-        //  Mouse is always active
-        if (this.id > 0)
-        {
-            this.active = false;
-        }
-
-        this.withinGame = this.game.scale.bounds.contains(event.pageX, event.pageY);
-        this.pointerId = null;
-        this.identifier = null;
-
-        this.positionUp.setTo(this.x, this.y);
-
-        if (this.isMouse === false)
-        {
-            input.currentPointers--;
-        }
-
-        this.targetObject = null;
-
-        return this;
     },
 
     /**
