@@ -1,5 +1,15 @@
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+
+* Fixed an error when destroying or disabling a button from an input handler (#630).
+
+### Thanks
+
+@leandrop20, @samme, @ts1985, @XWILKINX
+
 ## Version 2.13.1 - 15 May 2019
 
 ### Bug Fixes
