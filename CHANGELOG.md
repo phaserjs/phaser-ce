@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.13.2 - 22 May 2019
 
 ### Bug Fixes
 
@@ -8,7 +8,7 @@
 
 ### Thanks
 
-@leandrop20, @samme, @ts1985, @XWILKINX
+@leandrop20, @photonstorm, @samme, @ts1985, @XWILKINX
 
 ## Version 2.13.1 - 15 May 2019
 
