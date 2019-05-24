@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.13.1 "2019-05-15" - Built: Wed May 15 2019 12:48:20
+* v2.13.2 "2019-05-22" - Built: Wed May 22 2019 19:22:31
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -53,7 +53,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.13.1',
+    VERSION: '2.13.2',
 
     /**
     * An array of Phaser game instances.
@@ -17331,7 +17331,7 @@ Phaser.Input.prototype = {
         {
             var item = list[i];
 
-            if (item.enabled)
+            if (item && item.enabled)
             {
                 item[handler](pointer);
             }
