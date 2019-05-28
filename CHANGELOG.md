@@ -1,5 +1,15 @@
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+
+* Fixed Point.fuzzyEquals and Point.fuzzyEqualsXY (#634).
+
+### Thanks
+
+@Cerlancism, @samme
+
 ## Version 2.13.2 - 22 May 2019
 
 ### Bug Fixes
