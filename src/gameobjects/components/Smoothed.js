@@ -38,7 +38,7 @@ Phaser.Component.Smoothed.prototype = {
             {
                 if (this.texture)
                 {
-                    if (this.texture.baseTexture.scaleMode != 0){
+                    if (this.texture.baseTexture.scaleMode !== 0){
                         this.texture.baseTexture.scaleMode = 0;
                         this.texture.baseTexture.dirty();
                     }
@@ -47,7 +47,7 @@ Phaser.Component.Smoothed.prototype = {
             else
             if (this.texture)
             {
-                if (this.texture.baseTexture.scaleMode != 1){
+                if (this.texture.baseTexture.scaleMode !== 1){
                     this.texture.baseTexture.scaleMode = 1;
                     this.texture.baseTexture.dirty();
                 }
