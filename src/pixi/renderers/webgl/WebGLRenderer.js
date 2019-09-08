@@ -534,7 +534,7 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
  */
 PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
 {
-    if (!texture.hasLoaded)
+    if (!texture.hasLoaded || !texture.source)
     {
         return false;
     }
