@@ -4,11 +4,12 @@
 
 ### Bug Fixes
 
+* Fix for WebGL being slower than Cavas on iOS and Android (#356)
 * Fixed Point.fuzzyEquals and Point.fuzzyEqualsXY (#634).
 
 ### Thanks
 
-@Cerlancism, @samme
+@jamieallen1234, @Cerlancism, @samme
 
 ## Version 2.13.2 - 22 May 2019
 
