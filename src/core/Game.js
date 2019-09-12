@@ -907,15 +907,13 @@ Phaser.Game.prototype = {
 
         if (!this.renderer)
         {
+            this.renderer = new PIXI.CanvasRenderer(this, this.config);
+            this.context = this.renderer.context;
+
             if (this.renderType === Phaser.AUTO)
             {
                 this.renderType = Phaser.CANVAS;
-
-                this.canvas = Phaser.Canvas.create(this, this.width, this.height, this.config.canvasID, true);
             }
-
-            this.renderer = new PIXI.CanvasRenderer(this, this.config);
-            this.context = this.renderer.context;
         }
 
         if (this.device.cocoonJS)
