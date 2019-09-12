@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-* Fix for WebGL being slower than Cavas on iOS and Android (#356)
+* Fix for WebGL being slower than Canvas on iOS and Android (#356)
 * Fixed Point.fuzzyEquals and Point.fuzzyEqualsXY (#634).
 
 ### Thanks
