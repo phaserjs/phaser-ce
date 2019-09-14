@@ -130,7 +130,7 @@ Phaser.FrameData.prototype = {
         {
             if (this._frameNames.hasOwnProperty(p))
             {
-                output._frameNames.push(this._frameNames[p]);
+                output._frameNames[p] = this._frameNames[p];
             }
         }
 
