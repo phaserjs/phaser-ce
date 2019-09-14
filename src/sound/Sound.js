@@ -1123,7 +1123,16 @@ Phaser.Sound.prototype = {
     _startSource: function (when, offset, duration)
     {
 
-        this._sound.start(when || 0, offset || 0, duration);
+        // Avoids passing an undefined `duration` (#588, #635).
+
+        if (duration === undefined)
+        {
+            this._sound.start(when || 0, offset || 0);
+        }
+        else
+        {
+            this._sound.start(when || 0, offset || 0, duration);
+        }
 
     },
 

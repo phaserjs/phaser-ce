@@ -193,6 +193,7 @@ Phaser.Device = function ()
 
     /**
     * @property {boolean} webGL - Is webGL available?
+    * @see Phaser.Game#renderType
     * @default
     */
     this.webGL = false;
