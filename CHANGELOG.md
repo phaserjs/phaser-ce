@@ -4,12 +4,18 @@
 
 ### Bug Fixes
 
-* Fix for WebGL being slower than Canvas on iOS and Android (#356)
+* Fixed webGL making excessive calls, which was negatively impacting the frame-rate of low-end machines and mobile devices (#356, #641).
+* Fixed Web Audio sounds failing to play in certain browsers (#588).
 * Fixed Point.fuzzyEquals and Point.fuzzyEqualsXY (#634).
+* Fixed unnecessarily marking a texture dirty when its `smoothed` property was set but not changed (#636).
+* Fixed some bad output when cloning FrameData (#640).
+* Fixed smoothed setting on textures not being respected (#641).
+* Fixed updateTexture happening on textures that hadn't loaded their source yet (#641).
+* Fixed a flickering issue on some Android devices (#641).
 
 ### Thanks
 
-@jamieallen1234, @Cerlancism, @samme
+@Cerlancism, @SBCGames, @Tobepeter, @Weedshaker, @ferryhalim, @jamieallen1234, @ndee85, @pieshop, @samme
 
 ## Version 2.13.2 - 22 May 2019
 
