@@ -198,6 +198,13 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
         this.renderSession.blendModeManager.setBlendMode(sprite.blendMode);
     }
 
+    var textureIndex = this.currentBaseTexture.textureIndex;
+    var gl = this.gl;
+    
+    gl.activeTexture(gl.TEXTURE0 + textureIndex);
+    gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
+    PIXI.WebGLRenderer.textureArray[textureIndex] = this.currentBaseTexture;
+
     for(var i = 0,j = children.length; i < j; i++)
     {
         this.renderSprite(children[i]);

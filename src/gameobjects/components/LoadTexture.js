@@ -71,7 +71,7 @@ Phaser.Component.LoadTexture.prototype = {
         var cache = this.game.cache;
 
         var setFrame = true;
-        var smoothed = !this.texture.baseTexture.scaleMode;
+        var smoothed = this.texture.baseTexture.scaleMode === PIXI.scaleModes.LINEAR;
 
         if (Phaser.RenderTexture && key instanceof Phaser.RenderTexture)
         {
@@ -112,6 +112,8 @@ Phaser.Component.LoadTexture.prototype = {
         }
         else if (key instanceof PIXI.Texture)
         {
+            smoothed = key.baseTexture.scaleMode === PIXI.scaleModes.LINEAR;
+
             this.setTexture(key);
         }
         else

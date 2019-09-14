@@ -1088,6 +1088,12 @@ Phaser.Game.prototype = {
             }
         }
 
+        if (this.renderer.type === Phaser.WEBGL)
+        {
+            // flush gl to prevent flickering on some android devices
+            this.renderer.gl.flush();
+        }
+
     },
 
     /**
