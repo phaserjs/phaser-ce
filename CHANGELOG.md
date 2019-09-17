@@ -9,8 +9,8 @@
 * Fixed Point.fuzzyEquals and Point.fuzzyEqualsXY (#634).
 * Fixed unnecessarily marking a texture dirty when its `smoothed` property was set but not changed (#636).
 * Fixed some bad output when cloning FrameData (#640).
-* Fixed smoothed setting on textures not being respected (#641).
-* Fixed updateTexture happening on textures that hadn't loaded their source yet (#641).
+* Fixed `smoothed` setting on textures not being respected (#641).
+* Fixed updateTexture() happening on textures that hadn't loaded their source yet (#641).
 * Fixed a flickering issue on some Android devices (#641).
 
 ### Thanks
