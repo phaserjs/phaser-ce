@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.13.2 "2019-05-22" - Built: Wed May 22 2019 19:22:30
+* v2.13.3 "2019-09-17" - Built: Tue Sep 17 2019 10:32:56
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -3985,7 +3985,7 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
  */
 PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
 {
-    if (!texture.hasLoaded)
+    if (!texture.hasLoaded || !texture.source)
     {
         return false;
     }
@@ -4983,15 +4983,6 @@ PIXI.WebGLSpriteBatch.prototype.end = function ()
 PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 {
     var texture = sprite.texture;
-    var baseTexture = texture.baseTexture;
-    var gl = this.gl;
-    if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
-    {
-        this.flush();
-        gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
-        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
-    }
 
     //  They provided an alternative rendering matrix, so use it
     var wt = sprite.worldTransform;
@@ -5164,16 +5155,7 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
 {
     var texture = sprite.tilingTexture;
-    var baseTexture = texture.baseTexture;
-    var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
-    {
-        this.flush();
-        gl.activeTexture(gl.TEXTURE0 + textureIndex);
-        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
-    }
 
     // check texture..
     if (this.currentBatchSize >= this.size)
@@ -5405,7 +5387,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         }
 
         //
-        if (/* (currentBaseTexture != nextTexture && !skip) || */
+        if ((currentBaseTexture !== nextTexture && !skip) ||
             blendSwap ||
             shaderSwap)
         {
@@ -5737,6 +5719,13 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
         this.flush();
         this.renderSession.blendModeManager.setBlendMode(sprite.blendMode);
     }
+
+    var textureIndex = this.currentBaseTexture.textureIndex;
+    var gl = this.gl;
+    
+    gl.activeTexture(gl.TEXTURE0 + textureIndex);
+    gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
+    PIXI.WebGLRenderer.textureArray[textureIndex] = this.currentBaseTexture;
 
     for(var i = 0,j = children.length; i < j; i++)
     {

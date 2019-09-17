@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.13.2 "2019-05-22" - Built: Wed May 22 2019 19:22:18
+* v2.13.3 "2019-09-17" - Built: Tue Sep 17 2019 10:32:43
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -3985,7 +3985,7 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
  */
 PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
 {
-    if (!texture.hasLoaded)
+    if (!texture.hasLoaded || !texture.source)
     {
         return false;
     }
@@ -4983,15 +4983,6 @@ PIXI.WebGLSpriteBatch.prototype.end = function ()
 PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 {
     var texture = sprite.texture;
-    var baseTexture = texture.baseTexture;
-    var gl = this.gl;
-    if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
-    {
-        this.flush();
-        gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
-        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
-    }
 
     //  They provided an alternative rendering matrix, so use it
     var wt = sprite.worldTransform;
@@ -5164,16 +5155,7 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
 {
     var texture = sprite.tilingTexture;
-    var baseTexture = texture.baseTexture;
-    var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
-    {
-        this.flush();
-        gl.activeTexture(gl.TEXTURE0 + textureIndex);
-        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
-    }
 
     // check texture..
     if (this.currentBatchSize >= this.size)
@@ -5405,7 +5387,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         }
 
         //
-        if (/* (currentBaseTexture != nextTexture && !skip) || */
+        if ((currentBaseTexture !== nextTexture && !skip) ||
             blendSwap ||
             shaderSwap)
         {
@@ -5737,6 +5719,13 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
         this.flush();
         this.renderSession.blendModeManager.setBlendMode(sprite.blendMode);
     }
+
+    var textureIndex = this.currentBaseTexture.textureIndex;
+    var gl = this.gl;
+    
+    gl.activeTexture(gl.TEXTURE0 + textureIndex);
+    gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
+    PIXI.WebGLRenderer.textureArray[textureIndex] = this.currentBaseTexture;
 
     for(var i = 0,j = children.length; i < j; i++)
     {
@@ -7823,7 +7812,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.13.2',
+    VERSION: '2.13.3',
 
     /**
     * An array of Phaser game instances.
@@ -12319,16 +12308,16 @@ Phaser.Point.equalsXY = function (a, x, y)
 Phaser.Point.fuzzyEquals = function (a, b, epsilon)
 {
 
-    return Phaser.Math.fuzzyEquals(a.x, b.x, epsilon) &&
-           Phaser.Math.fuzzyEquals(a.y, b.y, epsilon);
+    return Phaser.Math.fuzzyEqual(a.x, b.x, epsilon) &&
+           Phaser.Math.fuzzyEqual(a.y, b.y, epsilon);
 
 };
 
 Phaser.Point.fuzzyEqualsXY = function (a, x, y, epsilon)
 {
 
-    return Phaser.Math.fuzzyEquals(a.x, x, epsilon) &&
-           Phaser.Math.fuzzyEquals(a.y, y, epsilon);
+    return Phaser.Math.fuzzyEqual(a.x, x, epsilon) &&
+           Phaser.Math.fuzzyEqual(a.y, y, epsilon);
 
 };
 
@@ -22586,7 +22575,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.renderer = null;
 
     /**
-    * @property {number} renderType - The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType reflects the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. HEADLESS skips `preRender`, `render, and `postRender` hooks, just like {@link #lockRender}.
+    * @property {number} renderType - The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType reflects the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. HEADLESS skips `preRender`, `render`, and `postRender` hooks, just like {@link #lockRender}.
     * @readonly
     */
     this.renderType = Phaser.AUTO;
@@ -23483,6 +23472,12 @@ Phaser.Game.prototype = {
             {
                 this.updateRender(this._deltaTime / slowStep);
             }
+        }
+
+        if (this.renderer.type === Phaser.WEBGL)
+        {
+            // flush gl to prevent flickering on some android devices
+            this.renderer.gl.flush();
         }
 
     },
@@ -31450,7 +31445,7 @@ Phaser.SinglePad.prototype = {
     pollStatus: function ()
     {
 
-        if (!this.connected || !this.game.input.enabled || !this.game.input.gamepad.enabled || (this._rawPad && this._rawPad.timestamp && (this._rawPad.timestamp === this._prevTimestamp)))
+        if (!this.connected || !this.game.input.enabled || !this.game.input.gamepad.enabled || !this._rawPad || this._rawPad.timestamp && this._rawPad.timestamp === this._prevTimestamp)
         {
             return;
         }
@@ -35741,7 +35736,7 @@ Phaser.Component.LoadTexture.prototype = {
         var cache = this.game.cache;
 
         var setFrame = true;
-        var smoothed = !this.texture.baseTexture.scaleMode;
+        var smoothed = this.texture.baseTexture.scaleMode === PIXI.scaleModes.LINEAR;
 
         if (Phaser.RenderTexture && key instanceof Phaser.RenderTexture)
         {
@@ -35782,6 +35777,8 @@ Phaser.Component.LoadTexture.prototype = {
         }
         else if (key instanceof PIXI.Texture)
         {
+            smoothed = key.baseTexture.scaleMode === PIXI.scaleModes.LINEAR;
+
             this.setTexture(key);
         }
         else
@@ -36442,15 +36439,20 @@ Phaser.Component.Smoothed.prototype = {
             {
                 if (this.texture)
                 {
-                    this.texture.baseTexture.scaleMode = 0;
-                    this.texture.baseTexture.dirty();
+                    if (this.texture.baseTexture.scaleMode !== 0)
+                    {
+                        this.texture.baseTexture.scaleMode = 0;
+                        this.texture.baseTexture.dirty();
+                    }
                 }
             }
-            else
-            if (this.texture)
+            else if (this.texture)
             {
-                this.texture.baseTexture.scaleMode = 1;
-                this.texture.baseTexture.dirty();
+                if (this.texture.baseTexture.scaleMode !== 1)
+                {
+                    this.texture.baseTexture.scaleMode = 1;
+                    this.texture.baseTexture.dirty();
+                }
             }
         }
 
@@ -51195,6 +51197,7 @@ Phaser.Device = function ()
 
     /**
     * @property {boolean} webGL - Is webGL available?
+    * @see Phaser.Game#renderType
     * @default
     */
     this.webGL = false;
@@ -61340,7 +61343,7 @@ Phaser.FrameData.prototype = {
         {
             if (this._frameNames.hasOwnProperty(p))
             {
-                output._frameNames.push(this._frameNames[p]);
+                output._frameNames[p] = this._frameNames[p];
             }
         }
 
@@ -69496,7 +69499,16 @@ Phaser.Sound.prototype = {
     _startSource: function (when, offset, duration)
     {
 
-        this._sound.start(when || 0, offset || 0, duration);
+        // Avoids passing an undefined `duration` (#588, #635).
+
+        if (duration === undefined)
+        {
+            this._sound.start(when || 0, offset || 0);
+        }
+        else
+        {
+            this._sound.start(when || 0, offset || 0, duration);
+        }
 
     },
 
