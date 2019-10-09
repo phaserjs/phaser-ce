@@ -170,8 +170,7 @@ declare module PIXI {
 
         static fromCanvas(canvas: HTMLCanvasElement, scaleMode?: scaleModes): BaseTexture;
 
-        constructor(source: HTMLImageElement, scaleMode: scaleModes);
-        constructor(source: HTMLCanvasElement, scaleMode: scaleModes);
+        constructor(source: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement, scaleMode: scaleModes, resolution?: number);
 
         height: number;
         hasLoaded: boolean;
@@ -180,9 +179,12 @@ declare module PIXI {
         resolution: number;
         scaleMode: scaleModes;
         skipRender: boolean;
-        source: HTMLImageElement;
+        source: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement;
         textureIndex: number;
         width: number;
+
+        _dirty: boolean[];
+        _glTextures: WebGLTexture[];
 
         listeners(eventName: string): Function[];
         emit(eventName: string, data?: any): boolean;

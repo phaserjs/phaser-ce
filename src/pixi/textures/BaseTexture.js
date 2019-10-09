@@ -7,9 +7,9 @@
  *
  * @class PIXI.BaseTexture
  * @constructor
- * @param source {String|Canvas} the source object (image or canvas)
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
- * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
+ * @param source {HTMLCanvasElement|HTMLImageElement|HTMLVideoElement} the source object (image or canvas)
+ * @param scaleMode {number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param [resolution] {number} the resolution of the texture (for HiDPI displays)
  */
 PIXI.BaseTexture = function (source, scaleMode, resolution)
 {
@@ -17,7 +17,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * The Resolution of the texture.
      *
      * @property resolution
-     * @type Number
+     * @type number
      */
     this.resolution = resolution || 1;
 
@@ -25,7 +25,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * [read-only] The width of the base texture set when the image has loaded
      *
      * @property width
-     * @type Number
+     * @type number
      * @readOnly
      */
     this.width = 100;
@@ -34,7 +34,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * [read-only] The height of the base texture set when the image has loaded
      *
      * @property height
-     * @type Number
+     * @type number
      * @readOnly
      */
     this.height = 100;
@@ -43,7 +43,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * The scale mode to apply when scaling this texture
      *
      * @property scaleMode
-     * @type {Number}
+     * @type {number}
      * @default PIXI.scaleModes.LINEAR
      */
     this.scaleMode = scaleMode || PIXI.scaleModes.DEFAULT;
@@ -52,7 +52,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * [read-only] Set to true once the base texture has loaded
      *
      * @property hasLoaded
-     * @type Boolean
+     * @type boolean
      * @readOnly
      */
     this.hasLoaded = false;
@@ -61,7 +61,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * The image source that is used to create the texture.
      *
      * @property source
-     * @type Image
+     * @type HTMLCanvasElement|HTMLImageElement|HTMLVideoElement
      */
     this.source = source;
 
@@ -69,7 +69,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * Controls if RGB channels should be pre-multiplied by Alpha  (WebGL only)
      *
      * @property premultipliedAlpha
-     * @type Boolean
+     * @type boolean
      * @default true
      */
     this.premultipliedAlpha = true;
@@ -78,7 +78,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
 
     /**
      * @property _glTextures
-     * @type Array
+     * @type array
      * @private
      */
     this._glTextures = [];
@@ -88,20 +88,20 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * Also the texture must be a power of two size to work
      *
      * @property mipmap
-     * @type {Boolean}
+     * @type {boolean}
      */
     this.mipmap = false;
 
     /**
      * The multi texture batching index number.
      * @property textureIndex
-     * @type Number
+     * @type number
      */
     this.textureIndex = 0;
 
     /**
      * @property _dirty
-     * @type Array
+     * @type array
      * @private
      */
     this._dirty = [ true, true, true, true ];
@@ -126,13 +126,13 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * that has children that you do want to render, without causing a batch flush in the process.
      *
      * @property skipRender
-     * @type Boolean
+     * @type boolean
      */
     this.skipRender = false;
 
     /**
      * @property _powerOf2
-     * @type Boolean
+     * @type boolean
      * @private
      */
     this._powerOf2 = false;
@@ -221,10 +221,10 @@ PIXI.BaseTexture.prototype.unloadFromGPU = function ()
  *
  * @static
  * @method PIXI.BaseTexture#fromCanvas
- * @param canvas {Canvas} The canvas element source of the texture
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
- * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
- * @return {BaseTexture}
+ * @param canvas {HTMLCanvasElement} The canvas element source of the texture
+ * @param scaleMode {number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param [resolution] {number} the resolution of the texture (for HiDPI displays)
+ * @return {PIXI.BaseTexture}
  */
 PIXI.BaseTexture.fromCanvas = function (canvas, scaleMode, resolution)
 {
