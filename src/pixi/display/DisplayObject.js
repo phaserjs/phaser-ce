@@ -288,6 +288,7 @@ PIXI.DisplayObject.prototype = {
         this._mask = null;
 
         this._destroyCachedSprite();
+        this._destroyTintedTexture();
 
     },
 
@@ -621,6 +622,18 @@ PIXI.DisplayObject.prototype = {
 
         this._cachedSprite = null;
 
+    },
+
+    _destroyTintedTexture: function ()
+    {
+        if (!this.tintedTexture)
+        {
+            return;
+        }
+
+        Phaser.CanvasPool.removeByCanvas(this.tintedTexture);
+
+        this.tintedTexture = null;
     }
 
 };
