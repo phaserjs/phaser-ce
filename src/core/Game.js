@@ -470,6 +470,11 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.dropFrames = false;
 
     /**
+    * @property {string} powerPreference - When the WebGL renderer is used, hint to the browser which GPU to use.
+    */
+    this.powerPreference = 'default';
+
+    /**
     * @property {number} _nextNotification - The soonest game.time.time value that the next fpsProblemNotifier can be dispatched.
     * @private
     */
@@ -555,6 +560,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {string|HTMLElement} [GameConfig.parent='']                     - The DOM element into which this games canvas will be injected.
 * @property {object}             [GameConfig.physicsConfig]
 * @property {boolean}            [GameConfig.pointerLock=true]              - Starts the {@link Phaser.PointerLock Pointer Lock} handler, if supported by the device.
+* @property {string}             [GameConfig.powerPreference='default']     - Sets the WebGL renderer's powerPreference when the WebGL renderer is used.
 * @property {boolean}            [GameConfig.preserveDrawingBuffer=false]   - Whether or not the contents of the stencil buffer is retained after rendering.
 * @property {number}             [GameConfig.renderer=Phaser.AUTO]
 * @property {number}             [GameConfig.resolution=1]                  - The resolution of your game, as a ratio of canvas pixels to game pixels.
@@ -638,6 +644,11 @@ Phaser.Game.prototype = {
         if (config.preserveDrawingBuffer !== undefined)
         {
             this.preserveDrawingBuffer = config.preserveDrawingBuffer;
+        }
+
+        if (config.powerPreference !== undefined)
+        {
+            this.powerPreference = config.powerPreference;
         }
 
         if (config.physicsConfig)
