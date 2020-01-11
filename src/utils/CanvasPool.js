@@ -190,7 +190,12 @@ Phaser.CanvasPool = {
     log: function ()
     {
 
-        console.log('CanvasPool: %s used, %s free, %s total', this.getTotal(), this.getFree(), this.pool.length);
+        console.log(
+            'CanvasPool: %s used, %s free, %s total',
+            Phaser.CanvasPool.getTotal(),
+            Phaser.CanvasPool.getFree(),
+            Phaser.CanvasPool.pool.length
+        );
 
     }
 
