@@ -471,6 +471,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 
     /**
     * @property {string} powerPreference - When the WebGL renderer is used, hint to the browser which GPU to use.
+    * @readonly
     */
     this.powerPreference = 'default';
 

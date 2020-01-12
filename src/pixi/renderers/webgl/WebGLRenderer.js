@@ -83,11 +83,12 @@ PIXI.WebGLRenderer = function (game, config)
     this.clearBeforeRender = game.clearBeforeRender;
 
     /**
-     * This sets the WebGL "powerPreference" on the WebGL context, a hint to the browser to use a high-performance GPU.
+     * The "powerPreference" attribute the WebGL context was created with.
      *
      * @property powerPreference
      * @type string
      * @default
+     * @readonly
      */
     this.powerPreference = game.powerPreference;
 
