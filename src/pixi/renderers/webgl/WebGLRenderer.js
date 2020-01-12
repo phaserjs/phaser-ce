@@ -83,6 +83,15 @@ PIXI.WebGLRenderer = function (game, config)
     this.clearBeforeRender = game.clearBeforeRender;
 
     /**
+     * This sets the WebGL "powerPreference" on the WebGL context, a hint to the browser to use a high-performance GPU.
+     *
+     * @property powerPreference
+     * @type string
+     * @default
+     */
+    this.powerPreference = game.powerPreference;
+
+    /**
      * The width of the canvas view
      *
      * @property width
@@ -117,7 +126,8 @@ PIXI.WebGLRenderer = function (game, config)
         failIfMajorPerformanceCaveat: config.failIfMajorPerformanceCaveat,
         premultipliedAlpha: this.transparent && this.transparent !== 'notMultiplied',
         stencil: true,
-        preserveDrawingBuffer: this.preserveDrawingBuffer
+        preserveDrawingBuffer: this.preserveDrawingBuffer,
+        powerPreference: game.powerPreference
     };
 
     /**
