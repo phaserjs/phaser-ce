@@ -151,6 +151,7 @@ Phaser.Component.Destroy.prototype = {
         this._mask = null;
 
         this._destroyCachedSprite();
+        this._destroyTintedTexture();
 
         //  Texture?
         if (destroyTexture)
