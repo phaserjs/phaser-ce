@@ -1494,7 +1494,7 @@ declare module Phaser {
         parent?: HTMLElement | string;
         physicsConfig?: any;
         pointerLock?: boolean;
-        powerPreference?: "default" | "low-power" | "high-performance";
+        powerPreference?: string;
         preserveDrawingBuffer?: boolean;
         renderer?: number;
         resolution?: number;
@@ -1566,7 +1566,7 @@ declare module Phaser {
         physics: Phaser.Physics;
         physicsConfig: any;
         plugins: PluginManager;
-        powerPreference: "default" | "low-power" | "high-performance";
+        powerPreference: string;
         preserveDrawingBuffer: Boolean;
         raf: Phaser.RequestAnimationFrame;
         renderer: PIXI.CanvasRenderer | PIXI.WebGLRenderer;
