@@ -1,5 +1,19 @@
 # Change Log
 
+## Unreleased
+
+### New Features
+
+- You can pass `powerPreference` in your [game config](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) to set the `powerPreference` WebGL context attribute when creating the game. Possible values are `default`, `high-performance`, and `low-power` (#652).
+
+### Bug Fixes
+
+- A sprite's [tintedTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#tintedTexture) canvas is now returned to the Canvas Pool when the sprite is destroyed (#651).
+
+### Thanks
+
+@rarecoil, @samme, @taoabc
+
 ## Version 2.13.3 - 17 Sep 2019
 
 ### Bug Fixes
