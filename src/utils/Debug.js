@@ -388,8 +388,8 @@ Phaser.Utils.Debug.prototype = {
         if (sound.currentMarker !== '')
         {
             this.line('Marker: ' + sound.currentMarker + '  Duration: ' + sound.duration.toFixed(3) + 's (' + sound.durationMS + 'ms)');
-            this.line('Start: ' + sound.markers[sound.currentMarker].start + '  Stop: ' + sound.markers[sound.currentMarker].stop);
-            this.line('Position: ' + sound.position);
+            this.line('Start: ' + sound.markers[sound.currentMarker].start.toFixed(3) + '  Stop: ' + sound.markers[sound.currentMarker].stop.toFixed(3));
+            this.line('Position: ' + sound.position.toFixed(3));
         }
 
         this.stop();
