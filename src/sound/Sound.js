@@ -196,7 +196,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this._markedToDelete = false;
 
     /**
-    * @property {boolean} _pendingStart - play() was called but waiting for playback. Audio Tag only. Cleared in update() once playback starts.
+    * @property {boolean} _pendingStart - play() was called but waiting for playback. Audio Tag only, and not used for sound markers. Cleared in update() once playback starts.
     * @private
     */
     this._pendingStart = false;
@@ -570,7 +570,6 @@ Phaser.Sound.prototype = {
                     this.isPlaying = false;
 
                     this.play(this.currentMarker, 0, this.volume, true, true);
-                    this._pendingStart = false; // Need to set to false for looping sounds otherwise it keeps resetting.
                 }
                 else
                 {
@@ -777,7 +776,7 @@ Phaser.Sound.prototype = {
                 this._sound.volume = this._volume * this._globalVolume;
             }
 
-            this._pendingStart = true;
+            this._pendingStart = !this.currentMarker;
             this.isPlaying = true;
             this.paused = false;
             this._tempPause = 0;
@@ -889,7 +888,7 @@ Phaser.Sound.prototype = {
             }
             else
             {
-                this._pendingStart = true;
+                this._pendingStart = !this.currentMarker;
                 this._sound.currentTime = this._tempPause;
                 this._tempPause = 0;
                 this._sound.play();
