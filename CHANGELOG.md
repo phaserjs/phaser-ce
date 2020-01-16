@@ -8,11 +8,12 @@
 
 ### Bug Fixes
 
-- A sprite's [tintedTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#tintedTexture) canvas is now returned to the Canvas Pool when the sprite is destroyed (#651).
+* Fixed glitching sound playing when using looping audio-sprites with audio-tag (#653).
+* A sprite's [tintedTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#tintedTexture) canvas is now returned to the Canvas Pool when the sprite is destroyed (#651).
 
 ### Thanks
 
-@rarecoil, @samme, @taoabc
+@rarecoil, @samme, @taoabc, @dhashvir
 
 ## Version 2.13.3 - 17 Sep 2019
 

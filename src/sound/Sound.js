@@ -570,6 +570,7 @@ Phaser.Sound.prototype = {
                     this.isPlaying = false;
 
                     this.play(this.currentMarker, 0, this.volume, true, true);
+                    this._pendingStart = false; // Need to set to false for looping sounds otherwise it keeps resetting.
                 }
                 else
                 {
