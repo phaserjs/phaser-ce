@@ -569,7 +569,7 @@ Phaser.Sound.prototype = {
                     //  Gets reset by the play function
                     this.isPlaying = false;
 
-                    this.play(this.currentMarker, 0, this.volume, true, true);
+                    this.play(this.currentMarker, 0, this.volume, true, true, false);
                 }
                 else
                 {
@@ -602,13 +602,15 @@ Phaser.Sound.prototype = {
     * @param {number} [volume=1] - Volume of the sound you want to play. If none is given it will use the volume given to the Sound when it was created (which defaults to 1 if none was specified).
     * @param {boolean} [loop=false] - Loop when finished playing? If not using a marker / audio sprite the looping will be done via the WebAudio loop property, otherwise it's time based.
     * @param {boolean} [forceRestart=true] - If the sound is already playing you can set forceRestart to restart it from the beginning.
+    * @param {boolean} [dispatch=true] - Dispatch the `onPlay` signal.
     * @return {Phaser.Sound} This sound instance.
     */
-    play: function (marker, position, volume, loop, forceRestart)
+    play: function (marker, position, volume, loop, forceRestart, dispatch)
     {
 
         if (marker === undefined || marker === false || marker === null) { marker = ''; }
         if (forceRestart === undefined) { forceRestart = true; }
+        if (dispatch === undefined) { dispatch = true; }
 
         if (this.isPlaying && !this.allowMultiple && !forceRestart && !this.override)
         {
@@ -730,7 +732,11 @@ Phaser.Sound.prototype = {
                 this.startTime = this.game.time.time;
                 this.currentTime = 0;
                 this.stopTime = this.startTime + this.durationMS;
-                this.onPlay.dispatch(this);
+
+                if (dispatch)
+                {
+                    this.onPlay.dispatch(this);
+                }
             }
             else
             {
@@ -784,7 +790,10 @@ Phaser.Sound.prototype = {
             this.currentTime = 0;
             this.stopTime = this.startTime + this.durationMS;
 
-            this.onPlay.dispatch(this);
+            if (dispatch)
+            {
+                this.onPlay.dispatch(this);
+            }
         }
         else
         {
