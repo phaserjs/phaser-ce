@@ -217,44 +217,21 @@ Phaser.Rope.prototype.refresh = function ()
 
     this.count -= 0.2;
 
-    uvs[0] = 0;
-    uvs[1] = 0;
-    uvs[2] = 0;
-    uvs[3] = 1;
-
-    colors[0] = 1;
-    colors[1] = 1;
-
-    indices[0] = 0;
-    indices[1] = 1;
-
     var total = points.length;
-    var index;
-    var amount;
+    var index = 0;
+    var amount = 0;
 
-    for (var i = 1; i < total; i++)
+    for (var i = 0; i < total; i++)
     {
         index = i * 4;
 
         // time to do some smart drawing!
         amount = i / (total - 1);
 
-        if (i % 2)
-        {
-            uvs[index] = amount;
-            uvs[index + 1] = 0;
-
-            uvs[index + 2] = amount;
-            uvs[index + 3] = 1;
-        }
-        else
-        {
-            uvs[index] = amount;
-            uvs[index + 1] = 0;
-
-            uvs[index + 2] = amount;
-            uvs[index + 3] = 1;
-        }
+        uvs[index] = amount;
+        uvs[index + 1] = 0;
+        uvs[index + 2] = amount;
+        uvs[index + 3] = 1;
 
         index = i * 2;
         colors[index] = 1;
