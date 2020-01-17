@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### API Changes
+
+- Looped audio tag sounds no longer dispatch `onPlay` when looping. Now they dispatch `onLoop` only, which is consistent with looped Web Audio sounds.
+
 ### New Features
 
 - You can pass `powerPreference` in your [game config](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) to set the `powerPreference` WebGL context attribute when creating the game. Possible values are `default`, `high-performance`, and `low-power` (#652).
@@ -13,7 +17,7 @@
 
 ### Thanks
 
-@rarecoil, @samme, @taoabc, @dhashvir
+@dhashvir, @rarecoil, @samme, @taoabc
 
 ## Version 2.13.3 - 17 Sep 2019
 
