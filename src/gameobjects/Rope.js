@@ -270,16 +270,16 @@ Phaser.Rope.prototype.updateTransform = function ()
     var total = points.length;
     var point;
     var index;
-    var ratio;
     var perpLength;
     var num;
+    var halfHeight = this.texture.height / 2;
 
     for (var i = 0; i < total; i++)
     {
         point = points[i];
         index = i * 4;
 
-        if(i < points.length - 1)
+        if(i < total - 1)
         {
             nextPoint = points[i + 1];
         }
@@ -291,15 +291,8 @@ Phaser.Rope.prototype.updateTransform = function ()
         perp.y = -(nextPoint.x - lastPoint.x);
         perp.x = nextPoint.y - lastPoint.y;
 
-        ratio = (1 - (i / (total - 1))) * 10;
-
-        if (ratio > 1)
-        {
-            ratio = 1;
-        }
-
         perpLength = Math.sqrt((perp.x * perp.x) + (perp.y * perp.y));
-        num = this.texture.height / 2;
+        num = halfHeight;
         perp.x /= perpLength;
         perp.y /= perpLength;
 
