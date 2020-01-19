@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.13.3 "2019-09-17" - Built: Tue Sep 17 2019 10:32:46
+* v2.14.0 "2020-01-19" - Built: Sun Jan 19 2020 13:12:17
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -335,6 +335,7 @@ PIXI.DisplayObject.prototype = {
         this._mask = null;
 
         this._destroyCachedSprite();
+        this._destroyTintedTexture();
 
     },
 
@@ -668,6 +669,18 @@ PIXI.DisplayObject.prototype = {
 
         this._cachedSprite = null;
 
+    },
+
+    _destroyTintedTexture: function ()
+    {
+        if (!this.tintedTexture)
+        {
+            return;
+        }
+
+        Phaser.CanvasPool.removeByCanvas(this.tintedTexture);
+
+        this.tintedTexture = null;
     }
 
 };
@@ -3534,6 +3547,16 @@ PIXI.WebGLRenderer = function (game, config)
     this.clearBeforeRender = game.clearBeforeRender;
 
     /**
+     * The "powerPreference" attribute the WebGL context was created with.
+     *
+     * @property powerPreference
+     * @type string
+     * @default
+     * @readonly
+     */
+    this.powerPreference = game.powerPreference;
+
+    /**
      * The width of the canvas view
      *
      * @property width
@@ -3568,7 +3591,8 @@ PIXI.WebGLRenderer = function (game, config)
         failIfMajorPerformanceCaveat: config.failIfMajorPerformanceCaveat,
         premultipliedAlpha: this.transparent && this.transparent !== 'notMultiplied',
         stencil: true,
-        preserveDrawingBuffer: this.preserveDrawingBuffer
+        preserveDrawingBuffer: this.preserveDrawingBuffer,
+        powerPreference: game.powerPreference
     };
 
     /**
@@ -7216,9 +7240,9 @@ PIXI.CanvasRenderer.prototype.mapBlendModes = function ()
  *
  * @class PIXI.BaseTexture
  * @constructor
- * @param source {String|Canvas} the source object (image or canvas)
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
- * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
+ * @param source {HTMLCanvasElement|HTMLImageElement|HTMLVideoElement} the source object (image or canvas)
+ * @param scaleMode {number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param [resolution] {number} the resolution of the texture (for HiDPI displays)
  */
 PIXI.BaseTexture = function (source, scaleMode, resolution)
 {
@@ -7226,7 +7250,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * The Resolution of the texture.
      *
      * @property resolution
-     * @type Number
+     * @type number
      */
     this.resolution = resolution || 1;
 
@@ -7234,7 +7258,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * [read-only] The width of the base texture set when the image has loaded
      *
      * @property width
-     * @type Number
+     * @type number
      * @readOnly
      */
     this.width = 100;
@@ -7243,7 +7267,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * [read-only] The height of the base texture set when the image has loaded
      *
      * @property height
-     * @type Number
+     * @type number
      * @readOnly
      */
     this.height = 100;
@@ -7252,7 +7276,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * The scale mode to apply when scaling this texture
      *
      * @property scaleMode
-     * @type {Number}
+     * @type {number}
      * @default PIXI.scaleModes.LINEAR
      */
     this.scaleMode = scaleMode || PIXI.scaleModes.DEFAULT;
@@ -7261,7 +7285,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * [read-only] Set to true once the base texture has loaded
      *
      * @property hasLoaded
-     * @type Boolean
+     * @type boolean
      * @readOnly
      */
     this.hasLoaded = false;
@@ -7270,7 +7294,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * The image source that is used to create the texture.
      *
      * @property source
-     * @type Image
+     * @type HTMLCanvasElement|HTMLImageElement|HTMLVideoElement
      */
     this.source = source;
 
@@ -7278,7 +7302,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * Controls if RGB channels should be pre-multiplied by Alpha  (WebGL only)
      *
      * @property premultipliedAlpha
-     * @type Boolean
+     * @type boolean
      * @default true
      */
     this.premultipliedAlpha = true;
@@ -7287,7 +7311,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
 
     /**
      * @property _glTextures
-     * @type Array
+     * @type array
      * @private
      */
     this._glTextures = [];
@@ -7297,20 +7321,20 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * Also the texture must be a power of two size to work
      *
      * @property mipmap
-     * @type {Boolean}
+     * @type {boolean}
      */
     this.mipmap = false;
 
     /**
      * The multi texture batching index number.
      * @property textureIndex
-     * @type Number
+     * @type number
      */
     this.textureIndex = 0;
 
     /**
      * @property _dirty
-     * @type Array
+     * @type array
      * @private
      */
     this._dirty = [ true, true, true, true ];
@@ -7335,13 +7359,13 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * that has children that you do want to render, without causing a batch flush in the process.
      *
      * @property skipRender
-     * @type Boolean
+     * @type boolean
      */
     this.skipRender = false;
 
     /**
      * @property _powerOf2
-     * @type Boolean
+     * @type boolean
      * @private
      */
     this._powerOf2 = false;
@@ -7430,10 +7454,10 @@ PIXI.BaseTexture.prototype.unloadFromGPU = function ()
  *
  * @static
  * @method PIXI.BaseTexture#fromCanvas
- * @param canvas {Canvas} The canvas element source of the texture
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
- * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
- * @return {BaseTexture}
+ * @param canvas {HTMLCanvasElement} The canvas element source of the texture
+ * @param scaleMode {number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param [resolution] {number} the resolution of the texture (for HiDPI displays)
+ * @return {PIXI.BaseTexture}
  */
 PIXI.BaseTexture.fromCanvas = function (canvas, scaleMode, resolution)
 {
@@ -7812,7 +7836,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.13.3',
+    VERSION: '2.14.0',
 
     /**
     * An array of Phaser game instances.
@@ -8208,14 +8232,14 @@ var Phaser = Phaser || { // jshint ignore:line
 
     /**
     * A constant representing a left-top alignment or position.
-    * @constant Phaser.Phaser.LEFT_TOP
+    * @constant Phaser.LEFT_TOP
     * @type {integer}
     */
     LEFT_TOP: 3,
 
     /**
     * A constant representing a left-center alignment or position.
-    * @constant Phaser.LEFT_TOP
+    * @constant Phaser.LEFT_CENTER
     * @type {integer}
     */
     LEFT_CENTER: 4,
@@ -22856,6 +22880,12 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.dropFrames = false;
 
     /**
+    * @property {string} powerPreference - When the WebGL renderer is used, hint to the browser which GPU to use.
+    * @readonly
+    */
+    this.powerPreference = 'default';
+
+    /**
     * @property {number} _nextNotification - The soonest game.time.time value that the next fpsProblemNotifier can be dispatched.
     * @private
     */
@@ -22917,7 +22947,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @typedef {object} GameConfig
 * @property {boolean}            [GameConfig.alignH=false]                  - Sets {@link Phaser.ScaleManager#pageAlignHorizontally}.
 * @property {boolean}            [GameConfig.alignV=false]                  - Sets {@link Phaser.ScaleManager#pageAlignVertically}.
-* @property {number|string}      [GameConfig.antialias=true]
+* @property {boolean}            [GameConfig.antialias=true]
 * @property {number|string}      [GameConfig.backgroundColor=0]             - Sets {@link Phaser.Stage#backgroundColor}.
 * @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
 * @property {string}             [GameConfig.canvasID]                      - `id` attribute value to assign to the game canvas.
@@ -22941,6 +22971,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {string|HTMLElement} [GameConfig.parent='']                     - The DOM element into which this games canvas will be injected.
 * @property {object}             [GameConfig.physicsConfig]
 * @property {boolean}            [GameConfig.pointerLock=true]              - Starts the {@link Phaser.PointerLock Pointer Lock} handler, if supported by the device.
+* @property {string}             [GameConfig.powerPreference='default']     - Sets the WebGL renderer's powerPreference when the WebGL renderer is used.
 * @property {boolean}            [GameConfig.preserveDrawingBuffer=false]   - Whether or not the contents of the stencil buffer is retained after rendering.
 * @property {number}             [GameConfig.renderer=Phaser.AUTO]
 * @property {number}             [GameConfig.resolution=1]                  - The resolution of your game, as a ratio of canvas pixels to game pixels.
@@ -23024,6 +23055,11 @@ Phaser.Game.prototype = {
         if (config.preserveDrawingBuffer !== undefined)
         {
             this.preserveDrawingBuffer = config.preserveDrawingBuffer;
+        }
+
+        if (config.powerPreference !== undefined)
+        {
+            this.powerPreference = config.powerPreference;
         }
 
         if (config.physicsConfig)
@@ -32019,6 +32055,7 @@ Phaser.Component.Destroy.prototype = {
         this._mask = null;
 
         this._destroyCachedSprite();
+        this._destroyTintedTexture();
 
         //  Texture?
         if (destroyTexture)
@@ -36045,7 +36082,12 @@ Phaser.CanvasPool = {
     log: function ()
     {
 
-        console.log('CanvasPool: %s used, %s free, %s total', this.getTotal(), this.getFree(), this.pool.length);
+        console.log(
+            'CanvasPool: %s used, %s free, %s total',
+            Phaser.CanvasPool.getTotal(),
+            Phaser.CanvasPool.getFree(),
+            Phaser.CanvasPool.pool.length
+        );
 
     }
 
