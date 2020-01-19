@@ -4,8 +4,8 @@
 
 ### API Changes
 
-- Looped audio tag sounds no longer dispatch `onPlay` when looping, only `onLoop`.
-- Looped Web Audio sound markers no longer dispatch `onPlay` when looping, only `onLoop`.
+- Looped audio tag sounds no longer dispatch [onPlay](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#onPlay) when looping, only [onLoop](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#onLoop).
+- Looped Web Audio sound markers no longer dispatch [onPlay](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#onPlay) when looping, only [onLoop](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#onLoop).
 
 ### New Features
 
@@ -13,7 +13,7 @@
 
 ### Updates
 
-- `Rope.refresh` no longer has a pointless duplicated modulus check in the for-loop and iterates from zero, allowing the removal of several direct array assignments.
+- [Rope.refresh](https://photonstorm.github.io/phaser-ce/Phaser.Rope.html#refresh) no longer has a pointless duplicated modulus check in the for-loop and iterates from zero, allowing the removal of several direct array assignments.
 
 ### Bug Fixes
 
@@ -22,7 +22,7 @@
 
 ### Thanks
 
-@dhashvir, @rarecoil, @samme, @taoabc
+@dhashvir, @photonstorm, @rarecoil, @samme, @taoabc
 
 ## Version 2.13.3 - 17 Sep 2019
 
