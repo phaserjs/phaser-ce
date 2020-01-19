@@ -258,7 +258,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.onDecoded = new Phaser.Signal();
 
     /**
-    * @property {Phaser.Signal} onPlay - The onPlay event is dispatched each time this sound is played or a looping marker is restarted. It passes one argument, this sound.
+    * @property {Phaser.Signal} onPlay - The onPlay event is dispatched each time this sound is played (but not looped). It passes one argument, this sound.
     */
     this.onPlay = new Phaser.Signal();
 
