@@ -4,7 +4,8 @@
 
 ### API Changes
 
-- Looped audio tag sounds no longer dispatch `onPlay` when looping. Now they dispatch `onLoop` only, which is consistent with looped Web Audio sounds.
+- Looped audio tag sounds no longer dispatch `onPlay` when looping, only `onLoop`.
+- Looped Web Audio sound markers no longer dispatch `onPlay` when looping, only `onLoop`.
 
 ### New Features
 
