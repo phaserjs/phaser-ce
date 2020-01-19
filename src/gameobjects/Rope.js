@@ -8,9 +8,9 @@
 
 /**
 * A Rope is a Sprite that has a repeating texture.
-* 
+*
 * The texture will automatically wrap on the edges as it moves.
-* 
+*
 * Please note that Ropes cannot have an input handler.
 *
 * @class Phaser.Rope
@@ -194,7 +194,7 @@ Phaser.Rope.prototype.reset = function (x, y)
 
 };
 
-/*
+/**
 * Refreshes the rope texture and UV coordinates.
 *
 * @method Phaser.Rope#refresh
@@ -244,7 +244,7 @@ Phaser.Rope.prototype.refresh = function ()
 
 };
 
-/*
+/**
 * Updates the Ropes transform ready for rendering.
 *
 * @method Phaser.Rope#updateTransform
@@ -311,7 +311,7 @@ Phaser.Rope.prototype.updateTransform = function ()
 
 };
 
-/*
+/**
 * Sets the Texture this Rope uses for rendering.
 *
 * @method Phaser.Rope#setTexture
@@ -325,7 +325,7 @@ Phaser.Rope.prototype.setTexture = function (texture)
 
 };
 
-/*
+/**
 * Renders the Rope to WebGL.
 *
 * @private
@@ -355,7 +355,7 @@ Phaser.Rope.prototype._renderWebGL = function (renderSession)
 
 };
 
-/*
+/**
 * Builds the Strip.
 *
 * @private
@@ -387,7 +387,7 @@ Phaser.Rope.prototype._initWebGL = function (renderSession)
 
 };
 
-/*
+/**
 * Renders the Strip to WebGL.
 *
 * @private
@@ -470,7 +470,7 @@ Phaser.Rope.prototype._renderStrip = function (renderSession)
 
 };
 
-/*
+/**
 * Renders the Strip to Canvas.
 *
 * @private
@@ -507,7 +507,7 @@ Phaser.Rope.prototype._renderCanvas = function (renderSession)
 
 };
 
-/*
+/**
 * Renders a Triangle Strip to Canvas.
 *
 * @private
@@ -533,7 +533,7 @@ Phaser.Rope.prototype._renderCanvasTriangleStrip = function (context)
 
 };
 
-/*
+/**
 * Renders a Triangle to Canvas.
 *
 * @private
@@ -562,7 +562,7 @@ Phaser.Rope.prototype._renderCanvasTriangles = function (context)
 
 };
 
-/*
+/**
 * Renders a Triangle to Canvas.
 *
 * @private
@@ -652,7 +652,7 @@ Phaser.Rope.prototype._renderCanvasDrawTriangle = function (context, vertices, u
 
 };
 
-/*
+/**
 * Renders a flat strip.
 *
 * @method Phaser.Rope#renderStripFlat
@@ -693,7 +693,7 @@ Phaser.Rope.prototype.renderStripFlat = function (strip)
 
 };
 
-/*
+/**
 * Returns the bounds of the mesh as a rectangle. The bounds calculation takes the worldTransform into account.
 *
 * @method Phaser.Rope#getBounds
