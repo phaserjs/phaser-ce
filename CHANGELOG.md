@@ -1,5 +1,27 @@
 # Change Log
 
+## Version 2.14.1 - asap 2020
+
+### API Changes
+
+
+
+### New Features
+
+
+
+### Updates
+
+
+
+### Bug Fixes
+
+* Reversion of WebGLSpriteBatch Bug introced at PR #641
+
+### Thanks
+
+@weedshaker
+
 ## Version 2.14.0 - 19 Jan 2020
 
 ### API Changes
