@@ -190,16 +190,7 @@ declare module PIXI {
         * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
         * @param resolution the resolution of the texture (for HiDPI displays)
         */
-        constructor(source: HTMLImageElement, scaleMode: scaleModes);
-
-        /**
-        * A texture stores the information that represents an image. All textures have a base texture.
-        * 
-        * @param source the source object (image or canvas)
-        * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
-        * @param resolution the resolution of the texture (for HiDPI displays)
-        */
-        constructor(source: HTMLCanvasElement, scaleMode: scaleModes);
+        constructor(source: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement, scaleMode: scaleModes, resolution?: number);
 
 
         /**
@@ -246,7 +237,7 @@ declare module PIXI {
         /**
         * The image source that is used to create the texture.
         */
-        source: HTMLImageElement;
+        source: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement;
 
         /**
         * The multi texture batching index number.
@@ -257,6 +248,9 @@ declare module PIXI {
         * [read-only] The width of the base texture set when the image has loaded
         */
         width: number;
+
+        _dirty: boolean[];
+        _glTextures: WebGLTexture[];
 
         listeners(eventName: string): Function[];
         emit(eventName: string, data?: any): boolean;

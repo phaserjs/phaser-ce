@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.13.3 "2019-09-17" - Built: Tue Sep 17 2019 10:32:43
+* v2.14.0 "2020-01-19" - Built: Sun Jan 19 2020 13:12:14
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -335,6 +335,7 @@ PIXI.DisplayObject.prototype = {
         this._mask = null;
 
         this._destroyCachedSprite();
+        this._destroyTintedTexture();
 
     },
 
@@ -668,6 +669,18 @@ PIXI.DisplayObject.prototype = {
 
         this._cachedSprite = null;
 
+    },
+
+    _destroyTintedTexture: function ()
+    {
+        if (!this.tintedTexture)
+        {
+            return;
+        }
+
+        Phaser.CanvasPool.removeByCanvas(this.tintedTexture);
+
+        this.tintedTexture = null;
     }
 
 };
@@ -3534,6 +3547,16 @@ PIXI.WebGLRenderer = function (game, config)
     this.clearBeforeRender = game.clearBeforeRender;
 
     /**
+     * The "powerPreference" attribute the WebGL context was created with.
+     *
+     * @property powerPreference
+     * @type string
+     * @default
+     * @readonly
+     */
+    this.powerPreference = game.powerPreference;
+
+    /**
      * The width of the canvas view
      *
      * @property width
@@ -3568,7 +3591,8 @@ PIXI.WebGLRenderer = function (game, config)
         failIfMajorPerformanceCaveat: config.failIfMajorPerformanceCaveat,
         premultipliedAlpha: this.transparent && this.transparent !== 'notMultiplied',
         stencil: true,
-        preserveDrawingBuffer: this.preserveDrawingBuffer
+        preserveDrawingBuffer: this.preserveDrawingBuffer,
+        powerPreference: game.powerPreference
     };
 
     /**
@@ -7216,9 +7240,9 @@ PIXI.CanvasRenderer.prototype.mapBlendModes = function ()
  *
  * @class PIXI.BaseTexture
  * @constructor
- * @param source {String|Canvas} the source object (image or canvas)
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
- * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
+ * @param source {HTMLCanvasElement|HTMLImageElement|HTMLVideoElement} the source object (image or canvas)
+ * @param scaleMode {number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param [resolution] {number} the resolution of the texture (for HiDPI displays)
  */
 PIXI.BaseTexture = function (source, scaleMode, resolution)
 {
@@ -7226,7 +7250,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * The Resolution of the texture.
      *
      * @property resolution
-     * @type Number
+     * @type number
      */
     this.resolution = resolution || 1;
 
@@ -7234,7 +7258,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * [read-only] The width of the base texture set when the image has loaded
      *
      * @property width
-     * @type Number
+     * @type number
      * @readOnly
      */
     this.width = 100;
@@ -7243,7 +7267,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * [read-only] The height of the base texture set when the image has loaded
      *
      * @property height
-     * @type Number
+     * @type number
      * @readOnly
      */
     this.height = 100;
@@ -7252,7 +7276,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * The scale mode to apply when scaling this texture
      *
      * @property scaleMode
-     * @type {Number}
+     * @type {number}
      * @default PIXI.scaleModes.LINEAR
      */
     this.scaleMode = scaleMode || PIXI.scaleModes.DEFAULT;
@@ -7261,7 +7285,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * [read-only] Set to true once the base texture has loaded
      *
      * @property hasLoaded
-     * @type Boolean
+     * @type boolean
      * @readOnly
      */
     this.hasLoaded = false;
@@ -7270,7 +7294,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * The image source that is used to create the texture.
      *
      * @property source
-     * @type Image
+     * @type HTMLCanvasElement|HTMLImageElement|HTMLVideoElement
      */
     this.source = source;
 
@@ -7278,7 +7302,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * Controls if RGB channels should be pre-multiplied by Alpha  (WebGL only)
      *
      * @property premultipliedAlpha
-     * @type Boolean
+     * @type boolean
      * @default true
      */
     this.premultipliedAlpha = true;
@@ -7287,7 +7311,7 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
 
     /**
      * @property _glTextures
-     * @type Array
+     * @type array
      * @private
      */
     this._glTextures = [];
@@ -7297,20 +7321,20 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * Also the texture must be a power of two size to work
      *
      * @property mipmap
-     * @type {Boolean}
+     * @type {boolean}
      */
     this.mipmap = false;
 
     /**
      * The multi texture batching index number.
      * @property textureIndex
-     * @type Number
+     * @type number
      */
     this.textureIndex = 0;
 
     /**
      * @property _dirty
-     * @type Array
+     * @type array
      * @private
      */
     this._dirty = [ true, true, true, true ];
@@ -7335,13 +7359,13 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * that has children that you do want to render, without causing a batch flush in the process.
      *
      * @property skipRender
-     * @type Boolean
+     * @type boolean
      */
     this.skipRender = false;
 
     /**
      * @property _powerOf2
-     * @type Boolean
+     * @type boolean
      * @private
      */
     this._powerOf2 = false;
@@ -7430,10 +7454,10 @@ PIXI.BaseTexture.prototype.unloadFromGPU = function ()
  *
  * @static
  * @method PIXI.BaseTexture#fromCanvas
- * @param canvas {Canvas} The canvas element source of the texture
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
- * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
- * @return {BaseTexture}
+ * @param canvas {HTMLCanvasElement} The canvas element source of the texture
+ * @param scaleMode {number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param [resolution] {number} the resolution of the texture (for HiDPI displays)
+ * @return {PIXI.BaseTexture}
  */
 PIXI.BaseTexture.fromCanvas = function (canvas, scaleMode, resolution)
 {
@@ -7812,7 +7836,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.13.3',
+    VERSION: '2.14.0',
 
     /**
     * An array of Phaser game instances.
@@ -8208,14 +8232,14 @@ var Phaser = Phaser || { // jshint ignore:line
 
     /**
     * A constant representing a left-top alignment or position.
-    * @constant Phaser.Phaser.LEFT_TOP
+    * @constant Phaser.LEFT_TOP
     * @type {integer}
     */
     LEFT_TOP: 3,
 
     /**
     * A constant representing a left-center alignment or position.
-    * @constant Phaser.LEFT_TOP
+    * @constant Phaser.LEFT_CENTER
     * @type {integer}
     */
     LEFT_CENTER: 4,
@@ -22856,6 +22880,12 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.dropFrames = false;
 
     /**
+    * @property {string} powerPreference - When the WebGL renderer is used, hint to the browser which GPU to use.
+    * @readonly
+    */
+    this.powerPreference = 'default';
+
+    /**
     * @property {number} _nextNotification - The soonest game.time.time value that the next fpsProblemNotifier can be dispatched.
     * @private
     */
@@ -22917,7 +22947,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @typedef {object} GameConfig
 * @property {boolean}            [GameConfig.alignH=false]                  - Sets {@link Phaser.ScaleManager#pageAlignHorizontally}.
 * @property {boolean}            [GameConfig.alignV=false]                  - Sets {@link Phaser.ScaleManager#pageAlignVertically}.
-* @property {number|string}      [GameConfig.antialias=true]
+* @property {boolean}            [GameConfig.antialias=true]
 * @property {number|string}      [GameConfig.backgroundColor=0]             - Sets {@link Phaser.Stage#backgroundColor}.
 * @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
 * @property {string}             [GameConfig.canvasID]                      - `id` attribute value to assign to the game canvas.
@@ -22941,6 +22971,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 * @property {string|HTMLElement} [GameConfig.parent='']                     - The DOM element into which this games canvas will be injected.
 * @property {object}             [GameConfig.physicsConfig]
 * @property {boolean}            [GameConfig.pointerLock=true]              - Starts the {@link Phaser.PointerLock Pointer Lock} handler, if supported by the device.
+* @property {string}             [GameConfig.powerPreference='default']     - Sets the WebGL renderer's powerPreference when the WebGL renderer is used.
 * @property {boolean}            [GameConfig.preserveDrawingBuffer=false]   - Whether or not the contents of the stencil buffer is retained after rendering.
 * @property {number}             [GameConfig.renderer=Phaser.AUTO]
 * @property {number}             [GameConfig.resolution=1]                  - The resolution of your game, as a ratio of canvas pixels to game pixels.
@@ -23024,6 +23055,11 @@ Phaser.Game.prototype = {
         if (config.preserveDrawingBuffer !== undefined)
         {
             this.preserveDrawingBuffer = config.preserveDrawingBuffer;
+        }
+
+        if (config.powerPreference !== undefined)
+        {
+            this.powerPreference = config.powerPreference;
         }
 
         if (config.physicsConfig)
@@ -34720,6 +34756,7 @@ Phaser.Component.Destroy.prototype = {
         this._mask = null;
 
         this._destroyCachedSprite();
+        this._destroyTintedTexture();
 
         //  Texture?
         if (destroyTexture)
@@ -49178,9 +49215,9 @@ Object.defineProperty(Phaser.RetroFont.prototype, 'smoothed', {
 
 /**
 * A Rope is a Sprite that has a repeating texture.
-* 
+*
 * The texture will automatically wrap on the edges as it moves.
-* 
+*
 * Please note that Ropes cannot have an input handler.
 *
 * @class Phaser.Rope
@@ -49364,7 +49401,7 @@ Phaser.Rope.prototype.reset = function (x, y)
 
 };
 
-/*
+/**
 * Refreshes the rope texture and UV coordinates.
 *
 * @method Phaser.Rope#refresh
@@ -49387,44 +49424,21 @@ Phaser.Rope.prototype.refresh = function ()
 
     this.count -= 0.2;
 
-    uvs[0] = 0;
-    uvs[1] = 0;
-    uvs[2] = 0;
-    uvs[3] = 1;
-
-    colors[0] = 1;
-    colors[1] = 1;
-
-    indices[0] = 0;
-    indices[1] = 1;
-
     var total = points.length;
-    var index;
-    var amount;
+    var index = 0;
+    var amount = 0;
 
-    for (var i = 1; i < total; i++)
+    for (var i = 0; i < total; i++)
     {
         index = i * 4;
 
         // time to do some smart drawing!
         amount = i / (total - 1);
 
-        if (i % 2)
-        {
-            uvs[index] = amount;
-            uvs[index + 1] = 0;
-
-            uvs[index + 2] = amount;
-            uvs[index + 3] = 1;
-        }
-        else
-        {
-            uvs[index] = amount;
-            uvs[index + 1] = 0;
-
-            uvs[index + 2] = amount;
-            uvs[index + 3] = 1;
-        }
+        uvs[index] = amount;
+        uvs[index + 1] = 0;
+        uvs[index + 2] = amount;
+        uvs[index + 3] = 1;
 
         index = i * 2;
         colors[index] = 1;
@@ -49437,7 +49451,7 @@ Phaser.Rope.prototype.refresh = function ()
 
 };
 
-/*
+/**
 * Updates the Ropes transform ready for rendering.
 *
 * @method Phaser.Rope#updateTransform
@@ -49463,16 +49477,16 @@ Phaser.Rope.prototype.updateTransform = function ()
     var total = points.length;
     var point;
     var index;
-    var ratio;
     var perpLength;
     var num;
+    var halfHeight = this.texture.height / 2;
 
     for (var i = 0; i < total; i++)
     {
         point = points[i];
         index = i * 4;
 
-        if(i < points.length - 1)
+        if(i < total - 1)
         {
             nextPoint = points[i + 1];
         }
@@ -49484,15 +49498,8 @@ Phaser.Rope.prototype.updateTransform = function ()
         perp.y = -(nextPoint.x - lastPoint.x);
         perp.x = nextPoint.y - lastPoint.y;
 
-        ratio = (1 - (i / (total - 1))) * 10;
-
-        if (ratio > 1)
-        {
-            ratio = 1;
-        }
-
         perpLength = Math.sqrt((perp.x * perp.x) + (perp.y * perp.y));
-        num = this.texture.height / 2;
+        num = halfHeight;
         perp.x /= perpLength;
         perp.y /= perpLength;
 
@@ -49511,7 +49518,7 @@ Phaser.Rope.prototype.updateTransform = function ()
 
 };
 
-/*
+/**
 * Sets the Texture this Rope uses for rendering.
 *
 * @method Phaser.Rope#setTexture
@@ -49525,7 +49532,7 @@ Phaser.Rope.prototype.setTexture = function (texture)
 
 };
 
-/*
+/**
 * Renders the Rope to WebGL.
 *
 * @private
@@ -49555,7 +49562,7 @@ Phaser.Rope.prototype._renderWebGL = function (renderSession)
 
 };
 
-/*
+/**
 * Builds the Strip.
 *
 * @private
@@ -49587,7 +49594,7 @@ Phaser.Rope.prototype._initWebGL = function (renderSession)
 
 };
 
-/*
+/**
 * Renders the Strip to WebGL.
 *
 * @private
@@ -49670,7 +49677,7 @@ Phaser.Rope.prototype._renderStrip = function (renderSession)
 
 };
 
-/*
+/**
 * Renders the Strip to Canvas.
 *
 * @private
@@ -49707,7 +49714,7 @@ Phaser.Rope.prototype._renderCanvas = function (renderSession)
 
 };
 
-/*
+/**
 * Renders a Triangle Strip to Canvas.
 *
 * @private
@@ -49733,7 +49740,7 @@ Phaser.Rope.prototype._renderCanvasTriangleStrip = function (context)
 
 };
 
-/*
+/**
 * Renders a Triangle to Canvas.
 *
 * @private
@@ -49762,7 +49769,7 @@ Phaser.Rope.prototype._renderCanvasTriangles = function (context)
 
 };
 
-/*
+/**
 * Renders a Triangle to Canvas.
 *
 * @private
@@ -49852,7 +49859,7 @@ Phaser.Rope.prototype._renderCanvasDrawTriangle = function (context, vertices, u
 
 };
 
-/*
+/**
 * Renders a flat strip.
 *
 * @method Phaser.Rope#renderStripFlat
@@ -49893,7 +49900,7 @@ Phaser.Rope.prototype.renderStripFlat = function (strip)
 
 };
 
-/*
+/**
 * Returns the bounds of the mesh as a rectangle. The bounds calculation takes the worldTransform into account.
 *
 * @method Phaser.Rope#getBounds
@@ -50971,7 +50978,12 @@ Phaser.CanvasPool = {
     log: function ()
     {
 
-        console.log('CanvasPool: %s used, %s free, %s total', this.getTotal(), this.getFree(), this.pool.length);
+        console.log(
+            'CanvasPool: %s used, %s free, %s total',
+            Phaser.CanvasPool.getTotal(),
+            Phaser.CanvasPool.getFree(),
+            Phaser.CanvasPool.pool.length
+        );
 
     }
 
@@ -68572,7 +68584,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this._markedToDelete = false;
 
     /**
-    * @property {boolean} _pendingStart - play() was called but waiting for playback. Audio Tag only. Cleared in update() once playback starts.
+    * @property {boolean} _pendingStart - play() was called but waiting for playback. Audio Tag only, and not used for sound markers. Cleared in update() once playback starts.
     * @private
     */
     this._pendingStart = false;
@@ -68634,7 +68646,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.onDecoded = new Phaser.Signal();
 
     /**
-    * @property {Phaser.Signal} onPlay - The onPlay event is dispatched each time this sound is played or a looping marker is restarted. It passes one argument, this sound.
+    * @property {Phaser.Signal} onPlay - The onPlay event is dispatched each time this sound is played (but not looped). It passes one argument, this sound.
     */
     this.onPlay = new Phaser.Signal();
 
@@ -68920,7 +68932,7 @@ Phaser.Sound.prototype = {
                         else
                         {
                             this.onMarkerComplete.dispatch(this.currentMarker, this);
-                            this.play(this.currentMarker, 0, this.volume, true, true);
+                            this.play(this.currentMarker, 0, this.volume, true, true, false);
                         }
                     }
                     else
@@ -68945,7 +68957,7 @@ Phaser.Sound.prototype = {
                     //  Gets reset by the play function
                     this.isPlaying = false;
 
-                    this.play(this.currentMarker, 0, this.volume, true, true);
+                    this.play(this.currentMarker, 0, this.volume, true, true, false);
                 }
                 else
                 {
@@ -68978,13 +68990,15 @@ Phaser.Sound.prototype = {
     * @param {number} [volume=1] - Volume of the sound you want to play. If none is given it will use the volume given to the Sound when it was created (which defaults to 1 if none was specified).
     * @param {boolean} [loop=false] - Loop when finished playing? If not using a marker / audio sprite the looping will be done via the WebAudio loop property, otherwise it's time based.
     * @param {boolean} [forceRestart=true] - If the sound is already playing you can set forceRestart to restart it from the beginning.
+    * @param {boolean} [onPlay=true] - Dispatch the `onPlay` signal.
     * @return {Phaser.Sound} This sound instance.
     */
-    play: function (marker, position, volume, loop, forceRestart)
+    play: function (marker, position, volume, loop, forceRestart, onPlay)
     {
 
         if (marker === undefined || marker === false || marker === null) { marker = ''; }
         if (forceRestart === undefined) { forceRestart = true; }
+        if (onPlay === undefined) { onPlay = true; }
 
         if (this.isPlaying && !this.allowMultiple && !forceRestart && !this.override)
         {
@@ -69106,7 +69120,11 @@ Phaser.Sound.prototype = {
                 this.startTime = this.game.time.time;
                 this.currentTime = 0;
                 this.stopTime = this.startTime + this.durationMS;
-                this.onPlay.dispatch(this);
+
+                if (onPlay)
+                {
+                    this.onPlay.dispatch(this);
+                }
             }
             else
             {
@@ -69152,7 +69170,7 @@ Phaser.Sound.prototype = {
                 this._sound.volume = this._volume * this._globalVolume;
             }
 
-            this._pendingStart = true;
+            this._pendingStart = !this.currentMarker;
             this.isPlaying = true;
             this.paused = false;
             this._tempPause = 0;
@@ -69160,7 +69178,10 @@ Phaser.Sound.prototype = {
             this.currentTime = 0;
             this.stopTime = this.startTime + this.durationMS;
 
-            this.onPlay.dispatch(this);
+            if (onPlay)
+            {
+                this.onPlay.dispatch(this);
+            }
         }
         else
         {
@@ -69264,7 +69285,7 @@ Phaser.Sound.prototype = {
             }
             else
             {
-                this._pendingStart = true;
+                this._pendingStart = !this.currentMarker;
                 this._sound.currentTime = this._tempPause;
                 this._tempPause = 0;
                 this._sound.play();
@@ -73602,14 +73623,31 @@ Phaser.Utils.Debug.prototype = {
         this.line('Playing: ' + sound.isPlaying + '  Loop: ' + sound.loop);
         this.line('Time: ' + (sound.currentTime / 1000).toFixed(3) + 's  Total: ' + sound.totalDuration.toFixed(3) + 's');
         this.line('Volume: ' + sound.volume.toFixed(2) + (sound.mute ? ' (Mute)' : ''));
-        this.line('Using: ' + (sound.usingWebAudio ? 'Web Audio' : 'Audio Tag') + '  ' +
-            (sound.usingWebAudio ? ('Source: ' + (sound.sourceId || 'none')) : ''));
+        this.line('Using: ' + (sound.usingWebAudio ? 'Web Audio' : 'Audio Tag'));
+
+        if (sound.usingWebAudio)
+        {
+            this.line('  Source: ' + (sound.sourceId || 'none'));
+        }
+
+        if (sound.usingAudioTag && sound._sound)
+        {
+            var source = sound._sound;
+
+            this.line('  currentSrc: ' + source.currentSrc);
+            this.line('  currentTime: ' + source.currentTime);
+            this.line('  duration: ' + source.duration);
+            this.line('  ended: ' + source.ended);
+            this.line('  loop: ' + source.loop);
+            this.line('  muted: ' + source.muted);
+            this.line('  paused: ' + source.paused);
+        }
 
         if (sound.currentMarker !== '')
         {
             this.line('Marker: ' + sound.currentMarker + '  Duration: ' + sound.duration.toFixed(3) + 's (' + sound.durationMS + 'ms)');
-            this.line('Start: ' + sound.markers[sound.currentMarker].start + '  Stop: ' + sound.markers[sound.currentMarker].stop);
-            this.line('Position: ' + sound.position);
+            this.line('Start: ' + sound.markers[sound.currentMarker].start.toFixed(3) + '  Stop: ' + sound.markers[sound.currentMarker].stop.toFixed(3));
+            this.line('Position: ' + sound.position.toFixed(3));
         }
 
         this.stop();

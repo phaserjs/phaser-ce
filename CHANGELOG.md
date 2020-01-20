@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.14.0 - 19 Jan 2020
 
 ### API Changes
 

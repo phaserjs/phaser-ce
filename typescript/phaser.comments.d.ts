@@ -7697,6 +7697,7 @@ declare module Phaser {
         parent?: HTMLElement | string;
         physicsConfig?: any;
         pointerLock?: boolean;
+        powerPreference?: string;
         preserveDrawingBuffer?: boolean;
         renderer?: number;
         resolution?: number;
@@ -8111,6 +8112,11 @@ declare module Phaser {
         * Reference to the plugin manager.
         */
         plugins: PluginManager;
+
+        /**
+        * When the WebGL renderer is used, hint to the browser which GPU to use.
+        */
+        powerPreference: string;
 
         /**
         * The value of the preserveDrawingBuffer flag affects whether or not the contents of the stencil buffer is retained after rendering.
@@ -26458,7 +26464,7 @@ declare module Phaser {
         onPause: Phaser.Signal;
 
         /**
-        * The onPlay event is dispatched each time this sound is played or a looping marker is restarted. It passes one argument, this sound.
+        * The onPlay event is dispatched each time this sound is played (but not looped). It passes one argument, this sound.
         */
         onPlay: Phaser.Signal;
 
@@ -26610,6 +26616,7 @@ declare module Phaser {
         * @param volume Volume of the sound you want to play. If none is given it will use the volume given to the Sound when it was created (which defaults to 1 if none was specified). - Default: 1
         * @param loop Loop when finished playing? If not using a marker / audio sprite the looping will be done via the WebAudio loop property, otherwise it's time based.
         * @param forceRestart If the sound is already playing you can set forceRestart to restart it from the beginning. - Default: true
+        * @param onPlay Dispatch the `onPlay` signal. - Default: true
         * @return This sound instance.
         */
         play(marker?: string, position?: number, volume?: number, loop?: boolean, forceRestart?: boolean): Phaser.Sound;
