@@ -253,6 +253,15 @@ PIXI.WebGLSpriteBatch.prototype.end = function ()
 PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 {
     var texture = sprite.texture;
+    var baseTexture = texture.baseTexture;
+    var gl = this.gl;
+    if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    {
+        this.flush();
+        gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
+        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+        PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
+    }
 
     //  They provided an alternative rendering matrix, so use it
     var wt = sprite.worldTransform;
