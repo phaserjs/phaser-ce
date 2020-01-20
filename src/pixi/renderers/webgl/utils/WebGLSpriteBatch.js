@@ -434,7 +434,16 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
 {
     var texture = sprite.tilingTexture;
+    var baseTexture = texture.baseTexture;
+    var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
+    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    {
+        this.flush();
+        gl.activeTexture(gl.TEXTURE0 + textureIndex);
+        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+    }
 
     // check texture..
     if (this.currentBatchSize >= this.size)
@@ -666,7 +675,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         }
 
         //
-        if ((currentBaseTexture !== nextTexture && !skip) ||
+        if (/* (currentBaseTexture !== nextTexture && !skip) || */
             blendSwap ||
             shaderSwap)
         {
