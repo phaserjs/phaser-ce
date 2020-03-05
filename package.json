@@ -63,6 +63,7 @@
     "grunt-ts": "^6.0.0-beta.22",
     "jsdoc": "^3.6.3",
     "load-grunt-config": "^3.0.1",
+    "markdown-it": "^10.0.0",
     "typescript": "1.4.1"
   },
   "typings": "./typescript/phaser.comments.d.ts",
