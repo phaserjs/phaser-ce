@@ -1,22 +1,18 @@
 # Change Log
 
-## Version 2.14.1 - asap 2020
+## Unreleased
 
 ### API Changes
 
-
-
-### New Features
-
-
+* Removed Phaser.Component.Core.skipTypeChecks.
 
 ### Updates
 
-
+* [Phaser.Component.Core.init()](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#_init) no longer checks types.
 
 ### Bug Fixes
 
-* Reversion of WebGLSpriteBatch Bug introced at PR #641
+* Fixed multitexture rendering (#644, #641).
 
 ### Thanks
 
@@ -221,11 +217,11 @@ If you're starting or stopping input handlers manually, you'll have to make some
 
   #### Which input handlers are running, depending on device capabilities
 
-  Device has                  | mspointer | touch   | mouse
-  ----------------------------|-----------|---------|-------
-  Pointer Events              | active    |         |
-  no Pointer Events; Touch    |           | active† | active
-  no Pointer Events; no Touch |           |         | active
+Device has                  | mspointer | touch   | mouse
+----------------------------|-----------|---------|-------
+Pointer Events              | active    |         |
+no Pointer Events; Touch    |           | active† | active
+no Pointer Events; no Touch |           |         | active
 
   (†) capture on
 
