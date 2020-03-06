@@ -28,9 +28,10 @@
   },
   "scripts": {
     "grunt": "grunt",
-    "test": "eslint src",
+    "test": "npm run test:src; npm run test:ts",
     "test:build": "node --check build/*.js; node --check build/custom/*.js",
-    "test:dist": "grunt test && node -c dist/phaser-test.js",
+    "test:dist": "grunt test && node --check dist/phaser-test.js",
+    "test:src": "eslint src",
     "test:ts": "./node_modules/typescript/bin/tsc --noImplicitAny ./typescript/{p2,phaser,pixi}.d.ts && ./node_modules/typescript/bin/tsc --noImplicitAny ./typescript/{phaser,pixi}.comments.d.ts"
   },
   "keywords": [
