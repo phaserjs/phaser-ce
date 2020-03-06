@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: LoadTexture</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2020011913">
+	<link rel="stylesheet" href="styles/site.phaser.css?2020030612">
 </head>
 
 <body>
@@ -180,7 +180,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/gameobjects/components/LoadTexture.js#L12" title="LoadTexture on line 12 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 12</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/gameobjects/components/LoadTexture.js#L12" title="LoadTexture on line 12 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 12</a>
     
 
 	
@@ -290,7 +290,7 @@ for example: <code>player.frame = 4</code>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/gameobjects/components/LoadTexture.js#L265" title="frame on line 265 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 265</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/gameobjects/components/LoadTexture.js#L265" title="frame on line 265 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 265</a>
     
 
 	
@@ -317,7 +317,7 @@ for example: <code>player.frame = 4</code>.</p>
     
     <div class="description members-description">
         <p>Gets or sets the current frame name of the texture being used to render this Game Object.</p>
-<p>To change the frame set <code>frameName</code> to the name of the new frame in the texture atlas you wish this Game Object to use, 
+<p>To change the frame set <code>frameName</code> to the name of the new frame in the texture atlas you wish this Game Object to use,
 for example: <code>player.frameName = &quot;idle&quot;</code>.</p>
 <p>If the frame name given doesn't exist it will revert to the first frame found in the texture and throw a console warning.</p>
 <p>If you are using a sprite sheet then you should use the <code>frame</code> property instead.</p>
@@ -372,7 +372,7 @@ for example: <code>player.frameName = &quot;idle&quot;</code>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/gameobjects/components/LoadTexture.js#L292" title="frameName on line 292 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 292</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/gameobjects/components/LoadTexture.js#L292" title="frameName on line 292 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 292</a>
     
 
 	
@@ -409,10 +409,10 @@ for example: <code>player.frameName = &quot;idle&quot;</code>.</p>
 <p>If your Game Object is using a frame from a texture atlas and you just wish to change to another frame, then see the <code>frame</code> or <code>frameName</code> properties instead.</p>
 <p>You should only use <code>loadTexture</code> if you want to replace the base texture entirely.</p>
 <p>Calling this method causes a WebGL texture update, so use sparingly or in low-intensity portions of your game, or if you know the new texture is already on the GPU.</p>
-<p>You can use the new const <code>Phaser.PENDING_ATLAS</code> as the texture key for any sprite. 
-Doing this then sets the key to be the <code>frame</code> argument (the frame is set to zero). </p>
-<p>This allows you to create sprites using <code>load.image</code> during development, and then change them 
-to use a Texture Atlas later in development by simply searching your code for 'PENDING_ATLAS' 
+<p>You can use the new const <code>Phaser.PENDING_ATLAS</code> as the texture key for any sprite.
+Doing this then sets the key to be the <code>frame</code> argument (the frame is set to zero).</p>
+<p>This allows you to create sprites using <code>load.image</code> during development, and then change them
+to use a Texture Atlas later in development by simply searching your code for 'PENDING_ATLAS'
 and swapping it to be the key of the atlas data.</p>
 <p>Note: You cannot use a RenderTexture as a texture for a TileSprite.</p>
     </div>
@@ -618,7 +618,7 @@ and swapping it to be the key of the atlas data.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/gameobjects/components/LoadTexture.js#L51" title="loadTexture on line 51 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 51</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/gameobjects/components/LoadTexture.js#L51" title="loadTexture on line 51 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 51</a>
     
 
 	
@@ -702,7 +702,7 @@ and swapping it to be the key of the atlas data.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/gameobjects/components/LoadTexture.js#L242" title="resetFrame on line 242 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 242</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/gameobjects/components/LoadTexture.js#L242" title="resetFrame on line 242 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 242</a>
     
 
 	
@@ -886,7 +886,7 @@ it can be useful to adjust the dimensions directly in this way.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/gameobjects/components/LoadTexture.js#L229" title="resizeFrame on line 229 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 229</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/gameobjects/components/LoadTexture.js#L229" title="resizeFrame on line 229 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 229</a>
     
 
 	
@@ -1021,7 +1021,7 @@ it can be useful to adjust the dimensions directly in this way.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/gameobjects/components/LoadTexture.js#L158" title="setFrame on line 158 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 158</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/gameobjects/components/LoadTexture.js#L158" title="setFrame on line 158 of src/gameobjects/components/LoadTexture.js">src/gameobjects/components/LoadTexture.js line 158</a>
     
 
 	
@@ -1064,9 +1064,9 @@ it can be useful to adjust the dimensions directly in this way.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.14.0
+  phaser-ce@2.15.0
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.14.0">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.15.0">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -1081,9 +1081,9 @@ it can be useful to adjust the dimensions directly in this way.</p>
 
 
 <p class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on 2020-01-19
+		on 2020-03-06
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -1112,7 +1112,7 @@ it can be useful to adjust the dimensions directly in this way.</p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2020011913"></script>
+<script defer src="scripts/bundle.js?2020030612"></script>
 
 
 

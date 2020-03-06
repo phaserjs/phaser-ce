@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: Game</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2020011913">
+	<link rel="stylesheet" href="styles/site.phaser.css?2020030612">
 </head>
 
 <body>
@@ -146,14 +146,18 @@ For example a Sprite has a <code>game</code> property, allowing you to talk to t
 of Phaser directly, without having to look after your own references.</p>
 <p>In its most simplest form, a Phaser game can be created by providing the arguments
 to the constructor:</p>
-<pre class="prettyprint source lang-javascript"><code>var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });</code></pre><p>In the example above it is passing in a State object directly. You can also use the State
+<pre class="prettyprint source lang-javascript"><code>var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+</code></pre>
+<p>In the example above it is passing in a State object directly. You can also use the State
 Manager to do this:</p>
 <pre class="prettyprint source lang-javascript"><code>var game = new Phaser.Game(800, 600, Phaser.AUTO);
 game.state.add('Boot', BasicGame.Boot);
 game.state.add('Preloader', BasicGame.Preloader);
 game.state.add('MainMenu', BasicGame.MainMenu);
 game.state.add('Game', BasicGame.Game);
-game.state.start('Boot');</code></pre><p>In the example above, 4 States are added to the State Manager, and Phaser is told to
+game.state.start('Boot');
+</code></pre>
+<p>In the example above, 4 States are added to the State Manager, and Phaser is told to
 start running the <code>Boot</code> state when it has finished initializing. There are example
 project templates you can use in the Phaser GitHub repo, inside the <code>resources</code> folder.</p>
 <p>Instead of specifying arguments you can also pass <a href="global.html#GameConfig">a single object</a> instead:</p>
@@ -170,7 +174,8 @@ project templates you can use in the Phaser GitHub repo, inside the <code>resour
     }
 }
 
-var game = new Phaser.Game(config);</code></pre>
+var game = new Phaser.Game(config);
+</code></pre>
     </div>
     
 
@@ -577,7 +582,7 @@ var game = new Phaser.Game(config);</code></pre>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L73" title="Game on line 73 of src/core/Game.js">src/core/Game.js line 73</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L73" title="Game on line 73 of src/core/Game.js">src/core/Game.js line 73</a>
     
 
 	
@@ -682,7 +687,7 @@ var game = new Phaser.Game(config);</code></pre>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L223" title="add on line 223 of src/core/Game.js">src/core/Game.js line 223</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L223" title="add on line 223 of src/core/Game.js">src/core/Game.js line 223</a>
     
 
 	
@@ -766,7 +771,7 @@ var game = new Phaser.Game(config);</code></pre>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L153" title="antialias on line 153 of src/core/Game.js">src/core/Game.js line 153</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L153" title="antialias on line 153 of src/core/Game.js">src/core/Game.js line 153</a>
     
 
 	
@@ -843,7 +848,7 @@ var game = new Phaser.Game(config);</code></pre>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L233" title="cache on line 233 of src/core/Game.js">src/core/Game.js line 233</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L233" title="cache on line 233 of src/core/Game.js">src/core/Game.js line 233</a>
     
 
 	
@@ -920,7 +925,7 @@ var game = new Phaser.Game(config);</code></pre>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L308" title="camera on line 308 of src/core/Game.js">src/core/Game.js line 308</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L308" title="camera on line 308 of src/core/Game.js">src/core/Game.js line 308</a>
     
 
 	
@@ -997,7 +1002,7 @@ var game = new Phaser.Game(config);</code></pre>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L313" title="canvas on line 313 of src/core/Game.js">src/core/Game.js line 313</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L313" title="canvas on line 313 of src/core/Game.js">src/core/Game.js line 313</a>
     
 
 	
@@ -1085,7 +1090,7 @@ Use the <a href="global.html#GameConfig">GameConfig</a> setting <code>clearBefor
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L183" title="clearBeforeRender on line 183 of src/core/Game.js">src/core/Game.js line 183</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L183" title="clearBeforeRender on line 183 of src/core/Game.js">src/core/Game.js line 183</a>
     
 
 	
@@ -1162,7 +1167,7 @@ Use the <a href="global.html#GameConfig">GameConfig</a> setting <code>clearBefor
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L85" title="config on line 85 of src/core/Game.js">src/core/Game.js line 85</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L85" title="config on line 85 of src/core/Game.js">src/core/Game.js line 85</a>
     
 
 	
@@ -1239,7 +1244,7 @@ Use the <a href="global.html#GameConfig">GameConfig</a> setting <code>clearBefor
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L318" title="context on line 318 of src/core/Game.js">src/core/Game.js line 318</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L318" title="context on line 318 of src/core/Game.js">src/core/Game.js line 318</a>
     
 
 	
@@ -1316,7 +1321,7 @@ Use the <a href="global.html#GameConfig">GameConfig</a> setting <code>clearBefor
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L333" title="create on line 333 of src/core/Game.js">src/core/Game.js line 333</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L333" title="create on line 333 of src/core/Game.js">src/core/Game.js line 333</a>
     
 
 	
@@ -1394,7 +1399,7 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L409" title="currentUpdateID on line 409 of src/core/Game.js">src/core/Game.js line 409</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L409" title="currentUpdateID on line 409 of src/core/Game.js">src/core/Game.js line 409</a>
     
 
 	
@@ -1471,7 +1476,7 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L323" title="debug on line 323 of src/core/Game.js">src/core/Game.js line 323</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L323" title="debug on line 323 of src/core/Game.js">src/core/Game.js line 323</a>
     
 
 	
@@ -1548,7 +1553,7 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L303" title="device on line 303 of src/core/Game.js">src/core/Game.js line 303</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L303" title="device on line 303 of src/core/Game.js">src/core/Game.js line 303</a>
     
 
 	
@@ -1625,7 +1630,7 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L470" title="dropFrames on line 470 of src/core/Game.js">src/core/Game.js line 470</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L470" title="dropFrames on line 470 of src/core/Game.js">src/core/Game.js line 470</a>
     
 
 	
@@ -1702,7 +1707,7 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L465" title="forceSingleRender on line 465 of src/core/Game.js">src/core/Game.js line 465</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L465" title="forceSingleRender on line 465 of src/core/Game.js">src/core/Game.js line 465</a>
     
 
 	
@@ -1779,7 +1784,7 @@ The first update is <code>currentUpdateID === 0</code> and the last update is <c
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L460" title="forceSingleUpdate on line 460 of src/core/Game.js">src/core/Game.js line 460</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L460" title="forceSingleUpdate on line 460 of src/core/Game.js">src/core/Game.js line 460</a>
     
 
 	
@@ -1857,7 +1862,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L455" title="fpsProblemNotifier on line 455 of src/core/Game.js">src/core/Game.js line 455</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L455" title="fpsProblemNotifier on line 455 of src/core/Game.js">src/core/Game.js line 455</a>
     
 
 	
@@ -1942,7 +1947,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L119" title="height on line 119 of src/core/Game.js">src/core/Game.js line 119</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L119" title="height on line 119 of src/core/Game.js">src/core/Game.js line 119</a>
     
 
 	
@@ -2019,7 +2024,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L80" title="id on line 80 of src/core/Game.js">src/core/Game.js line 80</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L80" title="id on line 80 of src/core/Game.js">src/core/Game.js line 80</a>
     
 
 	
@@ -2096,7 +2101,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L238" title="input on line 238 of src/core/Game.js">src/core/Game.js line 238</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L238" title="input on line 238 of src/core/Game.js">src/core/Game.js line 238</a>
     
 
 	
@@ -2173,7 +2178,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L206" title="isBooted on line 206 of src/core/Game.js">src/core/Game.js line 206</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L206" title="isBooted on line 206 of src/core/Game.js">src/core/Game.js line 206</a>
     
 
 	
@@ -2250,7 +2255,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L212" title="isRunning on line 212 of src/core/Game.js">src/core/Game.js line 212</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L212" title="isRunning on line 212 of src/core/Game.js">src/core/Game.js line 212</a>
     
 
 	
@@ -2327,7 +2332,7 @@ The desired/chosen FPS should probably be closer to the <a href="Phaser.Time.htm
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L243" title="load on line 243 of src/core/Game.js">src/core/Game.js line 243</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L243" title="load on line 243 of src/core/Game.js">src/core/Game.js line 243</a>
     
 
 	
@@ -2406,7 +2411,7 @@ Please note that if you don't render the display list then none of the game obje
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L342" title="lockRender on line 342 of src/core/Game.js">src/core/Game.js line 342</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L342" title="lockRender on line 342 of src/core/Game.js">src/core/Game.js line 342</a>
     
 
 	
@@ -2483,7 +2488,7 @@ Please note that if you don't render the display list then none of the game obje
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L228" title="make on line 228 of src/core/Game.js">src/core/Game.js line 228</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L228" title="make on line 228 of src/core/Game.js">src/core/Game.js line 228</a>
     
 
 	
@@ -2560,7 +2565,7 @@ Please note that if you don't render the display list then none of the game obje
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L248" title="math on line 248 of src/core/Game.js">src/core/Game.js line 248</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L248" title="math on line 248 of src/core/Game.js">src/core/Game.js line 248</a>
     
 
 	
@@ -2641,7 +2646,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L166" title="multiTexture on line 166 of src/core/Game.js">src/core/Game.js line 166</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L166" title="multiTexture on line 166 of src/core/Game.js">src/core/Game.js line 166</a>
     
 
 	
@@ -2718,7 +2723,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L253" title="net on line 253 of src/core/Game.js">src/core/Game.js line 253</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L253" title="net on line 253 of src/core/Game.js">src/core/Game.js line 253</a>
     
 
 	
@@ -2795,7 +2800,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L384" title="onBlur on line 384 of src/core/Game.js">src/core/Game.js line 384</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L384" title="onBlur on line 384 of src/core/Game.js">src/core/Game.js line 384</a>
     
 
 	
@@ -2872,7 +2877,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L389" title="onFocus on line 389 of src/core/Game.js">src/core/Game.js line 389</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L389" title="onFocus on line 389 of src/core/Game.js">src/core/Game.js line 389</a>
     
 
 	
@@ -2949,7 +2954,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L374" title="onPause on line 374 of src/core/Game.js">src/core/Game.js line 374</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L374" title="onPause on line 374 of src/core/Game.js">src/core/Game.js line 374</a>
     
 
 	
@@ -3026,7 +3031,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L379" title="onResume on line 379 of src/core/Game.js">src/core/Game.js line 379</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L379" title="onResume on line 379 of src/core/Game.js">src/core/Game.js line 379</a>
     
 
 	
@@ -3106,7 +3111,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L97" title="parent on line 97 of src/core/Game.js">src/core/Game.js line 97</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L97" title="parent on line 97 of src/core/Game.js">src/core/Game.js line 97</a>
     
 
 	
@@ -3183,7 +3188,7 @@ via the <code>game.renderer.setTexturePriority</code> method.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L328" title="particles on line 328 of src/core/Game.js">src/core/Game.js line 328</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L328" title="particles on line 328 of src/core/Game.js">src/core/Game.js line 328</a>
     
 
 	
@@ -3261,7 +3266,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1430" title="paused on line 1430 of src/core/Game.js">src/core/Game.js line 1430</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1430" title="paused on line 1430 of src/core/Game.js">src/core/Game.js line 1430</a>
     
 
 	
@@ -3338,7 +3343,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L348" title="pendingDestroy on line 348 of src/core/Game.js">src/core/Game.js line 348</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L348" title="pendingDestroy on line 348 of src/core/Game.js">src/core/Game.js line 348</a>
     
 
 	
@@ -3415,7 +3420,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L362" title="pendingStep on line 362 of src/core/Game.js">src/core/Game.js line 362</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L362" title="pendingStep on line 362 of src/core/Game.js">src/core/Game.js line 362</a>
     
 
 	
@@ -3492,7 +3497,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L288" title="physics on line 288 of src/core/Game.js">src/core/Game.js line 288</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L288" title="physics on line 288 of src/core/Game.js">src/core/Game.js line 288</a>
     
 
 	
@@ -3569,7 +3574,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L90" title="physicsConfig on line 90 of src/core/Game.js">src/core/Game.js line 90</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L90" title="physicsConfig on line 90 of src/core/Game.js">src/core/Game.js line 90</a>
     
 
 	
@@ -3646,7 +3651,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L293" title="plugins on line 293 of src/core/Game.js">src/core/Game.js line 293</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L293" title="plugins on line 293 of src/core/Game.js">src/core/Game.js line 293</a>
     
 
 	
@@ -3723,7 +3728,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L476" title="powerPreference on line 476 of src/core/Game.js">src/core/Game.js line 476</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L476" title="powerPreference on line 476 of src/core/Game.js">src/core/Game.js line 476</a>
     
 
 	
@@ -3800,7 +3805,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L172" title="preserveDrawingBuffer on line 172 of src/core/Game.js">src/core/Game.js line 172</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L172" title="preserveDrawingBuffer on line 172 of src/core/Game.js">src/core/Game.js line 172</a>
     
 
 	
@@ -3877,7 +3882,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L218" title="raf on line 218 of src/core/Game.js">src/core/Game.js line 218</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L218" title="raf on line 218 of src/core/Game.js">src/core/Game.js line 218</a>
     
 
 	
@@ -3957,7 +3962,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L189" title="renderer on line 189 of src/core/Game.js">src/core/Game.js line 189</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L189" title="renderer on line 189 of src/core/Game.js">src/core/Game.js line 189</a>
     
 
 	
@@ -4076,7 +4081,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L423" title="rendersThisFrame on line 423 of src/core/Game.js">src/core/Game.js line 423</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L423" title="rendersThisFrame on line 423 of src/core/Game.js">src/core/Game.js line 423</a>
     
 
 	
@@ -4153,7 +4158,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L195" title="renderType on line 195 of src/core/Game.js">src/core/Game.js line 195</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L195" title="renderType on line 195 of src/core/Game.js">src/core/Game.js line 195</a>
     
 
 	
@@ -4237,7 +4242,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L128" title="resolution on line 128 of src/core/Game.js">src/core/Game.js line 128</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L128" title="resolution on line 128 of src/core/Game.js">src/core/Game.js line 128</a>
     
 
 	
@@ -4314,7 +4319,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L298" title="rnd on line 298 of src/core/Game.js">src/core/Game.js line 298</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L298" title="rnd on line 298 of src/core/Game.js">src/core/Game.js line 298</a>
     
 
 	
@@ -4391,7 +4396,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L258" title="scale on line 258 of src/core/Game.js">src/core/Game.js line 258</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L258" title="scale on line 258 of src/core/Game.js">src/core/Game.js line 258</a>
     
 
 	
@@ -4468,7 +4473,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L263" title="sound on line 263 of src/core/Game.js">src/core/Game.js line 263</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L263" title="sound on line 263 of src/core/Game.js">src/core/Game.js line 263</a>
     
 
 	
@@ -4545,7 +4550,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L268" title="stage on line 268 of src/core/Game.js">src/core/Game.js line 268</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L268" title="stage on line 268 of src/core/Game.js">src/core/Game.js line 268</a>
     
 
 	
@@ -4622,7 +4627,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L200" title="state on line 200 of src/core/Game.js">src/core/Game.js line 200</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L200" title="state on line 200 of src/core/Game.js">src/core/Game.js line 200</a>
     
 
 	
@@ -4699,7 +4704,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L369" title="stepCount on line 369 of src/core/Game.js">src/core/Game.js line 369</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L369" title="stepCount on line 369 of src/core/Game.js">src/core/Game.js line 369</a>
     
 
 	
@@ -4776,7 +4781,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L355" title="stepping on line 355 of src/core/Game.js">src/core/Game.js line 355</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L355" title="stepping on line 355 of src/core/Game.js">src/core/Game.js line 355</a>
     
 
 	
@@ -4853,7 +4858,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L273" title="time on line 273 of src/core/Game.js">src/core/Game.js line 273</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L273" title="time on line 273 of src/core/Game.js">src/core/Game.js line 273</a>
     
 
 	
@@ -4930,7 +4935,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L146" title="transparent on line 146 of src/core/Game.js">src/core/Game.js line 146</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L146" title="transparent on line 146 of src/core/Game.js">src/core/Game.js line 146</a>
     
 
 	
@@ -5007,7 +5012,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L278" title="tweens on line 278 of src/core/Game.js">src/core/Game.js line 278</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L278" title="tweens on line 278 of src/core/Game.js">src/core/Game.js line 278</a>
     
 
 	
@@ -5084,7 +5089,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L416" title="updatesThisFrame on line 416 of src/core/Game.js">src/core/Game.js line 416</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L416" title="updatesThisFrame on line 416 of src/core/Game.js">src/core/Game.js line 416</a>
     
 
 	
@@ -5169,7 +5174,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L108" title="width on line 108 of src/core/Game.js">src/core/Game.js line 108</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L108" title="width on line 108 of src/core/Game.js">src/core/Game.js line 108</a>
     
 
 	
@@ -5246,7 +5251,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L283" title="world on line 283 of src/core/Game.js">src/core/Game.js line 283</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L283" title="world on line 283 of src/core/Game.js">src/core/Game.js line 283</a>
     
 
 	
@@ -5324,7 +5329,7 @@ When a game is paused the onPause event is dispatched. When it is resumed the on
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L680" title="boot on line 680 of src/core/Game.js">src/core/Game.js line 680</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L680" title="boot on line 680 of src/core/Game.js">src/core/Game.js line 680</a>
     
 
 	
@@ -5412,7 +5417,7 @@ and resets the PIXI default renderer.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1242" title="destroy on line 1242 of src/core/Game.js">src/core/Game.js line 1242</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1242" title="destroy on line 1242 of src/core/Game.js">src/core/Game.js line 1242</a>
     
 
 	
@@ -5496,7 +5501,7 @@ and resets the PIXI default renderer.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1215" title="disableStep on line 1215 of src/core/Game.js">src/core/Game.js line 1215</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1215" title="disableStep on line 1215 of src/core/Game.js">src/core/Game.js line 1215</a>
     
 
 	
@@ -5581,7 +5586,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1200" title="enableStep on line 1200 of src/core/Game.js">src/core/Game.js line 1200</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1200" title="enableStep on line 1200 of src/core/Game.js">src/core/Game.js line 1200</a>
     
 
 	
@@ -5715,7 +5720,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1387" title="focusGain on line 1387 of src/core/Game.js">src/core/Game.js line 1387</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1387" title="focusGain on line 1387 of src/core/Game.js">src/core/Game.js line 1387</a>
     
 
 	
@@ -5849,7 +5854,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1368" title="focusLoss on line 1368 of src/core/Game.js">src/core/Game.js line 1368</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1368" title="focusLoss on line 1368 of src/core/Game.js">src/core/Game.js line 1368</a>
     
 
 	
@@ -5983,7 +5988,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1300" title="gamePaused on line 1300 of src/core/Game.js">src/core/Game.js line 1300</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1300" title="gamePaused on line 1300 of src/core/Game.js">src/core/Game.js line 1300</a>
     
 
 	
@@ -6117,7 +6122,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1333" title="gameResumed on line 1333 of src/core/Game.js">src/core/Game.js line 1333</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1333" title="gameResumed on line 1333 of src/core/Game.js">src/core/Game.js line 1333</a>
     
 
 	
@@ -6201,7 +6206,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L584" title="parseConfig on line 584 of src/core/Game.js">src/core/Game.js line 584</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L584" title="parseConfig on line 584 of src/core/Game.js">src/core/Game.js line 584</a>
     
 
 	
@@ -6285,7 +6290,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L849" title="setUpRenderer on line 849 of src/core/Game.js">src/core/Game.js line 849</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L849" title="setUpRenderer on line 849 of src/core/Game.js">src/core/Game.js line 849</a>
     
 
 	
@@ -6369,7 +6374,7 @@ Calling step will advance the game loop by one frame. This is extremely useful f
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L781" title="showDebugHeader on line 781 of src/core/Game.js">src/core/Game.js line 781</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L781" title="showDebugHeader on line 781 of src/core/Game.js">src/core/Game.js line 781</a>
     
 
 	
@@ -6454,7 +6459,7 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1228" title="step on line 1228 of src/core/Game.js">src/core/Game.js line 1228</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1228" title="step on line 1228 of src/core/Game.js">src/core/Game.js line 1228</a>
     
 
 	
@@ -6588,7 +6593,7 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L979" title="update on line 979 of src/core/Game.js">src/core/Game.js line 979</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L979" title="update on line 979 of src/core/Game.js">src/core/Game.js line 979</a>
     
 
 	
@@ -6722,7 +6727,7 @@ This is extremely useful to hard to track down errors! Use the internal stepCoun
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1111" title="updateLogic on line 1111 of src/core/Game.js">src/core/Game.js line 1111</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1111" title="updateLogic on line 1111 of src/core/Game.js">src/core/Game.js line 1111</a>
     
 
 	
@@ -6864,7 +6869,7 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/Game.js#L1163" title="updateRender on line 1163 of src/core/Game.js">src/core/Game.js line 1163</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/Game.js#L1163" title="updateRender on line 1163 of src/core/Game.js">src/core/Game.js line 1163</a>
     
 
 	
@@ -6907,9 +6912,9 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.14.0
+  phaser-ce@2.15.0
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.14.0">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.15.0">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -6924,9 +6929,9 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 
 
 <p class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on 2020-01-19
+		on 2020-03-06
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -6955,7 +6960,7 @@ Phaser will only render when this boolean is <code>false</code>.</p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2020011913"></script>
+<script defer src="scripts/bundle.js?2020030612"></script>
 
 
 

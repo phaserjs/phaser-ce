@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.14.0 "2020-01-19" - Built: Sun Jan 19 2020 13:12:26
+* v2.15.0 "2020-03-06" - Built: Fri Mar 06 2020 12:25:00
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -5007,6 +5007,15 @@ PIXI.WebGLSpriteBatch.prototype.end = function ()
 PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 {
     var texture = sprite.texture;
+    var baseTexture = texture.baseTexture;
+    var gl = this.gl;
+    if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    {
+        this.flush();
+        gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
+        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+        PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
+    }
 
     //  They provided an alternative rendering matrix, so use it
     var wt = sprite.worldTransform;
@@ -5179,7 +5188,16 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
 {
     var texture = sprite.tilingTexture;
+    var baseTexture = texture.baseTexture;
+    var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
+    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    {
+        this.flush();
+        gl.activeTexture(gl.TEXTURE0 + textureIndex);
+        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+    }
 
     // check texture..
     if (this.currentBatchSize >= this.size)
@@ -5411,7 +5429,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         }
 
         //
-        if ((currentBaseTexture !== nextTexture && !skip) ||
+        if (/* (currentBaseTexture !== nextTexture && !skip) || */
             blendSwap ||
             shaderSwap)
         {
