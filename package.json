@@ -32,8 +32,9 @@
     "test:build": "node --check build/*.js; node --check build/custom/*.js",
     "test:dist": "grunt test && node --check dist/phaser-test.js",
     "test:src": "eslint src",
-    "test:ts": "./node_modules/typescript/bin/tsc --noImplicitAny ./typescript/{p2,phaser,pixi}.d.ts && ./node_modules/typescript/bin/tsc --noImplicitAny ./typescript/{phaser,pixi}.comments.d.ts"
-  },
+    "test:ts": "tsc --noImplicitAny ./typescript/p2.d.ts ./typescript/phaser.d.ts ./typescript/pixi.d.ts; tsc --noImplicitAny ./typescript/phaser.comments.d.ts ./typescript/pixi.comments.d.ts",
+    "tsc": "./node_modules/typescript/bin/tsc"
+},
   "keywords": [
     "2d",
     "HTML5",
