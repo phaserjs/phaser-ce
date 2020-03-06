@@ -12,7 +12,7 @@
 
 ### Bug Fixes
 
-* Fixed multitexture rendering (#644, #641).
+* Fixed multitexture rendering of texture atlases (#644, #641).
 
 ### Thanks
 
