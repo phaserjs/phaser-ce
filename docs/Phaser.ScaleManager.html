@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: ScaleManager</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2020011913">
+	<link rel="stylesheet" href="styles/site.phaser.css?2020030612">
 </head>
 
 <body>
@@ -124,31 +124,47 @@ dimensions of the Display canvas's Parent container/element - the <em>effective 
 canvas's Parent element play an important role</em> in the operation of the ScaleManager.</p>
 <p>The Display canvas - or Game size, depending <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a> - is updated to best utilize the Parent size.
 When in Fullscreen mode or with <a href="Phaser.ScaleManager.html#parentIsWindow">parentIsWindow</a> the Parent size is that of the visual viewport (see <a href="Phaser.ScaleManager.html#getParentBounds">getParentBounds</a>).</p>
-<h4>Parent and Display canvas containment guidelines:</h4><ul>
-<li><p>Style the Parent element (of the game canvas) to control the Parent size and
+<h4>Parent and Display canvas containment guidelines:</h4>
+<ul>
+<li>
+<p>Style the Parent element (of the game canvas) to control the Parent size and
 thus the Display canvas's size and layout.</p>
 </li>
-<li><p>The Parent element's CSS styles should <em>effectively</em> apply maximum (and minimum) bounding behavior.</p>
+<li>
+<p>The Parent element's CSS styles should <em>effectively</em> apply maximum (and minimum) bounding behavior.</p>
 </li>
-<li><p>The Parent element should <em>not</em> apply a padding as this is not accounted for.
+<li>
+<p>The Parent element should <em>not</em> apply a padding as this is not accounted for.
 If a padding is required apply it to the Parent's parent or apply a margin to the Parent.
 If you need to add a border, margin or any other CSS around your game container, then use a parent element and
 apply the CSS to this instead, otherwise you'll be constantly resizing the shape of the game container.</p>
 </li>
-<li><p>The Display canvas layout CSS styles (i.e. margins, size) should not be altered/specified as
+<li>
+<p>The Display canvas layout CSS styles (i.e. margins, size) should not be altered/specified as
 they may be updated by the ScaleManager.</p>
 </li>
 </ul>
-<h4>Example Uses</h4><ul>
-<li><h5>Fixed game size; scale canvas proportionally to fill its container</h5><p>Use <code>scaleMode</code> SHOW_ALL.</p>
+<h4>Example Uses</h4>
+<ul>
+<li>
+<h5>Fixed game size; scale canvas proportionally to fill its container</h5>
+<p>Use <code>scaleMode</code> SHOW_ALL.</p>
 </li>
-<li><h5>Fixed game size; stretch canvas to fill its container (uncommon)</h5><p>Use <code>scaleMode</code> EXACT_FIT.</p>
+<li>
+<h5>Fixed game size; stretch canvas to fill its container (uncommon)</h5>
+<p>Use <code>scaleMode</code> EXACT_FIT.</p>
 </li>
-<li><h5>Fixed game size; scale canvas proportionally by some other criteria</h5><p>Use <code>scaleMode</code> USER_SCALE. Examine <code>parentBounds</code> in the resize callback and call <a href="Phaser.ScaleManager.html#setUserScale">setUserScale</a> if necessary.</p>
+<li>
+<h5>Fixed game size; scale canvas proportionally by some other criteria</h5>
+<p>Use <code>scaleMode</code> USER_SCALE. Examine <code>parentBounds</code> in the resize callback and call <a href="Phaser.ScaleManager.html#setUserScale">setUserScale</a> if necessary.</p>
 </li>
-<li><h5>Fluid game/canvas size</h5><p>Use <code>scaleMode</code> RESIZE. Examine the game or canvas size from the <a href="Phaser.ScaleManager.html#onSizeChange">onSizeChange</a> signal <strong>or</strong> the <a href="Phaser.State.html#resize">Phaser.State#resize</a> callback and reposition game objects if necessary.</p>
+<li>
+<h5>Fluid game/canvas size</h5>
+<p>Use <code>scaleMode</code> RESIZE. Examine the game or canvas size from the <a href="Phaser.ScaleManager.html#onSizeChange">onSizeChange</a> signal <strong>or</strong> the <a href="Phaser.State.html#resize">Phaser.State#resize</a> callback and reposition game objects if necessary.</p>
 </li>
-<li><h5>Preferred orientation</h5><p>Call <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a> with the preferred orientation and use any of the <a href="Phaser.ScaleManager.html#onOrientationChange">onOrientationChange</a>, <a href="Phaser.ScaleManager.html#enterIncorrectOrientation">enterIncorrectOrientation</a>, or <a href="Phaser.ScaleManager.html#leaveIncorrectOrientation">leaveIncorrectOrientation</a> signals.</p>
+<li>
+<h5>Preferred orientation</h5>
+<p>Call <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a> with the preferred orientation and use any of the <a href="Phaser.ScaleManager.html#onOrientationChange">onOrientationChange</a>, <a href="Phaser.ScaleManager.html#enterIncorrectOrientation">enterIncorrectOrientation</a>, or <a href="Phaser.ScaleManager.html#leaveIncorrectOrientation">leaveIncorrectOrientation</a> signals.</p>
 </li>
 </ul></div>
         
@@ -321,7 +337,7 @@ they may be updated by the ScaleManager.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L68" title="ScaleManager on line 68 of src/core/ScaleManager.js">src/core/ScaleManager.js line 68</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L68" title="ScaleManager on line 68 of src/core/ScaleManager.js">src/core/ScaleManager.js line 68</a>
     
 
 	
@@ -426,7 +442,7 @@ they may be updated by the ScaleManager.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L636" title="EXACT_FIT on line 636 of src/core/ScaleManager.js">src/core/ScaleManager.js line 636</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L636" title="EXACT_FIT on line 636 of src/core/ScaleManager.js">src/core/ScaleManager.js line 636</a>
     
 
 	
@@ -503,7 +519,7 @@ they may be updated by the ScaleManager.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L676" title="MODES on line 676 of src/core/ScaleManager.js">src/core/ScaleManager.js line 676</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L676" title="MODES on line 676 of src/core/ScaleManager.js">src/core/ScaleManager.js line 676</a>
     
 
 	
@@ -580,7 +596,7 @@ they may be updated by the ScaleManager.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L644" title="NO_SCALE on line 644 of src/core/ScaleManager.js">src/core/ScaleManager.js line 644</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L644" title="NO_SCALE on line 644 of src/core/ScaleManager.js">src/core/ScaleManager.js line 644</a>
     
 
 	
@@ -657,7 +673,7 @@ they may be updated by the ScaleManager.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L660" title="RESIZE on line 660 of src/core/ScaleManager.js">src/core/ScaleManager.js line 660</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L660" title="RESIZE on line 660 of src/core/ScaleManager.js">src/core/ScaleManager.js line 660</a>
     
 
 	
@@ -734,7 +750,7 @@ they may be updated by the ScaleManager.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L652" title="SHOW_ALL on line 652 of src/core/ScaleManager.js">src/core/ScaleManager.js line 652</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L652" title="SHOW_ALL on line 652 of src/core/ScaleManager.js">src/core/ScaleManager.js line 652</a>
     
 
 	
@@ -811,7 +827,7 @@ they may be updated by the ScaleManager.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L668" title="USER_SCALE on line 668 of src/core/ScaleManager.js">src/core/ScaleManager.js line 668</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L668" title="USER_SCALE on line 668 of src/core/ScaleManager.js">src/core/ScaleManager.js line 668</a>
     
 
 	
@@ -888,7 +904,7 @@ they may be updated by the ScaleManager.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L372" title="aspectRatio on line 372 of src/core/ScaleManager.js">src/core/ScaleManager.js line 372</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L372" title="aspectRatio on line 372 of src/core/ScaleManager.js">src/core/ScaleManager.js line 372</a>
     
 
 	
@@ -967,7 +983,7 @@ It will also be null if there is no game canvas or if the game canvas has no par
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2246" title="boundingParent on line 2246 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2246</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2246" title="boundingParent on line 2246 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2246</a>
     
 
 	
@@ -1044,7 +1060,7 @@ It will also be null if there is no game canvas or if the game canvas has no par
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L365" title="bounds on line 365 of src/core/ScaleManager.js">src/core/ScaleManager.js line 365</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L365" title="bounds on line 365 of src/core/ScaleManager.js">src/core/ScaleManager.js line 365</a>
     
 
 	
@@ -1298,7 +1314,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
             
 
             <td class="description prop-description last"><p>If enabled the document elements minimum height is explicitly set on updates.
-   The height set varies by device and may either be the height of the window or the viewport.</p></td>
+The height set varies by device and may either be the height of the window or the viewport.</p></td>
         </tr>
 
     
@@ -1375,9 +1391,9 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
             
 
             <td class="description prop-description last"><p>On certain browsers (eg. IE) FullScreen events need to be triggered via 'click' events.
-    A value of 'when-not-mouse' uses a click trampoline when a pointer that is not the primary mouse is used.
-    Any other string value (including the empty string) prevents using click trampolines.
-    For more details on click trampolines see <a href="Phaser.Pointer.html#addClickTrampoline">Phaser.Pointer#addClickTrampoline</a>.</p></td>
+A value of 'when-not-mouse' uses a click trampoline when a pointer that is not the primary mouse is used.
+Any other string value (including the empty string) prevents using click trampolines.
+For more details on click trampolines see <a href="Phaser.Pointer.html#addClickTrampoline">Phaser.Pointer#addClickTrampoline</a>.</p></td>
         </tr>
 
     
@@ -1417,7 +1433,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L433" title="compatibility on line 433 of src/core/ScaleManager.js">src/core/ScaleManager.js line 433</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L433" title="compatibility on line 433 of src/core/ScaleManager.js">src/core/ScaleManager.js line 433</a>
     
 
 	
@@ -1495,7 +1511,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2384" title="currentScaleMode on line 2384 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2384</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2384" title="currentScaleMode on line 2384 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2384</a>
     
 
 	
@@ -1572,7 +1588,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L85" title="dom on line 85 of src/core/ScaleManager.js">src/core/ScaleManager.js line 85</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L85" title="dom on line 85 of src/core/ScaleManager.js">src/core/ScaleManager.js line 85</a>
     
 
 	
@@ -1650,7 +1666,7 @@ A value of &quot;(auto)&quot; indicates the setting is configured based on devic
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L234" title="enterIncorrectOrientation on line 234 of src/core/ScaleManager.js">src/core/ScaleManager.js line 234</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L234" title="enterIncorrectOrientation on line 234 of src/core/ScaleManager.js">src/core/ScaleManager.js line 234</a>
     
 
 	
@@ -1728,7 +1744,7 @@ Change with <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L163" title="forceLandscape on line 163 of src/core/ScaleManager.js">src/core/ScaleManager.js line 163</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L163" title="forceLandscape on line 163 of src/core/ScaleManager.js">src/core/ScaleManager.js line 163</a>
     
 
 	
@@ -1806,7 +1822,7 @@ Change with <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L173" title="forcePortrait on line 173 of src/core/ScaleManager.js">src/core/ScaleManager.js line 173</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L173" title="forcePortrait on line 173 of src/core/ScaleManager.js">src/core/ScaleManager.js line 173</a>
     
 
 	
@@ -1884,7 +1900,7 @@ Change with <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2341" title="fullScreenScaleMode on line 2341 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2341</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2341" title="fullScreenScaleMode on line 2341 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2341</a>
     
 
 	
@@ -1966,7 +1982,7 @@ An attempt is made to restore relevant style changes when fullscreen mode is lef
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L271" title="fullScreenTarget on line 271 of src/core/ScaleManager.js">src/core/ScaleManager.js line 271</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L271" title="fullScreenTarget on line 271 of src/core/ScaleManager.js">src/core/ScaleManager.js line 271</a>
     
 
 	
@@ -2043,7 +2059,7 @@ An attempt is made to restore relevant style changes when fullscreen mode is lef
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L77" title="game on line 77 of src/core/ScaleManager.js">src/core/ScaleManager.js line 77</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L77" title="game on line 77 of src/core/ScaleManager.js">src/core/ScaleManager.js line 77</a>
     
 
 	
@@ -2120,7 +2136,7 @@ An attempt is made to restore relevant style changes when fullscreen mode is lef
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L92" title="grid on line 92 of src/core/ScaleManager.js">src/core/ScaleManager.js line 92</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L92" title="grid on line 92 of src/core/ScaleManager.js">src/core/ScaleManager.js line 92</a>
     
 
 	
@@ -2200,7 +2216,7 @@ one that made the browser go full-screen, so this flag lets you determine that.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L256" title="hasPhaserSetFullScreen on line 256 of src/core/ScaleManager.js">src/core/ScaleManager.js line 256</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L256" title="hasPhaserSetFullScreen on line 256 of src/core/ScaleManager.js">src/core/ScaleManager.js line 256</a>
     
 
 	
@@ -2277,7 +2293,7 @@ one that made the browser go full-screen, so this flag lets you determine that.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L106" title="height on line 106 of src/core/ScaleManager.js">src/core/ScaleManager.js line 106</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L106" title="height on line 106 of src/core/ScaleManager.js">src/core/ScaleManager.js line 106</a>
     
 
 	
@@ -2355,7 +2371,7 @@ one that made the browser go full-screen, so this flag lets you determine that.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L184" title="incorrectOrientation on line 184 of src/core/ScaleManager.js">src/core/ScaleManager.js line 184</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L184" title="incorrectOrientation on line 184 of src/core/ScaleManager.js">src/core/ScaleManager.js line 184</a>
     
 
 	
@@ -2432,7 +2448,7 @@ one that made the browser go full-screen, so this flag lets you determine that.<
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2480" title="isFullScreen on line 2480 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2480</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2480" title="isFullScreen on line 2480 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2480</a>
     
 
 	
@@ -2512,7 +2528,7 @@ where typically the screen orientation will always be landscape regardless of th
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2549" title="isGameLandscape on line 2549 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2549</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2549" title="isGameLandscape on line 2549 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2549</a>
     
 
 	
@@ -2592,7 +2608,7 @@ where typically the screen orientation will always be landscape regardless of th
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2530" title="isGamePortrait on line 2530 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2530</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2530" title="isGamePortrait on line 2530 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2530</a>
     
 
 	
@@ -2669,7 +2685,7 @@ where typically the screen orientation will always be landscape regardless of th
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2514" title="isLandscape on line 2514 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2514</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2514" title="isLandscape on line 2514 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2514</a>
     
 
 	
@@ -2746,7 +2762,7 @@ where typically the screen orientation will always be landscape regardless of th
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2498" title="isPortrait on line 2498 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2498</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2498" title="isPortrait on line 2498 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2498</a>
     
 
 	
@@ -2824,7 +2840,7 @@ where typically the screen orientation will always be landscape regardless of th
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L244" title="leaveIncorrectOrientation on line 244 of src/core/ScaleManager.js">src/core/ScaleManager.js line 244</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L244" title="leaveIncorrectOrientation on line 244 of src/core/ScaleManager.js">src/core/ScaleManager.js line 244</a>
     
 
 	
@@ -2901,7 +2917,7 @@ where typically the screen orientation will always be landscape regardless of th
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L358" title="margin on line 358 of src/core/ScaleManager.js">src/core/ScaleManager.js line 358</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L358" title="margin on line 358 of src/core/ScaleManager.js">src/core/ScaleManager.js line 358</a>
     
 
 	
@@ -2980,7 +2996,7 @@ Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L144" title="maxHeight on line 144 of src/core/ScaleManager.js">src/core/ScaleManager.js line 144</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L144" title="maxHeight on line 144 of src/core/ScaleManager.js">src/core/ScaleManager.js line 144</a>
     
 
 	
@@ -3059,7 +3075,7 @@ Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L125" title="maxWidth on line 125 of src/core/ScaleManager.js">src/core/ScaleManager.js line 125</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L125" title="maxWidth on line 125 of src/core/ScaleManager.js">src/core/ScaleManager.js line 125</a>
     
 
 	
@@ -3137,7 +3153,7 @@ Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L134" title="minHeight on line 134 of src/core/ScaleManager.js">src/core/ScaleManager.js line 134</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L134" title="minHeight on line 134 of src/core/ScaleManager.js">src/core/ScaleManager.js line 134</a>
     
 
 	
@@ -3215,7 +3231,7 @@ Change with <a href="Phaser.ScaleManager.html#setMinMax">setMinMax</a>.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L115" title="minWidth on line 115 of src/core/ScaleManager.js">src/core/ScaleManager.js line 115</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L115" title="minWidth on line 115 of src/core/ScaleManager.js">src/core/ScaleManager.js line 115</a>
     
 
 	
@@ -3293,7 +3309,7 @@ The is used internally by Phaser.Pointer (for Input) and possibly other types.</
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L153" title="offset on line 153 of src/core/ScaleManager.js">src/core/ScaleManager.js line 153</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L153" title="offset on line 153 of src/core/ScaleManager.js">src/core/ScaleManager.js line 153</a>
     
 
 	
@@ -3372,7 +3388,7 @@ if currently running in Fullscreen mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L313" title="onFullScreenChange on line 313 of src/core/ScaleManager.js">src/core/ScaleManager.js line 313</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L313" title="onFullScreenChange on line 313 of src/core/ScaleManager.js">src/core/ScaleManager.js line 313</a>
     
 
 	
@@ -3451,7 +3467,7 @@ or if the device does not support fullscreen mode and <code>startFullScreen</cod
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L324" title="onFullScreenError on line 324 of src/core/ScaleManager.js">src/core/ScaleManager.js line 324</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L324" title="onFullScreenError on line 324 of src/core/ScaleManager.js">src/core/ScaleManager.js line 324</a>
     
 
 	
@@ -3540,7 +3556,7 @@ the duration of the fullscreen mode, and restored to it's original DOM location 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L302" title="onFullScreenInit on line 302 of src/core/ScaleManager.js">src/core/ScaleManager.js line 302</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L302" title="onFullScreenInit on line 302 of src/core/ScaleManager.js">src/core/ScaleManager.js line 302</a>
     
 
 	
@@ -3575,10 +3591,12 @@ the duration of the fullscreen mode, and restored to it's original DOM location 
 </ul>
 <p>Access the current orientation and validity with <code>scale.screenOrientation</code> and <code>scale.incorrectOrientation</code>.
 Thus the following tests can be done:</p>
-<pre class="prettyprint source"><code>// The orientation itself changed:
+<pre><code>// The orientation itself changed:
 scale.screenOrientation !== prevOrientation
 // The orientation just became incorrect:
-scale.incorrectOrientation && !wasIncorrect</code></pre><p>It is possible that this signal is triggered after <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a> so the orientation
+scale.incorrectOrientation &amp;&amp; !wasIncorrect
+</code></pre>
+<p>It is possible that this signal is triggered after <a href="Phaser.ScaleManager.html#forceOrientation">forceOrientation</a> so the orientation
 correctness changes even if the orientation itself does not change.</p>
 <p>This is signaled from <code>preUpdate</code> (or <code>pauseUpdate</code>) <em>even when</em> the game is paused.</p>
     </div>
@@ -3631,7 +3649,7 @@ correctness changes even if the orientation itself does not change.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L224" title="onOrientationChange on line 224 of src/core/ScaleManager.js">src/core/ScaleManager.js line 224</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L224" title="onOrientationChange on line 224 of src/core/ScaleManager.js">src/core/ScaleManager.js line 224</a>
     
 
 	
@@ -3715,7 +3733,7 @@ then this signal will <em>not</em> be triggered.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L514" title="onSizeChange on line 514 of src/core/ScaleManager.js">src/core/ScaleManager.js line 514</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L514" title="onSizeChange on line 514 of src/core/ScaleManager.js">src/core/ScaleManager.js line 514</a>
     
 
 	
@@ -3802,7 +3820,7 @@ or the parent container should itself be horizontally aligned.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2405" title="pageAlignHorizontally on line 2405 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2405</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2405" title="pageAlignHorizontally on line 2405 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2405</a>
     
 
 	
@@ -3894,7 +3912,7 @@ To automatically update the minimum document height set <a href="Phaser.ScaleMan
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2439" title="pageAlignVertically on line 2439 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2439</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2439" title="pageAlignVertically on line 2439 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2439</a>
     
 
 	
@@ -3973,7 +3991,7 @@ To automatically update the minimum document height set <a href="Phaser.ScaleMan
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L466" title="parentIsWindow on line 466 of src/core/ScaleManager.js">src/core/ScaleManager.js line 466</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L466" title="parentIsWindow on line 466 of src/core/ScaleManager.js">src/core/ScaleManager.js line 466</a>
     
 
 	
@@ -4053,7 +4071,7 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L478" title="parentNode on line 478 of src/core/ScaleManager.js">src/core/ScaleManager.js line 478</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L478" title="parentNode on line 478 of src/core/ScaleManager.js">src/core/ScaleManager.js line 478</a>
     
 
 	
@@ -4130,7 +4148,7 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L485" title="parentScaleFactor on line 485 of src/core/ScaleManager.js">src/core/ScaleManager.js line 485</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L485" title="parentScaleFactor on line 485 of src/core/ScaleManager.js">src/core/ScaleManager.js line 485</a>
     
 
 	
@@ -4207,7 +4225,7 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L341" title="scaleFactor on line 341 of src/core/ScaleManager.js">src/core/ScaleManager.js line 341</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L341" title="scaleFactor on line 341 of src/core/ScaleManager.js">src/core/ScaleManager.js line 341</a>
     
 
 	
@@ -4284,7 +4302,7 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L349" title="scaleFactorInversed on line 349 of src/core/ScaleManager.js">src/core/ScaleManager.js line 349</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L349" title="scaleFactorInversed on line 349 of src/core/ScaleManager.js">src/core/ScaleManager.js line 349</a>
     
 
 	
@@ -4315,21 +4333,21 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
   <dt><a href="Phaser.ScaleManager.html#.NO_SCALE">Phaser.ScaleManager.NO_SCALE</a></dt>
   <dd>
       The Game display area will not be scaled - even if it is too large for the canvas/screen.
-      This mode <em>ignores</em> any applied scaling factor and displays the canvas at the Game size.
+      This mode _ignores_ any applied scaling factor and displays the canvas at the Game size.
   </dd>
   <dt><a href="Phaser.ScaleManager.html#.EXACT_FIT">Phaser.ScaleManager.EXACT_FIT</a></dt>
   <dd>
-      The Game display area will be <em>stretched</em> to fill the entire size of the canvas's parent element and/or screen.
+      The Game display area will be _stretched_ to fill the entire size of the canvas's parent element and/or screen.
       Proportions are not maintained.
   </dd>
   <dt><a href="Phaser.ScaleManager.html#.SHOW_ALL">Phaser.ScaleManager.SHOW_ALL</a></dt>
   <dd>
-      Show the entire game display area while <em>maintaining</em> the original aspect ratio.
+      Show the entire game display area while _maintaining_ the original aspect ratio.
   </dd>
   <dt><a href="Phaser.ScaleManager.html#.RESIZE">Phaser.ScaleManager.RESIZE</a></dt>
   <dd>
       The dimensions of the game display area are changed to match the size of the parent container.
-      That is, this mode <em>changes the Game size</em> to match the display size.
+      That is, this mode _changes the Game size_ to match the display size.
       <p>
       Any manually set Game size (see <a href="Phaser.ScaleManager.html#setGameSize">setGameSize</a>) is ignored while in effect.
   </dd>
@@ -4391,7 +4409,7 @@ This may be different in fullscreen - see <a href="Phaser.ScaleManager.html#crea
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2275" title="scaleMode on line 2275 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2275</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2275" title="scaleMode on line 2275 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2275</a>
     
 
 	
@@ -4469,7 +4487,7 @@ See <a href="Phaser.DOM.html#.getScreenOrientation">Phaser.DOM.getScreenOrientat
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L334" title="screenOrientation on line 334 of src/core/ScaleManager.js">src/core/ScaleManager.js line 334</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L334" title="screenOrientation on line 334 of src/core/ScaleManager.js">src/core/ScaleManager.js line 334</a>
     
 
 	
@@ -4546,7 +4564,7 @@ See <a href="Phaser.DOM.html#.getScreenOrientation">Phaser.DOM.getScreenOrientat
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L379" title="sourceAspectRatio on line 379 of src/core/ScaleManager.js">src/core/ScaleManager.js line 379</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L379" title="sourceAspectRatio on line 379 of src/core/ScaleManager.js">src/core/ScaleManager.js line 379</a>
     
 
 	
@@ -4631,7 +4649,7 @@ Update checks normally happen quicker in response to other events.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L496" title="trackParentInterval on line 496 of src/core/ScaleManager.js">src/core/ScaleManager.js line 496</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L496" title="trackParentInterval on line 496 of src/core/ScaleManager.js">src/core/ScaleManager.js line 496</a>
     
 
 	
@@ -4715,7 +4733,7 @@ Update checks normally happen quicker in response to other events.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L99" title="width on line 99 of src/core/ScaleManager.js">src/core/ScaleManager.js line 99</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L99" title="width on line 99 of src/core/ScaleManager.js">src/core/ScaleManager.js line 99</a>
     
 
 	
@@ -4871,7 +4889,7 @@ Update checks normally happen quicker in response to other events.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L402" title="windowConstraints on line 402 of src/core/ScaleManager.js">src/core/ScaleManager.js line 402</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L402" title="windowConstraints on line 402 of src/core/ScaleManager.js">src/core/ScaleManager.js line 402</a>
     
 
 	
@@ -5045,7 +5063,7 @@ Update checks normally happen quicker in response to other events.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L1564" title="align on line 1564 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1564</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L1564" title="align on line 1564 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1564</a>
     
 
 	
@@ -5129,7 +5147,7 @@ Update checks normally happen quicker in response to other events.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L686" title="boot on line 686 of src/core/ScaleManager.js">src/core/ScaleManager.js line 686</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L686" title="boot on line 686 of src/core/ScaleManager.js">src/core/ScaleManager.js line 686</a>
     
 
 	
@@ -5215,7 +5233,7 @@ fullscreen mode and the resulting element is supplied to <a href="Phaser.ScaleMa
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L1857" title="createFullScreenTarget on line 1857 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1857</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L1857" title="createFullScreenTarget on line 1857 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1857</a>
     
 
 	
@@ -5300,7 +5318,7 @@ This should probably only be called when the game is destroyed.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2212" title="destroy on line 2212 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2212</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2212" title="destroy on line 2212 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2212</a>
     
 
 	
@@ -5494,7 +5512,7 @@ viewport dimensions instead and bypass the Screen Orientation API then set: <cod
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L1246" title="forceOrientation on line 1246 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1246</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L1246" title="forceOrientation on line 1246 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1246</a>
     
 
 	
@@ -5691,7 +5709,7 @@ the viewport then this function may return a smaller than expected size.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L1503" title="getParentBounds on line 1503 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1503</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L1503" title="getParentBounds on line 1503 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1503</a>
     
 
 	
@@ -5849,7 +5867,7 @@ the viewport then this function may return a smaller than expected size.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L794" title="parseConfig on line 794 of src/core/ScaleManager.js">src/core/ScaleManager.js line 794</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L794" title="parseConfig on line 794 of src/core/ScaleManager.js">src/core/ScaleManager.js line 794</a>
     
 
 	
@@ -5933,7 +5951,7 @@ the viewport then this function may return a smaller than expected size.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L1107" title="preUpdate on line 1107 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1107</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L1107" title="preUpdate on line 1107 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1107</a>
     
 
 	
@@ -6029,7 +6047,7 @@ such as <a href="Phaser.ScaleManager.html#scaleMode">scaleMode</a>, are updated 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L1396" title="refresh on line 1396 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1396</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L1396" title="refresh on line 1396 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1396</a>
     
 
 	
@@ -6302,7 +6320,7 @@ the horizontal or vertical sides of the target dimensions. If you wish to stop t
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L2141" title="scaleSprite on line 2141 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2141</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L2141" title="scaleSprite on line 2141 of src/core/ScaleManager.js">src/core/ScaleManager.js line 2141</a>
     
 
 	
@@ -6495,7 +6513,7 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L938" title="setGameSize on line 938 of src/core/ScaleManager.js">src/core/ScaleManager.js line 938</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L938" title="setGameSize on line 938 of src/core/ScaleManager.js">src/core/ScaleManager.js line 938</a>
     
 
 	
@@ -6744,7 +6762,7 @@ Use this instead of directly changing <code>game.width</code> or <code>game.heig
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L1074" title="setMinMax on line 1074 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1074</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L1074" title="setMinMax on line 1074 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1074</a>
     
 
 	
@@ -6924,7 +6942,7 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L1001" title="setResizeCallback on line 1001 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1001</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L1001" title="setResizeCallback on line 1001 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1001</a>
     
 
 	
@@ -7089,7 +7107,7 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L836" title="setupScale on line 836 of src/core/ScaleManager.js">src/core/ScaleManager.js line 836</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L836" title="setupScale on line 836 of src/core/ScaleManager.js">src/core/ScaleManager.js line 836</a>
     
 
 	
@@ -7130,8 +7148,10 @@ and <code>parentBounds</code>, a Phaser.Rectangle, is the size of the Parent ele
     <div class="description method-description">
         <p>Set a User scaling factor used in the USER_SCALE scaling mode.</p>
 <p>The target canvas size is computed by:</p>
-<pre class="prettyprint source"><code>canvas.width = (game.width * hScale) - hTrim
-canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be used in the <a href="Phaser.ScaleManager.html#setResizeCallback">resize callback</a>. Set <code>queueUpdate</code> and <code>force</code> to false if the resize callback is being called repeatedly.</p>
+<pre><code>canvas.width = (game.width * hScale) - hTrim
+canvas.height = (game.height * vScale) - vTrim
+</code></pre>
+<p>This method can be used in the <a href="Phaser.ScaleManager.html#setResizeCallback">resize callback</a>. Set <code>queueUpdate</code> and <code>force</code> to false if the resize callback is being called repeatedly.</p>
     </div>
     
 
@@ -7438,7 +7458,7 @@ canvas.height = (game.height * vScale) - vTrim</code></pre><p>This method can be
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L967" title="setUserScale on line 967 of src/core/ScaleManager.js">src/core/ScaleManager.js line 967</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L967" title="setUserScale on line 967 of src/core/ScaleManager.js">src/core/ScaleManager.js line 967</a>
     
 
 	
@@ -7680,7 +7700,7 @@ device is reported to support fullscreen mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L1879" title="startFullScreen on line 1879 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1879</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L1879" title="startFullScreen on line 1879 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1879</a>
     
 
 	
@@ -7795,7 +7815,7 @@ device is reported to support fullscreen mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/core/ScaleManager.js#L1990" title="stopFullScreen on line 1990 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1990</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.15.0/src/core/ScaleManager.js#L1990" title="stopFullScreen on line 1990 of src/core/ScaleManager.js">src/core/ScaleManager.js line 1990</a>
     
 
 	
@@ -7862,9 +7882,9 @@ device is reported to support fullscreen mode.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.14.0
+  phaser-ce@2.15.0
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.14.0">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.15.0">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -7879,9 +7899,9 @@ device is reported to support fullscreen mode.</p>
 
 
 <p class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on 2020-01-19
+		on 2020-03-06
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -7910,7 +7930,7 @@ device is reported to support fullscreen mode.</p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2020011913"></script>
+<script defer src="scripts/bundle.js?2020030612"></script>
 
 
 

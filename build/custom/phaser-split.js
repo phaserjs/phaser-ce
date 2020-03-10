@@ -7,7 +7,7 @@
 *
 * Phaser - http://phaser.io
 *
-* v2.14.0 "2020-01-19" - Built: Sun Jan 19 2020 13:12:21
+* v2.15.0 "2020-03-06" - Built: Fri Mar 06 2020 12:24:54
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm
 *
@@ -53,7 +53,7 @@ var Phaser = Phaser || { // jshint ignore:line
     * @constant Phaser.VERSION
     * @type {string}
     */
-    VERSION: '2.14.0',
+    VERSION: '2.15.0',
 
     /**
     * An array of Phaser game instances.
@@ -26214,13 +26214,6 @@ Phaser.Component.BringToTop.prototype.moveDown = function ()
 Phaser.Component.Core = function () {};
 
 /**
- * @property {boolean} skipTypeChecks - Skip type checks in {@link #init}.
- * @static
- * @default
- */
-Phaser.Component.Core.skipTypeChecks = false;
-
-/**
 * Installs / registers mixin components.
 *
 * The `this` context should be that of the applicable object instance or prototype.
@@ -26263,26 +26256,6 @@ Phaser.Component.Core.install = function (components)
 */
 Phaser.Component.Core.init = function (game, x, y, key, frame)
 {
-
-    if (!Phaser.Component.Core.skipTypeChecks)
-    {
-        if (!(game instanceof Phaser.Game))
-        {
-            throw new Error('The value passed as the `game` argument (' + game + ') is not an instance of Phaser.Game.');
-        }
-
-        if (typeof x !== 'number')
-        {
-            console.warn('The `x` argument value (%s) should be a number.', x);
-            x = 0; // This would be done implicitly in position.set().
-        }
-
-        if (typeof y !== 'number')
-        {
-            console.warn('The `y` argument value (%s) should be a number.', y);
-            y = 0; // This would be done implicitly in position.set().
-        }
-    }
 
     this.game = game;
     this.key = key;
