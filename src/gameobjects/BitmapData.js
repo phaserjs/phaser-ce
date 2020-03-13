@@ -520,6 +520,52 @@ Phaser.BitmapData.prototype = {
     },
 
     /**
+     * Returns a data URI representing the bitmap image.
+     *
+     * @method Phaser.BitmapData#getBase64
+     * @param {string} [type] - Image format.
+     * @param {number} [encoderOptions] - Image quality, for lossy formats.
+     * @return {string} - The data URI.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL
+     */
+    getBase64: function (type, encoderOptions)
+    {
+
+        return this.canvas.toDataURL(type, encoderOptions);
+
+    },
+
+    /**
+     * Returns an HTML image of the bitmap.
+     *
+     * The image is loaded asynchronously, not right away.
+     * Use the callbacks if you need to wait for the loaded image.
+     *
+     * @method Phaser.BitmapData#getImage
+     * @param {string} [type] - Image format.
+     * @param {number} [encoderOptions] - Image quality, for lossy formats.
+     * @param {function} [onLoadCallback] - A function to call when the image loads.
+     * @param {function} [onErrorCallback] - A function to call when the image fails to load.
+     * @return {HTMLImageElement} - The image.
+     *
+     * @see Phaser.BitmapData#getBase64
+     */
+    getImage: function (type, encoderOptions, onLoadCallback, onErrorCallback)
+    {
+
+        var image = new Image();
+
+        if (onLoadCallback) { image.onload = onLoadCallback; }
+        if (onErrorCallback) { image.onerror = onErrorCallback; }
+
+        image.src = this.getBase64(type, encoderOptions);
+
+        return image;
+
+    },
+
+    /**
     * Creates a new {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image Image} element by converting this BitmapDatas canvas into a dataURL.
     *
     * The image is then stored in the {@link Phaser.Cache image Cache} using the key given.
@@ -582,7 +628,7 @@ Phaser.BitmapData.prototype = {
             };
         }
 
-        image.src = this.canvas.toDataURL('image/png');
+        image.src = this.getBase64();
 
         if (!callback)
         {

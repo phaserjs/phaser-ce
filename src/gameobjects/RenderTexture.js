@@ -7,7 +7,7 @@
 /**
 * A RenderTexture is a special texture that allows any displayObject to be rendered to it. It allows you to take many complex objects and
 * render them down into a single quad (on WebGL) which can then be used to texture other display objects with. A way of generating textures at run-time.
-* 
+*
 * @class Phaser.RenderTexture
 * @constructor
 * @extends PIXI.Texture
@@ -181,7 +181,7 @@ Phaser.RenderTexture.prototype.renderRawXY = function (displayObject, x, y, clea
 /**
 * This function will draw the display object to the RenderTexture.
 *
-* In versions of Phaser prior to 2.4.0 the second parameter was a Phaser.Point object. 
+* In versions of Phaser prior to 2.4.0 the second parameter was a Phaser.Point object.
 * This is now a Matrix allowing you much more control over how the Display Object is rendered.
 * If you need to replicate the earlier behavior please use Phaser.RenderTexture.renderXY instead.
 *
@@ -299,7 +299,7 @@ Phaser.RenderTexture.prototype._renderWebGL = function (displayObject, matrix, c
     {
         return;
     }
-   
+
     //  Let's create a nice matrix to apply to our display object.
     //  Frame buffers come in upside down so we need to flip the matrix.
     var wt = displayObject.worldTransform;
@@ -318,7 +318,7 @@ Phaser.RenderTexture.prototype._renderWebGL = function (displayObject, matrix, c
     {
         displayObject.children[i].updateTransform();
     }
-    
+
     //  Time for the webGL fun stuff!
     var gl = this.renderer.gl;
 
@@ -390,31 +390,40 @@ Phaser.RenderTexture.prototype._renderCanvas = function (displayObject, matrix, 
 };
 
 /**
-* Will return a HTML Image of the texture
+* Returns an HTML Image of the texture
 *
 * @method Phaser.RenderTexture.prototype.getImage
+* @param {string} [type] - Image format.
+* @param {number} [encoderOptions] - Image quality, for lossy formats.
 * @return {Image}
+*
+* @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL
 */
-Phaser.RenderTexture.prototype.getImage = function ()
+
+Phaser.RenderTexture.prototype.getImage = function (type, encoderOptions)
 {
 
     var image = new Image();
-    image.src = this.getBase64();
+    image.src = this.getBase64(type, encoderOptions);
 
     return image;
 
 };
 
 /**
-* Will return a base64 encoded string of this texture. It works by calling RenderTexture.getCanvas and then running toDataURL on that.
+* Returns a base64 encoded string of this texture. It works by calling RenderTexture.getCanvas and then running toDataURL on that.
 *
 * @method Phaser.RenderTexture.prototype.getBase64
+* @param {string} [type] - Image format.
+* @param {number} [encoderOptions] - Image quality, for lossy formats.
 * @return {String} A base64 encoded string of the texture.
+*
+* @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL
 */
-Phaser.RenderTexture.prototype.getBase64 = function ()
+Phaser.RenderTexture.prototype.getBase64 = function (type, encoderOptions)
 {
 
-    return this.getCanvas().toDataURL();
+    return this.getCanvas().toDataURL(type, encoderOptions);
 
 };
 
