@@ -392,19 +392,27 @@ Phaser.RenderTexture.prototype._renderCanvas = function (displayObject, matrix, 
 /**
 * Returns an HTML Image of the texture
 *
+* The image is loaded asynchronously, not right away.
+* Use the callbacks if you need to wait for the loaded image.
+*
 * @method Phaser.RenderTexture.prototype.getImage
 * @param {string} [type] - Image format.
 * @param {number} [encoderOptions] - Image quality, for lossy formats.
+* @param {function} [onLoadCallback] - A function to call when the image loads.
+* @param {function} [onErrorCallback] - A function to call when the image fails to load.
 * @return {Image}
 *
 * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL
 */
 
-Phaser.RenderTexture.prototype.getImage = function (type, encoderOptions)
+Phaser.RenderTexture.prototype.getImage = function (type, encoderOptions, onLoadCallback, onErrorCallback)
 {
 
     var image = new Image();
     image.src = this.getBase64(type, encoderOptions);
+
+    if (onLoadCallback) { image.onload = onLoadCallback; }
+    if (onErrorCallback) { image.onerror = onErrorCallback; }
 
     return image;
 
