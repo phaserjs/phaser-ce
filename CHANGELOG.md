@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+### New Features
+
+- Phaser.BitmapData#getBase64()
+- Phaser.BitmapData#getImage()
+- Phaser.Game#maxUpdates
+
+### Updates
+
+- Phaser.RenderTexture#getBase64() has `type` and `encoderOptions` arguments.
+- Phaser.RenderTexture#getImage() has `type`, `encoderOptions`, `onLoadCallback`, and `onErrorCallback` arguments.
+
+### Thanks
+
+@samme
+
 ## Version 2.15.0 - 6 Mar 2020
 
 ### API Changes
