@@ -416,8 +416,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.updatesThisFrame = 1;
 
     /**
-    * Number of renders expected to occur this animation frame. May be 0 if {@link #dropFrames is on} or {@link #forceSingleRender} is off; otherwise it will be 1.
-    * @property {integer} updatesThisFrame
+    * Number of renders expected to occur this animation frame. May be 0 if {@link #dropFrames} is on or {@link #forceSingleRender} is off; otherwise it will be 1.
+    * @property {integer} rendersThisFrame
     * @protected
     */
     this.rendersThisFrame = 1;
@@ -456,22 +456,32 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
 
     /**
     * @property {boolean} forceSingleUpdate - Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.
+    * @default
     */
     this.forceSingleUpdate = true;
 
     /**
     * @property {boolean} forceSingleRender - Should the game loop make one render per animation frame, even without a preceding logic update? (During spiraling conditions, {@link #dropFrames} is used instead.)
+    * @default
     */
     this.forceSingleRender = true;
 
     /**
     * @property {boolean} dropFrames - When {@link #forceSingleUpdate} is off, skip {@link #updateRender rendering} if logic updates are spiraling upwards.
+    * @default
     */
     this.dropFrames = false;
 
     /**
+    * @property {number} maxUpdates - When {@link #forceSingleUpdate} is off, the maximum number of logic updates to make per animation frame, if required to catch up.
+    * @default
+    */
+    this.maxUpdates = 3;
+
+    /**
     * @property {string} powerPreference - When the WebGL renderer is used, hint to the browser which GPU to use.
     * @readonly
+    * @default
     */
     this.powerPreference = 'default';
 
@@ -1039,8 +1049,8 @@ Phaser.Game.prototype = {
             // step size taking into account the slow motion speed
             var slowStep = this.time.slowMotion * 1000.0 / this.time.desiredFps;
 
-            // accumulate time until the slowStep threshold is met or exceeded... up to a limit of 3 catch-up frames at slowStep intervals
-            this._deltaTime += Math.max(Math.min(slowStep * 3, this.time.elapsed), 0);
+            // accumulate time until the slowStep threshold is met or exceeded... up to a limit of `maxUpdates` (3) catch-up frames at slowStep intervals
+            this._deltaTime += Math.max(Math.min(slowStep * this.maxUpdates, this.time.elapsed), 0);
 
             // call the game update logic multiple times if necessary to "catch up" with dropped frames
             // unless forceSingleUpdate is true
@@ -1125,7 +1135,7 @@ Phaser.Game.prototype = {
                 this.pendingStep = true;
             }
 
-            this.time.countUpdate();
+            this.time.preUpdate();
 
             this.scale.preUpdate();
             this.debug.preUpdate();
@@ -1183,7 +1193,7 @@ Phaser.Game.prototype = {
             return;
         }
 
-        this.time.countRender();
+        this.time.preRender();
 
         this.state.preRender(elapsedTime);
 
