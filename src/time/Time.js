@@ -79,8 +79,8 @@ Phaser.Time = function (game)
     *
     * While the game is active, this will be similar to (1000 / {@link #fps}).
     *
-    * _Note:_ This is updated only once per game loop - even if multiple logic update steps are done.
-    * Use {@link Phaser.Timer#physicsTime physicsTime} as a basis of game/logic calculations instead.
+    * This is updated only once per game loop, even if multiple logic update steps are done.
+    * Use {@link Phaser.Time#physicsElapsed physicsElapsed} as a basis of game/logic calculations instead.
     *
     * @property {number} elapsed
     * @see Phaser.Time.time
@@ -93,8 +93,10 @@ Phaser.Time = function (game)
     *
     * This value is corrected for game pauses and will be "about zero" after a game is resumed.
     *
-    * _Note:_ This is updated once per game loop - even if multiple logic update steps are done.
-    * Use {@link Phaser.Timer#physicsTime physicsTime} as a basis of game/logic calculations instead.
+    * This is updated at each logic update, possibly more than once per game loop.
+    * If multiple logic update steps are done, the `elapsedMS` values will differ greatly.
+    *
+    * Use {@link Phaser.Time#physicsElapsedMS physicsElapsedMS} as a basis of game/logic calculations instead.
     *
     * @property {integer} elapsedMS
     * @protected
@@ -562,10 +564,10 @@ Phaser.Time.prototype = {
     /**
     * Counts one logic update (if advanced timing is enabled).
     *
-    * @method Phaser.Time#countUpdate
+    * @method Phaser.Time#preUpdate
     * @private
     */
-    countUpdate: function ()
+    preUpdate: function ()
     {
 
         if (this.advancedTiming)
@@ -581,7 +583,7 @@ Phaser.Time.prototype = {
     * @method Phaser.Time#countRender
     * @private
     */
-    countRender: function ()
+    preRender: function ()
     {
 
         if (this.advancedTiming)
