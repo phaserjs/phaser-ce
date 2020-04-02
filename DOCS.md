@@ -3,7 +3,7 @@
 
 [Phaser CE](https://github.com/photonstorm/phaser-ce) is the **Community Edition** of [Phaser](https://github.com/photonstorm/phaser). It was started with the 2.7.0 release and since then the community has worked to continue updating it, fixing bugs and adding new features.
 
-<div class="alert alert-info">See [README](https://github.com/photonstorm/phaser-ce/blob/master/README.md) for a guide to getting started with Phaser CE.</div>
+<div class="alert alert-info">See <a href="https://github.com/photonstorm/phaser-ce/blob/master/README.md">README</a> for a guide to getting started with Phaser CE.</div>
 
 # API
 
