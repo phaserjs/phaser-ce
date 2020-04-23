@@ -1500,18 +1500,26 @@ Phaser.Tilemap.prototype = {
         layer = this.getLayer(layer);
 
         var c = 0;
+        var height = this.layers[layer].height;
+        var width = this.layers[layer].width;
+        var data = this.layers[layer].data;
+        var row, tile;
 
         if (reverse)
         {
-            for (var y = this.layers[layer].height - 1; y >= 0; y--)
+            for (var y = height - 1; y >= 0; y--)
             {
-                for (var x = this.layers[layer].width - 1; x >= 0; x--)
+                row = data[y];
+
+                for (var x = width - 1; x >= 0; x--)
                 {
-                    if (this.layers[layer].data[y][x].index === index)
+                    tile = row[x];
+
+                    if (tile.index === index)
                     {
                         if (c === skip)
                         {
-                            return this.layers[layer].data[y][x];
+                            return tile;
                         }
                         else
                         {
@@ -1523,15 +1531,19 @@ Phaser.Tilemap.prototype = {
         }
         else
         {
-            for (var y = 0; y < this.layers[layer].height; y++)
+            for (var y = 0; y < height; y++)
             {
-                for (var x = 0; x < this.layers[layer].width; x++)
+                row = data[y];
+
+                for (var x = 0; x < width; x++)
                 {
-                    if (this.layers[layer].data[y][x].index === index)
+                    tile = row[x];
+
+                    if (tile.index === index)
                     {
                         if (c === skip)
                         {
-                            return this.layers[layer].data[y][x];
+                            return tile;
                         }
                         else
                         {
