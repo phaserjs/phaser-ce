@@ -1485,13 +1485,16 @@ Phaser.Tilemap.prototype = {
     * If the reverse boolean is true, it scans starting from the bottom-right corner traveling up to the top-left.
     *
     * @method Phaser.Tilemap#searchTileIndex
+    *
     * @param {number} index - The tile index value to search for.
     * @param {number} [skip=0] - The number of times to skip a matching tile before returning.
     * @param {number} [reverse=false] - If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
     * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to get the tile from.
-    * @return {Phaser.Tile} The first (or n skipped) tile with the matching index.
+    * @param {number} [all=false] - If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
+    *
+    * @return {Phaser.Tile|Phaser.Tile[]} A matching tile, or null (when `all` is false); or an array of zero or more tiles (when `all` is true).
     */
-    searchTileIndex: function (index, skip, reverse, layer)
+    searchTileIndex: function (index, skip, reverse, layer, all)
     {
 
         if (skip === undefined) { skip = 0; }
@@ -1505,6 +1508,11 @@ Phaser.Tilemap.prototype = {
         var data = this.layers[layer].data;
         var row, tile;
 
+        if (all)
+        {
+            var results = [];
+        }
+
         if (reverse)
         {
             for (var y = height - 1; y >= 0; y--)
@@ -1517,9 +1525,16 @@ Phaser.Tilemap.prototype = {
 
                     if (tile.index === index)
                     {
-                        if (c === skip)
+                        if (c >= skip)
                         {
-                            return tile;
+                            if (all)
+                            {
+                                results.push(tile);
+                            }
+                            else
+                            {
+                                return tile;
+                            }
                         }
                         else
                         {
@@ -1541,9 +1556,16 @@ Phaser.Tilemap.prototype = {
 
                     if (tile.index === index)
                     {
-                        if (c === skip)
+                        if (c >= skip)
                         {
-                            return tile;
+                            if (all)
+                            {
+                                results.push(tile);
+                            }
+                            else
+                            {
+                                return tile;
+                            }
                         }
                         else
                         {
@@ -1554,7 +1576,7 @@ Phaser.Tilemap.prototype = {
             }
         }
 
-        return null;
+        return all ? results : null;
 
     },
 
