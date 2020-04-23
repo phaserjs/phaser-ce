@@ -12,6 +12,7 @@
 
 - Phaser.RenderTexture#getBase64() has `type` and `encoderOptions` arguments.
 - Phaser.RenderTexture#getImage() has `type`, `encoderOptions`, `onLoadCallback`, and `onErrorCallback` arguments.
+- Phaser.Tilemap#searchTileIndex() has an `all` argument, returning all matching tiles.
 
 ### Thanks
 
