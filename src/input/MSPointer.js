@@ -278,7 +278,7 @@ Phaser.MSPointer.prototype = {
 
         event.identifier = event.pointerId;
 
-        if (event.pointerType === 'mouse' || event.pointerType === 0x00000004)
+        if (this.isMousePointerEvent(event))
         {
             this.input.mousePointer.start(event);
         }
@@ -316,7 +316,7 @@ Phaser.MSPointer.prototype = {
 
         event.identifier = event.pointerId;
 
-        if (event.pointerType === 'mouse' || event.pointerType === 0x00000004)
+        if (this.isMousePointerEvent(event))
         {
             this.input.mousePointer.move(event);
         }
@@ -356,7 +356,7 @@ Phaser.MSPointer.prototype = {
 
         event.identifier = event.pointerId;
 
-        if (event.pointerType === 'mouse' || event.pointerType === 0x00000004)
+        if (this.isMousePointerEvent(event))
         {
             this.input.mousePointer.stop(event);
         }
@@ -378,7 +378,7 @@ Phaser.MSPointer.prototype = {
 
         event.identifier = event.pointerId;
 
-        if ((event.pointerType === 'mouse' || event.pointerType === 0x00000004) && !this.input.mousePointer.withinGame)
+        if (this.isMousePointerEvent(event) && !this.input.mousePointer.withinGame)
         {
             this.onPointerUp(event);
         }
@@ -412,18 +412,11 @@ Phaser.MSPointer.prototype = {
 
         event.identifier = event.pointerId;
 
-        if (event.pointerType === 'mouse' || event.pointerType === 0x00000004)
-        {
-            this.input.mousePointer.withinGame = false;
-        }
-        else
-        {
-            var pointer = this.input.getPointerFromIdentifier(event.identifier);
+        var pointer = this.getPointerFromEvent(event);
 
-            if (pointer)
-            {
-                pointer.withinGame = false;
-            }
+        if (pointer)
+        {
+            pointer.withinGame = false;
         }
 
         if (this.pointerOutCallback)
@@ -470,18 +463,11 @@ Phaser.MSPointer.prototype = {
 
         event.identifier = event.pointerId;
 
-        if (event.pointerType === 'mouse' || event.pointerType === 0x00000004)
-        {
-            this.input.mousePointer.withinGame = true;
-        }
-        else
-        {
-            var pointer = this.input.getPointerFromIdentifier(event.identifier);
+        var pointer = this.getPointerFromEvent(event);
 
-            if (pointer)
-            {
-                pointer.withinGame = true;
-            }
+        if (pointer)
+        {
+            pointer.withinGame = true;
         }
 
         if (this.pointerOverCallback)
@@ -520,6 +506,28 @@ Phaser.MSPointer.prototype = {
 
         this.active = false;
 
+    },
+
+    /**
+     * @private
+     * @param {PointerEvent} event
+     * @return {boolean}
+     */
+    isMousePointerEvent: function (event)
+    {
+        return (event.pointerType === 'mouse' || event.pointerType === 0x00000004);
+    },
+
+    /**
+     * @private
+     * @param {PointerEvent} event
+     * @return {?Phaser.Pointer}
+     */
+    getPointerFromEvent: function (event)
+    {
+        return this.isMousePointerEvent(event)
+            ? this.input.mousePointer
+            : this.input.getPointerFromIdentifier(event.identifier);
     }
 
 };
