@@ -7,12 +7,17 @@
 - Phaser.BitmapData#getBase64()
 - Phaser.BitmapData#getImage()
 - Phaser.Game#maxUpdates
+- Phaser.MSPointer#pointerCancelCallback
 
 ### Updates
 
 - Phaser.RenderTexture#getBase64() has `type` and `encoderOptions` arguments.
 - Phaser.RenderTexture#getImage() has `type`, `encoderOptions`, `onLoadCallback`, and `onErrorCallback` arguments.
 - Phaser.Tilemap#searchTileIndex() has an `all` argument, returning all matching tiles.
+
+### Bug Fixes
+
+- Input pointers are stopped for the 'pointercancel' event. This should prevent lost/frozen pointers after OS gestures (#663).
 
 ### Thanks
 
