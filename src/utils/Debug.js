@@ -568,6 +568,7 @@ Phaser.Utils.Debug.prototype = {
         this.line('Movement: X: ' + mx + ' Y: ' + my);
         this.line('Duration: ' + pointer.duration + ' ms');
         this.line('is Down: ' + pointer.isDown + ' is Up: ' + pointer.isUp);
+        this.line('Identifier: ' + pointer.identifier + ' Pointer ID: ' + pointer.pointerId);
 
         if (pointer.isMouse)
         {
