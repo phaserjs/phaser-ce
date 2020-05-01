@@ -16,6 +16,7 @@
 
         "no-cond-assign": [ "warn", "except-parens" ],
         "no-duplicate-case": [ "error" ],
+        "no-prototype-builtins": "off",
 
         "accessor-pairs": "error",
         "curly": "error",
