@@ -690,6 +690,50 @@ Phaser.Utils.Debug.prototype = {
 
     },
 
+    /**
+     * Prints information about an input handler, e.g. `this.input.mouse`.
+     *
+     * @method Phaser.Utils.Debug#inputHandler
+     * @param {Phaser.Keyboard|Phaser.Mouse|Phaser.MouseWheel|Phaser.MSPointer|Phaser.PointerLock} handler
+     * @param {string} name
+     * @param {number} x
+     * @param {number} y
+     * @param {string} color
+     */
+    inputHandler: function (handler, name, x, y, color)
+    {
+        this.start(x, y, color);
+
+        this.line(name || '?');
+        this.line('active: ' + handler.active);
+
+        if (!handler.active)
+        {
+            this.stop();
+
+            return;
+        }
+
+        this.line('enabled: ' + handler.enabled);
+
+        if ('capture' in handler)
+        {
+            this.line('capture: ' + handler.capture);
+        }
+
+        if ('preventDefault' in handler)
+        {
+            this.line('preventDefault: ' + handler.preventDefault);
+        }
+
+        if ('event' in handler)
+        {
+            this.line('event: ' + (handler.event ? handler.event.type : handler.event));
+        }
+
+        this.stop();
+    },
+
     _inputHandler: function (handler, name)
     {
         return this._inputHandlerStatusIcon(handler) + ' ' + name + ' ' + this._inputHandlerCaptureIcon(handler);
