@@ -14,22 +14,10 @@
 *
 * Phaser does not yet support {@link http://www.w3.org/TR/pointerevents/#chorded-button-interactions chorded button interactions}.
 *
-* You can disable Phaser's use of Pointer Events by any of three ways:
+* You can disable Phaser's use of Pointer Events:
 *
 * ```javascript
 * new Phaser.Game({ mspointer: false });
-* ```
-*
-* ```javascript
-* // **Before** `new Phaser.Game(…)`:
-* Phaser.Device.onInitialized.add(function () {
-*     this.mspointer = false;
-* });
-* ```
-*
-* ```javascript
-* // Once, in the earliest State `init` or `create` callback (e.g., Boot):
-* this.input.mspointer.stop();
 * ```
 *
 * @class Phaser.MSPointer
@@ -56,29 +44,34 @@ Phaser.MSPointer = function (game)
     this.callbackContext = this.game;
 
     /**
-    * @property {function} pointerDownCallback - A callback that can be fired on a pointerdown (MSPointerDown) event.
+    * @property {function} pointerDownCallback - A callback that can be fired on a pointerdown event.
     */
     this.pointerDownCallback = null;
 
     /**
-    * @property {function} pointerMoveCallback - A callback that can be fired on a pointermove (MSPointerMove) event.
+    * @property {function} pointerMoveCallback - A callback that can be fired on a pointermove event.
     */
     this.pointerMoveCallback = null;
 
     /**
-    * @property {function} pointerUpCallback - A callback that can be fired on a pointerup (MSPointerUp) event.
+    * @property {function} pointerUpCallback - A callback that can be fired on a pointerup event.
     */
     this.pointerUpCallback = null;
 
     /**
-    * @property {function} pointerOutCallback - A callback that can be fired on a pointerout (MSPointerOut) event.
+    * @property {function} pointerOutCallback - A callback that can be fired on a pointerout event.
     */
     this.pointerOutCallback = null;
 
     /**
-    * @property {function} pointerOverCallback - A callback that can be fired on a pointerover (MSPointerOver) event.
+    * @property {function} pointerOverCallback - A callback that can be fired on a pointerover event.
     */
     this.pointerOverCallback = null;
+
+    /**
+    * @property {function} pointerCancelCallback - A callback that can be fired on a pointercancel event.
+    */
+    this.pointerCancelCallback = null;
 
     /**
     * If true the PointerEvent will call preventDefault(), canceling the corresponding MouseEvent or
@@ -216,16 +209,23 @@ Phaser.MSPointer.prototype = {
             return _this.onPointerOver(event);
         };
 
+        this._onMSPointerCancel = function (event)
+        {
+            return _this.onPointerCancel(event);
+        };
+
         var canvas = this.game.canvas;
 
         canvas.addEventListener('MSPointerDown', this._onMSPointerDown, false);
         canvas.addEventListener('MSPointerMove', this._onMSPointerMove, false);
         canvas.addEventListener('MSPointerUp', this._onMSPointerUp, false);
+        canvas.addEventListener('MSPointerCancel', this._onMSPointerCancel, false);
 
         //  IE11+ uses non-prefix events
         canvas.addEventListener('pointerdown', this._onMSPointerDown, false);
         canvas.addEventListener('pointermove', this._onMSPointerMove, false);
         canvas.addEventListener('pointerup', this._onMSPointerUp, false);
+        canvas.addEventListener('pointercancel', this._onMSPointerCancel, false);
 
         canvas.style['-ms-content-zooming'] = 'none';
         canvas.style['-ms-touch-action'] = 'none';
@@ -473,6 +473,40 @@ Phaser.MSPointer.prototype = {
         if (this.pointerOverCallback)
         {
             this.pointerOverCallback.call(this.callbackContext, event);
+        }
+
+    },
+
+    /**
+    * The internal method that handles the pointer cancel event from the browser.
+    *
+    * @method Phaser.MSPointer#onPointerCancel
+    * @param {PointerEvent} event
+    */
+    onPointerCancel: function (event)
+    {
+
+        this.event = event;
+
+        if (this.pointerCancelCallback)
+        {
+            this.pointerCancelCallback.call(this.callbackContext, event);
+        }
+
+        if (!this.game.input.enabled || !this.enabled)
+        {
+            return;
+        }
+
+        event.identifier = event.pointerId;
+
+        if (this.isMousePointerEvent(event))
+        {
+            this.input.mousePointer.stop(event);
+        }
+        else
+        {
+            this.input.stopPointer(event);
         }
 
     },
