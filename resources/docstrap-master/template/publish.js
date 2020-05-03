@@ -253,6 +253,12 @@ function searchData (html) {
 }
 
 function generate (docType, title, docs, filename, resolveLinks) {
+  console.assert(title !== 'Index', '`title` should not be "Index"', title);
+
+  if (title === 'Index') {
+    throw new Error('Bad title');
+  }
+
   resolveLinks = resolveLinks === false ? false : true;
 
   var docData = {
@@ -780,12 +786,12 @@ exports.publish = function (taffyData, opts, tutorials) {
       kind: 'package'
     });
 
-  generate('index', 'Index',
+  generate('index', (opts.mainpagetitle || 'Index'),
     packages.concat(
       [{
         kind: 'mainpage',
         readme: opts.readme,
-        longname: (opts.mainpagetitle) ? opts.mainpagetitle : 'Main Page'
+        longname: opts.mainpagetitle || 'Main Page'
       }]
     ).concat(files),
     indexUrl);
