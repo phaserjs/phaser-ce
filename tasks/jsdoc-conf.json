@@ -8,7 +8,7 @@
     "destination": "./docs",
     "encoding": "utf8",
     "lenient": true,
-    "mainpagetitle": "API",
+    "mainpagetitle": "API Documentation",
     "private": false,
     "readme": "./DOCS.md",
     "recurse": true,
