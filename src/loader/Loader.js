@@ -2163,7 +2163,8 @@ Phaser.Loader.prototype = {
     finishedLoading: function (abnormal)
     {
 
-        if (this.hasLoaded)
+        // Destroy could have occurred while loading
+        if (this.hasLoaded || !this.game.state)
         {
             return;
         }
@@ -2180,16 +2181,9 @@ Phaser.Loader.prototype = {
 
         this.game.state.loadUpdate();
         this.onBeforeLoadComplete.dispatch();
-
         this.reset();
-
         this.onLoadComplete.dispatch();
-
-        // Check if the state still exists since destroy could have occurred while loading
-        if (this.game.state)
-        {
-            this.game.state.loadComplete();
-        }
+        this.game.state.loadComplete();
 
     },
 
