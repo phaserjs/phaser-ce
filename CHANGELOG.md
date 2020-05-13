@@ -18,10 +18,11 @@
 ### Bug Fixes
 
 - Input pointers are stopped for the 'pointercancel' event. This should prevent lost/frozen pointers after OS gestures (#663).
+- Destroying the game during loading does not cause an error when loader completes (#666).
 
 ### Thanks
 
-@samme
+@jf-m, @samme
 
 ## Version 2.15.0 - 6 Mar 2020
 
