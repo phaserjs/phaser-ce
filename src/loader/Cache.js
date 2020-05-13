@@ -66,7 +66,8 @@ Phaser.Cache = function (game)
         bitmapFont: {},
         shader: {},
         renderTexture: {},
-        compressedTexture: {}
+        compressedTexture: {},
+        data: {}
     };
 
     /**
@@ -113,6 +114,7 @@ Phaser.Cache = function (game)
     this._cacheMap[Phaser.Cache.VIDEO] = this._cache.video;
     this._cacheMap[Phaser.Cache.SHADER] = this._cache.shader;
     this._cacheMap[Phaser.Cache.RENDER_TEXTURE] = this._cache.renderTexture;
+    this._cacheMap[Phaser.Cache.DATA] = this._cache.data;
 
     /**
      * @property {number}
@@ -220,6 +222,12 @@ Phaser.Cache.SHADER = 14;
 * @type {number}
 */
 Phaser.Cache.RENDER_TEXTURE = 15;
+
+/**
+* @constant
+* @type {number}
+*/
+Phaser.Cache.DATA = 16;
 
 /**
 * The default image used for a texture when no other is specified.
@@ -848,6 +856,20 @@ Phaser.Cache.prototype = {
 
     },
 
+    /**
+    * Add a data item to the cache.
+    *
+    * @method Phaser.Cache#addData
+    * @param {string} key - The key of the data item.
+    * @param {any} data - The data.
+    */
+    addData: function (key, data)
+    {
+
+        this._cache.data[key] = data;
+
+    },
+
     // //////////////////////////
     //  Sound Related Methods //
     // //////////////////////////
@@ -1030,6 +1052,20 @@ Phaser.Cache.prototype = {
     {
 
         return this.checkKey(Phaser.Cache.CANVAS, key);
+
+    },
+
+    /**
+    * Checks if the given key exists in the Data Cache.
+    *
+    * @method Phaser.Cache#checkDataKey
+    * @param {string} key - The key of the data item.
+    * @return {boolean} True if the key exists in the cache, otherwise false.
+    */
+    checkDataKey: function (key)
+    {
+
+        return this.checkKey(Phaser.Cache.DATA, key);
 
     },
 
@@ -1645,6 +1681,20 @@ Phaser.Cache.prototype = {
 
     },
 
+    /**
+    * Gets an item from the data cache.
+    *
+    * @method Phaser.Cache#getData
+    * @param {string} key - The key of the data item.
+    * @return {any} The data.
+    */
+    getData: function (key)
+    {
+
+        return this.getItem(key, Phaser.Cache.DATA, 'getData');
+
+    },
+
     // //////////////////////////
     //  Frame Related Methods //
     // //////////////////////////
@@ -2143,6 +2193,13 @@ Phaser.Cache.prototype = {
     {
 
         delete this._cache.image[key];
+
+    },
+
+    removeData: function (key)
+    {
+
+        delete this._cache.data[key];
 
     },
 
