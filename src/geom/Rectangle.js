@@ -478,11 +478,11 @@ Phaser.Rectangle.prototype = {
      * Creates or positions four {@link Phaser.Line} lines representing the Rectangle's sides.
      *
      * @method Phaser.Rectangle#sides
-     * @param  {Phaser.Line} [top]
-     * @param  {Phaser.Line} [right]
-     * @param  {Phaser.Line} [bottom]
-     * @param  {Phaser.Line} [left]
-     * @return {?Phaser.Line[]} - An array containing four lines (if no arguments were given), or null.
+     * @param {Phaser.Line} [top]
+     * @param {Phaser.Line} [right]
+     * @param {Phaser.Line} [bottom]
+     * @param {Phaser.Line} [left]
+     * @return {?(Phaser.Line[])} An array containing four lines (if no arguments were given), or null.
      */
     sides: function (top, right, bottom, left)
     {
