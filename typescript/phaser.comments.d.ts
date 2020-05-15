@@ -7988,6 +7988,7 @@ declare module Phaser {
 
         /**
         * Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.
+        * Default: true
         */
         forceSingleUpdate: boolean;
 
@@ -8115,6 +8116,7 @@ declare module Phaser {
 
         /**
         * When the WebGL renderer is used, hint to the browser which GPU to use.
+        * Default: default
         */
         powerPreference: string;
 
@@ -16659,22 +16661,10 @@ declare module Phaser {
     * 
     * Phaser does not yet support {@link http://www.w3.org/TR/pointerevents/#chorded-button-interactions chorded button interactions}.
     * 
-    * You can disable Phaser's use of Pointer Events by any of three ways:
+    * You can disable Phaser's use of Pointer Events:
     * 
     * ```javascript
     * new Phaser.Game({ mspointer: false });
-    * ```
-    * 
-    * ```javascript
-    * // **Before** `new Phaser.Game(…)`:
-    * Phaser.Device.onInitialized.add(function () {
-    *     this.mspointer = false;
-    * });
-    * ```
-    * 
-    * ```javascript
-    * // Once, in the earliest State `init` or `create` callback (e.g., Boot):
-    * this.input.mspointer.stop();
     * ```
     */
     class MSPointer {
@@ -16690,22 +16680,10 @@ declare module Phaser {
         * 
         * Phaser does not yet support {@link http://www.w3.org/TR/pointerevents/#chorded-button-interactions chorded button interactions}.
         * 
-        * You can disable Phaser's use of Pointer Events by any of three ways:
+        * You can disable Phaser's use of Pointer Events:
         * 
         * ```javascript
         * new Phaser.Game({ mspointer: false });
-        * ```
-        * 
-        * ```javascript
-        * // **Before** `new Phaser.Game(…)`:
-        * Phaser.Device.onInitialized.add(function () {
-        *     this.mspointer = false;
-        * });
-        * ```
-        * 
-        * ```javascript
-        * // Once, in the earliest State `init` or `create` callback (e.g., Boot):
-        * this.input.mspointer.stop();
         * ```
         * 
         * @param game A reference to the currently running game.
@@ -16767,17 +16745,17 @@ declare module Phaser {
         mouseUpCallback: (event: MSPointerEvent) => void;
 
         /**
-        * A callback that can be fired on a pointerdown (MSPointerDown) event.
+        * A callback that can be fired on a pointerdown event.
         */
         pointerDownCallback: (event: MSPointerEvent) => void;
 
         /**
-        * A callback that can be fired on a pointermove (MSPointerMove) event.
+        * A callback that can be fired on a pointermove event.
         */
         pointerMoveCallback: (event: MSPointerEvent) => void;
 
         /**
-        * A callback that can be fired on a pointerup (MSPointerUp) event.
+        * A callback that can be fired on a pointerup event.
         */
         pointerUpCallback: (event: MSPointerEvent) => void;
 
@@ -24657,7 +24635,7 @@ declare module Phaser {
         * @param right
         * @param bottom
         * @param left
-        * @return - An array containing four lines (if no arguments were given), or null.
+        * @return An array containing four lines (if no arguments were given), or null.
         */
         sides(top?: Phaser.Line, right?: Phaser.Line, bottom?: Phaser.Line, left?: Phaser.Line): Phaser.Line[];
 
@@ -30839,7 +30817,8 @@ declare module Phaser {
         * @param skip The number of times to skip a matching tile before returning.
         * @param reverse If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
         * @param layer The layer to get the tile from.
-        * @return The first (or n skipped) tile with the matching index.
+        * @param all If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
+        * @return A matching tile, or null (when `all` is false); or an array of zero or more tiles (when `all` is true).
         */
         searchTileIndex(index: number, skip?: number, reverse?: boolean, layer?: any): Phaser.Tile;
 
@@ -32151,8 +32130,8 @@ declare module Phaser {
         * 
         * While the game is active, this will be similar to (1000 / {@link Phaser.Time#fps fps}).
         * 
-        * _Note:_ This is updated only once per game loop - even if multiple logic update steps are done.
-        * Use {@link Phaser.Timer#physicsTime physicsTime} as a basis of game/logic calculations instead.
+        * This is updated only once per game loop, even if multiple logic update steps are done.
+        * Use {@link Phaser.Time#physicsElapsed physicsElapsed} as a basis of game/logic calculations instead.
         */
         elapsed: number;
 
@@ -32166,8 +32145,10 @@ declare module Phaser {
         * 
         * This value is corrected for game pauses and will be "about zero" after a game is resumed.
         * 
-        * _Note:_ This is updated once per game loop - even if multiple logic update steps are done.
-        * Use {@link Phaser.Timer#physicsTime physicsTime} as a basis of game/logic calculations instead.
+        * This is updated at each logic update, possibly more than once per game loop.
+        * If multiple logic update steps are done, the `elapsedMS` values will differ greatly.
+        * 
+        * Use {@link Phaser.Time#physicsElapsedMS physicsElapsedMS} as a basis of game/logic calculations instead.
         */
         elapsedMS: number;
 
