@@ -332,6 +332,30 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
+    * Render game info (ID, renderer, paused, stepping).
+    *
+    * @method Phaser.Utils.Debug#gameInfo
+    * @param {number} x - X position of the debug info to be rendered.
+    * @param {number} y - Y position of the debug info to be rendered.
+    * @param {string} [color='rgb(255,255,255)'] - color of the debug info to be rendered. (format is css color string).
+    */
+    gameInfo: function (x, y, color)
+    {
+
+        var game = this.game;
+
+        this.start(x, y, color);
+
+        this.line('Game ID ' + game.id);
+        this.line({1: 'Canvas', 2: 'WebGL', 3: 'Headless', 4: 'WebGL Multitexture'}[game.renderType] + ' ' + game.width + ' x ' + game.height);
+        this.line('Paused: ' + game.paused);
+        this.line('Stepping: ' + game.stepping + ' (' + game.stepCount + ')');
+
+        this.stop();
+
+    },
+
+    /**
     * Render Sound Manager information, including volume, mute, audio mode, and locked status.
     *
     * @method Phaser.Utils.Debug#sound
