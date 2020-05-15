@@ -687,7 +687,8 @@ Phaser.Utils.Debug.prototype = {
 
             this.line('  ' + (p.active ? '+' : '-') + ' ' + modes[p.pointerMode] + ' ' + p.identifier);
 
-            if (p.active) { active += 1; } else { free += 1; }
+            if (p.active) { active += 1; }
+            else { free += 1; }
         }
 
         this.line('  Active: ' + active + ' Free: ' + free + ' Max: ' + input.maxPointers);
