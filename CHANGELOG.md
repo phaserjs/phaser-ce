@@ -9,6 +9,7 @@
 - Phaser.Game#maxUpdates
 - Phaser.MSPointer#pointerCancelCallback
 - There is a new data cache to let you store arbitrary data throughout the game. The new methods are Phaser.Cache#addData(), Phaser.Cache#checkDataKey(), Phaser.Cache#getData(), and Phaser.Cache#removeData(). You can use them from `this.cache` in a scene or `game.cache`.
+- Phaser.Utils.Debug#gameInfo()
 
 ### Updates
 
