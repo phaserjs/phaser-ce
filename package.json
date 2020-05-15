@@ -27,7 +27,7 @@
     "url": "https://photonstorm@github.com/photonstorm/phaser-ce.git"
   },
   "scripts": {
-    "check-version": "grep 'VERSION:' src/Phaser.js; grep '\"version\":' package.json",
+    "check-version": "grep 'VERSION:' src/Phaser.js; grep '\"version\":' package.json; grep -m1 '## Version ' CHANGELOG.md",
     "grunt": "grunt",
     "test": "npm run test:src; npm run test:ts",
     "test:build": "node --check build/*.js; node --check build/custom/*.js",
