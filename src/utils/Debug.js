@@ -678,7 +678,7 @@ Phaser.Utils.Debug.prototype = {
         var active = 0;
         var free = 0;
 
-        this.line('Pointers: (Max: ' + input.maxPointers + ')');
+        this.line('Pointers:');
         this.line('  ' + (mousePointer.isDown ? 'x' : 'o') + ' ' + modes[mousePointer.pointerMode] + ' ' + mousePointer.identifier);
 
         for (var i = 0; i < pointers.length; i++)
@@ -690,7 +690,7 @@ Phaser.Utils.Debug.prototype = {
             if (p.active) { active += 1; } else { free += 1; }
         }
 
-        this.line('Active: ' + active + ' Free: ' + free);
+        this.line('  Active: ' + active + ' Free: ' + free + ' Max: ' + input.maxPointers);
 
         this.stop();
 
