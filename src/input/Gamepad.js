@@ -1,153 +1,150 @@
 /**
-* @author       @karlmacklin <tacklemcclean@gmail.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       @karlmacklin <tacklemcclean@gmail.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* The Gamepad class handles gamepad input and dispatches gamepad events.
-*
-* Remember to call `gamepad.start()`.
-*
-* HTML5 GAMEPAD API SUPPORT IS AT AN EXPERIMENTAL STAGE!
-* At moment of writing this (end of 2013) only Chrome supports parts of it out of the box. Firefox supports it
-* via prefs flags (about:config, search gamepad). The browsers map the same controllers differently.
-* This class has constants for Windows 7 Chrome mapping of XBOX 360 controller.
-*
-* @class Phaser.Gamepad
-* @constructor
-* @param {Phaser.Game} game - A reference to the currently running game.
-*/
+ * The Gamepad class handles gamepad input and dispatches gamepad events.
+ *
+ * Remember to call `gamepad.start()`.
+ *
+ * HTML5 GAMEPAD API SUPPORT IS AT AN EXPERIMENTAL STAGE!
+ * At moment of writing this (end of 2013) only Chrome supports parts of it out of the box. Firefox supports it
+ * via prefs flags (about:config, search gamepad). The browsers map the same controllers differently.
+ * This class has constants for Windows 7 Chrome mapping of XBOX 360 controller.
+ *
+ * @class Phaser.Gamepad
+ * @constructor
+ * @param {Phaser.Game} game - A reference to the currently running game.
+ */
 Phaser.Gamepad = function (game)
 {
-
     /**
-    * @property {Phaser.Game} game - Local reference to game.
-    */
+     * @property {Phaser.Game} game - Local reference to game.
+     */
     this.game = game;
 
     /**
-    * @property {object} _gamepadIndexMap - Maps the browsers gamepad indices to our Phaser Gamepads
-    * @private
-    */
+     * @property {object} _gamepadIndexMap - Maps the browsers gamepad indices to our Phaser Gamepads
+     * @private
+     */
     this._gamepadIndexMap = {};
 
     /**
-    * @property {Array} _rawPads - The raw state of the gamepads from the browser
-    * @private
-    */
+     * @property {Array} _rawPads - The raw state of the gamepads from the browser
+     * @private
+     */
     this._rawPads = [];
 
     /**
-    * @property {boolean} _active - Private flag for whether or not the API is polled
-    * @private
-    * @default
-    */
+     * @property {boolean} _active - Private flag for whether or not the API is polled
+     * @private
+     * @default
+     */
     this._active = false;
 
     /**
-    * Gamepad input will only be processed if enabled.
-    * @property {boolean} enabled
-    * @default
-    */
+     * Gamepad input will only be processed if enabled.
+     * @property {boolean} enabled
+     * @default
+     */
     this.enabled = true;
 
     /**
-    * Whether or not gamepads are supported in the current browser. Note that as of Dec. 2013 this check is actually not accurate at all due to poor implementation.
-    * @property {boolean} _gamepadSupportAvailable - Are gamepads supported in this browser or not?
-    * @private
-    */
+     * Whether or not gamepads are supported in the current browser. Note that as of Dec. 2013 this check is actually not accurate at all due to poor implementation.
+     * @property {boolean} _gamepadSupportAvailable - Are gamepads supported in this browser or not?
+     * @private
+     */
     this._gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads || (navigator.userAgent.indexOf('Firefox/') !== -1) || !!navigator.getGamepads;
 
     /**
-    * Used to check for differences between earlier polls and current state of gamepads.
-    * @property {Array} _prevRawGamepadTypes
-    * @private
-    * @default
-    */
+     * Used to check for differences between earlier polls and current state of gamepads.
+     * @property {Array} _prevRawGamepadTypes
+     * @private
+     * @default
+     */
     this._prevRawGamepadTypes = [];
 
     /**
-    * Used to check for differences between earlier polls and current state of gamepads.
-    * @property {Array} _prevTimestamps
-    * @private
-    * @default
-    */
+     * Used to check for differences between earlier polls and current state of gamepads.
+     * @property {Array} _prevTimestamps
+     * @private
+     * @default
+     */
     this._prevTimestamps = [];
 
     /**
-    * @property {object} callbackContext - The context under which the callbacks are run.
-    */
+     * @property {object} callbackContext - The context under which the callbacks are run.
+     */
     this.callbackContext = this;
 
     /**
-    * @property {function} onConnectCallback - This callback is invoked every time any gamepad is connected
-    */
+     * @property {function} onConnectCallback - This callback is invoked every time any gamepad is connected
+     */
     this.onConnectCallback = null;
 
     /**
-    * @property {function} onDisconnectCallback - This callback is invoked every time any gamepad is disconnected
-    */
+     * @property {function} onDisconnectCallback - This callback is invoked every time any gamepad is disconnected
+     */
     this.onDisconnectCallback = null;
 
     /**
-    * @property {function} onDownCallback - This callback is invoked every time any gamepad button is pressed down.
-    */
+     * @property {function} onDownCallback - This callback is invoked every time any gamepad button is pressed down.
+     */
     this.onDownCallback = null;
 
     /**
-    * @property {function} onUpCallback - This callback is invoked every time any gamepad button is released.
-    */
+     * @property {function} onUpCallback - This callback is invoked every time any gamepad button is released.
+     */
     this.onUpCallback = null;
 
     /**
-    * @property {function} onAxisCallback - This callback is invoked every time any gamepad axis is changed.
-    */
+     * @property {function} onAxisCallback - This callback is invoked every time any gamepad axis is changed.
+     */
     this.onAxisCallback = null;
 
     /**
-    * @property {function} onFloatCallback - This callback is invoked every time any gamepad button is changed to a value where value > 0 and value < 1.
-    */
+     * @property {function} onFloatCallback - This callback is invoked every time any gamepad button is changed to a value where value > 0 and value < 1.
+     */
     this.onFloatCallback = null;
 
     /**
-    * @property {function} _ongamepadconnected - Private callback for Firefox gamepad connection handling
-    * @private
-    */
+     * @property {function} _ongamepadconnected - Private callback for Firefox gamepad connection handling
+     * @private
+     */
     this._ongamepadconnected = null;
 
     /**
-    * @property {function} _gamepaddisconnected - Private callback for Firefox gamepad connection handling
-    * @private
-    */
+     * @property {function} _gamepaddisconnected - Private callback for Firefox gamepad connection handling
+     * @private
+     */
     this._gamepaddisconnected = null;
 
     /**
-    * @property {Array<Phaser.SinglePad>} _gamepads - The four Phaser Gamepads.
-    * @private
-    */
+     * @property {Array<Phaser.SinglePad>} _gamepads - The four Phaser Gamepads.
+     * @private
+     */
     this._gamepads = [
         new Phaser.SinglePad(game, this),
         new Phaser.SinglePad(game, this),
         new Phaser.SinglePad(game, this),
         new Phaser.SinglePad(game, this)
     ];
-
 };
 
 Phaser.Gamepad.prototype = {
 
     /**
-    * Add callbacks to the main Gamepad handler to handle connect/disconnect/button down/button up/axis change/float value buttons.
-    * 
-    * @method Phaser.Gamepad#addCallbacks
-    * @param {object} context - The context under which the callbacks are run.
-    * @param {object} callbacks - Object that takes six different callback methods:
-    * onConnectCallback, onDisconnectCallback, onDownCallback, onUpCallback, onAxisCallback, onFloatCallback
-    */
+     * Add callbacks to the main Gamepad handler to handle connect/disconnect/button down/button up/axis change/float value buttons.
+     *
+     * @method Phaser.Gamepad#addCallbacks
+     * @param {object} context - The context under which the callbacks are run.
+     * @param {object} callbacks - Object that takes six different callback methods:
+     * onConnectCallback, onDisconnectCallback, onDownCallback, onUpCallback, onAxisCallback, onFloatCallback
+     */
     addCallbacks: function (context, callbacks)
     {
-
         if (typeof callbacks !== 'undefined')
         {
             this.onConnectCallback = (typeof callbacks.onConnect === 'function') ? callbacks.onConnect : this.onConnectCallback;
@@ -158,18 +155,16 @@ Phaser.Gamepad.prototype = {
             this.onFloatCallback = (typeof callbacks.onFloat === 'function') ? callbacks.onFloat : this.onFloatCallback;
             this.callbackContext = context;
         }
-
     },
 
     /**
-    * Starts the Gamepad event handling.
-    * This MUST be called manually before Phaser will start polling the Gamepad API.
-    *
-    * @method Phaser.Gamepad#start
-    */
+     * Starts the Gamepad event handling.
+     * This MUST be called manually before Phaser will start polling the Gamepad API.
+     *
+     * @method Phaser.Gamepad#start
+     */
     start: function ()
     {
-
         if (this._active)
         {
             //  Avoid setting multiple listeners
@@ -192,7 +187,6 @@ Phaser.Gamepad.prototype = {
 
         window.addEventListener('gamepadconnected', this._onGamepadConnected, false);
         window.addEventListener('gamepaddisconnected', this._onGamepadDisconnected, false);
-
     },
 
     /**
@@ -204,11 +198,9 @@ Phaser.Gamepad.prototype = {
      */
     onGamepadConnected: function (event)
     {
-
         var newPad = event.gamepad;
         this._rawPads.push(newPad);
         this._gamepads[newPad.index].connect(newPad);
-
     },
 
     /**
@@ -220,7 +212,6 @@ Phaser.Gamepad.prototype = {
      */
     onGamepadDisconnected: function (event)
     {
-
         var removedPad = event.gamepad;
 
         for (var i in this._rawPads)
@@ -232,35 +223,31 @@ Phaser.Gamepad.prototype = {
         }
 
         this._gamepads[removedPad.index].disconnect();
-
     },
 
     /**
-    * Main gamepad update loop. Should not be called manually.
-    * @method Phaser.Gamepad#update
-    * @protected
-    */
+     * Main gamepad update loop. Should not be called manually.
+     * @method Phaser.Gamepad#update
+     * @protected
+     */
     update: function ()
     {
-
         this._pollGamepads();
 
         this.pad1.pollStatus();
         this.pad2.pollStatus();
         this.pad3.pollStatus();
         this.pad4.pollStatus();
-
     },
 
     /**
-    * Updating connected gamepads (for Google Chrome). Should not be called manually.
-    * 
-    * @method Phaser.Gamepad#_pollGamepads
-    * @private
-    */
+     * Updating connected gamepads (for Google Chrome). Should not be called manually.
+     *
+     * @method Phaser.Gamepad#_pollGamepads
+     * @private
+     */
     _pollGamepads: function ()
     {
-
         if (!this._active)
         {
             return;
@@ -380,60 +367,53 @@ Phaser.Gamepad.prototype = {
     },
 
     /**
-    * Sets the deadZone variable for all four gamepads
-    * @method Phaser.Gamepad#setDeadZones
-    */
+     * Sets the deadZone variable for all four gamepads
+     * @method Phaser.Gamepad#setDeadZones
+     */
     setDeadZones: function (value)
     {
-
         for (var i = 0; i < this._gamepads.length; i++)
         {
             this._gamepads[i].deadZone = value;
         }
-
     },
 
     /**
-    * Stops the Gamepad event handling.
-    *
-    * @method Phaser.Gamepad#stop
-    */
+     * Stops the Gamepad event handling.
+     *
+     * @method Phaser.Gamepad#stop
+     */
     stop: function ()
     {
-
         this._active = false;
 
         window.removeEventListener('gamepadconnected', this._onGamepadConnected);
         window.removeEventListener('gamepaddisconnected', this._onGamepadDisconnected);
-
     },
 
     /**
-    * Reset all buttons/axes of all gamepads
-    * @method Phaser.Gamepad#reset
-    */
+     * Reset all buttons/axes of all gamepads
+     * @method Phaser.Gamepad#reset
+     */
     reset: function ()
     {
-
         this.update();
 
         for (var i = 0; i < this._gamepads.length; i++)
         {
             this._gamepads[i].reset();
         }
-
     },
 
     /**
-    * Returns the "just pressed" state of a button from ANY gamepad connected. Just pressed is considered true if the button was pressed down within the duration given (default 250ms).
-    * @method Phaser.Gamepad#justPressed
-    * @param {number} buttonCode - The buttonCode of the button to check for.
-    * @param {number} [duration=250] - The duration below which the button is considered as being just pressed.
-    * @return {boolean} True if the button is just pressed otherwise false.
-    */
+     * Returns the "just pressed" state of a button from ANY gamepad connected. Just pressed is considered true if the button was pressed down within the duration given (default 250ms).
+     * @method Phaser.Gamepad#justPressed
+     * @param {number} buttonCode - The buttonCode of the button to check for.
+     * @param {number} [duration=250] - The duration below which the button is considered as being just pressed.
+     * @return {boolean} True if the button is just pressed otherwise false.
+     */
     justPressed: function (buttonCode, duration)
     {
-
         for (var i = 0; i < this._gamepads.length; i++)
         {
             if (this._gamepads[i].justPressed(buttonCode, duration) === true)
@@ -443,19 +423,17 @@ Phaser.Gamepad.prototype = {
         }
 
         return false;
-
     },
 
     /**
-    * Returns the "just released" state of a button from ANY gamepad connected. Just released is considered as being true if the button was released within the duration given (default 250ms).
-    * @method Phaser.Gamepad#justPressed
-    * @param {number} buttonCode - The buttonCode of the button to check for.
-    * @param {number} [duration=250] - The duration below which the button is considered as being just released.
-    * @return {boolean} True if the button is just released otherwise false.
-    */
+     * Returns the "just released" state of a button from ANY gamepad connected. Just released is considered as being true if the button was released within the duration given (default 250ms).
+     * @method Phaser.Gamepad#justPressed
+     * @param {number} buttonCode - The buttonCode of the button to check for.
+     * @param {number} [duration=250] - The duration below which the button is considered as being just released.
+     * @return {boolean} True if the button is just released otherwise false.
+     */
     justReleased: function (buttonCode, duration)
     {
-
         for (var i = 0; i < this._gamepads.length; i++)
         {
             if (this._gamepads[i].justReleased(buttonCode, duration) === true)
@@ -465,18 +443,16 @@ Phaser.Gamepad.prototype = {
         }
 
         return false;
-
     },
 
     /**
-    * Returns true if the button is currently pressed down, on ANY gamepad.
-    * @method Phaser.Gamepad#isDown
-    * @param {number} buttonCode - The buttonCode of the button to check for.
-    * @return {boolean} True if a button is currently down.
-    */
+     * Returns true if the button is currently pressed down, on ANY gamepad.
+     * @method Phaser.Gamepad#isDown
+     * @param {number} buttonCode - The buttonCode of the button to check for.
+     * @return {boolean} True if a button is currently down.
+     */
     isDown: function (buttonCode)
     {
-
         for (var i = 0; i < this._gamepads.length; i++)
         {
             if (this._gamepads[i].isDown(buttonCode) === true)
@@ -495,14 +471,12 @@ Phaser.Gamepad.prototype = {
      */
     destroy: function ()
     {
-
         this.stop();
 
         for (var i = 0; i < this._gamepads.length; i++)
         {
             this._gamepads[i].destroy();
         }
-
     }
 
 };
@@ -510,11 +484,11 @@ Phaser.Gamepad.prototype = {
 Phaser.Gamepad.prototype.constructor = Phaser.Gamepad;
 
 /**
-* If the gamepad input is active or not - if not active it should not be updated from Input.js
-* @name Phaser.Gamepad#active
-* @property {boolean} active - If the gamepad input is active or not.
-* @readonly
-*/
+ * If the gamepad input is active or not - if not active it should not be updated from Input.js
+ * @name Phaser.Gamepad#active
+ * @property {boolean} active - If the gamepad input is active or not.
+ * @readonly
+ */
 Object.defineProperty(Phaser.Gamepad.prototype, 'active', {
 
     get: function ()
@@ -525,11 +499,11 @@ Object.defineProperty(Phaser.Gamepad.prototype, 'active', {
 });
 
 /**
-* Whether or not gamepads are supported in current browser.
-* @name Phaser.Gamepad#supported
-* @property {boolean} supported - Whether or not gamepads are supported in current browser.
-* @readonly
-*/
+ * Whether or not gamepads are supported in current browser.
+ * @name Phaser.Gamepad#supported
+ * @property {boolean} supported - Whether or not gamepads are supported in current browser.
+ * @readonly
+ */
 Object.defineProperty(Phaser.Gamepad.prototype, 'supported', {
 
     get: function ()
@@ -540,11 +514,11 @@ Object.defineProperty(Phaser.Gamepad.prototype, 'supported', {
 });
 
 /**
-* How many live gamepads are currently connected.
-* @name Phaser.Gamepad#padsConnected
-* @property {number} padsConnected - How many live gamepads are currently connected.
-* @readonly
-*/
+ * How many live gamepads are currently connected.
+ * @name Phaser.Gamepad#padsConnected
+ * @property {number} padsConnected - How many live gamepads are currently connected.
+ * @readonly
+ */
 Object.defineProperty(Phaser.Gamepad.prototype, 'padsConnected', {
 
     get: function ()
@@ -555,11 +529,11 @@ Object.defineProperty(Phaser.Gamepad.prototype, 'padsConnected', {
 });
 
 /**
-* Gamepad #1
-* @name Phaser.Gamepad#pad1
-* @property {Phaser.SinglePad} pad1 - Gamepad #1;
-* @readonly
-*/
+ * Gamepad #1
+ * @name Phaser.Gamepad#pad1
+ * @property {Phaser.SinglePad} pad1 - Gamepad #1;
+ * @readonly
+ */
 Object.defineProperty(Phaser.Gamepad.prototype, 'pad1', {
 
     get: function ()
@@ -570,11 +544,11 @@ Object.defineProperty(Phaser.Gamepad.prototype, 'pad1', {
 });
 
 /**
-* Gamepad #2
-* @name Phaser.Gamepad#pad2
-* @property {Phaser.SinglePad} pad2 - Gamepad #2
-* @readonly
-*/
+ * Gamepad #2
+ * @name Phaser.Gamepad#pad2
+ * @property {Phaser.SinglePad} pad2 - Gamepad #2
+ * @readonly
+ */
 Object.defineProperty(Phaser.Gamepad.prototype, 'pad2', {
 
     get: function ()
@@ -585,11 +559,11 @@ Object.defineProperty(Phaser.Gamepad.prototype, 'pad2', {
 });
 
 /**
-* Gamepad #3
-* @name Phaser.Gamepad#pad3
-* @property {Phaser.SinglePad} pad3 - Gamepad #3
-* @readonly
-*/
+ * Gamepad #3
+ * @name Phaser.Gamepad#pad3
+ * @property {Phaser.SinglePad} pad3 - Gamepad #3
+ * @readonly
+ */
 Object.defineProperty(Phaser.Gamepad.prototype, 'pad3', {
 
     get: function ()
@@ -600,11 +574,11 @@ Object.defineProperty(Phaser.Gamepad.prototype, 'pad3', {
 });
 
 /**
-* Gamepad #4
-* @name Phaser.Gamepad#pad4
-* @property {Phaser.SinglePad} pad4 - Gamepad #4
-* @readonly
-*/
+ * Gamepad #4
+ * @name Phaser.Gamepad#pad4
+ * @property {Phaser.SinglePad} pad4 - Gamepad #4
+ * @readonly
+ */
 Object.defineProperty(Phaser.Gamepad.prototype, 'pad4', {
 
     get: function ()
@@ -642,9 +616,11 @@ Phaser.Gamepad.AXIS_7 = 7;
 Phaser.Gamepad.AXIS_8 = 8;
 Phaser.Gamepad.AXIS_9 = 9;
 
-// Below mapping applies to XBOX 360 Wired and Wireless controller on Google Chrome (tested on Windows 7).
-// - Firefox uses different map! Separate amount of buttons and axes. DPAD = axis and not a button.
-// In other words - discrepancies when using gamepads.
+/*
+ * Below mapping applies to XBOX 360 Wired and Wireless controller on Google Chrome (tested on Windows 7).
+ * - Firefox uses different map! Separate amount of buttons and axes. DPAD = axis and not a button.
+ * In other words - discrepancies when using gamepads.
+ */
 
 Phaser.Gamepad.XBOX360_A = 0;
 Phaser.Gamepad.XBOX360_B = 1;

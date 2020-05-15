@@ -55,12 +55,16 @@ PIXI.PixiFastShader = function (gl)
             'varying float vTextureIndex;',
             'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
 
-            // Blue color means that you are trying to bound
-            // a texture out of the limits of the hardware.
+            /*
+             * Blue color means that you are trying to bound
+             * a texture out of the limits of the hardware.
+             */
             'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
 
-            // If you get a red color means you are out of memory
-            // or in some way corrupted the vertex buffer.
+            /*
+             * If you get a red color means you are out of memory
+             * or in some way corrupted the vertex buffer.
+             */
             'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
@@ -143,7 +147,6 @@ PIXI.PixiFastShader.prototype.constructor = PIXI.PixiFastShader;
  */
 PIXI.PixiFastShader.prototype.init = function ()
 {
-
     var gl = this.gl;
     var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
 
@@ -192,10 +195,12 @@ PIXI.PixiFastShader.prototype.init = function ()
 
     // Begin worst hack eva //
 
-    // WHY??? ONLY on my chrome pixel the line above returns -1 when using filters?
-    // maybe its somthing to do with the current state of the gl context.
-    // Im convinced this is a bug in the chrome browser as there is NO reason why this should be returning -1 especially as it only manifests on my chrome pixel
-    // If theres any webGL people that know why could happen please help :)
+    /*
+     * WHY??? ONLY on my chrome pixel the line above returns -1 when using filters?
+     * maybe its somthing to do with the current state of the gl context.
+     * Im convinced this is a bug in the chrome browser as there is NO reason why this should be returning -1 especially as it only manifests on my chrome pixel
+     * If theres any webGL people that know why could happen please help :)
+     */
     if (this.colorAttribute === -1)
     {
         this.colorAttribute = 2;

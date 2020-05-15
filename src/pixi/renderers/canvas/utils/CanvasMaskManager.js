@@ -23,7 +23,6 @@ PIXI.CanvasMaskManager.prototype.constructor = PIXI.CanvasMaskManager;
  */
 PIXI.CanvasMaskManager.prototype.pushMask = function (maskData, renderSession)
 {
-
     var context = renderSession.context;
 
     context.save();

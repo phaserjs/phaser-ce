@@ -1,597 +1,596 @@
 /* eslint-env browser, node */
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* @classdesc
-* Detects device support capabilities and is responsible for device initialization - see {@link Phaser.Device.whenReady whenReady}.
-*
-* This class represents a singleton object that can be accessed directly as `game.device`
-* (or, as a fallback, `Phaser.Device` when a game instance is not available) without the need to instantiate it.
-*
-* Unless otherwise noted the device capabilities are only guaranteed after initialization. Initialization
-* occurs automatically and is guaranteed complete before {@link Phaser.Game} begins its "boot" phase.
-* Feature detection can be modified in the {@link Phaser.Device.onInitialized onInitialized} signal, e.g.,
-*
-* ```javascript
-* Phaser.Device.onInitialized.add(function (device) {
-*
-*     device.canvasBitBltShift = true;
-*     device.mspointer = false;
-*
-* });
-*
-* var game = new Phaser.Game();
-* ```
-*
-* When checking features using the exposed properties only the *truth-iness* of the value should be relied upon
-* unless the documentation states otherwise: properties may return `false`, `''`, `null`, or even `undefined`
-* when indicating the lack of a feature.
-*
-* Uses elements from System.js by MrDoob and Modernizr
-*
-* @description
-* It is not possible to instantiate the Device class manually.
-*
-* @class
-* @protected
-*/
+ * @classdesc
+ * Detects device support capabilities and is responsible for device initialization - see {@link Phaser.Device.whenReady whenReady}.
+ *
+ * This class represents a singleton object that can be accessed directly as `game.device`
+ * (or, as a fallback, `Phaser.Device` when a game instance is not available) without the need to instantiate it.
+ *
+ * Unless otherwise noted the device capabilities are only guaranteed after initialization. Initialization
+ * occurs automatically and is guaranteed complete before {@link Phaser.Game} begins its "boot" phase.
+ * Feature detection can be modified in the {@link Phaser.Device.onInitialized onInitialized} signal, e.g.,
+ *
+ * ```javascript
+ * Phaser.Device.onInitialized.add(function (device) {
+ *
+ *     device.canvasBitBltShift = true;
+ *     device.mspointer = false;
+ *
+ * });
+ *
+ * var game = new Phaser.Game();
+ * ```
+ *
+ * When checking features using the exposed properties only the *truth-iness* of the value should be relied upon
+ * unless the documentation states otherwise: properties may return `false`, `''`, `null`, or even `undefined`
+ * when indicating the lack of a feature.
+ *
+ * Uses elements from System.js by MrDoob and Modernizr
+ *
+ * @description
+ * It is not possible to instantiate the Device class manually.
+ *
+ * @class
+ * @protected
+ */
 Phaser.Device = function ()
 {
-
     /**
-    * The time the device became ready.
-    * @property {integer} deviceReadyAt
-    * @protected
-    */
+     * The time the device became ready.
+     * @property {integer} deviceReadyAt
+     * @protected
+     */
     this.deviceReadyAt = 0;
 
     /**
-    * The time as which initialization has completed.
-    * @property {boolean} initialized
-    * @protected
-    */
+     * The time as which initialization has completed.
+     * @property {boolean} initialized
+     * @protected
+     */
     this.initialized = false;
 
     //  Browser / Host / Operating System
 
     /**
-    * @property {boolean} desktop - Is running on a desktop?
-    * @default
-    */
+     * @property {boolean} desktop - Is running on a desktop?
+     * @default
+     */
     this.desktop = false;
 
     /**
-    * @property {boolean} iOS - Is running on iOS?
-    * @default
-    */
+     * @property {boolean} iOS - Is running on iOS?
+     * @default
+     */
     this.iOS = false;
 
     /**
-    * @property {number} iOSVersion - If running in iOS this will contain the major version number.
-    * @default
-    */
+     * @property {number} iOSVersion - If running in iOS this will contain the major version number.
+     * @default
+     */
     this.iOSVersion = 0;
 
     /**
-    * @property {boolean} cocoonJS - Is the game running under CocoonJS?
-    * @default
-    */
+     * @property {boolean} cocoonJS - Is the game running under CocoonJS?
+     * @default
+     */
     this.cocoonJS = false;
 
     /**
-    * @property {boolean} cocoonJSApp - Is this game running with CocoonJS.App?
-    * @default
-    */
+     * @property {boolean} cocoonJSApp - Is this game running with CocoonJS.App?
+     * @default
+     */
     this.cocoonJSApp = false;
 
     /**
-    * @property {boolean} cordova - Is the game running under Apache Cordova?
-    * @default
-    */
+     * @property {boolean} cordova - Is the game running under Apache Cordova?
+     * @default
+     */
     this.cordova = false;
 
     /**
-    * @property {boolean} node - Is the game running under Node.js?
-    * @default
-    */
+     * @property {boolean} node - Is the game running under Node.js?
+     * @default
+     */
     this.node = false;
 
     /**
-    * @property {boolean} nodeWebkit - Is the game running under Node-Webkit?
-    * @default
-    */
+     * @property {boolean} nodeWebkit - Is the game running under Node-Webkit?
+     * @default
+     */
     this.nodeWebkit = false;
 
     /**
-    * @property {boolean} electron - Is the game running under GitHub Electron?
-    * @default
-    */
+     * @property {boolean} electron - Is the game running under GitHub Electron?
+     * @default
+     */
     this.electron = false;
 
     /**
-    * @property {boolean} ejecta - Is the game running under Ejecta?
-    * @default
-    */
+     * @property {boolean} ejecta - Is the game running under Ejecta?
+     * @default
+     */
     this.ejecta = false;
 
     /**
-    * @property {boolean} crosswalk - Is the game running under the Intel Crosswalk XDK?
-    * @default
-    */
+     * @property {boolean} crosswalk - Is the game running under the Intel Crosswalk XDK?
+     * @default
+     */
     this.crosswalk = false;
 
     /**
-    * @property {boolean} android - Is running on android?
-    * @default
-    */
+     * @property {boolean} android - Is running on android?
+     * @default
+     */
     this.android = false;
 
     /**
-    * @property {boolean} chromeOS - Is running on chromeOS?
-    * @default
-    */
+     * @property {boolean} chromeOS - Is running on chromeOS?
+     * @default
+     */
     this.chromeOS = false;
 
     /**
-    * @property {boolean} linux - Is running on linux?
-    * @default
-    */
+     * @property {boolean} linux - Is running on linux?
+     * @default
+     */
     this.linux = false;
 
     /**
-    * @property {boolean} macOS - Is running on macOS?
-    * @default
-    */
+     * @property {boolean} macOS - Is running on macOS?
+     * @default
+     */
     this.macOS = false;
 
     /**
-    * @property {boolean} windows - Is running on windows?
-    * @default
-    */
+     * @property {boolean} windows - Is running on windows?
+     * @default
+     */
     this.windows = false;
 
     /**
-    * @property {boolean} windowsPhone - Is running on a Windows Phone?
-    * @default
-    */
+     * @property {boolean} windowsPhone - Is running on a Windows Phone?
+     * @default
+     */
     this.windowsPhone = false;
 
     //  Features
 
     /**
-    * @property {boolean} canvas - Is canvas available?
-    * @default
-    */
+     * @property {boolean} canvas - Is canvas available?
+     * @default
+     */
     this.canvas = false;
 
     /**
-    * @property {?boolean} canvasBitBltShift - True if canvas supports a 'copy' bitblt onto itself when the source and destination regions overlap.
-    * @default
-    */
+     * @property {?boolean} canvasBitBltShift - True if canvas supports a 'copy' bitblt onto itself when the source and destination regions overlap.
+     * @default
+     */
     this.canvasBitBltShift = null;
 
     /**
-    * If the browser isn't capable of handling tinting with alpha this will be false.
-    * @property {boolean} canHandleAlpha
-    * @default
-    */
+     * If the browser isn't capable of handling tinting with alpha this will be false.
+     * @property {boolean} canHandleAlpha
+     * @default
+     */
     this.canHandleAlpha = false;
 
     /**
-    * Whether or not the {@link http://caniuse.com/#feat=canvas-blending Canvas Blend Modes} are supported, consequently the ability to tint using the multiply method.
-    *
-    * Expect `false` in Internet Explorer <= 11.
-    *
-    * @property {boolean} canUseMultiply
-    * @default
-    */
+     * Whether or not the {@link http://caniuse.com/#feat=canvas-blending Canvas Blend Modes} are supported, consequently the ability to tint using the multiply method.
+     *
+     * Expect `false` in Internet Explorer <= 11.
+     *
+     * @property {boolean} canUseMultiply
+     * @default
+     */
     this.canUseMultiply = false;
 
     /**
-    * @property {boolean} webGL - Is webGL available?
-    * @see Phaser.Game#renderType
-    * @default
-    */
+     * @property {boolean} webGL - Is webGL available?
+     * @see Phaser.Game#renderType
+     * @default
+     */
     this.webGL = false;
 
     /**
-    * @property {boolean} file - Is file available?
-    * @default
-    */
+     * @property {boolean} file - Is file available?
+     * @default
+     */
     this.file = false;
 
     /**
-    * @property {boolean} fileSystem - Is fileSystem available?
-    * @default
-    */
+     * @property {boolean} fileSystem - Is fileSystem available?
+     * @default
+     */
     this.fileSystem = false;
 
     /**
-    * @property {boolean} localStorage - Is localStorage available?
-    * @default
-    */
+     * @property {boolean} localStorage - Is localStorage available?
+     * @default
+     */
     this.localStorage = false;
 
     /**
-    * @property {boolean} worker - Is worker available?
-    * @default
-    */
+     * @property {boolean} worker - Is worker available?
+     * @default
+     */
     this.worker = false;
 
     /**
-    * @property {boolean} css3D - Is css3D available?
-    * @default
-    */
+     * @property {boolean} css3D - Is css3D available?
+     * @default
+     */
     this.css3D = false;
 
     /**
-    * @property {boolean} pointerLock - Is Pointer Lock available?
-    * @default
-    */
+     * @property {boolean} pointerLock - Is Pointer Lock available?
+     * @default
+     */
     this.pointerLock = false;
 
     /**
-    * @property {boolean} typedArray - Does the browser support TypedArrays?
-    * @default
-    */
+     * @property {boolean} typedArray - Does the browser support TypedArrays?
+     * @default
+     */
     this.typedArray = false;
 
     /**
-    * @property {boolean} vibration - Does the device support the Vibration API?
-    * @default
-    */
+     * @property {boolean} vibration - Does the device support the Vibration API?
+     * @default
+     */
     this.vibration = false;
 
     /**
-    * @property {boolean} getUserMedia - Does the device support the getUserMedia API?
-    * @default
-    */
+     * @property {boolean} getUserMedia - Does the device support the getUserMedia API?
+     * @default
+     */
     this.getUserMedia = true;
 
     /**
-    * @property {boolean} quirksMode - Is the browser running in strict mode (false) or quirks mode? (true)
-    * @default
-    */
+     * @property {boolean} quirksMode - Is the browser running in strict mode (false) or quirks mode? (true)
+     * @default
+     */
     this.quirksMode = false;
 
     //  Input
 
     /**
-    * @property {boolean} touch - Is touch available?
-    * @default
-    */
+     * @property {boolean} touch - Is touch available?
+     * @default
+     */
     this.touch = false;
 
     /**
-    * @property {boolean} mspointer - Is mspointer available?
-    * @default
-    */
+     * @property {boolean} mspointer - Is mspointer available?
+     * @default
+     */
     this.mspointer = false;
 
     /**
-    * @property {?string} wheelType - The newest type of Wheel/Scroll event supported: 'wheel', 'mousewheel', 'DOMMouseScroll'
-    * @default
-    * @protected
-    */
+     * @property {?string} wheelType - The newest type of Wheel/Scroll event supported: 'wheel', 'mousewheel', 'DOMMouseScroll'
+     * @default
+     * @protected
+     */
     this.wheelEvent = null;
 
     //  Browser
 
     /**
-    * @property {boolean} arora - Set to true if running in Arora.
-    * @default
-    */
+     * @property {boolean} arora - Set to true if running in Arora.
+     * @default
+     */
     this.arora = false;
 
     /**
-    * @property {boolean} chrome - Set to true if running in Chrome.
-    * @default
-    */
+     * @property {boolean} chrome - Set to true if running in Chrome.
+     * @default
+     */
     this.chrome = false;
 
     /**
-    * @property {number} chromeVersion - If running in Chrome this will contain the major version number.
-    * @default
-    */
+     * @property {number} chromeVersion - If running in Chrome this will contain the major version number.
+     * @default
+     */
     this.chromeVersion = 0;
 
     /**
-    * @property {boolean} epiphany - Set to true if running in Epiphany.
-    * @default
-    */
+     * @property {boolean} epiphany - Set to true if running in Epiphany.
+     * @default
+     */
     this.epiphany = false;
 
     /**
-    * @property {boolean} firefox - Set to true if running in Firefox.
-    * @default
-    */
+     * @property {boolean} firefox - Set to true if running in Firefox.
+     * @default
+     */
     this.firefox = false;
 
     /**
-    * @property {number} firefoxVersion - If running in Firefox this will contain the major version number.
-    * @default
-    */
+     * @property {number} firefoxVersion - If running in Firefox this will contain the major version number.
+     * @default
+     */
     this.firefoxVersion = 0;
 
     /**
-    * @property {boolean} ie - Set to true if running in Internet Explorer.
-    * @default
-    */
+     * @property {boolean} ie - Set to true if running in Internet Explorer.
+     * @default
+     */
     this.ie = false;
 
     /**
-    * @property {number} ieVersion - If running in Internet Explorer this will contain the major version number. Beyond IE10 you should use Device.trident and Device.tridentVersion.
-    * @default
-    */
+     * @property {number} ieVersion - If running in Internet Explorer this will contain the major version number. Beyond IE10 you should use Device.trident and Device.tridentVersion.
+     * @default
+     */
     this.ieVersion = 0;
 
     /**
-    * @property {boolean} trident - Set to true if running a Trident version of Internet Explorer (IE11+)
-    * @default
-    */
+     * @property {boolean} trident - Set to true if running a Trident version of Internet Explorer (IE11+)
+     * @default
+     */
     this.trident = false;
 
     /**
-    * @property {number} tridentVersion - If running in Internet Explorer 11 this will contain the major version number. See {@link http://msdn.microsoft.com/en-us/library/ie/ms537503(v=vs.85).aspx}
-    * @default
-    */
+     * @property {number} tridentVersion - If running in Internet Explorer 11 this will contain the major version number. See {@link http://msdn.microsoft.com/en-us/library/ie/ms537503(v=vs.85).aspx}
+     * @default
+     */
     this.tridentVersion = 0;
 
     /**
-    * @property {boolean} edge - Set to true if running in Microsoft Edge browser.
-    * @default
-    */
+     * @property {boolean} edge - Set to true if running in Microsoft Edge browser.
+     * @default
+     */
     this.edge = false;
 
     /**
-    * @property {boolean} mobileSafari - Set to true if running in Mobile Safari.
-    * @default
-    */
+     * @property {boolean} mobileSafari - Set to true if running in Mobile Safari.
+     * @default
+     */
     this.mobileSafari = false;
 
     /**
-    * @property {boolean} midori - Set to true if running in Midori.
-    * @default
-    */
+     * @property {boolean} midori - Set to true if running in Midori.
+     * @default
+     */
     this.midori = false;
 
     /**
-    * @property {boolean} opera - Set to true if running in Opera.
-    * @default
-    */
+     * @property {boolean} opera - Set to true if running in Opera.
+     * @default
+     */
     this.opera = false;
 
     /**
-    * @property {boolean} safari - Set to true if running in Safari.
-    * @default
-    */
+     * @property {boolean} safari - Set to true if running in Safari.
+     * @default
+     */
     this.safari = false;
 
     /**
-    * @property {number} safariVersion - If running in Safari this will contain the major version number.
-    * @default
-    */
+     * @property {number} safariVersion - If running in Safari this will contain the major version number.
+     * @default
+     */
     this.safariVersion = 0;
 
     /**
-    * @property {boolean} webApp - Set to true if running as a WebApp, i.e. within a WebView
-    * @default
-    */
+     * @property {boolean} webApp - Set to true if running as a WebApp, i.e. within a WebView
+     * @default
+     */
     this.webApp = false;
 
     /**
-    * @property {boolean} silk - Set to true if running in the Silk browser (as used on the Amazon Kindle)
-    * @default
-    */
+     * @property {boolean} silk - Set to true if running in the Silk browser (as used on the Amazon Kindle)
+     * @default
+     */
     this.silk = false;
 
     //  Audio
 
     /**
-    * @property {boolean} audioData - Are Audio tags available?
-    * @default
-    */
+     * @property {boolean} audioData - Are Audio tags available?
+     * @default
+     */
     this.audioData = false;
 
     /**
-    * @property {boolean} webAudio - Is the WebAudio API available?
-    * @default
-    * @see http://mohayonao.github.io/web-audio-test-api/
-    */
+     * @property {boolean} webAudio - Is the WebAudio API available?
+     * @default
+     * @see http://mohayonao.github.io/web-audio-test-api/
+     */
     this.webAudio = false;
 
     /**
-    * @property {boolean} ogg - Can this device play ogg files?
-    * @default
-    */
+     * @property {boolean} ogg - Can this device play ogg files?
+     * @default
+     */
     this.ogg = false;
 
     /**
-    * @property {boolean} opus - Can this device play opus files?
-    * @default
-    */
+     * @property {boolean} opus - Can this device play opus files?
+     * @default
+     */
     this.opus = false;
 
     /**
-    * @property {boolean} mp3 - Can this device play mp3 files?
-    * @default
-    */
+     * @property {boolean} mp3 - Can this device play mp3 files?
+     * @default
+     */
     this.mp3 = false;
 
     /**
-    * @property {boolean} wav - Can this device play wav files?
-    * @default
-    */
+     * @property {boolean} wav - Can this device play wav files?
+     * @default
+     */
     this.wav = false;
 
     /**
-    * Can this device play m4a files?
-    * @property {boolean} m4a - True if this device can play m4a files.
-    * @default
-    */
+     * Can this device play m4a files?
+     * @property {boolean} m4a - True if this device can play m4a files.
+     * @default
+     */
     this.m4a = false;
 
     /**
-    * @property {boolean} webm - Can this device play webm files?
-    * @default
-    */
+     * @property {boolean} webm - Can this device play webm files?
+     * @default
+     */
     this.webm = false;
 
     /**
-    * @property {boolean} dolby - Can this device play EC-3 Dolby Digital Plus files?
-    * @default
-    */
+     * @property {boolean} dolby - Can this device play EC-3 Dolby Digital Plus files?
+     * @default
+     */
     this.dolby = false;
 
     //  Video
 
     /**
-    * @property {boolean} oggVideo - Can this device play ogg video files?
-    * @default
-    */
+     * @property {boolean} oggVideo - Can this device play ogg video files?
+     * @default
+     */
     this.oggVideo = false;
 
     /**
-    * @property {boolean} h264Video - Can this device play h264 mp4 video files?
-    * @default
-    */
+     * @property {boolean} h264Video - Can this device play h264 mp4 video files?
+     * @default
+     */
     this.h264Video = false;
 
     /**
-    * @property {boolean} mp4Video - Can this device play h264 mp4 video files?
-    * @default
-    */
+     * @property {boolean} mp4Video - Can this device play h264 mp4 video files?
+     * @default
+     */
     this.mp4Video = false;
 
     /**
-    * @property {boolean} webmVideo - Can this device play webm video files?
-    * @default
-    */
+     * @property {boolean} webmVideo - Can this device play webm video files?
+     * @default
+     */
     this.webmVideo = false;
 
     /**
-    * @property {boolean} vp9Video - Can this device play vp9 video files?
-    * @default
-    */
+     * @property {boolean} vp9Video - Can this device play vp9 video files?
+     * @default
+     */
     this.vp9Video = false;
 
     /**
-    * @property {boolean} hlsVideo - Can this device play hls video files?
-    * @default
-    */
+     * @property {boolean} hlsVideo - Can this device play hls video files?
+     * @default
+     */
     this.hlsVideo = false;
 
     //  Device
 
     /**
-    * @property {boolean} iPhone - Is running on iPhone?
-    * @default
-    */
+     * @property {boolean} iPhone - Is running on iPhone?
+     * @default
+     */
     this.iPhone = false;
 
     /**
-    * @property {boolean} iPhone4 - Is running on iPhone4?
-    * @default
-    */
+     * @property {boolean} iPhone4 - Is running on iPhone4?
+     * @default
+     */
     this.iPhone4 = false;
 
     /**
-    * @property {boolean} iPad - Is running on iPad?
-    * @default
-    */
+     * @property {boolean} iPad - Is running on iPad?
+     * @default
+     */
     this.iPad = false;
 
     // Device features
 
     /**
-    * @property {number} pixelRatio - PixelRatio of the host device?
-    * @default
-    */
+     * @property {number} pixelRatio - PixelRatio of the host device?
+     * @default
+     */
     this.pixelRatio = 0;
 
     /**
-    * @property {boolean} littleEndian - Is the device big or little endian? (only detected if the browser supports TypedArrays)
-    * @default
-    */
+     * @property {boolean} littleEndian - Is the device big or little endian? (only detected if the browser supports TypedArrays)
+     * @default
+     */
     this.littleEndian = false;
 
     /**
-    * @property {boolean} LITTLE_ENDIAN - Same value as `littleEndian`.
-    * @default
-    */
+     * @property {boolean} LITTLE_ENDIAN - Same value as `littleEndian`.
+     * @default
+     */
     this.LITTLE_ENDIAN = false;
 
     /**
-    * @property {boolean} support32bit - Does the device context support 32bit pixel manipulation using array buffer views?
-    * @default
-    */
+     * @property {boolean} support32bit - Does the device context support 32bit pixel manipulation using array buffer views?
+     * @default
+     */
     this.support32bit = false;
 
     /**
-    * @property {boolean} fullscreen - Does the browser support the Full Screen API?
-    * @default
-    */
+     * @property {boolean} fullscreen - Does the browser support the Full Screen API?
+     * @default
+     */
     this.fullscreen = false;
 
     /**
-    * @property {string} requestFullscreen - If the browser supports the Full Screen API this holds the call you need to use to activate it.
-    * @default
-    */
+     * @property {string} requestFullscreen - If the browser supports the Full Screen API this holds the call you need to use to activate it.
+     * @default
+     */
     this.requestFullscreen = '';
 
     /**
-    * @property {string} cancelFullscreen - If the browser supports the Full Screen API this holds the call you need to use to cancel it.
-    * @default
-    */
+     * @property {string} cancelFullscreen - If the browser supports the Full Screen API this holds the call you need to use to cancel it.
+     * @default
+     */
     this.cancelFullscreen = '';
 
     /**
-    * @property {boolean} fullscreenKeyboard - Does the browser support access to the Keyboard during Full Screen mode?
-    * @default
-    */
+     * @property {boolean} fullscreenKeyboard - Does the browser support access to the Keyboard during Full Screen mode?
+     * @default
+     */
     this.fullscreenKeyboard = false;
-
 };
 
-// Device is really a singleton/static entity; instantiate it
-// and add new methods directly sans-prototype.
+/*
+ * Device is really a singleton/static entity; instantiate it
+ * and add new methods directly sans-prototype.
+ */
 Phaser.Device = new Phaser.Device();
 
 /**
-* This signal is dispatched after device initialization occurs but before any of the ready
-* callbacks (see {@link Phaser.Device.whenReady whenReady}) have been invoked.
-*
-* Local "patching" for a particular device can/should be done in this event.
-*
-* _Note_: This signal is removed after the device has been readied; if a handler has not been
-* added _before_ `new Phaser.Game(..)` it is probably too late.
-*
-* @type {?Phaser.Signal}
-* @static
-*/
+ * This signal is dispatched after device initialization occurs but before any of the ready
+ * callbacks (see {@link Phaser.Device.whenReady whenReady}) have been invoked.
+ *
+ * Local "patching" for a particular device can/should be done in this event.
+ *
+ * _Note_: This signal is removed after the device has been readied; if a handler has not been
+ * added _before_ `new Phaser.Game(..)` it is probably too late.
+ *
+ * @type {?Phaser.Signal}
+ * @static
+ */
 Phaser.Device.onInitialized = new Phaser.Signal();
 
 /**
-* Add a device-ready handler and ensure the device ready sequence is started.
-*
-* Phaser.Device will _not_ activate or initialize until at least one `whenReady` handler is added,
-* which is normally done automatically be calling `new Phaser.Game(..)`.
-*
-* The handler is invoked when the device is considered "ready", which may be immediately
-* if the device is already "ready". See {@link Phaser.Device#deviceReadyAt deviceReadyAt}.
-*
-* @method
-* @param {function} handler - Callback to invoke when the device is ready. It is invoked with the given context the Phaser.Device object is supplied as the first argument.
-* @param {object} [context] - Context in which to invoke the handler
-* @param {boolean} [nonPrimer=false] - If true the device ready check will not be started.
-*/
+ * Add a device-ready handler and ensure the device ready sequence is started.
+ *
+ * Phaser.Device will _not_ activate or initialize until at least one `whenReady` handler is added,
+ * which is normally done automatically be calling `new Phaser.Game(..)`.
+ *
+ * The handler is invoked when the device is considered "ready", which may be immediately
+ * if the device is already "ready". See {@link Phaser.Device#deviceReadyAt deviceReadyAt}.
+ *
+ * @method
+ * @param {function} handler - Callback to invoke when the device is ready. It is invoked with the given context the Phaser.Device object is supplied as the first argument.
+ * @param {object} [context] - Context in which to invoke the handler
+ * @param {boolean} [nonPrimer=false] - If true the device ready check will not be started.
+ */
 Phaser.Device.whenReady = function (callback, context, nonPrimer)
 {
-
     var readyCheck = this._readyCheck;
 
     if (this.deviceReadyAt || !readyCheck)
@@ -619,8 +618,10 @@ Phaser.Device.whenReady = function (callback, context, nonPrimer)
         }
         else if (cordova && !cocoonJS)
         {
-            // Ref. http://docs.phonegap.com/en/3.5.0/cordova_events_events.md.html#deviceready
-            //  Cordova, but NOT Cocoon?
+            /*
+             * Ref. http://docs.phonegap.com/en/3.5.0/cordova_events_events.md.html#deviceready
+             *  Cordova, but NOT Cocoon?
+             */
             document.addEventListener('deviceready', readyCheck._monitor, false);
         }
         else
@@ -629,19 +630,17 @@ Phaser.Device.whenReady = function (callback, context, nonPrimer)
             window.addEventListener('load', readyCheck._monitor, false);
         }
     }
-
 };
 
 /**
-* Internal method used for checking when the device is ready.
-* This function is removed from Phaser.Device when the device becomes ready.
-*
-* @method
-* @private
-*/
+ * Internal method used for checking when the device is ready.
+ * This function is removed from Phaser.Device when the device becomes ready.
+ *
+ * @method
+ * @private
+ */
 Phaser.Device._readyCheck = function ()
 {
-
     var readyCheck = this._readyCheck;
 
     if (!document.body)
@@ -674,27 +673,24 @@ Phaser.Device._readyCheck = function ()
         this._initialize = null;
         this.onInitialized = null;
     }
-
 };
 
 /**
-* Internal method to initialize the capability checks.
-* This function is removed from Phaser.Device once the device is initialized.
-*
-* @method
-* @private
-*/
+ * Internal method to initialize the capability checks.
+ * This function is removed from Phaser.Device once the device is initialized.
+ *
+ * @method
+ * @private
+ */
 Phaser.Device._initialize = function ()
 {
-
     var device = this;
 
     /**
-    * Check which OS is game running on.
-    */
+     * Check which OS is game running on.
+     */
     function _checkOS ()
     {
-
         var ua = navigator.userAgent;
 
         if ((/Playstation Vita/).test(ua))
@@ -705,8 +701,10 @@ Phaser.Device._initialize = function ()
         {
             device.kindle = true;
 
-            // This will NOT detect early generations of Kindle Fire, I think there is no reliable way...
-            // E.g. "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us; Silk/1.1.0-80) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16 Silk-Accelerated=true"
+            /*
+             * This will NOT detect early generations of Kindle Fire, I think there is no reliable way...
+             * E.g. "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us; Silk/1.1.0-80) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16 Silk-Accelerated=true"
+             */
         }
         else if ((/Android/).test(ua))
         {
@@ -756,17 +754,15 @@ Phaser.Device._initialize = function ()
         {
             device.desktop = false;
         }
-
     }
 
     /**
-    * Checks if the browser correctly supports putImageData alpha channels.
-    * If the browser isn't capable of handling tinting with alpha, `Device.canHandleAlpha` will be false.
-    * Also checks whether the Canvas BlendModes are supported by the current browser for drawImage.
-    */
+     * Checks if the browser correctly supports putImageData alpha channels.
+     * If the browser isn't capable of handling tinting with alpha, `Device.canHandleAlpha` will be false.
+     * Also checks whether the Canvas BlendModes are supported by the current browser for drawImage.
+     */
     function _checkCanvasFeatures ()
     {
-
         var canvas = Phaser.CanvasPool.create(this, 6, 1);
         var context = canvas.getContext('2d');
 
@@ -802,15 +798,13 @@ Phaser.Device._initialize = function ()
         Phaser.CanvasPool.removeByCanvas(canvas);
 
         PIXI.CanvasTinter.tintMethod = (device.canUseMultiply) ? PIXI.CanvasTinter.tintWithMultiply : PIXI.CanvasTinter.tintWithPerPixel;
-
     }
 
     /**
-    * Check HTML5 features of the host environment.
-    */
+     * Check HTML5 features of the host environment.
+     */
     function _checkFeatures ()
     {
-
         device.canvas = !!window.CanvasRenderingContext2D || device.cocoonJS;
 
         try
@@ -859,8 +853,10 @@ Phaser.Device._initialize = function ()
 
         // TODO: replace canvasBitBltShift detection with actual feature check
 
-        // Excludes iOS versions as they generally wrap UIWebView (eg. Safari WebKit) and it
-        // is safer to not try and use the fast copy-over method.
+        /*
+         * Excludes iOS versions as they generally wrap UIWebView (eg. Safari WebKit) and it
+         * is safer to not try and use the fast copy-over method.
+         */
         if (!device.iOS && (device.ie || device.firefox || device.chrome))
         {
             device.canvasBitBltShift = true;
@@ -871,15 +867,13 @@ Phaser.Device._initialize = function ()
         {
             device.canvasBitBltShift = false;
         }
-
     }
 
     /**
-    * Checks/configures various input.
-    */
+     * Checks/configures various input.
+     */
     function _checkInput ()
     {
-
         if ('ontouchstart' in document.documentElement || (window.navigator.maxTouchPoints && window.navigator.maxTouchPoints >= 1))
         {
             device.touch = true;
@@ -909,15 +903,13 @@ Phaser.Device._initialize = function ()
                 device.wheelEvent = 'DOMMouseScroll';
             }
         }
-
     }
 
     /**
-    * Checks for support of the Full Screen API.
-    */
+     * Checks for support of the Full Screen API.
+     */
     function _checkFullScreenSupport ()
     {
-
         var fs = [
             'requestFullscreen',
             'requestFullScreen',
@@ -969,15 +961,13 @@ Phaser.Device._initialize = function ()
         {
             device.fullscreenKeyboard = true;
         }
-
     }
 
     /**
-    * Check what browser is game running in.
-    */
+     * Check what browser is game running in.
+     */
     function _checkBrowser ()
     {
-
         var ua = navigator.userAgent;
 
         if ((/Arora/).test(ua))
@@ -1091,15 +1081,13 @@ Phaser.Device._initialize = function ()
         {
             device.crosswalk = true;
         }
-
     }
 
     /**
-    * Check video support.
-    */
+     * Check video support.
+     */
     function _checkVideo ()
     {
-
         var videoElement = document.createElement('video');
 
         try
@@ -1138,11 +1126,10 @@ Phaser.Device._initialize = function ()
     }
 
     /**
-    * Check audio support.
-    */
+     * Check audio support.
+     */
     function _checkAudio ()
     {
-
         device.audioData = !!(window.Audio);
         device.webAudio = !!(window.AudioContext || window.webkitAudioContext);
         var audioElement = document.createElement('audio');
@@ -1166,9 +1153,11 @@ Phaser.Device._initialize = function ()
                     device.mp3 = true;
                 }
 
-                // Mimetypes accepted:
-                //   developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
-                //   bit.ly/iphoneoscodecs
+                /*
+                 * Mimetypes accepted:
+                 *   developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
+                 *   bit.ly/iphoneoscodecs
+                 */
                 if (audioElement.canPlayType('audio/wav; codecs="1"').replace(/^no$/, ''))
                 {
                     device.wav = true;
@@ -1208,17 +1197,15 @@ Phaser.Device._initialize = function ()
         }
         catch (e)
         {} // eslint-disable-line no-empty
-
     }
 
     /**
-    * Check Little or Big Endian system.
-    *
-    * @author Matt DesLauriers (@mattdesl)
-    */
+     * Check Little or Big Endian system.
+     *
+     * @author Matt DesLauriers (@mattdesl)
+     */
     function _checkIsLittleEndian ()
     {
-
         var a = new ArrayBuffer(4);
         var b = new Uint8Array(a);
         var c = new Uint32Array(a);
@@ -1242,17 +1229,15 @@ Phaser.Device._initialize = function ()
             //  Could not determine endianness
             return null;
         }
-
     }
 
     /**
-    * Test to see if ImageData uses CanvasPixelArray or Uint8ClampedArray.
-    *
-    * @author Matt DesLauriers (@mattdesl)
-    */
+     * Test to see if ImageData uses CanvasPixelArray or Uint8ClampedArray.
+     *
+     * @author Matt DesLauriers (@mattdesl)
+     */
     function _checkIsUint8ClampedImageData ()
     {
-
         if (Uint8ClampedArray === undefined)
         {
             return false;
@@ -1271,15 +1256,13 @@ Phaser.Device._initialize = function ()
         Phaser.CanvasPool.remove(this);
 
         return image.data instanceof Uint8ClampedArray;
-
     }
 
     /**
-    * Check PixelRatio, iOS device, Vibration API, ArrayBuffers and endianess.
-    */
+     * Check PixelRatio, iOS device, Vibration API, ArrayBuffers and endianess.
+     */
     function _checkDevice ()
     {
-
         device.pixelRatio = window.devicePixelRatio || 1;
         device.iPhone = navigator.userAgent.toLowerCase().indexOf('iphone') !== -1;
         device.iPhone4 = (device.pixelRatio === 2 && device.iPhone);
@@ -1308,15 +1291,13 @@ Phaser.Device._initialize = function ()
         {
             device.vibration = true;
         }
-
     }
 
     /**
-    * Check whether the host environment support 3D CSS.
-    */
+     * Check whether the host environment support 3D CSS.
+     */
     function _checkCSS3D ()
     {
-
         var el = document.createElement('p');
         var has3d;
         var transforms = {
@@ -1341,7 +1322,6 @@ Phaser.Device._initialize = function ()
 
         document.body.removeChild(el);
         device.css3D = (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
-
     }
 
     //  Run the checks
@@ -1355,20 +1335,18 @@ Phaser.Device._initialize = function ()
     _checkCanvasFeatures();
     _checkFullScreenSupport();
     _checkInput();
-
 };
 
 /**
-* Check whether the host environment can play audio.
-*
-* @method canPlayAudio
-* @memberof Phaser.Device.prototype
-* @param {string} type - One of 'mp3, 'ogg', 'm4a', 'wav', 'webm' or 'opus'.
-* @return {boolean} True if the given file type is supported by the browser, otherwise false.
-*/
+ * Check whether the host environment can play audio.
+ *
+ * @method canPlayAudio
+ * @memberof Phaser.Device.prototype
+ * @param {string} type - One of 'mp3, 'ogg', 'm4a', 'wav', 'webm' or 'opus'.
+ * @return {boolean} True if the given file type is supported by the browser, otherwise false.
+ */
 Phaser.Device.canPlayAudio = function (type)
 {
-
     if (type === 'mp3' && this.mp3)
     {
         return true;
@@ -1399,20 +1377,18 @@ Phaser.Device.canPlayAudio = function (type)
     }
 
     return false;
-
 };
 
 /**
-* Check whether the host environment can play video files.
-*
-* @method canPlayVideo
-* @memberof Phaser.Device.prototype
-* @param {string} type - One of 'mp4, 'ogg', 'webm' or 'mpeg'.
-* @return {boolean} True if the given file type is supported by the browser, otherwise false.
-*/
+ * Check whether the host environment can play video files.
+ *
+ * @method canPlayVideo
+ * @memberof Phaser.Device.prototype
+ * @param {string} type - One of 'mp4, 'ogg', 'webm' or 'mpeg'.
+ * @return {boolean} True if the given file type is supported by the browser, otherwise false.
+ */
 Phaser.Device.canPlayVideo = function (type)
 {
-
     if (type === 'webm' && (this.webmVideo || this.vp9Video))
     {
         return true;
@@ -1431,7 +1407,6 @@ Phaser.Device.canPlayVideo = function (type)
     }
 
     return false;
-
 };
 
 /**
@@ -1447,21 +1422,19 @@ Phaser.Device.needsTouchUnlock = function ()
 };
 
 /**
-* Detect if the host is a an Android Stock browser.
-* This is available before the device "ready" event.
-*
-* Authors might want to scale down on effects and switch to the CANVAS rendering method on those devices.
-*
-* @example
-* var defaultRenderingMode = Phaser.Device.isAndroidStockBrowser() ? Phaser.CANVAS : Phaser.AUTO;
-*
-* @method isAndroidStockBrowser
-* @memberof Phaser.Device.prototype
-*/
+ * Detect if the host is a an Android Stock browser.
+ * This is available before the device "ready" event.
+ *
+ * Authors might want to scale down on effects and switch to the CANVAS rendering method on those devices.
+ *
+ * @example
+ * var defaultRenderingMode = Phaser.Device.isAndroidStockBrowser() ? Phaser.CANVAS : Phaser.AUTO;
+ *
+ * @method isAndroidStockBrowser
+ * @memberof Phaser.Device.prototype
+ */
 Phaser.Device.isAndroidStockBrowser = function ()
 {
-
     var matches = window.navigator.userAgent.match(/Android.*AppleWebKit\/([\d.]+)/);
     return matches && matches[1] < 537;
-
 };

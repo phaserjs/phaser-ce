@@ -1,162 +1,161 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* Phaser.Input is the Input Manager for all types of Input across Phaser, including mouse, keyboard, touch and MSPointer.
-* The Input manager is updated automatically by the core game loop.
-*
-* @class Phaser.Input
-* @constructor
-* @param {Phaser.Game} game - Current game instance.
-*/
+ * Phaser.Input is the Input Manager for all types of Input across Phaser, including mouse, keyboard, touch and MSPointer.
+ * The Input manager is updated automatically by the core game loop.
+ *
+ * @class Phaser.Input
+ * @constructor
+ * @param {Phaser.Game} game - Current game instance.
+ */
 Phaser.Input = function (game)
 {
-
     /**
-    * @property {Phaser.Game} game - A reference to the currently running game.
-    */
+     * @property {Phaser.Game} game - A reference to the currently running game.
+     */
     this.game = game;
 
     /**
-    * @property {HTMLCanvasElement} hitCanvas - The canvas to which single pixels are drawn in order to perform pixel-perfect hit detection.
-    * @default
-    */
+     * @property {HTMLCanvasElement} hitCanvas - The canvas to which single pixels are drawn in order to perform pixel-perfect hit detection.
+     * @default
+     */
     this.hitCanvas = null;
 
     /**
-    * @property {CanvasRenderingContext2D} hitContext - The context of the pixel perfect hit canvas.
-    * @default
-    */
+     * @property {CanvasRenderingContext2D} hitContext - The context of the pixel perfect hit canvas.
+     * @default
+     */
     this.hitContext = null;
 
     /**
-    * An array of callbacks that will be fired every time the activePointer receives a move event from the DOM.
-    * To add a callback to this array please use `Input.addMoveCallback`.
-    * @property {array} moveCallbacks
-    * @protected
-    */
+     * An array of callbacks that will be fired every time the activePointer receives a move event from the DOM.
+     * To add a callback to this array please use `Input.addMoveCallback`.
+     * @property {array} moveCallbacks
+     * @protected
+     */
     this.moveCallbacks = [];
 
     /**
-    * @property {function} customCandidateHandler - See Input.setInteractiveCandidateHandler.
-    * @private
-    */
+     * @property {function} customCandidateHandler - See Input.setInteractiveCandidateHandler.
+     * @private
+     */
     this.customCandidateHandler = null;
 
     /**
-    * @property {object} customCandidateHandlerContext - See Input.setInteractiveCandidateHandler.
-    * @private
-    */
+     * @property {object} customCandidateHandlerContext - See Input.setInteractiveCandidateHandler.
+     * @private
+     */
     this.customCandidateHandlerContext = null;
 
     /**
-    * @property {number} pollRate - How often should the input pointers be checked for updates? A value of 0 means every single frame (60fps); a value of 1 means every other frame (30fps) and so on.
-    * @default
-    */
+     * @property {number} pollRate - How often should the input pointers be checked for updates? A value of 0 means every single frame (60fps); a value of 1 means every other frame (30fps) and so on.
+     * @default
+     */
     this.pollRate = 0;
 
     /**
-    * When enabled, input (eg. Keyboard, Mouse, Touch) will be processed - as long as the individual sources are enabled themselves.
-    *
-    * When not enabled, _all_ input sources are ignored. To disable just one type of input; for example, the Mouse, use `input.mouse.enabled = false`.
-    * @property {boolean} enabled
-    * @default
-    */
+     * When enabled, input (eg. Keyboard, Mouse, Touch) will be processed - as long as the individual sources are enabled themselves.
+     *
+     * When not enabled, _all_ input sources are ignored. To disable just one type of input; for example, the Mouse, use `input.mouse.enabled = false`.
+     * @property {boolean} enabled
+     * @default
+     */
     this.enabled = true;
 
     /**
-    * @property {number} multiInputOverride - Controls the expected behavior when using a mouse and touch together on a multi-input device.
-    * @default
-    */
+     * @property {number} multiInputOverride - Controls the expected behavior when using a mouse and touch together on a multi-input device.
+     * @default
+     */
     this.multiInputOverride = Phaser.Input.MOUSE_TOUCH_COMBINE;
 
     /**
-    * @property {Phaser.Point} position - A point object representing the current position of the Pointer.
-    * @default
-    */
+     * @property {Phaser.Point} position - A point object representing the current position of the Pointer.
+     * @default
+     */
     this.position = null;
 
     /**
-    * @property {Phaser.Point} speed - A point object representing the speed of the Pointer. Only really useful in single Pointer games; otherwise see the Pointer objects directly.
-    */
+     * @property {Phaser.Point} speed - A point object representing the speed of the Pointer. Only really useful in single Pointer games; otherwise see the Pointer objects directly.
+     */
     this.speed = null;
 
     /**
-    * A Circle object centered on the x/y screen coordinates of the Input.
-    * Default size of 44px (Apples recommended "finger tip" size) but can be changed to anything.
-    * @property {Phaser.Circle} circle
-    */
+     * A Circle object centered on the x/y screen coordinates of the Input.
+     * Default size of 44px (Apples recommended "finger tip" size) but can be changed to anything.
+     * @property {Phaser.Circle} circle
+     */
     this.circle = null;
 
     /**
-    * @property {Phaser.Point} scale - The scale by which all input coordinates are multiplied; calculated by the ScaleManager. In an un-scaled game the values will be x = 1 and y = 1.
-    */
+     * @property {Phaser.Point} scale - The scale by which all input coordinates are multiplied; calculated by the ScaleManager. In an un-scaled game the values will be x = 1 and y = 1.
+     */
     this.scale = null;
 
     /**
-    * The maximum number of Pointers allowed to be *active* at any one time.
-    * A value of -1 is only limited by the total number of pointers (MAX_POINTERS). For lots of games it's useful to set this to 1.
-    * At least 2 Pointers will always be *created*, unless MAX_POINTERS is smaller.
-    * @property {integer} maxPointers
-    * @default -1 (Limited by total pointers.)
-    * @see Phaser.Input.MAX_POINTERS
-    */
+     * The maximum number of Pointers allowed to be *active* at any one time.
+     * A value of -1 is only limited by the total number of pointers (MAX_POINTERS). For lots of games it's useful to set this to 1.
+     * At least 2 Pointers will always be *created*, unless MAX_POINTERS is smaller.
+     * @property {integer} maxPointers
+     * @default -1 (Limited by total pointers.)
+     * @see Phaser.Input.MAX_POINTERS
+     */
     this.maxPointers = -1;
 
     /**
-    * @property {number} tapRate - The number of milliseconds that the Pointer has to be pressed down and then released to be considered a tap or click.
-    * @default
-    */
+     * @property {number} tapRate - The number of milliseconds that the Pointer has to be pressed down and then released to be considered a tap or click.
+     * @default
+     */
     this.tapRate = 200;
 
     /**
-    * @property {number} doubleTapRate - The number of milliseconds between taps of the same Pointer for it to be considered a double tap / click.
-    * @default
-    */
+     * @property {number} doubleTapRate - The number of milliseconds between taps of the same Pointer for it to be considered a double tap / click.
+     * @default
+     */
     this.doubleTapRate = 300;
 
     /**
-    * @property {number} holdRate - The number of milliseconds that the Pointer has to be pressed down for it to fire a onHold event.
-    * @default
-    */
+     * @property {number} holdRate - The number of milliseconds that the Pointer has to be pressed down for it to fire a onHold event.
+     * @default
+     */
     this.holdRate = 2000;
 
     /**
-    * @property {number} justPressedRate - The number of milliseconds below which the Pointer is considered justPressed.
-    * @default
-    */
+     * @property {number} justPressedRate - The number of milliseconds below which the Pointer is considered justPressed.
+     * @default
+     */
     this.justPressedRate = 200;
 
     /**
-    * @property {number} justReleasedRate - The number of milliseconds below which the Pointer is considered justReleased .
-    * @default
-    */
+     * @property {number} justReleasedRate - The number of milliseconds below which the Pointer is considered justReleased .
+     * @default
+     */
     this.justReleasedRate = 200;
 
     /**
-    * Sets if the Pointer objects should record a history of x/y coordinates they have passed through.
-    * The history is cleared each time the Pointer is pressed down.
-    * The history is updated at the rate specified in Input.pollRate
-    * @property {boolean} recordPointerHistory
-    * @default
-    */
+     * Sets if the Pointer objects should record a history of x/y coordinates they have passed through.
+     * The history is cleared each time the Pointer is pressed down.
+     * The history is updated at the rate specified in Input.pollRate
+     * @property {boolean} recordPointerHistory
+     * @default
+     */
     this.recordPointerHistory = false;
 
     /**
-    * @property {number} recordRate - The rate in milliseconds at which the Pointer objects should update their tracking history.
-    * @default
-    */
+     * @property {number} recordRate - The rate in milliseconds at which the Pointer objects should update their tracking history.
+     * @default
+     */
     this.recordRate = 100;
 
     /**
-    * The total number of entries that can be recorded into the Pointer objects tracking history.
-    * If the Pointer is tracking one event every 100ms; then a trackLimit of 100 would store the last 10 seconds worth of history.
-    * @property {number} recordLimit
-    * @default
-    */
+     * The total number of entries that can be recorded into the Pointer objects tracking history.
+     * If the Pointer is tracking one event every 100ms; then a trackLimit of 100 would store the last 10 seconds worth of history.
+     * @property {number} recordLimit
+     * @default
+     */
     this.recordLimit = 100;
 
     /**
@@ -169,272 +168,270 @@ Phaser.Input = function (game)
     this.touchLockCallbacks = [];
 
     /**
-    * @property {Phaser.Pointer} pointer1 - A Pointer object.
-    */
+     * @property {Phaser.Pointer} pointer1 - A Pointer object.
+     */
     this.pointer1 = null;
 
     /**
-    * @property {Phaser.Pointer} pointer2 - A Pointer object.
-    */
+     * @property {Phaser.Pointer} pointer2 - A Pointer object.
+     */
     this.pointer2 = null;
 
     /**
-    * @property {Phaser.Pointer} pointer3 - A Pointer object.
-    */
+     * @property {Phaser.Pointer} pointer3 - A Pointer object.
+     */
     this.pointer3 = null;
 
     /**
-    * @property {Phaser.Pointer} pointer4 - A Pointer object.
-    */
+     * @property {Phaser.Pointer} pointer4 - A Pointer object.
+     */
     this.pointer4 = null;
 
     /**
-    * @property {Phaser.Pointer} pointer5 - A Pointer object.
-    */
+     * @property {Phaser.Pointer} pointer5 - A Pointer object.
+     */
     this.pointer5 = null;
 
     /**
-    * @property {Phaser.Pointer} pointer6 - A Pointer object.
-    */
+     * @property {Phaser.Pointer} pointer6 - A Pointer object.
+     */
     this.pointer6 = null;
 
     /**
-    * @property {Phaser.Pointer} pointer7 - A Pointer object.
-    */
+     * @property {Phaser.Pointer} pointer7 - A Pointer object.
+     */
     this.pointer7 = null;
 
     /**
-    * @property {Phaser.Pointer} pointer8 - A Pointer object.
-    */
+     * @property {Phaser.Pointer} pointer8 - A Pointer object.
+     */
     this.pointer8 = null;
 
     /**
-    * @property {Phaser.Pointer} pointer9 - A Pointer object.
-    */
+     * @property {Phaser.Pointer} pointer9 - A Pointer object.
+     */
     this.pointer9 = null;
 
     /**
-    * @property {Phaser.Pointer} pointer10 - A Pointer object.
-    */
+     * @property {Phaser.Pointer} pointer10 - A Pointer object.
+     */
     this.pointer10 = null;
 
     /**
-    * A pool of non-mouse (contact) pointers that have been added to the game.
-    * They're activated and updated by {@link Phaser.Input#mspointer} and {@link Phaser.Input#touch}.
-    * The properties `pointer1..10` are aliases for `pointers[0..9]`.
-    * @property {Phaser.Pointer[]} pointers
-    * @public
-    * @readonly
-    */
+     * A pool of non-mouse (contact) pointers that have been added to the game.
+     * They're activated and updated by {@link Phaser.Input#mspointer} and {@link Phaser.Input#touch}.
+     * The properties `pointer1..10` are aliases for `pointers[0..9]`.
+     * @property {Phaser.Pointer[]} pointers
+     * @public
+     * @readonly
+     */
     this.pointers = [];
 
     /**
-    * The most recently active Pointer object.
-    *
-    * When you've limited max pointers to 1 this will accurately be either the first finger touched or mouse.
-    *
-    * @property {Phaser.Pointer} activePointer
-    */
+     * The most recently active Pointer object.
+     *
+     * When you've limited max pointers to 1 this will accurately be either the first finger touched or mouse.
+     *
+     * @property {Phaser.Pointer} activePointer
+     */
     this.activePointer = null;
 
     /**
-    * The mouse has its own unique Phaser.Pointer object which you can use if making a desktop specific game.
-    *
-    * The mouse pointer is updated by {@link Phaser.Input#mouse} and {@link Phaser.Input#mspointer}.
-    *
-    * @property {Pointer} mousePointer
-    */
+     * The mouse has its own unique Phaser.Pointer object which you can use if making a desktop specific game.
+     *
+     * The mouse pointer is updated by {@link Phaser.Input#mouse} and {@link Phaser.Input#mspointer}.
+     *
+     * @property {Pointer} mousePointer
+     */
     this.mousePointer = null;
 
     /**
-    * The Mouse Input manager.
-    *
-    * You should not usually access this manager directly, but instead use Input.mousePointer or Input.activePointer
-    * which normalizes all the input values for you, regardless of browser.
-    *
-    * @property {Phaser.Mouse} mouse
-    */
+     * The Mouse Input manager.
+     *
+     * You should not usually access this manager directly, but instead use Input.mousePointer or Input.activePointer
+     * which normalizes all the input values for you, regardless of browser.
+     *
+     * @property {Phaser.Mouse} mouse
+     */
     this.mouse = null;
 
     /**
-    * The Keyboard Input manager.
-    *
-    * @property {Phaser.Keyboard} keyboard
-    */
+     * The Keyboard Input manager.
+     *
+     * @property {Phaser.Keyboard} keyboard
+     */
     this.keyboard = null;
 
     /**
-    * The Touch Input manager.
-    *
-    * You should not usually access this manager directly, but instead use Input.activePointer
-    * which normalizes all the input values for you, regardless of browser.
-    *
-    * @property {Phaser.Touch} touch
-    */
+     * The Touch Input manager.
+     *
+     * You should not usually access this manager directly, but instead use Input.activePointer
+     * which normalizes all the input values for you, regardless of browser.
+     *
+     * @property {Phaser.Touch} touch
+     */
     this.touch = null;
 
     /**
-    * The MSPointer Input manager.
-    *
-    * You should not usually access this manager directly, but instead use Input.activePointer
-    * which normalizes all the input values for you, regardless of browser.
-    *
-    * @property {Phaser.MSPointer} mspointer
-    */
+     * The MSPointer Input manager.
+     *
+     * You should not usually access this manager directly, but instead use Input.activePointer
+     * which normalizes all the input values for you, regardless of browser.
+     *
+     * @property {Phaser.MSPointer} mspointer
+     */
     this.mspointer = null;
 
     /**
-    * The Gamepad Input manager.
-    *
-    * @property {Phaser.Gamepad} gamepad
-    */
+     * The Gamepad Input manager.
+     *
+     * @property {Phaser.Gamepad} gamepad
+     */
     this.gamepad = null;
 
     /**
-    * If the Input Manager has been reset locked then all calls made to InputManager.reset,
-    * such as from a State change, are ignored.
-    * @property {boolean} resetLocked
-    * @default
-    */
+     * If the Input Manager has been reset locked then all calls made to InputManager.reset,
+     * such as from a State change, are ignored.
+     * @property {boolean} resetLocked
+     * @default
+     */
     this.resetLocked = false;
 
     /**
-    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is pressed down.
-    * It is sent two arguments:
-    *
-    * - {Phaser.Pointer} The pointer that caused the event.
-    * - {Event} The original DOM event.
-    *
-    * @property {Phaser.Signal} onDown
-    */
+     * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is pressed down.
+     * It is sent two arguments:
+     *
+     * - {Phaser.Pointer} The pointer that caused the event.
+     * - {Event} The original DOM event.
+     *
+     * @property {Phaser.Signal} onDown
+     */
     this.onDown = null;
 
     /**
-    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is released.
-    * It is sent two arguments:
-    *
-    * - {Phaser.Pointer} The pointer that caused the event.
-    * - {Event} The original DOM event.
-    *
-    * @property {Phaser.Signal} onUp
-    */
+     * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is released.
+     * It is sent two arguments:
+     *
+     * - {Phaser.Pointer} The pointer that caused the event.
+     * - {Event} The original DOM event.
+     *
+     * @property {Phaser.Signal} onUp
+     */
     this.onUp = null;
 
     /**
-    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is tapped.
-    * It is sent two arguments:
-    *
-    * - {Phaser.Pointer} The pointer that caused the event.
-    * - {boolean} True if this was a double tap.
-    *
-    * @property {Phaser.Signal} onTap
-    */
+     * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is tapped.
+     * It is sent two arguments:
+     *
+     * - {Phaser.Pointer} The pointer that caused the event.
+     * - {boolean} True if this was a double tap.
+     *
+     * @property {Phaser.Signal} onTap
+     */
     this.onTap = null;
 
     /**
-    * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is held down.
-    * It is sent one argument:
-    *
-    * - {Phaser.Pointer} The pointer that caused the event.
-    *
-    * @property {Phaser.Signal} onHold
-    */
+     * A Signal that is dispatched each time a {@link Phaser.Pointer pointer} is held down.
+     * It is sent one argument:
+     *
+     * - {Phaser.Pointer} The pointer that caused the event.
+     *
+     * @property {Phaser.Signal} onHold
+     */
     this.onHold = null;
 
     /**
-    * You can tell all Pointers to ignore any Game Object with a `priorityID` lower than this value.
-    * This is useful when stacking UI layers. Set to zero to disable.
-    * @property {number} minPriorityID
-    * @default
-    */
+     * You can tell all Pointers to ignore any Game Object with a `priorityID` lower than this value.
+     * This is useful when stacking UI layers. Set to zero to disable.
+     * @property {number} minPriorityID
+     * @default
+     */
     this.minPriorityID = 0;
 
     /**
-    * A list of interactive objects. The InputHandler components add and remove themselves from this list.
-    * @property {Phaser.ArraySet} interactiveItems
-    */
+     * A list of interactive objects. The InputHandler components add and remove themselves from this list.
+     * @property {Phaser.ArraySet} interactiveItems
+     */
     this.interactiveItems = new Phaser.ArraySet();
 
     /**
-    * @property {Phaser.Point} _localPoint - Internal cache var.
-    * @private
-    */
+     * @property {Phaser.Point} _localPoint - Internal cache var.
+     * @private
+     */
     this._localPoint = new Phaser.Point();
 
     /**
-    * @property {number} _pollCounter - Internal var holding the current poll counter.
-    * @private
-    */
+     * @property {number} _pollCounter - Internal var holding the current poll counter.
+     * @private
+     */
     this._pollCounter = 0;
 
     /**
-    * @property {Phaser.Point} _oldPosition - A point object representing the previous position of the Pointer.
-    * @private
-    */
+     * @property {Phaser.Point} _oldPosition - A point object representing the previous position of the Pointer.
+     * @private
+     */
     this._oldPosition = null;
 
     /**
-    * @property {number} _x - x coordinate of the most recent Pointer event
-    * @private
-    */
+     * @property {number} _x - x coordinate of the most recent Pointer event
+     * @private
+     */
     this._x = 0;
 
     /**
-    * @property {number} _y - Y coordinate of the most recent Pointer event
-    * @private
-    */
+     * @property {number} _y - Y coordinate of the most recent Pointer event
+     * @private
+     */
     this._y = 0;
-
 };
 
 /**
-* @constant
-* @type {number}
-*/
+ * @constant
+ * @type {number}
+ */
 Phaser.Input.MOUSE_OVERRIDES_TOUCH = 0;
 
 /**
-* @constant
-* @type {number}
-*/
+ * @constant
+ * @type {number}
+ */
 Phaser.Input.TOUCH_OVERRIDES_MOUSE = 1;
 
 /**
-* @constant
-* @type {number}
-*/
+ * @constant
+ * @type {number}
+ */
 Phaser.Input.MOUSE_TOUCH_COMBINE = 2;
 
 /**
-* The maximum number of pointers that can be added. This excludes the mouse pointer.
-* @constant
-* @type {integer}
-*/
+ * The maximum number of pointers that can be added. This excludes the mouse pointer.
+ * @constant
+ * @type {integer}
+ */
 Phaser.Input.MAX_POINTERS = 10;
 
 Phaser.Input.prototype = {
 
     /**
-    * @typedef {object} InputConfig
-    * @property {boolean} [keyboard=true]
-    * @property {boolean} [maxPointers=-1]
-    * @property {boolean} [mouse=true]
-    * @property {boolean} [mouseWheel=true]
-    * @property {boolean} [mspointer=true]
-    * @property {boolean} [pointerLock=true]
-    * @property {boolean} [touch=true]
-    */
+     * @typedef {object} InputConfig
+     * @property {boolean} [keyboard=true]
+     * @property {boolean} [maxPointers=-1]
+     * @property {boolean} [mouse=true]
+     * @property {boolean} [mouseWheel=true]
+     * @property {boolean} [mspointer=true]
+     * @property {boolean} [pointerLock=true]
+     * @property {boolean} [touch=true]
+     */
 
     /**
-    * Starts the Input Manager running.
-    *
-    * @method Phaser.Input#boot
-    * @protected
-    * @param {InputConfig} config
-    */
+     * Starts the Input Manager running.
+     *
+     * @method Phaser.Input#boot
+     * @protected
+     * @param {InputConfig} config
+     */
     boot: function (config)
     {
-
         if ('maxPointers' in config)
         {
             this.maxPointers = config.maxPointers;
@@ -516,17 +513,15 @@ Phaser.Input.prototype = {
         };
 
         this.game.canvas.addEventListener('click', this._onClickTrampoline, false);
-
     },
 
     /**
-    * Stops all of the Input Managers from running.
-    *
-    * @method Phaser.Input#destroy
-    */
+     * Stops all of the Input Managers from running.
+     *
+     * @method Phaser.Input#destroy
+     */
     destroy: function ()
     {
-
         this.mouse.stop();
         this.mouseWheel.stop();
         this.touch.stop();
@@ -548,64 +543,59 @@ Phaser.Input.prototype = {
         Phaser.CanvasPool.remove(this);
 
         this.game.canvas.removeEventListener('click', this._onClickTrampoline);
-
     },
 
     /**
-    * Adds a callback that is fired every time `Pointer.processInteractiveObjects` is called.
-    * The purpose of `processInteractiveObjects` is to work out which Game Object the Pointer is going to
-    * interact with. It works by polling all of the valid game objects, and then slowly discounting those
-    * that don't meet the criteria (i.e. they aren't under the Pointer, are disabled, invisible, etc).
-    *
-    * Eventually a short-list of 'candidates' is created. These are all of the Game Objects which are valid
-    * for input and overlap with the Pointer. If you need fine-grained control over which of the items is
-    * selected then you can use this callback to do so.
-    *
-    * The callback will be sent 3 parameters:
-    *
-    * 1) A reference to the Phaser.Pointer object that is processing the Items.
-    * 2) An array containing all potential interactive candidates. This is an array of `InputHandler` objects, not Sprites.
-    * 3) The current 'favorite' candidate, based on its priorityID and position in the display list.
-    *
-    * Your callback MUST return one of the candidates sent to it.
-    *
-    * @method Phaser.Input#setInteractiveCandidateHandler
-    * @param {function} callback - The callback that will be called each time `Pointer.processInteractiveObjects` is called. Set to `null` to disable.
-    * @param {object} context - The context in which the callback will be called.
-    */
+     * Adds a callback that is fired every time `Pointer.processInteractiveObjects` is called.
+     * The purpose of `processInteractiveObjects` is to work out which Game Object the Pointer is going to
+     * interact with. It works by polling all of the valid game objects, and then slowly discounting those
+     * that don't meet the criteria (i.e. they aren't under the Pointer, are disabled, invisible, etc).
+     *
+     * Eventually a short-list of 'candidates' is created. These are all of the Game Objects which are valid
+     * for input and overlap with the Pointer. If you need fine-grained control over which of the items is
+     * selected then you can use this callback to do so.
+     *
+     * The callback will be sent 3 parameters:
+     *
+     * 1) A reference to the Phaser.Pointer object that is processing the Items.
+     * 2) An array containing all potential interactive candidates. This is an array of `InputHandler` objects, not Sprites.
+     * 3) The current 'favorite' candidate, based on its priorityID and position in the display list.
+     *
+     * Your callback MUST return one of the candidates sent to it.
+     *
+     * @method Phaser.Input#setInteractiveCandidateHandler
+     * @param {function} callback - The callback that will be called each time `Pointer.processInteractiveObjects` is called. Set to `null` to disable.
+     * @param {object} context - The context in which the callback will be called.
+     */
     setInteractiveCandidateHandler: function (callback, context)
     {
-
         this.customCandidateHandler = callback;
         this.customCandidateHandlerContext = context;
-
     },
 
     /**
-    * Adds a callback that is fired every time the activePointer receives a DOM move event such as a mousemove or touchmove.
-    *
-    * The callback will be sent 5 parameters:
-    *
-    * - A reference to the Phaser.Pointer object that moved
-    * - The x position of the pointer
-    * - The y position
-    * - A boolean indicating if the movement was the result of a 'click' event (such as a mouse click or touch down)
-    * - The DOM move event
-    *
-    * It will be called every time the activePointer moves, which in a multi-touch game can be a lot of times, so this is best
-    * to only use if you've limited input to a single pointer (i.e. mouse or touch).
-    *
-    * The callback is added to the Phaser.Input.moveCallbacks array and should be removed with Phaser.Input.deleteMoveCallback.
-    *
-    * @method Phaser.Input#addMoveCallback
-    * @param {function} callback - The callback that will be called each time the activePointer receives a DOM move event.
-    * @param {object} context - The context in which the callback will be called.
-    */
+     * Adds a callback that is fired every time the activePointer receives a DOM move event such as a mousemove or touchmove.
+     *
+     * The callback will be sent 5 parameters:
+     *
+     * - A reference to the Phaser.Pointer object that moved
+     * - The x position of the pointer
+     * - The y position
+     * - A boolean indicating if the movement was the result of a 'click' event (such as a mouse click or touch down)
+     * - The DOM move event
+     *
+     * It will be called every time the activePointer moves, which in a multi-touch game can be a lot of times, so this is best
+     * to only use if you've limited input to a single pointer (i.e. mouse or touch).
+     *
+     * The callback is added to the Phaser.Input.moveCallbacks array and should be removed with Phaser.Input.deleteMoveCallback.
+     *
+     * @method Phaser.Input#addMoveCallback
+     * @param {function} callback - The callback that will be called each time the activePointer receives a DOM move event.
+     * @param {object} context - The context in which the callback will be called.
+     */
     addMoveCallback: function (callback, context)
     {
-
         this.moveCallbacks.push({ callback: callback, context: context });
-
     },
 
 
@@ -625,11 +615,9 @@ Phaser.Input.prototype = {
      */
     addTouchLockCallback: function (callback, context, onEnd)
     {
-
         if (onEnd === undefined) { onEnd = false; }
 
         this.touchLockCallbacks.push({ callback: callback, context: context, onEnd: onEnd });
-
     },
 
     /**
@@ -642,7 +630,6 @@ Phaser.Input.prototype = {
      */
     removeTouchLockCallback: function (callback, context)
     {
-
         var i = this.touchLockCallbacks.length;
 
         while (i--)
@@ -655,7 +642,6 @@ Phaser.Input.prototype = {
         }
 
         return false;
-
     },
 
     /**
@@ -682,15 +668,14 @@ Phaser.Input.prototype = {
     },
 
     /**
-    * Removes the callback from the Phaser.Input.moveCallbacks array.
-    *
-    * @method Phaser.Input#deleteMoveCallback
-    * @param {function} callback - The callback to be removed.
-    * @param {object} context - The context in which the callback exists.
-    */
+     * Removes the callback from the Phaser.Input.moveCallbacks array.
+     *
+     * @method Phaser.Input#deleteMoveCallback
+     * @param {function} callback - The callback to be removed.
+     * @param {object} context - The context in which the callback exists.
+     */
     deleteMoveCallback: function (callback, context)
     {
-
         var i = this.moveCallbacks.length;
 
         while (i--)
@@ -701,20 +686,18 @@ Phaser.Input.prototype = {
                 return;
             }
         }
-
     },
 
     /**
-    * Add a new Pointer object to the Input Manager.
-    * By default Input creates 3 pointer objects: `mousePointer` (not include in part of general pointer pool), `pointer1` and `pointer2`.
-    * This method adds an additional pointer, up to a maximum of Phaser.Input.MAX_POINTERS (default of 10).
-    *
-    * @method Phaser.Input#addPointer
-    * @return {Phaser.Pointer|null} The new Pointer object that was created; null if a new pointer could not be added.
-    */
+     * Add a new Pointer object to the Input Manager.
+     * By default Input creates 3 pointer objects: `mousePointer` (not include in part of general pointer pool), `pointer1` and `pointer2`.
+     * This method adds an additional pointer, up to a maximum of Phaser.Input.MAX_POINTERS (default of 10).
+     *
+     * @method Phaser.Input#addPointer
+     * @return {Phaser.Pointer|null} The new Pointer object that was created; null if a new pointer could not be added.
+     */
     addPointer: function ()
     {
-
         if (this.pointers.length >= Phaser.Input.MAX_POINTERS)
         {
             console.warn('Phaser.Input.addPointer: Maximum limit of ' + Phaser.Input.MAX_POINTERS + ' pointers reached.');
@@ -728,18 +711,16 @@ Phaser.Input.prototype = {
         this['pointer' + id] = pointer;
 
         return pointer;
-
     },
 
     /**
-    * Updates the Input Manager. Called by the core Game loop.
-    *
-    * @method Phaser.Input#update
-    * @protected
-    */
+     * Updates the Input Manager. Called by the core Game loop.
+     *
+     * @method Phaser.Input#update
+     * @protected
+     */
     update: function ()
     {
-
         if (this.keyboard)
         {
             this.keyboard.update();
@@ -768,7 +749,6 @@ Phaser.Input.prototype = {
         }
 
         this._pollCounter = 0;
-
     },
 
     /**
@@ -779,28 +759,25 @@ Phaser.Input.prototype = {
      */
     pauseUpdate: function ()
     {
-
         if (this.gamepad && this.gamepad.active)
         {
             this.gamepad.update();
         }
-
     },
 
     /**
-    * Reset all of the Pointers and Input states.
-    *
-    * The optional `hard` parameter will reset any events or callbacks that may be bound.
-    * Input.reset is called automatically during a State change or if a game loses focus / visibility.
-    * To control control the reset manually set {@link Phaser.InputManager.resetLocked} to `true`.
-    *
-    * @method Phaser.Input#reset
-    * @public
-    * @param {boolean} [hard=false] - A soft reset won't reset any events or callbacks that are bound. A hard reset will.
-    */
+     * Reset all of the Pointers and Input states.
+     *
+     * The optional `hard` parameter will reset any events or callbacks that may be bound.
+     * Input.reset is called automatically during a State change or if a game loses focus / visibility.
+     * To control control the reset manually set {@link Phaser.InputManager.resetLocked} to `true`.
+     *
+     * @method Phaser.Input#reset
+     * @public
+     * @param {boolean} [hard=false] - A soft reset won't reset any events or callbacks that are bound. A hard reset will.
+     */
     reset: function (hard)
     {
-
         if (!this.game.isBooted || this.resetLocked)
         {
             return;
@@ -839,36 +816,32 @@ Phaser.Input.prototype = {
         }
 
         this._pollCounter = 0;
-
     },
 
     /**
-    * Resets the speed and old position properties.
-    *
-    * @method Phaser.Input#resetSpeed
-    * @param {number} x - Sets the oldPosition.x value.
-    * @param {number} y - Sets the oldPosition.y value.
-    */
+     * Resets the speed and old position properties.
+     *
+     * @method Phaser.Input#resetSpeed
+     * @param {number} x - Sets the oldPosition.x value.
+     * @param {number} y - Sets the oldPosition.y value.
+     */
     resetSpeed: function (x, y)
     {
-
         this._oldPosition.setTo(x, y);
         this.speed.setTo(0, 0);
-
     },
 
     /**
-    * Find the first free Pointer object and start it, passing in the event data.
-    * This is called automatically by Phaser.Touch and Phaser.MSPointer.
-    *
-    * @method Phaser.Input#startPointer
-    * @protected
-    * @param {any} event - The event data from the Touch event.
-    * @return {Phaser.Pointer} The Pointer object that was started or null if no Pointer object is available.
-    */
+     * Find the first free Pointer object and start it, passing in the event data.
+     * This is called automatically by Phaser.Touch and Phaser.MSPointer.
+     *
+     * @method Phaser.Input#startPointer
+     * @protected
+     * @param {any} event - The event data from the Touch event.
+     * @return {Phaser.Pointer} The Pointer object that was started or null if no Pointer object is available.
+     */
     startPointer: function (event)
     {
-
         if (this.maxPointers >= 0 && this.countActivePointers(this.maxPointers) >= this.maxPointers)
         {
             return null;
@@ -895,21 +868,19 @@ Phaser.Input.prototype = {
         }
 
         return null;
-
     },
 
     /**
-    * Updates the matching Pointer object, passing in the event data.
-    * This is called automatically and should not normally need to be invoked.
-    *
-    * @method Phaser.Input#updatePointer
-    * @protected
-    * @param {any} event - The event data from the Touch event.
-    * @return {Phaser.Pointer} The Pointer object that was updated; null if no pointer was updated.
-    */
+     * Updates the matching Pointer object, passing in the event data.
+     * This is called automatically and should not normally need to be invoked.
+     *
+     * @method Phaser.Input#updatePointer
+     * @protected
+     * @param {any} event - The event data from the Touch event.
+     * @return {Phaser.Pointer} The Pointer object that was updated; null if no pointer was updated.
+     */
     updatePointer: function (event)
     {
-
         if (this.pointer1.active && this.pointer1.identifier === event.identifier)
         {
             return this.pointer1.move(event);
@@ -931,20 +902,18 @@ Phaser.Input.prototype = {
         }
 
         return null;
-
     },
 
     /**
-    * Stops the matching Pointer object, passing in the event data.
-    *
-    * @method Phaser.Input#stopPointer
-    * @protected
-    * @param {any} event - The event data from the Touch event.
-    * @return {Phaser.Pointer} The Pointer object that was stopped or null if no Pointer object is available.
-    */
+     * Stops the matching Pointer object, passing in the event data.
+     *
+     * @method Phaser.Input#stopPointer
+     * @protected
+     * @param {any} event - The event data from the Touch event.
+     * @return {Phaser.Pointer} The Pointer object that was stopped or null if no Pointer object is available.
+     */
     stopPointer: function (event)
     {
-
         if (this.pointer1.active && this.pointer1.identifier === event.identifier)
         {
             return this.pointer1.stop(event);
@@ -966,20 +935,18 @@ Phaser.Input.prototype = {
         }
 
         return null;
-
     },
 
     /**
-    * Returns the total number of active pointers, not exceeding the specified limit
-    *
-    * @name Phaser.Input#countActivePointers
-    * @private
-    * @property {integer} [limit=(max pointers)] - Stop counting after this.
-    * @return {integer} The number of active pointers, or limit - whichever is less.
-    */
+     * Returns the total number of active pointers, not exceeding the specified limit
+     *
+     * @name Phaser.Input#countActivePointers
+     * @private
+     * @property {integer} [limit=(max pointers)] - Stop counting after this.
+     * @return {integer} The number of active pointers, or limit - whichever is less.
+     */
     countActivePointers: function (limit)
     {
-
         if (limit === undefined) { limit = this.pointers.length; }
 
         var count = limit;
@@ -995,19 +962,17 @@ Phaser.Input.prototype = {
         }
 
         return (limit - count);
-
     },
 
     /**
-    * Get the first Pointer with the given active state.
-    *
-    * @method Phaser.Input#getPointer
-    * @param {boolean} [isActive=false] - The state the Pointer should be in - active or inactive?
-    * @return {Phaser.Pointer} A Pointer object or null if no Pointer object matches the requested state.
-    */
+     * Get the first Pointer with the given active state.
+     *
+     * @method Phaser.Input#getPointer
+     * @param {boolean} [isActive=false] - The state the Pointer should be in - active or inactive?
+     * @return {Phaser.Pointer} A Pointer object or null if no Pointer object matches the requested state.
+     */
     getPointer: function (isActive)
     {
-
         if (isActive === undefined) { isActive = false; }
 
         for (var i = 0; i < this.pointers.length; i++)
@@ -1021,23 +986,21 @@ Phaser.Input.prototype = {
         }
 
         return null;
-
     },
 
     /**
-    * Get the Pointer object whos `identifier` property matches the given identifier value.
-    *
-    * The identifier property is not set until the Pointer has been used at least once, as its populated by the DOM event.
-    * Also it can change every time you press the pointer down, and is not fixed once set.
-    * Note: Not all browsers set the identifier property and it's not part of the W3C spec, so you may need getPointerFromId instead.
-    *
-    * @method Phaser.Input#getPointerFromIdentifier
-    * @param {number} identifier - The Pointer.identifier value to search for.
-    * @return {Phaser.Pointer} A Pointer object or null if no Pointer object matches the requested identifier.
-    */
+     * Get the Pointer object whos `identifier` property matches the given identifier value.
+     *
+     * The identifier property is not set until the Pointer has been used at least once, as its populated by the DOM event.
+     * Also it can change every time you press the pointer down, and is not fixed once set.
+     * Note: Not all browsers set the identifier property and it's not part of the W3C spec, so you may need getPointerFromId instead.
+     *
+     * @method Phaser.Input#getPointerFromIdentifier
+     * @param {number} identifier - The Pointer.identifier value to search for.
+     * @return {Phaser.Pointer} A Pointer object or null if no Pointer object matches the requested identifier.
+     */
     getPointerFromIdentifier: function (identifier)
     {
-
         for (var i = 0; i < this.pointers.length; i++)
         {
             var pointer = this.pointers[i];
@@ -1049,22 +1012,20 @@ Phaser.Input.prototype = {
         }
 
         return null;
-
     },
 
     /**
-    * Get the Pointer object whos `pointerId` property matches the given value.
-    *
-    * The pointerId property is not set until the Pointer has been used at least once, as its populated by the DOM event.
-    * Also it can change every time you press the pointer down if the browser recycles it.
-    *
-    * @method Phaser.Input#getPointerFromId
-    * @param {number} pointerId - The `pointerId` (not 'id') value to search for.
-    * @return {Phaser.Pointer} A Pointer object or null if no Pointer object matches the requested identifier.
-    */
+     * Get the Pointer object whos `pointerId` property matches the given value.
+     *
+     * The pointerId property is not set until the Pointer has been used at least once, as its populated by the DOM event.
+     * Also it can change every time you press the pointer down if the browser recycles it.
+     *
+     * @method Phaser.Input#getPointerFromId
+     * @param {number} pointerId - The `pointerId` (not 'id') value to search for.
+     * @return {Phaser.Pointer} A Pointer object or null if no Pointer object matches the requested identifier.
+     */
     getPointerFromId: function (pointerId)
     {
-
         for (var i = 0; i < this.pointers.length; i++)
         {
             var pointer = this.pointers[i];
@@ -1076,20 +1037,18 @@ Phaser.Input.prototype = {
         }
 
         return null;
-
     },
 
     /**
-    * This will return the local coordinates of the specified displayObject based on the given Pointer.
-    *
-    * @method Phaser.Input#getLocalPosition
-    * @param {Phaser.Sprite|Phaser.Image} displayObject - The DisplayObject to get the local coordinates for.
-    * @param {Phaser.Pointer} pointer - The Pointer to use in the check against the displayObject.
-    * @return {Phaser.Point} A point containing the coordinates of the Pointer position relative to the DisplayObject.
-    */
+     * This will return the local coordinates of the specified displayObject based on the given Pointer.
+     *
+     * @method Phaser.Input#getLocalPosition
+     * @param {Phaser.Sprite|Phaser.Image} displayObject - The DisplayObject to get the local coordinates for.
+     * @param {Phaser.Pointer} pointer - The Pointer to use in the check against the displayObject.
+     * @return {Phaser.Point} A point containing the coordinates of the Pointer position relative to the DisplayObject.
+     */
     getLocalPosition: function (displayObject, pointer, output)
     {
-
         if (output === undefined) { output = new Phaser.Point(); }
 
         var wt = displayObject.worldTransform;
@@ -1099,20 +1058,18 @@ Phaser.Input.prototype = {
             wt.d * id * pointer.x + -wt.c * id * pointer.y + (wt.ty * wt.c - wt.tx * wt.d) * id,
             wt.a * id * pointer.y + -wt.b * id * pointer.x + (-wt.ty * wt.a + wt.tx * wt.b) * id
         );
-
     },
 
     /**
-    * Tests if the pointer hits the given object.
-    *
-    * @method Phaser.Input#hitTest
-    * @param {DisplayObject} displayObject - The displayObject to test for a hit.
-    * @param {Phaser.Pointer} pointer - The pointer to use for the test.
-    * @param {Phaser.Point} localPoint - The local translated point.
-    */
+     * Tests if the pointer hits the given object.
+     *
+     * @method Phaser.Input#hitTest
+     * @param {DisplayObject} displayObject - The displayObject to test for a hit.
+     * @param {Phaser.Pointer} pointer - The pointer to use for the test.
+     * @param {Phaser.Point} localPoint - The local translated point.
+     */
     hitTest: function (displayObject, pointer, localPoint)
     {
-
         if (!displayObject.worldVisible)
         {
             return false;
@@ -1207,28 +1164,28 @@ Phaser.Input.prototype = {
     },
 
     /**
-    * Used for click trampolines. See {@link Phaser.Pointer.addClickTrampoline}.
-    *
-    * @method Phaser.Input#onClickTrampoline
-    * @private
-    */
+     * Used for click trampolines. See {@link Phaser.Pointer.addClickTrampoline}.
+     *
+     * @method Phaser.Input#onClickTrampoline
+     * @private
+     */
     onClickTrampoline: function ()
     {
-
-        // It might not always be the active pointer, but this does work on
-        // Desktop browsers (read: IE) with Mouse or MSPointer input.
+        /*
+         * It might not always be the active pointer, but this does work on
+         * Desktop browsers (read: IE) with Mouse or MSPointer input.
+         */
         this.activePointer.processClickTrampolines();
-
     },
 
     /**
-    * Call a handler on all enabled interactive items, for a given pointer.
-    *
-    * @method Phaser.Input#callAll
-    * @param {string} handler - Exact method name.
-    * @param {Phaser.Pointer} - The pointer triggering the handler.
-    * @private
-    */
+     * Call a handler on all enabled interactive items, for a given pointer.
+     *
+     * @method Phaser.Input#callAll
+     * @param {string} handler - Exact method name.
+     * @param {Phaser.Pointer} - The pointer triggering the handler.
+     * @private
+     */
     callAll: function (handler, pointer)
     {
         var list = this.interactiveItems.list;
@@ -1250,11 +1207,11 @@ Phaser.Input.prototype = {
 Phaser.Input.prototype.constructor = Phaser.Input;
 
 /**
-* The X coordinate of the most recently active pointer.
-* This value takes game scaling into account automatically. See Pointer.screenX/clientX for source values.
-* @name Phaser.Input#x
-* @property {number} x
-*/
+ * The X coordinate of the most recently active pointer.
+ * This value takes game scaling into account automatically. See Pointer.screenX/clientX for source values.
+ * @name Phaser.Input#x
+ * @property {number} x
+ */
 Object.defineProperty(Phaser.Input.prototype, 'x', {
 
     get: function ()
@@ -1270,11 +1227,11 @@ Object.defineProperty(Phaser.Input.prototype, 'x', {
 });
 
 /**
-* The Y coordinate of the most recently active pointer.
-* This value takes game scaling into account automatically. See Pointer.screenY/clientY for source values.
-* @name Phaser.Input#y
-* @property {number} y
-*/
+ * The Y coordinate of the most recently active pointer.
+ * This value takes game scaling into account automatically. See Pointer.screenY/clientY for source values.
+ * @name Phaser.Input#y
+ * @property {number} y
+ */
 Object.defineProperty(Phaser.Input.prototype, 'y', {
 
     get: function ()
@@ -1290,11 +1247,11 @@ Object.defineProperty(Phaser.Input.prototype, 'y', {
 });
 
 /**
-* True if the Input is currently poll rate locked.
-* @name Phaser.Input#pollLocked
-* @property {boolean} pollLocked
-* @readonly
-*/
+ * True if the Input is currently poll rate locked.
+ * @name Phaser.Input#pollLocked
+ * @property {boolean} pollLocked
+ * @readonly
+ */
 Object.defineProperty(Phaser.Input.prototype, 'pollLocked', {
 
     get: function ()
@@ -1305,11 +1262,11 @@ Object.defineProperty(Phaser.Input.prototype, 'pollLocked', {
 });
 
 /**
-* The total number of inactive Pointers.
-* @name Phaser.Input#totalInactivePointers
-* @property {number} totalInactivePointers
-* @readonly
-*/
+ * The total number of inactive Pointers.
+ * @name Phaser.Input#totalInactivePointers
+ * @property {number} totalInactivePointers
+ * @readonly
+ */
 Object.defineProperty(Phaser.Input.prototype, 'totalInactivePointers', {
 
     get: function ()
@@ -1320,11 +1277,11 @@ Object.defineProperty(Phaser.Input.prototype, 'totalInactivePointers', {
 });
 
 /**
-* The total number of active Pointers, not counting the mouse pointer.
-* @name Phaser.Input#totalActivePointers
-* @property {integers} totalActivePointers
-* @readonly
-*/
+ * The total number of active Pointers, not counting the mouse pointer.
+ * @name Phaser.Input#totalActivePointers
+ * @property {integers} totalActivePointers
+ * @readonly
+ */
 Object.defineProperty(Phaser.Input.prototype, 'totalActivePointers', {
 
     get: function ()
@@ -1335,11 +1292,11 @@ Object.defineProperty(Phaser.Input.prototype, 'totalActivePointers', {
 });
 
 /**
-* The world X coordinate of the most recently active pointer.
-* @name Phaser.Input#worldX
-* @property {number} worldX - The world X coordinate of the most recently active pointer.
-* @readonly
-*/
+ * The world X coordinate of the most recently active pointer.
+ * @name Phaser.Input#worldX
+ * @property {number} worldX - The world X coordinate of the most recently active pointer.
+ * @readonly
+ */
 Object.defineProperty(Phaser.Input.prototype, 'worldX', {
 
     get: function ()
@@ -1350,11 +1307,11 @@ Object.defineProperty(Phaser.Input.prototype, 'worldX', {
 });
 
 /**
-* The world Y coordinate of the most recently active pointer.
-* @name Phaser.Input#worldY
-* @property {number} worldY - The world Y coordinate of the most recently active pointer.
-* @readonly
-*/
+ * The world Y coordinate of the most recently active pointer.
+ * @name Phaser.Input#worldY
+ * @property {number} worldY - The world Y coordinate of the most recently active pointer.
+ * @readonly
+ */
 Object.defineProperty(Phaser.Input.prototype, 'worldY', {
 
     get: function ()

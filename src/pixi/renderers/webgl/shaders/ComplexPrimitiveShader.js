@@ -3,10 +3,10 @@
  */
 
 /**
-* @class PIXI.ComplexPrimitiveShader
-* @constructor
-* @param gl {WebGLContext} the current WebGL drawing context
-*/
+ * @class PIXI.ComplexPrimitiveShader
+ * @constructor
+ * @param gl {WebGLContext} the current WebGL drawing context
+ */
 PIXI.ComplexPrimitiveShader = function (gl)
 {
     /**
@@ -78,10 +78,10 @@ PIXI.ComplexPrimitiveShader = function (gl)
 PIXI.ComplexPrimitiveShader.prototype.constructor = PIXI.ComplexPrimitiveShader;
 
 /**
-* Initialises the shader.
-*
-* @method PIXI.ComplexPrimitiveShader#init
-*/
+ * Initialises the shader.
+ *
+ * @method PIXI.ComplexPrimitiveShader#init
+ */
 PIXI.ComplexPrimitiveShader.prototype.init = function ()
 {
     var gl = this.gl;
@@ -110,10 +110,10 @@ PIXI.ComplexPrimitiveShader.prototype.init = function ()
 };
 
 /**
-* Destroys the shader.
-*
-* @method PIXI.ComplexPrimitiveShader#destroy
-*/
+ * Destroys the shader.
+ *
+ * @method PIXI.ComplexPrimitiveShader#destroy
+ */
 PIXI.ComplexPrimitiveShader.prototype.destroy = function ()
 {
     this.gl.deleteProgram(this.program);

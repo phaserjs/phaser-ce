@@ -1,38 +1,37 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @author       Adrien Brault <adrien.brault@gmail.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @author       Adrien Brault <adrien.brault@gmail.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* Creates a new Polygon.
-*
-* The points can be set from a variety of formats:
-*
-* - An array of Point objects: `[new Phaser.Point(x1, y1), ...]`
-* - An array of objects with public x/y properties: `[obj1, obj2, ...]`
-* - An array of paired numbers that represent point coordinates: `[x1,y1, x2,y2, ...]`
-* - As separate Point arguments: `setTo(new Phaser.Point(x1, y1), ...)`
-* - As separate objects with public x/y properties arguments: `setTo(obj1, obj2, ...)`
-* - As separate arguments representing point coordinates: `setTo(x1,y1, x2,y2, ...)`
-*
-* @class Phaser.Polygon
-* @constructor
-* @param {Phaser.Point[]|number[]|...Phaser.Point|...number} points - The points to set.
-*/
+ * Creates a new Polygon.
+ *
+ * The points can be set from a variety of formats:
+ *
+ * - An array of Point objects: `[new Phaser.Point(x1, y1), ...]`
+ * - An array of objects with public x/y properties: `[obj1, obj2, ...]`
+ * - An array of paired numbers that represent point coordinates: `[x1,y1, x2,y2, ...]`
+ * - As separate Point arguments: `setTo(new Phaser.Point(x1, y1), ...)`
+ * - As separate objects with public x/y properties arguments: `setTo(obj1, obj2, ...)`
+ * - As separate arguments representing point coordinates: `setTo(x1,y1, x2,y2, ...)`
+ *
+ * @class Phaser.Polygon
+ * @constructor
+ * @param {Phaser.Point[]|number[]|...Phaser.Point|...number} points - The points to set.
+ */
 Phaser.Polygon = function ()
 {
-
     /**
-    * @property {number} area - The area of this Polygon.
-    */
+     * @property {number} area - The area of this Polygon.
+     */
     this.area = 0;
 
     /**
-    * @property {array} _points - An array of Points that make up this Polygon.
-    * @private
-    */
+     * @property {array} _points - An array of Points that make up this Polygon.
+     * @private
+     */
     this._points = [];
 
     if (arguments.length > 0)
@@ -41,20 +40,19 @@ Phaser.Polygon = function ()
     }
 
     /**
-    * @property {boolean} closed - Is the Polygon closed or not?
-    */
+     * @property {boolean} closed - Is the Polygon closed or not?
+     */
     this.closed = true;
 
     /**
-    * @property {boolean} flattened - Has this Polygon been flattened by a call to `Polygon.flatten` ?
-    */
+     * @property {boolean} flattened - Has this Polygon been flattened by a call to `Polygon.flatten` ?
+     */
     this.flattened = false;
 
     /**
      * @property {number} type - The base object type.
      */
     this.type = Phaser.POLYGON;
-
 };
 
 Phaser.Polygon.prototype = {
@@ -68,7 +66,6 @@ Phaser.Polygon.prototype = {
      */
     toNumberArray: function (output)
     {
-
         if (output === undefined) { output = []; }
 
         for (var i = 0; i < this._points.length; i++)
@@ -87,7 +84,6 @@ Phaser.Polygon.prototype = {
         }
 
         return output;
-
     },
 
     /**
@@ -100,13 +96,11 @@ Phaser.Polygon.prototype = {
      */
     flatten: function ()
     {
-
         this._points = this.toNumberArray();
 
         this.flattened = true;
 
         return this;
-
     },
 
     /**
@@ -119,7 +113,6 @@ Phaser.Polygon.prototype = {
      */
     clone: function (output)
     {
-
         var points = this._points.slice();
 
         if (output === undefined || output === null)
@@ -132,20 +125,18 @@ Phaser.Polygon.prototype = {
         }
 
         return output;
-
     },
 
     /**
-    * Checks whether the x and y coordinates are contained within this polygon.
-    *
-    * @method Phaser.Polygon#contains
-    * @param {number} x - The X value of the coordinate to test.
-    * @param {number} y - The Y value of the coordinate to test.
-    * @return {boolean} True if the coordinates are within this polygon, otherwise false.
-    */
+     * Checks whether the x and y coordinates are contained within this polygon.
+     *
+     * @method Phaser.Polygon#contains
+     * @param {number} x - The X value of the coordinate to test.
+     * @param {number} y - The Y value of the coordinate to test.
+     * @return {boolean} True if the coordinates are within this polygon, otherwise false.
+     */
     contains: function (x, y)
     {
-
         //  Adapted from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html by Jonas Raoni Soares Silva
 
         var inside = false;
@@ -165,7 +156,6 @@ Phaser.Polygon.prototype = {
                     inside = !inside;
                 }
             }
-
         }
         else
         {
@@ -185,7 +175,6 @@ Phaser.Polygon.prototype = {
         }
 
         return inside;
-
     },
 
     /**
@@ -209,7 +198,6 @@ Phaser.Polygon.prototype = {
      */
     setTo: function (points)
     {
-
         this.area = 0;
         this._points = [];
 
@@ -253,7 +241,6 @@ Phaser.Polygon.prototype = {
         }
 
         return this;
-
     },
 
     /**
@@ -266,7 +253,6 @@ Phaser.Polygon.prototype = {
      */
     calculateArea: function (y0)
     {
-
         var p1;
         var p2;
         var avgHeight;
@@ -291,7 +277,6 @@ Phaser.Polygon.prototype = {
         }
 
         return this.area;
-
     }
 
 };
@@ -299,14 +284,14 @@ Phaser.Polygon.prototype = {
 Phaser.Polygon.prototype.constructor = Phaser.Polygon;
 
 /**
-* The points of this polygon.
-*
-* You can modify these with {@link Phaser.Polygon#setTo setTo}.
-*
-* @name Phaser.Polygon#points
-* @property {Phaser.Point[]} points - The array of vertex points.
-* @readonly
-*/
+ * The points of this polygon.
+ *
+ * You can modify these with {@link Phaser.Polygon#setTo setTo}.
+ *
+ * @name Phaser.Polygon#points
+ * @property {Phaser.Point[]} points - The array of vertex points.
+ * @readonly
+ */
 Object.defineProperty(Phaser.Polygon.prototype, 'points', {
 
     get: function ()

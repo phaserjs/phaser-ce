@@ -3,10 +3,10 @@
  */
 
 /**
-* @class PIXI.WebGLShaderManager
-* @constructor
-* @private
-*/
+ * @class PIXI.WebGLShaderManager
+ * @constructor
+ * @private
+ */
 PIXI.WebGLShaderManager = function ()
 {
     /**
@@ -37,17 +37,16 @@ PIXI.WebGLShaderManager = function ()
      * @type Array
      */
     this.stack = [];
-
 };
 
 PIXI.WebGLShaderManager.prototype.constructor = PIXI.WebGLShaderManager;
 
 /**
-* Initialises the context and the properties.
-*
-* @method PIXI.WebGLShaderManager#setContext
-* @param gl {WebGLContext} the current WebGL drawing context
-*/
+ * Initialises the context and the properties.
+ *
+ * @method PIXI.WebGLShaderManager#setContext
+ * @param gl {WebGLContext} the current WebGL drawing context
+ */
 PIXI.WebGLShaderManager.prototype.setContext = function (gl)
 {
     this.gl = gl;
@@ -74,11 +73,11 @@ PIXI.WebGLShaderManager.prototype.setContext = function (gl)
 };
 
 /**
-* Takes the attributes given in parameters.
-*
-* @method PIXI.WebGLShaderManager#setAttribs
-* @param attribs {Array} attribs
-*/
+ * Takes the attributes given in parameters.
+ *
+ * @method PIXI.WebGLShaderManager#setAttribs
+ * @param attribs {Array} attribs
+ */
 PIXI.WebGLShaderManager.prototype.setAttribs = function (attribs)
 {
     // reset temp state
@@ -117,11 +116,11 @@ PIXI.WebGLShaderManager.prototype.setAttribs = function (attribs)
 };
 
 /**
-* Sets the current shader.
-*
-* @method PIXI.WebGLShaderManager#setShader
-* @param shader {Any}
-*/
+ * Sets the current shader.
+ *
+ * @method PIXI.WebGLShaderManager#setShader
+ * @param shader {Any}
+ */
 PIXI.WebGLShaderManager.prototype.setShader = function (shader)
 {
     if(this._currentId === shader._UID) { return false; }
@@ -137,10 +136,10 @@ PIXI.WebGLShaderManager.prototype.setShader = function (shader)
 };
 
 /**
-* Destroys this object.
-*
-* @method PIXI.WebGLShaderManager#destroy
-*/
+ * Destroys this object.
+ *
+ * @method PIXI.WebGLShaderManager#destroy
+ */
 PIXI.WebGLShaderManager.prototype.destroy = function ()
 {
     this.attribState = null;

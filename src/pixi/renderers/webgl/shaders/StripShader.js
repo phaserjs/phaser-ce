@@ -3,10 +3,10 @@
  */
 
 /**
-* @class PIXI.StripShader
-* @constructor
-* @param gl {WebGLContext} the current WebGL drawing context
-*/
+ * @class PIXI.StripShader
+ * @constructor
+ * @param gl {WebGLContext} the current WebGL drawing context
+ */
 PIXI.StripShader = function (gl)
 {
     /**
@@ -58,12 +58,16 @@ PIXI.StripShader = function (gl)
             'uniform float alpha;',
             'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
 
-            // Blue color means that you are trying to bound
-            // a texture out of the limits of the hardware.
+            /*
+             * Blue color means that you are trying to bound
+             * a texture out of the limits of the hardware.
+             */
             'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
 
-            // If you get a red color means you are out of memory
-            // or in some way corrupted the vertex buffer.
+            /*
+             * If you get a red color means you are out of memory
+             * or in some way corrupted the vertex buffer.
+             */
             'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
             'void main(void) {',
             dynamicIfs,
@@ -108,8 +112,10 @@ PIXI.StripShader = function (gl)
         'uniform vec2 projectionVector;',
         'uniform vec2 offsetVector;',
 
-        //  'uniform float alpha;',
-        // 'uniform vec3 tint;',
+        /*
+         *  'uniform float alpha;',
+         * 'uniform vec3 tint;',
+         */
         'varying vec2 vTextureCoord;',
         'varying float vTextureIndex;',
 
@@ -132,10 +138,10 @@ PIXI.StripShader = function (gl)
 PIXI.StripShader.prototype.constructor = PIXI.StripShader;
 
 /**
-* Initialises the shader.
-*
-* @method PIXI.StripShader#init
-*/
+ * Initialises the shader.
+ *
+ * @method PIXI.StripShader#init
+ */
 PIXI.StripShader.prototype.init = function ()
 {
     var gl = this.gl;
@@ -187,10 +193,10 @@ PIXI.StripShader.prototype.init = function ()
 };
 
 /**
-* Destroys the shader.
-*
-* @method PIXI.StripShader#destroy
-*/
+ * Destroys the shader.
+ *
+ * @method PIXI.StripShader#destroy
+ */
 PIXI.StripShader.prototype.destroy = function ()
 {
     this.gl.deleteProgram(this.program);

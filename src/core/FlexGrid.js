@@ -1,34 +1,33 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* WARNING: This is an EXPERIMENTAL class. The API will change significantly in the coming versions and is incomplete.
-* Please try to avoid using in production games with a long time to build.
-* This is also why the documentation is incomplete.
-*
-* FlexGrid is a a responsive grid manager that works in conjunction with the ScaleManager RESIZE scaling mode and FlexLayers
-* to provide for game object positioning in a responsive manner.
-*
-* @class Phaser.FlexGrid
-* @constructor
-* @param {Phaser.ScaleManager} manager - The ScaleManager.
-* @param {number} width - The width of the game.
-* @param {number} height - The height of the game.
-*/
+ * WARNING: This is an EXPERIMENTAL class. The API will change significantly in the coming versions and is incomplete.
+ * Please try to avoid using in production games with a long time to build.
+ * This is also why the documentation is incomplete.
+ *
+ * FlexGrid is a a responsive grid manager that works in conjunction with the ScaleManager RESIZE scaling mode and FlexLayers
+ * to provide for game object positioning in a responsive manner.
+ *
+ * @class Phaser.FlexGrid
+ * @constructor
+ * @param {Phaser.ScaleManager} manager - The ScaleManager.
+ * @param {number} width - The width of the game.
+ * @param {number} height - The height of the game.
+ */
 Phaser.FlexGrid = function (manager, width, height)
 {
-
     /**
-    * @property {Phaser.Game} game - A reference to the currently running Game.
-    */
+     * @property {Phaser.Game} game - A reference to the currently running Game.
+     */
     this.game = manager.game;
 
     /**
-    * @property {Phaser.ScaleManager} manager - A reference to the ScaleManager.
-    */
+     * @property {Phaser.ScaleManager} manager - A reference to the ScaleManager.
+     */
     this.manager = manager;
 
     //  The perfect dimensions on which everything else is based
@@ -41,18 +40,18 @@ Phaser.FlexGrid = function (manager, width, height)
     this.boundsNone = new Phaser.Rectangle(0, 0, width, height);
 
     /**
-    * @property {Phaser.Point} position -
-    * @readonly
-    */
+     * @property {Phaser.Point} position -
+     * @readonly
+     */
     this.positionCustom = new Phaser.Point(0, 0);
     this.positionFluid = new Phaser.Point(0, 0);
     this.positionFull = new Phaser.Point(0, 0);
     this.positionNone = new Phaser.Point(0, 0);
 
     /**
-    * @property {Phaser.Point} scaleFactor - The scale factor based on the game dimensions vs. the scaled dimensions.
-    * @readonly
-    */
+     * @property {Phaser.Point} scaleFactor - The scale factor based on the game dimensions vs. the scaled dimensions.
+     * @readonly
+     */
     this.scaleCustom = new Phaser.Point(1, 1);
     this.scaleFluid = new Phaser.Point(1, 1);
     this.scaleFluidInversed = new Phaser.Point(1, 1);
@@ -70,7 +69,6 @@ Phaser.FlexGrid = function (manager, width, height)
     this.multiplier = 0;
 
     this.layers = [];
-
 };
 
 Phaser.FlexGrid.prototype = {
@@ -84,7 +82,6 @@ Phaser.FlexGrid.prototype = {
      */
     setSize: function (width, height)
     {
-
         //  These are locked and don't change until setSize is called again
         this.width = width;
         this.height = height;
@@ -98,7 +95,6 @@ Phaser.FlexGrid.prototype = {
         this.boundsNone.height = this.height;
 
         this.refresh();
-
     },
 
     //  Need ability to create your own layers with custom scaling, etc.
@@ -114,7 +110,6 @@ Phaser.FlexGrid.prototype = {
      */
     createCustomLayer: function (width, height, children, addToWorld)
     {
-
         if (addToWorld === undefined) { addToWorld = true; }
 
         this.customWidth = width;
@@ -138,7 +133,6 @@ Phaser.FlexGrid.prototype = {
         }
 
         return layer;
-
     },
 
     /**
@@ -150,7 +144,6 @@ Phaser.FlexGrid.prototype = {
      */
     createFluidLayer: function (children, addToWorld)
     {
-
         if (addToWorld === undefined) { addToWorld = true; }
 
         var layer = new Phaser.FlexLayer(this, this.positionFluid, this.boundsFluid, this.scaleFluid);
@@ -168,7 +161,6 @@ Phaser.FlexGrid.prototype = {
         }
 
         return layer;
-
     },
 
     /**
@@ -180,7 +172,6 @@ Phaser.FlexGrid.prototype = {
      */
     createFullLayer: function (children)
     {
-
         var layer = new Phaser.FlexLayer(this, this.positionFull, this.boundsFull, this.scaleFluid);
 
         this.game.world.add(layer);
@@ -193,7 +184,6 @@ Phaser.FlexGrid.prototype = {
         }
 
         return layer;
-
     },
 
     /**
@@ -205,7 +195,6 @@ Phaser.FlexGrid.prototype = {
      */
     createFixedLayer: function (children)
     {
-
         var layer = new Phaser.FlexLayer(this, this.positionNone, this.boundsNone, this.scaleNone);
 
         this.game.world.add(layer);
@@ -218,7 +207,6 @@ Phaser.FlexGrid.prototype = {
         }
 
         return layer;
-
     },
 
     /**
@@ -228,7 +216,6 @@ Phaser.FlexGrid.prototype = {
      */
     reset: function ()
     {
-
         var i = this.layers.length;
 
         while (i--)
@@ -241,7 +228,6 @@ Phaser.FlexGrid.prototype = {
                 this.layers.slice(i, 1);
             }
         }
-
     },
 
     /**
@@ -253,12 +239,10 @@ Phaser.FlexGrid.prototype = {
      */
     onResize: function (width, height)
     {
-
         this.ratioH = width / height;
         this.ratioV = height / width;
 
         this.refresh(width, height);
-
     },
 
     /**
@@ -268,7 +252,6 @@ Phaser.FlexGrid.prototype = {
      */
     refresh: function ()
     {
-
         this.multiplier = Math.min((this.manager.height / this.height), (this.manager.width / this.width));
 
         this.boundsFluid.width = Math.round(this.width * this.multiplier);
@@ -287,7 +270,6 @@ Phaser.FlexGrid.prototype = {
 
         this.positionFluid.set(this.boundsFluid.x, this.boundsFluid.y);
         this.positionNone.set(this.boundsNone.x, this.boundsNone.y);
-
     },
 
     /**
@@ -298,12 +280,10 @@ Phaser.FlexGrid.prototype = {
      */
     fitSprite: function (sprite)
     {
-
         this.manager.scaleSprite(sprite);
 
         sprite.x = this.manager.bounds.centerX;
         sprite.y = this.manager.bounds.centerY;
-
     },
 
     /**
@@ -313,24 +293,30 @@ Phaser.FlexGrid.prototype = {
      */
     debug: function ()
     {
+        /*
+         * for (var i = 0; i < this.layers.length; i++)
+         * {
+         *     this.layers[i].debug();
+         * }
+         */
 
-        // for (var i = 0; i < this.layers.length; i++)
-        // {
-        //     this.layers[i].debug();
-        // }
-
-        // this.game.debug.text(this.boundsFull.width + ' x ' + this.boundsFull.height, this.boundsFull.x + 4, this.boundsFull.y + 16);
-        // this.game.debug.geom(this.boundsFull, 'rgba(0,0,255,0.9', false);
+        /*
+         * this.game.debug.text(this.boundsFull.width + ' x ' + this.boundsFull.height, this.boundsFull.x + 4, this.boundsFull.y + 16);
+         * this.game.debug.geom(this.boundsFull, 'rgba(0,0,255,0.9', false);
+         */
 
         this.game.debug.text(this.boundsFluid.width + ' x ' + this.boundsFluid.height, this.boundsFluid.x + 4, this.boundsFluid.y + 16);
         this.game.debug.geom(this.boundsFluid, 'rgba(255,0,0,0.9', false);
 
-        // this.game.debug.text(this.boundsNone.width + ' x ' + this.boundsNone.height, this.boundsNone.x + 4, this.boundsNone.y + 16);
-        // this.game.debug.geom(this.boundsNone, 'rgba(0,255,0,0.9', false);
+        /*
+         * this.game.debug.text(this.boundsNone.width + ' x ' + this.boundsNone.height, this.boundsNone.x + 4, this.boundsNone.y + 16);
+         * this.game.debug.geom(this.boundsNone, 'rgba(0,255,0,0.9', false);
+         */
 
-        // this.game.debug.text(this.boundsCustom.width + ' x ' + this.boundsCustom.height, this.boundsCustom.x + 4, this.boundsCustom.y + 16);
-        // this.game.debug.geom(this.boundsCustom, 'rgba(255,255,0,0.9', false);
-
+        /*
+         * this.game.debug.text(this.boundsCustom.width + ' x ' + this.boundsCustom.height, this.boundsCustom.x + 4, this.boundsCustom.y + 16);
+         * this.game.debug.geom(this.boundsCustom, 'rgba(255,255,0,0.9', false);
+         */
     }
 
 };

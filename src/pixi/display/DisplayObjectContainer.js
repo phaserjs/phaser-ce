@@ -12,7 +12,6 @@
  */
 PIXI.DisplayObjectContainer = function ()
 {
-
     PIXI.DisplayObject.call(this);
 
     /**
@@ -25,16 +24,15 @@ PIXI.DisplayObjectContainer = function ()
     this.children = [];
 
     /**
-    * If `ignoreChildInput`  is `false` it will allow this objects _children_ to be considered as valid for Input events.
-    *
-    * If this property is `true` then the children will _not_ be considered as valid for Input events.
-    *
-    * Note that this property isn't recursive: only immediate children are influenced, it doesn't scan further down.
-    * @property {boolean} ignoreChildInput
-    * @default
-    */
+     * If `ignoreChildInput`  is `false` it will allow this objects _children_ to be considered as valid for Input events.
+     *
+     * If this property is `true` then the children will _not_ be considered as valid for Input events.
+     *
+     * Note that this property isn't recursive: only immediate children are influenced, it doesn't scan further down.
+     * @property {boolean} ignoreChildInput
+     * @default
+     */
     this.ignoreChildInput = false;
-
 };
 
 PIXI.DisplayObjectContainer.prototype = Object.create(PIXI.DisplayObject.prototype);
@@ -49,9 +47,7 @@ PIXI.DisplayObjectContainer.prototype.constructor = PIXI.DisplayObjectContainer;
  */
 PIXI.DisplayObjectContainer.prototype.addChild = function (child)
 {
-
     return this.addChildAt(child, this.children.length);
-
 };
 
 /**
@@ -64,7 +60,6 @@ PIXI.DisplayObjectContainer.prototype.addChild = function (child)
  */
 PIXI.DisplayObjectContainer.prototype.addChildAt = function (child, index)
 {
-
     if (index >= 0 && index <= this.children.length)
     {
         if (child.parent)
@@ -82,7 +77,6 @@ PIXI.DisplayObjectContainer.prototype.addChildAt = function (child, index)
     {
         throw new Error(child + 'addChildAt: The index ' + index + ' supplied is out of bounds ' + this.children.length);
     }
-
 };
 
 /**
@@ -94,7 +88,6 @@ PIXI.DisplayObjectContainer.prototype.addChildAt = function (child, index)
  */
 PIXI.DisplayObjectContainer.prototype.swapChildren = function (child, child2)
 {
-
     if (child === child2)
     {
         return;
@@ -110,7 +103,6 @@ PIXI.DisplayObjectContainer.prototype.swapChildren = function (child, child2)
 
     this.children[index1] = child2;
     this.children[index2] = child;
-
 };
 
 /**
@@ -122,7 +114,6 @@ PIXI.DisplayObjectContainer.prototype.swapChildren = function (child, child2)
  */
 PIXI.DisplayObjectContainer.prototype.getChildIndex = function (child)
 {
-
     var index = this.children.indexOf(child);
 
     if (index === -1)
@@ -131,7 +122,6 @@ PIXI.DisplayObjectContainer.prototype.getChildIndex = function (child)
     }
 
     return index;
-
 };
 
 /**
@@ -143,7 +133,6 @@ PIXI.DisplayObjectContainer.prototype.getChildIndex = function (child)
  */
 PIXI.DisplayObjectContainer.prototype.setChildIndex = function (child, index)
 {
-
     if (index < 0 || index >= this.children.length)
     {
         throw new Error('The supplied index is out of bounds');
@@ -153,7 +142,6 @@ PIXI.DisplayObjectContainer.prototype.setChildIndex = function (child, index)
 
     this.children.splice(currentIndex, 1); // remove from old position
     this.children.splice(index, 0, child); // add at new position
-
 };
 
 /**
@@ -165,14 +153,12 @@ PIXI.DisplayObjectContainer.prototype.setChildIndex = function (child, index)
  */
 PIXI.DisplayObjectContainer.prototype.getChildAt = function (index)
 {
-
     if (index < 0 || index >= this.children.length)
     {
         throw new Error('getChildAt: Supplied index ' + index + ' does not exist in the child list, or the supplied DisplayObject must be a child of the caller');
     }
 
     return this.children[index];
-
 };
 
 /**
@@ -184,7 +170,6 @@ PIXI.DisplayObjectContainer.prototype.getChildAt = function (index)
  */
 PIXI.DisplayObjectContainer.prototype.removeChild = function (child)
 {
-
     var index = this.children.indexOf(child);
 
     if (index === -1)
@@ -193,7 +178,6 @@ PIXI.DisplayObjectContainer.prototype.removeChild = function (child)
     }
 
     return this.removeChildAt(index);
-
 };
 
 /**
@@ -205,7 +189,6 @@ PIXI.DisplayObjectContainer.prototype.removeChild = function (child)
  */
 PIXI.DisplayObjectContainer.prototype.removeChildAt = function (index)
 {
-
     var child = this.getChildAt(index);
 
     if (child)
@@ -216,43 +199,37 @@ PIXI.DisplayObjectContainer.prototype.removeChildAt = function (index)
     }
 
     return child;
-
 };
 
 PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
 {
-
     if (child.parent !== this)
     {
         return;
     }
 
     return this.setChildIndex(child, this.children.length - 1);
-
 };
 
 PIXI.DisplayObjectContainer.prototype.sendChildToBack = function (child)
 {
-
     if (child.parent !== this)
     {
         return;
     }
 
     return this.setChildIndex(child, 0);
-
 };
 
 /**
-* Removes all children from this container that are within the begin and end indexes.
-*
-* @method PIXI.DisplayObjectContainer#removeChildren
-* @param beginIndex {Number} The beginning position. Default value is 0.
-* @param endIndex {Number} The ending position. Default value is size of the container.
-*/
+ * Removes all children from this container that are within the begin and end indexes.
+ *
+ * @method PIXI.DisplayObjectContainer#removeChildren
+ * @param beginIndex {Number} The beginning position. Default value is 0.
+ * @param endIndex {Number} The ending position. Default value is size of the container.
+ */
 PIXI.DisplayObjectContainer.prototype.removeChildren = function (beginIndex, endIndex)
 {
-
     if (beginIndex === undefined) { beginIndex = 0; }
     if (endIndex === undefined) { endIndex = this.children.length; }
 
@@ -278,7 +255,6 @@ PIXI.DisplayObjectContainer.prototype.removeChildren = function (beginIndex, end
     {
         throw new Error('removeChildren: Range Error, numeric values are outside the acceptable range');
     }
-
 };
 
 /*
@@ -289,7 +265,6 @@ PIXI.DisplayObjectContainer.prototype.removeChildren = function (beginIndex, end
  */
 PIXI.DisplayObjectContainer.prototype.updateTransform = function ()
 {
-
     if (!this.visible)
     {
         return;
@@ -306,7 +281,6 @@ PIXI.DisplayObjectContainer.prototype.updateTransform = function ()
     {
         this.children[i].updateTransform();
     }
-
 };
 
 // performance increase to avoid using call.. (10x faster)
@@ -321,7 +295,6 @@ PIXI.DisplayObjectContainer.prototype.displayObjectContainerUpdateTransform = PI
  */
 PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpace)
 {
-
     var isTargetCoordinateSpaceDisplayObject = (targetCoordinateSpace && targetCoordinateSpace instanceof PIXI.DisplayObject);
     var isTargetCoordinateSpaceThisOrParent = true;
 
@@ -467,7 +440,6 @@ PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpac
     }
 
     return bounds;
-
 };
 
 /**
@@ -478,21 +450,18 @@ PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpac
  */
 PIXI.DisplayObjectContainer.prototype.getLocalBounds = function ()
 {
-
     return this.getBounds(this);
-
 };
 
 /**
-* Determines whether the specified display object is a child of the DisplayObjectContainer instance or the instance itself.
-*
-* @method PIXI.DisplayObjectContainer#contains
-* @param {DisplayObject} child
-* @returns {boolean}
-*/
+ * Determines whether the specified display object is a child of the DisplayObjectContainer instance or the instance itself.
+ *
+ * @method PIXI.DisplayObjectContainer#contains
+ * @param {DisplayObject} child
+ * @returns {boolean}
+ */
 PIXI.DisplayObjectContainer.prototype.contains = function (child)
 {
-
     if (!child)
     {
         return false;
@@ -508,15 +477,14 @@ PIXI.DisplayObjectContainer.prototype.contains = function (child)
 };
 
 /**
-* Renders the object using the WebGL renderer
-*
-* @method PIXI.DisplayObjectContainer#_renderWebGL
-* @param renderSession {RenderSession}
-* @private
-*/
+ * Renders the object using the WebGL renderer
+ *
+ * @method PIXI.DisplayObjectContainer#_renderWebGL
+ * @param renderSession {RenderSession}
+ * @private
+ */
 PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
 {
-
     if (!this.visible || this.alpha <= 0)
     {
         return;
@@ -567,19 +535,17 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
             this.children[i]._renderWebGL(renderSession);
         }
     }
-
 };
 
 /**
-* Renders the object using the Canvas renderer
-*
-* @method PIXI.DisplayObjectContainer#_renderCanvas
-* @param renderSession {RenderSession}
-* @private
-*/
+ * Renders the object using the Canvas renderer
+ *
+ * @method PIXI.DisplayObjectContainer#_renderCanvas
+ * @param renderSession {RenderSession}
+ * @private
+ */
 PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession)
 {
-
     if (this.visible === false || this.alpha === 0)
     {
         return;
@@ -605,7 +571,6 @@ PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession)
     {
         renderSession.maskManager.popMask(renderSession);
     }
-
 };
 
 /**
@@ -623,7 +588,6 @@ Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
 
     set: function (value)
     {
-
         var width = this.getLocalBounds().width;
 
         if (width !== 0)
@@ -654,7 +618,6 @@ Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'height', {
 
     set: function (value)
     {
-
         var height = this.getLocalBounds().height;
 
         if (height !== 0)

@@ -1,13 +1,13 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* @class Phaser.Utils
-* @static
-*/
+ * @class Phaser.Utils
+ * @static
+ */
 Phaser.Utils = {
 
     defaults: function (target, defaults)
@@ -28,31 +28,28 @@ Phaser.Utils = {
     },
 
     /**
-    * Takes the given string and reverses it, returning the reversed string.
-    * For example if given the string `Atari 520ST` it would return `TS025 iratA`.
-    *
-    * @method Phaser.Utils.reverseString
-    * @param {string} string - The string to be reversed.
-    * @return {string} The reversed string.
-    */
+     * Takes the given string and reverses it, returning the reversed string.
+     * For example if given the string `Atari 520ST` it would return `TS025 iratA`.
+     *
+     * @method Phaser.Utils.reverseString
+     * @param {string} string - The string to be reversed.
+     * @return {string} The reversed string.
+     */
     reverseString: function (string)
     {
-
         return string.split('').reverse().join('');
-
     },
 
     /**
-    * Gets an object's property by string.
-    *
-    * @method Phaser.Utils.getProperty
-    * @param {object} obj - The object to traverse.
-    * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
-    * @return {any} - The value of the property or `undefined` if the property isn't found.
-    */
+     * Gets an object's property by string.
+     *
+     * @method Phaser.Utils.getProperty
+     * @param {object} obj - The object to traverse.
+     * @param {string} name - The property name, or a series of names separated by `.` (for nested properties).
+     * @return {any} - The value of the property or `undefined` if the property isn't found.
+     */
     getProperty: function (obj, name)
     {
-
         var parts = name.split('.');
 
         switch (parts.length)
@@ -68,7 +65,6 @@ Phaser.Utils = {
             default:
                 return this._getProperty(obj, name);
         }
-
     },
 
     /**
@@ -89,14 +85,12 @@ Phaser.Utils = {
      */
     setProperties: function (obj, props)
     {
-
         for (var name in props)
         {
             this.setProperty(obj, name, props[name]);
         }
 
         return obj;
-
     },
 
     /**
@@ -115,7 +109,6 @@ Phaser.Utils = {
 
     setProperty: function (obj, name, value)
     {
-
         var parts = name.split('.');
 
         switch (parts.length)
@@ -148,7 +141,6 @@ Phaser.Utils = {
      */
     _getProperty: function (obj, name)
     {
-
         var parts = name.split('.'),
             len = parts.length,
             i = 0,
@@ -170,7 +162,6 @@ Phaser.Utils = {
         }
 
         return val;
-
     },
 
     /**
@@ -185,7 +176,6 @@ Phaser.Utils = {
      */
     _setProperty: function (obj, name, value)
     {
-
         var parts = name.split('.'),
             len = parts.length,
             i = 0,
@@ -209,19 +199,18 @@ Phaser.Utils = {
         }
 
         return obj;
-
     },
 
     /**
-    * Generate a random bool result based on the chance value.
-    *
-    * Returns true or false based on the chance value (default 50%). For example if you wanted a player to have a 30% chance
-    * of getting a bonus, call chanceRoll(30) - true means the chance passed, false means it failed.
-    *
-    * @method Phaser.Utils#chanceRoll
-    * @param {number} chance - The chance of receiving the value. A number between 0 and 100 (effectively 0% to 100%).
-    * @return {boolean} True if the roll passed, or false otherwise.
-    */
+     * Generate a random bool result based on the chance value.
+     *
+     * Returns true or false based on the chance value (default 50%). For example if you wanted a player to have a 30% chance
+     * of getting a bonus, call chanceRoll(30) - true means the chance passed, false means it failed.
+     *
+     * @method Phaser.Utils#chanceRoll
+     * @param {number} chance - The chance of receiving the value. A number between 0 and 100 (effectively 0% to 100%).
+     * @return {boolean} True if the roll passed, or false otherwise.
+     */
     chanceRoll: function (chance)
     {
         if (chance === undefined) { chance = 50; }
@@ -229,29 +218,28 @@ Phaser.Utils = {
     },
 
     /**
-    * Choose between one of two values randomly.
-    *
-    * @method Phaser.Utils#randomChoice
-    * @param {any} choice1
-    * @param {any} choice2
-    * @return {any} The randomly selected choice
-    */
+     * Choose between one of two values randomly.
+     *
+     * @method Phaser.Utils#randomChoice
+     * @param {any} choice1
+     * @param {any} choice2
+     * @return {any} The randomly selected choice
+     */
     randomChoice: function (choice1, choice2)
     {
         return (Math.random() < 0.5) ? choice1 : choice2;
     },
 
     /**
-    * Get a unit dimension from a string.
-    *
-    * @method Phaser.Utils.parseDimension
-    * @param {string|number} size - The size to parse.
-    * @param {number} dimension - The window dimension to check.
-    * @return {number} The parsed dimension.
-    */
+     * Get a unit dimension from a string.
+     *
+     * @method Phaser.Utils.parseDimension
+     * @param {string|number} size - The size to parse.
+     * @param {number} dimension - The window dimension to check.
+     * @return {number} The parsed dimension.
+     */
     parseDimension: function (size, dimension)
     {
-
         var f = 0;
         var px = 0;
 
@@ -282,39 +270,37 @@ Phaser.Utils = {
         }
 
         return px;
-
     },
 
     /**
-    * Takes the given string and pads it out, to the length required, using the character
-    * specified. For example if you need a string to be 6 characters long, you can call:
-    *
-    * `pad('bob', 6, '-', 2)`
-    *
-    * This would return: `bob---` as it has padded it out to 6 characters, using the `-` on the right.
-    *
-    * You can also use it to pad numbers (they are always returned as strings):
-    *
-    * `pad(512, 6, '0', 1)`
-    *
-    * Would return: `000512` with the string padded to the left.
-    *
-    * If you don't specify a direction it'll pad to both sides:
-    *
-    * `pad('c64', 7, '*')`
-    *
-    * Would return: `**c64**`
-    *
-    * @method Phaser.Utils.pad
-    * @param {string} str - The target string. `toString()` will be called on the string, which means you can also pass in common data types like numbers.
-    * @param {integer} [len=0] - The number of characters to be added.
-    * @param {string} [pad=" "] - The string to pad it out with (defaults to a space).
-    * @param {integer} [dir=3] - The direction dir = 1 (left), 2 (right), 3 (both).
-    * @return {string} The padded string.
-    */
+     * Takes the given string and pads it out, to the length required, using the character
+     * specified. For example if you need a string to be 6 characters long, you can call:
+     *
+     * `pad('bob', 6, '-', 2)`
+     *
+     * This would return: `bob---` as it has padded it out to 6 characters, using the `-` on the right.
+     *
+     * You can also use it to pad numbers (they are always returned as strings):
+     *
+     * `pad(512, 6, '0', 1)`
+     *
+     * Would return: `000512` with the string padded to the left.
+     *
+     * If you don't specify a direction it'll pad to both sides:
+     *
+     * `pad('c64', 7, '*')`
+     *
+     * Would return: `**c64**`
+     *
+     * @method Phaser.Utils.pad
+     * @param {string} str - The target string. `toString()` will be called on the string, which means you can also pass in common data types like numbers.
+     * @param {integer} [len=0] - The number of characters to be added.
+     * @param {string} [pad=" "] - The string to pad it out with (defaults to a space).
+     * @param {integer} [dir=3] - The direction dir = 1 (left), 2 (right), 3 (both).
+     * @return {string} The padded string.
+     */
     pad: function (str, len, pad, dir)
     {
-
         if (len === undefined) { var len = 0; }
         if (pad === undefined) { var pad = ' '; }
         if (dir === undefined) { var dir = 3; }
@@ -344,32 +330,34 @@ Phaser.Utils = {
         }
 
         return str;
-
     },
 
     /**
-    * This is a slightly modified version of jQuery.isPlainObject.
-    * A plain object is an object whose internal class property is [object Object].
-    * @method Phaser.Utils.isPlainObject
-    * @param {object} obj - The object to inspect.
-    * @return {boolean} - true if the object is plain, otherwise false.
-    */
+     * This is a slightly modified version of jQuery.isPlainObject.
+     * A plain object is an object whose internal class property is [object Object].
+     * @method Phaser.Utils.isPlainObject
+     * @param {object} obj - The object to inspect.
+     * @return {boolean} - true if the object is plain, otherwise false.
+     */
     isPlainObject: function (obj)
     {
-
-        // Not plain objects:
-        // - Any object or value whose internal [[Class]] property is not "[object Object]"
-        // - DOM nodes
-        // - window
+        /*
+         * Not plain objects:
+         * - Any object or value whose internal [[Class]] property is not "[object Object]"
+         * - DOM nodes
+         * - window
+         */
         if (typeof(obj) !== 'object' || obj.nodeType || obj === obj.window)
         {
             return false;
         }
 
-        // Support: Firefox <20
-        // The try/catch suppresses exceptions thrown when attempting to access
-        // the "constructor" property of certain host objects, ie. |window.location|
-        // https://bugzilla.mozilla.org/show_bug.cgi?id=814622
+        /*
+         * Support: Firefox <20
+         * The try/catch suppresses exceptions thrown when attempting to access
+         * the "constructor" property of certain host objects, ie. |window.location|
+         * https://bugzilla.mozilla.org/show_bug.cgi?id=814622
+         */
         try
         {
             if (obj.constructor && !({}).hasOwnProperty.call(obj.constructor.prototype, 'isPrototypeOf'))
@@ -382,22 +370,23 @@ Phaser.Utils = {
             return false;
         }
 
-        // If the function hasn't returned already, we're confident that
-        // |obj| is a plain object, created by {} or constructed with new Object
+        /*
+         * If the function hasn't returned already, we're confident that
+         * |obj| is a plain object, created by {} or constructed with new Object
+         */
         return true;
     },
 
     /**
-    * This is a slightly modified version of http://api.jquery.com/jQuery.extend/
-    *
-    * @method Phaser.Utils.extend
-    * @param {boolean} deep - Perform a deep copy?
-    * @param {object} target - The target object to copy to.
-    * @return {object} The extended object.
-    */
+     * This is a slightly modified version of http://api.jquery.com/jQuery.extend/
+     *
+     * @method Phaser.Utils.extend
+     * @param {boolean} deep - Perform a deep copy?
+     * @param {object} target - The target object to copy to.
+     * @return {object} The extended object.
+     */
     extend: function ()
     {
-
         var options, name, src, copy, copyIsArray, clone,
             target = arguments[0] || {},
             i = 1,
@@ -466,24 +455,22 @@ Phaser.Utils = {
 
         // Return the modified object
         return target;
-
     },
 
     /**
-    * Mixes in an existing mixin object with the target.
-    *
-    * Values in the mixin that have either `get` or `set` functions are created as properties via `defineProperty`
-    * _except_ if they also define a `clone` method - if a clone method is defined that is called instead and
-    * the result is assigned directly.
-    *
-    * @method Phaser.Utils.mixinPrototype
-    * @param {object} target - The target object to receive the new functions.
-    * @param {object} mixin - The object to copy the functions from.
-    * @param {boolean} [replace=false] - If the target object already has a matching function should it be overwritten or not?
-    */
+     * Mixes in an existing mixin object with the target.
+     *
+     * Values in the mixin that have either `get` or `set` functions are created as properties via `defineProperty`
+     * _except_ if they also define a `clone` method - if a clone method is defined that is called instead and
+     * the result is assigned directly.
+     *
+     * @method Phaser.Utils.mixinPrototype
+     * @param {object} target - The target object to receive the new functions.
+     * @param {object} mixin - The object to copy the functions from.
+     * @param {boolean} [replace=false] - If the target object already has a matching function should it be overwritten or not?
+     */
     mixinPrototype: function (target, mixin, replace)
     {
-
         if (replace === undefined) { replace = false; }
 
         var mixinKeys = Object.keys(mixin);
@@ -517,21 +504,19 @@ Phaser.Utils = {
                 target[key] = value;
             }
         }
-
     },
 
     /**
-    * Mixes the source object into the destination object, returning the newly modified destination object.
-    * Based on original code by @mudcube
-    *
-    * @method Phaser.Utils.mixin
-    * @param {object} from - The object to copy (the source object).
-    * @param {object} to - The object to copy to (the destination object).
-    * @return {object} The modified destination object.
-    */
+     * Mixes the source object into the destination object, returning the newly modified destination object.
+     * Based on original code by @mudcube
+     *
+     * @method Phaser.Utils.mixin
+     * @param {object} from - The object to copy (the source object).
+     * @param {object} to - The object to copy to (the destination object).
+     * @return {object} The modified destination object.
+     */
     mixin: function (from, to)
     {
-
         if (!from || typeof (from) !== 'object')
         {
             return to;
@@ -567,7 +552,6 @@ Phaser.Utils = {
         }
 
         return to;
-
     }
 
 };

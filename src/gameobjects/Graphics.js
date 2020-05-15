@@ -1,78 +1,77 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* A Graphics object is a way to draw primitives to your game. Primitives include forms of geometry, such as Rectangles,
-* Circles and Polygons. They also include lines, arcs and curves. When you initially create a Graphics object it will
-* be empty. To 'draw' to it you first specify a lineStyle or fillStyle (or both), and then draw a shape. For example:
-*
-* ```javascript
-* graphics.beginFill(0xff0000);
-* graphics.drawCircle(50, 50, 100);
-* graphics.endFill();
-* ```
-*
-* This will draw a circle shape to the Graphics object, with a diameter of 100, located at x: 50, y: 50.
-*
-* When a Graphics object is rendered it will render differently based on if the game is running under Canvas or
-* WebGL. Under Canvas it will use the HTML Canvas context drawing operations to draw the path. Under WebGL the
-* graphics data is decomposed into polygons. Both of these are expensive processes, especially with complex shapes.
-*
-* If your Graphics object doesn't change much (or at all) once you've drawn your shape to it, then you will help
-* performance by calling `Graphics.generateTexture`. This will 'bake' the Graphics object into a Texture, and return it.
-* You can then use this Texture for Sprites or other display objects. If your Graphics object updates frequently then
-* you should avoid doing this, as it will constantly generate new textures, which will consume memory.
-*
-* As you can tell, Graphics objects are a bit of a trade-off. While they are extremely useful, you need to be careful
-* in their complexity and quantity of them in your game.
-*
-* You may have to modify {@link Phaser.Graphics#scale} rather than {@link Phaser.Graphics#width} or
-* {@link Phaser.Graphics#height} to avoid an unusual race condition
-* ({@link #489 https://github.com/photonstorm/phaser-ce/issues/489}).
-*
-* @class Phaser.Graphics
-* @constructor
-* @extends PIXI.DisplayObjectContainer
-* @extends Phaser.Component.Core
-* @extends Phaser.Component.Angle
-* @extends Phaser.Component.AutoCull
-* @extends Phaser.Component.Bounds
-* @extends Phaser.Component.Destroy
-* @extends Phaser.Component.FixedToCamera
-* @extends Phaser.Component.InputEnabled
-* @extends Phaser.Component.InWorld
-* @extends Phaser.Component.LifeSpan
-* @extends Phaser.Component.PhysicsBody
-* @extends Phaser.Component.Reset
-* @param {Phaser.Game} game - Current game instance.
-* @param {number} [x=0] - X position of the new graphics object.
-* @param {number} [y=0] - Y position of the new graphics object.
-*/
+ * A Graphics object is a way to draw primitives to your game. Primitives include forms of geometry, such as Rectangles,
+ * Circles and Polygons. They also include lines, arcs and curves. When you initially create a Graphics object it will
+ * be empty. To 'draw' to it you first specify a lineStyle or fillStyle (or both), and then draw a shape. For example:
+ *
+ * ```javascript
+ * graphics.beginFill(0xff0000);
+ * graphics.drawCircle(50, 50, 100);
+ * graphics.endFill();
+ * ```
+ *
+ * This will draw a circle shape to the Graphics object, with a diameter of 100, located at x: 50, y: 50.
+ *
+ * When a Graphics object is rendered it will render differently based on if the game is running under Canvas or
+ * WebGL. Under Canvas it will use the HTML Canvas context drawing operations to draw the path. Under WebGL the
+ * graphics data is decomposed into polygons. Both of these are expensive processes, especially with complex shapes.
+ *
+ * If your Graphics object doesn't change much (or at all) once you've drawn your shape to it, then you will help
+ * performance by calling `Graphics.generateTexture`. This will 'bake' the Graphics object into a Texture, and return it.
+ * You can then use this Texture for Sprites or other display objects. If your Graphics object updates frequently then
+ * you should avoid doing this, as it will constantly generate new textures, which will consume memory.
+ *
+ * As you can tell, Graphics objects are a bit of a trade-off. While they are extremely useful, you need to be careful
+ * in their complexity and quantity of them in your game.
+ *
+ * You may have to modify {@link Phaser.Graphics#scale} rather than {@link Phaser.Graphics#width} or
+ * {@link Phaser.Graphics#height} to avoid an unusual race condition
+ * ({@link #489 https://github.com/photonstorm/phaser-ce/issues/489}).
+ *
+ * @class Phaser.Graphics
+ * @constructor
+ * @extends PIXI.DisplayObjectContainer
+ * @extends Phaser.Component.Core
+ * @extends Phaser.Component.Angle
+ * @extends Phaser.Component.AutoCull
+ * @extends Phaser.Component.Bounds
+ * @extends Phaser.Component.Destroy
+ * @extends Phaser.Component.FixedToCamera
+ * @extends Phaser.Component.InputEnabled
+ * @extends Phaser.Component.InWorld
+ * @extends Phaser.Component.LifeSpan
+ * @extends Phaser.Component.PhysicsBody
+ * @extends Phaser.Component.Reset
+ * @param {Phaser.Game} game - Current game instance.
+ * @param {number} [x=0] - X position of the new graphics object.
+ * @param {number} [y=0] - Y position of the new graphics object.
+ */
 Phaser.Graphics = function (game, x, y)
 {
-
     if (x === undefined) { x = 0; }
     if (y === undefined) { y = 0; }
 
     /**
-    * @property {number} type - The const type of this object.
-    * @default
-    */
+     * @property {number} type - The const type of this object.
+     * @default
+     */
     this.type = Phaser.GRAPHICS;
 
     /**
-    * @property {number} physicsType - The const physics body type of this object.
-    * @readonly
-    */
+     * @property {number} physicsType - The const physics body type of this object.
+     * @readonly
+     */
     this.physicsType = Phaser.SPRITE;
 
     /**
-    * @property {Phaser.Point} anchor - Required for a Graphics shape to work as a Physics body, do not modify this value.
-    * @private
-    */
+     * @property {Phaser.Point} anchor - Required for a Graphics shape to work as a Physics body, do not modify this value.
+     * @private
+     */
     this.anchor = new Phaser.Point();
 
     PIXI.DisplayObjectContainer.call(this);
@@ -213,7 +212,6 @@ Phaser.Graphics = function (game, x, y)
     this.cachedSpriteDirty = false;
 
     Phaser.Component.Core.init.call(this, game, x, y, '', null);
-
 };
 
 Phaser.Graphics.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
@@ -238,30 +236,27 @@ Phaser.Graphics.prototype.preUpdateInWorld = Phaser.Component.InWorld.preUpdate;
 Phaser.Graphics.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 
 /**
-* Automatically called by World.preUpdate.
-*
-* @method Phaser.Graphics#preUpdate
-*/
+ * Automatically called by World.preUpdate.
+ *
+ * @method Phaser.Graphics#preUpdate
+ */
 Phaser.Graphics.prototype.preUpdate = function ()
 {
-
     if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
     {
         return false;
     }
 
     return this.preUpdateCore();
-
 };
 
 /**
-* Automatically called by World
-*
-* @method Phaser.Graphics#postUpdate
-*/
+ * Automatically called by World
+ *
+ * @method Phaser.Graphics#postUpdate
+ */
 Phaser.Graphics.prototype.postUpdate = function ()
 {
-
     Phaser.Component.PhysicsBody.postUpdate.call(this);
     Phaser.Component.FixedToCamera.postUpdate.call(this);
 
@@ -275,34 +270,30 @@ Phaser.Graphics.prototype.postUpdate = function ()
     {
         this.children[i].postUpdate();
     }
-
 };
 
 /**
-* Destroy this Graphics instance.
-*
-* @method Phaser.Graphics#destroy
-* @param {boolean} [destroyChildren=true] - Should every child of this object have its destroy method called?
-*/
+ * Destroy this Graphics instance.
+ *
+ * @method Phaser.Graphics#destroy
+ * @param {boolean} [destroyChildren=true] - Should every child of this object have its destroy method called?
+ */
 Phaser.Graphics.prototype.destroy = function (destroyChildren)
 {
-
     this.clear();
 
     Phaser.Component.Destroy.prototype.destroy.call(this, destroyChildren);
-
 };
 
 /**
-* Draws a single {@link Phaser.Polygon} triangle from a {@link Phaser.Point} array
-*
-* @method Phaser.Graphics#drawTriangle
-* @param {Array<Phaser.Point>} points - An array of Phaser.Points that make up the three vertices of this triangle
-* @param {boolean} [cull=false] - Should we check if the triangle is back-facing
-*/
+ * Draws a single {@link Phaser.Polygon} triangle from a {@link Phaser.Point} array
+ *
+ * @method Phaser.Graphics#drawTriangle
+ * @param {Array<Phaser.Point>} points - An array of Phaser.Points that make up the three vertices of this triangle
+ * @param {boolean} [cull=false] - Should we check if the triangle is back-facing
+ */
 Phaser.Graphics.prototype.drawTriangle = function (points, cull)
 {
-
     if (cull === undefined) { cull = false; }
 
     var triangle = new Phaser.Polygon(points);
@@ -323,20 +314,18 @@ Phaser.Graphics.prototype.drawTriangle = function (points, cull)
     {
         this.drawPolygon(triangle);
     }
-
 };
 
 /**
-* Draws {@link Phaser.Polygon} triangles
-*
-* @method Phaser.Graphics#drawTriangles
-* @param {Array<Phaser.Point>|Array<number>} vertices - An array of Phaser.Points or numbers that make up the vertices of the triangles
-* @param {Array<number>} [indices=null] - An array of numbers that describe what order to draw the vertices in
-* @param {boolean} [cull=false] - Should we check if the triangle is back-facing
-*/
+ * Draws {@link Phaser.Polygon} triangles
+ *
+ * @method Phaser.Graphics#drawTriangles
+ * @param {Array<Phaser.Point>|Array<number>} vertices - An array of Phaser.Points or numbers that make up the vertices of the triangles
+ * @param {Array<number>} [indices=null] - An array of numbers that describe what order to draw the vertices in
+ * @param {boolean} [cull=false] - Should we check if the triangle is back-facing
+ */
 Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull)
 {
-
     if (cull === undefined) { cull = false; }
 
     var point1 = new Phaser.Point();
@@ -412,7 +401,6 @@ Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull)
  */
 Phaser.Graphics.prototype.lineStyle = function (lineWidth, color, alpha)
 {
-
     this.lineWidth = lineWidth || 0;
     this.lineColor = color || 0;
     this.lineAlpha = (alpha === undefined) ? 1 : alpha;
@@ -434,7 +422,6 @@ Phaser.Graphics.prototype.lineStyle = function (lineWidth, color, alpha)
     }
 
     return this;
-
 };
 
 /**
@@ -444,14 +431,12 @@ Phaser.Graphics.prototype.lineStyle = function (lineWidth, color, alpha)
  * @param x {Number} the X coordinate to move to
  * @param y {Number} the Y coordinate to move to
  * @return {Graphics}
-  */
+ */
 Phaser.Graphics.prototype.moveTo = function (x, y)
 {
-
     this.drawShape(new Phaser.Polygon([ x, y ]));
 
     return this;
-
 };
 
 /**
@@ -465,7 +450,6 @@ Phaser.Graphics.prototype.moveTo = function (x, y)
  */
 Phaser.Graphics.prototype.lineTo = function (x, y)
 {
-
     if (!this.currentPath)
     {
         this.moveTo(0, 0);
@@ -476,7 +460,6 @@ Phaser.Graphics.prototype.lineTo = function (x, y)
     this._boundsDirty = true;
 
     return this;
-
 };
 
 /**
@@ -492,7 +475,6 @@ Phaser.Graphics.prototype.lineTo = function (x, y)
  */
 Phaser.Graphics.prototype.quadraticCurveTo = function (cpX, cpY, toX, toY)
 {
-
     if (this.currentPath)
     {
         if (this.currentPath.shape.points.length === 0)
@@ -533,7 +515,6 @@ Phaser.Graphics.prototype.quadraticCurveTo = function (cpX, cpY, toX, toY)
     this._boundsDirty = true;
 
     return this;
-
 };
 
 /**
@@ -550,7 +531,6 @@ Phaser.Graphics.prototype.quadraticCurveTo = function (cpX, cpY, toX, toY)
  */
 Phaser.Graphics.prototype.bezierCurveTo = function (cpX, cpY, cpX2, cpY2, toX, toY)
 {
-
     if (this.currentPath)
     {
         if (this.currentPath.shape.points.length === 0)
@@ -594,7 +574,6 @@ Phaser.Graphics.prototype.bezierCurveTo = function (cpX, cpY, cpX2, cpY2, toX, t
     this._boundsDirty = true;
 
     return this;
-
 };
 
 /**
@@ -612,7 +591,6 @@ Phaser.Graphics.prototype.bezierCurveTo = function (cpX, cpY, cpX2, cpY2, toX, t
  */
 Phaser.Graphics.prototype.arcTo = function (x1, y1, x2, y2, radius)
 {
-
     if (this.currentPath)
     {
         if (this.currentPath.shape.points.length === 0)
@@ -666,7 +644,6 @@ Phaser.Graphics.prototype.arcTo = function (x1, y1, x2, y2, radius)
     this._boundsDirty = true;
 
     return this;
-
 };
 
 /**
@@ -684,7 +661,6 @@ Phaser.Graphics.prototype.arcTo = function (x1, y1, x2, y2, radius)
  */
 Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, anticlockwise, segments)
 {
-
     //  If we do this we can never draw a full circle
     if (startAngle === endAngle)
     {
@@ -754,7 +730,6 @@ Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, 
     this._boundsDirty = true;
 
     return this;
-
 };
 
 /**
@@ -768,7 +743,6 @@ Phaser.Graphics.prototype.arc = function (cx, cy, radius, startAngle, endAngle, 
  */
 Phaser.Graphics.prototype.beginFill = function (color, alpha)
 {
-
     this.filling = true;
     this.fillColor = color || 0;
     this.fillAlpha = (alpha === undefined) ? 1 : alpha;
@@ -784,7 +758,6 @@ Phaser.Graphics.prototype.beginFill = function (color, alpha)
     }
 
     return this;
-
 };
 
 /**
@@ -795,13 +768,11 @@ Phaser.Graphics.prototype.beginFill = function (color, alpha)
  */
 Phaser.Graphics.prototype.endFill = function ()
 {
-
     this.filling = false;
     this.fillColor = null;
     this.fillAlpha = 1;
 
     return this;
-
 };
 
 /**
@@ -815,11 +786,9 @@ Phaser.Graphics.prototype.endFill = function ()
  */
 Phaser.Graphics.prototype.drawRect = function (x, y, width, height)
 {
-
     this.drawShape(new Phaser.Rectangle(x, y, width, height));
 
     return this;
-
 };
 
 /**
@@ -832,11 +801,9 @@ Phaser.Graphics.prototype.drawRect = function (x, y, width, height)
  */
 Phaser.Graphics.prototype.drawRoundedRect = function (x, y, width, height, radius)
 {
-
     this.drawShape(new Phaser.RoundedRectangle(x, y, width, height, radius));
 
     return this;
-
 };
 
 /**
@@ -850,11 +817,9 @@ Phaser.Graphics.prototype.drawRoundedRect = function (x, y, width, height, radiu
  */
 Phaser.Graphics.prototype.drawCircle = function (x, y, diameter)
 {
-
     this.drawShape(new Phaser.Circle(x, y, diameter));
 
     return this;
-
 };
 
 /**
@@ -869,11 +834,9 @@ Phaser.Graphics.prototype.drawCircle = function (x, y, diameter)
  */
 Phaser.Graphics.prototype.drawEllipse = function (centerX, centerY, halfWidth, halfHeight)
 {
-
     this.drawShape({x: centerX, y: centerY, width: halfWidth, height: halfHeight, type: Phaser.ELLIPSE});
 
     return this;
-
 };
 
 /**
@@ -885,20 +848,23 @@ Phaser.Graphics.prototype.drawEllipse = function (centerX, centerY, halfWidth, h
  */
 Phaser.Graphics.prototype.drawPolygon = function (path)
 {
-
     if (path instanceof Phaser.Polygon)
     {
         path = path.points;
     }
 
-    // prevents an argument assignment deopt
-    // see section 3.1: https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments
+    /*
+     * prevents an argument assignment deopt
+     * see section 3.1: https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments
+     */
     var points = path;
 
     if (!Array.isArray(points))
     {
-        // prevents an argument leak deopt
-        // see section 3.2: https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments
+        /*
+         * prevents an argument leak deopt
+         * see section 3.2: https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments
+         */
         points = new Array(arguments.length);
 
         for (var i = 0; i < points.length; ++i)
@@ -910,7 +876,6 @@ Phaser.Graphics.prototype.drawPolygon = function (path)
     this.drawShape(new Phaser.Polygon(points));
 
     return this;
-
 };
 
 /**
@@ -921,7 +886,6 @@ Phaser.Graphics.prototype.drawPolygon = function (path)
  */
 Phaser.Graphics.prototype.clear = function ()
 {
-
     this.lineWidth = 0;
     this.filling = false;
 
@@ -933,7 +897,6 @@ Phaser.Graphics.prototype.clear = function ()
     this.updateLocalBounds();
 
     return this;
-
 };
 
 /**
@@ -950,7 +913,6 @@ Phaser.Graphics.prototype.clear = function ()
  */
 Phaser.Graphics.prototype.generateTexture = function (resolution, scaleMode, padding)
 {
-
     if (resolution === undefined) { resolution = 1; }
     if (scaleMode === undefined) { scaleMode = PIXI.scaleModes.DEFAULT; }
     if (padding === undefined) { padding = 0; }
@@ -973,19 +935,17 @@ Phaser.Graphics.prototype.generateTexture = function (resolution, scaleMode, pad
     PIXI.CanvasGraphics.renderGraphics(this, canvasBuffer.context);
 
     return texture;
-
 };
 
 /**
-* Renders the object using the WebGL renderer
-*
-* @method Phaser.Graphics#_renderWebGL
-* @param renderSession {RenderSession}
-* @private
-*/
+ * Renders the object using the WebGL renderer
+ *
+ * @method Phaser.Graphics#_renderWebGL
+ * @param renderSession {RenderSession}
+ * @private
+ */
 Phaser.Graphics.prototype._renderWebGL = function (renderSession)
 {
-
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (this.visible === false || this.alpha === 0 || this.isMask === true)
     {
@@ -1071,19 +1031,17 @@ Phaser.Graphics.prototype._renderWebGL = function (renderSession)
 
         renderSession.spriteBatch.start();
     }
-
 };
 
 /**
-* Renders the object using the Canvas renderer
-*
-* @method Phaser.Graphics#_renderCanvas
-* @param renderSession {RenderSession}
-* @private
-*/
+ * Renders the object using the Canvas renderer
+ *
+ * @method Phaser.Graphics#_renderCanvas
+ * @param renderSession {RenderSession}
+ * @private
+ */
 Phaser.Graphics.prototype._renderCanvas = function (renderSession)
 {
-
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (this.visible === false || this.alpha === 0 || this.isMask === true)
     {
@@ -1156,7 +1114,6 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession)
             renderSession.maskManager.popMask(renderSession);
         }
     }
-
 };
 
 /**
@@ -1172,7 +1129,6 @@ Phaser.Graphics.prototype._renderCanvas = function (renderSession)
  */
 Phaser.Graphics.prototype.getBounds = function (matrix)
 {
-
     if (this._currentBounds)
     {
         return this._currentBounds;
@@ -1252,7 +1208,6 @@ Phaser.Graphics.prototype.getBounds = function (matrix)
     this._currentBounds = this._bounds;
 
     return this._currentBounds;
-
 };
 
 /**
@@ -1263,7 +1218,6 @@ Phaser.Graphics.prototype.getBounds = function (matrix)
  */
 Phaser.Graphics.prototype.getLocalBounds = function ()
 {
-
     var matrixCache = this.worldTransform;
 
     this.worldTransform = Phaser.identityMatrix;
@@ -1283,18 +1237,16 @@ Phaser.Graphics.prototype.getLocalBounds = function ()
     }
 
     return bounds;
-
 };
 
 /**
-* Tests if a point is inside this graphics object
-*
-* @param point {Point} the point to test
-* @return {boolean} the result of the test
-*/
+ * Tests if a point is inside this graphics object
+ *
+ * @param point {Point} the point to test
+ * @return {boolean} the result of the test
+ */
 Phaser.Graphics.prototype.containsPoint = function (point, tempPoint)
 {
-
     if (tempPoint === undefined) { tempPoint = new Phaser.Point(); }
 
     this.worldTransform.applyInverse(point, tempPoint);
@@ -1321,7 +1273,6 @@ Phaser.Graphics.prototype.containsPoint = function (point, tempPoint)
     }
 
     return false;
-
 };
 
 
@@ -1336,7 +1287,6 @@ Phaser.Graphics.prototype.containsPoint = function (point, tempPoint)
  */
 Phaser.Graphics.prototype.getVisualBounds = function (output)
 {
-
     if (this._boundsDirty)
     {
         this.updateLocalBounds();
@@ -1344,7 +1294,6 @@ Phaser.Graphics.prototype.getVisualBounds = function (output)
     }
 
     return this._localBounds.clone(output);
-
 };
 
 /**
@@ -1354,7 +1303,6 @@ Phaser.Graphics.prototype.getVisualBounds = function (output)
  */
 Phaser.Graphics.prototype.updateLocalBounds = function ()
 {
-
     var minX = Infinity;
     var maxX = -Infinity;
 
@@ -1458,7 +1406,6 @@ Phaser.Graphics.prototype.updateLocalBounds = function ()
 
     this._localBounds.y = minY - padding;
     this._localBounds.height = (maxY - minY) + padding * 2;
-
 };
 
 /**
@@ -1469,7 +1416,6 @@ Phaser.Graphics.prototype.updateLocalBounds = function ()
  */
 Phaser.Graphics.prototype._generateCachedSprite = function ()
 {
-
     var bounds = this.getLocalBounds();
 
     if (!this._cachedSprite)
@@ -1500,7 +1446,6 @@ Phaser.Graphics.prototype._generateCachedSprite = function ()
     // now render the graphic..
     PIXI.CanvasGraphics.renderGraphics(this, this._cachedSprite.buffer.context);
     this._cachedSprite.alpha = this.alpha;
-
 };
 
 /**
@@ -1511,7 +1456,6 @@ Phaser.Graphics.prototype._generateCachedSprite = function ()
  */
 Phaser.Graphics.prototype.updateCachedSpriteTexture = function ()
 {
-
     var cachedSprite = this._cachedSprite;
     var texture = cachedSprite.texture;
     var canvas = cachedSprite.buffer.canvas;
@@ -1526,7 +1470,6 @@ Phaser.Graphics.prototype.updateCachedSpriteTexture = function ()
 
     // update the dirty base textures
     texture.baseTexture.dirty();
-
 };
 
 /**
@@ -1536,10 +1479,8 @@ Phaser.Graphics.prototype.updateCachedSpriteTexture = function ()
  */
 Phaser.Graphics.prototype.destroyCachedSprite = function ()
 {
-
     this._cachedSprite.texture.destroy(true);
     this._cachedSprite = null;
-
 };
 
 /**
@@ -1551,7 +1492,6 @@ Phaser.Graphics.prototype.destroyCachedSprite = function ()
  */
 Phaser.Graphics.prototype.drawShape = function (shape)
 {
-
     if (this.currentPath)
     {
         // check current path!
@@ -1584,7 +1524,6 @@ Phaser.Graphics.prototype.drawShape = function (shape)
     this._boundsDirty = true;
 
     return data;
-
 };
 
 /**
@@ -1602,14 +1541,11 @@ Object.defineProperty(Phaser.Graphics.prototype, 'cacheAsBitmap', {
 
     get: function ()
     {
-
         return this._cacheAsBitmap;
-
     },
 
     set: function (value)
     {
-
         this._cacheAsBitmap = value;
 
         if (this._cacheAsBitmap)
@@ -1623,6 +1559,5 @@ Object.defineProperty(Phaser.Graphics.prototype, 'cacheAsBitmap', {
 
         this.dirty = true;
         this.webGLDirty = true;
-
     }
 });

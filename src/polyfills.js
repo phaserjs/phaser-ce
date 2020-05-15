@@ -1,7 +1,7 @@
 /**
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 if (typeof AudioBufferSourceNode !== 'undefined')
 {
@@ -25,20 +25,17 @@ if (!Math.trunc)
 }
 
 /**
-* A polyfill for Function.prototype.bind
-*/
+ * A polyfill for Function.prototype.bind
+ */
 if (!Function.prototype.bind)
 {
-
     /* jshint freeze: false */
     Function.prototype.bind = (function ()
     {
-
         var slice = Array.prototype.slice;
 
         return function (thisArg)
         {
-
             var target = this,
                 boundArgs = slice.call(arguments, 1);
 
@@ -73,8 +70,8 @@ if (!Function.prototype.bind)
 }
 
 /**
-* A polyfill for Array.isArray
-*/
+ * A polyfill for Array.isArray
+ */
 if (!Array.isArray)
 {
     Array.isArray = function (arg)
@@ -84,9 +81,9 @@ if (!Array.isArray)
 }
 
 /**
-* A polyfill for Array.forEach
-* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
-*/
+ * A polyfill for Array.forEach
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+ */
 if (!Array.prototype.forEach)
 {
     Array.prototype.forEach = function (fun /* , thisArg */)
@@ -119,10 +116,10 @@ if (!Array.prototype.forEach)
 }
 
 /**
-* Low-budget Float32Array knock-off, suitable for use with P2.js in IE9
-* Source: http://www.html5gamedevs.com/topic/5988-phaser-12-ie9/
-* Cameron Foale (http://www.kibibu.com)
-*/
+ * Low-budget Float32Array knock-off, suitable for use with P2.js in IE9
+ * Source: http://www.html5gamedevs.com/topic/5988-phaser-12-ie9/
+ * Cameron Foale (http://www.kibibu.com)
+ */
 if (typeof window.Uint32Array !== 'function' && typeof window.Uint32Array !== 'object')
 {
     var CheapArray = function (type)
@@ -133,7 +130,6 @@ if (typeof window.Uint32Array !== 'function' && typeof window.Uint32Array !== 'o
 
         window[type] = function (arg)
         {
-
             if (typeof(arg) === 'number')
             {
                 Array.call(this, arg);

@@ -1,29 +1,28 @@
 /* jshint ignore:start */
 
 /*
-Copyright (c) 2016, Mapbox
-
-Permission to use, copy, modify, and/or distribute this software for any purpose
-with or without fee is hereby granted, provided that the above copyright notice
-and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
-THIS SOFTWARE.
-*/
+ * Copyright (c) 2016, Mapbox
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any purpose
+ * with or without fee is hereby granted, provided that the above copyright notice
+ * and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+ * OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+ * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+ * THIS SOFTWARE.
+ */
 
 /**
-* @class EarCut
-*/
+ * @class EarCut
+ */
 Phaser.EarCut = {};
 
 Phaser.EarCut.Triangulate = function (data, holeIndices, dim)
 {
-
     dim = dim || 2;
 
     var hasHoles = holeIndices && holeIndices.length,
@@ -108,7 +107,6 @@ Phaser.EarCut.filterPoints = function (start, end)
             p = end = p.prev;
             if (p === p.next) { return null; }
             again = true;
-
         }
         else
         {
@@ -261,7 +259,6 @@ Phaser.EarCut.cureLocalIntersections = function (start, triangles, dim)
         // a self-intersection where edge (v[i-1],v[i]) intersects (v[i+1],v[i+2])
         if (Phaser.EarCut.intersects(a, p, p.next, b) && Phaser.EarCut.locallyInside(a, b) && Phaser.EarCut.locallyInside(b, a))
         {
-
             triangles.push(a.i / dim);
             triangles.push(p.i / dim);
             triangles.push(b.i / dim);
@@ -364,8 +361,10 @@ Phaser.EarCut.findHoleBridge = function (hole, outerNode)
         qx = -Infinity,
         m;
 
-    // find a segment intersected by a ray from the hole's leftmost point to the left;
-    // segment's endpoint with lesser x will be potential connection point
+    /*
+     * find a segment intersected by a ray from the hole's leftmost point to the left;
+     * segment's endpoint with lesser x will be potential connection point
+     */
     do
     {
         if (hy <= p.y && hy >= p.next.y)
@@ -384,9 +383,11 @@ Phaser.EarCut.findHoleBridge = function (hole, outerNode)
 
     if (hole.x === m.x) { return m.prev; } // hole touches outer segment; pick lower endpoint
 
-    // look for points inside the triangle of hole point, segment intersection and endpoint;
-    // if there are no points found, we have a valid connection;
-    // otherwise choose the point of the minimum angle with the ray as connection point
+    /*
+     * look for points inside the triangle of hole point, segment intersection and endpoint;
+     * if there are no points found, we have a valid connection;
+     * otherwise choose the point of the minimum angle with the ray as connection point
+     */
 
     var stop = m,
         tanMin = Infinity,
@@ -399,7 +400,6 @@ Phaser.EarCut.findHoleBridge = function (hole, outerNode)
         if (hx >= p.x && p.x >= m.x &&
             Phaser.EarCut.pointInTriangle(hy < m.y ? hx : qx, hy, m.x, m.y, hy < m.y ? qx : hx, hy, p.x, p.y))
         {
-
             tan = Math.abs(hy - p.y) / (hx - p.x); // tangential
 
             if ((tan < tanMin || (tan === tanMin && p.x > m.x)) && Phaser.EarCut.locallyInside(p, hole))
@@ -434,8 +434,10 @@ Phaser.EarCut.indexCurve = function (start, minX, minY, size)
     Phaser.EarCut.sortLinked(p);
 };
 
-// Simon Tatham's linked list merge sort algorithm
-// http://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
+/*
+ * Simon Tatham's linked list merge sort algorithm
+ * http://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
+ */
 
 Phaser.EarCut.sortLinked = function (list)
 {
@@ -465,7 +467,6 @@ Phaser.EarCut.sortLinked = function (list)
 
             while (pSize > 0 || (qSize > 0 && q))
             {
-
                 if (pSize === 0)
                 {
                     e = q;
@@ -503,7 +504,6 @@ Phaser.EarCut.sortLinked = function (list)
 
         tail.nextZ = null;
         inSize *= 2;
-
     } while (numMerges > 1);
 
     return list;
@@ -626,8 +626,10 @@ Phaser.EarCut.middleInside = function (a, b)
     return inside;
 };
 
-// link two polygon vertices with a bridge; if the vertices belong to the same ring, it splits polygon into two;
-// if one belongs to the outer ring and another to a hole, it merges it into a single ring
+/*
+ * link two polygon vertices with a bridge; if the vertices belong to the same ring, it splits polygon into two;
+ * if one belongs to the outer ring and another to a hole, it merges it into a single ring
+ */
 
 Phaser.EarCut.splitPolygon = function (a, b)
 {
@@ -661,7 +663,6 @@ Phaser.EarCut.insertNode = function (i, x, y, last)
     {
         p.prev = p;
         p.next = p;
-
     }
     else
     {

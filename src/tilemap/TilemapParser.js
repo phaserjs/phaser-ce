@@ -1,15 +1,15 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* Phaser.TilemapParser parses data objects from Phaser.Loader that need more preparation before they can be inserted into a Tilemap.
-*
-* @class Phaser.TilemapParser
-* @static
-*/
+ * Phaser.TilemapParser parses data objects from Phaser.Loader that need more preparation before they can be inserted into a Tilemap.
+ *
+ * @class Phaser.TilemapParser
+ * @static
+ */
 Phaser.TilemapParser = {
 
     /**
@@ -26,20 +26,19 @@ Phaser.TilemapParser = {
     INSERT_NULL: false,
 
     /**
-    * Parse tilemap data from the cache and creates data for a Tilemap object.
-    *
-    * @method Phaser.TilemapParser.parse
-    * @param {Phaser.Game} game - Game reference to the currently running game.
-    * @param {string} key - The key of the tilemap in the Cache.
-    * @param {number} [tileWidth=32] - The pixel width of a single map tile. If using CSV data you must specify this. Not required if using Tiled map data.
-    * @param {number} [tileHeight=32] - The pixel height of a single map tile. If using CSV data you must specify this. Not required if using Tiled map data.
-    * @param {number} [width=10] - The width of the map in tiles. If this map is created from Tiled or CSV data you don't need to specify this.
-    * @param {number} [height=10] - The height of the map in tiles. If this map is created from Tiled or CSV data you don't need to specify this.
-    * @return {object} The parsed map object.
-    */
+     * Parse tilemap data from the cache and creates data for a Tilemap object.
+     *
+     * @method Phaser.TilemapParser.parse
+     * @param {Phaser.Game} game - Game reference to the currently running game.
+     * @param {string} key - The key of the tilemap in the Cache.
+     * @param {number} [tileWidth=32] - The pixel width of a single map tile. If using CSV data you must specify this. Not required if using Tiled map data.
+     * @param {number} [tileHeight=32] - The pixel height of a single map tile. If using CSV data you must specify this. Not required if using Tiled map data.
+     * @param {number} [width=10] - The width of the map in tiles. If this map is created from Tiled or CSV data you don't need to specify this.
+     * @param {number} [height=10] - The height of the map in tiles. If this map is created from Tiled or CSV data you don't need to specify this.
+     * @return {object} The parsed map object.
+     */
     parse: function (game, key, tileWidth, tileHeight, width, height)
     {
-
         if (tileWidth === undefined) { tileWidth = 32; }
         if (tileHeight === undefined) { tileHeight = 32; }
         if (width === undefined) { width = 10; }
@@ -72,22 +71,20 @@ Phaser.TilemapParser = {
         {
             console.warn('No map data found for key "%s"', key);
         }
-
     },
 
     /**
-    * Parses a CSV file into valid map data.
-    *
-    * @method Phaser.TilemapParser.parseCSV
-    * @param {string} key - The name you want to give the map data.
-    * @param {string} data - The CSV file data.
-    * @param {number} [tileWidth=32] - The pixel width of a single map tile. If using CSV data you must specify this. Not required if using Tiled map data.
-    * @param {number} [tileHeight=32] - The pixel height of a single map tile. If using CSV data you must specify this. Not required if using Tiled map data.
-    * @return {object} Generated map data.
-    */
+     * Parses a CSV file into valid map data.
+     *
+     * @method Phaser.TilemapParser.parseCSV
+     * @param {string} key - The name you want to give the map data.
+     * @param {string} data - The CSV file data.
+     * @param {number} [tileWidth=32] - The pixel width of a single map tile. If using CSV data you must specify this. Not required if using Tiled map data.
+     * @param {number} [tileHeight=32] - The pixel height of a single map tile. If using CSV data you must specify this. Not required if using Tiled map data.
+     * @return {object} Generated map data.
+     */
     parseCSV: function (key, data, tileWidth, tileHeight)
     {
-
         var map = this.getEmptyData();
 
         //  Trim any rogue whitespace from the data
@@ -131,18 +128,16 @@ Phaser.TilemapParser = {
         map.layers[0].data = output;
 
         return map;
-
     },
 
     /**
-    * Returns an empty map data object.
-    *
-    * @method Phaser.TilemapParser.getEmptyData
-    * @return {object} Generated map data.
-    */
+     * Returns an empty map data object.
+     *
+     * @method Phaser.TilemapParser.getEmptyData
+     * @return {object} Generated map data.
+     */
     getEmptyData: function (tileWidth, tileHeight, width, height)
     {
-
         return {
             width: (width !== undefined && width !== null) ? width : 0,
             height: (height !== undefined && height !== null) ? height : 0,
@@ -177,7 +172,6 @@ Phaser.TilemapParser = {
             tilesets: [],
             tiles: []
         };
-
     },
 
     _slice: function (obj, fields)
@@ -198,18 +192,17 @@ Phaser.TilemapParser = {
     },
 
     /**
-    * Parses an object group in Tiled JSON files. Object groups can be found in both layers and tilesets. Called internally in parseTiledJSON.
-    * @method Phaser.TilemapParser.parseObjectGroup
-    * @param {object} objectGroup - A JSON object group.
-    * @param {object} objectsCollection - An object into which new array of Tiled map objects will be added.
-    * @param {object} collisionCollection - An object into which new array of collision objects will be added. Currently only polylines are added.
-    * @param {string} [nameKey=objectGroup.name] - Key under which to store objects in collisions in objectsCollection and collisionCollection
-    * @param {object} [relativePosition={x: 0, y: 0}] - Coordinates the object group's position is relative to.
-    * @return {object} A object literal containing the objectsCollection and collisionCollection
-    */
+     * Parses an object group in Tiled JSON files. Object groups can be found in both layers and tilesets. Called internally in parseTiledJSON.
+     * @method Phaser.TilemapParser.parseObjectGroup
+     * @param {object} objectGroup - A JSON object group.
+     * @param {object} objectsCollection - An object into which new array of Tiled map objects will be added.
+     * @param {object} collisionCollection - An object into which new array of collision objects will be added. Currently only polylines are added.
+     * @param {string} [nameKey=objectGroup.name] - Key under which to store objects in collisions in objectsCollection and collisionCollection
+     * @param {object} [relativePosition={x: 0, y: 0}] - Coordinates the object group's position is relative to.
+     * @return {object} A object literal containing the objectsCollection and collisionCollection
+     */
     parseObjectGroup: function (objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition)
     {
-
         var nameKey = nameKey || objectGroup.name;
         var relativePosition = relativePosition || {x: 0, y: 0};
         var slice = this._slice;
@@ -334,14 +327,13 @@ Phaser.TilemapParser = {
     },
 
     /**
-    * Parses a Tiled JSON file into valid map data.
-    * @method Phaser.TilemapParser.parseTiledJSON
-    * @param {object} json - The JSON map data.
-    * @return {object} Generated and parsed map data.
-    */
+     * Parses a Tiled JSON file into valid map data.
+     * @method Phaser.TilemapParser.parseTiledJSON
+     * @param {object} json - The JSON map data.
+     * @return {object} Generated and parsed map data.
+     */
     parseTiledJSON: function (json)
     {
-
         if (json.orientation !== 'orthogonal')
         {
             console.warn('Phaser CE supports only orthogonal maps. This map\'s orientation is "%s".', json.orientation);
@@ -380,8 +372,10 @@ Phaser.TilemapParser = {
 
             var curl = json.layers[i];
 
-            // Base64 decode data if necessary
-            // NOTE: uncompressed base64 only.
+            /*
+             * Base64 decode data if necessary
+             * NOTE: uncompressed base64 only.
+             */
 
             if (!curl.compression && curl.encoding && curl.encoding === 'base64')
             {
@@ -389,8 +383,10 @@ Phaser.TilemapParser = {
                 var len = binaryString.length;
                 var bytes = new Array(len);
 
-                // Interpret binaryString as an array of bytes representing
-                // little-endian encoded uint32 values.
+                /*
+                 * Interpret binaryString as an array of bytes representing
+                 * little-endian encoded uint32 values.
+                 */
                 for (var j = 0; j < len; j += 4)
                 {
                     bytes[j / 4] = (
@@ -444,9 +440,11 @@ Phaser.TilemapParser = {
 
             //  Loop through the data field in the JSON.
 
-            //  This is an array containing the tile indexes, one after the other. -1 = no tile, everything else = the tile index (starting at 1 for Tiled, 0 for CSV)
-            //  If the map contains multiple tilesets then the indexes are relative to that which the set starts from.
-            //  Need to set which tileset in the cache = which tileset in the JSON, if you do this manually it means you can use the same map data but a new tileset.
+            /*
+             *  This is an array containing the tile indexes, one after the other. -1 = no tile, everything else = the tile index (starting at 1 for Tiled, 0 for CSV)
+             *  If the map contains multiple tilesets then the indexes are relative to that which the set starts from.
+             *  Need to set which tileset in the cache = which tileset in the JSON, if you do this manually it means you can use the same map data but a new tileset.
+             */
 
             for (var t = 0, len = curl.data.length; t < len; t++)
             {
@@ -588,7 +586,6 @@ Phaser.TilemapParser = {
             }
 
             images.push(image);
-
         }
 
         map.images = images;
@@ -617,8 +614,10 @@ Phaser.TilemapParser = {
                     newSet.tileProperties = set.tileproperties;
                 }
 
-                // For a normal sliced tileset the row/count/size information is computed when updated.
-                // This is done (again) after the image is set.
+                /*
+                 * For a normal sliced tileset the row/count/size information is computed when updated.
+                 * This is done (again) after the image is set.
+                 */
                 newSet.updateTileData(set.imagewidth, set.imageheight);
 
                 tilesets.push(newSet);
@@ -733,7 +732,6 @@ Phaser.TilemapParser = {
                     }
                 }
             }
-
         }
 
         // assign tile properties
@@ -792,13 +790,11 @@ Phaser.TilemapParser = {
                                 y: tile.worldY + objectGroup.y
                             });
                     }
-
                 }
             }
         }
 
         return map;
-
     }
 
 };

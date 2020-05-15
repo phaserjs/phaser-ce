@@ -1,50 +1,47 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* Phaser.LoaderParser parses data objects from Phaser.Loader that need more preparation before they can be inserted into the Cache.
-*
-* @class Phaser.LoaderParser
-*/
+ * Phaser.LoaderParser parses data objects from Phaser.Loader that need more preparation before they can be inserted into the Cache.
+ *
+ * @class Phaser.LoaderParser
+ */
 Phaser.LoaderParser = {
 
     /**
-    * Alias for xmlBitmapFont, for backwards compatibility.
-    *
-    * @method Phaser.LoaderParser.bitmapFont
-    * @param {object} xml - XML data you want to parse.
-    * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
-    * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
-    * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
-    * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
-    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
-    * @return {object} The parsed Bitmap Font data.
-    */
+     * Alias for xmlBitmapFont, for backwards compatibility.
+     *
+     * @method Phaser.LoaderParser.bitmapFont
+     * @param {object} xml - XML data you want to parse.
+     * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
+     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
+     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
+     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
+     * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
+     * @return {object} The parsed Bitmap Font data.
+     */
     bitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution)
     {
-
         return this.xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing, frame, resolution);
-
     },
 
     /**
-    * Parse a Bitmap Font from an XML file.
-    *
-    * @method Phaser.LoaderParser.xmlBitmapFont
-    * @param {object} xml - XML data you want to parse.
-    * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
-    * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
-    * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
-    * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
-    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
-    * @return {object} The parsed Bitmap Font data.
-    */
+     * Parse a Bitmap Font from an XML file.
+     *
+     * @method Phaser.LoaderParser.xmlBitmapFont
+     * @param {object} xml - XML data you want to parse.
+     * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
+     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
+     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
+     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
+     * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
+     * @return {object} The parsed Bitmap Font data.
+     */
     xmlBitmapFont: function (xml, baseTexture, xSpacing, ySpacing, frame, resolution)
     {
-
         if (resolution == null)
         {
             resolution = 1;
@@ -122,24 +119,22 @@ Phaser.LoaderParser = {
         }
 
         return this.finalizeBitmapFont(baseTexture, data);
-
     },
 
     /**
-    * Parse a Bitmap Font from a JSON file.
-    *
-    * @method Phaser.LoaderParser.jsonBitmapFont
-    * @param {object} json - JSON data you want to parse.
-    * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
-    * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
-    * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
-    * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
-    * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
-    * @return {object} The parsed Bitmap Font data.
-    */
+     * Parse a Bitmap Font from a JSON file.
+     *
+     * @method Phaser.LoaderParser.jsonBitmapFont
+     * @param {object} json - JSON data you want to parse.
+     * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
+     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
+     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
+     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
+     * @param {number} [resolution=1] - Optional game resolution to apply to the kerning data.
+     * @return {object} The parsed Bitmap Font data.
+     */
     jsonBitmapFont: function (json, baseTexture, xSpacing, ySpacing, frame, resolution)
     {
-
         if (resolution == null)
         {
             resolution = 1;
@@ -159,7 +154,6 @@ Phaser.LoaderParser = {
 
             function parseChar (letter)
             {
-
                 var charCode = parseInt(letter._id, 10);
 
                 var char = data.chars[charCode] = {
@@ -219,64 +213,60 @@ Phaser.LoaderParser = {
         }
 
         return this.finalizeBitmapFont(baseTexture, data);
-
     },
 
     /**
-    * Finalize Bitmap Font parsing.
-    *
-    * @method Phaser.LoaderParser.finalizeBitmapFont
-    * @private
-    * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
-    * @param {object} bitmapFontData - Pre-parsed bitmap font data.
-    * @return {object} The parsed Bitmap Font data.
-    */
+     * Finalize Bitmap Font parsing.
+     *
+     * @method Phaser.LoaderParser.finalizeBitmapFont
+     * @private
+     * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
+     * @param {object} bitmapFontData - Pre-parsed bitmap font data.
+     * @return {object} The parsed Bitmap Font data.
+     */
     finalizeBitmapFont: function (baseTexture, bitmapFontData)
     {
-
         Object.keys(bitmapFontData.chars).forEach(
 
             function addTexture (charCode)
             {
-
                 var letter = bitmapFontData.chars[charCode];
 
                 letter.texture = new PIXI.Texture(baseTexture, new Phaser.Rectangle(letter.x, letter.y, letter.width, letter.height));
-
             }
 
         );
 
         return bitmapFontData;
-
     },
 
     /**
-    * Extract PVR header from loaded binary
-    *
-    * @method Phaser.LoaderParser.pvr
-    * @param {ArrayBuffer} arrayBuffer
-    * @return {object} The parsed PVR file including texture data.
-    */
+     * Extract PVR header from loaded binary
+     *
+     * @method Phaser.LoaderParser.pvr
+     * @param {ArrayBuffer} arrayBuffer
+     * @return {object} The parsed PVR file including texture data.
+     */
     pvr: function (arrayBuffer)
     {
-
-        // Reference: http://cdn.imgtec.com/sdk-documentation/PVR+File+Format.Specification.pdf
-        // PVR 3 header structure
-        // ---------------------------------------
-        // address: 0, size: 4 bytes version
-        // address: 4, size: 4 bytes flags
-        // address: 8, size: 8 bytes pixel format
-        // address: 16, size: 4 bytes color space
-        // address: 20, size: 4 bytes channel type
-        // address: 24, size: 4 bytes height
-        // address: 28, size: 4 bytes width
-        // address: 32, size: 4 bytes depth
-        // address: 36, size: 4 bytes number of surfaces
-        // address: 40, size: 4 bytes number of faces
-        // address: 44, size: 4 bytes number of mipmaps
-        // address: 48, size: 4 bytes meta data size
-        // ---------------------------------------
+        /*
+         * Reference: http://cdn.imgtec.com/sdk-documentation/PVR+File+Format.Specification.pdf
+         * PVR 3 header structure
+         * ---------------------------------------
+         * address: 0, size: 4 bytes version
+         * address: 4, size: 4 bytes flags
+         * address: 8, size: 8 bytes pixel format
+         * address: 16, size: 4 bytes color space
+         * address: 20, size: 4 bytes channel type
+         * address: 24, size: 4 bytes height
+         * address: 28, size: 4 bytes width
+         * address: 32, size: 4 bytes depth
+         * address: 36, size: 4 bytes number of surfaces
+         * address: 40, size: 4 bytes number of faces
+         * address: 44, size: 4 bytes number of mipmaps
+         * address: 48, size: 4 bytes meta data size
+         * ---------------------------------------
+         */
         var uintArray = new Uint32Array(arrayBuffer.slice(0, 52)),
             byteArray = new Uint8Array(arrayBuffer),
             pvrHeader = null,
@@ -355,51 +345,51 @@ Phaser.LoaderParser = {
         }
 
         return pvrHeader;
-
     },
 
     /**
-    * Extract DDS header from loaded binary
-    *
-    * @method Phaser.LoaderParser.dds
-    * @param {ArrayBuffer} arrayBuffer
-    * @return {object} The parsed DDS file including texture data.
-    */
+     * Extract DDS header from loaded binary
+     *
+     * @method Phaser.LoaderParser.dds
+     * @param {ArrayBuffer} arrayBuffer
+     * @return {object} The parsed DDS file including texture data.
+     */
     dds: function (arrayBuffer)
     {
-
-        // Reference at: https://msdn.microsoft.com/en-us/library/windows/desktop/bb943982(v=vs.85).aspx
-        // DDS header structure
-        // ---------------------------------------
-        // address: 0, size: 4 bytes Identifier 'DDS '
-        // address: 4, size: 4 bytes size
-        // address: 8, size: 4 bytes flags
-        // address: 12, size: 4 bytes height
-        // address: 16, size: 4 bytes width
-        // address: 20, size: 4 bytes pitch or linear size
-        // address: 24, size: 4 bytes depth
-        // address: 28, size: 4 bytes mipmap count
-        // address: 32, size: 44 bytes reserved space 1
-        // address: 76, size: 4 pixel format size
-        // address: 80, size: 4 pixel format flag
-        // address: 84, size: 4 pixel format four CC
-        // address: 88, size: 4 pixel format bit count
-        // address: 92, size: 4 pixel format R bit mask
-        // address: 96, size: 4 pixel format G bit mask
-        // address: 100, size: 4 pixel format B bit mask
-        // address: 104, size: 4 pixel format A bit mask
-        // address: 108, size: 4 caps 1
-        // address: 112, size: 4 caps 2
-        // address: 116, size: 4 caps 3
-        // address: 120, size: 4 caps 4
-        // address: 124, size: 4 reserved 2
-        // -- DXT10 extension
-        // address: 130, size: 4 DXGI Format
-        // address: 134, size: 4 resource dimension
-        // address: 138, size: 4 misc flag
-        // address: 142, size: 4 array size
-        // address: 146, size: 4 misc flag 2
-        // ---------------------------------------
+        /*
+         * Reference at: https://msdn.microsoft.com/en-us/library/windows/desktop/bb943982(v=vs.85).aspx
+         * DDS header structure
+         * ---------------------------------------
+         * address: 0, size: 4 bytes Identifier 'DDS '
+         * address: 4, size: 4 bytes size
+         * address: 8, size: 4 bytes flags
+         * address: 12, size: 4 bytes height
+         * address: 16, size: 4 bytes width
+         * address: 20, size: 4 bytes pitch or linear size
+         * address: 24, size: 4 bytes depth
+         * address: 28, size: 4 bytes mipmap count
+         * address: 32, size: 44 bytes reserved space 1
+         * address: 76, size: 4 pixel format size
+         * address: 80, size: 4 pixel format flag
+         * address: 84, size: 4 pixel format four CC
+         * address: 88, size: 4 pixel format bit count
+         * address: 92, size: 4 pixel format R bit mask
+         * address: 96, size: 4 pixel format G bit mask
+         * address: 100, size: 4 pixel format B bit mask
+         * address: 104, size: 4 pixel format A bit mask
+         * address: 108, size: 4 caps 1
+         * address: 112, size: 4 caps 2
+         * address: 116, size: 4 caps 3
+         * address: 120, size: 4 caps 4
+         * address: 124, size: 4 reserved 2
+         * -- DXT10 extension
+         * address: 130, size: 4 DXGI Format
+         * address: 134, size: 4 resource dimension
+         * address: 138, size: 4 misc flag
+         * address: 142, size: 4 array size
+         * address: 146, size: 4 misc flag 2
+         * ---------------------------------------
+         */
         var byteArray = new Uint8Array(arrayBuffer),
             uintArray = new Uint32Array(arrayBuffer),
             ddsHeader = null;
@@ -463,41 +453,41 @@ Phaser.LoaderParser = {
         }
 
         return ddsHeader;
-
     },
 
     /**
-    * Extract KTX header from loaded binary
-    *
-    * @method Phaser.LoaderParser.ktx
-    * @param {ArrayBuffer} arrayBuffer
-    * @return {object} The parsed KTX file including texture data.
-    */
+     * Extract KTX header from loaded binary
+     *
+     * @method Phaser.LoaderParser.ktx
+     * @param {ArrayBuffer} arrayBuffer
+     * @return {object} The parsed KTX file including texture data.
+     */
     ktx: function (arrayBuffer)
     {
-
-        // Reference: https://www.khronos.org/opengles/sdk/tools/KTX/file_format_spec/
-        // KTX header structure
-        // ---------------------------------------
-        // address: 0, size 12 bytes: Identifier '«KTX 11»\r\n\x1A\n'
-        // address: 12, size 4 bytes: endianness
-        // address: 16, size 4 bytes: GL type
-        // address: 20, size 4 bytes: GL type size
-        // address: 24, size 4 bytes: GL format
-        // address: 28, size 4 bytes: GL internal format
-        // address: 32, size 4 bytes: GL base internal format
-        // address: 36, size 4 bytes: pixel width
-        // address: 40, size 4 bytes: pixel height
-        // address: 44, size 4 bytes: pixel depth
-        // address: 48, size 4 bytes: number of array elements
-        // address: 52, size 4 bytes: number of faces
-        // address: 56, size 4 bytes: number of mipmap levels
-        // address: 60, size 4 bytes: bytes of key value data
-        // address: 64, size 4 bytes: key and value bytes size
-        // address: X, size 1 byte : key and value
-        // address: X, size 1 byte : value padding
-        // address: X, size 4 byte : image size
-        // ---------------------------------------
+        /*
+         * Reference: https://www.khronos.org/opengles/sdk/tools/KTX/file_format_spec/
+         * KTX header structure
+         * ---------------------------------------
+         * address: 0, size 12 bytes: Identifier '«KTX 11»\r\n\x1A\n'
+         * address: 12, size 4 bytes: endianness
+         * address: 16, size 4 bytes: GL type
+         * address: 20, size 4 bytes: GL type size
+         * address: 24, size 4 bytes: GL format
+         * address: 28, size 4 bytes: GL internal format
+         * address: 32, size 4 bytes: GL base internal format
+         * address: 36, size 4 bytes: pixel width
+         * address: 40, size 4 bytes: pixel height
+         * address: 44, size 4 bytes: pixel depth
+         * address: 48, size 4 bytes: number of array elements
+         * address: 52, size 4 bytes: number of faces
+         * address: 56, size 4 bytes: number of mipmap levels
+         * address: 60, size 4 bytes: bytes of key value data
+         * address: 64, size 4 bytes: key and value bytes size
+         * address: X, size 1 byte : key and value
+         * address: X, size 1 byte : value padding
+         * address: X, size 4 byte : image size
+         * ---------------------------------------
+         */
         var byteArray = new Uint8Array(arrayBuffer),
             uintArray = new Uint32Array(arrayBuffer),
             ktxHeader = null,
@@ -568,30 +558,30 @@ Phaser.LoaderParser = {
         }
 
         return ktxHeader;
-
     },
 
     /**
-    * Extract PKM header from loaded binary
-    *
-    * @method Phaser.LoaderParser.pkm
-    * @param {ArrayBuffer} arrayBuffer
-    * @return {object} The parsed PKM file including texture data.
-    */
+     * Extract PKM header from loaded binary
+     *
+     * @method Phaser.LoaderParser.pkm
+     * @param {ArrayBuffer} arrayBuffer
+     * @return {object} The parsed PKM file including texture data.
+     */
     pkm: function (arrayBuffer)
     {
-
-        // PKM header structure
-        // ---------------------------------------
-        // address: 0, size 4 bytes: for 'PKM '
-        // address: 4, size 2 bytes: for version
-        // address: 6, size 2 bytes: for type
-        // address: 8, size 2 bytes: for extended width
-        // address: 10, size 2 bytes: for extended height
-        // address: 12, size 2 bytes: for original width
-        // address: 14, size 2 bytes: for original height
-        // address: 16, texture data
-        // ---------------------------------------
+        /*
+         * PKM header structure
+         * ---------------------------------------
+         * address: 0, size 4 bytes: for 'PKM '
+         * address: 4, size 2 bytes: for version
+         * address: 6, size 2 bytes: for type
+         * address: 8, size 2 bytes: for extended width
+         * address: 10, size 2 bytes: for extended height
+         * address: 12, size 2 bytes: for original width
+         * address: 14, size 2 bytes: for original height
+         * address: 16, texture data
+         * ---------------------------------------
+         */
         var byteArray = new Uint8Array(arrayBuffer),
             pkmHeader = null;
 
@@ -600,7 +590,6 @@ Phaser.LoaderParser = {
             byteArray[2] === 0x4D &&
             byteArray[3] === 0x20)
         {
-
             pkmHeader = {
                 complete: true,
                 fileFormat: 'PKM',
@@ -615,7 +604,6 @@ Phaser.LoaderParser = {
         }
 
         return pkmHeader;
-
     }
 
 };

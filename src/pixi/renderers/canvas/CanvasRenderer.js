@@ -12,10 +12,9 @@
  */
 PIXI.CanvasRenderer = function (game, config)
 {
-
     /**
-    * @property {Phaser.Game} game - A reference to the Phaser Game instance.
-    */
+     * @property {Phaser.Game} game - A reference to the Phaser Game instance.
+     */
     this.game = game;
 
     if (!PIXI.defaultRenderer)
@@ -149,7 +148,6 @@ PIXI.CanvasRenderer = function (game, config)
     this.mapBlendModes();
 
     this.resize(this.width, this.height);
-
 };
 
 // constructor
@@ -163,7 +161,6 @@ PIXI.CanvasRenderer.prototype.constructor = PIXI.CanvasRenderer;
  */
 PIXI.CanvasRenderer.prototype.render = function (root)
 {
-
     this.context.setTransform(1, 0, 0, 1, 0, 0);
 
     this.context.globalAlpha = 1;
@@ -194,15 +191,16 @@ PIXI.CanvasRenderer.prototype.render = function (root)
     }
 
     this.renderDisplayObject(root);
-
 };
 
 PIXI.CanvasRenderer.prototype.setTexturePriority = function ()
 {
 
-    //  Does nothing on Canvas, but here to allow you to simply set
-    //  `game.renderer.setTexturePriority()` without having to worry about
-    //  running in WebGL or not.
+    /*
+     *  Does nothing on Canvas, but here to allow you to simply set
+     *  `game.renderer.setTexturePriority()` without having to worry about
+     *  running in WebGL or not.
+     */
 
 };
 
@@ -214,7 +212,6 @@ PIXI.CanvasRenderer.prototype.setTexturePriority = function ()
  */
 PIXI.CanvasRenderer.prototype.destroy = function (removeView)
 {
-
     if (removeView === undefined) { removeView = true; }
 
     if (removeView && this.view.parent)
@@ -226,7 +223,6 @@ PIXI.CanvasRenderer.prototype.destroy = function (removeView)
     this.context = null;
     this.maskManager = null;
     this.renderSession = null;
-
 };
 
 /**
@@ -238,7 +234,6 @@ PIXI.CanvasRenderer.prototype.destroy = function (removeView)
  */
 PIXI.CanvasRenderer.prototype.resize = function (width, height)
 {
-
     this.width = width * this.resolution;
     this.height = height * this.resolution;
 
@@ -255,7 +250,6 @@ PIXI.CanvasRenderer.prototype.resize = function (width, height)
     {
         this.context[this.renderSession.smoothProperty] = (this.renderSession.scaleMode === PIXI.scaleModes.LINEAR);
     }
-
 };
 
 /**
@@ -269,11 +263,9 @@ PIXI.CanvasRenderer.prototype.resize = function (width, height)
  */
 PIXI.CanvasRenderer.prototype.renderDisplayObject = function (displayObject, context, matrix)
 {
-
     this.renderSession.context = context || this.context;
     this.renderSession.resolution = this.resolution;
     displayObject._renderCanvas(this.renderSession, matrix);
-
 };
 
 /**
@@ -284,7 +276,6 @@ PIXI.CanvasRenderer.prototype.renderDisplayObject = function (displayObject, con
  */
 PIXI.CanvasRenderer.prototype.mapBlendModes = function ()
 {
-
     if (!PIXI.blendModesCanvas)
     {
         var b = [];
@@ -311,5 +302,4 @@ PIXI.CanvasRenderer.prototype.mapBlendModes = function ()
 
         PIXI.blendModesCanvas = b;
     }
-
 };

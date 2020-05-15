@@ -16,11 +16,10 @@
  */
 Phaser.AudioSprite = function (game, key)
 {
-
     /**
-    * A reference to the currently running Game.
-    * @property {Phaser.Game} game
-    */
+     * A reference to the currently running Game.
+     * @property {Phaser.Game} game
+     */
     this.game = game;
 
     /**
@@ -70,7 +69,6 @@ Phaser.AudioSprite = function (game, key)
         this.play(this.autoplayKey);
         this.autoplay = this.sounds[this.autoplayKey];
     }
-
 };
 
 Phaser.AudioSprite.prototype = {
@@ -85,11 +83,9 @@ Phaser.AudioSprite.prototype = {
      */
     play: function (marker, volume)
     {
-
         if (volume === undefined) { volume = 1; }
 
         return this.sounds[marker].play(marker, null, volume);
-
     },
 
     /**
@@ -100,7 +96,6 @@ Phaser.AudioSprite.prototype = {
      */
     stop: function (marker)
     {
-
         if (!marker)
         {
             for (var key in this.sounds)
@@ -112,7 +107,6 @@ Phaser.AudioSprite.prototype = {
         {
             this.sounds[marker].stop();
         }
-
     },
 
     /**
@@ -124,9 +118,7 @@ Phaser.AudioSprite.prototype = {
      */
     get: function (marker)
     {
-
         return this.sounds[marker];
-
     }
 
 };

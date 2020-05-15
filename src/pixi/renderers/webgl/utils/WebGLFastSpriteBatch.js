@@ -9,12 +9,11 @@
  */
 
 /**
-* @class PIXI.WebGLFastSpriteBatch
-* @constructor
-*/
+ * @class PIXI.WebGLFastSpriteBatch
+ * @constructor
+ */
 PIXI.WebGLFastSpriteBatch = function (gl)
 {
-
     /**
      * @property vertSize
      * @type Number
@@ -232,7 +231,6 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
         gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
         PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
         if(!sprite.texture._uvs) { return; }
-
     }
 
     // sprite = children[i];
@@ -343,7 +341,6 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     vertices[index++] = textureIndex;
 
 
-
     // xy
     vertices[index++] = w1;
     vertices[index++] = h0;
@@ -418,7 +415,6 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function ()
 
     // increment the draw count
     this.renderSession.drawCount++;
-
 };
 
 
@@ -461,5 +457,4 @@ PIXI.WebGLFastSpriteBatch.prototype.start = function ()
     gl.vertexAttribPointer(this.shader.aTextureCoord, 2, gl.FLOAT, false, stride, 7 * 4);
     gl.vertexAttribPointer(this.shader.colorAttribute, 1, gl.FLOAT, false, stride, 9 * 4);
     gl.vertexAttribPointer(this.shader.aTextureIndex, 1, gl.FLOAT, false, stride, 10 * 4);
-
 };

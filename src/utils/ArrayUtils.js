@@ -1,32 +1,31 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* Utility functions for dealing with Arrays.
-*
-* @class Phaser.ArrayUtils
-* @static
-*/
+ * Utility functions for dealing with Arrays.
+ *
+ * @class Phaser.ArrayUtils
+ * @static
+ */
 Phaser.ArrayUtils = {
 
     /**
-    * Fetch a random entry from the given array.
-    *
-    * Will return null if there are no array items that fall within the specified range
-    * or if there is no item for the randomly chosen index.
-    *
-    * @method Phaser.ArrayUtils.getRandomItem
-    * @param {any[]} objects - An array of objects.
-    * @param {integer} startIndex - Optional offset off the front of the array. Default value is 0, or the beginning of the array.
-    * @param {integer} length - Optional restriction on the number of values you want to randomly select from.
-    * @return {object} The random object that was selected.
-    */
+     * Fetch a random entry from the given array.
+     *
+     * Will return null if there are no array items that fall within the specified range
+     * or if there is no item for the randomly chosen index.
+     *
+     * @method Phaser.ArrayUtils.getRandomItem
+     * @param {any[]} objects - An array of objects.
+     * @param {integer} startIndex - Optional offset off the front of the array. Default value is 0, or the beginning of the array.
+     * @param {integer} length - Optional restriction on the number of values you want to randomly select from.
+     * @return {object} The random object that was selected.
+     */
     getRandomItem: function (objects, startIndex, length)
     {
-
         if (objects === null) { return null; }
         if (startIndex === undefined) { startIndex = 0; }
         if (length === undefined) { length = objects.length; }
@@ -34,24 +33,22 @@ Phaser.ArrayUtils = {
         var randomIndex = startIndex + Math.floor(Math.random() * length);
 
         return objects[randomIndex] === undefined ? null : objects[randomIndex];
-
     },
 
     /**
-    * Removes a random object from the given array and returns it.
-    *
-    * Will return null if there are no array items that fall within the specified range
-    * or if there is no item for the randomly chosen index.
-    *
-    * @method Phaser.ArrayUtils.removeRandomItem
-    * @param {any[]} objects - An array of objects.
-    * @param {integer} startIndex - Optional offset off the front of the array. Default value is 0, or the beginning of the array.
-    * @param {integer} length - Optional restriction on the number of values you want to randomly select from.
-    * @return {object} The random object that was removed.
-    */
+     * Removes a random object from the given array and returns it.
+     *
+     * Will return null if there are no array items that fall within the specified range
+     * or if there is no item for the randomly chosen index.
+     *
+     * @method Phaser.ArrayUtils.removeRandomItem
+     * @param {any[]} objects - An array of objects.
+     * @param {integer} startIndex - Optional offset off the front of the array. Default value is 0, or the beginning of the array.
+     * @param {integer} length - Optional restriction on the number of values you want to randomly select from.
+     * @return {object} The random object that was removed.
+     */
     removeRandomItem: function (objects, startIndex, length)
     {
-
         if (objects == null)
         { // undefined or null
             return null;
@@ -70,25 +67,24 @@ Phaser.ArrayUtils = {
         {
             return null;
         }
-
     },
 
     /**
-    * Remove one or more items at the given index and reorder the array.
-    *
-    * The new array length will be `array.length - count`.
-    *
-    * This is an alternative to `array.splice(startIndex, count)`.
-    *
-    * @see https://github.com/mreinstein/remove-array-items
-    * @see https://gamealchemist.wordpress.com/2013/05/01/lets-get-those-javascript-arrays-to-work-fast/
-    *
-    * @method Phaser.ArrayUtils.remove
-    * @param {any[]} array
-    * @param {integer} startIndex
-    * @param {integer} [count=1]
-    * @return {any[]} The modified array.
-    */
+     * Remove one or more items at the given index and reorder the array.
+     *
+     * The new array length will be `array.length - count`.
+     *
+     * This is an alternative to `array.splice(startIndex, count)`.
+     *
+     * @see https://github.com/mreinstein/remove-array-items
+     * @see https://gamealchemist.wordpress.com/2013/05/01/lets-get-those-javascript-arrays-to-work-fast/
+     *
+     * @method Phaser.ArrayUtils.remove
+     * @param {any[]} array
+     * @param {integer} startIndex
+     * @param {integer} [count=1]
+     * @return {any[]} The modified array.
+     */
     remove: function (array, startIndex, count)
     {
         var length = array.length;
@@ -108,15 +104,14 @@ Phaser.ArrayUtils = {
     },
 
     /**
-    * A standard Fisher-Yates Array shuffle implementation which modifies the array in place.
-    *
-    * @method Phaser.ArrayUtils.shuffle
-    * @param {any[]} array - The array to shuffle.
-    * @return {any[]} The original array, now shuffled.
-    */
+     * A standard Fisher-Yates Array shuffle implementation which modifies the array in place.
+     *
+     * @method Phaser.ArrayUtils.shuffle
+     * @param {any[]} array - The array to shuffle.
+     * @return {any[]} The original array, now shuffled.
+     */
     shuffle: function (array)
     {
-
         for (var i = array.length - 1; i > 0; i--)
         {
             var j = Math.floor(Math.random() * (i + 1));
@@ -126,19 +121,17 @@ Phaser.ArrayUtils = {
         }
 
         return array;
-
     },
 
     /**
-    * Transposes the elements of the given matrix (array of arrays).
-    *
-    * @method Phaser.ArrayUtils.transposeMatrix
-    * @param {Array<any[]>} array - The matrix to transpose.
-    * @return {Array<any[]>} A new transposed matrix
-    */
+     * Transposes the elements of the given matrix (array of arrays).
+     *
+     * @method Phaser.ArrayUtils.transposeMatrix
+     * @param {Array<any[]>} array - The matrix to transpose.
+     * @return {Array<any[]>} A new transposed matrix
+     */
     transposeMatrix: function (array)
     {
-
         var sourceRowCount = array.length;
         var sourceColCount = array[0].length;
 
@@ -155,22 +148,20 @@ Phaser.ArrayUtils = {
         }
 
         return result;
-
     },
 
     /**
-    * Rotates the given matrix (array of arrays).
-    *
-    * Based on the routine from {@link http://jsfiddle.net/MrPolywhirl/NH42z/}.
-    *
-    * @method Phaser.ArrayUtils.rotateMatrix
-    * @param {Array<any[]>} matrix - The array to rotate; this matrix _may_ be altered.
-    * @param {number|string} direction - The amount to rotate: the rotation in degrees (90, -90, 270, -270, 180) or a string command ('rotateLeft', 'rotateRight' or 'rotate180').
-    * @return {Array<any[]>} The rotated matrix. The source matrix should be discarded for the returned matrix.
-    */
+     * Rotates the given matrix (array of arrays).
+     *
+     * Based on the routine from {@link http://jsfiddle.net/MrPolywhirl/NH42z/}.
+     *
+     * @method Phaser.ArrayUtils.rotateMatrix
+     * @param {Array<any[]>} matrix - The array to rotate; this matrix _may_ be altered.
+     * @param {number|string} direction - The amount to rotate: the rotation in degrees (90, -90, 270, -270, 180) or a string command ('rotateLeft', 'rotateRight' or 'rotate180').
+     * @return {Array<any[]>} The rotated matrix. The source matrix should be discarded for the returned matrix.
+     */
     rotateMatrix: function (matrix, direction)
     {
-
         if (typeof direction !== 'string')
         {
             direction = ((direction % 360) + 360) % 360;
@@ -197,21 +188,19 @@ Phaser.ArrayUtils = {
         }
 
         return matrix;
-
     },
 
     /**
-    * Snaps a value to the nearest value in a sorted numeric array.
-    * The result will always be in the range `[first_value, last_value]`.
-    *
-    * @method Phaser.ArrayUtils.findClosest
-    * @param {number} value - The search value
-    * @param {number[]} arr - The input array which _must_ be sorted.
-    * @return {number} The nearest value found.
-    */
+     * Snaps a value to the nearest value in a sorted numeric array.
+     * The result will always be in the range `[first_value, last_value]`.
+     *
+     * @method Phaser.ArrayUtils.findClosest
+     * @param {number} value - The search value
+     * @param {number[]} arr - The input array which _must_ be sorted.
+     * @return {number} The nearest value found.
+     */
     findClosest: function (value, arr)
     {
-
         if (!arr.length)
         {
             return NaN;
@@ -231,77 +220,71 @@ Phaser.ArrayUtils = {
         var high = (i < arr.length) ? arr[i] : Number.POSITIVE_INFINITY;
 
         return ((high - value) <= (value - low)) ? high : low;
-
     },
 
     /**
-    * Moves the element from the end of the array to the start, shifting all items in the process.
-    * The "rotation" happens to the right.
-    *
-    * Before: `[ A, B, C, D, E, F ]`
-    * After: `[ F, A, B, C, D, E ]`
-    *
-    * See also Phaser.ArrayUtils.rotateLeft.
-    *
-    * @method Phaser.ArrayUtils.rotateRight
-    * @param {any[]} array - The array to rotate. The array is modified.
-    * @return {any} The shifted value.
-    */
+     * Moves the element from the end of the array to the start, shifting all items in the process.
+     * The "rotation" happens to the right.
+     *
+     * Before: `[ A, B, C, D, E, F ]`
+     * After: `[ F, A, B, C, D, E ]`
+     *
+     * See also Phaser.ArrayUtils.rotateLeft.
+     *
+     * @method Phaser.ArrayUtils.rotateRight
+     * @param {any[]} array - The array to rotate. The array is modified.
+     * @return {any} The shifted value.
+     */
     rotateRight: function (array)
     {
-
         var s = array.pop();
         array.unshift(s);
 
         return s;
-
     },
 
     /**
-    * Moves the element from the start of the array to the end, shifting all items in the process.
-    * The "rotation" happens to the left.
-    *
-    * Before: `[ A, B, C, D, E, F ]`
-    * After: `[ B, C, D, E, F, A ]`
-    *
-    * See also Phaser.ArrayUtils.rotateRight
-    *
-    * @method Phaser.ArrayUtils.rotateLeft
-    * @param {any[]} array - The array to rotate. The array is modified.
-    * @return {any} The rotated value.
-    */
+     * Moves the element from the start of the array to the end, shifting all items in the process.
+     * The "rotation" happens to the left.
+     *
+     * Before: `[ A, B, C, D, E, F ]`
+     * After: `[ B, C, D, E, F, A ]`
+     *
+     * See also Phaser.ArrayUtils.rotateRight
+     *
+     * @method Phaser.ArrayUtils.rotateLeft
+     * @param {any[]} array - The array to rotate. The array is modified.
+     * @return {any} The rotated value.
+     */
     rotateLeft: function (array)
     {
-
         var s = array.shift();
         array.push(s);
 
         return s;
-
     },
 
     /**
-    * Create an array representing the inclusive range of numbers (usually integers) in `[start, end]` (or `[0, start]`, if `end` is omitted).
-    * This is equivalent to `numberArrayStep(start, 1 + end, 1)`.
-    *
-    * When exactly one argument is passed, it's used as `end` and 0 is used as `start`. The length of the result is (1 + end).
-    *
-    * ##### Examples
-    *
-    * ```javascript
-    * numberArray(3);    // -> [0, 1, 2, 3]
-    * numberArray(0, 3); // -> [0, 1, 2, 3]
-    * numberArray(1, 3); // -> [1, 2, 3]
-    * ```
-    *
-    * @method Phaser.ArrayUtils.numberArray
-    * @param {number} start - The minimum value the array starts with.
-    * @param {number} [end] - The maximum value the array contains.
-    * @return {number[]} The array of number values.
-    */
+     * Create an array representing the inclusive range of numbers (usually integers) in `[start, end]` (or `[0, start]`, if `end` is omitted).
+     * This is equivalent to `numberArrayStep(start, 1 + end, 1)`.
+     *
+     * When exactly one argument is passed, it's used as `end` and 0 is used as `start`. The length of the result is (1 + end).
+     *
+     * ##### Examples
+     *
+     * ```javascript
+     * numberArray(3);    // -> [0, 1, 2, 3]
+     * numberArray(0, 3); // -> [0, 1, 2, 3]
+     * numberArray(1, 3); // -> [1, 2, 3]
+     * ```
+     *
+     * @method Phaser.ArrayUtils.numberArray
+     * @param {number} start - The minimum value the array starts with.
+     * @param {number} [end] - The maximum value the array contains.
+     * @return {number[]} The array of number values.
+     */
     numberArray: function (start, end)
     {
-
         if (end === undefined || end === null)
         {
             end = start;
@@ -316,45 +299,43 @@ Phaser.ArrayUtils = {
         }
 
         return result;
-
     },
 
     /**
-    * Create an array of numbers (positive and/or negative) progressing from `start`
-    * up to but not including `end` by advancing by `step`.
-    *
-    * If `start` is less than `end` a zero-length range is created unless a negative `step` is specified.
-    *
-    * Certain values for `start` and `end` (eg. NaN/undefined/null) are currently coerced to 0;
-    * for forward compatibility make sure to pass in actual numbers.
-    *
-    * @method Phaser.ArrayUtils.numberArrayStep
-    * @param {number} start - The start of the range.
-    * @param {number} [end] - The end of the range.
-    * @param {number} [step=1] - The value to increment or decrement by.
-    * @returns {Array} Returns the new array of numbers.
-    * @example
-    * Phaser.ArrayUtils.numberArrayStep(4);
-    * // => [0, 1, 2, 3]
-    *
-    * Phaser.ArrayUtils.numberArrayStep(1, 5);
-    * // => [1, 2, 3, 4]
-    *
-    * Phaser.ArrayUtils.numberArrayStep(0, 20, 5);
-    * // => [0, 5, 10, 15]
-    *
-    * Phaser.ArrayUtils.numberArrayStep(0, -4, -1);
-    * // => [0, -1, -2, -3]
-    *
-    * Phaser.ArrayUtils.numberArrayStep(1, 4, 0);
-    * // => [1, 1, 1]
-    *
-    * Phaser.ArrayUtils.numberArrayStep(0);
-    * // => []
-    */
+     * Create an array of numbers (positive and/or negative) progressing from `start`
+     * up to but not including `end` by advancing by `step`.
+     *
+     * If `start` is less than `end` a zero-length range is created unless a negative `step` is specified.
+     *
+     * Certain values for `start` and `end` (eg. NaN/undefined/null) are currently coerced to 0;
+     * for forward compatibility make sure to pass in actual numbers.
+     *
+     * @method Phaser.ArrayUtils.numberArrayStep
+     * @param {number} start - The start of the range.
+     * @param {number} [end] - The end of the range.
+     * @param {number} [step=1] - The value to increment or decrement by.
+     * @returns {Array} Returns the new array of numbers.
+     * @example
+     * Phaser.ArrayUtils.numberArrayStep(4);
+     * // => [0, 1, 2, 3]
+     *
+     * Phaser.ArrayUtils.numberArrayStep(1, 5);
+     * // => [1, 2, 3, 4]
+     *
+     * Phaser.ArrayUtils.numberArrayStep(0, 20, 5);
+     * // => [0, 5, 10, 15]
+     *
+     * Phaser.ArrayUtils.numberArrayStep(0, -4, -1);
+     * // => [0, -1, -2, -3]
+     *
+     * Phaser.ArrayUtils.numberArrayStep(1, 4, 0);
+     * // => [1, 1, 1]
+     *
+     * Phaser.ArrayUtils.numberArrayStep(0);
+     * // => []
+     */
     numberArrayStep: function (start, end, step)
     {
-
         if (start === undefined || start === null) { start = 0; }
 
         if (end === undefined || end === null)
@@ -375,7 +356,6 @@ Phaser.ArrayUtils = {
         }
 
         return result;
-
     }
 
 };

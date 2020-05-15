@@ -1,42 +1,41 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* The Destroy component is responsible for destroying a Game Object.
-*
-* @class
-*/
+ * The Destroy component is responsible for destroying a Game Object.
+ *
+ * @class
+ */
 Phaser.Component.Destroy = function () {};
 
 Phaser.Component.Destroy.prototype = {
 
     /**
-    * As a Game Object runs through its destroy method this flag is set to true, 
-    * and can be checked in any sub-systems or plugins it is being destroyed from.
-    * @property {boolean} destroyPhase
-    * @readOnly
-    */
+     * As a Game Object runs through its destroy method this flag is set to true, 
+     * and can be checked in any sub-systems or plugins it is being destroyed from.
+     * @property {boolean} destroyPhase
+     * @readOnly
+     */
     destroyPhase: false,
 
     /**
-    * Destroys the Game Object. This removes it from its parent group, destroys the input, event and animation handlers if present
-    * and nulls its reference to `game`, freeing it up for garbage collection.
-    * 
-    * If this Game Object has the Events component it will also dispatch the `onDestroy` event.
-    *
-    * You can optionally also destroy the BaseTexture this Game Object is using. Be careful if you've
-    * more than one Game Object sharing the same BaseTexture.
-    *
-    * @method
-    * @param {boolean} [destroyChildren=true] - Should every child of this object have its destroy method called as well?
-    * @param {boolean} [destroyTexture=false] - Destroy the BaseTexture this Game Object is using? Note that if another Game Object is sharing the same BaseTexture it will invalidate it.
-    */
+     * Destroys the Game Object. This removes it from its parent group, destroys the input, event and animation handlers if present
+     * and nulls its reference to `game`, freeing it up for garbage collection.
+     *
+     * If this Game Object has the Events component it will also dispatch the `onDestroy` event.
+     *
+     * You can optionally also destroy the BaseTexture this Game Object is using. Be careful if you've
+     * more than one Game Object sharing the same BaseTexture.
+     *
+     * @method
+     * @param {boolean} [destroyChildren=true] - Should every child of this object have its destroy method called as well?
+     * @param {boolean} [destroyTexture=false] - Destroy the BaseTexture this Game Object is using? Note that if another Game Object is sharing the same BaseTexture it will invalidate it.
+     */
     destroy: function (destroyChildren, destroyTexture)
     {
-
         if (this.game === null || this.destroyPhase) { return; }
 
         if (destroyChildren === undefined) { destroyChildren = true; }
@@ -161,7 +160,6 @@ Phaser.Component.Destroy.prototype = {
 
         this.destroyPhase = false;
         this.pendingDestroy = false;
-
     }
 
 };

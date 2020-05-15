@@ -1,133 +1,122 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @author       Chad Engler <chad@pantherdev.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @author       Chad Engler <chad@pantherdev.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* Creates a Ellipse object. A curve on a plane surrounding two focal points.
-*
-* @class Phaser.Ellipse
-* @constructor
-* @param {number} [x=0] - The X coordinate of the upper-left corner of the framing rectangle of this ellipse.
-* @param {number} [y=0] - The Y coordinate of the upper-left corner of the framing rectangle of this ellipse.
-* @param {number} [width=0] - The overall width of this ellipse.
-* @param {number} [height=0] - The overall height of this ellipse.
-*/
+ * Creates a Ellipse object. A curve on a plane surrounding two focal points.
+ *
+ * @class Phaser.Ellipse
+ * @constructor
+ * @param {number} [x=0] - The X coordinate of the upper-left corner of the framing rectangle of this ellipse.
+ * @param {number} [y=0] - The Y coordinate of the upper-left corner of the framing rectangle of this ellipse.
+ * @param {number} [width=0] - The overall width of this ellipse.
+ * @param {number} [height=0] - The overall height of this ellipse.
+ */
 Phaser.Ellipse = function (x, y, width, height)
 {
-
     x = x || 0;
     y = y || 0;
     width = width || 0;
     height = height || 0;
 
     /**
-    * @property {number} x - The X coordinate of the upper-left corner of the framing rectangle of this ellipse.
-    */
+     * @property {number} x - The X coordinate of the upper-left corner of the framing rectangle of this ellipse.
+     */
     this.x = x;
 
     /**
-    * @property {number} y - The Y coordinate of the upper-left corner of the framing rectangle of this ellipse.
-    */
+     * @property {number} y - The Y coordinate of the upper-left corner of the framing rectangle of this ellipse.
+     */
     this.y = y;
 
     /**
-    * @property {number} width - The overall width of this ellipse.
-    */
+     * @property {number} width - The overall width of this ellipse.
+     */
     this.width = width;
 
     /**
-    * @property {number} height - The overall height of this ellipse.
-    */
+     * @property {number} height - The overall height of this ellipse.
+     */
     this.height = height;
 
     /**
-    * @property {number} type - The const type of this object.
-    * @readonly
-    */
+     * @property {number} type - The const type of this object.
+     * @readonly
+     */
     this.type = Phaser.ELLIPSE;
-
 };
 
 Phaser.Ellipse.prototype = {
 
     /**
-    * Sets the members of the Ellipse to the specified values.
-    * @method Phaser.Ellipse#setTo
-    * @param {number} x - The X coordinate of the upper-left corner of the framing rectangle of this ellipse.
-    * @param {number} y - The Y coordinate of the upper-left corner of the framing rectangle of this ellipse.
-    * @param {number} width - The overall width of this ellipse.
-    * @param {number} height - The overall height of this ellipse.
-    * @return {Phaser.Ellipse} This Ellipse object.
-    */
+     * Sets the members of the Ellipse to the specified values.
+     * @method Phaser.Ellipse#setTo
+     * @param {number} x - The X coordinate of the upper-left corner of the framing rectangle of this ellipse.
+     * @param {number} y - The Y coordinate of the upper-left corner of the framing rectangle of this ellipse.
+     * @param {number} width - The overall width of this ellipse.
+     * @param {number} height - The overall height of this ellipse.
+     * @return {Phaser.Ellipse} This Ellipse object.
+     */
     setTo: function (x, y, width, height)
     {
-
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
 
         return this;
-
     },
 
     /**
-    * Returns the framing rectangle of the ellipse as a Phaser.Rectangle object.
-    *
-    * @method Phaser.Ellipse#getBounds
-    * @return {Phaser.Rectangle} The bounds of the Ellipse.
-    */
+     * Returns the framing rectangle of the ellipse as a Phaser.Rectangle object.
+     *
+     * @method Phaser.Ellipse#getBounds
+     * @return {Phaser.Rectangle} The bounds of the Ellipse.
+     */
     getBounds: function ()
     {
-
         return new Phaser.Rectangle(this.x - this.width, this.y - this.height, this.width, this.height);
-
     },
 
     /**
-    * Copies the x, y, width and height properties from any given object to this Ellipse.
-    *
-    * @method Phaser.Ellipse#copyFrom
-    * @param {any} source - The object to copy from.
-    * @return {Phaser.Ellipse} This Ellipse object.
-    */
+     * Copies the x, y, width and height properties from any given object to this Ellipse.
+     *
+     * @method Phaser.Ellipse#copyFrom
+     * @param {any} source - The object to copy from.
+     * @return {Phaser.Ellipse} This Ellipse object.
+     */
     copyFrom: function (source)
     {
-
         return this.setTo(source.x, source.y, source.width, source.height);
-
     },
 
     /**
-    * Copies the x, y, width and height properties from this Ellipse to any given object.
-    * @method Phaser.Ellipse#copyTo
-    * @param {any} dest - The object to copy to.
-    * @return {object} This dest object.
-    */
+     * Copies the x, y, width and height properties from this Ellipse to any given object.
+     * @method Phaser.Ellipse#copyTo
+     * @param {any} dest - The object to copy to.
+     * @return {object} This dest object.
+     */
     copyTo: function (dest)
     {
-
         dest.x = this.x;
         dest.y = this.y;
         dest.width = this.width;
         dest.height = this.height;
 
         return dest;
-
     },
 
     /**
-    * Returns a new Ellipse object with the same values for the x, y, width, and height properties as this Ellipse object.
-    * @method Phaser.Ellipse#clone
-    * @param {Phaser.Ellipse} [output] - Optional Ellipse object. If given the values will be set into the object, otherwise a brand new Ellipse object will be created and returned.
-    * @return {Phaser.Ellipse} The cloned Ellipse object.
-    */
+     * Returns a new Ellipse object with the same values for the x, y, width, and height properties as this Ellipse object.
+     * @method Phaser.Ellipse#clone
+     * @param {Phaser.Ellipse} [output] - Optional Ellipse object. If given the values will be set into the object, otherwise a brand new Ellipse object will be created and returned.
+     * @return {Phaser.Ellipse} The cloned Ellipse object.
+     */
     clone: function (output)
     {
-
         if (output === undefined || output === null)
         {
             output = new Phaser.Ellipse(this.x, this.y, this.width, this.height);
@@ -138,35 +127,31 @@ Phaser.Ellipse.prototype = {
         }
 
         return output;
-
     },
 
     /**
-    * Return true if the given x/y coordinates are within this Ellipse object.
-    *
-    * @method Phaser.Ellipse#contains
-    * @param {number} x - The X value of the coordinate to test.
-    * @param {number} y - The Y value of the coordinate to test.
-    * @return {boolean} True if the coordinates are within this ellipse, otherwise false.
-    */
+     * Return true if the given x/y coordinates are within this Ellipse object.
+     *
+     * @method Phaser.Ellipse#contains
+     * @param {number} x - The X value of the coordinate to test.
+     * @param {number} y - The Y value of the coordinate to test.
+     * @return {boolean} True if the coordinates are within this ellipse, otherwise false.
+     */
     contains: function (x, y)
     {
-
         return Phaser.Ellipse.contains(this, x, y);
-
     },
 
     /**
-    * Returns a uniformly distributed random point from anywhere within this Ellipse.
-    *
-    * @method Phaser.Ellipse#random
-    * @param {Phaser.Point|object} [out] - A Phaser.Point, or any object with public x/y properties, that the values will be set in.
-    *     If no object is provided a new Phaser.Point object will be created. In high performance areas avoid this by re-using an existing object.
-    * @return {Phaser.Point} An object containing the random point in its `x` and `y` properties.
-    */
+     * Returns a uniformly distributed random point from anywhere within this Ellipse.
+     *
+     * @method Phaser.Ellipse#random
+     * @param {Phaser.Point|object} [out] - A Phaser.Point, or any object with public x/y properties, that the values will be set in.
+     *     If no object is provided a new Phaser.Point object will be created. In high performance areas avoid this by re-using an existing object.
+     * @return {Phaser.Point} An object containing the random point in its `x` and `y` properties.
+     */
     random: function (out)
     {
-
         if (out === undefined) { out = new Phaser.Point(); }
 
         var p = Math.random() * Math.PI * 2;
@@ -176,14 +161,13 @@ Phaser.Ellipse.prototype = {
         out.y = this.centerY + 0.5 * r * Math.sin(p) * this.height;
 
         return out;
-
     },
 
     /**
-    * Returns a string representation of this object.
-    * @method Phaser.Ellipse#toString
-    * @return {string} A string representation of the instance.
-    */
+     * Returns a string representation of this object.
+     * @method Phaser.Ellipse#toString
+     * @return {string} A string representation of the instance.
+     */
     toString: function ()
     {
         return '[{Phaser.Ellipse (x=' + this.x + ' y=' + this.y + ' width=' + this.width + ' height=' + this.height + ')}]';
@@ -194,10 +178,10 @@ Phaser.Ellipse.prototype = {
 Phaser.Ellipse.prototype.constructor = Phaser.Ellipse;
 
 /**
-* The left coordinate of the Ellipse. The same as the X coordinate.
-* @name Phaser.Ellipse#left
-* @propety {number} left - Gets or sets the value of the leftmost point of the ellipse.
-*/
+ * The left coordinate of the Ellipse. The same as the X coordinate.
+ * @name Phaser.Ellipse#left
+ * @propety {number} left - Gets or sets the value of the leftmost point of the ellipse.
+ */
 Object.defineProperty(Phaser.Ellipse.prototype, 'left', {
 
     get: function ()
@@ -207,18 +191,16 @@ Object.defineProperty(Phaser.Ellipse.prototype, 'left', {
 
     set: function (value)
     {
-
         this.x = value;
-
     }
 
 });
 
 /**
-* The x coordinate of the rightmost point of the Ellipse. Changing the right property of an Ellipse object has no effect on the x property, but does adjust the width.
-* @name Phaser.Ellipse#right
-* @property {number} right - Gets or sets the value of the rightmost point of the ellipse.
-*/
+ * The x coordinate of the rightmost point of the Ellipse. Changing the right property of an Ellipse object has no effect on the x property, but does adjust the width.
+ * @name Phaser.Ellipse#right
+ * @property {number} right - Gets or sets the value of the rightmost point of the ellipse.
+ */
 Object.defineProperty(Phaser.Ellipse.prototype, 'right', {
 
     get: function ()
@@ -228,7 +210,6 @@ Object.defineProperty(Phaser.Ellipse.prototype, 'right', {
 
     set: function (value)
     {
-
         if (value < this.x)
         {
             this.width = 0;
@@ -242,10 +223,10 @@ Object.defineProperty(Phaser.Ellipse.prototype, 'right', {
 });
 
 /**
-* The top of the Ellipse. The same as its y property.
-* @name Phaser.Ellipse#top
-* @property {number} top - Gets or sets the top of the ellipse.
-*/
+ * The top of the Ellipse. The same as its y property.
+ * @name Phaser.Ellipse#top
+ * @property {number} top - Gets or sets the top of the ellipse.
+ */
 Object.defineProperty(Phaser.Ellipse.prototype, 'top', {
 
     get: function ()
@@ -261,10 +242,10 @@ Object.defineProperty(Phaser.Ellipse.prototype, 'top', {
 });
 
 /**
-* The sum of the y and height properties. Changing the bottom property of an Ellipse doesn't adjust the y property, but does change the height.
-* @name Phaser.Ellipse#bottom
-* @property {number} bottom - Gets or sets the bottom of the ellipse.
-*/
+ * The sum of the y and height properties. Changing the bottom property of an Ellipse doesn't adjust the y property, but does change the height.
+ * @name Phaser.Ellipse#bottom
+ * @property {number} bottom - Gets or sets the bottom of the ellipse.
+ */
 Object.defineProperty(Phaser.Ellipse.prototype, 'bottom', {
 
     get: function ()
@@ -274,7 +255,6 @@ Object.defineProperty(Phaser.Ellipse.prototype, 'bottom', {
 
     set: function (value)
     {
-
         if (value < this.y)
         {
             this.height = 0;
@@ -288,11 +268,11 @@ Object.defineProperty(Phaser.Ellipse.prototype, 'bottom', {
 });
 
 /**
-* The x coordinate of the center of the Ellipse.
-* @name Phaser.Ellipse#centerX
-* @property {number} centerX
-* @readonly
-*/
+ * The x coordinate of the center of the Ellipse.
+ * @name Phaser.Ellipse#centerX
+ * @property {number} centerX
+ * @readonly
+ */
 Object.defineProperty(Phaser.Ellipse.prototype, 'centerX', {
 
     get: function ()
@@ -303,11 +283,11 @@ Object.defineProperty(Phaser.Ellipse.prototype, 'centerX', {
 });
 
 /**
-* The y coordinate of the center of the Ellipse.
-* @name Phaser.Ellipse#centerY
-* @property {number} centerY
-* @readonly
-*/
+ * The y coordinate of the center of the Ellipse.
+ * @name Phaser.Ellipse#centerY
+ * @property {number} centerY
+ * @readonly
+ */
 Object.defineProperty(Phaser.Ellipse.prototype, 'centerY', {
 
     get: function ()
@@ -318,11 +298,11 @@ Object.defineProperty(Phaser.Ellipse.prototype, 'centerY', {
 });
 
 /**
-* Determines whether or not this Ellipse object is empty. Will return a value of true if the Ellipse objects dimensions are less than or equal to 0; otherwise false.
-* If set to true it will reset all of the Ellipse objects properties to 0. An Ellipse object is empty if its width or height is less than or equal to 0.
-* @name Phaser.Ellipse#empty
-* @property {boolean} empty - Gets or sets the empty state of the ellipse.
-*/
+ * Determines whether or not this Ellipse object is empty. Will return a value of true if the Ellipse objects dimensions are less than or equal to 0; otherwise false.
+ * If set to true it will reset all of the Ellipse objects properties to 0. An Ellipse object is empty if its width or height is less than or equal to 0.
+ * @name Phaser.Ellipse#empty
+ * @property {boolean} empty - Gets or sets the empty state of the ellipse.
+ */
 Object.defineProperty(Phaser.Ellipse.prototype, 'empty', {
 
     get: function ()
@@ -332,28 +312,25 @@ Object.defineProperty(Phaser.Ellipse.prototype, 'empty', {
 
     set: function (value)
     {
-
         if (value === true)
         {
             this.setTo(0, 0, 0, 0);
         }
-
     }
 
 });
 
 /**
-* Return true if the given x/y coordinates are within the Ellipse object.
-*
-* @method Phaser.Ellipse.contains
-* @param {Phaser.Ellipse} a - The Ellipse to be checked.
-* @param {number} x - The X value of the coordinate to test.
-* @param {number} y - The Y value of the coordinate to test.
-* @return {boolean} True if the coordinates are within this ellipse, otherwise false.
-*/
+ * Return true if the given x/y coordinates are within the Ellipse object.
+ *
+ * @method Phaser.Ellipse.contains
+ * @param {Phaser.Ellipse} a - The Ellipse to be checked.
+ * @param {number} x - The X value of the coordinate to test.
+ * @param {number} y - The Y value of the coordinate to test.
+ * @return {boolean} True if the coordinates are within this ellipse, otherwise false.
+ */
 Phaser.Ellipse.contains = function (a, x, y)
 {
-
     if (a.width <= 0 || a.height <= 0)
     {
         return false;
@@ -367,17 +344,16 @@ Phaser.Ellipse.contains = function (a, x, y)
     normy *= normy;
 
     return (normx + normy < 0.25);
-
 };
 
 /**
-* Checks if the given Ellipse and Line objects intersect.
-* @method Phaser.Ellipse.intersectsLine
-* @param {Phaser.Ellipse} e - The Ellipse object to test.
-* @param {Phaser.Line} l - The Line object to test.
-* @param {boolean} [returnPoints] - optional Array Object, Return an array of intersection points if true, otherwise return boolean.
-* @return {boolean} True if the two objects intersect, otherwise false.
-*/
+ * Checks if the given Ellipse and Line objects intersect.
+ * @method Phaser.Ellipse.intersectsLine
+ * @param {Phaser.Ellipse} e - The Ellipse object to test.
+ * @param {Phaser.Line} l - The Line object to test.
+ * @param {boolean} [returnPoints] - optional Array Object, Return an array of intersection points if true, otherwise return boolean.
+ * @return {boolean} True if the two objects intersect, otherwise false.
+ */
 Phaser.Ellipse.intersectsLine = function (e, l, returnPoints)
 {
     var h = e.x;

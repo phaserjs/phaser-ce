@@ -4,10 +4,10 @@
  */
 
 /**
-* @class PIXI.PixiShader
-* @constructor
-* @param gl {WebGLContext} the current WebGL drawing context
-*/
+ * @class PIXI.PixiShader
+ * @constructor
+ * @param gl {WebGLContext} the current WebGL drawing context
+ */
 PIXI.PixiShader = function (gl)
 {
     /**
@@ -92,12 +92,16 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
         'varying float vTextureIndex;',
         'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
 
-        // Blue color means that you are trying to bound
-        // a texture out of the limits of the hardware.
+        /*
+         * Blue color means that you are trying to bound
+         * a texture out of the limits of the hardware.
+         */
         'const vec4 BLUE = vec4(1.0, 0.0, 1.0, 1.0);',
 
-        // If you get a red color means you are out of memory
-        // or in some way corrupted the vertex buffer.
+        /*
+         * If you get a red color means you are out of memory
+         * or in some way corrupted the vertex buffer.
+         */
         'const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);',
         'void main(void) {',
         dynamicIfs,
@@ -110,8 +114,10 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
 
     gl.useProgram(program);
 
-    // get and store the uniforms for the shader
-    // this.uSampler = gl.getUniformLocation(program, 'uSampler');
+    /*
+     * get and store the uniforms for the shader
+     * this.uSampler = gl.getUniformLocation(program, 'uSampler');
+     */
     this.uSamplerArray = gl.getUniformLocation(program, 'uSamplerArray[0]');
     this.projectionVector = gl.getUniformLocation(program, 'projectionVector');
     this.offsetVector = gl.getUniformLocation(program, 'offsetVector');
@@ -141,10 +147,12 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
 
     // Begin worst hack eva //
 
-    // WHY??? ONLY on my chrome pixel the line above returns -1 when using filters?
-    // maybe its something to do with the current state of the gl context.
-    // I'm convinced this is a bug in the chrome browser as there is NO reason why this should be returning -1 especially as it only manifests on my chrome pixel
-    // If theres any webGL people that know why could happen please help :)
+    /*
+     * WHY??? ONLY on my chrome pixel the line above returns -1 when using filters?
+     * maybe its something to do with the current state of the gl context.
+     * I'm convinced this is a bug in the chrome browser as there is NO reason why this should be returning -1 especially as it only manifests on my chrome pixel
+     * If theres any webGL people that know why could happen please help :)
+     */
     if(this.colorAttribute === -1)
     {
         this.colorAttribute = 2;
@@ -168,7 +176,6 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
 
 PIXI.PixiShader.prototype.initDefaultShader = function ()
 {
-
     if (this.fragmentSrc === null)
     {
         this.fragmentSrc = [
@@ -204,10 +211,12 @@ PIXI.PixiShader.prototype.initDefaultShader = function ()
 
     // Begin worst hack eva //
 
-    // WHY??? ONLY on my chrome pixel the line above returns -1 when using filters?
-    // maybe its something to do with the current state of the gl context.
-    // I'm convinced this is a bug in the chrome browser as there is NO reason why this should be returning -1 especially as it only manifests on my chrome pixel
-    // If theres any webGL people that know why could happen please help :)
+    /*
+     * WHY??? ONLY on my chrome pixel the line above returns -1 when using filters?
+     * maybe its something to do with the current state of the gl context.
+     * I'm convinced this is a bug in the chrome browser as there is NO reason why this should be returning -1 especially as it only manifests on my chrome pixel
+     * If theres any webGL people that know why could happen please help :)
+     */
     if(this.colorAttribute === -1)
     {
         this.colorAttribute = 2;
@@ -230,10 +239,10 @@ PIXI.PixiShader.prototype.initDefaultShader = function ()
 };
 
 /**
-* Initialises the shader.
-*
-* @method PIXI.PixiShader#init
-*/
+ * Initialises the shader.
+ *
+ * @method PIXI.PixiShader#init
+ */
 PIXI.PixiShader.prototype.init = function (usingFilter)
 {
     if (PIXI._enableMultiTextureToggle && !usingFilter)
@@ -247,13 +256,13 @@ PIXI.PixiShader.prototype.init = function (usingFilter)
 };
 
 /**
-* Initialises the shader uniform values.
-*
-* Uniforms are specified in the GLSL_ES Specification: http://www.khronos.org/registry/webgl/specs/latest/1.0/
-* http://www.khronos.org/registry/gles/specs/2.0/GLSL_ES_Specification_1.0.17.pdf
-*
-* @method PIXI.PixiShader#initUniforms
-*/
+ * Initialises the shader uniform values.
+ *
+ * Uniforms are specified in the GLSL_ES Specification: http://www.khronos.org/registry/webgl/specs/latest/1.0/
+ * http://www.khronos.org/registry/gles/specs/2.0/GLSL_ES_Specification_1.0.17.pdf
+ *
+ * @method PIXI.PixiShader#initUniforms
+ */
 PIXI.PixiShader.prototype.initUniforms = function ()
 {
     this.textureCount = 1;
@@ -317,14 +326,13 @@ PIXI.PixiShader.prototype.initUniforms = function ()
             }
         }
     }
-
 };
 
 /**
-* Initialises a Sampler2D uniform (which may only be available later on after initUniforms once the texture has loaded)
-*
-* @method PIXI.PixiShader#initSampler2D
-*/
+ * Initialises a Sampler2D uniform (which may only be available later on after initUniforms once the texture has loaded)
+ *
+ * @method PIXI.PixiShader#initSampler2D
+ */
 PIXI.PixiShader.prototype.initSampler2D = function (uniform)
 {
     if (!uniform.value || !uniform.value.baseTexture || !uniform.value.baseTexture.hasLoaded)
@@ -343,15 +351,19 @@ PIXI.PixiShader.prototype.initSampler2D = function (uniform)
     {
         var data = uniform.textureData;
 
-        // GLTexture = mag linear, min linear_mipmap_linear, wrap repeat + gl.generateMipmap(gl.TEXTURE_2D);
-        // GLTextureLinear = mag/min linear, wrap clamp
-        // GLTextureNearestRepeat = mag/min NEAREST, wrap repeat
-        // GLTextureNearest = mag/min nearest, wrap clamp
-        // AudioTexture = whatever + luminance + width 512, height 2, border 0
-        // KeyTexture = whatever + luminance + width 256, height 2, border 0
+        /*
+         * GLTexture = mag linear, min linear_mipmap_linear, wrap repeat + gl.generateMipmap(gl.TEXTURE_2D);
+         * GLTextureLinear = mag/min linear, wrap clamp
+         * GLTextureNearestRepeat = mag/min NEAREST, wrap repeat
+         * GLTextureNearest = mag/min nearest, wrap clamp
+         * AudioTexture = whatever + luminance + width 512, height 2, border 0
+         * KeyTexture = whatever + luminance + width 256, height 2, border 0
+         */
 
-        //  magFilter can be: gl.LINEAR, gl.LINEAR_MIPMAP_LINEAR or gl.NEAREST
-        //  wrapS/T can be: gl.CLAMP_TO_EDGE or gl.REPEAT
+        /*
+         *  magFilter can be: gl.LINEAR, gl.LINEAR_MIPMAP_LINEAR or gl.NEAREST
+         *  wrapS/T can be: gl.CLAMP_TO_EDGE or gl.REPEAT
+         */
 
         var magFilter = (data.magFilter) ? data.magFilter : gl.LINEAR;
         var minFilter = (data.minFilter) ? data.minFilter : gl.LINEAR;
@@ -393,14 +405,13 @@ PIXI.PixiShader.prototype.initSampler2D = function (uniform)
     uniform._init = true;
 
     this.textureCount++;
-
 };
 
 /**
-* Updates the shader uniform values.
-*
-* @method PIXI.PixiShader#syncUniforms
-*/
+ * Updates the shader uniform values.
+ *
+ * @method PIXI.PixiShader#syncUniforms
+ */
 PIXI.PixiShader.prototype.syncUniforms = function ()
 {
     this.textureCount = 1;
@@ -460,14 +471,13 @@ PIXI.PixiShader.prototype.syncUniforms = function ()
             }
         }
     }
-
 };
 
 /**
-* Destroys the shader.
-*
-* @method PIXI.PixiShader#destroy
-*/
+ * Destroys the shader.
+ *
+ * @method PIXI.PixiShader#destroy
+ */
 PIXI.PixiShader.prototype.destroy = function ()
 {
     this.gl.deleteProgram(this.program);
@@ -478,11 +488,11 @@ PIXI.PixiShader.prototype.destroy = function ()
 };
 
 /**
-* The Default Vertex shader source.
-*
-* @property defaultVertexSrc
-* @type String
-*/
+ * The Default Vertex shader source.
+ *
+ * @property defaultVertexSrc
+ * @type String
+ */
 PIXI.PixiShader.defaultVertexSrc = [
     '// PixiShader Vertex Shader',
     '// With multi-texture rendering',

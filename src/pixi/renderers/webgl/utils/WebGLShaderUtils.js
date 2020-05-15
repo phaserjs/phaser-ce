@@ -3,47 +3,47 @@
  */
 
 /**
-* @method PIXI.initDefaultShaders
-* @static
-* @private
-*/
+ * @method PIXI.initDefaultShaders
+ * @static
+ * @private
+ */
 PIXI.initDefaultShaders = function ()
 {
 };
 
 /**
-* @method PIXI.CompileVertexShader
-* @static
-* @param gl {WebGLContext} the current WebGL drawing context
-* @param shaderSrc {Array}
-* @return {Any}
-*/
+ * @method PIXI.CompileVertexShader
+ * @static
+ * @param gl {WebGLContext} the current WebGL drawing context
+ * @param shaderSrc {Array}
+ * @return {Any}
+ */
 PIXI.CompileVertexShader = function (gl, shaderSrc)
 {
     return PIXI._CompileShader(gl, shaderSrc, gl.VERTEX_SHADER);
 };
 
 /**
-* @method PIXI.CompileFragmentShader
-* @static
-* @param gl {WebGLContext} the current WebGL drawing context
-* @param shaderSrc {Array}
-* @return {Any}
-*/
+ * @method PIXI.CompileFragmentShader
+ * @static
+ * @param gl {WebGLContext} the current WebGL drawing context
+ * @param shaderSrc {Array}
+ * @return {Any}
+ */
 PIXI.CompileFragmentShader = function (gl, shaderSrc)
 {
     return PIXI._CompileShader(gl, shaderSrc, gl.FRAGMENT_SHADER);
 };
 
 /**
-* @method PIXI._CompileShader
-* @static
-* @private
-* @param gl {WebGLContext} the current WebGL drawing context
-* @param shaderSrc {Array}
-* @param shaderType {Number}
-* @return {Any}
-*/
+ * @method PIXI._CompileShader
+ * @static
+ * @private
+ * @param gl {WebGLContext} the current WebGL drawing context
+ * @param shaderSrc {Array}
+ * @param shaderType {Number}
+ * @return {Any}
+ */
 PIXI._CompileShader = function (gl, shaderSrc, shaderType)
 {
     var src = shaderSrc;
@@ -67,13 +67,13 @@ PIXI._CompileShader = function (gl, shaderSrc, shaderType)
 };
 
 /**
-* @method PIXI.compileProgram
-* @static
-* @param gl {WebGLContext} the current WebGL drawing context
-* @param vertexSrc {Array}
-* @param fragmentSrc {Array}
-* @return {Any}
-*/
+ * @method PIXI.compileProgram
+ * @static
+ * @param gl {WebGLContext} the current WebGL drawing context
+ * @param vertexSrc {Array}
+ * @param fragmentSrc {Array}
+ * @return {Any}
+ */
 PIXI.compileProgram = function (gl, vertexSrc, fragmentSrc)
 {
     var fragmentShader = PIXI.CompileFragmentShader(gl, fragmentSrc);

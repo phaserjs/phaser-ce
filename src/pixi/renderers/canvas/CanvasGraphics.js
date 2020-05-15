@@ -196,7 +196,6 @@ PIXI.CanvasGraphics.renderGraphics = function (graphics, context)
             }
         }
     }
-
 };
 
 /**
@@ -226,7 +225,6 @@ PIXI.CanvasGraphics.renderGraphicsMask = function (graphics, context)
 
         if (data.type === Phaser.POLYGON)
         {
-
             var points = shape.points;
 
             context.moveTo(points[0], points[1]);
@@ -241,7 +239,6 @@ PIXI.CanvasGraphics.renderGraphicsMask = function (graphics, context)
             {
                 context.closePath();
             }
-
         }
         else if (data.type === Phaser.RECTANGLE)
         {
@@ -256,7 +253,6 @@ PIXI.CanvasGraphics.renderGraphicsMask = function (graphics, context)
         }
         else if (data.type === Phaser.ELLIPSE)
         {
-
             // ellipse code taken from: http://stackoverflow.com/questions/2172798/how-to-draw-an-oval-in-html5-canvas
 
             var w = shape.width * 2;
@@ -282,7 +278,6 @@ PIXI.CanvasGraphics.renderGraphicsMask = function (graphics, context)
         }
         else if (data.type === Phaser.ROUNDEDRECTANGLE)
         {
-
             var rx = shape.x;
             var ry = shape.y;
             var width = shape.width;
@@ -326,7 +321,5 @@ PIXI.CanvasGraphics.updateGraphicsTint = function (graphics)
 
         data._fillTint = (((fillColor >> 16 & 0xFF) / 255 * tintR * 255 << 16) + ((fillColor >> 8 & 0xFF) / 255 * tintG * 255 << 8) + (fillColor & 0xFF) / 255 * tintB * 255);
         data._lineTint = (((lineColor >> 16 & 0xFF) / 255 * tintR * 255 << 16) + ((lineColor >> 8 & 0xFF) / 255 * tintG * 255 << 8) + (lineColor & 0xFF) / 255 * tintB * 255);
-
     }
-
 };

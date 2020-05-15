@@ -14,7 +14,6 @@
 
 Phaser.GraphicsData = function (lineWidth, lineColor, lineAlpha, fillColor, fillAlpha, fill, shape)
 {
-
     /*
      * @member {number} the width of the line to draw
      */
@@ -64,7 +63,6 @@ Phaser.GraphicsData = function (lineWidth, lineColor, lineAlpha, fillColor, fill
      * @member {number} The type of the shape, see the Const.Shapes file for all the existing types,
      */
     this.type = shape.type;
-
 };
 
 Phaser.GraphicsData.prototype.constructor = Phaser.GraphicsData;
@@ -76,7 +74,6 @@ Phaser.GraphicsData.prototype.constructor = Phaser.GraphicsData;
  */
 Phaser.GraphicsData.prototype.clone = function ()
 {
-
     return new Phaser.GraphicsData(
         this.lineWidth,
         this.lineColor,
@@ -86,5 +83,4 @@ Phaser.GraphicsData.prototype.clone = function ()
         this.fill,
         this.shape
     );
-
 };

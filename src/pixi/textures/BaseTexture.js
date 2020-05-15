@@ -136,7 +136,6 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      * @private
      */
     this._powerOf2 = false;
-
 };
 
 PIXI.BaseTexture.prototype.constructor = PIXI.BaseTexture;
@@ -208,7 +207,6 @@ PIXI.BaseTexture.prototype.unloadFromGPU = function ()
         {
             gl.deleteTexture(glTexture);
         }
-
     }
 
     this._glTextures.length = 0;

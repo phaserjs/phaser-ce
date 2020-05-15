@@ -1,41 +1,40 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* The Arcade Physics Tile map collision methods.
-*
-* These are mixed into {@link Phaser.Physics.Arcade}.
-*
-* @class Phaser.Physics.Arcade.TilemapCollision
-* @constructor
-*/
+ * The Arcade Physics Tile map collision methods.
+ *
+ * These are mixed into {@link Phaser.Physics.Arcade}.
+ *
+ * @class Phaser.Physics.Arcade.TilemapCollision
+ * @constructor
+ */
 Phaser.Physics.Arcade.TilemapCollision = function () {};
 
 Phaser.Physics.Arcade.TilemapCollision.prototype = {
 
     /**
-    * @property {number} TILE_BIAS - A value added to the delta values during collision with tiles. The best value probably depends on your tile size. Increase it if sprites are tunneling; decrease it if sprites are flipping across tile edges.
-    */
+     * @property {number} TILE_BIAS - A value added to the delta values during collision with tiles. The best value probably depends on your tile size. Increase it if sprites are tunneling; decrease it if sprites are flipping across tile edges.
+     */
     TILE_BIAS: 16,
 
     /**
-    * An internal function. Use Phaser.Physics.Arcade.collide instead.
-    *
-    * @method Phaser.Physics.Arcade#collideSpriteVsTilemapLayer
-    * @private
-    * @param {Phaser.Sprite} sprite - The sprite to check.
-    * @param {Phaser.TilemapLayer} tilemapLayer - The layer to check.
-    * @param {function} collideCallback - An optional callback function that is called if the objects collide. The two objects will be passed to this function in the same order in which you specified them.
-    * @param {function} processCallback - A callback function that lets you perform additional checks against the two objects if they overlap. If this is set then collision will only happen if processCallback returns true. The two objects will be passed to this function in the same order in which you specified them.
-    * @param {object} callbackContext - The context in which to run the callbacks.
-    * @param {boolean} overlapOnly - Just run an overlap or a full collision.
-    */
+     * An internal function. Use Phaser.Physics.Arcade.collide instead.
+     *
+     * @method Phaser.Physics.Arcade#collideSpriteVsTilemapLayer
+     * @private
+     * @param {Phaser.Sprite} sprite - The sprite to check.
+     * @param {Phaser.TilemapLayer} tilemapLayer - The layer to check.
+     * @param {function} collideCallback - An optional callback function that is called if the objects collide. The two objects will be passed to this function in the same order in which you specified them.
+     * @param {function} processCallback - A callback function that lets you perform additional checks against the two objects if they overlap. If this is set then collision will only happen if processCallback returns true. The two objects will be passed to this function in the same order in which you specified them.
+     * @param {object} callbackContext - The context in which to run the callbacks.
+     * @param {boolean} overlapOnly - Just run an overlap or a full collision.
+     */
     collideSpriteVsTilemapLayer: function (sprite, tilemapLayer, collideCallback, processCallback, callbackContext, overlapOnly)
     {
-
         if (!sprite.body)
         {
             return;
@@ -81,24 +80,22 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
                 }
             }
         }
-
     },
 
     /**
-    * An internal function. Use Phaser.Physics.Arcade.collide instead.
-    *
-    * @private
-    * @method Phaser.Physics.Arcade#collideGroupVsTilemapLayer
-    * @param {Phaser.Group} group - The Group to check.
-    * @param {Phaser.TilemapLayer} tilemapLayer - The layer to check.
-    * @param {function} collideCallback - An optional callback function that is called if the objects collide. The two objects will be passed to this function in the same order in which you specified them.
-    * @param {function} processCallback - A callback function that lets you perform additional checks against the two objects if they overlap. If this is set then collision will only happen if processCallback returns true. The two objects will be passed to this function in the same order in which you specified them.
-    * @param {object} callbackContext - The context in which to run the callbacks.
-    * @param {boolean} overlapOnly - Just run an overlap or a full collision.
-    */
+     * An internal function. Use Phaser.Physics.Arcade.collide instead.
+     *
+     * @private
+     * @method Phaser.Physics.Arcade#collideGroupVsTilemapLayer
+     * @param {Phaser.Group} group - The Group to check.
+     * @param {Phaser.TilemapLayer} tilemapLayer - The layer to check.
+     * @param {function} collideCallback - An optional callback function that is called if the objects collide. The two objects will be passed to this function in the same order in which you specified them.
+     * @param {function} processCallback - A callback function that lets you perform additional checks against the two objects if they overlap. If this is set then collision will only happen if processCallback returns true. The two objects will be passed to this function in the same order in which you specified them.
+     * @param {object} callbackContext - The context in which to run the callbacks.
+     * @param {boolean} overlapOnly - Just run an overlap or a full collision.
+     */
     collideGroupVsTilemapLayer: function (group, tilemapLayer, collideCallback, processCallback, callbackContext, overlapOnly)
     {
-
         if (group.length === 0)
         {
             return;
@@ -111,22 +108,20 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
                 this.collideSpriteVsTilemapLayer(group.children[i], tilemapLayer, collideCallback, processCallback, callbackContext, overlapOnly);
             }
         }
-
     },
 
     /**
-    * The core separation function to separate a physics body and a tile.
-    *
-    * @private
-    * @method Phaser.Physics.Arcade#separateTile
-    * @param {Phaser.Physics.Arcade.Body} body - The Body object to separate.
-    * @param {Phaser.Tile} tile - The tile to collide against.
-    * @param {Phaser.TilemapLayer} tilemapLayer - The tilemapLayer to collide against.
-    * @return {boolean} Returns true if the body was separated, otherwise false.
-    */
+     * The core separation function to separate a physics body and a tile.
+     *
+     * @private
+     * @method Phaser.Physics.Arcade#separateTile
+     * @param {Phaser.Physics.Arcade.Body} body - The Body object to separate.
+     * @param {Phaser.Tile} tile - The tile to collide against.
+     * @param {Phaser.TilemapLayer} tilemapLayer - The tilemapLayer to collide against.
+     * @return {boolean} Returns true if the body was separated, otherwise false.
+     */
     separateTile: function (i, body, tile, tilemapLayer, overlapOnly)
     {
-
         if (!body.enable)
         {
             return false;
@@ -229,22 +224,20 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
         }
 
         return (ox !== 0 || oy !== 0);
-
     },
 
     /**
-    * Check the body against the given tile on the X axis.
-    *
-    * @private
-    * @method Phaser.Physics.Arcade#tileCheckX
-    * @param {Phaser.Physics.Arcade.Body} body - The Body object to separate.
-    * @param {Phaser.Tile} tile - The tile to check.
-    * @param {Phaser.TilemapLayer} tilemapLayer - The tilemapLayer to collide against.
-    * @return {number} The amount of separation that occurred.
-    */
+     * Check the body against the given tile on the X axis.
+     *
+     * @private
+     * @method Phaser.Physics.Arcade#tileCheckX
+     * @param {Phaser.Physics.Arcade.Body} body - The Body object to separate.
+     * @param {Phaser.Tile} tile - The tile to check.
+     * @param {Phaser.TilemapLayer} tilemapLayer - The tilemapLayer to collide against.
+     * @return {number} The amount of separation that occurred.
+     */
     tileCheckX: function (body, tile, tilemapLayer)
     {
-
         var ox = 0;
         var tilemapLayerOffsetX = tilemapLayer.getTileOffsetX();
 
@@ -288,22 +281,20 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
         }
 
         return ox;
-
     },
 
     /**
-    * Check the body against the given tile on the Y axis.
-    *
-    * @private
-    * @method Phaser.Physics.Arcade#tileCheckY
-    * @param {Phaser.Physics.Arcade.Body} body - The Body object to separate.
-    * @param {Phaser.Tile} tile - The tile to check.
-    * @param {Phaser.TilemapLayer} tilemapLayer - The tilemapLayer to collide against.
-    * @return {number} The amount of separation that occurred.
-    */
+     * Check the body against the given tile on the Y axis.
+     *
+     * @private
+     * @method Phaser.Physics.Arcade#tileCheckY
+     * @param {Phaser.Physics.Arcade.Body} body - The Body object to separate.
+     * @param {Phaser.Tile} tile - The tile to check.
+     * @param {Phaser.TilemapLayer} tilemapLayer - The tilemapLayer to collide against.
+     * @return {number} The amount of separation that occurred.
+     */
     tileCheckY: function (body, tile, tilemapLayer)
     {
-
         var oy = 0;
         var tilemapLayerOffsetY = tilemapLayer.getTileOffsetY();
 
@@ -347,20 +338,18 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
         }
 
         return oy;
-
     },
 
     /**
-    * Internal function to process the separation of a physics body from a tile.
-    *
-    * @private
-    * @method Phaser.Physics.Arcade#processTileSeparationX
-    * @param {Phaser.Physics.Arcade.Body} body - The Body object to separate.
-    * @param {number} x - The x separation amount.
-    */
+     * Internal function to process the separation of a physics body from a tile.
+     *
+     * @private
+     * @method Phaser.Physics.Arcade#processTileSeparationX
+     * @param {Phaser.Physics.Arcade.Body} body - The Body object to separate.
+     * @param {number} x - The x separation amount.
+     */
     processTileSeparationX: function (body, x)
     {
-
         if (x < 0)
         {
             body.blocked.left = true;
@@ -382,20 +371,18 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
         {
             body.velocity.x = -body.velocity.x * body.bounce.x;
         }
-
     },
 
     /**
-    * Internal function to process the separation of a physics body from a tile.
-    *
-    * @private
-    * @method Phaser.Physics.Arcade#processTileSeparationY
-    * @param {Phaser.Physics.Arcade.Body} body - The Body object to separate.
-    * @param {number} y - The y separation amount.
-    */
+     * Internal function to process the separation of a physics body from a tile.
+     *
+     * @private
+     * @method Phaser.Physics.Arcade#processTileSeparationY
+     * @param {Phaser.Physics.Arcade.Body} body - The Body object to separate.
+     * @param {number} y - The y separation amount.
+     */
     processTileSeparationY: function (body, y)
     {
-
         if (y < 0)
         {
             body.blocked.up = true;
@@ -417,7 +404,6 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
         {
             body.velocity.y = -body.velocity.y * body.bounce.y;
         }
-
     }
 
 };

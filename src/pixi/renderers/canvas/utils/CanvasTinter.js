@@ -67,7 +67,6 @@ PIXI.CanvasTinter.tintWithMultiply = function (texture, color, canvas)
 
     context.globalCompositeOperation = 'destination-atop';
     context.drawImage(texture.baseTexture.source, crop.x, crop.y, w, h, 0, 0, w, h);
-
 };
 
 /**

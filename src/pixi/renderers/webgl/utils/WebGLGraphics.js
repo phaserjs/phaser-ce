@@ -138,9 +138,11 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
 
     var webGLData;
 
-    // loop through the graphics datas and construct each one..
-    // if the object is a complex fill then the new stencil buffer technique will be used
-    // other wise graphics objects will be pushed into a batch..
+    /*
+     * loop through the graphics datas and construct each one..
+     * if the object is a complex fill then the new stencil buffer technique will be used
+     * other wise graphics objects will be pushed into a batch..
+     */
     for (i = webGL.lastIndex; i < graphics.graphicsData.length; i++)
     {
         var data = graphics.graphicsData[i];
@@ -177,7 +179,6 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
                             webGLData = PIXI.WebGLGraphics.switchMode(webGL, 1);
                             PIXI.WebGLGraphics.buildComplexPoly(data, webGLData);
                         }
-
                     }
                     else
                     {
@@ -191,7 +192,6 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
             {
                 webGLData = PIXI.WebGLGraphics.switchMode(webGL, 0);
                 PIXI.WebGLGraphics.buildLine(data, webGLData);
-
             }
         }
         else
@@ -268,9 +268,11 @@ PIXI.WebGLGraphics.switchMode = function (webGL, type)
  */
 PIXI.WebGLGraphics.buildRectangle = function (graphicsData, webGLData)
 {
-    // --- //
-    // need to convert points to a nice regular data
-    //
+    /*
+     * --- //
+     * need to convert points to a nice regular data
+     *
+     */
     var rectData = graphicsData.shape;
     var x = rectData.x;
     var y = rectData.y;
@@ -415,7 +417,6 @@ PIXI.WebGLGraphics.buildRoundedRectangle = function (graphicsData, webGLData)
 
 PIXI.WebGLGraphics.quadraticBezierCurve = function (fromX, fromY, cpX, cpY, toX, toY)
 {
-
     var xa,
         ya,
         xb,
@@ -666,7 +667,6 @@ PIXI.WebGLGraphics.buildLine = function (graphicsData, webGLData)
 
         if(Math.abs(denom) < 0.1)
         {
-
             denom += 10.1;
             verts.push(p2x - perpx , p2y - perpy,
                 r, g, b, alpha);
@@ -708,7 +708,6 @@ PIXI.WebGLGraphics.buildLine = function (graphicsData, webGLData)
         }
         else
         {
-
             verts.push(px , py);
             verts.push(r, g, b, alpha);
 
@@ -770,8 +769,8 @@ PIXI.WebGLGraphics.buildComplexPoly = function (graphicsData, webGLData)
     webGLData.color = Phaser.Color.hexToRGBArray(graphicsData.fillColor);
 
     /*
-        calclate the bounds..
-    */
+     * calclate the bounds..
+     */
     var minX = Infinity;
     var maxX = -Infinity;
 
@@ -807,7 +806,6 @@ PIXI.WebGLGraphics.buildComplexPoly = function (graphicsData, webGLData)
     {
         indices.push(i);
     }
-
 };
 
 /**

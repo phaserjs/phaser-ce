@@ -1,64 +1,63 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* A TileSprite is a Sprite that has a repeating texture. The texture can be scrolled and scaled independently of the TileSprite itself.
-* Textures will automatically wrap and are designed so that you can create game backdrops using seamless textures as a source.
-* 
-* TileSprites have no input handler or physics bodies by default, both need enabling in the same way as for normal Sprites.
-*
-* You shouldn't ever create a TileSprite any larger than your actual screen size. If you want to create a large repeating background
-* that scrolls across the whole map of your game, then you create a TileSprite that fits the screen size and then use the `tilePosition`
-* property to scroll the texture as the player moves. If you create a TileSprite that is thousands of pixels in size then it will 
-* consume huge amounts of memory and cause performance issues. Remember: use `tilePosition` to scroll your texture and `tileScale` to
-* adjust the scale of the texture - don't resize the sprite itself or make it larger than it needs.
-*
-* An important note about texture dimensions:
-*
-* When running under Canvas a TileSprite can use any texture size without issue. When running under WebGL the texture should ideally be
-* a power of two in size (i.e. 4, 8, 16, 32, 64, 128, 256, 512, etc pixels width by height). If the texture isn't a power of two
-* it will be rendered to a blank canvas that is the correct size, which means you may have 'blank' areas appearing to the right and
-* bottom of your frame. To avoid this ensure your textures are perfect powers of two.
-* 
-* TileSprites support animations in the same way that Sprites do. You add and play animations using the AnimationManager. However
-* if your game is running under WebGL please note that each frame of the animation must be a power of two in size, or it will receive
-* additional padding to enforce it to be so.
-*
-* @class Phaser.TileSprite
-* @constructor
-* @extends PIXI.Sprite
-* @extends Phaser.Component.Core
-* @extends Phaser.Component.Angle
-* @extends Phaser.Component.Animation
-* @extends Phaser.Component.AutoCull
-* @extends Phaser.Component.Bounds
-* @extends Phaser.Component.BringToTop
-* @extends Phaser.Component.Destroy
-* @extends Phaser.Component.FixedToCamera
-* @extends Phaser.Component.Health
-* @extends Phaser.Component.InCamera
-* @extends Phaser.Component.InputEnabled
-* @extends Phaser.Component.InWorld
-* @extends Phaser.Component.LifeSpan
-* @extends Phaser.Component.LoadTexture
-* @extends Phaser.Component.Overlap
-* @extends Phaser.Component.PhysicsBody
-* @extends Phaser.Component.Reset
-* @extends Phaser.Component.Smoothed
-* @param {Phaser.Game} game - A reference to the currently running game.
-* @param {number} [x=0] - The x coordinate (in world space) to position the TileSprite at.
-* @param {number} [y=0] - The y coordinate (in world space) to position the TileSprite at.
-* @param {number} [width=256] - The width of the TileSprite.
-* @param {number} [height=256] - The height of the TileSprite.
-* @param {string|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
-* @param {string|number} frame - If this TileSprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
-*/
+ * A TileSprite is a Sprite that has a repeating texture. The texture can be scrolled and scaled independently of the TileSprite itself.
+ * Textures will automatically wrap and are designed so that you can create game backdrops using seamless textures as a source.
+ *
+ * TileSprites have no input handler or physics bodies by default, both need enabling in the same way as for normal Sprites.
+ *
+ * You shouldn't ever create a TileSprite any larger than your actual screen size. If you want to create a large repeating background
+ * that scrolls across the whole map of your game, then you create a TileSprite that fits the screen size and then use the `tilePosition`
+ * property to scroll the texture as the player moves. If you create a TileSprite that is thousands of pixels in size then it will 
+ * consume huge amounts of memory and cause performance issues. Remember: use `tilePosition` to scroll your texture and `tileScale` to
+ * adjust the scale of the texture - don't resize the sprite itself or make it larger than it needs.
+ *
+ * An important note about texture dimensions:
+ *
+ * When running under Canvas a TileSprite can use any texture size without issue. When running under WebGL the texture should ideally be
+ * a power of two in size (i.e. 4, 8, 16, 32, 64, 128, 256, 512, etc pixels width by height). If the texture isn't a power of two
+ * it will be rendered to a blank canvas that is the correct size, which means you may have 'blank' areas appearing to the right and
+ * bottom of your frame. To avoid this ensure your textures are perfect powers of two.
+ *
+ * TileSprites support animations in the same way that Sprites do. You add and play animations using the AnimationManager. However
+ * if your game is running under WebGL please note that each frame of the animation must be a power of two in size, or it will receive
+ * additional padding to enforce it to be so.
+ *
+ * @class Phaser.TileSprite
+ * @constructor
+ * @extends PIXI.Sprite
+ * @extends Phaser.Component.Core
+ * @extends Phaser.Component.Angle
+ * @extends Phaser.Component.Animation
+ * @extends Phaser.Component.AutoCull
+ * @extends Phaser.Component.Bounds
+ * @extends Phaser.Component.BringToTop
+ * @extends Phaser.Component.Destroy
+ * @extends Phaser.Component.FixedToCamera
+ * @extends Phaser.Component.Health
+ * @extends Phaser.Component.InCamera
+ * @extends Phaser.Component.InputEnabled
+ * @extends Phaser.Component.InWorld
+ * @extends Phaser.Component.LifeSpan
+ * @extends Phaser.Component.LoadTexture
+ * @extends Phaser.Component.Overlap
+ * @extends Phaser.Component.PhysicsBody
+ * @extends Phaser.Component.Reset
+ * @extends Phaser.Component.Smoothed
+ * @param {Phaser.Game} game - A reference to the currently running game.
+ * @param {number} [x=0] - The x coordinate (in world space) to position the TileSprite at.
+ * @param {number} [y=0] - The y coordinate (in world space) to position the TileSprite at.
+ * @param {number} [width=256] - The width of the TileSprite.
+ * @param {number} [height=256] - The height of the TileSprite.
+ * @param {string|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
+ * @param {string|number} frame - If this TileSprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
+ */
 Phaser.TileSprite = function (game, x, y, width, height, key, frame)
 {
-
     x = x || 0;
     y = y || 0;
     width = width || 256;
@@ -69,73 +68,73 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame)
     PIXI.Sprite.call(this, new PIXI.Texture(Phaser.Cache.DEFAULT.baseTexture), width, height);
 
     /**
-    * @property {number} type - The const type of this object.
-    * @readonly
-    */
+     * @property {number} type - The const type of this object.
+     * @readonly
+     */
     this.type = Phaser.TILESPRITE;
 
     /**
-    * @property {number} physicsType - The const physics body type of this object.
-    * @readonly
-    */
+     * @property {number} physicsType - The const physics body type of this object.
+     * @readonly
+     */
     this.physicsType = Phaser.SPRITE;
 
     /**
-    * @property {Phaser.Point} _scroll - Internal cache var.
-    * @private
-    */
+     * @property {Phaser.Point} _scroll - Internal cache var.
+     * @private
+     */
     this._scroll = new Phaser.Point();
 
     /**
-    * @property {Phaser.Point} tileScale - The scale applied to the image being tiled.
-    */
+     * @property {Phaser.Point} tileScale - The scale applied to the image being tiled.
+     */
     this.tileScale = new Phaser.Point(1, 1);
 
     /**
-    * @property {Phaser.Point} tileScaleOffset - The scale offset applied to the image being tiled.
-    */
+     * @property {Phaser.Point} tileScaleOffset - The scale offset applied to the image being tiled.
+     */
     this.tileScaleOffset = new Phaser.Point(1, 1);
     
     /**
-    * @property {Phaser.Point} tilePosition - The offset position of the image being tiled.
-    */
+     * @property {Phaser.Point} tilePosition - The offset position of the image being tiled.
+     */
     this.tilePosition = new Phaser.Point();
 
     /**
-    * If enabled a green rectangle will be drawn behind the generated tiling texture,
-    * allowing you to visually debug the texture being used.
-    *
-    * @property {boolean} textureDebug
-    */
+     * If enabled a green rectangle will be drawn behind the generated tiling texture,
+     * allowing you to visually debug the texture being used.
+     *
+     * @property {boolean} textureDebug
+     */
     this.textureDebug = false;
 
     /**
-    * The CanvasBuffer object that the tiled texture is drawn to.
-    *
-    * @property {PIXI.CanvasBuffer} canvasBuffer
-    */
+     * The CanvasBuffer object that the tiled texture is drawn to.
+     *
+     * @property {PIXI.CanvasBuffer} canvasBuffer
+     */
     this.canvasBuffer = null;
 
     /**
-    * An internal Texture object that holds the tiling texture that was generated from TilingSprite.texture.
-    *
-    * @property {PIXI.Texture} tilingTexture
-    */
+     * An internal Texture object that holds the tiling texture that was generated from TilingSprite.texture.
+     *
+     * @property {PIXI.Texture} tilingTexture
+     */
     this.tilingTexture = null;
 
     /**
-    * The Context fill pattern that is used to draw the TilingSprite in Canvas mode only (will be null in WebGL).
-    *
-    * @property {object} tilePattern
-    */
+     * The Context fill pattern that is used to draw the TilingSprite in Canvas mode only (will be null in WebGL).
+     *
+     * @property {object} tilePattern
+     */
     this.tilePattern = null;
 
     /**
-    * If true the TileSprite will run `generateTexture` on its **next** render pass.
-    * This is set by the likes of Phaser.LoadTexture.setFrame.
-    *
-    * @property {boolean} refreshTexture
-    */
+     * If true the TileSprite will run `generateTexture` on its **next** render pass.
+     * This is set by the likes of Phaser.LoadTexture.setFrame.
+     *
+     * @property {boolean} refreshTexture
+     */
     this.refreshTexture = true;
 
     this.frameWidth = 0;
@@ -145,7 +144,6 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame)
     this._height = height;
 
     Phaser.Component.Core.init.call(this, game, x, y, key, frame);
-
 };
 
 Phaser.TileSprite.prototype = Object.create(PIXI.Sprite.prototype);
@@ -177,15 +175,14 @@ Phaser.TileSprite.prototype.preUpdateInWorld = Phaser.Component.InWorld.preUpdat
 Phaser.TileSprite.prototype.preUpdateCore = Phaser.Component.Core.preUpdate;
 
 /**
-* Automatically called by World.preUpdate.
-*
-* @method Phaser.TileSprite#preUpdate
-* @memberof Phaser.TileSprite
-* @return {boolean}
-*/
+ * Automatically called by World.preUpdate.
+ *
+ * @method Phaser.TileSprite#preUpdate
+ * @memberof Phaser.TileSprite
+ * @return {boolean}
+ */
 Phaser.TileSprite.prototype.preUpdate = function ()
 {
-
     if (this._scroll.x !== 0)
     {
         this.tilePosition.x += this._scroll.x * this.game.time.physicsElapsed;
@@ -202,57 +199,51 @@ Phaser.TileSprite.prototype.preUpdate = function ()
     }
 
     return this.preUpdateCore();
-
 };
 
 /**
-* Sets this TileSprite to automatically scroll in the given direction until stopped via TileSprite.stopScroll().
-* The scroll speed is specified in pixels per second.
-* A negative x value will scroll to the left. A positive x value will scroll to the right.
-* A negative y value will scroll up. A positive y value will scroll down.
-*
-* @method Phaser.TileSprite#autoScroll
-* @memberof Phaser.TileSprite
-* @param {number} x - Horizontal scroll speed in pixels per second.
-* @param {number} y - Vertical scroll speed in pixels per second.
-* @return {Phaser.TileSprite} This instance.
-*/
+ * Sets this TileSprite to automatically scroll in the given direction until stopped via TileSprite.stopScroll().
+ * The scroll speed is specified in pixels per second.
+ * A negative x value will scroll to the left. A positive x value will scroll to the right.
+ * A negative y value will scroll up. A positive y value will scroll down.
+ *
+ * @method Phaser.TileSprite#autoScroll
+ * @memberof Phaser.TileSprite
+ * @param {number} x - Horizontal scroll speed in pixels per second.
+ * @param {number} y - Vertical scroll speed in pixels per second.
+ * @return {Phaser.TileSprite} This instance.
+ */
 Phaser.TileSprite.prototype.autoScroll = function (x, y)
 {
-
     this._scroll.set(x, y);
 
     return this;
-
 };
 
 /**
-* Stops an automatically scrolling TileSprite.
-*
-* @method Phaser.TileSprite#stopScroll
-* @memberof Phaser.TileSprite
-* @return {Phaser.TileSprite} This instance.
-*/
+ * Stops an automatically scrolling TileSprite.
+ *
+ * @method Phaser.TileSprite#stopScroll
+ * @memberof Phaser.TileSprite
+ * @return {Phaser.TileSprite} This instance.
+ */
 Phaser.TileSprite.prototype.stopScroll = function ()
 {
-
     this._scroll.set(0, 0);
 
     return this;
-
 };
 
 /**
-* Destroys the TileSprite. This removes it from its parent group, destroys the event and animation handlers if present
-* and nulls its reference to game, freeing it up for garbage collection.
-*
-* @method Phaser.TileSprite#destroy
-* @memberof Phaser.TileSprite
-* @param {boolean} [destroyChildren=true] - Should every child of this object have its destroy method called?
-*/
+ * Destroys the TileSprite. This removes it from its parent group, destroys the event and animation handlers if present
+ * and nulls its reference to game, freeing it up for garbage collection.
+ *
+ * @method Phaser.TileSprite#destroy
+ * @memberof Phaser.TileSprite
+ * @param {boolean} [destroyChildren=true] - Should every child of this object have its destroy method called?
+ */
 Phaser.TileSprite.prototype.destroy = function (destroyChildren)
 {
-
     Phaser.Component.Destroy.prototype.destroy.call(this, destroyChildren);
 
     PIXI.Sprite.prototype.destroy.call(this);
@@ -272,44 +263,40 @@ Phaser.TileSprite.prototype.destroy = function (destroyChildren)
         this.tilingTexture.destroy(true);
         this.tilingTexture = null;
     }
-
 };
 
 /**
-* Resets the TileSprite. This places the TileSprite at the given x/y world coordinates, resets the tilePosition and then
-* sets alive, exists, visible and renderable all to true. Also resets the outOfBounds state.
-* If the TileSprite has a physics body that too is reset.
-*
-* @method Phaser.TileSprite#reset
-* @memberof Phaser.TileSprite
-* @param {number} x - The x coordinate (in world space) to position the Sprite at.
-* @param {number} y - The y coordinate (in world space) to position the Sprite at.
-* @return {Phaser.TileSprite} This instance.
-*/
+ * Resets the TileSprite. This places the TileSprite at the given x/y world coordinates, resets the tilePosition and then
+ * sets alive, exists, visible and renderable all to true. Also resets the outOfBounds state.
+ * If the TileSprite has a physics body that too is reset.
+ *
+ * @method Phaser.TileSprite#reset
+ * @memberof Phaser.TileSprite
+ * @param {number} x - The x coordinate (in world space) to position the Sprite at.
+ * @param {number} y - The y coordinate (in world space) to position the Sprite at.
+ * @return {Phaser.TileSprite} This instance.
+ */
 Phaser.TileSprite.prototype.reset = function (x, y)
 {
-
     Phaser.Component.Reset.prototype.reset.call(this, x, y);
 
     this.tilePosition.x = 0;
     this.tilePosition.y = 0;
 
     return this;
-
 };
 
 /**
-* Changes the texture being rendered by this TileSprite.
-* Causes a texture refresh to take place on the next render.
-*
-* @method Phaser.TileSprite#setTexture
-* @memberof Phaser.TileSprite
-* @param {PIXI.Texture} texture - The texture to apply to this TileSprite.
-* @return {Phaser.TileSprite} This instance.
-*/
+ * Changes the texture being rendered by this TileSprite.
+ * Causes a texture refresh to take place on the next render.
+ *
+ * @method Phaser.TileSprite#setTexture
+ * @memberof Phaser.TileSprite
+ * @param {PIXI.Texture} texture - The texture to apply to this TileSprite.
+ * @return {Phaser.TileSprite} This instance.
+ */
 Phaser.TileSprite.prototype.setTexture = function (texture)
 {
-
     if (this.texture !== texture)
     {
         this.texture = texture;
@@ -318,20 +305,18 @@ Phaser.TileSprite.prototype.setTexture = function (texture)
     }
 
     return this;
-
 };
 
 /**
-* Renders the TileSprite using the WebGL Renderer.
-*
-* @private
-* @method Phaser.TileSprite#_renderWebGL
-* @memberof Phaser.TileSprite
-* @param {object} renderSession
-*/
+ * Renders the TileSprite using the WebGL Renderer.
+ *
+ * @private
+ * @method Phaser.TileSprite#_renderWebGL
+ * @memberof Phaser.TileSprite
+ * @param {object} renderSession
+ */
 Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
 {
-
     if (!this.visible || !this.renderable || this.alpha === 0)
     {
         return;
@@ -399,20 +384,18 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
     {
         renderSession.spriteBatch.start();
     }
-    
 };
 
 /**
-* Renders the TileSprite using the Canvas Renderer.
-*
-* @private
-* @method Phaser.TileSprite#_renderCanvas
-* @memberof Phaser.TileSprite
-* @param {object} renderSession
-*/
+ * Renders the TileSprite using the Canvas Renderer.
+ *
+ * @private
+ * @method Phaser.TileSprite#_renderCanvas
+ * @memberof Phaser.TileSprite
+ * @param {object} renderSession
+ */
 Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
 {
-
     if (!this.visible || !this.renderable || this.alpha === 0)
     {
         return;
@@ -515,16 +498,15 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
         renderSession.currentBlendMode = sessionBlendMode;
         context.globalCompositeOperation = PIXI.blendModesCanvas[sessionBlendMode];
     }
-
 };
 
 /**
-* Override the Sprite method.
-*
-* @private
-* @method Phaser.TileSprite#onTextureUpdate
-* @memberof Phaser.TileSprite
-*/
+ * Override the Sprite method.
+ *
+ * @private
+ * @method Phaser.TileSprite#onTextureUpdate
+ * @memberof Phaser.TileSprite
+ */
 Phaser.TileSprite.prototype.onTextureUpdate = function ()
 {
 
@@ -533,15 +515,14 @@ Phaser.TileSprite.prototype.onTextureUpdate = function ()
 };
 
 /**
-* Internal method that generates a new tiling texture.
-*
-* @method Phaser.TileSprite#generateTilingTexture
-* @memberof Phaser.TileSprite
-* @param {boolean} forcePowerOfTwo - Whether we want to force the texture to be a power of two
-*/
+ * Internal method that generates a new tiling texture.
+ *
+ * @method Phaser.TileSprite#generateTilingTexture
+ * @memberof Phaser.TileSprite
+ * @param {boolean} forcePowerOfTwo - Whether we want to force the texture to be a power of two
+ */
 Phaser.TileSprite.prototype.generateTilingTexture = function (forcePowerOfTwo)
 {
-
     if (!this.texture.baseTexture.hasLoaded)
     {
         return;
@@ -619,19 +600,17 @@ Phaser.TileSprite.prototype.generateTilingTexture = function (forcePowerOfTwo)
     this.refreshTexture = false;
 
     this.tilingTexture.baseTexture._powerOf2 = true;
-
 };
 
 /**
-* Returns the framing rectangle of the Tile Sprite.
-*
-* @method Phaser.TileSprite#getBounds
-* @memberof Phaser.TileSprite
-* @return {Phaser.Rectangle} The bounds of the Tile Sprite.
-*/
+ * Returns the framing rectangle of the Tile Sprite.
+ *
+ * @method Phaser.TileSprite#getBounds
+ * @memberof Phaser.TileSprite
+ * @return {Phaser.Rectangle} The bounds of the Tile Sprite.
+ */
 Phaser.TileSprite.prototype.getBounds = function ()
 {
-
     var width = this._width;
     var height = this._height;
 
@@ -701,53 +680,44 @@ Phaser.TileSprite.prototype.getBounds = function ()
     this._currentBounds = bounds;
 
     return bounds;
-
 };
 
 /**
-* The width of the sprite, setting this will actually modify the scale to achieve the value set
-*
-* @property width
-* @type Number
-*/
+ * The width of the sprite, setting this will actually modify the scale to achieve the value set
+ *
+ * @property width
+ * @type Number
+ */
 Object.defineProperty(Phaser.TileSprite.prototype, 'width', {
 
     get: function ()
     {
-
         return this._width;
-
     },
 
     set: function (value)
     {
-
         this._width = value;
-
     }
 
 });
 
 /**
-* The height of the TilingSprite, setting this will actually modify the scale to achieve the value set
-*
-* @property height
-* @type Number
-*/
+ * The height of the TilingSprite, setting this will actually modify the scale to achieve the value set
+ *
+ * @property height
+ * @type Number
+ */
 Object.defineProperty(Phaser.TileSprite.prototype, 'height', {
 
     get: function ()
     {
-
         return this._height;
-
     },
 
     set: function (value)
     {
-
         this._height = value;
-
     }
 
 });

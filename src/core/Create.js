@@ -1,46 +1,45 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* The Phaser.Create class is a collection of smaller helper methods that allow you to generate game content
-* quickly and easily, without the need for any external files. You can create textures for sprites and in
-* coming releases we'll add dynamic sound effect generation support as well (like sfxr).
-*
-* Access this via `Game.create` (`this.game.create` from within a State object).
-*
-* @class Phaser.Create
-* @constructor
-* @param {Phaser.Game} game - Game reference to the currently running game.
+ * The Phaser.Create class is a collection of smaller helper methods that allow you to generate game content
+ * quickly and easily, without the need for any external files. You can create textures for sprites and in
+ * coming releases we'll add dynamic sound effect generation support as well (like sfxr).
+ *
+ * Access this via `Game.create` (`this.game.create` from within a State object).
+ *
+ * @class Phaser.Create
+ * @constructor
+ * @param {Phaser.Game} game - Game reference to the currently running game.
  */
 Phaser.Create = function (game)
 {
-
     /**
-    * @property {Phaser.Game} game - A reference to the currently running Game.
-    */
+     * @property {Phaser.Game} game - A reference to the currently running Game.
+     */
     this.game = game;
 
     /**
-    * @property {Phaser.BitmapData} bmd - The internal BitmapData Create uses to generate textures from.
-    */
+     * @property {Phaser.BitmapData} bmd - The internal BitmapData Create uses to generate textures from.
+     */
     this.bmd = null;
 
     /**
-    * @property {HTMLCanvasElement} canvas - The canvas the BitmapData uses.
-    */
+     * @property {HTMLCanvasElement} canvas - The canvas the BitmapData uses.
+     */
     this.canvas = null;
 
     /**
-    * @property {CanvasRenderingContext2D} context - The 2d context of the canvas.
-    */
+     * @property {CanvasRenderingContext2D} context - The 2d context of the canvas.
+     */
     this.ctx = null;
 
     /**
-    * @property {array} palettes - A range of 16 color palettes for use with sprite generation.
-    */
+     * @property {array} palettes - A range of 16 color palettes for use with sprite generation.
+     */
     this.palettes = [
         { 0: '#000', 1: '#9D9D9D', 2: '#FFF', 3: '#BE2633', 4: '#E06F8B', 5: '#493C2B', 6: '#A46422', 7: '#EB8931', 8: '#F7E26B', 9: '#2F484E', A: '#44891A', B: '#A3CE27', C: '#1B2632', D: '#005784', E: '#31A2F2', F: '#B2DCEF' },
         { 0: '#000', 1: '#191028', 2: '#46af45', 3: '#a1d685', 4: '#453e78', 5: '#7664fe', 6: '#833129', 7: '#9ec2e8', 8: '#dc534b', 9: '#e18d79', A: '#d6b97b', B: '#e9d8a1', C: '#216c4b', D: '#d365c8', E: '#afaab9', F: '#f5f4eb' },
@@ -48,42 +47,41 @@ Phaser.Create = function (game)
         { 0: '#000', 1: '#fff', 2: '#8b4131', 3: '#7bbdc5', 4: '#8b41ac', 5: '#6aac41', 6: '#3931a4', 7: '#d5de73', 8: '#945a20', 9: '#5a4100', A: '#bd736a', B: '#525252', C: '#838383', D: '#acee8b', E: '#7b73de', F: '#acacac' },
         { 0: '#000', 1: '#191028', 2: '#46af45', 3: '#a1d685', 4: '#453e78', 5: '#7664fe', 6: '#833129', 7: '#9ec2e8', 8: '#dc534b', 9: '#e18d79', A: '#d6b97b', B: '#e9d8a1', C: '#216c4b', D: '#d365c8', E: '#afaab9', F: '#fff' }
     ];
-
 };
 
 /**
-* A 16 color palette by [Arne](http://androidarts.com/palette/16pal.htm)
-* @constant
-* @type {number}
-*/
+ * A 16 color palette by [Arne](http://androidarts.com/palette/16pal.htm)
+ * @constant
+ * @type {number}
+ */
 Phaser.Create.PALETTE_ARNE = 0;
 
 /**
-* A 16 color JMP inspired palette.
-* @constant
-* @type {number}
-*/
+ * A 16 color JMP inspired palette.
+ * @constant
+ * @type {number}
+ */
 Phaser.Create.PALETTE_JMP = 1;
 
 /**
-* A 16 color CGA inspired palette.
-* @constant
-* @type {number}
-*/
+ * A 16 color CGA inspired palette.
+ * @constant
+ * @type {number}
+ */
 Phaser.Create.PALETTE_CGA = 2;
 
 /**
-* A 16 color C64 inspired palette.
-* @constant
-* @type {number}
-*/
+ * A 16 color C64 inspired palette.
+ * @constant
+ * @type {number}
+ */
 Phaser.Create.PALETTE_C64 = 3;
 
 /**
-* A 16 color palette inspired by Japanese computers like the MSX.
-* @constant
-* @type {number}
-*/
+ * A 16 color palette inspired by Japanese computers like the MSX.
+ * @constant
+ * @type {number}
+ */
 Phaser.Create.PALETTE_JAPANESE_MACHINE = 4;
 
 Phaser.Create.prototype = {
@@ -126,7 +124,6 @@ Phaser.Create.prototype = {
      */
     texture: function (key, data, pixelWidth, pixelHeight, palette, generateTexture, callback, callbackContext)
     {
-
         if (pixelWidth === undefined) { pixelWidth = 8; }
         if (pixelHeight === undefined) { pixelHeight = pixelWidth; }
         if (palette === undefined) { palette = 0; }
@@ -166,7 +163,6 @@ Phaser.Create.prototype = {
         return generateTexture ?
             this.bmd.generateTexture(key, callback, callbackContext) :
             this.copy();
-
     },
 
     /**
@@ -188,7 +184,6 @@ Phaser.Create.prototype = {
      */
     grid: function (key, width, height, cellWidth, cellHeight, color, generateTexture, callback, callbackContext)
     {
-
         if (generateTexture === undefined) { generateTexture = true; }
 
         //  No bmd? Let's make one
@@ -216,7 +211,6 @@ Phaser.Create.prototype = {
         return generateTexture ?
             this.bmd.generateTexture(key, callback, callbackContext) :
             this.copy();
-
     },
 
     /**
@@ -233,13 +227,11 @@ Phaser.Create.prototype = {
      */
     copy: function (dest, x, y, width, height, blendMode, roundPx)
     {
-
         if (dest == null) { dest = this.game.make.bitmapData(); }
 
         dest.resize(this.bmd.width, this.bmd.height);
 
         return dest.draw(this.bmd, x, y, width, height, blendMode, roundPx);
-
     }
 
 };

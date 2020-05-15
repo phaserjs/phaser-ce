@@ -1,140 +1,137 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* Phaser.Touch handles touch events with your game. Note: Android 2.x only supports 1 touch event at once, no multi-touch.
-*
-* You should not normally access this class directly, but instead use a Phaser.Pointer object which normalises all game input for you.
-*
-* @class Phaser.Touch
-* @constructor
-* @param {Phaser.Game} game - A reference to the currently running game.
-*/
+ * Phaser.Touch handles touch events with your game. Note: Android 2.x only supports 1 touch event at once, no multi-touch.
+ *
+ * You should not normally access this class directly, but instead use a Phaser.Pointer object which normalises all game input for you.
+ *
+ * @class Phaser.Touch
+ * @constructor
+ * @param {Phaser.Game} game - A reference to the currently running game.
+ */
 Phaser.Touch = function (game)
 {
-
     /**
-    * @property {Phaser.Game} game - A reference to the currently running game.
-    */
+     * @property {Phaser.Game} game - A reference to the currently running game.
+     */
     this.game = game;
 
     /**
-    * Whether the input handler is active.
-    * @property {boolean} active
-    * @readOnly
-    */
+     * Whether the input handler is active.
+     * @property {boolean} active
+     * @readOnly
+     */
     this.active = false;
 
     /**
-    * Touch events will only be processed if enabled.
-    * @property {boolean} enabled
-    * @default
-    */
+     * Touch events will only be processed if enabled.
+     * @property {boolean} enabled
+     * @default
+     */
     this.enabled = true;
 
     /**
-    * @property {object} callbackContext - The context under which callbacks are called.
-    */
+     * @property {object} callbackContext - The context under which callbacks are called.
+     */
     this.callbackContext = this.game;
 
     /**
-    * @property {function} touchStartCallback - A callback that can be fired on a touchStart event.
-    */
+     * @property {function} touchStartCallback - A callback that can be fired on a touchStart event.
+     */
     this.touchStartCallback = null;
 
     /**
-    * @property {function} touchMoveCallback - A callback that can be fired on a touchMove event.
-    */
+     * @property {function} touchMoveCallback - A callback that can be fired on a touchMove event.
+     */
     this.touchMoveCallback = null;
 
     /**
-    * @property {function} touchEndCallback - A callback that can be fired on a touchEnd event.
-    */
+     * @property {function} touchEndCallback - A callback that can be fired on a touchEnd event.
+     */
     this.touchEndCallback = null;
 
     /**
-    * @property {function} touchEnterCallback - A callback that can be fired on a touchEnter event.
-    */
+     * @property {function} touchEnterCallback - A callback that can be fired on a touchEnter event.
+     */
     this.touchEnterCallback = null;
 
     /**
-    * @property {function} touchLeaveCallback - A callback that can be fired on a touchLeave event.
-    */
+     * @property {function} touchLeaveCallback - A callback that can be fired on a touchLeave event.
+     */
     this.touchLeaveCallback = null;
 
     /**
-    * @property {function} touchCancelCallback - A callback that can be fired on a touchCancel event.
-    */
+     * @property {function} touchCancelCallback - A callback that can be fired on a touchCancel event.
+     */
     this.touchCancelCallback = null;
 
     /**
-    * @property {boolean} preventDefault - If true the TouchEvent will have prevent.default called on it.
-    * @default
-    */
+     * @property {boolean} preventDefault - If true the TouchEvent will have prevent.default called on it.
+     * @default
+     */
     this.preventDefault = true;
 
     /**
-    * @property {TouchEvent} event - The browser touch DOM event. Will be set to null if no touch event has ever been received.
-    * @default
-    */
+     * @property {TouchEvent} event - The browser touch DOM event. Will be set to null if no touch event has ever been received.
+     * @default
+     */
     this.event = null;
 
     /**
-    * @property {function} _onTouchStart - Internal event handler reference.
-    * @private
-    */
+     * @property {function} _onTouchStart - Internal event handler reference.
+     * @private
+     */
     this._onTouchStart = null;
 
     /**
-    * @property {function} _onTouchMove - Internal event handler reference.
-    * @private
-    */
+     * @property {function} _onTouchMove - Internal event handler reference.
+     * @private
+     */
     this._onTouchMove = null;
 
     /**
-    * @property {function} _onTouchEnd - Internal event handler reference.
-    * @private
-    */
+     * @property {function} _onTouchEnd - Internal event handler reference.
+     * @private
+     */
     this._onTouchEnd = null;
 
     /**
-    * @property {function} _onTouchEnter - Internal event handler reference.
-    * @private
-    */
+     * @property {function} _onTouchEnter - Internal event handler reference.
+     * @private
+     */
     this._onTouchEnter = null;
 
     /**
-    * @property {function} _onTouchLeave - Internal event handler reference.
-    * @private
-    */
+     * @property {function} _onTouchLeave - Internal event handler reference.
+     * @private
+     */
     this._onTouchLeave = null;
 
     /**
-    * @property {function} _onTouchCancel - Internal event handler reference.
-    * @private
-    */
+     * @property {function} _onTouchCancel - Internal event handler reference.
+     * @private
+     */
     this._onTouchCancel = null;
 
     /**
-    * @property {function} _onTouchMove - Internal event handler reference.
-    * @private
-    */
+     * @property {function} _onTouchMove - Internal event handler reference.
+     * @private
+     */
     this._onTouchMove = null;
-
 };
 
 Phaser.Touch.prototype = {
 
     /**
-    * Starts the event listeners running.
-    * @method Phaser.Touch#start
-    */
+     * Starts the event listeners running.
+     * @method Phaser.Touch#start
+     */
     start: function ()
     {
-
         if (!this.game.device.touch)
         {
             return false;
@@ -192,33 +189,29 @@ Phaser.Touch.prototype = {
         this.active = true;
 
         return true;
-
     },
 
     /**
-    * Consumes all touchmove events on the document (only enable this if you know you need it!).
-    * @method Phaser.Touch#consumeTouchMove
-    */
+     * Consumes all touchmove events on the document (only enable this if you know you need it!).
+     * @method Phaser.Touch#consumeTouchMove
+     */
     consumeDocumentTouches: function ()
     {
-
         this._documentTouchMove = function (event)
         {
             event.preventDefault();
         };
 
         document.addEventListener('touchmove', this._documentTouchMove, false);
-
     },
 
     /**
-    * The internal method that handles the touchstart event from the browser.
-    * @method Phaser.Touch#onTouchStart
-    * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
-    */
+     * The internal method that handles the touchstart event from the browser.
+     * @method Phaser.Touch#onTouchStart
+     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
+     */
     onTouchStart: function (event)
     {
-
         this.game.input.executeTouchLockCallbacks(false, event);
 
         this.event = event;
@@ -238,25 +231,25 @@ Phaser.Touch.prototype = {
             event.preventDefault();
         }
 
-        //  event.targetTouches = list of all touches on the TARGET ELEMENT (i.e. game dom element)
-        //  event.touches = list of all touches on the ENTIRE DOCUMENT, not just the target element
-        //  event.changedTouches = the touches that CHANGED in this event, not the total number of them
+        /*
+         *  event.targetTouches = list of all touches on the TARGET ELEMENT (i.e. game dom element)
+         *  event.touches = list of all touches on the ENTIRE DOCUMENT, not just the target element
+         *  event.changedTouches = the touches that CHANGED in this event, not the total number of them
+         */
         for (var i = 0; i < event.changedTouches.length; i++)
         {
             this.game.input.startPointer(event.changedTouches[i]);
         }
-
     },
 
     /**
-    * Touch cancel - touches that were disrupted (perhaps by moving into a plugin or browser chrome).
-    * Occurs for example on iOS when you put down 4 fingers and the app selector UI appears.
-    * @method Phaser.Touch#onTouchCancel
-    * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
-    */
+     * Touch cancel - touches that were disrupted (perhaps by moving into a plugin or browser chrome).
+     * Occurs for example on iOS when you put down 4 fingers and the app selector UI appears.
+     * @method Phaser.Touch#onTouchCancel
+     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
+     */
     onTouchCancel: function (event)
     {
-
         this.event = event;
 
         if (this.touchCancelCallback)
@@ -274,24 +267,24 @@ Phaser.Touch.prototype = {
             event.preventDefault();
         }
 
-        //  Touch cancel - touches that were disrupted (perhaps by moving into a plugin or browser chrome)
-        //  http://www.w3.org/TR/touch-events/#dfn-touchcancel
+        /*
+         *  Touch cancel - touches that were disrupted (perhaps by moving into a plugin or browser chrome)
+         *  http://www.w3.org/TR/touch-events/#dfn-touchcancel
+         */
         for (var i = 0; i < event.changedTouches.length; i++)
         {
             this.game.input.stopPointer(event.changedTouches[i]);
         }
-
     },
 
     /**
-    * For touch enter and leave its a list of the touch points that have entered or left the target.
-    * Doesn't appear to be supported by most browsers on a canvas element yet.
-    * @method Phaser.Touch#onTouchEnter
-    * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
-    */
+     * For touch enter and leave its a list of the touch points that have entered or left the target.
+     * Doesn't appear to be supported by most browsers on a canvas element yet.
+     * @method Phaser.Touch#onTouchEnter
+     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
+     */
     onTouchEnter: function (event)
     {
-
         this.event = event;
 
         if (this.touchEnterCallback)
@@ -308,18 +301,16 @@ Phaser.Touch.prototype = {
         {
             event.preventDefault();
         }
-
     },
 
     /**
-    * For touch enter and leave its a list of the touch points that have entered or left the target.
-    * Doesn't appear to be supported by most browsers on a canvas element yet.
-    * @method Phaser.Touch#onTouchLeave
-    * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
-    */
+     * For touch enter and leave its a list of the touch points that have entered or left the target.
+     * Doesn't appear to be supported by most browsers on a canvas element yet.
+     * @method Phaser.Touch#onTouchLeave
+     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
+     */
     onTouchLeave: function (event)
     {
-
         this.event = event;
 
         if (this.touchLeaveCallback)
@@ -331,17 +322,15 @@ Phaser.Touch.prototype = {
         {
             event.preventDefault();
         }
-
     },
 
     /**
-    * The handler for the touchmove events.
-    * @method Phaser.Touch#onTouchMove
-    * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
-    */
+     * The handler for the touchmove events.
+     * @method Phaser.Touch#onTouchMove
+     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
+     */
     onTouchMove: function (event)
     {
-
         this.event = event;
 
         if (this.touchMoveCallback)
@@ -358,17 +347,15 @@ Phaser.Touch.prototype = {
         {
             this.game.input.updatePointer(event.changedTouches[i]);
         }
-
     },
 
     /**
-    * The handler for the touchend events.
-    * @method Phaser.Touch#onTouchEnd
-    * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
-    */
+     * The handler for the touchend events.
+     * @method Phaser.Touch#onTouchEnd
+     * @param {TouchEvent} event - The native event from the browser. This gets stored in Touch.event.
+     */
     onTouchEnd: function (event)
     {
-
         this.game.input.executeTouchLockCallbacks(true, event);
 
         this.event = event;
@@ -383,23 +370,23 @@ Phaser.Touch.prototype = {
             event.preventDefault();
         }
 
-        //  For touch end its a list of the touch points that have been removed from the surface
-        //  https://developer.mozilla.org/en-US/docs/DOM/TouchList
-        //  event.changedTouches = the touches that CHANGED in this event, not the total number of them
+        /*
+         *  For touch end its a list of the touch points that have been removed from the surface
+         *  https://developer.mozilla.org/en-US/docs/DOM/TouchList
+         *  event.changedTouches = the touches that CHANGED in this event, not the total number of them
+         */
         for (var i = 0; i < event.changedTouches.length; i++)
         {
             this.game.input.stopPointer(event.changedTouches[i]);
         }
-
     },
 
     /**
-    * Stop the event listeners.
-    * @method Phaser.Touch#stop
-    */
+     * Stop the event listeners.
+     * @method Phaser.Touch#stop
+     */
     stop: function ()
     {
-
         if (!this.game.device.touch)
         {
             return;
@@ -413,7 +400,6 @@ Phaser.Touch.prototype = {
         this.game.canvas.removeEventListener('touchcancel', this._onTouchCancel);
 
         this.active = false;
-
     }
 
 };

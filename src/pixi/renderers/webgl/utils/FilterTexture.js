@@ -56,13 +56,13 @@ function _CreateFramebuffer (gl, width, height, scaleMode, textureUnit)
 }
 
 /**
-* @class PIXI.FilterTexture
-* @constructor
-* @param gl {WebGLContext} the current WebGL drawing context
-* @param width {Number} the horizontal range of the filter
-* @param height {Number} the vertical range of the filter
-* @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
-*/
+ * @class PIXI.FilterTexture
+ * @constructor
+ * @param gl {WebGLContext} the current WebGL drawing context
+ * @param width {Number} the horizontal range of the filter
+ * @param height {Number} the vertical range of the filter
+ * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ */
 PIXI.FilterTexture = function (gl, width, height, scaleMode, textureUnit)
 {
     textureUnit = typeof textureUnit === 'number' ? textureUnit : 0;
@@ -94,10 +94,10 @@ PIXI.FilterTexture = function (gl, width, height, scaleMode, textureUnit)
 PIXI.FilterTexture.prototype.constructor = PIXI.FilterTexture;
 
 /**
-* Clears the filter texture.
-*
-* @method PIXI.FilterTexture#clear
-*/
+ * Clears the filter texture.
+ *
+ * @method PIXI.FilterTexture#clear
+ */
 PIXI.FilterTexture.prototype.clear = function ()
 {
     var gl = this.gl;
@@ -130,10 +130,10 @@ PIXI.FilterTexture.prototype.resize = function (width, height)
 };
 
 /**
-* Destroys the filter texture.
-*
-* @method PIXI.FilterTexture#destroy
-*/
+ * Destroys the filter texture.
+ *
+ * @method PIXI.FilterTexture#destroy
+ */
 PIXI.FilterTexture.prototype.destroy = function ()
 {
     var gl = this.gl;

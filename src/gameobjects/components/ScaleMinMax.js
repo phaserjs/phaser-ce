@@ -1,48 +1,48 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* The ScaleMinMax component allows a Game Object to limit how far it can be scaled by its parent.
-*
-* @class
-*/
+ * The ScaleMinMax component allows a Game Object to limit how far it can be scaled by its parent.
+ *
+ * @class
+ */
 Phaser.Component.ScaleMinMax = function () {};
 
 Phaser.Component.ScaleMinMax.prototype = {
 
     /**
-    * The callback that will apply any scale limiting to the worldTransform.
-    * @property {function} transformCallback
-    */
+     * The callback that will apply any scale limiting to the worldTransform.
+     * @property {function} transformCallback
+     */
     transformCallback: null,
 
     /**
-    * The context under which `transformCallback` is called.
-    * @property {object} transformCallbackContext
-    */
+     * The context under which `transformCallback` is called.
+     * @property {object} transformCallbackContext
+     */
     transformCallbackContext: this,
 
     /**
-    * The minimum scale this Game Object will scale down to.
-    *
-    * It allows you to prevent a parent from scaling this Game Object lower than the given value.
-    *
-    * Set it to `null` to remove the limit.
-    * @property {Phaser.Point} scaleMin
-    */
+     * The minimum scale this Game Object will scale down to.
+     *
+     * It allows you to prevent a parent from scaling this Game Object lower than the given value.
+     *
+     * Set it to `null` to remove the limit.
+     * @property {Phaser.Point} scaleMin
+     */
     scaleMin: null,
 
     /**
-    * The maximum scale this Game Object will scale up to.
-    *
-    * It allows you to prevent a parent from scaling this Game Object higher than the given value.
-    *
-    * Set it to `null` to remove the limit.
-    * @property {Phaser.Point} scaleMax
-    */
+     * The maximum scale this Game Object will scale up to.
+     *
+     * It allows you to prevent a parent from scaling this Game Object higher than the given value.
+     *
+     * Set it to `null` to remove the limit.
+     * @property {Phaser.Point} scaleMax
+     */
     scaleMax: null,
 
     /**
@@ -54,7 +54,6 @@ Phaser.Component.ScaleMinMax.prototype = {
      */
     checkTransform: function (wt)
     {
-
         if (this.scaleMin)
         {
             if (wt.a < this.scaleMin.x)
@@ -80,7 +79,6 @@ Phaser.Component.ScaleMinMax.prototype = {
                 wt.d = this.scaleMax.y;
             }
         }
-
     },
 
     /**
@@ -110,7 +108,6 @@ Phaser.Component.ScaleMinMax.prototype = {
      */
     setScaleMinMax: function (minX, minY, maxX, maxY)
     {
-
         if (minY === undefined)
         {
             //  1 parameter, set all to it
@@ -160,7 +157,6 @@ Phaser.Component.ScaleMinMax.prototype = {
             this.transformCallback = this.checkTransform;
             this.transformCallbackContext = this;
         }
-
     }
 
 };

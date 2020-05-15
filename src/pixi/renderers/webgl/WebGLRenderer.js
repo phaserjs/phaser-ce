@@ -18,10 +18,9 @@ PIXI._enableMultiTextureToggle = false;
  */
 PIXI.WebGLRenderer = function (game, config)
 {
-
     /**
-    * @property {Phaser.Game} game - A reference to the Phaser Game instance.
-    */
+     * @property {Phaser.Game} game - A reference to the Phaser Game instance.
+     */
     this.game = game;
 
     if (!PIXI.defaultRenderer)
@@ -219,15 +218,14 @@ PIXI.WebGLRenderer = function (game, config)
 
     // map some webGL blend modes..
     this.mapBlendModes();
-
 };
 
 // constructor
 PIXI.WebGLRenderer.prototype.constructor = PIXI.WebGLRenderer;
 
 /**
-* @method PIXI.WebGLRenderer#initContext
-*/
+ * @method PIXI.WebGLRenderer#initContext
+ */
 PIXI.WebGLRenderer.prototype.initContext = function ()
 {
     var gl = this.view.getContext('webgl', this._contextOptions) || this.view.getContext('experimental-webgl', this._contextOptions);
@@ -280,31 +278,30 @@ PIXI.WebGLRenderer.prototype.initContext = function ()
 };
 
 /**
-* If Multi Texture support has been enabled, then calling this method will enable batching on the given
-* textures. The texture collection is an array of keys, that map to Phaser.Cache image entries.
-*
-* The number of textures that can be batched is dependent on hardware. If you provide more textures
-* than can be batched by the GPU, then only those at the start of the array will be used. Generally
-* you shouldn't provide more than 16 textures to this method. You can check the hardware limit via the
-* `maxTextures` property.
-*
-* You can also check the property `currentBatchedTextures` at any time, to see which textures are currently
-* being batched.
-*
-* To stop all textures from being batched, call this method again with an empty array.
-*
-* To change the textures being batched, call this method with a new array of image keys. The old ones
-* will all be purged out and no-longer batched, and the new ones enabled.
-*
-* Note: Throws a warning if you haven't enabled Multiple Texture batching support in the Phaser Game config.
-*
-* @method PIXI.WebGLRenderer#setTexturePriority
-* @param textureNameCollection {Array} An Array of Texture Cache keys to use for multi-texture batching.
-* @return {Array} An array containing the texture keys that were enabled for batching.
-*/
+ * If Multi Texture support has been enabled, then calling this method will enable batching on the given
+ * textures. The texture collection is an array of keys, that map to Phaser.Cache image entries.
+ *
+ * The number of textures that can be batched is dependent on hardware. If you provide more textures
+ * than can be batched by the GPU, then only those at the start of the array will be used. Generally
+ * you shouldn't provide more than 16 textures to this method. You can check the hardware limit via the
+ * `maxTextures` property.
+ *
+ * You can also check the property `currentBatchedTextures` at any time, to see which textures are currently
+ * being batched.
+ *
+ * To stop all textures from being batched, call this method again with an empty array.
+ *
+ * To change the textures being batched, call this method with a new array of image keys. The old ones
+ * will all be purged out and no-longer batched, and the new ones enabled.
+ *
+ * Note: Throws a warning if you haven't enabled Multiple Texture batching support in the Phaser Game config.
+ *
+ * @method PIXI.WebGLRenderer#setTexturePriority
+ * @param textureNameCollection {Array} An Array of Texture Cache keys to use for multi-texture batching.
+ * @return {Array} An array containing the texture keys that were enabled for batching.
+ */
 PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollection)
 {
-
     if (!PIXI._enableMultiTextureToggle)
     {
         console.warn('setTexturePriority error: Multi Texture support hasn\'t been enabled in the Phaser Game Config.');
@@ -326,9 +323,11 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
     var imageCache = this.game.cache._cache.image;
     var imageName = null;
 
-    //  Clear out all previously batched textures and reset their flags.
-    //  If the array has been modified, then the developer will have to
-    //  deal with that in their own way.
+    /*
+     *  Clear out all previously batched textures and reset their flags.
+     *  If the array has been modified, then the developer will have to
+     *  deal with that in their own way.
+     */
     for (var i = 0; i < this.currentBatchedTextures.length; i++)
     {
         imageName = this.currentBatchedTextures[i];
@@ -374,7 +373,6 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
     this.renderSession.maxTextureAvailableSpace = maxTextureAvailableSpace;
 
     return this.currentBatchedTextures;
-
 };
 
 /**
@@ -595,7 +593,6 @@ PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
 
     // return texture._glTextures[gl.id];
     return true;
-
 };
 
 /**

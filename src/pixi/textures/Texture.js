@@ -148,7 +148,6 @@ PIXI.Texture = function (baseTexture, frame, crop, trim)
         if (this.noFrame) { frame = new PIXI.Rectangle(0, 0, baseTexture.width, baseTexture.height); }
         this.setFrame(frame);
     }
-
 };
 
 PIXI.Texture.prototype.constructor = PIXI.Texture;
@@ -225,7 +224,6 @@ PIXI.Texture.prototype.setFrame = function (frame)
     }
 
     if (this.valid) { this._updateUvs(); }
-
 };
 
 /**
@@ -263,7 +261,6 @@ PIXI.Texture.prototype._updateUvs = function ()
  */
 PIXI.Texture.prototype._updateUvsInverted = function ()
 {
-
     if (!this._uvs) { this._uvs = new PIXI.TextureUvs(); }
 
     var frame = this.crop;
@@ -281,7 +278,6 @@ PIXI.Texture.prototype._updateUvsInverted = function ()
 
     this._uvs.x3 = frame.x / tw;
     this._uvs.y3 = (frame.y + frame.width) / th;
-
 };
 
 /**

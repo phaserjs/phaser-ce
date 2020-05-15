@@ -1,244 +1,243 @@
 /**
-* @author       Richard Davey <rich@photonstorm.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Richard Davey <rich@photonstorm.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* A Video object that takes a previously loaded Video from the Phaser Cache and handles playback of it.
-*
-* Alternatively it takes a getUserMedia feed from an active webcam and streams the contents of that to
-* the Video instead (see `startMediaStream` method)
-*
-* The video can then be applied to a Sprite as a texture. If multiple Sprites share the same Video texture and playback
-* changes (i.e. you pause the video, or seek to a new time) then this change will be seen across all Sprites simultaneously.
-*
-* Due to a bug in IE11 you cannot play a video texture to a Sprite in WebGL. For IE11 force Canvas mode.
-*
-* If you need each Sprite to be able to play a video fully independently then you will need one Video object per Sprite.
-* Please understand the obvious performance implications of doing this, and the memory required to hold videos in RAM.
-*
-* On some mobile browsers such as iOS Safari, you cannot play a video until the user has explicitly touched the screen.
-* This works in the same way as audio unlocking. Phaser will handle the touch unlocking for you, however unlike with audio
-* it's worth noting that every single Video needs to be touch unlocked, not just the first one. You can use the `changeSource`
-* method to try and work around this limitation, but see the method help for details.
-*
-* Small screen devices, especially iPod and iPhone will launch the video in its own native video player,
-* outside of the Safari browser. There is no way to avoid this, it's a device imposed limitation.
-*
-* Note: On iOS if you need to detect when the user presses the 'Done' button (before the video ends)
-* then you need to add your own event listener
-*
-* @class Phaser.Video
-* @constructor
-* @param {Phaser.Game} game - A reference to the currently running game.
-* @param {string|null} [key=null] - The key of the video file in the Phaser.Cache that this Video object will play. Set to `null` or leave undefined if you wish to use a webcam as the source. See `startMediaStream` to start webcam capture.
-* @param {string|null} [url=null] - If the video hasn't been loaded then you can provide a full URL to the file here (make sure to set key to null)
-*/
+ * A Video object that takes a previously loaded Video from the Phaser Cache and handles playback of it.
+ *
+ * Alternatively it takes a getUserMedia feed from an active webcam and streams the contents of that to
+ * the Video instead (see `startMediaStream` method)
+ *
+ * The video can then be applied to a Sprite as a texture. If multiple Sprites share the same Video texture and playback
+ * changes (i.e. you pause the video, or seek to a new time) then this change will be seen across all Sprites simultaneously.
+ *
+ * Due to a bug in IE11 you cannot play a video texture to a Sprite in WebGL. For IE11 force Canvas mode.
+ *
+ * If you need each Sprite to be able to play a video fully independently then you will need one Video object per Sprite.
+ * Please understand the obvious performance implications of doing this, and the memory required to hold videos in RAM.
+ *
+ * On some mobile browsers such as iOS Safari, you cannot play a video until the user has explicitly touched the screen.
+ * This works in the same way as audio unlocking. Phaser will handle the touch unlocking for you, however unlike with audio
+ * it's worth noting that every single Video needs to be touch unlocked, not just the first one. You can use the `changeSource`
+ * method to try and work around this limitation, but see the method help for details.
+ *
+ * Small screen devices, especially iPod and iPhone will launch the video in its own native video player,
+ * outside of the Safari browser. There is no way to avoid this, it's a device imposed limitation.
+ *
+ * Note: On iOS if you need to detect when the user presses the 'Done' button (before the video ends)
+ * then you need to add your own event listener
+ *
+ * @class Phaser.Video
+ * @constructor
+ * @param {Phaser.Game} game - A reference to the currently running game.
+ * @param {string|null} [key=null] - The key of the video file in the Phaser.Cache that this Video object will play. Set to `null` or leave undefined if you wish to use a webcam as the source. See `startMediaStream` to start webcam capture.
+ * @param {string|null} [url=null] - If the video hasn't been loaded then you can provide a full URL to the file here (make sure to set key to null)
+ */
 Phaser.Video = function (game, key, url)
 {
-
     if (key === undefined) { key = null; }
     if (url === undefined) { url = null; }
 
     /**
-    * @property {Phaser.Game} game - A reference to the currently running game.
-    */
+     * @property {Phaser.Game} game - A reference to the currently running game.
+     */
     this.game = game;
 
     /**
-    * @property {string} key - The key of the Video in the Cache, if stored there. Will be `null` if this Video is using the webcam instead.
-    * @default null
-    */
+     * @property {string} key - The key of the Video in the Cache, if stored there. Will be `null` if this Video is using the webcam instead.
+     * @default null
+     */
     this.key = key;
 
     /**
-    * @property {number} width - The width of the video in pixels.
-    * @default
-    */
+     * @property {number} width - The width of the video in pixels.
+     * @default
+     */
     this.width = 0;
 
     /**
-    * @property {number} height - The height of the video in pixels.
-    * @default
-    */
+     * @property {number} height - The height of the video in pixels.
+     * @default
+     */
     this.height = 0;
 
     /**
-    * @property {number} type - The const type of this object.
-    * @default
-    */
+     * @property {number} type - The const type of this object.
+     * @default
+     */
     this.type = Phaser.VIDEO;
 
     /**
-    * @property {boolean} disableTextureUpload - If true this video will never send its image data to the GPU when its dirty flag is true. This only applies in WebGL.
-    */
+     * @property {boolean} disableTextureUpload - If true this video will never send its image data to the GPU when its dirty flag is true. This only applies in WebGL.
+     */
     this.disableTextureUpload = false;
 
     /**
-    * @property {boolean} touchLocked - true if this video is currently locked awaiting a touch event. This happens on some mobile devices, such as iOS.
-    * @default
-    */
+     * @property {boolean} touchLocked - true if this video is currently locked awaiting a touch event. This happens on some mobile devices, such as iOS.
+     * @default
+     */
     this.touchLocked = false;
 
     /**
-    * @property {Phaser.Signal} onPlay - This signal is dispatched when the Video starts to play. It sends 3 parameters: a reference to the Video object, if the video is set to loop or not and the playback rate.
-    */
+     * @property {Phaser.Signal} onPlay - This signal is dispatched when the Video starts to play. It sends 3 parameters: a reference to the Video object, if the video is set to loop or not and the playback rate.
+     */
     this.onPlay = new Phaser.Signal();
 
     /**
-    * @property {Phaser.Signal} onChangeSource - This signal is dispatched if the Video source is changed. It sends 3 parameters: a reference to the Video object and the new width and height of the new video source.
-    */
+     * @property {Phaser.Signal} onChangeSource - This signal is dispatched if the Video source is changed. It sends 3 parameters: a reference to the Video object and the new width and height of the new video source.
+     */
     this.onChangeSource = new Phaser.Signal();
 
     /**
-    * @property {Phaser.Signal} onComplete - This signal is dispatched when the Video completes playback, i.e. enters an 'ended' state. On iOS specifically it also fires if the user hits the 'Done' button at any point during playback. Videos set to loop will never dispatch this signal.
-    */
+     * @property {Phaser.Signal} onComplete - This signal is dispatched when the Video completes playback, i.e. enters an 'ended' state. On iOS specifically it also fires if the user hits the 'Done' button at any point during playback. Videos set to loop will never dispatch this signal.
+     */
     this.onComplete = new Phaser.Signal();
 
     /**
-    * @property {Phaser.Signal} onAccess - This signal is dispatched if the user allows access to their webcam.
-    */
+     * @property {Phaser.Signal} onAccess - This signal is dispatched if the user allows access to their webcam.
+     */
     this.onAccess = new Phaser.Signal();
 
     /**
-    * @property {Phaser.Signal} onError - This signal is dispatched if an error occurs either getting permission to use the webcam (for a Video Stream) or when trying to play back a video file.
-    */
+     * @property {Phaser.Signal} onError - This signal is dispatched if an error occurs either getting permission to use the webcam (for a Video Stream) or when trying to play back a video file.
+     */
     this.onError = new Phaser.Signal();
 
     /**
-    * This signal is dispatched if when asking for permission to use the webcam no response is given within a the Video.timeout limit.
-    * This may be because the user has picked `Not now` in the permissions window, or there is a delay in establishing the LocalMediaStream.
-    * @property {Phaser.Signal} onTimeout
-    */
+     * This signal is dispatched if when asking for permission to use the webcam no response is given within a the Video.timeout limit.
+     * This may be because the user has picked `Not now` in the permissions window, or there is a delay in establishing the LocalMediaStream.
+     * @property {Phaser.Signal} onTimeout
+     */
     this.onTimeout = new Phaser.Signal();
 
     /**
-    * This signal is dispatched when the Video is unlocked.
-    * @property {Phaser.Signal} onTouchUnlock
-    */
+     * This signal is dispatched when the Video is unlocked.
+     * @property {Phaser.Signal} onTouchUnlock
+     */
     this.onTouchUnlock = new Phaser.Signal();
 
     /**
-    * Start playing the video when it's unlocked.
-    * @property {boolean} playWhenUnlocked
-    * @default
-    */
+     * Start playing the video when it's unlocked.
+     * @property {boolean} playWhenUnlocked
+     * @default
+     */
     this.playWhenUnlocked = true;
 
     /**
-    * @property {integer} timeout - The amount of ms allowed to elapsed before the Video.onTimeout signal is dispatched while waiting for webcam access.
-    * @default
-    */
+     * @property {integer} timeout - The amount of ms allowed to elapsed before the Video.onTimeout signal is dispatched while waiting for webcam access.
+     * @default
+     */
     this.timeout = 15000;
 
     /**
-    * @property {integer} _timeOutID - setTimeout ID.
-    * @private
-    */
+     * @property {integer} _timeOutID - setTimeout ID.
+     * @private
+     */
     this._timeOutID = null;
 
     /**
-    * @property {HTMLVideoElement} video - The HTML Video Element that is added to the document.
-    */
+     * @property {HTMLVideoElement} video - The HTML Video Element that is added to the document.
+     */
     this.video = null;
 
     /**
-    * @property {MediaStream} videoStream - The Video Stream data. Only set if this Video is streaming from the webcam via `startMediaStream`.
-    */
+     * @property {MediaStream} videoStream - The Video Stream data. Only set if this Video is streaming from the webcam via `startMediaStream`.
+     */
     this.videoStream = null;
 
     /**
-    * @property {boolean} isStreaming - Is there a streaming video source? I.e. from a webcam.
-    */
+     * @property {boolean} isStreaming - Is there a streaming video source? I.e. from a webcam.
+     */
     this.isStreaming = false;
 
     /**
-    * When starting playback of a video Phaser will monitor its readyState using a setTimeout call.
-    * The setTimeout happens once every `Video.retryInterval` ms. It will carry on monitoring the video
-    * state in this manner until the `retryLimit` is reached and then abort.
-    * @property {integer} retryLimit
-    * @default
-    */
+     * When starting playback of a video Phaser will monitor its readyState using a setTimeout call.
+     * The setTimeout happens once every `Video.retryInterval` ms. It will carry on monitoring the video
+     * state in this manner until the `retryLimit` is reached and then abort.
+     * @property {integer} retryLimit
+     * @default
+     */
     this.retryLimit = 20;
 
     /**
-    * @property {integer} retry - The current retry attempt.
-    * @default
-    */
+     * @property {integer} retry - The current retry attempt.
+     * @default
+     */
     this.retry = 0;
 
     /**
-    * @property {integer} retryInterval - The number of ms between each retry at monitoring the status of a downloading video.
-    * @default
-    */
+     * @property {integer} retryInterval - The number of ms between each retry at monitoring the status of a downloading video.
+     * @default
+     */
     this.retryInterval = 500;
 
     /**
-    * @property {integer} _retryID - The callback ID of the retry setTimeout.
-    * @private
-    */
+     * @property {integer} _retryID - The callback ID of the retry setTimeout.
+     * @private
+     */
     this._retryID = null;
 
     /**
-    * @property {boolean} _codeMuted - Internal mute tracking var.
-    * @private
-    * @default
-    */
+     * @property {boolean} _codeMuted - Internal mute tracking var.
+     * @private
+     * @default
+     */
     this._codeMuted = false;
 
     /**
-    * @property {boolean} _muted - Internal mute tracking var.
-    * @private
-    * @default
-    */
+     * @property {boolean} _muted - Internal mute tracking var.
+     * @private
+     * @default
+     */
     this._muted = false;
 
     /**
-    * @property {boolean} _codePaused - Internal paused tracking var.
-    * @private
-    * @default
-    */
+     * @property {boolean} _codePaused - Internal paused tracking var.
+     * @private
+     * @default
+     */
     this._codePaused = false;
 
     /**
-    * @property {boolean} _paused - Internal paused tracking var.
-    * @private
-    * @default
-    */
+     * @property {boolean} _paused - Internal paused tracking var.
+     * @private
+     * @default
+     */
     this._paused = false;
 
     /**
-    * @property {boolean} _pending - Internal var tracking play pending.
-    * @private
-    * @default
-    */
+     * @property {boolean} _pending - Internal var tracking play pending.
+     * @private
+     * @default
+     */
     this._pending = false;
 
     /**
-    * @property {boolean} _pendingChangeSource - Internal var tracking play pending.
-    * @private
-    * @default
-    */
+     * @property {boolean} _pendingChangeSource - Internal var tracking play pending.
+     * @private
+     * @default
+     */
     this._pendingChangeSource = false;
 
     /**
-    * @property {boolean} _autoplay - Internal var tracking autoplay when changing source.
-    * @private
-    * @default
-    */
+     * @property {boolean} _autoplay - Internal var tracking autoplay when changing source.
+     * @private
+     * @default
+     */
     this._autoplay = false;
 
     /**
-    * @property {function} _endCallback - The addEventListener ended function.
-    * @private
-    */
+     * @property {function} _endCallback - The addEventListener ended function.
+     * @private
+     */
     this._endCallback = null;
 
     /**
-    * @property {function} _playCallback - The addEventListener playing function.
-    * @private
-    */
+     * @property {function} _playCallback - The addEventListener playing function.
+     * @private
+     */
     this._playCallback = null;
 
     if (key && this.game.cache.checkVideoKey(key))
@@ -263,9 +262,9 @@ Phaser.Video = function (game, key, url)
     }
 
     /**
-    * @property {PIXI.BaseTexture} baseTexture - The PIXI.BaseTexture.
-    * @default
-    */
+     * @property {PIXI.BaseTexture} baseTexture - The PIXI.BaseTexture.
+     * @default
+     */
     if (this.video && !url)
     {
         this.baseTexture = new PIXI.BaseTexture(this.video, null, this.game.resolution);
@@ -278,15 +277,15 @@ Phaser.Video = function (game, key, url)
     }
 
     /**
-    * @property {PIXI.Texture} texture - The PIXI.Texture.
-    * @default
-    */
+     * @property {PIXI.Texture} texture - The PIXI.Texture.
+     * @default
+     */
     this.texture = new PIXI.Texture(this.baseTexture);
 
     /**
-    * @property {Phaser.Frame} textureFrame - The Frame this video uses for rendering.
-    * @default
-    */
+     * @property {Phaser.Frame} textureFrame - The Frame this video uses for rendering.
+     * @default
+     */
     this.textureFrame = new Phaser.Frame(0, 0, 0, this.width, this.height, 'video');
 
     this.texture.setFrame(this.textureFrame);
@@ -299,13 +298,13 @@ Phaser.Video = function (game, key, url)
     }
 
     /**
-    * A snapshot grabbed from the video. This is initially black. Populate it by calling Video.grab().
-    * When called the BitmapData is updated with a grab taken from the current video playing or active video stream.
-    * If Phaser has been compiled without BitmapData support this property will always be `null`.
-    *
-    * @property {Phaser.BitmapData} snapshot
-    * @readOnly
-    */
+     * A snapshot grabbed from the video. This is initially black. Populate it by calling Video.grab().
+     * When called the BitmapData is updated with a grab taken from the current video playing or active video stream.
+     * If Phaser has been compiled without BitmapData support this property will always be `null`.
+     *
+     * @property {Phaser.BitmapData} snapshot
+     * @readOnly
+     */
     this.snapshot = null;
 
     if (Phaser.BitmapData)
@@ -322,7 +321,6 @@ Phaser.Video = function (game, key, url)
     {
         _video.locked = false;
     }
-
 };
 
 Phaser.Video.prototype = {
@@ -337,7 +335,6 @@ Phaser.Video.prototype = {
      */
     connectToMediaStream: function (video, stream)
     {
-
         if (video && stream)
         {
             this.video = video;
@@ -351,7 +348,6 @@ Phaser.Video.prototype = {
         }
 
         return this;
-
     },
 
     /**
@@ -375,7 +371,6 @@ Phaser.Video.prototype = {
      */
     startMediaStream: function (captureAudio, width, height)
     {
-
         if (captureAudio === undefined) { captureAudio = false; }
         if (width === undefined) { width = null; }
         if (height === undefined) { height = null; }
@@ -432,7 +427,6 @@ Phaser.Video.prototype = {
         }
 
         return this;
-
     },
 
     /**
@@ -441,11 +435,9 @@ Phaser.Video.prototype = {
      */
     getUserMediaTimeout: function ()
     {
-
         clearTimeout(this._timeOutID);
 
         this.onTimeout.dispatch(this);
-
     },
 
     /**
@@ -454,11 +446,9 @@ Phaser.Video.prototype = {
      */
     getUserMediaError: function (event)
     {
-
         clearTimeout(this._timeOutID);
 
         this.onError.dispatch(this, event);
-
     },
 
     /**
@@ -467,7 +457,6 @@ Phaser.Video.prototype = {
      */
     getUserMediaSuccess: function (stream)
     {
-
         clearTimeout(this._timeOutID);
 
         // Attach the stream to the video
@@ -491,12 +480,10 @@ Phaser.Video.prototype = {
 
         this.video.onloadeddata = function ()
         {
-
             var retry = 10;
 
             function checkStream ()
             {
-
                 if (retry > 0)
                 {
                     if (self.video.videoWidth > 0)
@@ -531,9 +518,7 @@ Phaser.Video.prototype = {
             }
 
             checkStream();
-
         };
-
     },
 
     /**
@@ -546,7 +531,6 @@ Phaser.Video.prototype = {
      */
     createVideoFromBlob: function (blob)
     {
-
         var _this = this;
 
         this.video = document.createElement('video');
@@ -558,7 +542,6 @@ Phaser.Video.prototype = {
         this.video.canplay = true;
 
         return this;
-
     },
 
     /**
@@ -571,7 +554,6 @@ Phaser.Video.prototype = {
      */
     createVideoFromURL: function (url, autoplay)
     {
-
         if (autoplay === undefined) { autoplay = false; }
 
         //  Invalidate the texture while we wait for the new one to load (crashes IE11 otherwise)
@@ -603,7 +585,6 @@ Phaser.Video.prototype = {
         this.key = url;
 
         return this;
-
     },
 
     /**
@@ -617,7 +598,6 @@ Phaser.Video.prototype = {
      */
     updateTexture: function (event, width, height)
     {
-
         var change = false;
 
         if (width === undefined || width === null) { width = this.video.videoWidth; change = true; }
@@ -655,7 +635,6 @@ Phaser.Video.prototype = {
                 this.onPlay.dispatch(this, this.loop, this.playbackRate);
             }
         }
-
     },
 
     /**
@@ -666,9 +645,7 @@ Phaser.Video.prototype = {
      */
     complete: function ()
     {
-
         this.onComplete.dispatch(this);
-
     },
 
     /**
@@ -683,7 +660,6 @@ Phaser.Video.prototype = {
      */
     play: function (loop, playbackRate)
     {
-
         if (this._pendingChangeSource)
         {
             return this;
@@ -750,7 +726,6 @@ Phaser.Video.prototype = {
         }
 
         return this;
-
     },
 
     /**
@@ -761,11 +736,9 @@ Phaser.Video.prototype = {
      */
     playHandler: function ()
     {
-
         this.video.removeEventListener('playing', this._playCallback, true);
 
         this.updateTexture();
-
     },
 
     /**
@@ -784,7 +757,6 @@ Phaser.Video.prototype = {
      */
     stop: function ()
     {
-
         if (this.game.sound.onMute)
         {
             this.game.sound.onMute.remove(this.setMute, this);
@@ -850,20 +822,18 @@ Phaser.Video.prototype = {
         }
 
         return this;
-
     },
 
     /**
-    * Updates the given Display Objects so they use this Video as their texture.
-    * This will replace any texture they will currently have set.
-    *
-    * @method Phaser.Video#add
-    * @param {Phaser.Sprite|Phaser.Sprite[]|Phaser.Image|Phaser.Image[]} object - Either a single Sprite/Image or an Array of Sprites/Images.
-    * @return {Phaser.Video} This Video object for method chaining.
-    */
+     * Updates the given Display Objects so they use this Video as their texture.
+     * This will replace any texture they will currently have set.
+     *
+     * @method Phaser.Video#add
+     * @param {Phaser.Sprite|Phaser.Sprite[]|Phaser.Image|Phaser.Image[]} object - Either a single Sprite/Image or an Array of Sprites/Images.
+     * @return {Phaser.Video} This Video object for method chaining.
+     */
     add: function (object)
     {
-
         if (Array.isArray(object))
         {
             for (var i = 0; i < object.length; i++)
@@ -880,24 +850,22 @@ Phaser.Video.prototype = {
         }
 
         return this;
-
     },
 
     /**
-    * Creates a new Phaser.Image object, assigns this Video to be its texture, adds it to the world then returns it.
-    *
-    * @method Phaser.Video#addToWorld
-    * @param {number} [x=0] - The x coordinate to place the Image at.
-    * @param {number} [y=0] - The y coordinate to place the Image at.
-    * @param {number} [anchorX=0] - Set the x anchor point of the Image. A value between 0 and 1, where 0 is the top-left and 1 is bottom-right.
-    * @param {number} [anchorY=0] - Set the y anchor point of the Image. A value between 0 and 1, where 0 is the top-left and 1 is bottom-right.
-    * @param {number} [scaleX=1] - The horizontal scale factor of the Image. A value of 1 means no scaling. 2 would be twice the size, and so on.
-    * @param {number} [scaleY=1] - The vertical scale factor of the Image. A value of 1 means no scaling. 2 would be twice the size, and so on.
-    * @return {Phaser.Image} The newly added Image object.
-    */
+     * Creates a new Phaser.Image object, assigns this Video to be its texture, adds it to the world then returns it.
+     *
+     * @method Phaser.Video#addToWorld
+     * @param {number} [x=0] - The x coordinate to place the Image at.
+     * @param {number} [y=0] - The y coordinate to place the Image at.
+     * @param {number} [anchorX=0] - Set the x anchor point of the Image. A value between 0 and 1, where 0 is the top-left and 1 is bottom-right.
+     * @param {number} [anchorY=0] - Set the y anchor point of the Image. A value between 0 and 1, where 0 is the top-left and 1 is bottom-right.
+     * @param {number} [scaleX=1] - The horizontal scale factor of the Image. A value of 1 means no scaling. 2 would be twice the size, and so on.
+     * @param {number} [scaleY=1] - The vertical scale factor of the Image. A value of 1 means no scaling. 2 would be twice the size, and so on.
+     * @return {Phaser.Image} The newly added Image object.
+     */
     addToWorld: function (x, y, anchorX, anchorY, scaleX, scaleY)
     {
-
         scaleX = scaleX || 1;
         scaleY = scaleY || 1;
 
@@ -907,35 +875,31 @@ Phaser.Video.prototype = {
         image.scale.set(scaleX, scaleY);
 
         return image;
-
     },
 
     /**
-    * If the game is running in WebGL this will push the texture up to the GPU if it's dirty.
-    * This is called automatically if the Video is being used by a Sprite, otherwise you need to remember to call it in your render function.
-    * If you wish to suppress this functionality set Video.disableTextureUpload to `true`.
-    *
-    * @method Phaser.Video#render
-    */
+     * If the game is running in WebGL this will push the texture up to the GPU if it's dirty.
+     * This is called automatically if the Video is being used by a Sprite, otherwise you need to remember to call it in your render function.
+     * If you wish to suppress this functionality set Video.disableTextureUpload to `true`.
+     *
+     * @method Phaser.Video#render
+     */
     render: function ()
     {
-
         if (!this.disableTextureUpload && this.playing)
         {
             this.baseTexture.dirty();
         }
-
     },
 
     /**
-    * Internal handler called automatically by the Video.mute setter.
-    *
-    * @method Phaser.Video#setMute
-    * @private
-    */
+     * Internal handler called automatically by the Video.mute setter.
+     *
+     * @method Phaser.Video#setMute
+     * @private
+     */
     setMute: function ()
     {
-
         if (this._muted)
         {
             return;
@@ -944,18 +908,16 @@ Phaser.Video.prototype = {
         this._muted = true;
 
         this.video.muted = true;
-
     },
 
     /**
-    * Internal handler called automatically by the Video.mute setter.
-    *
-    * @method Phaser.Video#unsetMute
-    * @private
-    */
+     * Internal handler called automatically by the Video.mute setter.
+     *
+     * @method Phaser.Video#unsetMute
+     * @private
+     */
     unsetMute: function ()
     {
-
         if (!this._muted || this._codeMuted)
         {
             return;
@@ -964,18 +926,16 @@ Phaser.Video.prototype = {
         this._muted = false;
 
         this.video.muted = false;
-
     },
 
     /**
-    * Internal handler called automatically by the Video.paused setter.
-    *
-    * @method Phaser.Video#setPause
-    * @private
-    */
+     * Internal handler called automatically by the Video.paused setter.
+     *
+     * @method Phaser.Video#setPause
+     * @private
+     */
     setPause: function ()
     {
-
         if (this._paused || this.touchLocked)
         {
             return;
@@ -984,18 +944,16 @@ Phaser.Video.prototype = {
         this._paused = true;
 
         this.video.pause();
-
     },
 
     /**
-    * Internal handler called automatically by the Video.paused setter.
-    *
-    * @method Phaser.Video#setResume
-    * @private
-    */
+     * Internal handler called automatically by the Video.paused setter.
+     *
+     * @method Phaser.Video#setResume
+     * @private
+     */
     setResume: function ()
     {
-
         if (!this._paused || this._codePaused || this.touchLocked)
         {
             return;
@@ -1007,7 +965,6 @@ Phaser.Video.prototype = {
         {
             this.video.play();
         }
-
     },
 
     /**
@@ -1033,7 +990,6 @@ Phaser.Video.prototype = {
      */
     changeSource: function (src, autoplay)
     {
-
         if (autoplay === undefined) { autoplay = true; }
 
         //  Invalidate the texture while we wait for the new one to load (crashes IE11 otherwise)
@@ -1059,18 +1015,16 @@ Phaser.Video.prototype = {
         }
 
         return this;
-
     },
 
     /**
-    * Internal callback that monitors the download progress of a video after changing its source.
-    *
-    * @method Phaser.Video#checkVideoProgress
-    * @private
-    */
+     * Internal callback that monitors the download progress of a video after changing its source.
+     *
+     * @method Phaser.Video#checkVideoProgress
+     * @private
+     */
     checkVideoProgress: function ()
     {
-
         // if (this.video.readyState === 2 || this.video.readyState === 4)
         if (this.video.readyState === 4)
         {
@@ -1092,33 +1046,29 @@ Phaser.Video.prototype = {
                 console.warn('Phaser.Video: Unable to start downloading video in time', this.isStreaming);
             }
         }
-
     },
 
     /**
-    * Sets the Input Manager touch callback to be Video.unlock.
-    * Required for mobile video unlocking. Mostly just used internally.
-    *
-    * @method Phaser.Video#setTouchLock
-    */
+     * Sets the Input Manager touch callback to be Video.unlock.
+     * Required for mobile video unlocking. Mostly just used internally.
+     *
+     * @method Phaser.Video#setTouchLock
+     */
     setTouchLock: function ()
     {
-
         this.game.input.addTouchLockCallback(this.unlock, this, true);
         this.touchLocked = true;
-
     },
 
     /**
-    * Enables the video on mobile devices, usually after the first touch.
-    * If the SoundManager hasn't been unlocked then this will automatically unlock that as well.
-    * Only one video can be pending unlock at any one time.
-    *
-    * @method Phaser.Video#unlock
-    */
+     * Enables the video on mobile devices, usually after the first touch.
+     * If the SoundManager hasn't been unlocked then this will automatically unlock that as well.
+     * Only one video can be pending unlock at any one time.
+     *
+     * @method Phaser.Video#unlock
+     */
     unlock: function ()
     {
-
         this.touchLocked = false;
 
         if (this.playWhenUnlocked)
@@ -1141,7 +1091,6 @@ Phaser.Video.prototype = {
         this.onTouchUnlock.dispatch(this);
 
         return true;
-
     },
 
     /**
@@ -1159,7 +1108,6 @@ Phaser.Video.prototype = {
      */
     grab: function (clear, alpha, blendMode)
     {
-
         if (clear === undefined) { clear = false; }
         if (alpha === undefined) { alpha = 1; }
         if (blendMode === undefined) { blendMode = null; }
@@ -1178,7 +1126,6 @@ Phaser.Video.prototype = {
         this.snapshot.copy(this.video, 0, 0, this.width, this.height, 0, 0, this.width, this.height, 0, 0, 0, 1, 1, alpha, blendMode);
 
         return this.snapshot;
-
     },
 
     /**
@@ -1189,7 +1136,6 @@ Phaser.Video.prototype = {
      */
     removeVideoElement: function ()
     {
-
         if (!this.video)
         {
             return;
@@ -1209,7 +1155,6 @@ Phaser.Video.prototype = {
         this.video.removeAttribute('src');
 
         this.video = null;
-
     },
 
     /**
@@ -1220,7 +1165,6 @@ Phaser.Video.prototype = {
      */
     destroy: function ()
     {
-
         this.stop();
 
         this.removeVideoElement();
@@ -1234,81 +1178,69 @@ Phaser.Video.prototype = {
         {
             window.clearTimeout(this._retryID);
         }
-
     }
 
 };
 
 /**
-* @name Phaser.Video#currentTime
-* @property {number} currentTime - The current time of the video in seconds. If set the video will attempt to seek to that point in time.
-*/
+ * @name Phaser.Video#currentTime
+ * @property {number} currentTime - The current time of the video in seconds. If set the video will attempt to seek to that point in time.
+ */
 Object.defineProperty(Phaser.Video.prototype, 'currentTime', {
 
     get: function ()
     {
-
         return (this.video) ? this.video.currentTime : 0;
-
     },
 
     set: function (value)
     {
-
         this.video.currentTime = value;
-
     }
 
 });
 
 /**
-* @name Phaser.Video#duration
-* @property {number} duration - The duration of the video in seconds.
-* @readOnly
-*/
+ * @name Phaser.Video#duration
+ * @property {number} duration - The duration of the video in seconds.
+ * @readOnly
+ */
 Object.defineProperty(Phaser.Video.prototype, 'duration', {
 
     get: function ()
     {
-
         return (this.video) ? this.video.duration : 0;
-
     }
 
 });
 
 /**
-* @name Phaser.Video#progress
-* @property {number} progress - The progress of this video. This is a value between 0 and 1, where 0 is the start and 1 is the end of the video.
-* @readOnly
-*/
+ * @name Phaser.Video#progress
+ * @property {number} progress - The progress of this video. This is a value between 0 and 1, where 0 is the start and 1 is the end of the video.
+ * @readOnly
+ */
 Object.defineProperty(Phaser.Video.prototype, 'progress', {
 
     get: function ()
     {
-
         return (this.video) ? (this.video.currentTime / this.video.duration) : 0;
-
     }
 
 });
 
 /**
-* @name Phaser.Video#mute
-* @property {boolean} mute - Gets or sets the muted state of the Video.
-*/
+ * @name Phaser.Video#mute
+ * @property {boolean} mute - Gets or sets the muted state of the Video.
+ */
 Object.defineProperty(Phaser.Video.prototype, 'mute', {
 
     get: function ()
     {
-
         return this._muted;
-
     },
 
     set: function (value)
     {
-
         value = value || null;
 
         if (value)
@@ -1336,24 +1268,21 @@ Object.defineProperty(Phaser.Video.prototype, 'mute', {
 });
 
 /**
-* Gets or sets the paused state of the Video.
-* If the video is still touch locked (such as on iOS devices) this call has no effect.
-*
-* @name Phaser.Video#paused
-* @property {boolean} paused
-*/
+ * Gets or sets the paused state of the Video.
+ * If the video is still touch locked (such as on iOS devices) this call has no effect.
+ *
+ * @name Phaser.Video#paused
+ * @property {boolean} paused
+ */
 Object.defineProperty(Phaser.Video.prototype, 'paused', {
 
     get: function ()
     {
-
         return this._paused;
-
     },
 
     set: function (value)
     {
-
         value = value || null;
 
         if (this.touchLocked)
@@ -1386,21 +1315,18 @@ Object.defineProperty(Phaser.Video.prototype, 'paused', {
 });
 
 /**
-* @name Phaser.Video#volume
-* @property {number} volume - Gets or sets the volume of the Video, a value between 0 and 1. The value given is clamped to the range 0 to 1.
-*/
+ * @name Phaser.Video#volume
+ * @property {number} volume - Gets or sets the volume of the Video, a value between 0 and 1. The value given is clamped to the range 0 to 1.
+ */
 Object.defineProperty(Phaser.Video.prototype, 'volume', {
 
     get: function ()
     {
-
         return (this.video) ? this.video.volume : 1;
-
     },
 
     set: function (value)
     {
-
         if (value < 0)
         {
             value = 0;
@@ -1414,56 +1340,48 @@ Object.defineProperty(Phaser.Video.prototype, 'volume', {
         {
             this.video.volume = value;
         }
-
     }
 
 });
 
 /**
-* @name Phaser.Video#playbackRate
-* @property {number} playbackRate - Gets or sets the playback rate of the Video. This is the speed at which the video is playing.
-*/
+ * @name Phaser.Video#playbackRate
+ * @property {number} playbackRate - Gets or sets the playback rate of the Video. This is the speed at which the video is playing.
+ */
 Object.defineProperty(Phaser.Video.prototype, 'playbackRate', {
 
     get: function ()
     {
-
         return (this.video) ? this.video.playbackRate : 1;
-
     },
 
     set: function (value)
     {
-
         if (this.video)
         {
             this.video.playbackRate = value;
         }
-
     }
 
 });
 
 /**
-* Gets or sets if the Video is set to loop.
-* Please note that at present some browsers (i.e. Chrome) do not support *seamless* video looping.
-* If the video isn't yet set this will always return false.
-*
-* @name Phaser.Video#loop
-* @property {boolean} loop
-*/
+ * Gets or sets if the Video is set to loop.
+ * Please note that at present some browsers (i.e. Chrome) do not support *seamless* video looping.
+ * If the video isn't yet set this will always return false.
+ *
+ * @name Phaser.Video#loop
+ * @property {boolean} loop
+ */
 Object.defineProperty(Phaser.Video.prototype, 'loop', {
 
     get: function ()
     {
-
         return (this.video) ? this.video.loop : false;
-
     },
 
     set: function (value)
     {
-
         if (value && this.video)
         {
             this.video.loop = 'loop';
@@ -1472,23 +1390,20 @@ Object.defineProperty(Phaser.Video.prototype, 'loop', {
         {
             this.video.loop = '';
         }
-
     }
 
 });
 
 /**
-* @name Phaser.Video#playing
-* @property {boolean} playing - True if the video is currently playing (and not paused or ended), otherwise false.
-* @readOnly
-*/
+ * @name Phaser.Video#playing
+ * @property {boolean} playing - True if the video is currently playing (and not paused or ended), otherwise false.
+ * @readOnly
+ */
 Object.defineProperty(Phaser.Video.prototype, 'playing', {
 
     get: function ()
     {
-
         return (this.video) ? !(this.video.paused && this.video.ended) : false;
-
     }
 
 });

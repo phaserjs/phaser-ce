@@ -3,9 +3,9 @@
  */
 
 /**
-* @class PIXI.WebGLFilterManager
-* @constructor
-*/
+ * @class PIXI.WebGLFilterManager
+ * @constructor
+ */
 PIXI.WebGLFilterManager = function ()
 {
     /**
@@ -30,11 +30,11 @@ PIXI.WebGLFilterManager = function ()
 PIXI.WebGLFilterManager.prototype.constructor = PIXI.WebGLFilterManager;
 
 /**
-* Initialises the context and the properties.
-*
-* @method PIXI.WebGLFilterManager#setContext
-* @param gl {WebGLContext} the current WebGL drawing context
-*/
+ * Initialises the context and the properties.
+ *
+ * @method PIXI.WebGLFilterManager#setContext
+ * @param gl {WebGLContext} the current WebGL drawing context
+ */
 PIXI.WebGLFilterManager.prototype.setContext = function (gl)
 {
     this.gl = gl;
@@ -44,10 +44,10 @@ PIXI.WebGLFilterManager.prototype.setContext = function (gl)
 };
 
 /**
-* @method PIXI.WebGLFilterManager#begin
-* @param renderSession {RenderSession}
-* @param buffer {ArrayBuffer}
-*/
+ * @method PIXI.WebGLFilterManager#begin
+ * @param renderSession {RenderSession}
+ * @param buffer {ArrayBuffer}
+ */
 PIXI.WebGLFilterManager.prototype.begin = function (renderSession, buffer)
 {
     this.renderSession = renderSession;
@@ -60,11 +60,11 @@ PIXI.WebGLFilterManager.prototype.begin = function (renderSession, buffer)
 };
 
 /**
-* Applies the filter and adds it to the current filter stack.
-*
-* @method PIXI.WebGLFilterManager#pushFilter
-* @param filterBlock {Object} the filter that will be pushed to the current filter stack
-*/
+ * Applies the filter and adds it to the current filter stack.
+ *
+ * @method PIXI.WebGLFilterManager#pushFilter
+ * @param filterBlock {Object} the filter that will be pushed to the current filter stack
+ */
 PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
 {
     var gl = this.gl;
@@ -82,8 +82,10 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
 
     // <<<  modify by nextht
 
-    // filter program
-    // OPTIMISATION - the first filter is free if its a simple color change?
+    /*
+     * filter program
+     * OPTIMISATION - the first filter is free if its a simple color change?
+     */
     this.filterStack.push(filterBlock);
 
     var filter = filterBlock.filterPasses[0];
@@ -129,25 +131,26 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
     offset.x = -filterArea.x;
     offset.y = -filterArea.y;
 
-    // update projection
-    // now restore the regular shader..
-    // this.renderSession.shaderManager.setShader(this.defaultShader);
-    // gl.uniform2f(this.defaultShader.projectionVector, filterArea.width/2, -filterArea.height/2);
-    // gl.uniform2f(this.defaultShader.offsetVector, -filterArea.x, -filterArea.y);
+    /*
+     * update projection
+     * now restore the regular shader..
+     * this.renderSession.shaderManager.setShader(this.defaultShader);
+     * gl.uniform2f(this.defaultShader.projectionVector, filterArea.width/2, -filterArea.height/2);
+     * gl.uniform2f(this.defaultShader.offsetVector, -filterArea.x, -filterArea.y);
+     */
 
     gl.colorMask(true, true, true, true);
     gl.clearColor(0,0,0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     filterBlock._glFilterTexture = texture;
-
 };
 
 /**
-* Removes the last filter from the filter stack and doesn't return it.
-*
-* @method PIXI.WebGLFilterManager#popFilter
-*/
+ * Removes the last filter from the filter stack and doesn't return it.
+ *
+ * @method PIXI.WebGLFilterManager#popFilter
+ */
 PIXI.WebGLFilterManager.prototype.popFilter = function ()
 {
     var gl = this.gl;
@@ -208,8 +211,10 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
             gl.activeTexture(gl.TEXTURE0);
             gl.bindTexture(gl.TEXTURE_2D, inputTexture.texture);
 
-            // draw texture..
-            // filterPass.applyFilterPass(filterArea.width, filterArea.height);
+            /*
+             * draw texture..
+             * filterPass.applyFilterPass(filterArea.width, filterArea.height);
+             */
             this.applyFilterPass(filterPass, filterArea, filterArea.width, filterArea.height);
 
             // swap the textures..
@@ -268,8 +273,10 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
     var x = filterArea.x - offsetX;
     var y = filterArea.y - offsetY;
 
-    // update the buffers..
-    // make sure to flip the y!
+    /*
+     * update the buffers..
+     * make sure to flip the y!
+     */
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
 
     this.vertexArray[0] = x;
@@ -300,8 +307,10 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
     // bind the buffer
     gl.bindFramebuffer(gl.FRAMEBUFFER, buffer);
 
-    // set the blend mode!
-    // gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
+    /*
+     * set the blend mode!
+     * gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
+     */
 
     // set texture
     gl.activeTexture(gl.TEXTURE0);
@@ -328,10 +337,12 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
     // apply!
     this.applyFilterPass(filter, filterArea, sizeX, sizeY);
 
-    // now restore the regular shader.. should happen automatically now..
-    // this.renderSession.shaderManager.setShader(this.defaultShader);
-    // gl.uniform2f(this.defaultShader.projectionVector, sizeX/2, -sizeY/2);
-    // gl.uniform2f(this.defaultShader.offsetVector, -offsetX, -offsetY);
+    /*
+     * now restore the regular shader.. should happen automatically now..
+     * this.renderSession.shaderManager.setShader(this.defaultShader);
+     * gl.uniform2f(this.defaultShader.projectionVector, sizeX/2, -sizeY/2);
+     * gl.uniform2f(this.defaultShader.offsetVector, -offsetX, -offsetY);
+     */
 
     // return the texture to the pool
     this.texturePool.push(texture);
@@ -340,14 +351,14 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
 
 
 /**
-* Applies the filter to the specified area.
-*
-* @method PIXI.WebGLFilterManager#applyFilterPass
-* @param filter {Phaser.Filter} the filter that needs to be applied
-* @param filterArea {Texture} TODO - might need an update
-* @param width {Number} the horizontal range of the filter
-* @param height {Number} the vertical range of the filter
-*/
+ * Applies the filter to the specified area.
+ *
+ * @method PIXI.WebGLFilterManager#applyFilterPass
+ * @param filter {Phaser.Filter} the filter that needs to be applied
+ * @param filterArea {Texture} TODO - might need an update
+ * @param width {Number} the horizontal range of the filter
+ * @param height {Number} the vertical range of the filter
+ */
 PIXI.WebGLFilterManager.prototype.applyFilterPass = function (filter, filterArea, width, height)
 {
     // use program
@@ -401,10 +412,10 @@ PIXI.WebGLFilterManager.prototype.applyFilterPass = function (filter, filterArea
 };
 
 /**
-* Initialises the shader buffers.
-*
-* @method PIXI.WebGLFilterManager#initShaderBuffers
-*/
+ * Initialises the shader buffers.
+ *
+ * @method PIXI.WebGLFilterManager#initShaderBuffers
+ */
 PIXI.WebGLFilterManager.prototype.initShaderBuffers = function ()
 {
     var gl = this.gl;
@@ -415,8 +426,10 @@ PIXI.WebGLFilterManager.prototype.initShaderBuffers = function ()
     this.colorBuffer = gl.createBuffer();
     this.indexBuffer = gl.createBuffer();
 
-    // bind and upload the vertexs..
-    // keep a reference to the vertexFloatData..
+    /*
+     * bind and upload the vertexs..
+     * keep a reference to the vertexFloatData..
+     */
     this.vertexArray = new Float32Array([ 0.0, 0.0,
         1.0, 0.0,
         0.0, 1.0,
@@ -445,14 +458,13 @@ PIXI.WebGLFilterManager.prototype.initShaderBuffers = function ()
     // bind and upload the index
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array([ 0, 1, 2, 1, 3, 2 ]), gl.STATIC_DRAW);
-
 };
 
 /**
-* Destroys the filter and removes it from the filter stack.
-*
-* @method PIXI.WebGLFilterManager#destroy
-*/
+ * Destroys the filter and removes it from the filter stack.
+ *
+ * @method PIXI.WebGLFilterManager#destroy
+ */
 PIXI.WebGLFilterManager.prototype.destroy = function ()
 {
     var gl = this.gl;

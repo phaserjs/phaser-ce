@@ -1,17 +1,17 @@
 /**
-* @author       Steven Rogers <soldoutactivist@gmail.com>
-* @copyright    2016 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
-*/
+ * @author       Steven Rogers <soldoutactivist@gmail.com>
+ * @copyright    2016 Photon Storm Ltd.
+ * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
+ */
 
 /**
-* This is a stub for the Phaser Net Class.
-* It allows you to exclude the default Net from your build, without making Game crash.
-*/
+ * This is a stub for the Phaser Net Class.
+ * It allows you to exclude the default Net from your build, without making Game crash.
+ */
 
 /**
-* No-operation for Phaser Net stub.
-*/
+ * No-operation for Phaser Net stub.
+ */
 var netNoop = function () {};
 
 Phaser.Net = netNoop;

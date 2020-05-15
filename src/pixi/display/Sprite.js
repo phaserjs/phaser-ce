@@ -12,7 +12,6 @@
  */
 PIXI.Sprite = function (texture)
 {
-
     PIXI.DisplayObjectContainer.call(this);
 
     /**
@@ -104,12 +103,12 @@ PIXI.Sprite = function (texture)
     this.shader = null;
 
     /**
-    * Controls if this Sprite is processed by the core Phaser game loops and Group loops (except {@link Phaser.Group#update}).
-    *
-    * @property exists
-    * @type Boolean
-    * @default true
-    */
+     * Controls if this Sprite is processed by the core Phaser game loops and Group loops (except {@link Phaser.Group#update}).
+     *
+     * @property exists
+     * @type Boolean
+     * @default true
+     */
     this.exists = true;
 
     if (this.texture.baseTexture.hasLoaded)
@@ -118,7 +117,6 @@ PIXI.Sprite = function (texture)
     }
 
     this.renderable = true;
-
 };
 
 /**
@@ -211,19 +209,19 @@ PIXI.Sprite.prototype.onTextureUpdate = function ()
 };
 
 /**
-* Returns the bounds of the Sprite as a rectangle.
-* The bounds calculation takes the worldTransform into account.
-*
-* The worldTransform was calculated during the last render pass and is not updated when you call this method.
-* If this Sprite was just created and has never been rendered, you can call `updateTransform` on the Sprite itself.
-* If any of the Sprite's ancestors have been positioned, scaled, or rotated since the last render pass,
-* those changes have not yet have been applied to this Sprite's worldTransform. Call `updateTransform`
-* on the root-most (highest) ancestor that was changed.
-*
-* @method PIXI.Sprite#getBounds
-* @param matrix {Matrix} the transformation matrix of the sprite
-* @return {Rectangle} the framing rectangle
-*/
+ * Returns the bounds of the Sprite as a rectangle.
+ * The bounds calculation takes the worldTransform into account.
+ *
+ * The worldTransform was calculated during the last render pass and is not updated when you call this method.
+ * If this Sprite was just created and has never been rendered, you can call `updateTransform` on the Sprite itself.
+ * If any of the Sprite's ancestors have been positioned, scaled, or rotated since the last render pass,
+ * those changes have not yet have been applied to this Sprite's worldTransform. Call `updateTransform`
+ * on the root-most (highest) ancestor that was changed.
+ *
+ * @method PIXI.Sprite#getBounds
+ * @param matrix {Matrix} the transformation matrix of the sprite
+ * @return {Rectangle} the framing rectangle
+ */
 PIXI.Sprite.prototype.getBounds = function (matrix)
 {
     var width = this.texture.frame.width;
@@ -269,8 +267,10 @@ PIXI.Sprite.prototype.getBounds = function (matrix)
             h1 = -temp;
         }
 
-        // this means there is no rotation going on right? RIGHT?
-        // if thats the case then we can avoid checking the bound values! yay
+        /*
+         * this means there is no rotation going on right? RIGHT?
+         * if thats the case then we can avoid checking the bound values! yay
+         */
         minX = a * w1 + tx;
         maxX = a * w0 + tx;
         minY = d * h1 + ty;
@@ -333,7 +333,6 @@ PIXI.Sprite.prototype.getBounds = function (matrix)
  */
 PIXI.Sprite.prototype.getLocalBounds = function ()
 {
-
     var matrixCache = this.worldTransform;
 
     this.worldTransform = Phaser.identityMatrix;
@@ -353,17 +352,16 @@ PIXI.Sprite.prototype.getLocalBounds = function ()
     }
 
     return bounds;
-
 };
 
 /**
-* Renders the object using the WebGL renderer
-*
-* @method PIXI.Sprite#_renderWebGL
-* @param renderSession {RenderSession}
-* @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
-* @private
-*/
+ * Renders the object using the WebGL renderer
+ *
+ * @method PIXI.Sprite#_renderWebGL
+ * @param renderSession {RenderSession}
+ * @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
+ * @private
+ */
 PIXI.Sprite.prototype._renderWebGL = function (renderSession, matrix)
 {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
@@ -422,18 +420,17 @@ PIXI.Sprite.prototype._renderWebGL = function (renderSession, matrix)
         {
             this.children[i]._renderWebGL(renderSession, wt);
         }
-
     }
 };
 
 /**
-* Renders the object using the Canvas renderer
-*
-* @method PIXI.Sprite#_renderCanvas
-* @param renderSession {RenderSession}
-* @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
-* @private
-*/
+ * Renders the object using the Canvas renderer
+ *
+ * @method PIXI.Sprite#_renderCanvas
+ * @param renderSession {RenderSession}
+ * @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
+ * @private
+ */
 PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
 {
     // If the sprite is not visible or the alpha is 0 then no need to render this element
@@ -511,8 +508,10 @@ PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
         tx = wt.c * ch + tx;
         ty = wt.d * ch + ty;
 
-        // Rotate matrix by 90 degrees
-        // We use precalculated values for sine and cosine of rad(90)
+        /*
+         * Rotate matrix by 90 degrees
+         * We use precalculated values for sine and cosine of rad(90)
+         */
         wt.a = a * 6.123233995736766e-17 + -c;
         wt.b = b * 6.123233995736766e-17 + -d;
         wt.c = a + c * 6.123233995736766e-17;
@@ -575,5 +574,4 @@ PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
     {
         renderSession.maskManager.popMask(renderSession);
     }
-
 };

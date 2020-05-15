@@ -3,10 +3,10 @@
  */
 
 /**
-* @class PIXI.WebGLStencilManager
-* @constructor
-* @private
-*/
+ * @class PIXI.WebGLStencilManager
+ * @constructor
+ * @private
+ */
 PIXI.WebGLStencilManager = function ()
 {
     this.stencilStack = [];
@@ -15,24 +15,24 @@ PIXI.WebGLStencilManager = function ()
 };
 
 /**
-* Sets the drawing context to the one given in parameter.
-*
-* @method PIXI.WebGLStencilManager#setContext
-* @param gl {WebGLContext} the current WebGL drawing context
-*/
+ * Sets the drawing context to the one given in parameter.
+ *
+ * @method PIXI.WebGLStencilManager#setContext
+ * @param gl {WebGLContext} the current WebGL drawing context
+ */
 PIXI.WebGLStencilManager.prototype.setContext = function (gl)
 {
     this.gl = gl;
 };
 
 /**
-* Applies the Mask and adds it to the current filter stack.
-*
-* @method PIXI.WebGLStencilManager#pushMask
-* @param graphics {Graphics}
-* @param webGLData {Array}
-* @param renderSession {Object}
-*/
+ * Applies the Mask and adds it to the current filter stack.
+ *
+ * @method PIXI.WebGLStencilManager#pushMask
+ * @param graphics {Graphics}
+ * @param webGLData {Array}
+ * @param renderSession {Object}
+ */
 PIXI.WebGLStencilManager.prototype.pushStencil = function (graphics, webGLData, renderSession)
 {
     var gl = this.gl;
@@ -160,8 +160,10 @@ PIXI.WebGLStencilManager.prototype.bindGraphics = function (graphics, webGLData,
         gl.vertexAttribPointer(shader.aVertexPosition, 2, gl.FLOAT, false, 4 * 2, 0);
 
 
-        // now do the rest..
-        // set the index buffer!
+        /*
+         * now do the rest..
+         * set the index buffer!
+         */
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, webGLData.indexBuffer);
     }
     else
@@ -207,11 +209,9 @@ PIXI.WebGLStencilManager.prototype.popStencil = function (graphics, webGLData, r
     {
         // the stack is empty!
         gl.disable(gl.STENCIL_TEST);
-
     }
     else
     {
-
         var level = this.count;
 
         this.bindGraphics(graphics, webGLData, renderSession);
@@ -250,7 +250,6 @@ PIXI.WebGLStencilManager.prototype.popStencil = function (graphics, webGLData, r
             {
                 gl.stencilFunc(gl.EQUAL,level, 0xFF);
             }
-
         }
         else
         {
@@ -280,16 +279,14 @@ PIXI.WebGLStencilManager.prototype.popStencil = function (graphics, webGLData, r
 
         gl.colorMask(true, true, true, true);
         gl.stencilOp(gl.KEEP,gl.KEEP,gl.KEEP);
-
-
     }
 };
 
 /**
-* Destroys the mask stack.
-*
-* @method PIXI.WebGLStencilManager#destroy
-*/
+ * Destroys the mask stack.
+ *
+ * @method PIXI.WebGLStencilManager#destroy
+ */
 PIXI.WebGLStencilManager.prototype.destroy = function ()
 {
     this.stencilStack = null;
