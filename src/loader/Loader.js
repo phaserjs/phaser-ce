@@ -1363,13 +1363,12 @@ Phaser.Loader.prototype = {
         {
             switch (format)
             {
-
-                //  A csv string or object has been given
                 case Phaser.Tilemap.CSV:
+                    //  A csv string or object has been given
                     break;
 
-                //  A json string or object has been given
                 case Phaser.Tilemap.TILED_JSON:
+                    //  A json string or object has been given
 
                     if (typeof data === 'string')
                     {
@@ -1786,9 +1785,8 @@ Phaser.Loader.prototype = {
         {
             switch (format)
             {
-
-                //  A json string or object has been given
                 case Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY:
+                    //  A json string or object has been given
 
                     if (typeof atlasData === 'string')
                     {
@@ -1796,8 +1794,8 @@ Phaser.Loader.prototype = {
                     }
                     break;
 
-                //  An xml string or object has been given
                 case Phaser.Loader.TEXTURE_ATLAS_XML_STARLING:
+                    //  An xml string or object has been given
 
                     if (typeof atlasData === 'string')
                     {
