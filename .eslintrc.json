@@ -71,7 +71,7 @@
         "space-in-parens": [ "error",  "never" ],
         "space-infix-ops": [ "error", { "int32Hint": true } ],
         "spaced-comment": [ "error", "always", { "block": { "balanced": true, "exceptions": ["*", "!"] }} ],
-        "valid-jsdoc": "warn",
+        "valid-jsdoc": "off",
         "wrap-regex": "error",
         "yoda": [ "error", "never" ]
     }
