@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.15.1 - 15 May 2020
 
 ### New Features
 
