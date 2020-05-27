@@ -1,21 +1,21 @@
 # Change Log
 
-## Unreleased
+## Version 2.15.1 - 15 May 2020
 
 ### New Features
 
-- Phaser.BitmapData#getBase64()
-- Phaser.BitmapData#getImage()
-- Phaser.Game#maxUpdates
-- Phaser.MSPointer#pointerCancelCallback
-- There is a new data cache to let you store arbitrary data throughout the game. The new methods are Phaser.Cache#addData(), Phaser.Cache#checkDataKey(), Phaser.Cache#getData(), and Phaser.Cache#removeData(). You can use them from `this.cache` in a scene or `game.cache`.
-- Phaser.Utils.Debug#gameInfo()
+- [Phaser.BitmapData#getBase64()](https://photonstorm.github.io/phaser-ce/Phaser.BitmapData.html#getBase64)
+- [Phaser.BitmapData#getImage()](https://photonstorm.github.io/phaser-ce/Phaser.BitmapData.html#getImage)
+- [Phaser.Game#maxUpdates](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#maxUpdates)
+- [Phaser.MSPointer#pointerCancelCallback](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html#pointerCancelCallback)
+- There is a new data cache to let you store arbitrary data throughout the game. The new methods are [Phaser.Cache#addData()](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#addData), [Phaser.Cache#checkDataKey()](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#checkDataKey), [Phaser.Cache#getData()](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#getData), and [Phaser.Cache#removeData()](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#removeData). You can use them from `this.cache` in a scene or `game.cache`.
+- [Phaser.Utils.Debug#gameInfo()](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#gameInfo)
 
 ### Updates
 
-- Phaser.RenderTexture#getBase64() has `type` and `encoderOptions` arguments.
-- Phaser.RenderTexture#getImage() has `type`, `encoderOptions`, `onLoadCallback`, and `onErrorCallback` arguments.
-- Phaser.Tilemap#searchTileIndex() has an `all` argument, returning all matching tiles.
+- [Phaser.RenderTexture#getBase64()](https://photonstorm.github.io/phaser-ce/Phaser.RenderTexture.html#getBase64) has `type` and `encoderOptions` arguments.
+- [Phaser.RenderTexture#getImage()](https://photonstorm.github.io/phaser-ce/Phaser.RenderTexture.html#getImage) has `type`, `encoderOptions`, `onLoadCallback`, and `onErrorCallback` arguments.
+- [Phaser.Tilemap#searchTileIndex()](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#searchTileIndex) has an `all` argument, returning all matching tiles.
 
 ### Bug Fixes
 
