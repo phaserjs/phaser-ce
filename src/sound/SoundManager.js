@@ -61,6 +61,12 @@ Phaser.SoundManager = function (game)
     this.onTouchUnlock = new Phaser.Signal();
 
     /**
+     * This signal is dispatched when the AudioContext state changes, only if using Web Audio.
+     * @property {Phaser.Signal} onStateChange
+     */
+    this.onStateChange = new Phaser.Signal();
+
+    /**
      * @property {AudioContext} context - The AudioContext being used for playback.
      * @default
      */
@@ -181,10 +187,16 @@ Phaser.SoundManager = function (game)
     this._watchContext = null;
 
     /**
-     * @property {function} _resumeWebAudioOnClick - Bound 'click' handler. Added in boot(), if necessary.
+     * @property {function} _onClick - Bound handler for 'click' on the game canvas. Added in boot(), if necessary.
      * @private
      */
-    this._resumeWebAudioOnClick = this._resumeWebAudioOnClick.bind(this);
+    this._onClick = this._onClick.bind(this);
+
+    /**
+     * @property {function} _onStateChange - Bound handler for 'onstatechange' on the AudioContext. Added in boot(), if necessary.
+     * @private
+     */
+    this._onStateChange = this._onStateChange.bind(this);
 };
 
 Phaser.SoundManager.prototype = {
@@ -280,13 +292,13 @@ Phaser.SoundManager.prototype = {
             this.masterGain.gain.value = 1;
             this.masterGain.connect(this.context.destination);
 
-            /*
-             * A suspended context is actually normal (momentarily) in Firefox.
-             * In that case the input handler will do nothing, which is fine.
-             */
+            // "A newly-created AudioContext will always begin in the suspended state, and a state change event will be fired whenever the state changes to a different state."
+
+            this.context.onstatechange = this._onStateChange;
+
             if (this.context.state === 'suspended')
             {
-                this.game.canvas.addEventListener('click', this._resumeWebAudioOnClick);
+                this.game.canvas.addEventListener('click', this._onClick);
             }
         }
 
@@ -337,13 +349,24 @@ Phaser.SoundManager.prototype = {
     },
 
     /**
-     * Try to resume a suspended WebAudio context.
-     *
-     * If the context isn't suspended, or if WebAudio isn't in use, nothing is done.
+     * Try to resume the Web Audio context, if using Web Audio.
      *
      * @return {?Promise} - A Promise, if resume was called. See {@link https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/resume}.
      */
     resumeWebAudio: function ()
+    {
+        if (this.usingWebAudio)
+        {
+            return this.context.resume();
+        }
+    },
+
+    /**
+     * Try to resume a suspended Web Audio context, if using Web Audio and the context is suspended.
+     *
+     * @return {?Promise} - A Promise, if resume was called. See {@link https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/resume}.
+     */
+    resumeWebAudioIfSuspended: function ()
     {
         if (this.usingWebAudio && this.context.state === 'suspended')
         {
@@ -386,7 +409,7 @@ Phaser.SoundManager.prototype = {
             this._unlockSource.onended = function unlockSourceOnEndedHandler ()
             {
                 _this.setTouchUnlock();
-                _this.resumeWebAudio();
+                _this.resumeWebAudioIfSuspended();
             };
 
             if (this._unlockSource.start === undefined)
@@ -399,7 +422,7 @@ Phaser.SoundManager.prototype = {
             }
 
             // This fixes locked audio in Chrome > 55 cross origin iframes?
-            this.resumeWebAudio();
+            this.resumeWebAudioIfSuspended();
         }
 
         //  We can remove the event because we've done what we needed (started the unlock sound playing)
@@ -792,6 +815,32 @@ Phaser.SoundManager.prototype = {
     },
 
     /**
+     * Called by the game when paused.
+     * @private
+     */
+    gamePaused: function ()
+    {
+        if (this.muteOnPause)
+        {
+            this.setMute();
+        }
+    },
+
+    /**
+     * Called by the game when resumed.
+     * @private
+     */
+    gameResumed: function ()
+    {
+        this.resumeWebAudio();
+
+        if (this.muteOnPause)
+        {
+            this.unsetMute();
+        }
+    },
+
+    /**
      * Stops all the sounds in the game, then destroys them and finally clears up any callbacks.
      *
      * @method Phaser.SoundManager#destroy
@@ -800,12 +849,19 @@ Phaser.SoundManager.prototype = {
     {
         this.removeAll();
 
+        this.onMute.dispose();
         this.onSoundDecode.dispose();
+        this.onStateChange.dispose();
+        this.onTouchUnlock.dispose();
+        this.onUnMute.dispose();
+        this.onVolumeChange.dispose();
 
-        this.game.canvas.removeEventListener('click', this._resumeWebAudioOnClick);
+        this.game.canvas.removeEventListener('click', this._onClick);
 
         if (this.context)
         {
+            this.context.onstatechange = null;
+
             if (window.PhaserGlobal)
             {
                 //  Store this in the PhaserGlobal window var, if set, to allow for re-use if the game is created again without the page refreshing
@@ -816,14 +872,29 @@ Phaser.SoundManager.prototype = {
             {
                 this.context.close();
             }
+
+            this.context = null;
         }
     },
 
-    _resumeWebAudioOnClick: function ()
+    /**
+     * Handler for this.context.onstatechange. Copied and bound in SoundManager constructor.
+     * @private
+     */
+    _onStateChange: function ()
     {
-        this.resumeWebAudio();
+        this.onStateChange.dispatch(this.context.state);
+    },
 
-        this.game.canvas.removeEventListener('click', this._resumeWebAudioOnClick);
+    /**
+     * Handler for this.game.canvas 'click'. Copied and bound in SoundManager constructor.
+     * @private
+     */
+    _onClick: function ()
+    {
+        this.resumeWebAudioIfSuspended();
+
+        this.game.canvas.removeEventListener('click', this._onClick);
     }
 
 };
