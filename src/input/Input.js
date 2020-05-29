@@ -417,7 +417,7 @@ Phaser.Input.prototype = {
      * @property {boolean} [keyboard=true]
      * @property {boolean} [maxPointers=-1]
      * @property {boolean} [mouse=true]
-     * @property {boolean} [mouseWheel=true]
+     * @property {boolean} [mouseWheel=false]
      * @property {boolean} [mspointer=true]
      * @property {boolean} [pointerLock=true]
      * @property {boolean} [touch=true]
@@ -490,7 +490,7 @@ Phaser.Input.prototype = {
 
         this.mousePointer.active = true;
 
-        if (config.mouseWheel !== false)
+        if (config.mouseWheel === true)
         {
             this.mouseWheel.start();
         }
