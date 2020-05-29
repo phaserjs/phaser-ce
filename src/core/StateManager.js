@@ -332,14 +332,10 @@ Phaser.StateManager.prototype = {
     {
         if (this._pendingState && this.game.isBooted)
         {
-            var previousStateKey = this.current;
-
             //  Already got a state running?
             this.clearCurrentState();
 
             this.setCurrentState(this._pendingState);
-
-            this.onStateChange.dispatch(this.current, previousStateKey);
 
             if (this.current !== this._pendingState)
             {
@@ -527,6 +523,7 @@ Phaser.StateManager.prototype = {
      */
     setCurrentState: function (key)
     {
+        var previousStateKey = this.current;
         var state = this.states[key];
 
         this.callbackContext = state;
@@ -560,6 +557,8 @@ Phaser.StateManager.prototype = {
 
         this.current = key;
         this._created = false;
+
+        this.onStateChange.dispatch(this.current, previousStateKey);
 
         //  At this point key and pendingState should equal each other
         this.onInitCallback.apply(this.callbackContext, this._args);
