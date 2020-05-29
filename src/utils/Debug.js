@@ -330,7 +330,7 @@ Phaser.Utils.Debug.prototype = {
         this.start(x, y, color);
 
         this.line('Game ID ' + game.id);
-        this.line({1: 'Canvas', 2: 'WebGL', 3: 'Headless', 4: 'WebGL Multitexture'}[game.renderType] + ' ' + game.width + ' x ' + game.height);
+        this.line({1: 'Canvas', 2: 'WebGL', 3: 'Headless', 4: 'WebGL Multitexture'}[game.renderType] + ' (' + game.width + ' x ' + game.height + ')');
         this.line('Paused: ' + game.paused);
         this.line('Stepping: ' + game.stepping + ' (' + game.stepCount + ')');
 
