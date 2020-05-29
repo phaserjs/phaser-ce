@@ -1296,12 +1296,7 @@ Phaser.Game.prototype = {
             this._paused = true;
 
             this.time.gamePaused();
-
-            if (this.sound.muteOnPause)
-            {
-                this.sound.setMute();
-            }
-
+            this.sound.gamePaused();
             this.onPause.dispatch(event);
 
             //  Avoids Cordova iOS crash event: https://github.com/photonstorm/phaser/issues/1800
@@ -1327,14 +1322,8 @@ Phaser.Game.prototype = {
             this._paused = false;
 
             this.time.gameResumed();
-
             this.input.reset();
-
-            if (this.sound.muteOnPause)
-            {
-                this.sound.unsetMute();
-            }
-
+            this.sound.gameResumed();
             this.onResume.dispatch(event);
 
             //  Avoids Cordova iOS crash event: https://github.com/photonstorm/phaser/issues/1800
