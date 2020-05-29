@@ -119,10 +119,11 @@ Phaser.Camera = function (game, id, x, y, width, height)
     this.onFlashComplete = new Phaser.Signal();
 
     /**
-     * This signal is dispatched when the camera fade effect completes.
-     * When the fade effect completes you will be left with the screen black (or whatever
-     * color you faded to). In order to reset this call `Camera.resetFX`. This is called
-     * automatically when you change State.
+     * This signal is dispatched when the camera fade effect (fade in or fade out) completes.
+     * You can look at the value of `Camera.fx.alpha` to determine which effect it was.
+     * When the fade out effect completes `Camera.fx.alpha` is 1 and you will be left with the screen black (or whatever
+     * color you faded to). In order to reset this call `Camera.resetFX`. `Camera.resetFX` is called automatically when you change State.
+     * When the fade in effect completes, `Camera.fx.alpha` is 0 and there is no visible camera fill.
      * @property {Phaser.Signal} onFadeComplete
      */
     this.onFadeComplete = new Phaser.Signal();
@@ -242,6 +243,24 @@ Phaser.Camera.SHAKE_VERTICAL = 6;
  * @type {boolean}
  */
 Phaser.Camera.ENABLE_FX = true;
+
+/**
+ * @constant
+ * @type {number}
+ */
+Phaser.Camera.FLASH = 0;
+
+/**
+ * @constant
+ * @type {number}
+ */
+Phaser.Camera.FADE_OUT = 1;
+
+/**
+ * @constant
+ * @type {number}
+ */
+Phaser.Camera.FADE_IN = 2;
 
 Phaser.Camera.prototype = {
 
@@ -446,7 +465,7 @@ Phaser.Camera.prototype = {
     },
 
     /**
-     * This creates a camera fade effect. It works by filling the game with the
+     * This creates a camera fade out effect. It works by filling the game with the
      * color specified, over the duration given, ending with a solid fill.
      *
      * You can use this for things such as transitioning to a new scene.
@@ -462,10 +481,45 @@ Phaser.Camera.prototype = {
      * @param {numer} [color=0x000000] - The color the game will fade to. I.e. 0x000000 for black, 0xff0000 for red, etc.
      * @param {number} [duration=500] - The duration of the fade in milliseconds.
      * @param {boolean} [force=false] - If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.
-     * @param {numer} [alpha=1] - The alpha value of the color applied to the fade effect.
+     * @param {number} [alpha=1] - The alpha value of the color applied to the fade effect.
      * @return {boolean} True if the effect was started, otherwise false.
      */
     fade: function (color, duration, force, alpha)
+    {
+        return this.fadeEffect(color, duration, force, alpha, Phaser.Camera.FADE_OUT);
+    },
+
+    /**
+     * This creates a camera fade in effect.
+     * It fills the game with a solid color and then removes it over the duration given.
+     *
+     * When the effect ends the signal Camera.onFadeComplete is dispatched.
+     *
+     * @method Phaser.Camera#fadeIn
+     * @param {numer} [color=0x000000] - The color the game will fade from. I.e. 0x000000 for black, 0xff0000 for red, etc.
+     * @param {number} [duration=500] - The duration of the fade in milliseconds.
+     * @param {boolean} [force=false] - If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.
+     * @param {number} [alpha=1] - The alpha value of the color applied to the fade effect.
+     * @return {boolean} True if the effect was started, otherwise false.
+     */
+    fadeIn: function (color, duration, force, alpha)
+    {
+        return this.fadeEffect(color, duration, force, alpha, Phaser.Camera.FADE_IN);
+    },
+
+    /**
+     * Fade helper.
+     *
+     * @method Phaser.Camera#fadeEffect
+     * @private
+     * @param {numer} [color=0x000000] - The color the game will fade from. I.e. 0x000000 for black, 0xff0000 for red, etc.
+     * @param {number} [duration=500] - The duration of the fade in milliseconds.
+     * @param {boolean} [force=false] - If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.
+     * @param {number} [alpha=1] - The alpha value of the color applied to the fade effect.
+     * @param {number} [type=Phaser.Camera.FADE_OUT] - The fade type. FADE_IN or FADE_OUT.
+     * @return {boolean} True if the effect was started, otherwise false.
+     */
+    fadeEffect: function (color, duration, force, alpha, type)
     {
         if (color === undefined) { color = 0x000000; }
         if (duration === undefined) { duration = 500; }
@@ -483,10 +537,13 @@ Phaser.Camera.prototype = {
         this.fx.drawRect(0, 0, this.width, this.height);
         this.fx.endFill();
 
-        this.fx.alpha = 0;
+
+        if (type < 1 || type > 2) { throw new Error('Wrong `type` argument'); }
+
+        this.fx.alpha = (type === Phaser.Camera.FADE_IN) ? 1 : 0;
 
         this._fxDuration = duration;
-        this._fxType = 1;
+        this._fxType = type;
 
         return true;
     },
@@ -533,7 +590,7 @@ Phaser.Camera.prototype = {
      */
     updateFX: function ()
     {
-        if (this._fxType === 0)
+        if (this._fxType === Phaser.Camera.FLASH)
         {
             //  flash
             this.fx.alpha -= this.game.time.elapsedMS / this._fxDuration;
@@ -545,9 +602,21 @@ Phaser.Camera.prototype = {
                 this.onFlashComplete.dispatch();
             }
         }
+        else if (this._fxType === Phaser.Camera.FADE_IN)
+        {
+            //  fade in
+            this.fx.alpha -= this.game.time.elapsedMS / this._fxDuration;
+
+            if (this.fx.alpha <= 0)
+            {
+                this._fxDuration = 0;
+                this.fx.alpha = 0;
+                this.onFadeComplete.dispatch();
+            }
+        }
         else
         {
-            //  fade
+            //  fade out
             this.fx.alpha += this.game.time.elapsedMS / this._fxDuration;
 
             if (this.fx.alpha >= 1)
