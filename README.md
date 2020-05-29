@@ -67,13 +67,7 @@ Phaser CE is [hosted on Github][phaser]. There are a number of ways to download 
 * Download just the build files: [phaser.js][get-js] and [phaser.min.js][get-minjs]
 * Checkout with [svn][clone-svn]
 
-### Bower / NPM
-
-Install via [bower](https://bower.io):
-
-```bash
-bower install phaser-ce
-```
+### NPM
 
 Install via [npm](https://www.npmjs.com):
 
