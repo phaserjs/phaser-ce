@@ -79,27 +79,29 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 
 ### CDN
 
-[Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
+[Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce). Include the following in your html:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.15.1/build/phaser.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.15.1/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.15.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.15.1"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.15.1/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.15.1/build/custom/) are available too, e.g.,
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.15.1/build/custom/phaser-arcade-physics.js"></script>
+```
 
 <a name="getting-started"></a>
 
 ## Getting Started
 
 Our [Getting Started Guide](http://phaser.io/tutorials/getting-started) will get you up to speed quickly: from [setting up a web server](https://phaser.io/tutorials/getting-started/part2) to picking an editor/IDE. After that read our [Making your first Game](http://phaser.io/tutorials/making-your-first-phaser-game) tutorial. Please work through this, **no matter what your development experience**, to learn how Phaser CE approaches things.
-
-The single biggest Phaser resource is the [Phaser web site](http://phaser.io/news). You'll find hundreds of tutorials, with new ones added every week. Subscribe to the [Phaser World](http://phaser.io/community/newsletter) newsletter for a weekly links round-up.
 
 Using **TypeScript**? See Phaser CE's [TypeScript definitions](https://github.com/photonstorm/phaser-ce/tree/master/typescript) and the [Using Phaser with TypeScript](https://phaser.io/tutorials/how-to-use-phaser-with-typescript).
 
