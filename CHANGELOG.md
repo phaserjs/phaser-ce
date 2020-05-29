@@ -1,5 +1,25 @@
 # Change Log
 
+## Unreleased
+
+### API Changes
+
+- Mouse wheel input is disabled by default. You can enable it by setting `{ mouseWheel: true }` in the game config.
+- [Phaser.StateManager.onStateChange](https://photonstorm.github.io/phaser-ce/Phaser.StateManager.html#onStateChange) is dispatched before [Phaser.Scene#init](https://photonstorm.github.io/phaser-ce/Phaser.State.html#init), rather than after.
+
+### New Features
+
+- Phaser.Camera#fadeIn is a new camera effect. It does the opposite of Phaser.Camera#fade.
+- Phaser.SoundManager#onStateChange is a new signal, dispatched when the Web Audio context changes state.
+
+### Updates
+
+- The Audio context is resumed automatically when resuming or refocusing the game (#667).
+
+### Thanks
+
+@samme, @SBCGames
+
 ## Version 2.15.1 - 15 May 2020
 
 ### New Features
