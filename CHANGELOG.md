@@ -4,17 +4,17 @@
 
 ### API Changes
 
-- Mouse wheel input is disabled by default. You can enable it by setting `{ mouseWheel: true }` in the game config.
-- [Phaser.StateManager.onStateChange](https://photonstorm.github.io/phaser-ce/Phaser.StateManager.html#onStateChange) is dispatched before [Phaser.Scene#init](https://photonstorm.github.io/phaser-ce/Phaser.State.html#init), rather than after.
+- [Mouse wheel input](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html) is disabled by default. You can enable it by setting `{ mouseWheel: true }` in the game config.
+- [Phaser.StateManager#onStateChange](https://photonstorm.github.io/phaser-ce/Phaser.StateManager.html#onStateChange) is dispatched before [Phaser.Scene#init](https://photonstorm.github.io/phaser-ce/Phaser.State.html#init), rather than after.
 
 ### New Features
 
-- Phaser.Camera#fadeIn is a new camera effect. It does the opposite of Phaser.Camera#fade.
-- Phaser.SoundManager#onStateChange is a new signal, dispatched when the Web Audio context changes state.
+- Phaser.Camera#fadeIn is a new camera effect. It does the opposite of [Phaser.Camera#fade](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#fade).
+- Phaser.SoundManager#onStateChange is a new signal, dispatched when the Web Audio context changes [state](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/state), when using Web Audio.
 
 ### Updates
 
-- The Audio context is resumed automatically when resuming or refocusing the game (#667).
+- The Web Audio context is resumed automatically when resuming or refocusing the game (#667).
 
 ### Thanks
 
