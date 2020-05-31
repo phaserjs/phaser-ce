@@ -12,6 +12,9 @@
         "PIXI": true,
         "p2": true
     },
+    "parserOptions": {
+        "ecmaVersion": 5
+    },
     "rules": {
         "accessor-pairs": "error",
         "array-bracket-spacing": [ "error", "always" ],
