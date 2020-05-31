@@ -72,7 +72,7 @@ Phaser.StateManager = function (game, pendingState)
      *
      * It is dispatched only when the new state is started, which isn't usually at the same time as StateManager.start
      * is called because state swapping is done in sync with the game loop. It is dispatched *before* any of the new states
-     * methods (such as preload and create) are called, and *after* the previous states shutdown method has been run.
+     * methods (init, preload, create, etc.) are called, and *after* the previous state's shutdown method has been run.
      *
      * The callback you specify is sent two parameters: the string based key of the new state,
      * and the second parameter is the string based key of the old / previous state.
