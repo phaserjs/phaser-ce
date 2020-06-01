@@ -67,6 +67,7 @@ Phaser.Component.Core.init = function (game, x, y, key, frame)
     if (this.components.PhysicsBody)
     {
         // Enable-body checks for hasOwnProperty; makes sure to lift property from prototype.
+        // eslint-disable-next-line no-self-assign
         this.body = this.body;
     }
 
