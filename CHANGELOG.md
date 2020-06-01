@@ -9,9 +9,9 @@
 
 ### New Features
 
-- Phaser.Camera#fadeIn is a new camera effect. It does the opposite of [Phaser.Camera#fade](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#fade).
-- Phaser.SoundManager#onStateChange is a new signal, dispatched when the Web Audio context changes [state](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/state), when using Web Audio.
-- Phaser.Utils.Debug#state shows the current game state.
+- [Phaser.Camera#fadeIn](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#fadeIn) is a new camera effect. It does the opposite of [Phaser.Camera#fade](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#fade).
+- [Phaser.SoundManager#onStateChange](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#onStateChange) is a new signal, dispatched when the Web Audio context changes [state](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/state), when using Web Audio.
+- [Phaser.Utils.Debug#state](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#state) shows the current game state.
 
 ### Updates
 
