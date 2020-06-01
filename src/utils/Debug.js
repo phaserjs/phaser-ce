@@ -338,6 +338,44 @@ Phaser.Utils.Debug.prototype = {
     },
 
     /**
+     * Render game state info.
+     *
+     * Icons show (+) pending, (>) loading, (*) created.
+     *
+     * @method Phaser.Utils.Debug#state
+     * @param {number} x - X position of the debug info to be rendered.
+     * @param {number} y - Y position of the debug info to be rendered.
+     * @param {string} [color='rgb(255,255,255)'] - color of the debug info to be rendered. (format is css color string).
+     */
+    state: function (x, y, color)
+    {
+        var state = this.game.state;
+        var keys = Object.keys(state.states);
+
+        this.start(x, y, color);
+
+        for (var i = 0; i < keys.length; i++)
+        {
+            var key = keys[i];
+
+            if (key === state.current)
+            {
+                this.line((state._created ? '* ' : '> ') + key);
+            }
+            else if (key === state._pendingState)
+            {
+                this.line('+ ' + key);
+            }
+            else
+            {
+                this.line('  ' + key);
+            }
+        }
+
+        this.stop();
+    },
+
+    /**
      * Render Sound Manager information, including volume, mute, audio mode, and locked status.
      *
      * @method Phaser.Utils.Debug#sound
