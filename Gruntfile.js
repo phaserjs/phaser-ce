@@ -1,5 +1,6 @@
 // / <binding BeforeBuild='default' />
-/* jshint browser:false, camelcase: false, node:true */
+/* eslint-env node */
+/* eslint camelcase: 'off' */
 module.exports = function (grunt)
 {
     var loadConfig = require('load-grunt-config');
