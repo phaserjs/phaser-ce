@@ -556,7 +556,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
  * @property {boolean}            [GameConfig.disableStart=false]            - Prevents the game loop from starting, allowing you to call updates manually. Helpful for automated testing.
  * @property {boolean}            [GameConfig.enableDebug=true]              - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
  * @property {boolean}            [GameConfig.failIfMajorPerformanceCaveat]  - Abort WebGL context creation if performance would be poor. You can use this with renderer AUTO.
- * @property {boolean}            [GameConfig.forceSetTimeout]               - Use {@link https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout setTimeOut} for the game loop even if {@link https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame requestAnimationFrame} is available.
+ * @property {boolean}            [GameConfig.forceSetTimeOut]               - Use {@link https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout setTimeout} for the game loop even if {@link https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame requestAnimationFrame} is available.
  * @property {number}             [GameConfig.fullScreenScaleMode]           - The scaling method used by the ScaleManager when in fullscreen.
  * @property {HTMLElement}        [GameConfig.fullScreenTarget]              - The DOM element on which the Fullscreen API enter request will be invoked.
  * @property {number|string}      [GameConfig.height=600]
