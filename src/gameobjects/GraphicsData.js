@@ -2,7 +2,6 @@
  * A GraphicsData object.
  *
  * @class
- * @memberof PIXI
  * @param lineWidth {number} the width of the line to draw
  * @param lineColor {number} the color of the line to draw
  * @param lineAlpha {number} the alpha of the line to draw
