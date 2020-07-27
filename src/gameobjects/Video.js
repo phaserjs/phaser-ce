@@ -372,7 +372,6 @@ Phaser.Video.prototype = {
      */
     startMediaStream: function (captureAudio, width, height, captureVideo)
     {
-
         if (captureAudio === undefined) { captureAudio = false; }
         if (width === undefined) { width = null; }
         if (height === undefined) { height = null; }
@@ -426,9 +425,9 @@ Phaser.Video.prototype = {
         {
             try
             {
-                    navigator.getUserMedia({ audio: captureAudio, video: captureVideo },
-                        this.getUserMediaSuccess.bind(this),
-                        this.getUserMediaError.bind(this));
+                navigator.getUserMedia({ audio: captureAudio, video: captureVideo },
+                    this.getUserMediaSuccess.bind(this),
+                    this.getUserMediaError.bind(this));
             }
             catch (error)
             {
