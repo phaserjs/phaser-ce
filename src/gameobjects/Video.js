@@ -550,9 +550,10 @@ Phaser.Video.prototype = {
      * @method Phaser.Video#createVideoFromURL
      * @param {string} url - The URL of the video.
      * @param {boolean} [autoplay=false] - Automatically start the video?
+     * @param {string} crossOrigin - The crossorigin parameter provides support for CORS
      * @return {Phaser.Video} This Video object for method chaining.
      */
-    createVideoFromURL: function (url, autoplay)
+    createVideoFromURL: function (url, autoplay, crossOrigin)
     {
         if (autoplay === undefined) { autoplay = false; }
 
@@ -568,6 +569,11 @@ Phaser.Video.prototype = {
         if (autoplay)
         {
             this.video.setAttribute('autoplay', 'autoplay');
+        }
+
+        if (crossOrigin !== undefined)
+        {
+            this.video.crossOrigin = crossOrigin;
         }
 
         this.video.setAttribute('playsinline', 'playsinline');

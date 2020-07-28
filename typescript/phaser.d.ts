@@ -3137,7 +3137,7 @@ declare module Phaser {
         addToWorld(x?: number, y?: number, anchorX?: number, anchorY?: Number, scaleX?: number, scaleY?: number): Phaser.Image;
         createVideoFromBlob(blob: Blob): Phaser.Video;
         startMediaStream(captureAudio?: boolean, width?: number, height?: number): Phaser.Video;
-        createVideoFromURL(url: string, autoplay?: boolean): Phaser.Video;
+        createVideoFromURL(url: string, autoplay?: boolean, crossOrigin?: string): Phaser.Video;
         changeSource(src: string, autoplay?: boolean): Phaser.Video;
         connectToMediaStram(video: any, stream: any): Phaser.Video;
         destroy(): void;
