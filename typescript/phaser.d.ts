@@ -4,6 +4,8 @@
 // Type definitions for Phaser CE
 // Project: https://github.com/photonstorm/phaser-ce
 
+interface MediaTrackConstraints {}
+
 declare module "phaser-ce" {
     export = Phaser;
 }
@@ -1542,6 +1544,7 @@ declare module Phaser {
         debug: Phaser.Utils.Debug;
         device: Phaser.Device;
         dropFrames: boolean;
+        forceSingleRender: boolean;
         forceSingleUpdate: boolean;
         fpsProblemNotifier: Phaser.Signal;
         height: number;
@@ -3136,8 +3139,8 @@ declare module Phaser {
         add(object: Phaser.Sprite | Phaser.Sprite[] | Phaser.Image | Phaser.Image[]): Phaser.Video;
         addToWorld(x?: number, y?: number, anchorX?: number, anchorY?: Number, scaleX?: number, scaleY?: number): Phaser.Image;
         createVideoFromBlob(blob: Blob): Phaser.Video;
-        startMediaStream(captureAudio?: boolean, width?: number, height?: number): Phaser.Video;
-        createVideoFromURL(url: string, autoplay?: boolean): Phaser.Video;
+        startMediaStream(captureAudio?: boolean | MediaTrackConstraints, width?: number, height?: number, captureVideo?: MediaTrackConstraints): Phaser.Video;
+        createVideoFromURL(url: string, autoplay?: boolean, crossOrigin?: string): Phaser.Video;
         changeSource(src: string, autoplay?: boolean): Phaser.Video;
         connectToMediaStram(video: any, stream: any): Phaser.Video;
         destroy(): void;

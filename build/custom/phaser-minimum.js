@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.15.1 "2020-05-15" - Built: Fri May 15 2020 11:43:33
+* v2.16.0 "2020-06-01" - Built: Mon Jun 01 2020 11:17:43
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -7771,7 +7771,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.15.1',
+    VERSION: '2.16.0',
 
     /**
      * An array of Phaser game instances.
@@ -14111,10 +14111,11 @@ Phaser.Camera = function (game, id, x, y, width, height)
     this.onFlashComplete = new Phaser.Signal();
 
     /**
-     * This signal is dispatched when the camera fade effect completes.
-     * When the fade effect completes you will be left with the screen black (or whatever
-     * color you faded to). In order to reset this call `Camera.resetFX`. This is called
-     * automatically when you change State.
+     * This signal is dispatched when the camera fade effect (fade in or fade out) completes.
+     * You can look at the value of `Camera.fx.alpha` to determine which effect it was.
+     * When the fade out effect completes `Camera.fx.alpha` is 1 and you will be left with the screen black (or whatever
+     * color you faded to). In order to reset this call `Camera.resetFX`. `Camera.resetFX` is called automatically when you change State.
+     * When the fade in effect completes, `Camera.fx.alpha` is 0 and there is no visible camera fill.
      * @property {Phaser.Signal} onFadeComplete
      */
     this.onFadeComplete = new Phaser.Signal();
@@ -14234,6 +14235,24 @@ Phaser.Camera.SHAKE_VERTICAL = 6;
  * @type {boolean}
  */
 Phaser.Camera.ENABLE_FX = true;
+
+/**
+ * @constant
+ * @type {number}
+ */
+Phaser.Camera.FLASH = 0;
+
+/**
+ * @constant
+ * @type {number}
+ */
+Phaser.Camera.FADE_OUT = 1;
+
+/**
+ * @constant
+ * @type {number}
+ */
+Phaser.Camera.FADE_IN = 2;
 
 Phaser.Camera.prototype = {
 
@@ -14438,7 +14457,7 @@ Phaser.Camera.prototype = {
     },
 
     /**
-     * This creates a camera fade effect. It works by filling the game with the
+     * This creates a camera fade out effect. It works by filling the game with the
      * color specified, over the duration given, ending with a solid fill.
      *
      * You can use this for things such as transitioning to a new scene.
@@ -14454,10 +14473,45 @@ Phaser.Camera.prototype = {
      * @param {numer} [color=0x000000] - The color the game will fade to. I.e. 0x000000 for black, 0xff0000 for red, etc.
      * @param {number} [duration=500] - The duration of the fade in milliseconds.
      * @param {boolean} [force=false] - If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.
-     * @param {numer} [alpha=1] - The alpha value of the color applied to the fade effect.
+     * @param {number} [alpha=1] - The alpha value of the color applied to the fade effect.
      * @return {boolean} True if the effect was started, otherwise false.
      */
     fade: function (color, duration, force, alpha)
+    {
+        return this.fadeEffect(color, duration, force, alpha, Phaser.Camera.FADE_OUT);
+    },
+
+    /**
+     * This creates a camera fade in effect.
+     * It fills the game with a solid color and then removes it over the duration given.
+     *
+     * When the effect ends the signal Camera.onFadeComplete is dispatched.
+     *
+     * @method Phaser.Camera#fadeIn
+     * @param {numer} [color=0x000000] - The color the game will fade from. I.e. 0x000000 for black, 0xff0000 for red, etc.
+     * @param {number} [duration=500] - The duration of the fade in milliseconds.
+     * @param {boolean} [force=false] - If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.
+     * @param {number} [alpha=1] - The alpha value of the color applied to the fade effect.
+     * @return {boolean} True if the effect was started, otherwise false.
+     */
+    fadeIn: function (color, duration, force, alpha)
+    {
+        return this.fadeEffect(color, duration, force, alpha, Phaser.Camera.FADE_IN);
+    },
+
+    /**
+     * Fade helper.
+     *
+     * @method Phaser.Camera#fadeEffect
+     * @private
+     * @param {numer} [color=0x000000] - The color the game will fade from. I.e. 0x000000 for black, 0xff0000 for red, etc.
+     * @param {number} [duration=500] - The duration of the fade in milliseconds.
+     * @param {boolean} [force=false] - If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.
+     * @param {number} [alpha=1] - The alpha value of the color applied to the fade effect.
+     * @param {number} [type=Phaser.Camera.FADE_OUT] - The fade type. FADE_IN or FADE_OUT.
+     * @return {boolean} True if the effect was started, otherwise false.
+     */
+    fadeEffect: function (color, duration, force, alpha, type)
     {
         if (color === undefined) { color = 0x000000; }
         if (duration === undefined) { duration = 500; }
@@ -14475,10 +14529,13 @@ Phaser.Camera.prototype = {
         this.fx.drawRect(0, 0, this.width, this.height);
         this.fx.endFill();
 
-        this.fx.alpha = 0;
+
+        if (type < 1 || type > 2) { throw new Error('Wrong `type` argument'); }
+
+        this.fx.alpha = (type === Phaser.Camera.FADE_IN) ? 1 : 0;
 
         this._fxDuration = duration;
-        this._fxType = 1;
+        this._fxType = type;
 
         return true;
     },
@@ -14525,7 +14582,7 @@ Phaser.Camera.prototype = {
      */
     updateFX: function ()
     {
-        if (this._fxType === 0)
+        if (this._fxType === Phaser.Camera.FLASH)
         {
             //  flash
             this.fx.alpha -= this.game.time.elapsedMS / this._fxDuration;
@@ -14537,9 +14594,21 @@ Phaser.Camera.prototype = {
                 this.onFlashComplete.dispatch();
             }
         }
+        else if (this._fxType === Phaser.Camera.FADE_IN)
+        {
+            //  fade in
+            this.fx.alpha -= this.game.time.elapsedMS / this._fxDuration;
+
+            if (this.fx.alpha <= 0)
+            {
+                this._fxDuration = 0;
+                this.fx.alpha = 0;
+                this.onFadeComplete.dispatch();
+            }
+        }
         else
         {
-            //  fade
+            //  fade out
             this.fx.alpha += this.game.time.elapsedMS / this._fxDuration;
 
             if (this.fx.alpha >= 1)
@@ -15332,7 +15401,7 @@ Phaser.StateManager = function (game, pendingState)
      *
      * It is dispatched only when the new state is started, which isn't usually at the same time as StateManager.start
      * is called because state swapping is done in sync with the game loop. It is dispatched *before* any of the new states
-     * methods (such as preload and create) are called, and *after* the previous states shutdown method has been run.
+     * methods (init, preload, create, etc.) are called, and *after* the previous state's shutdown method has been run.
      *
      * The callback you specify is sent two parameters: the string based key of the new state,
      * and the second parameter is the string based key of the old / previous state.
@@ -15592,14 +15661,10 @@ Phaser.StateManager.prototype = {
     {
         if (this._pendingState && this.game.isBooted)
         {
-            var previousStateKey = this.current;
-
             //  Already got a state running?
             this.clearCurrentState();
 
             this.setCurrentState(this._pendingState);
-
-            this.onStateChange.dispatch(this.current, previousStateKey);
 
             if (this.current !== this._pendingState)
             {
@@ -15787,6 +15852,7 @@ Phaser.StateManager.prototype = {
      */
     setCurrentState: function (key)
     {
+        var previousStateKey = this.current;
         var state = this.states[key];
 
         this.callbackContext = state;
@@ -15820,6 +15886,8 @@ Phaser.StateManager.prototype = {
 
         this.current = key;
         this._created = false;
+
+        this.onStateChange.dispatch(this.current, previousStateKey);
 
         //  At this point key and pendingState should equal each other
         this.onInitCallback.apply(this.callbackContext, this._args);
@@ -22070,7 +22138,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
  * @property {boolean}            [GameConfig.keyboard=true]                 - Starts the keyboard input handler.
  * @property {number}             [GameConfig.maxPointers=-1]                - Sets {@link Phaser.Input#maxPointers}.
  * @property {boolean}            [GameConfig.mouse=true]                    - Starts the mouse input handler, if the mspointer and touch handlers were not started.
- * @property {boolean}            [GameConfig.mouseWheel=true]               - Starts the {@link Phaser.MouseWheel mouse wheel} handler, if supported by the device.
+ * @property {boolean}            [GameConfig.mouseWheel=false]               - Starts the {@link Phaser.MouseWheel mouse wheel} handler, if supported by the device.
  * @property {boolean}            [GameConfig.mspointer=true]                - Starts the {@link Phaser.MSPointer Pointer Events} handler (mspointer), if supported by the device.
  * @property {boolean}            [GameConfig.multiTexture=false]            - Enable support for multiple bound Textures in WebGL. Same as `{renderer: Phaser.WEBGL_MULTI}`.
  * @property {string|HTMLElement} [GameConfig.parent='']                     - The DOM element into which this games canvas will be injected.
@@ -22803,12 +22871,7 @@ Phaser.Game.prototype = {
             this._paused = true;
 
             this.time.gamePaused();
-
-            if (this.sound.muteOnPause)
-            {
-                this.sound.setMute();
-            }
-
+            this.sound.gamePaused();
             this.onPause.dispatch(event);
 
             //  Avoids Cordova iOS crash event: https://github.com/photonstorm/phaser/issues/1800
@@ -22834,14 +22897,8 @@ Phaser.Game.prototype = {
             this._paused = false;
 
             this.time.gameResumed();
-
             this.input.reset();
-
-            if (this.sound.muteOnPause)
-            {
-                this.sound.unsetMute();
-            }
-
+            this.sound.gameResumed();
             this.onResume.dispatch(event);
 
             //  Avoids Cordova iOS crash event: https://github.com/photonstorm/phaser/issues/1800
@@ -23380,7 +23437,7 @@ Phaser.Input.prototype = {
      * @property {boolean} [keyboard=true]
      * @property {boolean} [maxPointers=-1]
      * @property {boolean} [mouse=true]
-     * @property {boolean} [mouseWheel=true]
+     * @property {boolean} [mouseWheel=false]
      * @property {boolean} [mspointer=true]
      * @property {boolean} [pointerLock=true]
      * @property {boolean} [touch=true]
@@ -23453,7 +23510,7 @@ Phaser.Input.prototype = {
 
         this.mousePointer.active = true;
 
-        if (config.mouseWheel !== false)
+        if (config.mouseWheel === true)
         {
             this.mouseWheel.start();
         }
@@ -30158,6 +30215,7 @@ Phaser.Component.Core.init = function (game, x, y, key, frame)
     if (this.components.PhysicsBody)
     {
         // Enable-body checks for hasOwnProperty; makes sure to lift property from prototype.
+        // eslint-disable-next-line no-self-assign
         this.body = this.body;
     }
 
