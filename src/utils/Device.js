@@ -1158,7 +1158,7 @@ Phaser.Device._initialize = function ()
                  *   developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
                  *   bit.ly/iphoneoscodecs
                  */
-                if (audioElement.canPlayType('audio/wav; codecs="1"').replace(/^no$/, ''))
+                if (audioElement.canPlayType('audio/wav').replace(/^no$/, ''))
                 {
                     device.wav = true;
                 }
