@@ -1,4 +1,3 @@
-/* jshint camelcase: false */
 /**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2016 Photon Storm Ltd.
@@ -126,10 +125,10 @@ Phaser.Physics.Ninja.AABB.prototype = {
         this.oldpos.set(px, py);
 
     },
-    
+
     /**
      * Process a collision partner-agnostic collision response and apply the resulting forces.
-     * 
+     *
      * @method Phaser.Physics.Ninja.AABB#reportCollision
      * @param {number} px - The tangent velocity
      * @param {number} py - The tangent velocity

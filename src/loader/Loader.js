@@ -1,4 +1,3 @@
-/* jshint wsh:true */
 /**
  * @author       Richard Davey <rich@photonstorm.com>
  * @copyright    2016 Photon Storm Ltd.

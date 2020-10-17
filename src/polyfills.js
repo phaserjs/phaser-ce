@@ -29,7 +29,6 @@ if (!Math.trunc)
  */
 if (!Function.prototype.bind)
 {
-    /* jshint freeze: false */
     Function.prototype.bind = (function ()
     {
         var slice = Array.prototype.slice;
@@ -59,7 +58,6 @@ if (!Function.prototype.bind)
 
                 if (!(this instanceof F))
                 {
-                    /* jshint supernew: true */
                     return new F();
                 }
             })(target.prototype);

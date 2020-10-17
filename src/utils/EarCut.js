@@ -1,5 +1,3 @@
-/* jshint ignore:start */
-
 /*
  * Copyright (c) 2016, Mapbox
  *
@@ -707,4 +705,4 @@ Phaser.EarCut.Node = function (i, x, y)
     this.steiner = false;
 };
 
-/* jshint ignore:end */
+
