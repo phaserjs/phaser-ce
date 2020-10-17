@@ -331,6 +331,64 @@ Phaser.Loader.PHYSICS_PHASER_JSON = 4;
  */
 Phaser.Loader.TEXTURE_ATLAS_JSON_PYXEL = 5;
 
+/**
+ * Mapping of file extensions to media types.
+ *
+ * @property Phaser.Loader.mediaTypes
+ * @static
+ * @type {object}
+ */
+Phaser.Loader.mediaTypes = {
+    avif: 'image/avif',
+    bmp: 'image/bmp',
+    cur: 'image/x-icon',
+    gif: 'image/gif',
+    ico: 'image/x-icon',
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    png: 'image/png',
+    svg: 'image/svg+xml',
+    tif: 'image/tiff',
+    tiff: 'image/tiff',
+    webp: 'image/webp'
+};
+
+/**
+ * Guess a media type for an URL.
+ *
+ * @method Phaser.Loader.getMediaType
+ * @static
+ * @param {string} url
+ * @return {?string}
+ */
+Phaser.Loader.getMediaType = function (url)
+{
+    var matches = url.match(/\.(\w+)$/);
+
+    if (!matches) { return null; }
+
+    return Phaser.Loader.mediaTypes[matches[1]] || null;
+};
+
+/**
+ * Convert a source string (URL) to an object, guessing its media type.
+ *
+ * @method Phaser.Loader._getSource
+ * @static
+ * @private
+ * @param {object|string} source
+ * @return {object}
+ */
+Phaser.Loader._getSource = function (source)
+{
+    if (typeof source === 'string')
+    {
+        return { url: source, type: Phaser.Loader.getMediaType(source) };
+    }
+
+    return source;
+};
+
 Phaser.Loader.prototype = {
 
     /**
@@ -690,13 +748,15 @@ Phaser.Loader.prototype = {
      *
      * The key must be a unique String. It is used to add the file to the Phaser.Cache upon successful load.
      *
-     * Retrieve the image via `Cache.getImage(key)`
+     * Retrieve the image via `Cache.getImage(key)`.
      *
      * The URL can be relative or absolute. If the URL is relative the `Loader.baseURL` and `Loader.path` values will be prepended to it.
      *
      * If the URL isn't specified the Loader will take the key and create a filename from that. For example if the key is "alien"
      * and no URL is given then the Loader will set the URL to be "alien.png". It will always add `.png` as the extension.
      * If you do not desire this action then provide a URL.
+     *
+     * ##### Compressed Textures
      *
      * This method also supports passing in a texture object as the `url` argument. This allows you to load
      * compressed textures into Phaser. You can also use `Loader.texture` to do this.
@@ -724,14 +784,41 @@ Phaser.Loader.prototype = {
      * The `truecolor` property points to a standard PNG file, that will be used if none of the
      * compressed formats are supported by the browser / GPU.
      *
+     * ##### Multiple Image Sources
+     *
+     * You can pass an array `url` argument to load one of several alternative image sources.
+     * The browser will choose its preferred source. You can also use `Loader.imageset` to do this.
+     *
+     * ```javascript
+     * load.image('flower', [
+     *     'flower.avif',
+     *     'flower.webp',
+     *     'flower.png'
+     * ]);
+     * ```
+     *
+     * You can also describe the media types explicitly:
+     *
+     * ```javascript
+     * load.image('flower', [
+     *     { url: 'flower.avif', type: 'image/avif' },
+     *     { url: 'flower.webp', type: 'image/webp' },
+     *     { url: 'flower.png', type: 'image/png' }
+     * ]);
+     * ```
+     *
      * @method Phaser.Loader#image
      * @param {string} key - Unique asset key of this image file.
-     * @param {string|object} [url] - URL of an image file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png". Can also be a texture data object.
+     * @param {string|object|string[]|object[]} [url] - URL of an image file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png". Can also be a texture data object.
      * @param {boolean} [overwrite=false] - If an unloaded file with a matching key already exists in the queue, this entry will overwrite it.
      * @return {Phaser.Loader} This Loader instance.
      */
     image: function (key, url, overwrite)
     {
+        if (Array.isArray(url))
+        {
+            return this.imageset(key, url, overwrite);
+        }
         if (typeof url === 'object')
         {
             return this.texture(key, url, overwrite);
@@ -740,6 +827,27 @@ Phaser.Loader.prototype = {
         {
             return this.addToFileList('image', key, url, undefined, overwrite, '.png');
         }
+    },
+
+    /**
+     * Adds an Image to the current load queue, giving several alternative sources.
+     * The browser will choose its preferred source.
+     *
+     * Sources can be URLs or objects in the form { url, type }, where `type` is the media type.
+     * If the source is an URL (string) then Phaser will guess the media type.
+     *
+     * @method Phaser.Loader#imageset
+     * @param {string} key - Unique asset key of this image file.
+     * @param {string[]|object[]} [sources] - Source URLs or objects in the form { url, type }.
+     * @param {boolean} [overwrite=false] - If an unloaded file with a matching key already exists in the queue, this entry will overwrite it.
+     * @return {Phaser.Loader} This Loader instance.
+     */
+    imageset: function (key, sources, overwrite)
+    {
+        var defaultSource = sources[sources.length - 1];
+        var url = (typeof defaultSource === 'string') ? defaultSource : defaultSource.url;
+
+        return this.addToFileList('imageset', key, url, { sources: sources }, overwrite);
     },
 
     /**
@@ -2287,6 +2395,10 @@ Phaser.Loader.prototype = {
                 this.loadImageTag(file);
                 break;
 
+            case 'imageset':
+                this.loadPictureTag(file);
+                break;
+
             case 'audio':
                 file.url = this.getAudioURL(file.url);
 
@@ -2419,6 +2531,79 @@ Phaser.Loader.prototype = {
 
         /*
          * Image is immediately-available/cached
+         * Special Firefox magic, exclude from cached reload
+         * More info here: https://github.com/photonstorm/phaser/issues/2534
+         */
+        if (!this.game.device.firefox && file.data.complete && file.data.width && file.data.height)
+        {
+            file.data.onload = null;
+            file.data.onerror = null;
+            this.fileComplete(file);
+        }
+    },
+
+    /**
+     * Continue async loading through a Picture tag.
+     * @private
+     */
+    loadPictureTag: function (file)
+    {
+        var _this = this;
+        var picElm = document.createElement('picture');
+        var sources = file.sources;
+        var defaultSource = Phaser.Loader._getSource(sources.pop());
+
+        for (var i = 0, len = sources.length; i < len; i++)
+        {
+            var source = Phaser.Loader._getSource(sources[i]);
+
+            if (!source.type || !source.url)
+            {
+                console.warn('Skipping an invalid source for image "%s" (url: "%s", type: "%s")', file.key, source.url, source.type);
+            }
+
+            var sourceElm = document.createElement('source');
+
+            sourceElm.setAttribute('type', source.type);
+            sourceElm.setAttribute('srcset', this.transformUrl(source.url, file));
+
+            picElm.appendChild(sourceElm);
+        }
+
+        file.data = document.createElement('img');
+        file.data.name = file.key;
+
+        if (this.crossOrigin)
+        {
+            file.data.crossOrigin = this.crossOrigin;
+        }
+
+        file.data.onload = function ()
+        {
+            if (file.data.onload)
+            {
+                file.data.onload = null;
+                file.data.onerror = null;
+                _this.fileComplete(file);
+            }
+        };
+
+        file.data.onerror = function ()
+        {
+            if (file.data.onload)
+            {
+                file.data.onload = null;
+                file.data.onerror = null;
+                _this.fileError(file);
+            }
+        };
+
+        picElm.appendChild(file.data);
+
+        file.data.src = this.transformUrl(defaultSource.url, file);
+
+        /*
+         * Image is immediately-available/cached?
          * Special Firefox magic, exclude from cached reload
          * More info here: https://github.com/photonstorm/phaser/issues/2534
          */
@@ -2776,6 +2961,7 @@ Phaser.Loader.prototype = {
                 break;
 
             case 'image':
+            case 'imageset':
 
                 this.cache.addImage(file.key, file.url, file.data);
                 break;
