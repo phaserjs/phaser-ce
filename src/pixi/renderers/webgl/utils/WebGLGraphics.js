@@ -69,7 +69,6 @@ PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// project
         {
             webGLData = webGL.data[i];
 
-
             renderSession.shaderManager.setShader(shader);// activatePrimitiveShader();
             shader = renderSession.shaderManager.primitiveShader;
             gl.uniformMatrix3fv(shader.translationMatrix, false, graphics.worldTransform.toArray(true));
@@ -82,7 +81,6 @@ PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// project
             gl.uniform3fv(shader.tintColor, Phaser.Color.hexToRGBArray(graphics.tint));
 
             gl.uniform1f(shader.alpha, graphics.worldAlpha);
-
 
             gl.bindBuffer(gl.ARRAY_BUFFER, webGLData.buffer);
 
@@ -320,7 +318,6 @@ PIXI.WebGLGraphics.buildRectangle = function (graphicsData, webGLData)
             x, y + height,
             x, y ];
 
-
         PIXI.WebGLGraphics.buildLine(graphicsData, webGLData);
 
         graphicsData.points = tempPoints;
@@ -379,7 +376,6 @@ PIXI.WebGLGraphics.buildRoundedRectangle = function (graphicsData, webGLData)
             indices.push(triangles[i + 2] + vecPos);
             indices.push(triangles[i + 2] + vecPos);
         }
-
 
         for (i = 0; i < recPoints.length; i++)
         {
@@ -680,9 +676,7 @@ PIXI.WebGLGraphics.buildLine = function (graphicsData, webGLData)
         px = (b1 * c2 - b2 * c1) / denom;
         py = (a2 * c1 - a1 * c2) / denom;
 
-
         pdist = (px - p2x) * (px - p2x) + (py - p2y) + (py - p2y);
-
 
         if(pdist > 140 * 140)
         {

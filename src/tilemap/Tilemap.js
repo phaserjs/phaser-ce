@@ -634,7 +634,6 @@ Phaser.Tilemap.prototype = {
         return rootLayer;
     },
 
-
     /**
      * Creates a new and empty layer on this Tilemap. By default TilemapLayers are fixed to the camera.
      *

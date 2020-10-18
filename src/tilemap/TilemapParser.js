@@ -768,7 +768,6 @@ Phaser.TilemapParser = {
                     sid = map.tiles[tile.index][2];
                     set = map.tilesets[sid];
 
-
                     // if that tile type has any properties, add them to the tile object
 
                     if (set.tileProperties && set.tileProperties[tile.index - set.firstgid])

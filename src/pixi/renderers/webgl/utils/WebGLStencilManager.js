@@ -159,7 +159,6 @@ PIXI.WebGLStencilManager.prototype.bindGraphics = function (graphics, webGLData,
 
         gl.vertexAttribPointer(shader.aVertexPosition, 2, gl.FLOAT, false, 4 * 2, 0);
 
-
         /*
          * now do the rest..
          * set the index buffer!

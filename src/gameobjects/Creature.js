@@ -7,7 +7,6 @@
  * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
  */
 
-
 /**
  * @class CreatureShader
  * @constructor
@@ -108,7 +107,6 @@ PIXI.CreatureShader.prototype.init = function ()
         gl.getUniformLocation(program, 'uSamplerArray[0]') :
         gl.getUniformLocation(program, 'uSampler');
 
-
     this.projectionVector = gl.getUniformLocation(program, 'projectionVector');
     this.offsetVector = gl.getUniformLocation(program, 'offsetVector');
     this.colorAttribute = gl.getAttribLocation(program, 'aColor');
@@ -142,7 +140,6 @@ PIXI.CreatureShader.prototype.destroy = function ()
 
     this.attribute = null;
 };
-
 
 /**
  * Creature is a custom Game Object used in conjunction with the Creature Runtime libraries by Kestrel Moon Studios.
@@ -298,7 +295,6 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, useFlatData)
     this.manager.SetActiveAnimationName(animation, false);
 
     Phaser.Component.Core.init.call(this, game, x, y);
-
 
     /**
      * @property {number} tint - colour change
@@ -724,7 +720,6 @@ Object.defineProperty(Phaser.Creature.prototype, 'width', {
     }
 
 });
-
 
 /**
  * @name Phaser.Creature#anchorX

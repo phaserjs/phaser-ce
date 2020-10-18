@@ -705,4 +705,3 @@ Phaser.EarCut.Node = function (i, x, y)
     this.steiner = false;
 };
 
-

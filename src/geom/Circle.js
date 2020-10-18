@@ -205,7 +205,6 @@ Phaser.Circle.prototype = {
         return Phaser.Circle.circumferencePoint(this, angle, asDegrees, out);
     },
 
-
     /**
      * Creates or positions points on the circle.
      *
@@ -641,7 +640,6 @@ Phaser.Circle.intersectsLine = function (c, l, returnPoints)
         return returnPoints ? [] : false;
     }
 };
-
 
 //   Because PIXI uses its own Circle, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Circle = Phaser.Circle;

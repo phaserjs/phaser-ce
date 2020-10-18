@@ -168,7 +168,6 @@ Phaser.CanvasPool = {
         return c;
     },
 
-
     /**
      * Prints in-use, free, and total counts to console.log.
      *
@@ -195,7 +194,6 @@ Phaser.CanvasPool = {
  * @static
  */
 Phaser.CanvasPool.pool = [];
-
 
 /**
  * The total number of canvas elements in the {@link Phaser.CanvasPool.pool pool}.

@@ -1131,6 +1131,5 @@ Phaser.Point.sortClockwise = function (points, center)
     return points.sort(sort);
 };
 
-
 //   Because PIXI uses its own Point, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Point = Phaser.Point;

@@ -975,7 +975,6 @@ Phaser.Color = {
         return Phaser.Color.getColor(r, g, b);
     },
 
-
     /**
      * Calculates a linear (interpolation) value of two colors over t.
      *

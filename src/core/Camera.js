@@ -537,7 +537,6 @@ Phaser.Camera.prototype = {
         this.fx.drawRect(0, 0, this.width, this.height);
         this.fx.endFill();
 
-
         if (type < 1 || type > 2) { throw new Error('Wrong `type` argument'); }
 
         this.fx.alpha = (type === Phaser.Camera.FADE_IN) ? 1 : 0;
@@ -978,7 +977,6 @@ Object.defineProperty(Phaser.Camera.prototype, 'height', {
 
 });
 
-
 /**
  * The Cameras shake intensity.
  * @name Phaser.Camera#shakeIntensity
@@ -997,7 +995,6 @@ Object.defineProperty(Phaser.Camera.prototype, 'shakeIntensity', {
     }
 
 });
-
 
 /**
  * Immobile {@link #view} rectangle. Its top-left is always (0, 0). You can use this align fixedToCamera objects.

@@ -349,7 +349,6 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
     filterBlock._glFilterTexture = null;
 };
 
-
 /**
  * Applies the filter to the specified area.
  *

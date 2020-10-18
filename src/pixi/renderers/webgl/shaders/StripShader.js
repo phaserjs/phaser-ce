@@ -41,7 +41,6 @@ PIXI.StripShader = function (gl)
                         index + '], vTextureCoord) ;return;}\n';
         }
 
-
         /**
          * The fragment shader.
          * @property fragmentSrc
@@ -152,7 +151,6 @@ PIXI.StripShader.prototype.init = function ()
     this.uSampler = PIXI._enableMultiTextureToggle ?
         gl.getUniformLocation(program, 'uSamplerArray[0]') :
         gl.getUniformLocation(program, 'uSampler');
-
 
     if (PIXI._enableMultiTextureToggle)
     {

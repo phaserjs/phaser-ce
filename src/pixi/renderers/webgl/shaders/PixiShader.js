@@ -208,7 +208,6 @@ PIXI.PixiShader.prototype.initDefaultShader = function ()
     this.colorAttribute = gl.getAttribLocation(program, 'aColor');
     this.aTextureIndex = gl.getAttribLocation(program, 'aTextureIndex');
 
-
     // Begin worst hack eva //
 
     /*

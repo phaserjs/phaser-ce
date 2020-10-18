@@ -2177,7 +2177,6 @@ Phaser.Cache.prototype = {
         }
     },
 
-
     /**
      * Increments the pending count.
      *
@@ -2187,7 +2186,6 @@ Phaser.Cache.prototype = {
     {
         this._pendingCount += 1;
     },
-
 
     /**
      * Decrements the pending count and checks if complete.
@@ -2199,7 +2197,6 @@ Phaser.Cache.prototype = {
         this._pendingCount -= 1;
         this._checkReady();
     },
-
 
     /**
      * Calls {@link #_ready} if no pending items remain.
@@ -2213,7 +2210,6 @@ Phaser.Cache.prototype = {
             this._ready();
         }
     },
-
 
     /**
      * Resets pending count and triggers {@link #onReady}.

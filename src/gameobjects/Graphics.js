@@ -164,7 +164,6 @@ Phaser.Graphics = function (game, x, y)
      */
     this.boundsPadding = 0;
 
-
     /**
      * Actually the visual bounds.
      *
@@ -1274,7 +1273,6 @@ Phaser.Graphics.prototype.containsPoint = function (point, tempPoint)
 
     return false;
 };
-
 
 /**
  * Copy and return the visual bounds of the object, based on the drawn data.

@@ -155,7 +155,6 @@ Phaser.SoundManager = function (game)
      */
     this._volume = 1;
 
-
     /**
      * @property {array} _sounds - An array containing all the sounds
      * @private

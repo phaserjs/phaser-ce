@@ -139,7 +139,6 @@ Phaser.Text = function (game, x, y, text, style)
      */
     this.splitRegExp = /(?:\r\n|\r|\n)/;
 
-
     /**
      * The maximum number of characters that can be set.
      * @property {number} characterLimitSize
@@ -2349,7 +2348,6 @@ Object.defineProperty(Phaser.Text.prototype, 'testString', {
         this.updateText();
     }
 });
-
 
 Phaser.Text.fontPropertiesCache = {};
 

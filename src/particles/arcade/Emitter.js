@@ -676,7 +676,6 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     return true;
 };
 
-
 /**
  * Helper for {@link #emitParticle}. Gets the next available particle.
  *
@@ -1029,7 +1028,6 @@ Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, 'gravity', {
     }
 
 });
-
 
 /**
  * @name Phaser.Particles.Arcade.Emitter#id

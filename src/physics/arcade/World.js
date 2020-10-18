@@ -2009,7 +2009,6 @@ Phaser.Physics.Arcade.prototype = {
         return Math.sqrt(dx * dx + dy * dy);
     },
 
-
     /**
      * From a set of points or display objects, find the one closest to a source point or object.
      *

@@ -392,6 +392,5 @@ Phaser.Ellipse.intersectsLine = function (e, l, returnPoints)
     }
 };
 
-
 //   Because PIXI uses its own Ellipse, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Ellipse = Phaser.Ellipse;

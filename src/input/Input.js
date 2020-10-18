@@ -598,7 +598,6 @@ Phaser.Input.prototype = {
         this.moveCallbacks.push({ callback: callback, context: context });
     },
 
-
     /**
      * Adds a callback that is fired when a browser touchstart/pointerdown or touchend/pointerup event is received.
      *

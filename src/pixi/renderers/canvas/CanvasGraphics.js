@@ -2,7 +2,6 @@
  * @author Mat Groves http://matgroves.com/ @Doormat23
  */
 
-
 /**
  * A set of functions used by the canvas renderer to draw the primitive graphics data.
  *

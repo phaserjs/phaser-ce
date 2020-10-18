@@ -291,7 +291,6 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     // texture Index
     vertices[index++] = textureIndex;
 
-
     // xy
     vertices[index++] = w0;
     vertices[index++] = h1;
@@ -339,7 +338,6 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
 
     // texture Index
     vertices[index++] = textureIndex;
-
 
     // xy
     vertices[index++] = w1;
@@ -416,7 +414,6 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function ()
     // increment the draw count
     this.renderSession.drawCount++;
 };
-
 
 /**
  * @method PIXI.WebGLFastSpriteBatch#stop

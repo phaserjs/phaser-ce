@@ -1518,7 +1518,6 @@ Phaser.ScaleManager.prototype = {
         return bounds;
     },
 
-
     /**
      * Shorthand for setting {@link #pageAlignHorizontally} and {@link #pageAlignVertically}.
      *
