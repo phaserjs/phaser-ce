@@ -2753,7 +2753,6 @@ Phaser.Loader.prototype = {
                     _this.asyncComplete(file, e.message || 'Exception');
                 }
                 else
-                if (window.console)
                 {
                     console.error(e);
                 }
@@ -2773,7 +2772,6 @@ Phaser.Loader.prototype = {
                     _this.asyncComplete(file, e.message || 'Exception');
                 }
                 else
-                if (window.console)
                 {
                     console.error(e);
                 }
