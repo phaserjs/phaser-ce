@@ -1,5 +1,20 @@
 # Change Log
 
+## Unreleased
+
+### New Features
+
+- Phaser.Video#createVideoFromURL has a `crossOrigin` argument (#676).
+- Phaser.Loader#image now supports loading one of several alternative formats (e.g., AVIF, WebP, SVG) according to browser support.
+
+### Updates
+
+- Removed the codec parameter for the [Phaser.Device#wav](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#wav) test because it gave a false negative in Safari.
+
+### Thanks
+
+@jorginius, @samme
+
 ## Version 2.16.0 - 1 Jun 2020
 
 ### API Changes
