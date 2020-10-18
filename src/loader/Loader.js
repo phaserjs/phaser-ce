@@ -2584,6 +2584,7 @@ Phaser.Loader.prototype = {
             {
                 file.data.onload = null;
                 file.data.onerror = null;
+                file.url = file.data.currentSrc;
                 _this.fileComplete(file);
             }
         };
@@ -2594,6 +2595,7 @@ Phaser.Loader.prototype = {
             {
                 file.data.onload = null;
                 file.data.onerror = null;
+                file.url = file.data.currentSrc;
                 _this.fileError(file);
             }
         };
