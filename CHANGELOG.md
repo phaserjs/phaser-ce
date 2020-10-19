@@ -4,8 +4,8 @@
 
 ### New Features
 
-- Phaser.Video#createVideoFromURL has a `crossOrigin` argument (#676).
-- Phaser.Loader#image now supports loading one of several alternative formats (e.g., AVIF, WebP, SVG) according to browser support.
+- [Phaser.Video#createVideoFromURL](https://photonstorm.github.io/phaser-ce/Phaser.Video.html#createVideoFromURL) has a `crossOrigin` argument (#676).
+- [Phaser.Loader#image](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#image) now supports loading one of several alternative formats (e.g., AVIF, WebP, SVG) according to browser support.
 
 ### Updates
 
