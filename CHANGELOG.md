@@ -5,7 +5,8 @@
 ### New Features
 
 - [Phaser.Video#createVideoFromURL](https://photonstorm.github.io/phaser-ce/Phaser.Video.html#createVideoFromURL) has a `crossOrigin` argument (#676).
-- [Phaser.Loader#image](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#image) now supports loading one of several alternative formats (e.g., AVIF, WebP, SVG) according to browser support.
+- [Phaser.Video#startMediaStream] accepts [MediaTrackConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints) in its `captureAudio` and `captureVideo` arguments (#677).
+- [Phaser.Loader#image](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#image) supports loading one of several alternative formats (e.g., AVIF, WebP, SVG) according to browser support.
 
 ### Updates
 
