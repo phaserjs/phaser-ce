@@ -45,7 +45,7 @@ Phaser.Frame = function (index, x, y, width, height, name)
 
     if (this.width === 0 || this.height === 0)
     {
-        console.warn('Phaser.Frame: Frame "' + this.name + '" has a width or height of zero');
+        console.warn('Phaser.Frame: Frame "' + name + '" has a width or height of zero');
     }
 
     /**
