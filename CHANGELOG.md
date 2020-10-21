@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.16.1 - 21 Oct 2020
 
 ### New Features
 
@@ -14,7 +14,7 @@
 
 ### Thanks
 
-@jorginius, @samme
+@jorginius, @photonstorm, @samme
 
 ## Version 2.16.0 - 1 Jun 2020
 
