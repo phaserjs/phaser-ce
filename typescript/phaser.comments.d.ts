@@ -4,6 +4,8 @@
 // Type definitions for Phaser CE
 // Project: https://github.com/photonstorm/phaser-ce
 
+interface MediaTrackConstraints {}
+
 declare module "phaser-ce" {
     export = Phaser;
 }
@@ -7988,6 +7990,12 @@ declare module Phaser {
         dropFrames: boolean;
 
         /**
+        * Should the game loop make one render per animation frame, even without a preceding logic update? (During spiraling conditions, {@link Phaser.Game#dropFrames dropFrames} is used instead.)
+        * Default: true
+        */
+        forceSingleRender: boolean;
+
+        /**
         * Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.
         * Default: true
         */
@@ -10060,8 +10068,24 @@ declare module Phaser {
 
     }
 
+
+    /**
+    * A GraphicsData object.
+    */
     class GraphicsData {
 
+
+        /**
+        * A GraphicsData object.
+        * 
+        * @param lineWidth the width of the line to draw
+        * @param lineColor the color of the line to draw
+        * @param lineAlpha the alpha of the line to draw
+        * @param fillColor the color of the fill
+        * @param fillAlpha the alpha of the fill
+        * @param fill whether or not the shape is filled with a colour
+        * @param shape The shape object to draw.
+        */
         constructor(lineWidth?: number, lineColor?: number, lineAlpha?: number, fillColor?: number, fillAlpha?: number, fill?: boolean, shape?: any);
 
         lineWidth: number;
@@ -14858,13 +14882,15 @@ declare module Phaser {
         * 
         * The key must be a unique String. It is used to add the file to the Phaser.Cache upon successful load.
         * 
-        * Retrieve the image via `Cache.getImage(key)`
+        * Retrieve the image via `Cache.getImage(key)`.
         * 
         * The URL can be relative or absolute. If the URL is relative the `Loader.baseURL` and `Loader.path` values will be prepended to it.
         * 
         * If the URL isn't specified the Loader will take the key and create a filename from that. For example if the key is "alien"
         * and no URL is given then the Loader will set the URL to be "alien.png". It will always add `.png` as the extension.
         * If you do not desire this action then provide a URL.
+        * 
+        * ##### Compressed Textures
         * 
         * This method also supports passing in a texture object as the `url` argument. This allows you to load
         * compressed textures into Phaser. You can also use `Loader.texture` to do this.
@@ -14892,8 +14918,31 @@ declare module Phaser {
         * The `truecolor` property points to a standard PNG file, that will be used if none of the
         * compressed formats are supported by the browser / GPU.
         * 
+        * ##### Multiple Image Sources
+        * 
+        * You can pass an array `url` argument to load one of several alternative image sources.
+        * The browser will choose its preferred source. You can also use `Loader.imageset` to do this.
+        * 
+        * ```javascript
+        * load.image('flower', [
+        *     'flower.avif',
+        *     'flower.webp',
+        *     'flower.png'
+        * ]);
+        * ```
+        * 
+        * You can also describe the media types explicitly:
+        * 
+        * ```javascript
+        * load.image('flower', [
+        *     { url: 'flower.avif', type: 'image/avif' },
+        *     { url: 'flower.webp', type: 'image/webp' },
+        *     { url: 'flower.png', type: 'image/png' }
+        * ]);
+        * ```
+        * 
         * @param key Unique asset key of this image file.
-        * @param url URL of an image file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png". Can also be a texture data object.
+        * @param url URL of an image file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png". Can also be a texture data object or a source array.
         * @param overwrite If an unloaded file with a matching key already exists in the queue, this entry will overwrite it.
         * @return This Loader instance.
         */
@@ -17879,18 +17928,20 @@ declare module Phaser {
         * @param captureAudio Controls if audio should be captured along with video in the video stream.
         * @param width The width is used to create the video stream. If not provided the video width will be set to the width of the webcam input source.
         * @param height The height is used to create the video stream. If not provided the video height will be set to the height of the webcam input source.
+        * @param captureVideo Constraints and settings used to create the video stream.
         * @return This Video object for method chaining or false if the device doesn't support getUserMedia.
         */
-        startMediaStream(captureAudio?: boolean, width?: number, height?: number): Phaser.Video;
+        startMediaStream(captureAudio?: boolean | MediaTrackConstraints, width?: number, height?: number, captureVideo?: MediaTrackConstraints): Phaser.Video;
 
         /**
         * Creates a new Video element from the given URL.
         * 
         * @param url The URL of the video.
         * @param autoplay Automatically start the video?
+        * @param crossOrigin The crossorigin parameter provides support for CORS
         * @return This Video object for method chaining.
         */
-        createVideoFromURL(url: string, autoplay?: boolean): Phaser.Video;
+        createVideoFromURL(url: string, autoplay?: boolean, crossOrigin?: string): Phaser.Video;
 
         /**
         * On some mobile browsers you cannot play a video until the user has explicitly touched the video to allow it.

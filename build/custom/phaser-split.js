@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.16.0 "2020-06-01" - Built: Mon Jun 01 2020 11:17:47
+* v2.16.1 "2020-10-21" - Built: Wed Oct 21 2020 14:49:57
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -40,7 +40,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.16.0',
+    VERSION: '2.16.1',
 
     /**
      * An array of Phaser game instances.
@@ -605,7 +605,6 @@ if (!Math.trunc)
  */
 if (!Function.prototype.bind)
 {
-    /* jshint freeze: false */
     Function.prototype.bind = (function ()
     {
         var slice = Array.prototype.slice;
@@ -635,7 +634,6 @@ if (!Function.prototype.bind)
 
                 if (!(this instanceof F))
                 {
-                    /* jshint supernew: true */
                     return new F();
                 }
             })(target.prototype);
@@ -1553,7 +1551,6 @@ Phaser.Circle.prototype = {
         return Phaser.Circle.circumferencePoint(this, angle, asDegrees, out);
     },
 
-
     /**
      * Creates or positions points on the circle.
      *
@@ -1990,7 +1987,6 @@ Phaser.Circle.intersectsLine = function (c, l, returnPoints)
     }
 };
 
-
 //   Because PIXI uses its own Circle, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Circle = Phaser.Circle;
 
@@ -2387,7 +2383,6 @@ Phaser.Ellipse.intersectsLine = function (e, l, returnPoints)
         return returnPoints ? [] : false;
     }
 };
-
 
 //   Because PIXI uses its own Ellipse, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Ellipse = Phaser.Ellipse;
@@ -4713,7 +4708,6 @@ Phaser.Point.sortClockwise = function (points, center)
     return points.sort(sort);
 };
 
-
 //   Because PIXI uses its own Point, we'll replace it with ours to avoid duplicating code or confusion.
 PIXI.Point = Phaser.Point;
 
@@ -6798,7 +6792,6 @@ Phaser.Camera.prototype = {
         this.fx.drawRect(0, 0, this.width, this.height);
         this.fx.endFill();
 
-
         if (type < 1 || type > 2) { throw new Error('Wrong `type` argument'); }
 
         this.fx.alpha = (type === Phaser.Camera.FADE_IN) ? 1 : 0;
@@ -7239,7 +7232,6 @@ Object.defineProperty(Phaser.Camera.prototype, 'height', {
 
 });
 
-
 /**
  * The Cameras shake intensity.
  * @name Phaser.Camera#shakeIntensity
@@ -7258,7 +7250,6 @@ Object.defineProperty(Phaser.Camera.prototype, 'shakeIntensity', {
     }
 
 });
-
 
 /**
  * Immobile {@link #view} rectangle. Its top-left is always (0, 0). You can use this align fixedToCamera objects.
@@ -7595,8 +7586,6 @@ Phaser.State.prototype = {
 };
 
 Phaser.State.prototype.constructor = Phaser.State;
-
-/* jshint newcap: false */
 
 /**
  * @author       Richard Davey <rich@photonstorm.com>
@@ -9535,8 +9524,6 @@ Phaser.Plugin.prototype = {
 };
 
 Phaser.Plugin.prototype.constructor = Phaser.Plugin;
-
-/* jshint newcap: false */
 
 /**
  * @author       Richard Davey <rich@photonstorm.com>
@@ -14400,7 +14387,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
  * @property {boolean}            [GameConfig.disableStart=false]            - Prevents the game loop from starting, allowing you to call updates manually. Helpful for automated testing.
  * @property {boolean}            [GameConfig.enableDebug=true]              - Enable {@link Phaser.Utils.Debug}. You can gain a little performance by disabling this in production.
  * @property {boolean}            [GameConfig.failIfMajorPerformanceCaveat]  - Abort WebGL context creation if performance would be poor. You can use this with renderer AUTO.
- * @property {boolean}            [GameConfig.forceSetTimeout]               - Use {@link https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout setTimeOut} for the game loop even if {@link https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame requestAnimationFrame} is available.
+ * @property {boolean}            [GameConfig.forceSetTimeOut]               - Use {@link https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout setTimeout} for the game loop even if {@link https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame requestAnimationFrame} is available.
  * @property {number}             [GameConfig.fullScreenScaleMode]           - The scaling method used by the ScaleManager when in fullscreen.
  * @property {HTMLElement}        [GameConfig.fullScreenTarget]              - The DOM element on which the Fullscreen API enter request will be invoked.
  * @property {number|string}      [GameConfig.height=600]
@@ -15886,7 +15873,6 @@ Phaser.Input.prototype = {
     {
         this.moveCallbacks.push({ callback: callback, context: context });
     },
-
 
     /**
      * Adds a callback that is fired when a browser touchstart/pointerdown or touchend/pointerup event is received.
@@ -31860,8 +31846,6 @@ Phaser.BitmapData.getTransform = function (translateX, translateY, scaleX, scale
 
 Phaser.BitmapData.prototype.constructor = Phaser.BitmapData;
 
-/* jshint ignore:start */
-
 /*
  * Copyright (c) 2016, Mapbox
  *
@@ -32569,7 +32553,6 @@ Phaser.EarCut.Node = function (i, x, y)
     this.steiner = false;
 };
 
-/* jshint ignore:end */
 
 /**
  * @author Mat Groves http://matgroves.com/ @Doormat23
@@ -32642,7 +32625,6 @@ PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// project
         {
             webGLData = webGL.data[i];
 
-
             renderSession.shaderManager.setShader(shader);// activatePrimitiveShader();
             shader = renderSession.shaderManager.primitiveShader;
             gl.uniformMatrix3fv(shader.translationMatrix, false, graphics.worldTransform.toArray(true));
@@ -32655,7 +32637,6 @@ PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// project
             gl.uniform3fv(shader.tintColor, Phaser.Color.hexToRGBArray(graphics.tint));
 
             gl.uniform1f(shader.alpha, graphics.worldAlpha);
-
 
             gl.bindBuffer(gl.ARRAY_BUFFER, webGLData.buffer);
 
@@ -32893,7 +32874,6 @@ PIXI.WebGLGraphics.buildRectangle = function (graphicsData, webGLData)
             x, y + height,
             x, y ];
 
-
         PIXI.WebGLGraphics.buildLine(graphicsData, webGLData);
 
         graphicsData.points = tempPoints;
@@ -32952,7 +32932,6 @@ PIXI.WebGLGraphics.buildRoundedRectangle = function (graphicsData, webGLData)
             indices.push(triangles[i + 2] + vecPos);
             indices.push(triangles[i + 2] + vecPos);
         }
-
 
         for (i = 0; i < recPoints.length; i++)
         {
@@ -33253,9 +33232,7 @@ PIXI.WebGLGraphics.buildLine = function (graphicsData, webGLData)
         px = (b1 * c2 - b2 * c1) / denom;
         py = (a2 * c1 - a1 * c2) / denom;
 
-
         pdist = (px - p2x) * (px - p2x) + (py - p2y) + (py - p2y);
-
 
         if(pdist > 140 * 140)
         {
@@ -33490,7 +33467,6 @@ PIXI.WebGLGraphicsData.prototype.upload = function ()
 /**
  * @author Mat Groves http://matgroves.com/ @Doormat23
  */
-
 
 /**
  * A set of functions used by the canvas renderer to draw the primitive graphics data.
@@ -33817,7 +33793,6 @@ PIXI.CanvasGraphics.updateGraphicsTint = function (graphics)
  * A GraphicsData object.
  *
  * @class
- * @memberof PIXI
  * @param lineWidth {number} the width of the line to draw
  * @param lineColor {number} the color of the line to draw
  * @param lineAlpha {number} the alpha of the line to draw
@@ -34065,7 +34040,6 @@ Phaser.Graphics = function (game, x, y)
      * @type Number
      */
     this.boundsPadding = 0;
-
 
     /**
      * Actually the visual bounds.
@@ -35177,7 +35151,6 @@ Phaser.Graphics.prototype.containsPoint = function (point, tempPoint)
     return false;
 };
 
-
 /**
  * Copy and return the visual bounds of the object, based on the drawn data.
  *
@@ -36059,7 +36032,6 @@ Phaser.Text = function (game, x, y, text, style)
      * @property {Object} splitRegExp
      */
     this.splitRegExp = /(?:\r\n|\r|\n)/;
-
 
     /**
      * The maximum number of characters that can be set.
@@ -38270,7 +38242,6 @@ Object.defineProperty(Phaser.Text.prototype, 'testString', {
         this.updateText();
     }
 });
-
 
 Phaser.Text.fontPropertiesCache = {};
 
@@ -41289,7 +41260,6 @@ Phaser.CanvasPool = {
         return c;
     },
 
-
     /**
      * Prints in-use, free, and total counts to console.log.
      *
@@ -41316,7 +41286,6 @@ Phaser.CanvasPool = {
  * @static
  */
 Phaser.CanvasPool.pool = [];
-
 
 /**
  * The total number of canvas elements in the {@link Phaser.CanvasPool.pool pool}.
@@ -42493,7 +42462,7 @@ Phaser.Device._initialize = function ()
                  *   developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
                  *   bit.ly/iphoneoscodecs
                  */
-                if (audioElement.canPlayType('audio/wav; codecs="1"').replace(/^no$/, ''))
+                if (audioElement.canPlayType('audio/wav').replace(/^no$/, ''))
                 {
                     device.wav = true;
                 }
@@ -44535,8 +44504,6 @@ Phaser.Math = {
     }
 
 };
-
-/* jshint noempty: false */
 
 /**
  * @author       Richard Davey <rich@photonstorm.com>
@@ -47262,8 +47229,6 @@ Phaser.TweenData.prototype = {
 };
 
 Phaser.TweenData.prototype.constructor = Phaser.TweenData;
-
-/* jshint curly: false */
 
 /**
  * @author       Richard Davey <rich@photonstorm.com>
@@ -50790,7 +50755,7 @@ Phaser.Frame = function (index, x, y, width, height, name)
 
     if (this.width === 0 || this.height === 0)
     {
-        console.warn('Phaser.Frame: Frame "' + this.name + '" has a width or height of zero');
+        console.warn('Phaser.Frame: Frame "' + name + '" has a width or height of zero');
     }
 
     /**
@@ -53838,7 +53803,6 @@ Phaser.Cache.prototype = {
         }
     },
 
-
     /**
      * Increments the pending count.
      *
@@ -53848,7 +53812,6 @@ Phaser.Cache.prototype = {
     {
         this._pendingCount += 1;
     },
-
 
     /**
      * Decrements the pending count and checks if complete.
@@ -53860,7 +53823,6 @@ Phaser.Cache.prototype = {
         this._pendingCount -= 1;
         this._checkReady();
     },
-
 
     /**
      * Calls {@link #_ready} if no pending items remain.
@@ -53874,7 +53836,6 @@ Phaser.Cache.prototype = {
             this._ready();
         }
     },
-
 
     /**
      * Resets pending count and triggers {@link #onReady}.
@@ -53903,7 +53864,6 @@ Object.defineProperty(Phaser.Cache.prototype, 'isReady', {
     }
 });
 
-/* jshint wsh:true */
 /**
  * @author       Richard Davey <rich@photonstorm.com>
  * @copyright    2016 Photon Storm Ltd.
@@ -54127,7 +54087,7 @@ Phaser.Loader = function (game)
 
     /**
      * A counter: if more than zero, files will be automatically added as a synchronization point.
-     * @property {integer} _withSyncPointDepth;
+     * @property {integer} _withSyncPointDepth
      */
     this._withSyncPointDepth = 0;
 
@@ -54236,6 +54196,63 @@ Phaser.Loader.PHYSICS_PHASER_JSON = 4;
  * @type {number}
  */
 Phaser.Loader.TEXTURE_ATLAS_JSON_PYXEL = 5;
+
+/**
+ * Mapping of file extensions to media types.
+ *
+ * @static
+ * @type {object}
+ */
+Phaser.Loader.mediaTypes = {
+    avif: 'image/avif',
+    bmp: 'image/bmp',
+    cur: 'image/x-icon',
+    gif: 'image/gif',
+    ico: 'image/x-icon',
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    png: 'image/png',
+    svg: 'image/svg+xml',
+    tif: 'image/tiff',
+    tiff: 'image/tiff',
+    webp: 'image/webp'
+};
+
+/**
+ * Guess a media type for an URL.
+ *
+ * @method Phaser.Loader.getMediaType
+ * @static
+ * @param {string} url
+ * @return {?string}
+ */
+Phaser.Loader.getMediaType = function (url)
+{
+    var matches = url.match(/\.(\w+)$/);
+
+    if (!matches) { return null; }
+
+    return Phaser.Loader.mediaTypes[matches[1]] || null;
+};
+
+/**
+ * Convert a source string (URL) to an object, guessing its media type.
+ *
+ * @method Phaser.Loader._getSource
+ * @static
+ * @private
+ * @param {object|string} source
+ * @return {object}
+ */
+Phaser.Loader._getSource = function (source)
+{
+    if (typeof source === 'string')
+    {
+        return { url: source, type: Phaser.Loader.getMediaType(source) };
+    }
+
+    return source;
+};
 
 Phaser.Loader.prototype = {
 
@@ -54596,13 +54613,15 @@ Phaser.Loader.prototype = {
      *
      * The key must be a unique String. It is used to add the file to the Phaser.Cache upon successful load.
      *
-     * Retrieve the image via `Cache.getImage(key)`
+     * Retrieve the image via `Cache.getImage(key)`.
      *
      * The URL can be relative or absolute. If the URL is relative the `Loader.baseURL` and `Loader.path` values will be prepended to it.
      *
      * If the URL isn't specified the Loader will take the key and create a filename from that. For example if the key is "alien"
      * and no URL is given then the Loader will set the URL to be "alien.png". It will always add `.png` as the extension.
      * If you do not desire this action then provide a URL.
+     *
+     * ##### Compressed Textures
      *
      * This method also supports passing in a texture object as the `url` argument. This allows you to load
      * compressed textures into Phaser. You can also use `Loader.texture` to do this.
@@ -54630,14 +54649,41 @@ Phaser.Loader.prototype = {
      * The `truecolor` property points to a standard PNG file, that will be used if none of the
      * compressed formats are supported by the browser / GPU.
      *
+     * ##### Multiple Image Sources
+     *
+     * You can pass an array `url` argument to load one of several alternative image sources.
+     * The browser will choose its preferred source. You can also use `Loader.imageset` to do this.
+     *
+     * ```javascript
+     * load.image('flower', [
+     *     'flower.avif',
+     *     'flower.webp',
+     *     'flower.png'
+     * ]);
+     * ```
+     *
+     * You can also describe the media types explicitly:
+     *
+     * ```javascript
+     * load.image('flower', [
+     *     { url: 'flower.avif', type: 'image/avif' },
+     *     { url: 'flower.webp', type: 'image/webp' },
+     *     { url: 'flower.png', type: 'image/png' }
+     * ]);
+     * ```
+     *
      * @method Phaser.Loader#image
      * @param {string} key - Unique asset key of this image file.
-     * @param {string|object} [url] - URL of an image file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png". Can also be a texture data object.
+     * @param {string|object|string[]|object[]} [url] - URL of an image file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png". Can also be a texture data object or a source array.
      * @param {boolean} [overwrite=false] - If an unloaded file with a matching key already exists in the queue, this entry will overwrite it.
      * @return {Phaser.Loader} This Loader instance.
      */
     image: function (key, url, overwrite)
     {
+        if (Array.isArray(url))
+        {
+            return this.imageset(key, url, overwrite);
+        }
         if (typeof url === 'object')
         {
             return this.texture(key, url, overwrite);
@@ -54646,6 +54692,27 @@ Phaser.Loader.prototype = {
         {
             return this.addToFileList('image', key, url, undefined, overwrite, '.png');
         }
+    },
+
+    /**
+     * Adds an Image to the current load queue, giving several alternative sources.
+     * The browser will choose its preferred source.
+     *
+     * Sources can be URLs or objects in the form { url, type }, where `type` is the media type.
+     * If the source is an URL (string) then Phaser will guess the media type.
+     *
+     * @method Phaser.Loader#imageset
+     * @param {string} key - Unique asset key of this image file.
+     * @param {string[]|object[]} [sources] - Source URLs or objects in the form { url, type }.
+     * @param {boolean} [overwrite=false] - If an unloaded file with a matching key already exists in the queue, this entry will overwrite it.
+     * @return {Phaser.Loader} This Loader instance.
+     */
+    imageset: function (key, sources, overwrite)
+    {
+        var defaultSource = sources[sources.length - 1];
+        var url = (typeof defaultSource === 'string') ? defaultSource : defaultSource.url;
+
+        return this.addToFileList('imageset', key, url, { sources: sources }, overwrite);
     },
 
     /**
@@ -56193,6 +56260,10 @@ Phaser.Loader.prototype = {
                 this.loadImageTag(file);
                 break;
 
+            case 'imageset':
+                this.loadPictureTag(file);
+                break;
+
             case 'audio':
                 file.url = this.getAudioURL(file.url);
 
@@ -56325,10 +56396,83 @@ Phaser.Loader.prototype = {
 
         /*
          * Image is immediately-available/cached
-         * Special Firefox magic, exclude from cached reload
          * More info here: https://github.com/photonstorm/phaser/issues/2534
          */
-        if (!this.game.device.firefox && file.data.complete && file.data.width && file.data.height)
+        if (file.data.complete && file.data.width && file.data.height)
+        {
+            file.data.onload = null;
+            file.data.onerror = null;
+            this.fileComplete(file);
+        }
+    },
+
+    /**
+     * Continue async loading through a Picture tag.
+     * @private
+     */
+    loadPictureTag: function (file)
+    {
+        var _this = this;
+        var picElm = document.createElement('picture');
+        var sources = file.sources;
+        var defaultSource = Phaser.Loader._getSource(sources.pop());
+
+        for (var i = 0, len = sources.length; i < len; i++)
+        {
+            var source = Phaser.Loader._getSource(sources[i]);
+
+            if (!source.type || !source.url)
+            {
+                console.warn('Skipping an invalid source for image "%s" (url: "%s", type: "%s")', file.key, source.url, source.type);
+            }
+
+            var sourceElm = document.createElement('source');
+
+            sourceElm.setAttribute('type', source.type);
+            sourceElm.setAttribute('srcset', this.transformUrl(source.url, file));
+
+            picElm.appendChild(sourceElm);
+        }
+
+        file.data = document.createElement('img');
+        file.data.name = file.key;
+
+        if (this.crossOrigin)
+        {
+            file.data.crossOrigin = this.crossOrigin;
+        }
+
+        file.data.onload = function ()
+        {
+            if (file.data.onload)
+            {
+                file.data.onload = null;
+                file.data.onerror = null;
+                file.url = file.data.currentSrc;
+                _this.fileComplete(file);
+            }
+        };
+
+        file.data.onerror = function ()
+        {
+            if (file.data.onload)
+            {
+                file.data.onload = null;
+                file.data.onerror = null;
+                file.url = file.data.currentSrc;
+                _this.fileError(file);
+            }
+        };
+
+        picElm.appendChild(file.data);
+
+        file.data.src = this.transformUrl(defaultSource.url, file);
+
+        /*
+         * Image is immediately-available/cached?
+         * More info here: https://github.com/photonstorm/phaser/issues/2534
+         */
+        if (file.data.complete && file.data.width && file.data.height)
         {
             file.data.onload = null;
             file.data.onerror = null;
@@ -56474,7 +56618,6 @@ Phaser.Loader.prototype = {
                     _this.asyncComplete(file, e.message || 'Exception');
                 }
                 else
-                if (window.console)
                 {
                     console.error(e);
                 }
@@ -56494,7 +56637,6 @@ Phaser.Loader.prototype = {
                     _this.asyncComplete(file, e.message || 'Exception');
                 }
                 else
-                if (window.console)
                 {
                     console.error(e);
                 }
@@ -56682,6 +56824,7 @@ Phaser.Loader.prototype = {
                 break;
 
             case 'image':
+            case 'imageset':
 
                 this.cache.addImage(file.key, file.url, file.data);
                 break;
@@ -59251,7 +59394,6 @@ Phaser.SoundManager = function (game)
      */
     this._volume = 1;
 
-
     /**
      * @property {array} _sounds - An array containing all the sounds
      * @private
@@ -61603,7 +61745,6 @@ Phaser.ScaleManager.prototype = {
 
         return bounds;
     },
-
 
     /**
      * Shorthand for setting {@link #pageAlignHorizontally} and {@link #pageAlignVertically}.
@@ -66870,7 +67011,6 @@ Phaser.Color = {
         return Phaser.Color.getColor(r, g, b);
     },
 
-
     /**
      * Calculates a linear (interpolation) value of two colors over t.
      *
@@ -69894,7 +70034,6 @@ Phaser.Physics.Arcade.prototype = {
 
         return Math.sqrt(dx * dx + dy * dy);
     },
-
 
     /**
      * From a set of points or display objects, find the one closest to a source point or object.
@@ -74098,8 +74237,6 @@ Object.defineProperty(Phaser.Physics.P2.prototype, 'total', {
 
 });
 
-/* jshint noarg: false */
-
 /**
 * @author       Georgios Kaleadis https://github.com/georgiee
 * @author       Richard Davey <rich@photonstorm.com>
@@ -74135,7 +74272,7 @@ Phaser.Physics.P2.FixtureList = function (list)
 };
 
 Phaser.Physics.P2.FixtureList.prototype = {
-  
+
     /**
     * @method Phaser.Physics.P2.FixtureList#init
     */
@@ -74178,7 +74315,7 @@ Phaser.Physics.P2.FixtureList.prototype = {
         this.getFixtures(fixtureKey).forEach(setter);
 
     },
-  
+
     /**
     * @method Phaser.Physics.P2.FixtureList#setMask
     * @param {number} bit - The bit to set as the collision mask
@@ -74195,7 +74332,7 @@ Phaser.Physics.P2.FixtureList.prototype = {
         this.getFixtures(fixtureKey).forEach(setter);
 
     },
-  
+
     /**
     * @method Phaser.Physics.P2.FixtureList#setSensor
     * @param {boolean} value - sensor true or false
@@ -74232,7 +74369,7 @@ Phaser.Physics.P2.FixtureList.prototype = {
 
     /**
     * Accessor to get either a list of specified fixtures by key or the whole fixture list
-    * 
+    *
     * @method Phaser.Physics.P2.FixtureList#getFixtures
     * @param {array} keys - A list of fixture keys
     */
@@ -74269,7 +74406,7 @@ Phaser.Physics.P2.FixtureList.prototype = {
 
     /**
     * Accessor to get either a single fixture by its key.
-    * 
+    *
     * @method Phaser.Physics.P2.FixtureList#getFixtureByKey
     * @param {string} key - The key of the fixture.
     */
@@ -74282,7 +74419,7 @@ Phaser.Physics.P2.FixtureList.prototype = {
 
     /**
     * Accessor to get a group of fixtures by its group index.
-    * 
+    *
     * @method Phaser.Physics.P2.FixtureList#getGroup
     * @param {number} groupID - The group index.
     */
@@ -74292,10 +74429,10 @@ Phaser.Physics.P2.FixtureList.prototype = {
         return this.groupedFixtures[groupID];
 
     },
-  
+
     /**
     * Parser for the output of Phaser.Physics.P2.Body#addPhaserPolygon
-    * 
+    *
     * @method Phaser.Physics.P2.FixtureList#parse
     */
     parse: function ()
@@ -74326,7 +74463,7 @@ Phaser.Physics.P2.FixtureList.prototype = {
 
     /**
     * A helper to flatten arrays. This is very useful as the fixtures are nested from time to time due to the way P2 creates and splits polygons.
-    * 
+    *
     * @method Phaser.Physics.P2.FixtureList#flatten
     * @param {array} array - The array to flatten. Notice: This will happen recursive not shallow.
     */
@@ -74336,7 +74473,7 @@ Phaser.Physics.P2.FixtureList.prototype = {
         var result, self;
         result = [];
         self = arguments.callee;
-        
+
         array.forEach(function (item)
         {
             return Array.prototype.push.apply(result, (Array.isArray(item) ? self(item) : [ item ]));
@@ -78818,7 +78955,6 @@ Phaser.Tilemap.prototype = {
         return rootLayer;
     },
 
-
     /**
      * Creates a new and empty layer on this Tilemap. By default TilemapLayers are fixed to the camera.
      *
@@ -82310,7 +82446,6 @@ Phaser.TilemapParser = {
                     sid = map.tiles[tile.index][2];
                     set = map.tilesets[sid];
 
-
                     // if that tile type has any properties, add them to the tile object
 
                     if (set.tileProperties && set.tileProperties[tile.index - set.firstgid])
@@ -83518,7 +83653,6 @@ Phaser.Particles.Arcade.Emitter.prototype.emitParticle = function (x, y, key, fr
     return true;
 };
 
-
 /**
  * Helper for {@link #emitParticle}. Gets the next available particle.
  *
@@ -83871,7 +84005,6 @@ Object.defineProperty(Phaser.Particles.Arcade.Emitter.prototype, 'gravity', {
     }
 
 });
-
 
 /**
  * @name Phaser.Particles.Arcade.Emitter#id
@@ -86056,16 +86189,18 @@ Phaser.Video.prototype = {
      * You can listen for this with the onChangeSource signal.
      *
      * @method Phaser.Video#startMediaStream
-     * @param {boolean} [captureAudio=false] - Controls if audio should be captured along with video in the video stream.
+     * @param {boolean|MediaTrackConstraints} [captureAudio=false] - Controls if audio should be captured along with video in the video stream.
      * @param {integer} [width] - The width is used to create the video stream. If not provided the video width will be set to the width of the webcam input source.
      * @param {integer} [height] - The height is used to create the video stream. If not provided the video height will be set to the height of the webcam input source.
+     * @param {boolean|MediaTrackConstraints} [captureVideo] - Constraints and settings used to create the video stream.
      * @return {Phaser.Video} This Video object for method chaining or false if the device doesn't support getUserMedia.
      */
-    startMediaStream: function (captureAudio, width, height)
+    startMediaStream: function (captureAudio, width, height, captureVideo)
     {
         if (captureAudio === undefined) { captureAudio = false; }
         if (width === undefined) { width = null; }
         if (height === undefined) { height = null; }
+        if (captureVideo === undefined) { captureVideo = true; }
 
         if (!this.game.device.getUserMedia)
         {
@@ -86105,17 +86240,24 @@ Phaser.Video.prototype = {
 
         this._timeOutID = window.setTimeout(this.getUserMediaTimeout.bind(this), this.timeout);
 
-        try
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
         {
-            navigator.getUserMedia(
-                { audio: captureAudio, video: true },
-                this.getUserMediaSuccess.bind(this),
-                this.getUserMediaError.bind(this)
-            );
+            navigator.mediaDevices.getUserMedia({ audio: captureAudio, video: captureVideo })
+                .then(this.getUserMediaSuccess.bind(this))
+                .catch(this.getUserMediaError.bind(this));
         }
-        catch (error)
+        else
         {
-            this.getUserMediaError(error);
+            try
+            {
+                navigator.getUserMedia({ audio: captureAudio, video: captureVideo },
+                    this.getUserMediaSuccess.bind(this),
+                    this.getUserMediaError.bind(this));
+            }
+            catch (error)
+            {
+                this.getUserMediaError(error);
+            }
         }
 
         return this;
@@ -86242,9 +86384,10 @@ Phaser.Video.prototype = {
      * @method Phaser.Video#createVideoFromURL
      * @param {string} url - The URL of the video.
      * @param {boolean} [autoplay=false] - Automatically start the video?
+     * @param {string} crossOrigin - The crossorigin parameter provides support for CORS
      * @return {Phaser.Video} This Video object for method chaining.
      */
-    createVideoFromURL: function (url, autoplay)
+    createVideoFromURL: function (url, autoplay, crossOrigin)
     {
         if (autoplay === undefined) { autoplay = false; }
 
@@ -86260,6 +86403,11 @@ Phaser.Video.prototype = {
         if (autoplay)
         {
             this.video.setAttribute('autoplay', 'autoplay');
+        }
+
+        if (crossOrigin !== undefined)
+        {
+            this.video.crossOrigin = crossOrigin;
         }
 
         this.video.setAttribute('playsinline', 'playsinline');
