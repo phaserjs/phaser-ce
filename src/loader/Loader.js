@@ -221,7 +221,7 @@ Phaser.Loader = function (game)
 
     /**
      * A counter: if more than zero, files will be automatically added as a synchronization point.
-     * @property {integer} _withSyncPointDepth;
+     * @property {integer} _withSyncPointDepth
      */
     this._withSyncPointDepth = 0;
 
@@ -334,7 +334,6 @@ Phaser.Loader.TEXTURE_ATLAS_JSON_PYXEL = 5;
 /**
  * Mapping of file extensions to media types.
  *
- * @property Phaser.Loader.mediaTypes
  * @static
  * @type {object}
  */
@@ -809,7 +808,7 @@ Phaser.Loader.prototype = {
      *
      * @method Phaser.Loader#image
      * @param {string} key - Unique asset key of this image file.
-     * @param {string|object|string[]|object[]} [url] - URL of an image file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png". Can also be a texture data object.
+     * @param {string|object|string[]|object[]} [url] - URL of an image file. If undefined or `null` the url will be set to `<key>.png`, i.e. if `key` was "alien" then the URL will be "alien.png". Can also be a texture data object or a source array.
      * @param {boolean} [overwrite=false] - If an unloaded file with a matching key already exists in the queue, this entry will overwrite it.
      * @return {Phaser.Loader} This Loader instance.
      */
