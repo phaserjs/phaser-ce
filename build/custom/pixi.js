@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.16.0 "2020-06-01" - Built: Mon Jun 01 2020 11:17:52
+* v2.16.1 "2020-10-21" - Built: Wed Oct 21 2020 14:50:02
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -2389,7 +2389,6 @@ PIXI.PixiShader.prototype.initDefaultShader = function ()
     this.colorAttribute = gl.getAttribLocation(program, 'aColor');
     this.aTextureIndex = gl.getAttribLocation(program, 'aTextureIndex');
 
-
     // Begin worst hack eva //
 
     /*
@@ -2980,7 +2979,6 @@ PIXI.StripShader = function (gl)
                         index + '], vTextureCoord) ;return;}\n';
         }
 
-
         /**
          * The fragment shader.
          * @property fragmentSrc
@@ -3091,7 +3089,6 @@ PIXI.StripShader.prototype.init = function ()
     this.uSampler = PIXI._enableMultiTextureToggle ?
         gl.getUniformLocation(program, 'uSamplerArray[0]') :
         gl.getUniformLocation(program, 'uSampler');
-
 
     if (PIXI._enableMultiTextureToggle)
     {
@@ -4369,7 +4366,6 @@ PIXI.WebGLStencilManager.prototype.bindGraphics = function (graphics, webGLData,
         gl.bindBuffer(gl.ARRAY_BUFFER, webGLData.buffer);
 
         gl.vertexAttribPointer(shader.aVertexPosition, 2, gl.FLOAT, false, 4 * 2, 0);
-
 
         /*
          * now do the rest..
@@ -5783,7 +5779,6 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     // texture Index
     vertices[index++] = textureIndex;
 
-
     // xy
     vertices[index++] = w0;
     vertices[index++] = h1;
@@ -5831,7 +5826,6 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
 
     // texture Index
     vertices[index++] = textureIndex;
-
 
     // xy
     vertices[index++] = w1;
@@ -5908,7 +5902,6 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function ()
     // increment the draw count
     this.renderSession.drawCount++;
 };
-
 
 /**
  * @method PIXI.WebGLFastSpriteBatch#stop
@@ -6301,7 +6294,6 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
     this.texturePool.push(texture);
     filterBlock._glFilterTexture = null;
 };
-
 
 /**
  * Applies the filter to the specified area.
