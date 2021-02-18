@@ -461,9 +461,22 @@ Phaser.Tilemap.prototype = {
 
                 group.add(sprite);
 
-                for (var property in obj.properties)
+                //  Set properties the class may have, or setData those it doesn't
+                if (Array.isArray(obj.properties))
                 {
-                    group.set(sprite, property, obj.properties[property], false, false, 0, true);
+                    // Tiled objects custom properties format
+                    obj.properties.forEach(function (propData)
+                    {
+                        var key = propData.name;
+                        sprite[key] = propData.value;
+                    });
+                }
+                else
+                {
+                    for (var property in obj.properties)
+                    {
+                        group.set(sprite, property, obj.properties[property], false, false, 0, true);
+                    }
                 }
             }
         }
