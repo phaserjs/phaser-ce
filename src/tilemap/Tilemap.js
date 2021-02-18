@@ -290,7 +290,7 @@ Phaser.Tilemap.prototype = {
             key = tileset;
         }
 
-        if (key instanceof Phaser.BitmapData)
+        if (Phaser.BitmapData && key instanceof Phaser.BitmapData)
         {
             img = key.canvas;
         }
