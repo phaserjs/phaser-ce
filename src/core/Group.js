@@ -1807,7 +1807,7 @@ Phaser.Group.prototype.filter = function (predicate, checkExists)
     {
         var child = this.children[index];
 
-        if (!checkExists || (checkExists && child.exists))
+        if (!checkExists || child.exists)
         {
             if (predicate(child, index, this.children))
             {
