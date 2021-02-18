@@ -53,8 +53,7 @@ Phaser.AnimationParser = {
 
         if (frameWidth <= 0 || frameHeight <= 0)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' frameWidth (%s) or frameHeight (%s) must be positive',
-                key, frameWidth, frameHeight);
+            console.error('Spritesheet "%s": frameWidth (%s) and frameHeight (%s) values must be positive', key, frameWidth, frameHeight);
 
             return null;
         }
@@ -64,15 +63,14 @@ Phaser.AnimationParser = {
 
         if (width === 0 || height === 0)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' width (%s) or height (%s) is zero', key, width, height);
+            console.error('Spritesheet "%s": Texture width (%s) or height (%s) is zero', key, width, height);
 
             return null;
         }
 
         if (width < frameWidth || height < frameHeight)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' width (%s) or height (%s) is less than the given frameWidth (%s) or frameHeight (%s)',
-                key, width, height, frameWidth, frameHeight);
+            console.error('Spritesheet "%s": Texture width (%s) or height (%s) is less than the given frameWidth (%s) or frameHeight (%s)', key, width, height, frameWidth, frameHeight);
 
             return null;
         }
@@ -87,8 +85,7 @@ Phaser.AnimationParser = {
 
         if (skipFrames > total || skipFrames < -total)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' skipFrames = %s is larger than the frame total %s',
-                key, skipFrames, total);
+            console.error('Spritesheet "%s": skipFrames=%s is larger than the frame total %s', key, skipFrames, total);
 
             return null;
         }
@@ -101,19 +98,23 @@ Phaser.AnimationParser = {
 
         if (row < 1)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: image \'%s\' has width %d, but it should be at least %d (frameWidth=%s, margin=%s, spacing=%s)',
-                key, width, frameWidth + margin + spacing, frameWidth, margin, spacing);
+            console.warn(
+                'Spritesheet "%s": Texture has width %d, but it should be at least %d (frameWidth=%s, margin=%s, spacing=%s)',
+                key, width, frameWidth + margin + spacing, frameWidth, margin, spacing
+            );
         }
 
         if (column < 1)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: image \'%s\' has height %d, but it should be at least %d (frameHeight=%s, margin=%s, spacing=%s)',
-                key, height, frameHeight + margin + spacing, frameHeight, margin, spacing);
+            console.warn(
+                'Spritesheet "%s": Texture has height %d, but it should be at least %d (frameHeight=%s, margin=%s, spacing=%s)',
+                key, height, frameHeight + margin + spacing, frameHeight, margin, spacing
+            );
         }
 
         if (totalAvailable === 0)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' zero frames were produced', key);
+            console.error('Spritesheet "%s": zero frames were produced', key);
 
             return null;
         }
@@ -135,14 +136,14 @@ Phaser.AnimationParser = {
 
         if (firstFrame < 0)
         {
-            console.warn('First frame index %s is outside of range [0, %d]', firstFrame, lastAvailable);
+            console.error('Spritesheet "%s": There is no frame at index %s', key, firstFrame);
 
             return null;
         }
 
         if (lastFrame > lastAvailable)
         {
-            console.warn('Last frame index %s is outside of range [0, %d]', lastFrame, lastAvailable);
+            console.warn('Spritesheet "%s": There is no frame at index %s. Last frame found is index %s', key, lastFrame, lastAvailable);
 
             return null;
         }
