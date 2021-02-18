@@ -461,21 +461,28 @@ Phaser.Tilemap.prototype = {
 
                 group.add(sprite);
 
-                //  Set properties the class may have, or setData those it doesn't
-                if (Array.isArray(obj.properties))
+                //  Set properties directly on the sprite
+
+                var properties = obj.properties;
+
+                if (Array.isArray(properties))
                 {
-                    // Tiled objects custom properties format
-                    obj.properties.forEach(function (propData)
+                    // New property format <https://doc.mapeditor.org/en/stable/reference/json-map-format/#property>
+
+                    for (var j = 0; j < properties.length; j++)
                     {
-                        var key = propData.name;
-                        sprite[key] = propData.value;
-                    });
+                        var propData = properties[j];
+
+                        group.set(sprite, propData.name, propData.value, false, false, 0, true);
+                    }
                 }
                 else
                 {
-                    for (var property in obj.properties)
+                    // Old property format
+
+                    for (var propertyName in properties)
                     {
-                        group.set(sprite, property, obj.properties[property], false, false, 0, true);
+                        group.set(sprite, propertyName, properties[propertyName], false, false, 0, true);
                     }
                 }
             }
