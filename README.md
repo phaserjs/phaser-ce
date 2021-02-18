@@ -4,7 +4,7 @@
 
 Phaser CE is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development.
 
-Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](http://phaser.io/phaser3) and [Phaser v4](https://github.com/phaserjs/phaser4) are in active development.
+Phaser CE is based on Phaser v2.6.2 by [Photon Storm](http://www.photonstorm.com). [Phaser v3](http://phaser.io/phaser3) and [Phaser v4](https://github.com/phaserjs/phaser4) are in active development.
 
 The [current Phaser CE release is 2.16.1](https://github.com/photonstorm/phaser-ce/releases/tag/v2.16.1).
 
@@ -12,7 +12,7 @@ The [current Phaser CE release is 2.16.1](https://github.com/photonstorm/phaser-
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
 - **Code:** 700+ [Examples](https://samme.github.io/phaser-examples-mirror/ "Phaser CE Examples") ([source][examples]), new [Phaser CE examples](https://codepen.io/collection/AMbZgY/)
 - **Read:** Weekly [Phaser World](#newsletter) Newsletter
-- **Chat:** [Slack](http://phaser.io/community/slack) and [Discord](http://phaser.io/community/discord)
+- **Chat:** [Discord](http://phaser.io/community/discord)
 - **Extend:** Phaser plugins - [Shop](http://phaser.io/shop/plugins), [GitHub](https://github.com/search?q=topic%3Aphaser-plugin&type=Repositories "Phaser plugins on GitHub"), [NPM](https://www.npmjs.com/browse/keyword/phaser-plugin "Phaser plugins on NPM")
 - **Be awesome:** [Support](#support) the future of Phaser
 
@@ -159,33 +159,7 @@ See [our webpack project template](https://github.com/photonstorm/phaser-ce/tree
 
 ### Ionic
 
-For using phaser-ce with [ionic](https://ionicframework.com), have a look at the [ionic example](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) within project templates. To get phaser-ce working with ionic in general, you've to extend "only" the webpack config used by ionic. To get this done are a few steps are necessary.
-
-1.  Install dependencies [webpack-merge](https://www.npmjs.com/package/webpack-merge) and [expose-loader](https://www.npmjs.com/package/expose-loader):
-
-    ```bash
-    npm install webpack-merge expose-loader --save-dev
-    ```
-
-2.  Create a [new webpack config](https://github.com/photonstorm/phaser-ce/blob/master/resources/Project%20Templates/ionic-example/webpack.config.js) setting up expose-loader and merging it with the ionic webpack script.
-
-3.  Add own webpack config at package.json, so that ionic will use it:
-
-    ```json
-    {
-      "config": {
-        "ionic_webpack": "./webpack.config.js"
-      }
-    }
-    ```
-
-4.  Import **pixi**, **p2** and **phaser-ce** within your project:
-
-    ```javascript
-    import "pixi";
-    import "p2";
-    import * as Phaser from "phaser-ce";
-    ```
+See [Ionic](https://github.com/photonstorm/phaser-ce/tree/master/resources/Ionic.md).
 
 ### Interphase
 
