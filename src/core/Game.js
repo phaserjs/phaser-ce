@@ -400,6 +400,12 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this._codePaused = false;
 
     /**
+     * @property {boolean} _focusGained - The game has just regained focus.
+     * @private
+     */
+    this._focusGained = false;
+
+    /**
      * The ID of the current/last logic update applied this animation frame, starting from 0.
      * The first update is `currentUpdateID === 0` and the last update is `currentUpdateID === updatesThisFrame.`
      * @property {integer} currentUpdateID
@@ -415,7 +421,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.updatesThisFrame = 1;
 
     /**
-     * Number of renders expected to occur this animation frame. May be 0 if {@link #dropFrames} is on or {@link #forceSingleRender} is off; otherwise it will be 1.
+     * Number of renders expected to occur this animation frame. May be 0 if {@link #forceSingleRender} is off; otherwise it will be 1.
      * @property {integer} rendersThisFrame
      * @protected
      */
@@ -454,28 +460,22 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.fpsProblemNotifier = new Phaser.Signal();
 
     /**
-     * @property {boolean} forceSingleUpdate - Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.
+     * @property {boolean} forceSingleUpdate - Use a variable-step game loop (true) or a fixed-step game loop (false).
      * @default
      */
     this.forceSingleUpdate = true;
 
     /**
-     * @property {boolean} forceSingleRender - Should the game loop make one render per animation frame, even without a preceding logic update? (During spiraling conditions, {@link #dropFrames} is used instead.)
+     * @property {boolean} forceSingleRender - Should the game loop make one render per animation frame, even without a preceding logic update?
      * @default
      */
-    this.forceSingleRender = true;
+    this.forceSingleRender = false;
 
     /**
-     * @property {boolean} dropFrames - When {@link #forceSingleUpdate} is off, skip {@link #updateRender rendering} if logic updates are spiraling upwards.
+     * @property {boolean} dropFrames - Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}).
      * @default
      */
     this.dropFrames = false;
-
-    /**
-     * @property {number} maxUpdates - When {@link #forceSingleUpdate} is off, the maximum number of logic updates to make per animation frame, if required to catch up.
-     * @default
-     */
-    this.maxUpdates = 3;
 
     /**
      * @property {string} powerPreference - When the WebGL renderer is used, hint to the browser which GPU to use.
@@ -977,7 +977,7 @@ Phaser.Game.prototype = {
      *
      * @method Phaser.Game#update
      * @protected
-     * @param {number} time - The current time as provided by RequestAnimationFrame.
+     * @param {number} time - The current time in milliseconds as provided by RequestAnimationFrame.
      */
     update: function (time)
     {
@@ -988,104 +988,101 @@ Phaser.Game.prototype = {
             return;
         }
 
+        // Sets `elapsed`, `elapsedMS`, `now`, `time`
         this.time.update(time);
 
         if (this._kickstart)
         {
             this.updateLogic(this.time.desiredFpsMult);
-
-            // call the game render update exactly once every frame
-            this.updateRender(this.time.slowMotion * this.time.desiredFps);
+            this.updateRender();
 
             this._kickstart = false;
 
             return;
         }
 
-        // if the logic time is spiraling upwards, skip a frame entirely
-        if (this._spiraling > 1 && !this.forceSingleUpdate)
+        if (this._focusGained)
         {
-            // cause an event to warn the program that this CPU can't keep up with the current desiredFps rate
-            if (this.time.time > this._nextFpsNotification)
-            {
-                // only permit one fps notification per 10 seconds
-                this._nextFpsNotification = this.time.time + 10000;
+            this._focusGained = false;
 
-                // dispatch the notification signal
-                this.fpsProblemNotifier.dispatch();
-            }
+            // Wait for next frame.
 
-            // reset the _deltaTime accumulator which will cause all pending late updates to be permanently skipped
-            this._deltaTime = 0;
-            this._spiraling = 0;
+            return;
+        }
+
+        var elapsed = this.time.elapsed;
+
+        if (elapsed <= 0)
+        {
+            return;
+        }
+
+        if (elapsed > this.time.deltaMax)
+        {
+            // `dropFrames` not so useful.
 
             if (this.dropFrames)
             {
-                this.rendersThisFrame = 0;
+                return;
             }
             else
             {
-                this.updateRender(this.time.slowMotion * this.time.desiredFps);
-                this.rendersThisFrame = 1;
+                elapsed = this.time.deltaMax;
             }
+        }
+
+        if (this.forceSingleUpdate)
+        {
+            this.updatesThisFrame = 1;
+            this.rendersThisFrame = 1;
+
+            this.updateLogic(0.001 * elapsed / this.time.slowMotion);
+            this.updateRender();
+        }
+        else if (this._spiraling > 2)
+        {
+            // Skip update and render completely
+            this.updatesThisFrame = 0;
+            this.rendersThisFrame = 0;
+
+            // Notify
+            if (this.time.time > this._nextFpsNotification)
+            {
+                this._nextFpsNotification = this.time.time + 10000;
+                this.fpsProblemNotifier.dispatch();
+            }
+
+            // Discard all pending late updates
+            this._deltaTime = 0;
+            this._spiraling = 0;
         }
         else
         {
-            // step size taking into account the slow motion speed
-            var slowStep = this.time.slowMotion * 1000.0 / this.time.desiredFps;
-
-            // accumulate time until the slowStep threshold is met or exceeded... up to a limit of `maxUpdates` (3) catch-up frames at slowStep intervals
-            this._deltaTime += Math.max(Math.min(slowStep * this.maxUpdates, this.time.elapsed), 0);
-
-            /*
-             * call the game update logic multiple times if necessary to "catch up" with dropped frames
-             * unless forceSingleUpdate is true
-             */
             var count = 0;
+            var fixedStepSize = 1000 * this.time.desiredFpsMult;
 
-            this.updatesThisFrame = Math.floor(this._deltaTime / slowStep);
+            this._deltaTime += elapsed;
 
-            if (this.forceSingleUpdate)
-            {
-                this.updatesThisFrame = Math.min(1, this.updatesThisFrame);
-            }
+            this.updatesThisFrame = Math.floor(this._deltaTime / fixedStepSize);
+            this.rendersThisFrame = this.forceSingleRender ? 1 : Math.min(1, this.updatesThisFrame);
 
-            if (this.forceSingleRender)
+            while (this._deltaTime >= fixedStepSize)
             {
-                this.rendersThisFrame = 1;
-            }
-            else
-            {
-                this.rendersThisFrame = Math.min(1, this.updatesThisFrame);
-            }
-
-            while (this._deltaTime >= slowStep)
-            {
-                this._deltaTime -= slowStep;
+                this._deltaTime -= fixedStepSize;
                 this.currentUpdateID = count;
 
-                this.updateLogic(this.time.desiredFpsMult);
+                this.updateLogic(this.time.desiredFpsMult / this.time.slowMotion);
+                this.time.refresh();
 
                 count++;
-
-                if (this.forceSingleUpdate && count === 1)
-                {
-                    break;
-                }
-                else
-                {
-                    this.time.refresh();
-                }
             }
 
-            // detect spiraling (if the catch-up loop isn't fast enough, the number of iterations will increase constantly)
             if (count > this._lastCount)
             {
                 this._spiraling++;
             }
             else if (count < this._lastCount)
             {
-                // looks like it caught up successfully, reset the spiral alert counter
                 this._spiraling = 0;
             }
 
@@ -1093,14 +1090,8 @@ Phaser.Game.prototype = {
 
             if (this.rendersThisFrame > 0)
             {
-                this.updateRender(this._deltaTime / slowStep);
+                this.updateRender();
             }
-        }
-
-        if (this.renderer.type === Phaser.WEBGL)
-        {
-            // flush gl to prevent flickering on some android devices
-            this.renderer.gl.flush();
         }
     },
 
@@ -1109,9 +1100,9 @@ Phaser.Game.prototype = {
      *
      * @method Phaser.Game#updateLogic
      * @protected
-     * @param {number} timeStep - The current timeStep value as determined by Game.update.
+     * @param {number} delta - The current time step value in seconds, as determined by Game.update.
      */
-    updateLogic: function (timeStep)
+    updateLogic: function (delta)
     {
         if (!this._paused && !this.pendingStep)
         {
@@ -1120,14 +1111,14 @@ Phaser.Game.prototype = {
                 this.pendingStep = true;
             }
 
-            this.time.preUpdate();
+            this.time.preUpdate(delta);
 
             this.scale.preUpdate();
             this.debug.preUpdate();
             this.camera.preUpdate();
             this.physics.preUpdate();
-            this.state.preUpdate(timeStep);
-            this.plugins.preUpdate(timeStep);
+            this.state.preUpdate(delta);
+            this.plugins.preUpdate(delta);
             this.stage.preUpdate();
 
             this.state.update();
@@ -1146,7 +1137,7 @@ Phaser.Game.prototype = {
         {
             // Scaling and device orientation changes are still reflected when paused.
             this.scale.pauseUpdate();
-            this.state.pauseUpdate(timeStep);
+            this.state.pauseUpdate(delta);
             this.debug.preUpdate();
             this.input.pauseUpdate();
         }
@@ -1167,9 +1158,8 @@ Phaser.Game.prototype = {
      *
      * @method Phaser.Game#updateRender
      * @protected
-     * @param {number} elapsedTime - The time elapsed since the last update.
      */
-    updateRender: function (elapsedTime)
+    updateRender: function ()
     {
         if (this.lockRender || this.renderType === Phaser.HEADLESS)
         {
@@ -1177,16 +1167,14 @@ Phaser.Game.prototype = {
         }
 
         this.time.preRender();
-
-        this.state.preRender(elapsedTime);
+        this.state.preRender();
 
         this.renderer.render(this.stage);
+        this.plugins.render();
+        this.state.render();
 
-        this.plugins.render(elapsedTime);
-
-        this.state.render(elapsedTime);
-
-        this.plugins.postRender(elapsedTime);
+        this.plugins.postRender();
+        this.renderer.postRender();
     },
 
     /**
@@ -1360,6 +1348,8 @@ Phaser.Game.prototype = {
      */
     focusGain: function (event)
     {
+        this._focusGained = true;
+
         this.focusWindow();
 
         this.onFocus.dispatch(event);

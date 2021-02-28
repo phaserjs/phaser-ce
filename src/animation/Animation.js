@@ -200,8 +200,8 @@ Phaser.Animation.prototype = {
         this.paused = false;
         this.loopCount = 0;
 
-        this._timeLastFrame = this.game.time.time;
-        this._timeNextFrame = this.game.time.time + this.delay;
+        this._timeLastFrame = this.game.time.deltaTotal;
+        this._timeNextFrame = this.game.time.deltaTotal + this.delay;
 
         this._frameIndex = this.isReversed ? this._frames.length - 1 : 0;
         this.updateCurrentFrame(false, true);
@@ -228,8 +228,8 @@ Phaser.Animation.prototype = {
         this.paused = false;
         this.loopCount = 0;
 
-        this._timeLastFrame = this.game.time.time;
-        this._timeNextFrame = this.game.time.time + this.delay;
+        this._timeLastFrame = this.game.time.deltaTotal;
+        this._timeNextFrame = this.game.time.deltaTotal + this.delay;
 
         this._frameIndex = 0;
 
@@ -323,7 +323,7 @@ Phaser.Animation.prototype = {
             this._frameIndex = frameIndex - directionalOffset;
 
             //  Make the animation update at next update
-            this._timeNextFrame = this.game.time.time;
+            this._timeNextFrame = this.game.time.deltaTotal;
 
             this.update();
         }
@@ -368,7 +368,7 @@ Phaser.Animation.prototype = {
     {
         if (this.isPlaying)
         {
-            this._frameDiff = this._timeNextFrame - this.game.time.time;
+            this._frameDiff = this._timeNextFrame - this.game.time.deltaTotal;
         }
     },
 
@@ -381,7 +381,7 @@ Phaser.Animation.prototype = {
     {
         if (this.isPlaying)
         {
-            this._timeNextFrame = this.game.time.time + this._frameDiff;
+            this._timeNextFrame = this.game.time.deltaTotal + this._frameDiff;
         }
     },
 
@@ -397,7 +397,7 @@ Phaser.Animation.prototype = {
             return false;
         }
 
-        var now = this.game.time.time;
+        var now = this.game.time.deltaTotal;
         var diff = now - this._timeNextFrame;
 
         if (this.isPlaying && diff >= 0)
@@ -676,14 +676,14 @@ Object.defineProperty(Phaser.Animation.prototype, 'paused', {
         if (value)
         {
             //  Paused
-            this._pauseStartTime = this.game.time.time;
+            this._pauseStartTime = this.game.time.deltaTotal;
         }
         else
         {
             //  Un-paused
             if (this.isPlaying)
             {
-                this._timeNextFrame = this.game.time.time + this.delay;
+                this._timeNextFrame = this.game.time.deltaTotal + this.delay;
             }
         }
     }

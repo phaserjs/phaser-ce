@@ -634,7 +634,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         {
             this.game.physics.arcade.updateMotion(this);
 
-            this.newVelocity.set(this.velocity.x * this.game.time.physicsElapsed, this.velocity.y * this.game.time.physicsElapsed);
+            this.newVelocity.set(this.velocity.x * 0.001 * this.game.time.delta, this.velocity.y * 0.001 * this.game.time.delta);
 
             this.position.x += this.newVelocity.x;
             this.position.y += this.newVelocity.y;
@@ -682,7 +682,7 @@ Phaser.Physics.Arcade.Body.prototype = {
 
         if (this.moveDuration > 0)
         {
-            this.moveTimer += this.game.time.elapsedMS;
+            this.moveTimer += this.game.time.delta;
 
             percent = this.moveTimer / this.moveDuration;
         }

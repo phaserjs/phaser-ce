@@ -40,7 +40,7 @@
         "no-array-constructor": "error",
         "no-caller": "error",
         "no-cond-assign": [ "warn", "except-parens" ],
-        "no-console": [ "error", { "allow": ["error", "warn", "log", "group", "groupEnd"] } ],
+        "no-console": [ "warn", { "allow": ["error", "warn", "log", "group", "groupEnd"] } ],
         "no-constant-condition": 0,
         "no-duplicate-case": [ "error" ],
         "no-empty": "warn",

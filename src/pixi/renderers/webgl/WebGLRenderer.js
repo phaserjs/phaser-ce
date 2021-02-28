@@ -410,6 +410,12 @@ PIXI.WebGLRenderer.prototype.render = function (stage)
     this.renderDisplayObject(stage, this.projection);
 };
 
+PIXI.WebGLRenderer.prototype.postRender = function ()
+{
+    // flush gl to prevent flickering on some android devices
+    this.gl.flush();
+};
+
 /**
  * Renders a Display Object.
  *

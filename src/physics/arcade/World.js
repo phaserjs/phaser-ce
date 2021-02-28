@@ -243,7 +243,7 @@ Phaser.Physics.Arcade.prototype = {
         {
             var velocityDelta = this.computeVelocity(0, body, body.angularVelocity, body.angularAcceleration, body.angularDrag, body.maxAngular) - body.angularVelocity;
             body.angularVelocity += velocityDelta;
-            body.rotation += (body.angularVelocity * this.game.time.physicsElapsed);
+            body.rotation += (body.angularVelocity * 0.001 * this.game.time.delta);
         }
 
         body.velocity.x = this.computeVelocity(1, body, body.velocity.x, body.acceleration.x, body.drag.x, body.maxVelocity.x);
@@ -269,20 +269,20 @@ Phaser.Physics.Arcade.prototype = {
 
         if (axis === 1 && body.allowGravity)
         {
-            velocity += (this.gravity.x + body.gravity.x) * this.game.time.physicsElapsed;
+            velocity += (this.gravity.x + body.gravity.x) * 0.001 * this.game.time.delta;
         }
         else if (axis === 2 && body.allowGravity)
         {
-            velocity += (this.gravity.y + body.gravity.y) * this.game.time.physicsElapsed;
+            velocity += (this.gravity.y + body.gravity.y) * 0.001 * this.game.time.delta;
         }
 
         if (acceleration)
         {
-            velocity += acceleration * this.game.time.physicsElapsed;
+            velocity += acceleration * 0.001 * this.game.time.delta;
         }
         else if (drag && body.allowDrag)
         {
-            drag *= this.game.time.physicsElapsed;
+            drag *= 0.001 * this.game.time.delta;
 
             if (velocity - drag > 0)
             {
@@ -1319,14 +1319,14 @@ Phaser.Physics.Arcade.prototype = {
 
         if (!body1.immovable)
         {
-            body1.x += (body1.velocity.x * this.game.time.physicsElapsed) - overlap * Math.cos(angleCollision);
-            body1.y += (body1.velocity.y * this.game.time.physicsElapsed) - overlap * Math.sin(angleCollision);
+            body1.x += (body1.velocity.x * 0.001 * this.game.time.delta) - overlap * Math.cos(angleCollision);
+            body1.y += (body1.velocity.y * 0.001 * this.game.time.delta) - overlap * Math.sin(angleCollision);
         }
 
         if (!body2.immovable)
         {
-            body2.x += (body2.velocity.x * this.game.time.physicsElapsed) + overlap * Math.cos(angleCollision);
-            body2.y += (body2.velocity.y * this.game.time.physicsElapsed) + overlap * Math.sin(angleCollision);
+            body2.x += (body2.velocity.x * 0.001 * this.game.time.delta) + overlap * Math.cos(angleCollision);
+            body2.y += (body2.velocity.y * 0.001 * this.game.time.delta) + overlap * Math.sin(angleCollision);
         }
 
         if (body1.onCollide)

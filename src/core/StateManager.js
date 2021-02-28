@@ -688,13 +688,13 @@ Phaser.StateManager.prototype = {
     /**
      * @method Phaser.StateManager#preRender
      * @protected
-     * @param {number} elapsedTime - The time elapsed since the last update.
+     * @param {number} updatesThisFrame - Updates this frame.
      */
-    preRender: function (elapsedTime)
+    preRender: function (updatesThisFrame)
     {
         if (this._created && this.onPreRenderCallback)
         {
-            this.onPreRenderCallback.call(this.callbackContext, this.game, elapsedTime);
+            this.onPreRenderCallback.call(this.callbackContext, this.game, updatesThisFrame);
         }
     },
 

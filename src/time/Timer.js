@@ -10,8 +10,7 @@
  *
  * All Timer delays are in milliseconds (there are 1000 ms in 1 second); so a delay value of 250 represents a quarter of a second.
  *
- * Timers are based on real life time, adjusted for game pause durations.
- * That is, *timer events are based on elapsed {@link Phaser.Time game time}* and do *not* take physics time or slow motion into account.
+ * Timers are based on game time. They are scaled by {@link Phaser.Time#slowMotion} and do not advance when the game is paused.
  *
  * @class Phaser.Timer
  * @constructor
@@ -79,11 +78,6 @@ Phaser.Timer = function (game, autoDestroy)
     this.nextTick = 0;
 
     /**
-     * @property {number} timeCap - If the difference in time between two frame updates exceeds this value, the event times are reset to avoid catch-up situations.
-     */
-    this.timeCap = 1000;
-
-    /**
      * @property {boolean} paused - The paused state of the Timer. You can pause the timer by calling Timer.pause() and Timer.resume() or by the game pausing.
      * @readonly
      * @default
@@ -119,7 +113,7 @@ Phaser.Timer = function (game, autoDestroy)
      * @property {number} _now - The current start-time adjusted time.
      * @private
      */
-    this._now = Date.now();
+    this._now = this.game.time ? this.game.time.deltaTotal : 0;
 
     /**
      * @property {number} _len - Temp. array length variable.
@@ -201,17 +195,7 @@ Phaser.Timer.prototype = {
     {
         delay = Math.round(delay);
 
-        var tick = delay;
-
-        if (this._now === 0)
-        {
-            tick += this.game.time.time;
-        }
-        else
-        {
-            tick += this._now;
-        }
-
+        var tick = delay + this._now;
         var event = new Phaser.TimerEvent(this, delay, tick, repeatCount, loop, callback, callbackContext, args);
 
         this.events.push(event);
@@ -297,7 +281,7 @@ Phaser.Timer.prototype = {
             return;
         }
 
-        this._started = this.game.time.time + (delay || 0);
+        this._started = this.game.time.deltaTotal + (delay || 0);
 
         this.running = true;
 
@@ -418,18 +402,6 @@ Phaser.Timer.prototype = {
 
         this.elapsed = time - this._now;
         this._now = time;
-
-        //  spike-dislike
-        if (this.elapsed > this.timeCap)
-        {
-            /*
-             *  For some reason the time between now and the last time the game was updated was larger than our timeCap.
-             *  This can happen if the Stage.disableVisibilityChange is true and you swap tabs, which makes the raf pause.
-             *  In this case we need to adjust the TimerEvents and nextTick.
-             */
-            this.adjustEvents(time - this.elapsed);
-        }
-
         this._marked = 0;
 
         //  Clears events marked for deletion and resets _len and _i to 0.
@@ -517,7 +489,7 @@ Phaser.Timer.prototype = {
             return;
         }
 
-        this._pauseStarted = this.game.time.time;
+        this._pauseStarted = this.game.time.deltaTotal;
 
         this.paused = true;
     },
@@ -534,7 +506,7 @@ Phaser.Timer.prototype = {
             return;
         }
 
-        this._pauseStarted = this.game.time.time;
+        this._pauseStarted = this.game.time.deltaTotal;
 
         this.paused = true;
     },
@@ -588,7 +560,7 @@ Phaser.Timer.prototype = {
             return;
         }
 
-        var now = this.game.time.time;
+        var now = this.game.time.deltaTotal;
         this._pauseTotal += now - this._now;
         this._now = now;
 

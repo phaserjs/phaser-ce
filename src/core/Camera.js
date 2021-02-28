@@ -592,7 +592,7 @@ Phaser.Camera.prototype = {
         if (this._fxType === Phaser.Camera.FLASH)
         {
             //  flash
-            this.fx.alpha -= this.game.time.elapsedMS / this._fxDuration;
+            this.fx.alpha -= this.game.time.delta / this._fxDuration;
 
             if (this.fx.alpha <= 0)
             {
@@ -604,7 +604,7 @@ Phaser.Camera.prototype = {
         else if (this._fxType === Phaser.Camera.FADE_IN)
         {
             //  fade in
-            this.fx.alpha -= this.game.time.elapsedMS / this._fxDuration;
+            this.fx.alpha -= this.game.time.delta / this._fxDuration;
 
             if (this.fx.alpha <= 0)
             {
@@ -616,7 +616,7 @@ Phaser.Camera.prototype = {
         else
         {
             //  fade out
-            this.fx.alpha += this.game.time.elapsedMS / this._fxDuration;
+            this.fx.alpha += this.game.time.delta / this._fxDuration;
 
             if (this.fx.alpha >= 1)
             {
@@ -635,7 +635,7 @@ Phaser.Camera.prototype = {
      */
     updateShake: function ()
     {
-        this._shake.duration -= this.game.time.elapsedMS;
+        this._shake.duration -= this.game.time.delta;
 
         if (this._shake.duration <= 0)
         {

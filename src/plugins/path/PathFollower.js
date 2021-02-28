@@ -182,7 +182,7 @@ Phaser.PathFollower.prototype.update = function ()
     // exit immediately if _pauseTime is non-zero and it's not that time yet
     if (this._pauseTime != 0)
     {
-        if (game.time.now < this._pauseTime)
+        if (game.time.deltaTotal < this._pauseTime)
         {
             return true;
         }
@@ -280,7 +280,7 @@ Phaser.PathFollower.prototype.update = function ()
         else // forwards...
         {
             this._currentPoint++;
-            
+
             // reached the end of the path moving forwards
             if (this.path.atEnd(this._currentPoint))
             {
@@ -318,7 +318,7 @@ Phaser.PathFollower.prototype.update = function ()
             point = this.path.processData(this, this._currentPoint, false);
 
             this.follower.events.onPathPointReached.dispatch(this.follower, point);
-            
+
             this.takeBranchIfAvailable();
 
             // move forwards to the start of the next curve in the path
@@ -347,11 +347,11 @@ Phaser.PathFollower.prototype._calculateDistance = function ()
 
     if (this.speed.min === this.speed.max)
     {
-        return game.time.elapsed * this.speed.avg * this._pathSpeed;
+        return game.time.deltaTotal * this.speed.avg * this._pathSpeed;
     }
     else
     {
-        this.speed._elapsed += game.time.elapsed;
+        this.speed._elapsed += game.time.deltaTotal;
         this.speed._current = this.speed.current || this.speed.avg;
 
         if (this.speed._elapsed >= this.speed.theta)
@@ -370,7 +370,7 @@ Phaser.PathFollower.prototype._calculateDistance = function ()
         }
 
         var step = Phaser.Math.smoothstep(this.speed._elapsed,0,this.speed.theta);
-        
+
         return Phaser.Math.linear(this.speed._current, this.speed._target, step) * this._pathSpeed;
     }
 
@@ -445,7 +445,7 @@ Phaser.PathFollower.prototype.takeBranchIfAvailable = function ()
         }
 
         // changePath calls back to redo this function, exit after calling it
-        
+
         this.changePath(p.branchPath, p.branchPointIndex);
 
         return true;
@@ -513,7 +513,7 @@ Phaser.PathFollower.prototype.setAngularOffset = function (angle, distance)
 Phaser.PathFollower.prototype.pause = function (delay)
 {
 
-    this._pauseTime = game.time.now + delay;
+    this._pauseTime = game.time.deltaTotal + delay;
 
     if (this.follower.animations !== undefined)
     {
@@ -540,7 +540,7 @@ Object.defineProperty(Phaser.PathFollower.prototype, 'paused', {
         }
         else
         {
-            this._pauseTime = game.time.now - 1;
+            this._pauseTime = game.time.deltaTotal - 1;
         }
     },
 

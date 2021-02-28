@@ -27,6 +27,12 @@ Phaser.Particle = function (game, x, y, key, frame)
     this.autoScale = false;
 
     /**
+     * @property {number} autoScaleFps - Frames per second of `autoScale`.
+     * @protected
+     */
+    this.autoScaleFps = 0;
+
+    /**
      * @property {array} scaleData - A reference to the scaleData array owned by the Emitter that emitted this Particle.
      * @protected
      */
@@ -43,6 +49,11 @@ Phaser.Particle = function (game, x, y, key, frame)
      * @protected
      */
     this.autoAlpha = false;
+
+    /**
+     * @property {number} autoAlphaFps - Frames per second of `autoAlpha`.
+     */
+    this.autoAlphaFps = 0;
 
     /**
      * @property {array} alphaData - A reference to the alphaData array owned by the Emitter that emitted this Particle.
@@ -70,11 +81,13 @@ Phaser.Particle.prototype.update = function ()
 {
     if (this.autoScale)
     {
-        this._s--;
+        this._s -= this.game.time.delta * 0.001 * this.autoScaleFps;
 
-        if (this._s)
+        var s = Math.round(this._s);
+
+        if (s > 0)
         {
-            this.scale.set(this.scaleData[this._s].x, this.scaleData[this._s].y);
+            this.scale.set(this.scaleData[s].x, this.scaleData[s].y);
         }
         else
         {
@@ -84,11 +97,13 @@ Phaser.Particle.prototype.update = function ()
 
     if (this.autoAlpha)
     {
-        this._a--;
+        this._a -= this.game.time.delta * 0.001 * this.autoAlphaFps;
 
-        if (this._a)
+        var a = Math.round(this._a);
+
+        if (a > 0)
         {
-            this.alpha = this.alphaData[this._a].v;
+            this.alpha = this.alphaData[a].v;
         }
         else
         {
@@ -113,12 +128,13 @@ Phaser.Particle.prototype.onEmit = function ()
  * @method Phaser.Particle#setAlphaData
  * @memberof Phaser.Particle
  */
-Phaser.Particle.prototype.setAlphaData = function (data)
+Phaser.Particle.prototype.setAlphaData = function (data, fps)
 {
     this.alphaData = data;
     this._a = data.length - 1;
     this.alpha = this.alphaData[this._a].v;
     this.autoAlpha = true;
+    this.autoAlphaFps = fps;
 };
 
 /**
@@ -127,12 +143,13 @@ Phaser.Particle.prototype.setAlphaData = function (data)
  * @method Phaser.Particle#setScaleData
  * @memberof Phaser.Particle
  */
-Phaser.Particle.prototype.setScaleData = function (data)
+Phaser.Particle.prototype.setScaleData = function (data, fps)
 {
     this.scaleData = data;
     this._s = data.length - 1;
     this.scale.set(this.scaleData[this._s].x, this.scaleData[this._s].y);
     this.autoScale = true;
+    this.autoScaleFps = fps;
 };
 
 /**

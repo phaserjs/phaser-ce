@@ -61,7 +61,7 @@ Phaser.Physics.P2 = function (game, config)
     this.frameRate = 1 / 60;
 
     /**
-    * @property {boolean} useElapsedTime - If true the frameRate value will be ignored and instead p2 will step with the value of Game.Time.physicsElapsed, which is a delta time value.
+    * @property {boolean} useElapsedTime - If true the frameRate value will be ignored and instead p2 will step with the value of Game.Time.delta, which is a delta time value.
     * @default
     */
     this.useElapsedTime = false;
@@ -783,7 +783,7 @@ Phaser.Physics.P2.prototype = {
 
         if (this.useElapsedTime)
         {
-            this.world.step(this.game.time.physicsElapsed);
+            this.world.step(0.001 * this.game.time.delta);
         }
         else
         {

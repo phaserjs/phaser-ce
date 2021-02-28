@@ -104,7 +104,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.pausedPosition = 0;
 
     /**
-     * @property {number} pausedTime - The game time (ms) at which the sound was paused.
+     * @property {number} pausedTime - The clock time (ms) at which the sound was paused.
      */
     this.pausedTime = 0;
 
