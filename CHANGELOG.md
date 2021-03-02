@@ -1,5 +1,17 @@
 # Change Log
 
+## Unreleased
+
+### Deprecated
+
+These will be removed in v2.17.0:
+
+- [Phaser.Net](https://photonstorm.github.io/phaser-ce/Phaser.Net.html)
+- [Phaser.Time#physicsElapsed](https://photonstorm.github.io/phaser-ce/Phaser.Time.html#physicsElapsed)
+- [Phaser.Time#physicsElapsedMS](https://photonstorm.github.io/phaser-ce/Phaser.Time.html#physicsElapsedMS)
+- [Phaser.Tween#frameBased](https://photonstorm.github.io/phaser-ce/Phaser.Tween.html#frameBased)
+- [Phaser.TweenManager#frameBased](https://photonstorm.github.io/phaser-ce/Phaser.TweenManager.html#frameBased)
+
 ## Version 2.16.1 - 21 Oct 2020
 
 ### New Features
