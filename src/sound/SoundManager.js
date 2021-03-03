@@ -348,6 +348,16 @@ Phaser.SoundManager.prototype = {
     },
 
     /**
+     * Is the Web Audio context suspended?
+     *
+     * @return {boolean}
+     */
+    webAudioIsSuspended: function ()
+    {
+        return (this.usingWebAudio && this.context.state === 'suspended');
+    },
+
+    /**
      * Try to resume the Web Audio context, if using Web Audio.
      *
      * @return {?Promise} - A Promise, if resume was called. See {@link https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/resume}.
@@ -367,7 +377,7 @@ Phaser.SoundManager.prototype = {
      */
     resumeWebAudioIfSuspended: function ()
     {
-        if (this.usingWebAudio && this.context.state === 'suspended')
+        if (this.webAudioIsSuspended())
         {
             return this.context.resume();
         }
@@ -590,9 +600,14 @@ Phaser.SoundManager.prototype = {
             return;
         }
 
-        for (var i = 0; i < this._sounds.length; i++)
+        // When suspended the context does not advance at all.
+
+        if (!this.webAudioIsSuspended())
         {
-            this._sounds[i].update();
+            for (var i = 0; i < this._sounds.length; i++)
+            {
+                this._sounds[i].update();
+            }
         }
 
         if (this._watching)
