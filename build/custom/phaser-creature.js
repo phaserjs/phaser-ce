@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.16.1 "2020-10-21" - Built: Wed Oct 21 2020 14:50:03
+* v2.16.2 "2021-03-08" - Built: Mon Mar 08 2021 12:51:59
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -40,7 +40,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.16.1',
+    VERSION: '2.16.2',
 
     /**
      * An array of Phaser game instances.
@@ -12105,7 +12105,7 @@ Phaser.Group.prototype.filter = function (predicate, checkExists)
     {
         var child = this.children[index];
 
-        if (!checkExists || (checkExists && child.exists))
+        if (!checkExists || child.exists)
         {
             if (predicate(child, index, this.children))
             {
@@ -51256,8 +51256,7 @@ Phaser.AnimationParser = {
 
         if (frameWidth <= 0 || frameHeight <= 0)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' frameWidth (%s) or frameHeight (%s) must be positive',
-                key, frameWidth, frameHeight);
+            console.error('Spritesheet "%s": frameWidth (%s) and frameHeight (%s) values must be positive', key, frameWidth, frameHeight);
 
             return null;
         }
@@ -51267,15 +51266,14 @@ Phaser.AnimationParser = {
 
         if (width === 0 || height === 0)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' width (%s) or height (%s) is zero', key, width, height);
+            console.error('Spritesheet "%s": Texture width (%s) or height (%s) is zero', key, width, height);
 
             return null;
         }
 
         if (width < frameWidth || height < frameHeight)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' width (%s) or height (%s) is less than the given frameWidth (%s) or frameHeight (%s)',
-                key, width, height, frameWidth, frameHeight);
+            console.error('Spritesheet "%s": Texture width (%s) or height (%s) is less than the given frameWidth (%s) or frameHeight (%s)', key, width, height, frameWidth, frameHeight);
 
             return null;
         }
@@ -51290,8 +51288,7 @@ Phaser.AnimationParser = {
 
         if (skipFrames > total || skipFrames < -total)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' skipFrames = %s is larger than the frame total %s',
-                key, skipFrames, total);
+            console.error('Spritesheet "%s": skipFrames=%s is larger than the frame total %s', key, skipFrames, total);
 
             return null;
         }
@@ -51304,19 +51301,23 @@ Phaser.AnimationParser = {
 
         if (row < 1)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: image \'%s\' has width %d, but it should be at least %d (frameWidth=%s, margin=%s, spacing=%s)',
-                key, width, frameWidth + margin + spacing, frameWidth, margin, spacing);
+            console.warn(
+                'Spritesheet "%s": Texture has width %d, but it should be at least %d (frameWidth=%s, margin=%s, spacing=%s)',
+                key, width, frameWidth + margin + spacing, frameWidth, margin, spacing
+            );
         }
 
         if (column < 1)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: image \'%s\' has height %d, but it should be at least %d (frameHeight=%s, margin=%s, spacing=%s)',
-                key, height, frameHeight + margin + spacing, frameHeight, margin, spacing);
+            console.warn(
+                'Spritesheet "%s": Texture has height %d, but it should be at least %d (frameHeight=%s, margin=%s, spacing=%s)',
+                key, height, frameHeight + margin + spacing, frameHeight, margin, spacing
+            );
         }
 
         if (totalAvailable === 0)
         {
-            console.warn('Phaser.AnimationParser.spriteSheet: \'%s\' zero frames were produced', key);
+            console.error('Spritesheet "%s": zero frames were produced', key);
 
             return null;
         }
@@ -51338,14 +51339,14 @@ Phaser.AnimationParser = {
 
         if (firstFrame < 0)
         {
-            console.warn('First frame index %s is outside of range [0, %d]', firstFrame, lastAvailable);
+            console.error('Spritesheet "%s": There is no frame at index %s', key, firstFrame);
 
             return null;
         }
 
         if (lastFrame > lastAvailable)
         {
-            console.warn('Last frame index %s is outside of range [0, %d]', lastFrame, lastAvailable);
+            console.warn('Spritesheet "%s": There is no frame at index %s. Last frame found is index %s', key, lastFrame, lastAvailable);
 
             return null;
         }
@@ -59587,6 +59588,16 @@ Phaser.SoundManager.prototype = {
     },
 
     /**
+     * Is the Web Audio context suspended?
+     *
+     * @return {boolean}
+     */
+    webAudioIsSuspended: function ()
+    {
+        return (this.usingWebAudio && this.context.state === 'suspended');
+    },
+
+    /**
      * Try to resume the Web Audio context, if using Web Audio.
      *
      * @return {?Promise} - A Promise, if resume was called. See {@link https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/resume}.
@@ -59606,7 +59617,7 @@ Phaser.SoundManager.prototype = {
      */
     resumeWebAudioIfSuspended: function ()
     {
-        if (this.usingWebAudio && this.context.state === 'suspended')
+        if (this.webAudioIsSuspended())
         {
             return this.context.resume();
         }
@@ -59829,9 +59840,14 @@ Phaser.SoundManager.prototype = {
             return;
         }
 
-        for (var i = 0; i < this._sounds.length; i++)
+        // When suspended the context does not advance at all.
+
+        if (!this.webAudioIsSuspended())
         {
-            this._sounds[i].update();
+            for (var i = 0; i < this._sounds.length; i++)
+            {
+                this._sounds[i].update();
+            }
         }
 
         if (this._watching)
@@ -78611,7 +78627,7 @@ Phaser.Tilemap.prototype = {
             key = tileset;
         }
 
-        if (key instanceof Phaser.BitmapData)
+        if (Phaser.BitmapData && key instanceof Phaser.BitmapData)
         {
             img = key.canvas;
         }
@@ -78782,9 +78798,29 @@ Phaser.Tilemap.prototype = {
 
                 group.add(sprite);
 
-                for (var property in obj.properties)
+                //  Set properties directly on the sprite
+
+                var properties = obj.properties;
+
+                if (Array.isArray(properties))
                 {
-                    group.set(sprite, property, obj.properties[property], false, false, 0, true);
+                    // New property format <https://doc.mapeditor.org/en/stable/reference/json-map-format/#property>
+
+                    for (var j = 0; j < properties.length; j++)
+                    {
+                        var propData = properties[j];
+
+                        group.set(sprite, propData.name, propData.value, false, false, 0, true);
+                    }
+                }
+                else
+                {
+                    // Old property format
+
+                    for (var propertyName in properties)
+                    {
+                        group.set(sprite, propertyName, properties[propertyName], false, false, 0, true);
+                    }
                 }
             }
         }

@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.16.2 - 8 March 2021
 
 ### Updates
 

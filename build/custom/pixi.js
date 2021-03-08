@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.16.1 "2020-10-21" - Built: Wed Oct 21 2020 14:50:02
+* v2.16.2 "2021-03-08" - Built: Mon Mar 08 2021 12:51:59
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
