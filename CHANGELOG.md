@@ -6,6 +6,10 @@
 
 - Better parsing of Tiled object properties (#682)
 
+### Bug Fixes
+
+- Web Audio sounds will not progress while the audio context is suspended.
+
 ### Deprecated
 
 These will be removed in v2.17.0:
@@ -18,7 +22,7 @@ These will be removed in v2.17.0:
 
 ### Thanks
 
-@f0rdP3rf3ct
+@f0rdP3rf3ct, @photonstorm, @samme
 
 ## Version 2.16.1 - 21 Oct 2020
 
