@@ -427,6 +427,13 @@ Phaser.Sound.prototype = {
      */
     onEndedHandler: function ()
     {
+        if (!this._sound)
+        {
+            // Probably destroyed?
+
+            return;
+        }
+
         this._removeOnEndedHandler();
         this.isPlaying = false;
         this.currentTime = this.durationMS;
