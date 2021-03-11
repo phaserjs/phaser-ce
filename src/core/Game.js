@@ -247,11 +247,6 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.math = null;
 
     /**
-     * @property {Phaser.Net} net - Reference to the network class.
-     */
-    this.net = null;
-
-    /**
      * @property {Phaser.ScaleManager} scale - The game scale manager.
      */
     this.scale = null;
@@ -725,7 +720,6 @@ Phaser.Game.prototype = {
         this.particles = new Phaser.Particles(this);
         this.create = new Phaser.Create(this);
         this.plugins = new Phaser.PluginManager(this);
-        this.net = new Phaser.Net(this);
 
         this.time.boot();
         this.stage.boot();
