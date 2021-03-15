@@ -1556,7 +1556,6 @@ declare module Phaser {
         lockRender: boolean;
         make: Phaser.GameObjectCreator;
         math: Phaser.Math;
-        net: Phaser.Net;
         onBlur: Phaser.Signal;
         onFocus: Phaser.Signal;
         onPause: Phaser.Signal;
@@ -2929,20 +2928,6 @@ declare module Phaser {
 
         start(): boolean;
         stop(): void;
-
-    }
-
-    class Net {
-
-        constructor(game: Phaser.Game);
-
-        game: Phaser.Game;
-
-        checkDomainName(domain: string): boolean;
-        decodeURI(value: string): string;
-        getHostName(): string;
-        getQueryString(parameter?: string): string;
-        updateQueryString(key: string, value: any, redirect?: boolean, url?: string): string;
 
     }
 
@@ -5081,7 +5066,7 @@ declare module Phaser {
         paused(game: Phaser.Game): void;
         pauseUpdate(game: Phaser.Game): void;
         preload(game: Phaser.Game): void;
-        preRender(game: Phaser.Game, elapsedTime: number): void;
+        preRender(game: Phaser.Game): void;
         render(game: Phaser.Game): void;
         resize(width: number, height: number): void;
         resumed(game: Phaser.Game): void;
@@ -5129,7 +5114,7 @@ declare module Phaser {
         getCurrentState(): Phaser.State;
         link(key: string): void;
         loadComplete(): void;
-        preRender(elapsedTime: number): void;
+        preRender(): void;
         preUpdate(): void;
         render(): void;
         remove(key: string): void;
@@ -5593,8 +5578,12 @@ declare module Phaser {
         constructor(game: Phaser.Game);
 
         advancedTiming: boolean;
+        delta: number;
+        deltaMax: number;
+        deltaTotal: number;
         desiredFps: number;
         desiredFpsMult: number;
+        desiredMinFps: number;
         elapsed: number;
         events: Phaser.Timer;
         elapsedMS: number;
@@ -5609,9 +5598,6 @@ declare module Phaser {
         now: number;
         pausedTime: number;
         pauseDuration: number;
-        physicsElapsed: number;
-        physicsElapsedMS: number;
-        prevTime: number;
         renders: number;
         rps: number;
         slowMotion: number;
@@ -5730,7 +5716,6 @@ declare module Phaser {
 
         chainedTween: Phaser.Tween;
         current: number;
-        frameBased: boolean;
         game: Phaser.Game;
         isRunning: boolean;
         isPaused: boolean;
@@ -5817,7 +5802,6 @@ declare module Phaser {
 
         constructor(game: Phaser.Game);
 
-        frameBased: boolean;
         game: Phaser.Game;
 
         add(tween: Phaser.Tween): Phaser.Tween;

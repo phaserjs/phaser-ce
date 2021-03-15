@@ -243,6 +243,7 @@ declare module PIXI {
         renderSession: RenderSession;
 
         render(stage: DisplayObjectContainer): void;
+        postRender(): void;
         resize(width: number, height: number): void;
         setTexturePriority(textureNameCollection: string[]): string[];
         destroy(removeView?: boolean): void;
@@ -836,6 +837,7 @@ declare module PIXI {
 
         initContext(): void;
         render(stage: DisplayObjectContainer): void;
+        postRender(): void;
         renderDisplayObject(displayObject: DisplayObject, projection: Point, buffer: WebGLBuffer): void;
         resize(width: number, height: number): void;
         updateTexture(texture: Texture): void;
