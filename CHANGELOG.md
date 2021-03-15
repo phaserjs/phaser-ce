@@ -10,7 +10,11 @@
 
 ### Bug Fixes
 
+- Fixed some errors when destroying a game while Web Audio sounds were decoding (#684).
+
 ### Thanks
+
+@jf-m
 
 ## Version 2.16.2 - 8 March 2021
 
