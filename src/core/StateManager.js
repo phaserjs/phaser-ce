@@ -688,13 +688,12 @@ Phaser.StateManager.prototype = {
     /**
      * @method Phaser.StateManager#preRender
      * @protected
-     * @param {number} updatesThisFrame - Updates this frame.
      */
-    preRender: function (updatesThisFrame)
+    preRender: function ()
     {
         if (this._created && this.onPreRenderCallback)
         {
-            this.onPreRenderCallback.call(this.callbackContext, this.game, updatesThisFrame);
+            this.onPreRenderCallback.call(this.callbackContext, this.game);
         }
     },
 
