@@ -383,6 +383,11 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.onFocus = null;
 
     /**
+     * @property {Phaser.Signal} onBoot - This event is fired after the game boots but before the first game update.
+     */
+    this.onBoot = new Phaser.Signal();
+
+    /**
      * @property {boolean} _paused - Is game paused?
      * @private
      */
@@ -757,6 +762,8 @@ Phaser.Game.prototype = {
         this._kickstart = true;
 
         this.focusWindow();
+
+        this.onBoot.dispatch(this);
 
         if (this.config.disableStart)
         {
