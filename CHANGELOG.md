@@ -4,6 +4,8 @@
 
 ### API Changes
 
+- Removed Phaser.Game#net (`game.net`) and Phaser.Net.
+
 ### New Features
 
 ### Updates
