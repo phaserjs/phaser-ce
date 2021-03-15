@@ -39,7 +39,6 @@
       "./src/input/",
       "./src/loader/",
       "./src/math/",
-      "./src/net/",
       "./src/particles/",
       "./src/physics/",
       "./src/pixi/",

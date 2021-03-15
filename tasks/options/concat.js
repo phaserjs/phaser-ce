@@ -34,7 +34,7 @@ module.exports = {
         src: require('../manifests/pixi-main'),
         dest: '<%= modules_dir %>/pixi-main.js'
     },
-    
+
     pixiOutro: {
         src: require('../manifests/pixi-outro'),
         dest: '<%= modules_dir %>/pixi-outro.js'
@@ -123,16 +123,6 @@ module.exports = {
     math: {
         src: require('../manifests/math'),
         dest: '<%= modules_dir %>/math.js'
-    },
-
-    net: {
-        src: require('../manifests/net'),
-        dest: '<%= modules_dir %>/net.js'
-    },
-
-    netStub: {
-        src: require('../manifests/net.stub'),
-        dest: '<%= modules_dir %>/net.js'
     },
 
     tweens: {
@@ -299,15 +289,17 @@ module.exports = {
         src: require('../manifests/pixidefs'),
         dest: '<%= modules_dir %>/pixidefs.js'
     },
-    
+
     outro: {
         src: require('../manifests/outro'),
         dest: '<%= modules_dir %>/outro.js'
     },
 
-    // //////////////////
-    //  Custom Builds //
-    // //////////////////
+    /*
+     * //////////////////
+     *  Custom Builds //
+     * //////////////////
+     */
 
     custom: {
         options: {banner: '<%= banner %>'},

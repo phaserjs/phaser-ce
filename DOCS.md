@@ -167,14 +167,6 @@
 | [QuadTree](./Phaser.QuadTree.html) | - | A stand-alone QuadTree implementation. Used by Arcade Physics but can also be used directly. |
 | [RandomDataGenerator](./Phaser.RandomDataGenerator.html) | `rnd` | A seedable repeatable random data generator. |
 
-<a name="network"></a>
-
-## Network
-
-| Class | Via | Description |
-| --- | --- | --- |
-| [Net](./Phaser.Net.html) | `net` | Browser URL and query string related methods. |
-
 <a name="particles"></a>
 
 ## Particles

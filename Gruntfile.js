@@ -53,7 +53,6 @@ module.exports = function (grunt)
             tilesprite: { description: 'Tile Sprite Game Object', optional: true, stub: true },
             system: { description: 'System Classes', optional: false, stub: false },
             math: { description: 'Math, QuadTree and RND', optional: false, stub: false },
-            net: { description: 'Network Class', optional: true, stub: true },
             tweens: { description: 'Tween Manager', optional: true, stub: true },
             time: { description: 'Time and Clock Manager', optional: false, stub: false },
             animation: { description: 'Animation and Frame Manager', optional: false, stub: false },
@@ -551,7 +550,7 @@ module.exports = function (grunt)
 
     grunt.registerTask('minimum', 'Phaser without any optional modules', function ()
     {
-        grunt.option('exclude', 'gamepad,keyboard,bitmapdata,graphics,rendertexture,text,bitmaptext,retrofont,net,tweens,sound,debug,arcade,ninja,p2,tilemaps,particles,creature,video,rope,tilesprite,weapon');
+        grunt.option('exclude', 'gamepad,keyboard,bitmapdata,graphics,rendertexture,text,bitmaptext,retrofont,tweens,sound,debug,arcade,ninja,p2,tilemaps,particles,creature,video,rope,tilesprite,weapon');
         grunt.option('filename', 'phaser-minimum');
         grunt.option('sourcemap', true);
         grunt.option('copy', true);
