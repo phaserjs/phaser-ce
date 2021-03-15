@@ -988,6 +988,11 @@ Phaser.Game.prototype = {
             return;
         }
 
+        if (!this.isBooted)
+        {
+            return;
+        }
+
         this.time.update(time);
 
         if (this._kickstart)

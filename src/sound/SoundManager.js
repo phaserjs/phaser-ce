@@ -526,6 +526,13 @@ Phaser.SoundManager.prototype = {
                 {
                     this.context.decodeAudioData(soundData, function (buffer)
                     {
+                        if (!_this.game.isBooted)
+                        {
+                            // Game was destroyed.
+
+                            return;
+                        }
+
                         if (buffer)
                         {
                             _this.game.cache.decodedSound(key, buffer);

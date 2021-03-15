@@ -2045,6 +2045,12 @@ Phaser.Loader.prototype = {
      */
     processLoadQueue: function ()
     {
+        // Destroyed.
+        if (!this.game.isBooted)
+        {
+            return;
+        }
+
         if (!this.isLoading)
         {
             console.warn('Phaser.Loader - active loading canceled / reset');
@@ -2933,6 +2939,12 @@ Phaser.Loader.prototype = {
      */
     fileComplete: function (file, xhr)
     {
+        // Destroyed.
+        if (!this.game.isBooted)
+        {
+            return;
+        }
+
         var loadNext = true;
 
         switch (file.type)
