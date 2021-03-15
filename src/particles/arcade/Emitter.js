@@ -212,9 +212,19 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles)
     this.autoScale = false;
 
     /**
+     * @property {number} autoScaleFps - Frames per second of `autoScale`.
+     */
+    this.autoScaleFps = this.game.time.desiredFps;
+
+    /**
      * @property {boolean} autoAlpha - When a new Particle is emitted this controls if it will automatically change alpha. Use Emitter.setAlpha to configure.
      */
     this.autoAlpha = false;
+
+    /**
+     * @property {number} autoAlphaFps - Frames per second of `autoAlpha`.
+     */
+    this.autoAlphaFps = this.game.time.desiredFps;
 
     /**
      * @property {boolean} particleBringToTop - If this is `true` then when the Particle is emitted it will be bought to the top of the Emitters display list.
@@ -316,9 +326,9 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function ()
     this.counts.emitted = 0;
     this.counts.failed = 0;
 
-    if (this.on && this.game.time.time >= this._timer)
+    if (this.on && this.game.time.deltaTotal >= this._timer)
     {
-        this._timer = this.game.time.time + this.frequency * this.game.time.slowMotion;
+        this._timer = this.game.time.deltaTotal + this.frequency;
 
         if (this._flowTotal !== 0)
         {
@@ -527,7 +537,7 @@ Phaser.Particles.Arcade.Emitter.prototype.flow = function (lifespan, frequency, 
 
         this._counter += quantity;
         this.on = true;
-        this._timer = this.game.time.time + frequency * this.game.time.slowMotion;
+        this._timer = this.game.time.deltaTotal + frequency;
     }
     else
     {
@@ -598,7 +608,7 @@ Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, f
         this.on = true;
         this._total = total;
         this._counter = 0;
-        this._timer = this.game.time.time + frequency * this.game.time.slowMotion;
+        this._timer = this.game.time.deltaTotal + frequency;
     }
 
     return this;
@@ -727,7 +737,7 @@ Phaser.Particles.Arcade.Emitter.prototype.resetParticle = function (particle, x,
 
     if (this.autoScale)
     {
-        particle.setScaleData(this.scaleData);
+        particle.setScaleData(this.scaleData, this.autoScaleFps);
     }
     else if (this.minParticleScale !== 1 || this.maxParticleScale !== 1)
     {
@@ -744,7 +754,7 @@ Phaser.Particles.Arcade.Emitter.prototype.resetParticle = function (particle, x,
 
     if (this.autoAlpha)
     {
-        particle.setAlphaData(this.alphaData);
+        particle.setAlphaData(this.alphaData, this.autoAlphaFps);
     }
     else
     {
@@ -895,7 +905,8 @@ Phaser.Particles.Arcade.Emitter.prototype.setAlpha = function (min, max, rate, e
         var tween = this.game.make.tween(tweenData).to({ v: max }, rate, ease);
         tween.yoyo(yoyo);
 
-        this.alphaData = tween.generateData(60);
+        this.alphaData = tween.generateData(this.game.time.desiredFps);
+        this.autoAlphaFps = this.game.time.desiredFps;
 
         //  Inverse it so we don't have to do array length look-ups in Particle update loops
         this.alphaData.reverse();
@@ -945,7 +956,8 @@ Phaser.Particles.Arcade.Emitter.prototype.setScale = function (minX, maxX, minY,
         var tween = this.game.make.tween(tweenData).to({ x: maxX, y: maxY }, rate, ease);
         tween.yoyo(yoyo);
 
-        this.scaleData = tween.generateData(60);
+        this.scaleData = tween.generateData(this.game.time.desiredFps);
+        this.autoScaleFps = this.game.time.desiredFps;
 
         //  Inverse it so we don't have to do array length look-ups in Particle update loops
         this.scaleData.reverse();

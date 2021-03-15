@@ -27,7 +27,7 @@ Phaser.Component.LifeSpan.preUpdate = function ()
 
     if (this.lifespan > 0)
     {
-        this.lifespan -= this.game.time.physicsElapsedMS;
+        this.lifespan -= this.game.time.delta;
 
         if (this.lifespan <= 0)
         {
@@ -59,7 +59,7 @@ Phaser.Component.LifeSpan.prototype = {
      *
      * Once the Game Object is 'born' you can set this to a positive value.
      *
-     * It is automatically decremented by the millisecond equivalent of `game.time.physicsElapsed` each frame.
+     * It is automatically decremented by `game.time.delta` each frame.
      * When it reaches zero it will call the `kill` method.
      *
      * Very handy for particles, bullets, collectibles, or any other short-lived entity.

@@ -281,7 +281,7 @@ Phaser.Physics.Ninja.Body.prototype = {
     moveTo: function (speed, angle)
     {
 
-        var magnitude = speed * this.game.time.physicsElapsed;
+        var magnitude = speed * 0.001 * this.game.time.delta;
         var angle = this.game.math.degToRad(angle);
 
         this.shape.pos.x = this.shape.oldpos.x + (magnitude * Math.cos(angle));
@@ -300,7 +300,7 @@ Phaser.Physics.Ninja.Body.prototype = {
     moveFrom: function (speed, angle)
     {
 
-        var magnitude = -speed * this.game.time.physicsElapsed;
+        var magnitude = -speed * 0.001 * this.game.time.delta;
         var angle = this.game.math.degToRad(angle);
 
         this.shape.pos.x = this.shape.oldpos.x + (magnitude * Math.cos(angle));
@@ -318,7 +318,7 @@ Phaser.Physics.Ninja.Body.prototype = {
     moveLeft: function (speed)
     {
 
-        var fx = -speed * this.game.time.physicsElapsed;
+        var fx = -speed * 0.001 * this.game.time.delta;
 
         this.shape.pos.x = this.shape.oldpos.x + Math.min(this.maxSpeed, Math.max(-this.maxSpeed, this.shape.pos.x - this.shape.oldpos.x + fx));
 
@@ -334,7 +334,7 @@ Phaser.Physics.Ninja.Body.prototype = {
     moveRight: function (speed)
     {
 
-        var fx = speed * this.game.time.physicsElapsed;
+        var fx = speed * 0.001 * this.game.time.delta;
 
         this.shape.pos.x = this.shape.oldpos.x + Math.min(this.maxSpeed, Math.max(-this.maxSpeed, this.shape.pos.x - this.shape.oldpos.x + fx));
 
@@ -350,7 +350,7 @@ Phaser.Physics.Ninja.Body.prototype = {
     moveUp: function (speed)
     {
 
-        var fx = -speed * this.game.time.physicsElapsed;
+        var fx = -speed * 0.001 * this.game.time.delta;
 
         this.shape.pos.y = this.shape.oldpos.y + Math.min(this.maxSpeed, Math.max(-this.maxSpeed, this.shape.pos.y - this.shape.oldpos.y + fx));
 
@@ -366,7 +366,7 @@ Phaser.Physics.Ninja.Body.prototype = {
     moveDown: function (speed)
     {
 
-        var fx = speed * this.game.time.physicsElapsed;
+        var fx = speed * 0.001 * this.game.time.delta;
 
         this.shape.pos.y = this.shape.oldpos.y + Math.min(this.maxSpeed, Math.max(-this.maxSpeed, this.shape.pos.y - this.shape.oldpos.y + fx));
 

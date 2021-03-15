@@ -901,7 +901,7 @@ Phaser.Weapon.prototype.fire = function (from, x, y, offsetX, offsetY)
     if (x === undefined) { x = null; }
     if (y === undefined) { y = null; }
 
-    if (this.game.time.now < this._nextFire || (this.fireLimit > 0 && this.shots === this.fireLimit))
+    if (this.game.time.deltaTotal < this._nextFire || (this.fireLimit > 0 && this.shots === this.fireLimit))
     {
         return null;
     }
@@ -1104,11 +1104,11 @@ Phaser.Weapon.prototype.fire = function (from, x, y, offsetX, offsetY)
                 rate = 0;
             }
 
-            next = this.game.time.now + rate;
+            next = this.game.time.deltaTotal + rate;
         }
         else
         {
-            next = this.game.time.now + this.fireRate;
+            next = this.game.time.deltaTotal + this.fireRate;
         }
 
         if (this.multiFire)

@@ -214,7 +214,6 @@ Phaser.State.prototype = {
      *
      * @method Phaser.State#preRender
      * @param {Phaser.Game} game
-     * @param {number} elapsedTime
      */
     preRender: function ()
     {

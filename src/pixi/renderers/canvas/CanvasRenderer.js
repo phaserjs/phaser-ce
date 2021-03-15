@@ -193,6 +193,11 @@ PIXI.CanvasRenderer.prototype.render = function (root)
     this.renderDisplayObject(root);
 };
 
+PIXI.CanvasRenderer.prototype.postRender = function ()
+{
+    // Nothing to do.
+};
+
 PIXI.CanvasRenderer.prototype.setTexturePriority = function ()
 {
 

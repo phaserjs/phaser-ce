@@ -12,7 +12,7 @@
  *
  * You shouldn't ever create a TileSprite any larger than your actual screen size. If you want to create a large repeating background
  * that scrolls across the whole map of your game, then you create a TileSprite that fits the screen size and then use the `tilePosition`
- * property to scroll the texture as the player moves. If you create a TileSprite that is thousands of pixels in size then it will 
+ * property to scroll the texture as the player moves. If you create a TileSprite that is thousands of pixels in size then it will
  * consume huge amounts of memory and cause performance issues. Remember: use `tilePosition` to scroll your texture and `tileScale` to
  * adjust the scale of the texture - don't resize the sprite itself or make it larger than it needs.
  *
@@ -94,7 +94,7 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame)
      * @property {Phaser.Point} tileScaleOffset - The scale offset applied to the image being tiled.
      */
     this.tileScaleOffset = new Phaser.Point(1, 1);
-    
+
     /**
      * @property {Phaser.Point} tilePosition - The offset position of the image being tiled.
      */
@@ -185,12 +185,12 @@ Phaser.TileSprite.prototype.preUpdate = function ()
 {
     if (this._scroll.x !== 0)
     {
-        this.tilePosition.x += this._scroll.x * this.game.time.physicsElapsed;
+        this.tilePosition.x += this._scroll.x * 0.001 * this.game.time.delta;
     }
 
     if (this._scroll.y !== 0)
     {
-        this.tilePosition.y += this._scroll.y * this.game.time.physicsElapsed;
+        this.tilePosition.y += this._scroll.y * 0.001 * this.game.time.delta;
     }
 
     if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
@@ -353,7 +353,7 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
             return;
         }
     }
-    
+
     renderSession.spriteBatch.renderTilingSprite(this);
 
     for (var i = 0; i < this.children.length; i++)
@@ -400,7 +400,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
     {
         return;
     }
-    
+
     var context = renderSession.context;
 
     if (this._mask)
@@ -409,7 +409,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
     }
 
     context.globalAlpha = this.worldAlpha;
-    
+
     var wt = this.worldTransform;
     var resolution = renderSession.resolution;
     var tx = (wt.tx * resolution) + renderSession.shakeX;
@@ -429,7 +429,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
     if (this.refreshTexture)
     {
         this.generateTilingTexture(false, renderSession);
-    
+
         if (this.tilingTexture)
         {
             this.tilePattern = context.createPattern(this.tilingTexture.baseTexture.source, 'repeat');
@@ -628,7 +628,7 @@ Phaser.TileSprite.prototype.getBounds = function ()
     var d = worldTransform.d;
     var tx = worldTransform.tx;
     var ty = worldTransform.ty;
-    
+
     var x1 = (a * w1) + (c * h1) + tx;
     var y1 = (d * h1) + (b * w1) + ty;
 

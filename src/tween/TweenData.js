@@ -242,7 +242,7 @@ Phaser.TweenData.prototype = {
      */
     start: function ()
     {
-        this.startTime = this.game.time.time + this.delay;
+        this.startTime = this.game.time.deltaTotal + this.delay;
 
         if (this.parent.reverse)
         {
@@ -364,7 +364,7 @@ Phaser.TweenData.prototype = {
             }
         }
 
-        var ms = (this.parent.frameBased) ? this.game.time.physicsElapsedMS : this.game.time.elapsedMS;
+        var ms = this.game.time.delta;
 
         if (this.parent.reverse)
         {
@@ -543,7 +543,7 @@ Phaser.TweenData.prototype = {
             }
         }
 
-        this.startTime = this.game.time.time;
+        this.startTime = this.game.time.deltaTotal;
 
         if (this.yoyo && this.inReverse)
         {
