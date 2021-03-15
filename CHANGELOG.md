@@ -4,7 +4,42 @@
 
 ### API Changes
 
-- Removed Phaser.Game#net (`game.net`) and Phaser.Net.
+The core game loop and timekeeping have been redone. Game timing should now work consistently at any device frame rate, for any `desiredFps`, with `forceSingleUpdate` on or off.
+
+Animations, lifespan, particles, physics, timers, and tweens now all use the same delta time, represented by `delta` and `deltaTotal`. The delta is scaled by `slowMotion`. There's no need to adjust `desiredFps` to match `slowMotion` now; they work independently. The delta size is clamped by `deltaMax` (which can be controlled by `desiredMinFps` as well).
+
+Phaser.Game#forceSingleUpdate now switches between a **variable-step** or **fixed-step** game loop.
+
+When `forceSingleUpdate` is off (the default), the game makes one logic update and one render per animation frame received from the device. This is often at 60Hz, but can be lower (33Hz) or higher (75Hz, 144Hz, 240Hz).
+
+When `forceSingleUpdate` is on, the game makes logic updates only at the rate given by `desiredFps` (60Hz or 16.6ms by default). Depending on the `desiredFps` value and the device frame rate, this will make zero, one, or several logic updates per animation frame. There is one render per animation frame only if at least one update was made or `forceSingleRender` is on; otherwise there is none.
+
+#### Added
+
+- Phaser.Time#delta
+- Phaser.Time#deltaMax
+- Phaser.Time#deltaTotal
+- Phaser.Time#desiredMinFps
+- PIXI.CanvasRenderer#postRender
+- PIXI.WebGLRenderer#postRender
+
+#### Changed
+
+- Phaser.Game#dropFrames
+- Phaser.Game#forceSingleUpdate
+
+#### Removed
+
+- Phaser.Game#maxUpdates
+- Phaser.Game#net (`game.net`)
+- Phaser.Net
+- Phaser.Time#physicsElapsed
+- Phaser.Time#physicsElapsedMS
+- Phaser.Time#prevTime
+- Phaser.Timer#timeCap
+- Phaser.Tween#frameBased
+- Phaser.TweenManager#frameBased
+- The `elapsedTime` argument in Phaser.State#preRender
 
 ### New Features
 
@@ -13,10 +48,11 @@
 ### Bug Fixes
 
 - Fixed some errors when destroying a game while Web Audio sounds were decoding (#684).
+- Fixed tweens running at different speeds depending on device frame rate (#685).
 
 ### Thanks
 
-@jf-m
+@jf-m, @photonstorm, @samme
 
 ## Version 2.16.2 - 8 March 2021
 
