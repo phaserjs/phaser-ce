@@ -3034,9 +3034,11 @@ declare module Phaser {
                 reset(x: number, y: number, health?: number): Phaser.Particles;
                 setAlpha(min?: number, max?: number, rate?: number, ease?: (k: number) => number, yoyo?: boolean): Phaser.Particles.Arcade.Emitter;
                 setAngle(minAngle: number, maxAngle: number, minSpeed?: number, maxSpeed?: number): Phaser.Particles.Arcade.Emitter;
+                setGravity(x?: number, y?: number): Phaser.Particles.Arcade.Emitter;
                 setRotation(min?: number, max?: number): Phaser.Particles.Arcade.Emitter;
                 setScale(minX?: number, maxX?: number, minY?: number, maxY?: number, rate?: number, ease?: (k: number) => number, yoyo?: boolean): Phaser.Particles.Arcade.Emitter;
                 setSize(width: number, height: number): Phaser.Particles.Arcade.Emitter;
+                setSpeed(minX: number, maxX: number, minY: number, maxY: number): Phaser.Particles.Arcade.Emitter;
                 setXSpeed(min: number, max: number): Phaser.Particles.Arcade.Emitter;
                 setYSpeed(min: number, max: number): Phaser.Particles.Arcade.Emitter;
                 start(explode?: boolean, lifespan?: number, frequency?: number, total?: number, forceQuantity?: boolean): Phaser.Particles.Arcade.Emitter;
