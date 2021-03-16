@@ -820,7 +820,26 @@ Phaser.Particles.Arcade.Emitter.prototype.setSize = function (width, height)
 };
 
 /**
+ * A more compact way of setting the X and Y velocity ranges of the emitter.
+ *
+ * @method Phaser.Particles.Arcade.Emitter#setSpeed
+ * @param {number} minX - The minimum horizontal speed.
+ * @param {number} maxX - The maximum horizontal speed.
+ * @param {number} minY - The minimum vertical speed.
+ * @param {number} maxY - The maximum vertical speed.
+ * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
+ */
+Phaser.Particles.Arcade.Emitter.prototype.setSpeed = function (minX, maxX, minY, maxY)
+{
+    this.setXSpeed(minX, maxX);
+    this.setYSpeed(minY, maxY);
+
+    return this;
+};
+
+/**
  * A more compact way of setting the X velocity range of the emitter.
+ *
  * @method Phaser.Particles.Arcade.Emitter#setXSpeed
  * @param {number} [min=0] - The minimum value for this range.
  * @param {number} [max=0] - The maximum value for this range.
@@ -839,6 +858,7 @@ Phaser.Particles.Arcade.Emitter.prototype.setXSpeed = function (min, max)
 
 /**
  * A more compact way of setting the Y velocity range of the emitter.
+ *
  * @method Phaser.Particles.Arcade.Emitter#setYSpeed
  * @param {number} [min=0] - The minimum value for this range.
  * @param {number} [max=0] - The maximum value for this range.
@@ -988,6 +1008,24 @@ Phaser.Particles.Arcade.Emitter.prototype.setAngle = function (minAngle, maxAngl
 
     if (minSpeed != null) { this.minSpeed = minSpeed; }
     if (maxSpeed != null) { this.maxSpeed = maxSpeed; }
+
+    return this;
+};
+
+/**
+ * Sets gravity for emitted particles.
+ *
+ * @method Phaser.Particles.Arcade.Emitter#setGravity
+ * @param {number} [x=0] - The horizontal gravity component.
+ * @param {number} [y=0] - The vertical gravity component.
+ * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
+ */
+Phaser.Particles.Arcade.Emitter.prototype.setGravity = function (x, y)
+{
+    x = x || 0;
+    y = y || 0;
+
+    this._gravity.set(x, y);
 
     return this;
 };
