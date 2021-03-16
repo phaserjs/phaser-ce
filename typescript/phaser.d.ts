@@ -1557,6 +1557,7 @@ declare module Phaser {
         make: Phaser.GameObjectCreator;
         math: Phaser.Math;
         onBlur: Phaser.Signal;
+        onBoot: Phaser.Signal;
         onFocus: Phaser.Signal;
         onPause: Phaser.Signal;
         onResume: Phaser.Signal;
