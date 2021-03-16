@@ -469,6 +469,7 @@ declare module PIXI {
         * @param root The root element to be rendered.
         */
         render(stage: DisplayObjectContainer): void;
+        postRender(): void;
 
         /**
         * Resizes the canvas view to the specified width and height
@@ -2056,6 +2057,7 @@ declare module PIXI {
         * @param stage the Stage element to be rendered
         */
         render(stage: DisplayObjectContainer): void;
+        postRender(): void;
 
         /**
         * Renders a Display Object.

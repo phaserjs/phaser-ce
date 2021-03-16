@@ -2247,7 +2247,7 @@ declare module Phaser {
         * 
         * Once the Game Object is 'born' you can set this to a positive value.
         * 
-        * It is automatically decremented by the millisecond equivalent of `game.time.physicsElapsed` each frame.
+        * It is automatically decremented by `game.time.delta` each frame.
         * When it reaches zero it will call the `kill` method.
         * 
         * Very handy for particles, bullets, collectibles, or any other short-lived entity.
@@ -7985,18 +7985,17 @@ declare module Phaser {
         device: Phaser.Device;
 
         /**
-        * When {@link Phaser.Game#forceSingleUpdate forceSingleUpdate} is off, skip {@link #updateRender rendering} if logic updates are spiraling upwards.
+        * Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}).
         */
         dropFrames: boolean;
 
         /**
-        * Should the game loop make one render per animation frame, even without a preceding logic update? (During spiraling conditions, {@link Phaser.Game#dropFrames dropFrames} is used instead.)
-        * Default: true
+        * Should the game loop make one render per animation frame, even without a preceding logic update?
         */
         forceSingleRender: boolean;
 
         /**
-        * Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.
+        * Use a variable-step game loop (true) or a fixed-step game loop (false).
         * Default: true
         */
         forceSingleUpdate: boolean;
@@ -8058,14 +8057,14 @@ declare module Phaser {
         math: Phaser.Math;
 
         /**
-        * Reference to the network class.
-        */
-        net: Phaser.Net;
-
-        /**
         * This event is fired when the game no longer has focus (typically on page hide).
         */
         onBlur: Phaser.Signal;
+
+        /**
+        * This event is fired after the game boots but before the first game update.
+        */
+        onBoot: Phaser.Signal;
 
         /**
         * This event is fired when the game has focus (typically on page show).
@@ -8312,14 +8311,14 @@ declare module Phaser {
         /**
         * The core game loop.
         * 
-        * @param time The current time as provided by RequestAnimationFrame.
+        * @param time The current time in milliseconds as provided by RequestAnimationFrame.
         */
         update(time: number): void;
 
         /**
         * Updates all logic subsystems in Phaser. Called automatically by Game.update.
         * 
-        * @param timeStep The current timeStep value as determined by Game.update.
+        * @param delta The current time step value in seconds, as determined by Game.update.
         */
         updateLogic(timeStep: number): void;
 
@@ -8333,8 +8332,6 @@ declare module Phaser {
         * This method is called automatically by Game.update, you don't need to call it directly.
         * Should you wish to have fine-grained control over when Phaser renders then use the `Game.lockRender` boolean.
         * Phaser will only render when this boolean is `false`.
-        * 
-        * @param elapsedTime The time elapsed since the last update.
         */
         updateRender(timeStep: number): void;
 
@@ -9573,7 +9570,7 @@ declare module Phaser {
         * 
         * Once the Game Object is 'born' you can set this to a positive value.
         * 
-        * It is automatically decremented by the millisecond equivalent of `game.time.physicsElapsed` each frame.
+        * It is automatically decremented by `game.time.delta` each frame.
         * When it reaches zero it will call the `kill` method.
         * 
         * Very handy for particles, bullets, collectibles, or any other short-lived entity.
@@ -11669,7 +11666,7 @@ declare module Phaser {
         * 
         * Once the Game Object is 'born' you can set this to a positive value.
         * 
-        * It is automatically decremented by the millisecond equivalent of `game.time.physicsElapsed` each frame.
+        * It is automatically decremented by `game.time.delta` each frame.
         * When it reaches zero it will call the `kill` method.
         * 
         * Very handy for particles, bullets, collectibles, or any other short-lived entity.
@@ -16824,73 +16821,6 @@ declare module Phaser {
 
 
     /**
-    * Phaser.Net handles browser URL related tasks such as checking host names, domain names and query string manipulation.
-    */
-    class Net {
-
-
-        /**
-        * Phaser.Net handles browser URL related tasks such as checking host names, domain names and query string manipulation.
-        * 
-        * @param game A reference to the currently running game.
-        */
-        constructor(game: Phaser.Game);
-
-        game: Phaser.Game;
-
-
-        /**
-        * Compares the given domain name against the hostname of the browser containing the game.
-        * If the domain name is found it returns true.
-        * You can specify a part of a domain, for example 'google' would match 'google.com', 'google.co.uk', etc.
-        * Do not include 'http://' at the start.
-        * 
-        * @param domain
-        * @return true if the given domain fragment can be found in the window.location.hostname
-        */
-        checkDomainName(domain: string): boolean;
-
-        /**
-        * Takes a Uniform Resource Identifier (URI) component (previously created by encodeURIComponent or by a similar routine) and
-        * decodes it, replacing \ with spaces in the return. Used internally by the Net classes.
-        * 
-        * @param value The URI component to be decoded.
-        * @return The decoded value.
-        */
-        decodeURI(value: string): string;
-
-        /**
-        * Returns the hostname given by the browser.
-        */
-        getHostName(): string;
-
-        /**
-        * Returns the Query String as an object.
-        * If you specify a parameter it will return just the value of that parameter, should it exist.
-        * 
-        * @param parameter If specified this will return just the value for that key. - Default: ''
-        * @return An object containing the key value pairs found in the query string or just the value if a parameter was given.
-        */
-        getQueryString(parameter?: string): string;
-
-        /**
-        * Updates a value on the Query String and returns it in full.
-        * If the value doesn't already exist it is set.
-        * If the value exists it is replaced with the new value given. If you don't provide a new value it is removed from the query string.
-        * Optionally you can redirect to the new url, or just return it as a string.
-        * 
-        * @param key The querystring key to update.
-        * @param value The new value to be set. If it already exists it will be replaced.
-        * @param redirect If true the browser will issue a redirect to the url with the new querystring.
-        * @param url The URL to modify. If none is given it uses window.location.href.
-        * @return If redirect is false then the modified url and query string is returned.
-        */
-        updateQueryString(key: string, value: any, redirect?: boolean, url?: string): string;
-
-    }
-
-
-    /**
     * Create a new `Particle` object. Particles are extended Sprites that are emitted by a particle emitter such as Phaser.Particles.Arcade.Emitter.
     */
     class Particle extends Phaser.Sprite {
@@ -17393,6 +17323,15 @@ declare module Phaser {
                 setAngle(minAngle: number, maxAngle: number, minSpeed?: number, maxSpeed?: number): Phaser.Particles.Arcade.Emitter;
 
                 /**
+                * Sets gravity for emitted particles.
+                * 
+                * @param x The horizontal gravity component.
+                * @param y The vertical gravity component.
+                * @return This Emitter instance.
+                */
+                setGravity(x?: number, y?: number): Phaser.Particles.Arcade.Emitter;
+
+                /**
                 * A more compact way of setting the angular velocity constraints of the particles.
                 * 
                 * @param min The minimum value for this range.
@@ -17425,6 +17364,17 @@ declare module Phaser {
                 * @return This Emitter instance.
                 */
                 setSize(width: number, height: number): Phaser.Particles.Arcade.Emitter;
+
+                /**
+                * A more compact way of setting the X and Y velocity ranges of the emitter.
+                * 
+                * @param minX The minimum horizontal speed.
+                * @param maxX The maximum horizontal speed.
+                * @param minY The minimum vertical speed.
+                * @param maxY The maximum vertical speed.
+                * @return This Emitter instance.
+                */
+                setSpeed(minX: number, maxX: number, minY: number, maxY: number): Phaser.Particles.Arcade.Emitter;
 
                 /**
                 * A more compact way of setting the X velocity range of the emitter.
@@ -20439,7 +20389,7 @@ declare module Phaser {
             total: number;
 
             /**
-            * If true the frameRate value will be ignored and instead p2 will step with the value of Game.Time.physicsElapsed, which is a delta time value.
+            * If true the frameRate value will be ignored and instead p2 will step with the value of Game.Time.delta, which is a delta time value.
             */
             useElapsedTime: boolean;
 
@@ -25387,7 +25337,7 @@ declare module Phaser {
         * 
         * Once the Game Object is 'born' you can set this to a positive value.
         * 
-        * It is automatically decremented by the millisecond equivalent of `game.time.physicsElapsed` each frame.
+        * It is automatically decremented by `game.time.delta` each frame.
         * When it reaches zero it will call the `kill` method.
         * 
         * Very handy for particles, bullets, collectibles, or any other short-lived entity.
@@ -26524,7 +26474,7 @@ declare module Phaser {
         pausedPosition: number;
 
         /**
-        * The game time (ms) at which the sound was paused.
+        * The clock time (ms) at which the sound was paused.
         */
         pausedTime: number;
 
@@ -27252,7 +27202,7 @@ declare module Phaser {
         * 
         * Once the Game Object is 'born' you can set this to a positive value.
         * 
-        * It is automatically decremented by the millisecond equivalent of `game.time.physicsElapsed` each frame.
+        * It is automatically decremented by `game.time.delta` each frame.
         * When it reaches zero it will call the `kill` method.
         * 
         * Very handy for particles, bullets, collectibles, or any other short-lived entity.
@@ -29029,9 +28979,8 @@ declare module Phaser {
         * The preRender method is called after all Game Objects have been updated, but before any rendering takes place.
         * 
         * @param game
-        * @param elapsedTime
         */
-        preRender(game: Phaser.Game, elapsedTime: number): void;
+        preRender(game: Phaser.Game): void;
 
         /**
         * Nearly all display objects in Phaser render automatically, you don't need to tell them to render.
@@ -29248,13 +29197,7 @@ declare module Phaser {
         */
         link(key: string): void;
         loadComplete(): void;
-
-        /**
-        * 
-        * 
-        * @param elapsedTime The time elapsed since the last update.
-        */
-        preRender(elapsedTime: number): void;
+        preRender(): void;
 
         /**
         * preUpdate is called right at the start of the game loop. It is responsible for changing to a new state that was requested previously.
@@ -32100,26 +32043,14 @@ declare module Phaser {
     * It manages the elapsed time and calculation of elapsed values, used for game object motion and tweens,
     * and also handles the standard Timer pool.
     * 
-    * To create a general timed event, use the master {@link Phaser.Timer} accessible through {@link Phaser.Time.events events}.
+    * To create a general timed event, use the master {@link Phaser.Timer} accessible through {@link Phaser.Time#events events}.
     * 
-    * There are different *types* of time in Phaser:
+    * There are different types of time in Phaser.
     * 
-    * - ***Game time*** always runs at the speed of time in real life.
+    * Animations, lifespan, particles, physics, timers, and tweens use game time, represented by {@link Phaser.Time#delta} and {@link Phaser.Time#deltaTotal}.
+    * Game time is scaled by {@link Phaser.Time#slowMotion} and does not advance when paused.
     * 
-    *   Unlike wall-clock time, *game time stops when Phaser is paused*.
-    * 
-    *   Game time is used for {@link Phaser.Timer timer events}.
-    * 
-    * - ***Physics time*** represents the amount of time given to physics calculations.
-    * 
-    *   *When {@link Phaser.Time#slowMotion slowMotion} is in effect physics time runs slower than game time.*
-    *   Like game time, physics time stops when Phaser is paused.
-    * 
-    *   Physics time is used for physics calculations and {@link Phaser.Tween tweens}.
-    * 
-    * - {@link https://en.wikipedia.org/wiki/Wall-clock_time ***Wall-clock time***} represents the duration between two events in real life time.
-    * 
-    *   This time is independent of Phaser and always progresses, regardless of if Phaser is paused.
+    * Input, sounds, and the Scale Manager use clock time, represented by {@link Phaser.Time#time}.
     */
     class Time {
 
@@ -32130,26 +32061,14 @@ declare module Phaser {
         * It manages the elapsed time and calculation of elapsed values, used for game object motion and tweens,
         * and also handles the standard Timer pool.
         * 
-        * To create a general timed event, use the master {@link Phaser.Timer} accessible through {@link Phaser.Time.events events}.
+        * To create a general timed event, use the master {@link Phaser.Timer} accessible through {@link Phaser.Time#events events}.
         * 
-        * There are different *types* of time in Phaser:
+        * There are different types of time in Phaser.
         * 
-        * - ***Game time*** always runs at the speed of time in real life.
+        * Animations, lifespan, particles, physics, timers, and tweens use game time, represented by {@link Phaser.Time#delta} and {@link Phaser.Time#deltaTotal}.
+        * Game time is scaled by {@link Phaser.Time#slowMotion} and does not advance when paused.
         * 
-        *   Unlike wall-clock time, *game time stops when Phaser is paused*.
-        * 
-        *   Game time is used for {@link Phaser.Timer timer events}.
-        * 
-        * - ***Physics time*** represents the amount of time given to physics calculations.
-        * 
-        *   *When {@link Phaser.Time#slowMotion slowMotion} is in effect physics time runs slower than game time.*
-        *   Like game time, physics time stops when Phaser is paused.
-        * 
-        *   Physics time is used for physics calculations and {@link Phaser.Tween tweens}.
-        * 
-        * - {@link https://en.wikipedia.org/wiki/Wall-clock_time ***Wall-clock time***} represents the duration between two events in real life time.
-        * 
-        *   This time is independent of Phaser and always progresses, regardless of if Phaser is paused.
+        * Input, sounds, and the Scale Manager use clock time, represented by {@link Phaser.Time#time}.
         * 
         * @param game A reference to the currently running game.
         */
@@ -32162,6 +32081,21 @@ declare module Phaser {
         advancedTiming: boolean;
 
         /**
+        * The current game step interval in milliseconds.
+        */
+        delta: number;
+
+        /**
+        * The maximum acceptable step interval in milliseconds, based on `desiredMinFps`.
+        */
+        deltaMax: number;
+
+        /**
+        * The total of all step intervals in milliseconds.
+        */
+        deltaTotal: number;
+
+        /**
         * The number of logic updates per second.
         * 
         * This is used is used to calculate the physic / logic multiplier and how to apply catch-up logic updates.
@@ -32172,9 +32106,19 @@ declare module Phaser {
         desiredFps: number;
 
         /**
-        * The desiredFps multiplier as used by Game.update.
+        * The desired step interval in seconds, based on `desiredFps`.
         */
         desiredFpsMult: number;
+
+        /**
+        * The smallest acceptable logic update rate.
+        * 
+        * This is used is used to calculate {@link Phaser.Time#deltaMax}.
+        * 
+        * It should be substantially smaller than {@link Phaser.Time#desiredFps}.
+        * Default: 5
+        */
+        desiredMinFps: number;
 
         /**
         * Elapsed time since the last time update, in milliseconds, based on `now`.
@@ -32183,8 +32127,9 @@ declare module Phaser {
         * 
         * While the game is active, this will be similar to (1000 / {@link Phaser.Time#fps fps}).
         * 
-        * This is updated only once per game loop, even if multiple logic update steps are done.
-        * Use {@link Phaser.Time#physicsElapsed physicsElapsed} as a basis of game/logic calculations instead.
+        * This is updated only once per animation frame, even if multiple logic update steps are done.
+        * 
+        * Don't use this for game timing. Use {@link Phaser.Time#delta delta} instead.
         */
         elapsed: number;
 
@@ -32199,9 +32144,9 @@ declare module Phaser {
         * This value is corrected for game pauses and will be "about zero" after a game is resumed.
         * 
         * This is updated at each logic update, possibly more than once per game loop.
-        * If multiple logic update steps are done, the `elapsedMS` values will differ greatly.
+        * If multiple consecutive logic update steps are done, `elapsedMS` will be close to zero after the first.
         * 
-        * Use {@link Phaser.Time#physicsElapsedMS physicsElapsedMS} as a basis of game/logic calculations instead.
+        * Don't use this for game timing. Use {@link Phaser.Time#deltaTime deltaTime} instead.
         */
         elapsedMS: number;
 
@@ -32266,6 +32211,8 @@ declare module Phaser {
         * 
         * The source may either be from a high-res source (eg. if RAF is available) or the standard Date.now;
         * the value can only be relied upon within a particular game instance.
+        * 
+        * This is updated only once per animation frame, even if multiple logic update steps are done.
         */
         now: number;
         pausedTime: number;
@@ -32275,27 +32222,6 @@ declare module Phaser {
         * (This is not updated until the game is resumed.)
         */
         pauseDuration: number;
-
-        /**
-        * The physics update delta, in fractional seconds.
-        * 
-        * This should be used as an applicable multiplier by all logic update steps (eg. `preUpdate/postUpdate/update`)
-        * to ensure consistent game timing. Game/logic timing can drift from real-world time if the system
-        * is unable to consistently maintain the desired FPS.
-        * 
-        * With fixed-step updates this is normally equivalent to `1.0 / desiredFps`.
-        */
-        physicsElapsed: number;
-
-        /**
-        * The physics update delta, in milliseconds - equivalent to `physicsElapsed * 1000`.
-        */
-        physicsElapsedMS: number;
-
-        /**
-        * The `now` when the previous update occurred.
-        */
-        prevTime: number;
 
         /**
         * Advanced timing result: The number of {@link Phaser.Game#updateRender renders} made in the last second.
@@ -32317,8 +32243,6 @@ declare module Phaser {
         * - 1.0 = normal speed
         * - 2.0 = half speed
         * - 0.5 = double speed
-        * 
-        * You likely need to adjust {@link Phaser.Time#desiredFps desiredFps} as well such that `desiredFps / slowMotion === 60`.
         * Default: 1
         */
         slowMotion: number;
@@ -32416,7 +32340,9 @@ declare module Phaser {
         totalElapsedSeconds(): number;
 
         /**
-        * Updates the game clock and if enabled the advanced timing data. This is called automatically by Phaser.Game.
+        * Updates the game clock and advanced timing data (if enabled) from the given timestamp.
+        * 
+        * This is called automatically by Phaser.Game once per animation frame (RAF or setTimeout).
         * 
         * @param time The current relative timestamp; see {@link Phaser.Time#now now}.
         */
@@ -32431,8 +32357,7 @@ declare module Phaser {
     * 
     * All Timer delays are in milliseconds (there are 1000 ms in 1 second); so a delay value of 250 represents a quarter of a second.
     * 
-    * Timers are based on real life time, adjusted for game pause durations.
-    * That is, *timer events are based on elapsed {@link Phaser.Time game time}* and do *not* take physics time or slow motion into account.
+    * Timers are based on game time. They are scaled by {@link Phaser.Time#slowMotion} and do not advance when the game is paused.
     */
     class Timer {
 
@@ -32443,8 +32368,7 @@ declare module Phaser {
         * 
         * All Timer delays are in milliseconds (there are 1000 ms in 1 second); so a delay value of 250 represents a quarter of a second.
         * 
-        * Timers are based on real life time, adjusted for game pause durations.
-        * That is, *timer events are based on elapsed {@link Phaser.Time game time}* and do *not* take physics time or slow motion into account.
+        * Timers are based on game time. They are scaled by {@link Phaser.Time#slowMotion} and do not advance when the game is paused.
         * 
         * @param game A reference to the currently running game.
         * @param autoDestroy If true, the timer will automatically destroy itself after all the events have been dispatched (assuming no looping events). - Default: true
@@ -32950,19 +32874,6 @@ declare module Phaser {
         current: number;
 
         /**
-        * Is this Tween frame or time based? A frame based tween will use the physics elapsed timer when updating. This means
-        * it will retain the same consistent frame rate, regardless of the speed of the device. The duration value given should
-        * be given in frames.
-        * 
-        * If the Tween uses a time based update (which is the default) then the duration is given in milliseconds.
-        * In this situation a 2000ms tween will last exactly 2 seconds, regardless of the device and how many visual updates the tween
-        * has actually been through. For very short tweens you may wish to experiment with a frame based update instead.
-        * 
-        * The default value is whatever you've set in TweenManager.frameBased.
-        */
-        frameBased: boolean;
-
-        /**
         * A reference to the currently running Game.
         */
         game: Phaser.Game;
@@ -33116,7 +33027,7 @@ declare module Phaser {
         * ".easeIn", ".easeOut" and "easeInOut" variants are all supported for all ease types.
         * 
         * @param properties An object containing the properties you want to tween., such as `Sprite.x` or `Sound.volume`. Given as a JavaScript object.
-        * @param duration Duration of this tween in ms. Or if `Tween.frameBased` is true this represents the number of frames that should elapse. - Default: 1000
+        * @param duration Duration of this tween in ms. - Default: 1000
         * @param ease Easing function. If not set it will default to Phaser.Easing.Default, which is Phaser.Easing.Linear.None by default but can be over-ridden.
         * @param autoStart Set to `true` to allow this tween to start automatically. Otherwise call Tween.start().
         * @param delay Delay before this tween will start in milliseconds. Defaults to 0, no delay.
@@ -33133,7 +33044,7 @@ declare module Phaser {
         * ".easeIn", ".easeOut" and "easeInOut" variants are all supported for all ease types.
         * 
         * @param properties An object containing the properties you want to tween., such as `Sprite.x` or `Sound.volume`. Given as a JavaScript object.
-        * @param duration Duration of this tween in ms. Or if `Tween.frameBased` is true this represents the number of frames that should elapse. - Default: 1000
+        * @param duration Duration of this tween in ms. - Default: 1000
         * @param ease Easing function. If not set it will default to Phaser.Easing.Default, which is Phaser.Easing.Linear.None by default but can be over-ridden.
         * @param autoStart Set to `true` to allow this tween to start automatically. Otherwise call Tween.start().
         * @param delay Delay before this tween will start in milliseconds. Defaults to 0, no delay.
@@ -33277,7 +33188,7 @@ declare module Phaser {
         * ".easeIn", ".easeOut" and "easeInOut" variants are all supported for all ease types.
         * 
         * @param properties An object containing the properties you want to tween, such as `Sprite.x` or `Sound.volume`. Given as a JavaScript object.
-        * @param duration Duration of this tween in ms. Or if `Tween.frameBased` is true this represents the number of frames that should elapse. - Default: 1000
+        * @param duration Duration of this tween in ms. - Default: 1000
         * @param ease Easing function. If not set it will default to Phaser.Easing.Default, which is Phaser.Easing.Linear.None by default but can be over-ridden.
         * @param autoStart Set to `true` to allow this tween to start automatically. Otherwise call Tween.start().
         * @param delay Delay before this tween will start in milliseconds. Defaults to 0, no delay.
@@ -33294,7 +33205,7 @@ declare module Phaser {
         * ".easeIn", ".easeOut" and "easeInOut" variants are all supported for all ease types.
         * 
         * @param properties An object containing the properties you want to tween, such as `Sprite.x` or `Sound.volume`. Given as a JavaScript object.
-        * @param duration Duration of this tween in ms. Or if `Tween.frameBased` is true this represents the number of frames that should elapse. - Default: 1000
+        * @param duration Duration of this tween in ms. - Default: 1000
         * @param ease Easing function. If not set it will default to Phaser.Easing.Default, which is Phaser.Easing.Linear.None by default but can be over-ridden.
         * @param autoStart Set to `true` to allow this tween to start automatically. Otherwise call Tween.start().
         * @param delay Delay before this tween will start in milliseconds. Defaults to 0, no delay.
@@ -33558,17 +33469,6 @@ declare module Phaser {
         */
         constructor(game: Phaser.Game);
 
-
-        /**
-        * Are all newly created Tweens frame or time based? A frame based tween will use the physics elapsed timer when updating. This means
-        * it will retain the same consistent frame rate, regardless of the speed of the device. The duration value given should
-        * be given in frames.
-        * 
-        * If the Tween uses a time based update (which is the default) then the duration is given in milliseconds.
-        * In this situation a 2000ms tween will last exactly 2 seconds, regardless of the device and how many visual updates the tween
-        * has actually been through. For very short tweens you may wish to experiment with a frame based update instead.
-        */
-        frameBased: boolean;
 
         /**
         * Local reference to game.
