@@ -1558,6 +1558,7 @@ declare module Phaser {
         math: Phaser.Math;
         net: Phaser.Net;
         onBlur: Phaser.Signal;
+        onBoot: Phaser.Signal;
         onFocus: Phaser.Signal;
         onPause: Phaser.Signal;
         onResume: Phaser.Signal;
