@@ -6,30 +6,30 @@
 
 The core game loop and timekeeping have been redone. Game timing should now work consistently at any device frame rate, for any `desiredFps`, with `forceSingleUpdate` on or off.
 
-Animations, lifespan, particles, physics, timers, and tweens now all use the same delta time, represented by `delta` and `deltaTotal`. The delta is scaled by `slowMotion`. There's no need to adjust `desiredFps` to match `slowMotion` now; they work independently. The delta size is clamped by `deltaMax` (which can be controlled by `desiredMinFps` as well).
+Animations, lifespan, particles, physics, timers, and tweens now all use the same delta time, represented by `delta` and `deltaTotal`. The delta is scaled by `slowMotion`. There's no need to adjust `desiredFps` to match `slowMotion` now; they work independently. The delta size is clamped by `deltaMax`, which can be controlled by `desiredMinFps` as well.
 
 Phaser.Game#forceSingleUpdate now switches between a **variable-step** or **fixed-step** game loop.
 
-When `forceSingleUpdate` is off (the default), the game makes one logic update and one render per animation frame received from the device. This is often at 60Hz, but can be lower (33Hz) or higher (75Hz, 144Hz, 240Hz).
+When `forceSingleUpdate` is off (the default), the game makes one logic update and one render per animation frame received from the device. This is usually at 60Hz, but can be lower (33Hz) or higher (75Hz, 144Hz, 240Hz).
 
 When `forceSingleUpdate` is on, the game makes logic updates only at the rate given by `desiredFps` (60Hz or 16.6ms by default). Depending on the `desiredFps` value and the device frame rate, this will make zero, one, or several logic updates per animation frame. There is one render per animation frame only if at least one update was made or `forceSingleRender` is on; otherwise there is none.
 
 #### Added
 
-- Phaser.Game#onBoot
-- Phaser.Particles.Arcade.Emitter#setGravity()
-- Phaser.Particles.Arcade.Emitter#setSpeed()
-- Phaser.Time#delta
-- Phaser.Time#deltaMax
-- Phaser.Time#deltaTotal
-- Phaser.Time#desiredMinFps
+- Phaser.Game#onBoot is a signal dispatched after the game boots but before the first update is made. You could use it to configure the game before a game state is started.
+- Phaser.Particles.Arcade.Emitter#setGravity() sets the gravity of emitted particles.
+- Phaser.Particles.Arcade.Emitter#setSpeed() sets the speed ranges of emitted particles.
+- Phaser.Time#delta is the time step for the current logic update, in game time.
+- Phaser.Time#deltaMax is the desired maximum delta size in ms. The default is 200ms.
+- Phaser.Time#deltaTotal is the cumulative delta, so the current "time" in game time.
+- Phaser.Time#desiredMinFps is the desired minimum logic update rate. It sets `deltaMax`. The default is 5.
 - PIXI.CanvasRenderer#postRender
 - PIXI.WebGLRenderer#postRender
 
 #### Changed
 
-- Phaser.Game#dropFrames
-- Phaser.Game#forceSingleUpdate
+- Phaser.Game#dropFrames skips updates and renders when the animation frame interval is larger than `deltaMax`. It's probably not very useful.
+- Phaser.Game#forceSingleUpdate switches between a variable-step or fixed-step game loop.
 
 #### Removed
 
@@ -43,10 +43,6 @@ When `forceSingleUpdate` is on, the game makes logic updates only at the rate gi
 - Phaser.Tween#frameBased
 - Phaser.TweenManager#frameBased
 - The `elapsedTime` argument in Phaser.State#preRender
-
-### New Features
-
-### Updates
 
 ### Bug Fixes
 
