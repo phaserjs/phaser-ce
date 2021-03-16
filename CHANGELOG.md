@@ -16,6 +16,9 @@ When `forceSingleUpdate` is on, the game makes logic updates only at the rate gi
 
 #### Added
 
+- Phaser.Game#onBoot
+- Phaser.Particles.Arcade.Emitter#setGravity()
+- Phaser.Particles.Arcade.Emitter#setSpeed()
 - Phaser.Time#delta
 - Phaser.Time#deltaMax
 - Phaser.Time#deltaTotal
