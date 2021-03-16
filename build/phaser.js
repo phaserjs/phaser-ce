@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.16.2 "2021-03-08" - Built: Mon Mar 08 2021 12:51:36
+* v2.17.0 "2021-03-16" - Built: Tue Mar 16 2021 11:18:37
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -18625,6 +18625,12 @@ PIXI.WebGLRenderer.prototype.render = function (stage)
     this.renderDisplayObject(stage, this.projection);
 };
 
+PIXI.WebGLRenderer.prototype.postRender = function ()
+{
+    // flush gl to prevent flickering on some android devices
+    this.gl.flush();
+};
+
 /**
  * Renders a Display Object.
  *
@@ -21881,6 +21887,11 @@ PIXI.CanvasRenderer.prototype.render = function (root)
     this.renderDisplayObject(root);
 };
 
+PIXI.CanvasRenderer.prototype.postRender = function ()
+{
+    // Nothing to do.
+};
+
 PIXI.CanvasRenderer.prototype.setTexturePriority = function ()
 {
 
@@ -22591,7 +22602,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.16.2',
+    VERSION: '2.17.0',
 
     /**
      * An array of Phaser game instances.
@@ -29398,7 +29409,7 @@ Phaser.Camera.prototype = {
         if (this._fxType === Phaser.Camera.FLASH)
         {
             //  flash
-            this.fx.alpha -= this.game.time.elapsedMS / this._fxDuration;
+            this.fx.alpha -= this.game.time.delta / this._fxDuration;
 
             if (this.fx.alpha <= 0)
             {
@@ -29410,7 +29421,7 @@ Phaser.Camera.prototype = {
         else if (this._fxType === Phaser.Camera.FADE_IN)
         {
             //  fade in
-            this.fx.alpha -= this.game.time.elapsedMS / this._fxDuration;
+            this.fx.alpha -= this.game.time.delta / this._fxDuration;
 
             if (this.fx.alpha <= 0)
             {
@@ -29422,7 +29433,7 @@ Phaser.Camera.prototype = {
         else
         {
             //  fade out
-            this.fx.alpha += this.game.time.elapsedMS / this._fxDuration;
+            this.fx.alpha += this.game.time.delta / this._fxDuration;
 
             if (this.fx.alpha >= 1)
             {
@@ -29441,7 +29452,7 @@ Phaser.Camera.prototype = {
      */
     updateShake: function ()
     {
-        this._shake.duration -= this.game.time.elapsedMS;
+        this._shake.duration -= this.game.time.delta;
 
         if (this._shake.duration <= 0)
         {
@@ -30065,7 +30076,6 @@ Phaser.State.prototype = {
      *
      * @method Phaser.State#preRender
      * @param {Phaser.Game} game
-     * @param {number} elapsedTime
      */
     preRender: function ()
     {
@@ -30828,13 +30838,12 @@ Phaser.StateManager.prototype = {
     /**
      * @method Phaser.StateManager#preRender
      * @protected
-     * @param {number} elapsedTime - The time elapsed since the last update.
      */
-    preRender: function (elapsedTime)
+    preRender: function ()
     {
         if (this._created && this.onPreRenderCallback)
         {
-            this.onPreRenderCallback.call(this.callbackContext, this.game, elapsedTime);
+            this.onPreRenderCallback.call(this.callbackContext, this.game);
         }
     },
 
@@ -36629,11 +36638,6 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.math = null;
 
     /**
-     * @property {Phaser.Net} net - Reference to the network class.
-     */
-    this.net = null;
-
-    /**
      * @property {Phaser.ScaleManager} scale - The game scale manager.
      */
     this.scale = null;
@@ -36770,6 +36774,11 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.onFocus = null;
 
     /**
+     * @property {Phaser.Signal} onBoot - This event is fired after the game boots but before the first game update.
+     */
+    this.onBoot = new Phaser.Signal();
+
+    /**
      * @property {boolean} _paused - Is game paused?
      * @private
      */
@@ -36780,6 +36789,12 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
      * @private
      */
     this._codePaused = false;
+
+    /**
+     * @property {boolean} _focusGained - The game has just regained focus.
+     * @private
+     */
+    this._focusGained = false;
 
     /**
      * The ID of the current/last logic update applied this animation frame, starting from 0.
@@ -36797,7 +36812,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.updatesThisFrame = 1;
 
     /**
-     * Number of renders expected to occur this animation frame. May be 0 if {@link #dropFrames} is on or {@link #forceSingleRender} is off; otherwise it will be 1.
+     * Number of renders expected to occur this animation frame. May be 0 if {@link #forceSingleRender} is off; otherwise it will be 1.
      * @property {integer} rendersThisFrame
      * @protected
      */
@@ -36836,28 +36851,22 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.fpsProblemNotifier = new Phaser.Signal();
 
     /**
-     * @property {boolean} forceSingleUpdate - Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.
+     * @property {boolean} forceSingleUpdate - Use a variable-step game loop (true) or a fixed-step game loop (false).
      * @default
      */
     this.forceSingleUpdate = true;
 
     /**
-     * @property {boolean} forceSingleRender - Should the game loop make one render per animation frame, even without a preceding logic update? (During spiraling conditions, {@link #dropFrames} is used instead.)
+     * @property {boolean} forceSingleRender - Should the game loop make one render per animation frame, even without a preceding logic update?
      * @default
      */
-    this.forceSingleRender = true;
+    this.forceSingleRender = false;
 
     /**
-     * @property {boolean} dropFrames - When {@link #forceSingleUpdate} is off, skip {@link #updateRender rendering} if logic updates are spiraling upwards.
+     * @property {boolean} dropFrames - Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}).
      * @default
      */
     this.dropFrames = false;
-
-    /**
-     * @property {number} maxUpdates - When {@link #forceSingleUpdate} is off, the maximum number of logic updates to make per animation frame, if required to catch up.
-     * @default
-     */
-    this.maxUpdates = 3;
 
     /**
      * @property {string} powerPreference - When the WebGL renderer is used, hint to the browser which GPU to use.
@@ -37107,7 +37116,6 @@ Phaser.Game.prototype = {
         this.particles = new Phaser.Particles(this);
         this.create = new Phaser.Create(this);
         this.plugins = new Phaser.PluginManager(this);
-        this.net = new Phaser.Net(this);
 
         this.time.boot();
         this.stage.boot();
@@ -37145,6 +37153,8 @@ Phaser.Game.prototype = {
         this._kickstart = true;
 
         this.focusWindow();
+
+        this.onBoot.dispatch(this);
 
         if (this.config.disableStart)
         {
@@ -37359,7 +37369,7 @@ Phaser.Game.prototype = {
      *
      * @method Phaser.Game#update
      * @protected
-     * @param {number} time - The current time as provided by RequestAnimationFrame.
+     * @param {number} time - The current time in milliseconds as provided by RequestAnimationFrame.
      */
     update: function (time)
     {
@@ -37370,104 +37380,106 @@ Phaser.Game.prototype = {
             return;
         }
 
+        if (!this.isBooted)
+        {
+            return;
+        }
+
+        // Sets `elapsed`, `elapsedMS`, `now`, `time`
         this.time.update(time);
 
         if (this._kickstart)
         {
             this.updateLogic(this.time.desiredFpsMult);
-
-            // call the game render update exactly once every frame
-            this.updateRender(this.time.slowMotion * this.time.desiredFps);
+            this.updateRender();
 
             this._kickstart = false;
 
             return;
         }
 
-        // if the logic time is spiraling upwards, skip a frame entirely
-        if (this._spiraling > 1 && !this.forceSingleUpdate)
+        if (this._focusGained)
         {
-            // cause an event to warn the program that this CPU can't keep up with the current desiredFps rate
-            if (this.time.time > this._nextFpsNotification)
-            {
-                // only permit one fps notification per 10 seconds
-                this._nextFpsNotification = this.time.time + 10000;
+            this._focusGained = false;
 
-                // dispatch the notification signal
-                this.fpsProblemNotifier.dispatch();
-            }
+            // Wait for next frame.
 
-            // reset the _deltaTime accumulator which will cause all pending late updates to be permanently skipped
-            this._deltaTime = 0;
-            this._spiraling = 0;
+            return;
+        }
+
+        var elapsed = this.time.elapsed;
+
+        if (elapsed <= 0)
+        {
+            return;
+        }
+
+        if (elapsed > this.time.deltaMax)
+        {
+            // `dropFrames` not so useful.
 
             if (this.dropFrames)
             {
-                this.rendersThisFrame = 0;
+                return;
             }
             else
             {
-                this.updateRender(this.time.slowMotion * this.time.desiredFps);
-                this.rendersThisFrame = 1;
+                elapsed = this.time.deltaMax;
             }
+        }
+
+        if (this.forceSingleUpdate)
+        {
+            this.updatesThisFrame = 1;
+            this.rendersThisFrame = 1;
+
+            this.updateLogic(0.001 * elapsed / this.time.slowMotion);
+            this.updateRender();
+        }
+        else if (this._spiraling > 2)
+        {
+            // Skip update and render completely
+            this.updatesThisFrame = 0;
+            this.rendersThisFrame = 0;
+
+            // Notify
+            if (this.time.time > this._nextFpsNotification)
+            {
+                this._nextFpsNotification = this.time.time + 10000;
+                this.fpsProblemNotifier.dispatch();
+            }
+
+            // Discard all pending late updates
+            this._deltaTime = 0;
+            this._spiraling = 0;
         }
         else
         {
-            // step size taking into account the slow motion speed
-            var slowStep = this.time.slowMotion * 1000.0 / this.time.desiredFps;
-
-            // accumulate time until the slowStep threshold is met or exceeded... up to a limit of `maxUpdates` (3) catch-up frames at slowStep intervals
-            this._deltaTime += Math.max(Math.min(slowStep * this.maxUpdates, this.time.elapsed), 0);
-
-            /*
-             * call the game update logic multiple times if necessary to "catch up" with dropped frames
-             * unless forceSingleUpdate is true
-             */
             var count = 0;
+            var fixedStepSize = 1000 * this.time.desiredFpsMult;
 
-            this.updatesThisFrame = Math.floor(this._deltaTime / slowStep);
+            this._deltaTime += elapsed;
 
-            if (this.forceSingleUpdate)
-            {
-                this.updatesThisFrame = Math.min(1, this.updatesThisFrame);
-            }
+            this.updatesThisFrame = Math.floor(this._deltaTime / fixedStepSize);
+            this.rendersThisFrame = this.forceSingleRender ? 1 : Math.min(1, this.updatesThisFrame);
 
-            if (this.forceSingleRender)
+            while (this._deltaTime >= fixedStepSize)
             {
-                this.rendersThisFrame = 1;
-            }
-            else
-            {
-                this.rendersThisFrame = Math.min(1, this.updatesThisFrame);
-            }
-
-            while (this._deltaTime >= slowStep)
-            {
-                this._deltaTime -= slowStep;
+                this._deltaTime -= fixedStepSize;
                 this.currentUpdateID = count;
 
-                this.updateLogic(this.time.desiredFpsMult);
+                this.updateLogic(this.time.desiredFpsMult / this.time.slowMotion);
+                this.time.refresh();
 
                 count++;
-
-                if (this.forceSingleUpdate && count === 1)
-                {
-                    break;
-                }
-                else
-                {
-                    this.time.refresh();
-                }
             }
 
-            // detect spiraling (if the catch-up loop isn't fast enough, the number of iterations will increase constantly)
             if (count > this._lastCount)
             {
                 this._spiraling++;
             }
             else if (count < this._lastCount)
             {
-                // looks like it caught up successfully, reset the spiral alert counter
                 this._spiraling = 0;
             }
 
@@ -37475,14 +37487,8 @@ Phaser.Game.prototype = {
 
             if (this.rendersThisFrame > 0)
             {
-                this.updateRender(this._deltaTime / slowStep);
+                this.updateRender();
             }
-        }
-
-        if (this.renderer.type === Phaser.WEBGL)
-        {
-            // flush gl to prevent flickering on some android devices
-            this.renderer.gl.flush();
         }
     },
 
@@ -37491,9 +37497,9 @@ Phaser.Game.prototype = {
      *
      * @method Phaser.Game#updateLogic
      * @protected
-     * @param {number} timeStep - The current timeStep value as determined by Game.update.
+     * @param {number} delta - The current time step value in seconds, as determined by Game.update.
      */
-    updateLogic: function (timeStep)
+    updateLogic: function (delta)
     {
         if (!this._paused && !this.pendingStep)
         {
@@ -37502,14 +37508,14 @@ Phaser.Game.prototype = {
                 this.pendingStep = true;
             }
 
-            this.time.preUpdate();
+            this.time.preUpdate(delta);
 
             this.scale.preUpdate();
             this.debug.preUpdate();
             this.camera.preUpdate();
             this.physics.preUpdate();
-            this.state.preUpdate(timeStep);
-            this.plugins.preUpdate(timeStep);
+            this.state.preUpdate(delta);
+            this.plugins.preUpdate(delta);
             this.stage.preUpdate();
 
             this.state.update();
@@ -37528,7 +37534,7 @@ Phaser.Game.prototype = {
         {
             // Scaling and device orientation changes are still reflected when paused.
             this.scale.pauseUpdate();
-            this.state.pauseUpdate(timeStep);
+            this.state.pauseUpdate(delta);
             this.debug.preUpdate();
             this.input.pauseUpdate();
         }
@@ -37549,9 +37555,8 @@ Phaser.Game.prototype = {
      *
      * @method Phaser.Game#updateRender
      * @protected
-     * @param {number} elapsedTime - The time elapsed since the last update.
      */
-    updateRender: function (elapsedTime)
+    updateRender: function ()
     {
         if (this.lockRender || this.renderType === Phaser.HEADLESS)
         {
@@ -37559,16 +37564,14 @@ Phaser.Game.prototype = {
         }
 
         this.time.preRender();
-
-        this.state.preRender(elapsedTime);
+        this.state.preRender();
 
         this.renderer.render(this.stage);
+        this.plugins.render();
+        this.state.render();
 
-        this.plugins.render(elapsedTime);
-
-        this.state.render(elapsedTime);
-
-        this.plugins.postRender(elapsedTime);
+        this.plugins.postRender();
+        this.renderer.postRender();
     },
 
     /**
@@ -37742,6 +37745,8 @@ Phaser.Game.prototype = {
      */
     focusGain: function (event)
     {
+        this._focusGained = true;
+
         this.focusWindow();
 
         this.onFocus.dispatch(event);
@@ -49054,7 +49059,7 @@ Phaser.Component.LifeSpan.preUpdate = function ()
 
     if (this.lifespan > 0)
     {
-        this.lifespan -= this.game.time.physicsElapsedMS;
+        this.lifespan -= this.game.time.delta;
 
         if (this.lifespan <= 0)
         {
@@ -49086,7 +49091,7 @@ Phaser.Component.LifeSpan.prototype = {
      *
      * Once the Game Object is 'born' you can set this to a positive value.
      *
-     * It is automatically decremented by the millisecond equivalent of `game.time.physicsElapsed` each frame.
+     * It is automatically decremented by `game.time.delta` each frame.
      * When it reaches zero it will call the `kill` method.
      *
      * Very handy for particles, bullets, collectibles, or any other short-lived entity.
@@ -62931,7 +62936,7 @@ Object.defineProperty(Phaser.Rope.prototype, 'segments', {
  *
  * You shouldn't ever create a TileSprite any larger than your actual screen size. If you want to create a large repeating background
  * that scrolls across the whole map of your game, then you create a TileSprite that fits the screen size and then use the `tilePosition`
- * property to scroll the texture as the player moves. If you create a TileSprite that is thousands of pixels in size then it will 
+ * property to scroll the texture as the player moves. If you create a TileSprite that is thousands of pixels in size then it will
  * consume huge amounts of memory and cause performance issues. Remember: use `tilePosition` to scroll your texture and `tileScale` to
  * adjust the scale of the texture - don't resize the sprite itself or make it larger than it needs.
  *
@@ -63013,7 +63018,7 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame)
      * @property {Phaser.Point} tileScaleOffset - The scale offset applied to the image being tiled.
      */
     this.tileScaleOffset = new Phaser.Point(1, 1);
-    
+
     /**
      * @property {Phaser.Point} tilePosition - The offset position of the image being tiled.
      */
@@ -63104,12 +63109,12 @@ Phaser.TileSprite.prototype.preUpdate = function ()
 {
     if (this._scroll.x !== 0)
     {
-        this.tilePosition.x += this._scroll.x * this.game.time.physicsElapsed;
+        this.tilePosition.x += this._scroll.x * 0.001 * this.game.time.delta;
     }
 
     if (this._scroll.y !== 0)
     {
-        this.tilePosition.y += this._scroll.y * this.game.time.physicsElapsed;
+        this.tilePosition.y += this._scroll.y * 0.001 * this.game.time.delta;
     }
 
     if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
@@ -63272,7 +63277,7 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
             return;
         }
     }
-    
+
     renderSession.spriteBatch.renderTilingSprite(this);
 
     for (var i = 0; i < this.children.length; i++)
@@ -63319,7 +63324,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
     {
         return;
     }
-    
+
     var context = renderSession.context;
 
     if (this._mask)
@@ -63328,7 +63333,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
     }
 
     context.globalAlpha = this.worldAlpha;
-    
+
     var wt = this.worldTransform;
     var resolution = renderSession.resolution;
     var tx = (wt.tx * resolution) + renderSession.shakeX;
@@ -63348,7 +63353,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
     if (this.refreshTexture)
     {
         this.generateTilingTexture(false, renderSession);
-    
+
         if (this.tilingTexture)
         {
             this.tilePattern = context.createPattern(this.tilingTexture.baseTexture.source, 'repeat');
@@ -63547,7 +63552,7 @@ Phaser.TileSprite.prototype.getBounds = function ()
     var d = worldTransform.d;
     var tx = worldTransform.tx;
     var ty = worldTransform.ty;
-    
+
     var x1 = (a * w1) + (c * h1) + tx;
     var y1 = (d * h1) + (b * w1) + ty;
 
@@ -67747,170 +67752,6 @@ Phaser.QuadTree.prototype.constructor = Phaser.QuadTree;
  */
 
 /**
- * Phaser.Net handles browser URL related tasks such as checking host names, domain names and query string manipulation.
- *
- * @class Phaser.Net
- * @constructor
- * @param {Phaser.Game} game - A reference to the currently running game.
- */
-Phaser.Net = function (game)
-{
-    this.game = game;
-};
-
-Phaser.Net.prototype = {
-
-    /**
-     * Returns the hostname given by the browser.
-     *
-     * @method Phaser.Net#getHostName
-     * @return {string}
-     */
-    getHostName: function ()
-    {
-        if (window.location && window.location.hostname)
-        {
-            return window.location.hostname;
-        }
-
-        return null;
-    },
-
-    /**
-     * Compares the given domain name against the hostname of the browser containing the game.
-     * If the domain name is found it returns true.
-     * You can specify a part of a domain, for example 'google' would match 'google.com', 'google.co.uk', etc.
-     * Do not include 'http://' at the start.
-     *
-     * @method Phaser.Net#checkDomainName
-     * @param {string} domain
-     * @return {boolean} true if the given domain fragment can be found in the window.location.hostname
-     */
-    checkDomainName: function (domain)
-    {
-        return window.location.hostname.indexOf(domain) !== -1;
-    },
-
-    /**
-     * Updates a value on the Query String and returns it in full.
-     * If the value doesn't already exist it is set.
-     * If the value exists it is replaced with the new value given. If you don't provide a new value it is removed from the query string.
-     * Optionally you can redirect to the new url, or just return it as a string.
-     *
-     * @method Phaser.Net#updateQueryString
-     * @param {string} key - The querystring key to update.
-     * @param {string} value - The new value to be set. If it already exists it will be replaced.
-     * @param {boolean} redirect - If true the browser will issue a redirect to the url with the new querystring.
-     * @param {string} url - The URL to modify. If none is given it uses window.location.href.
-     * @return {string} If redirect is false then the modified url and query string is returned.
-     */
-    updateQueryString: function (key, value, redirect, url)
-    {
-        if (redirect === undefined) { redirect = false; }
-        if (url === undefined || url === '') { url = window.location.href; }
-
-        var output = '';
-        var re = new RegExp('([?|&])' + key + '=.*?(&|#|$)(.*)', 'gi');
-
-        if (re.test(url))
-        {
-            if (typeof value !== 'undefined' && value !== null)
-            {
-                output = url.replace(re, '$1' + key + '=' + value + '$2$3');
-            }
-            else
-            {
-                output = url.replace(re, '$1$3').replace(/(&|\?)$/, '');
-            }
-        }
-        else
-        if (typeof value !== 'undefined' && value !== null)
-        {
-            var separator = url.indexOf('?') !== -1 ? '&' : '?';
-            var hash = url.split('#');
-            url = hash[0] + separator + key + '=' + value;
-
-            if (hash[1])
-            {
-                url += '#' + hash[1];
-            }
-
-            output = url;
-        }
-        else
-        {
-            output = url;
-        }
-
-        if (redirect)
-        {
-            window.location.href = output;
-        }
-        else
-        {
-            return output;
-        }
-    },
-
-    /**
-     * Returns the Query String as an object.
-     * If you specify a parameter it will return just the value of that parameter, should it exist.
-     *
-     * @method Phaser.Net#getQueryString
-     * @param {string} [parameter=''] - If specified this will return just the value for that key.
-     * @return {string|object} An object containing the key value pairs found in the query string or just the value if a parameter was given.
-     */
-    getQueryString: function (parameter)
-    {
-        if (parameter === undefined) { parameter = ''; }
-
-        var output = {};
-        var keyValues = location.search.substring(1).split('&');
-
-        for (var i in keyValues)
-        {
-            var key = keyValues[i].split('=');
-
-            if (key.length > 1)
-            {
-                if (parameter && parameter === this.decodeURI(key[0]))
-                {
-                    return this.decodeURI(key[1]);
-                }
-                else
-                {
-                    output[this.decodeURI(key[0])] = this.decodeURI(key[1]);
-                }
-            }
-        }
-
-        return output;
-    },
-
-    /**
-     * Takes a Uniform Resource Identifier (URI) component (previously created by encodeURIComponent or by a similar routine) and
-     * decodes it, replacing \ with spaces in the return. Used internally by the Net classes.
-     *
-     * @method Phaser.Net#decodeURI
-     * @param {string} value - The URI component to be decoded.
-     * @return {string} The decoded value.
-     */
-    decodeURI: function (value)
-    {
-        return decodeURIComponent(value.replace(/\+/g, ' '));
-    }
-
-};
-
-Phaser.Net.prototype.constructor = Phaser.Net;
-
-/**
- * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    2016 Photon Storm Ltd.
- * @license      {@link https://github.com/photonstorm/phaser/blob/master/license.txt|MIT License}
- */
-
-/**
  * Phaser.Game has a single instance of the TweenManager through which all Tween objects are created and updated.
  * Tweens are hooked into the game clock and pause system, adjusting based on the game state.
  *
@@ -67929,19 +67770,6 @@ Phaser.TweenManager = function (game)
      * @property {Phaser.Game} game - Local reference to game.
      */
     this.game = game;
-
-    /**
-     * Are all newly created Tweens frame or time based? A frame based tween will use the physics elapsed timer when updating. This means
-     * it will retain the same consistent frame rate, regardless of the speed of the device. The duration value given should
-     * be given in frames.
-     *
-     * If the Tween uses a time based update (which is the default) then the duration is given in milliseconds.
-     * In this situation a 2000ms tween will last exactly 2 seconds, regardless of the device and how many visual updates the tween
-     * has actually been through. For very short tweens you may wish to experiment with a frame based update instead.
-     * @property {boolean} frameBased
-     * @default
-     */
-    this.frameBased = false;
 
     /**
      * @property {array<Phaser.Tween>} _tweens - All of the currently running tweens.
@@ -68158,7 +67986,7 @@ Phaser.TweenManager.prototype = {
 
         while (i < numTweens)
         {
-            if (this._tweens[i].update(this.game.time.time))
+            if (this._tweens[i].update(this.game.time.deltaTotal))
             {
                 i++;
             }
@@ -68411,22 +68239,6 @@ Phaser.Tween = function (target, game, manager)
     this.isPaused = false;
 
     /**
-     * Is this Tween frame or time based? A frame based tween will use the physics elapsed timer when updating. This means
-     * it will retain the same consistent frame rate, regardless of the speed of the device. The duration value given should
-     * be given in frames.
-     *
-     * If the Tween uses a time based update (which is the default) then the duration is given in milliseconds.
-     * In this situation a 2000ms tween will last exactly 2 seconds, regardless of the device and how many visual updates the tween
-     * has actually been through. For very short tweens you may wish to experiment with a frame based update instead.
-     *
-     * The default value is whatever you've set in TweenManager.frameBased.
-     *
-     * @property {boolean} frameBased
-     * @default
-     */
-    this.frameBased = manager.frameBased;
-
-    /**
      * @property {function} _onUpdateCallback - An onUpdate callback.
      * @private
      * @default null
@@ -68496,7 +68308,7 @@ Phaser.Tween.prototype = {
      *
      * @method Phaser.Tween#to
      * @param {object} properties - An object containing the properties you want to tween, such as `Sprite.x` or `Sound.volume`. Given as a JavaScript object.
-     * @param {number} [duration=1000] - Duration of this tween in ms. Or if `Tween.frameBased` is true this represents the number of frames that should elapse.
+     * @param {number} [duration=1000] - Duration of this tween in ms.
      * @param {function|string} [ease=null] - Easing function. If not set it will default to Phaser.Easing.Default, which is Phaser.Easing.Linear.None by default but can be over-ridden.
      * @param {boolean} [autoStart=false] - Set to `true` to allow this tween to start automatically. Otherwise call Tween.start().
      * @param {number} [delay=0] - Delay before this tween will start in milliseconds. Defaults to 0, no delay.
@@ -68542,7 +68354,7 @@ Phaser.Tween.prototype = {
      *
      * @method Phaser.Tween#from
      * @param {object} properties - An object containing the properties you want to tween., such as `Sprite.x` or `Sound.volume`. Given as a JavaScript object.
-     * @param {number} [duration=1000] - Duration of this tween in ms. Or if `Tween.frameBased` is true this represents the number of frames that should elapse.
+     * @param {number} [duration=1000] - Duration of this tween in ms.
      * @param {function|string} [ease=null] - Easing function. If not set it will default to Phaser.Easing.Default, which is Phaser.Easing.Linear.None by default but can be over-ridden.
      * @param {boolean} [autoStart=false] - Set to `true` to allow this tween to start automatically. Otherwise call Tween.start().
      * @param {number} [delay=0] - Delay before this tween will start in milliseconds. Defaults to 0, no delay.
@@ -68954,7 +68766,7 @@ Phaser.Tween.prototype = {
 
         this._codePaused = true;
 
-        this._pausedTime = this.game.time.time;
+        this._pausedTime = this.game.time.deltaTotal;
     },
 
     /**
@@ -68969,7 +68781,7 @@ Phaser.Tween.prototype = {
         {
             this.isPaused = true;
 
-            this._pausedTime = this.game.time.time;
+            this._pausedTime = this.game.time.deltaTotal;
         }
     },
 
@@ -68990,7 +68802,7 @@ Phaser.Tween.prototype = {
             {
                 if (!this.timeline[i].isRunning)
                 {
-                    this.timeline[i].startTime += (this.game.time.time - this._pausedTime);
+                    this.timeline[i].startTime += (this.game.time.deltaTotal - this._pausedTime);
                 }
             }
         }
@@ -69453,7 +69265,7 @@ Phaser.TweenData.prototype = {
      */
     start: function ()
     {
-        this.startTime = this.game.time.time + this.delay;
+        this.startTime = this.game.time.deltaTotal + this.delay;
 
         if (this.parent.reverse)
         {
@@ -69575,7 +69387,7 @@ Phaser.TweenData.prototype = {
             }
         }
 
-        var ms = (this.parent.frameBased) ? this.game.time.physicsElapsedMS : this.game.time.elapsedMS;
+        var ms = this.game.time.delta;
 
         if (this.parent.reverse)
         {
@@ -69754,7 +69566,7 @@ Phaser.TweenData.prototype = {
             }
         }
 
-        this.startTime = this.game.time.time;
+        this.startTime = this.game.time.deltaTotal;
 
         if (this.yoyo && this.inReverse)
         {
@@ -70339,26 +70151,14 @@ Phaser.Easing.Power4 = Phaser.Easing.Quintic.Out;
  * It manages the elapsed time and calculation of elapsed values, used for game object motion and tweens,
  * and also handles the standard Timer pool.
  *
- * To create a general timed event, use the master {@link Phaser.Timer} accessible through {@link Phaser.Time.events events}.
+ * To create a general timed event, use the master {@link Phaser.Timer} accessible through {@link Phaser.Time#events events}.
  *
- * There are different *types* of time in Phaser:
+ * There are different types of time in Phaser.
  *
- * - ***Game time*** always runs at the speed of time in real life.
+ * Animations, lifespan, particles, physics, timers, and tweens use game time, represented by {@link Phaser.Time#delta} and {@link Phaser.Time#deltaTotal}.
+ * Game time is scaled by {@link Phaser.Time#slowMotion} and does not advance when paused.
  *
- *   Unlike wall-clock time, *game time stops when Phaser is paused*.
- *
- *   Game time is used for {@link Phaser.Timer timer events}.
- *
- * - ***Physics time*** represents the amount of time given to physics calculations.
- *
- *   *When {@link #slowMotion} is in effect physics time runs slower than game time.*
- *   Like game time, physics time stops when Phaser is paused.
- *
- *   Physics time is used for physics calculations and {@link Phaser.Tween tweens}.
- *
- * - {@link https://en.wikipedia.org/wiki/Wall-clock_time ***Wall-clock time***} represents the duration between two events in real life time.
- *
- *   This time is independent of Phaser and always progresses, regardless of if Phaser is paused.
+ * Input, sounds, and the Scale Manager use clock time, represented by {@link Phaser.Time#time}.
  *
  * @class Phaser.Time
  * @constructor
@@ -70380,13 +70180,6 @@ Phaser.Time = function (game)
     this.time = 0;
 
     /**
-     * The `now` when the previous update occurred.
-     * @property {number} prevTime
-     * @protected
-     */
-    this.prevTime = 0;
-
-    /**
      * An increasing value representing cumulative milliseconds since an undisclosed epoch.
      *
      * While this value is in milliseconds and can be used to compute time deltas,
@@ -70394,6 +70187,8 @@ Phaser.Time = function (game)
      *
      * The source may either be from a high-res source (eg. if RAF is available) or the standard Date.now;
      * the value can only be relied upon within a particular game instance.
+     *
+     * This is updated only once per animation frame, even if multiple logic update steps are done.
      *
      * @property {number} now
      * @protected
@@ -70407,8 +70202,9 @@ Phaser.Time = function (game)
      *
      * While the game is active, this will be similar to (1000 / {@link #fps}).
      *
-     * This is updated only once per game loop, even if multiple logic update steps are done.
-     * Use {@link Phaser.Time#physicsElapsed physicsElapsed} as a basis of game/logic calculations instead.
+     * This is updated only once per animation frame, even if multiple logic update steps are done.
+     *
+     * Don't use this for game timing. Use {@link #delta} instead.
      *
      * @property {number} elapsed
      * @see Phaser.Time.time
@@ -70422,9 +70218,9 @@ Phaser.Time = function (game)
      * This value is corrected for game pauses and will be "about zero" after a game is resumed.
      *
      * This is updated at each logic update, possibly more than once per game loop.
-     * If multiple logic update steps are done, the `elapsedMS` values will differ greatly.
+     * If multiple consecutive logic update steps are done, `elapsedMS` will be close to zero after the first.
      *
-     * Use {@link Phaser.Time#physicsElapsedMS physicsElapsedMS} as a basis of game/logic calculations instead.
+     * Don't use this for game timing. Use {@link #deltaTime} instead.
      *
      * @property {integer} elapsedMS
      * @protected
@@ -70432,27 +70228,25 @@ Phaser.Time = function (game)
     this.elapsedMS = 0;
 
     /**
-     * The physics update delta, in fractional seconds.
-     *
-     * This should be used as an applicable multiplier by all logic update steps (eg. `preUpdate/postUpdate/update`)
-     * to ensure consistent game timing. Game/logic timing can drift from real-world time if the system
-     * is unable to consistently maintain the desired FPS.
-     *
-     * With fixed-step updates this is normally equivalent to `1.0 / desiredFps`.
-     *
-     * @property {number} physicsElapsed
+     * The current game step interval in milliseconds.
+     * @property {number} delta
      */
-    this.physicsElapsed = 1 / 60;
+    this.delta = 0;
 
     /**
-     * The physics update delta, in milliseconds - equivalent to `physicsElapsed * 1000`.
-     *
-     * @property {number} physicsElapsedMS
+     * The total of all step intervals in milliseconds.
+     * @property {number} deltaTotal
      */
-    this.physicsElapsedMS = (1 / 60) * 1000;
+    this.deltaTotal = 0;
 
     /**
-     * The desiredFps multiplier as used by Game.update.
+     * The maximum acceptable step interval in milliseconds, based on `desiredMinFps`.
+     * @property {number} deltaMax
+     */
+    this.deltaMax = 200;
+
+    /**
+     * The desired step interval in seconds, based on `desiredFps`.
      * @property {integer} desiredFpsMult
      * @protected
      */
@@ -70487,8 +70281,6 @@ Phaser.Time = function (game)
      * - 1.0 = normal speed
      * - 2.0 = half speed
      * - 0.5 = double speed
-     *
-     * You likely need to adjust {@link #desiredFps} as well such that `desiredFps / slowMotion === 60`.
      *
      * @property {number} slowMotion
      * @default
@@ -70649,12 +70441,6 @@ Phaser.Time = function (game)
     this._pauseStarted = 0;
 
     /**
-     * @property {boolean} _justResumed - Internal value used to recover from the game pause state.
-     * @private
-     */
-    this._justResumed = false;
-
-    /**
      * @property {Phaser.Timer[]} _timers - Internal store of Phaser.Timer objects.
      * @private
      */
@@ -70733,18 +70519,16 @@ Phaser.Time.prototype = {
      */
     refresh: function ()
     {
-        //  Set to the old Date.now value
         var previousDateNow = this.time;
 
-        // this.time always holds a Date.now value
         this.time = Date.now();
-
-        //  Adjust accordingly.
         this.elapsedMS = this.time - previousDateNow;
     },
 
     /**
-     * Updates the game clock and if enabled the advanced timing data. This is called automatically by Phaser.Game.
+     * Updates the game clock and advanced timing data (if enabled) from the given timestamp.
+     *
+     * This is called automatically by Phaser.Game once per animation frame (RAF or setTimeout).
      *
      * @method Phaser.Time#update
      * @protected
@@ -70754,53 +70538,23 @@ Phaser.Time.prototype = {
     {
         //  Set to the old Date.now value
         var previousDateNow = this.time;
+        var previousNow = this.now;
 
-        // this.time always holds a Date.now value
         this.time = Date.now();
-
-        //  Adjust accordingly.
         this.elapsedMS = this.time - previousDateNow;
 
-        // 'now' is currently still holding the time of the last call, move it into prevTime
-        this.prevTime = this.now;
-
-        /*
-         * update 'now' to hold the current time
-         * this.now may hold the RAF high resolution time value if RAF is available (otherwise it also holds Date.now)
-         */
         this.now = time;
-
-        // elapsed time between previous call and now - this could be a high resolution value
-        this.elapsed = this.now - this.prevTime;
+        this.elapsed = this.now - previousNow;
 
         if (this.game.raf._isSetTimeOut)
         {
-            // console.log('Time isSet', this._desiredFps, 'te', this.timeExpected, 'time', time);
-
-            // time to call this function again in ms in case we're using timers instead of RequestAnimationFrame to update the game
-            this.timeToCall = Math.floor(Math.max(0, (1000.0 / this._desiredFps) - (this.timeExpected - time)));
-
-            // time when the next call is expected if using timers
+            this.timeToCall = Math.floor(Math.max(0, (1000.0 / this._desiredFps) + this.timeExpected - time));
             this.timeExpected = time + this.timeToCall;
-
-            // console.log('Time expect', this.timeExpected);
         }
 
         if (this.advancedTiming)
         {
             this.updateAdvancedTiming();
-        }
-
-        //  Paused but still running?
-        if (!this.game.paused)
-        {
-            //  Our internal Phaser.Timer
-            this.events.update(this.time);
-
-            if (this._timers.length)
-            {
-                this.updateTimers();
-            }
         }
     },
 
@@ -70813,13 +70567,14 @@ Phaser.Time.prototype = {
      */
     updateTimers: function ()
     {
-        //  Any game level timers
         var i = 0;
         var len = this._timers.length;
 
+        if (!len) { return; }
+
         while (i < len)
         {
-            if (this._timers[i].update(this.time))
+            if (this._timers[i].update(this.deltaTotal))
             {
                 i++;
             }
@@ -70850,6 +70605,9 @@ Phaser.Time.prototype = {
         {
             // this formula calculates suggestedFps in multiples of 5 fps
             this.suggestedFps = Math.floor(200 / (this._elapsedAccumulator / this._frameCount)) * 5;
+
+            // the precise amount is (1000 * this._frameCount / this._elapsedAccumulator)
+
             this._frameCount = 0;
             this._elapsedAccumulator = 0;
         }
@@ -70875,13 +70633,26 @@ Phaser.Time.prototype = {
     },
 
     /**
-     * Counts one logic update (if advanced timing is enabled).
+     * Updates the delta values.
+     *
+     * Counts one logic update if advanced timing is enabled.
      *
      * @method Phaser.Time#preUpdate
      * @private
      */
-    preUpdate: function ()
+    preUpdate: function (delta)
     {
+        delta *= 1000;
+
+        this.delta = delta;
+        this.deltaTotal += delta;
+
+        if (!this.game.paused)
+        {
+            this.events.update(this.deltaTotal);
+            this.updateTimers();
+        }
+
         if (this.advancedTiming)
         {
             this.updates++;
@@ -70911,15 +70682,6 @@ Phaser.Time.prototype = {
     gamePaused: function ()
     {
         this._pauseStarted = Date.now();
-
-        this.events.pause();
-
-        var i = this._timers.length;
-
-        while (i--)
-        {
-            this._timers[i]._pause();
-        }
     },
 
     /**
@@ -70934,15 +70696,6 @@ Phaser.Time.prototype = {
         this.time = Date.now();
 
         this.pauseDuration = this.time - this._pauseStarted;
-
-        this.events.resume();
-
-        var i = this._timers.length;
-
-        while (i--)
-        {
-            this._timers[i]._resume();
-        }
     },
 
     /**
@@ -71014,16 +70767,32 @@ Object.defineProperty(Phaser.Time.prototype, 'desiredFps', {
     set: function (value)
     {
         this._desiredFps = value;
-
-        /*
-         *  Set the physics elapsed time... this will always be 1 / this.desiredFps
-         *  because we're using fixed time steps in game.update
-         */
-        this.physicsElapsed = 1 / value;
-
-        this.physicsElapsedMS = this.physicsElapsed * 1000;
-
         this.desiredFpsMult = 1.0 / value;
+    }
+
+});
+
+/**
+ * The smallest acceptable logic update rate.
+ *
+ * This is used is used to calculate {@link Phaser.Time#deltaMax}.
+ *
+ * It should be substantially smaller than {@link Phaser.Time#desiredFps}.
+ *
+ * @name Phaser.Time#desiredMinFps
+ * @type {integer}
+ * @default 5
+ */
+Object.defineProperty(Phaser.Time.prototype, 'desiredMinFps', {
+
+    get: function ()
+    {
+        return 1000 / this.deltaMax;
+    },
+
+    set: function (value)
+    {
+        this.deltaMax = 1000 / value;
     }
 
 });
@@ -71042,8 +70811,7 @@ Phaser.Time.prototype.constructor = Phaser.Time;
  *
  * All Timer delays are in milliseconds (there are 1000 ms in 1 second); so a delay value of 250 represents a quarter of a second.
  *
- * Timers are based on real life time, adjusted for game pause durations.
- * That is, *timer events are based on elapsed {@link Phaser.Time game time}* and do *not* take physics time or slow motion into account.
+ * Timers are based on game time. They are scaled by {@link Phaser.Time#slowMotion} and do not advance when the game is paused.
  *
  * @class Phaser.Timer
  * @constructor
@@ -71111,11 +70879,6 @@ Phaser.Timer = function (game, autoDestroy)
     this.nextTick = 0;
 
     /**
-     * @property {number} timeCap - If the difference in time between two frame updates exceeds this value, the event times are reset to avoid catch-up situations.
-     */
-    this.timeCap = 1000;
-
-    /**
      * @property {boolean} paused - The paused state of the Timer. You can pause the timer by calling Timer.pause() and Timer.resume() or by the game pausing.
      * @readonly
      * @default
@@ -71151,7 +70914,7 @@ Phaser.Timer = function (game, autoDestroy)
      * @property {number} _now - The current start-time adjusted time.
      * @private
      */
-    this._now = Date.now();
+    this._now = this.game.time ? this.game.time.deltaTotal : 0;
 
     /**
      * @property {number} _len - Temp. array length variable.
@@ -71233,17 +70996,7 @@ Phaser.Timer.prototype = {
     {
         delay = Math.round(delay);
 
-        var tick = delay;
-
-        if (this._now === 0)
-        {
-            tick += this.game.time.time;
-        }
-        else
-        {
-            tick += this._now;
-        }
-
+        var tick = delay + this._now;
         var event = new Phaser.TimerEvent(this, delay, tick, repeatCount, loop, callback, callbackContext, args);
 
         this.events.push(event);
@@ -71329,7 +71082,7 @@ Phaser.Timer.prototype = {
             return;
         }
 
-        this._started = this.game.time.time + (delay || 0);
+        this._started = this.game.time.deltaTotal + (delay || 0);
 
         this.running = true;
 
@@ -71450,18 +71203,6 @@ Phaser.Timer.prototype = {
 
         this.elapsed = time - this._now;
         this._now = time;
-
-        //  spike-dislike
-        if (this.elapsed > this.timeCap)
-        {
-            /*
-             *  For some reason the time between now and the last time the game was updated was larger than our timeCap.
-             *  This can happen if the Stage.disableVisibilityChange is true and you swap tabs, which makes the raf pause.
-             *  In this case we need to adjust the TimerEvents and nextTick.
-             */
-            this.adjustEvents(time - this.elapsed);
-        }
-
         this._marked = 0;
 
         //  Clears events marked for deletion and resets _len and _i to 0.
@@ -71549,7 +71290,7 @@ Phaser.Timer.prototype = {
             return;
         }
 
-        this._pauseStarted = this.game.time.time;
+        this._pauseStarted = this.game.time.deltaTotal;
 
         this.paused = true;
     },
@@ -71566,7 +71307,7 @@ Phaser.Timer.prototype = {
             return;
         }
 
-        this._pauseStarted = this.game.time.time;
+        this._pauseStarted = this.game.time.deltaTotal;
 
         this.paused = true;
     },
@@ -71620,7 +71361,7 @@ Phaser.Timer.prototype = {
             return;
         }
 
-        var now = this.game.time.time;
+        var now = this.game.time.deltaTotal;
         this._pauseTotal += now - this._now;
         this._now = now;
 
@@ -72591,8 +72332,8 @@ Phaser.Animation.prototype = {
         this.paused = false;
         this.loopCount = 0;
 
-        this._timeLastFrame = this.game.time.time;
-        this._timeNextFrame = this.game.time.time + this.delay;
+        this._timeLastFrame = this.game.time.deltaTotal;
+        this._timeNextFrame = this.game.time.deltaTotal + this.delay;
 
         this._frameIndex = this.isReversed ? this._frames.length - 1 : 0;
         this.updateCurrentFrame(false, true);
@@ -72619,8 +72360,8 @@ Phaser.Animation.prototype = {
         this.paused = false;
         this.loopCount = 0;
 
-        this._timeLastFrame = this.game.time.time;
-        this._timeNextFrame = this.game.time.time + this.delay;
+        this._timeLastFrame = this.game.time.deltaTotal;
+        this._timeNextFrame = this.game.time.deltaTotal + this.delay;
 
         this._frameIndex = 0;
 
@@ -72714,7 +72455,7 @@ Phaser.Animation.prototype = {
             this._frameIndex = frameIndex - directionalOffset;
 
             //  Make the animation update at next update
-            this._timeNextFrame = this.game.time.time;
+            this._timeNextFrame = this.game.time.deltaTotal;
 
             this.update();
         }
@@ -72759,7 +72500,7 @@ Phaser.Animation.prototype = {
     {
         if (this.isPlaying)
         {
-            this._frameDiff = this._timeNextFrame - this.game.time.time;
+            this._frameDiff = this._timeNextFrame - this.game.time.deltaTotal;
         }
     },
 
@@ -72772,7 +72513,7 @@ Phaser.Animation.prototype = {
     {
         if (this.isPlaying)
         {
-            this._timeNextFrame = this.game.time.time + this._frameDiff;
+            this._timeNextFrame = this.game.time.deltaTotal + this._frameDiff;
         }
     },
 
@@ -72788,7 +72529,7 @@ Phaser.Animation.prototype = {
             return false;
         }
 
-        var now = this.game.time.time;
+        var now = this.game.time.deltaTotal;
         var diff = now - this._timeNextFrame;
 
         if (this.isPlaying && diff >= 0)
@@ -73067,14 +72808,14 @@ Object.defineProperty(Phaser.Animation.prototype, 'paused', {
         if (value)
         {
             //  Paused
-            this._pauseStartTime = this.game.time.time;
+            this._pauseStartTime = this.game.time.deltaTotal;
         }
         else
         {
             //  Un-paused
             if (this.isPlaying)
             {
-                this._timeNextFrame = this.game.time.time + this.delay;
+                this._timeNextFrame = this.game.time.deltaTotal + this.delay;
             }
         }
     }
@@ -78463,6 +78204,12 @@ Phaser.Loader.prototype = {
      */
     processLoadQueue: function ()
     {
+        // Destroyed.
+        if (!this.game.isBooted)
+        {
+            return;
+        }
+
         if (!this.isLoading)
         {
             console.warn('Phaser.Loader - active loading canceled / reset');
@@ -79351,6 +79098,12 @@ Phaser.Loader.prototype = {
      */
     fileComplete: function (file, xhr)
     {
+        // Destroyed.
+        if (!this.game.isBooted)
+        {
+            return;
+        }
+
         var loadNext = true;
 
         switch (file.type)
@@ -80622,7 +80375,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.pausedPosition = 0;
 
     /**
-     * @property {number} pausedTime - The game time (ms) at which the sound was paused.
+     * @property {number} pausedTime - The clock time (ms) at which the sound was paused.
      */
     this.pausedTime = 0;
 
@@ -80945,6 +80698,13 @@ Phaser.Sound.prototype = {
      */
     onEndedHandler: function ()
     {
+        if (!this._sound)
+        {
+            // Probably destroyed?
+
+            return;
+        }
+
         this._removeOnEndedHandler();
         this.isPlaying = false;
         this.currentTime = this.durationMS;
@@ -82317,6 +82077,13 @@ Phaser.SoundManager.prototype = {
                 {
                     this.context.decodeAudioData(soundData, function (buffer)
                     {
+                        if (!_this.game.isBooted)
+                        {
+                            // Game was destroyed.
+
+                            return;
+                        }
+
                         if (buffer)
                         {
                             _this.game.cache.decodedSound(key, buffer);
@@ -90836,7 +90603,7 @@ Phaser.Physics.Arcade.prototype = {
         {
             var velocityDelta = this.computeVelocity(0, body, body.angularVelocity, body.angularAcceleration, body.angularDrag, body.maxAngular) - body.angularVelocity;
             body.angularVelocity += velocityDelta;
-            body.rotation += (body.angularVelocity * this.game.time.physicsElapsed);
+            body.rotation += (body.angularVelocity * 0.001 * this.game.time.delta);
         }
 
         body.velocity.x = this.computeVelocity(1, body, body.velocity.x, body.acceleration.x, body.drag.x, body.maxVelocity.x);
@@ -90862,20 +90629,20 @@ Phaser.Physics.Arcade.prototype = {
 
         if (axis === 1 && body.allowGravity)
         {
-            velocity += (this.gravity.x + body.gravity.x) * this.game.time.physicsElapsed;
+            velocity += (this.gravity.x + body.gravity.x) * 0.001 * this.game.time.delta;
         }
         else if (axis === 2 && body.allowGravity)
         {
-            velocity += (this.gravity.y + body.gravity.y) * this.game.time.physicsElapsed;
+            velocity += (this.gravity.y + body.gravity.y) * 0.001 * this.game.time.delta;
         }
 
         if (acceleration)
         {
-            velocity += acceleration * this.game.time.physicsElapsed;
+            velocity += acceleration * 0.001 * this.game.time.delta;
         }
         else if (drag && body.allowDrag)
         {
-            drag *= this.game.time.physicsElapsed;
+            drag *= 0.001 * this.game.time.delta;
 
             if (velocity - drag > 0)
             {
@@ -91912,14 +91679,14 @@ Phaser.Physics.Arcade.prototype = {
 
         if (!body1.immovable)
         {
-            body1.x += (body1.velocity.x * this.game.time.physicsElapsed) - overlap * Math.cos(angleCollision);
-            body1.y += (body1.velocity.y * this.game.time.physicsElapsed) - overlap * Math.sin(angleCollision);
+            body1.x += (body1.velocity.x * 0.001 * this.game.time.delta) - overlap * Math.cos(angleCollision);
+            body1.y += (body1.velocity.y * 0.001 * this.game.time.delta) - overlap * Math.sin(angleCollision);
         }
 
         if (!body2.immovable)
         {
-            body2.x += (body2.velocity.x * this.game.time.physicsElapsed) + overlap * Math.cos(angleCollision);
-            body2.y += (body2.velocity.y * this.game.time.physicsElapsed) + overlap * Math.sin(angleCollision);
+            body2.x += (body2.velocity.x * 0.001 * this.game.time.delta) + overlap * Math.cos(angleCollision);
+            body2.y += (body2.velocity.y * 0.001 * this.game.time.delta) + overlap * Math.sin(angleCollision);
         }
 
         if (body1.onCollide)
@@ -93413,7 +93180,7 @@ Phaser.Physics.Arcade.Body.prototype = {
         {
             this.game.physics.arcade.updateMotion(this);
 
-            this.newVelocity.set(this.velocity.x * this.game.time.physicsElapsed, this.velocity.y * this.game.time.physicsElapsed);
+            this.newVelocity.set(this.velocity.x * 0.001 * this.game.time.delta, this.velocity.y * 0.001 * this.game.time.delta);
 
             this.position.x += this.newVelocity.x;
             this.position.y += this.newVelocity.y;
@@ -93461,7 +93228,7 @@ Phaser.Physics.Arcade.Body.prototype = {
 
         if (this.moveDuration > 0)
         {
-            this.moveTimer += this.game.time.elapsedMS;
+            this.moveTimer += this.game.time.delta;
 
             percent = this.moveTimer / this.moveDuration;
         }
@@ -94727,7 +94494,7 @@ Phaser.Physics.P2 = function (game, config)
     this.frameRate = 1 / 60;
 
     /**
-    * @property {boolean} useElapsedTime - If true the frameRate value will be ignored and instead p2 will step with the value of Game.Time.physicsElapsed, which is a delta time value.
+    * @property {boolean} useElapsedTime - If true the frameRate value will be ignored and instead p2 will step with the value of Game.Time.delta, which is a delta time value.
     * @default
     */
     this.useElapsedTime = false;
@@ -95449,7 +95216,7 @@ Phaser.Physics.P2.prototype = {
 
         if (this.useElapsedTime)
         {
-            this.world.step(this.game.time.physicsElapsed);
+            this.world.step(0.001 * this.game.time.delta);
         }
         else
         {
@@ -105356,6 +105123,12 @@ Phaser.Particle = function (game, x, y, key, frame)
     this.autoScale = false;
 
     /**
+     * @property {number} autoScaleFps - Frames per second of `autoScale`.
+     * @protected
+     */
+    this.autoScaleFps = 0;
+
+    /**
      * @property {array} scaleData - A reference to the scaleData array owned by the Emitter that emitted this Particle.
      * @protected
      */
@@ -105372,6 +105145,11 @@ Phaser.Particle = function (game, x, y, key, frame)
      * @protected
      */
     this.autoAlpha = false;
+
+    /**
+     * @property {number} autoAlphaFps - Frames per second of `autoAlpha`.
+     */
+    this.autoAlphaFps = 0;
 
     /**
      * @property {array} alphaData - A reference to the alphaData array owned by the Emitter that emitted this Particle.
@@ -105399,11 +105177,13 @@ Phaser.Particle.prototype.update = function ()
 {
     if (this.autoScale)
     {
-        this._s--;
+        this._s -= this.game.time.delta * 0.001 * this.autoScaleFps;
 
-        if (this._s)
+        var s = Math.round(this._s);
+
+        if (s > 0)
         {
-            this.scale.set(this.scaleData[this._s].x, this.scaleData[this._s].y);
+            this.scale.set(this.scaleData[s].x, this.scaleData[s].y);
         }
         else
         {
@@ -105413,11 +105193,13 @@ Phaser.Particle.prototype.update = function ()
 
     if (this.autoAlpha)
     {
-        this._a--;
+        this._a -= this.game.time.delta * 0.001 * this.autoAlphaFps;
 
-        if (this._a)
+        var a = Math.round(this._a);
+
+        if (a > 0)
         {
-            this.alpha = this.alphaData[this._a].v;
+            this.alpha = this.alphaData[a].v;
         }
         else
         {
@@ -105442,12 +105224,13 @@ Phaser.Particle.prototype.onEmit = function ()
  * @method Phaser.Particle#setAlphaData
  * @memberof Phaser.Particle
  */
-Phaser.Particle.prototype.setAlphaData = function (data)
+Phaser.Particle.prototype.setAlphaData = function (data, fps)
 {
     this.alphaData = data;
     this._a = data.length - 1;
     this.alpha = this.alphaData[this._a].v;
     this.autoAlpha = true;
+    this.autoAlphaFps = fps;
 };
 
 /**
@@ -105456,12 +105239,13 @@ Phaser.Particle.prototype.setAlphaData = function (data)
  * @method Phaser.Particle#setScaleData
  * @memberof Phaser.Particle
  */
-Phaser.Particle.prototype.setScaleData = function (data)
+Phaser.Particle.prototype.setScaleData = function (data, fps)
 {
     this.scaleData = data;
     this._s = data.length - 1;
     this.scale.set(this.scaleData[this._s].x, this.scaleData[this._s].y);
     this.autoScale = true;
+    this.autoScaleFps = fps;
 };
 
 /**
@@ -105776,9 +105560,19 @@ Phaser.Particles.Arcade.Emitter = function (game, x, y, maxParticles)
     this.autoScale = false;
 
     /**
+     * @property {number} autoScaleFps - Frames per second of `autoScale`.
+     */
+    this.autoScaleFps = this.game.time.desiredFps;
+
+    /**
      * @property {boolean} autoAlpha - When a new Particle is emitted this controls if it will automatically change alpha. Use Emitter.setAlpha to configure.
      */
     this.autoAlpha = false;
+
+    /**
+     * @property {number} autoAlphaFps - Frames per second of `autoAlpha`.
+     */
+    this.autoAlphaFps = this.game.time.desiredFps;
 
     /**
      * @property {boolean} particleBringToTop - If this is `true` then when the Particle is emitted it will be bought to the top of the Emitters display list.
@@ -105880,9 +105674,9 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function ()
     this.counts.emitted = 0;
     this.counts.failed = 0;
 
-    if (this.on && this.game.time.time >= this._timer)
+    if (this.on && this.game.time.deltaTotal >= this._timer)
     {
-        this._timer = this.game.time.time + this.frequency * this.game.time.slowMotion;
+        this._timer = this.game.time.deltaTotal + this.frequency;
 
         if (this._flowTotal !== 0)
         {
@@ -106091,7 +105885,7 @@ Phaser.Particles.Arcade.Emitter.prototype.flow = function (lifespan, frequency, 
 
         this._counter += quantity;
         this.on = true;
-        this._timer = this.game.time.time + frequency * this.game.time.slowMotion;
+        this._timer = this.game.time.deltaTotal + frequency;
     }
     else
     {
@@ -106162,7 +105956,7 @@ Phaser.Particles.Arcade.Emitter.prototype.start = function (explode, lifespan, f
         this.on = true;
         this._total = total;
         this._counter = 0;
-        this._timer = this.game.time.time + frequency * this.game.time.slowMotion;
+        this._timer = this.game.time.deltaTotal + frequency;
     }
 
     return this;
@@ -106291,7 +106085,7 @@ Phaser.Particles.Arcade.Emitter.prototype.resetParticle = function (particle, x,
 
     if (this.autoScale)
     {
-        particle.setScaleData(this.scaleData);
+        particle.setScaleData(this.scaleData, this.autoScaleFps);
     }
     else if (this.minParticleScale !== 1 || this.maxParticleScale !== 1)
     {
@@ -106308,7 +106102,7 @@ Phaser.Particles.Arcade.Emitter.prototype.resetParticle = function (particle, x,
 
     if (this.autoAlpha)
     {
-        particle.setAlphaData(this.alphaData);
+        particle.setAlphaData(this.alphaData, this.autoAlphaFps);
     }
     else
     {
@@ -106374,7 +106168,26 @@ Phaser.Particles.Arcade.Emitter.prototype.setSize = function (width, height)
 };
 
 /**
+ * A more compact way of setting the X and Y velocity ranges of the emitter.
+ *
+ * @method Phaser.Particles.Arcade.Emitter#setSpeed
+ * @param {number} minX - The minimum horizontal speed.
+ * @param {number} maxX - The maximum horizontal speed.
+ * @param {number} minY - The minimum vertical speed.
+ * @param {number} maxY - The maximum vertical speed.
+ * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
+ */
+Phaser.Particles.Arcade.Emitter.prototype.setSpeed = function (minX, maxX, minY, maxY)
+{
+    this.setXSpeed(minX, maxX);
+    this.setYSpeed(minY, maxY);
+
+    return this;
+};
+
+/**
  * A more compact way of setting the X velocity range of the emitter.
+ *
  * @method Phaser.Particles.Arcade.Emitter#setXSpeed
  * @param {number} [min=0] - The minimum value for this range.
  * @param {number} [max=0] - The maximum value for this range.
@@ -106393,6 +106206,7 @@ Phaser.Particles.Arcade.Emitter.prototype.setXSpeed = function (min, max)
 
 /**
  * A more compact way of setting the Y velocity range of the emitter.
+ *
  * @method Phaser.Particles.Arcade.Emitter#setYSpeed
  * @param {number} [min=0] - The minimum value for this range.
  * @param {number} [max=0] - The maximum value for this range.
@@ -106459,7 +106273,8 @@ Phaser.Particles.Arcade.Emitter.prototype.setAlpha = function (min, max, rate, e
         var tween = this.game.make.tween(tweenData).to({ v: max }, rate, ease);
         tween.yoyo(yoyo);
 
-        this.alphaData = tween.generateData(60);
+        this.alphaData = tween.generateData(this.game.time.desiredFps);
+        this.autoAlphaFps = this.game.time.desiredFps;
 
         //  Inverse it so we don't have to do array length look-ups in Particle update loops
         this.alphaData.reverse();
@@ -106509,7 +106324,8 @@ Phaser.Particles.Arcade.Emitter.prototype.setScale = function (minX, maxX, minY,
         var tween = this.game.make.tween(tweenData).to({ x: maxX, y: maxY }, rate, ease);
         tween.yoyo(yoyo);
 
-        this.scaleData = tween.generateData(60);
+        this.scaleData = tween.generateData(this.game.time.desiredFps);
+        this.autoScaleFps = this.game.time.desiredFps;
 
         //  Inverse it so we don't have to do array length look-ups in Particle update loops
         this.scaleData.reverse();
@@ -106540,6 +106356,24 @@ Phaser.Particles.Arcade.Emitter.prototype.setAngle = function (minAngle, maxAngl
 
     if (minSpeed != null) { this.minSpeed = minSpeed; }
     if (maxSpeed != null) { this.maxSpeed = maxSpeed; }
+
+    return this;
+};
+
+/**
+ * Sets gravity for emitted particles.
+ *
+ * @method Phaser.Particles.Arcade.Emitter#setGravity
+ * @param {number} [x=0] - The horizontal gravity component.
+ * @param {number} [y=0] - The vertical gravity component.
+ * @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
+ */
+Phaser.Particles.Arcade.Emitter.prototype.setGravity = function (x, y)
+{
+    x = x || 0;
+    y = y || 0;
+
+    this._gravity.set(x, y);
 
     return this;
 };
@@ -107706,7 +107540,7 @@ Phaser.Weapon.prototype.fire = function (from, x, y, offsetX, offsetY)
     if (x === undefined) { x = null; }
     if (y === undefined) { y = null; }
 
-    if (this.game.time.now < this._nextFire || (this.fireLimit > 0 && this.shots === this.fireLimit))
+    if (this.game.time.deltaTotal < this._nextFire || (this.fireLimit > 0 && this.shots === this.fireLimit))
     {
         return null;
     }
@@ -107909,11 +107743,11 @@ Phaser.Weapon.prototype.fire = function (from, x, y, offsetX, offsetY)
                 rate = 0;
             }
 
-            next = this.game.time.now + rate;
+            next = this.game.time.deltaTotal + rate;
         }
         else
         {
-            next = this.game.time.now + this.fireRate;
+            next = this.game.time.deltaTotal + this.fireRate;
         }
 
         if (this.multiFire)

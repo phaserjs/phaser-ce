@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.16.2 "2021-03-08" - Built: Mon Mar 08 2021 12:51:59
+* v2.17.0 "2021-03-16" - Built: Tue Mar 16 2021 11:19:01
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -3797,6 +3797,12 @@ PIXI.WebGLRenderer.prototype.render = function (stage)
     this.renderDisplayObject(stage, this.projection);
 };
 
+PIXI.WebGLRenderer.prototype.postRender = function ()
+{
+    // flush gl to prevent flickering on some android devices
+    this.gl.flush();
+};
+
 /**
  * Renders a Display Object.
  *
@@ -7051,6 +7057,11 @@ PIXI.CanvasRenderer.prototype.render = function (root)
     }
 
     this.renderDisplayObject(root);
+};
+
+PIXI.CanvasRenderer.prototype.postRender = function ()
+{
+    // Nothing to do.
 };
 
 PIXI.CanvasRenderer.prototype.setTexturePriority = function ()
