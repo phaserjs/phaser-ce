@@ -48,6 +48,7 @@ When `forceSingleUpdate` is on, the game makes logic updates only at the rate gi
 
 - Fixed some errors when destroying a game while Web Audio sounds were decoding (#684).
 - Fixed tweens running at different speeds depending on device frame rate (#685).
+- Fixed incorrect step interval when using `setTimeout()` (#687)
 
 ### Thanks
 
