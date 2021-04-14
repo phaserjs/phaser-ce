@@ -286,14 +286,14 @@ Phaser.Cache.prototype = {
      */
 
     /**
-     * Add a new canvas object in to the cache.
+     * Add a new compressed texture in to the cache.
      *
      * @method Phaser.Cache#addCompressedTextureMetaData
      * @private
      * @param {string} key - The key that this asset will be stored in the cache under. This should be unique within this cache.
-     * @param {string} url
-     * @param {string} extension
-     * @param {array} arrayBuffer
+     * @param {string} url - The URL the asset was loaded from. If the asset was not loaded externally set to `null`.
+     * @param {string} extension - The extension of the compressed texture.
+     * @param {ArrayBuffer} arrayBuffer - The compressed texture data.
      * @return {object} The compressed texture entry.
      */
     addCompressedTextureMetaData: function (key, url, extension, arrayBuffer)
