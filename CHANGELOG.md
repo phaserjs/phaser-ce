@@ -1,5 +1,14 @@
 # Change Log
 
+## Unreleased
+
+#### Added
+- re-enabled fix from 13.3.3 'Fixed webGL making excessive calls, which was negatively impacting the frame-rate of low-end', but only when multitexture batching is disabled.
+
+### Thanks
+
+@drfrankius
+
 ## Version 2.17.0 - 16 March 2021
 
 ### API Changes
