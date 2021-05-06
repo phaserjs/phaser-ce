@@ -2630,6 +2630,7 @@ Phaser.Loader.prototype = {
 
         file.data = document.createElement('video');
         file.data.name = file.key;
+        file.data.crossOrigin = this.crossOrigin;
         file.data.controls = false;
         file.data.autoplay = false;
         file.data.playsInline = true;
