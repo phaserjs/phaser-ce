@@ -704,11 +704,11 @@ Phaser.Video.prototype = {
 
         if (loop)
         {
-            this.video.loop = 'loop';
+            this.video.loop = true;
         }
         else
         {
-            this.video.loop = '';
+            this.video.loop = false;
         }
 
         this.video.playbackRate = playbackRate;
@@ -1399,11 +1399,11 @@ Object.defineProperty(Phaser.Video.prototype, 'loop', {
     {
         if (value && this.video)
         {
-            this.video.loop = 'loop';
+            this.video.loop = true;
         }
         else if (this.video)
         {
-            this.video.loop = '';
+            this.video.loop = false;
         }
     }
 
