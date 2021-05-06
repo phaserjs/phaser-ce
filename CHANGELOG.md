@@ -2,12 +2,17 @@
 
 ## Unreleased
 
-#### Added
-- re-enabled fix from 13.3.3 'Fixed webGL making excessive calls, which was negatively impacting the frame-rate of low-end', but only when multitexture batching is disabled.
+### Updates
+
+- Re-enabled fix from v2.13.3, [Fixed webGL making excessive calls (#641)](https://github.com/photonstorm/phaser-ce/pull/641), but only when multitexture batching is disabled.
+
+### Bug Fixes
+
+- Videos are loaded using the [Loader#crossOrigin](https://photonstorm.github.io/phaser-ce/Phaser.Loader.html#crossOrigin) value.
 
 ### Thanks
 
-@drfrankius
+@drfrankius, @samme
 
 ## Version 2.17.0 - 16 March 2021
 
