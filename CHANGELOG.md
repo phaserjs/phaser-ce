@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.18.0 - 7 May 2021
 
 ### Updates
 
@@ -12,7 +12,7 @@
 
 ### Thanks
 
-@drfrankius, @samme
+@drfrankius, @photonstorm, @samme
 
 ## Version 2.17.0 - 16 March 2021
 
