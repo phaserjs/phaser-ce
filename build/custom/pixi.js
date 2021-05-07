@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.17.0 "2021-03-16" - Built: Tue Mar 16 2021 11:19:01
+* v2.18.0 "2021-05-07" - Built: Thu May 06 2021 19:53:51
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -4930,14 +4930,18 @@ PIXI.WebGLSpriteBatch.prototype.end = function ()
 PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 {
     var texture = sprite.texture;
-    var baseTexture = texture.baseTexture;
-    var gl = this.gl;
-    if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+
+    if (PIXI._enableMultiTextureToggle)
     {
-        this.flush();
-        gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
-        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
+        var baseTexture = texture.baseTexture;
+        var gl = this.gl;
+        if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+        {
+            this.flush();
+            gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
+            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+            PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
+        }
     }
 
     //  They provided an alternative rendering matrix, so use it
@@ -5113,15 +5117,19 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
 {
     var texture = sprite.tilingTexture;
-    var baseTexture = texture.baseTexture;
-    var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+
+    if (PIXI._enableMultiTextureToggle)
     {
-        this.flush();
-        gl.activeTexture(gl.TEXTURE0 + textureIndex);
-        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+        var baseTexture = texture.baseTexture;
+        var gl = this.gl;
+        if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+        {
+            this.flush();
+            gl.activeTexture(gl.TEXTURE0 + textureIndex);
+            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+            PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+        }
     }
 
     // check texture..
@@ -5356,8 +5364,10 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
             skip = false;
         }
 
-        //
-        if (/* (currentBaseTexture !== nextTexture && !skip) || */
+        // if multi-texture batching disabled we always render the batch upon switching textures
+        var multiTextureBatchingEnabled = PIXI._enableMultiTextureToggle;
+        var baseTextureChanged = currentBaseTexture !== nextTexture;
+        if ((!multiTextureBatchingEnabled && baseTextureChanged && !skip) ||
             blendSwap ||
             shaderSwap)
         {
