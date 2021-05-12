@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.17.0 "2021-03-16" - Built: Tue Mar 16 2021 11:19:01
+* v2.18.0 "2021-05-07" - Built: Thu May 06 2021 19:53:52
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -40,7 +40,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.17.0',
+    VERSION: '2.18.0',
 
     /**
      * An array of Phaser game instances.
@@ -51643,14 +51643,14 @@ Phaser.Cache.prototype = {
      */
 
     /**
-     * Add a new canvas object in to the cache.
+     * Add a new compressed texture in to the cache.
      *
      * @method Phaser.Cache#addCompressedTextureMetaData
      * @private
      * @param {string} key - The key that this asset will be stored in the cache under. This should be unique within this cache.
-     * @param {string} url
-     * @param {string} extension
-     * @param {array} arrayBuffer
+     * @param {string} url - The URL the asset was loaded from. If the asset was not loaded externally set to `null`.
+     * @param {string} extension - The extension of the compressed texture.
+     * @param {ArrayBuffer} arrayBuffer - The compressed texture data.
      * @return {object} The compressed texture entry.
      */
     addCompressedTextureMetaData: function (key, url, extension, arrayBuffer)
@@ -56227,6 +56227,7 @@ Phaser.Loader.prototype = {
 
         file.data = document.createElement('video');
         file.data.name = file.key;
+        file.data.crossOrigin = this.crossOrigin;
         file.data.controls = false;
         file.data.autoplay = false;
         file.data.playsInline = true;
@@ -87362,11 +87363,11 @@ Phaser.Video.prototype = {
 
         if (loop)
         {
-            this.video.loop = 'loop';
+            this.video.loop = true;
         }
         else
         {
-            this.video.loop = '';
+            this.video.loop = false;
         }
 
         this.video.playbackRate = playbackRate;
@@ -88057,11 +88058,11 @@ Object.defineProperty(Phaser.Video.prototype, 'loop', {
     {
         if (value && this.video)
         {
-            this.video.loop = 'loop';
+            this.video.loop = true;
         }
         else if (this.video)
         {
-            this.video.loop = '';
+            this.video.loop = false;
         }
     }
 

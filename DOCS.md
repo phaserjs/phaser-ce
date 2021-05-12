@@ -98,7 +98,7 @@
 | [Graphics](./Phaser.Graphics.html) | Allows you to draw primitive shapes (lines, rects, circles), setting color, stroke and fills. |
 | [BitmapData](./Phaser.BitmapData.html) | Provides a powerful interface to a blank Canvas object. Can be used as a Sprite texture. |
 | [RenderTexture](./Phaser.RenderTexture.html) | A special kind of texture you can draw Sprites to extremely quickly. |
-| [Video](./Phaser.Video.html) | A video that can be used as a Sprite. texture. |
+| [Video](./Phaser.Video.html) | A video that can be used as a Sprite texture. |
 
 <a name="text"></a>
 
