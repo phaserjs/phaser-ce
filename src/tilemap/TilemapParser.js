@@ -174,21 +174,60 @@ Phaser.TilemapParser = {
         };
     },
 
-    _slice: function (obj, fields)
+    getEmptyObject: function ()
     {
-        var sliced = {};
+        return {
 
-        for (var k in fields)
+            // Common properties
+
+            id: undefined,
+            x: undefined,
+            y: undefined,
+            width: undefined,
+            height: undefined,
+            rotation: undefined,
+            visible: undefined,
+            name: undefined,
+            type: undefined,
+
+            // Uncommon properties
+
+            ellipse: false,
+            gid: null,
+            point: false,
+            polygon: null,
+            polyline: null,
+            properties: null,
+            rectangle: false,
+            template: null,
+            text: null
+        };
+    },
+
+    createObject: function (source)
+    {
+        var obj = Object.assign(this.getEmptyObject(), source);
+
+        obj.rectangle = !obj.ellipse && !obj.gid && !obj.point && !obj.polygon && !obj.polyline && !obj.template && !obj.text;
+
+        var props = obj.properties;
+
+        // New property format <https://doc.mapeditor.org/en/stable/reference/json-map-format/#property>
+        if (props && Array.isArray(props))
         {
-            var key = fields[k];
+            var propsMap = {};
 
-            if (typeof obj[key] !== 'undefined')
+            for (var i = 0, len = props.length; i < len; i++)
             {
-                sliced[key] = obj[key];
+                var prop = props[i];
+
+                propsMap[prop.name] = prop.value;
             }
+
+            obj.properties = propsMap;
         }
 
-        return sliced;
+        return obj;
     },
 
     /**
@@ -201,11 +240,10 @@ Phaser.TilemapParser = {
      * @param {object} [relativePosition={x: 0, y: 0}] - Coordinates the object group's position is relative to.
      * @return {object} A object literal containing the objectsCollection and collisionCollection
      */
-    parseObjectGroup: function (objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition)
+    parseObjectGroup: function (objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition, objectsMap)
     {
         var nameKey = nameKey || objectGroup.name;
         var relativePosition = relativePosition || {x: 0, y: 0};
-        var slice = this._slice;
 
         if (!nameKey)
         {
@@ -223,47 +261,20 @@ Phaser.TilemapParser = {
         for (var v = 0, len = objectGroup.objects.length; v < len; v++)
         {
             var o = objectGroup.objects[v];
+            var object = this.createObject(o);
 
-            //  Object Tiles
-            if (o.gid)
+            object.x += relativePosition.x;
+            object.y += relativePosition.y;
+
+            objectsCollection[nameKey].push(object);
+
+            if (object.id)
             {
-                var object = {
-                    gid: o.gid,
-                    name: o.name,
-                    type: o.type || '',
-                    x: o.x + relativePosition.x,
-                    y: o.y + relativePosition.y,
-                    width: o.width,
-                    height: o.height,
-                    visible: o.visible,
-                    properties: o.properties
-                };
-
-                if (o.rotation)
-                {
-                    object.rotation = o.rotation;
-                }
-
-                objectsCollection[nameKey].push(object);
+                objectsMap[object.id] = object;
             }
-            else if (o.polyline)
+
+            if (o.polyline)
             {
-                var object = {
-                    name: o.name,
-                    type: o.type,
-                    x: o.x + relativePosition.x,
-                    y: o.y + relativePosition.y,
-                    width: o.width,
-                    height: o.height,
-                    visible: o.visible,
-                    properties: o.properties
-                };
-
-                if (o.rotation)
-                {
-                    object.rotation = o.rotation;
-                }
-
                 object.polyline = [];
 
                 //  Parse the polyline into an array
@@ -273,17 +284,9 @@ Phaser.TilemapParser = {
                 }
 
                 collisionCollection[nameKey].push(object);
-                objectsCollection[nameKey].push(object);
             }
-
-            // polygon
             else if (o.polygon)
             {
-                var object = slice(o, [ 'name', 'type', 'x', 'y', 'visible', 'rotation', 'properties' ]);
-
-                object.x += relativePosition.x;
-                object.y += relativePosition.y;
-
                 //  Parse the polygon into an array
                 object.polygon = [];
 
@@ -293,30 +296,10 @@ Phaser.TilemapParser = {
                 }
 
                 collisionCollection[nameKey].push(object);
-                objectsCollection[nameKey].push(object);
             }
-
-            // ellipse
-            else if (o.ellipse)
+            else if (o.ellipse || o.rectangle)
             {
-                var object = slice(o, [ 'name', 'type', 'ellipse', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties' ]);
-                object.x += relativePosition.x;
-                object.y += relativePosition.y;
-
                 collisionCollection[nameKey].push(object);
-                objectsCollection[nameKey].push(object);
-            }
-
-            // otherwise it's a rectangle
-            else
-            {
-                var object = slice(o, [ 'name', 'type', 'x', 'y', 'width', 'height', 'visible', 'rotation', 'properties' ]);
-                object.x += relativePosition.x;
-                object.y += relativePosition.y;
-
-                object.rectangle = true;
-                collisionCollection[nameKey].push(object);
-                objectsCollection[nameKey].push(object);
             }
         }
 
@@ -339,11 +322,6 @@ Phaser.TilemapParser = {
             console.warn('Phaser CE supports only orthogonal maps. This map\'s orientation is "%s".', json.orientation);
 
             return null;
-        }
-
-        if (json.version > 1.1)
-        {
-            console.warn('Some features in this Tiled JSON map (version %s) may not work in Phaser CE. Enable the json1 plugin and reexport the map in "Tiled 1.1" format. https://github.com/photonstorm/phaser-ce/issues/623', json.version);
         }
 
         //  Map data will consist of: layers, objects, images, tilesets, sizes
@@ -673,6 +651,7 @@ Phaser.TilemapParser = {
         //  Objects & Collision Data (polylines, etc)
         var objects = {};
         var collision = {};
+        var objectsMap = {};
 
         for (var i = 0; i < json.layers.length; i++)
         {
@@ -682,11 +661,12 @@ Phaser.TilemapParser = {
             }
 
             var objectGroup = json.layers[i];
-            this.parseObjectGroup(objectGroup, objects, collision);
+            this.parseObjectGroup(objectGroup, objects, collision, undefined, undefined, objectsMap);
         }
 
         map.objects = objects;
         map.collision = collision;
+        map.objectsMap = objectsMap;
 
         map.tiles = [];
 
@@ -787,7 +767,9 @@ Phaser.TilemapParser = {
                             {
                                 x: tile.worldX + objectGroup.x,
                                 y: tile.worldY + objectGroup.y
-                            });
+                            },
+                            objectsMap
+                        );
                     }
                 }
             }

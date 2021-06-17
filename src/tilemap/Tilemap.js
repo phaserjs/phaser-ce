@@ -120,6 +120,11 @@ Phaser.Tilemap = function (game, key, tileWidth, tileHeight, width, height)
     this.objects = data.objects;
 
     /**
+     * @property {object} objectsMap - Tiled objects indexed by `id`.
+     */
+    this.objectsMap = data.objectsMap;
+
+    /**
      * @property {array} collideIndexes - An array of tile indexes that collide.
      */
     this.collideIndexes = [];
@@ -370,30 +375,37 @@ Phaser.Tilemap.prototype = {
     },
 
     /**
-     * Creates a Sprite for every {@link http://doc.mapeditor.org/reference/tmx-map-format/#object object} matching the `gid` argument. You can optionally specify the group that the Sprite will be created in. If none is
-     * given it will be created in the World. All properties from the map data objectgroup are copied across to the Sprite, so you can use this as an easy way to
-     * configure Sprite properties from within the map editor. For example giving an object a property of `alpha: 0.5` in the map editor will duplicate that when the
+     * Creates a Sprite for every {@link http://doc.mapeditor.org/reference/tmx-map-format/#object object} matching the `search` argument.
+     *
+     * - When `search` is a number, it matches the object's tile ID (`gid`).
+     * - When `search` is a string, it matches the object's `name`.
+     * - When `search` is an array like `['type', 'enemy']` it matches that property name and value on the object.
+     * - When `search` is `null`, it matches every object.
+     *
+     * You can optionally specify the group that the Sprite will be created in.
+     * If `undefined` is given it will be created in the World.
+     * If `null` is given it won't be added to any group.
+     *
+     * All properties from the object are copied to the Sprite, so you can use this as an easy way to
+     * configure Sprite properties from within the map editor.
+     * For example giving an object a property of `alpha: 0.5` in the map editor will duplicate that when the
      * Sprite is created. You could also give it a value like: `body.velocity.x: 100` to set it moving automatically.
      *
-     * The `gid` argument is matched against:
-     *
-     * 1. For a tile object, the tile identifier (`gid`); or
-     * 2. The object's unique ID (`id`); or
-     * 3. The object's `name` (a string)
-     *
      * @method Phaser.Tilemap#createFromObjects
-     * @param {string} name - The name of the Object Group to create Sprites from.
-     * @param {number|string} gid - The object's tile reference (gid), unique ID (id) or name.
+     * @param {string} layer - The name of the Object Group (Object Layer) to create Sprites from.
+     * @param {number|string|array|null} search - The search value (see above).
      * @param {string} key - The Game.cache key of the image that this Sprite will use.
      * @param {number|string} [frame] - If the Sprite image contains multiple frames you can specify which one to use here.
      * @param {boolean} [exists=true] - The default exists state of the Sprite.
      * @param {boolean} [autoCull=false] - The default autoCull state of the Sprite. Sprites that are autoCulled are culled from the camera if out of its range.
-     * @param {Phaser.Group} [group=Phaser.World] - Group to add the Sprite to. If not specified it will be added to the World group.
+     * @param {Phaser.Group|null} [group=this.game.world] - Group to add the Sprite to, or `null` for no group. If `undefined` it will be added to the World group.
      * @param {object} [CustomClass=Phaser.Sprite] - If you wish to create your own class, rather than Phaser.Sprite, pass the class here. Your class must extend Phaser.Sprite and have the same constructor parameters.
      * @param {boolean} [adjustY=true] - By default the Tiled map editor uses a bottom-left coordinate system. Phaser uses top-left. So most objects will appear too low down. This parameter moves them up by their height.
      * @param {boolean} [adjustSize=true] - By default the width and height of the objects are transferred to the sprite. This parameter controls that behavior.
+     *
+     * @return {Phaser.Sprite[]} - The created Sprites.
      */
-    createFromObjects: function (name, gid, key, frame, exists, autoCull, group, CustomClass, adjustY, adjustSize)
+    createFromObjects: function (layer, search, key, frame, exists, autoCull, group, CustomClass, adjustY, adjustSize)
     {
         if (exists === undefined) { exists = true; }
         if (autoCull === undefined) { autoCull = false; }
@@ -402,91 +414,89 @@ Phaser.Tilemap.prototype = {
         if (adjustY === undefined) { adjustY = true; }
         if (adjustSize === undefined) { adjustSize = true; }
 
-        if (!this.objects[name])
+        var objects = this.objects[layer];
+
+        if (!objects)
         {
-            console.warn('Tilemap.createFromObjects: Invalid objectgroup name given: ' + name);
-            console.log('Objects: ', this.objects);
+            console.warn('Tilemap.createFromObjects: Invalid object layer name given: ' + layer);
+            console.log('Object layers: ', this.objects);
             return;
         }
 
-        for (var i = 0; i < this.objects[name].length; i++)
+        var foundObjects = [];
+        var created = [];
+        var searchType = typeof search;
+
+        if (searchType === 'number')
         {
-            var found = false;
-            var obj = this.objects[name][i];
-
-            if (obj.gid !== undefined && typeof gid === 'number' && obj.gid === gid)
-            {
-                found = true;
-            }
-            else if (obj.id !== undefined && typeof gid === 'number' && obj.id === gid)
-            {
-                found = true;
-            }
-            else if (obj.name !== undefined && typeof gid === 'string' && obj.name === gid)
-            {
-                found = true;
-            }
-
-            if (found)
-            {
-                var sprite = new CustomClass(this.game, parseFloat(obj.x), parseFloat(obj.y), key, frame);
-
-                sprite.name = obj.name;
-                sprite.autoCull = autoCull;
-                sprite.exists = exists;
-                sprite.visible = obj.visible;
-
-                if (adjustSize)
-                {
-                    if (obj.width)
-                    {
-                        sprite.width = obj.width;
-                    }
-
-                    if (obj.height)
-                    {
-                        sprite.height = obj.height;
-                    }
-                }
-
-                if (obj.rotation)
-                {
-                    sprite.angle = obj.rotation;
-                }
-
-                if (adjustY)
-                {
-                    sprite.y -= sprite.height;
-                }
-
-                group.add(sprite);
-
-                //  Set properties directly on the sprite
-
-                var properties = obj.properties;
-
-                if (Array.isArray(properties))
-                {
-                    // New property format <https://doc.mapeditor.org/en/stable/reference/json-map-format/#property>
-
-                    for (var j = 0; j < properties.length; j++)
-                    {
-                        var propData = properties[j];
-
-                        group.set(sprite, propData.name, propData.value, false, false, 0, true);
-                    }
-                }
-                else
-                {
-                    // Old property format
-
-                    for (var propertyName in properties)
-                    {
-                        group.set(sprite, propertyName, properties[propertyName], false, false, 0, true);
-                    }
-                }
-            }
+            this.getObjects(layer, 'gid', search, foundObjects);
         }
+        else if (searchType === 'string')
+        {
+            this.getObjects(layer, 'name', search, foundObjects);
+        }
+        else if (Array.isArray(search))
+        {
+            this.getObjects(layer, search[0], search[1], foundObjects);
+        }
+        else if (search === null)
+        {
+            foundObjects = objects;
+        }
+
+        for (var i = 0; i < foundObjects.length; i++)
+        {
+            var obj = foundObjects[i];
+            var sprite = new CustomClass(this.game, parseFloat(obj.x), parseFloat(obj.y), key, frame);
+
+            sprite.name = obj.name;
+            sprite.autoCull = autoCull;
+            sprite.exists = exists;
+            sprite.visible = obj.visible;
+
+            if (adjustSize)
+            {
+                if (obj.width)
+                {
+                    sprite.width = obj.width;
+                }
+
+                if (obj.height)
+                {
+                    sprite.height = obj.height;
+                }
+            }
+
+            if (obj.rotation)
+            {
+                sprite.angle = obj.rotation;
+            }
+
+            // Tile objects have origin (0, 1), all others (0, 0) <https://github.com/mapeditor/tiled/issues/91>
+
+            if (adjustY && obj.gid)
+            {
+                sprite.y -= sprite.height;
+            }
+
+            if (group !== null)
+            {
+                group.add(sprite);
+            }
+
+            //  Set properties directly on the sprite
+
+            var properties = obj.properties;
+
+            for (var propertyName in properties)
+            {
+                Phaser.Utils.setProperty(sprite, propertyName, properties[propertyName]);
+            }
+
+            created.push(sprite);
+        }
+
+        return created;
     },
 
     /**
@@ -767,6 +777,51 @@ Phaser.Tilemap.prototype = {
     getLayerIndex: function (name)
     {
         return this.getIndex(this.layers, name);
+    },
+
+    /**
+     * Gets the object with the given `id`, from any Object Layer.
+     *
+     * @param {number} id - The `id` of the object.
+     *
+     * @return {?TilemapObject} The object, or null if not found.
+     */
+    getObject: function (id)
+    {
+        return this.objectsMap[id] || null;
+    },
+
+    /**
+     * Gets objects matching the given property name and value from an Object Layer.
+     *
+     * @param {string} layer - The name of the Object Layer.
+     * @param {string} propName - The name of the object property to match.
+     * @param {any} propValue - The property value to match.
+     * @param {array} [output] - An array to append matching objects to.
+     *
+     * @return {TilemapObject[]} - The matching objects.
+     */
+    getObjects: function (layer, propName, propValue, output)
+    {
+        var objects = this.objects[layer];
+        var len = objects.length;
+
+        if (output === undefined)
+        {
+            output = [];
+        }
+
+        for (var i = 0; i < len; i++)
+        {
+            var obj = objects[i];
+
+            if (obj[propName] === propValue)
+            {
+                output.push(obj);
+            }
+        }
+
+        return output;
     },
 
     /**
@@ -2018,3 +2073,28 @@ Object.defineProperty(Phaser.Tilemap.prototype, 'layer', {
     }
 
 });
+
+/**
+ * @typedef {object} TilemapObject
+ *
+ * See {@link https://doc.mapeditor.org/en/latest/reference/json-map-format/#object}
+ *
+ * @property {boolean} ellipse - True for an ellipse
+ * @property {number} height - The height
+ * @property {number} id - The object identifier
+ * @property {string} name - The name
+ * @property {boolean} point - True for a point
+ * @property {boolean} rectangle - True for a rectangle
+ * @property {boolean} rotation - Rotation in degrees
+ * @property {string} type - The type
+ * @property {boolean} visible - Visible or hidden
+ * @property {number} width - The width
+ * @property {number} x - The x coordinate in global space
+ * @property {number} y - The y coordinate in global space
+ * @property {?number} gid - The global tile identifier, for a tile object
+ * @property {?number[][]} polygon - Vertices for a polygon
+ * @property {?number[][]} polyline - Vertices for a polyline
+ * @property {?object} properties - Custom properties
+ * @property {?string} template - The template path, for a template instance
+ * @property {?object} text - See {@link https://doc.mapeditor.org/en/latest/reference/json-map-format/#text}
+ */

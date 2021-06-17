@@ -5327,7 +5327,8 @@ declare module Phaser {
         key: string;
         layer: Phaser.TilemapLayer[];
         layers: any[];
-        objects: any[];
+        objects: { [index: string]: Phaser.TilemapObject[] };
+        objectsMap: { [index: number]: Phaser.TilemapObject };
         orientation: string;
         properties: any;
         rayStepRate: number;
@@ -5344,7 +5345,7 @@ declare module Phaser {
         copy(x: number, y: number, width: number, height: number, layer?: any): Phaser.Tile[];
         create(name: string, width: number, height: number, tileWidth: number, tileHeight: number, group?: Phaser.Group): Phaser.TilemapLayer;
         createBlankLayer(name: string, width: number, height: number, tileWidth: number, tileHeight: number, group?: Phaser.Group): Phaser.TilemapLayer;
-        createFromObjects(name: string, gid: number, key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean, adjustSize?: boolean): void;
+        createFromObjects(name: string, search: number | string | number[], key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean, adjustSize?: boolean): Phaser.Sprite[];
         createFromTiles(tiles: any, replacements: any, key: string, layer?: any, group?: Phaser.Group, properties?: any): number;
         createLayer(layer: any, width?: number, height?: number, group?: Phaser.Group): Phaser.TilemapLayer;
         destroy(): void;
@@ -5355,7 +5356,9 @@ declare module Phaser {
         getIndex(location: any[], name: string): number;
         getLayer(layer: any): number;
         getLayerIndex(name: string): number;
+        getObject(id: number): Phaser.TilemapObject;
         getObjectIndex(name: string): number;
+        getObjects(layer: string, propName: string, propValue: any, output?: Phaser.TilemapObject[]): Phaser.TilemapObject[];
         getTile(x: number, y: number, layer?: any, nonNull?: boolean): Phaser.Tile;
         getTileAbove(layer: number, x: number, y: number): Phaser.Tile;
         getTileBelow(layer: number, x: number, y: number): Phaser.Tile;
@@ -5473,6 +5476,27 @@ declare module Phaser {
         setScale(xScale?: number, yScale?: number): void;
         updateMax(): void;
 
+    }
+
+    interface TilemapObject {
+        ellipse: boolean;
+        gid: number;
+        height: number;
+        id: number;
+        name: string;
+        point: boolean;
+        polygon: number[][];
+        polyline: number[][];
+        properties: any;
+        rectangle: boolean;
+        rotation: number;
+        template: string;
+        text: any;
+        type: string;
+        visible: boolean;
+        width: number;
+        x: number;
+        y: number;
     }
 
     class TilemapParser {

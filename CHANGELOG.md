@@ -1,5 +1,28 @@
 # Change Log
 
+## Unreleased
+
+### API Changes
+
+- Tilemap object properties `ellipse`, `gid`, `point`, `polygon`, `polyline`, `properties`, `rectangle`, `template`, and `text` have default values (`false` or `null`).
+- Tilemap object `properties` is an object, as in the Tiled JSON v1.1 format (#623).
+- Tilemap#createFromObjects() returns an array instead of `undefined`.
+
+### New Features
+
+- Tilemap#getObject() gets a tilemap object by `id`, from any object layer.
+- Tilemap#getObjects() gets the tilemap objects matching the given property name and value.
+
+### Updates
+
+- When the Tilemap#createFromObjects() `search` argument is an array, e.g. `['type', 'enemy']`, it matches objects with that property name and value.
+- When the Tilemap#createFromObjects() `search` argument is `null`, it matches all objects in the layer.
+- When the Tilemap#createFromObjects() `group` argument is `null`, it doesn't add the created sprites to a group.
+
+### Bug Fixes
+
+- Tilemap#createFromObjects() was adjusting y-coordinates for all tile objects, which was incorrect. Now it adjusts y-coordinates for tile objects only, which have origin (0, 1) in Tiled.
+
 ## Version 2.18.0 - 7 May 2021
 
 ### Updates
