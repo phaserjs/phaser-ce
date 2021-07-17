@@ -115,7 +115,7 @@ Phaser.Tilemap = function (game, key, tileWidth, tileHeight, width, height)
     this.tiles = data.tiles;
 
     /**
-     * @property {array} objects - An array of Tiled Object Layers.
+     * @property {object} objects - Tiled Object Layers, by layer name.
      */
     this.objects = data.objects;
 
