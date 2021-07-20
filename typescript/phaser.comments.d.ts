@@ -4,7 +4,7 @@
 // Type definitions for Phaser CE
 // Project: https://github.com/photonstorm/phaser-ce
 
-interface MediaTrackConstraints {}
+interface MediaTrackConstraints { }
 
 declare module "phaser-ce" {
     export = Phaser;
@@ -21444,7 +21444,7 @@ declare module Phaser {
                 * @param scale Optionally resize the loaded polygon. - Default: 1
                 * @return True on success, else false.
                 */
-                loadPolygon(key: string, object: string, scale ?: number): boolean;
+                loadPolygon(key: string, object: string, scale?: number): boolean;
 
                 /**
                 * Moves the Body backwards based on its current angle and the given speed.
@@ -22521,7 +22521,7 @@ declare module Phaser {
     }
 
     interface PluginConstructorOf<T> {
-        new (...parameters: any[]): T;
+        new(...parameters: any[]): T;
     }
 
 
@@ -30393,9 +30393,14 @@ declare module Phaser {
         layers: any[];
 
         /**
-        * An array of Tiled Object Layers.
+        * Tiled Object Layers, by layer name.
         */
-        objects: any[];
+        objects: { [index: string]: Phaser.TilemapObject[] };
+
+        /**
+        * Tiled objects indexed by `id`.
+        */
+        objectsMap: { [index: number]: Phaser.TilemapObject };
 
         /**
         * The orientation of the map data (as specified in Tiled), usually 'orthogonal'.
@@ -30507,29 +30512,35 @@ declare module Phaser {
         createBlankLayer(name: string, width: number, height: number, tileWidth: number, tileHeight: number, group?: Phaser.Group): Phaser.TilemapLayer;
 
         /**
-        * Creates a Sprite for every {@link http://doc.mapeditor.org/reference/tmx-map-format/#object object} matching the `gid` argument. You can optionally specify the group that the Sprite will be created in. If none is
-        * given it will be created in the World. All properties from the map data objectgroup are copied across to the Sprite, so you can use this as an easy way to
-        * configure Sprite properties from within the map editor. For example giving an object a property of `alpha: 0.5` in the map editor will duplicate that when the
+        * Creates a Sprite for every {@link http://doc.mapeditor.org/reference/tmx-map-format/#object object} matching the `search` argument.
+        * 
+        * - When `search` is a number, it matches the object's tile ID (`gid`).
+        * - When `search` is a string, it matches the object's `name`.
+        * - When `search` is an array like `['type', 'enemy']` it matches that property name and value on the object.
+        * - When `search` is `null`, it matches every object.
+        * 
+        * You can optionally specify the group that the Sprite will be created in.
+        * If `undefined` is given it will be created in the World.
+        * If `null` is given it won't be added to any group.
+        * 
+        * All properties from the object are copied to the Sprite, so you can use this as an easy way to
+        * configure Sprite properties from within the map editor.
+        * For example giving an object a property of `alpha: 0.5` in the map editor will duplicate that when the
         * Sprite is created. You could also give it a value like: `body.velocity.x: 100` to set it moving automatically.
         * 
-        * The `gid` argument is matched against:
-        * 
-        * 1. For a tile object, the tile identifier (`gid`); or
-        * 2. The object's unique ID (`id`); or
-        * 3. The object's `name` (a string)
-        * 
-        * @param name The name of the Object Group to create Sprites from.
-        * @param gid The object's tile reference (gid), unique ID (id) or name.
+        * @param layer The name of the Object Group (Object Layer) to create Sprites from.
+        * @param search The search value (see above).
         * @param key The Game.cache key of the image that this Sprite will use.
         * @param frame If the Sprite image contains multiple frames you can specify which one to use here.
         * @param exists The default exists state of the Sprite. - Default: true
         * @param autoCull The default autoCull state of the Sprite. Sprites that are autoCulled are culled from the camera if out of its range.
-        * @param group Group to add the Sprite to. If not specified it will be added to the World group. - Default: Phaser.World
+        * @param group Group to add the Sprite to, or `null` for no group. If `undefined` it will be added to the World group. - Default: this.game.world
         * @param CustomClass If you wish to create your own class, rather than Phaser.Sprite, pass the class here. Your class must extend Phaser.Sprite and have the same constructor parameters. - Default: Phaser.Sprite
         * @param adjustY By default the Tiled map editor uses a bottom-left coordinate system. Phaser uses top-left. So most objects will appear too low down. This parameter moves them up by their height. - Default: true
         * @param adjustSize By default the width and height of the objects are transferred to the sprite. This parameter controls that behavior. - Default: true
+        * @return - The created Sprites.
         */
-        createFromObjects(name: string, gid: number, key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean, adjustSize?: boolean): void;
+        createFromObjects(name: string, search: number | string | number[], key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean, adjustSize?: boolean): Phaser.Sprite[];
 
         /**
         * Creates a Sprite for every object matching the given tile indexes in the map data.
@@ -30630,7 +30641,26 @@ declare module Phaser {
         * @return The index of the layer in this tilemap, or null if not found.
         */
         getLayerIndex(name: string): number;
+
+        /**
+        * Gets the object with the given `id`, from any Object Layer.
+        * 
+        * @param id The `id` of the object.
+        * @return The object, or null if not found.
+        */
+        getObject(id: number): Phaser.TilemapObject;
         getObjectIndex(name: string): number;
+
+        /**
+        * Gets objects matching the given property name and value from an Object Layer.
+        * 
+        * @param layer The name of the Object Layer.
+        * @param propName The name of the object property to match.
+        * @param propValue The property value to match.
+        * @param output An array to append matching objects to.
+        * @return - The matching objects.
+        */
+        getObjects(layer: string, propName: string, propValue: any, output?: Phaser.TilemapObject[]): Phaser.TilemapObject[];
 
         /**
         * Gets a tile from the Tilemap Layer. The coordinates are given in tile values.
@@ -31247,6 +31277,27 @@ declare module Phaser {
         setScale(xScale?: number, yScale?: number): void;
         updateMax(): void;
 
+    }
+
+    interface TilemapObject {
+        ellipse: boolean;
+        gid: number;
+        height: number;
+        id: number;
+        name: string;
+        point: boolean;
+        polygon: number[][];
+        polyline: number[][];
+        properties: any;
+        rectangle: boolean;
+        rotation: number;
+        template: string;
+        text: any;
+        type: string;
+        visible: boolean;
+        width: number;
+        x: number;
+        y: number;
     }
 
 
@@ -34330,7 +34381,7 @@ declare module Phaser {
         /**
         * This array stores the frames added via @link #setBulletFrames.
         */
-        bulletFrames:  any[];
+        bulletFrames: any[];
 
         /**
         * This is the amount of {@link Phaser.Physics.Arcade.Body#gravity} added to the Bullets physics body when fired.
