@@ -1,8 +1,15 @@
 # Change Log
 
-## Version 2.19.0 - 20 July 2021
+## Version 2.19.0 - 23 August 2021
 
 ### API Changes
+
+#### Text
+
+- Text height is now calculated from [actualBoundingBoxAscent](https://caniuse.com/mdn-api_textmetrics_actualboundingboxascent) and [actualBoundingBoxDescent](https://caniuse.com/mdn-api_textmetrics_actualboundingboxdescent) where available or estimated from character widths otherwise. If you need uniform display across devices, it's best to pass `style.fontProperties` when creating a Text object.
+- The default [Text#testString](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#testString) changed to `|MÂÉQfjq_`.
+
+#### Tilemaps
 
 - [Tilemap object](https://photonstorm.github.io/phaser-ce/global.html#TilemapObject) properties `ellipse`, `gid`, `point`, `polygon`, `polyline`, `properties`, `rectangle`, `template`, and `text` have default values (`false` or `null`).
 - [Tilemap object](https://photonstorm.github.io/phaser-ce/global.html#TilemapObject) `properties` is an object, as in the Tiled JSON v1.1 format (#623).
@@ -10,6 +17,8 @@
 
 ### New Features
 
+- You can pass `style.fontProperties` when creating a [Text](https://photonstorm.github.io/phaser-ce/Phaser.Text.html) game object or in [Text#setStyle()](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#setStyle).
+- You can pass `style.testString` when creating a [Text](https://photonstorm.github.io/phaser-ce/Phaser.Text.html) game object or in [Text#setStyle()](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#setStyle).
 - [Tilemap#getObject()](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#getObject) gets a tilemap object by `id`, from any object layer.
 - [Tilemap#getObjects()](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#getObjects) gets the tilemap objects matching the given property name and value.
 
