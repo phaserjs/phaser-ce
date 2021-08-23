@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.19.0 "2021-07-20" - Built: Tue Jul 20 2021 11:53:39
+* v2.19.0 "2021-08-23" - Built: Mon Aug 23 2021 13:20:19
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -43653,10 +43653,10 @@ Phaser.RenderTexture.prototype.getCanvas = function ()
  * @param {string} text - The actual text that will be written.
  * @param {object} [style] - The style properties to be set on the Text.
  * @param {string} [style.font='bold 20pt Arial'] - The style and size of the font.
- * @param {string} [style.fontStyle=(from font)] - The style of the font (eg. 'italic'): overrides the value in `style.font`.
- * @param {string} [style.fontVariant=(from font)] - The variant of the font (eg. 'small-caps'): overrides the value in `style.font`.
- * @param {string} [style.fontWeight=(from font)] - The weight of the font (eg. 'bold'): overrides the value in `style.font`.
- * @param {string|number} [style.fontSize=(from font)] - The size of the font (eg. 32 or '32px'): overrides the value in `style.font`.
+ * @param {string} [style.fontStyle] - The style of the font (eg. 'italic'): overrides the value in `style.font`.
+ * @param {string} [style.fontVariant] - The variant of the font (eg. 'small-caps'): overrides the value in `style.font`.
+ * @param {string} [style.fontWeight] - The weight of the font (eg. 'bold'): overrides the value in `style.font`.
+ * @param {string|number} [style.fontSize] - The size of the font (eg. 32 or '32px'): overrides the value in `style.font`.
  * @param {string} [style.backgroundColor=null] - A canvas fillstyle that will be used as the background for the whole Text object. Set to `null` to disable.
  * @param {string} [style.fill='black'] - A canvas fillstyle that will be used on the text eg 'red', '#00FF00'.
  * @param {string} [style.align='left'] - Horizontal alignment of each line in multiline text. Can be: 'left', 'center' or 'right'. Does not affect single lines of text (see `textBounds` and `boundsAlignH` for that).
@@ -43668,6 +43668,8 @@ Phaser.RenderTexture.prototype.getCanvas = function ()
  * @param {number} [style.wordWrapWidth=100] - The width in pixels at which text will wrap.
  * @param {number} [style.maxLines=0] - The maximum number of lines to be shown for wrapped text.
  * @param {number} [style.tabs=0] - The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
+ * @param {object} [style.fontProperties=null] - `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
+ * @param {string} [style.testString='|MÂÉQfjq_'] - The text to use to measure the font width and height.
  */
 Phaser.Text = function (game, x, y, text, style)
 {
@@ -43789,7 +43791,7 @@ Phaser.Text = function (game, x, y, text, style)
      * @property {string} _testString
      * @private
      */
-    this._testString = '|MÉq';
+    this._testString = style.testString || '|MÂÉQfjq_';
 
     /**
      * @property {number} _res - Internal canvas resolution var.
@@ -43931,10 +43933,10 @@ Phaser.Text.prototype.setShadow = function (x, y, color, blur, shadowStroke, sha
  * @method Phaser.Text#setStyle
  * @param {object} [style] - The style properties to be set on the Text.
  * @param {string} [style.font='bold 20pt Arial'] - The style and size of the font.
- * @param {string} [style.fontStyle=(from font)] - The style of the font (eg. 'italic'): overrides the value in `style.font`.
- * @param {string} [style.fontVariant=(from font)] - The variant of the font (eg. 'small-caps'): overrides the value in `style.font`.
- * @param {string} [style.fontWeight=(from font)] - The weight of the font (eg. 'bold'): overrides the value in `style.font`.
- * @param {string|number} [style.fontSize=(from font)] - The size of the font (eg. 32 or '32px'): overrides the value in `style.font`.
+ * @param {string} [style.fontStyle] - The style of the font (eg. 'italic'): overrides the value in `style.font`.
+ * @param {string} [style.fontVariant] - The variant of the font (eg. 'small-caps'): overrides the value in `style.font`.
+ * @param {string} [style.fontWeight] - The weight of the font (eg. 'bold'): overrides the value in `style.font`.
+ * @param {string|number} [style.fontSize] - The size of the font (eg. 32 or '32px'): overrides the value in `style.font`.
  * @param {string} [style.backgroundColor=null] - A canvas fillstyle that will be used as the background for the whole Text object. Set to `null` to disable.
  * @param {string} [style.fill='black'] - A canvas fillstyle that will be used on the text eg 'red', '#00FF00'.
  * @param {string} [style.align='left'] - Horizontal alignment of each line in multiline text. Can be: 'left', 'center' or 'right'. Does not affect single lines of text (see `textBounds` and `boundsAlignH` for that).
@@ -43946,6 +43948,8 @@ Phaser.Text.prototype.setShadow = function (x, y, color, blur, shadowStroke, sha
  * @param {number} [style.wordWrapWidth=100] - The width in pixels at which text will wrap.
  * @param {number} [style.maxLines=0] - The maximum number of lines to be shown for wrapped text.
  * @param {number|array} [style.tabs=0] - The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
+ * @param {object} [style.fontProperties=null] - `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
+ * @param {string} [style.testString='|MÂÉQfjq_'] - The text to use to measure the font width and height.
  * @param {boolean} [update=false] - Immediately update the Text object after setting the new style? Or wait for the next frame.
  * @return {Phaser.Text} This Text instance.
  */
@@ -43970,6 +43974,7 @@ Phaser.Text.prototype.setStyle = function (style, update)
     newStyle.shadowColor = style.shadowColor || 'rgba(0,0,0,0)';
     newStyle.shadowBlur = style.shadowBlur || 0;
     newStyle.tabs = style.tabs || 0;
+    newStyle.fontProperties = style.fontProperties || null;
 
     var components = this.fontToComponents(newStyle.font);
 
@@ -44004,6 +44009,11 @@ Phaser.Text.prototype.setStyle = function (style, update)
 
     this.style = newStyle;
     this.dirty = true;
+
+    if (newStyle.testString)
+    {
+        this.testString = newStyle.testString;
+    }
 
     if (update)
     {
@@ -44044,7 +44054,7 @@ Phaser.Text.prototype.updateText = function ()
     var tabs = this.style.tabs;
     var lineWidths = [];
     var maxLineWidth = 0;
-    var fontProperties = this.determineFontProperties(this.style.font);
+    var fontProperties = this.style.fontProperties || this.determineFontProperties(this.style.font);
 
     var drawnLines = lines.length;
 
@@ -45175,112 +45185,43 @@ Phaser.Text.prototype._renderCanvas = function (renderSession)
 Phaser.Text.prototype.determineFontProperties = function (fontStyle)
 {
     var properties = Phaser.Text.fontPropertiesCache[fontStyle];
-    var measureText = this.testString || '|MÉq';
 
-    if (!properties)
+    if (properties)
     {
-        properties = {};
-
-        var canvas = Phaser.Text.fontPropertiesCanvas;
-        var context = Phaser.Text.fontPropertiesContext;
-
-        context.font = fontStyle;
-
-        var width = Math.ceil(context.measureText(measureText).width);
-        var baseline = Math.ceil(context.measureText(measureText).width);
-        var height = 2 * baseline;
-
-        baseline = baseline * 1.4 | 0;
-
-        canvas.width = width;
-        canvas.height = height;
-
-        context.fillStyle = '#f00';
-        context.fillRect(0, 0, width, height);
-
-        context.font = fontStyle;
-
-        context.textBaseline = 'alphabetic';
-        context.fillStyle = '#000';
-        context.fillText(measureText, 0, baseline);
-
-        if (!context.getImageData(0, 0, width, height))
-        {
-            properties.ascent = baseline;
-            properties.descent = baseline + 6;
-            properties.fontSize = properties.ascent + properties.descent;
-
-            Phaser.Text.fontPropertiesCache[fontStyle] = properties;
-
-            return properties;
-        }
-
-        var imagedata = context.getImageData(0, 0, width, height).data;
-        var pixels = imagedata.length;
-        var line = width * 4;
-
-        var i, j;
-
-        var idx = 0;
-        var stop = false;
-
-        // ascent. scan from top to bottom until we find a non red pixel
-        for (i = 0; i < baseline; i++)
-        {
-            for (j = 0; j < line; j += 4)
-            {
-                if (imagedata[idx + j] !== 255)
-                {
-                    stop = true;
-                    break;
-                }
-            }
-
-            if (!stop)
-            {
-                idx += line;
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        properties.ascent = baseline - i;
-
-        idx = pixels - line;
-        stop = false;
-
-        // descent. scan from bottom to top until we find a non red pixel
-        for (i = height; i > baseline; i--)
-        {
-            for (j = 0; j < line; j += 4)
-            {
-                if (imagedata[idx + j] !== 255)
-                {
-                    stop = true;
-                    break;
-                }
-            }
-
-            if (!stop)
-            {
-                idx -= line;
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        properties.descent = i - baseline;
-
-        // TODO might need a tweak. kind of a temp fix!
-        properties.descent += 6;
-        properties.fontSize = properties.ascent + properties.descent;
-
-        Phaser.Text.fontPropertiesCache[fontStyle] = properties;
+        return properties;
     }
+
+    var context = Phaser.Text.fontPropertiesContext;
+
+    context.font = fontStyle;
+
+    var testStringMetrics = context.measureText(this.testString);
+
+    if (testStringMetrics.actualBoundingBoxAscent)
+    {
+        var asc = Math.ceil(testStringMetrics.actualBoundingBoxAscent);
+        var desc = Math.ceil(testStringMetrics.actualBoundingBoxDescent);
+
+        properties = {
+            ascent: asc,
+            descent: desc,
+            fontSize: asc + desc
+        };
+    }
+    else
+    {
+        var mxWidth = context.measureText('MX').width;
+        var asc = Math.ceil(0.75 * mxWidth);
+        var desc = Math.ceil(0.25 * mxWidth);
+
+        properties = {
+            ascent: asc,
+            descent: desc,
+            fontSize: asc + desc
+        };
+    }
+
+    Phaser.Text.fontPropertiesCache[fontStyle] = properties;
 
     return properties;
 };
@@ -45965,7 +45906,7 @@ Object.defineProperty(Phaser.Text.prototype, 'height', {
 /**
  * The text used to measure the font's width and height
  * @name Phaser.Text#testString
- * @default '|MÉq'
+ * @default '|MÂÉQfjq_'
  */
 Object.defineProperty(Phaser.Text.prototype, 'testString', {
 

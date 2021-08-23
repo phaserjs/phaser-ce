@@ -29297,10 +29297,10 @@ declare module Phaser {
         * @param text The actual text that will be written.
         * @param style The style properties to be set on the Text.
         * @param style.font The style and size of the font. - Default: 'bold 20pt Arial'
-        * @param style.fontStyle The style of the font (eg. 'italic'): overrides the value in `style.font`. - Default: (from font)
-        * @param style.fontVariant The variant of the font (eg. 'small-caps'): overrides the value in `style.font`. - Default: (from font)
-        * @param style.fontWeight The weight of the font (eg. 'bold'): overrides the value in `style.font`. - Default: (from font)
-        * @param style.fontSize The size of the font (eg. 32 or '32px'): overrides the value in `style.font`. - Default: (from font)
+        * @param style.fontStyle The style of the font (eg. 'italic'): overrides the value in `style.font`.
+        * @param style.fontVariant The variant of the font (eg. 'small-caps'): overrides the value in `style.font`.
+        * @param style.fontWeight The weight of the font (eg. 'bold'): overrides the value in `style.font`.
+        * @param style.fontSize The size of the font (eg. 32 or '32px'): overrides the value in `style.font`.
         * @param style.backgroundColor A canvas fillstyle that will be used as the background for the whole Text object. Set to `null` to disable.
         * @param style.fill A canvas fillstyle that will be used on the text eg 'red', '#00FF00'. - Default: 'black'
         * @param style.align Horizontal alignment of each line in multiline text. Can be: 'left', 'center' or 'right'. Does not affect single lines of text (see `textBounds` and `boundsAlignH` for that). - Default: 'left'
@@ -29312,6 +29312,8 @@ declare module Phaser {
         * @param style.wordWrapWidth The width in pixels at which text will wrap. - Default: 100
         * @param style.maxLines The maximum number of lines to be shown for wrapped text.
         * @param style.tabs The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
+        * @param style.fontProperties `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
+        * @param style.testString The text to use to measure the font width and height. - Default: '|MÂÉQfjq_'
         */
         constructor(game: Phaser.Game, x: number, y: number, text: string, style?: PhaserTextStyle);
 
@@ -29633,7 +29635,7 @@ declare module Phaser {
 
         /**
         * The text used to measure the font's width and height
-        * Default: '|MÉq'
+        * Default: '|MÂÉQfjq_'
         */
         testString: string;
 
@@ -29948,10 +29950,10 @@ declare module Phaser {
         * 
         * @param style The style properties to be set on the Text.
         * @param style.font The style and size of the font. - Default: 'bold 20pt Arial'
-        * @param style.fontStyle The style of the font (eg. 'italic'): overrides the value in `style.font`. - Default: (from font)
-        * @param style.fontVariant The variant of the font (eg. 'small-caps'): overrides the value in `style.font`. - Default: (from font)
-        * @param style.fontWeight The weight of the font (eg. 'bold'): overrides the value in `style.font`. - Default: (from font)
-        * @param style.fontSize The size of the font (eg. 32 or '32px'): overrides the value in `style.font`. - Default: (from font)
+        * @param style.fontStyle The style of the font (eg. 'italic'): overrides the value in `style.font`.
+        * @param style.fontVariant The variant of the font (eg. 'small-caps'): overrides the value in `style.font`.
+        * @param style.fontWeight The weight of the font (eg. 'bold'): overrides the value in `style.font`.
+        * @param style.fontSize The size of the font (eg. 32 or '32px'): overrides the value in `style.font`.
         * @param style.backgroundColor A canvas fillstyle that will be used as the background for the whole Text object. Set to `null` to disable.
         * @param style.fill A canvas fillstyle that will be used on the text eg 'red', '#00FF00'. - Default: 'black'
         * @param style.align Horizontal alignment of each line in multiline text. Can be: 'left', 'center' or 'right'. Does not affect single lines of text (see `textBounds` and `boundsAlignH` for that). - Default: 'left'
@@ -29963,6 +29965,8 @@ declare module Phaser {
         * @param style.wordWrapWidth The width in pixels at which text will wrap. - Default: 100
         * @param style.maxLines The maximum number of lines to be shown for wrapped text.
         * @param style.tabs The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
+        * @param style.fontProperties `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
+        * @param style.testString The text to use to measure the font width and height. - Default: '|MÂÉQfjq_'
         * @param update Immediately update the Text object after setting the new style? Or wait for the next frame.
         * @return This Text instance.
         */
