@@ -5155,6 +5155,12 @@ declare module Phaser {
         backgroundColor?: string;
         boundsAlignH?: string;
         boundsAlignV?: string;
+        fontProperties?: {
+            ascent: number;
+            descent: number;
+            fontSize: number;
+        };
+        testString?: string;
 
     }
 
