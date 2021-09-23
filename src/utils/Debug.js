@@ -182,6 +182,7 @@ Phaser.Utils.Debug.prototype = {
         {
             this.bmd = new Phaser.BitmapData(this.game, '__DEBUG', this.game.width, this.game.height, true);
             this.sprite = this.game.make.image(0, 0, this.bmd);
+            this.sprite.anchor.set(0, 0);
             this.game.stage.addChild(this.sprite);
 
             this.game.scale.onSizeChange.add(this.resize, this);
