@@ -56,9 +56,9 @@ Animations, lifespan, particles, physics, timers, and tweens now all use the sam
 
 Phaser.Game#forceSingleUpdate now switches between a **variable-step** or **fixed-step** game loop.
 
-When `forceSingleUpdate` is off (the default), the game makes one logic update and one render per animation frame received from the device. This is usually at 60Hz, but can be lower (33Hz) or higher (75Hz, 144Hz, 240Hz).
+When `forceSingleUpdate` is on (the default), the game makes one logic update and one render per animation frame received from the device. This is usually at 60Hz, but can be lower (33Hz) or higher (75Hz, 144Hz, 240Hz).
 
-When `forceSingleUpdate` is on, the game makes logic updates only at the rate given by `desiredFps` (60Hz or 16.6ms by default). Depending on the `desiredFps` value and the device frame rate, this will make zero, one, or several logic updates per animation frame. There is one render per animation frame only if at least one update was made or `forceSingleRender` is on; otherwise there is none.
+When `forceSingleUpdate` is off, the game makes logic updates only at the rate given by `desiredFps` (60Hz or 16.6ms by default). Depending on the `desiredFps` value and the device frame rate, this will make zero, one, or several logic updates per animation frame. There is one render per animation frame only if at least one update was made or `forceSingleRender` is on; otherwise there is none.
 
 #### Added
 
