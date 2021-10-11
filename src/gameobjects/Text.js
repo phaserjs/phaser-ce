@@ -159,7 +159,7 @@ Phaser.Text = function (game, x, y, text, style)
      * @property {string} _testString
      * @private
      */
-    this._testString = style.testString || '|MÂÉQfjq_';
+    this._testString = '|MÂÉQfjq_';
 
     /**
      * @property {number} _res - Internal canvas resolution var.
