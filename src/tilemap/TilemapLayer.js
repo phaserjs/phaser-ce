@@ -581,29 +581,18 @@ Phaser.TilemapLayer.prototype.getRayCastTiles = function (line, stepRate, collid
     if (collides === undefined) { collides = false; }
     if (interestingFace === undefined) { interestingFace = false; }
 
-    //  First get all tiles that touch the bounds of the line
-    var tiles = this.getTiles(line.x, line.y, line.width, line.height, collides, interestingFace);
-
-    if (tiles.length === 0)
-    {
-        return [];
-    }
-
-    //  Now we only want the tiles that intersect with the points on this line
+    // Fetch coordinates to check
     var coords = line.coordinatesOnLine(stepRate);
     var results = [];
 
-    for (var i = 0; i < tiles.length; i++)
+    var point = {};
+    for (var t = 0; t < coords.length; t++)
     {
-        for (var t = 0; t < coords.length; t++)
+        this.getTileXY(coords[t][0], coords[t][1], point);
+        var tile = this.layer.data[point.y][point.x];
+        if (tile.index !== -1)
         {
-            var tile = tiles[i];
-            var coord = coords[t];
-            if (tile.containsPoint(coord[0], coord[1]))
-            {
-                results.push(tile);
-                break;
-            }
+            results.push(tile);
         }
     }
 

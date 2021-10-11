@@ -1,5 +1,15 @@
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+
+- [TilemapLayer#getRayCastTiles()](https://photonstorm.github.io/phaser-ce/Phaser.TilemapLayer.html#getRayCastTiles) was less efficient and behaved incorrectly for horizontal or vertical rays.
+
+### Thanks
+
+@noocsharp
+
 ## Version 2.19.0 - 23 August 2021
 
 ### API Changes
