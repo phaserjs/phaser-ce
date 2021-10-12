@@ -91,7 +91,7 @@ Phaser.TilemapLayer = function (game, tilemap, index, width, height)
      *
      * @property {?DOMCanvasElement} [copyCanvas=(auto)] - [Internal] If set, force using a separate (shared) copy canvas.
      *     Using a canvas bitblt/copy when the source and destinations region overlap produces unexpected behavior
-     *     in some browsers, notably Safari. 
+     *     in some browsers, notably Safari.
      *
      * @default
      */
@@ -199,7 +199,7 @@ Phaser.TilemapLayer = function (game, tilemap, index, width, height)
         /*
          * Collision width/height (pixels)
          * What purpose do these have? Most things use tile width/height directly.
-         * This also only extends collisions right and down.       
+         * This also only extends collisions right and down.
          */
         cw: tilemap.tileWidth,
         ch: tilemap.tileHeight,
@@ -341,7 +341,7 @@ Phaser.TilemapLayer.prototype._renderWebGL = function (renderSession)
         this.position.x = (this.game.camera.view.x + this.cameraOffset.x) / this.game.camera.scale.x;
         this.position.y = (this.game.camera.view.y + this.cameraOffset.y) / this.game.camera.scale.y;
     }
-    
+
     this._scrollX = (this.game.camera.view.x - this.tileOffset.x) * this.scrollFactorX / this.scale.x;
     this._scrollY = (this.game.camera.view.y - this.tileOffset.y) * this.scrollFactorY / this.scale.y;
 
@@ -448,7 +448,7 @@ Phaser.TilemapLayer.prototype._fixX = function (x)
     {
         return x;
     }
-    
+
     //  This executes if the scrollFactorX is 0 and the x position of the tilemap is off from standard.
     if (this.scrollFactorX === 0 && this.position.x !== 0)
     {
@@ -490,13 +490,13 @@ Phaser.TilemapLayer.prototype._fixY = function (y)
     {
         return y;
     }
-    
+
     //  This executes if the scrollFactorY is 0 and the y position of the tilemap is off from standard.
     if (this.scrollFactorY === 0 && this.position.y !== 0)
     {
         return y - this.position.y;
     }
-    
+
     return this._scrollY + (y - (this._scrollY / this.scrollFactorY));
 };
 
@@ -727,9 +727,9 @@ Phaser.TilemapLayer.prototype.resetTilesetCache = function ()
 
 /**
  * This method will set the scale of the tilemap as well as update the underlying block data of this layer.
- * 
+ *
  * @method Phaser.TilemapLayer#setScale
- * @param {number} [xScale=1] - The scale factor along the X-plane 
+ * @param {number} [xScale=1] - The scale factor along the X-plane
  * @param {number} [yScale] - The scale factor along the Y-plane
  */
 Phaser.TilemapLayer.prototype.setScale = function (xScale, yScale)
@@ -864,7 +864,7 @@ Phaser.TilemapLayer.prototype.renderRegion = function (scrollX, scrollY, left, t
             bottom = Math.min(height - 1, bottom);
         }
     }
-   
+
     // top-left pixel of top-left cell
     var baseX = (left * tw) - scrollX;
     var baseY = (top * th) - scrollY;
@@ -1099,7 +1099,7 @@ Phaser.TilemapLayer.prototype.render = function ()
     }
 
     this.context.save();
-    
+
     mc.scrollX = scrollX;
     mc.scrollY = scrollY;
 
