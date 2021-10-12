@@ -3130,7 +3130,7 @@ declare module Phaser {
         startMediaStream(captureAudio?: boolean | MediaTrackConstraints, width?: number, height?: number, captureVideo?: MediaTrackConstraints): Phaser.Video;
         createVideoFromURL(url: string, autoplay?: boolean, crossOrigin?: string): Phaser.Video;
         changeSource(src: string, autoplay?: boolean): Phaser.Video;
-        connectToMediaStram(video: any, stream: any): Phaser.Video;
+        connectToMediaStream(video: any, stream: any): Phaser.Video;
         destroy(): void;
         play(loop?: boolean, playbackRate?: number): Phaser.Video;
         playHandler(): void;
