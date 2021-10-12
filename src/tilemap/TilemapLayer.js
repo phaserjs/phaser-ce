@@ -581,16 +581,30 @@ Phaser.TilemapLayer.prototype.getRayCastTiles = function (line, stepRate, collid
     if (collides === undefined) { collides = false; }
     if (interestingFace === undefined) { interestingFace = false; }
 
-    // Fetch coordinates to check
+    var skipInteresting = !(collides || interestingFace);
+
     var coords = line.coordinatesOnLine(stepRate);
     var results = [];
+    var point = new Phaser.Point();
+    var layer = this.map.layers[this.map.getLayer(this)];
+    var layerData = layer.data;
+    var width = layer.width;
+    var height = layer.height;
 
-    var point = {};
     for (var t = 0; t < coords.length; t++)
     {
-        this.getTileXY(coords[t][0], coords[t][1], point);
-        var tile = this.layer.data[point.y][point.x];
-        if (tile.index !== -1)
+        var coord = coords[t];
+
+        this.getTileXY(coord[0], coord[1], point);
+
+        var x = point.x;
+        var y = point.y;
+
+        if (x < 0 || x >= width || y < 0 || y >= height) { continue; }
+
+        var tile = layerData[y][x];
+
+        if (results.indexOf(tile) === -1 && (skipInteresting || tile.isInteresting(collides, interestingFace)))
         {
             results.push(tile);
         }
