@@ -99,7 +99,7 @@ Phaser.Time = function (game)
     this.deltaTotal = 0;
 
     /**
-     * The maximum acceptable step interval in milliseconds, based on `desiredMinFps`.
+     * The maximum acceptable step interval in milliseconds, based on `desiredMinFps`. You can also set this directly.
      * @property {number} deltaMax
      */
     this.deltaMax = 200;
@@ -113,12 +113,10 @@ Phaser.Time = function (game)
 
     /**
      * The desired frame rate of the game.
-     *
-     * This is used is used to calculate the physic/logic multiplier and how to apply catch-up logic updates.
-     *
      * @property {number} _desiredFps
      * @private
      * @default
+     * @see Phaser.Time#desiredFps
      */
     this._desiredFps = 60;
 
@@ -608,7 +606,7 @@ Phaser.Time.prototype = {
 /**
  * The number of logic updates per second.
  *
- * This is used is used to calculate the physic / logic multiplier and how to apply catch-up logic updates.
+ * This is used is used to calculate {@link Phaser.Time#delta} when {@link Phaser.Game#forceSingleUpdate} is off.
  *
  * The render rate is unaffected unless you also turn off {@link Phaser.Game#forceSingleRender}.
  *

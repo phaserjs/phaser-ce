@@ -462,6 +462,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     /**
      * @property {boolean} forceSingleUpdate - Use a variable-step game loop (true) or a fixed-step game loop (false).
      * @default
+     * @see Phaser.Time#desiredFps
      */
     this.forceSingleUpdate = true;
 
@@ -472,7 +473,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.forceSingleRender = false;
 
     /**
-     * @property {boolean} dropFrames - Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}).
+     * @property {boolean} dropFrames - Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}). When false, the delta is clamped to the maximum instead.
      * @default
      */
     this.dropFrames = false;
