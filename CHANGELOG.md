@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.19.1 - 13 October 2021
 
 ### Bug Fixes
 
