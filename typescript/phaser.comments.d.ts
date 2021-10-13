@@ -7985,7 +7985,7 @@ declare module Phaser {
         device: Phaser.Device;
 
         /**
-        * Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}).
+        * Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}). When false, the delta is clamped to the maximum instead.
         */
         dropFrames: boolean;
 
@@ -16772,7 +16772,7 @@ declare module Phaser {
         * The most recent PointerEvent from the browser. Will be null if no event has ever been received.
         * Access this property only inside a Pointer event handler and do not keep references to it.
         */
-        event: MSPointerEvent;
+        event: PointerEvent;
 
         /**
         * A reference to the currently running game.
@@ -16784,27 +16784,27 @@ declare module Phaser {
         */
         input: Phaser.Input;
 
-        onPointerDown: (event: MSPointerEvent) => void;
-        onPointerMove: (event: MSPointerEvent) => void;
-        onPointerUp: (event: MSPointerEvent) => void;
-        mouseDownCallback: (event: MSPointerEvent) => void;
-        mouseMoveCallback: (event: MSPointerEvent) => void;
-        mouseUpCallback: (event: MSPointerEvent) => void;
+        onPointerDown: (event: PointerEvent) => void;
+        onPointerMove: (event: PointerEvent) => void;
+        onPointerUp: (event: PointerEvent) => void;
+        mouseDownCallback: (event: PointerEvent) => void;
+        mouseMoveCallback: (event: PointerEvent) => void;
+        mouseUpCallback: (event: PointerEvent) => void;
 
         /**
         * A callback that can be fired on a pointerdown event.
         */
-        pointerDownCallback: (event: MSPointerEvent) => void;
+        pointerDownCallback: (event: PointerEvent) => void;
 
         /**
         * A callback that can be fired on a pointermove event.
         */
-        pointerMoveCallback: (event: MSPointerEvent) => void;
+        pointerMoveCallback: (event: PointerEvent) => void;
 
         /**
         * A callback that can be fired on a pointerup event.
         */
-        pointerUpCallback: (event: MSPointerEvent) => void;
+        pointerUpCallback: (event: PointerEvent) => void;
 
 
         /**
@@ -17914,7 +17914,15 @@ declare module Phaser {
         * @return This Video object for method chaining.
         */
         changeSource(src: string, autoplay?: boolean): Phaser.Video;
-        connectToMediaStram(video: any, stream: any): Phaser.Video;
+
+        /**
+        * Connects to an external media stream for the webcam, rather than using a local one.
+        * 
+        * @param video The HTML Video Element that the stream uses.
+        * @param stream The Video Stream data.
+        * @return This Video object for method chaining.
+        */
+        connectToMediaStream(video: any, stream: any): Phaser.Video;
 
         /**
         * Destroys the Video object. This calls `Video.stop` and then `Video.removeVideoElement`.
@@ -29268,6 +29276,12 @@ declare module Phaser {
         backgroundColor?: string;
         boundsAlignH?: string;
         boundsAlignV?: string;
+        fontProperties?: {
+            ascent: number;
+            descent: number;
+            fontSize: number;
+        };
+        testString?: string;
 
     }
 
@@ -32141,7 +32155,7 @@ declare module Phaser {
         delta: number;
 
         /**
-        * The maximum acceptable step interval in milliseconds, based on `desiredMinFps`.
+        * The maximum acceptable step interval in milliseconds, based on `desiredMinFps`. You can also set this directly.
         */
         deltaMax: number;
 
@@ -32153,7 +32167,7 @@ declare module Phaser {
         /**
         * The number of logic updates per second.
         * 
-        * This is used is used to calculate the physic / logic multiplier and how to apply catch-up logic updates.
+        * This is used is used to calculate {@link Phaser.Time#delta} when {@link Phaser.Game#forceSingleUpdate} is off.
         * 
         * The render rate is unaffected unless you also turn off {@link Phaser.Game#forceSingleRender}.
         * Default: 60

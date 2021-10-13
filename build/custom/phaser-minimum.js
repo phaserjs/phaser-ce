@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.19.0 "2021-08-23" - Built: Mon Aug 23 2021 13:20:22
+* v2.19.1 "2021-10-13" - Built: Wed Oct 13 2021 11:30:09
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -7784,7 +7784,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.19.0',
+    VERSION: '2.19.1',
 
     /**
      * An array of Phaser game instances.
@@ -22035,6 +22035,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     /**
      * @property {boolean} forceSingleUpdate - Use a variable-step game loop (true) or a fixed-step game loop (false).
      * @default
+     * @see Phaser.Time#desiredFps
      */
     this.forceSingleUpdate = true;
 
@@ -22045,7 +22046,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.forceSingleRender = false;
 
     /**
-     * @property {boolean} dropFrames - Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}).
+     * @property {boolean} dropFrames - Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}). When false, the delta is clamped to the maximum instead.
      * @default
      */
     this.dropFrames = false;
@@ -38713,7 +38714,7 @@ Phaser.Time = function (game)
     this.deltaTotal = 0;
 
     /**
-     * The maximum acceptable step interval in milliseconds, based on `desiredMinFps`.
+     * The maximum acceptable step interval in milliseconds, based on `desiredMinFps`. You can also set this directly.
      * @property {number} deltaMax
      */
     this.deltaMax = 200;
@@ -38727,12 +38728,10 @@ Phaser.Time = function (game)
 
     /**
      * The desired frame rate of the game.
-     *
-     * This is used is used to calculate the physic/logic multiplier and how to apply catch-up logic updates.
-     *
      * @property {number} _desiredFps
      * @private
      * @default
+     * @see Phaser.Time#desiredFps
      */
     this._desiredFps = 60;
 
@@ -39222,7 +39221,7 @@ Phaser.Time.prototype = {
 /**
  * The number of logic updates per second.
  *
- * This is used is used to calculate the physic / logic multiplier and how to apply catch-up logic updates.
+ * This is used is used to calculate {@link Phaser.Time#delta} when {@link Phaser.Game#forceSingleUpdate} is off.
  *
  * The render rate is unaffected unless you also turn off {@link Phaser.Game#forceSingleRender}.
  *
