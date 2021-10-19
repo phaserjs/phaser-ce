@@ -6,6 +6,7 @@
 
 - [TilemapLayer#getRayCastTiles()](https://photonstorm.github.io/phaser-ce/Phaser.TilemapLayer.html#getRayCastTiles) was less efficient and behaved incorrectly for horizontal or vertical rays.
 - [Text](https://photonstorm.github.io/phaser-ce/Phaser.Text.html#Text) no longer errors when missing a `style` parameter.
+- Fixed some WebGL warnings.
 
 ### Thanks
 
