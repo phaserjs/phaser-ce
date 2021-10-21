@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.19.0 "2021-08-23" - Built: Mon Aug 23 2021 13:20:09
+* v2.19.1 "2021-10-13" - Built: Tue Oct 19 2021 11:50:00
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -20139,7 +20139,10 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         gl.vertexAttribPointer(shader.colorAttribute, 4, gl.UNSIGNED_BYTE, true, stride, 16);
 
         // Texture index
-        gl.vertexAttribPointer(shader.aTextureIndex, 1, gl.FLOAT, false, stride, 20);
+        if (PIXI._enableMultiTextureToggle)
+        {
+            gl.vertexAttribPointer(shader.aTextureIndex, 1, gl.FLOAT, false, stride, 20);
+        }
     }
 
     // upload the verts to the buffer
@@ -22612,7 +22615,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.19.0',
+    VERSION: '2.19.1',
 
     /**
      * An array of Phaser game instances.
@@ -36863,6 +36866,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     /**
      * @property {boolean} forceSingleUpdate - Use a variable-step game loop (true) or a fixed-step game loop (false).
      * @default
+     * @see Phaser.Time#desiredFps
      */
     this.forceSingleUpdate = true;
 
@@ -36873,7 +36877,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.forceSingleRender = false;
 
     /**
-     * @property {boolean} dropFrames - Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}).
+     * @property {boolean} dropFrames - Skip a logic update and render if the delta is too large (see {@link Phaser.Time#deltaMax}). When false, the delta is clamped to the maximum instead.
      * @default
      */
     this.dropFrames = false;
@@ -58619,7 +58623,7 @@ Phaser.Text = function (game, x, y, text, style)
      * @property {string} _testString
      * @private
      */
-    this._testString = style.testString || '|MÂÉQfjq_';
+    this._testString = '|MÂÉQfjq_';
 
     /**
      * @property {number} _res - Internal canvas resolution var.
@@ -70191,7 +70195,7 @@ Phaser.Time = function (game)
     this.deltaTotal = 0;
 
     /**
-     * The maximum acceptable step interval in milliseconds, based on `desiredMinFps`.
+     * The maximum acceptable step interval in milliseconds, based on `desiredMinFps`. You can also set this directly.
      * @property {number} deltaMax
      */
     this.deltaMax = 200;
@@ -70205,12 +70209,10 @@ Phaser.Time = function (game)
 
     /**
      * The desired frame rate of the game.
-     *
-     * This is used is used to calculate the physic/logic multiplier and how to apply catch-up logic updates.
-     *
      * @property {number} _desiredFps
      * @private
      * @default
+     * @see Phaser.Time#desiredFps
      */
     this._desiredFps = 60;
 
@@ -70700,7 +70702,7 @@ Phaser.Time.prototype = {
 /**
  * The number of logic updates per second.
  *
- * This is used is used to calculate the physic / logic multiplier and how to apply catch-up logic updates.
+ * This is used is used to calculate {@link Phaser.Time#delta} when {@link Phaser.Game#forceSingleUpdate} is off.
  *
  * The render rate is unaffected unless you also turn off {@link Phaser.Game#forceSingleRender}.
  *
@@ -85168,6 +85170,7 @@ Phaser.Utils.Debug.prototype = {
         {
             this.bmd = new Phaser.BitmapData(this.game, '__DEBUG', this.game.width, this.game.height, true);
             this.sprite = this.game.make.image(0, 0, this.bmd);
+            this.sprite.anchor.set(0, 0);
             this.game.stage.addChild(this.sprite);
 
             this.game.scale.onSizeChange.add(this.resize, this);
@@ -102799,7 +102802,7 @@ Phaser.TilemapLayer = function (game, tilemap, index, width, height)
      *
      * @property {?DOMCanvasElement} [copyCanvas=(auto)] - [Internal] If set, force using a separate (shared) copy canvas.
      *     Using a canvas bitblt/copy when the source and destinations region overlap produces unexpected behavior
-     *     in some browsers, notably Safari. 
+     *     in some browsers, notably Safari.
      *
      * @default
      */
@@ -102907,7 +102910,7 @@ Phaser.TilemapLayer = function (game, tilemap, index, width, height)
         /*
          * Collision width/height (pixels)
          * What purpose do these have? Most things use tile width/height directly.
-         * This also only extends collisions right and down.       
+         * This also only extends collisions right and down.
          */
         cw: tilemap.tileWidth,
         ch: tilemap.tileHeight,
@@ -103049,7 +103052,7 @@ Phaser.TilemapLayer.prototype._renderWebGL = function (renderSession)
         this.position.x = (this.game.camera.view.x + this.cameraOffset.x) / this.game.camera.scale.x;
         this.position.y = (this.game.camera.view.y + this.cameraOffset.y) / this.game.camera.scale.y;
     }
-    
+
     this._scrollX = (this.game.camera.view.x - this.tileOffset.x) * this.scrollFactorX / this.scale.x;
     this._scrollY = (this.game.camera.view.y - this.tileOffset.y) * this.scrollFactorY / this.scale.y;
 
@@ -103156,7 +103159,7 @@ Phaser.TilemapLayer.prototype._fixX = function (x)
     {
         return x;
     }
-    
+
     //  This executes if the scrollFactorX is 0 and the x position of the tilemap is off from standard.
     if (this.scrollFactorX === 0 && this.position.x !== 0)
     {
@@ -103198,13 +103201,13 @@ Phaser.TilemapLayer.prototype._fixY = function (y)
     {
         return y;
     }
-    
+
     //  This executes if the scrollFactorY is 0 and the y position of the tilemap is off from standard.
     if (this.scrollFactorY === 0 && this.position.y !== 0)
     {
         return y - this.position.y;
     }
-    
+
     return this._scrollY + (y - (this._scrollY / this.scrollFactorY));
 };
 
@@ -103289,29 +103292,32 @@ Phaser.TilemapLayer.prototype.getRayCastTiles = function (line, stepRate, collid
     if (collides === undefined) { collides = false; }
     if (interestingFace === undefined) { interestingFace = false; }
 
-    //  First get all tiles that touch the bounds of the line
-    var tiles = this.getTiles(line.x, line.y, line.width, line.height, collides, interestingFace);
+    var skipInteresting = !(collides || interestingFace);
 
-    if (tiles.length === 0)
-    {
-        return [];
-    }
-
-    //  Now we only want the tiles that intersect with the points on this line
     var coords = line.coordinatesOnLine(stepRate);
     var results = [];
+    var point = new Phaser.Point();
+    var layer = this.map.layers[this.map.getLayer(this)];
+    var layerData = layer.data;
+    var width = layer.width;
+    var height = layer.height;
 
-    for (var i = 0; i < tiles.length; i++)
+    for (var t = 0; t < coords.length; t++)
     {
-        for (var t = 0; t < coords.length; t++)
+        var coord = coords[t];
+
+        this.getTileXY(coord[0], coord[1], point);
+
+        var x = point.x;
+        var y = point.y;
+
+        if (x < 0 || x >= width || y < 0 || y >= height) { continue; }
+
+        var tile = layerData[y][x];
+
+        if (results.indexOf(tile) === -1 && (skipInteresting || tile.isInteresting(collides, interestingFace)))
         {
-            var tile = tiles[i];
-            var coord = coords[t];
-            if (tile.containsPoint(coord[0], coord[1]))
-            {
-                results.push(tile);
-                break;
-            }
+            results.push(tile);
         }
     }
 
@@ -103432,9 +103438,9 @@ Phaser.TilemapLayer.prototype.resetTilesetCache = function ()
 
 /**
  * This method will set the scale of the tilemap as well as update the underlying block data of this layer.
- * 
+ *
  * @method Phaser.TilemapLayer#setScale
- * @param {number} [xScale=1] - The scale factor along the X-plane 
+ * @param {number} [xScale=1] - The scale factor along the X-plane
  * @param {number} [yScale] - The scale factor along the Y-plane
  */
 Phaser.TilemapLayer.prototype.setScale = function (xScale, yScale)
@@ -103569,7 +103575,7 @@ Phaser.TilemapLayer.prototype.renderRegion = function (scrollX, scrollY, left, t
             bottom = Math.min(height - 1, bottom);
         }
     }
-   
+
     // top-left pixel of top-left cell
     var baseX = (left * tw) - scrollX;
     var baseY = (top * th) - scrollY;
@@ -103804,7 +103810,7 @@ Phaser.TilemapLayer.prototype.render = function ()
     }
 
     this.context.save();
-    
+
     mc.scrollX = scrollX;
     mc.scrollY = scrollY;
 

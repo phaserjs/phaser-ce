@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.19.0 "2021-08-23" - Built: Mon Aug 23 2021 13:20:31
+* v2.19.1 "2021-10-13" - Built: Tue Oct 19 2021 11:50:28
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -5311,7 +5311,10 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         gl.vertexAttribPointer(shader.colorAttribute, 4, gl.UNSIGNED_BYTE, true, stride, 16);
 
         // Texture index
-        gl.vertexAttribPointer(shader.aTextureIndex, 1, gl.FLOAT, false, stride, 20);
+        if (PIXI._enableMultiTextureToggle)
+        {
+            gl.vertexAttribPointer(shader.aTextureIndex, 1, gl.FLOAT, false, stride, 20);
+        }
     }
 
     // upload the verts to the buffer
