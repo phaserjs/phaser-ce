@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.19.1 "2021-10-13" - Built: Tue Oct 19 2021 11:50:22
+* v2.19.2 "2021-10-25" - Built: Sun Oct 24 2021 17:53:27
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -40,7 +40,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.19.1',
+    VERSION: '2.19.2',
 
     /**
      * An array of Phaser game instances.
