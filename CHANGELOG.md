@@ -1,5 +1,15 @@
 # Change Log
 
+## Version 2.19.2 - 24 October 2021
+
+### Bug Fixes
+
+- Fixed a WebGL error (#709).
+
+### Thanks
+
+@photonstorm, @XWILKINX
+
 ## Version 2.19.1 - 13 October 2021
 
 ### Bug Fixes
