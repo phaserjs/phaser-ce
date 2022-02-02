@@ -25,7 +25,7 @@ Phaser.RenderTexture = function (game, width, height, key, scaleMode, resolution
     if (key === undefined) { key = ''; }
     if (scaleMode === undefined) { scaleMode = Phaser.scaleModes.DEFAULT; }
     if (resolution === undefined) { resolution = 1; }
-    if (renderer === undefined) { renderer = PIXI.defaultRenderer; }
+    if (renderer === undefined) { renderer = game.renderer; }
     if (textureUnit === undefined) { textureUnit = 0; }
 
     /**
