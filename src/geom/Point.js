@@ -747,7 +747,7 @@ Phaser.Point.multiplyAdd = function (a, b, s, out)
 {
     if (out === undefined) { out = new Phaser.Point(); }
 
-    return out.setTo(a.x + b.x * s, a.y + b.y * s);
+    return out.setTo((a.x + b.x) * s, (a.y + b.y) * s);
 };
 
 /**
