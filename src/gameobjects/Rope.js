@@ -459,6 +459,11 @@ Phaser.Rope.prototype._renderStrip = function (renderSession)
  */
 Phaser.Rope.prototype._renderCanvas = function (renderSession)
 {
+    if (!this.visible || this.alpha <= 0)
+    {
+        return;
+    }
+    
     var context = renderSession.context;
 
     var transform = this.worldTransform;
