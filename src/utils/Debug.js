@@ -16,6 +16,8 @@
  * to it, which must be uploaded every frame. Be advised: this is very expensive, especially in browsers like Firefox. So please only enable Debug
  * in WebGL mode if you really need it (or your desktop can cope with it well) and disable it for production!
  *
+ * You can disable the debug module by omitting it from a custom build or by creating a Phaser Game with `{ enableDebug: false }`.
+ *
  * @class Phaser.Utils.Debug
  * @constructor
  * @param {Phaser.Game} game - A reference to the currently running game.
