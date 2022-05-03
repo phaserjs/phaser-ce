@@ -844,7 +844,7 @@ Phaser.Game.prototype = {
 
             console.log.apply(console, args);
         }
-        else if (window.console)
+        else
         {
             console.log('Phaser v' + v + ' | Pixi.js | ' + r + ' | ' + a + ' | http://phaser.io');
         }
