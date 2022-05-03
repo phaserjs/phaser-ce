@@ -848,6 +848,11 @@ Phaser.Game.prototype = {
         {
             console.log('Phaser v' + v + ' | Pixi.js | ' + r + ' | ' + a + ' | http://phaser.io');
         }
+
+        if (!this.debug.isDisabled)
+        {
+            console.log('`game.debug` is enabled. Disable it in production');
+        }
     },
 
     /**
