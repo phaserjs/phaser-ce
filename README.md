@@ -246,7 +246,7 @@ Previous editions can found on our [Back Issues](http://phaser.io/community/back
 
 <a name="contributing"></a>
 
-# Contributing
+## Contributing
 
 The [Contributors Guide][contribute] contains full details on how to help with Phaser CE development. The main points are:
 
@@ -258,15 +258,15 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 <a name="change-log"></a>
 
-# Change Log
+## Change Log
 
 See [Change Log](CHANGELOG.md).
 
-# License
+## License
 
 Phaser CE is released under the [MIT License](https://opensource.org/licenses/MIT).
 
-# Created by
+## Created by
 
 Phaser is a [Photon Storm](http://www.photonstorm.com) production.
 
