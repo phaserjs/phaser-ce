@@ -1,5 +1,27 @@
 # Change Log
 
+## Unreleased (Version 2.20.0)
+
+### API Changes
+
+- Removed `Phaser.GAMES`.
+- Removed `PIXI.defaultRenderer`.
+- Removed `PIXI.game`.
+
+### Bug Fixes
+
+- Phaser.Point.multiplyAdd() now adds as described.
+- Phaser.Rope now skips Canvas rendering when invisible.
+- Creating a RenderTexture after destroying a game now doesn't error (#729).
+
+### Updates
+
+- Phaser.Utils.Debug now has all its methods stubbed when disabled.
+
+### Thanks
+
+@gm0nk, @timiyay
+
 ## Version 2.19.2 - 24 October 2021
 
 ### Bug Fixes
