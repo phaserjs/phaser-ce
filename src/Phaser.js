@@ -17,13 +17,6 @@ var Phaser = Phaser || { // jshint ignore:line
     VERSION: '2.19.2',
 
     /**
-     * An array of Phaser game instances.
-     * @constant Phaser.GAMES
-     * @type {array}
-     */
-    GAMES: [],
-
-    /**
      * AUTO renderer - picks between WebGL or Canvas based on device.
      * @constant Phaser.AUTO
      * @type {integer}
@@ -544,6 +537,9 @@ var Phaser = Phaser || { // jshint ignore:line
     PIXI: PIXI || {},
 
     //  Used to create IDs for various Pixi objects.
-    _UID: 0
+    _UID: 0,
+
+    //  Used to set Phaser.Game#id
+    _ID: 0
 
 };

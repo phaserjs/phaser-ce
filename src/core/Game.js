@@ -73,10 +73,10 @@
 Phaser.Game = function (width, height, renderer, parent, state, transparent, antialias, physicsConfig)
 {
     /**
-     * @property {number} id - Phaser Game ID
+     * @property {number} id - Phaser Game ID, starting from 1.
      * @readonly
      */
-    this.id = Phaser.GAMES.push(this) - 1;
+    this.id = (Phaser._ID += 1);
 
     /**
      * @property {object} config - The Phaser.Game configuration object.
@@ -704,8 +704,6 @@ Phaser.Game.prototype = {
 
         this.isBooted = true;
 
-        PIXI.game = this;
-
         this.math = Phaser.Math;
 
         this.scale = new Phaser.ScaleManager(this, this._width, this._height);
@@ -1270,13 +1268,6 @@ Phaser.Game.prototype = {
         this.renderer.destroy(false);
 
         Phaser.Canvas.removeFromDOM(this.canvas);
-
-        if (PIXI.game === this)
-        {
-            PIXI.game = null;
-        }
-
-        Phaser.GAMES[this.id] = null;
     },
 
     /**
