@@ -23,11 +23,6 @@ PIXI.WebGLRenderer = function (game, config)
      */
     this.game = game;
 
-    if (!PIXI.defaultRenderer)
-    {
-        PIXI.defaultRenderer = this;
-    }
-
     this.extensions = {};
 
     /**

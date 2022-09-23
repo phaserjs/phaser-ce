@@ -17,11 +17,6 @@ PIXI.CanvasRenderer = function (game, config)
      */
     this.game = game;
 
-    if (!PIXI.defaultRenderer)
-    {
-        PIXI.defaultRenderer = this;
-    }
-
     /**
      * The renderer type.
      *
