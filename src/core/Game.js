@@ -73,10 +73,10 @@
 Phaser.Game = function (width, height, renderer, parent, state, transparent, antialias, physicsConfig)
 {
     /**
-     * @property {number} id - Phaser Game ID, starting from 1.
+     * @property {number} id - Phaser Game ID, starting from 0.
      * @readonly
      */
-    this.id = (Phaser._ID += 1);
+    this.id = (Phaser._ID++);
 
     /**
      * @property {object} config - The Phaser.Game configuration object.
