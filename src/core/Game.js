@@ -388,6 +388,11 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.onBoot = new Phaser.Signal();
 
     /**
+     * @property {Phaser.Signal} onDestroy - This event is fired at the start of the game destroy sequence.
+     */
+    this.onDestroy = new Phaser.Signal();
+
+    /**
      * @property {boolean} _paused - Is game paused?
      * @private
      */
@@ -1236,6 +1241,8 @@ Phaser.Game.prototype = {
      */
     destroy: function ()
     {
+        this.onDestroy.dispatch(this);
+
         this.raf.stop();
 
         this.debug.destroy();
