@@ -1248,6 +1248,11 @@ Phaser.Game.prototype = {
         this.plugins.destroy();
         this.tweens.destroy();
 
+        this.onPause.dispose();
+        this.onResume.dispose();
+        this.onBlur.dispose();
+        this.onFocus.dispose();
+
         this.debug = null;
         this.state = null;
         this.sound = null;
