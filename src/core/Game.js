@@ -777,6 +777,12 @@ Phaser.Game.prototype = {
         {
             this.cache.onReady.addOnce(function ()
             {
+                if (!this.isBooted)
+                {
+                    // Already destroyed.
+                    return;
+                }
+
                 this.raf.start();
             }, this);
         }
