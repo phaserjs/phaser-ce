@@ -199,13 +199,13 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.state = null;
 
     /**
-     * @property {boolean} isBooted - Whether the game engine is booted, aka available.
+     * @property {boolean} isBooted - Whether the game has booted.
      * @readonly
      */
     this.isBooted = false;
 
     /**
-     * @property {boolean} isRunning - Is game running or paused?
+     * @property {boolean} isRunning - Whether the game loop has started.
      * @readonly
      */
     this.isRunning = false;
@@ -747,8 +747,6 @@ Phaser.Game.prototype = {
 
         this.showDebugHeader();
 
-        this.isRunning = true;
-
         if (this.config && this.config.forceSetTimeOut)
         {
             this.raf = new Phaser.RequestAnimationFrame(this, this.config.forceSetTimeOut);
@@ -772,6 +770,8 @@ Phaser.Game.prototype = {
         if (this.cache.isReady)
         {
             this.raf.start();
+
+            this.isRunning = true;
         }
         else
         {
@@ -784,6 +784,8 @@ Phaser.Game.prototype = {
                 }
 
                 this.raf.start();
+
+                this.isRunning = true;
             }, this);
         }
     },
