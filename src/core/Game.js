@@ -365,22 +365,22 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     /**
      * @property {Phaser.Signal} onPause - This event is fired when the game pauses.
      */
-    this.onPause = null;
+    this.onPause = new Phaser.Signal();
 
     /**
      * @property {Phaser.Signal} onResume - This event is fired when the game resumes from a paused state.
      */
-    this.onResume = null;
+    this.onResume = new Phaser.Signal();
 
     /**
      * @property {Phaser.Signal} onBlur - This event is fired when the game no longer has focus (typically on page hide).
      */
-    this.onBlur = null;
+    this.onBlur = new Phaser.Signal();
 
     /**
      * @property {Phaser.Signal} onFocus - This event is fired when the game has focus (typically on page show).
      */
-    this.onFocus = null;
+    this.onFocus = new Phaser.Signal();
 
     /**
      * @property {Phaser.Signal} onBoot - This event is fired after the game boots but before the first game update.
@@ -701,11 +701,6 @@ Phaser.Game.prototype = {
         {
             return;
         }
-
-        this.onPause = new Phaser.Signal();
-        this.onResume = new Phaser.Signal();
-        this.onBlur = new Phaser.Signal();
-        this.onFocus = new Phaser.Signal();
 
         this.isBooted = true;
 
