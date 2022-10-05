@@ -182,6 +182,17 @@ Phaser.CanvasPool = {
             Phaser.CanvasPool.getFree(),
             Phaser.CanvasPool.pool.length
         );
+    },
+
+    /**
+     * Empties the pool.
+     *
+     * @static
+     * @method Phaser.CanvasPool.clear
+     */
+    clear: function ()
+    {
+        Phaser.CanvasPool.pool.length = 0;
     }
 
 };
