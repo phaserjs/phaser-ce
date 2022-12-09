@@ -1253,6 +1253,14 @@ Phaser.Game.prototype = {
 
         this.onDestroy.dispatch(this);
 
+        this.fpsProblemNotifier.dispose();
+        this.onBlur.dispose();
+        this.onBoot.dispose();
+        this.onDestroy.dispose();
+        this.onFocus.dispose();
+        this.onPause.dispose();
+        this.onResume.dispose();
+
         this.raf.stop();
 
         this.debug.destroy();
