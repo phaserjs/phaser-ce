@@ -1244,6 +1244,13 @@ Phaser.Game.prototype = {
      */
     destroy: function ()
     {
+        if (!this.isBooted)
+        {
+            this.pendingDestroy = true;
+
+            return;
+        }
+
         this.onDestroy.dispatch(this);
 
         this.raf.stop();
