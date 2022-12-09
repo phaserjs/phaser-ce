@@ -7,16 +7,25 @@
 - Removed `Phaser.GAMES`.
 - Removed `PIXI.defaultRenderer`.
 - Removed `PIXI.game`.
+- Phaser.Game#isRunning has changed slightly: it now changes from `false` to `true` when the core game loop starts running and to `false` when the game is destroyed.
 
-### Bug Fixes
+### New Features
 
-- Phaser.Point.multiplyAdd() now adds as described.
-- Phaser.Rope now skips Canvas rendering when invisible.
-- Creating a RenderTexture after destroying a game now doesn't error (#729).
+- Phaser.Game#onDestroy is a new signal that is fired at the beginning of the game destroy sequence.
+- Phaser.CanvasPool.clear() empties the canvas pool.
 
 ### Updates
 
 - Phaser.Utils.Debug now has all its methods stubbed when disabled.
+- There's a console message reminding you to disable the debug canvas in production, if it's enabled. You can disable it by passing `{ enableDebug: false }` in the game config or making a custom build of Phaser CE without the `debug` module.
+- When the game is destroyed, its signals are disposed, more properties are nullified, and `isBooted` and `isRunning` change to `false`.
+
+### Bug Fixes
+
+- Fixed incorrect result in Phaser.Point.multiplyAdd().
+- Fixed Phaser.Rope appearing in the Canvas renderer when invisible.
+- Fixed an error destroying the game before it's booted (#728).
+- Fixed an error creating a RenderTexture after destroying the game (#729).
 
 ### Thanks
 
