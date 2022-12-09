@@ -1272,32 +1272,42 @@ Phaser.Game.prototype = {
         this.physics.destroy();
         this.plugins.destroy();
         this.tweens.destroy();
-
-        this.onPause.dispose();
-        this.onResume.dispose();
-        this.onBlur.dispose();
-        this.onFocus.dispose();
-
-        this.debug = null;
-        this.state = null;
-        this.sound = null;
-        this.scale = null;
-        this.stage = null;
-        this.input = null;
-        this.physics = null;
-        this.plugins = null;
-        this.tweens = null;
-
-        this.cache = null;
-        this.load = null;
-        this.time = null;
-        this.world = null;
-
-        this.isBooted = false;
-
         this.renderer.destroy(false);
 
         Phaser.Canvas.removeFromDOM(this.canvas);
+
+        this.add = null;
+        this.cache = null;
+        this.camera = null;
+        this.canvas = null;
+        this.create = null;
+        this.debug = null;
+        this.fpsProblemNotifier = null;
+        this.input = null;
+        this.load = null;
+        this.make = null;
+        this.onBlur = null;
+        this.onBoot = null;
+        this.onDestroy = null;
+        this.onFocus = null;
+        this.onPause = null;
+        this.onResume = null;
+        this.particles = null;
+        this.physics = null;
+        this.plugins = null;
+        this.raf = null;
+        this.renderer = null;
+        this.scale = null;
+        this.sound = null;
+        this.stage = null;
+        this.state = null;
+        this.time = null;
+        this.tweens = null;
+        this.world = null;
+
+        this.isBooted = false;
+        this.isRunning = false;
+        this.pendingDestroy = false;
     },
 
     /**
