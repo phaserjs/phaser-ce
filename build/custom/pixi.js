@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.19.2 "2021-10-25" - Built: Sun Oct 24 2021 17:53:34
+* v2.20.0 "2022-12-10" - Built: Sat Dec 10 2022 07:58:00
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -3409,11 +3409,6 @@ PIXI.WebGLRenderer = function (game, config)
      * @property {Phaser.Game} game - A reference to the Phaser Game instance.
      */
     this.game = game;
-
-    if (!PIXI.defaultRenderer)
-    {
-        PIXI.defaultRenderer = this;
-    }
 
     this.extensions = {};
 
@@ -6892,11 +6887,6 @@ PIXI.CanvasRenderer = function (game, config)
      * @property {Phaser.Game} game - A reference to the Phaser Game instance.
      */
     this.game = game;
-
-    if (!PIXI.defaultRenderer)
-    {
-        PIXI.defaultRenderer = this;
-    }
 
     /**
      * The renderer type.
