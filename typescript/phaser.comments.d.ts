@@ -8015,7 +8015,7 @@ declare module Phaser {
         height: number;
 
         /**
-        * Phaser Game ID
+        * Phaser Game ID, starting from 0.
         */
         id: number;
 
@@ -8025,12 +8025,12 @@ declare module Phaser {
         input: Phaser.Input;
 
         /**
-        * Whether the game engine is booted, aka available.
+        * Whether the game has booted.
         */
         isBooted: boolean;
 
         /**
-        * Is game running or paused?
+        * Whether the game loop has started.
         */
         isRunning: boolean;
 
@@ -33782,6 +33782,8 @@ declare module Phaser {
         * If your game is running in WebGL then Debug will create a Sprite that is placed at the top of the Stage display list and bind a canvas texture
         * to it, which must be uploaded every frame. Be advised: this is very expensive, especially in browsers like Firefox. So please only enable Debug
         * in WebGL mode if you really need it (or your desktop can cope with it well) and disable it for production!
+        * 
+        * You can disable the debug module by omitting it from a custom build or by creating a Phaser Game with `{ enableDebug: false }`.
         */
         class Debug {
 
@@ -33803,6 +33805,8 @@ declare module Phaser {
             * If your game is running in WebGL then Debug will create a Sprite that is placed at the top of the Stage display list and bind a canvas texture
             * to it, which must be uploaded every frame. Be advised: this is very expensive, especially in browsers like Firefox. So please only enable Debug
             * in WebGL mode if you really need it (or your desktop can cope with it well) and disable it for production!
+            * 
+            * You can disable the debug module by omitting it from a custom build or by creating a Phaser Game with `{ enableDebug: false }`.
             * 
             * @param game A reference to the currently running game.
             */

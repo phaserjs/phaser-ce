@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased (Version 2.20.0)
+## Version 2.20.0 - 10 December 2022
 
 ### API Changes
 

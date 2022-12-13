@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: Debug</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2021102417">
+	<link rel="stylesheet" href="styles/site.phaser.css?2022121007">
 </head>
 
 <body>
@@ -143,6 +143,7 @@ by the game itself.</p>
 <p>If your game is running in WebGL then Debug will create a Sprite that is placed at the top of the Stage display list and bind a canvas texture
 to it, which must be uploaded every frame. Be advised: this is very expensive, especially in browsers like Firefox. So please only enable Debug
 in WebGL mode if you really need it (or your desktop can cope with it well) and disable it for production!</p>
+<p>You can disable the debug module by omitting it from a custom build or by creating a Phaser Game with <code>{ enableDebug: false }</code>.</p>
     </div>
     
 
@@ -237,7 +238,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L23" title="Debug on line 23 of src/utils/Debug.js">src/utils/Debug.js line 23</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L25" title="Debug on line 25 of src/utils/Debug.js">src/utils/Debug.js line 25</a>
     
 
 	
@@ -338,7 +339,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L135" title="GEOM_AUTO on line 135 of src/utils/Debug.js">src/utils/Debug.js line 135</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L137" title="GEOM_AUTO on line 137 of src/utils/Debug.js">src/utils/Debug.js line 137</a>
     
 
 	
@@ -411,7 +412,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L147" title="GEOM_CIRCLE on line 147 of src/utils/Debug.js">src/utils/Debug.js line 147</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L149" title="GEOM_CIRCLE on line 149 of src/utils/Debug.js">src/utils/Debug.js line 149</a>
     
 
 	
@@ -484,7 +485,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L165" title="GEOM_ELLIPSE on line 165 of src/utils/Debug.js">src/utils/Debug.js line 165</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L167" title="GEOM_ELLIPSE on line 167 of src/utils/Debug.js">src/utils/Debug.js line 167</a>
     
 
 	
@@ -557,7 +558,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L159" title="GEOM_LINE on line 159 of src/utils/Debug.js">src/utils/Debug.js line 159</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L161" title="GEOM_LINE on line 161 of src/utils/Debug.js">src/utils/Debug.js line 161</a>
     
 
 	
@@ -630,7 +631,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L153" title="GEOM_POINT on line 153 of src/utils/Debug.js">src/utils/Debug.js line 153</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L155" title="GEOM_POINT on line 155 of src/utils/Debug.js">src/utils/Debug.js line 155</a>
     
 
 	
@@ -703,7 +704,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L141" title="GEOM_RECTANGLE on line 141 of src/utils/Debug.js">src/utils/Debug.js line 141</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L143" title="GEOM_RECTANGLE on line 143 of src/utils/Debug.js">src/utils/Debug.js line 143</a>
     
 
 	
@@ -780,7 +781,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L38" title="bmd on line 38 of src/utils/Debug.js">src/utils/Debug.js line 38</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L40" title="bmd on line 40 of src/utils/Debug.js">src/utils/Debug.js line 40</a>
     
 
 	
@@ -857,7 +858,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L43" title="canvas on line 43 of src/utils/Debug.js">src/utils/Debug.js line 43</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L45" title="canvas on line 45 of src/utils/Debug.js">src/utils/Debug.js line 45</a>
     
 
 	
@@ -941,7 +942,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L60" title="columnWidth on line 60 of src/utils/Debug.js">src/utils/Debug.js line 60</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L62" title="columnWidth on line 62 of src/utils/Debug.js">src/utils/Debug.js line 62</a>
     
 
 	
@@ -1018,7 +1019,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L48" title="context on line 48 of src/utils/Debug.js">src/utils/Debug.js line 48</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L50" title="context on line 50 of src/utils/Debug.js">src/utils/Debug.js line 50</a>
     
 
 	
@@ -1102,7 +1103,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L103" title="currentAlpha on line 103 of src/utils/Debug.js">src/utils/Debug.js line 103</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L105" title="currentAlpha on line 105 of src/utils/Debug.js">src/utils/Debug.js line 105</a>
     
 
 	
@@ -1179,7 +1180,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L85" title="currentColor on line 85 of src/utils/Debug.js">src/utils/Debug.js line 85</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L87" title="currentColor on line 87 of src/utils/Debug.js">src/utils/Debug.js line 87</a>
     
 
 	
@@ -1256,7 +1257,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L91" title="currentX on line 91 of src/utils/Debug.js">src/utils/Debug.js line 91</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L93" title="currentX on line 93 of src/utils/Debug.js">src/utils/Debug.js line 93</a>
     
 
 	
@@ -1333,7 +1334,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L97" title="currentY on line 97 of src/utils/Debug.js">src/utils/Debug.js line 97</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L99" title="currentY on line 99 of src/utils/Debug.js">src/utils/Debug.js line 99</a>
     
 
 	
@@ -1410,7 +1411,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L109" title="dirty on line 109 of src/utils/Debug.js">src/utils/Debug.js line 109</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L111" title="dirty on line 111 of src/utils/Debug.js">src/utils/Debug.js line 111</a>
     
 
 	
@@ -1494,7 +1495,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L54" title="font on line 54 of src/utils/Debug.js">src/utils/Debug.js line 54</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L56" title="font on line 56 of src/utils/Debug.js">src/utils/Debug.js line 56</a>
     
 
 	
@@ -1571,7 +1572,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L28" title="game on line 28 of src/utils/Debug.js">src/utils/Debug.js line 28</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L30" title="game on line 30 of src/utils/Debug.js">src/utils/Debug.js line 30</a>
     
 
 	
@@ -1648,7 +1649,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L116" title="isDisabled on line 116 of src/utils/Debug.js">src/utils/Debug.js line 116</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L118" title="isDisabled on line 118 of src/utils/Debug.js">src/utils/Debug.js line 118</a>
     
 
 	
@@ -1732,7 +1733,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L66" title="lineHeight on line 66 of src/utils/Debug.js">src/utils/Debug.js line 66</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L68" title="lineHeight on line 68 of src/utils/Debug.js">src/utils/Debug.js line 68</a>
     
 
 	
@@ -1816,7 +1817,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L72" title="lineWidth on line 72 of src/utils/Debug.js">src/utils/Debug.js line 72</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L74" title="lineWidth on line 74 of src/utils/Debug.js">src/utils/Debug.js line 74</a>
     
 
 	
@@ -1900,7 +1901,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L78" title="renderShadow on line 78 of src/utils/Debug.js">src/utils/Debug.js line 78</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L80" title="renderShadow on line 80 of src/utils/Debug.js">src/utils/Debug.js line 80</a>
     
 
 	
@@ -1977,7 +1978,7 @@ in WebGL mode if you really need it (or your desktop can cope with it well) and 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L33" title="sprite on line 33 of src/utils/Debug.js">src/utils/Debug.js line 33</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L35" title="sprite on line 35 of src/utils/Debug.js">src/utils/Debug.js line 35</a>
     
 
 	
@@ -2203,7 +2204,7 @@ To display a P2 Physics body you should enable debug mode on the body when creat
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1100" title="body on line 1100 of src/utils/Debug.js">src/utils/Debug.js line 1100</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1102" title="body on line 1102 of src/utils/Debug.js">src/utils/Debug.js line 1102</a>
     
 
 	
@@ -2465,7 +2466,7 @@ To display a P2 Physics body you should enable debug mode on the body when creat
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1133" title="bodyInfo on line 1133 of src/utils/Debug.js">src/utils/Debug.js line 1133</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1135" title="bodyInfo on line 1135 of src/utils/Debug.js">src/utils/Debug.js line 1135</a>
     
 
 	
@@ -2549,7 +2550,7 @@ To display a P2 Physics body you should enable debug mode on the body when creat
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L169" title="boot on line 169 of src/utils/Debug.js">src/utils/Debug.js line 169</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L171" title="boot on line 171 of src/utils/Debug.js">src/utils/Debug.js line 171</a>
     
 
 	
@@ -2740,7 +2741,7 @@ This uses the standard debug drawing feature of Box2D, so colors will be decided
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1178" title="box2dBody on line 1178 of src/utils/Debug.js">src/utils/Debug.js line 1178</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1180" title="box2dBody on line 1180 of src/utils/Debug.js">src/utils/Debug.js line 1180</a>
     
 
 	
@@ -2826,7 +2827,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1161" title="box2dWorld on line 1161 of src/utils/Debug.js">src/utils/Debug.js line 1161</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1163" title="box2dWorld on line 1163 of src/utils/Debug.js">src/utils/Debug.js line 1163</a>
     
 
 	
@@ -3054,7 +3055,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L457" title="camera on line 457 of src/utils/Debug.js">src/utils/Debug.js line 457</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L459" title="camera on line 459 of src/utils/Debug.js">src/utils/Debug.js line 459</a>
     
 
 	
@@ -3316,7 +3317,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L485" title="cameraInfo on line 485 of src/utils/Debug.js">src/utils/Debug.js line 485</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L487" title="cameraInfo on line 487 of src/utils/Debug.js">src/utils/Debug.js line 487</a>
     
 
 	
@@ -3400,7 +3401,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1414" title="destroy on line 1414 of src/utils/Debug.js">src/utils/Debug.js line 1414</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1416" title="destroy on line 1416 of src/utils/Debug.js">src/utils/Debug.js line 1416</a>
     
 
 	
@@ -3610,7 +3611,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1391" title="device on line 1391 of src/utils/Debug.js">src/utils/Debug.js line 1391</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1393" title="device on line 1393 of src/utils/Debug.js">src/utils/Debug.js line 1393</a>
     
 
 	
@@ -3758,7 +3759,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1193" title="displayList on line 1193 of src/utils/Debug.js">src/utils/Debug.js line 1193</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1195" title="displayList on line 1195 of src/utils/Debug.js">src/utils/Debug.js line 1195</a>
     
 
 	
@@ -3984,7 +3985,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L319" title="gameInfo on line 319 of src/utils/Debug.js">src/utils/Debug.js line 319</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L321" title="gameInfo on line 321 of src/utils/Debug.js">src/utils/Debug.js line 321</a>
     
 
 	
@@ -4264,7 +4265,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L919" title="geom on line 919 of src/utils/Debug.js">src/utils/Debug.js line 919</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L921" title="geom on line 921 of src/utils/Debug.js">src/utils/Debug.js line 921</a>
     
 
 	
@@ -4506,7 +4507,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L727" title="inputHandler on line 727 of src/utils/Debug.js">src/utils/Debug.js line 727</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L729" title="inputHandler on line 729 of src/utils/Debug.js">src/utils/Debug.js line 729</a>
     
 
 	
@@ -4772,7 +4773,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L665" title="inputInfo on line 665 of src/utils/Debug.js">src/utils/Debug.js line 665</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L667" title="inputInfo on line 667 of src/utils/Debug.js">src/utils/Debug.js line 667</a>
     
 
 	
@@ -5034,7 +5035,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L645" title="key on line 645 of src/utils/Debug.js">src/utils/Debug.js line 645</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L647" title="key on line 647 of src/utils/Debug.js">src/utils/Debug.js line 647</a>
     
 
 	
@@ -5118,7 +5119,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L292" title="line on line 292 of src/utils/Debug.js">src/utils/Debug.js line 292</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L294" title="line on line 294 of src/utils/Debug.js">src/utils/Debug.js line 294</a>
     
 
 	
@@ -5380,7 +5381,7 @@ the Box2D engine.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L882" title="lineInfo on line 882 of src/utils/Debug.js">src/utils/Debug.js line 882</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L884" title="lineInfo on line 884 of src/utils/Debug.js">src/utils/Debug.js line 884</a>
     
 
 	
@@ -5645,7 +5646,7 @@ Just remember to disable it before restarting the loader (such as when changing 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1346" title="loader on line 1346 of src/utils/Debug.js">src/utils/Debug.js line 1346</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1348" title="loader on line 1348 of src/utils/Debug.js">src/utils/Debug.js line 1348</a>
     
 
 	
@@ -5871,7 +5872,7 @@ Just remember to disable it before restarting the loader (such as when changing 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1297" title="phaser on line 1297 of src/utils/Debug.js">src/utils/Debug.js line 1297</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1299" title="phaser on line 1299 of src/utils/Debug.js">src/utils/Debug.js line 1299</a>
     
 
 	
@@ -6141,7 +6142,7 @@ Just remember to disable it before restarting the loader (such as when changing 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1283" title="physicsGroup on line 1283 of src/utils/Debug.js">src/utils/Debug.js line 1283</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1285" title="physicsGroup on line 1285 of src/utils/Debug.js">src/utils/Debug.js line 1285</a>
     
 
 	
@@ -6405,7 +6406,7 @@ Just remember to disable it before restarting the loader (such as when changing 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L900" title="pixel on line 900 of src/utils/Debug.js">src/utils/Debug.js line 900</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L902" title="pixel on line 902 of src/utils/Debug.js">src/utils/Debug.js line 902</a>
     
 
 	
@@ -6755,7 +6756,7 @@ Just remember to disable it before restarting the loader (such as when changing 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L532" title="pointer on line 532 of src/utils/Debug.js">src/utils/Debug.js line 532</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L534" title="pointer on line 534 of src/utils/Debug.js">src/utils/Debug.js line 534</a>
     
 
 	
@@ -6839,7 +6840,7 @@ Just remember to disable it before restarting the loader (such as when changing 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L213" title="preUpdate on line 213 of src/utils/Debug.js">src/utils/Debug.js line 213</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L215" title="preUpdate on line 215 of src/utils/Debug.js">src/utils/Debug.js line 215</a>
     
 
 	
@@ -6997,7 +6998,7 @@ Just remember to disable it before restarting the loader (such as when changing 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1061" title="quadTree on line 1061 of src/utils/Debug.js">src/utils/Debug.js line 1061</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1063" title="quadTree on line 1063 of src/utils/Debug.js">src/utils/Debug.js line 1063</a>
     
 
 	
@@ -7228,7 +7229,7 @@ Just remember to disable it before restarting the loader (such as when changing 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1000" title="rectangle on line 1000 of src/utils/Debug.js">src/utils/Debug.js line 1000</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1002" title="rectangle on line 1002 of src/utils/Debug.js">src/utils/Debug.js line 1002</a>
     
 
 	
@@ -7462,7 +7463,7 @@ Just remember to disable it before restarting the loader (such as when changing 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1225" title="renderer on line 1225 of src/utils/Debug.js">src/utils/Debug.js line 1225</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1227" title="renderer on line 1227 of src/utils/Debug.js">src/utils/Debug.js line 1227</a>
     
 
 	
@@ -7546,7 +7547,7 @@ Just remember to disable it before restarting the loader (such as when changing 
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L231" title="reset on line 231 of src/utils/Debug.js">src/utils/Debug.js line 231</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L233" title="reset on line 233 of src/utils/Debug.js">src/utils/Debug.js line 233</a>
     
 
 	
@@ -7631,7 +7632,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L198" title="resize on line 198 of src/utils/Debug.js">src/utils/Debug.js line 198</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L200" title="resize on line 200 of src/utils/Debug.js">src/utils/Debug.js line 200</a>
     
 
 	
@@ -7859,7 +7860,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L814" title="ropeSegments on line 814 of src/utils/Debug.js">src/utils/Debug.js line 814</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L816" title="ropeSegments on line 816 of src/utils/Debug.js">src/utils/Debug.js line 816</a>
     
 
 	
@@ -8085,7 +8086,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1313" title="scale on line 1313 of src/utils/Debug.js">src/utils/Debug.js line 1313</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1315" title="scale on line 1315 of src/utils/Debug.js">src/utils/Debug.js line 1315</a>
     
 
 	
@@ -8311,7 +8312,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L379" title="sound on line 379 of src/utils/Debug.js">src/utils/Debug.js line 379</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L381" title="sound on line 381 of src/utils/Debug.js">src/utils/Debug.js line 381</a>
     
 
 	
@@ -8573,7 +8574,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L409" title="soundInfo on line 409 of src/utils/Debug.js">src/utils/Debug.js line 409</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L411" title="soundInfo on line 411 of src/utils/Debug.js">src/utils/Debug.js line 411</a>
     
 
 	
@@ -8804,7 +8805,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L796" title="spriteBounds on line 796 of src/utils/Debug.js">src/utils/Debug.js line 796</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L798" title="spriteBounds on line 798 of src/utils/Debug.js">src/utils/Debug.js line 798</a>
     
 
 	
@@ -9069,7 +9070,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L857" title="spriteCoords on line 857 of src/utils/Debug.js">src/utils/Debug.js line 857</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L859" title="spriteCoords on line 859 of src/utils/Debug.js">src/utils/Debug.js line 859</a>
     
 
 	
@@ -9331,7 +9332,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L834" title="spriteInfo on line 834 of src/utils/Debug.js">src/utils/Debug.js line 834</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L836" title="spriteInfo on line 836 of src/utils/Debug.js">src/utils/Debug.js line 836</a>
     
 
 	
@@ -9596,7 +9597,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L625" title="spriteInputInfo on line 625 of src/utils/Debug.js">src/utils/Debug.js line 625</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L627" title="spriteInputInfo on line 627 of src/utils/Debug.js">src/utils/Debug.js line 627</a>
     
 
 	
@@ -9870,7 +9871,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L249" title="start on line 249 of src/utils/Debug.js">src/utils/Debug.js line 249</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L251" title="start on line 251 of src/utils/Debug.js">src/utils/Debug.js line 251</a>
     
 
 	
@@ -10097,7 +10098,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L341" title="state on line 341 of src/utils/Debug.js">src/utils/Debug.js line 341</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L343" title="state on line 343 of src/utils/Debug.js">src/utils/Debug.js line 343</a>
     
 
 	
@@ -10181,7 +10182,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L281" title="stop on line 281 of src/utils/Debug.js">src/utils/Debug.js line 281</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L283" title="stop on line 283 of src/utils/Debug.js">src/utils/Debug.js line 283</a>
     
 
 	
@@ -10457,7 +10458,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L1031" title="text on line 1031 of src/utils/Debug.js">src/utils/Debug.js line 1031</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L1033" title="text on line 1033 of src/utils/Debug.js">src/utils/Debug.js line 1033</a>
     
 
 	
@@ -10719,7 +10720,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.19.2/src/utils/Debug.js#L514" title="timer on line 514 of src/utils/Debug.js">src/utils/Debug.js line 514</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.20.0/src/utils/Debug.js#L516" title="timer on line 516 of src/utils/Debug.js">src/utils/Debug.js line 516</a>
     
 
 	
@@ -10762,9 +10763,9 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.19.2
+  phaser-ce@2.20.0
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.19.2">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.20.0">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -10781,7 +10782,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
 	
-		on 2021-10-24
+		on 2022-12-10
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -10810,7 +10811,7 @@ Called by ScaleManager.onSizeChange only in WebGL mode.</p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2021102417"></script>
+<script defer src="scripts/bundle.js?2022121007"></script>
 
 
 

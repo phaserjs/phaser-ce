@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.19.2 "2021-10-25" - Built: Sun Oct 24 2021 17:53:17
+* v2.20.0 "2022-12-10" - Built: Sat Dec 10 2022 07:57:47
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -3409,11 +3409,6 @@ PIXI.WebGLRenderer = function (game, config)
      * @property {Phaser.Game} game - A reference to the Phaser Game instance.
      */
     this.game = game;
-
-    if (!PIXI.defaultRenderer)
-    {
-        PIXI.defaultRenderer = this;
-    }
 
     this.extensions = {};
 
@@ -6893,11 +6888,6 @@ PIXI.CanvasRenderer = function (game, config)
      */
     this.game = game;
 
-    if (!PIXI.defaultRenderer)
-    {
-        PIXI.defaultRenderer = this;
-    }
-
     /**
      * The renderer type.
      *
@@ -7784,14 +7774,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.19.2',
-
-    /**
-     * An array of Phaser game instances.
-     * @constant Phaser.GAMES
-     * @type {array}
-     */
-    GAMES: [],
+    VERSION: '2.20.0',
 
     /**
      * AUTO renderer - picks between WebGL or Canvas based on device.
@@ -8314,7 +8297,10 @@ var Phaser = Phaser || { // jshint ignore:line
     PIXI: PIXI || {},
 
     //  Used to create IDs for various Pixi objects.
-    _UID: 0
+    _UID: 0,
+
+    //  Used to set Phaser.Game#id
+    _ID: 0
 
 };
 
@@ -12068,7 +12054,7 @@ Phaser.Point.multiplyAdd = function (a, b, s, out)
 {
     if (out === undefined) { out = new Phaser.Point(); }
 
-    return out.setTo(a.x + b.x * s, a.y + b.y * s);
+    return out.setTo((a.x + b.x) * s, (a.y + b.y) * s);
 };
 
 /**
@@ -21646,10 +21632,10 @@ Object.defineProperty(Phaser.World.prototype, 'randomY', {
 Phaser.Game = function (width, height, renderer, parent, state, transparent, antialias, physicsConfig)
 {
     /**
-     * @property {number} id - Phaser Game ID
+     * @property {number} id - Phaser Game ID, starting from 0.
      * @readonly
      */
-    this.id = Phaser.GAMES.push(this) - 1;
+    this.id = (Phaser._ID++);
 
     /**
      * @property {object} config - The Phaser.Game configuration object.
@@ -21772,13 +21758,13 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.state = null;
 
     /**
-     * @property {boolean} isBooted - Whether the game engine is booted, aka available.
+     * @property {boolean} isBooted - Whether the game has booted.
      * @readonly
      */
     this.isBooted = false;
 
     /**
-     * @property {boolean} isRunning - Is game running or paused?
+     * @property {boolean} isRunning - Whether the game loop has started.
      * @readonly
      */
     this.isRunning = false;
@@ -21938,27 +21924,32 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     /**
      * @property {Phaser.Signal} onPause - This event is fired when the game pauses.
      */
-    this.onPause = null;
+    this.onPause = new Phaser.Signal();
 
     /**
      * @property {Phaser.Signal} onResume - This event is fired when the game resumes from a paused state.
      */
-    this.onResume = null;
+    this.onResume = new Phaser.Signal();
 
     /**
      * @property {Phaser.Signal} onBlur - This event is fired when the game no longer has focus (typically on page hide).
      */
-    this.onBlur = null;
+    this.onBlur = new Phaser.Signal();
 
     /**
      * @property {Phaser.Signal} onFocus - This event is fired when the game has focus (typically on page show).
      */
-    this.onFocus = null;
+    this.onFocus = new Phaser.Signal();
 
     /**
      * @property {Phaser.Signal} onBoot - This event is fired after the game boots but before the first game update.
      */
     this.onBoot = new Phaser.Signal();
+
+    /**
+     * @property {Phaser.Signal} onDestroy - This event is fired at the start of the game destroy sequence.
+     */
+    this.onDestroy = new Phaser.Signal();
 
     /**
      * @property {boolean} _paused - Is game paused?
@@ -22270,14 +22261,7 @@ Phaser.Game.prototype = {
             return;
         }
 
-        this.onPause = new Phaser.Signal();
-        this.onResume = new Phaser.Signal();
-        this.onBlur = new Phaser.Signal();
-        this.onFocus = new Phaser.Signal();
-
         this.isBooted = true;
-
-        PIXI.game = this;
 
         this.math = Phaser.Math;
 
@@ -22322,8 +22306,6 @@ Phaser.Game.prototype = {
 
         this.showDebugHeader();
 
-        this.isRunning = true;
-
         if (this.config && this.config.forceSetTimeOut)
         {
             this.raf = new Phaser.RequestAnimationFrame(this, this.config.forceSetTimeOut);
@@ -22347,12 +22329,22 @@ Phaser.Game.prototype = {
         if (this.cache.isReady)
         {
             this.raf.start();
+
+            this.isRunning = true;
         }
         else
         {
             this.cache.onReady.addOnce(function ()
             {
+                if (!this.isBooted)
+                {
+                    // Already destroyed.
+                    return;
+                }
+
                 this.raf.start();
+
+                this.isRunning = true;
             }, this);
         }
     },
@@ -22417,9 +22409,14 @@ Phaser.Game.prototype = {
 
             console.log.apply(console, args);
         }
-        else if (window.console)
+        else
         {
             console.log('Phaser v' + v + ' | Pixi.js | ' + r + ' | ' + a + ' | http://phaser.io');
+        }
+
+        if (!this.debug.isDisabled)
+        {
+            console.log('`game.debug` is enabled. Disable it in production');
         }
     },
 
@@ -22480,7 +22477,6 @@ Phaser.Game.prototype = {
             }
             catch (webGLRendererError)
             {
-                PIXI.defaultRenderer = null;
                 this.renderer = null;
                 this.multiTexture = false;
                 PIXI._enableMultiTextureToggle = false;
@@ -22807,6 +22803,23 @@ Phaser.Game.prototype = {
      */
     destroy: function ()
     {
+        if (!this.isBooted)
+        {
+            this.pendingDestroy = true;
+
+            return;
+        }
+
+        this.onDestroy.dispatch(this);
+
+        this.fpsProblemNotifier.dispose();
+        this.onBlur.dispose();
+        this.onBoot.dispose();
+        this.onDestroy.dispose();
+        this.onFocus.dispose();
+        this.onPause.dispose();
+        this.onResume.dispose();
+
         this.raf.stop();
 
         this.debug.destroy();
@@ -22818,35 +22831,42 @@ Phaser.Game.prototype = {
         this.physics.destroy();
         this.plugins.destroy();
         this.tweens.destroy();
-
-        this.debug = null;
-        this.state = null;
-        this.sound = null;
-        this.scale = null;
-        this.stage = null;
-        this.input = null;
-        this.physics = null;
-        this.plugins = null;
-        this.tweens = null;
-
-        this.cache = null;
-        this.load = null;
-        this.time = null;
-        this.world = null;
-
-        this.isBooted = false;
-
         this.renderer.destroy(false);
 
         Phaser.Canvas.removeFromDOM(this.canvas);
 
-        if (PIXI.game === this)
-        {
-            PIXI.game = null;
-        }
-        PIXI.defaultRenderer = null;
+        this.add = null;
+        this.cache = null;
+        this.camera = null;
+        this.canvas = null;
+        this.create = null;
+        this.debug = null;
+        this.fpsProblemNotifier = null;
+        this.input = null;
+        this.load = null;
+        this.make = null;
+        this.onBlur = null;
+        this.onBoot = null;
+        this.onDestroy = null;
+        this.onFocus = null;
+        this.onPause = null;
+        this.onResume = null;
+        this.particles = null;
+        this.physics = null;
+        this.plugins = null;
+        this.raf = null;
+        this.renderer = null;
+        this.scale = null;
+        this.sound = null;
+        this.stage = null;
+        this.state = null;
+        this.time = null;
+        this.tweens = null;
+        this.world = null;
 
-        Phaser.GAMES[this.id] = null;
+        this.isBooted = false;
+        this.isRunning = false;
+        this.pendingDestroy = false;
     },
 
     /**
@@ -43203,7 +43223,7 @@ Phaser.RenderTexture = function (game, width, height, key, scaleMode, resolution
     if (key === undefined) { key = ''; }
     if (scaleMode === undefined) { scaleMode = Phaser.scaleModes.DEFAULT; }
     if (resolution === undefined) { resolution = 1; }
-    if (renderer === undefined) { renderer = PIXI.defaultRenderer; }
+    if (renderer === undefined) { renderer = game.renderer; }
     if (textureUnit === undefined) { textureUnit = 0; }
 
     /**
@@ -47717,6 +47737,11 @@ Phaser.Rope.prototype._renderStrip = function (renderSession)
  */
 Phaser.Rope.prototype._renderCanvas = function (renderSession)
 {
+    if (!this.visible || this.alpha <= 0)
+    {
+        return;
+    }
+    
     var context = renderSession.context;
 
     var transform = this.worldTransform;
@@ -48954,6 +48979,17 @@ Phaser.CanvasPool = {
             Phaser.CanvasPool.getFree(),
             Phaser.CanvasPool.pool.length
         );
+    },
+
+    /**
+     * Empties the pool.
+     *
+     * @static
+     * @method Phaser.CanvasPool.clear
+     */
+    clear: function ()
+    {
+        Phaser.CanvasPool.pool.length = 0;
     }
 
 };
@@ -63921,7 +63957,7 @@ Phaser.Loader.prototype = {
             file.data.removeEventListener(file.loadEvent, videoLoadEvent, false);
             file.data.onerror = null;
             file.data.canplay = true;
-            Phaser.GAMES[_this.game.id].load.fileComplete(file);
+            _this.game.load.fileComplete(file);
         };
 
         file.data.onerror = function ()
@@ -70172,6 +70208,8 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'isGameLandscape', {
  * If your game is running in WebGL then Debug will create a Sprite that is placed at the top of the Stage display list and bind a canvas texture
  * to it, which must be uploaded every frame. Be advised: this is very expensive, especially in browsers like Firefox. So please only enable Debug
  * in WebGL mode if you really need it (or your desktop can cope with it well) and disable it for production!
+ *
+ * You can disable the debug module by omitting it from a custom build or by creating a Phaser Game with `{ enableDebug: false }`.
  *
  * @class Phaser.Utils.Debug
  * @constructor
