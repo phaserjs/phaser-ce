@@ -12,7 +12,7 @@
     "grunt-shell": "^2.1.0",
     "jsdoc": "^3.5.4",
     "lodash": "^4.17.21",
-    "request": "^2.74.0"
+    "request": "^2.88.2"
   },
   "license": "MIT",
   "keywords": [
