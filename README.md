@@ -9,7 +9,7 @@ Phaser CE is based on Phaser v2.6.2 by [Photon Storm](http://www.photonstorm.com
 The [current Phaser CE release is 2.20.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.20.0).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
-- **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
+- **Learn:** [API Docs](https://phaserjs.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
 - **Code:** 700+ [Examples](https://samme.github.io/phaser-examples-mirror/ "Phaser CE Examples") ([source][examples]), new [Phaser CE examples](https://codepen.io/collection/AMbZgY/)
 - **Read:** Weekly [Phaser World](#newsletter) Newsletter
 - **Chat:** [Discord](http://phaser.io/community/discord)

@@ -8,7 +8,7 @@
     "samme <samme.npm@gmail.com> (https://github.com/samme)"
   ],
   "logo": "https://raw.github.com/photonstorm/phaser-ce/master/phaser-logo-small.png",
-  "homepage": "https://photonstorm.github.io/phaser-ce/",
+  "homepage": "https://phaserjs.github.io/phaser-ce/",
   "bugs": "https://github.com/photonstorm/phaser-ce/issues",
   "license": "MIT",
   "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
