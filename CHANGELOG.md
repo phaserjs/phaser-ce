@@ -1,5 +1,15 @@
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+
+- Fixed an error when a video loaded after the game was destroyed (#742).
+
+### Thanks
+
+@Akurn
+
 ## Version 2.20.0 - 10 December 2022
 
 ### API Changes
