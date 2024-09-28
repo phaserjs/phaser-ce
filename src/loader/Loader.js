@@ -2640,7 +2640,7 @@ Phaser.Loader.prototype = {
             file.data.removeEventListener(file.loadEvent, videoLoadEvent, false);
             file.data.onerror = null;
             file.data.canplay = true;
-            _this.game.load.fileComplete(file);
+            _this.fileComplete(file);
         };
 
         file.data.onerror = function ()
