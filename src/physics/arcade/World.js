@@ -267,22 +267,24 @@ Phaser.Physics.Arcade.prototype = {
     {
         if (max === undefined) { max = 10000; }
 
+        var deltaSec = 0.001 * this.game.time.delta;
+
         if (axis === 1 && body.allowGravity)
         {
-            velocity += (this.gravity.x + body.gravity.x) * 0.001 * this.game.time.delta;
+            velocity += (this.gravity.x + body.gravity.x) * deltaSec;
         }
         else if (axis === 2 && body.allowGravity)
         {
-            velocity += (this.gravity.y + body.gravity.y) * 0.001 * this.game.time.delta;
+            velocity += (this.gravity.y + body.gravity.y) * deltaSec;
         }
 
         if (acceleration)
         {
-            velocity += acceleration * 0.001 * this.game.time.delta;
+            velocity += acceleration * deltaSec;
         }
         else if (drag && body.allowDrag)
         {
-            drag *= 0.001 * this.game.time.delta;
+            drag *= deltaSec;
 
             if (velocity - drag > 0)
             {
