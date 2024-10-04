@@ -44,6 +44,21 @@ Phaser.Canvas = {
     },
 
     /**
+     * Sets `canvas` dimensions to 1.
+     *
+     * @method Phaser.Canvas.dispose
+     * @param {HTMLCanvasElement} canvas - The canvas to be disposed of.
+     * @return {HTMLCanvasElement} The canvas.
+     */
+    dispose: function (canvas)
+    {
+        canvas.width = 1;
+        canvas.height = 1;
+
+        return canvas;
+    },
+
+    /**
      * Sets the background color behind the canvas. This changes the canvas style property.
      *
      * @method Phaser.Canvas.setBackgroundColor

@@ -471,8 +471,8 @@ Phaser.Input.prototype = {
 
         this.activePointer = this.mousePointer;
 
-        this.hitCanvas = Phaser.CanvasPool.create(this, 1, 1);
-        this.hitContext = this.hitCanvas.getContext('2d');
+        this.hitCanvas = Phaser.Canvas.create(undefined, 1, 1, undefined, true);
+        this.hitContext = this.hitCanvas.getContext('2d', { willReadFrequently: true });
 
         if (this.game.device.mspointer && (config.mspointer !== false))
         {
@@ -540,7 +540,7 @@ Phaser.Input.prototype = {
 
         this.moveCallbacks = [];
 
-        Phaser.CanvasPool.remove(this);
+        Phaser.Canvas.dispose(this.hitCanvas);
 
         this.game.canvas.removeEventListener('click', this._onClickTrampoline);
     },

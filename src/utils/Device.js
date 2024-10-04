@@ -763,8 +763,8 @@ Phaser.Device._initialize = function ()
      */
     function _checkCanvasFeatures ()
     {
-        var canvas = Phaser.CanvasPool.create(this, 6, 1);
-        var context = canvas.getContext('2d');
+        var canvas = Phaser.Canvas.create(undefined, 6, 1, undefined, true);
+        var context = canvas.getContext('2d', { willReadFrequently: true });
 
         context.fillStyle = 'rgba(10, 20, 30, 0.5)';
 
@@ -795,7 +795,7 @@ Phaser.Device._initialize = function ()
         context.globalCompositeOperation = 'multiply';
         device.canUseMultiply = (context.globalCompositeOperation === 'multiply');
 
-        Phaser.CanvasPool.removeByCanvas(canvas);
+        Phaser.Canvas.dispose(canvas);
 
         PIXI.CanvasTinter.tintMethod = (device.canUseMultiply) ? PIXI.CanvasTinter.tintWithMultiply : PIXI.CanvasTinter.tintWithPerPixel;
     }
