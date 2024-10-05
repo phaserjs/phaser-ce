@@ -2,9 +2,17 @@
 
 ## Unreleased
 
+### Updates
+
+- The canvases used for device capability checks and input hit testing are now created with `willReadFrequently: true`.
+
 ### Bug Fixes
 
 - Fixed an error when a video loaded after the game was destroyed (#742).
+
+### Documentation
+
+- Set [Phaser.Game#forceSingleUpdate](https://phaserjs.github.io/phaser-ce/Phaser.Game.html#forceSingleUpdate) to `false` for better consistency in physics calculations.
 
 ### Thanks
 
