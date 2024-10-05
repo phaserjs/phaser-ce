@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v<%= package.version %> "<%= package.release %>" - Built: <%= grunt.template.today() %>
+* v<%= package.version %> "<%= package.release.date %>" - Built: <%= grunt.template.today() %>
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
