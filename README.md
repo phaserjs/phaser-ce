@@ -6,7 +6,7 @@ Phaser CE is a fast, free, and fun open source HTML5 game framework. It uses a c
 
 Phaser CE is based on Phaser v2.6.2 by [Photon Storm](http://www.photonstorm.com). [Phaser v3](http://phaser.io/phaser3) and [Phaser v4](https://github.com/phaserjs/phaser4) are in active development.
 
-The [current Phaser CE release is 2.20.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.20.0).
+The [current Phaser CE release is 2.20.1](https://github.com/photonstorm/phaser-ce/releases/tag/v2.20.1).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://phaserjs.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
@@ -82,19 +82,19 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce). Include the following in your html:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.20.0/build/phaser.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.20.1/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.20.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.20.1"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.20.0/build/custom/) are available too, e.g.,
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.20.1/build/custom/) are available too, e.g.,
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.20.0/build/custom/phaser-arcade-physics.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.20.1/build/custom/phaser-arcade-physics.js"></script>
 ```
 
 <a name="getting-started"></a>
@@ -282,10 +282,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.20.0/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.20.0/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.20.0.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.20.0.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.20.1/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.20.1/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.20.1.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.20.1.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser

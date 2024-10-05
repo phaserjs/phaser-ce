@@ -14,7 +14,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.20.0',
+    VERSION: '2.20.1',
 
     /**
      * AUTO renderer - picks between WebGL or Canvas based on device.

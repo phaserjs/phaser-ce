@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Version 2.20.1 - 5 October 2024
 
 ### Updates
 
