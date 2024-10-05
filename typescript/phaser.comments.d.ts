@@ -7995,7 +7995,7 @@ declare module Phaser {
         forceSingleRender: boolean;
 
         /**
-        * Use a variable-step game loop (true) or a fixed-step game loop (false).
+        * Use a variable-step game loop (true) or a fixed-step game loop (false). When false, {@link Phaser.Time#desiredFps} determines the delta size. A fixed-step loop gives more consistent results in physics calculations.
         * Default: true
         */
         forceSingleUpdate: boolean;
@@ -18018,6 +18018,8 @@ declare module Phaser {
 
         /**
         * The Arcade Physics world. Contains Arcade Physics related collision, overlap and motion methods.
+        * 
+        * Set {@link Phaser.Game#forceSingleUpdate} to `false` for better consistency.
         */
         class Arcade {
 
@@ -18055,6 +18057,8 @@ declare module Phaser {
 
             /**
             * The Arcade Physics world. Contains Arcade Physics related collision, overlap and motion methods.
+            * 
+            * Set {@link Phaser.Game#forceSingleUpdate} to `false` for better consistency.
             * 
             * @param game reference to the current game instance.
             */
