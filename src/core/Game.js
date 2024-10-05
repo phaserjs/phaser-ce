@@ -465,7 +465,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.fpsProblemNotifier = new Phaser.Signal();
 
     /**
-     * @property {boolean} forceSingleUpdate - Use a variable-step game loop (true) or a fixed-step game loop (false).
+     * @property {boolean} forceSingleUpdate - Use a variable-step game loop (true) or a fixed-step game loop (false). When false, {@link Phaser.Time#desiredFps} determines the delta size. A fixed-step loop gives more consistent results in physics calculations.
      * @default
      * @see Phaser.Time#desiredFps
      */

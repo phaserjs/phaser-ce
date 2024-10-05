@@ -7,6 +7,8 @@
 /**
  * The Arcade Physics world. Contains Arcade Physics related collision, overlap and motion methods.
  *
+ * Set {@link Phaser.Game#forceSingleUpdate} to `false` for better consistency.
+ *
  * @class Phaser.Physics.Arcade
  * @constructor
  * @param {Phaser.Game} game - reference to the current game instance.
