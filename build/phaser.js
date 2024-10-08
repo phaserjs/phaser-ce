@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.20.0 "2022-12-10" - Built: Sat Dec 10 2022 07:57:36
+* v2.20.1 "2024-10-05" - Built: Sat Oct 05 2024 11:25:40
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -22602,7 +22602,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.20.0',
+    VERSION: '2.20.1',
 
     /**
      * AUTO renderer - picks between WebGL or Canvas based on device.
@@ -36852,7 +36852,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.fpsProblemNotifier = new Phaser.Signal();
 
     /**
-     * @property {boolean} forceSingleUpdate - Use a variable-step game loop (true) or a fixed-step game loop (false).
+     * @property {boolean} forceSingleUpdate - Use a variable-step game loop (true) or a fixed-step game loop (false). When false, {@link Phaser.Time#desiredFps} determines the delta size. A fixed-step loop gives more consistent results in physics calculations.
      * @default
      * @see Phaser.Time#desiredFps
      */
@@ -38334,8 +38334,8 @@ Phaser.Input.prototype = {
 
         this.activePointer = this.mousePointer;
 
-        this.hitCanvas = Phaser.CanvasPool.create(this, 1, 1);
-        this.hitContext = this.hitCanvas.getContext('2d');
+        this.hitCanvas = Phaser.Canvas.create(undefined, 1, 1, undefined, true);
+        this.hitContext = this.hitCanvas.getContext('2d', { willReadFrequently: true });
 
         if (this.game.device.mspointer && (config.mspointer !== false))
         {
@@ -38403,7 +38403,7 @@ Phaser.Input.prototype = {
 
         this.moveCallbacks = [];
 
-        Phaser.CanvasPool.remove(this);
+        Phaser.Canvas.dispose(this.hitCanvas);
 
         this.game.canvas.removeEventListener('click', this._onClickTrampoline);
     },
@@ -64611,8 +64611,8 @@ Phaser.Device._initialize = function ()
      */
     function _checkCanvasFeatures ()
     {
-        var canvas = Phaser.CanvasPool.create(this, 6, 1);
-        var context = canvas.getContext('2d');
+        var canvas = Phaser.Canvas.create(undefined, 6, 1, undefined, true);
+        var context = canvas.getContext('2d', { willReadFrequently: true });
 
         context.fillStyle = 'rgba(10, 20, 30, 0.5)';
 
@@ -64643,7 +64643,7 @@ Phaser.Device._initialize = function ()
         context.globalCompositeOperation = 'multiply';
         device.canUseMultiply = (context.globalCompositeOperation === 'multiply');
 
-        Phaser.CanvasPool.removeByCanvas(canvas);
+        Phaser.Canvas.dispose(canvas);
 
         PIXI.CanvasTinter.tintMethod = (device.canUseMultiply) ? PIXI.CanvasTinter.tintWithMultiply : PIXI.CanvasTinter.tintWithPerPixel;
     }
@@ -65328,6 +65328,21 @@ Phaser.Canvas = {
         canvas.width = width;
         canvas.height = height;
         canvas.style.display = 'block';
+
+        return canvas;
+    },
+
+    /**
+     * Sets `canvas` dimensions to 1.
+     *
+     * @method Phaser.Canvas.dispose
+     * @param {HTMLCanvasElement} canvas - The canvas to be disposed of.
+     * @return {HTMLCanvasElement} The canvas.
+     */
+    dispose: function (canvas)
+    {
+        canvas.width = 1;
+        canvas.height = 1;
 
         return canvas;
     },
@@ -78785,7 +78800,7 @@ Phaser.Loader.prototype = {
             file.data.removeEventListener(file.loadEvent, videoLoadEvent, false);
             file.data.onerror = null;
             file.data.canplay = true;
-            _this.game.load.fileComplete(file);
+            _this.fileComplete(file);
         };
 
         file.data.onerror = function ()
@@ -81847,11 +81862,6 @@ Phaser.SoundManager.prototype = {
                 this.setTouchLock();
             }
         }
-
-        if (this.usingWebAudio && device.chrome && device.chromeVersion <= 65)
-        {
-            console.log('A "GainNode.gain.value setter smoothing is deprecated" notice in Chrome is normal. <https://github.com/photonstorm/phaser-ce/issues/385>');
-        }
     },
 
     /**
@@ -82473,8 +82483,6 @@ Object.defineProperty(Phaser.SoundManager.prototype, 'mute', {
 
     set: function (value)
     {
-        value = value || false;
-
         if (value)
         {
             if (this._muted)
@@ -90357,6 +90365,8 @@ Phaser.Physics.prototype.constructor = Phaser.Physics;
 /**
  * The Arcade Physics world. Contains Arcade Physics related collision, overlap and motion methods.
  *
+ * Set {@link Phaser.Game#forceSingleUpdate} to `false` for better consistency.
+ *
  * @class Phaser.Physics.Arcade
  * @constructor
  * @param {Phaser.Game} game - reference to the current game instance.
@@ -90617,22 +90627,24 @@ Phaser.Physics.Arcade.prototype = {
     {
         if (max === undefined) { max = 10000; }
 
+        var deltaSec = 0.001 * this.game.time.delta;
+
         if (axis === 1 && body.allowGravity)
         {
-            velocity += (this.gravity.x + body.gravity.x) * 0.001 * this.game.time.delta;
+            velocity += (this.gravity.x + body.gravity.x) * deltaSec;
         }
         else if (axis === 2 && body.allowGravity)
         {
-            velocity += (this.gravity.y + body.gravity.y) * 0.001 * this.game.time.delta;
+            velocity += (this.gravity.y + body.gravity.y) * deltaSec;
         }
 
         if (acceleration)
         {
-            velocity += acceleration * 0.001 * this.game.time.delta;
+            velocity += acceleration * deltaSec;
         }
         else if (drag && body.allowDrag)
         {
-            drag *= 0.001 * this.game.time.delta;
+            drag *= deltaSec;
 
             if (velocity - drag > 0)
             {
