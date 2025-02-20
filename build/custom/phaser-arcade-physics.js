@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/photonstorm/phaser-ce
 *
-* v2.20.1 "2024-10-05" - Built: Sat Oct 05 2024 11:25:47
+* v2.20.2 "2025-02-20" - Built: Thu Feb 20 2025 10:11:52
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -7774,7 +7774,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.20.1',
+    VERSION: '2.20.2',
 
     /**
      * AUTO renderer - picks between WebGL or Canvas based on device.
@@ -67573,11 +67573,23 @@ Phaser.SoundManager.prototype = {
      */
     gameResumed: function ()
     {
-        this.resumeWebAudio();
-
         if (this.muteOnPause)
         {
             this.unsetMute();
+        }
+
+        if (this.usingWebAudio && this.context.state !== 'running')
+        {
+            var _this = this;
+
+            // Needed to handle resuming audio on iOS17/iOS18+ if you hide the browser, press the home button, etc. <https://github.com/phaserjs/phaser/issues/6829>
+            setTimeout(function ()
+            {
+                if (!_this.context) { return; }
+
+                _this.context.suspend();
+                _this.context.resume();
+            }, 100);
         }
     },
 
