@@ -4,22 +4,22 @@
 
 Phaser CE is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development.
 
-Phaser CE is based on Phaser v2.6.2 by [Photon Storm](http://www.photonstorm.com). [Phaser v3](http://phaser.io/) is the current and fully maintained version.
+Phaser CE is based on Phaser v2.6.2 by Photon Storm. [Phaser](http://phaser.io/) is the current and fully maintained version.
 
 The [current Phaser CE release is 2.20.1](https://github.com/phaserjs/phaser-ce/releases/tag/v2.20.1).
 
-- **Visit:** The [Phaser website](https://phaser.io) and follow on [Twitter](https://twitter.com/phaser_) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
-- **Learn:** [API Docs](https://phaserjs.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
-- **Code:** 700+ [Examples](https://samme.github.io/phaser-examples-mirror/ "Phaser CE Examples") ([source][examples]), new [Phaser CE examples](https://codepen.io/collection/AMbZgY/)
-- **Read:** Weekly [Phaser World](#newsletter) Newsletter
-- **Chat:** [Discord](http://phaser.io/community/discord)
-- **Extend:** Phaser plugins - [GitHub](https://github.com/search?q=topic%3Aphaser-plugin&type=Repositories "Phaser plugins on GitHub"), [NPM](https://www.npmjs.com/browse/keyword/phaser-plugin "Phaser plugins on NPM")
+- [Phaser CE API Documentation](https://phaserjs.github.io/phaser-ce/)
+- [Phaser 2 Examples](https://samme.github.io/phaser-examples-mirror/) ([source code][examples])
+- [New Phaser CE examples](https://codepen.io/collection/AMbZgY/)
+- [Phaser 2/CE Forum][forum]
+- [Phaser on Discord](http://phaser.io/community/discord)
+- [Phaser plugins on GitHub](https://github.com/search?q=topic%3Aphaser-plugin&type=Repositories)
+- [Phaser plugins on NPM](https://www.npmjs.com/browse/keyword/phaser-plugin)
 
-Grab the source and join in the fun!
+If you need API documentation for a [previous version](https://github.com/phaserjs/phaser-ce/releases), download the source code, e.g., <https://github.com/phaserjs/phaser-ce/releases/tag/v2.6.2>, unzip, and open `docs/index.html`.
 
 ## Contents
 
-- [Games made with Phaser](#games)
 - [Requirements](#requirements)
 - [Download Phaser](#download)
 - [Getting Started](#getting-started)
@@ -27,14 +27,6 @@ Grab the source and join in the fun!
 - [Phaser World Newsletter](#newsletter)
 - [Contributing](#contributing)
 - [Change Log](#change-log)
-
-<a name="games"></a>
-
-## Made With Phaser
-
-Thousands of [games](https://phaser.io/news/category/game) have been made in Phaser. From game jam entries, to titles by some of the largest entertainment brands in the world. You can find [hundreds more on our web site](https://phaser.io/games).
-
-We add [new games](https://phaser.io/news/category/game) to the Phaser site weekly, so be sure to send us yours when it's finished!
 
 <a name="requirements"></a>
 
@@ -99,33 +91,29 @@ or the minified version:
 
 ## Getting Started
 
-Our [Getting Started Guide](https://phaser.io/tutorials/getting-started) will get you up to speed quickly: from [setting up a web server](https://phaser.io/tutorials/getting-started/part2) to picking an editor/IDE. After that read our [Making your first Game](https://phaser.io/tutorials/making-your-first-phaser-2-game/) tutorial. Please work through this, **no matter what your development experience**, to learn how Phaser CE approaches things.
+Our [Getting Started Guide](https://phaser.io/tutorials/getting-started-phaser2/) will get you up to speed quickly: from [setting up a web server](https://phaser.io/tutorials/getting-started/part2) to picking an editor/IDE. After that read our [Making your first Game](https://phaser.io/tutorials/making-your-first-phaser-2-game/) tutorial. Please work through this, **no matter what your development experience**, to learn how Phaser CE approaches things.
 
 Using **TypeScript**? See Phaser CE's [TypeScript definitions](https://github.com/photonstorm/phaser-ce/tree/master/typescript) and the [Using Phaser with TypeScript](https://phaser.io/tutorials/how-to-use-phaser-with-typescript).
 
-Prefer **videos**? Zenva have an excellent [Phaser video course](https://academy.zenva.com/product/the-complete-mobile-game-development-course-platinum-edition/?a=13), with hours of great material.
-
 ### Source Code Examples
 
-Currently there are over 700 Phaser 2 examples, with the full source code and assets available.
-
-Browse [Phaser Examples Mirror](https://github.com/samme/phaser-examples-mirror) and eat your heart out!
+Currently there are over [700 Phaser 2 examples](https://github.com/samme/phaser-examples-mirror), with the full source code and assets available.
 
 ### Web Templates
 
-If you'd like to try coding in Phaser CE right now, with nothing more than your web browser, open up the [Phaser CE Game Template](https://codepen.io/pen?template=vyKJvw). There are [CoffeeScript](https://codepen.io/pen?template=OWxELE) and [ES6](https://codepen.io/pen?template=pRGPKG) variants too.
+If you'd like to try coding in Phaser CE right now, with nothing more than your web browser, open up the [Phaser CE Game Template](https://codepen.io/pen?template=vyKJvw) or [ES6 Template](https://codepen.io/pen?template=pRGPKG).
 
 ### http-server
 
 For most development, you'll need to run a local web server. If you already have [node](https://nodejs.org), it's as easy as:
 
-```bash
+```sh
 npm install -g http-server
 ```
 
 Then from your project:
 
-```bash
+```sh
 http-server . -c-1 -o
 ```
 
@@ -195,17 +183,25 @@ Releases of new versions of Phaser CE are under the community's control. If you 
     - `package.json`
     - `src/Phaser.js`
 
-2. Make sure that you have added details of the new version to `CHANGELOG.md`. This should include a summary of changes made in the version. You can usually obtain this from the commit / PR history. It's nice to credit who made the changes by linking to their GitHub user ID, but isn't a requirement.
+2. Add details of the new version to `CHANGELOG.md`. This should include a summary of changes made in the version. You can usually obtain this from the commit / PR history. It's nice to credit who made the changes by linking to their GitHub user ID, but isn't a requirement.
 
-3. From the root repo folder, run `grunt eslint` and make sure there are no errors. If there are, please fix them, or request that the original author of the code does so.
+3. Update any relevant version numbers in `README.md`.
 
-4. Once ESLint passes run `grunt release`, sit back, and wait. It will build all of the versions of Phaser CE required, update the doc files, TypeScript defs and lots more. When finished, commit all of the new files and make sure to include a clear message in your commit saying you want this release pushed to npm. Be sure to tag me when doing this, i.e. 'Phaser CE Version 2.X.X. Please publish to npm @photonstorm' - I'll see it, and then publish as soon as I can (often the same day).
+4. Run `npm run check-version`. Verify all the version numbers match except in `build/phaser.js`, which isn't rebuilt yet.
+
+5. From the root repo folder, run `grunt eslint` and make sure there are no errors. If there are, please fix them, or request that the original author of the code does so.
+
+6. Once ESLint passes run `grunt release`, sit back, and wait. It will build all of the versions of Phaser CE required, update the doc files, TypeScript defs and lots more.
+
+7. Run `npm run check-version` and verify all the version numbers match.
+
+8. When finished, commit all of the new files and include a clear message in your commit saying you want this release pushed to npm: _Phaser CE Version 2.X.X. Please publish to npm @photonstorm_. I'll see it, and then publish as soon as I can (often the same day).
 
 <a name="newsletter"></a>
 
 ## Weekly Newsletter
 
-Every Monday we publish the [Phaser World](https://phaser.io/newsletter) newsletter. It's packed full of the latest Phaser games, tutorials, videos, meet-ups, talks, and more. It also contains our weekly Development Progress updates. If you want to know what we're working on, this is the newsletter to read!
+Every Monday we publish the [Phaser World](https://phaser.world) newsletter. It's packed full of the latest Phaser games, tutorials, videos, meet-ups, talks, and more. It also contains our weekly Development Progress updates. If you want to know what we're working on, this is the newsletter to read!
 
 <a name="contributing"></a>
 
@@ -215,7 +211,7 @@ The [Contributors Guide][contribute] contains full details on how to help with P
 
 - Found a bug? Report it on [GitHub Issues][issues] and include a code sample.
 - Before submitting a Pull Request run `npm run test` and fix any errors.
-- Before contributing read the [code of conduct](https://github.com/photonstorm/phaser-ce/blob/master/CODE_OF_CONDUCT.md).
+- Before contributing read the [code of conduct](https://github.com/phaserjs/phaser-ce/blob/master/CODE_OF_CONDUCT.md).
 
 Written something cool in Phaser? Please tell us about it in the [forum][forum], or email support@phaser.io
 
@@ -235,27 +231,21 @@ Phaser 2 was originally a [Photon Storm](http://www.photonstorm.com) production,
 
 ![storm](https://www.phaser.io/images/github/photonstorm-x2.png)
 
-Created by [Richard Davey](mailto:rich@photonstorm.com). Powered by coffee, anime, pixels and love.
-
-The Phaser logo and characters are © 2024 Photon Storm Limited.
-
-All rights reserved.
+The Phaser logo and characters are © 2024 Photon Storm Limited. All rights reserved.
 
 "Above all, video games are meant to be just one thing: fun. Fun for everyone." - Satoru Iwata
 
-[![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
-
-[get-js]: https://github.com/phaserjs/phaser-ce/releases/download/v2.20.0/phaser.js
-[get-minjs]: https://github.com/phaserjs/phaser-ce/releases/download/v2.20.0/phaser.min.js
-[get-zip]: https://github.com/phaserjs/phaser-ce/archive/v2.20.0.zip
-[get-tgz]: https://github.com/phaserjs/phaser-ce/archive/v2.20.0.tar.gz
-[clone-http]: https://github.com/phaserjs/phaser.git
-[clone-ssh]: ssh://git@github.com:phaserjs/phaser.git
-[clone-svn]: https://github.com/phaserjs/phaser
+[get-js]: https://github.com/phaserjs/phaser-ce/releases/download/v2.20.1/phaser.js
+[get-minjs]: https://github.com/phaserjs/phaser-ce/releases/download/v2.20.1/phaser.min.js
+[get-zip]: https://github.com/phaserjs/phaser-ce/archive/v2.20.1.zip
+[get-tgz]: https://github.com/phaserjs/phaser-ce/archive/v2.20.1.tar.gz
+[clone-http]: https://github.com/phaserjs/phaser-ce.git
+[clone-ssh]: ssh://git@github.com:phaserjs/phaser-ce.git
+[clone-svn]: https://github.com/phaserjs/phaser-ce
 [clone-ghwin]: github-windows://openRepo/https://github.com/phaserjs/phaser-ce
 [clone-ghmac]: github-mac://openRepo/https://github.com/phaserjs/phaser-ce
 [phaser]: https://github.com/phaserjs/phaser-ce
 [issues]: https://github.com/phaserjs/phaser-ce/issues
 [examples]: https://github.com/samme/phaser-examples-mirror
 [contribute]: https://github.com/phaserjs/phaser-ce/blob/master/.github/CONTRIBUTING.md
-[forum]: https://phaser.discourse.group/
+[forum]: https://phaser.discourse.group/c/phaser2/6
