@@ -848,11 +848,23 @@ Phaser.SoundManager.prototype = {
      */
     gameResumed: function ()
     {
-        this.resumeWebAudio();
-
         if (this.muteOnPause)
         {
             this.unsetMute();
+        }
+
+        if (this.usingWebAudio && this.context.state !== 'running')
+        {
+            var _this = this;
+
+            // Needed to handle resuming audio on iOS17/iOS18+ if you hide the browser, press the home button, etc. <https://github.com/phaserjs/phaser/issues/6829>
+            setTimeout(function ()
+            {
+                if (!_this.context) { return; }
+
+                _this.context.suspend();
+                _this.context.resume();
+            }, 100);
         }
     },
 

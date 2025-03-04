@@ -1,5 +1,15 @@
 # Change Log
 
+## Version 2.20.2 - 20 February 2025
+
+### Bug Fixes
+
+- Fixed no sound from Web Audio in iOS 17 and 18 after refocusing Safari (#748).
+
+### Thanks
+
+Oussama
+
 ## Version 2.20.1 - 5 October 2024
 
 ### Updates
