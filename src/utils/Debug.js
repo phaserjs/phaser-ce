@@ -504,7 +504,7 @@ Phaser.Utils.Debug.prototype = {
         this.line('Camera (' + camera.width + ' x ' + camera.height + ')');
         this.line('x: ' + camera.x + ' y: ' + camera.y);
         this.line('Bounds: ' + (bounds ? ('x: ' + bounds.x + ' y: ' + bounds.y + ' w: ' + bounds.width + ' h: ' + bounds.height) : 'none'));
-        this.line('View: x: ' + view.x + ' y: ' + view.y + ' w: ' + view.width + ' h: ' + view.height);
+        this.line('View: x: ' + view.x + ' y: ' + view.y + ' w: ' + view.width + ' h: ' + view.height + ' cx: ' + view.centerX + ' cy: ' + view.centerY);
         this.line('Center: x: ' + camera.centerX + ' y: ' + camera.centerY);
         this.line('Deadzone: ' + (deadzone ? ('x: ' + deadzone.x + ' y: ' + deadzone.y + ' w: ' + deadzone.width + ' h: ' + deadzone.height) : deadzone));
         this.line('Total in view: ' + camera.totalInView);
