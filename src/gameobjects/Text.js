@@ -35,7 +35,7 @@
  * @param {boolean} [style.wordWrap=false] - Indicates if word wrap should be used.
  * @param {number} [style.wordWrapWidth=100] - The width in pixels at which text will wrap.
  * @param {number} [style.maxLines=0] - The maximum number of lines to be shown for wrapped text.
- * @param {number} [style.tabs=0] - The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
+ * @param {number|array} [style.tabs=0] - The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
  * @param {object} [style.fontProperties=null] - `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
  * @param {string} [style.testString='|MÂÉQfjq_'] - The text to use to measure the font width and height.
  */
