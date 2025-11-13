@@ -35,6 +35,7 @@
  * @param {boolean} [style.wordWrap=false] - Indicates if word wrap should be used.
  * @param {number} [style.wordWrapWidth=100] - The width in pixels at which text will wrap.
  * @param {number} [style.maxLines=0] - The maximum number of lines to be shown for wrapped text.
+ * @param {string} [style.letterSpacing='0px'] - Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units.
  * @param {number|array} [style.tabs=0] - The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
  * @param {object} [style.fontProperties=null] - `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
  * @param {string} [style.testString='|MÂÉQfjq_'] - The text to use to measure the font width and height.
@@ -315,6 +316,7 @@ Phaser.Text.prototype.setShadow = function (x, y, color, blur, shadowStroke, sha
  * @param {boolean} [style.wordWrap=false] - Indicates if word wrap should be used.
  * @param {number} [style.wordWrapWidth=100] - The width in pixels at which text will wrap.
  * @param {number} [style.maxLines=0] - The maximum number of lines to be shown for wrapped text.
+ * @param {string} [style.letterSpacing='0px'] - Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units.
  * @param {number|array} [style.tabs=0] - The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
  * @param {object} [style.fontProperties=null] - `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
  * @param {string} [style.testString='|MÂÉQfjq_'] - The text to use to measure the font width and height.
@@ -337,6 +339,7 @@ Phaser.Text.prototype.setStyle = function (style, update)
     newStyle.wordWrap = style.wordWrap || false;
     newStyle.wordWrapWidth = style.wordWrapWidth || 100;
     newStyle.maxLines = style.maxLines || 0;
+    newStyle.letterSpacing = style.letterSpacing || '0px';
     newStyle.shadowOffsetX = style.shadowOffsetX || 0;
     newStyle.shadowOffsetY = style.shadowOffsetY || 0;
     newStyle.shadowColor = style.shadowColor || 'rgba(0,0,0,0)';
@@ -548,6 +551,7 @@ Phaser.Text.prototype.updateText = function ()
     this.context.font = this.style.font;
     this.context.strokeStyle = this.style.stroke;
     this.context.textBaseline = 'alphabetic';
+    this.context.letterSpacing = this.style.letterSpacing;
 
     this.context.lineWidth = this.style.strokeThickness;
     this.context.lineCap = 'round';
@@ -2082,6 +2086,29 @@ Object.defineProperty(Phaser.Text.prototype, 'lineSpacing', {
             {
                 this.updateTransform();
             }
+        }
+    }
+
+});
+
+/**
+ * @name Phaser.Text#letterSpacing
+ * @property {number} letterSpacing - Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units.
+ * Uses [CanvasRedneringContext2D.letterSpacing]{@link https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/letterSpacing} property.
+ */
+Object.defineProperty(Phaser.Text.prototype, 'letterSpacing', {
+
+    get: function ()
+    {
+        return this.style.letterSpacing;
+    },
+
+    set: function (value)
+    {
+        if (value !== this.style.letterSpacing)
+        {
+            this.style.letterSpacing = value;
+            this.dirty = true;
         }
     }
 
