@@ -443,7 +443,7 @@ Phaser.Text.prototype.updateText = function ()
             //  Simple layout (no tabs)
             var lineWidth = this.style.strokeThickness + this.padding.x;
 
-            if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0)
+            if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0 || this.letterSpacing !== '0px')
             {
                 lineWidth += this.measureLine(lines[i]);
             }
@@ -770,6 +770,11 @@ Phaser.Text.prototype.measureLine = function (line)
             }
 
             this.updateShadow(this.style.shadowFill);
+        }
+
+        if (this.letterSpacing)
+        {
+            this.context.letterSpacing = this.letterSpacing;
         }
 
         lineLength += this.context.measureText(letter).width;
