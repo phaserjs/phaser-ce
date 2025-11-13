@@ -2098,7 +2098,7 @@ Object.defineProperty(Phaser.Text.prototype, 'lineSpacing', {
 
 /**
  * @name Phaser.Text#letterSpacing
- * @property {number} letterSpacing - Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units.
+ * @property {string} letterSpacing - Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units.
  * Uses [CanvasRedneringContext2D.letterSpacing]{@link https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/letterSpacing} property.
  */
 Object.defineProperty(Phaser.Text.prototype, 'letterSpacing', {
