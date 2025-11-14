@@ -472,7 +472,7 @@ Phaser.Text.prototype.updateText = function ()
                 {
                     var section = 0;
 
-                    if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0)
+                    if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0 || this.letterSpacing !== '0px')
                     {
                         section = this.measureLine(line[c]);
                     }
@@ -494,7 +494,7 @@ Phaser.Text.prototype.updateText = function ()
                 for (var c = 0; c < line.length; c++)
                 {
                     //  How far to the next tab?
-                    if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0)
+                    if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0 || this.letterSpacing !== '0px')
                     {
                         lineWidth += this.measureLine(line[c]);
                     }
@@ -772,7 +772,7 @@ Phaser.Text.prototype.measureLine = function (line)
             this.updateShadow(this.style.shadowFill);
         }
 
-        if (this.letterSpacing)
+        if (this.letterSpacing && this.letterSpacing !== '0px')
         {
             this.context.letterSpacing = this.letterSpacing;
         }
