@@ -5140,6 +5140,7 @@ declare module Phaser {
         wordWrap?: boolean;
         wordWrapWidth?: number;
         maxLines?: number;
+        letterSpacing?: string;
         shadowOffsetX?: number;
         shadowOffsetY?: number;
         shadowColor?: string;
@@ -5197,6 +5198,7 @@ declare module Phaser {
         game: Phaser.Game;
         input: Phaser.InputHandler;
         inputEnabled: boolean;
+        letterSpacing: string;
         lineSpacing: number;
         name: string;
         padding: Phaser.Point;
