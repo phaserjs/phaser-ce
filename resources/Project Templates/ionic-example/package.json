@@ -13,7 +13,7 @@
     "ionic:serve:lab": "ionic-app-scripts serve --lab"
   },
   "dependencies": {
-    "@angular/common": "5.0.0",
+    "@angular/common": "19.2.16",
     "@angular/compiler": "5.0.0",
     "@angular/compiler-cli": "5.0.0",
     "@angular/core": "10.2.5",
