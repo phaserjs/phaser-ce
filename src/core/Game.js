@@ -496,6 +496,18 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
      */
     this._nextFpsNotification = 0;
 
+    /**
+     * @property {function} _onContextLost - Internal event handler reference.
+     * @private
+     */
+    this._onContextLost = null;
+
+    /**
+     * @property {function} _onContextRestored - Internal event handler reference.
+     * @private
+     */
+    this._onContextRestored = null;
+
     //  Parse the configuration object (if any)
     if (arguments.length === 1 && typeof arguments[0] === 'object')
     {
@@ -913,8 +925,10 @@ Phaser.Game.prototype = {
                 this.renderer = new PIXI.WebGLRenderer(this, this.config);
                 this.renderType = Phaser.WEBGL;
                 this.context = null;
-                this.canvas.addEventListener('webglcontextlost', this.contextLost.bind(this), false);
-                this.canvas.addEventListener('webglcontextrestored', this.contextRestored.bind(this), false);
+                this._onContextLost = this.contextLost.bind(this);
+                this._onContextRestored = this.contextRestored.bind(this);
+                this.canvas.addEventListener('webglcontextlost', this._onContextLost, false);
+                this.canvas.addEventListener('webglcontextrestored', this._onContextRestored, false);
             }
             catch (webGLRendererError)
             {
@@ -1272,6 +1286,13 @@ Phaser.Game.prototype = {
         this.physics.destroy();
         this.plugins.destroy();
         this.tweens.destroy();
+
+        if (this._onContextLost)
+        {
+            this.canvas.removeEventListener('webglcontextlost', this._onContextLost, false);
+            this.canvas.removeEventListener('webglcontextrestored', this._onContextRestored, false);
+        }
+
         this.renderer.destroy(false);
 
         Phaser.Canvas.removeFromDOM(this.canvas);
