@@ -1,5 +1,15 @@
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+
+- Fixed an error when the WebGL context of a destroyed game was lost.
+
+### Thanks
+
+@asger-finding
+
 ## Version 2.20.2 - 20 February 2025
 
 ### Bug Fixes
