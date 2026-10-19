@@ -1,5 +1,15 @@
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+
+- Fixed a new WebGL renderer taking the context id of a live renderer after another renderer was destroyed.
+
+### Thanks
+
+@asger-finding
+
 ## Version 2.20.2 - 20 February 2025
 
 ### Bug Fixes
