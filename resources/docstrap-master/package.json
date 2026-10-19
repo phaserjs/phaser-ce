@@ -39,5 +39,10 @@
   "dependencies": {
     "moment": "^2.29.4",
     "sanitize-html": "^2.12.1"
+  },
+  "overrides": {
+    "postcss": {
+      "nanoid": "5.1.16"
+    }
   }
 }
