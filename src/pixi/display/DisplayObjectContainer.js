@@ -201,6 +201,13 @@ PIXI.DisplayObjectContainer.prototype.removeChildAt = function (index)
     return child;
 };
 
+/**
+ * Brings the given child to the top of this group so it renders above all other children.
+ *
+ * @method PIXI.DisplayObjectContainer#bringChildToTop
+ * @param {any} child - The child to bring to the top of this group.
+ * @return {any} The child that was moved.
+ */
 PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
 {
     if (child.parent !== this)
@@ -211,6 +218,13 @@ PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
     return this.setChildIndex(child, this.children.length - 1);
 };
 
+/**
+ * Sends the given child to the bottom of this group so it renders below all other children.
+ *
+ * @method PIXI.DisplayObjectContainer#sendChildToBack
+ * @param {any} child - The child to send to the bottom of this group.
+ * @return {any} The child that was moved.
+ */
 PIXI.DisplayObjectContainer.prototype.sendChildToBack = function (child)
 {
     if (child.parent !== this)

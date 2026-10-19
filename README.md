@@ -16,7 +16,7 @@ The [current Phaser CE release is 2.20.2](https://github.com/phaserjs/phaser-ce/
 - [Phaser plugins on GitHub](https://github.com/search?q=topic%3Aphaser-plugin&type=Repositories)
 - [Phaser plugins on NPM](https://www.npmjs.com/browse/keyword/phaser-plugin)
 
-If you need API documentation for a [previous version](https://github.com/phaserjs/phaser-ce/releases), download the source code, e.g., <https://github.com/phaserjs/phaser-ce/releases/tag/v2.6.2>, unzip, and open `docs/index.html`.
+If you need API documentation for a [previous version](https://github.com/phaserjs/phaser-ce/releases), download the source code, e.g., <https://github.com/phaserjs/phaser-ce/archive/refs/tags/v2.6.2.zip>, unzip, and open `docs/index.html`.
 
 ## Contents
 

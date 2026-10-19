@@ -5,6 +5,7 @@
 ### Bug Fixes
 
 - Fixed an error when the WebGL context of a destroyed game was lost.
+- Fixed a new WebGL renderer taking the context id of a live renderer after another renderer was destroyed.
 
 ### Thanks
 
