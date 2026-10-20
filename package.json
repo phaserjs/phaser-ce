@@ -29,13 +29,13 @@
     "url": "https://photonstorm@github.com/photonstorm/phaser-ce.git"
   },
   "scripts": {
-    "check-version": "grep -H 'VERSION:' src/Phaser.js build/phaser.js; grep -H '\"version\":' package.json; grep -H -m1 '## Version ' CHANGELOG.md; grep -H 'phaser-ce/releases/tag/v' README.md",
+    "check-version": "./scripts/check-version.sh",
     "grunt": "grunt",
-    "test": "npm run test:src; npm run test:ts",
-    "test:build": "node --check build/*.js; node --check build/custom/*.js",
-    "test:dist": "grunt test && node --check dist/phaser-test.js",
-    "test:src": "eslint src",
-    "test:ts": "tsc --noImplicitAny ./typescript/p2.d.ts ./typescript/phaser.d.ts ./typescript/pixi.d.ts; tsc --noImplicitAny ./typescript/phaser.comments.d.ts ./typescript/pixi.comments.d.ts",
+    "test": "npm run test-src; npm run test-ts",
+    "test-build": "./scripts/test-build.sh",
+    "test-dist": "node --check dist/phaser-test.js",
+    "test-src": "eslint src",
+    "test-ts": "./scripts/test-ts.sh",
     "tsc": "./node_modules/typescript/bin/tsc"
   },
   "keywords": [
