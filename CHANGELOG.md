@@ -2,14 +2,22 @@
 
 ## Unreleased
 
+### New Features
+
+- Text Game Objects now have a `letterSpacing` property (#753). The value is a CSS length, e.g., `'1px'`.
+
+### Updates
+
+- `Phaser.Utils.Debug#cameraInfo()` now also shows the coordinates of the center of the camera view.
+
 ### Bug Fixes
 
-- Fixed an error when the WebGL context of a destroyed game was lost.
-- Fixed a new WebGL renderer taking the context id of a live renderer after another renderer was destroyed.
+- Fixed an error when the WebGL context of a destroyed game was lost (#756).
+- Fixed a new WebGL renderer taking the context id of a live renderer after another renderer was destroyed (#757).
 
 ### Thanks
 
-@asger-finding
+@Akurn, @asger-finding
 
 ## Version 2.20.2 - 20 February 2025
 
