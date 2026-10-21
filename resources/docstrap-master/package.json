@@ -25,7 +25,7 @@
   },
   "main": "./template/publish.js",
   "dependencies": {
-    "jsdoc": "^3.5.4",
+    "jsdoc": "^4.0.5",
     "moment": "^2.29.4",
     "sanitize-html": "^2.12.1"
   }
