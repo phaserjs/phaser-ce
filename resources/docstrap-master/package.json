@@ -1,27 +1,12 @@
 {
   "name": "ink-docstrap",
-  "version": "2.0.0",
-  "decription": "A template for JSDoc3 based on Bootstrap and Bootswatch",
+  "version": "3.0.0",
+  "description": "A template for JSDoc 4",
+  "private": true,
   "license": "MIT",
-  "keywords": [
-    "bootstrap",
-    "bootswatch",
-    "docstrap",
-    "documentation",
-    "jsdoc",
-    "jsdoc3",
-    "theme"
-  ],
   "author": {
     "email": "me@terryweiss.net",
     "name": "Terry Weiss"
-  },
-  "bugs": {
-    "url": "https://github.com/docstrap/docstrap/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/docstrap/docstrap.git"
   },
   "main": "./template/publish.js",
   "dependencies": {
