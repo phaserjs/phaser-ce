@@ -1440,8 +1440,7 @@ Phaser.Physics.Arcade.Body.render = function (context, body, color, filled, line
             context.stroke();
         }
     }
-    else
-    if (filled)
+    else if (filled)
     {
         context.fillRect(body.position.x - body.game.camera.x, body.position.y - body.game.camera.y, body.width, body.height);
     }

@@ -103,8 +103,7 @@ Phaser.BitmapData = function (game, key, width, height, skipPool)
             this.buffer = this.imageData.data.buffer;
             this.pixels = new Uint32Array(this.buffer);
         }
-        else
-        if (window.ArrayBuffer)
+        else if (window.ArrayBuffer)
         {
             this.buffer = new ArrayBuffer(this.imageData.data.length);
             this.pixels = new Uint32Array(this.buffer);
@@ -691,8 +690,7 @@ Phaser.BitmapData.prototype = {
             this.buffer = this.imageData.data.buffer;
             this.pixels = new Uint32Array(this.buffer);
         }
-        else
-        if (window.ArrayBuffer)
+        else if (window.ArrayBuffer)
         {
             this.buffer = new ArrayBuffer(this.imageData.data.length);
             this.pixels = new Uint32Array(this.buffer);
@@ -1676,8 +1674,7 @@ Phaser.BitmapData.prototype = {
         {
             this.drawGroup(child, blendMode, roundPx);
         }
-        else
-        if (child.hasOwnProperty('children') && child.children.length > 0)
+        else if (child.hasOwnProperty('children') && child.children.length > 0)
         {
             for (var i = 0; i < child.children.length; i++)
             {

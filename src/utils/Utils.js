@@ -485,8 +485,7 @@ Phaser.Utils = {
                 //  Not overwriting existing property
                 continue;
             }
-            else
-            if (value &&
+            else if (value &&
                     (typeof value.get === 'function' || typeof value.set === 'function'))
             {
                 //  Special case for classes like Phaser.Point which has a 'set' function!

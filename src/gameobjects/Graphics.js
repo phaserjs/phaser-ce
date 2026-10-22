@@ -356,8 +356,7 @@ Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull)
             }
         }
     }
-    else
-    if (vertices[0] instanceof Phaser.Point)
+    else if (vertices[0] instanceof Phaser.Point)
     {
         for (i = 0; i < indices.length / 3; i++)
         {

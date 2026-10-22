@@ -19,7 +19,7 @@ Phaser.Component.InputEnabled.prototype = {
      * By default it is disabled. If you wish this Game Object to process input events you should enable it with: `inputEnabled = true`.
      *
      * After you have done this, this property will be a reference to the Phaser InputHandler.
-     * @property {Phaser.InputHandler|null} input 
+     * @property {Phaser.InputHandler|null} input
      */
     input: null,
 
@@ -60,8 +60,7 @@ Phaser.Component.InputEnabled.prototype = {
                     this.input.start();
                 }
             }
-            else
-            if (this.input && this.input.enabled)
+            else if (this.input && this.input.enabled)
             {
                 this.input.stop();
             }

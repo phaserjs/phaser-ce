@@ -82,8 +82,7 @@ Phaser.Bullet.prototype.update = function ()
                 this.kill();
             }
         }
-        else
-        if (!this.data.bulletManager.bulletBounds.intersects(this))
+        else if (!this.data.bulletManager.bulletBounds.intersects(this))
         {
             this.kill();
         }

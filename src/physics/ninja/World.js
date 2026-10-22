@@ -163,8 +163,7 @@ Phaser.Physics.Ninja.prototype = {
                 }
             }
         }
-        else
-        if (object instanceof Phaser.Group)
+        else if (object instanceof Phaser.Group)
         {
             //  If it's a Group then we do it on the children regardless
             this.enable(object.children, type, id, radius, children);

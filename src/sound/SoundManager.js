@@ -895,8 +895,7 @@ Phaser.SoundManager.prototype = {
                 //  Store this in the PhaserGlobal window var, if set, to allow for re-use if the game is created again without the page refreshing
                 window.PhaserGlobal.audioContext = this.context;
             }
-            else
-            if (this.context.close)
+            else if (this.context.close)
             {
                 this.context.close();
             }

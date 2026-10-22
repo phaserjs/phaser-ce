@@ -69,8 +69,7 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
                     }
                 }
             }
-            else
-            if (this.separateTile(i, sprite.body, mapData[i], tilemapLayer, overlapOnly))
+            else if (this.separateTile(i, sprite.body, mapData[i], tilemapLayer, overlapOnly))
             {
                 this._total++;
 

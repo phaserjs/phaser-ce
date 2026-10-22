@@ -694,8 +694,7 @@ Phaser.Physics.Ninja.AABB.prototype = {
                         return Phaser.Physics.Ninja.AABB.COL_AXIS;
                     }
                 }
-                else
-                if (aY < lenN)
+                else if (aY < lenN)
                 {
                     obj.reportCollisionVsWorld(0, penY, 0, penY / aY, t);
 
@@ -825,8 +824,7 @@ Phaser.Physics.Ninja.AABB.prototype = {
                         return Phaser.Physics.Ninja.AABB.COL_AXIS;
                     }
                 }
-                else
-                if (aX < lenN)
+                else if (aX < lenN)
                 {
                     obj.reportCollisionVsWorld(penX, 0, penX / aX, 0, t);
 

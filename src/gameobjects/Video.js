@@ -316,8 +316,7 @@ Phaser.Video = function (game, key, url)
     {
         this.setTouchLock();
     }
-    else
-    if (_video)
+    else if (_video)
     {
         _video.locked = false;
     }
@@ -803,8 +802,7 @@ Phaser.Video.prototype = {
                 {
                     this.videoStream.active = false;
                 }
-                else
-                if (this.videoStream.getTracks)
+                else if (this.videoStream.getTracks)
                 {
                     this.videoStream.getTracks().forEach(function (track)
                     {

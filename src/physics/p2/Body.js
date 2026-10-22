@@ -467,8 +467,7 @@ Phaser.Physics.P2.Body.prototype = {
                 }
             }
         }
-        else
-        if (this.collidesWith.indexOf(group) === -1)
+        else if (this.collidesWith.indexOf(group) === -1)
         {
             this.collidesWith.push(group);
 

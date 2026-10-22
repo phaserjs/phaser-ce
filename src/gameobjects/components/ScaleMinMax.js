@@ -124,8 +124,7 @@ Phaser.Component.ScaleMinMax.prototype = {
         {
             this.scaleMin = null;
         }
-        else
-        if (this.scaleMin)
+        else if (this.scaleMin)
         {
             this.scaleMin.set(minX, minY);
         }
@@ -138,8 +137,7 @@ Phaser.Component.ScaleMinMax.prototype = {
         {
             this.scaleMax = null;
         }
-        else
-        if (this.scaleMax)
+        else if (this.scaleMax)
         {
             this.scaleMax.set(maxX, maxY);
         }

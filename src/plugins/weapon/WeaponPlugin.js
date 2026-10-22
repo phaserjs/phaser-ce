@@ -943,8 +943,7 @@ Phaser.Weapon.prototype.fire = function (from, x, y, offsetX, offsetY)
                 this.fireFrom.y = this._rotatedPoint.y;
             }
         }
-        else
-        if (this.fireFrom.width > 1)
+        else if (this.fireFrom.width > 1)
         {
             this.fireFrom.centerOn(this.trackedSprite.world.x + this.trackOffset.x, this.trackedSprite.world.y + this.trackOffset.y);
         }
@@ -1059,8 +1058,7 @@ Phaser.Weapon.prototype.fire = function (from, x, y, offsetX, offsetY)
 
             bullet.animations.play(this.bulletAnimation);
         }
-        else
-        if (this.bulletFrameCycle)
+        else if (this.bulletFrameCycle)
         {
             bullet.frame = this.bulletFrames[this.bulletFrameIndex];
 

@@ -650,8 +650,7 @@ Phaser.StateManager.prototype = {
                 this.onUpdateCallback.call(this.callbackContext, this.game);
             }
         }
-        else
-        if (this.onLoadUpdateCallback)
+        else if (this.onLoadUpdateCallback)
         {
             this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
@@ -678,8 +677,7 @@ Phaser.StateManager.prototype = {
                 this.onPauseUpdateCallback.call(this.callbackContext, this.game);
             }
         }
-        else
-        if (this.onLoadUpdateCallback)
+        else if (this.onLoadUpdateCallback)
         {
             this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
@@ -732,8 +730,7 @@ Phaser.StateManager.prototype = {
                 }
             }
         }
-        else
-        if (this.onLoadRenderCallback)
+        else if (this.onLoadRenderCallback)
         {
             this.onLoadRenderCallback.call(this.callbackContext, this.game);
         }

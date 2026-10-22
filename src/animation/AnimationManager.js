@@ -105,8 +105,7 @@ Phaser.AnimationManager.prototype = {
         {
             this.frame = 0;
         }
-        else
-        if (typeof frame === 'string')
+        else if (typeof frame === 'string')
         {
             this.frameName = frame;
         }
@@ -147,8 +146,7 @@ Phaser.AnimationManager.prototype = {
         {
             this.frame = 0;
         }
-        else
-        if (typeof frame === 'string')
+        else if (typeof frame === 'string')
         {
             this.frameName = frame;
         }
@@ -231,8 +229,7 @@ Phaser.AnimationManager.prototype = {
                     return false;
                 }
             }
-            else
-            if (this._frameData.checkFrameName(frames[i]) === false)
+            else if (this._frameData.checkFrameName(frames[i]) === false)
             {
                 return false;
             }

@@ -1205,8 +1205,7 @@ Phaser.Cache.prototype = {
                 console.warn('Phaser.Cache.' + method + ': Key "' + key + '" not found in Cache.');
             }
         }
-        else
-        if (property === undefined)
+        else if (property === undefined)
         {
             return this._cacheMap[cache][key];
         }
@@ -1361,8 +1360,7 @@ Phaser.Cache.prototype = {
         {
             return data;
         }
-        else
-        if (data[object])
+        else if (data[object])
         {
             var fixtures = data[object];
 

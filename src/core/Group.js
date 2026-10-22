@@ -63,8 +63,7 @@ Phaser.Group = function (game, parent, name, addToStage, enableBody, physicsBody
         this.game.stage.addChild(this);
         this.z = this.game.stage.children.length;
     }
-    else
-    if (parent)
+    else if (parent)
     {
         parent.addChild(this);
         this.z = parent.children.length;
@@ -2039,8 +2038,7 @@ Phaser.Group.prototype.ascendingSortHandler = function (a, b)
     {
         return 1;
     }
-    else
-    if (a.z < b.z)
+    else if (a.z < b.z)
     {
         return -1;
     }

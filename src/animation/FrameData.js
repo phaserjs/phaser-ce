@@ -226,8 +226,7 @@ Phaser.FrameData.prototype = {
                 {
                     output.push(this._frames[frames[i]].index);
                 }
-                else
-                if (this.getFrameByName(frames[i]))
+                else if (this.getFrameByName(frames[i]))
                 {
                     output.push(this.getFrameByName(frames[i]).index);
                 }

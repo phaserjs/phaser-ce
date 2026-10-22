@@ -509,8 +509,7 @@ Phaser.TweenData.prototype = {
 
             this.inReverse = !this.inReverse;
         }
-        else
-        if (this.repeatCounter === 0)
+        else if (this.repeatCounter === 0)
         {
             return Phaser.TweenData.COMPLETE;
         }

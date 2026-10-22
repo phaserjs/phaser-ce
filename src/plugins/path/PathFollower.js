@@ -244,8 +244,7 @@ Phaser.PathFollower.prototype.update = function ()
                     this.follower.events.onPathLoop.dispatch(point);
                     this._currentPoint = this.path.numPoints() - 1;
                 }
-                else
-                if (!this.yoyo)
+                else if (!this.yoyo)
                 {
                     this.follower.events.onPathEnd.dispatch();
                 }

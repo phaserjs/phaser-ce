@@ -507,8 +507,7 @@ Phaser.TilemapParser = {
 
                     row.push(tile);
                 }
-                else
-                if (Phaser.TilemapParser.INSERT_NULL)
+                else if (Phaser.TilemapParser.INSERT_NULL)
                 {
                     row.push(null);
                 }

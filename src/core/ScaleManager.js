@@ -1410,8 +1410,7 @@ Phaser.ScaleManager.prototype = {
         {
             this.setMaximum();
         }
-        else
-        if (scaleMode === Phaser.ScaleManager.EXACT_FIT)
+        else if (scaleMode === Phaser.ScaleManager.EXACT_FIT)
         {
             this.setExactFit();
         }

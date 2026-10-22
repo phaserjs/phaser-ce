@@ -547,8 +547,7 @@ Phaser.Pointer.prototype = {
                 {
                     this.rightButton.start(event);
                 }
-                else
-                if (down)
+                else if (down)
                 {
                     this.processButtonsDown(event.button, event);
                 }
@@ -557,8 +556,7 @@ Phaser.Pointer.prototype = {
                     this.processButtonsUp(event.button, event);
                 }
             }
-            else
-            if (down)
+            else if (down)
             {
                 // On OS X (and other devices with trackpads) you have to press CTRL + the pad to initiate a right-click event.
                 if (event.ctrlKey)
@@ -920,8 +918,7 @@ Phaser.Pointer.prototype = {
                 this.targetObject = null;
             }
         }
-        else
-        if (this.targetObject === null)
+        else if (this.targetObject === null)
         {
             //  And now set the new one
             this.targetObject = newTarget;

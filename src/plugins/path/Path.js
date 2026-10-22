@@ -517,8 +517,7 @@ Phaser.Path.prototype = {
                     return i;
                 }
             }
-            else
-            if (pathPoint.equals(this._points[i]))
+            else if (pathPoint.equals(this._points[i]))
             {
                 return i;
             }

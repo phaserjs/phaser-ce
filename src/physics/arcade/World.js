@@ -193,8 +193,7 @@ Phaser.Physics.Arcade.prototype = {
                 }
             }
         }
-        else
-        if (object instanceof Phaser.Group)
+        else if (object instanceof Phaser.Group)
         {
             //  If it's a Group then we do it on the children regardless
             this.enable(object.children, children);
@@ -515,8 +514,7 @@ Phaser.Physics.Arcade.prototype = {
         {
             sortDirection = group.physicsSortDirection;
         }
-        else
-        if (sortDirection === undefined) { sortDirection = this.sortDirection; }
+        else if (sortDirection === undefined) { sortDirection = this.sortDirection; }
 
         if (sortDirection === Phaser.Physics.Arcade.LEFT_RIGHT)
         {
@@ -1105,8 +1103,7 @@ Phaser.Physics.Arcade.prototype = {
                 return this.circleBodyIntersects(body1, body2);
             }
         }
-        else
-        if (body2.isCircle)
+        else if (body2.isCircle)
         {
             //  Rect vs. Circle
             return this.circleBodyIntersects(body2, body1);

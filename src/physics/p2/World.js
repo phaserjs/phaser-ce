@@ -353,8 +353,7 @@ Phaser.Physics.P2.prototype = {
                 }
             }
         }
-        else
-        if (object instanceof Phaser.Group)
+        else if (object instanceof Phaser.Group)
         {
             //  If it's a Group then we do it on the children regardless
             this.enable(object.children, debug, children);
@@ -734,8 +733,7 @@ Phaser.Physics.P2.prototype = {
                 this.walls[wall].shapes[0].collisionGroup = this.boundsCollisionGroup.mask;
             }
         }
-        else
-        if (this.walls[wall])
+        else if (this.walls[wall])
         {
             this.world.removeBody(this.walls[wall]);
             this.walls[wall] = null;

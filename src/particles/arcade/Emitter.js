@@ -348,8 +348,7 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function ()
                     }
                 }
             }
-            else
-            if (this.emitParticle())
+            else if (this.emitParticle())
             {
                 this._counter++;
 
@@ -359,8 +358,7 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function ()
                 }
             }
         }
-        else
-        if (this.emitParticle())
+        else if (this.emitParticle())
         {
             this._counter++;
 
