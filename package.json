@@ -52,6 +52,7 @@
     "phaser"
   ],
   "devDependencies": {
+    "eslint": "4.19.1",
     "grunt": "^1.0.4",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.1.0",
@@ -59,7 +60,6 @@
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-uglify": "^3.0.1",
-    "grunt-eslint": "^20.1.0",
     "grunt-git": "^1.0.13",
     "grunt-jsdoc": "^2.1.0",
     "grunt-notify": "^0.4.5",
