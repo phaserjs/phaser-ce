@@ -2250,8 +2250,6 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'scaleMode', {
 
             this._scaleMode = value;
         }
-
-        return this._scaleMode;
     }
 
 });
@@ -2289,8 +2287,6 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'fullScreenScaleMode', {
                 this._fullScreenScaleMode = value;
             }
         }
-
-        return this._fullScreenScaleMode;
     }
 
 });
