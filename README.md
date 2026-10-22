@@ -141,7 +141,7 @@ Full module-based development is available in Phaser v3.
 
 As with browserify, use the **pixi**, **p2**, and **phaser-split** modules in [build/custom](https://github.com/phaserjs/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
 
-See [our webpack project template](https://github.com/phaserjs/phaser-ce/tree/master/resources/Project%20Templates/Webpack) or [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
+See [our webpack project template](https://github.com/phaserjs/phaser-ce/tree/v2.20.2/resources/Project%20Templates/Webpack) or [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
 
 ### Ionic
 

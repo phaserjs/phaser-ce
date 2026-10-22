@@ -977,7 +977,7 @@ The minor version increase is for changes to [Emitter#cursor](https://phaserjs.g
   grunt custom --exclude=moduleName --filename=phaser-custom
   ```
 
-* Updated [Ionic project template](https://github.com/phaserjs/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) (#328).
+* Updated [Ionic project template](https://github.com/phaserjs/phaser-ce/tree/v2.20.2/resources/Project%20Templates/ionic-example) (#328).
 * [API Docs](https://github.com/phaserjs/phaser-ce/) have a new look.
 
 ### Bug Fixes
@@ -1040,7 +1040,7 @@ The minor version increase is for changes to [Emitter#cursor](https://phaserjs.g
 
 ### Updates
 
-* Added [Ionic project template](https://github.com/phaserjs/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) and a [small guide](https://github.com/phaserjs/phaser-ce/blob/master/README.md#ionic) to README (#96).
+* Added [Ionic project template](https://github.com/phaserjs/phaser-ce/tree/v2.20.2/resources/Project%20Templates/ionic-example) and a [small guide](https://github.com/phaserjs/phaser-ce/blob/master/README.md#ionic) to README (#96).
 
 ### Bug Fixes
 
@@ -1067,7 +1067,7 @@ The minor version increase is for changes to [Emitter#cursor](https://phaserjs.g
 ### Updates
 
 * Added TypeScript `types` to package.json (#276).
-* New [webpack project template](https://github.com/phaserjs/phaser-ce/tree/master/resources/Project%20Templates/Webpack) (#95).
+* New [webpack project template](https://github.com/phaserjs/phaser-ce/tree/v2.20.2/resources/Project%20Templates/Webpack) (#95).
 * [Phaser.Component.Core.init](https://phaserjs.github.io/phaser-ce/Phaser.Component.Core.html) checks types of the `game`, `x`, and `y` arguments, since these mistakes can be hard to track down (outside of TypeScript). The cost is likely trivial, but you can skip these by setting [Phaser.Component.Core.skipTypeChecks](https://phaserjs.github.io/phaser-ce/Phaser.Component.Core.html#skipTypeChecks) to true.
 * [Phaser.Utils.Debug#renderer](https://phaserjs.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer) lists [currentBatchedTextures](https://phaserjs.github.io/phaser-ce/PIXI.WebGLRenderer.html#currentBatchedTextures) (added by [PIXI.WebGLRenderer#setTexturePriority](https://phaserjs.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority)).
 * [Phaser.TilemapParser.parseTiledJSON](https://phaserjs.github.io/phaser-ce/Phaser.TilemapParser.html#parseTiledJSON) warns if a tilemap contains an external tileset, which Phaser doesn't read (#273).
