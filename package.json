@@ -29,6 +29,7 @@
     "url": "https://photonstorm@github.com/photonstorm/phaser-ce.git"
   },
   "scripts": {
+    "build-test": "./scripts/build-test.sh",
     "check-version": "./scripts/check-version.sh",
     "grunt": "grunt",
     "test": "npm run test-src; npm run test-ts",
