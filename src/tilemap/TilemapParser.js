@@ -580,7 +580,7 @@ Phaser.TilemapParser = {
 
             if (set.source)
             {
-                console.warn('Phaser CE can\'t load external tilesets (%s). Embed the tileset and then export the map again. https://github.com/photonstorm/phaser-ce/issues/273', set.source);
+                console.warn('Phaser CE can\'t load external tilesets (%s). Embed the tileset and then export the map again. https://github.com/phaserjs/phaser-ce/issues/273', set.source);
             }
             else if (set.image)
             {

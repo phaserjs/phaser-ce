@@ -5,6 +5,6 @@ This PR (choose one or more, ✏️ delete others)
 * changes the public-facing API
 * is a bug fix (closes #XXX)
 
-Please include a summary in [Change Log: Unreleased](https://github.com/photonstorm/phaser-ce/blob/master/CHANGELOG.md) and thank yourself.
+Please include a summary in [Change Log: Unreleased](https://github.com/phaserjs/phaser-ce/blob/master/CHANGELOG.md) and thank yourself.
 
 Describe the changes below:

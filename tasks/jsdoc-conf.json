@@ -71,7 +71,7 @@
     "outputSourcePath": true,
     "protocol": "html://",
     "search": false,
-    "sourceLinkFormat": "https://github.com/photonstorm/phaser-ce/blob/v%s/%s#L%s",
+    "sourceLinkFormat": "https://github.com/phaserjs/phaser-ce/blob/v%s/%s#L%s",
     "sourceRootPath": "./",
     "systemName": "Phaser CE",
     "theme": "phaser"

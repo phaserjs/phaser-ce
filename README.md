@@ -38,7 +38,7 @@ While Phaser CE does its best to ensure a consistent cross-platform experience, 
 
 ### IE9
 
-If you need to support IE9 / Android 2.x _and_ use P2 physics, then you must use the polyfills in the [resources/IE9 Polyfill folder](https://github.com/photonstorm/phaser-ce/tree/master/resources/IE9%20Polyfill). If you don't use P2 (or don't care about IE9!) you can skip this.
+If you need to support IE9 / Android 2.x _and_ use P2 physics, then you must use the polyfills in the [resources/IE9 Polyfill folder](https://github.com/phaserjs/phaser-ce/tree/master/resources/IE9%20Polyfill). If you don't use P2 (or don't care about IE9!) you can skip this.
 
 ### JavaScript and TypeScript
 
@@ -93,7 +93,7 @@ or the minified version:
 
 Our [Getting Started Guide](https://phaser.io/tutorials/getting-started-phaser2/) will get you up to speed quickly: from [setting up a web server](https://phaser.io/tutorials/getting-started/part2) to picking an editor/IDE. After that read our [Making your first Game](https://phaser.io/tutorials/making-your-first-phaser-2-game/) tutorial. Please work through this, **no matter what your development experience**, to learn how Phaser CE approaches things.
 
-Using **TypeScript**? See Phaser CE's [TypeScript definitions](https://github.com/photonstorm/phaser-ce/tree/master/typescript) and the [Using Phaser with TypeScript](https://phaser.io/tutorials/how-to-use-phaser-with-typescript).
+Using **TypeScript**? See Phaser CE's [TypeScript definitions](https://github.com/phaserjs/phaser-ce/tree/master/typescript) and the [Using Phaser with TypeScript](https://phaser.io/tutorials/how-to-use-phaser-with-typescript).
 
 ### Source Code Examples
 

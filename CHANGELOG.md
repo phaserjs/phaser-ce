@@ -136,7 +136,7 @@ Oussama
 
 ### Updates
 
-- Re-enabled fix from v2.13.3, [Fixed webGL making excessive calls (#641)](https://github.com/photonstorm/phaser-ce/pull/641), but only when multitexture batching is disabled.
+- Re-enabled fix from v2.13.3, [Fixed webGL making excessive calls (#641)](https://github.com/phaserjs/phaser-ce/pull/641), but only when multitexture batching is disabled.
 
 ### Bug Fixes
 
@@ -836,7 +836,7 @@ no Pointer Events; no Touch |           |         | active
 
 ### Bug Fixes
 
-* [Phaser.Tilemap#setTileIndexCallback](https://github.com/photonstorm/phaser-ce/blob/master/src/tilemap/Tilemap.js#L798) now correctly removes a callback when `null` is passed.
+* [Phaser.Tilemap#setTileIndexCallback](https://github.com/phaserjs/phaser-ce/blob/master/src/tilemap/Tilemap.js#L798) now correctly removes a callback when `null` is passed.
 * Fixed [Emitter#counts](https://phaserjs.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#counts) not counting.
 * Fixed missing TypeScript return values (#382).
 
@@ -920,7 +920,7 @@ The minor version increase is for changes to [Emitter#cursor](https://phaserjs.g
 
 ### Documentation
 
-* Updated [TypeScript guide](https://github.com/photonstorm/phaser-ce/issues/292) (#292). Edits are welcome.
+* Updated [TypeScript guide](https://github.com/phaserjs/phaser-ce/issues/292) (#292). Edits are welcome.
 * Added [Phaser.Button](https://phaserjs.github.io/phaser-ce/Phaser.Button.html) `callback` arguments (same as [Phaser.Events#onInputUp](https://phaserjs.github.io/phaser-ce/Phaser.Events.html#onInputUp)) (#353).
 * Added [Phaser.Input](https://phaserjs.github.io/phaser-ce/Phaser.Input.html) callback arguments (#368).
 * Added [Phaser.Plugin: Callbacks](https://phaserjs.github.io/phaser-ce/Phaser.Plugin.html).
@@ -977,8 +977,8 @@ The minor version increase is for changes to [Emitter#cursor](https://phaserjs.g
   grunt custom --exclude=moduleName --filename=phaser-custom
   ```
 
-* Updated [Ionic project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) (#328).
-* [API Docs](https://github.com/photonstorm/phaser-ce/) have a new look.
+* Updated [Ionic project template](https://github.com/phaserjs/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) (#328).
+* [API Docs](https://github.com/phaserjs/phaser-ce/) have a new look.
 
 ### Bug Fixes
 
@@ -1005,7 +1005,7 @@ The minor version increase is for changes to [Emitter#cursor](https://phaserjs.g
 * Arcade#collide and Arcade#overlap skip empty array members in calls like `collide(group, [undefined])`, so you don't unintentionally collide a group against itself.
 * Added an `epsilon` argument for fuzzy comparisons in [Phaser.Line#pointOnLine](https://phaserjs.github.io/phaser-ce/Phaser.Line.html#pointOnLine) and [Phaser.Line#pointOnSegment](https://phaserjs.github.io/phaser-ce/Phaser.Line.html#pointOnSegment) (#312).
 * Removed obsolete PIXI TypeScript definitions.
-* Removed [filters/pixi](https://github.com/photonstorm/phaser-ce/tree/v2.8.3/filters/pixi). They require PIXI.AbstractFilter, which was removed in 2.7.0.
+* Removed [filters/pixi](https://github.com/phaserjs/phaser-ce/tree/v2.8.3/filters/pixi). They require PIXI.AbstractFilter, which was removed in 2.7.0.
 * Updated NPM dependencies (except [typescript](https://www.npmjs.com/package/typescript); photonstorm/phaser#2198) and added [package-lock.json](https://docs.npmjs.com/files/package-lock.json).
 * Deprecated [Phaser.Device.isConsoleOpen](https://phaserjs.github.io/phaser-ce/Phaser.Device.html#isConsoleOpen). Now it always returns false.
 * Phaser.Input now handles touch unlocking via Phaser.Touch or Phaser.MSPointer. [Phaser.Touch#addTouchLockCallback](https://phaserjs.github.io/phaser-ce/Phaser.Touch.html#addTouchLockCallback) and [Phaser.Touch#removeTouchLockCallback](https://phaserjs.github.io/phaser-ce/Phaser.Touch.html#removeTouchLockCallback) are still available but deprecated; you should use [Phaser.Input#addTouchLockCallback](https://phaserjs.github.io/phaser-ce/Phaser.Input.html#addTouchLockCallback) and [Phaser.Input.#removeTouchLockCallback](https://phaserjs.github.io/phaser-ce/Phaser.Input.html#removeTouchLockCallback) instead (#37).
@@ -1040,7 +1040,7 @@ The minor version increase is for changes to [Emitter#cursor](https://phaserjs.g
 
 ### Updates
 
-* Added [Ionic project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) and a [small guide](https://github.com/photonstorm/phaser-ce/blob/master/README.md#ionic) to README (#96).
+* Added [Ionic project template](https://github.com/phaserjs/phaser-ce/tree/master/resources/Project%20Templates/ionic-example) and a [small guide](https://github.com/phaserjs/phaser-ce/blob/master/README.md#ionic) to README (#96).
 
 ### Bug Fixes
 
@@ -1067,7 +1067,7 @@ The minor version increase is for changes to [Emitter#cursor](https://phaserjs.g
 ### Updates
 
 * Added TypeScript `types` to package.json (#276).
-* New [webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) (#95).
+* New [webpack project template](https://github.com/phaserjs/phaser-ce/tree/master/resources/Project%20Templates/Webpack) (#95).
 * [Phaser.Component.Core.init](https://phaserjs.github.io/phaser-ce/Phaser.Component.Core.html) checks types of the `game`, `x`, and `y` arguments, since these mistakes can be hard to track down (outside of TypeScript). The cost is likely trivial, but you can skip these by setting [Phaser.Component.Core.skipTypeChecks](https://phaserjs.github.io/phaser-ce/Phaser.Component.Core.html#skipTypeChecks) to true.
 * [Phaser.Utils.Debug#renderer](https://phaserjs.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer) lists [currentBatchedTextures](https://phaserjs.github.io/phaser-ce/PIXI.WebGLRenderer.html#currentBatchedTextures) (added by [PIXI.WebGLRenderer#setTexturePriority](https://phaserjs.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority)).
 * [Phaser.TilemapParser.parseTiledJSON](https://phaserjs.github.io/phaser-ce/Phaser.TilemapParser.html#parseTiledJSON) warns if a tilemap contains an external tileset, which Phaser doesn't read (#273).
@@ -1209,7 +1209,7 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 * Removed the upper limit of 12 for [Phaser.Loader#maxParallelDownloads](https://phaserjs.github.io/phaser-ce/Phaser.Loader.html#maxParallelDownloads). The default value is still 4. Most browsers limit parallel connections to 6 per domain. Older IE and Android browsers may suffer with a value above 4 (#170).
 * Arcade Physics Bodies no longer receive angular motion updates while they have [allowRotation](https://phaserjs.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#allowRotation) disabled, as this was unnecessary.
 * [Phaser.Text#align](https://phaserjs.github.io/phaser-ce/Phaser.Text.html#align) can now be set in any case or mix of cases (e.g., 'left', 'Left', 'LEFT').
-* [Phaser CE API](https://phaserjs.github.io/phaser-ce/) now shows a synopsis like the Phaser 2.6 docs. You can still find the complete [README](https://github.com/photonstorm/phaser-ce/blob/master/README.md) on GitHub.
+* [Phaser CE API](https://phaserjs.github.io/phaser-ce/) now shows a synopsis like the Phaser 2.6 docs. You can still find the complete [README](https://github.com/phaserjs/phaser-ce/blob/master/README.md) on GitHub.
 * Updated [ScaleManager](https://phaserjs.github.io/phaser-ce/Phaser.ScaleManager.html) docs.
 * Clarified `gid` argument in [Phaser.Tilemap#createFromObjects](https://phaserjs.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects). It can represent an object's `gid`, `id`, or `name`.
 * Clarified [Phaser.Image](https://phaserjs.github.io/phaser-ce/Phaser.Image.html)'s use of the Animation component (#185). Images can be animated the same way Sprites can.

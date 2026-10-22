@@ -2,7 +2,7 @@
 
 It's important to us that you feel you can contribute towards the evolution of Phaser. This can take many forms: from helping to fix bugs or improve the docs, to adding in new features to the source. This guide should help you in making that process as smooth as possible.
 
-Before contributing, please read the [code of conduct](https://github.com/photonstorm/phaser-ce/blob/master/CODE_OF_CONDUCT.md).
+Before contributing, please read the [code of conduct](https://github.com/phaserjs/phaser-ce/blob/master/CODE_OF_CONDUCT.md).
 
 ## Reporting issues
 
@@ -78,7 +78,7 @@ That is fine too. While Pull Requests are the best thing in the world for us, th
 
 Thanks to Chad for creating the original Pixi.js Contributing file which we adapted for Phaser.
 
-[0]: https://github.com/photonstorm/phaser-ce/issues
+[0]: https://github.com/phaserjs/phaser-ce/issues
 [1]: http://jsfiddle.net
 [2]: http://jsbin.com/
 [3]: http://nodejs.org

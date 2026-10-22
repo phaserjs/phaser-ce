@@ -31,7 +31,7 @@
  *
  * You may have to modify {@link Phaser.Graphics#scale} rather than {@link Phaser.Graphics#width} or
  * {@link Phaser.Graphics#height} to avoid an unusual race condition
- * ({@link #489 https://github.com/photonstorm/phaser-ce/issues/489}).
+ * ({@link #489 https://github.com/phaserjs/phaser-ce/issues/489}).
  *
  * @class Phaser.Graphics
  * @constructor
@@ -901,7 +901,7 @@ Phaser.Graphics.prototype.clear = function ()
  * Useful function that returns a texture of the graphics object that can then be used to create sprites
  * This can be quite useful if your geometry is complicated and needs to be reused multiple times.
  *
- * Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
+ * Transparent areas adjoining the edges may be removed ({@link https://github.com/phaserjs/phaser-ce/issues/283 #283}).
  *
  * @method Phaser.Graphics#generateTexture
  * @param [resolution=1] {Number} The resolution of the texture being generated
@@ -1524,7 +1524,7 @@ Phaser.Graphics.prototype.drawShape = function (shape)
 };
 
 /**
- * When cacheAsBitmap is set to true the graphics object will be rendered as if it was a sprite. Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
+ * When cacheAsBitmap is set to true the graphics object will be rendered as if it was a sprite. Transparent areas adjoining the edges may be removed ({@link https://github.com/phaserjs/phaser-ce/issues/283 #283}).
  * This is useful if your graphics element does not change often, as it will speed up the rendering of the object in exchange for taking up texture memory.
  * It is also useful if you need the graphics object to be anti-aliased, because it will be rendered using canvas.
  * This is not recommended if you are constantly redrawing the graphics element.

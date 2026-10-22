@@ -1,6 +1,6 @@
 # TypeScript Definitions
 
-Since [v2.8.2](https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.2) Phaser's definitions will likely be found automatically when Phaser is installed with npm.
+Since [v2.8.2](https://github.com/phaserjs/phaser-ce/releases/tag/v2.8.2) Phaser's definitions will likely be found automatically when Phaser is installed with npm.
 
 If necessary, reference [phaser.d.ts](./phaser.d.ts) (or [phaser.comments.d.ts](./phaser.comments.d.ts)) in your project. `phaser.d.ts`, `pixi.d.ts`, `p2.d.ts` must remain siblings in the same directory.
 
@@ -32,7 +32,7 @@ For more information, check [the official typings site](https://github.com/typin
 
 ## Contributing
 
-If you find any mistakes in these definitions or you feel they can be improved in any way, please [open an issue](https://github.com/photonstorm/phaser-ce/issues) or [make a pull request](https://github.com/photonstorm/phaser-ce/pulls).
+If you find any mistakes in these definitions or you feel they can be improved in any way, please [open an issue](https://github.com/phaserjs/phaser-ce/issues) or [make a pull request](https://github.com/phaserjs/phaser-ce/pulls).
 
 ## Note
 

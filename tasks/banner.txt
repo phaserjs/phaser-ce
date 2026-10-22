@@ -1,11 +1,11 @@
 /**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2020 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser-ce/blob/master/license.txt|MIT License}
+* @license      {@link https://github.com/phaserjs/phaser-ce/blob/master/license.txt|MIT License}
 *
 * @overview
 *
-* Phaser CE - https://github.com/photonstorm/phaser-ce
+* Phaser CE - https://github.com/phaserjs/phaser-ce
 *
 * v<%= package.version %> "<%= package.release.date %>" - Built: <%= grunt.template.today() %>
 *
