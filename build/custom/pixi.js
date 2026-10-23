@@ -1,13 +1,13 @@
 /**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2020 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser-ce/blob/master/license.txt|MIT License}
+* @license      {@link https://github.com/phaserjs/phaser-ce/blob/master/license.txt|MIT License}
 *
 * @overview
 *
-* Phaser CE - https://github.com/photonstorm/phaser-ce
+* Phaser CE - https://github.com/phaserjs/phaser-ce
 *
-* v2.20.2 "2025-02-20" - Built: Thu Feb 20 2025 10:12:13
+* v2.21.0 "2026-10-23" - Built: Fri Oct 23 2026 11:43:41
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -829,7 +829,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
      * in a RenderTexture. This is then used whenever this DisplayObject is rendered. It can provide a
      * performance benefit for complex, but static, DisplayObjects. I.e. those with lots of children.
      *
-     * Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
+     * Transparent areas adjoining the edges may be removed ({@link https://github.com/phaserjs/phaser-ce/issues/283 #283}).
      *
      * Cached Bitmaps do not track their parents. If you update a property of this DisplayObject, it will not
      * re-generate the cached bitmap automatically. To do that you need to call `DisplayObject.updateCache`.
@@ -1072,6 +1072,13 @@ PIXI.DisplayObjectContainer.prototype.removeChildAt = function (index)
     return child;
 };
 
+/**
+ * Brings the given child to the top of this group so it renders above all other children.
+ *
+ * @method PIXI.DisplayObjectContainer#bringChildToTop
+ * @param {any} child - The child to bring to the top of this group.
+ * @return {any} The child that was moved.
+ */
 PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
 {
     if (child.parent !== this)
@@ -1082,6 +1089,13 @@ PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
     return this.setChildIndex(child, this.children.length - 1);
 };
 
+/**
+ * Sends the given child to the bottom of this group so it renders below all other children.
+ *
+ * @method PIXI.DisplayObjectContainer#sendChildToBack
+ * @param {any} child - The child to send to the bottom of this group.
+ * @return {any} The child that was moved.
+ */
 PIXI.DisplayObjectContainer.prototype.sendChildToBack = function (child)
 {
     if (child.parent !== this)
@@ -3623,7 +3637,20 @@ PIXI.WebGLRenderer.prototype.initContext = function ()
     this.maxTextures = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
     this.maxTextureSize = this.gl.getParameter(gl.MAX_TEXTURE_SIZE);
 
-    this.glContextId = gl.id = PIXI.WebGLRenderer.glContextId++;
+    // reuse the lowest free id, as base textures start out dirty only for ids 0 to 3
+    var id = PIXI.instances.indexOf(this);
+
+    if (id === -1)
+    {
+        id = 0;
+
+        while (PIXI.instances[id])
+        {
+            id++;
+        }
+    }
+
+    this.glContextId = gl.id = id;
 
     PIXI.glContexts[this.glContextId] = gl;
 
@@ -4011,8 +4038,6 @@ PIXI.WebGLRenderer.prototype.destroy = function ()
     Phaser.CanvasPool.remove(this);
 
     PIXI.instances[this.glContextId] = null;
-
-    PIXI.WebGLRenderer.glContextId--;
 };
 
 /**
@@ -4062,7 +4087,6 @@ PIXI.enableMultiTexture = function ()
     PIXI._enableMultiTextureToggle = true;
 };
 
-PIXI.WebGLRenderer.glContextId = 0;
 PIXI.WebGLRenderer.textureArray = [];
 
 /**

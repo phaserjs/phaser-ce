@@ -1,13 +1,13 @@
 /**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2020 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser-ce/blob/master/license.txt|MIT License}
+* @license      {@link https://github.com/phaserjs/phaser-ce/blob/master/license.txt|MIT License}
 *
 * @overview
 *
-* Phaser CE - https://github.com/photonstorm/phaser-ce
+* Phaser CE - https://github.com/phaserjs/phaser-ce
 *
-* v2.20.2 "2025-02-20" - Built: Thu Feb 20 2025 10:12:02
+* v2.21.0 "2026-10-23" - Built: Fri Oct 23 2026 11:43:39
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -829,7 +829,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
      * in a RenderTexture. This is then used whenever this DisplayObject is rendered. It can provide a
      * performance benefit for complex, but static, DisplayObjects. I.e. those with lots of children.
      *
-     * Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
+     * Transparent areas adjoining the edges may be removed ({@link https://github.com/phaserjs/phaser-ce/issues/283 #283}).
      *
      * Cached Bitmaps do not track their parents. If you update a property of this DisplayObject, it will not
      * re-generate the cached bitmap automatically. To do that you need to call `DisplayObject.updateCache`.
@@ -1072,6 +1072,13 @@ PIXI.DisplayObjectContainer.prototype.removeChildAt = function (index)
     return child;
 };
 
+/**
+ * Brings the given child to the top of this group so it renders above all other children.
+ *
+ * @method PIXI.DisplayObjectContainer#bringChildToTop
+ * @param {any} child - The child to bring to the top of this group.
+ * @return {any} The child that was moved.
+ */
 PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
 {
     if (child.parent !== this)
@@ -1082,6 +1089,13 @@ PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
     return this.setChildIndex(child, this.children.length - 1);
 };
 
+/**
+ * Sends the given child to the bottom of this group so it renders below all other children.
+ *
+ * @method PIXI.DisplayObjectContainer#sendChildToBack
+ * @param {any} child - The child to send to the bottom of this group.
+ * @return {any} The child that was moved.
+ */
 PIXI.DisplayObjectContainer.prototype.sendChildToBack = function (child)
 {
     if (child.parent !== this)
@@ -3623,7 +3637,20 @@ PIXI.WebGLRenderer.prototype.initContext = function ()
     this.maxTextures = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
     this.maxTextureSize = this.gl.getParameter(gl.MAX_TEXTURE_SIZE);
 
-    this.glContextId = gl.id = PIXI.WebGLRenderer.glContextId++;
+    // reuse the lowest free id, as base textures start out dirty only for ids 0 to 3
+    var id = PIXI.instances.indexOf(this);
+
+    if (id === -1)
+    {
+        id = 0;
+
+        while (PIXI.instances[id])
+        {
+            id++;
+        }
+    }
+
+    this.glContextId = gl.id = id;
 
     PIXI.glContexts[this.glContextId] = gl;
 
@@ -4011,8 +4038,6 @@ PIXI.WebGLRenderer.prototype.destroy = function ()
     Phaser.CanvasPool.remove(this);
 
     PIXI.instances[this.glContextId] = null;
-
-    PIXI.WebGLRenderer.glContextId--;
 };
 
 /**
@@ -4062,7 +4087,6 @@ PIXI.enableMultiTexture = function ()
     PIXI._enableMultiTextureToggle = true;
 };
 
-PIXI.WebGLRenderer.glContextId = 0;
 PIXI.WebGLRenderer.textureArray = [];
 
 /**
@@ -7774,7 +7798,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.20.2',
+    VERSION: '2.21.0',
 
     /**
      * AUTO renderer - picks between WebGL or Canvas based on device.
@@ -9003,8 +9027,7 @@ Phaser.Utils = {
                 //  Not overwriting existing property
                 continue;
             }
-            else
-            if (value &&
+            else if (value &&
                     (typeof value.get === 'function' || typeof value.set === 'function'))
             {
                 //  Special case for classes like Phaser.Point which has a 'set' function!
@@ -15968,8 +15991,7 @@ Phaser.StateManager.prototype = {
                 this.onUpdateCallback.call(this.callbackContext, this.game);
             }
         }
-        else
-        if (this.onLoadUpdateCallback)
+        else if (this.onLoadUpdateCallback)
         {
             this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
@@ -15996,8 +16018,7 @@ Phaser.StateManager.prototype = {
                 this.onPauseUpdateCallback.call(this.callbackContext, this.game);
             }
         }
-        else
-        if (this.onLoadUpdateCallback)
+        else if (this.onLoadUpdateCallback)
         {
             this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
@@ -16050,8 +16071,7 @@ Phaser.StateManager.prototype = {
                 }
             }
         }
-        else
-        if (this.onLoadRenderCallback)
+        else if (this.onLoadRenderCallback)
         {
             this.onLoadRenderCallback.call(this.callbackContext, this.game);
         }
@@ -18089,8 +18109,7 @@ Phaser.Group = function (game, parent, name, addToStage, enableBody, physicsBody
         this.game.stage.addChild(this);
         this.z = this.game.stage.children.length;
     }
-    else
-    if (parent)
+    else if (parent)
     {
         parent.addChild(this);
         this.z = parent.children.length;
@@ -20065,8 +20084,7 @@ Phaser.Group.prototype.ascendingSortHandler = function (a, b)
     {
         return 1;
     }
-    else
-    if (a.z < b.z)
+    else if (a.z < b.z)
     {
         return -1;
     }
@@ -22055,6 +22073,18 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
      */
     this._nextFpsNotification = 0;
 
+    /**
+     * @property {function} _onContextLost - Internal event handler reference.
+     * @private
+     */
+    this._onContextLost = null;
+
+    /**
+     * @property {function} _onContextRestored - Internal event handler reference.
+     * @private
+     */
+    this._onContextRestored = null;
+
     //  Parse the configuration object (if any)
     if (arguments.length === 1 && typeof arguments[0] === 'object')
     {
@@ -22472,8 +22502,10 @@ Phaser.Game.prototype = {
                 this.renderer = new PIXI.WebGLRenderer(this, this.config);
                 this.renderType = Phaser.WEBGL;
                 this.context = null;
-                this.canvas.addEventListener('webglcontextlost', this.contextLost.bind(this), false);
-                this.canvas.addEventListener('webglcontextrestored', this.contextRestored.bind(this), false);
+                this._onContextLost = this.contextLost.bind(this);
+                this._onContextRestored = this.contextRestored.bind(this);
+                this.canvas.addEventListener('webglcontextlost', this._onContextLost, false);
+                this.canvas.addEventListener('webglcontextrestored', this._onContextRestored, false);
             }
             catch (webGLRendererError)
             {
@@ -22831,6 +22863,13 @@ Phaser.Game.prototype = {
         this.physics.destroy();
         this.plugins.destroy();
         this.tweens.destroy();
+
+        if (this._onContextLost)
+        {
+            this.canvas.removeEventListener('webglcontextlost', this._onContextLost, false);
+            this.canvas.removeEventListener('webglcontextrestored', this._onContextRestored, false);
+        }
+
         this.renderer.destroy(false);
 
         Phaser.Canvas.removeFromDOM(this.canvas);
@@ -26457,8 +26496,7 @@ Phaser.Pointer.prototype = {
                 {
                     this.rightButton.start(event);
                 }
-                else
-                if (down)
+                else if (down)
                 {
                     this.processButtonsDown(event.button, event);
                 }
@@ -26467,8 +26505,7 @@ Phaser.Pointer.prototype = {
                     this.processButtonsUp(event.button, event);
                 }
             }
-            else
-            if (down)
+            else if (down)
             {
                 // On OS X (and other devices with trackpads) you have to press CTRL + the pad to initiate a right-click event.
                 if (event.ctrlKey)
@@ -26830,8 +26867,7 @@ Phaser.Pointer.prototype = {
                 this.targetObject = null;
             }
         }
-        else
-        if (this.targetObject === null)
+        else if (this.targetObject === null)
         {
             //  And now set the new one
             this.targetObject = newTarget;
@@ -31465,7 +31501,7 @@ Phaser.Component.InputEnabled.prototype = {
      * By default it is disabled. If you wish this Game Object to process input events you should enable it with: `inputEnabled = true`.
      *
      * After you have done this, this property will be a reference to the Phaser InputHandler.
-     * @property {Phaser.InputHandler|null} input 
+     * @property {Phaser.InputHandler|null} input
      */
     input: null,
 
@@ -31506,8 +31542,7 @@ Phaser.Component.InputEnabled.prototype = {
                     this.input.start();
                 }
             }
-            else
-            if (this.input && this.input.enabled)
+            else if (this.input && this.input.enabled)
             {
                 this.input.stop();
             }
@@ -32464,8 +32499,7 @@ Phaser.Component.ScaleMinMax.prototype = {
         {
             this.scaleMin = null;
         }
-        else
-        if (this.scaleMin)
+        else if (this.scaleMin)
         {
             this.scaleMin.set(minX, minY);
         }
@@ -32478,8 +32512,7 @@ Phaser.Component.ScaleMinMax.prototype = {
         {
             this.scaleMax = null;
         }
-        else
-        if (this.scaleMax)
+        else if (this.scaleMax)
         {
             this.scaleMax.set(maxX, maxY);
         }
@@ -40218,8 +40251,7 @@ Phaser.AnimationManager.prototype = {
         {
             this.frame = 0;
         }
-        else
-        if (typeof frame === 'string')
+        else if (typeof frame === 'string')
         {
             this.frameName = frame;
         }
@@ -40260,8 +40292,7 @@ Phaser.AnimationManager.prototype = {
         {
             this.frame = 0;
         }
-        else
-        if (typeof frame === 'string')
+        else if (typeof frame === 'string')
         {
             this.frameName = frame;
         }
@@ -40344,8 +40375,7 @@ Phaser.AnimationManager.prototype = {
                     return false;
                 }
             }
-            else
-            if (this._frameData.checkFrameName(frames[i]) === false)
+            else if (this._frameData.checkFrameName(frames[i]) === false)
             {
                 return false;
             }
@@ -41971,8 +42001,7 @@ Phaser.FrameData.prototype = {
                 {
                     output.push(this._frames[frames[i]].index);
                 }
-                else
-                if (this.getFrameByName(frames[i]))
+                else if (this.getFrameByName(frames[i]))
                 {
                     output.push(this.getFrameByName(frames[i]).index);
                 }
@@ -43642,8 +43671,7 @@ Phaser.Cache.prototype = {
                 console.warn('Phaser.Cache.' + method + ': Key "' + key + '" not found in Cache.');
             }
         }
-        else
-        if (property === undefined)
+        else if (property === undefined)
         {
             return this._cacheMap[cache][key];
         }
@@ -43798,8 +43826,7 @@ Phaser.Cache.prototype = {
         {
             return data;
         }
-        else
-        if (data[object])
+        else if (data[object])
         {
             var fixtures = data[object];
 
@@ -50097,8 +50124,7 @@ Phaser.ScaleManager.prototype = {
         {
             this.setMaximum();
         }
-        else
-        if (scaleMode === Phaser.ScaleManager.EXACT_FIT)
+        else if (scaleMode === Phaser.ScaleManager.EXACT_FIT)
         {
             this.setExactFit();
         }
@@ -50938,8 +50964,6 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'scaleMode', {
 
             this._scaleMode = value;
         }
-
-        return this._scaleMode;
     }
 
 });
@@ -50977,8 +51001,6 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'fullScreenScaleMode', {
                 this._fullScreenScaleMode = value;
             }
         }
-
-        return this._fullScreenScaleMode;
     }
 
 });

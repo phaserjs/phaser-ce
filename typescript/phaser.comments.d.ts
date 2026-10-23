@@ -9278,7 +9278,7 @@ declare module Phaser {
     * 
     * You may have to modify {@link Phaser.Graphics#scale} rather than {@link Phaser.Graphics#width} or
     * {@link Phaser.Graphics#height} to avoid an unusual race condition
-    * ({@link #489 https://github.com/photonstorm/phaser-ce/issues/489}).
+    * ({@link #489 https://github.com/phaserjs/phaser-ce/issues/489}).
     */
     class Graphics extends PIXI.DisplayObjectContainer {
 
@@ -9310,7 +9310,7 @@ declare module Phaser {
         * 
         * You may have to modify {@link Phaser.Graphics#scale} rather than {@link Phaser.Graphics#width} or
         * {@link Phaser.Graphics#height} to avoid an unusual race condition
-        * ({@link #489 https://github.com/photonstorm/phaser-ce/issues/489}).
+        * ({@link #489 https://github.com/phaserjs/phaser-ce/issues/489}).
         * 
         * @param game Current game instance.
         * @param x X position of the new graphics object.
@@ -9958,7 +9958,7 @@ declare module Phaser {
         * Useful function that returns a texture of the graphics object that can then be used to create sprites
         * This can be quite useful if your geometry is complicated and needs to be reused multiple times.
         * 
-        * Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
+        * Transparent areas adjoining the edges may be removed ({@link https://github.com/phaserjs/phaser-ce/issues/283 #283}).
         * 
         * @param resolution The resolution of the texture being generated - Default: 1
         * @param scaleMode Should be one of the PIXI.scaleMode consts
@@ -29265,6 +29265,7 @@ declare module Phaser {
         wordWrap?: boolean;
         wordWrapWidth?: number;
         maxLines?: number;
+        letterSpacing?: string;
         shadowOffsetX?: number;
         shadowOffsetY?: number;
         shadowColor?: string;
@@ -29329,6 +29330,7 @@ declare module Phaser {
         * @param style.wordWrap Indicates if word wrap should be used.
         * @param style.wordWrapWidth The width in pixels at which text will wrap. - Default: 100
         * @param style.maxLines The maximum number of lines to be shown for wrapped text.
+        * @param style.letterSpacing Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units. - Default: '0px'
         * @param style.tabs The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
         * @param style.fontProperties `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
         * @param style.testString The text to use to measure the font width and height. - Default: '|MÂÉQfjq_'
@@ -29519,6 +29521,12 @@ declare module Phaser {
         * You can then toggle this back on as needed.
         */
         inputEnabled: boolean;
+
+        /**
+        * Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units.
+        * Uses [CanvasRedneringContext2D.letterSpacing]{@link https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/letterSpacing} property.
+        */
+        letterSpacing: string;
 
         /**
         * Additional spacing (in pixels) between each line of text if multi-line.
@@ -29982,6 +29990,7 @@ declare module Phaser {
         * @param style.wordWrap Indicates if word wrap should be used.
         * @param style.wordWrapWidth The width in pixels at which text will wrap. - Default: 100
         * @param style.maxLines The maximum number of lines to be shown for wrapped text.
+        * @param style.letterSpacing Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units. - Default: '0px'
         * @param style.tabs The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
         * @param style.fontProperties `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
         * @param style.testString The text to use to measure the font width and height. - Default: '|MÂÉQfjq_'

@@ -6,7 +6,7 @@ Phaser CE is a fast, free, and fun open source HTML5 game framework. It uses a c
 
 Phaser CE is based on Phaser v2.6.2 by Photon Storm. [Phaser](http://phaser.io/) is the current and fully maintained version.
 
-The [current Phaser CE release is 2.20.2](https://github.com/phaserjs/phaser-ce/releases/tag/v2.20.2).
+The [current Phaser CE release is 2.21.0](https://github.com/phaserjs/phaser-ce/releases/tag/v2.21.0).
 
 - [Phaser CE API Documentation](https://phaserjs.github.io/phaser-ce/)
 - [Phaser 2 Examples](https://samme.github.io/phaser-examples-mirror/) ([source code][examples])
@@ -72,19 +72,19 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce). Include the following in your html:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.20.2/build/phaser.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.21.0/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.20.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.21.0"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.20.2/build/custom/) are available too, e.g.,
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.21.0/build/custom/) are available too, e.g.,
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.20.2/build/custom/phaser-arcade-physics.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.21.0/build/custom/phaser-arcade-physics.js"></script>
 ```
 
 <a name="getting-started"></a>
@@ -189,7 +189,7 @@ Releases of new versions of Phaser CE are under the community's control. If you 
 
 4. Run `npm run check-version`. Verify all the version numbers match except in `build/phaser.js`, which isn't rebuilt yet.
 
-5. From the root repo folder, run `npm run test-src` and make sure there are no errors. If there are, please fix them, or request that the original author of the code does so.
+5. From the root repo folder, run `npm run test` and make sure there are no errors. If there are, please fix them, or request that the original author of the code does so.
 
 6. Once ESLint passes run `grunt release`, sit back, and wait. It will build all of the versions of Phaser CE required, update the doc files, TypeScript defs and lots more.
 
@@ -235,10 +235,10 @@ The Phaser logo and characters are © 2024 Photon Storm Limited. All rights rese
 
 "Above all, video games are meant to be just one thing: fun. Fun for everyone." - Satoru Iwata
 
-[get-js]: https://github.com/phaserjs/phaser-ce/releases/download/v2.20.2/phaser.js
-[get-minjs]: https://github.com/phaserjs/phaser-ce/releases/download/v2.20.2/phaser.min.js
-[get-zip]: https://github.com/phaserjs/phaser-ce/archive/v2.20.2.zip
-[get-tgz]: https://github.com/phaserjs/phaser-ce/archive/v2.20.2.tar.gz
+[get-js]: https://github.com/phaserjs/phaser-ce/releases/download/v2.21.0/phaser.js
+[get-minjs]: https://github.com/phaserjs/phaser-ce/releases/download/v2.21.0/phaser.min.js
+[get-zip]: https://github.com/phaserjs/phaser-ce/archive/v2.21.0.zip
+[get-tgz]: https://github.com/phaserjs/phaser-ce/archive/v2.21.0.tar.gz
 [clone-http]: https://github.com/phaserjs/phaser-ce.git
 [clone-ssh]: ssh://git@github.com:phaserjs/phaser-ce.git
 [clone-svn]: https://github.com/phaserjs/phaser-ce

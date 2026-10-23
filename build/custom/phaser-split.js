@@ -1,13 +1,13 @@
 /**
 * @author       Richard Davey <rich@photonstorm.com>
 * @copyright    2020 Photon Storm Ltd.
-* @license      {@link https://github.com/photonstorm/phaser-ce/blob/master/license.txt|MIT License}
+* @license      {@link https://github.com/phaserjs/phaser-ce/blob/master/license.txt|MIT License}
 *
 * @overview
 *
-* Phaser CE - https://github.com/photonstorm/phaser-ce
+* Phaser CE - https://github.com/phaserjs/phaser-ce
 *
-* v2.20.2 "2025-02-20" - Built: Thu Feb 20 2025 10:12:06
+* v2.21.0 "2026-10-23" - Built: Fri Oct 23 2026 11:43:40
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -40,7 +40,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.20.2',
+    VERSION: '2.21.0',
 
     /**
      * AUTO renderer - picks between WebGL or Canvas based on device.
@@ -1269,8 +1269,7 @@ Phaser.Utils = {
                 //  Not overwriting existing property
                 continue;
             }
-            else
-            if (value &&
+            else if (value &&
                     (typeof value.get === 'function' || typeof value.set === 'function'))
             {
                 //  Special case for classes like Phaser.Point which has a 'set' function!
@@ -8234,8 +8233,7 @@ Phaser.StateManager.prototype = {
                 this.onUpdateCallback.call(this.callbackContext, this.game);
             }
         }
-        else
-        if (this.onLoadUpdateCallback)
+        else if (this.onLoadUpdateCallback)
         {
             this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
@@ -8262,8 +8260,7 @@ Phaser.StateManager.prototype = {
                 this.onPauseUpdateCallback.call(this.callbackContext, this.game);
             }
         }
-        else
-        if (this.onLoadUpdateCallback)
+        else if (this.onLoadUpdateCallback)
         {
             this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
@@ -8316,8 +8313,7 @@ Phaser.StateManager.prototype = {
                 }
             }
         }
-        else
-        if (this.onLoadRenderCallback)
+        else if (this.onLoadRenderCallback)
         {
             this.onLoadRenderCallback.call(this.callbackContext, this.game);
         }
@@ -10355,8 +10351,7 @@ Phaser.Group = function (game, parent, name, addToStage, enableBody, physicsBody
         this.game.stage.addChild(this);
         this.z = this.game.stage.children.length;
     }
-    else
-    if (parent)
+    else if (parent)
     {
         parent.addChild(this);
         this.z = parent.children.length;
@@ -12331,8 +12326,7 @@ Phaser.Group.prototype.ascendingSortHandler = function (a, b)
     {
         return 1;
     }
-    else
-    if (a.z < b.z)
+    else if (a.z < b.z)
     {
         return -1;
     }
@@ -14321,6 +14315,18 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
      */
     this._nextFpsNotification = 0;
 
+    /**
+     * @property {function} _onContextLost - Internal event handler reference.
+     * @private
+     */
+    this._onContextLost = null;
+
+    /**
+     * @property {function} _onContextRestored - Internal event handler reference.
+     * @private
+     */
+    this._onContextRestored = null;
+
     //  Parse the configuration object (if any)
     if (arguments.length === 1 && typeof arguments[0] === 'object')
     {
@@ -14738,8 +14744,10 @@ Phaser.Game.prototype = {
                 this.renderer = new PIXI.WebGLRenderer(this, this.config);
                 this.renderType = Phaser.WEBGL;
                 this.context = null;
-                this.canvas.addEventListener('webglcontextlost', this.contextLost.bind(this), false);
-                this.canvas.addEventListener('webglcontextrestored', this.contextRestored.bind(this), false);
+                this._onContextLost = this.contextLost.bind(this);
+                this._onContextRestored = this.contextRestored.bind(this);
+                this.canvas.addEventListener('webglcontextlost', this._onContextLost, false);
+                this.canvas.addEventListener('webglcontextrestored', this._onContextRestored, false);
             }
             catch (webGLRendererError)
             {
@@ -15097,6 +15105,13 @@ Phaser.Game.prototype = {
         this.physics.destroy();
         this.plugins.destroy();
         this.tweens.destroy();
+
+        if (this._onContextLost)
+        {
+            this.canvas.removeEventListener('webglcontextlost', this._onContextLost, false);
+            this.canvas.removeEventListener('webglcontextrestored', this._onContextRestored, false);
+        }
+
         this.renderer.destroy(false);
 
         Phaser.Canvas.removeFromDOM(this.canvas);
@@ -18723,8 +18738,7 @@ Phaser.Pointer.prototype = {
                 {
                     this.rightButton.start(event);
                 }
-                else
-                if (down)
+                else if (down)
                 {
                     this.processButtonsDown(event.button, event);
                 }
@@ -18733,8 +18747,7 @@ Phaser.Pointer.prototype = {
                     this.processButtonsUp(event.button, event);
                 }
             }
-            else
-            if (down)
+            else if (down)
             {
                 // On OS X (and other devices with trackpads) you have to press CTRL + the pad to initiate a right-click event.
                 if (event.ctrlKey)
@@ -19096,8 +19109,7 @@ Phaser.Pointer.prototype = {
                 this.targetObject = null;
             }
         }
-        else
-        if (this.targetObject === null)
+        else if (this.targetObject === null)
         {
             //  And now set the new one
             this.targetObject = newTarget;
@@ -26303,7 +26315,7 @@ Phaser.Component.InputEnabled.prototype = {
      * By default it is disabled. If you wish this Game Object to process input events you should enable it with: `inputEnabled = true`.
      *
      * After you have done this, this property will be a reference to the Phaser InputHandler.
-     * @property {Phaser.InputHandler|null} input 
+     * @property {Phaser.InputHandler|null} input
      */
     input: null,
 
@@ -26344,8 +26356,7 @@ Phaser.Component.InputEnabled.prototype = {
                     this.input.start();
                 }
             }
-            else
-            if (this.input && this.input.enabled)
+            else if (this.input && this.input.enabled)
             {
                 this.input.stop();
             }
@@ -27302,8 +27313,7 @@ Phaser.Component.ScaleMinMax.prototype = {
         {
             this.scaleMin = null;
         }
-        else
-        if (this.scaleMin)
+        else if (this.scaleMin)
         {
             this.scaleMin.set(minX, minY);
         }
@@ -27316,8 +27326,7 @@ Phaser.Component.ScaleMinMax.prototype = {
         {
             this.scaleMax = null;
         }
-        else
-        if (this.scaleMax)
+        else if (this.scaleMax)
         {
             this.scaleMax.set(maxX, maxY);
         }
@@ -29455,8 +29464,7 @@ Phaser.BitmapData = function (game, key, width, height, skipPool)
             this.buffer = this.imageData.data.buffer;
             this.pixels = new Uint32Array(this.buffer);
         }
-        else
-        if (window.ArrayBuffer)
+        else if (window.ArrayBuffer)
         {
             this.buffer = new ArrayBuffer(this.imageData.data.length);
             this.pixels = new Uint32Array(this.buffer);
@@ -30043,8 +30051,7 @@ Phaser.BitmapData.prototype = {
             this.buffer = this.imageData.data.buffer;
             this.pixels = new Uint32Array(this.buffer);
         }
-        else
-        if (window.ArrayBuffer)
+        else if (window.ArrayBuffer)
         {
             this.buffer = new ArrayBuffer(this.imageData.data.length);
             this.pixels = new Uint32Array(this.buffer);
@@ -31028,8 +31035,7 @@ Phaser.BitmapData.prototype = {
         {
             this.drawGroup(child, blendMode, roundPx);
         }
-        else
-        if (child.hasOwnProperty('children') && child.children.length > 0)
+        else if (child.hasOwnProperty('children') && child.children.length > 0)
         {
             for (var i = 0; i < child.children.length; i++)
             {
@@ -33933,7 +33939,7 @@ Phaser.GraphicsData.prototype.clone = function ()
  *
  * You may have to modify {@link Phaser.Graphics#scale} rather than {@link Phaser.Graphics#width} or
  * {@link Phaser.Graphics#height} to avoid an unusual race condition
- * ({@link #489 https://github.com/photonstorm/phaser-ce/issues/489}).
+ * ({@link #489 https://github.com/phaserjs/phaser-ce/issues/489}).
  *
  * @class Phaser.Graphics
  * @constructor
@@ -34258,8 +34264,7 @@ Phaser.Graphics.prototype.drawTriangles = function (vertices, indices, cull)
             }
         }
     }
-    else
-    if (vertices[0] instanceof Phaser.Point)
+    else if (vertices[0] instanceof Phaser.Point)
     {
         for (i = 0; i < indices.length / 3; i++)
         {
@@ -34804,7 +34809,7 @@ Phaser.Graphics.prototype.clear = function ()
  * Useful function that returns a texture of the graphics object that can then be used to create sprites
  * This can be quite useful if your geometry is complicated and needs to be reused multiple times.
  *
- * Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
+ * Transparent areas adjoining the edges may be removed ({@link https://github.com/phaserjs/phaser-ce/issues/283 #283}).
  *
  * @method Phaser.Graphics#generateTexture
  * @param [resolution=1] {Number} The resolution of the texture being generated
@@ -35427,7 +35432,7 @@ Phaser.Graphics.prototype.drawShape = function (shape)
 };
 
 /**
- * When cacheAsBitmap is set to true the graphics object will be rendered as if it was a sprite. Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
+ * When cacheAsBitmap is set to true the graphics object will be rendered as if it was a sprite. Transparent areas adjoining the edges may be removed ({@link https://github.com/phaserjs/phaser-ce/issues/283 #283}).
  * This is useful if your graphics element does not change often, as it will speed up the rendering of the object in exchange for taking up texture memory.
  * It is also useful if you need the graphics object to be anti-aliased, because it will be rendered using canvas.
  * This is not recommended if you are constantly redrawing the graphics element.
@@ -35954,7 +35959,8 @@ Phaser.RenderTexture.prototype.getCanvas = function ()
  * @param {boolean} [style.wordWrap=false] - Indicates if word wrap should be used.
  * @param {number} [style.wordWrapWidth=100] - The width in pixels at which text will wrap.
  * @param {number} [style.maxLines=0] - The maximum number of lines to be shown for wrapped text.
- * @param {number} [style.tabs=0] - The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
+ * @param {string} [style.letterSpacing='0px'] - Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units.
+ * @param {number|array} [style.tabs=0] - The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
  * @param {object} [style.fontProperties=null] - `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
  * @param {string} [style.testString='|MÂÉQfjq_'] - The text to use to measure the font width and height.
  */
@@ -36234,6 +36240,7 @@ Phaser.Text.prototype.setShadow = function (x, y, color, blur, shadowStroke, sha
  * @param {boolean} [style.wordWrap=false] - Indicates if word wrap should be used.
  * @param {number} [style.wordWrapWidth=100] - The width in pixels at which text will wrap.
  * @param {number} [style.maxLines=0] - The maximum number of lines to be shown for wrapped text.
+ * @param {string} [style.letterSpacing='0px'] - Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units.
  * @param {number|array} [style.tabs=0] - The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
  * @param {object} [style.fontProperties=null] - `ascent`, `descent`, and `fontSize` lengths for a given style. You can get these from {@link Phaser.Text#determineFontProperties}.
  * @param {string} [style.testString='|MÂÉQfjq_'] - The text to use to measure the font width and height.
@@ -36256,6 +36263,7 @@ Phaser.Text.prototype.setStyle = function (style, update)
     newStyle.wordWrap = style.wordWrap || false;
     newStyle.wordWrapWidth = style.wordWrapWidth || 100;
     newStyle.maxLines = style.maxLines || 0;
+    newStyle.letterSpacing = style.letterSpacing || '0px';
     newStyle.shadowOffsetX = style.shadowOffsetX || 0;
     newStyle.shadowOffsetY = style.shadowOffsetY || 0;
     newStyle.shadowColor = style.shadowColor || 'rgba(0,0,0,0)';
@@ -36359,7 +36367,7 @@ Phaser.Text.prototype.updateText = function ()
             //  Simple layout (no tabs)
             var lineWidth = this.style.strokeThickness + this.padding.x;
 
-            if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0)
+            if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0 || this.letterSpacing !== '0px')
             {
                 lineWidth += this.measureLine(lines[i]);
             }
@@ -36388,7 +36396,7 @@ Phaser.Text.prototype.updateText = function ()
                 {
                     var section = 0;
 
-                    if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0)
+                    if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0 || this.letterSpacing !== '0px')
                     {
                         section = this.measureLine(line[c]);
                     }
@@ -36410,7 +36418,7 @@ Phaser.Text.prototype.updateText = function ()
                 for (var c = 0; c < line.length; c++)
                 {
                     //  How far to the next tab?
-                    if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0)
+                    if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0 || this.letterSpacing !== '0px')
                     {
                         lineWidth += this.measureLine(line[c]);
                     }
@@ -36467,6 +36475,7 @@ Phaser.Text.prototype.updateText = function ()
     this.context.font = this.style.font;
     this.context.strokeStyle = this.style.stroke;
     this.context.textBaseline = 'alphabetic';
+    this.context.letterSpacing = this.style.letterSpacing;
 
     this.context.lineWidth = this.style.strokeThickness;
     this.context.lineCap = 'round';
@@ -36685,6 +36694,11 @@ Phaser.Text.prototype.measureLine = function (line)
             }
 
             this.updateShadow(this.style.shadowFill);
+        }
+
+        if (this.letterSpacing && this.letterSpacing !== '0px')
+        {
+            this.context.letterSpacing = this.letterSpacing;
         }
 
         lineLength += this.context.measureText(letter).width;
@@ -38001,6 +38015,29 @@ Object.defineProperty(Phaser.Text.prototype, 'lineSpacing', {
             {
                 this.updateTransform();
             }
+        }
+    }
+
+});
+
+/**
+ * @name Phaser.Text#letterSpacing
+ * @property {string} letterSpacing - Additional spacing between letters in CSS [length]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length} units.
+ * Uses [CanvasRedneringContext2D.letterSpacing]{@link https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/letterSpacing} property.
+ */
+Object.defineProperty(Phaser.Text.prototype, 'letterSpacing', {
+
+    get: function ()
+    {
+        return this.style.letterSpacing;
+    },
+
+    set: function (value)
+    {
+        if (value !== this.style.letterSpacing)
+        {
+            this.style.letterSpacing = value;
+            this.dirty = true;
         }
     }
 
@@ -46973,8 +47010,7 @@ Phaser.TweenData.prototype = {
 
             this.inReverse = !this.inReverse;
         }
-        else
-        if (this.repeatCounter === 0)
+        else if (this.repeatCounter === 0)
         {
             return Phaser.TweenData.COMPLETE;
         }
@@ -49139,8 +49175,7 @@ Phaser.AnimationManager.prototype = {
         {
             this.frame = 0;
         }
-        else
-        if (typeof frame === 'string')
+        else if (typeof frame === 'string')
         {
             this.frameName = frame;
         }
@@ -49181,8 +49216,7 @@ Phaser.AnimationManager.prototype = {
         {
             this.frame = 0;
         }
-        else
-        if (typeof frame === 'string')
+        else if (typeof frame === 'string')
         {
             this.frameName = frame;
         }
@@ -49265,8 +49299,7 @@ Phaser.AnimationManager.prototype = {
                     return false;
                 }
             }
-            else
-            if (this._frameData.checkFrameName(frames[i]) === false)
+            else if (this._frameData.checkFrameName(frames[i]) === false)
             {
                 return false;
             }
@@ -50892,8 +50925,7 @@ Phaser.FrameData.prototype = {
                 {
                     output.push(this._frames[frames[i]].index);
                 }
-                else
-                if (this.getFrameByName(frames[i]))
+                else if (this.getFrameByName(frames[i]))
                 {
                     output.push(this.getFrameByName(frames[i]).index);
                 }
@@ -52563,8 +52595,7 @@ Phaser.Cache.prototype = {
                 console.warn('Phaser.Cache.' + method + ': Key "' + key + '" not found in Cache.');
             }
         }
-        else
-        if (property === undefined)
+        else if (property === undefined)
         {
             return this._cacheMap[cache][key];
         }
@@ -52719,8 +52750,7 @@ Phaser.Cache.prototype = {
         {
             return data;
         }
-        else
-        if (data[object])
+        else if (data[object])
         {
             var fixtures = data[object];
 
@@ -59886,8 +59916,7 @@ Phaser.SoundManager.prototype = {
                 //  Store this in the PhaserGlobal window var, if set, to allow for re-use if the game is created again without the page refreshing
                 window.PhaserGlobal.audioContext = this.context;
             }
-            else
-            if (this.context.close)
+            else if (this.context.close)
             {
                 this.context.close();
             }
@@ -61417,8 +61446,7 @@ Phaser.ScaleManager.prototype = {
         {
             this.setMaximum();
         }
-        else
-        if (scaleMode === Phaser.ScaleManager.EXACT_FIT)
+        else if (scaleMode === Phaser.ScaleManager.EXACT_FIT)
         {
             this.setExactFit();
         }
@@ -62258,8 +62286,6 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'scaleMode', {
 
             this._scaleMode = value;
         }
-
-        return this._scaleMode;
     }
 
 });
@@ -62297,8 +62323,6 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'fullScreenScaleMode', {
                 this._fullScreenScaleMode = value;
             }
         }
-
-        return this._fullScreenScaleMode;
     }
 
 });
@@ -62983,7 +63007,7 @@ Phaser.Utils.Debug.prototype = {
         this.line('Camera (' + camera.width + ' x ' + camera.height + ')');
         this.line('x: ' + camera.x + ' y: ' + camera.y);
         this.line('Bounds: ' + (bounds ? ('x: ' + bounds.x + ' y: ' + bounds.y + ' w: ' + bounds.width + ' h: ' + bounds.height) : 'none'));
-        this.line('View: x: ' + view.x + ' y: ' + view.y + ' w: ' + view.width + ' h: ' + view.height);
+        this.line('View: x: ' + view.x + ' y: ' + view.y + ' w: ' + view.width + ' h: ' + view.height + ' cx: ' + view.centerX + ' cy: ' + view.centerY);
         this.line('Center: x: ' + camera.centerX + ' y: ' + camera.centerY);
         this.line('Deadzone: ' + (deadzone ? ('x: ' + deadzone.x + ' y: ' + deadzone.y + ' w: ' + deadzone.width + ' h: ' + deadzone.height) : deadzone));
         this.line('Total in view: ' + camera.totalInView);
@@ -68001,8 +68025,7 @@ Phaser.Physics.Arcade.prototype = {
                 }
             }
         }
-        else
-        if (object instanceof Phaser.Group)
+        else if (object instanceof Phaser.Group)
         {
             //  If it's a Group then we do it on the children regardless
             this.enable(object.children, children);
@@ -68323,8 +68346,7 @@ Phaser.Physics.Arcade.prototype = {
         {
             sortDirection = group.physicsSortDirection;
         }
-        else
-        if (sortDirection === undefined) { sortDirection = this.sortDirection; }
+        else if (sortDirection === undefined) { sortDirection = this.sortDirection; }
 
         if (sortDirection === Phaser.Physics.Arcade.LEFT_RIGHT)
         {
@@ -68913,8 +68935,7 @@ Phaser.Physics.Arcade.prototype = {
                 return this.circleBodyIntersects(body1, body2);
             }
         }
-        else
-        if (body2.isCircle)
+        else if (body2.isCircle)
         {
             //  Rect vs. Circle
             return this.circleBodyIntersects(body2, body1);
@@ -71438,8 +71459,7 @@ Phaser.Physics.Arcade.Body.render = function (context, body, color, filled, line
             context.stroke();
         }
     }
-    else
-    if (filled)
+    else if (filled)
     {
         context.fillRect(body.position.x - body.game.camera.x, body.position.y - body.game.camera.y, body.width, body.height);
     }
@@ -71541,8 +71561,7 @@ Phaser.Physics.Arcade.TilemapCollision.prototype = {
                     }
                 }
             }
-            else
-            if (this.separateTile(i, sprite.body, mapData[i], tilemapLayer, overlapOnly))
+            else if (this.separateTile(i, sprite.body, mapData[i], tilemapLayer, overlapOnly))
             {
                 this._total++;
 
@@ -72238,8 +72257,7 @@ Phaser.Physics.P2.prototype = {
                 }
             }
         }
-        else
-        if (object instanceof Phaser.Group)
+        else if (object instanceof Phaser.Group)
         {
             //  If it's a Group then we do it on the children regardless
             this.enable(object.children, debug, children);
@@ -72619,8 +72637,7 @@ Phaser.Physics.P2.prototype = {
                 this.walls[wall].shapes[0].collisionGroup = this.boundsCollisionGroup.mask;
             }
         }
-        else
-        if (this.walls[wall])
+        else if (this.walls[wall])
         {
             this.world.removeBody(this.walls[wall]);
             this.walls[wall] = null;
@@ -74964,8 +74981,7 @@ Phaser.Physics.P2.Body.prototype = {
                 }
             }
         }
-        else
-        if (this.collidesWith.indexOf(group) === -1)
+        else if (this.collidesWith.indexOf(group) === -1)
         {
             this.collidesWith.push(group);
 
@@ -82074,8 +82090,7 @@ Phaser.TilemapParser = {
 
                     row.push(tile);
                 }
-                else
-                if (Phaser.TilemapParser.INSERT_NULL)
+                else if (Phaser.TilemapParser.INSERT_NULL)
                 {
                     row.push(null);
                 }
@@ -82148,7 +82163,7 @@ Phaser.TilemapParser = {
 
             if (set.source)
             {
-                console.warn('Phaser CE can\'t load external tilesets (%s). Embed the tileset and then export the map again. https://github.com/photonstorm/phaser-ce/issues/273', set.source);
+                console.warn('Phaser CE can\'t load external tilesets (%s). Embed the tileset and then export the map again. https://github.com/phaserjs/phaser-ce/issues/273', set.source);
             }
             else if (set.image)
             {
@@ -83213,8 +83228,7 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function ()
                     }
                 }
             }
-            else
-            if (this.emitParticle())
+            else if (this.emitParticle())
             {
                 this._counter++;
 
@@ -83224,8 +83238,7 @@ Phaser.Particles.Arcade.Emitter.prototype.update = function ()
                 }
             }
         }
-        else
-        if (this.emitParticle())
+        else if (this.emitParticle())
         {
             this._counter++;
 
@@ -85099,8 +85112,7 @@ Phaser.Weapon.prototype.fire = function (from, x, y, offsetX, offsetY)
                 this.fireFrom.y = this._rotatedPoint.y;
             }
         }
-        else
-        if (this.fireFrom.width > 1)
+        else if (this.fireFrom.width > 1)
         {
             this.fireFrom.centerOn(this.trackedSprite.world.x + this.trackOffset.x, this.trackedSprite.world.y + this.trackOffset.y);
         }
@@ -85215,8 +85227,7 @@ Phaser.Weapon.prototype.fire = function (from, x, y, offsetX, offsetY)
 
             bullet.animations.play(this.bulletAnimation);
         }
-        else
-        if (this.bulletFrameCycle)
+        else if (this.bulletFrameCycle)
         {
             bullet.frame = this.bulletFrames[this.bulletFrameIndex];
 
@@ -85742,8 +85753,7 @@ Phaser.Bullet.prototype.update = function ()
                 this.kill();
             }
         }
-        else
-        if (!this.data.bulletManager.bulletBounds.intersects(this))
+        else if (!this.data.bulletManager.bulletBounds.intersects(this))
         {
             this.kill();
         }
@@ -86079,8 +86089,7 @@ Phaser.Video = function (game, key, url)
     {
         this.setTouchLock();
     }
-    else
-    if (_video)
+    else if (_video)
     {
         _video.locked = false;
     }
@@ -86566,8 +86575,7 @@ Phaser.Video.prototype = {
                 {
                     this.videoStream.active = false;
                 }
-                else
-                if (this.videoStream.getTracks)
+                else if (this.videoStream.getTracks)
                 {
                     this.videoStream.getTracks().forEach(function (track)
                     {
