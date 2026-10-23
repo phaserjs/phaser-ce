@@ -6915,8 +6915,7 @@ Narrowphase.prototype.convexHeightfield = function (convexBody,convexShape,conve
                             return true;
                         }
                     }
-                    else
-                    if (listeners[type] !== undefined)
+                    else if (listeners[type] !== undefined)
                     {
                         return true;
                     }
