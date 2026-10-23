@@ -189,7 +189,7 @@ Releases of new versions of Phaser CE are under the community's control. If you 
 
 4. Run `npm run check-version`. Verify all the version numbers match except in `build/phaser.js`, which isn't rebuilt yet.
 
-5. From the root repo folder, run `npm run test-src` and make sure there are no errors. If there are, please fix them, or request that the original author of the code does so.
+5. From the root repo folder, run `npm run test` and make sure there are no errors. If there are, please fix them, or request that the original author of the code does so.
 
 6. Once ESLint passes run `grunt release`, sit back, and wait. It will build all of the versions of Phaser CE required, update the doc files, TypeScript defs and lots more.
 
