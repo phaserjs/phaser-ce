@@ -72,9 +72,9 @@
     "typescript": "1.4.1"
   },
   "overrides": {
-    "grunt-jsdoc": {
-      "jsdoc": "^4.0.5"
-    },
+    "braces": "^3.0.3",
+    "js-yaml": "^4.3.2",
+    "jsdoc": "^4.0.5",
     "lodash": "^4.18.1"
   },
   "typings": "./typescript/phaser.comments.d.ts",
