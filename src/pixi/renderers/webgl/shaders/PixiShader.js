@@ -145,6 +145,9 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
     gl.activeTexture(gl.TEXTURE0);
     gl.uniform1iv(this.uSamplerArray, indices);
 
+    // every unit now holds the dummy texture
+    PIXI.WebGLRenderer.invalidateTextureUnit();
+
     // Begin worst hack eva //
 
     /*
@@ -344,6 +347,7 @@ PIXI.PixiShader.prototype.initSampler2D = function (uniform)
     // No need to do string manipulation for this.
     gl.activeTexture(gl.TEXTURE0 + this.textureCount);
     gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id]);
+    PIXI.WebGLRenderer.invalidateTextureUnit(this.textureCount);
 
     //  Extended texture data
     if (uniform.textureData)
@@ -461,6 +465,7 @@ PIXI.PixiShader.prototype.syncUniforms = function ()
                 }
 
                 //  gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id] || PIXI.createWebGLTexture( uniform.value.baseTexture, gl));
+                PIXI.WebGLRenderer.invalidateTextureUnit(this.textureCount);
                 gl.uniform1i(uniform.uniformLocation, this.textureCount);
                 this.textureCount++;
             }

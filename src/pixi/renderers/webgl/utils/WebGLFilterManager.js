@@ -93,6 +93,9 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
     this.offsetX += filterBlock._filterArea.x;
     this.offsetY += filterBlock._filterArea.y;
 
+    // FilterTexture creation and resizing bind on the active unit, so use unit 0 and leave it unbound.
+    gl.activeTexture(gl.TEXTURE0);
+
     var texture = this.texturePool.pop();
     if(!texture)
     {
@@ -103,7 +106,8 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
         texture.resize(this.width * this.renderSession.resolution, this.height * this.renderSession.resolution);
     }
 
-    gl.bindTexture(gl.TEXTURE_2D, texture.texture);
+    gl.bindTexture(gl.TEXTURE_2D, null);
+    PIXI.WebGLRenderer.invalidateTextureUnit();
 
     var filterArea = filterBlock._filterArea;// filterBlock.target.getBounds();///filterBlock.target.filterArea;
 
@@ -210,6 +214,7 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
             // set texture
             gl.activeTexture(gl.TEXTURE0);
             gl.bindTexture(gl.TEXTURE_2D, inputTexture.texture);
+            PIXI.WebGLRenderer.invalidateTextureUnit();
 
             /*
              * draw texture..
@@ -315,6 +320,7 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
     // set texture
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, texture.texture);
+    PIXI.WebGLRenderer.invalidateTextureUnit();
 
     // >>> modify by nextht
     if (this.renderSession.stencilManager)

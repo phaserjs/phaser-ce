@@ -268,6 +268,9 @@ PIXI.WebGLRenderer.prototype.initContext = function ()
     this.blendModeManager.setContext(gl);
     this.stencilManager.setContext(gl);
 
+    // a new context starts with nothing bound, and the setContext() calls above bind dummy textures
+    PIXI.WebGLRenderer.invalidateTextureUnit();
+
     this.renderSession.gl = this.gl;
 
     // now resize and we are good to go!
@@ -511,6 +514,7 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
     gl.activeTexture(gl.TEXTURE0 + texture.textureIndex);
 
     gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
+    PIXI.WebGLRenderer.textureArray[texture.textureIndex] = texture;
 
     gl.compressedTexImage2D(
         gl.TEXTURE_2D,
@@ -575,6 +579,7 @@ PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
     gl.activeTexture(gl.TEXTURE0 + texture.textureIndex);
 
     gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
+    PIXI.WebGLRenderer.textureArray[texture.textureIndex] = texture;
 
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, texture.premultipliedAlpha);
 
@@ -686,4 +691,26 @@ PIXI.enableMultiTexture = function ()
     PIXI._enableMultiTextureToggle = true;
 };
 
+/**
+ * Records which base texture is bound to each texture unit (multi-texture mode only).
+ * Shared by all renderers.
+ */
 PIXI.WebGLRenderer.textureArray = [];
+
+/**
+ * Forgets what is bound to a texture unit (or to all units), after code outside the sprite batch has rebound it.
+ *
+ * @method PIXI.WebGLRenderer.invalidateTextureUnit
+ * @param {number} [unit] - The texture unit to clear. If omitted, all units are cleared.
+ */
+PIXI.WebGLRenderer.invalidateTextureUnit = function (unit)
+{
+    if (typeof unit === 'number')
+    {
+        PIXI.WebGLRenderer.textureArray[unit] = null;
+    }
+    else
+    {
+        PIXI.WebGLRenderer.textureArray.length = 0;
+    }
+};

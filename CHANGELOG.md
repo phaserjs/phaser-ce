@@ -1,5 +1,13 @@
 # Change Log
 
+## Unreleased
+
+### Bug Fixes
+
+- Fixed sprites drawing with the wrong texture in WebGL multi-texture mode, because the texture unit cache (`PIXI.WebGLRenderer.textureArray`) went stale after other code rebound texture units.
+- Fixed late-loaded and changed textures (e.g., Text, BitmapData) rendering blank or stale in WebGL multi-texture mode.
+- Fixed WebGL feedback-loop errors when rendering filters in multi-texture mode.
+
 ## Version 2.21.0 - 23 October 2026
 
 ### New Features

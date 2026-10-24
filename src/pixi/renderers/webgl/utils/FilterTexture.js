@@ -37,6 +37,9 @@ function _CreateFramebuffer (gl, width, height, scaleMode, textureUnit)
     var colorBuffer = null;
     var fbStatus = 0;
 
+    // creating the texture and framebuffer rebinds texture units
+    PIXI.WebGLRenderer.invalidateTextureUnit();
+
     gl.activeTexture(gl.TEXTURE0 + textureUnit);
     gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
     gl.bindRenderbuffer(gl.RENDERBUFFER, depthStencilBuffer);
