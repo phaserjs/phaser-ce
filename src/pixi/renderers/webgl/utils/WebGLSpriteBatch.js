@@ -782,8 +782,9 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
             return;
         }
     }
-    else
+    else if (!PIXI._enableMultiTextureToggle)
     {
+        //  With multi-texture batching each texture is already bound to its own unit
         gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
     }
 

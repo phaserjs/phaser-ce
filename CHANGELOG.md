@@ -14,6 +14,7 @@
 
 - Fixed an error when the WebGL context of a destroyed game was lost (#756).
 - Fixed a new WebGL renderer taking the context id of a live renderer after another renderer was destroyed (#757).
+- Fixed multi-texture batching binding the last batched texture to whichever texture unit was active, which could draw the wrong texture (e.g., stretched over the canvas by the debug sprite) (#231).
 
 ### Thanks
 

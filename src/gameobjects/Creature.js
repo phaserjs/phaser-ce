@@ -492,6 +492,12 @@ Phaser.Creature.prototype._renderCreature = function (renderSession)
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.indices, gl.STATIC_DRAW);
     }
 
+    if (PIXI._enableMultiTextureToggle)
+    {
+        PIXI.WebGLRenderer.textureArray[0] = null;
+        PIXI.WebGLRenderer.textureArray[this.texture.baseTexture.textureIndex] = null;
+    }
+
     gl.drawElements(gl.TRIANGLES, this.indices.length, gl.UNSIGNED_SHORT, 0);
 };
 
