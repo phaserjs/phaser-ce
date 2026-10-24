@@ -200,7 +200,7 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
     var textureIndex = this.currentBaseTexture.textureIndex;
     var gl = this.gl;
 
-    if (this.currentBaseTexture._dirty[gl.id])
+    if (this.currentBaseTexture._dirty[gl.id] || !this.currentBaseTexture._glTextures[gl.id])
     {
         // binds on the texture's own unit and updates the texture unit cache
         this.renderSession.renderer.updateTexture(this.currentBaseTexture);
@@ -230,10 +230,9 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
-    var dirty = baseTexture._dirty[gl.id];
+    var dirty = baseTexture._dirty[gl.id] || !baseTexture._glTextures[gl.id];
 
-    if ((dirty || PIXI.WebGLRenderer.textureArray[textureIndex] !== baseTexture) &&
-        (dirty || baseTexture._glTextures[gl.id]) && !baseTexture.skipRender)
+    if ((dirty || PIXI.WebGLRenderer.textureArray[textureIndex] !== baseTexture) && !baseTexture.skipRender)
     {
         this.flush();
 

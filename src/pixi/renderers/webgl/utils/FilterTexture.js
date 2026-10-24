@@ -37,10 +37,11 @@ function _CreateFramebuffer (gl, width, height, scaleMode, textureUnit)
     var colorBuffer = null;
     var fbStatus = 0;
 
-    // creating the texture and framebuffer rebinds texture units
-    PIXI.WebGLRenderer.invalidateTextureUnit();
-
+    // Creating the texture binds on this unit, which may hold a texture that is still waiting to be drawn.
+    var previousActive = gl.getParameter(gl.ACTIVE_TEXTURE);
     gl.activeTexture(gl.TEXTURE0 + textureUnit);
+    var previousTexture = gl.getParameter(gl.TEXTURE_BINDING_2D);
+
     gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
     gl.bindRenderbuffer(gl.RENDERBUFFER, depthStencilBuffer);
     gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);
@@ -55,6 +56,10 @@ function _CreateFramebuffer (gl, width, height, scaleMode, textureUnit)
     framebuffer.height = height;
     framebuffer.targetTexture = colorBuffer;
     framebuffer.renderBuffer = depthStencilBuffer;
+
+    gl.bindTexture(gl.TEXTURE_2D, previousTexture);
+    gl.activeTexture(previousActive);
+
     return framebuffer;
 }
 
@@ -124,9 +129,13 @@ PIXI.FilterTexture.prototype.resize = function (width, height)
     this.height = height;
 
     var gl = this.gl;
+
+    // resizing can happen mid-render, so leave the active unit's binding as it was
+    var previousTexture = gl.getParameter(gl.TEXTURE_BINDING_2D);
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
     PIXI.WebGLRenderer.invalidateTextureUnit();
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width , height , 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+    gl.bindTexture(gl.TEXTURE_2D, previousTexture);
 
     // update the stencil buffer width and height
     gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);

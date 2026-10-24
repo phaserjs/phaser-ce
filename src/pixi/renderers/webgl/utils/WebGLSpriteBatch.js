@@ -261,7 +261,7 @@ PIXI.WebGLSpriteBatch.prototype.end = function ()
 PIXI.WebGLSpriteBatch.prototype.bindMultiTexture = function (baseTexture, textureUnit)
 {
     var gl = this.gl;
-    var dirty = baseTexture._dirty[gl.id];
+    var dirty = baseTexture._dirty[gl.id] || !baseTexture._glTextures[gl.id];
 
     if (!dirty && PIXI.WebGLRenderer.textureArray[textureUnit] === baseTexture)
     {
@@ -272,6 +272,9 @@ PIXI.WebGLSpriteBatch.prototype.bindMultiTexture = function (baseTexture, textur
 
     if (dirty)
     {
+        // the upload binds on the base texture's own unit, which has to be the one the vertices sample
+        baseTexture.textureIndex = textureUnit;
+
         return this.renderSession.renderer.updateTexture(baseTexture);
     }
 

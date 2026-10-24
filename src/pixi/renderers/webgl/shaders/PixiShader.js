@@ -131,23 +131,42 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
 
     var indices = [];
 
+    // This can run in the middle of a render (first use of a shader), so remember what is bound and put it back.
+    var previousActive = gl.getParameter(gl.ACTIVE_TEXTURE);
+    var previousBindings = [];
+    var i;
+
+    for (i = 0; i < this.MAX_TEXTURES; ++i)
+    {
+        gl.activeTexture(gl.TEXTURE0 + i);
+        previousBindings.push(gl.getParameter(gl.TEXTURE_BINDING_2D));
+    }
+
     // HACK: we bind an empty texture to avoid WebGL warning spam.
     var textureArray = PIXI.WebGLRenderer.textureArray.slice();
     var tempTexture = gl.createTexture();
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, tempTexture);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, 1, 1, 0, gl.RGB, gl.UNSIGNED_BYTE, null);
-    for (var i = 0; i < this.MAX_TEXTURES; ++i)
+    for (i = 0; i < this.MAX_TEXTURES; ++i)
     {
         gl.activeTexture(gl.TEXTURE0 + i);
         gl.bindTexture(gl.TEXTURE_2D, tempTexture);
         indices.push(i);
     }
-    gl.activeTexture(gl.TEXTURE0);
     gl.uniform1iv(this.uSamplerArray, indices);
 
-    // every unit now holds the dummy texture
-    PIXI.WebGLRenderer.invalidateTextureUnit();
+    // Units that held nothing keep the dummy texture.
+    for (i = 0; i < this.MAX_TEXTURES; ++i)
+    {
+        if (previousBindings[i])
+        {
+            gl.activeTexture(gl.TEXTURE0 + i);
+            gl.bindTexture(gl.TEXTURE_2D, previousBindings[i]);
+        }
+    }
+
+    gl.activeTexture(previousActive);
 
     for (var i = 0; i < textureArray.length && i < this.MAX_TEXTURES; ++i)
     {
