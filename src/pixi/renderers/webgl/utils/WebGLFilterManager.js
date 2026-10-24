@@ -315,6 +315,7 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
     // set texture
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, texture.texture);
+    PIXI.WebGLRenderer.textureArray[0] = null;
 
     // >>> modify by nextht
     if (this.renderSession.stencilManager)
