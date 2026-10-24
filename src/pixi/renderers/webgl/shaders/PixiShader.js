@@ -143,7 +143,6 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
     }
 
     // HACK: we bind an empty texture to avoid WebGL warning spam.
-    var textureArray = PIXI.WebGLRenderer.textureArray.slice();
     var tempTexture = gl.createTexture();
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, tempTexture);
@@ -167,19 +166,6 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
     }
 
     gl.activeTexture(previousActive);
-
-    for (var i = 0; i < textureArray.length && i < this.MAX_TEXTURES; ++i)
-    {
-        var texture = textureArray[i];
-
-        if (texture && texture._glTextures && texture._glTextures[gl.id])
-        {
-            gl.activeTexture(gl.TEXTURE0 + i);
-            gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
-            PIXI.WebGLRenderer.textureArray[i] = texture;
-        }
-    }
-    gl.activeTexture(gl.TEXTURE0);
 
     // Begin worst hack eva //
 

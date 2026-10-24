@@ -133,7 +133,6 @@ PIXI.FilterTexture.prototype.resize = function (width, height)
     // resizing can happen mid-render, so leave the active unit's binding as it was
     var previousTexture = gl.getParameter(gl.TEXTURE_BINDING_2D);
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
-    PIXI.WebGLRenderer.invalidateTextureUnit();
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width , height , 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
     gl.bindTexture(gl.TEXTURE_2D, previousTexture);
 
