@@ -249,6 +249,50 @@ PIXI.WebGLSpriteBatch.prototype.end = function ()
 };
 
 /**
+ * Multi-texture mode: makes sure the base texture is uploaded if dirty and bound to the given texture unit.
+ * Flushes the batch first if the unit binding or contents will change.
+ *
+ * @method PIXI.WebGLSpriteBatch#bindMultiTexture
+ * @private
+ * @param {PIXI.BaseTexture} baseTexture
+ * @param {number} textureUnit
+ * @return {boolean} False if the texture is dirty but can't be uploaded yet (not loaded), so the sprite should be skipped.
+ */
+PIXI.WebGLSpriteBatch.prototype.bindMultiTexture = function (baseTexture, textureUnit)
+{
+    var gl = this.gl;
+
+    if (!baseTexture.source && baseTexture._glTextures[gl.id])
+    {
+        // a render target (RenderTexture) has no source to upload, so it is never stale
+        baseTexture._dirty[gl.id] = false;
+    }
+
+    var dirty = baseTexture._dirty[gl.id] || !baseTexture._glTextures[gl.id];
+
+    if (!dirty && PIXI.WebGLRenderer.textureArray[textureUnit] === baseTexture)
+    {
+        return true;
+    }
+
+    this.flush();
+
+    if (dirty)
+    {
+        // the upload binds on the base texture's own unit, which has to be the one the vertices sample
+        baseTexture.textureIndex = textureUnit;
+
+        return this.renderSession.renderer.updateTexture(baseTexture);
+    }
+
+    gl.activeTexture(gl.TEXTURE0 + textureUnit);
+    gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+    PIXI.WebGLRenderer.textureArray[textureUnit] = baseTexture;
+
+    return true;
+};
+
+/**
  * @method PIXI.WebGLSpriteBatch#render
  * @param sprite {Sprite} the sprite to render when using this spritebatch
  * @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
@@ -260,13 +304,9 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
     if (PIXI._enableMultiTextureToggle)
     {
         var baseTexture = texture.baseTexture;
-        var gl = this.gl;
-        if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+        if (!this.bindMultiTexture(baseTexture, baseTexture.textureIndex))
         {
-            this.flush();
-            gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
-            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-            PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
+            return;
         }
     }
 
@@ -447,14 +487,9 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
 
     if (PIXI._enableMultiTextureToggle)
     {
-        var baseTexture = texture.baseTexture;
-        var gl = this.gl;
-        if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+        if (!this.bindMultiTexture(texture.baseTexture, textureIndex))
         {
-            this.flush();
-            gl.activeTexture(gl.TEXTURE0 + textureIndex);
-            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-            PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+            return;
         }
     }
 
@@ -782,8 +817,9 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
             return;
         }
     }
-    else
+    else if (!PIXI._enableMultiTextureToggle)
     {
+        // in multi-texture mode the batch's textures are already bound on their own units
         gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
     }
 

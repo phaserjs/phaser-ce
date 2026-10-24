@@ -447,6 +447,9 @@ Phaser.Rope.prototype._renderStrip = function (renderSession)
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.indices, gl.STATIC_DRAW);
     }
 
+    // unit 0 was rebound above, outside the sprite batch
+    PIXI.WebGLRenderer.invalidateTextureUnit(0);
+
     gl.drawElements(drawMode, this.indices.length, gl.UNSIGNED_SHORT, 0);
 };
 

@@ -131,19 +131,41 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
 
     var indices = [];
 
+    // This can run in the middle of a render (first use of a shader), so remember what is bound and put it back.
+    var previousActive = gl.getParameter(gl.ACTIVE_TEXTURE);
+    var previousBindings = [];
+    var i;
+
+    for (i = 0; i < this.MAX_TEXTURES; ++i)
+    {
+        gl.activeTexture(gl.TEXTURE0 + i);
+        previousBindings.push(gl.getParameter(gl.TEXTURE_BINDING_2D));
+    }
+
     // HACK: we bind an empty texture to avoid WebGL warning spam.
     var tempTexture = gl.createTexture();
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, tempTexture);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, 1, 1, 0, gl.RGB, gl.UNSIGNED_BYTE, null);
-    for (var i = 0; i < this.MAX_TEXTURES; ++i)
+    for (i = 0; i < this.MAX_TEXTURES; ++i)
     {
         gl.activeTexture(gl.TEXTURE0 + i);
         gl.bindTexture(gl.TEXTURE_2D, tempTexture);
         indices.push(i);
     }
-    gl.activeTexture(gl.TEXTURE0);
     gl.uniform1iv(this.uSamplerArray, indices);
+
+    // Units that held nothing keep the dummy texture.
+    for (i = 0; i < this.MAX_TEXTURES; ++i)
+    {
+        if (previousBindings[i])
+        {
+            gl.activeTexture(gl.TEXTURE0 + i);
+            gl.bindTexture(gl.TEXTURE_2D, previousBindings[i]);
+        }
+    }
+
+    gl.activeTexture(previousActive);
 
     // Begin worst hack eva //
 
@@ -344,6 +366,7 @@ PIXI.PixiShader.prototype.initSampler2D = function (uniform)
     // No need to do string manipulation for this.
     gl.activeTexture(gl.TEXTURE0 + this.textureCount);
     gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id]);
+    PIXI.WebGLRenderer.invalidateTextureUnit(this.textureCount);
 
     //  Extended texture data
     if (uniform.textureData)
@@ -461,6 +484,7 @@ PIXI.PixiShader.prototype.syncUniforms = function ()
                 }
 
                 //  gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id] || PIXI.createWebGLTexture( uniform.value.baseTexture, gl));
+                PIXI.WebGLRenderer.invalidateTextureUnit(this.textureCount);
                 gl.uniform1i(uniform.uniformLocation, this.textureCount);
                 this.textureCount++;
             }

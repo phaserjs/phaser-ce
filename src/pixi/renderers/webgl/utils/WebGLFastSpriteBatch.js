@@ -199,10 +199,24 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
 
     var textureIndex = this.currentBaseTexture.textureIndex;
     var gl = this.gl;
-    
-    gl.activeTexture(gl.TEXTURE0 + textureIndex);
-    gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
-    PIXI.WebGLRenderer.textureArray[textureIndex] = this.currentBaseTexture;
+
+    if (!this.currentBaseTexture.source && this.currentBaseTexture._glTextures[gl.id])
+    {
+        // a render target (RenderTexture) has no source to upload, so it is never stale
+        this.currentBaseTexture._dirty[gl.id] = false;
+    }
+
+    if (this.currentBaseTexture._dirty[gl.id] || !this.currentBaseTexture._glTextures[gl.id])
+    {
+        // binds on the texture's own unit and updates the texture unit cache
+        this.renderSession.renderer.updateTexture(this.currentBaseTexture);
+    }
+    else
+    {
+        gl.activeTexture(gl.TEXTURE0 + textureIndex);
+        gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
+        PIXI.WebGLRenderer.textureArray[textureIndex] = this.currentBaseTexture;
+    }
 
     for(var i = 0,j = children.length; i < j; i++)
     {
@@ -223,13 +237,32 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
 
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture && // eslint-disable-line eqeqeq
-        baseTexture._glTextures[gl.id] && !sprite.texture.baseTexture.skipRender)
+    if (!baseTexture.source && baseTexture._glTextures[gl.id])
+    {
+        baseTexture._dirty[gl.id] = false;
+    }
+
+    var dirty = baseTexture._dirty[gl.id] || !baseTexture._glTextures[gl.id];
+
+    if ((dirty || PIXI.WebGLRenderer.textureArray[textureIndex] !== baseTexture) && !baseTexture.skipRender)
     {
         this.flush();
-        gl.activeTexture(gl.TEXTURE0 + textureIndex);
-        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+
+        if (dirty)
+        {
+            //  binds on the texture's own unit and updates the texture unit cache
+            if (!this.renderSession.renderer.updateTexture(baseTexture))
+            {
+                return;
+            }
+        }
+        else
+        {
+            gl.activeTexture(gl.TEXTURE0 + textureIndex);
+            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+            PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+        }
+
         if(!sprite.texture._uvs) { return; }
     }
 
