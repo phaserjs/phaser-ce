@@ -125,6 +125,7 @@ PIXI.FilterTexture.prototype.resize = function (width, height)
 
     var gl = this.gl;
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
+    PIXI.WebGLRenderer.invalidateTextureUnit();
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width , height , 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
 
     // update the stencil buffer width and height

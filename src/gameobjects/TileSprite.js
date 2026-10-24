@@ -344,6 +344,7 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
             if (this.tilingTexture.needsUpdate)
             {
                 this.tilingTexture.baseTexture.textureIndex = this.texture.baseTexture.textureIndex;
+                renderSession.spriteBatch.flush();
                 renderSession.renderer.updateTexture(this.tilingTexture.baseTexture);
                 this.tilingTexture.needsUpdate = false;
             }
