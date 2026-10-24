@@ -200,6 +200,12 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
     var textureIndex = this.currentBaseTexture.textureIndex;
     var gl = this.gl;
 
+    if (!this.currentBaseTexture.source && this.currentBaseTexture._glTextures[gl.id])
+    {
+        // a render target (RenderTexture) has no source to upload, so it is never stale
+        this.currentBaseTexture._dirty[gl.id] = false;
+    }
+
     if (this.currentBaseTexture._dirty[gl.id] || !this.currentBaseTexture._glTextures[gl.id])
     {
         // binds on the texture's own unit and updates the texture unit cache
@@ -230,6 +236,12 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
+
+    if (!baseTexture.source && baseTexture._glTextures[gl.id])
+    {
+        baseTexture._dirty[gl.id] = false;
+    }
+
     var dirty = baseTexture._dirty[gl.id] || !baseTexture._glTextures[gl.id];
 
     if ((dirty || PIXI.WebGLRenderer.textureArray[textureIndex] !== baseTexture) && !baseTexture.skipRender)

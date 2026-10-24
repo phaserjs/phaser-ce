@@ -261,6 +261,13 @@ PIXI.WebGLSpriteBatch.prototype.end = function ()
 PIXI.WebGLSpriteBatch.prototype.bindMultiTexture = function (baseTexture, textureUnit)
 {
     var gl = this.gl;
+
+    if (!baseTexture.source && baseTexture._glTextures[gl.id])
+    {
+        // a render target (RenderTexture) has no source to upload, so it is never stale
+        baseTexture._dirty[gl.id] = false;
+    }
+
     var dirty = baseTexture._dirty[gl.id] || !baseTexture._glTextures[gl.id];
 
     if (!dirty && PIXI.WebGLRenderer.textureArray[textureUnit] === baseTexture)
