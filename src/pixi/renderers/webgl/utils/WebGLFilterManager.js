@@ -93,6 +93,8 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
     this.offsetX += filterBlock._filterArea.x;
     this.offsetY += filterBlock._filterArea.y;
 
+    gl.activeTexture(gl.TEXTURE0);
+
     var texture = this.texturePool.pop();
     if(!texture)
     {
@@ -104,6 +106,7 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
     }
 
     gl.bindTexture(gl.TEXTURE_2D, texture.texture);
+    PIXI.WebGLRenderer.textureArray[0] = null;
 
     var filterArea = filterBlock._filterArea;// filterBlock.target.getBounds();///filterBlock.target.filterArea;
 
