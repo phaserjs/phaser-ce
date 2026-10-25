@@ -268,7 +268,7 @@ Phaser.LoaderParser = {
          * ---------------------------------------
          */
         var uintArray = new Uint32Array(arrayBuffer.slice(0, 52)),
-            byteArray = new Uint8Array(arrayBuffer),
+            byteArray = new Uint8Array(arrayBuffer), // eslint-disable-line compat/compat -- compressed textures only; loader queues them only under WebGL
             pvrHeader = null,
             pixelFormat = (uintArray[3] << 32 | uintArray[2]),
             compressionAlgorithm,
@@ -390,7 +390,7 @@ Phaser.LoaderParser = {
          * address: 146, size: 4 misc flag 2
          * ---------------------------------------
          */
-        var byteArray = new Uint8Array(arrayBuffer),
+        var byteArray = new Uint8Array(arrayBuffer), // eslint-disable-line compat/compat -- compressed textures only; loader queues them only under WebGL
             uintArray = new Uint32Array(arrayBuffer),
             ddsHeader = null;
 
@@ -488,7 +488,7 @@ Phaser.LoaderParser = {
          * address: X, size 4 byte : image size
          * ---------------------------------------
          */
-        var byteArray = new Uint8Array(arrayBuffer),
+        var byteArray = new Uint8Array(arrayBuffer), // eslint-disable-line compat/compat -- compressed textures only; loader queues them only under WebGL
             uintArray = new Uint32Array(arrayBuffer),
             ktxHeader = null,
             imageSizeOffset = 16 + (uintArray[15] / 4) | 0,
@@ -582,7 +582,7 @@ Phaser.LoaderParser = {
          * address: 16, texture data
          * ---------------------------------------
          */
-        var byteArray = new Uint8Array(arrayBuffer),
+        var byteArray = new Uint8Array(arrayBuffer), // eslint-disable-line compat/compat -- compressed textures only; loader queues them only under WebGL
             pkmHeader = null;
 
         if (byteArray[0] === 0x50 &&

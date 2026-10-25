@@ -39,6 +39,16 @@
     "test-ts": "./scripts/test-ts.sh",
     "tsc": "./node_modules/typescript/bin/tsc"
   },
+  "browserslist": [
+    "ie >= 9",
+    "android >= 4.4",
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 iOS versions",
+    "last 2 Edge versions",
+    "last 2 Opera versions"
+  ],
   "keywords": [
     "2d",
     "HTML5",
@@ -54,6 +64,7 @@
   ],
   "devDependencies": {
     "eslint": "^8.57.1",
+    "eslint-plugin-compat": "^6.2.1",
     "grunt": "^1.0.4",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.1.0",

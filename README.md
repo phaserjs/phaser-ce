@@ -30,13 +30,13 @@ If you need API documentation for a [previous version](https://github.com/phaser
 
 ## Requirements
 
-Phaser CE requires a web browser that supports the [canvas tag](https://caniuse.com/#feat=canvas). This includes Internet Explorer 9+, Firefox, Chrome, Safari and Opera on desktop. iOS Safari, Android Browser and Chrome for Android are supported on mobile.
+Phaser CE requires a web browser that supports the [canvas tag](https://caniuse.com/#feat=canvas). This includes Internet Explorer 9+, Firefox, Chrome, Safari and Opera on desktop. iOS Safari, Android Browser 4.4+ and Chrome for Android are supported on mobile.
 
 While Phaser CE does its best to ensure a consistent cross-platform experience, always be aware of browser and device limitations. This is especially important with memory and GPU limitations on mobile, and legacy browser HTML5 compatibility.
 
 ### IE9
 
-If you need to support IE9 / Android 2.x _and_ use P2 physics, then you must use the polyfills in the [resources/IE9 Polyfill folder](https://github.com/phaserjs/phaser-ce/tree/master/resources/IE9%20Polyfill). If you don't use P2 (or don't care about IE9!) you can skip this.
+If you need to support IE9 _and_ use P2 physics, then you must use the polyfills in the [resources/IE9 Polyfill folder](https://github.com/phaserjs/phaser-ce/tree/master/resources/IE9%20Polyfill). If you don't use P2 (or don't care about IE9!) you can skip this.
 
 ### JavaScript and TypeScript
 

@@ -816,12 +816,12 @@ Phaser.Device._initialize = function ()
             device.localStorage = false;
         }
 
-        device.file = !!window.File && !!window.FileReader && !!window.FileList && !!window.Blob;
+        device.file = !!window.File && !!window.FileReader && !!window.FileList && !!window.Blob; // eslint-disable-line compat/compat -- feature detection
         device.fileSystem = !!window.requestFileSystem;
 
-        device.webGL = !!window.WebGLRenderingContext;
+        device.webGL = !!window.WebGLRenderingContext; // eslint-disable-line compat/compat -- feature detection
 
-        device.worker = !!window.Worker;
+        device.worker = !!window.Worker; // eslint-disable-line compat/compat -- feature detection
 
         device.pointerLockElement = (('pointerLockElement' in document) && 'pointerLockElement') ||
             (('mozPointerLockElement' in document) && 'mozPointerLockElement') ||
@@ -839,11 +839,11 @@ Phaser.Device._initialize = function ()
 
         device.quirksMode = (document.compatMode === 'CSS1Compat') ? false : true;
 
-        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia; // eslint-disable-line compat/compat -- vendor-prefix fallback
 
-        window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+        window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL; // eslint-disable-line compat/compat -- vendor-prefix fallback
 
-        device.getUserMedia = device.getUserMedia && !!navigator.getUserMedia && !!window.URL;
+        device.getUserMedia = device.getUserMedia && !!navigator.getUserMedia && !!window.URL; // eslint-disable-line compat/compat -- feature detection
 
         // Older versions of firefox (< 21) apparently claim support but user media does not actually work
         if (device.firefox && device.firefoxVersion < 21)
@@ -1131,7 +1131,7 @@ Phaser.Device._initialize = function ()
     function _checkAudio ()
     {
         device.audioData = !!(window.Audio);
-        device.webAudio = !!(window.AudioContext || window.webkitAudioContext);
+        device.webAudio = !!(window.AudioContext || window.webkitAudioContext); // eslint-disable-line compat/compat -- feature detection
         var audioElement = document.createElement('audio');
 
         try
@@ -1207,7 +1207,7 @@ Phaser.Device._initialize = function ()
     function _checkIsLittleEndian ()
     {
         var a = new ArrayBuffer(4);
-        var b = new Uint8Array(a);
+        var b = new Uint8Array(a); // eslint-disable-line compat/compat -- guarded by typeof check in _checkDevice
         var c = new Uint32Array(a);
 
         b[0] = 0xa1;
@@ -1285,7 +1285,7 @@ Phaser.Device._initialize = function ()
 
         device.support32bit = (typeof ArrayBuffer !== 'undefined' && typeof Uint8ClampedArray !== 'undefined' && typeof Int32Array !== 'undefined' && device.littleEndian !== null && _checkIsUint8ClampedImageData());
 
-        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate; // eslint-disable-line compat/compat -- vendor-prefix fallback
 
         if (navigator.vibrate)
         {

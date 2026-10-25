@@ -156,7 +156,12 @@ Phaser.PointerLock.prototype.request = function ()
  */
 Phaser.PointerLock.prototype.exit = function ()
 {
-    document.exitPointerLock();
+    if (!this.game.device.pointerLock)
+    {
+        return;
+    }
+
+    document.exitPointerLock(); // eslint-disable-line compat/compat -- guarded by device.pointerLock
 };
 
 /**

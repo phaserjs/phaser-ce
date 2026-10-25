@@ -2387,7 +2387,7 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'isFullScreen', {
 
     get: function ()
     {
-        return !!(document.fullscreenElement ||
+        return !!(document.fullscreenElement || // eslint-disable-line compat/compat -- property read; undefined where unsupported
             document.webkitFullscreenElement ||
             document.mozFullScreenElement ||
             document.msFullscreenElement);
