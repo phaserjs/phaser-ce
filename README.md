@@ -19,10 +19,10 @@ If you need API documentation for a [previous version](https://github.com/phaser
 ## Contents
 
 - [Requirements](#requirements)
-- [Download Phaser](#download)
+- [Download Phaser CE](#download)
 - [Getting Started](#getting-started)
-- [Building Phaser](#building-phaser)
-- [Phaser World Newsletter](#newsletter)
+- [Building Phaser CE](#building-phaser)
+- [Weekly Newsletter](#newsletter)
 - [Contributing](#contributing)
 - [Change Log](#change-log)
 
@@ -48,9 +48,9 @@ If you code with [TypeScript](https://www.typescriptlang.org/) there are compreh
 
 ## Download Phaser CE
 
-Phaser CE is [hosted on Github][phaser]. There are a number of ways to download it:
+Phaser CE is [hosted on GitHub][phaser]. There are a number of ways to download it:
 
-* Clone the git repository via [https][clone-http], [ssh][clone-ssh] or with the Github [Windows][clone-ghwin] or [Mac][clone-ghmac] clients.
+* Clone the git repository via [https][clone-http], [ssh][clone-ssh] or with the GitHub [Windows][clone-ghwin] or [Mac][clone-ghmac] clients.
 * Download as [zip][get-zip] or [tar.gz][get-tgz]
 * Download just the build files: [phaser.js][get-js] and [phaser.min.js][get-minjs]
 * Checkout with [svn][clone-svn]
@@ -137,11 +137,15 @@ Full module-based development is available in Phaser v3.
 
 ### Webpack
 
+<!-- The Ionic and Webpack project templates were removed from the repository after v2.20.2. The links below point to that tag. -->
+
 As with browserify, use the **pixi**, **p2**, and **phaser-split** modules in [build/custom](https://github.com/phaserjs/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
 
 See [our webpack project template](https://github.com/phaserjs/phaser-ce/tree/v2.20.2/resources/Project%20Templates/Webpack) or [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
 
 ### Ionic
+
+<!-- The Ionic and Webpack project templates were removed from the repository after v2.20.2. The link below points to that tag. -->
 
 See [Ionic](https://github.com/phaserjs/phaser-ce/blob/v2.20.2/resources/Ionic.md).
 
@@ -203,7 +207,7 @@ Every Monday we publish the [Phaser World](https://phaser.world) newsletter. It'
 
 <a name="contributing"></a>
 
-# Contributing
+## Contributing
 
 The [Contributors Guide][contribute] contains full details on how to help with Phaser CE development. The main points are:
 
@@ -215,15 +219,15 @@ Written something cool in Phaser? Please tell us about it in the [forum][forum],
 
 <a name="change-log"></a>
 
-# Change Log
+## Change Log
 
 See [Change Log](CHANGELOG.md).
 
-# License
+## License
 
 Phaser CE is released under the [MIT License](https://opensource.org/licenses/MIT).
 
-# Created by
+## Created by
 
 Phaser 2 was originally a [Photon Storm](http://www.photonstorm.com) production, but is now maintained by the community. Phaser 3 is maintained by Phaser Studio Inc.
 
@@ -238,7 +242,7 @@ The Phaser logo and characters are © 2024 Photon Storm Limited. All rights rese
 [get-zip]: https://github.com/phaserjs/phaser-ce/archive/v2.21.0.zip
 [get-tgz]: https://github.com/phaserjs/phaser-ce/archive/v2.21.0.tar.gz
 [clone-http]: https://github.com/phaserjs/phaser-ce.git
-[clone-ssh]: ssh://git@github.com:phaserjs/phaser-ce.git
+[clone-ssh]: ssh://git@github.com/phaserjs/phaser-ce.git
 [clone-svn]: https://github.com/phaserjs/phaser-ce
 [clone-ghwin]: github-windows://openRepo/https://github.com/phaserjs/phaser-ce
 [clone-ghmac]: github-mac://openRepo/https://github.com/phaserjs/phaser-ce
