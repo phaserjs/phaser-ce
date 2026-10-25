@@ -1503,7 +1503,7 @@ Phaser.Tilemap.prototype = {
      * @param {number} [skip=0] - The number of times to skip a matching tile before returning.
      * @param {number} [reverse=false] - If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
      * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to get the tile from.
-     * @param {number} [all=false] - If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
+     * @param {boolean} [all=false] - If true it returns an array of all matching tiles. Otherwise it returns only the first matching tile.
      *
      * @return {Phaser.Tile|Phaser.Tile[]} A matching tile, or null (when `all` is false); or an array of zero or more tiles (when `all` is true).
      */
