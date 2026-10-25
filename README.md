@@ -145,7 +145,7 @@ See [our webpack project template](https://github.com/phaserjs/phaser-ce/tree/v2
 
 ### Ionic
 
-See [Ionic](https://github.com/phaserjs/phaser-ce/tree/master/resources/Ionic.md).
+See [Ionic](https://github.com/phaserjs/phaser-ce/blob/v2.20.2/resources/Ionic.md).
 
 ### Game Mechanic Explorer
 
