@@ -245,7 +245,6 @@ declare module p2 {
 
         enableMotor(): void;
         disableMotor(): void;
-        motorIsEnabled(): boolean;
         setLimits(lower: number, upper: number): void;
         setMotorSpeed(speed: number): void;
         getMotorSpeed(): number;
@@ -671,7 +670,7 @@ declare module p2 {
         static PLANE: number;
         static CONVEX: number;
         static LINE: number;
-        static RECTANGLE: number;
+        static BOX: number;
         static CAPSULE: number;
         static HEIGHTFIELD: number;
 
