@@ -2,7 +2,6 @@
 
 declare module PIXI {
 
-    export var game: Phaser.Game;
     export var WEBGL_RENDERER: number;
     export var CANVAS_RENDERER: number;
     export var VERSION: string;

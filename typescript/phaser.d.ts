@@ -752,6 +752,7 @@ declare module Phaser {
         static getFree(): number;
         static length: number;
         static log(): void;
+        static clear(): void;
 
     }
 
@@ -4498,6 +4499,8 @@ declare module Phaser {
         render(displayObject: PIXI.DisplayObject, matrix?: Phaser.Matrix, clear?: boolean): void;
         renderXY(displayObject: PIXI.DisplayObject, x: number, y: number, clear?: boolean): void;
         renderRawXY(displayObject: PIXI.DisplayObject, x: number, y: number, clear?: boolean): void;
+        getBase64(type?: string, encoderOptions?: number): string;
+        getImage(type?: string, encoderOptions?: number, onLoadCallback?: Function, onErrorCallback?: Function): HTMLImageElement;
 
     }
 
@@ -5397,7 +5400,7 @@ declare module Phaser {
         copy(x: number, y: number, width: number, height: number, layer?: any): Phaser.Tile[];
         create(name: string, width: number, height: number, tileWidth: number, tileHeight: number, group?: Phaser.Group): Phaser.TilemapLayer;
         createBlankLayer(name: string, width: number, height: number, tileWidth: number, tileHeight: number, group?: Phaser.Group): Phaser.TilemapLayer;
-        createFromObjects(name: string, search: number | string | number[], key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean, adjustSize?: boolean): Phaser.Sprite[];
+        createFromObjects(name: string, search: number | string | [string, any] | null, key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean, adjustSize?: boolean): Phaser.Sprite[];
         createFromTiles(tiles: any, replacements: any, key: string, layer?: any, group?: Phaser.Group, properties?: any): number;
         createLayer(layer: any, width?: number, height?: number, group?: Phaser.Group): Phaser.TilemapLayer;
         destroy(): void;
@@ -5427,7 +5430,7 @@ declare module Phaser {
         removeTile(x: number, y: number, layer?: any): Phaser.Tile;
         removeTileWorldXY(x: number, y: number, tileWidth: number, tileHeight: number, layer?: any): Phaser.Tile;
         replace(source: number, dest: number, x: number, y: number, width: number, height: number, layer?: any): void;
-        searchTileIndex(index: number, skip?: number, reverse?: boolean, layer?: any): Phaser.Tile;
+        searchTileIndex(index: number, skip?: number, reverse?: boolean, layer?: any, all?: boolean): Phaser.Tile | Phaser.Tile[];
         setCollision(indexes: any, collides?: boolean, layer?: any, recalculate?: boolean): void;
         setCollisionBetween(start: number, stop: number, collides?: boolean, layer?: any, recalculate?: boolean): void;
         setCollisionByExclusion(indexes: any[], collides?: boolean, layer?: any, recalculate?: boolean): void;
