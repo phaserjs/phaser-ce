@@ -535,7 +535,7 @@ Phaser.BitmapText.prototype.updateTransform = function ()
 
 /**
  * @name Phaser.BitmapText#letterSpacing
- * @property {string} letterSpacing - Sets the letter spacing between each character of this Bitmap Text. Can be a positive value to increase the space, or negative to reduce it. Spacing is applied after the kerning values have been set.
+ * @property {number} letterSpacing - Sets the letter spacing between each character of this Bitmap Text. Can be a positive value to increase the space, or negative to reduce it. Spacing is applied after the kerning values have been set.
  */
 Object.defineProperty(Phaser.BitmapText.prototype, 'letterSpacing', {
 
