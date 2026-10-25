@@ -168,8 +168,12 @@ if (typeof window.Uint32Array !== 'function' && typeof window.Uint32Array !== 'o
 if (!window.console)
 {
     window.console = {};
-    window.console.log = window.console.assert = function () {};
-    window.console.warn = window.console.assert = function () {};
+
+    window.console.log = function () {};
+    window.console.warn = function () {};
+    window.console.error = function () {};
+    window.console.group = function () {};
+    window.console.groupEnd = function () {};
 }
 
 /**
