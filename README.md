@@ -164,8 +164,8 @@ Phaser CE includes a grunt based build system, which allows you to strip out  fe
 As a result of this work the minimum build size of Phaser CE is now just 80KB minified and gzipped.
 
 1. Run `npm install`
-2. Run `grunt custom` to see the module and argument lists (it will error; that's OK)
-3. Run, e.g., `grunt custom --exclude=sound,keyboard` and then find the built script in [dist](dist/).
+2. Run `npm run grunt custom` to see the module and argument lists (it will error; that's OK)
+3. Run, e.g., `npm run grunt custom -- --exclude=sound,keyboard` and then find the built script in [dist](dist/).
 
 See the [Creating a Custom Phaser Build](https://phaser.io/tutorials/creating-custom-phaser-builds) tutorial for details.
 
@@ -173,7 +173,7 @@ See the [Creating a Custom Phaser Build](https://phaser.io/tutorials/creating-cu
 
 Should you wish to build Phaser CE from source you can take advantage of the provided [Grunt](https://gruntjs.com/) scripts. Ensure you have the required packages by running `npm install` first.
 
-Run `grunt` to perform a default build to the `dist` folder.
+Run `npm run grunt` to perform a default build to the `dist` folder.
 
 ### Packaging a new release
 
@@ -191,7 +191,7 @@ Releases of new versions of Phaser CE are under the community's control. If you 
 
 5. From the root repo folder, run `npm run test` and make sure there are no errors. If there are, please fix them, or request that the original author of the code does so.
 
-6. Once ESLint passes run `grunt release`, sit back, and wait. It will build all of the versions of Phaser CE required, update the doc files, TypeScript defs and lots more.
+6. Once ESLint passes run `npm run grunt release`, sit back, and wait. It will build all of the versions of Phaser CE required, update the doc files, TypeScript defs and lots more.
 
 7. Run `npm run check-version` and verify all the version numbers match.
 
