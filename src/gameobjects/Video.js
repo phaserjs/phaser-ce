@@ -546,7 +546,16 @@ Phaser.Video.prototype = {
         this.video.setAttribute('autoplay', 'autoplay');
         this.video.setAttribute('playsinline', 'playsinline');
         this.video.addEventListener('loadeddata', function (event) { _this.updateTexture(event); }, true);
-        this.video.src = window.URL.createObjectURL(blob);
+
+        if (window.URL && window.URL.createObjectURL)
+        {
+            this.video.src = window.URL.createObjectURL(blob);
+        }
+        else
+        {
+            console.warn('Unable to create video from Blob. Missing window.URL.createObjectURL');
+        }
+
         this.video.canplay = true;
 
         return this;
