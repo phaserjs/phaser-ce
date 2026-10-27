@@ -2033,7 +2033,9 @@ Phaser.Tilemap.prototype = {
         }
 
         args[0] = txt;
-        console.log.apply(console, args);
+
+        // IE9's console.log is a host object without .apply
+        Function.prototype.apply.call(console.log, console, args);
     },
 
     /**
