@@ -46,21 +46,18 @@ if (!Function.prototype.bind)
             function bound ()
             {
                 var args = boundArgs.concat(slice.call(arguments));
-                target.apply(this instanceof bound ? this : thisArg, args);
+
+                return target.apply(this instanceof bound ? this : thisArg, args);
             }
 
-            bound.prototype = (function F (proto)
-            {
-                if (proto)
-                {
-                    F.prototype = proto;
-                }
+            var Empty = function () {};
 
-                if (!(this instanceof F))
-                {
-                    return new F();
-                }
-            })(target.prototype);
+            if (target.prototype)
+            {
+                Empty.prototype = target.prototype;
+            }
+
+            bound.prototype = new Empty();
 
             return bound;
         };
@@ -126,6 +123,12 @@ if (typeof window.Uint32Array !== 'function' && typeof window.Uint32Array !== 'o
         var proto = new Array();
         /* eslint-enable no-array-constructor */
 
+        // Never replace a native implementation
+        if (window[type])
+        {
+            return;
+        }
+
         window[type] = function (arg)
         {
             if (typeof(arg) === 'number')
@@ -152,14 +155,14 @@ if (typeof window.Uint32Array !== 'function' && typeof window.Uint32Array !== 'o
         };
 
         window[type].prototype = proto;
-        window[type].constructor = window[type];
+        window[type].prototype.constructor = window[type];
     };
 
-    CheapArray('Float32Array'); // jshint ignore:line
-    CheapArray('Uint32Array'); // jshint ignore:line
-    CheapArray('Uint16Array'); // jshint ignore:line
-    CheapArray('Int16Array'); // jshint ignore:line
-    CheapArray('ArrayBuffer'); // jshint ignore:line
+    CheapArray('Float32Array');
+    CheapArray('Uint32Array');
+    CheapArray('Uint16Array');
+    CheapArray('Int16Array');
+    CheapArray('ArrayBuffer');
 }
 
 /**
