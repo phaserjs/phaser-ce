@@ -126,7 +126,7 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
         {
             var graphicsData = webGL.data[i];
             graphicsData.reset();
-            PIXI.WebGLGraphics.graphicsDataPool.push(graphicsData);
+            PIXI.WebGLGraphics.graphicsDataPool[gl.id].push(graphicsData);
         }
 
         // clear the array and reset the index..
@@ -234,7 +234,7 @@ PIXI.WebGLGraphics.switchMode = function (webGL, type)
 
     if(!webGL.data.length)
     {
-        webGLData = PIXI.WebGLGraphics.graphicsDataPool.pop() || new PIXI.WebGLGraphicsData(webGL.gl);
+        webGLData = PIXI.WebGLGraphics.graphicsDataPool[webGL.gl.id].pop() || new PIXI.WebGLGraphicsData(webGL.gl);
         webGLData.mode = type;
         webGL.data.push(webGLData);
     }
@@ -244,7 +244,7 @@ PIXI.WebGLGraphics.switchMode = function (webGL, type)
 
         if(webGLData.mode !== type || type === 1)
         {
-            webGLData = PIXI.WebGLGraphics.graphicsDataPool.pop() || new PIXI.WebGLGraphicsData(webGL.gl);
+            webGLData = PIXI.WebGLGraphics.graphicsDataPool[webGL.gl.id].pop() || new PIXI.WebGLGraphicsData(webGL.gl);
             webGLData.mode = type;
             webGL.data.push(webGLData);
         }
@@ -856,6 +856,11 @@ PIXI.WebGLGraphics.buildPoly = function (graphicsData, webGLData)
     return true;
 };
 
+/**
+ * Pools of unused WebGLGraphicsData, one per WebGL context id.
+ *
+ * @type {Array<?PIXI.WebGLGraphicsData[]>}
+ */
 PIXI.WebGLGraphics.graphicsDataPool = [];
 
 /**

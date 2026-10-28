@@ -255,6 +255,8 @@ PIXI.WebGLRenderer.prototype.initContext = function ()
 
     PIXI.instances[this.glContextId] = this;
 
+    PIXI.WebGLGraphics.graphicsDataPool[this.glContextId] = [];
+
     // set up the default pixi settings..
     gl.disable(gl.DEPTH_TEST);
     gl.disable(gl.CULL_FACE);
@@ -617,6 +619,8 @@ PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
 PIXI.WebGLRenderer.prototype.destroy = function ()
 {
     PIXI.glContexts[this.glContextId] = null;
+
+    PIXI.WebGLGraphics.graphicsDataPool[this.glContextId] = null;
 
     this.projection = null;
     this.offset = null;
