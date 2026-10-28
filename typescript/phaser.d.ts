@@ -1474,6 +1474,7 @@ declare module Phaser {
         alignH?: boolean;
         alignV?: boolean;
         antialias?: boolean;
+        antialiasGL?: boolean;
         backgroundColor?: number | string;
         canvas?: HTMLCanvasElement;
         canvasId?: string;

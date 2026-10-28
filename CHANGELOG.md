@@ -1,5 +1,15 @@
 # Change Log
 
+## Unreleased
+
+### New Features
+
+- The game config now has an `antialiasGL` option for the WebGL context's `antialias` attribute, separate from texture smoothing.
+
+### Thanks
+
+@asger-finding
+
 ## Version 2.21.0 - 23 October 2026
 
 ### New Features
