@@ -18,6 +18,11 @@
  *
  * You can disable the debug module by omitting it from a custom build or by creating a Phaser Game with `{ enableDebug: false }`.
  *
+ * When Phaser is built without the debug module, the debug methods are replaced with empty functions, so you can leave any debug calls in your code and they will be ignored.
+ *
+ * But if you create a Phaser Game with `{ enableDebug: false }`, it will have no debug module at all and attempting to access it will error.
+ * Either remove the debug calls from your code or check for the existence of `game.debug` first.
+ *
  * @class Phaser.Utils.Debug
  * @constructor
  * @param {Phaser.Game} game - A reference to the currently running game.
