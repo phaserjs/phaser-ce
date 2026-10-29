@@ -2,7 +2,7 @@
 
 Phaser CE is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development.
 
-Phaser CE is based on Phaser v2.6.2 by Photon Storm. [Phaser](http://phaser.io/) is the current and fully maintained version.
+Phaser CE is based on Phaser v2.6.2 by Photon Storm. [Phaser](https://phaser.io/phaser4) is the current and fully maintained version.
 
 The [current Phaser CE release is 2.21.0](https://github.com/phaserjs/phaser-ce/releases/tag/v2.21.0).
 
@@ -18,6 +18,7 @@ If you need API documentation for a [previous version](https://github.com/phaser
 
 ## Contents
 
+- [What is Phaser CE for?](#purpose)
 - [Requirements](#requirements)
 - [Download Phaser CE](#download)
 - [Getting Started](#getting-started)
@@ -25,6 +26,17 @@ If you need API documentation for a [previous version](https://github.com/phaser
 - [Weekly Newsletter](#newsletter)
 - [Contributing](#contributing)
 - [Change Log](#change-log)
+
+<a name="purpose"></a>
+
+## What is Phaser CE for?
+
+Phaser CE is a community-maintained continuation of Phaser 2. It is intended for:
+
+- Maintaining existing Phaser 2 games.
+- Projects that must support legacy browsers like Internet Explorer 9+ or older Android.
+- Projects that rely on features not carried into newer versions, such as Creature mesh animation, Ninja physics, or P2 physics.
+- For new projects, we recommend [Phaser](https://phaser.io/phaser4), the current, fully maintained version.
 
 <a name="requirements"></a>
 
