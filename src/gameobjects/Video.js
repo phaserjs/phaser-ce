@@ -553,7 +553,7 @@ Phaser.Video.prototype = {
         }
         else
         {
-            console.warn('Unable to create video from Blob. Missing window.URL.createObjectURL');
+            console.warn('Unable to create video from Blob.');
         }
 
         this.video.canplay = true;
@@ -1047,7 +1047,6 @@ Phaser.Video.prototype = {
      */
     checkVideoProgress: function ()
     {
-        // if (this.video.readyState === 2 || this.video.readyState === 4)
         if (this.video.readyState === 4)
         {
             this._pendingChangeSource = false;
@@ -1065,7 +1064,7 @@ Phaser.Video.prototype = {
             }
             else
             {
-                console.warn('Phaser.Video: Unable to start downloading video in time', this.isStreaming);
+                console.warn('Video is still not ready. Its texture will not be updated.');
             }
         }
     },
@@ -1136,7 +1135,7 @@ Phaser.Video.prototype = {
 
         if (this.snapshot === null)
         {
-            console.warn('Video.grab cannot run because Phaser.BitmapData is unavailable');
+            console.warn('Cannot grab Video because no BitmapData is available for the snapshot.');
             return;
         }
 
