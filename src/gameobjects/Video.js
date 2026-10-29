@@ -550,13 +550,12 @@ Phaser.Video.prototype = {
         if (window.URL && window.URL.createObjectURL)
         {
             this.video.src = window.URL.createObjectURL(blob);
+            this.video.canplay = true;
         }
         else
         {
             console.warn('Unable to create video from Blob.');
         }
-
-        this.video.canplay = true;
 
         return this;
     },
