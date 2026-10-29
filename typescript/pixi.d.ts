@@ -760,7 +760,7 @@ declare module PIXI {
 
     export class WebGLGraphics {
 
-        static graphicsDataPool: any[];
+        static graphicsDataPool: WebGLGraphicsData[][];
 
         static renderGraphics(graphics: Phaser.Graphics, renderRession: RenderSession): void;
         static updateGraphics(graphics: Phaser.Graphics, gl: WebGLRenderingContext): void;
