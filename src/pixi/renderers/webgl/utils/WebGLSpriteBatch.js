@@ -782,7 +782,7 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
             return;
         }
     }
-    else
+    else if (!PIXI._enableMultiTextureToggle)
     {
         gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
     }
