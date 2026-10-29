@@ -10,6 +10,10 @@
 
 - Fixed WebGL errors when a Graphics object reused pooled WebGL data from another game.
 
+### New Features
+
+- The game config now has an `antialiasGL` option for the WebGL context's `antialias` attribute, separate from texture smoothing.
+
 ### Thanks
 
 @asger-finding

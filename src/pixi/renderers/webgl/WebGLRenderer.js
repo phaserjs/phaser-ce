@@ -117,7 +117,7 @@ PIXI.WebGLRenderer = function (game, config)
      */
     this._contextOptions = {
         alpha: this.transparent,
-        antialias: game.antialias,
+        antialias: (config.antialiasGL === undefined) ? game.antialias : config.antialiasGL,
         failIfMajorPerformanceCaveat: config.failIfMajorPerformanceCaveat,
         premultipliedAlpha: this.transparent && this.transparent !== 'notMultiplied',
         stencil: true,

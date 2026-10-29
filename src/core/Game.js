@@ -564,6 +564,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
  * @property {boolean}            [GameConfig.alignH=false]                  - Sets {@link Phaser.ScaleManager#pageAlignHorizontally}.
  * @property {boolean}            [GameConfig.alignV=false]                  - Sets {@link Phaser.ScaleManager#pageAlignVertically}.
  * @property {boolean}            [GameConfig.antialias=true]
+ * @property {boolean}            [GameConfig.antialiasGL]                   - Sets the WebGL context's `antialias` attribute separately from texture smoothing. Defaults to `antialias`.
  * @property {number|string}      [GameConfig.backgroundColor=0]             - Sets {@link Phaser.Stage#backgroundColor}.
  * @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
  * @property {string}             [GameConfig.canvasID]                      - `id` attribute value to assign to the game canvas.
