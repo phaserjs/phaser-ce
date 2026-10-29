@@ -9,6 +9,8 @@
 ### Bug Fixes
 
 - Fixed WebGL errors when a Graphics object reused pooled WebGL data from another game.
+- Fixed errors and omissions in the TypeScript declarations.
+- Added missing methods in the `console` polyfill for Internet Explorer 9.
 
 ### New Features
 
