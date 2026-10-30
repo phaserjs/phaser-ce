@@ -33,10 +33,11 @@ If you need API documentation for a [previous version](https://github.com/phaser
 
 Phaser CE is a community-maintained continuation of Phaser 2. It is intended for:
 
-- Maintaining existing Phaser 2 games.
-- Projects that must support legacy browsers like Internet Explorer 9+ or older Android.
-- Projects that rely on features not carried into newer versions, such as Creature mesh animation, Ninja physics, or P2 physics.
-- For new projects, we recommend [Phaser](https://phaser.io/phaser4), the current, fully maintained version.
+- Maintaining existing Phaser 2 games
+- Projects that must support legacy browsers like Internet Explorer 9+ or older Android
+- Projects that rely on features not carried into newer versions, such as Creature mesh animation, Ninja physics, or P2 physics
+
+For new projects, we recommend [Phaser](https://phaser.io/phaser4), the current, fully maintained version.
 
 <a name="requirements"></a>
 
