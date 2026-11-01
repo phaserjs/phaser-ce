@@ -42,6 +42,11 @@ function _CreateFramebuffer (gl, width, height, scaleMode, textureUnit)
     gl.bindRenderbuffer(gl.RENDERBUFFER, depthStencilBuffer);
     gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);
     colorBuffer = _CreateEmptyTexture(gl, width, height, scaleMode);
+    var renderer = PIXI.instances[gl.id];
+    if (renderer)
+    {
+        renderer.textureArray[textureUnit] = null;
+    }
     gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, colorBuffer, 0);
     fbStatus = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
     if(fbStatus !== gl.FRAMEBUFFER_COMPLETE)
@@ -89,6 +94,7 @@ PIXI.FilterTexture = function (gl, width, height, scaleMode, textureUnit)
     this.width = width;
     this.height = height;
     this.renderBuffer = this.frameBuffer.renderBuffer;
+    this.textureUnit = textureUnit;
 };
 
 PIXI.FilterTexture.prototype.constructor = PIXI.FilterTexture;
@@ -121,8 +127,14 @@ PIXI.FilterTexture.prototype.resize = function (width, height)
     this.height = height;
 
     var gl = this.gl;
+    gl.activeTexture(gl.TEXTURE0 + this.textureUnit);
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width , height , 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+    var renderer = PIXI.instances[gl.id];
+    if (renderer)
+    {
+        renderer.textureArray[this.textureUnit] = null;
+    }
 
     // update the stencil buffer width and height
     gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);

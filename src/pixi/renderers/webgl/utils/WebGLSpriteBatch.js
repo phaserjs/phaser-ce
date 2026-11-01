@@ -257,19 +257,6 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 {
     var texture = sprite.texture;
 
-    if (PIXI._enableMultiTextureToggle)
-    {
-        var baseTexture = texture.baseTexture;
-        var gl = this.gl;
-        if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
-        {
-            this.flush();
-            gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
-            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-            PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
-        }
-    }
-
     //  They provided an alternative rendering matrix, so use it
     var wt = sprite.worldTransform;
 
@@ -290,6 +277,11 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 
     // if the uvs have not updated then no point rendering just yet!
     if (!uvs)
+    {
+        return;
+    }
+
+    if (PIXI._enableMultiTextureToggle && !this.bindTexture(texture.baseTexture))
     {
         return;
     }
@@ -443,18 +435,13 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
 {
     var texture = sprite.tilingTexture;
-    var textureIndex = sprite.texture.baseTexture.textureIndex;
+    var textureIndex = texture.baseTexture.textureIndex;
 
     if (PIXI._enableMultiTextureToggle)
     {
-        var baseTexture = texture.baseTexture;
-        var gl = this.gl;
-        if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+        if (!this.bindTexture(texture.baseTexture))
         {
-            this.flush();
-            gl.activeTexture(gl.TEXTURE0 + textureIndex);
-            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-            PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+            return;
         }
     }
 
@@ -637,7 +624,10 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         gl.vertexAttribPointer(shader.colorAttribute, 4, gl.UNSIGNED_BYTE, true, stride, 16);
 
         // Texture index
-        gl.vertexAttribPointer(shader.aTextureIndex, 1, gl.FLOAT, false, stride, 20);
+        if (shader.aTextureIndex >= 0)
+        {
+            gl.vertexAttribPointer(shader.aTextureIndex, 1, gl.FLOAT, false, stride, 20);
+        }
     }
 
     // upload the verts to the buffer
@@ -773,10 +763,10 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
 
     var gl = this.gl;
 
-    // check if a texture is dirty..
-    if (texture._dirty[gl.id])
+    // Multi-texture batches were bound to their assigned units as sprites were added.
+    if (PIXI._enableMultiTextureToggle)
     {
-        if (!this.renderSession.renderer.updateTexture(texture))
+        if (texture._dirty[gl.id] && !this.renderSession.renderer.updateTexture(texture))
         {
             //  If updateTexture returns false then we cannot render it, so bail out now
             return;
@@ -784,7 +774,20 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
     }
     else
     {
-        gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
+        gl.activeTexture(gl.TEXTURE0);
+
+        if (texture._dirty[gl.id])
+        {
+            if (!this.renderSession.renderer.updateTexture(texture))
+            {
+                return;
+            }
+        }
+        else
+        {
+            gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
+            this.renderSession.renderer.textureArray[0] = texture;
+        }
     }
 
     gl.drawElements(gl.TRIANGLES, size * 6, gl.UNSIGNED_SHORT, startIndex * 6 * 2);
@@ -808,6 +811,35 @@ PIXI.WebGLSpriteBatch.prototype.stop = function ()
 PIXI.WebGLSpriteBatch.prototype.start = function ()
 {
     this.dirty = true;
+};
+
+PIXI.WebGLSpriteBatch.prototype.bindTexture = function (baseTexture)
+{
+    var gl = this.gl;
+    var renderer = this.renderSession.renderer;
+    var textureIndex = baseTexture.textureIndex;
+
+    if (baseTexture._dirty[gl.id])
+    {
+        if (renderer.textureArray[textureIndex] !== baseTexture)
+        {
+            this.flush();
+        }
+
+        if (baseTexture._dirty[gl.id] && !renderer.updateTexture(baseTexture))
+        {
+            return false;
+        }
+    }
+    else if (renderer.textureArray[textureIndex] !== baseTexture)
+    {
+        this.flush();
+        gl.activeTexture(gl.TEXTURE0 + textureIndex);
+        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+        renderer.textureArray[textureIndex] = baseTexture;
+    }
+
+    return true;
 };
 
 /**

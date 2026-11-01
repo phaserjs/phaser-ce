@@ -193,6 +193,14 @@ PIXI.WebGLRenderer = function (game, config)
      */
     this.currentBatchedTextures = [];
 
+    /**
+     * Tracks the textures bound to each unit for this WebGL context.
+     * @property textureArray
+     * @type Array
+     * @private
+     */
+    this.textureArray = [];
+
     //  Needed?
     this.renderSession.game = this.game;
     this.renderSession.gl = this.gl;
@@ -381,6 +389,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
     }
 
     this.renderSession.maxTextureAvailableSpace = maxTextureAvailableSpace;
+    this.textureArray.length = 0;
 
     return this.currentBatchedTextures;
 };
@@ -513,6 +522,7 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
     gl.activeTexture(gl.TEXTURE0 + texture.textureIndex);
 
     gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
+    this.textureArray[texture.textureIndex] = texture;
 
     gl.compressedTexImage2D(
         gl.TEXTURE_2D,
@@ -577,6 +587,7 @@ PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
     gl.activeTexture(gl.TEXTURE0 + texture.textureIndex);
 
     gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
+    this.textureArray[texture.textureIndex] = texture;
 
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, texture.premultipliedAlpha);
 

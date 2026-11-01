@@ -197,13 +197,6 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
         this.renderSession.blendModeManager.setBlendMode(sprite.blendMode);
     }
 
-    var textureIndex = this.currentBaseTexture.textureIndex;
-    var gl = this.gl;
-    
-    gl.activeTexture(gl.TEXTURE0 + textureIndex);
-    gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
-    PIXI.WebGLRenderer.textureArray[textureIndex] = this.currentBaseTexture;
-
     for(var i = 0,j = children.length; i < j; i++)
     {
         this.renderSprite(children[i]);
@@ -221,17 +214,36 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
     var texture = sprite.texture;
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
-    var textureIndex = sprite.texture.baseTexture.textureIndex;
+    var renderer = this.renderSession.renderer;
+    var textureIndex = baseTexture.textureIndex;
+    var cachedTexture = renderer.textureArray[textureIndex];
 
-    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture && // eslint-disable-line eqeqeq
-        baseTexture._glTextures[gl.id] && !sprite.texture.baseTexture.skipRender)
+    if (baseTexture._dirty[gl.id] && !baseTexture.skipRender)
     {
-        this.flush();
+        if (cachedTexture !== baseTexture && cachedTexture)
+        {
+            this.flush();
+        }
+
+        if (!renderer.updateTexture(baseTexture))
+        {
+            return;
+        }
+    }
+    else if (cachedTexture !== baseTexture && !baseTexture.skipRender)
+    {
+        if (!PIXI._enableMultiTextureToggle || cachedTexture)
+        {
+            this.flush();
+        }
         gl.activeTexture(gl.TEXTURE0 + textureIndex);
         gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+        renderer.textureArray[textureIndex] = baseTexture;
+
         if(!sprite.texture._uvs) { return; }
     }
+
+    this.currentBaseTexture = baseTexture;
 
     // sprite = children[i];
     if(!sprite.visible) { return; }
@@ -384,10 +396,12 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function ()
 
     // bind the current texture
 
-    if(!this.currentBaseTexture._glTextures[gl.id])
+    if (this.currentBaseTexture._dirty[gl.id])
     {
-        this.renderSession.renderer.updateTexture(this.currentBaseTexture, gl);
-        return;
+        if (!this.renderSession.renderer.updateTexture(this.currentBaseTexture))
+        {
+            return;
+        }
     }
 
     // gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
@@ -453,5 +467,8 @@ PIXI.WebGLFastSpriteBatch.prototype.start = function ()
     gl.vertexAttribPointer(this.shader.aRotation, 1, gl.FLOAT, false, stride, 6 * 4);
     gl.vertexAttribPointer(this.shader.aTextureCoord, 2, gl.FLOAT, false, stride, 7 * 4);
     gl.vertexAttribPointer(this.shader.colorAttribute, 1, gl.FLOAT, false, stride, 9 * 4);
-    gl.vertexAttribPointer(this.shader.aTextureIndex, 1, gl.FLOAT, false, stride, 10 * 4);
+    if (this.shader.aTextureIndex >= 0)
+    {
+        gl.vertexAttribPointer(this.shader.aTextureIndex, 1, gl.FLOAT, false, stride, 10 * 4);
+    }
 };
