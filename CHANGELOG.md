@@ -47,6 +47,7 @@
   - Removed: `Phaser.GAMES`.
   - Removed: `PIXI.game`.
   - Removed: p2 `motorIsEnabled()`.
+- Fixed multitexture batching drawing sprites with the wrong texture after `WebGLRenderer#updateTexture()`.
 
 ### New Features
 
