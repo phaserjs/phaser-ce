@@ -52,7 +52,7 @@
 ### New Features
 
 - The game config now has an `antialiasGL` option for the WebGL context's `antialias` attribute, separate from texture smoothing.
-- Phaser.Loader#uploadTextures uploads images to the GPU as soon as they load instead of when they're first rendered.
+- `Phaser.Loader#uploadTextures` uploads images to the GPU as soon as they load instead of when they're first rendered.
 
 ### Thanks
 
