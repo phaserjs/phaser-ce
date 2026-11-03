@@ -61,7 +61,7 @@ PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// project
             renderSession.stencilManager.pushStencil(graphics, webGLData, renderSession);
 
             // render quad..
-            gl.drawElements(gl.TRIANGLE_FAN, 4, gl.UNSIGNED_SHORT, (webGLData.indices.length - 4) * 2);
+            gl.drawElements(gl.TRIANGLE_FAN, 4, webGLData.indexType, (webGLData.indices.length - 4) * webGLData.glIndicies.BYTES_PER_ELEMENT);
 
             renderSession.stencilManager.popStencil(graphics, webGLData, renderSession);
         }
@@ -89,7 +89,7 @@ PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// project
 
             // set the index buffer!
             gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, webGLData.indexBuffer);
-            gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, gl.UNSIGNED_SHORT, 0);
+            gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, webGLData.indexType, 0);
         }
     }
 };
@@ -878,6 +878,7 @@ PIXI.WebGLGraphicsData = function (gl)
     this.indices = [];
     this.buffer = gl.createBuffer();
     this.indexBuffer = gl.createBuffer();
+    this.indexType = gl.UNSIGNED_SHORT;
     this.mode = 1;
     this.alpha = 1;
     this.dirty = true;
@@ -905,7 +906,19 @@ PIXI.WebGLGraphicsData.prototype.upload = function ()
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
     gl.bufferData(gl.ARRAY_BUFFER, this.glPoints, gl.STATIC_DRAW);
 
-    this.glIndicies = new Uint16Array(this.indices);
+    // complex polygons store 2 numbers per vertex, everything else 6
+    var vertexCount = this.points.length / (this.mode === 1 ? 2 : 6);
+
+    if (vertexCount > 65536 && gl.getExtension('OES_element_index_uint'))
+    {
+        this.glIndicies = new Uint32Array(this.indices);
+        this.indexType = gl.UNSIGNED_INT;
+    }
+    else
+    {
+        this.glIndicies = new Uint16Array(this.indices);
+        this.indexType = gl.UNSIGNED_SHORT;
+    }
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.glIndicies, gl.STATIC_DRAW);

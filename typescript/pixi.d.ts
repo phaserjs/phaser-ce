@@ -789,6 +789,7 @@ declare module PIXI {
         indices: any[];
         buffer: WebGLBuffer;
         indexBuffer: WebGLBuffer;
+        indexType: number;
         mode: number;
         alpha: number;
         dirty: boolean;

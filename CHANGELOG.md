@@ -14,6 +14,7 @@
 ### Bug Fixes
 
 - Fixed WebGL errors when a Graphics object reused pooled WebGL data from another game.
+- Fixed WebGL Graphics with more than 65536 vertices rendering incompletely.
 - Added missing methods in the `console` polyfill for Internet Explorer 9.
 - Fixed the `bind()` polyfill so it returns the target's result.
 - Fixed `Phaser.Tilemap#dump()` for Internet Explorer 9.
