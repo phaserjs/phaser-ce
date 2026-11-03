@@ -11,6 +11,7 @@
 - `Phaser.Video#createVideoFromBlob()` will print a console warning instead of throwing an error if `URL` or `createObjectURL()` are unavailable. The Video will still be unusuable in that case, as before this change.
 - The `Float32Array`, `Uint32Array`, `Uint16Array`, `Int16Array`, and `ArrayBuffer` polyfills are now applied individually when native versions are missing.
 - WebGL Graphics redraw circles and ellipses faster.
+- WebGL Graphics create less garbage when redrawn.
 
 ### Bug Fixes
 

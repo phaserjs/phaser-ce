@@ -910,6 +910,8 @@ PIXI.WebGLGraphicsData = function (gl)
     this.mode = 1;
     this.alpha = 1;
     this.dirty = true;
+    this._glPointsStore = null;
+    this._glIndiciesStore = null;
 };
 
 /**
@@ -929,7 +931,9 @@ PIXI.WebGLGraphicsData.prototype.upload = function ()
     var gl = this.gl;
 
     //    this.lastIndex = graphics.graphicsData.length;
-    this.glPoints = new Float32Array(this.points);
+    this._glPointsStore = PIXI.WebGLGraphicsData.reuseTypedArray(this._glPointsStore, Float32Array, this.points.length);
+    this._glPointsStore.set(this.points);
+    this.glPoints = this._glPointsStore.subarray(0, this.points.length);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
     gl.bufferData(gl.ARRAY_BUFFER, this.glPoints, gl.STATIC_DRAW);
@@ -939,17 +943,47 @@ PIXI.WebGLGraphicsData.prototype.upload = function ()
 
     if (vertexCount > 65536 && gl.getExtension('OES_element_index_uint'))
     {
-        this.glIndicies = new Uint32Array(this.indices);
+        this._glIndiciesStore = PIXI.WebGLGraphicsData.reuseTypedArray(this._glIndiciesStore, Uint32Array, this.indices.length);
         this.indexType = gl.UNSIGNED_INT;
     }
     else
     {
-        this.glIndicies = new Uint16Array(this.indices);
+        this._glIndiciesStore = PIXI.WebGLGraphicsData.reuseTypedArray(this._glIndiciesStore, Uint16Array, this.indices.length);
         this.indexType = gl.UNSIGNED_SHORT;
     }
+
+    this._glIndiciesStore.set(this.indices);
+    this.glIndicies = this._glIndiciesStore.subarray(0, this.indices.length);
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.glIndicies, gl.STATIC_DRAW);
 
     this.dirty = false;
+};
+
+/**
+ * Returns `array` if it fits `length` elements without wasting much memory, or else a new typed array.
+ *
+ * @static
+ * @private
+ * @method PIXI.WebGLGraphicsData.reuseTypedArray
+ * @param {?(Float32Array|Uint16Array|Uint32Array)} array - The typed array to reuse, if any.
+ * @param {function} ArrayType - The typed array constructor to use.
+ * @param {number} length - The number of elements needed.
+ * @return {Float32Array|Uint16Array|Uint32Array} The reused or new typed array.
+ */
+PIXI.WebGLGraphicsData.reuseTypedArray = function (array, ArrayType, length)
+{
+    if (!(array instanceof ArrayType) || array.length > length * 4)
+    {
+        return new ArrayType(length);
+    }
+
+    if (array.length < length)
+    {
+        // doubling keeps a Graphics that grows a little every frame from reallocating every frame
+        return new ArrayType(Math.max(length, array.length * 2));
+    }
+
+    return array;
 };
