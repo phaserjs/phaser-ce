@@ -2687,6 +2687,7 @@ declare module Phaser {
         progress: number;
         progressFloat: number;
         resetLocked: boolean;
+        uploadTextures: boolean;
 
         asyncComplete(file: any, errorMessage?: string): void;
         addSyncPoint(type: string, key: string): Phaser.Loader;
@@ -2741,6 +2742,7 @@ declare module Phaser {
         totalQueuedPacks(): number;
         transformUrl(url: string, file?: any): string;
         updateProgress(): void;
+        uploadTexture(file: any): void;
         video(key: string, urls: string | string[] | any, loadEvent?: string, asBlob?: boolean): Phaser.Loader;
         withSyncPoint(callback: Function, callbackContext?: any): Phaser.Loader;
         xml(key: string, url?: string, overwrite?: boolean): Phaser.Loader;

@@ -220,6 +220,16 @@ Phaser.Loader = function (game)
     this.maxParallelDownloads = 4;
 
     /**
+     * If true, and the game uses WebGL, each loaded image is uploaded to the GPU right away instead of when it's first rendered.
+     * This moves the pause of uploading a large image from gameplay into loading.
+     * If a loaded image's `scaleMode`, `mipmap` or `premultipliedAlpha` is changed later, call its base texture's `dirty()` method.
+     *
+     * @property {boolean} uploadTextures
+     * @default
+     */
+    this.uploadTextures = false;
+
+    /**
      * A counter: if more than zero, files will be automatically added as a synchronization point.
      * @property {integer} _withSyncPointDepth
      */
@@ -2245,8 +2255,57 @@ Phaser.Loader.prototype = {
 
             console.warn('Phaser.Loader - ' + file.type + '[' + file.key + ']' + ': ' + errorMessage);
         }
+        else if (this.uploadTextures)
+        {
+            this.uploadTexture(file);
+        }
 
         this.processLoadQueue();
+    },
+
+    /**
+     * Uploads the image of a loaded file to the GPU, if the file has one and the game uses WebGL.
+     *
+     * @method Phaser.Loader#uploadTexture
+     * @private
+     * @param {object} file - The loaded file.
+     */
+    uploadTexture: function (file)
+    {
+        // An upload while the context is lost would do nothing but still mark the texture as uploaded
+        if (!this.game.isBooted || this.game.renderType !== Phaser.WEBGL || this.game.renderer.contextLost)
+        {
+            return;
+        }
+
+        var baseTexture;
+
+        switch (file.type)
+        {
+            case 'image':
+            case 'imageset':
+            case 'spritesheet':
+            case 'textureatlas':
+            case 'texture':
+                baseTexture = this.cache.getBaseTexture(file.key);
+                break;
+
+            case 'bitmapfont':
+                baseTexture = this.cache.getBaseTexture(file.key, Phaser.Cache.BITMAPFONT);
+                break;
+
+            default:
+                return;
+        }
+
+        try
+        {
+            this.game.renderer.updateTexture(baseTexture);
+        }
+        catch (e)
+        {
+            // The error, e.g. from a tainted cross-origin image, is thrown again when the texture is rendered
+        }
     },
 
     /**
