@@ -343,6 +343,12 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
         {
             if (this.tilingTexture.needsUpdate)
             {
+                if (PIXI._enableMultiTextureToggle)
+                {
+                    //  The upload rebinds a texture unit that sprites waiting in the batch may sample
+                    renderSession.spriteBatch.flush();
+                }
+
                 this.tilingTexture.baseTexture.textureIndex = this.texture.baseTexture.textureIndex;
                 renderSession.renderer.updateTexture(this.tilingTexture.baseTexture);
                 this.tilingTexture.needsUpdate = false;
