@@ -21,6 +21,22 @@ PIXI.WebGLGraphics = function ()
 PIXI.WebGLGraphics.stencilBufferLimit = 6;
 
 /**
+ * The sines of the segment angles used by buildCircle.
+ *
+ * @type {number[]}
+ * @private
+ */
+PIXI.WebGLGraphics.circleSines = [];
+
+/**
+ * The cosines of the segment angles used by buildCircle.
+ *
+ * @type {number[]}
+ * @private
+ */
+PIXI.WebGLGraphics.circleCosines = [];
+
+/**
  * Renders the graphics object
  *
  * @static
@@ -481,8 +497,19 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
 
     var totalSegs = 40;
     var seg = (Math.PI * 2) / totalSegs;
+    var sines = PIXI.WebGLGraphics.circleSines;
+    var cosines = PIXI.WebGLGraphics.circleCosines;
 
     var i = 0;
+
+    if (sines.length === 0)
+    {
+        for (i = 0; i < totalSegs + 1; i++)
+        {
+            sines.push(Math.sin(seg * i));
+            cosines.push(Math.cos(seg * i));
+        }
+    }
 
     if(graphicsData.fill)
     {
@@ -496,19 +523,20 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
         var verts = webGLData.points;
         var indices = webGLData.indices;
 
-        var vecPos = verts.length / 6;
+        var center = verts.length / 6;
+        var vecPos = center + 1;
 
-        indices.push(vecPos);
+        verts.push(x, y, r, g, b, alpha);
+
+        indices.push(center);
 
         for (i = 0; i < totalSegs + 1; i++)
         {
-            verts.push(x,y, r, g, b, alpha);
-
-            verts.push(x + Math.sin(seg * i) * width,
-                y + Math.cos(seg * i) * height,
+            verts.push(x + sines[i] * width,
+                y + cosines[i] * height,
                 r, g, b, alpha);
 
-            indices.push(vecPos++, vecPos++);
+            indices.push(center, vecPos++);
         }
 
         indices.push(vecPos - 1);
@@ -522,8 +550,8 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
 
         for (i = 0; i < totalSegs + 1; i++)
         {
-            graphicsData.points.push(x + Math.sin(seg * i) * width,
-                y + Math.cos(seg * i) * height);
+            graphicsData.points.push(x + sines[i] * width,
+                y + cosines[i] * height);
         }
 
         PIXI.WebGLGraphics.buildLine(graphicsData, webGLData);
