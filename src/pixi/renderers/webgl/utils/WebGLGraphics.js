@@ -137,8 +137,11 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
     {
         graphics.clearDirty = false;
 
-        // lop through and return all the webGLDatas to the object pool so than can be reused later on
-        for (i = 0; i < webGL.data.length; i++)
+        /*
+         * lop through and return all the webGLDatas to the object pool so than can be reused later on
+         * in reverse, so rebuilding takes each one back to the batch its typed arrays were sized for
+         */
+        for (i = webGL.data.length - 1; i >= 0; i--)
         {
             var graphicsData = webGL.data[i];
             graphicsData.reset();
