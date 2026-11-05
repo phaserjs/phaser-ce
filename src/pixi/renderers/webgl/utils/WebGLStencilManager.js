@@ -127,7 +127,6 @@ PIXI.WebGLStencilManager.prototype.pushStencil = function (graphics, webGLData, 
  */
 PIXI.WebGLStencilManager.prototype.bindGraphics = function (graphics, webGLData, renderSession)
 {
-    // if(this._currentGraphics === graphics)return;
     this._currentGraphics = graphics;
 
     var gl = this.gl;
@@ -167,7 +166,6 @@ PIXI.WebGLStencilManager.prototype.bindGraphics = function (graphics, webGLData,
     }
     else
     {
-        // renderSession.shaderManager.activatePrimitiveShader();
         shader = renderSession.shaderManager.primitiveShader;
         renderSession.shaderManager.setShader(shader);
 
@@ -252,7 +250,6 @@ PIXI.WebGLStencilManager.prototype.popStencil = function (graphics, webGLData, r
         }
         else
         {
-            //  console.log("<<>>")
             if(!this.reverse)
             {
                 gl.stencilFunc(gl.EQUAL, 0xFF - (level + 1), 0xFF);

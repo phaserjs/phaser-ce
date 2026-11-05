@@ -176,8 +176,6 @@ PIXI.StripShader.prototype.init = function ()
     this.colorAttribute = gl.getAttribLocation(program, 'aColor');
     this.aTextureIndex = gl.getAttribLocation(program, 'aTextureIndex');
 
-    // this.dimensions = gl.getUniformLocation(this.program, 'dimensions');
-
     // get and store the attributes
     this.aVertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
     this.aTextureCoord = gl.getAttribLocation(program, 'aTextureCoord');

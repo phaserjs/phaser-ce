@@ -188,11 +188,8 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
 
                         var canDrawUsingSimple = PIXI.WebGLGraphics.buildPoly(data, webGLData);
 
-                        //     console.log(canDrawUsingSimple);
-
                         if(!canDrawUsingSimple)
                         {
-                        //    console.log("<>>>")
                             webGLData = PIXI.WebGLGraphics.switchMode(webGL, 1);
                             PIXI.WebGLGraphics.buildComplexPoly(data, webGLData);
                         }
@@ -933,7 +930,6 @@ PIXI.WebGLGraphicsData.prototype.upload = function ()
 {
     var gl = this.gl;
 
-    //    this.lastIndex = graphics.graphicsData.length;
     this._glPointsStore = PIXI.WebGLGraphicsData.reuseTypedArray(this._glPointsStore, Float32Array, this.points.length);
     this._glPointsStore.set(this.points);
     this.glPoints = this._glPointsStore.subarray(0, this.points.length);

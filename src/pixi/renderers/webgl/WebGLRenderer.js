@@ -619,7 +619,6 @@ PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
 
     texture._dirty[gl.id] = false;
 
-    // return texture._glTextures[gl.id];
     return true;
 };
 

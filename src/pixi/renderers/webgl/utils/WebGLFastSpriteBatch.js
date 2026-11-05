@@ -199,7 +199,7 @@ PIXI.WebGLFastSpriteBatch.prototype.render = function (spriteBatch)
 
     var textureIndex = this.currentBaseTexture.textureIndex;
     var gl = this.gl;
-    
+
     gl.activeTexture(gl.TEXTURE0 + textureIndex);
     gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
     PIXI.WebGLRenderer.textureArray[textureIndex] = this.currentBaseTexture;
@@ -233,7 +233,6 @@ PIXI.WebGLFastSpriteBatch.prototype.renderSprite = function (sprite)
         if(!sprite.texture._uvs) { return; }
     }
 
-    // sprite = children[i];
     if(!sprite.visible) { return; }
 
     var uvs,
@@ -389,8 +388,6 @@ PIXI.WebGLFastSpriteBatch.prototype.flush = function ()
         this.renderSession.renderer.updateTexture(this.currentBaseTexture, gl);
         return;
     }
-
-    // gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
 
     // upload the verts to the buffer
 

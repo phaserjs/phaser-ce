@@ -99,8 +99,6 @@ PIXI.ComplexPrimitiveShader.prototype.init = function ()
     // get and store the attributes
     this.aVertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
 
-    // this.colorAttribute = gl.getAttribLocation(program, 'aColor');
-
     this.attributes = [ this.aVertexPosition, this.colorAttribute ];
 
     this.translationMatrix = gl.getUniformLocation(program, 'translationMatrix');

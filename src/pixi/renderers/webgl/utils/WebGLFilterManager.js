@@ -119,7 +119,6 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
     if(filterArea.y < 0) { filterArea.y = 0; }
     if(filterArea.height > this.height) { filterArea.height = this.height; }
 
-    // gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA,  filterArea.width, filterArea.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
     gl.bindFramebuffer(gl.FRAMEBUFFER, texture.frameBuffer);
 
     // set view port
@@ -377,8 +376,6 @@ PIXI.WebGLFilterManager.prototype.applyFilterPass = function (filter, filterArea
 
     // set the shader
     this.renderSession.shaderManager.setShader(shader);
-
-    //    gl.useProgram(shader.program);
 
     gl.uniform2f(shader.projectionVector, width / 2, -height / 2);
     gl.uniform2f(shader.offsetVector, 0,0);
