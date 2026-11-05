@@ -21,6 +21,22 @@ PIXI.WebGLGraphics = function ()
 PIXI.WebGLGraphics.stencilBufferLimit = 6;
 
 /**
+ * The sines of the segment angles used by buildCircle.
+ *
+ * @type {number[]}
+ * @private
+ */
+PIXI.WebGLGraphics.circleSines = [];
+
+/**
+ * The cosines of the segment angles used by buildCircle.
+ *
+ * @type {number[]}
+ * @private
+ */
+PIXI.WebGLGraphics.circleCosines = [];
+
+/**
  * Renders the graphics object
  *
  * @static
@@ -121,8 +137,11 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
     {
         graphics.clearDirty = false;
 
-        // lop through and return all the webGLDatas to the object pool so than can be reused later on
-        for (i = 0; i < webGL.data.length; i++)
+        /*
+         * lop through and return all the webGLDatas to the object pool so than can be reused later on
+         * in reverse, so rebuilding takes each one back to the batch its typed arrays were sized for
+         */
+        for (i = webGL.data.length - 1; i >= 0; i--)
         {
             var graphicsData = webGL.data[i];
             graphicsData.reset();
@@ -481,8 +500,19 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
 
     var totalSegs = 40;
     var seg = (Math.PI * 2) / totalSegs;
+    var sines = PIXI.WebGLGraphics.circleSines;
+    var cosines = PIXI.WebGLGraphics.circleCosines;
 
     var i = 0;
+
+    if (sines.length === 0)
+    {
+        for (i = 0; i < totalSegs + 1; i++)
+        {
+            sines.push(Math.sin(seg * i));
+            cosines.push(Math.cos(seg * i));
+        }
+    }
 
     if(graphicsData.fill)
     {
@@ -496,19 +526,20 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
         var verts = webGLData.points;
         var indices = webGLData.indices;
 
-        var vecPos = verts.length / 6;
+        var center = verts.length / 6;
+        var vecPos = center + 1;
 
-        indices.push(vecPos);
+        verts.push(x, y, r, g, b, alpha);
+
+        indices.push(center);
 
         for (i = 0; i < totalSegs + 1; i++)
         {
-            verts.push(x,y, r, g, b, alpha);
-
-            verts.push(x + Math.sin(seg * i) * width,
-                y + Math.cos(seg * i) * height,
+            verts.push(x + sines[i] * width,
+                y + cosines[i] * height,
                 r, g, b, alpha);
 
-            indices.push(vecPos++, vecPos++);
+            indices.push(center, vecPos++);
         }
 
         indices.push(vecPos - 1);
@@ -522,8 +553,8 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
 
         for (i = 0; i < totalSegs + 1; i++)
         {
-            graphicsData.points.push(x + Math.sin(seg * i) * width,
-                y + Math.cos(seg * i) * height);
+            graphicsData.points.push(x + sines[i] * width,
+                y + cosines[i] * height);
         }
 
         PIXI.WebGLGraphics.buildLine(graphicsData, webGLData);
@@ -882,6 +913,8 @@ PIXI.WebGLGraphicsData = function (gl)
     this.mode = 1;
     this.alpha = 1;
     this.dirty = true;
+    this._glPointsStore = null;
+    this._glIndiciesStore = null;
 };
 
 /**
@@ -901,7 +934,9 @@ PIXI.WebGLGraphicsData.prototype.upload = function ()
     var gl = this.gl;
 
     //    this.lastIndex = graphics.graphicsData.length;
-    this.glPoints = new Float32Array(this.points);
+    this._glPointsStore = PIXI.WebGLGraphicsData.reuseTypedArray(this._glPointsStore, Float32Array, this.points.length);
+    this._glPointsStore.set(this.points);
+    this.glPoints = this._glPointsStore.subarray(0, this.points.length);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
     gl.bufferData(gl.ARRAY_BUFFER, this.glPoints, gl.STATIC_DRAW);
@@ -911,17 +946,47 @@ PIXI.WebGLGraphicsData.prototype.upload = function ()
 
     if (vertexCount > 65536 && gl.getExtension('OES_element_index_uint'))
     {
-        this.glIndicies = new Uint32Array(this.indices);
+        this._glIndiciesStore = PIXI.WebGLGraphicsData.reuseTypedArray(this._glIndiciesStore, Uint32Array, this.indices.length);
         this.indexType = gl.UNSIGNED_INT;
     }
     else
     {
-        this.glIndicies = new Uint16Array(this.indices);
+        this._glIndiciesStore = PIXI.WebGLGraphicsData.reuseTypedArray(this._glIndiciesStore, Uint16Array, this.indices.length);
         this.indexType = gl.UNSIGNED_SHORT;
     }
+
+    this._glIndiciesStore.set(this.indices);
+    this.glIndicies = this._glIndiciesStore.subarray(0, this.indices.length);
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.glIndicies, gl.STATIC_DRAW);
 
     this.dirty = false;
+};
+
+/**
+ * Returns `array` if it fits `length` elements without wasting much memory, or else a new typed array.
+ *
+ * @static
+ * @private
+ * @method PIXI.WebGLGraphicsData.reuseTypedArray
+ * @param {?(Float32Array|Uint16Array|Uint32Array)} array - The typed array to reuse, if any.
+ * @param {function} ArrayType - The typed array constructor to use.
+ * @param {number} length - The number of elements needed.
+ * @return {Float32Array|Uint16Array|Uint32Array} The reused or new typed array.
+ */
+PIXI.WebGLGraphicsData.reuseTypedArray = function (array, ArrayType, length)
+{
+    if (!(array instanceof ArrayType) || array.length > length * 4)
+    {
+        return new ArrayType(length);
+    }
+
+    if (array.length < length)
+    {
+        // doubling keeps a Graphics that grows a little every frame from reallocating every frame
+        return new ArrayType(Math.max(length, array.length * 2));
+    }
+
+    return array;
 };
