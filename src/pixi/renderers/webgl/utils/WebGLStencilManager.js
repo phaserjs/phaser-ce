@@ -59,7 +59,7 @@ PIXI.WebGLStencilManager.prototype.pushStencil = function (graphics, webGLData, 
 
     if(webGLData.mode === 1)
     {
-        gl.drawElements(gl.TRIANGLE_FAN, webGLData.indices.length - 4, gl.UNSIGNED_SHORT, 0);
+        gl.drawElements(gl.TRIANGLE_FAN, webGLData.indices.length - 4, webGLData.indexType, 0);
 
         if(this.reverse)
         {
@@ -73,7 +73,7 @@ PIXI.WebGLStencilManager.prototype.pushStencil = function (graphics, webGLData, 
         }
 
         // draw a quad to increment..
-        gl.drawElements(gl.TRIANGLE_FAN, 4, gl.UNSIGNED_SHORT, (webGLData.indices.length - 4) * 2);
+        gl.drawElements(gl.TRIANGLE_FAN, 4, webGLData.indexType, (webGLData.indices.length - 4) * webGLData.glIndicies.BYTES_PER_ELEMENT);
 
         if(this.reverse)
         {
@@ -99,7 +99,7 @@ PIXI.WebGLStencilManager.prototype.pushStencil = function (graphics, webGLData, 
             gl.stencilOp(gl.KEEP,gl.KEEP,gl.INCR);
         }
 
-        gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, gl.UNSIGNED_SHORT, 0);
+        gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, webGLData.indexType, 0);
 
         if(!this.reverse)
         {
@@ -233,13 +233,13 @@ PIXI.WebGLStencilManager.prototype.popStencil = function (graphics, webGLData, r
             }
 
             // draw a quad to increment..
-            gl.drawElements(gl.TRIANGLE_FAN, 4, gl.UNSIGNED_SHORT, (webGLData.indices.length - 4) * 2);
+            gl.drawElements(gl.TRIANGLE_FAN, 4, webGLData.indexType, (webGLData.indices.length - 4) * webGLData.glIndicies.BYTES_PER_ELEMENT);
 
             gl.stencilFunc(gl.ALWAYS,0,0xFF);
             gl.stencilOp(gl.KEEP,gl.KEEP,gl.INVERT);
 
             // draw the triangle strip!
-            gl.drawElements(gl.TRIANGLE_FAN, webGLData.indices.length - 4, gl.UNSIGNED_SHORT, 0);
+            gl.drawElements(gl.TRIANGLE_FAN, webGLData.indices.length - 4, webGLData.indexType, 0);
 
             if(!this.reverse)
             {
@@ -264,7 +264,7 @@ PIXI.WebGLStencilManager.prototype.popStencil = function (graphics, webGLData, r
                 gl.stencilOp(gl.KEEP,gl.KEEP,gl.DECR);
             }
 
-            gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, gl.UNSIGNED_SHORT, 0);
+            gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, webGLData.indexType, 0);
 
             if(!this.reverse)
             {
