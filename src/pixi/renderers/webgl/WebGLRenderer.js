@@ -514,6 +514,12 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
 
     gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
 
+    // make the sprite batches rebind this unit, as it no longer holds the texture they last bound
+    if (PIXI.WebGLRenderer.textureArray[texture.textureIndex] !== texture)
+    {
+        PIXI.WebGLRenderer.textureArray[texture.textureIndex] = null;
+    }
+
     gl.compressedTexImage2D(
         gl.TEXTURE_2D,
         0,
@@ -577,6 +583,12 @@ PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
     gl.activeTexture(gl.TEXTURE0 + texture.textureIndex);
 
     gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
+
+    // make the sprite batches rebind this unit, as it no longer holds the texture they last bound
+    if (PIXI.WebGLRenderer.textureArray[texture.textureIndex] !== texture)
+    {
+        PIXI.WebGLRenderer.textureArray[texture.textureIndex] = null;
+    }
 
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, texture.premultipliedAlpha);
 
