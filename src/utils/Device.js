@@ -222,7 +222,7 @@ Phaser.Device = function ()
     this.worker = false;
 
     /**
-     * @property {boolean} css3D - Is css3D available?
+     * @property {boolean} css3D - Does the browser support 3D CSS transforms (`translate3d`)?
      * @default
      */
     this.css3D = false;
@@ -1232,30 +1232,39 @@ Phaser.Device._initialize = function ()
     }
 
     /**
-     * Test to see if ImageData uses CanvasPixelArray or Uint8ClampedArray.
+     * Test to see if ImageData uses Uint8ClampedArray (rather than the legacy CanvasPixelArray).
+     *
+     * Prefers the `ImageData` constructor, which needs no DOM access. Falls back to a temporary
+     * 1x1 canvas in browsers that cannot construct ImageData directly (e.g. IE11).
      *
      * @author Matt DesLauriers (@mattdesl)
      */
     function _checkIsUint8ClampedImageData ()
     {
-        if (Uint8ClampedArray === undefined)
+        if (typeof Uint8ClampedArray === 'undefined')
         {
             return false;
         }
 
-        var elem = Phaser.CanvasPool.create(this, 1, 1);
-        var ctx = elem.getContext('2d');
-
-        if (!ctx)
+        if (typeof ImageData !== 'undefined')
         {
-            return false;
+            try
+            {
+                return new ImageData(1, 1).data instanceof Uint8ClampedArray; // eslint-disable-line compat/compat -- feature detection
+            }
+            catch (error)
+            {
+                //  Constructor not supported, fall through to the canvas method
+            }
         }
 
-        var image = ctx.createImageData(1, 1);
+        var canvas = Phaser.Canvas.create(undefined, 1, 1, undefined, true);
+        var context = canvas.getContext('2d');
+        var supported = !!context && context.createImageData(1, 1).data instanceof Uint8ClampedArray;
 
-        Phaser.CanvasPool.remove(this);
+        Phaser.Canvas.dispose(canvas);
 
-        return image.data instanceof Uint8ClampedArray;
+        return supported;
     }
 
     /**
@@ -1283,7 +1292,15 @@ Phaser.Device._initialize = function ()
             device.LITTLE_ENDIAN = device.littleEndian;
         }
 
-        device.support32bit = (typeof ArrayBuffer !== 'undefined' && typeof Uint8ClampedArray !== 'undefined' && typeof Int32Array !== 'undefined' && device.littleEndian !== null && _checkIsUint8ClampedImageData());
+        //  32bit pixel manipulation (e.g. BitmapData.pixels) needs typed arrays, a known byte order and Uint8ClampedArray ImageData
+        device.support32bit = (
+            typeof ArrayBuffer !== 'undefined' &&
+            typeof Int32Array !== 'undefined' &&
+            typeof Uint32Array !== 'undefined' &&
+            typeof Uint8ClampedArray !== 'undefined' &&
+            device.littleEndian !== null &&
+            _checkIsUint8ClampedImageData()
+        );
 
         navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate; // eslint-disable-line compat/compat -- vendor-prefix fallback
 
@@ -1294,34 +1311,43 @@ Phaser.Device._initialize = function ()
     }
 
     /**
-     * Check whether the host environment support 3D CSS.
+     * Check whether the host environment supports 3D CSS transforms.
+     *
+     * Uses the CSS.supports API where available, which requires no DOM mutation or layout.
+     * Falls back to reading back the inline style of a detached element in legacy browsers.
      */
     function _checkCSS3D ()
     {
-        var el = document.createElement('p');
-        var has3d;
-        var transforms = {
-            webkitTransform: '-webkit-transform',
-            OTransform: '-o-transform',
-            msTransform: '-ms-transform',
-            MozTransform: '-moz-transform',
-            transform: 'transform'
-        };
+        var value = 'translate3d(1px,1px,1px)';
 
-        // Add it to the body to get the computed style.
-        document.body.insertBefore(el, null);
-
-        for (var t in transforms)
+        if (window.CSS && typeof window.CSS.supports === 'function') // eslint-disable-line compat/compat -- feature detection
         {
-            if (el.style[t] !== undefined)
-            {
-                el.style[t] = 'translate3d(1px,1px,1px)';
-                has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
-            }
+            device.css3D = (CSS.supports('transform', value) || CSS.supports('-webkit-transform', value));
+            return;
         }
 
-        document.body.removeChild(el);
-        device.css3D = (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
+        /*
+         * Legacy fallback: the style parser rejects unsupported values, leaving the inline style empty.
+         * The element is never attached to the document, so no layout or reflow is triggered.
+         */
+        var el = document.createElement('p');
+        var props = [ 'transform', 'webkitTransform', 'msTransform', 'MozTransform' ];
+
+        device.css3D = false;
+
+        for (var i = 0; i < props.length; i++)
+        {
+            if (el.style[props[i]] !== undefined)
+            {
+                el.style[props[i]] = value;
+
+                if (el.style[props[i]])
+                {
+                    device.css3D = true;
+                    break;
+                }
+            }
+        }
     }
 
     //  Run the checks
