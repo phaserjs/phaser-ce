@@ -921,7 +921,8 @@ Phaser.Device._initialize = function ()
             'mozRequestFullscreen'
         ];
 
-        var element = document.createElement('div');
+        //  Probe the root element's prototype chain; no throwaway DOM node needed
+        var element = document.documentElement;
 
         for (var i = 0; i < fs.length; i++)
         {
@@ -1272,10 +1273,12 @@ Phaser.Device._initialize = function ()
      */
     function _checkDevice ()
     {
+        var ua = navigator.userAgent.toLowerCase();
+
         device.pixelRatio = window.devicePixelRatio || 1;
-        device.iPhone = navigator.userAgent.toLowerCase().indexOf('iphone') !== -1;
+        device.iPhone = ua.indexOf('iphone') !== -1;
         device.iPhone4 = (device.pixelRatio === 2 && device.iPhone);
-        device.iPad = navigator.userAgent.toLowerCase().indexOf('ipad') !== -1;
+        device.iPad = ua.indexOf('ipad') !== -1;
 
         if (typeof Int8Array !== 'undefined')
         {
