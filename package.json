@@ -32,7 +32,7 @@
     "build-test": "./scripts/build-test.sh",
     "check-version": "./scripts/check-version.sh",
     "grunt": "grunt",
-    "test": "npm run test-src; npm run test-ts",
+    "test": "npm run test-src && npm run test-ts",
     "test-build": "./scripts/test-build.sh",
     "test-dist": "node --check dist/phaser-test.js",
     "test-src": "eslint src",
