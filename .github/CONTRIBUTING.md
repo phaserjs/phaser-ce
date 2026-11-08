@@ -44,7 +44,7 @@ Run `npm run test` or use an ESLint plugin in your editor.
 
 ### Testing changes
 
-When making a code change you should always run `grunt test` and test the generated script, `dist/phaser-test.js`. Please do not commit these test builds or your PR will be closed. Builds by default are placed in the `dist` folder, to keep them separate from the `build` folder releases.
+When making a code change you should always run `grunt buildtest` and test the generated script, `dist/phaser-test.js`. Please do not commit these test builds or your PR will be closed. Builds by default are placed in the `dist` folder, to keep them separate from the `build` folder releases.
 
 ### TypeScript
 

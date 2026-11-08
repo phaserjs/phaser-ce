@@ -478,7 +478,7 @@ module.exports = function (grunt)
         grunt.task.run('custom');
     });
 
-    grunt.registerTask('test', 'Phaser Test Build (all libs)', function ()
+    grunt.registerTask('buildtest', 'Phaser Test Build (all libs)', function ()
     {
         grunt.option('exclude', 'ninja,creature');
         grunt.option('filename', 'phaser-test');
@@ -489,7 +489,7 @@ module.exports = function (grunt)
         grunt.task.run('custom');
     });
 
-    grunt.registerTask('uglytest', 'Phaser Test Build (all libs)', function ()
+    grunt.registerTask('buildtestugly', 'Phaser Test Build (all libs)', function ()
     {
         grunt.option('exclude', 'ninja,creature');
         grunt.option('filename', 'phaser-test');
