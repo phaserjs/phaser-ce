@@ -34,7 +34,7 @@
     "grunt": "grunt",
     "test": "npm run test-src && npm run test-ts",
     "test-build": "./scripts/test-build.sh",
-    "test-dist": "node --check dist/phaser-test.js",
+    "test-dist": "./scripts/test-dist.sh",
     "test-src": "eslint src",
     "test-ts": "./scripts/test-ts.sh",
     "tsc": "./node_modules/typescript/bin/tsc"
