@@ -230,7 +230,7 @@ PIXI.WebGLRenderer.prototype.initContext = function ()
     if (!gl)
     {
         // fail, not able to get a context
-        throw new Error('This browser does not support webGL. Try using the canvas renderer');
+        throw new Error('WebGL is not supported. Try the Canvas renderer.');
     }
 
     this.maxTextures = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);

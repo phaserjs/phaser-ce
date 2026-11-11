@@ -206,7 +206,7 @@ PIXI.Texture.prototype.setFrame = function (frame)
     {
         if (!PIXI.TextureSilentFail)
         {
-            throw new Error('Texture Error: frame does not fit inside the base Texture dimensions ' + this);
+            throw new Error('Frame does not fit inside the base Texture dimensions: ' + this);
         }
 
         this.valid = false;

@@ -262,9 +262,9 @@
                 if(typeof(from) == 'undefined') { throw new Error('From is not given!'); }
                 if(typeof(to) == 'undefined') { throw new Error('To is not given!'); }
 
-                if(to - 1 < from) { throw new Error('lol1'); }
-                if(to > poly.vertices.length) { throw new Error('lol2'); }
-                if(from < 0) { throw new Error('lol3'); }
+                if(to - 1 < from) { throw new Error('"to" must be greater than "from".'); }
+                if(to > poly.vertices.length) { throw new Error('"to" is greater than the vertex count.'); }
+                if(from < 0) { throw new Error('"from" must not be negative.'); }
 
                 for(var i = from; i < to; i++)
                 {
@@ -4725,7 +4725,7 @@ Narrowphase.prototype.convexHeightfield = function (convexBody,convexShape,conve
  */
             Constraint.prototype.update = function ()
             {
-                throw new Error('method update() not implmemented in this Constraint subclass!');
+                throw new Error('method update() not implemented in this Constraint subclass.');
             };
 
             /**
@@ -10756,7 +10756,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
                 this.updateArea();
                 if(this.area < 0)
                 {
-                    throw new Error('Convex vertices must be given in conter-clockwise winding.');
+                    throw new Error('Convex vertices must be given in counter-clockwise winding.');
                 }
             }
             Convex.prototype = new Shape();

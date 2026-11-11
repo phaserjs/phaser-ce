@@ -1090,7 +1090,7 @@ Phaser.Text.prototype.advancedWordWrap = function (text)
                      */
                     if (!newWord.length)
                     {
-                        throw new Error('This text\'s wordWrapWidth setting is less than a single character!');
+                        throw new Error('wordWrapWidth is less than one character.');
                     }
 
                     // replace current word in array with remainder

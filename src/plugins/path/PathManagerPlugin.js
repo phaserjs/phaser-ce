@@ -393,7 +393,7 @@ Phaser.Plugin.PathManager.prototype.removePath = function (pathIndex)
     }
     else
     {
-        throw new Error('ERROR: Cannot remove non-existent path');
+        throw new Error('Cannot remove non-existent path');
     }
 };
 

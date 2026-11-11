@@ -953,14 +953,14 @@ Phaser.Point.centroid = function (points, out)
 
     if (Object.prototype.toString.call(points) !== '[object Array]')
     {
-        throw new Error('Phaser.Point. Parameter \'points\' must be an array');
+        throw new Error('Parameter "points" must be an array');
     }
 
     var pointslength = points.length;
 
     if (pointslength < 1)
     {
-        throw new Error('Phaser.Point. Parameter \'points\' array must not be empty');
+        throw new Error('Parameter "points" array must not be empty');
     }
 
     if (pointslength === 1)

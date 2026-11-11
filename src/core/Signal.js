@@ -110,6 +110,20 @@ Phaser.Signal.prototype = {
     _boundDispatch: false,
 
     /**
+     * @method Phaser.Signal#validateListener
+     * @param {function} listener - Signal handler function.
+     * @param {string} fnName - Function name.
+     * @private
+     */
+    validateListener: function (listener, fnName)
+    {
+        if (typeof listener !== 'function')
+        {
+            throw new Error('listener is a required param of ' + fnName + '() and should be a Function.');
+        }
+    },
+
+    /**
      * @method Phaser.Signal#_registerListener
      * @private
      * @param {function} listener - Signal handler function.
@@ -129,7 +143,7 @@ Phaser.Signal.prototype = {
 
             if (binding.isOnce() !== isOnce)
             {
-                throw new Error('You cannot add' + (isOnce ? '' : 'Once') + '() then add' + (!isOnce ? '' : 'Once') + '() the same listener without removing the relationship first.');
+                throw new Error('Cannot mix add() and addOnce() for the same listener.');
             }
         }
         else

@@ -1679,7 +1679,7 @@ Phaser.Loader.prototype = {
 
                 if (!xml && !json)
                 {
-                    throw new Error('Phaser.Loader. Invalid Bitmap Font atlas given');
+                    throw new Error('Invalid Bitmap Font atlas given');
                 }
 
                 this.addToFileList('bitmapfont', key, textureURL, {
@@ -1924,7 +1924,7 @@ Phaser.Loader.prototype = {
 
                         if (!xml)
                         {
-                            throw new Error('Phaser.Loader. Invalid Texture Atlas XML given');
+                            throw new Error('Invalid Texture Atlas XML given');
                         }
 
                         atlasData = xml;
@@ -3078,7 +3078,7 @@ Phaser.Loader.prototype = {
                     }
                     else
                     {
-                        throw new Error('Phaser.Loader. Invalid Texture Atlas format: ' + file.format);
+                        throw new Error('Invalid Texture Atlas format: ' + file.format);
                     }
                 }
                 break;
@@ -3128,7 +3128,7 @@ Phaser.Loader.prototype = {
                     }
                     catch (e)
                     {
-                        throw new Error('Phaser.Loader. Unable to parse video file as Blob: ' + file.key);
+                        throw new Error('Unable to parse video file as Blob: ' + file.key);
                     }
                 }
 
