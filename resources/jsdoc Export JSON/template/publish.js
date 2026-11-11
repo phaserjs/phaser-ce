@@ -57,6 +57,7 @@ function graft2(parentNode, childNodes) {
 
             var thisFunction = {
                 'name': element.name,
+                'access': element.access || '',
                 'description': element.description || '',
                 'parameters': []
             };
