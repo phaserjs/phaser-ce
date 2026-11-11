@@ -110,20 +110,6 @@ Phaser.Signal.prototype = {
     _boundDispatch: false,
 
     /**
-     * @method Phaser.Signal#validateListener
-     * @param {function} listener - Signal handler function.
-     * @param {string} fnName - Function name.
-     * @private
-     */
-    validateListener: function (listener, fnName)
-    {
-        if (typeof listener !== 'function')
-        {
-            throw new Error('Phaser.Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName));
-        }
-    },
-
-    /**
      * @method Phaser.Signal#_registerListener
      * @private
      * @param {function} listener - Signal handler function.
@@ -257,7 +243,10 @@ Phaser.Signal.prototype = {
      */
     add: function (listener, listenerContext, priority)
     {
-        this.validateListener(listener, 'add');
+        if (typeof listener !== 'function')
+        {
+            throw new Error('listener must be a Function');
+        }
 
         var args = [];
 
@@ -287,7 +276,10 @@ Phaser.Signal.prototype = {
      */
     addOnce: function (listener, listenerContext, priority)
     {
-        this.validateListener(listener, 'addOnce');
+        if (typeof listener !== 'function')
+        {
+            throw new Error('listener must be a Function');
+        }
 
         var args = [];
 
@@ -312,7 +304,10 @@ Phaser.Signal.prototype = {
      */
     remove: function (listener, context)
     {
-        this.validateListener(listener, 'remove');
+        if (typeof listener !== 'function')
+        {
+            throw new Error('listener must be a Function');
+        }
 
         var i = this._indexOfListener(listener, context);
 

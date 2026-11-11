@@ -5,6 +5,7 @@
 ### API Changes
 
 - `PIXI.WebGLGraphics.graphicsDataPool` is now an array of pools indexed by WebGL context id.
+- Removed `Phaser.Signal#validateListener()`.
 
 ### Updates
 
