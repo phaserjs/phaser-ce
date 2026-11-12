@@ -5147,6 +5147,7 @@ declare module Phaser {
         created: boolean;
         current: string;
         game: Phaser.Game;
+        loaded: boolean;
         onCreateCallback: Function;
         onInitCallback: Function;
         onLoadRenderCallback: Function;

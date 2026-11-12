@@ -48,7 +48,14 @@ Phaser.StateManager = function (game, pendingState)
     this._clearCache = false;
 
     /**
-     * @property {boolean} _created - Flag that sets if the State has been created or not.
+     * @property {boolean} _loaded - Flag that sets if the State has completed its preload phase.
+     * @private
+     * @see Phaser.StateManager#loadComplete
+     */
+    this._loaded = false;
+
+    /**
+     * @property {boolean} _created - Flag that sets if the State has completed its create phase.
      * @private
      */
     this._created = false;
@@ -566,6 +573,7 @@ Phaser.StateManager.prototype = {
         }
 
         this.current = key;
+        this._loaded = false;
         this._created = false;
 
         this.onStateChange.dispatch(this.current, previousStateKey);
@@ -601,14 +609,16 @@ Phaser.StateManager.prototype = {
      */
     loadComplete: function ()
     {
-        if (this._created === false)
+        if (this._loaded === false)
         {
-            this._created = true;
+            this._loaded = true;
 
             if (this.onCreateCallback)
             {
                 this.onCreateCallback.call(this.callbackContext, this.game);
             }
+
+            this._created = true;
 
             this.onStateCreated.dispatch(this.current);
         }
@@ -621,7 +631,7 @@ Phaser.StateManager.prototype = {
      */
     loadUpdate: function ()
     {
-        if (this._created === false && this.onLoadUpdateCallback)
+        if (this._loaded === false && this.onLoadUpdateCallback)
         {
             this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
@@ -633,7 +643,7 @@ Phaser.StateManager.prototype = {
      */
     pause: function ()
     {
-        if (this._created && this.onPausedCallback)
+        if (this._loaded && this.onPausedCallback)
         {
             this.onPausedCallback.call(this.callbackContext, this.game);
         }
@@ -645,7 +655,7 @@ Phaser.StateManager.prototype = {
      */
     resume: function ()
     {
-        if (this._created && this.onResumedCallback)
+        if (this._loaded && this.onResumedCallback)
         {
             this.onResumedCallback.call(this.callbackContext, this.game);
         }
@@ -657,7 +667,7 @@ Phaser.StateManager.prototype = {
      */
     update: function ()
     {
-        if (this._created)
+        if (this._loaded)
         {
             if (this.onUpdateCallback)
             {
@@ -672,7 +682,7 @@ Phaser.StateManager.prototype = {
 
     postUpdate: function ()
     {
-        if (this._created && this.onPostUpdateCallback)
+        if (this._loaded && this.onPostUpdateCallback)
         {
             this.onPostUpdateCallback.call(this.callbackContext, this.game);
         }
@@ -684,7 +694,7 @@ Phaser.StateManager.prototype = {
      */
     pauseUpdate: function ()
     {
-        if (this._created)
+        if (this._loaded)
         {
             if (this.onPauseUpdateCallback)
             {
@@ -703,7 +713,7 @@ Phaser.StateManager.prototype = {
      */
     preRender: function ()
     {
-        if (this._created && this.onPreRenderCallback)
+        if (this._loaded && this.onPreRenderCallback)
         {
             this.onPreRenderCallback.call(this.callbackContext, this.game);
         }
@@ -727,7 +737,7 @@ Phaser.StateManager.prototype = {
      */
     render: function ()
     {
-        if (this._created)
+        if (this._loaded)
         {
             if (this.onRenderCallback)
             {
@@ -787,6 +797,20 @@ Phaser.StateManager.prototype = {
 };
 
 Phaser.StateManager.prototype.constructor = Phaser.StateManager;
+
+/**
+ * @name Phaser.StateManager#loaded
+ * @property {boolean} loaded - True if the current state has completed its load phase. If the state has a `preload` method, this will be true after it has finished loading. If the state does not have a `preload` method, this will be true immediately after the state has been started.
+ * @readOnly
+ */
+Object.defineProperty(Phaser.StateManager.prototype, 'loaded', {
+
+    get: function ()
+    {
+        return this._loaded;
+    }
+
+});
 
 /**
  * @name Phaser.StateManager#created

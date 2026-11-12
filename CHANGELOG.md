@@ -6,6 +6,7 @@
 
 - `PIXI.WebGLGraphics.graphicsDataPool` is now an array of pools indexed by WebGL context id.
 - Removed `Phaser.Signal#validateListener()`.
+- `Phaser.StateManager#created` is now true after the state's `create` method has returned and false before. Previously it was true while `create` was running. The new behavior matches its original description. Use the new `Phaser.StateManager#loaded` if you need the old behavior.
 
 ### New Features
 
@@ -13,6 +14,7 @@
 - Added `Phaser.Game#renderCount` and `Phaser.Game#updateCount`, which count completed renders and logic updates since boot.
 - Added `Phaser.Game#onContextLost` and `Phaser.Game#onContextRestored`, dispatched when the WebGL context is lost or restored.
 - Added `Phaser.StateManager#onStateCreated`, dispatched for every state after its preload (if any) has finished and its `create` (if any) has returned.
+- Added `Phaser.StateManager#loaded`, which is true once the state's preload phase has completed, i.e., it has finished loading assets or has started without any assets queued.
 
 ### Updates
 
