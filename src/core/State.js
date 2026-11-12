@@ -145,6 +145,13 @@ Phaser.State.prototype = {
      * You shouldn't create any objects in this method that require assets that you're also loading in this method, as
      * they won't yet be available.
      *
+     * If preload queues no assets (or the State has no preload method), the Loader is skipped entirely. No loadUpdate or
+     * loadRender calls are made and no Loader events are dispatched; create runs in the next game update.
+     *
+     * Load completion does not mean every asset downloaded successfully. Failed files count towards completion, so create
+     * runs either way. To detect failures, listen to `this.load.onFileError` (or check the file's `error` flag) before relying
+     * on the asset in create.
+     *
      * @method Phaser.State#preload
      * @param {Phaser.Game} game
      */
@@ -176,6 +183,9 @@ Phaser.State.prototype = {
     /**
      * create is called once preload has completed, this includes the loading of any assets from the Loader.
      * If you don't have a preload method then create is the first method called in your State.
+     *
+     * create is called once the load queue has finished, even if some files failed to load. Check for failures with
+     * `this.load.onFileError` if the assets are required.
      *
      * @method Phaser.State#create
      * @param {Phaser.Game} game

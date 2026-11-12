@@ -150,6 +150,11 @@ Phaser.Loader = function (game)
      * This event is dispatched when the final file in the load queue has either loaded or failed,
      * after the loader is {@link #reset}.
      *
+     * Completion does not mean every file loaded successfully. Failures are reported via {@link #onFileError}.
+     * When a State's `preload` queues nothing, the StateManager skips the Loader and this is not dispatched
+     * (the State's `create` still runs). Calling {@link #start} with an empty queue does dispatch it.
+     * It is also dispatched if loading finishes abnormally, such as when the queue stalls.
+     *
      * @property {Phaser.Signal} onLoadComplete
      */
     this.onLoadComplete = new Phaser.Signal();
@@ -2202,11 +2207,19 @@ Phaser.Loader.prototype = {
     },
 
     /**
-     * The loading is all finished.
+     * The loading is all finished. Dispatches the completion signals, then calls `loadUpdate` and `loadComplete` on the current State.
+     *
+     * Called with no argument when every queued file has been processed. Failed files count as processed.
+     *
+     * Called with `true` in two cases:
+     * - Loading was cancelled or reset while in progress (`processLoadQueue` finds `isLoading` is false).
+     * - The queue stalled: files remain unprocessed but none are in flight. This is detected after a 2 second delay.
+     *
+     * For an abnormal finish, `onLoadStart` is not dispatched. `onBeforeLoadComplete` and `onLoadComplete` still are.
      *
      * @method Phaser.Loader#finishedLoading
      * @private
-     * @param {boolean} [abnormal=true] - True if the loading finished abnormally.
+     * @param {boolean} [abnormal=false] - True if loading finished abnormally (cancelled, reset, or stalled). Omit it, or pass false, for a normal finish.
      */
     finishedLoading: function (abnormal)
     {
@@ -2219,7 +2232,11 @@ Phaser.Loader.prototype = {
         this.hasLoaded = true;
         this.isLoading = false;
 
-        // If there were no files make sure to trigger the event anyway, for consistency
+        /*
+         * A normal finish with no files never reached the dispatch of onLoadStart in processLoadQueue.
+         * Dispatch it here so listeners always receive onLoadStart before onLoadComplete.
+         * Skipped for abnormal finishes, where announcing a load start would be misleading.
+         */
         if (!abnormal && !this._fileLoadStarted)
         {
             this._fileLoadStarted = true;
