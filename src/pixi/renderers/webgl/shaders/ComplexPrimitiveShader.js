@@ -53,7 +53,6 @@ PIXI.ComplexPrimitiveShader = function (gl)
     this.vertexSrc = [
         'attribute vec2 aVertexPosition;',
 
-        // 'attribute vec4 aColor;',
         'uniform mat3 translationMatrix;',
         'uniform vec2 projectionVector;',
         'uniform vec2 offsetVector;',

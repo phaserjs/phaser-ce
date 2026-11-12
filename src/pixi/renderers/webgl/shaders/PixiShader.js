@@ -116,7 +116,6 @@ PIXI.PixiShader.prototype.initMultitexShader = function ()
 
     /*
      * get and store the uniforms for the shader
-     * this.uSampler = gl.getUniformLocation(program, 'uSampler');
      */
     this.uSamplerArray = gl.getUniformLocation(program, 'uSamplerArray[0]');
     this.projectionVector = gl.getUniformLocation(program, 'projectionVector');

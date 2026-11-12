@@ -74,13 +74,10 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
 
     filterBlock._filterArea = filterBlock.target.filterArea || filterBlock.target.getBounds();
 
-    // >>> modify by nextht
     filterBlock._previous_stencil_mgr = this.renderSession.stencilManager; // eslint-disable-line camelcase
     this.renderSession.stencilManager = new PIXI.WebGLStencilManager();
     this.renderSession.stencilManager.setContext(gl);
     gl.disable(gl.STENCIL_TEST);
-
-    // <<<  modify by nextht
 
     /*
      * filter program
@@ -105,7 +102,7 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
 
     gl.bindTexture(gl.TEXTURE_2D, texture.texture);
 
-    var filterArea = filterBlock._filterArea;// filterBlock.target.getBounds();///filterBlock.target.filterArea;
+    var filterArea = filterBlock._filterArea;
 
     var padding = filter.padding;
     filterArea.x -= padding;
@@ -129,14 +126,6 @@ PIXI.WebGLFilterManager.prototype.pushFilter = function (filterBlock)
 
     offset.x = -filterArea.x;
     offset.y = -filterArea.y;
-
-    /*
-     * update projection
-     * now restore the regular shader..
-     * this.renderSession.shaderManager.setShader(this.defaultShader);
-     * gl.uniform2f(this.defaultShader.projectionVector, filterArea.width/2, -filterArea.height/2);
-     * gl.uniform2f(this.defaultShader.offsetVector, -filterArea.x, -filterArea.y);
-     */
 
     gl.colorMask(true, true, true, true);
     gl.clearColor(0,0,0, 0);
@@ -306,16 +295,10 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
     // bind the buffer
     gl.bindFramebuffer(gl.FRAMEBUFFER, buffer);
 
-    /*
-     * set the blend mode!
-     * gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
-     */
-
     // set texture
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, texture.texture);
 
-    // >>> modify by nextht
     if (this.renderSession.stencilManager)
     {
         this.renderSession.stencilManager.destroy();
@@ -331,17 +314,8 @@ PIXI.WebGLFilterManager.prototype.popFilter = function ()
         gl.disable(gl.STENCIL_TEST);
     }
 
-    // <<< modify by nextht
-
     // apply!
     this.applyFilterPass(filter, filterArea, sizeX, sizeY);
-
-    /*
-     * now restore the regular shader.. should happen automatically now..
-     * this.renderSession.shaderManager.setShader(this.defaultShader);
-     * gl.uniform2f(this.defaultShader.projectionVector, sizeX/2, -sizeY/2);
-     * gl.uniform2f(this.defaultShader.offsetVector, -offsetX, -offsetY);
-     */
 
     // return the texture to the pool
     this.texturePool.push(texture);

@@ -33,7 +33,7 @@ PIXI.WebGLSpriteBatch = function (game)
      * @property size
      * @type Number
      */
-    this.size = 2000; // Math.pow(2, 16) /  this.vertSize;
+    this.size = 2000;
 
     /*
      * the total number of bytes in our batch
@@ -45,7 +45,6 @@ PIXI.WebGLSpriteBatch = function (game)
     var numVerts = this.vertexSize * this.size * 4;
 
     /*
-     * this.size * 4 * 4 * this.vertSize;
      * the total number of indices in our batch
      */
     var numIndices = this.size * 6;
@@ -319,7 +318,7 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
         h1 = texture.frame.height * -aY;
     }
 
-    var i = this.currentBatchSize * this.vertexSize; // 4 * this.vertSize;
+    var i = this.currentBatchSize * this.vertexSize;
     var resolution = texture.baseTexture.resolution;
     var textureIndex = texture.baseTexture.textureIndex;
 
@@ -526,7 +525,7 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
     var h0 = height * (1 - aY);
     var h1 = height * -aY;
 
-    var i = this.currentBatchSize * this.vertexSize; // 4 * this.vertSize;
+    var i = this.currentBatchSize * this.vertexSize;
 
     var resolution = texture.baseTexture.resolution;
 
@@ -629,7 +628,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
 
         // this is the same for each shader?
-        var stride = this.vertexSize; // this.vertSize * 4;
+        var stride = this.vertexSize;
         gl.vertexAttribPointer(shader.aVertexPosition, 2, gl.FLOAT, false, stride, 0);
         gl.vertexAttribPointer(shader.aTextureCoord, 2, gl.FLOAT, false, stride, 8);
 

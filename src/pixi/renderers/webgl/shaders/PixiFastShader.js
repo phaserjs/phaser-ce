@@ -123,7 +123,6 @@ PIXI.PixiFastShader = function (gl)
         '   vTextureCoord = aTextureCoord;',
         '   vTextureIndex = aTextureIndex;',
 
-        //  '   vec3 color = mod(vec3(aColor.y/65536.0, aColor.y/256.0, aColor.y), 256.0) / 256.0;',
         '   vColor = aColor;',
         '}'
     ];

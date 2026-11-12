@@ -53,7 +53,6 @@ PIXI.StripShader = function (gl)
             'varying vec2 vTextureCoord;',
             'varying float vTextureIndex;',
 
-            //   'varying float vColor;',
             'uniform float alpha;',
             'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
 
@@ -88,7 +87,6 @@ PIXI.StripShader = function (gl)
             'varying vec2 vTextureCoord;',
             'varying float vTextureIndex;',
 
-            //   'varying float vColor;',
             'uniform float alpha;',
             'uniform sampler2D uSampler;',
             'void main(void) {',
@@ -111,14 +109,8 @@ PIXI.StripShader = function (gl)
         'uniform vec2 projectionVector;',
         'uniform vec2 offsetVector;',
 
-        /*
-         *  'uniform float alpha;',
-         * 'uniform vec3 tint;',
-         */
         'varying vec2 vTextureCoord;',
         'varying float vTextureIndex;',
-
-        //  'varying vec4 vColor;',
 
         'void main(void) {',
         '   vec3 v = translationMatrix * vec3(aVertexPosition , 1.0);',
@@ -126,8 +118,6 @@ PIXI.StripShader = function (gl)
         '   gl_Position = vec4( v.x / projectionVector.x -1.0, v.y / -projectionVector.y + 1.0 , 0.0, 1.0);',
         '   vTextureCoord = aTextureCoord;',
         '   vTextureIndex = aTextureIndex;',
-
-        // '   vColor = aColor * vec4(tint * alpha, alpha);',
         '}'
     ];
 
