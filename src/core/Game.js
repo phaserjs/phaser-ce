@@ -393,6 +393,32 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.onDestroy = new Phaser.Signal();
 
     /**
+     * This event is fired at the end of each render, after {@link Phaser.Plugin#postRender plugin postRender} and the renderer's own post-render step.
+     * Listeners are called in the same animation frame as the render, so the canvas can be captured here (e.g. `game.canvas.toDataURL()`) without `preserveDrawingBuffer`.
+     * It is not dispatched when the render is skipped by {@link #lockRender} or the HEADLESS renderer.
+     * Use `addOnce()` to wait for the next rendered frame.
+     * The callback is sent one parameter: the game.
+     *
+     * @property {Phaser.Signal} onPostRender
+     */
+    this.onPostRender = new Phaser.Signal();
+
+    /**
+     * This event is fired when the WebGL context is lost. It is never fired by the Canvas renderer.
+     *
+     * @property {Phaser.Signal} onContextLost
+     */
+    this.onContextLost = new Phaser.Signal();
+
+    /**
+     * This event is fired after the WebGL context has been restored and the renderer and cached textures re-initialized.
+     * It is never fired by the Canvas renderer.
+     *
+     * @property {Phaser.Signal} onContextRestored
+     */
+    this.onContextRestored = new Phaser.Signal();
+
+    /**
      * @property {boolean} _paused - Is game paused?
      * @private
      */
@@ -431,6 +457,26 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
      * @protected
      */
     this.rendersThisFrame = 1;
+
+    /**
+     * The number of logic updates completed since the game booted. Unlike {@link Phaser.Time#frames} it is never reset.
+     * Paused and stepped-over updates are not counted.
+     *
+     * @property {integer} updateCount
+     * @readonly
+     * @default
+     */
+    this.updateCount = 0;
+
+    /**
+     * The number of renders completed since the game booted. It is incremented just before {@link #onPostRender} is dispatched.
+     * Renders skipped by {@link #lockRender} or the HEADLESS renderer are not counted.
+     *
+     * @property {integer} renderCount
+     * @readonly
+     * @default
+     */
+    this.renderCount = 0;
 
     /**
      * @property {number} _deltaTime - Accumulate elapsed time until a logic update is due.
@@ -982,6 +1028,8 @@ Phaser.Game.prototype = {
         event.preventDefault();
 
         this.renderer.contextLost = true;
+
+        this.onContextLost.dispatch(this);
     },
 
     /**
@@ -997,6 +1045,8 @@ Phaser.Game.prototype = {
         this.cache.clearGLTextures();
 
         this.renderer.contextLost = false;
+
+        this.onContextRestored.dispatch(this);
     },
 
     /**
@@ -1164,6 +1214,8 @@ Phaser.Game.prototype = {
             this.stage.postUpdate();
             this.state.postUpdate();
             this.plugins.postUpdate();
+
+            this.updateCount++;
         }
         else
         {
@@ -1207,6 +1259,10 @@ Phaser.Game.prototype = {
 
         this.plugins.postRender();
         this.renderer.postRender();
+
+        this.renderCount++;
+
+        this.onPostRender.dispatch(this);
     },
 
     /**
@@ -1271,9 +1327,12 @@ Phaser.Game.prototype = {
         this.fpsProblemNotifier.dispose();
         this.onBlur.dispose();
         this.onBoot.dispose();
+        this.onContextLost.dispose();
+        this.onContextRestored.dispose();
         this.onDestroy.dispose();
         this.onFocus.dispose();
         this.onPause.dispose();
+        this.onPostRender.dispose();
         this.onResume.dispose();
 
         this.raf.stop();
@@ -1310,9 +1369,12 @@ Phaser.Game.prototype = {
         this.make = null;
         this.onBlur = null;
         this.onBoot = null;
+        this.onContextLost = null;
+        this.onContextRestored = null;
         this.onDestroy = null;
         this.onFocus = null;
         this.onPause = null;
+        this.onPostRender = null;
         this.onResume = null;
         this.particles = null;
         this.physics = null;

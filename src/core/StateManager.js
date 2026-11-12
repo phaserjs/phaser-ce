@@ -80,6 +80,18 @@ Phaser.StateManager = function (game, pendingState)
     this.onStateChange = new Phaser.Signal();
 
     /**
+     * onStateCreated is a Phaser.Signal that is dispatched once per state after its preload (if any) has finished and its `create` method (if any) has returned.
+     * It is dispatched for every state, including those without `preload` or `create` methods.
+     * Unlike {@link #onStateChange} the state's game objects exist at this point.
+     * If `create` starts another state, this is still dispatched for the first state, before the change takes effect.
+     *
+     * The callback you specify is sent one parameter: the string based key of the state.
+     *
+     * @property {Phaser.Signal} onStateCreated
+     */
+    this.onStateCreated = new Phaser.Signal();
+
+    /**
      * @property {function} onInitCallback - This is called when the state is set as the active state.
      * @default
      */
@@ -366,7 +378,7 @@ Phaser.StateManager.prototype = {
             }
             else
             {
-                //  No init? Then there was nothing to load either
+                //  Then there was nothing to load either
                 this.loadComplete();
             }
         }
@@ -589,14 +601,16 @@ Phaser.StateManager.prototype = {
      */
     loadComplete: function ()
     {
-        if (this._created === false && this.onCreateCallback)
+        if (this._created === false)
         {
             this._created = true;
-            this.onCreateCallback.call(this.callbackContext, this.game);
-        }
-        else
-        {
-            this._created = true;
+
+            if (this.onCreateCallback)
+            {
+                this.onCreateCallback.call(this.callbackContext, this.game);
+            }
+
+            this.onStateCreated.dispatch(this.current);
         }
     },
 
@@ -776,7 +790,7 @@ Phaser.StateManager.prototype.constructor = Phaser.StateManager;
 
 /**
  * @name Phaser.StateManager#created
- * @property {boolean} created - True if the current state has had its `create` method run (if it has one, if not this is true by default).
+ * @property {boolean} created - True if the current state has completed its create phase. If the state has a `create` method, this will be true after it has been called. If the state does not have a `create` method, this will be true immediately after the state has finished loading.
  * @readOnly
  */
 Object.defineProperty(Phaser.StateManager.prototype, 'created', {

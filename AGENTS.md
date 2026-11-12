@@ -44,6 +44,33 @@ npm ci
 - While iterating, run `npx eslint <file>`. Run `npm test` once at the end, since it also compiles the type definitions.
 - Do not run the `dist` task just to verify a change. It overwrites tracked files in `build/`. Use `npm run build-test` instead.
 
+## Waiting in browser tests (Playwright etc.)
+
+Prefer these signals over fixed sleeps, and keep an overall timeout as a backstop. The examples assume the page exposes the game as `window.game`. Register listeners before the event can fire (e.g. in the page's own bootstrap), since signals do not replay.
+
+- Wait for a state to finish creating, then for the next rendered frame, before a screenshot:
+
+  ```js
+  await page.evaluate(() => new Promise((resolve) => {
+      const rendered = () => game.onPostRender.addOnce(resolve);
+      if (game.state.current === 'Menu' && game.state.created) { rendered(); return; }
+      const onCreated = (key) => {
+          if (key === 'Menu') { game.state.onStateCreated.remove(onCreated); rendered(); }
+      };
+      game.state.onStateCreated.add(onCreated);
+  }));
+  ```
+
+- Capture the canvas without `preserveDrawingBuffer` by reading it inside `onPostRender`:
+
+  ```js
+  const png = await page.evaluate(() => new Promise((resolve) =>
+      game.onPostRender.addOnce(() => resolve(game.canvas.toDataURL('image/png')))));
+  ```
+
+- `onPostRender` is not dispatched when `game.lockRender` is true or the renderer is `Phaser.HEADLESS`.
+- Detect WebGL context loss with `game.onContextLost` and `game.onContextRestored`.
+
 ## Code style
 
 Follow `.eslintrc.json` and `.editorconfig`. Key rules:

@@ -7,6 +7,13 @@
 - `PIXI.WebGLGraphics.graphicsDataPool` is now an array of pools indexed by WebGL context id.
 - Removed `Phaser.Signal#validateListener()`.
 
+### New Features
+
+- Added `Phaser.Game#onPostRender`, dispatched at the end of each render. Handy for screenshots and automated tests.
+- Added `Phaser.Game#renderCount` and `Phaser.Game#updateCount`, which count completed renders and logic updates since boot.
+- Added `Phaser.Game#onContextLost` and `Phaser.Game#onContextRestored`, dispatched when the WebGL context is lost or restored.
+- Added `Phaser.StateManager#onStateCreated`, dispatched for every state after its preload (if any) has finished and its `create` (if any) has returned.
+
 ### Updates
 
 - `Phaser.Video#createVideoFromBlob()` will print a console warning instead of throwing an error if `URL` or `createObjectURL()` are unavailable. The Video will still be unusuable in that case, as before this change.

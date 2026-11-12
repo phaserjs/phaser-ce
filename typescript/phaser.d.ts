@@ -1588,9 +1588,12 @@ declare module Phaser {
         math: Phaser.Math;
         onBlur: Phaser.Signal;
         onBoot: Phaser.Signal;
+        onContextLost: Phaser.Signal;
+        onContextRestored: Phaser.Signal;
         onDestroy: Phaser.Signal;
         onFocus: Phaser.Signal;
         onPause: Phaser.Signal;
+        onPostRender: Phaser.Signal;
         onResume: Phaser.Signal;
         parent: HTMLElement;
         particles: Phaser.Particles;
@@ -1604,6 +1607,7 @@ declare module Phaser {
         preserveDrawingBuffer: Boolean;
         raf: Phaser.RequestAnimationFrame;
         renderer: PIXI.CanvasRenderer | PIXI.WebGLRenderer;
+        renderCount: number;
         renderType: number;
         resolution: number;
         rnd: Phaser.RandomDataGenerator;
@@ -1618,6 +1622,7 @@ declare module Phaser {
         transparent: boolean;
         tweens: Phaser.TweenManager;
         currentUpdateID: number;
+        updateCount: number;
         updatesThisFrame: number;
         width: number;
         world: Phaser.World;
@@ -5158,6 +5163,7 @@ declare module Phaser {
         states: any;
 
         onStateChange: Phaser.Signal;
+        onStateCreated: Phaser.Signal;
         add(key: string, state: any, autoStart?: boolean): void;
         checkState(key: string): boolean;
         clearCurrentState(): void;
