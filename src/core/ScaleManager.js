@@ -1235,7 +1235,7 @@ Phaser.ScaleManager.prototype = {
 
         if (forceLandscape === true && forcePortrait === true)
         {
-            console.warn('Phaser.ScaleManager: forceLandscape and forcePortrait cannot both be true.');
+            console.warn('forceLandscape and forcePortrait cannot both be true.');
             return;
         }
 
@@ -2059,7 +2059,7 @@ Phaser.ScaleManager.prototype = {
 
         this.cleanupCreatedTarget();
 
-        console.warn('Phaser.ScaleManager: requestFullscreen failed or device does not support the Fullscreen API');
+        console.warn('requestFullscreen() failed or device does not support the Fullscreen API');
 
         this.onFullScreenError.dispatch(this);
     },

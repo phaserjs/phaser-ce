@@ -191,8 +191,7 @@ Phaser.AnimationParser = {
         //  Malformed?
         if (!json.frames)
         {
-            console.warn('Phaser.AnimationParser.JSONData: Invalid Texture Atlas JSON given, missing \'frames\' array');
-            console.log(json);
+            console.warn('Invalid Texture Atlas JSON given. Missing "frames" array:', json);
             return;
         }
 
@@ -253,8 +252,7 @@ Phaser.AnimationParser = {
         {
             if (!json[key])
             {
-                console.warn('Phaser.AnimationParser.JSONDataPyxel: Invalid Pyxel Tilemap JSON given, missing "' + key + '" key.');
-                console.log(json);
+                console.warn('Invalid Pyxel Tilemap JSON given. Key "%s" is missing. %o', key, json);
                 return;
             }
         });
@@ -262,8 +260,7 @@ Phaser.AnimationParser = {
         // For this purpose, I only care about parsing tilemaps with a single layer.
         if (json.layers.length !== 1)
         {
-            console.warn('Phaser.AnimationParser.JSONDataPyxel: Too many layers, this parser only supports flat Tilemaps.');
-            console.log(json);
+            console.warn('Too many layers, this parser only supports flat Tilemaps.', json);
             return;
         }
 
@@ -306,8 +303,7 @@ Phaser.AnimationParser = {
         //  Malformed?
         if (!json.frames)
         {
-            console.warn('Phaser.AnimationParser.JSONDataHash: Invalid Texture Atlas JSON given, missing \'frames\' object');
-            console.log(json);
+            console.warn('Invalid Texture Atlas JSON given. Missing "frames" object.', json);
             return;
         }
 
@@ -367,7 +363,7 @@ Phaser.AnimationParser = {
         //  Malformed?
         if (!xml.getElementsByTagName('TextureAtlas'))
         {
-            console.warn('Phaser.AnimationParser.XMLData: Invalid Texture Atlas XML given, missing <TextureAtlas> tag');
+            console.warn('Invalid Texture Atlas XML given, missing <TextureAtlas> tag');
             return;
         }
 

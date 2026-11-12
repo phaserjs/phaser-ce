@@ -595,7 +595,7 @@ Phaser.Loader.prototype = {
 
         if (key === undefined || key === '')
         {
-            console.warn('Phaser.Loader: Invalid or no key given of type ' + type);
+            console.warn('Invalid or no key given of type ' + type);
             return this;
         }
 
@@ -607,7 +607,7 @@ Phaser.Loader.prototype = {
             }
             else
             {
-                console.warn('Phaser.Loader: No URL given for file type: ' + type + ' key: ' + key);
+                console.warn('No URL given for file type: %s key: %s', type, key);
                 return this;
             }
         }
@@ -702,7 +702,7 @@ Phaser.Loader.prototype = {
 
         if (!url && !data)
         {
-            console.warn('Phaser.Loader.pack - Both url and data are null. One must be set.');
+            console.warn('Both url and data are null. One must be set.');
 
             return this;
         }
@@ -1352,7 +1352,7 @@ Phaser.Loader.prototype = {
         }
         else
         {
-            console.warn('Phaser.Loader.audiosprite - You must specify either a jsonURL or provide a jsonData object');
+            console.warn('You must specify either a jsonURL or provide a jsonData object');
         }
 
         return this;
@@ -2068,7 +2068,7 @@ Phaser.Loader.prototype = {
 
         if (!this.isLoading)
         {
-            console.warn('Phaser.Loader - active loading canceled / reset');
+            console.warn('Active loading canceled / reset');
             this.finishedLoading(true);
             return;
         }
@@ -2195,7 +2195,7 @@ Phaser.Loader.prototype = {
              * Flight queue is empty but file list is not done being processed.
              * This indicates a critical internal error with no known recovery.
              */
-            console.warn('Phaser.Loader - aborting: processing queue empty, loading may have stalled');
+            console.warn('Aborting: processing queue empty, loading may have stalled');
 
             var _this = this;
 
@@ -2270,7 +2270,7 @@ Phaser.Loader.prototype = {
         {
             file.errorMessage = errorMessage;
 
-            console.warn('Phaser.Loader - ' + file.type + '[' + file.key + ']' + ': ' + errorMessage);
+            console.warn('%s[%s]: %s', file.type, file.key, errorMessage);
         }
         else if (this.uploadTextures)
         {
@@ -2338,7 +2338,7 @@ Phaser.Loader.prototype = {
 
         if (!packData)
         {
-            console.warn('Phaser.Loader - ' + pack.key + ': pack has data, but not for pack key');
+            console.warn(pack.key + ': pack has data, but not for pack key');
             return;
         }
 
@@ -3269,7 +3269,7 @@ Phaser.Loader.prototype = {
         if (!xml)
         {
             var responseType = xhr.responseType || xhr.contentType; // contentType for MS-XDomainRequest
-            console.warn('Phaser.Loader - ' + file.key + ': invalid XML (' + responseType + ')');
+            console.warn('%s: invalid XML (%s)', file.key, responseType);
             this.asyncComplete(file, 'invalid XML');
             return;
         }

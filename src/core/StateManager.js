@@ -460,7 +460,7 @@ Phaser.StateManager.prototype = {
         }
         else
         {
-            console.warn('Phaser.StateManager - No state found with the key: ' + key);
+            console.warn('No state found with the key: ' + key);
             return false;
         }
     },

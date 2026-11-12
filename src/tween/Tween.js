@@ -229,7 +229,7 @@ Phaser.Tween.prototype = {
 
         if (this.isRunning)
         {
-            console.warn('Phaser.Tween.to cannot be called after Tween.start');
+            console.warn('to() cannot be called after start()');
             return this;
         }
 
@@ -275,7 +275,7 @@ Phaser.Tween.prototype = {
 
         if (this.isRunning)
         {
-            console.warn('Phaser.Tween.from cannot be called after Tween.start');
+            console.warn('from() cannot be called after start()');
             return this;
         }
 
@@ -306,7 +306,7 @@ Phaser.Tween.prototype = {
 
         if (this.pendingDelete)
         {
-            console.warn('Phaser.Tween.start cannot be called after Tween.stop');
+            console.warn('start() cannot be called after stop()');
             return this;
         }
 

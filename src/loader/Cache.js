@@ -360,7 +360,7 @@ Phaser.Cache.prototype = {
 
         if (data.complete === false)
         {
-            console.warn('Phaser.Cache.addImage: Image "%s" is not complete', key);
+            console.warn('Image "%s" is not complete', key);
         }
 
         var img = {
@@ -1202,7 +1202,7 @@ Phaser.Cache.prototype = {
         {
             if (method)
             {
-                console.warn('Phaser.Cache.' + method + ': Key "' + key + '" not found in Cache.');
+                console.warn('%s(): Key "%s" not found in Cache.', method, key);
             }
         }
         else if (property === undefined)
@@ -1380,7 +1380,7 @@ Phaser.Cache.prototype = {
                 }
 
                 //  We did not find the requested fixture
-                console.warn('Phaser.Cache.getPhysicsData: Could not find given fixtureKey: "' + fixtureKey + ' in ' + key + '"');
+                console.warn('Could not find given fixtureKey: "%s in %s"', fixtureKey, key);
             }
             else
             {
@@ -1389,7 +1389,7 @@ Phaser.Cache.prototype = {
         }
         else
         {
-            console.warn('Phaser.Cache.getPhysicsData: Invalid key/object: "' + key + ' / ' + object + '"');
+            console.warn('Invalid key/object: "%s / %s"', key, object);
         }
 
         return null;
@@ -1746,7 +1746,7 @@ Phaser.Cache.prototype = {
         }
         else
         {
-            console.warn('Phaser.Cache.getUrl: Invalid url: "' + url + '" or Cache.autoResolveURL was false');
+            console.warn('Invalid url: "%s" or Cache.autoResolveURL was false', url);
             return null;
         }
     },
@@ -2163,7 +2163,7 @@ Phaser.Cache.prototype = {
             {
                 if (!self.isReady)
                 {
-                    console.warn('Phaser.Cache: Still waiting for images after %s ms.', readyTimeout);
+                    console.warn('Still waiting for images after %s ms.', readyTimeout);
 
                     self._ready();
                 }

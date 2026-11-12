@@ -699,7 +699,7 @@ Phaser.Input.prototype = {
     {
         if (this.pointers.length >= Phaser.Input.MAX_POINTERS)
         {
-            console.warn('Phaser.Input.addPointer: Maximum limit of ' + Phaser.Input.MAX_POINTERS + ' pointers reached.');
+            console.warn('Maximum limit of %s pointers reached.', Phaser.Input.MAX_POINTERS);
             return null;
         }
 

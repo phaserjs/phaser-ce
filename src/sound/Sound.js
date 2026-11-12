@@ -667,7 +667,7 @@ Phaser.Sound.prototype = {
             }
             else
             {
-                console.warn('Phaser.Sound.play: audio marker ' + marker + ' doesn\'t exist');
+                console.warn('Audio marker "%s" doesn\'t exist', marker);
                 return this;
             }
         }
@@ -801,7 +801,7 @@ Phaser.Sound.prototype = {
         {
             if (this.loop)
             {
-                console.warn('Phaser.Sound.play: audio clip ' + this.name + ' cannot be deleted while looping.');
+                console.warn('Audio clip "%s" cannot be deleted while looping.', this.name);
             }
 
             this._markedToDelete = true;
@@ -1004,7 +1004,7 @@ Phaser.Sound.prototype = {
 
         if (volume === undefined)
         {
-            console.warn('Phaser.Sound.fadeTo: No Volume Specified.');
+            console.warn('No Volume Specified.');
             return;
         }
 

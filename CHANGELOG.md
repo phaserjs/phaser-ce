@@ -28,6 +28,7 @@
   - 3D CSS detection, which sets `Phaser.Device.css3D`, uses `CSS.supports()` instead of inserting a temporary element into `document.body`. Legacy browsers use a detached element that is never added to the document.
   - `Phaser.Device.css3D` uses `CSS.supports()` where it exists.
 - `Phaser.Device.support32bit` now also requires `Uint32Array`.
+- Changed some console messages and elevated some logs to errors.
 
 ### Bug Fixes
 

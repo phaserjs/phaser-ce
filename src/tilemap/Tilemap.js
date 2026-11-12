@@ -303,7 +303,7 @@ Phaser.Tilemap.prototype = {
         {
             if (!this.game.cache.checkImageKey(key))
             {
-                console.warn('Phaser.Tilemap.addTilesetImage: Invalid image key given: "' + key + '"');
+                console.warn('Invalid image key given: "%s"', key);
                 return null;
             }
 
@@ -314,7 +314,7 @@ Phaser.Tilemap.prototype = {
 
         if (idx === null && this.format === Phaser.Tilemap.TILED_JSON)
         {
-            console.warn('Phaser.Tilemap.addTilesetImage: No data found in the JSON matching the tileset name: "' + tileset + '"');
+            console.warn('No data found in the JSON matching the tileset name: "%s"', tileset);
             console.log('Tilesets: ', this.tilesets);
             return null;
         }
@@ -418,7 +418,7 @@ Phaser.Tilemap.prototype = {
 
         if (!objects)
         {
-            console.warn('Tilemap.createFromObjects: Invalid object layer name given: ' + layer);
+            console.warn('Invalid object layer name given: ' + layer);
             console.log('Object layers: ', this.objects);
             return;
         }
@@ -621,7 +621,7 @@ Phaser.Tilemap.prototype = {
 
         if (index === null || index > this.layers.length)
         {
-            console.warn('Tilemap.createLayer: Invalid layer ID given: "' + layer + '"');
+            console.warn('Invalid layer ID given: "%s"', layer);
             console.log('Layers: ', this.layers);
             return;
         }
@@ -682,7 +682,7 @@ Phaser.Tilemap.prototype = {
 
         if (this.getLayerIndex(name) !== null)
         {
-            console.warn('Tilemap.createBlankLayer: Layer with matching name already exists: ' + name);
+            console.warn('Layer with matching name already exists: ' + name);
             return;
         }
 

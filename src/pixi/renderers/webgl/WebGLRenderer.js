@@ -314,7 +314,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
 {
     if (!PIXI._enableMultiTextureToggle)
     {
-        console.warn('setTexturePriority error: Multi Texture support hasn\'t been enabled in the Phaser Game Config.');
+        console.warn('Multi Texture support hasn\'t been enabled in the Phaser Game Config.');
         return;
     }
     var clampPot = function (potSize)
@@ -344,7 +344,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
 
         if (!(imageName in imageCache))
         {
-            console.warn('setTexturePriority: There is no image "%s" in the image cache.', imageName);
+            console.warn('There is no image "%s" in the image cache.', imageName);
             continue;
         }
 
@@ -360,7 +360,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
 
         if (!(imageName in imageCache))
         {
-            console.warn('setTexturePriority: There is no image "%s" in the image cache.', imageName);
+            console.warn('There is no image "%s" in the image cache.', imageName);
             continue;
         }
 
@@ -370,7 +370,7 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
         if (maxTextureAvailableSpace <= 0)
         {
             base.textureIndex = 0;
-            console.warn('setTexturePriority: Image "%s" was given textureIndex=0 because there is no available texture space (%s).',
+            console.warn('Image "%s" was given textureIndex=0 because there is no available texture space (%s).',
                 imageName, maxTextureAvailableSpace);
         }
         else

@@ -1249,7 +1249,7 @@ Phaser.Text.prototype.fontToComponents = function (font)
     }
     else
     {
-        console.warn('Phaser.Text - unparsable CSS font: ' + font);
+        console.warn('Unparsable CSS font: ' + font);
 
         return {font: font};
     }
