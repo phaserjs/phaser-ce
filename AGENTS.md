@@ -14,7 +14,7 @@ Welcome, agents.
 - `tasks/` holds Grunt task configuration and helpers (`tasks/options/`, `tasks/manifests/`, `tasks/jsdoc-plugins/`).
 - `scripts/` holds the shell scripts used by `npm test` and build verification.
 - `docs/` holds generated JSDoc HTML. Do not hand-edit.
-- `src/pixi/` is a vendored fork of Pixi v2 with its own manifests and `Intro.js`/`Outro.js`. It has diverged from upstream, so do not rely on current Pixi docs for it.
+- `src/pixi/` is a fork of Pixi v2 with its own manifests and `Intro.js`/`Outro.js`. It has diverged from upstream, so do not rely on current Pixi docs for it.
 - `src/stubs/` holds the replacements used when an optional module is excluded from a custom build (see the `*.stub.json` manifests in `tasks/manifests/`).
 
 ## Setup
