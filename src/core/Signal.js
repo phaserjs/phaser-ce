@@ -110,20 +110,6 @@ Phaser.Signal.prototype = {
     _boundDispatch: false,
 
     /**
-     * @method Phaser.Signal#validateListener
-     * @param {function} listener - Signal handler function.
-     * @param {string} fnName - Function name.
-     * @private
-     */
-    validateListener: function (listener, fnName)
-    {
-        if (typeof listener !== 'function')
-        {
-            throw new Error('listener is a required param of ' + fnName + '() and should be a Function.');
-        }
-    },
-
-    /**
      * @method Phaser.Signal#_registerListener
      * @private
      * @param {function} listener - Signal handler function.
