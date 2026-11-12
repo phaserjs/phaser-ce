@@ -13,6 +13,12 @@
 - The `Float32Array`, `Uint32Array`, `Uint16Array`, `Int16Array`, and `ArrayBuffer` polyfills are now applied individually when native versions are missing.
 - WebGL Graphics redraw circles and ellipses faster.
 - WebGL Graphics create less garbage when redrawn.
+- `Phaser.Device` feature detection makes less use of temporary elements:
+  - Fullscreen API detection probes `document.documentElement` instead of a temporary `div`.
+  - `Uint8ClampedArray` `ImageData` detection, which feeds `Phaser.Device.support32bit`, uses `new ImageData(1, 1)` instead of a temporary canvas. The canvas is only used when the `ImageData` constructor is unavailable.
+  - 3D CSS detection, which sets `Phaser.Device.css3D`, uses `CSS.supports()` instead of inserting a temporary element into `document.body`. Legacy browsers use a detached element that is never added to the document.
+  - `Phaser.Device.css3D` uses `CSS.supports()` where it exists.
+- `Phaser.Device.support32bit` now also requires `Uint32Array`.
 
 ### Bug Fixes
 
