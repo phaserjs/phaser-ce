@@ -10148,7 +10148,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
                         width: arguments[0],
                         height: arguments[1]
                     };
-                    console.warn('The Rectangle has been renamed to Box and its constructor signature has changed. Please use the following format: new Box({ width: 1, height: 1, ... })');
+                    console.warn('Rectangle has been renamed to Box and its constructor signature has changed: new Box({ width: 1, height: 1, ... })');
                 }
                 options = options || {};
 
@@ -10261,7 +10261,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
                         length: arguments[0],
                         radius: arguments[1]
                     };
-                    console.warn('The Capsule constructor signature has changed. Please use the following format: new Capsule({ radius: 1, length: 1 })');
+                    console.warn('The constructor signature has changed: new Capsule({ radius: 1, length: 1 })');
                 }
                 options = options || {};
 
@@ -10492,7 +10492,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
                 if(typeof(arguments[0]) === 'number')
                 {
                     options = {radius: arguments[0]};
-                    console.warn('The Circle constructor signature has changed. Please use the following format: new Circle({ radius: 1 })');
+                    console.warn('The constructor signature has changed: new Circle({ radius: 1 })');
                 }
                 options = options || {};
 
@@ -10661,7 +10661,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
                         vertices: arguments[0],
                         axes: arguments[1]
                     };
-                    console.warn('The Convex constructor signature has changed. Please use the following format: new Convex({ vertices: [...], ... })');
+                    console.warn('The constructor signature has changed: new Convex({ vertices: [...], ... })');
                 }
                 options = options || {};
 
@@ -11099,7 +11099,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
                         }
                     }
 
-                    console.warn('The Heightfield constructor signature has changed. Please use the following format: new Heightfield({ heights: [...], ... })');
+                    console.warn('The constructor signature has changed: new Heightfield({ heights: [...], ... })');
                 }
                 options = options || {};
 
@@ -11342,7 +11342,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
                 if(typeof(arguments[0]) === 'number')
                 {
                     options = {length: arguments[0]};
-                    console.warn('The Line constructor signature has changed. Please use the following format: new Line({ length: 1, ... })');
+                    console.warn('The constructor signature has changed: new Line({ length: 1, ... })');
                 }
                 options = options || {};
 
@@ -12573,7 +12573,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
                     if(!data)
                     {
-                        throw new Error('Key ' + key + ' had no data!');
+                        throw new Error('Key had no data: ' + key);
                     }
 
                     var lastData = last.data[key];
