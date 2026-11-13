@@ -7,6 +7,9 @@
 - `PIXI.WebGLGraphics.graphicsDataPool` is now an array of pools indexed by WebGL context id.
 - Removed `Phaser.Signal#validateListener()`.
 - `Phaser.StateManager#created` is now true after the state's `create` method has returned and false before. Previously it was true while `create` was running. The new behavior matches its original description. Use the new `Phaser.StateManager#loaded` if you need the old behavior.
+- `Phaser.Stage#checkVisibility()` (called during `Phaser.Game#boot()`) no longer assigns `window.onblur`, `window.onfocus`, `window.onpagehide`, or `window.onpageshow`. It uses `addEventListener()` instead, so handlers you assign to those properties are no longer overwritten. This also means that when several games run on one page, every game now receives these window events. Previously only the most recently booted game did. Use `disableVisibilityChange` on the games that should ignore them.
+- `Phaser.Stage#destroy()` now removes only the listeners Phaser added. It no longer sets `window.onblur`, `window.onfocus`, `window.onpagehide`, or `window.onpageshow` to `null`, so handlers you assigned to those properties are kept.
+- CocoonJS `CocoonJS.App.on()` listeners are registered once per Stage.
 
 ### New Features
 

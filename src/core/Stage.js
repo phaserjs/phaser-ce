@@ -77,6 +77,12 @@ Phaser.Stage = function (game)
     this._onChange = null;
 
     /**
+     * @property {boolean} _cocoonOnRegistered - Whether the CocoonJS `on()` handlers have been registered. These cannot be removed, so they are only ever added once.
+     * @private
+     */
+    this._cocoonOnRegistered = false;
+
+    /**
      * @property {number} _bgColor - Stage background color object. Populated by setBackgroundColor.
      * @private
      */
@@ -221,13 +227,15 @@ Phaser.Stage.prototype.updateTransform = function ()
 };
 
 /**
- * Starts a page visibility event listener running, or window.onpagehide/onpageshow if not supported by the browser.
- * Also listens for window.onblur and window.onfocus.
+ * Starts a page visibility event listener running, or pagehide/pageshow if not supported by the browser.
+ * Also listens for window blur and focus events.
  *
  * @method Phaser.Stage#checkVisibility
  */
 Phaser.Stage.prototype.checkVisibility = function ()
 {
+    this.removeVisibilityListeners();
+
     if (document.hidden !== undefined)
     {
         this._hiddenVar = 'visibilitychange';
@@ -280,16 +288,18 @@ Phaser.Stage.prototype.checkVisibility = function ()
         document.addEventListener(this._hiddenVar, this._onChange, false);
     }
 
-    window.onblur = this._onChange;
-    window.onfocus = this._onChange;
+    window.addEventListener('blur', this._onChange);
+    window.addEventListener('focus', this._onChange);
 
-    window.onpagehide = this._onChange;
-    window.onpageshow = this._onChange;
+    window.addEventListener('pagehide', this._onChange);
+    window.addEventListener('pageshow', this._onChange);
 
     window.addEventListener('click', this._onClick);
 
     if (this.game.device.cocoonJSApp && CocoonJS.App)
     {
+        //  addEventListener() is the old CocoonJS interface.
+
         if (CocoonJS.App.onSuspended)
         {
             CocoonJS.App.onSuspended.addEventListener(this._onChangePause);
@@ -300,10 +310,59 @@ Phaser.Stage.prototype.checkVisibility = function ()
             CocoonJS.App.onActivated.addEventListener(this._onChangeResume);
         }
 
-        if (CocoonJS.App.on)
+        //  on() is the new CocoonJS interface.
+
+        //  CocoonJS has no off(), so these can't be removed. Register them once only.
+        if (CocoonJS.App.on && !this._cocoonOnRegistered)
         {
             CocoonJS.App.on('activated', this._onChangeResume);
             CocoonJS.App.on('suspended', this._onChangePause);
+
+            this._cocoonOnRegistered = true;
+        }
+    }
+};
+
+/**
+ * Removes the listeners added by checkVisibility (visibility change, blur/focus click and CocoonJS app events).
+ * Safe to call before checkVisibility has run.
+ *
+ * @method Phaser.Stage#removeVisibilityListeners
+ * @private
+ */
+Phaser.Stage.prototype.removeVisibilityListeners = function ()
+{
+    if (this._hiddenVar && this._onChange)
+    {
+        document.removeEventListener(this._hiddenVar, this._onChange, false);
+    }
+
+    if (this._onChange)
+    {
+        window.removeEventListener('blur', this._onChange);
+        window.removeEventListener('focus', this._onChange);
+
+        window.removeEventListener('pagehide', this._onChange);
+        window.removeEventListener('pageshow', this._onChange);
+    }
+
+    if (this._onClick)
+    {
+        window.removeEventListener('click', this._onClick);
+    }
+
+    if (this._onChangePause && typeof CocoonJS !== 'undefined' && CocoonJS.App)
+    {
+        var app = CocoonJS.App;
+
+        if (app.onSuspended)
+        {
+            app.onSuspended.removeEventListener(this._onChangePause);
+        }
+
+        if (app.onActivated)
+        {
+            app.onActivated.removeEventListener(this._onChangeResume);
         }
     }
 };
@@ -380,24 +439,15 @@ Phaser.Stage.prototype.setBackgroundColor = function (color)
 };
 
 /**
- * Destroys the Stage and removes event listeners.
+ * Removes the visibility, focus/blur, and click listeners added by {@link Phaser.Stage#checkVisibility}.
+ *
+ * It does not remove the Stage's children or otherwise destroy the Stage.
  *
  * @method Phaser.Stage#destroy
  */
 Phaser.Stage.prototype.destroy = function ()
 {
-    if (this._hiddenVar)
-    {
-        document.removeEventListener(this._hiddenVar, this._onChange, false);
-    }
-
-    window.onpagehide = null;
-    window.onpageshow = null;
-
-    window.onblur = null;
-    window.onfocus = null;
-
-    window.removeEventListener('click', this._onClick);
+    this.removeVisibilityListeners();
 };
 
 /**
