@@ -75,7 +75,7 @@ PIXI.DisplayObjectContainer.prototype.addChildAt = function (child, index)
     }
     else
     {
-        throw new Error('The index ' + index + ' is out of bounds (' + this.children.length + ' children).');
+        throw new Error('index is out of bounds: ' + index);
     }
 };
 
@@ -135,7 +135,7 @@ PIXI.DisplayObjectContainer.prototype.setChildIndex = function (child, index)
 {
     if (index < 0 || index >= this.children.length)
     {
-        throw new Error('The supplied index is out of bounds');
+        throw new Error('index is out of bounds: ' + index);
     }
 
     var currentIndex = this.getChildIndex(child);
@@ -155,7 +155,7 @@ PIXI.DisplayObjectContainer.prototype.getChildAt = function (index)
 {
     if (index < 0 || index >= this.children.length)
     {
-        throw new Error('Index ' + index + ' is out of bounds.');
+        throw new Error('index is out of bounds: ' + index);
     }
 
     return this.children[index];
