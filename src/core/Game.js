@@ -158,6 +158,9 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
      * Pixi boots, and cannot be changed after the game is running. Once enabled, take advantage of it
      * via the `game.renderer.setTexturePriority` method.
      *
+     * Multi-texture state is shared by all games on the page. If you run several games on one page, enable
+     * this in only one of them and use `Phaser.WEBGL` or `Phaser.CANVAS` for the others.
+     *
      * @property {boolean} multiTexture
      * @readonly
      * @default

@@ -46,6 +46,7 @@ var Phaser = Phaser || { // jshint ignore:line
 
     /**
      * WebGL Renderer with MultiTexture support enabled.
+     * Multi-texture state is shared by all games on a page, so use this renderer in only one game at a time.
      * @constant Phaser.WEBGL_MULTI
      * @type {integer}
      */
