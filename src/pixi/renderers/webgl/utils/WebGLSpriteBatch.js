@@ -781,8 +781,12 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
             return;
         }
     }
-    else
+    else if (!PIXI._enableMultiTextureToggle)
     {
+        /*
+         * With multitexture batching each sprite's texture is already bound to its own unit (see render()).
+         * Binding here would replace whatever is on the active unit (unit 0) with this batch's first texture.
+         */
         gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
     }
 
