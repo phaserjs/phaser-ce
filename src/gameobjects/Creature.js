@@ -443,6 +443,9 @@ Phaser.Creature.prototype._renderCreature = function (renderSession)
 
         gl.activeTexture(gl.TEXTURE0);
 
+        //  Texture unit 0 is about to hold a different texture, so make the sprite batch rebind it
+        PIXI.WebGLRenderer.textureArray[0] = null;
+
         //  Check if a texture is dirty..
         if (this.texture.baseTexture._dirty[gl.id])
         {
@@ -476,6 +479,9 @@ Phaser.Creature.prototype._renderCreature = function (renderSession)
         gl.vertexAttribPointer(shader.colorAttribute, 4, gl.FLOAT, false, 0, 0);
 
         gl.activeTexture(gl.TEXTURE0);
+
+        //  Texture unit 0 is about to hold a different texture, so make the sprite batch rebind it
+        PIXI.WebGLRenderer.textureArray[0] = null;
 
         //  Check if a texture is dirty
         if (this.texture.baseTexture._dirty[gl.id])
