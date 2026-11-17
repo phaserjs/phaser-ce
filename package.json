@@ -72,7 +72,6 @@
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-uglify": "^3.0.1",
-    "grunt-git": "^1.0.13",
     "grunt-jsdoc": "^2.1.0",
     "grunt-text-replace": "^0.4.0",
     "grunt-ts": "^6.0.0-beta.22",

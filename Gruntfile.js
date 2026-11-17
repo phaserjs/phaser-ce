@@ -28,8 +28,8 @@ module.exports = function (grunt)
 
     grunt.registerTask('default', [ 'build' ]);
 
-    grunt.registerTask('docs', [ 'clean:docs', 'clean:out', 'gitclone:plugins', 'jsdoc:html', 'clean:out' ]);
-    grunt.registerTask('tsdocs', [ 'ts:defs', 'clean:out', 'gitclone:plugins', 'jsdoc:json', 'buildtsdoc:pixi', 'buildtsdoc:phaser', 'replace:phasertsdefheader' ]);
+    grunt.registerTask('docs', [ 'clean:docs', 'clean:out', 'jsdoc:html', 'clean:out' ]);
+    grunt.registerTask('tsdocs', [ 'ts:defs', 'clean:out', 'jsdoc:json', 'buildtsdoc:pixi', 'buildtsdoc:phaser', 'replace:phasertsdefheader' ]);
 
     grunt.registerTask('custom', 'Build a custom version of Phaser', function ()
     {
