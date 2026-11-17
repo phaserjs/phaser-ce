@@ -63,7 +63,7 @@
  * @constructor
  * @param {number|string|GameConfig} [width=800] - The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given.
  * @param {number|string} [height=600] - The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given.
- * @param {number} [renderer=Phaser.AUTO] - Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all).
+ * @param {number} [renderer=Phaser.AUTO] - Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all). HEADLESS skips `preRender`, `render`, and `postRender` hooks, just like {@link #lockRender}.
  * @param {string|HTMLElement} [parent=''] - The DOM element into which this game canvas will be injected. Either a DOM `id` (string) or the element itself. If omitted (or no such element exists), the game canvas is appended to the document body.
  * @param {object} [state=null] - The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.
  * @param {boolean} [transparent=false] - Use a transparent canvas background or not.
@@ -152,7 +152,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.antialias = true;
 
     /**
-     * Has support for Multiple bound Textures in WebGL been enabled? This is a read-only property.
+     * Has support for multiple bound Textures in WebGL been enabled? This is a read-only property.
      * To set it you need to either specify `Phaser.WEBGL_MULTI` as the renderer type, or use the Game
      * Configuration object with the property `multiTexture` set to true. It has to be enabled before
      * Pixi boots, and cannot be changed after the game is running. Once enabled, take advantage of it
@@ -188,7 +188,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.renderer = null;
 
     /**
-     * @property {number} renderType - The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType reflects the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. HEADLESS skips `preRender`, `render`, and `postRender` hooks, just like {@link #lockRender}.
+     * @property {number} renderType - Before the game boots, renderType is the `renderer` argument given to `Game()`: Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType is the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. Read {@link #multiTexture} to see if multiple bound textures are enabled.
      * @readonly
      */
     this.renderType = Phaser.AUTO;
@@ -630,7 +630,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
  * @property {boolean}            [GameConfig.mouse=true]                    - Starts the mouse input handler, if the mspointer and touch handlers were not started.
  * @property {boolean}            [GameConfig.mouseWheel=false]               - Starts the {@link Phaser.MouseWheel mouse wheel} handler, if supported by the device.
  * @property {boolean}            [GameConfig.mspointer=true]                - Starts the {@link Phaser.MSPointer Pointer Events} handler (mspointer), if supported by the device.
- * @property {boolean}            [GameConfig.multiTexture=false]            - Enable support for multiple bound Textures in WebGL. Same as `{renderer: Phaser.WEBGL_MULTI}`.
+ * @property {boolean}            [GameConfig.multiTexture=false]            - Enable support for multiple bound Textures in WebGL.
  * @property {string|HTMLElement} [GameConfig.parent='']                     - The DOM element into which this games canvas will be injected.
  * @property {object}             [GameConfig.physicsConfig]
  * @property {boolean}            [GameConfig.pointerLock=true]              - Starts the {@link Phaser.PointerLock Pointer Lock} handler, if supported by the device.
@@ -983,7 +983,7 @@ Phaser.Game.prototype = {
                 this.multiTexture = false;
                 PIXI._enableMultiTextureToggle = false;
 
-                if (this.renderType === Phaser.WEBGL)
+                if (this.renderType === Phaser.WEBGL || this.renderType === Phaser.WEBGL_MULTI)
                 {
                     // No fallback
                     throw webGLRendererError;
