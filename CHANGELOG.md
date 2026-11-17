@@ -47,7 +47,6 @@
   - Added: `Phaser.Cache` data methods `addData()`, `getData()`, `checkDataKey()`, and `removeData()`.
   - Added: `Phaser.Camera#fadeIn()`.
   - Added: `Phaser.Circle.intersectsLine()`.
-  - Added: `Phaser.Creature` class and `Phaser.GameObjectFactory#creature()` factory.
   - Added: `Phaser.Utils.Debug` helpers `canvasPool()`, `displayList()`, `gameInfo()`, `inputHandler()`, and `state()`.
   - Added: `Phaser.Ellipse.intersectsLine()`.
   - Added: `Phaser.Game#onDestroy` signal.

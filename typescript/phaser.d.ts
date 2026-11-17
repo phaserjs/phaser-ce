@@ -921,34 +921,6 @@ declare module Phaser {
 
     }
 
-    class Creature extends PIXI.DisplayObjectContainer {
-
-        constructor(game: Phaser.Game, x: number, y: number, key: string | PIXI.Texture, mesh: string, animation?: string, useFlatData?: boolean);
-
-        animation: any;
-        game: Phaser.Game;
-        isPlaying: boolean;
-        loop: boolean;
-        manager: any;
-        texture: PIXI.Texture;
-        timeDelta: number;
-        type: number;
-
-        createAllAnimations(mesh: string): void;
-        disableSkinSwap(): void;
-        enableSkinSwap(swapNameIn: any, active: any): void;
-        play(loop?: boolean): void;
-        preUpdate(): boolean;
-        removeActiveItemSwap(regionName: string): void;
-        setActiveItemSwap(regionName: string, swapIdx: number): void;
-        setAnchorPointEnabled(value: boolean): void;
-        setAnimation(key: string): void;
-        setAnimationPlaySpeed(speed: number): void;
-        setMetaData(meta: string): void;
-        stop(): void;
-
-    }
-
     class Device {
 
         static LITTLE_ENDIAN: boolean;
@@ -1688,7 +1660,6 @@ declare module Phaser {
         bitmapData(width?: number, height?: number, key?: string, addToCache?: boolean): Phaser.BitmapData;
         bitmapText(x: number, y: number, font: string, text?: string, size?: number, group?: Phaser.Group | Phaser.Stage): Phaser.BitmapText;
         button(x?: number, y?: number, key?: string, callback?: Function, callbackContext?: any, overFrame?: any, outFrame?: any, downFrame?: any, upFrame?: any, group?: Phaser.Group | Phaser.Stage): Phaser.Button;
-        creature(x?: number, y?: number, key?: any, mesh?: string, group?: Phaser.Group | Phaser.Stage, animation?: string, useFlatData?: boolean): Phaser.Creature;
         emitter(x?: number, y?: number, maxParticles?: number): Phaser.Particles.Arcade.Emitter;
         existing(object: any): any;
         filter(filter: string, ...args: any[]): Phaser.Filter;
