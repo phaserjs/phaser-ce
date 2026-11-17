@@ -11,6 +11,8 @@
 - `Phaser.Stage#destroy()` now removes only the listeners Phaser added. It no longer sets `window.onblur`, `window.onfocus`, `window.onpagehide`, or `window.onpageshow` to `null`, so handlers you assigned to those properties are kept.
 - CocoonJS `CocoonJS.App.on()` listeners are registered once per Stage.
 - When the renderer is given as `Phaser.WEBGL_MULTI`, the game no longer falls back to the Canvas renderer if WebGL fails to initialise. It throws the WebGL error, as `Phaser.WEBGL` already did. If you want a Canvas fallback, give `{ renderer: Phaser.AUTO, multiTexture: true }`.
+- The `Float32Array`, `Uint32Array`, `Uint16Array`, `Int16Array`, and `ArrayBuffer` polyfills are now applied individually when native versions are missing.
+- `Phaser.Device.support32bit` now also requires `Uint32Array`.
 
 ### New Features
 
@@ -23,7 +25,6 @@
 ### Updates
 
 - `Phaser.Video#createVideoFromBlob()` will print a console warning instead of throwing an error if `URL` or `createObjectURL()` are unavailable. The Video will still be unusuable in that case, as before this change.
-- The `Float32Array`, `Uint32Array`, `Uint16Array`, `Int16Array`, and `ArrayBuffer` polyfills are now applied individually when native versions are missing.
 - WebGL Graphics redraw circles and ellipses faster.
 - WebGL Graphics create less garbage when redrawn.
 - `Phaser.Device` feature detection makes less use of temporary elements:
@@ -31,7 +32,6 @@
   - `Uint8ClampedArray` `ImageData` detection, which feeds `Phaser.Device.support32bit`, uses `new ImageData(1, 1)` instead of a temporary canvas. The canvas is only used when the `ImageData` constructor is unavailable.
   - 3D CSS detection, which sets `Phaser.Device.css3D`, uses `CSS.supports()` instead of inserting a temporary element into `document.body`. Legacy browsers use a detached element that is never added to the document.
   - `Phaser.Device.css3D` uses `CSS.supports()` where it exists.
-- `Phaser.Device.support32bit` now also requires `Uint32Array`.
 - Changed some `Error()` messages.
 - Changed some console messages and elevated some console logs to console errors.
 
@@ -42,36 +42,39 @@
 - Added missing methods in the `console` polyfill for Internet Explorer 9.
 - Fixed the `bind()` polyfill so it returns the target's result.
 - Fixed `Phaser.Tilemap#dump()` for Internet Explorer 9.
-- Fixed errors and omissions in the TypeScript declarations.
-  - Added: `Phaser.BitmapData#getBase64()` and `Phaser.BitmapData#getImage()`.
-  - Added: `Phaser.Cache` data methods `addData()`, `getData()`, `checkDataKey()`, and `removeData()`.
-  - Added: `Phaser.Camera#fadeIn()`.
-  - Added: `Phaser.Circle.intersectsLine()`.
-  - Added: `Phaser.Utils.Debug` helpers `canvasPool()`, `displayList()`, `gameInfo()`, `inputHandler()`, and `state()`.
-  - Added: `Phaser.Ellipse.intersectsLine()`.
-  - Added: `Phaser.Game#onDestroy` signal.
-  - Added: `Phaser.Input#addTouchLockCallback()` and `Phaser.Input#removeTouchLockCallback()`.
-  - Added: `Phaser.Math.trunc()`.
-  - Added: `Phaser.CanvasPool.clear()`.
-  - Added: `Phaser.Point.trunc()`.
-  - Added: `Phaser.RenderTexture#getBase64()` and `Phaser.RenderTexture#getImage()`.
-  - Added: `Phaser.SoundManager#onStateChange` signal.
-  - Added: `Phaser.Video` methods for mute, pause, resume, and getUserMedia handling.
-  - Changed: `Phaser.Ellipse#constains()` renamed to `Phaser.Ellipse#contains()`.
-  - Changed: `GameConfig.canvasId` renamed to `canvasID`.
-  - Changed: `Phaser.Tilemap#createFromObjects()` accepts `[string, any]` for `search`.
-  - Changed: `Phaser.Tilemap#searchTileIndex()` gained an `all` parameter and returns `Phaser.Tile | Phaser.Tile[]`. When `all` is set, it returns every matching tile.
-  - Changed: p2 `Shape.RECTANGLE` renamed to `BOX`.
-  - Changed: Touch lock callbacks moved from `Phaser.Touch` to `Phaser.Input`.
-  - Removed: `Phaser.ArrayUtils.rotate()`.
-  - Removed: `Phaser.Component.Core.skipTypeChecks`.
-  - Removed: `Phaser.Device.isConsoleOpen()`.
-  - Removed: `Phaser.Loader#useXDomainRequest`.
-  - Removed: `Phaser.Mouse` wheel constants `WHEEL_UP` and `WHEEL_DOWN`, and the `Phaser.Mouse#requestPointerLock()` and `Phaser.Mouse#releasePointerLock()` methods.
-  - Removed: `Phaser.GAMES`.
-  - Removed: `PIXI.game`.
-  - Removed: p2 `motorIsEnabled()`.
 - Fixed multitexture batching drawing sprites with the wrong texture after `WebGLRenderer#updateTexture()`.
+
+#### TypeScript Fixes
+
+- Added: `Phaser.BitmapData#getBase64()` and `Phaser.BitmapData#getImage()`.
+- Added: `Phaser.Cache` data methods `addData()`, `getData()`, `checkDataKey()`, and `removeData()`.
+- Added: `Phaser.Camera#fadeIn()`.
+- Added: `Phaser.Circle.intersectsLine()`.
+- Added: `Phaser.Utils.Debug` helpers `canvasPool()`, `displayList()`, `gameInfo()`, `inputHandler()`, and `state()`.
+- Added: `Phaser.Ellipse.intersectsLine()`.
+- Added: `Phaser.Game#onDestroy` signal.
+- Added: `Phaser.Input#addTouchLockCallback()` and `Phaser.Input#removeTouchLockCallback()`.
+- Added: `Phaser.Math.trunc()`.
+- Added: `Phaser.CanvasPool.clear()`.
+- Added: `Phaser.Point.trunc()`.
+- Added: `Phaser.RenderTexture#getBase64()` and `Phaser.RenderTexture#getImage()`.
+- Added: `Phaser.SoundManager#onStateChange` signal.
+- Added: `Phaser.Video` methods for mute, pause, resume, and getUserMedia handling.
+- Changed: `Phaser.Ellipse#constains()` renamed to `Phaser.Ellipse#contains()`.
+- Changed: `GameConfig.canvasId` renamed to `canvasID`.
+- Changed: `Phaser.Tilemap#createFromObjects()` accepts `[string, any]` for `search`.
+- Changed: `Phaser.Tilemap#searchTileIndex()` gained an `all` parameter and returns `Phaser.Tile | Phaser.Tile[]`. When `all` is set, it returns every matching tile.
+- Changed: p2 `Shape.RECTANGLE` renamed to `BOX`.
+- Changed: Touch lock callbacks moved from `Phaser.Touch` to `Phaser.Input`.
+- Removed: `Phaser.ArrayUtils.rotate()`.
+- Removed: `Phaser.Component.Core.skipTypeChecks`.
+- Removed: `Phaser.Device.isConsoleOpen()`.
+- Removed: `Phaser.Loader#useXDomainRequest`.
+- Removed: `Phaser.Mouse` wheel constants `WHEEL_UP` and `WHEEL_DOWN`, and the `Phaser.Mouse#requestPointerLock()` and `Phaser.Mouse#releasePointerLock()` methods.
+- Removed: `Phaser.GAMES`.
+- Removed: `PIXI.game`.
+- Removed: p2 `motorIsEnabled()`.
+
 
 ### New Features
 
