@@ -191,7 +191,7 @@ Phaser.AnimationParser = {
         //  Malformed?
         if (!json.frames)
         {
-            console.warn('Invalid Texture Atlas JSON given. Missing "frames" array:', json);
+            console.warn('Invalid Texture Atlas JSON. Missing "frames" array:', json);
             return;
         }
 
@@ -252,7 +252,7 @@ Phaser.AnimationParser = {
         {
             if (!json[key])
             {
-                console.warn('Invalid Pyxel Tilemap JSON given. Key "%s" is missing. %o', key, json);
+                console.warn('Invalid Pyxel Tilemap JSON. Key "%s" is missing. %o', key, json);
                 return;
             }
         });
@@ -260,7 +260,7 @@ Phaser.AnimationParser = {
         // For this purpose, I only care about parsing tilemaps with a single layer.
         if (json.layers.length !== 1)
         {
-            console.warn('Too many layers, this parser only supports flat Tilemaps.', json);
+            console.warn('Too many layers. Only single-layer Pyxel tilemaps are supported.', json);
             return;
         }
 
@@ -303,7 +303,7 @@ Phaser.AnimationParser = {
         //  Malformed?
         if (!json.frames)
         {
-            console.warn('Invalid Texture Atlas JSON given. Missing "frames" object.', json);
+            console.warn('Invalid Texture Atlas JSON. Missing "frames" object.', json);
             return;
         }
 
@@ -363,7 +363,7 @@ Phaser.AnimationParser = {
         //  Malformed?
         if (!xml.getElementsByTagName('TextureAtlas'))
         {
-            console.warn('Invalid Texture Atlas XML given, missing <TextureAtlas> tag');
+            console.warn('Invalid Texture Atlas XML. Missing <TextureAtlas> tag');
             return;
         }
 

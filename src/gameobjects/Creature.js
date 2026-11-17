@@ -195,7 +195,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, useFlatData)
 
     if (!game.cache.checkJSONKey(mesh))
     {
-        console.warn('Invalid mesh key given. Not found in Cache');
+        console.warn('Mesh key not found in Cache: ' + mesh);
         return;
     }
 
@@ -877,7 +877,7 @@ Phaser.Creature.prototype.createAllAnimations = function (mesh)
 {
     if (!this.game.cache.checkJSONKey(mesh))
     {
-        console.warn('Invalid mesh key given. Not found in Cache');
+        console.warn('Mesh key not found in Cache: ' + mesh);
         return;
     }
 
@@ -894,7 +894,7 @@ Phaser.Creature.prototype.setMetaData = function (meta)
 {
     if (!this.game.cache.checkJSONKey(meta))
     {
-        console.warn('Invalid meta key given. Not found in Cache');
+        console.warn('Meta key not found in Cache: ' + meta);
         return;
     }
 
@@ -914,7 +914,7 @@ Phaser.Creature.prototype.enableSkinSwap = function (swapNameIn, active)
 
     if (target.creature_meta_data === null)
     {
-        console.warn('Attempting to use skin swapping before setting the meta data. You must use setMetaData() before using skin swapping functionality.');
+        console.warn('You must use setMetaData() before using skin swapping functionality.');
         return;
     }
 
@@ -937,7 +937,7 @@ Phaser.Creature.prototype.disableSkinSwap = function ()
 
     if (target.creature_meta_data === null)
     {
-        console.warn('Attempting to use skin swapping before setting the meta data. You must use setMetaData() before using skin swapping functionality.');
+        console.warn('You must use setMetaData() before using skin swapping functionality.');
         return;
     }
 
