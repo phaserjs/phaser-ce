@@ -260,11 +260,18 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
     {
         var baseTexture = texture.baseTexture;
         var gl = this.gl;
-        if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+        var dirty = baseTexture._dirty[gl.id];
+        if (dirty || PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
         {
             this.flush();
-            gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
-            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+
+            //  renderBatch() only uploads the first texture of a batch, so upload this one here
+            if (!dirty || !this.renderSession.renderer.updateTexture(baseTexture))
+            {
+                gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
+                gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+            }
+
             PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
         }
     }
