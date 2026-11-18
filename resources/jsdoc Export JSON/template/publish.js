@@ -67,6 +67,7 @@ function graft2 (parentNode, childNodes)
 
             var thisFunction = {
                 name: element.name,
+                scope: element.scope || '',
                 access: element.access || '',
                 description: element.description || '',
                 parameters: []
@@ -107,6 +108,7 @@ function graft2 (parentNode, childNodes)
             {
                 parentClass.members.push({
                     name: element.name,
+                    scope: element.scope || '',
                     access: element.access || '',
                     virtual: !!element.virtual,
                     description: element.description || (((element.properties) && (element.properties.length === 1)) ? (element.properties[0].description || '') : ''), // properties
