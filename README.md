@@ -61,7 +61,7 @@ If you code with [TypeScript](https://www.typescriptlang.org/) there are compreh
 
 ## Download Phaser CE
 
-Phaser CE is [hosted on GitHub][phaser]. There are a number of ways to download it:
+Phaser CE is [hosted on GitHub][phaser-ce]. There are a number of ways to download it:
 
 * Clone the git repository via [https][clone-http], [ssh][clone-ssh] or with the GitHub [Windows][clone-ghwin] or [Mac][clone-ghmac] clients.
 * Download as [zip][get-zip] or [tar.gz][get-tgz]
@@ -208,9 +208,11 @@ Releases of new versions of Phaser CE are under the community's control. If you 
 
 6. Once ESLint passes run `npm run grunt release`, sit back, and wait. It will build all of the versions of Phaser CE required, update the doc files, TypeScript defs and lots more.
 
-7. Run `npm run check-version` and verify all the version numbers match.
+7. Run `npm run test-build` and make sure there are no errors.
 
-8. When finished, commit all of the new files and include a clear message in your commit saying you want this release pushed to npm: _Phaser CE Version 2.X.X. Please publish to npm @photonstorm_. I'll see it, and then publish as soon as I can (often the same day).
+8. Run `npm run check-version` and verify all the version numbers match.
+
+9. When finished, commit all of the new files and include a clear message in your commit saying you want this release pushed to npm: _Phaser CE Version 2.X.X. Please publish to npm @photonstorm_. I'll see it, and then publish as soon as I can (often the same day).
 
 <a name="newsletter"></a>
 
@@ -259,7 +261,7 @@ The Phaser logo and characters are © 2024 Photon Storm Limited. All rights rese
 [clone-svn]: https://github.com/phaserjs/phaser-ce
 [clone-ghwin]: github-windows://openRepo/https://github.com/phaserjs/phaser-ce
 [clone-ghmac]: github-mac://openRepo/https://github.com/phaserjs/phaser-ce
-[phaser]: https://github.com/phaserjs/phaser-ce
+[phaser-ce]: https://github.com/phaserjs/phaser-ce
 [issues]: https://github.com/phaserjs/phaser-ce/issues
 [examples]: https://github.com/samme/phaser-examples-mirror
 [contribute]: https://github.com/phaserjs/phaser-ce/blob/master/.github/CONTRIBUTING.md
