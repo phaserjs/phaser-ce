@@ -43,6 +43,9 @@
 - Fixed the `bind()` polyfill so it returns the target's result.
 - Fixed `Phaser.Tilemap#dump()` for Internet Explorer 9.
 - Fixed multitexture batching drawing sprites with the wrong texture after `WebGLRenderer#updateTexture()`.
+- Fixed multitexture batching binding the first texture of each batch to texture unit 0, which made the debug overlay (and anything else on unit 0) render as that texture after `setTexturePriority()` (#231).
+- Fixed multitexture batching not uploading dirty textures unless they were the first in the batch, which left `game.debug` output and other changing textures (BitmapData, Text) invisible or stale.
+- Fixed `Phaser.Rope` and `Phaser.Creature` leaving the multitexture sprite batch believing texture unit 0 still held its previous texture, which drew later sprites (and `game.debug`) with the wrong texture.
 
 #### TypeScript Fixes
 
