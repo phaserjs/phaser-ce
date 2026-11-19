@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: StateManager</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2026102311">
+	<link rel="stylesheet" href="styles/site.phaser.css?2026111910">
 </head>
 
 <body>
@@ -289,7 +289,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L15" title="StateManager on line 15 of src/core/StateManager.js">src/core/StateManager.js line 15</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L15" title="StateManager on line 15 of src/core/StateManager.js">src/core/StateManager.js line 15</a>
     
 
 	
@@ -343,7 +343,7 @@
 <dd>
     
     <div class="description members-description">
-        <p>True if the current state has had its <code>create</code> method run (if it has one, if not this is true by default).</p>
+        <p>True if the current state has completed its create phase. If the state has a <code>create</code> method, this will be true <strong>after</strong> it has been called. If the state does not have a <code>create</code> method, this will be true immediately after the state has finished loading. <code>created</code> will be always be false during a state's <code>init</code>, <code>preload</code>, <code>loadUpdate</code>, <code>loadRender</code> and <code>create</code> methods.</p>
     </div>
     
 
@@ -394,7 +394,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L777" title="created on line 777 of src/core/StateManager.js">src/core/StateManager.js line 777</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L815" title="created on line 815 of src/core/StateManager.js">src/core/StateManager.js line 815</a>
     
 
 	
@@ -471,7 +471,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L66" title="current on line 66 of src/core/StateManager.js">src/core/StateManager.js line 66</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L73" title="current on line 73 of src/core/StateManager.js">src/core/StateManager.js line 73</a>
     
 
 	
@@ -548,7 +548,84 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L20" title="game on line 20 of src/core/StateManager.js">src/core/StateManager.js line 20</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L20" title="game on line 20 of src/core/StateManager.js">src/core/StateManager.js line 20</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="loaded" data-name="loaded">
+      <span class="type-signature">&lt;readonly> </span>loaded<span class="type-signature"> : boolean</span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>True if the current state has completed (or skipped) its load phase. If the state has a <code>preload</code> method, this will be true <strong>after</strong> it has finished loading. If the state does not have a <code>preload</code> method, this will be true at the time <code>create</code> or the first <code>update</code> is called and false before that. <code>loaded</code> will always be false during a state's <code>init</code>, <code>preload</code>, <code>loadUpdate</code> and <code>loadRender</code> methods.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L801" title="loaded on line 801 of src/core/StateManager.js">src/core/StateManager.js line 801</a>
     
 
 	
@@ -625,7 +702,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L98" title="onCreateCallback on line 98 of src/core/StateManager.js">src/core/StateManager.js line 98</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L117" title="onCreateCallback on line 117 of src/core/StateManager.js">src/core/StateManager.js line 117</a>
     
 
 	
@@ -702,7 +779,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L86" title="onInitCallback on line 86 of src/core/StateManager.js">src/core/StateManager.js line 86</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L105" title="onInitCallback on line 105 of src/core/StateManager.js">src/core/StateManager.js line 105</a>
     
 
 	
@@ -779,7 +856,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L134" title="onLoadRenderCallback on line 134 of src/core/StateManager.js">src/core/StateManager.js line 134</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L153" title="onLoadRenderCallback on line 153 of src/core/StateManager.js">src/core/StateManager.js line 153</a>
     
 
 	
@@ -856,7 +933,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L128" title="onLoadUpdateCallback on line 128 of src/core/StateManager.js">src/core/StateManager.js line 128</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L147" title="onLoadUpdateCallback on line 147 of src/core/StateManager.js">src/core/StateManager.js line 147</a>
     
 
 	
@@ -933,7 +1010,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L152" title="onPauseUpdateCallback on line 152 of src/core/StateManager.js">src/core/StateManager.js line 152</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L171" title="onPauseUpdateCallback on line 171 of src/core/StateManager.js">src/core/StateManager.js line 171</a>
     
 
 	
@@ -1010,7 +1087,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L140" title="onPausedCallback on line 140 of src/core/StateManager.js">src/core/StateManager.js line 140</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L159" title="onPausedCallback on line 159 of src/core/StateManager.js">src/core/StateManager.js line 159</a>
     
 
 	
@@ -1087,7 +1164,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L122" title="onPreRenderCallback on line 122 of src/core/StateManager.js">src/core/StateManager.js line 122</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L141" title="onPreRenderCallback on line 141 of src/core/StateManager.js">src/core/StateManager.js line 141</a>
     
 
 	
@@ -1164,7 +1241,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L92" title="onPreloadCallback on line 92 of src/core/StateManager.js">src/core/StateManager.js line 92</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L111" title="onPreloadCallback on line 111 of src/core/StateManager.js">src/core/StateManager.js line 111</a>
     
 
 	
@@ -1241,7 +1318,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L110" title="onRenderCallback on line 110 of src/core/StateManager.js">src/core/StateManager.js line 110</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L129" title="onRenderCallback on line 129 of src/core/StateManager.js">src/core/StateManager.js line 129</a>
     
 
 	
@@ -1318,7 +1395,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L116" title="onResizeCallback on line 116 of src/core/StateManager.js">src/core/StateManager.js line 116</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L135" title="onResizeCallback on line 135 of src/core/StateManager.js">src/core/StateManager.js line 135</a>
     
 
 	
@@ -1395,7 +1472,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L146" title="onResumedCallback on line 146 of src/core/StateManager.js">src/core/StateManager.js line 146</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L165" title="onResumedCallback on line 165 of src/core/StateManager.js">src/core/StateManager.js line 165</a>
     
 
 	
@@ -1472,7 +1549,7 @@
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L158" title="onShutDownCallback on line 158 of src/core/StateManager.js">src/core/StateManager.js line 158</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L177" title="onShutDownCallback on line 177 of src/core/StateManager.js">src/core/StateManager.js line 177</a>
     
 
 	
@@ -1554,7 +1631,88 @@ and the second parameter is the string based key of the old / previous state.</p
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L80" title="onStateChange on line 80 of src/core/StateManager.js">src/core/StateManager.js line 80</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L87" title="onStateChange on line 87 of src/core/StateManager.js">src/core/StateManager.js line 87</a>
+    
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 id="onStateCreated" data-name="onStateCreated">
+      <span class="type-signature"></span>onStateCreated<span class="type-signature"> : <a href="Phaser.Signal.html">Phaser.Signal</a></span>
+      
+    </h4>
+    
+</dt>
+<dd>
+    
+    <div class="description members-description">
+        <p>onStateCreated is a Phaser.Signal that is dispatched once per state after its preload (if any) has finished and its <code>create</code> method (if any) has returned.
+It is dispatched for every state, including those without <code>preload</code> or <code>create</code> methods.
+Unlike <a href="Phaser.StateManager.html#onStateChange">onStateChange</a> the state's game objects exist at this point.
+If <code>create</code> starts another state, this is still dispatched for the first state, before the change takes effect.</p>
+<p>The callback you specify is sent one parameter: the string based key of the state.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Phaser.Signal.html">Phaser.Signal</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+    
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L99" title="onStateCreated on line 99 of src/core/StateManager.js">src/core/StateManager.js line 99</a>
     
 
 	
@@ -1631,7 +1789,7 @@ and the second parameter is the string based key of the old / previous state.</p
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L104" title="onUpdateCallback on line 104 of src/core/StateManager.js">src/core/StateManager.js line 104</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L123" title="onUpdateCallback on line 123 of src/core/StateManager.js">src/core/StateManager.js line 123</a>
     
 
 	
@@ -1708,7 +1866,7 @@ and the second parameter is the string based key of the old / previous state.</p
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L25" title="states on line 25 of src/core/StateManager.js">src/core/StateManager.js line 25</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L25" title="states on line 25 of src/core/StateManager.js">src/core/StateManager.js line 25</a>
     
 
 	
@@ -1942,7 +2100,7 @@ and the second parameter is the string based key of the old / previous state.</p
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L179" title="add on line 179 of src/core/StateManager.js">src/core/StateManager.js line 179</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L198" title="add on line 198 of src/core/StateManager.js">src/core/StateManager.js line 198</a>
     
 
 	
@@ -2076,7 +2234,7 @@ and the second parameter is the string based key of the old / previous state.</p
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L419" title="checkState on line 419 of src/core/StateManager.js">src/core/StateManager.js line 419</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L438" title="checkState on line 438 of src/core/StateManager.js">src/core/StateManager.js line 438</a>
     
 
 	
@@ -2185,7 +2343,7 @@ resets the camera, resets input, clears physics, removes timers and if set clear
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L375" title="clearCurrentState on line 375 of src/core/StateManager.js">src/core/StateManager.js line 375</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L394" title="clearCurrentState on line 394 of src/core/StateManager.js">src/core/StateManager.js line 394</a>
     
 
 	
@@ -2270,7 +2428,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L739" title="destroy on line 739 of src/core/StateManager.js">src/core/StateManager.js line 739</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L763" title="destroy on line 763 of src/core/StateManager.js">src/core/StateManager.js line 763</a>
     
 
 	
@@ -2354,7 +2512,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L573" title="getCurrentState on line 573 of src/core/StateManager.js">src/core/StateManager.js line 573</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L593" title="getCurrentState on line 593 of src/core/StateManager.js">src/core/StateManager.js line 593</a>
     
 
 	
@@ -2508,7 +2666,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L449" title="link on line 449 of src/core/StateManager.js">src/core/StateManager.js line 449</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L468" title="link on line 468 of src/core/StateManager.js">src/core/StateManager.js line 468</a>
     
 
 	
@@ -2588,7 +2746,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L585" title="loadComplete on line 585 of src/core/StateManager.js">src/core/StateManager.js line 585</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L605" title="loadComplete on line 605 of src/core/StateManager.js">src/core/StateManager.js line 605</a>
     
 
 	
@@ -2675,7 +2833,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L603" title="loadUpdate on line 603 of src/core/StateManager.js">src/core/StateManager.js line 603</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L627" title="loadUpdate on line 627 of src/core/StateManager.js">src/core/StateManager.js line 627</a>
     
 
 	
@@ -2762,7 +2920,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L616" title="pause on line 616 of src/core/StateManager.js">src/core/StateManager.js line 616</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L640" title="pause on line 640 of src/core/StateManager.js">src/core/StateManager.js line 640</a>
     
 
 	
@@ -2842,7 +3000,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L667" title="pauseUpdate on line 667 of src/core/StateManager.js">src/core/StateManager.js line 667</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L691" title="pauseUpdate on line 691 of src/core/StateManager.js">src/core/StateManager.js line 691</a>
     
 
 	
@@ -2922,7 +3080,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L686" title="preRender on line 686 of src/core/StateManager.js">src/core/StateManager.js line 686</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L710" title="preRender on line 710 of src/core/StateManager.js">src/core/StateManager.js line 710</a>
     
 
 	
@@ -3006,7 +3164,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L324" title="preUpdate on line 324 of src/core/StateManager.js">src/core/StateManager.js line 324</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L343" title="preUpdate on line 343 of src/core/StateManager.js">src/core/StateManager.js line 343</a>
     
 
 	
@@ -3140,7 +3298,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L233" title="remove on line 233 of src/core/StateManager.js">src/core/StateManager.js line 233</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L252" title="remove on line 252 of src/core/StateManager.js">src/core/StateManager.js line 252</a>
     
 
 	
@@ -3220,7 +3378,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L710" title="render on line 710 of src/core/StateManager.js">src/core/StateManager.js line 710</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L734" title="render on line 734 of src/core/StateManager.js">src/core/StateManager.js line 734</a>
     
 
 	
@@ -3300,7 +3458,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L698" title="resize on line 698 of src/core/StateManager.js">src/core/StateManager.js line 698</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L722" title="resize on line 722 of src/core/StateManager.js">src/core/StateManager.js line 722</a>
     
 
 	
@@ -3532,7 +3690,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L291" title="restart on line 291 of src/core/StateManager.js">src/core/StateManager.js line 291</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L310" title="restart on line 310 of src/core/StateManager.js">src/core/StateManager.js line 310</a>
     
 
 	
@@ -3612,7 +3770,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L628" title="resume on line 628 of src/core/StateManager.js">src/core/StateManager.js line 628</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L652" title="resume on line 652 of src/core/StateManager.js">src/core/StateManager.js line 652</a>
     
 
 	
@@ -3880,7 +4038,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L263" title="start on line 263 of src/core/StateManager.js">src/core/StateManager.js line 263</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L282" title="start on line 282 of src/core/StateManager.js">src/core/StateManager.js line 282</a>
     
 
 	
@@ -4014,7 +4172,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L481" title="unlink on line 481 of src/core/StateManager.js">src/core/StateManager.js line 481</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L500" title="unlink on line 500 of src/core/StateManager.js">src/core/StateManager.js line 500</a>
     
 
 	
@@ -4094,7 +4252,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.21.0/src/core/StateManager.js#L640" title="update on line 640 of src/core/StateManager.js">src/core/StateManager.js line 640</a>
+      <a href="https://github.com/phaserjs/phaser-ce/blob/v2.22.0/src/core/StateManager.js#L664" title="update on line 664 of src/core/StateManager.js">src/core/StateManager.js line 664</a>
     
 
 	
@@ -4137,9 +4295,9 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.21.0
+  phaser-ce@2.22.0
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.21.0">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.22.0">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -4156,7 +4314,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 <p class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a>
 	
-		on 2026-10-23
+		on 2026-11-19
 	
 </p>
 
@@ -4184,7 +4342,7 @@ You don't recover from this without rebuilding the Phaser instance again.</p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2026102311"></script>
+<script defer src="scripts/bundle.js?2026111910"></script>
 
 
 
