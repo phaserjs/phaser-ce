@@ -14,7 +14,6 @@ declare class Phaser {
 
     static VERSION: string;
     static DEV_VERSION: string;
-    static GAMES: Phaser.Game[];
 
     static AUTO: number;
     static CANVAS: number;
@@ -899,7 +898,6 @@ declare module Phaser {
         * @return The nearest value found.
         */
         static findClosest(value: number, arr: number[]): number;
-        static rotate(array: any[]): any;
 
         /**
         * Moves the element from the start of the array to the end, shifting all items in the process.
@@ -1583,6 +1581,15 @@ declare module Phaser {
         generateTexture(key: string, callback?: (texture: PIXI.Texture) => void, callbackContext?: any): PIXI.Texture;
 
         /**
+        * Returns a data URI representing the bitmap image.
+        * 
+        * @param type Image format.
+        * @param encoderOptions Image quality, for lossy formats.
+        * @return - The data URI.
+        */
+        getBase64(type?: string, encoderOptions?: number): string;
+
+        /**
         * Scans the BitmapData and calculates the bounds. This is a rectangle that defines the extent of all non-transparent pixels.
         * The rectangle returned will extend from the top-left of the image to the bottom-right, excluding transparent pixels.
         * 
@@ -1606,6 +1613,20 @@ declare module Phaser {
         * @return Returns an object containing the color of the pixel in the `r`, `g` and `b` properties and the location in the `x` and `y` properties.
         */
         getFirstPixel(direction: number): { r: number; g: number; b: number; x: number; y: number; };
+
+        /**
+        * Returns an HTML image of the bitmap.
+        * 
+        * The image is loaded asynchronously, not right away.
+        * Use the callbacks if you need to wait for the loaded image.
+        * 
+        * @param type Image format.
+        * @param encoderOptions Image quality, for lossy formats.
+        * @param onLoadCallback A function to call when the image loads.
+        * @param onErrorCallback A function to call when the image fails to load.
+        * @return - The image.
+        */
+        getImage(type?: string, encoderOptions?: number, onLoadCallback?: Function, onErrorCallback?: Function): HTMLImageElement;
 
         /**
         * Get the color of a specific pixel in the context into a color object.
@@ -2253,6 +2274,11 @@ declare module Phaser {
         * Very handy for particles, bullets, collectibles, or any other short-lived entity.
         */
         lifespan: number;
+
+        /**
+        * Sets the letter spacing between each character of this Bitmap Text. Can be a positive value to increase the space, or negative to reduce it. Spacing is applied after the kerning values have been set.
+        */
+        letterSpacing: number;
 
         /**
         * The maximum display width of this BitmapText in pixels.
@@ -3070,6 +3096,14 @@ declare module Phaser {
         addCanvas(key: string, canvas: HTMLCanvasElement, context?: CanvasRenderingContext2D): void;
 
         /**
+        * Add a data item to the cache.
+        * 
+        * @param key The key of the data item.
+        * @param data The data.
+        */
+        addData(key: string, data: any): void;
+
+        /**
         * Adds a default image to be used in special cases such as WebGL Filters.
         * It uses the special reserved key of `__default`.
         * This method is called automatically when the Cache is created.
@@ -3240,6 +3274,14 @@ declare module Phaser {
         * @return True if the key exists in the cache, otherwise false.
         */
         checkCanvasKey(key: string): boolean;
+
+        /**
+        * Checks if the given key exists in the Data Cache.
+        * 
+        * @param key The key of the data item.
+        * @return True if the key exists in the cache, otherwise false.
+        */
+        checkDataKey(key: string): boolean;
 
         /**
         * Checks if the given key exists in the Image Cache. Note that this also includes Texture Atlases, Sprite Sheets and Retro Fonts.
@@ -3428,6 +3470,14 @@ declare module Phaser {
         * @return The canvas object or `null` if no item could be found matching the given key.
         */
         getCanvas(key: string): HTMLCanvasElement;
+
+        /**
+        * Gets an item from the data cache.
+        * 
+        * @param key The key of the data item.
+        * @return The data.
+        */
+        getData(key: string): any;
 
         /**
         * Get a single frame by key. You'd only do this to get the default Frame created for a non-atlas/spritesheet image.
@@ -3752,6 +3802,7 @@ declare module Phaser {
         * @param key Key of the asset you want to remove.
         */
         removeCanvas(key: string): void;
+        removeData(key: string): void;
 
         /**
         * Removes an image from the cache.
@@ -4129,6 +4180,20 @@ declare module Phaser {
         fade(color?: number, duration?: number, force?: boolean, alpha?: number): boolean;
 
         /**
+        * This creates a camera fade in effect.
+        * It fills the game with a solid color and then removes it over the duration given.
+        * 
+        * When the effect ends the signal Camera.onFadeComplete is dispatched.
+        * 
+        * @param color The color the game will fade from. I.e. 0x000000 for black, 0xff0000 for red, etc. - Default: 0x000000
+        * @param duration The duration of the fade in milliseconds. - Default: 500
+        * @param force If a camera flash or fade effect is already running and force is true it will replace the previous effect, resetting the duration.
+        * @param alpha The alpha value of the color applied to the fade effect. - Default: 1
+        * @return True if the effect was started, otherwise false.
+        */
+        fadeIn(color?: number, duration?: number, force?: boolean, alpha?: number): boolean;
+
+        /**
         * This creates a camera flash effect. It works by filling the game with the solid fill
         * color specified, and then fading it away to alpha 0 over the duration given.
         * 
@@ -4424,6 +4489,11 @@ declare module Phaser {
         */
         static log(): void;
 
+        /**
+        * Empties the pool.
+        */
+        static clear(): void;
+
     }
 
 
@@ -4534,6 +4604,16 @@ declare module Phaser {
         * @return A value of true if the specified object intersects with this Circle object; otherwise false.
         */
         static intersects(a: Phaser.Circle, b: Phaser.Circle): boolean;
+
+        /**
+        * Checks if the given Circle and Line objects intersect.
+        * 
+        * @param c The Circle object to test.
+        * @param l The Line object to test.
+        * @param returnpoints optional Array Object, Return an array of intersection points if true, otherwise return boolean.
+        * @return True if the two objects intersect, otherwise false.
+        */
+        static intersectsLine(c: Phaser.Circle, l: Phaser.Line, returnPoints?: boolean): any;
 
         /**
         * Checks if the given Circle and Rectangle objects intersect.
@@ -5421,13 +5501,6 @@ declare module Phaser {
 
     }
 
-    module Component {
-
-        module Core {
-            var skipTypeChecks: boolean;
-        }
-    }
-
     interface RGBColor {
         r: number;
         g: number;
@@ -5663,7 +5736,6 @@ declare module Phaser {
         * @return True if the given file type is supported by the browser, otherwise false.
         */
         static canPlayVideo(type: string): boolean;
-        static isConsoleOpen(): boolean;
 
         /**
         * Detect if the host is a an Android Stock browser.
@@ -5744,7 +5816,7 @@ declare module Phaser {
         crosswalk: boolean;
 
         /**
-        * Is css3D available?
+        * Does the browser support 3D CSS transforms (`translate3d`)?
         */
         css3D: boolean;
 
@@ -6608,7 +6680,25 @@ declare module Phaser {
         */
         y: number;
 
-        static constains(a: Phaser.Ellipse, x: number, y: number): boolean;
+
+        /**
+        * Return true if the given x/y coordinates are within this Ellipse object.
+        * 
+        * @param x The X value of the coordinate to test.
+        * @param y The Y value of the coordinate to test.
+        * @return True if the coordinates are within this ellipse, otherwise false.
+        */
+        static contains(a: Phaser.Ellipse, x: number, y: number): boolean;
+
+        /**
+        * Checks if the given Ellipse and Line objects intersect.
+        * 
+        * @param e The Ellipse object to test.
+        * @param l The Line object to test.
+        * @param returnPoints optional Array Object, Return an array of intersection points if true, otherwise return boolean.
+        * @return True if the two objects intersect, otherwise false.
+        */
+        static intersectsLine(e: Phaser.Ellipse, l: Phaser.Line, returnPoints?: boolean): any;
 
 
         /**
@@ -7678,9 +7768,10 @@ declare module Phaser {
         alignH?: boolean;
         alignV?: boolean;
         antialias?: boolean;
+        antialiasGL?: boolean;
         backgroundColor?: number | string;
         canvas?: HTMLCanvasElement;
-        canvasId?: string;
+        canvasID?: string;
         canvasStyle?: string;
         crisp?: boolean;
         disableVisibilityChange?: boolean;
@@ -7707,7 +7798,7 @@ declare module Phaser {
         roundPixels?: boolean;
         scaleH?: number;
         scaleMode?: number;
-        scaleV?: number
+        scaleV?: number;
         seed?: number;
         state?: any;
         touch?: boolean;
@@ -7846,7 +7937,7 @@ declare module Phaser {
         * 
         * @param width The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given. - Default: 800
         * @param height The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given. - Default: 600
-        * @param renderer Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all). - Default: Phaser.AUTO
+        * @param renderer Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all). HEADLESS skips `preRender`, `render`, and `postRender` hooks, just like {@link #lockRender}. - Default: Phaser.AUTO
         * @param parent The DOM element into which this game canvas will be injected. Either a DOM `id` (string) or the element itself. If omitted (or no such element exists), the game canvas is appended to the document body. - Default: ''
         * @param state The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.
         * @param transparent Use a transparent canvas background or not.
@@ -7912,7 +8003,7 @@ declare module Phaser {
         * 
         * @param width The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given. - Default: 800
         * @param height The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given. - Default: 600
-        * @param renderer Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all). - Default: Phaser.AUTO
+        * @param renderer Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all). HEADLESS skips `preRender`, `render`, and `postRender` hooks, just like {@link #lockRender}. - Default: Phaser.AUTO
         * @param parent The DOM element into which this game canvas will be injected. Either a DOM `id` (string) or the element itself. If omitted (or no such element exists), the game canvas is appended to the document body. - Default: ''
         * @param state The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.
         * @param transparent Use a transparent canvas background or not.
@@ -8067,6 +8158,22 @@ declare module Phaser {
         onBoot: Phaser.Signal;
 
         /**
+        * This event is fired when the WebGL context is lost. It is never fired by the Canvas renderer.
+        */
+        onContextLost: Phaser.Signal;
+
+        /**
+        * This event is fired after the WebGL context has been restored and the renderer and cached textures re-initialized.
+        * It is never fired by the Canvas renderer.
+        */
+        onContextRestored: Phaser.Signal;
+
+        /**
+        * This event is fired at the start of the game destroy sequence.
+        */
+        onDestroy: Phaser.Signal;
+
+        /**
         * This event is fired when the game has focus (typically on page show).
         */
         onFocus: Phaser.Signal;
@@ -8075,6 +8182,15 @@ declare module Phaser {
         * This event is fired when the game pauses.
         */
         onPause: Phaser.Signal;
+
+        /**
+        * This event is fired at the end of each render, after {@link Phaser.Plugin#postRender plugin postRender} and the renderer's own post-render step.
+        * Listeners are called in the same animation frame as the render, so the canvas can be captured here (e.g. `game.canvas.toDataURL()`) without `preserveDrawingBuffer`.
+        * It is not dispatched when the render is skipped by {@link Phaser.Game#lockRender lockRender} or the HEADLESS renderer.
+        * Use `addOnce()` to wait for the next rendered frame.
+        * The callback is sent one parameter: the game.
+        */
+        onPostRender: Phaser.Signal;
 
         /**
         * This event is fired when the game resumes from a paused state.
@@ -8144,7 +8260,13 @@ declare module Phaser {
         renderer: PIXI.CanvasRenderer | PIXI.WebGLRenderer;
 
         /**
-        * The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType reflects the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. HEADLESS skips `preRender`, `render`, and `postRender` hooks, just like {@link Phaser.Game#lockRender lockRender}.
+        * The number of renders completed since the game booted. It is incremented just before {@link Phaser.Game#onPostRender onPostRender} is dispatched.
+        * Renders skipped by {@link Phaser.Game#lockRender lockRender} or the HEADLESS renderer are not counted.
+        */
+        renderCount: number;
+
+        /**
+        * Before the game boots, renderType is the `renderer` argument given to `Game()`: Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType is the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. Read {@link Phaser.Game#multiTexture multiTexture} to see if multiple bound textures are enabled.
         */
         renderType: number;
 
@@ -8210,6 +8332,12 @@ declare module Phaser {
         * The first update is `currentUpdateID === 0` and the last update is `currentUpdateID === updatesThisFrame.`
         */
         currentUpdateID: number;
+
+        /**
+        * The number of logic updates completed since the game booted. Unlike {@link Phaser.Time#frames} it is never reset.
+        * Paused and stepped-over updates are not counted.
+        */
+        updateCount: number;
 
         /**
         * Number of logic updates expected to occur this animation frame; will be 1 unless there are catch-ups required (and allowed).
@@ -12531,6 +12659,13 @@ declare module Phaser {
         touch: Phaser.Touch;
 
         /**
+        * An array of callbacks that will be fired every time a native touch start or touch end event (pointerdown or pointerup when using Pointer events) is received from the browser.
+        * This is used internally to handle audio and video unlocking on mobile devices.
+        * To add a callback to this array please use `Input.addTouchLockCallback`.
+        */
+        touchLockCallbacks: any[];
+
+        /**
         * The world X coordinate of the most recently active pointer.
         */
         worldX: number;
@@ -12560,6 +12695,21 @@ declare module Phaser {
         * @return The new Pointer object that was created; null if a new pointer could not be added.
         */
         addPointer(): Phaser.Pointer;
+
+        /**
+        * Adds a callback that is fired when a browser touchstart/pointerdown or touchend/pointerup event is received.
+        * 
+        * This is used internally to handle audio and video unlocking on mobile devices.
+        * 
+        * If the callback returns 'true' then the callback is automatically deleted once invoked.
+        * 
+        * The callback is added to the {@link Phaser.Input#touchLockCallbacks touchLockCallbacks} array and should be removed with {@link Phaser.Input#removeTouchLockCallback removeTouchLockCallback}.
+        * 
+        * @param callback The callback that will be called when a touchstart event is received.
+        * @param context The context in which the callback will be called.
+        * @param onEnd Will the callback fire on a touchstart/pointerdown (default) or touchend/pointerup event?
+        */
+        addTouchLockCallback(callback: Function, context?: any, onEnd?: boolean): void;
 
         /**
         * Adds a callback that is fired every time the activePointer receives a DOM move event such as a mousemove or touchmove.
@@ -12651,6 +12801,15 @@ declare module Phaser {
         * @param localPoint The local translated point.
         */
         hitTest(displayObject: PIXI.DisplayObject, pointer: Phaser.Pointer, localPoint: Phaser.Point): void;
+
+        /**
+        * Removes the callback at the defined index from the {@link Phaser.Input#touchLockCallbacks touchLockCallbacks} array
+        * 
+        * @param callback The callback to be removed.
+        * @param context The context in which the callback exists.
+        * @return True if the callback was deleted, otherwise false.
+        */
+        removeTouchLockCallback(callback: Function, context?: any): boolean;
 
         /**
         * Reset all of the Pointers and Input states.
@@ -14426,6 +14585,11 @@ declare module Phaser {
         /**
         * This event is dispatched when the final file in the load queue has either loaded or failed,
         * after the loader is {@link Phaser.Loader#reset reset}.
+        * 
+        * Completion does not mean every file loaded successfully. Failures are reported via {@link Phaser.Loader#onFileError onFileError}.
+        * When a State's `preload` queues nothing, the StateManager skips the Loader and this is not dispatched
+        * (the State's `create` still runs). Calling {@link Phaser.Loader#start start} with an empty queue does dispatch it.
+        * It is also dispatched if loading finishes abnormally, such as when the queue stalls.
         */
         onLoadComplete: Phaser.Signal;
 
@@ -14488,7 +14652,13 @@ declare module Phaser {
         * If true all calls to Loader.reset will be ignored. Useful if you need to create a load queue before swapping to a preloader state.
         */
         resetLocked: boolean;
-        useXDomainRequest: boolean;
+
+        /**
+        * If true, and the game uses WebGL, each loaded image is uploaded to the GPU right away instead of when it's first rendered.
+        * This moves the pause of uploading a large image from gameplay into loading.
+        * If a loaded image's `scaleMode`, `mipmap` or `premultipliedAlpha` is changed later, call its base texture's `dirty()` method.
+        */
+        uploadTextures: boolean;
 
 
         /**
@@ -14830,9 +15000,17 @@ declare module Phaser {
         fileError(file: any, xhr: XMLHttpRequest, reason: string): void;
 
         /**
-        * The loading is all finished.
+        * The loading is all finished. Dispatches the completion signals, then calls `loadUpdate` and `loadComplete` on the current State.
         * 
-        * @param abnormal True if the loading finished abnormally. - Default: true
+        * Called with no argument when every queued file has been processed. Failed files count as processed.
+        * 
+        * Called with `true` in two cases:
+        * - Loading was cancelled or reset while in progress (`processLoadQueue` finds `isLoading` is false).
+        * - The queue stalled: files remain unprocessed but none are in flight. This is detected after a 2 second delay.
+        * 
+        * For an abnormal finish, `onLoadStart` is not dispatched. `onBeforeLoadComplete` and `onLoadComplete` still are.
+        * 
+        * @param abnormal True if loading finished abnormally (cancelled, reset, or stalled). Omit it, or pass false, for a normal finish.
         */
         finishedLoading(abnormal?: boolean): void;
 
@@ -15428,6 +15606,13 @@ declare module Phaser {
         * Update the loading sprite progress.
         */
         updateProgress(): void;
+
+        /**
+        * Uploads the image of a loaded file to the GPU, if the file has one and the game uses WebGL.
+        * 
+        * @param file The loaded file.
+        */
+        uploadTexture(file: any): void;
 
         /**
         * Adds a video file to the current load queue.
@@ -16275,6 +16460,15 @@ declare module Phaser {
         static roundTo(value: number, place?: number, base?: number): number;
 
         /**
+        * Truncates a number, removing any fractional part.
+        * Same as round-towards-zero.
+        * 
+        * @param value The value to truncate.
+        * @return The truncated value.
+        */
+        static trunc(value: number): number;
+
+        /**
         * 
         * 
         * @param n
@@ -16464,8 +16658,6 @@ declare module Phaser {
         static RIGHT_BUTTON: number;
         static BACK_BUTTON: number;
         static FORWARD_BUTTON: number;
-        static WHEEL_DOWN: number;
-        static WHEEL_UP: number;
 
         button: number;
 
@@ -16613,8 +16805,6 @@ declare module Phaser {
         onMouseUpGlobal(event: MouseEvent): void;
         onMouseWheel(event: MouseEvent): void;
         pointerLockChange(event: MouseEvent): void;
-        releasePointerLock(): void;
-        requestPointerLock(): void;
 
         /**
         * Starts the event listeners running.
@@ -16802,9 +16992,29 @@ declare module Phaser {
         pointerMoveCallback: (event: PointerEvent) => void;
 
         /**
+        * A callback that can be fired on a pointercancel event.
+        */
+        pointerCancelCallback: (event: PointerEvent) => void;
+
+        /**
+        * A callback that can be fired on a pointerout event.
+        */
+        pointerOutCallback: (event: PointerEvent) => void;
+
+        /**
+        * A callback that can be fired on a pointerover event.
+        */
+        pointerOverCallback: (event: PointerEvent) => void;
+
+        /**
         * A callback that can be fired on a pointerup event.
         */
         pointerUpCallback: (event: PointerEvent) => void;
+
+        /**
+        * If true Pointer.stop() will be called if the pointer leaves the game canvas.
+        */
+        stopOnGameOut: boolean;
 
 
         /**
@@ -18010,6 +18220,34 @@ declare module Phaser {
         * @param height The new height of the video. If undefined `video.videoHeight` is used.
         */
         updateTexture(event?: any, width?: number, height?: number): void;
+
+        /**
+        * Internal handler called automatically by the Video.mute setter.
+        */
+        setMute(): void;
+
+        /**
+        * Internal handler called automatically by the Video.mute setter.
+        */
+        unsetMute(): void;
+
+        /**
+        * Internal handler called automatically by the Video.paused setter.
+        */
+        setPause(): void;
+
+        /**
+        * Internal handler called automatically by the Video.paused setter.
+        */
+        setResume(): void;
+
+        /**
+        * Internal callback that monitors the download progress of a video after changing its source.
+        */
+        checkVideoProgress(): void;
+        getUserMediaTimeout(): void;
+        getUserMediaError(event: any): void;
+        getUserMediaSuccess(stream: any): void;
 
     }
 
@@ -22769,6 +23007,14 @@ declare module Phaser {
         static parse(obj: any, xProp?: string, yProp?: string): Phaser.Point;
 
         /**
+        * Truncates the x and y values, removing any fractional parts.
+        * 
+        * @param obj The Point.
+        * @return The modified Point.
+        */
+        static trunc(obj: any): Phaser.Point;
+
+        /**
         * Make this Point perpendicular (90 degrees rotation)
         * @return This Point object.
         */
@@ -24771,6 +25017,28 @@ declare module Phaser {
         */
         renderRawXY(displayObject: PIXI.DisplayObject, x: number, y: number, clear?: boolean): void;
 
+        /**
+        * Returns a base64 encoded string of this texture. It works by calling RenderTexture.getCanvas and then running toDataURL on that.
+        * 
+        * @param type Image format.
+        * @param encoderOptions Image quality, for lossy formats.
+        * @return A base64 encoded string of the texture.
+        */
+        getBase64(type?: string, encoderOptions?: number): string;
+
+        /**
+        * Returns an HTML Image of the texture
+        * 
+        * The image is loaded asynchronously, not right away.
+        * Use the callbacks if you need to wait for the loaded image.
+        * 
+        * @param type Image format.
+        * @param encoderOptions Image quality, for lossy formats.
+        * @param onLoadCallback A function to call when the image loads.
+        * @param onErrorCallback A function to call when the image fails to load.
+        */
+        getImage(type?: string, encoderOptions?: number, onLoadCallback?: Function, onErrorCallback?: Function): HTMLImageElement;
+
     }
 
 
@@ -25994,14 +26262,6 @@ declare module Phaser {
         */
         toString(): string;
 
-        /**
-        * 
-        * 
-        * @param listener Signal handler function.
-        * @param fnName Function name.
-        */
-        validateListener(listener: Function, fnName: string): void;
-
     }
 
 
@@ -26752,6 +27012,11 @@ declare module Phaser {
         * This signal is dispatched when the SoundManager is globally un-muted, either directly via game code or as a result of the game resuming from a pause.
         */
         onUnMute: Phaser.Signal;
+
+        /**
+        * This signal is dispatched when the AudioContext state changes, only if using Web Audio.
+        */
+        onStateChange: Phaser.Signal;
 
         /**
         * true if the audio system is currently locked awaiting a touch event.
@@ -27885,8 +28150,8 @@ declare module Phaser {
         updateTransform(): void;
 
         /**
-        * Starts a page visibility event listener running, or window.onpagehide/onpageshow if not supported by the browser.
-        * Also listens for window.onblur and window.onfocus.
+        * Starts a page visibility event listener running, or pagehide/pageshow if not supported by the browser.
+        * Also listens for window blur and focus events.
         */
         checkVisibility(): void;
 
@@ -27918,7 +28183,9 @@ declare module Phaser {
         setBackgroundColor(backgroundColor: number | string): void;
 
         /**
-        * Destroys the Stage and removes event listeners.
+        * Removes the visibility, focus/blur, and click listeners added by {@link Phaser.Stage#checkVisibility}.
+        * 
+        * It does not remove the Stage's children or otherwise destroy the Stage.
         */
         destroy(): void;
 
@@ -28936,6 +29203,9 @@ declare module Phaser {
         * create is called once preload has completed, this includes the loading of any assets from the Loader.
         * If you don't have a preload method then create is the first method called in your State.
         * 
+        * create is called once the load queue has finished, even if some files failed to load. Check for failures with
+        * `this.load.onFileError` if the assets are required.
+        * 
         * @param game
         */
         create(game: Phaser.Game): void;
@@ -28982,6 +29252,13 @@ declare module Phaser {
         * preload is called first. Normally you'd use this to load your game assets (or those needed for the current State)
         * You shouldn't create any objects in this method that require assets that you're also loading in this method, as
         * they won't yet be available.
+        * 
+        * If preload queues no assets (or the State has no preload method), the Loader is skipped entirely. No loadUpdate or
+        * loadRender calls are made and no Loader events are dispatched; create runs in the next game update.
+        * 
+        * Load completion does not mean every asset downloaded successfully. Failed files count towards completion, so create
+        * runs either way. To detect failures, listen to `this.load.onFileError` (or check the file's `error` flag) before relying
+        * on the asset in create.
         * 
         * @param game
         */
@@ -29062,7 +29339,7 @@ declare module Phaser {
 
 
         /**
-        * True if the current state has had its `create` method run (if it has one, if not this is true by default).
+        * True if the current state has completed its create phase. If the state has a `create` method, this will be true **after** it has been called. If the state does not have a `create` method, this will be true immediately after the state has finished loading. `created` will be always be false during a state's `init`, `preload`, `loadUpdate`, `loadRender` and `create` methods.
         */
         created: boolean;
 
@@ -29075,6 +29352,11 @@ declare module Phaser {
         * A reference to the currently running game.
         */
         game: Phaser.Game;
+
+        /**
+        * True if the current state has completed (or skipped) its load phase. If the state has a `preload` method, this will be true **after** it has finished loading. If the state does not have a `preload` method, this will be true at the time `create` or the first `update` is called and false before that. `loaded` will always be false during a state's `init`, `preload`, `loadUpdate` and `loadRender` methods.
+        */
+        loaded: boolean;
 
         /**
         * This is called when the state preload has finished and creation begins.
@@ -29158,6 +29440,16 @@ declare module Phaser {
         * and the second parameter is the string based key of the old / previous state.
         */
         onStateChange: Phaser.Signal;
+
+        /**
+        * onStateCreated is a Phaser.Signal that is dispatched once per state after its preload (if any) has finished and its `create` method (if any) has returned.
+        * It is dispatched for every state, including those without `preload` or `create` methods.
+        * Unlike {@link Phaser.StateManager#onStateChange onStateChange} the state's game objects exist at this point.
+        * If `create` starts another state, this is still dispatched for the first state, before the change takes effect.
+        * 
+        * The callback you specify is sent one parameter: the string based key of the state.
+        */
+        onStateCreated: Phaser.Signal;
 
         /**
         * Adds a new State into the StateManager. You must give each State a unique key by which you'll identify it.
@@ -30571,7 +30863,7 @@ declare module Phaser {
         * @param adjustSize By default the width and height of the objects are transferred to the sprite. This parameter controls that behavior. - Default: true
         * @return - The created Sprites.
         */
-        createFromObjects(name: string, search: number | string | number[], key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean, adjustSize?: boolean): Phaser.Sprite[];
+        createFromObjects(name: string, search: number | string | [string, any], key: string, frame?: any, exists?: boolean, autoCull?: boolean, group?: Phaser.Group, CustomClass?: any, adjustY?: boolean, adjustSize?: boolean): Phaser.Sprite[];
 
         /**
         * Creates a Sprite for every object matching the given tile indexes in the map data.
@@ -30874,10 +31166,10 @@ declare module Phaser {
         * @param skip The number of times to skip a matching tile before returning.
         * @param reverse If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
         * @param layer The layer to get the tile from.
-        * @param all If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
+        * @param all If true it returns an array of all matching tiles. Otherwise it returns only the first matching tile.
         * @return A matching tile, or null (when `all` is false); or an array of zero or more tiles (when `all` is true).
         */
-        searchTileIndex(index: number, skip?: number, reverse?: boolean, layer?: any): Phaser.Tile;
+        searchTileIndex(index: number, skip?: number, reverse?: boolean, layer?: any, all?: boolean): Phaser.Tile | Phaser.Tile[];
 
         /**
         * Sets collision on the given tile or tiles. You can pass in either a single numeric index or an array of indexes: [2, 3, 15, 20].
@@ -32831,10 +33123,7 @@ declare module Phaser {
         * A callback that can be fired on a touchStart event.
         */
         touchStartCallback: Function;
-        touchLockCallbacks: Function[];
 
-        addTouchLockCallback(callback: Function, context?: any, onEnd?: boolean): void;
-        removeTouchLockCallback(callback: Function, context?: any): boolean;
 
         /**
         * Consumes all touchmove events on the document (only enable this if you know you need it!).
@@ -33797,6 +34086,11 @@ declare module Phaser {
         * in WebGL mode if you really need it (or your desktop can cope with it well) and disable it for production!
         * 
         * You can disable the debug module by omitting it from a custom build or by creating a Phaser Game with `{ enableDebug: false }`.
+        * 
+        * When Phaser is built without the debug module, the debug methods are replaced with empty functions, so you can leave any debug calls in your code and they will be ignored.
+        * 
+        * But if you create a Phaser Game with `{ enableDebug: false }`, it will have no debug module at all and attempting to access it will error.
+        * Either remove the debug calls from your code or check for the existence of `game.debug` first.
         */
         class Debug {
 
@@ -33820,6 +34114,11 @@ declare module Phaser {
             * in WebGL mode if you really need it (or your desktop can cope with it well) and disable it for production!
             * 
             * You can disable the debug module by omitting it from a custom build or by creating a Phaser Game with `{ enableDebug: false }`.
+            * 
+            * When Phaser is built without the debug module, the debug methods are replaced with empty functions, so you can leave any debug calls in your code and they will be ignored.
+            * 
+            * But if you create a Phaser Game with `{ enableDebug: false }`, it will have no debug module at all and attempting to access it will error.
+            * Either remove the debug calls from your code or check for the existence of `game.debug` first.
             * 
             * @param game A reference to the currently running game.
             */
@@ -33964,6 +34263,7 @@ declare module Phaser {
             * @param color color of the debug info to be rendered. (format is css color string). - Default: 'rgb(255,255,255)'
             */
             cameraInfo(camera: Phaser.Camera, x: number, y: number, color?: string): void;
+            canvasPool(x: number, y: number, color?: string, columnWidth?: number): void;
 
             /**
             * Shows device capabilities: Pointer Events, Touch Events, Web Audio, WebGL.
@@ -33973,6 +34273,48 @@ declare module Phaser {
             * @param color
             */
             device(x: number, y: number, color?: string): void;
+
+            /**
+            * Call this function from the Dev Tools console.
+            * 
+            * It will scan the display list and output all of the Objects it finds, and their renderOrderIDs.
+            * 
+            * **Note** Requires a browser that supports console.group and console.groupEnd (such as Chrome)
+            * 
+            * @param displayObject The displayObject level display object to start from. Defaults to the World.
+            */
+            displayList(displayObject: any): void;
+
+            /**
+            * Render game info (ID, renderer, paused, stepping).
+            * 
+            * @param x X position of the debug info to be rendered.
+            * @param y Y position of the debug info to be rendered.
+            * @param color color of the debug info to be rendered. (format is css color string). - Default: 'rgb(255,255,255)'
+            */
+            gameInfo(x: number, y: number, color?: string): void;
+
+            /**
+            * Prints information about an input handler, e.g. `this.input.mouse`.
+            * 
+            * @param handler
+            * @param name
+            * @param x
+            * @param y
+            * @param color
+            */
+            inputHandler(handler: Phaser.InputHandler, name: string, x: number, y: number, color?: string): void;
+
+            /**
+            * Render game state info.
+            * 
+            * Icons show (+) pending, (>) loading, (*) created.
+            * 
+            * @param x X position of the debug info to be rendered.
+            * @param y Y position of the debug info to be rendered.
+            * @param color color of the debug info to be rendered. (format is css color string). - Default: 'rgb(255,255,255)'
+            */
+            state(x: number, y: number, color?: string): void;
 
             /**
             * Destroy this object.

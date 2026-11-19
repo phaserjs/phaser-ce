@@ -7,7 +7,7 @@
 *
 * Phaser CE - https://github.com/phaserjs/phaser-ce
 *
-* v2.21.0 "2026-10-23" - Built: Fri Oct 23 2026 11:43:42
+* v2.22.0 "2026-11-19" - Built: Thu Nov 19 2026 10:52:07
 *
 * By Richard Davey http://www.photonstorm.com @photonstorm and Phaser CE contributors
 *
@@ -40,7 +40,7 @@ var Phaser = Phaser || { // jshint ignore:line
      * @constant Phaser.VERSION
      * @type {string}
      */
-    VERSION: '2.21.0',
+    VERSION: '2.22.0',
 
     /**
      * AUTO renderer - picks between WebGL or Canvas based on device.
@@ -618,21 +618,18 @@ if (!Function.prototype.bind)
             function bound ()
             {
                 var args = boundArgs.concat(slice.call(arguments));
-                target.apply(this instanceof bound ? this : thisArg, args);
+
+                return target.apply(this instanceof bound ? this : thisArg, args);
             }
 
-            bound.prototype = (function F (proto)
-            {
-                if (proto)
-                {
-                    F.prototype = proto;
-                }
+            var Empty = function () {};
 
-                if (!(this instanceof F))
-                {
-                    return new F();
-                }
-            })(target.prototype);
+            if (target.prototype)
+            {
+                Empty.prototype = target.prototype;
+            }
+
+            bound.prototype = new Empty();
 
             return bound;
         };
@@ -698,6 +695,12 @@ if (typeof window.Uint32Array !== 'function' && typeof window.Uint32Array !== 'o
         var proto = new Array();
         /* eslint-enable no-array-constructor */
 
+        // Never replace a native implementation
+        if (window[type])
+        {
+            return;
+        }
+
         window[type] = function (arg)
         {
             if (typeof(arg) === 'number')
@@ -724,14 +727,14 @@ if (typeof window.Uint32Array !== 'function' && typeof window.Uint32Array !== 'o
         };
 
         window[type].prototype = proto;
-        window[type].constructor = window[type];
+        window[type].prototype.constructor = window[type];
     };
 
-    CheapArray('Float32Array'); // jshint ignore:line
-    CheapArray('Uint32Array'); // jshint ignore:line
-    CheapArray('Uint16Array'); // jshint ignore:line
-    CheapArray('Int16Array'); // jshint ignore:line
-    CheapArray('ArrayBuffer'); // jshint ignore:line
+    CheapArray('Float32Array');
+    CheapArray('Uint32Array');
+    CheapArray('Uint16Array');
+    CheapArray('Int16Array');
+    CheapArray('ArrayBuffer');
 }
 
 /**
@@ -739,9 +742,13 @@ if (typeof window.Uint32Array !== 'function' && typeof window.Uint32Array !== 'o
  */
 if (!window.console)
 {
-    window.console = {};
-    window.console.log = window.console.assert = function () {};
-    window.console.warn = window.console.assert = function () {};
+    window.console = {
+        log: function () {},
+        warn: function () {},
+        error: function () {},
+        group: function () {},
+        groupEnd: function () {}
+    };
 }
 
 /**
@@ -4525,14 +4532,14 @@ Phaser.Point.centroid = function (points, out)
 
     if (Object.prototype.toString.call(points) !== '[object Array]')
     {
-        throw new Error('Phaser.Point. Parameter \'points\' must be an array');
+        throw new Error('Parameter "points" must be an array');
     }
 
     var pointslength = points.length;
 
     if (pointslength < 1)
     {
-        throw new Error('Phaser.Point. Parameter \'points\' array must not be empty');
+        throw new Error('Parameter "points" array must not be empty');
     }
 
     if (pointslength === 1)
@@ -7440,6 +7447,13 @@ Phaser.State.prototype = {
      * You shouldn't create any objects in this method that require assets that you're also loading in this method, as
      * they won't yet be available.
      *
+     * If preload queues no assets (or the State has no preload method), the Loader is skipped entirely. No loadUpdate or
+     * loadRender calls are made and no Loader events are dispatched; create runs in the next game update.
+     *
+     * Load completion does not mean every asset downloaded successfully. Failed files count towards completion, so create
+     * runs either way. To detect failures, listen to `this.load.onFileError` (or check the file's `error` flag) before relying
+     * on the asset in create.
+     *
      * @method Phaser.State#preload
      * @param {Phaser.Game} game
      */
@@ -7471,6 +7485,9 @@ Phaser.State.prototype = {
     /**
      * create is called once preload has completed, this includes the loading of any assets from the Loader.
      * If you don't have a preload method then create is the first method called in your State.
+     *
+     * create is called once the load queue has finished, even if some files failed to load. Check for failures with
+     * `this.load.onFileError` if the assets are required.
      *
      * @method Phaser.State#create
      * @param {Phaser.Game} game
@@ -7631,7 +7648,14 @@ Phaser.StateManager = function (game, pendingState)
     this._clearCache = false;
 
     /**
-     * @property {boolean} _created - Flag that sets if the State has been created or not.
+     * @property {boolean} _loaded - Flag that sets if the State has completed its preload phase.
+     * @private
+     * @see Phaser.StateManager#loadComplete
+     */
+    this._loaded = false;
+
+    /**
+     * @property {boolean} _created - Flag that sets if the State has completed its create phase.
      * @private
      */
     this._created = false;
@@ -7661,6 +7685,18 @@ Phaser.StateManager = function (game, pendingState)
      * @property {Phaser.Signal} onStateChange
      */
     this.onStateChange = new Phaser.Signal();
+
+    /**
+     * onStateCreated is a Phaser.Signal that is dispatched once per state after its preload (if any) has finished and its `create` method (if any) has returned.
+     * It is dispatched for every state, including those without `preload` or `create` methods.
+     * Unlike {@link #onStateChange} the state's game objects exist at this point.
+     * If `create` starts another state, this is still dispatched for the first state, before the change takes effect.
+     *
+     * The callback you specify is sent one parameter: the string based key of the state.
+     *
+     * @property {Phaser.Signal} onStateCreated
+     */
+    this.onStateCreated = new Phaser.Signal();
 
     /**
      * @property {function} onInitCallback - This is called when the state is set as the active state.
@@ -7949,7 +7985,7 @@ Phaser.StateManager.prototype = {
             }
             else
             {
-                //  No init? Then there was nothing to load either
+                //  Then there was nothing to load either
                 this.loadComplete();
             }
         }
@@ -8018,13 +8054,13 @@ Phaser.StateManager.prototype = {
             }
             else
             {
-                console.warn('Invalid Phaser State object given. Must contain at least one of the required functions: preload, create, update or render');
+                console.warn('State must contain at least one of preload(), create(), update() or render().');
                 return false;
             }
         }
         else
         {
-            console.warn('Phaser.StateManager - No state found with the key: ' + key);
+            console.warn('No State found with key: ' + key);
             return false;
         }
     },
@@ -8137,6 +8173,7 @@ Phaser.StateManager.prototype = {
         }
 
         this.current = key;
+        this._loaded = false;
         this._created = false;
 
         this.onStateChange.dispatch(this.current, previousStateKey);
@@ -8172,14 +8209,18 @@ Phaser.StateManager.prototype = {
      */
     loadComplete: function ()
     {
-        if (this._created === false && this.onCreateCallback)
+        if (this._loaded === false)
         {
+            this._loaded = true;
+
+            if (this.onCreateCallback)
+            {
+                this.onCreateCallback.call(this.callbackContext, this.game);
+            }
+
             this._created = true;
-            this.onCreateCallback.call(this.callbackContext, this.game);
-        }
-        else
-        {
-            this._created = true;
+
+            this.onStateCreated.dispatch(this.current);
         }
     },
 
@@ -8190,7 +8231,7 @@ Phaser.StateManager.prototype = {
      */
     loadUpdate: function ()
     {
-        if (this._created === false && this.onLoadUpdateCallback)
+        if (this._loaded === false && this.onLoadUpdateCallback)
         {
             this.onLoadUpdateCallback.call(this.callbackContext, this.game);
         }
@@ -8202,7 +8243,7 @@ Phaser.StateManager.prototype = {
      */
     pause: function ()
     {
-        if (this._created && this.onPausedCallback)
+        if (this._loaded && this.onPausedCallback)
         {
             this.onPausedCallback.call(this.callbackContext, this.game);
         }
@@ -8214,7 +8255,7 @@ Phaser.StateManager.prototype = {
      */
     resume: function ()
     {
-        if (this._created && this.onResumedCallback)
+        if (this._loaded && this.onResumedCallback)
         {
             this.onResumedCallback.call(this.callbackContext, this.game);
         }
@@ -8226,7 +8267,7 @@ Phaser.StateManager.prototype = {
      */
     update: function ()
     {
-        if (this._created)
+        if (this._loaded)
         {
             if (this.onUpdateCallback)
             {
@@ -8241,7 +8282,7 @@ Phaser.StateManager.prototype = {
 
     postUpdate: function ()
     {
-        if (this._created && this.onPostUpdateCallback)
+        if (this._loaded && this.onPostUpdateCallback)
         {
             this.onPostUpdateCallback.call(this.callbackContext, this.game);
         }
@@ -8253,7 +8294,7 @@ Phaser.StateManager.prototype = {
      */
     pauseUpdate: function ()
     {
-        if (this._created)
+        if (this._loaded)
         {
             if (this.onPauseUpdateCallback)
             {
@@ -8272,7 +8313,7 @@ Phaser.StateManager.prototype = {
      */
     preRender: function ()
     {
-        if (this._created && this.onPreRenderCallback)
+        if (this._loaded && this.onPreRenderCallback)
         {
             this.onPreRenderCallback.call(this.callbackContext, this.game);
         }
@@ -8296,7 +8337,7 @@ Phaser.StateManager.prototype = {
      */
     render: function ()
     {
-        if (this._created)
+        if (this._loaded)
         {
             if (this.onRenderCallback)
             {
@@ -8358,8 +8399,22 @@ Phaser.StateManager.prototype = {
 Phaser.StateManager.prototype.constructor = Phaser.StateManager;
 
 /**
+ * @name Phaser.StateManager#loaded
+ * @property {boolean} loaded - True if the current state has completed (or skipped) its load phase. If the state has a `preload` method, this will be true **after** it has finished loading. If the state does not have a `preload` method, this will be true at the time `create` or the first `update` is called and false before that. `loaded` will always be false during a state's `init`, `preload`, `loadUpdate` and `loadRender` methods.
+ * @readOnly
+ */
+Object.defineProperty(Phaser.StateManager.prototype, 'loaded', {
+
+    get: function ()
+    {
+        return this._loaded;
+    }
+
+});
+
+/**
  * @name Phaser.StateManager#created
- * @property {boolean} created - True if the current state has had its `create` method run (if it has one, if not this is true by default).
+ * @property {boolean} created - True if the current state has completed its create phase. If the state has a `create` method, this will be true **after** it has been called. If the state does not have a `create` method, this will be true immediately after the state has finished loading. `created` will be always be false during a state's `init`, `preload`, `loadUpdate`, `loadRender` and `create` methods.
  * @readOnly
  */
 Object.defineProperty(Phaser.StateManager.prototype, 'created', {
@@ -8487,20 +8542,6 @@ Phaser.Signal.prototype = {
     _boundDispatch: false,
 
     /**
-     * @method Phaser.Signal#validateListener
-     * @param {function} listener - Signal handler function.
-     * @param {string} fnName - Function name.
-     * @private
-     */
-    validateListener: function (listener, fnName)
-    {
-        if (typeof listener !== 'function')
-        {
-            throw new Error('Phaser.Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName));
-        }
-    },
-
-    /**
      * @method Phaser.Signal#_registerListener
      * @private
      * @param {function} listener - Signal handler function.
@@ -8520,7 +8561,7 @@ Phaser.Signal.prototype = {
 
             if (binding.isOnce() !== isOnce)
             {
-                throw new Error('You cannot add' + (isOnce ? '' : 'Once') + '() then add' + (!isOnce ? '' : 'Once') + '() the same listener without removing the relationship first.');
+                throw new Error('Cannot mix add() and addOnce() for the same listener.');
             }
         }
         else
@@ -8634,7 +8675,10 @@ Phaser.Signal.prototype = {
      */
     add: function (listener, listenerContext, priority)
     {
-        this.validateListener(listener, 'add');
+        if (typeof listener !== 'function')
+        {
+            throw new Error('listener must be a Function');
+        }
 
         var args = [];
 
@@ -8664,7 +8708,10 @@ Phaser.Signal.prototype = {
      */
     addOnce: function (listener, listenerContext, priority)
     {
-        this.validateListener(listener, 'addOnce');
+        if (typeof listener !== 'function')
+        {
+            throw new Error('listener must be a Function');
+        }
 
         var args = [];
 
@@ -8689,7 +8736,10 @@ Phaser.Signal.prototype = {
      */
     remove: function (listener, context)
     {
-        this.validateListener(listener, 'remove');
+        if (typeof listener !== 'function')
+        {
+            throw new Error('listener must be a Function');
+        }
 
         var i = this._indexOfListener(listener, context);
 
@@ -9878,6 +9928,12 @@ Phaser.Stage = function (game)
     this._onChange = null;
 
     /**
+     * @property {boolean} _cocoonOnRegistered - Whether the CocoonJS `on()` handlers have been registered. These cannot be removed, so they are only ever added once.
+     * @private
+     */
+    this._cocoonOnRegistered = false;
+
+    /**
      * @property {number} _bgColor - Stage background color object. Populated by setBackgroundColor.
      * @private
      */
@@ -10022,13 +10078,15 @@ Phaser.Stage.prototype.updateTransform = function ()
 };
 
 /**
- * Starts a page visibility event listener running, or window.onpagehide/onpageshow if not supported by the browser.
- * Also listens for window.onblur and window.onfocus.
+ * Starts a page visibility event listener running, or pagehide/pageshow if not supported by the browser.
+ * Also listens for window blur and focus events.
  *
  * @method Phaser.Stage#checkVisibility
  */
 Phaser.Stage.prototype.checkVisibility = function ()
 {
+    this.removeVisibilityListeners();
+
     if (document.hidden !== undefined)
     {
         this._hiddenVar = 'visibilitychange';
@@ -10081,16 +10139,18 @@ Phaser.Stage.prototype.checkVisibility = function ()
         document.addEventListener(this._hiddenVar, this._onChange, false);
     }
 
-    window.onblur = this._onChange;
-    window.onfocus = this._onChange;
+    window.addEventListener('blur', this._onChange);
+    window.addEventListener('focus', this._onChange);
 
-    window.onpagehide = this._onChange;
-    window.onpageshow = this._onChange;
+    window.addEventListener('pagehide', this._onChange);
+    window.addEventListener('pageshow', this._onChange);
 
     window.addEventListener('click', this._onClick);
 
     if (this.game.device.cocoonJSApp && CocoonJS.App)
     {
+        //  addEventListener() is the old CocoonJS interface.
+
         if (CocoonJS.App.onSuspended)
         {
             CocoonJS.App.onSuspended.addEventListener(this._onChangePause);
@@ -10101,10 +10161,59 @@ Phaser.Stage.prototype.checkVisibility = function ()
             CocoonJS.App.onActivated.addEventListener(this._onChangeResume);
         }
 
-        if (CocoonJS.App.on)
+        //  on() is the new CocoonJS interface.
+
+        //  CocoonJS has no off(), so these can't be removed. Register them once only.
+        if (CocoonJS.App.on && !this._cocoonOnRegistered)
         {
             CocoonJS.App.on('activated', this._onChangeResume);
             CocoonJS.App.on('suspended', this._onChangePause);
+
+            this._cocoonOnRegistered = true;
+        }
+    }
+};
+
+/**
+ * Removes the listeners added by checkVisibility (visibility change, blur/focus click and CocoonJS app events).
+ * Safe to call before checkVisibility has run.
+ *
+ * @method Phaser.Stage#removeVisibilityListeners
+ * @private
+ */
+Phaser.Stage.prototype.removeVisibilityListeners = function ()
+{
+    if (this._hiddenVar && this._onChange)
+    {
+        document.removeEventListener(this._hiddenVar, this._onChange, false);
+    }
+
+    if (this._onChange)
+    {
+        window.removeEventListener('blur', this._onChange);
+        window.removeEventListener('focus', this._onChange);
+
+        window.removeEventListener('pagehide', this._onChange);
+        window.removeEventListener('pageshow', this._onChange);
+    }
+
+    if (this._onClick)
+    {
+        window.removeEventListener('click', this._onClick);
+    }
+
+    if (this._onChangePause && typeof CocoonJS !== 'undefined' && CocoonJS.App)
+    {
+        var app = CocoonJS.App;
+
+        if (app.onSuspended)
+        {
+            app.onSuspended.removeEventListener(this._onChangePause);
+        }
+
+        if (app.onActivated)
+        {
+            app.onActivated.removeEventListener(this._onChangeResume);
         }
     }
 };
@@ -10181,24 +10290,15 @@ Phaser.Stage.prototype.setBackgroundColor = function (color)
 };
 
 /**
- * Destroys the Stage and removes event listeners.
+ * Removes the visibility, focus/blur, and click listeners added by {@link Phaser.Stage#checkVisibility}.
+ *
+ * It does not remove the Stage's children or otherwise destroy the Stage.
  *
  * @method Phaser.Stage#destroy
  */
 Phaser.Stage.prototype.destroy = function ()
 {
-    if (this._hiddenVar)
-    {
-        document.removeEventListener(this._hiddenVar, this._onChange, false);
-    }
-
-    window.onpagehide = null;
-    window.onpageshow = null;
-
-    window.onblur = null;
-    window.onfocus = null;
-
-    window.removeEventListener('click', this._onClick);
+    this.removeVisibilityListeners();
 };
 
 /**
@@ -13882,7 +13982,7 @@ Object.defineProperty(Phaser.World.prototype, 'randomY', {
  * @constructor
  * @param {number|string|GameConfig} [width=800] - The width of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage width of the parent container, or the browser window if no parent is given.
  * @param {number|string} [height=600] - The height of your game in game pixels. If given as a string the value must be between 0 and 100 and will be used as the percentage height of the parent container, or the browser window if no parent is given.
- * @param {number} [renderer=Phaser.AUTO] - Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all).
+ * @param {number} [renderer=Phaser.AUTO] - Which renderer to use: Phaser.AUTO will auto-detect, Phaser.WEBGL, Phaser.WEBGL_MULTI, Phaser.CANVAS or Phaser.HEADLESS (no rendering at all). HEADLESS skips `preRender`, `render`, and `postRender` hooks, just like {@link #lockRender}.
  * @param {string|HTMLElement} [parent=''] - The DOM element into which this game canvas will be injected. Either a DOM `id` (string) or the element itself. If omitted (or no such element exists), the game canvas is appended to the document body.
  * @param {object} [state=null] - The default state object. A object consisting of Phaser.State functions (preload, create, update, render) or null.
  * @param {boolean} [transparent=false] - Use a transparent canvas background or not.
@@ -13971,7 +14071,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.antialias = true;
 
     /**
-     * Has support for Multiple bound Textures in WebGL been enabled? This is a read-only property.
+     * Has support for multiple bound Textures in WebGL been enabled? This is a read-only property.
      * To set it you need to either specify `Phaser.WEBGL_MULTI` as the renderer type, or use the Game
      * Configuration object with the property `multiTexture` set to true. It has to be enabled before
      * Pixi boots, and cannot be changed after the game is running. Once enabled, take advantage of it
@@ -14007,7 +14107,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.renderer = null;
 
     /**
-     * @property {number} renderType - The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType reflects the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. HEADLESS skips `preRender`, `render`, and `postRender` hooks, just like {@link #lockRender}.
+     * @property {number} renderType - Before the game boots, renderType is the `renderer` argument given to `Game()`: Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType is the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. Read {@link #multiTexture} to see if multiple bound textures are enabled.
      * @readonly
      */
     this.renderType = Phaser.AUTO;
@@ -14212,6 +14312,32 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.onDestroy = new Phaser.Signal();
 
     /**
+     * This event is fired at the end of each render, after {@link Phaser.Plugin#postRender plugin postRender} and the renderer's own post-render step.
+     * Listeners are called in the same animation frame as the render, so the canvas can be captured here (e.g. `game.canvas.toDataURL()`) without `preserveDrawingBuffer`.
+     * It is not dispatched when the render is skipped by {@link #lockRender} or the HEADLESS renderer.
+     * Use `addOnce()` to wait for the next rendered frame.
+     * The callback is sent one parameter: the game.
+     *
+     * @property {Phaser.Signal} onPostRender
+     */
+    this.onPostRender = new Phaser.Signal();
+
+    /**
+     * This event is fired when the WebGL context is lost. It is never fired by the Canvas renderer.
+     *
+     * @property {Phaser.Signal} onContextLost
+     */
+    this.onContextLost = new Phaser.Signal();
+
+    /**
+     * This event is fired after the WebGL context has been restored and the renderer and cached textures re-initialized.
+     * It is never fired by the Canvas renderer.
+     *
+     * @property {Phaser.Signal} onContextRestored
+     */
+    this.onContextRestored = new Phaser.Signal();
+
+    /**
      * @property {boolean} _paused - Is game paused?
      * @private
      */
@@ -14250,6 +14376,26 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
      * @protected
      */
     this.rendersThisFrame = 1;
+
+    /**
+     * The number of logic updates completed since the game booted. Unlike {@link Phaser.Time#frames} it is never reset.
+     * Paused and stepped-over updates are not counted.
+     *
+     * @property {integer} updateCount
+     * @readonly
+     * @default
+     */
+    this.updateCount = 0;
+
+    /**
+     * The number of renders completed since the game booted. It is incremented just before {@link #onPostRender} is dispatched.
+     * Renders skipped by {@link #lockRender} or the HEADLESS renderer are not counted.
+     *
+     * @property {integer} renderCount
+     * @readonly
+     * @default
+     */
+    this.renderCount = 0;
 
     /**
      * @property {number} _deltaTime - Accumulate elapsed time until a logic update is due.
@@ -14383,6 +14529,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
  * @property {boolean}            [GameConfig.alignH=false]                  - Sets {@link Phaser.ScaleManager#pageAlignHorizontally}.
  * @property {boolean}            [GameConfig.alignV=false]                  - Sets {@link Phaser.ScaleManager#pageAlignVertically}.
  * @property {boolean}            [GameConfig.antialias=true]
+ * @property {boolean}            [GameConfig.antialiasGL]                   - Sets the WebGL context's `antialias` attribute separately from texture smoothing. Defaults to `antialias`.
  * @property {number|string}      [GameConfig.backgroundColor=0]             - Sets {@link Phaser.Stage#backgroundColor}.
  * @property {HTMLCanvasElement}  [GameConfig.canvas]                        - An existing canvas to display the game in.
  * @property {string}             [GameConfig.canvasID]                      - `id` attribute value to assign to the game canvas.
@@ -14402,7 +14549,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
  * @property {boolean}            [GameConfig.mouse=true]                    - Starts the mouse input handler, if the mspointer and touch handlers were not started.
  * @property {boolean}            [GameConfig.mouseWheel=false]               - Starts the {@link Phaser.MouseWheel mouse wheel} handler, if supported by the device.
  * @property {boolean}            [GameConfig.mspointer=true]                - Starts the {@link Phaser.MSPointer Pointer Events} handler (mspointer), if supported by the device.
- * @property {boolean}            [GameConfig.multiTexture=false]            - Enable support for multiple bound Textures in WebGL. Same as `{renderer: Phaser.WEBGL_MULTI}`.
+ * @property {boolean}            [GameConfig.multiTexture=false]            - Enable support for multiple bound Textures in WebGL.
  * @property {string|HTMLElement} [GameConfig.parent='']                     - The DOM element into which this games canvas will be injected.
  * @property {object}             [GameConfig.physicsConfig]
  * @property {boolean}            [GameConfig.pointerLock=true]              - Starts the {@link Phaser.PointerLock Pointer Lock} handler, if supported by the device.
@@ -14755,7 +14902,7 @@ Phaser.Game.prototype = {
                 this.multiTexture = false;
                 PIXI._enableMultiTextureToggle = false;
 
-                if (this.renderType === Phaser.WEBGL)
+                if (this.renderType === Phaser.WEBGL || this.renderType === Phaser.WEBGL_MULTI)
                 {
                     // No fallback
                     throw webGLRendererError;
@@ -14800,6 +14947,8 @@ Phaser.Game.prototype = {
         event.preventDefault();
 
         this.renderer.contextLost = true;
+
+        this.onContextLost.dispatch(this);
     },
 
     /**
@@ -14815,6 +14964,8 @@ Phaser.Game.prototype = {
         this.cache.clearGLTextures();
 
         this.renderer.contextLost = false;
+
+        this.onContextRestored.dispatch(this);
     },
 
     /**
@@ -14982,6 +15133,8 @@ Phaser.Game.prototype = {
             this.stage.postUpdate();
             this.state.postUpdate();
             this.plugins.postUpdate();
+
+            this.updateCount++;
         }
         else
         {
@@ -15025,6 +15178,10 @@ Phaser.Game.prototype = {
 
         this.plugins.postRender();
         this.renderer.postRender();
+
+        this.renderCount++;
+
+        this.onPostRender.dispatch(this);
     },
 
     /**
@@ -15089,9 +15246,12 @@ Phaser.Game.prototype = {
         this.fpsProblemNotifier.dispose();
         this.onBlur.dispose();
         this.onBoot.dispose();
+        this.onContextLost.dispose();
+        this.onContextRestored.dispose();
         this.onDestroy.dispose();
         this.onFocus.dispose();
         this.onPause.dispose();
+        this.onPostRender.dispose();
         this.onResume.dispose();
 
         this.raf.stop();
@@ -15128,9 +15288,12 @@ Phaser.Game.prototype = {
         this.make = null;
         this.onBlur = null;
         this.onBoot = null;
+        this.onContextLost = null;
+        this.onContextRestored = null;
         this.onDestroy = null;
         this.onFocus = null;
         this.onPause = null;
+        this.onPostRender = null;
         this.onResume = null;
         this.particles = null;
         this.physics = null;
@@ -16015,7 +16178,7 @@ Phaser.Input.prototype = {
     {
         if (this.pointers.length >= Phaser.Input.MAX_POINTERS)
         {
-            console.warn('Phaser.Input.addPointer: Maximum limit of ' + Phaser.Input.MAX_POINTERS + ' pointers reached.');
+            console.warn('Maximum limit of %s pointers reached.', Phaser.Input.MAX_POINTERS);
             return null;
         }
 
@@ -21786,7 +21949,12 @@ Phaser.PointerLock.prototype.request = function ()
  */
 Phaser.PointerLock.prototype.exit = function ()
 {
-    document.exitPointerLock();
+    if (!this.game.device.pointerLock)
+    {
+        return;
+    }
+
+    document.exitPointerLock(); // eslint-disable-line compat/compat -- guarded by device.pointerLock
 };
 
 /**
@@ -21873,7 +22041,7 @@ Phaser.Gamepad = function (game)
      * @property {boolean} _gamepadSupportAvailable - Are gamepads supported in this browser or not?
      * @private
      */
-    this._gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads || (navigator.userAgent.indexOf('Firefox/') !== -1) || !!navigator.getGamepads;
+    this._gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads || (navigator.userAgent.indexOf('Firefox/') !== -1) || !!navigator.getGamepads; // eslint-disable-line compat/compat -- feature detection
 
     /**
      * Used to check for differences between earlier polls and current state of gamepads.
@@ -32608,6 +32776,22 @@ PIXI.WebGLGraphics = function ()
 PIXI.WebGLGraphics.stencilBufferLimit = 6;
 
 /**
+ * The sines of the segment angles used by buildCircle.
+ *
+ * @type {number[]}
+ * @private
+ */
+PIXI.WebGLGraphics.circleSines = [];
+
+/**
+ * The cosines of the segment angles used by buildCircle.
+ *
+ * @type {number[]}
+ * @private
+ */
+PIXI.WebGLGraphics.circleCosines = [];
+
+/**
  * Renders the graphics object
  *
  * @static
@@ -32648,7 +32832,7 @@ PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// project
             renderSession.stencilManager.pushStencil(graphics, webGLData, renderSession);
 
             // render quad..
-            gl.drawElements(gl.TRIANGLE_FAN, 4, gl.UNSIGNED_SHORT, (webGLData.indices.length - 4) * 2);
+            gl.drawElements(gl.TRIANGLE_FAN, 4, webGLData.indexType, (webGLData.indices.length - 4) * webGLData.glIndicies.BYTES_PER_ELEMENT);
 
             renderSession.stencilManager.popStencil(graphics, webGLData, renderSession);
         }
@@ -32676,7 +32860,7 @@ PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// project
 
             // set the index buffer!
             gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, webGLData.indexBuffer);
-            gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, gl.UNSIGNED_SHORT, 0);
+            gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, webGLData.indexType, 0);
         }
     }
 };
@@ -32708,12 +32892,15 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
     {
         graphics.clearDirty = false;
 
-        // lop through and return all the webGLDatas to the object pool so than can be reused later on
-        for (i = 0; i < webGL.data.length; i++)
+        /*
+         * lop through and return all the webGLDatas to the object pool so than can be reused later on
+         * in reverse, so rebuilding takes each one back to the batch its typed arrays were sized for
+         */
+        for (i = webGL.data.length - 1; i >= 0; i--)
         {
             var graphicsData = webGL.data[i];
             graphicsData.reset();
-            PIXI.WebGLGraphics.graphicsDataPool.push(graphicsData);
+            PIXI.WebGLGraphics.graphicsDataPool[gl.id].push(graphicsData);
         }
 
         // clear the array and reset the index..
@@ -32756,11 +32943,8 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
 
                         var canDrawUsingSimple = PIXI.WebGLGraphics.buildPoly(data, webGLData);
 
-                        //     console.log(canDrawUsingSimple);
-
                         if(!canDrawUsingSimple)
                         {
-                        //    console.log("<>>>")
                             webGLData = PIXI.WebGLGraphics.switchMode(webGL, 1);
                             PIXI.WebGLGraphics.buildComplexPoly(data, webGLData);
                         }
@@ -32821,7 +33005,7 @@ PIXI.WebGLGraphics.switchMode = function (webGL, type)
 
     if(!webGL.data.length)
     {
-        webGLData = PIXI.WebGLGraphics.graphicsDataPool.pop() || new PIXI.WebGLGraphicsData(webGL.gl);
+        webGLData = PIXI.WebGLGraphics.graphicsDataPool[webGL.gl.id].pop() || new PIXI.WebGLGraphicsData(webGL.gl);
         webGLData.mode = type;
         webGL.data.push(webGLData);
     }
@@ -32831,7 +33015,7 @@ PIXI.WebGLGraphics.switchMode = function (webGL, type)
 
         if(webGLData.mode !== type || type === 1)
         {
-            webGLData = PIXI.WebGLGraphics.graphicsDataPool.pop() || new PIXI.WebGLGraphicsData(webGL.gl);
+            webGLData = PIXI.WebGLGraphics.graphicsDataPool[webGL.gl.id].pop() || new PIXI.WebGLGraphicsData(webGL.gl);
             webGLData.mode = type;
             webGL.data.push(webGLData);
         }
@@ -33068,8 +33252,19 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
 
     var totalSegs = 40;
     var seg = (Math.PI * 2) / totalSegs;
+    var sines = PIXI.WebGLGraphics.circleSines;
+    var cosines = PIXI.WebGLGraphics.circleCosines;
 
     var i = 0;
+
+    if (sines.length === 0)
+    {
+        for (i = 0; i < totalSegs + 1; i++)
+        {
+            sines.push(Math.sin(seg * i));
+            cosines.push(Math.cos(seg * i));
+        }
+    }
 
     if(graphicsData.fill)
     {
@@ -33083,19 +33278,20 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
         var verts = webGLData.points;
         var indices = webGLData.indices;
 
-        var vecPos = verts.length / 6;
+        var center = verts.length / 6;
+        var vecPos = center + 1;
 
-        indices.push(vecPos);
+        verts.push(x, y, r, g, b, alpha);
+
+        indices.push(center);
 
         for (i = 0; i < totalSegs + 1; i++)
         {
-            verts.push(x,y, r, g, b, alpha);
-
-            verts.push(x + Math.sin(seg * i) * width,
-                y + Math.cos(seg * i) * height,
+            verts.push(x + sines[i] * width,
+                y + cosines[i] * height,
                 r, g, b, alpha);
 
-            indices.push(vecPos++, vecPos++);
+            indices.push(center, vecPos++);
         }
 
         indices.push(vecPos - 1);
@@ -33109,8 +33305,8 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
 
         for (i = 0; i < totalSegs + 1; i++)
         {
-            graphicsData.points.push(x + Math.sin(seg * i) * width,
-                y + Math.cos(seg * i) * height);
+            graphicsData.points.push(x + sines[i] * width,
+                y + cosines[i] * height);
         }
 
         PIXI.WebGLGraphics.buildLine(graphicsData, webGLData);
@@ -33443,6 +33639,11 @@ PIXI.WebGLGraphics.buildPoly = function (graphicsData, webGLData)
     return true;
 };
 
+/**
+ * Pools of unused WebGLGraphicsData, one per WebGL context id.
+ *
+ * @type {Array<?PIXI.WebGLGraphicsData[]>}
+ */
 PIXI.WebGLGraphics.graphicsDataPool = [];
 
 /**
@@ -33460,9 +33661,12 @@ PIXI.WebGLGraphicsData = function (gl)
     this.indices = [];
     this.buffer = gl.createBuffer();
     this.indexBuffer = gl.createBuffer();
+    this.indexType = gl.UNSIGNED_SHORT;
     this.mode = 1;
     this.alpha = 1;
     this.dirty = true;
+    this._glPointsStore = null;
+    this._glIndiciesStore = null;
 };
 
 /**
@@ -33481,18 +33685,61 @@ PIXI.WebGLGraphicsData.prototype.upload = function ()
 {
     var gl = this.gl;
 
-    //    this.lastIndex = graphics.graphicsData.length;
-    this.glPoints = new Float32Array(this.points);
+    this._glPointsStore = PIXI.WebGLGraphicsData.reuseTypedArray(this._glPointsStore, Float32Array, this.points.length);
+    this._glPointsStore.set(this.points);
+    this.glPoints = this._glPointsStore.subarray(0, this.points.length);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
     gl.bufferData(gl.ARRAY_BUFFER, this.glPoints, gl.STATIC_DRAW);
 
-    this.glIndicies = new Uint16Array(this.indices);
+    // complex polygons store 2 numbers per vertex, everything else 6
+    var vertexCount = this.points.length / (this.mode === 1 ? 2 : 6);
+
+    if (vertexCount > 65536 && gl.getExtension('OES_element_index_uint'))
+    {
+        this._glIndiciesStore = PIXI.WebGLGraphicsData.reuseTypedArray(this._glIndiciesStore, Uint32Array, this.indices.length);
+        this.indexType = gl.UNSIGNED_INT;
+    }
+    else
+    {
+        this._glIndiciesStore = PIXI.WebGLGraphicsData.reuseTypedArray(this._glIndiciesStore, Uint16Array, this.indices.length);
+        this.indexType = gl.UNSIGNED_SHORT;
+    }
+
+    this._glIndiciesStore.set(this.indices);
+    this.glIndicies = this._glIndiciesStore.subarray(0, this.indices.length);
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.glIndicies, gl.STATIC_DRAW);
 
     this.dirty = false;
+};
+
+/**
+ * Returns `array` if it fits `length` elements without wasting much memory, or else a new typed array.
+ *
+ * @static
+ * @private
+ * @method PIXI.WebGLGraphicsData.reuseTypedArray
+ * @param {?(Float32Array|Uint16Array|Uint32Array)} array - The typed array to reuse, if any.
+ * @param {function} ArrayType - The typed array constructor to use.
+ * @param {number} length - The number of elements needed.
+ * @return {Float32Array|Uint16Array|Uint32Array} The reused or new typed array.
+ */
+PIXI.WebGLGraphicsData.reuseTypedArray = function (array, ArrayType, length)
+{
+    if (!(array instanceof ArrayType) || array.length > length * 4)
+    {
+        return new ArrayType(length);
+    }
+
+    if (array.length < length)
+    {
+        // doubling keeps a Graphics that grows a little every frame from reallocating every frame
+        return new ArrayType(Math.max(length, array.length * 2));
+    }
+
+    return array;
 };
 
 /**
@@ -37014,7 +37261,7 @@ Phaser.Text.prototype.advancedWordWrap = function (text)
                      */
                     if (!newWord.length)
                     {
-                        throw new Error('This text\'s wordWrapWidth setting is less than a single character!');
+                        throw new Error('wordWrapWidth is less than one character.');
                     }
 
                     // replace current word in array with remainder
@@ -37173,7 +37420,7 @@ Phaser.Text.prototype.fontToComponents = function (font)
     }
     else
     {
-        console.warn('Phaser.Text - unparsable CSS font: ' + font);
+        console.warn('Unparsable CSS font: ' + font);
 
         return {font: font};
     }
@@ -38788,7 +39035,7 @@ Phaser.BitmapText.prototype.updateTransform = function ()
 
 /**
  * @name Phaser.BitmapText#letterSpacing
- * @property {string} letterSpacing - Sets the letter spacing between each character of this Bitmap Text. Can be a positive value to increase the space, or negative to reduce it. Spacing is applied after the kerning values have been set.
+ * @property {number} letterSpacing - Sets the letter spacing between each character of this Bitmap Text. Can be a positive value to increase the space, or negative to reduce it. Spacing is applied after the kerning values have been set.
  */
 Object.defineProperty(Phaser.BitmapText.prototype, 'letterSpacing', {
 
@@ -40719,6 +40966,12 @@ Phaser.TileSprite.prototype._renderWebGL = function (renderSession)
         {
             if (this.tilingTexture.needsUpdate)
             {
+                if (PIXI._enableMultiTextureToggle)
+                {
+                    //  The upload rebinds a texture unit that sprites waiting in the batch may sample
+                    renderSession.spriteBatch.flush();
+                }
+
                 this.tilingTexture.baseTexture.textureIndex = this.texture.baseTexture.textureIndex;
                 renderSession.renderer.updateTexture(this.tilingTexture.baseTexture);
                 this.tilingTexture.needsUpdate = false;
@@ -41545,7 +41798,7 @@ Phaser.Device = function ()
     this.worker = false;
 
     /**
-     * @property {boolean} css3D - Is css3D available?
+     * @property {boolean} css3D - Does the browser support 3D CSS transforms (`translate3d`)?
      * @default
      */
     this.css3D = false;
@@ -42139,12 +42392,12 @@ Phaser.Device._initialize = function ()
             device.localStorage = false;
         }
 
-        device.file = !!window.File && !!window.FileReader && !!window.FileList && !!window.Blob;
+        device.file = !!window.File && !!window.FileReader && !!window.FileList && !!window.Blob; // eslint-disable-line compat/compat -- feature detection
         device.fileSystem = !!window.requestFileSystem;
 
-        device.webGL = !!window.WebGLRenderingContext;
+        device.webGL = !!window.WebGLRenderingContext; // eslint-disable-line compat/compat -- feature detection
 
-        device.worker = !!window.Worker;
+        device.worker = !!window.Worker; // eslint-disable-line compat/compat -- feature detection
 
         device.pointerLockElement = (('pointerLockElement' in document) && 'pointerLockElement') ||
             (('mozPointerLockElement' in document) && 'mozPointerLockElement') ||
@@ -42162,11 +42415,11 @@ Phaser.Device._initialize = function ()
 
         device.quirksMode = (document.compatMode === 'CSS1Compat') ? false : true;
 
-        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia; // eslint-disable-line compat/compat -- vendor-prefix fallback
 
-        window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+        window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL; // eslint-disable-line compat/compat -- vendor-prefix fallback
 
-        device.getUserMedia = device.getUserMedia && !!navigator.getUserMedia && !!window.URL;
+        device.getUserMedia = device.getUserMedia && !!navigator.getUserMedia && !!window.URL; // eslint-disable-line compat/compat -- feature detection
 
         // Older versions of firefox (< 21) apparently claim support but user media does not actually work
         if (device.firefox && device.firefoxVersion < 21)
@@ -42244,7 +42497,8 @@ Phaser.Device._initialize = function ()
             'mozRequestFullscreen'
         ];
 
-        var element = document.createElement('div');
+        //  Probe the root element's prototype chain; no throwaway DOM node needed
+        var element = document.documentElement;
 
         for (var i = 0; i < fs.length; i++)
         {
@@ -42454,7 +42708,7 @@ Phaser.Device._initialize = function ()
     function _checkAudio ()
     {
         device.audioData = !!(window.Audio);
-        device.webAudio = !!(window.AudioContext || window.webkitAudioContext);
+        device.webAudio = !!(window.AudioContext || window.webkitAudioContext); // eslint-disable-line compat/compat -- feature detection
         var audioElement = document.createElement('audio');
 
         try
@@ -42530,7 +42784,7 @@ Phaser.Device._initialize = function ()
     function _checkIsLittleEndian ()
     {
         var a = new ArrayBuffer(4);
-        var b = new Uint8Array(a);
+        var b = new Uint8Array(a); // eslint-disable-line compat/compat -- guarded by typeof check in _checkDevice
         var c = new Uint32Array(a);
 
         b[0] = 0xa1;
@@ -42555,30 +42809,39 @@ Phaser.Device._initialize = function ()
     }
 
     /**
-     * Test to see if ImageData uses CanvasPixelArray or Uint8ClampedArray.
+     * Test to see if ImageData uses Uint8ClampedArray (rather than the legacy CanvasPixelArray).
+     *
+     * Prefers the `ImageData` constructor, which needs no DOM access. Falls back to a temporary
+     * 1x1 canvas in browsers that cannot construct ImageData directly (e.g. IE11).
      *
      * @author Matt DesLauriers (@mattdesl)
      */
     function _checkIsUint8ClampedImageData ()
     {
-        if (Uint8ClampedArray === undefined)
+        if (typeof Uint8ClampedArray === 'undefined')
         {
             return false;
         }
 
-        var elem = Phaser.CanvasPool.create(this, 1, 1);
-        var ctx = elem.getContext('2d');
-
-        if (!ctx)
+        if (typeof ImageData !== 'undefined')
         {
-            return false;
+            try
+            {
+                return new ImageData(1, 1).data instanceof Uint8ClampedArray; // eslint-disable-line compat/compat -- feature detection
+            }
+            catch (error)
+            {
+                //  Constructor not supported, fall through to the canvas method
+            }
         }
 
-        var image = ctx.createImageData(1, 1);
+        var canvas = Phaser.Canvas.create(undefined, 1, 1, undefined, true);
+        var context = canvas.getContext('2d');
+        var supported = !!context && context.createImageData(1, 1).data instanceof Uint8ClampedArray;
 
-        Phaser.CanvasPool.remove(this);
+        Phaser.Canvas.dispose(canvas);
 
-        return image.data instanceof Uint8ClampedArray;
+        return supported;
     }
 
     /**
@@ -42586,10 +42849,12 @@ Phaser.Device._initialize = function ()
      */
     function _checkDevice ()
     {
+        var ua = navigator.userAgent.toLowerCase();
+
         device.pixelRatio = window.devicePixelRatio || 1;
-        device.iPhone = navigator.userAgent.toLowerCase().indexOf('iphone') !== -1;
+        device.iPhone = ua.indexOf('iphone') !== -1;
         device.iPhone4 = (device.pixelRatio === 2 && device.iPhone);
-        device.iPad = navigator.userAgent.toLowerCase().indexOf('ipad') !== -1;
+        device.iPad = ua.indexOf('ipad') !== -1;
 
         if (typeof Int8Array !== 'undefined')
         {
@@ -42606,9 +42871,17 @@ Phaser.Device._initialize = function ()
             device.LITTLE_ENDIAN = device.littleEndian;
         }
 
-        device.support32bit = (typeof ArrayBuffer !== 'undefined' && typeof Uint8ClampedArray !== 'undefined' && typeof Int32Array !== 'undefined' && device.littleEndian !== null && _checkIsUint8ClampedImageData());
+        //  32bit pixel manipulation (e.g. BitmapData.pixels) needs typed arrays, a known byte order and Uint8ClampedArray ImageData
+        device.support32bit = (
+            typeof ArrayBuffer !== 'undefined' &&
+            typeof Int32Array !== 'undefined' &&
+            typeof Uint32Array !== 'undefined' &&
+            typeof Uint8ClampedArray !== 'undefined' &&
+            device.littleEndian !== null &&
+            _checkIsUint8ClampedImageData()
+        );
 
-        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate; // eslint-disable-line compat/compat -- vendor-prefix fallback
 
         if (navigator.vibrate)
         {
@@ -42617,34 +42890,43 @@ Phaser.Device._initialize = function ()
     }
 
     /**
-     * Check whether the host environment support 3D CSS.
+     * Check whether the host environment supports 3D CSS transforms.
+     *
+     * Uses the CSS.supports API where available, which requires no DOM mutation or layout.
+     * Falls back to reading back the inline style of a detached element in legacy browsers.
      */
     function _checkCSS3D ()
     {
-        var el = document.createElement('p');
-        var has3d;
-        var transforms = {
-            webkitTransform: '-webkit-transform',
-            OTransform: '-o-transform',
-            msTransform: '-ms-transform',
-            MozTransform: '-moz-transform',
-            transform: 'transform'
-        };
+        var value = 'translate3d(1px,1px,1px)';
 
-        // Add it to the body to get the computed style.
-        document.body.insertBefore(el, null);
-
-        for (var t in transforms)
+        if (window.CSS && typeof window.CSS.supports === 'function') // eslint-disable-line compat/compat -- feature detection
         {
-            if (el.style[t] !== undefined)
-            {
-                el.style[t] = 'translate3d(1px,1px,1px)';
-                has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
-            }
+            device.css3D = (CSS.supports('transform', value) || CSS.supports('-webkit-transform', value));
+            return;
         }
 
-        document.body.removeChild(el);
-        device.css3D = (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
+        /*
+         * Legacy fallback: the style parser rejects unsupported values, leaving the inline style empty.
+         * The element is never attached to the document, so no layout or reflow is triggered.
+         */
+        var el = document.createElement('p');
+        var props = [ 'transform', 'webkitTransform', 'msTransform', 'MozTransform' ];
+
+        device.css3D = false;
+
+        for (var i = 0; i < props.length; i++)
+        {
+            if (el.style[props[i]] !== undefined)
+            {
+                el.style[props[i]] = value;
+
+                if (el.style[props[i]])
+                {
+                    device.css3D = true;
+                    break;
+                }
+            }
+        }
     }
 
     //  Run the checks
@@ -45810,7 +46092,7 @@ Phaser.Tween.prototype = {
 
         if (this.isRunning)
         {
-            console.warn('Phaser.Tween.to cannot be called after Tween.start');
+            console.warn('to() cannot be called after start()');
             return this;
         }
 
@@ -45856,7 +46138,7 @@ Phaser.Tween.prototype = {
 
         if (this.isRunning)
         {
-            console.warn('Phaser.Tween.from cannot be called after Tween.start');
+            console.warn('from() cannot be called after start()');
             return this;
         }
 
@@ -45887,7 +46169,7 @@ Phaser.Tween.prototype = {
 
         if (this.pendingDelete)
         {
-            console.warn('Phaser.Tween.start cannot be called after Tween.stop');
+            console.warn('start() cannot be called after stop()');
             return this;
         }
 
@@ -50519,7 +50801,7 @@ Phaser.Frame = function (index, x, y, width, height, name)
 
     if (this.width === 0 || this.height === 0)
     {
-        console.warn('Phaser.Frame: Frame "' + name + '" has a width or height of zero');
+        console.warn('Frame "%s" has a width or height of zero', name);
     }
 
     /**
@@ -51157,8 +51439,7 @@ Phaser.AnimationParser = {
         //  Malformed?
         if (!json.frames)
         {
-            console.warn('Phaser.AnimationParser.JSONData: Invalid Texture Atlas JSON given, missing \'frames\' array');
-            console.log(json);
+            console.warn('Invalid Texture Atlas JSON. Missing "frames" array:', json);
             return;
         }
 
@@ -51219,8 +51500,7 @@ Phaser.AnimationParser = {
         {
             if (!json[key])
             {
-                console.warn('Phaser.AnimationParser.JSONDataPyxel: Invalid Pyxel Tilemap JSON given, missing "' + key + '" key.');
-                console.log(json);
+                console.warn('Invalid Pyxel Tilemap JSON. Key "%s" is missing. %o', key, json);
                 return;
             }
         });
@@ -51228,8 +51508,7 @@ Phaser.AnimationParser = {
         // For this purpose, I only care about parsing tilemaps with a single layer.
         if (json.layers.length !== 1)
         {
-            console.warn('Phaser.AnimationParser.JSONDataPyxel: Too many layers, this parser only supports flat Tilemaps.');
-            console.log(json);
+            console.warn('Too many layers. Only single-layer Pyxel tilemaps are supported.', json);
             return;
         }
 
@@ -51272,8 +51551,7 @@ Phaser.AnimationParser = {
         //  Malformed?
         if (!json.frames)
         {
-            console.warn('Phaser.AnimationParser.JSONDataHash: Invalid Texture Atlas JSON given, missing \'frames\' object');
-            console.log(json);
+            console.warn('Invalid Texture Atlas JSON. Missing "frames" object.', json);
             return;
         }
 
@@ -51333,7 +51611,7 @@ Phaser.AnimationParser = {
         //  Malformed?
         if (!xml.getElementsByTagName('TextureAtlas'))
         {
-            console.warn('Phaser.AnimationParser.XMLData: Invalid Texture Atlas XML given, missing <TextureAtlas> tag');
+            console.warn('Invalid Texture Atlas XML. Missing <TextureAtlas> tag');
             return;
         }
 
@@ -51750,7 +52028,7 @@ Phaser.Cache.prototype = {
 
         if (data.complete === false)
         {
-            console.warn('Phaser.Cache.addImage: Image "%s" is not complete', key);
+            console.warn('Image "%s" is not complete', key);
         }
 
         var img = {
@@ -52592,7 +52870,7 @@ Phaser.Cache.prototype = {
         {
             if (method)
             {
-                console.warn('Phaser.Cache.' + method + ': Key "' + key + '" not found in Cache.');
+                console.warn('%s(): Key "%s" not found in Cache.', method, key);
             }
         }
         else if (property === undefined)
@@ -52770,7 +53048,7 @@ Phaser.Cache.prototype = {
                 }
 
                 //  We did not find the requested fixture
-                console.warn('Phaser.Cache.getPhysicsData: Could not find given fixtureKey: "' + fixtureKey + ' in ' + key + '"');
+                console.warn('Could not find given fixtureKey: "%s in %s"', fixtureKey, key);
             }
             else
             {
@@ -52779,7 +53057,7 @@ Phaser.Cache.prototype = {
         }
         else
         {
-            console.warn('Phaser.Cache.getPhysicsData: Invalid key/object: "' + key + ' / ' + object + '"');
+            console.warn('Invalid key/object: "%s / %s"', key, object);
         }
 
         return null;
@@ -53136,7 +53414,7 @@ Phaser.Cache.prototype = {
         }
         else
         {
-            console.warn('Phaser.Cache.getUrl: Invalid url: "' + url + '" or Cache.autoResolveURL was false');
+            console.warn('Invalid url: "%s" or Cache.autoResolveURL was false', url);
             return null;
         }
     },
@@ -53553,7 +53831,7 @@ Phaser.Cache.prototype = {
             {
                 if (!self.isReady)
                 {
-                    console.warn('Phaser.Cache: Still waiting for images after %s ms.', readyTimeout);
+                    console.warn('Still waiting for images after %s ms.', readyTimeout);
 
                     self._ready();
                 }
@@ -53778,6 +54056,11 @@ Phaser.Loader = function (game)
      * This event is dispatched when the final file in the load queue has either loaded or failed,
      * after the loader is {@link #reset}.
      *
+     * Completion does not mean every file loaded successfully. Failures are reported via {@link #onFileError}.
+     * When a State's `preload` queues nothing, the StateManager skips the Loader and this is not dispatched
+     * (the State's `create` still runs). Calling {@link #start} with an empty queue does dispatch it.
+     * It is also dispatched if loading finishes abnormally, such as when the queue stalls.
+     *
      * @property {Phaser.Signal} onLoadComplete
      */
     this.onLoadComplete = new Phaser.Signal();
@@ -53846,6 +54129,16 @@ Phaser.Loader = function (game)
      * @property {integer} maxParallelDownloads
      */
     this.maxParallelDownloads = 4;
+
+    /**
+     * If true, and the game uses WebGL, each loaded image is uploaded to the GPU right away instead of when it's first rendered.
+     * This moves the pause of uploading a large image from gameplay into loading.
+     * If a loaded image's `scaleMode`, `mipmap` or `premultipliedAlpha` is changed later, call its base texture's `dirty()` method.
+     *
+     * @property {boolean} uploadTextures
+     * @default
+     */
+    this.uploadTextures = false;
 
     /**
      * A counter: if more than zero, files will be automatically added as a synchronization point.
@@ -54208,7 +54501,7 @@ Phaser.Loader.prototype = {
 
         if (key === undefined || key === '')
         {
-            console.warn('Phaser.Loader: Invalid or no key given of type ' + type);
+            console.warn('Invalid or no key given of type ' + type);
             return this;
         }
 
@@ -54220,7 +54513,7 @@ Phaser.Loader.prototype = {
             }
             else
             {
-                console.warn('Phaser.Loader: No URL given for file type: ' + type + ' key: ' + key);
+                console.warn('No URL given for file type: %s key: %s', type, key);
                 return this;
             }
         }
@@ -54315,7 +54608,7 @@ Phaser.Loader.prototype = {
 
         if (!url && !data)
         {
-            console.warn('Phaser.Loader.pack - Both url and data are null. One must be set.');
+            console.warn('Both url and data are null. One must be set.');
 
             return this;
         }
@@ -54965,7 +55258,7 @@ Phaser.Loader.prototype = {
         }
         else
         {
-            console.warn('Phaser.Loader.audiosprite - You must specify either a jsonURL or provide a jsonData object');
+            console.warn('You must specify either a jsonURL or provide a jsonData object');
         }
 
         return this;
@@ -55292,7 +55585,7 @@ Phaser.Loader.prototype = {
 
                 if (!xml && !json)
                 {
-                    throw new Error('Phaser.Loader. Invalid Bitmap Font atlas given');
+                    throw new Error('Invalid Bitmap Font atlas given');
                 }
 
                 this.addToFileList('bitmapfont', key, textureURL, {
@@ -55537,7 +55830,7 @@ Phaser.Loader.prototype = {
 
                         if (!xml)
                         {
-                            throw new Error('Phaser.Loader. Invalid Texture Atlas XML given');
+                            throw new Error('Invalid Texture Atlas XML given');
                         }
 
                         atlasData = xml;
@@ -55681,7 +55974,7 @@ Phaser.Loader.prototype = {
 
         if (!this.isLoading)
         {
-            console.warn('Phaser.Loader - active loading canceled / reset');
+            console.warn('Active loading canceled / reset');
             this.finishedLoading(true);
             return;
         }
@@ -55808,7 +56101,7 @@ Phaser.Loader.prototype = {
              * Flight queue is empty but file list is not done being processed.
              * This indicates a critical internal error with no known recovery.
              */
-            console.warn('Phaser.Loader - aborting: processing queue empty, loading may have stalled');
+            console.warn('Aborting: processing queue empty, loading may have stalled');
 
             var _this = this;
 
@@ -55820,11 +56113,19 @@ Phaser.Loader.prototype = {
     },
 
     /**
-     * The loading is all finished.
+     * The loading is all finished. Dispatches the completion signals, then calls `loadUpdate` and `loadComplete` on the current State.
+     *
+     * Called with no argument when every queued file has been processed. Failed files count as processed.
+     *
+     * Called with `true` in two cases:
+     * - Loading was cancelled or reset while in progress (`processLoadQueue` finds `isLoading` is false).
+     * - The queue stalled: files remain unprocessed but none are in flight. This is detected after a 2 second delay.
+     *
+     * For an abnormal finish, `onLoadStart` is not dispatched. `onBeforeLoadComplete` and `onLoadComplete` still are.
      *
      * @method Phaser.Loader#finishedLoading
      * @private
-     * @param {boolean} [abnormal=true] - True if the loading finished abnormally.
+     * @param {boolean} [abnormal=false] - True if loading finished abnormally (cancelled, reset, or stalled). Omit it, or pass false, for a normal finish.
      */
     finishedLoading: function (abnormal)
     {
@@ -55837,7 +56138,11 @@ Phaser.Loader.prototype = {
         this.hasLoaded = true;
         this.isLoading = false;
 
-        // If there were no files make sure to trigger the event anyway, for consistency
+        /*
+         * A normal finish with no files never reached the dispatch of onLoadStart in processLoadQueue.
+         * Dispatch it here so listeners always receive onLoadStart before onLoadComplete.
+         * Skipped for abnormal finishes, where announcing a load start would be misleading.
+         */
         if (!abnormal && !this._fileLoadStarted)
         {
             this._fileLoadStarted = true;
@@ -55871,10 +56176,59 @@ Phaser.Loader.prototype = {
         {
             file.errorMessage = errorMessage;
 
-            console.warn('Phaser.Loader - ' + file.type + '[' + file.key + ']' + ': ' + errorMessage);
+            console.warn('%s[%s]: %s', file.type, file.key, errorMessage);
+        }
+        else if (this.uploadTextures)
+        {
+            this.uploadTexture(file);
         }
 
         this.processLoadQueue();
+    },
+
+    /**
+     * Uploads the image of a loaded file to the GPU, if the file has one and the game uses WebGL.
+     *
+     * @method Phaser.Loader#uploadTexture
+     * @private
+     * @param {object} file - The loaded file.
+     */
+    uploadTexture: function (file)
+    {
+        // An upload while the context is lost would do nothing but still mark the texture as uploaded
+        if (!this.game.isBooted || this.game.renderType !== Phaser.WEBGL || this.game.renderer.contextLost)
+        {
+            return;
+        }
+
+        var baseTexture;
+
+        switch (file.type)
+        {
+            case 'image':
+            case 'imageset':
+            case 'spritesheet':
+            case 'textureatlas':
+            case 'texture':
+                baseTexture = this.cache.getBaseTexture(file.key);
+                break;
+
+            case 'bitmapfont':
+                baseTexture = this.cache.getBaseTexture(file.key, Phaser.Cache.BITMAPFONT);
+                break;
+
+            default:
+                return;
+        }
+
+        try
+        {
+            this.game.renderer.updateTexture(baseTexture);
+        }
+        catch (e)
+        {
+            // The error, e.g. from a tainted cross-origin image, is thrown again when the texture is rendered
+        }
     },
 
     /**
@@ -55890,7 +56244,7 @@ Phaser.Loader.prototype = {
 
         if (!packData)
         {
-            console.warn('Phaser.Loader - ' + pack.key + ': pack has data, but not for pack key');
+            console.warn(pack.key + ': pack has data, but not for pack key');
             return;
         }
 
@@ -56630,7 +56984,7 @@ Phaser.Loader.prototype = {
                     }
                     else
                     {
-                        throw new Error('Phaser.Loader. Invalid Texture Atlas format: ' + file.format);
+                        throw new Error('Invalid Texture Atlas format: ' + file.format);
                     }
                 }
                 break;
@@ -56680,7 +57034,7 @@ Phaser.Loader.prototype = {
                     }
                     catch (e)
                     {
-                        throw new Error('Phaser.Loader. Unable to parse video file as Blob: ' + file.key);
+                        throw new Error('Unable to parse video file as Blob: ' + file.key);
                     }
                 }
 
@@ -56821,7 +57175,7 @@ Phaser.Loader.prototype = {
         if (!xml)
         {
             var responseType = xhr.responseType || xhr.contentType; // contentType for MS-XDomainRequest
-            console.warn('Phaser.Loader - ' + file.key + ': invalid XML (' + responseType + ')');
+            console.warn('%s: invalid XML (%s)', file.key, responseType);
             this.asyncComplete(file, 'invalid XML');
             return;
         }
@@ -57272,7 +57626,7 @@ Phaser.LoaderParser = {
          * ---------------------------------------
          */
         var uintArray = new Uint32Array(arrayBuffer.slice(0, 52)),
-            byteArray = new Uint8Array(arrayBuffer),
+            byteArray = new Uint8Array(arrayBuffer), // eslint-disable-line compat/compat -- compressed textures only; loader queues them only under WebGL
             pvrHeader = null,
             pixelFormat = (uintArray[3] << 32 | uintArray[2]),
             compressionAlgorithm,
@@ -57394,7 +57748,7 @@ Phaser.LoaderParser = {
          * address: 146, size: 4 misc flag 2
          * ---------------------------------------
          */
-        var byteArray = new Uint8Array(arrayBuffer),
+        var byteArray = new Uint8Array(arrayBuffer), // eslint-disable-line compat/compat -- compressed textures only; loader queues them only under WebGL
             uintArray = new Uint32Array(arrayBuffer),
             ddsHeader = null;
 
@@ -57492,7 +57846,7 @@ Phaser.LoaderParser = {
          * address: X, size 4 byte : image size
          * ---------------------------------------
          */
-        var byteArray = new Uint8Array(arrayBuffer),
+        var byteArray = new Uint8Array(arrayBuffer), // eslint-disable-line compat/compat -- compressed textures only; loader queues them only under WebGL
             uintArray = new Uint32Array(arrayBuffer),
             ktxHeader = null,
             imageSizeOffset = 16 + (uintArray[15] / 4) | 0,
@@ -57586,7 +57940,7 @@ Phaser.LoaderParser = {
          * address: 16, texture data
          * ---------------------------------------
          */
-        var byteArray = new Uint8Array(arrayBuffer),
+        var byteArray = new Uint8Array(arrayBuffer), // eslint-disable-line compat/compat -- compressed textures only; loader queues them only under WebGL
             pkmHeader = null;
 
         if (byteArray[0] === 0x50 &&
@@ -58408,7 +58762,7 @@ Phaser.Sound.prototype = {
             }
             else
             {
-                console.warn('Phaser.Sound.play: audio marker ' + marker + ' doesn\'t exist');
+                console.warn('Audio marker "%s" doesn\'t exist', marker);
                 return this;
             }
         }
@@ -58542,7 +58896,7 @@ Phaser.Sound.prototype = {
         {
             if (this.loop)
             {
-                console.warn('Phaser.Sound.play: audio clip ' + this.name + ' cannot be deleted while looping.');
+                console.warn('Audio clip "%s" cannot be deleted while looping.', this.name);
             }
 
             this._markedToDelete = true;
@@ -58745,7 +59099,7 @@ Phaser.Sound.prototype = {
 
         if (volume === undefined)
         {
-            console.warn('Phaser.Sound.fadeTo: No Volume Specified.');
+            console.warn('No Volume Specified.');
             return;
         }
 
@@ -61271,7 +61625,7 @@ Phaser.ScaleManager.prototype = {
 
         if (forceLandscape === true && forcePortrait === true)
         {
-            console.warn('Phaser.ScaleManager: forceLandscape and forcePortrait cannot both be true.');
+            console.warn('forceLandscape and forcePortrait cannot both be true.');
             return;
         }
 
@@ -62095,7 +62449,7 @@ Phaser.ScaleManager.prototype = {
 
         this.cleanupCreatedTarget();
 
-        console.warn('Phaser.ScaleManager: requestFullscreen failed or device does not support the Fullscreen API');
+        console.warn('requestFullscreen() failed or device does not support the Fullscreen API');
 
         this.onFullScreenError.dispatch(this);
     },
@@ -62423,7 +62777,7 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'isFullScreen', {
 
     get: function ()
     {
-        return !!(document.fullscreenElement ||
+        return !!(document.fullscreenElement || // eslint-disable-line compat/compat -- property read; undefined where unsupported
             document.webkitFullscreenElement ||
             document.mozFullScreenElement ||
             document.msFullscreenElement);
@@ -62520,6 +62874,11 @@ Object.defineProperty(Phaser.ScaleManager.prototype, 'isGameLandscape', {
  * in WebGL mode if you really need it (or your desktop can cope with it well) and disable it for production!
  *
  * You can disable the debug module by omitting it from a custom build or by creating a Phaser Game with `{ enableDebug: false }`.
+ *
+ * When Phaser is built without the debug module, the debug methods are replaced with empty functions, so you can leave any debug calls in your code and they will be ignored.
+ *
+ * But if you create a Phaser Game with `{ enableDebug: false }`, it will have no debug module at all and attempting to access it will error.
+ * Either remove the debug calls from your code or check for the existence of `game.debug` first.
  *
  * @class Phaser.Utils.Debug
  * @constructor
@@ -78426,7 +78785,7 @@ Phaser.Tilemap.prototype = {
         {
             if (!this.game.cache.checkImageKey(key))
             {
-                console.warn('Phaser.Tilemap.addTilesetImage: Invalid image key given: "' + key + '"');
+                console.warn('Invalid image key given: "%s"', key);
                 return null;
             }
 
@@ -78437,7 +78796,7 @@ Phaser.Tilemap.prototype = {
 
         if (idx === null && this.format === Phaser.Tilemap.TILED_JSON)
         {
-            console.warn('Phaser.Tilemap.addTilesetImage: No data found in the JSON matching the tileset name: "' + tileset + '"');
+            console.warn('No data found in the JSON matching the tileset name: "%s"', tileset);
             console.log('Tilesets: ', this.tilesets);
             return null;
         }
@@ -78541,7 +78900,7 @@ Phaser.Tilemap.prototype = {
 
         if (!objects)
         {
-            console.warn('Tilemap.createFromObjects: Invalid object layer name given: ' + layer);
+            console.warn('Invalid object layer name given: ' + layer);
             console.log('Object layers: ', this.objects);
             return;
         }
@@ -78744,7 +79103,7 @@ Phaser.Tilemap.prototype = {
 
         if (index === null || index > this.layers.length)
         {
-            console.warn('Tilemap.createLayer: Invalid layer ID given: "' + layer + '"');
+            console.warn('Invalid layer ID given: "%s"', layer);
             console.log('Layers: ', this.layers);
             return;
         }
@@ -78805,7 +79164,7 @@ Phaser.Tilemap.prototype = {
 
         if (this.getLayerIndex(name) !== null)
         {
-            console.warn('Tilemap.createBlankLayer: Layer with matching name already exists: ' + name);
+            console.warn('Layer with matching name already exists: ' + name);
             return;
         }
 
@@ -79626,7 +79985,7 @@ Phaser.Tilemap.prototype = {
      * @param {number} [skip=0] - The number of times to skip a matching tile before returning.
      * @param {number} [reverse=false] - If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
      * @param {number|string|Phaser.TilemapLayer} [layer] - The layer to get the tile from.
-     * @param {number} [all=false] - If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
+     * @param {boolean} [all=false] - If true it returns an array of all matching tiles. Otherwise it returns only the first matching tile.
      *
      * @return {Phaser.Tile|Phaser.Tile[]} A matching tile, or null (when `all` is false); or an array of zero or more tiles (when `all` is true).
      */
@@ -80156,7 +80515,9 @@ Phaser.Tilemap.prototype = {
         }
 
         args[0] = txt;
-        console.log.apply(console, args);
+
+        // IE9's console.log is a host object without .apply
+        Function.prototype.apply.call(console.log, console, args);
     },
 
     /**
@@ -82579,7 +82940,7 @@ Phaser.Tileset.prototype = {
         if (rowCount % 1 !== 0 || colCount % 1 !== 0)
         {
             console.warn(
-                'Phaser.Tileset - \'%s\' image tile area (%s x %s) is not a whole multiple of tile size (%s x %s + %s + %s)',
+                '"%s" image tile area (%s x %s) is not a whole multiple of tile size (%s x %s + %s + %s)',
                 this.name, imageWidth, imageHeight, this.tileWidth, this.tileHeight, this.tileMargin, this.tileSpacing
             );
         }
@@ -82594,7 +82955,7 @@ Phaser.Tileset.prototype = {
         if ((this.rows && this.rows !== rowCount) || (this.columns && this.columns !== colCount))
         {
             console.warn(
-                'Phaser.Tileset - Tile layout from image \'%s\' (%s rows by %s columns) differs from tileset \'%s\' (%s rows by %s columns)',
+                'Tile layout from image "%s" (%s rows by %s columns) differs from tileset "%s" (%s rows by %s columns)',
                 this.image.name, colCount, rowCount, this.name, this.columns, this.rows
             );
         }
@@ -85968,7 +86329,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, useFlatData)
 
     if (!game.cache.checkJSONKey(mesh))
     {
-        console.warn('Phaser.Creature: Invalid mesh key given. Not found in Phaser.Cache');
+        console.warn('Mesh key not found in Cache: ' + mesh);
         return;
     }
 
@@ -86650,7 +87011,7 @@ Phaser.Creature.prototype.createAllAnimations = function (mesh)
 {
     if (!this.game.cache.checkJSONKey(mesh))
     {
-        console.warn('Phaser.Creature: Invalid mesh key given. Not found in Phaser.Cache');
+        console.warn('Mesh key not found in Cache: ' + mesh);
         return;
     }
 
@@ -86667,7 +87028,7 @@ Phaser.Creature.prototype.setMetaData = function (meta)
 {
     if (!this.game.cache.checkJSONKey(meta))
     {
-        console.warn('Phaser.Creature: Invalid meta key given. Not found in Phaser.Cache');
+        console.warn('Meta key not found in Cache: ' + meta);
         return;
     }
 
@@ -86687,7 +87048,7 @@ Phaser.Creature.prototype.enableSkinSwap = function (swapNameIn, active)
 
     if (target.creature_meta_data === null)
     {
-        console.warn('Phaser.Creature: Attempting to use skin swapping before setting the meta data. You must use {@link #setMetaData} before using skin swapping functionality.');
+        console.warn('You must use setMetaData() before using skin swapping functionality.');
         return;
     }
 
@@ -86710,7 +87071,7 @@ Phaser.Creature.prototype.disableSkinSwap = function ()
 
     if (target.creature_meta_data === null)
     {
-        console.warn('Phaser.Creature: Attempting to use skin swapping before setting the meta data. You must use {@link #setMetaData} before using skin swapping functionality.');
+        console.warn('You must use setMetaData() before using skin swapping functionality.');
         return;
     }
 
@@ -87293,8 +87654,16 @@ Phaser.Video.prototype = {
         this.video.setAttribute('autoplay', 'autoplay');
         this.video.setAttribute('playsinline', 'playsinline');
         this.video.addEventListener('loadeddata', function (event) { _this.updateTexture(event); }, true);
-        this.video.src = window.URL.createObjectURL(blob);
-        this.video.canplay = true;
+
+        if (window.URL && window.URL.createObjectURL)
+        {
+            this.video.src = window.URL.createObjectURL(blob);
+            this.video.canplay = true;
+        }
+        else
+        {
+            console.warn('Unable to create video from Blob.');
+        }
 
         return this;
     },
@@ -87785,7 +88154,6 @@ Phaser.Video.prototype = {
      */
     checkVideoProgress: function ()
     {
-        // if (this.video.readyState === 2 || this.video.readyState === 4)
         if (this.video.readyState === 4)
         {
             this._pendingChangeSource = false;
@@ -87803,7 +88171,7 @@ Phaser.Video.prototype = {
             }
             else
             {
-                console.warn('Phaser.Video: Unable to start downloading video in time', this.isStreaming);
+                console.warn('Video is still not ready. Its texture will not be updated.');
             }
         }
     },
@@ -87874,7 +88242,7 @@ Phaser.Video.prototype = {
 
         if (this.snapshot === null)
         {
-            console.warn('Video.grab cannot run because Phaser.BitmapData is unavailable');
+            console.warn('Cannot grab Video because no BitmapData is available for the snapshot.');
             return;
         }
 
