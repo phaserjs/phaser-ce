@@ -454,13 +454,13 @@ Phaser.StateManager.prototype = {
             }
             else
             {
-                console.warn('Invalid Phaser State object. Must contain at least one of preload(), create(), update() or render().');
+                console.warn('State must contain at least one of preload(), create(), update() or render().');
                 return false;
             }
         }
         else
         {
-            console.warn('No state found with the key: ' + key);
+            console.warn('No State found with key: ' + key);
             return false;
         }
     },
@@ -800,7 +800,7 @@ Phaser.StateManager.prototype.constructor = Phaser.StateManager;
 
 /**
  * @name Phaser.StateManager#loaded
- * @property {boolean} loaded - True if the current state has completed its load phase. If the state has a `preload` method, this will be true after it has finished loading. If the state does not have a `preload` method, this will be true immediately after the state has been started.
+ * @property {boolean} loaded - True if the current state has completed (or skipped) its load phase. If the state has a `preload` method, this will be true **after** it has finished loading. If the state does not have a `preload` method, this will be true at the time `create` or the first `update` is called and false before that. `loaded` will always be false during a state's `init`, `preload`, `loadUpdate` and `loadRender` methods.
  * @readOnly
  */
 Object.defineProperty(Phaser.StateManager.prototype, 'loaded', {
@@ -814,7 +814,7 @@ Object.defineProperty(Phaser.StateManager.prototype, 'loaded', {
 
 /**
  * @name Phaser.StateManager#created
- * @property {boolean} created - True if the current state has completed its create phase. If the state has a `create` method, this will be true after it has been called. If the state does not have a `create` method, this will be true immediately after the state has finished loading.
+ * @property {boolean} created - True if the current state has completed its create phase. If the state has a `create` method, this will be true **after** it has been called. If the state does not have a `create` method, this will be true immediately after the state has finished loading. `created` will be always be false during a state's `init`, `preload`, `loadUpdate`, `loadRender` and `create` methods.
  * @readOnly
  */
 Object.defineProperty(Phaser.StateManager.prototype, 'created', {
