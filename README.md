@@ -61,12 +61,17 @@ If you code with [TypeScript](https://www.typescriptlang.org/) there are compreh
 
 ## Download Phaser CE
 
-Phaser CE is [hosted on GitHub][phaser-ce]. There are a number of ways to download it:
+Phaser CE is [hosted on GitHub][phaser-ce].
 
-* Clone the git repository via [https][clone-http], [ssh][clone-ssh] or with the GitHub [Windows][clone-ghwin] or [Mac][clone-ghmac] clients.
-* Download as [zip][get-zip] or [tar.gz][get-tgz]
-* Download just the build files: [phaser.js][get-js] and [phaser.min.js][get-minjs]
-* Checkout with [svn][clone-svn]
+For basic use, you need only download the built files, [phaser.js][get-js] or [phaser.min.js][get-minjs].
+
+To build from source, download or clone [the repository][clone-http]:
+
+* [zip][get-zip]
+* [tar.gz][get-tgz]
+* `git clone https://github.com/phaserjs/phaser-ce.git`
+
+You can find [all of our releases](https://github.com/phaserjs/phaser-ce/releases) on GitHub also.
 
 ### NPM
 
@@ -150,17 +155,11 @@ Full module-based development is available in Phaser v3.
 
 ### Webpack
 
-<!-- The Ionic and Webpack project templates were removed from the repository after v2.20.2. The links below point to that tag. -->
-
 As with browserify, use the **pixi**, **p2**, and **phaser-split** modules in [build/custom](https://github.com/phaserjs/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
 
+<!-- The Webpack project template was removed from the repository after v2.20.2. The link below points to that tag. -->
+
 See [our webpack project template](https://github.com/phaserjs/phaser-ce/tree/v2.20.2/resources/Project%20Templates/Webpack) or [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
-
-### Ionic
-
-<!-- The Ionic and Webpack project templates were removed from the repository after v2.20.2. The link below points to that tag. -->
-
-See [Ionic](https://github.com/phaserjs/phaser-ce/blob/v2.20.2/resources/Ionic.md).
 
 ### Game Mechanic Explorer
 
@@ -192,9 +191,11 @@ Run `npm run grunt` to perform a default build to the `dist` folder.
 
 ### Packaging a new release
 
+We use semi-semantic versioning where **patch releases** include backward-compatible bug fixes and **minor releases** include backward-compatible new features or (rarely) breaking API changes. We avoid "major" increments to prevent confusion with the Phaser 3 and 4 releases.
+
 Releases of new versions of Phaser CE are under the community's control. If you feel there are sufficient fixes, or important ones that warrant a new version release, then please do the following:
 
-1. Make sure the version number is increased, in line with semver policies, in the following files:
+1. Make sure the version number is increased in the following files:
     - `package.json`
     - `src/Phaser.js`
 
