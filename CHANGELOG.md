@@ -24,13 +24,12 @@
 
 ### Updates
 
-- `Phaser.Video#createVideoFromBlob()` will print a console warning instead of throwing an error if `URL` or `createObjectURL()` are unavailable. The Video will still be unusuable in that case, as before this change.
+- `Phaser.Video#createVideoFromBlob()` will print a console warning instead of throwing an error if `URL` or `createObjectURL()` is unavailable. The Video will still be unusuable in that case, as before this change.
 - WebGL Graphics redraw circles and ellipses faster.
 - WebGL Graphics create less garbage when redrawn.
 - `Phaser.Device` feature detection makes less use of temporary elements:
   - Fullscreen API detection probes `document.documentElement` instead of a temporary `div`.
   - `Uint8ClampedArray` `ImageData` detection, which feeds `Phaser.Device.support32bit`, uses `new ImageData(1, 1)` instead of a temporary canvas. The canvas is only used when the `ImageData` constructor is unavailable.
-  - 3D CSS detection, which sets `Phaser.Device.css3D`, uses `CSS.supports()` instead of inserting a temporary element into `document.body`. Legacy browsers use a detached element that is never added to the document.
   - `Phaser.Device.css3D` uses `CSS.supports()` where it exists.
 - Changed some `Error()` messages.
 - Changed some console messages and elevated some console logs to console errors.
@@ -40,7 +39,7 @@
 - Fixed WebGL errors when a Graphics object reused pooled WebGL data from another game.
 - Fixed WebGL Graphics with more than 65536 vertices rendering incompletely.
 - Added missing methods in the `console` polyfill for Internet Explorer 9.
-- Fixed the `bind()` polyfill so it returns the target's result.
+- Fixed the `Function#bind()` polyfill so it returns the target's result.
 - Fixed `Phaser.Tilemap#dump()` for Internet Explorer 9.
 - Fixed multitexture batching drawing sprites with the wrong texture after `WebGLRenderer#updateTexture()`.
 
@@ -74,7 +73,6 @@
 - Removed: `Phaser.GAMES`.
 - Removed: `PIXI.game`.
 - Removed: p2 `motorIsEnabled()`.
-
 
 ### New Features
 
