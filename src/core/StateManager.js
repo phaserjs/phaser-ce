@@ -7,6 +7,17 @@
 /**
  * The State Manager is responsible for loading, setting up and switching game states.
  *
+ * #### `loaded` and `created` properties
+ *
+ * | Callback / event | `loaded` | `created` |
+ * |---|---|---|
+ * | `init()` | false | false |
+ * | `preload()` | false | false |
+ * | `loadRender()`, `loadUpdate()` | false | false |
+ * | `create()` | true | false |
+ * | `onStateCreated` signal | true | true |
+ * | `update()`, `preRender()`, `render()`, `postUpdate()`, `pause()`, `resume()`, `pauseUpdate()` | true | true |
+ *
  * @class Phaser.StateManager
  * @constructor
  * @param {Phaser.Game} game - A reference to the currently running game.
@@ -800,7 +811,7 @@ Phaser.StateManager.prototype.constructor = Phaser.StateManager;
 
 /**
  * @name Phaser.StateManager#loaded
- * @property {boolean} loaded - True if the current state has completed (or skipped) its load phase. If the state has a `preload` method, this will be true **after** it has finished loading. If the state does not have a `preload` method, this will be true at the time `create` or the first `update` is called and false before that. `loaded` will always be false during a state's `init`, `preload`, `loadUpdate` and `loadRender` methods.
+ * @property {boolean} loaded - True if the current state has completed or skipped its load phase. If the state has a `preload` method, this will be true **after** it has finished loading. If the state does not have a `preload` method, this will change from false to true during the state's start sequence, but not before `init` is called. This will always be false during a state's `init`, `preload`, `loadUpdate` and `loadRender` methods and true during its `create`, `update`, and `render` methods, whether the state has a `preload` method or not.
  * @readOnly
  */
 Object.defineProperty(Phaser.StateManager.prototype, 'loaded', {
@@ -814,7 +825,7 @@ Object.defineProperty(Phaser.StateManager.prototype, 'loaded', {
 
 /**
  * @name Phaser.StateManager#created
- * @property {boolean} created - True if the current state has completed its create phase. If the state has a `create` method, this will be true **after** it has been called. If the state does not have a `create` method, this will be true immediately after the state has finished loading. `created` will be always be false during a state's `init`, `preload`, `loadUpdate`, `loadRender` and `create` methods.
+ * @property {boolean} created - True if the current state has completed its create phase. If the state has a `create` method, this will be true **after** `create` has returned and false before that. If the state does not have a `create` method, this will be true immediately after the state has finished loading. This will be always be false during a state's `init`, `preload`, `loadUpdate`, `loadRender` and `create` methods and true during its `update` and `render` methods, whether the state has a `create` method or not.
  * @readOnly
  */
 Object.defineProperty(Phaser.StateManager.prototype, 'created', {
