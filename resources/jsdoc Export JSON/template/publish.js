@@ -131,5 +131,6 @@ exports.publish = function (data, opts)
 
     graft2(root, data().get());
     var fs = require('fs');
+    fs.mkdirSync(opts.destination, { recursive: true });
     fs.writeFileSync(path.join(opts.destination, 'docs.json'), JSON.stringify(root), 'utf8');
 };

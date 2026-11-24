@@ -2,7 +2,6 @@
 
 declare module PIXI {
 
-    export var game: Phaser.Game;
     export var WEBGL_RENDERER: number;
     export var CANVAS_RENDERER: number;
     export var VERSION: string;
@@ -1796,7 +1795,11 @@ declare module PIXI {
     */
     export class WebGLGraphics {
 
-        static graphicsDataPool: any[];
+
+        /**
+        * Pools of unused WebGLGraphicsData, one per WebGL context id.
+        */
+        static graphicsDataPool: WebGLGraphicsData[][];
 
 
         /**
@@ -1900,6 +1903,7 @@ declare module PIXI {
         indices: any[];
         buffer: WebGLBuffer;
         indexBuffer: WebGLBuffer;
+        indexType: number;
         mode: number;
         alpha: number;
         dirty: boolean;
