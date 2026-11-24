@@ -16,6 +16,8 @@
 
 ### New Features
 
+- The game config now has an `antialiasGL` option for the WebGL context's `antialias` attribute, separate from texture smoothing.
+- `Phaser.Loader#uploadTextures` uploads images to the GPU as soon as they load instead of when they're first rendered.
 - Added `Phaser.Game#onPostRender`, dispatched at the end of each render. Handy for screenshots and automated tests.
 - Added `Phaser.Game#renderCount` and `Phaser.Game#updateCount`, which count completed renders and logic updates since boot.
 - Added `Phaser.Game#onContextLost` and `Phaser.Game#onContextRestored`, dispatched when the WebGL context is lost or restored.
@@ -73,11 +75,6 @@
 - Removed: `Phaser.GAMES`.
 - Removed: `PIXI.game`.
 - Removed: p2 `motorIsEnabled()`.
-
-### New Features
-
-- The game config now has an `antialiasGL` option for the WebGL context's `antialias` attribute, separate from texture smoothing.
-- `Phaser.Loader#uploadTextures` uploads images to the GPU as soon as they load instead of when they're first rendered.
 
 ### Thanks
 
