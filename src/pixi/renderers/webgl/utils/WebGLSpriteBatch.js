@@ -153,6 +153,118 @@ PIXI.WebGLSpriteBatch = function (game)
 };
 
 /**
+ * Creates the default fragment shader used when multi-texture batching is enabled.
+ *
+ * @method PIXI.WebGLSpriteBatch#createMultiTextureShader
+ * @return {Phaser.Filter}
+ */
+PIXI.WebGLSpriteBatch.prototype.createMultiTextureShader = function ()
+{
+    var dynamicIfs = '\tif (vTextureIndex == 0.0) {gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n';
+    for (var index = 1; index < this.MAX_TEXTURES; ++index)
+    {
+        dynamicIfs += '\tif (vTextureIndex == ' +
+            index + '.0) {gl_FragColor = texture2D(uSamplerArray[' +
+            index + '], vTextureCoord) * vColor;return;}\n';
+    }
+    return new Phaser.Filter(
+        this.game,
+        undefined,
+        [
+            '//WebGLSpriteBatch Fragment Shader.',
+            'precision lowp float;',
+            'varying vec2 vTextureCoord;',
+            'varying vec4 vColor;',
+            'varying float vTextureIndex;',
+            'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
+            'void main(void) {',
+            dynamicIfs,
+            '\tgl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;',
+            '}'
+        ]);
+};
+
+/**
+ * Creates the default fragment shader used when multi-texture batching is disabled.
+ *
+ * @method PIXI.WebGLSpriteBatch#createSingleTextureShader
+ * @return {Phaser.Filter}
+ */
+PIXI.WebGLSpriteBatch.prototype.createSingleTextureShader = function ()
+{
+    return new Phaser.Filter(
+        this.game,
+        undefined,
+        [
+            '//WebGLSpriteBatch Fragment Shader.',
+            'precision lowp float;',
+            'varying vec2 vTextureCoord;',
+            'varying vec4 vColor;',
+            'varying float vTextureIndex;',
+            'uniform sampler2D uSampler;',
+            'void main(void) {',
+            '   gl_FragColor = texture2D(uSampler, vTextureCoord) * vColor;',
+            '}'
+        ]);
+};
+
+/**
+ * Makes sure the texture unit of the base texture holds that texture, flushing the batch first if it does not.
+ * Multi-texture variant. Replaces {@link PIXI.WebGLSpriteBatch#bindTexture} in setContext.
+ *
+ * @method PIXI.WebGLSpriteBatch#bindTextureMulti
+ * @param {PIXI.BaseTexture} baseTexture
+ * @param {number} textureIndex - The texture unit to use.
+ */
+PIXI.WebGLSpriteBatch.prototype.bindTextureMulti = function (baseTexture, textureIndex)
+{
+    var gl = this.gl;
+
+    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    {
+        this.flush();
+        gl.activeTexture(gl.TEXTURE0 + textureIndex);
+        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+    }
+};
+
+/**
+ * Single-texture variant of bindTexture. The texture is bound when the batch is drawn, so nothing to do here.
+ *
+ * @method PIXI.WebGLSpriteBatch#bindTextureSingle
+ */
+PIXI.WebGLSpriteBatch.prototype.bindTextureSingle = function ()
+{
+};
+
+/**
+ * Uploads a base texture to the GPU. Multi-texture variant: the upload rebinds a texture unit that
+ * sprites waiting in the batch may sample, so the batch is flushed first.
+ *
+ * @method PIXI.WebGLSpriteBatch#uploadTextureMulti
+ * @param {PIXI.BaseTexture} baseTexture
+ * @return {boolean} False if the texture could not be uploaded.
+ */
+PIXI.WebGLSpriteBatch.prototype.uploadTextureMulti = function (baseTexture)
+{
+    this.flush();
+    return this.renderSession.renderer.updateTexture(baseTexture);
+};
+
+/**
+ * Uploads a base texture to the GPU. Single-texture variant.
+ *
+ * @method PIXI.WebGLSpriteBatch#uploadTextureSingle
+ * @param {PIXI.BaseTexture} baseTexture
+ * @return {boolean} False if the texture could not be uploaded.
+ */
+PIXI.WebGLSpriteBatch.prototype.uploadTextureSingle = function (baseTexture)
+{
+    return this.renderSession.renderer.updateTexture(baseTexture);
+};
+
+/**
  * @method PIXI.WebGLSpriteBatch#setContext
  * @param gl {WebGLContext} the current WebGL drawing context
  */
@@ -160,47 +272,19 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl)
 {
     this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
     this.gl = gl;
-    if (PIXI._enableMultiTextureToggle)
+    this.multiTexture = !!PIXI._enableMultiTextureToggle;
+
+    if (this.multiTexture)
     {
-        var dynamicIfs = '\tif (vTextureIndex == 0.0) {gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n';
-        for (var index = 1; index < this.MAX_TEXTURES; ++index)
-        {
-            dynamicIfs += '\tif (vTextureIndex == ' +
-                index + '.0) {gl_FragColor = texture2D(uSamplerArray[' +
-                index + '], vTextureCoord) * vColor;return;}\n';
-        }
-        this.defaultShader = new Phaser.Filter(
-            this.game,
-            undefined,
-            [
-                '//WebGLSpriteBatch Fragment Shader.',
-                'precision lowp float;',
-                'varying vec2 vTextureCoord;',
-                'varying vec4 vColor;',
-                'varying float vTextureIndex;',
-                'uniform sampler2D uSamplerArray[' + this.MAX_TEXTURES + '];',
-                'void main(void) {',
-                dynamicIfs,
-                '\tgl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;',
-                '}'
-            ]);
+        this.defaultShader = this.createMultiTextureShader();
+        this.bindTexture = this.bindTextureMulti;
+        this.uploadTexture = this.uploadTextureMulti;
     }
     else
     {
-        this.defaultShader = new Phaser.Filter(
-            this.game,
-            undefined,
-            [
-                '//WebGLSpriteBatch Fragment Shader.',
-                'precision lowp float;',
-                'varying vec2 vTextureCoord;',
-                'varying vec4 vColor;',
-                'varying float vTextureIndex;',
-                'uniform sampler2D uSampler;',
-                'void main(void) {',
-                '   gl_FragColor = texture2D(uSampler, vTextureCoord) * vColor;',
-                '}'
-            ]);
+        this.defaultShader = this.createSingleTextureShader();
+        this.bindTexture = this.bindTextureSingle;
+        this.uploadTexture = this.uploadTextureSingle;
     }
 
     // create a couple of buffers
@@ -256,18 +340,7 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 {
     var texture = sprite.texture;
 
-    if (PIXI._enableMultiTextureToggle)
-    {
-        var baseTexture = texture.baseTexture;
-        var gl = this.gl;
-        if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
-        {
-            this.flush();
-            gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
-            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-            PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
-        }
-    }
+    this.bindTexture(texture.baseTexture, texture.baseTexture.textureIndex);
 
     //  They provided an alternative rendering matrix, so use it
     var wt = sprite.worldTransform;
@@ -444,18 +517,7 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
     var texture = sprite.tilingTexture;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
 
-    if (PIXI._enableMultiTextureToggle)
-    {
-        var baseTexture = texture.baseTexture;
-        var gl = this.gl;
-        if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
-        {
-            this.flush();
-            gl.activeTexture(gl.TEXTURE0 + textureIndex);
-            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-            PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
-        }
-    }
+    this.bindTexture(texture.baseTexture, textureIndex);
 
     // check texture..
     if (this.currentBatchSize >= this.size)
@@ -690,7 +752,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         }
 
         // if multi-texture batching disabled we always render the batch upon switching textures
-        var multiTextureBatchingEnabled = PIXI._enableMultiTextureToggle;
+        var multiTextureBatchingEnabled = this.multiTexture;
         var baseTextureChanged = currentBaseTexture !== nextTexture;
         if ((!multiTextureBatchingEnabled && baseTextureChanged && !skip) ||
             blendSwap ||

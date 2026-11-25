@@ -2,6 +2,10 @@
 
 ## Version 2.22.0 - 19 November 2026
 
+### Internal
+
+- `PIXI.WebGLSpriteBatch` now selects its multi-texture or single-texture strategy once in `setContext()` (`createMultiTextureShader`, `bindTexture`, `uploadTexture`) instead of checking `PIXI._enableMultiTextureToggle` per sprite. Behavior is unchanged.
+
 ### API Changes
 
 - `PIXI.WebGLGraphics.graphicsDataPool` is now an array of pools indexed by WebGL context id.
