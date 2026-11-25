@@ -260,11 +260,18 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
     {
         var baseTexture = texture.baseTexture;
         var gl = this.gl;
-        if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+        var dirty = baseTexture._dirty[gl.id];
+        if (dirty || PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
         {
             this.flush();
-            gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
-            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+
+            //  renderBatch() only uploads the first texture of a batch, so upload this one here
+            if (!dirty || !this.renderSession.renderer.updateTexture(baseTexture))
+            {
+                gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
+                gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+            }
+
             PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
         }
     }
@@ -781,8 +788,12 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
             return;
         }
     }
-    else
+    else if (!PIXI._enableMultiTextureToggle)
     {
+        /*
+         * With multitexture batching each sprite's texture is already bound to its own unit (see render()).
+         * Binding here would replace whatever is on the active unit (unit 0) with this batch's first texture.
+         */
         gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
     }
 
